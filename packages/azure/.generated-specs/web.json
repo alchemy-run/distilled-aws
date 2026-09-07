@@ -83435,10 +83435,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.web#DeleteAiGateways": {
+    "com.azure.web#DeleteAiGateway": {
       "type": "operation",
       "input": {
-        "target": "com.azure.web#DeleteAiGatewaysRequest"
+        "target": "com.azure.web#DeleteAiGatewayRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -83454,7 +83454,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-15"
       }
     },
-    "com.azure.web#DeleteAiGatewaysRequest": {
+    "com.azure.web#DeleteAiGatewayRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -83486,13 +83486,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.web#PatchAiGateways": {
+    "com.azure.web#PatchAiGateway": {
       "type": "operation",
       "input": {
-        "target": "com.azure.web#PatchAiGatewaysRequest"
+        "target": "com.azure.web#PatchAiGatewayRequest"
       },
       "output": {
-        "target": "com.azure.web#PatchAiGatewaysResponse"
+        "target": "com.azure.web#PatchAiGatewayResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -83505,7 +83505,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-15"
       }
     },
-    "com.azure.web#PatchAiGatewaysResponse": {
+    "com.azure.web#PatchAiGatewayResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -83533,7 +83533,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.web#PatchAiGatewaysResponseTagsMap",
+          "target": "com.azure.web#PatchAiGatewayResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -83570,7 +83570,7 @@
         "smithy.api#documentation": "The properties of an AI gateway."
       }
     },
-    "com.azure.web#PatchAiGatewaysResponseTagsMap": {
+    "com.azure.web#PatchAiGatewayResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -83582,7 +83582,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.web#PatchAiGatewaysRequest": {
+    "com.azure.web#PatchAiGatewayRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -83610,7 +83610,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.web#PatchAiGatewaysRequestTagsMap",
+          "target": "com.azure.web#PatchAiGatewayRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -83620,7 +83620,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.web#PatchAiGatewaysRequestTagsMap": {
+    "com.azure.web#PatchAiGatewayRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -83784,13 +83784,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.web#GetAiGateways": {
+    "com.azure.web#GetAiGateway": {
       "type": "operation",
       "input": {
-        "target": "com.azure.web#GetAiGatewaysRequest"
+        "target": "com.azure.web#GetAiGatewayRequest"
       },
       "output": {
-        "target": "com.azure.web#GetAiGatewaysResponse"
+        "target": "com.azure.web#GetAiGatewayResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -83803,7 +83803,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-15"
       }
     },
-    "com.azure.web#GetAiGatewaysResponse": {
+    "com.azure.web#GetAiGatewayResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -83831,7 +83831,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.web#GetAiGatewaysResponseTagsMap",
+          "target": "com.azure.web#GetAiGatewayResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -83854,7 +83854,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.web#GetAiGatewaysResponseTagsMap": {
+    "com.azure.web#GetAiGatewayResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -83866,7 +83866,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.web#GetAiGatewaysRequest": {
+    "com.azure.web#GetAiGatewayRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -83898,10 +83898,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.web#ListAiGatewaysByResourceGroup": {
+    "com.azure.web#ListAiGatewayByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.web#ListAiGatewaysByResourceGroupRequest"
+        "target": "com.azure.web#ListAiGatewayByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.web#AiGatewayListResult"
@@ -84010,7 +84010,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.web#ListAiGatewaysByResourceGroupRequest": {
+    "com.azure.web#ListAiGatewayByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -84058,21 +84058,21 @@
           }
         },
         "select": {
-          "target": "com.azure.web#ListAiGatewaysByResourceGroupRequestSelectList",
+          "target": "com.azure.web#ListAiGatewayByResourceGroupRequestSelectList",
           "traits": {
             "smithy.api#httpQuery": "select",
             "smithy.api#documentation": "Select the specified fields to be included in the response."
           }
         },
         "expand": {
-          "target": "com.azure.web#ListAiGatewaysByResourceGroupRequestExpandList",
+          "target": "com.azure.web#ListAiGatewayByResourceGroupRequestExpandList",
           "traits": {
             "smithy.api#httpQuery": "expand",
             "smithy.api#documentation": "Expand the indicated resources into the response."
           }
         },
         "orderby": {
-          "target": "com.azure.web#ListAiGatewaysByResourceGroupRequestOrderbyList",
+          "target": "com.azure.web#ListAiGatewayByResourceGroupRequestOrderbyList",
           "traits": {
             "smithy.api#httpQuery": "orderby",
             "smithy.api#documentation": "Expressions that specify the order of returned results."
@@ -84083,21 +84083,21 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.web#ListAiGatewaysByResourceGroupRequestOrderbyList": {
+    "com.azure.web#ListAiGatewayByResourceGroupRequestOrderbyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.azure.web#ListAiGatewaysByResourceGroupRequestExpandList": {
+    "com.azure.web#ListAiGatewayByResourceGroupRequestExpandList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.azure.web#ListAiGatewaysByResourceGroupRequestSelectList": {
+    "com.azure.web#ListAiGatewayByResourceGroupRequestSelectList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -87489,10 +87489,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.web#ListAiGatewaysBySubscription": {
+    "com.azure.web#ListAiGatewayBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.web#ListAiGatewaysBySubscriptionRequest"
+        "target": "com.azure.web#ListAiGatewayBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.web#AiGatewayListResult"
@@ -87508,7 +87508,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-15"
       }
     },
-    "com.azure.web#ListAiGatewaysBySubscriptionRequest": {
+    "com.azure.web#ListAiGatewayBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -91320,19 +91320,19 @@
           "target": "com.azure.web#ListCertificateByResourceGroup"
         },
         {
-          "target": "com.azure.web#DeleteAiGateways"
+          "target": "com.azure.web#DeleteAiGateway"
         },
         {
-          "target": "com.azure.web#PatchAiGateways"
+          "target": "com.azure.web#PatchAiGateway"
         },
         {
           "target": "com.azure.web#AiGatewaysCreateOrUpdate"
         },
         {
-          "target": "com.azure.web#GetAiGateways"
+          "target": "com.azure.web#GetAiGateway"
         },
         {
-          "target": "com.azure.web#ListAiGatewaysByResourceGroup"
+          "target": "com.azure.web#ListAiGatewayByResourceGroup"
         },
         {
           "target": "com.azure.web#Move"
@@ -91434,7 +91434,7 @@
           "target": "com.azure.web#ListAseRegions"
         },
         {
-          "target": "com.azure.web#ListAiGatewaysBySubscription"
+          "target": "com.azure.web#ListAiGatewayBySubscription"
         },
         {
           "target": "com.azure.web#GetProviderWebAppStacks"

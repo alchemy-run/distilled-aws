@@ -11196,7 +11196,7 @@ export const DeleteKmsAliasResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteKmsAliasResponse",
 }) as any as S.Schema<DeleteKmsAliasResponse>;
 
-export interface DeleteKmsKeysRequest {
+export interface DeleteKmsKeyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -11204,7 +11204,7 @@ export interface DeleteKmsKeysRequest {
   /** Name of KmsKey */
   name: string;
 }
-export const DeleteKmsKeysRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteKmsKeyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -11218,15 +11218,15 @@ export const DeleteKmsKeysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteKmsKeysRequest",
-}) as any as S.Schema<DeleteKmsKeysRequest>;
+  identifier: "DeleteKmsKeyRequest",
+}) as any as S.Schema<DeleteKmsKeyRequest>;
 
-export interface DeleteKmsKeysResponse {}
-export const DeleteKmsKeysResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteKmsKeyResponse {}
+export const DeleteKmsKeyResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteKmsKeysResponse",
-}) as any as S.Schema<DeleteKmsKeysResponse>;
+  identifier: "DeleteKmsKeyResponse",
+}) as any as S.Schema<DeleteKmsKeyResponse>;
 
 export interface DeleteLambdaFunctionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -33628,7 +33628,7 @@ export const GetKmsAliasResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetKmsAliasResponse",
 }) as any as S.Schema<GetKmsAliasResponse>;
 
-export interface GetKmsKeysRequest {
+export interface GetKmsKeyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -33636,7 +33636,7 @@ export interface GetKmsKeysRequest {
   /** Name of KmsKey */
   name: string;
 }
-export const GetKmsKeysRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetKmsKeyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -33650,15 +33650,15 @@ export const GetKmsKeysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetKmsKeysRequest",
-}) as any as S.Schema<GetKmsKeysRequest>;
+  identifier: "GetKmsKeyRequest",
+}) as any as S.Schema<GetKmsKeyRequest>;
 
 /** Resource tags. */
-export type GetKmsKeysResponseTagsMap = { [key: string]: string | undefined };
-export const GetKmsKeysResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetKmsKeyResponseTagsMap = { [key: string]: string | undefined };
+export const GetKmsKeyResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<GetKmsKeysResponseTagsMap>;
+) as any as S.Schema<GetKmsKeyResponseTagsMap>;
 
 /** The key policy to attach to the KMS key. If you provide a key policy, it must meet the following criteria: + The key policy must allow the caller to make a subsequent [PutKeyPolicy](https://docs.aws.amazon.com/kms/latest/APIReference/API_PutKeyPolicy.html) request on the KMS key. This reduces the risk that the KMS key becomes unmanageable. For more information, see [Default key policy](https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam) in the *Developer Guide*. (To omit this condition, set ``BypassPolicyLockoutSafetyCheck`` to true.) + Each statement in the key policy must contain one or more principals. The principals in the key policy must exist and be visible to KMS. When you create a new AWS principal (for example, an IAM user or role), you might need to enforce a delay before including the new principal in a key policy because the new principal might not be immediately visible to KMS. For more information, see [Changes that I make are not always immediately visible](https://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_general.html#troubleshoot_general_eventual-consistency) in the *User Guide*. If you do not provide a key policy, KMS attaches a default key policy to the KMS key. For more information, see [Default key policy](https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default) in the *Developer Guide*. A key policy document can include only the following characters: + Printable ASCII characters + Printable characters in the Basic Latin and Latin-1 Supplement character set + The tab (``\u0009``), line feed (``\u000A``), and carriage return (``\u000D``) special characters *Minimum*: ``1`` *Maximum*: ``32768`` */
 export type AwsKmsKeyPropertiesKeyPolicyMap = {
@@ -33803,7 +33803,7 @@ export const KmsKeyProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "KmsKeyProperties",
 }) as any as S.Schema<KmsKeyProperties>;
 
-export interface GetKmsKeysResponse {
+export interface GetKmsKeyResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -33813,25 +33813,25 @@ export interface GetKmsKeysResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: GetKmsKeysResponseTagsMap;
+  tags?: GetKmsKeyResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: KmsKeyProperties;
 }
-export const GetKmsKeysResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetKmsKeyResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(GetKmsKeysResponseTagsMap),
+    tags: S.optional(GetKmsKeyResponseTagsMap),
     location: S.String,
     properties: S.optional(KmsKeyProperties),
   }),
 ).annotate({
-  identifier: "GetKmsKeysResponse",
-}) as any as S.Schema<GetKmsKeysResponse>;
+  identifier: "GetKmsKeyResponse",
+}) as any as S.Schema<GetKmsKeyResponse>;
 
 export interface GetLambdaFunctionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -55985,13 +55985,13 @@ export const ListKmsAliasBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListKmsAliasBySubscriptionRequest",
 }) as any as S.Schema<ListKmsAliasBySubscriptionRequest>;
 
-export interface ListKmsKeysByResourceGroupRequest {
+export interface ListKmsKeyByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
 }
-export const ListKmsKeysByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListKmsKeyByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -56004,8 +56004,8 @@ export const ListKmsKeysByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListKmsKeysByResourceGroupRequest",
-}) as any as S.Schema<ListKmsKeysByResourceGroupRequest>;
+  identifier: "ListKmsKeyByResourceGroupRequest",
+}) as any as S.Schema<ListKmsKeyByResourceGroupRequest>;
 
 /** Resource tags. */
 export type KmsKeyTagsMap = { [key: string]: string | undefined };
@@ -56065,11 +56065,11 @@ export const KmsKeyListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "KmsKeyListResult",
 }) as any as S.Schema<KmsKeyListResult>;
 
-export interface ListKmsKeysBySubscriptionRequest {
+export interface ListKmsKeyBySubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
 }
-export const ListKmsKeysBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListKmsKeyBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
   }).pipe(
@@ -56081,8 +56081,8 @@ export const ListKmsKeysBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListKmsKeysBySubscriptionRequest",
-}) as any as S.Schema<ListKmsKeysBySubscriptionRequest>;
+  identifier: "ListKmsKeyBySubscriptionRequest",
+}) as any as S.Schema<ListKmsKeyBySubscriptionRequest>;
 
 export interface ListLambdaFunctionByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -70932,13 +70932,13 @@ export const UpdateKmsAliasResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateKmsAliasResponse>;
 
 /** Resource tags. */
-export type UpdateKmsKeysRequestTagsMap = { [key: string]: string | undefined };
-export const UpdateKmsKeysRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateKmsKeyRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateKmsKeyRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<UpdateKmsKeysRequestTagsMap>;
+) as any as S.Schema<UpdateKmsKeyRequestTagsMap>;
 
-export interface UpdateKmsKeysRequest {
+export interface UpdateKmsKeyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -70946,14 +70946,14 @@ export interface UpdateKmsKeysRequest {
   /** Name of KmsKey */
   name: string;
   /** Resource tags. */
-  tags?: UpdateKmsKeysRequestTagsMap;
+  tags?: UpdateKmsKeyRequestTagsMap;
 }
-export const UpdateKmsKeysRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateKmsKeyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     name: S.String.pipe(T.Label()),
-    tags: S.optional(UpdateKmsKeysRequestTagsMap),
+    tags: S.optional(UpdateKmsKeyRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -70963,19 +70963,17 @@ export const UpdateKmsKeysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateKmsKeysRequest",
-}) as any as S.Schema<UpdateKmsKeysRequest>;
+  identifier: "UpdateKmsKeyRequest",
+}) as any as S.Schema<UpdateKmsKeyRequest>;
 
 /** Resource tags. */
-export type UpdateKmsKeysResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const UpdateKmsKeysResponseTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateKmsKeyResponseTagsMap = { [key: string]: string | undefined };
+export const UpdateKmsKeyResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<UpdateKmsKeysResponseTagsMap>;
+) as any as S.Schema<UpdateKmsKeyResponseTagsMap>;
 
-export interface UpdateKmsKeysResponse {
+export interface UpdateKmsKeyResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -70985,25 +70983,25 @@ export interface UpdateKmsKeysResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: UpdateKmsKeysResponseTagsMap;
+  tags?: UpdateKmsKeyResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: KmsKeyProperties;
 }
-export const UpdateKmsKeysResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateKmsKeyResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(UpdateKmsKeysResponseTagsMap),
+    tags: S.optional(UpdateKmsKeyResponseTagsMap),
     location: S.String,
     properties: S.optional(KmsKeyProperties),
   }),
 ).annotate({
-  identifier: "UpdateKmsKeysResponse",
-}) as any as S.Schema<UpdateKmsKeysResponse>;
+  identifier: "UpdateKmsKeyResponse",
+}) as any as S.Schema<UpdateKmsKeyResponse>;
 
 /** Resource tags. */
 export type UpdateLambdaFunctionRequestTagsMap = {
@@ -75961,16 +75959,16 @@ export const DeleteKmsAlias: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteKmsKeysError = AzureOpError;
+export type DeleteKmsKeyError = AzureOpError;
 /** Delete a KmsKey */
-export const DeleteKmsKeys: API.OperationMethod<
-  DeleteKmsKeysRequest,
-  DeleteKmsKeysResponse,
-  DeleteKmsKeysError,
+export const DeleteKmsKey: API.OperationMethod<
+  DeleteKmsKeyRequest,
+  DeleteKmsKeyResponse,
+  DeleteKmsKeyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteKmsKeysRequest,
-  output: DeleteKmsKeysResponse,
+  input: DeleteKmsKeyRequest,
+  output: DeleteKmsKeyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -78203,16 +78201,16 @@ export const GetKmsAlias: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetKmsKeysError = AzureOpError;
+export type GetKmsKeyError = AzureOpError;
 /** Get a KmsKey */
-export const GetKmsKeys: API.OperationMethod<
-  GetKmsKeysRequest,
-  GetKmsKeysResponse,
-  GetKmsKeysError,
+export const GetKmsKey: API.OperationMethod<
+  GetKmsKeyRequest,
+  GetKmsKeyResponse,
+  GetKmsKeyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetKmsKeysRequest,
-  output: GetKmsKeysResponse,
+  input: GetKmsKeyRequest,
+  output: GetKmsKeyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -81135,30 +81133,30 @@ export const ListKmsAliasBySubscription: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListKmsKeysByResourceGroupError = AzureOpError;
+export type ListKmsKeyByResourceGroupError = AzureOpError;
 /** List KmsKey resources by resource group */
-export const ListKmsKeysByResourceGroup: API.OperationMethod<
-  ListKmsKeysByResourceGroupRequest,
+export const ListKmsKeyByResourceGroup: API.OperationMethod<
+  ListKmsKeyByResourceGroupRequest,
   KmsKeyListResult,
-  ListKmsKeysByResourceGroupError,
+  ListKmsKeyByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListKmsKeysByResourceGroupRequest,
+  input: ListKmsKeyByResourceGroupRequest,
   output: KmsKeyListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListKmsKeysBySubscriptionError = AzureOpError;
+export type ListKmsKeyBySubscriptionError = AzureOpError;
 /** List KmsKey resources by subscription ID */
-export const ListKmsKeysBySubscription: API.OperationMethod<
-  ListKmsKeysBySubscriptionRequest,
+export const ListKmsKeyBySubscription: API.OperationMethod<
+  ListKmsKeyBySubscriptionRequest,
   KmsKeyListResult,
-  ListKmsKeysBySubscriptionError,
+  ListKmsKeyBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListKmsKeysBySubscriptionRequest,
+  input: ListKmsKeyBySubscriptionRequest,
   output: KmsKeyListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -84090,16 +84088,16 @@ export const UpdateKmsAlias: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateKmsKeysError = AzureOpError;
+export type UpdateKmsKeyError = AzureOpError;
 /** Update a KmsKey */
-export const UpdateKmsKeys: API.OperationMethod<
-  UpdateKmsKeysRequest,
-  UpdateKmsKeysResponse,
-  UpdateKmsKeysError,
+export const UpdateKmsKey: API.OperationMethod<
+  UpdateKmsKeyRequest,
+  UpdateKmsKeyResponse,
+  UpdateKmsKeyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateKmsKeysRequest,
-  output: UpdateKmsKeysResponse,
+  input: UpdateKmsKeyRequest,
+  output: UpdateKmsKeyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

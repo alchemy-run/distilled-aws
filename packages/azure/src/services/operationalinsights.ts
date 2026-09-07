@@ -839,7 +839,7 @@ export const DeleteDataSourceResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteDataSourceResponse",
 }) as any as S.Schema<DeleteDataSourceResponse>;
 
-export interface DeleteGatewaysRequest {
+export interface DeleteGatewayRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -849,7 +849,7 @@ export interface DeleteGatewaysRequest {
   /** The Log Analytics gateway Id. */
   gatewayId: string;
 }
-export const DeleteGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteGatewayRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -864,15 +864,15 @@ export const DeleteGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteGatewaysRequest",
-}) as any as S.Schema<DeleteGatewaysRequest>;
+  identifier: "DeleteGatewayRequest",
+}) as any as S.Schema<DeleteGatewayRequest>;
 
-export interface DeleteGatewaysResponse {}
-export const DeleteGatewaysResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteGatewayResponse {}
+export const DeleteGatewayResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteGatewaysResponse",
-}) as any as S.Schema<DeleteGatewaysResponse>;
+  identifier: "DeleteGatewayResponse",
+}) as any as S.Schema<DeleteGatewayResponse>;
 
 export interface DeleteLinkedServiceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2351,7 +2351,7 @@ export const SearchGetSchemaResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SearchGetSchemaResponse",
 }) as any as S.Schema<SearchGetSchemaResponse>;
 
-export interface GetSharedKeysSharedKeysRequest {
+export interface GetSharedKeySharedKeysRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2359,7 +2359,7 @@ export interface GetSharedKeysSharedKeysRequest {
   /** The name of the workspace. */
   workspaceName: string;
 }
-export const GetSharedKeysSharedKeysRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetSharedKeySharedKeysRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2373,8 +2373,8 @@ export const GetSharedKeysSharedKeysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetSharedKeysSharedKeysRequest",
-}) as any as S.Schema<GetSharedKeysSharedKeysRequest>;
+  identifier: "GetSharedKeySharedKeysRequest",
+}) as any as S.Schema<GetSharedKeySharedKeysRequest>;
 
 /** The shared keys for a workspace. */
 export interface SharedKeys {
@@ -5873,7 +5873,7 @@ export const QueryPacksCreateOrUpdateWithoutNameResponse =
     identifier: "QueryPacksCreateOrUpdateWithoutNameResponse",
   }) as any as S.Schema<QueryPacksCreateOrUpdateWithoutNameResponse>;
 
-export interface RegenerateSharedKeysRequest {
+export interface RegenerateSharedKeyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5881,7 +5881,7 @@ export interface RegenerateSharedKeysRequest {
   /** The name of the workspace. */
   workspaceName: string;
 }
-export const RegenerateSharedKeysRequest = /*@__PURE__*/ S.suspend(() =>
+export const RegenerateSharedKeyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -5895,8 +5895,8 @@ export const RegenerateSharedKeysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "RegenerateSharedKeysRequest",
-}) as any as S.Schema<RegenerateSharedKeysRequest>;
+  identifier: "RegenerateSharedKeyRequest",
+}) as any as S.Schema<RegenerateSharedKeyRequest>;
 
 /** Properties for retrying a Summary rule bin. */
 export interface SummaryLogsRetryBinProperties {
@@ -7494,16 +7494,16 @@ export const DeleteDataSource: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteGatewaysError = AzureOpError;
+export type DeleteGatewayError = AzureOpError;
 /** Delete a Log Analytics gateway. */
-export const DeleteGateways: API.OperationMethod<
-  DeleteGatewaysRequest,
-  DeleteGatewaysResponse,
-  DeleteGatewaysError,
+export const DeleteGateway: API.OperationMethod<
+  DeleteGatewayRequest,
+  DeleteGatewayResponse,
+  DeleteGatewayError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteGatewaysRequest,
-  output: DeleteGatewaysResponse,
+  input: DeleteGatewayRequest,
+  output: DeleteGatewayResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -7824,15 +7824,15 @@ export const GetSchema: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetSharedKeysSharedKeysError = AzureOpError;
+export type GetSharedKeySharedKeysError = AzureOpError;
 /** Gets the shared keys for a workspace. */
-export const GetSharedKeysSharedKeys: API.OperationMethod<
-  GetSharedKeysSharedKeysRequest,
+export const GetSharedKeySharedKeys: API.OperationMethod<
+  GetSharedKeySharedKeysRequest,
   SharedKeys,
-  GetSharedKeysSharedKeysError,
+  GetSharedKeySharedKeysError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSharedKeysSharedKeysRequest,
+  input: GetSharedKeySharedKeysRequest,
   output: SharedKeys,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -8379,15 +8379,15 @@ export const QueryPacksCreateOrUpdateWithoutName: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type RegenerateSharedKeysError = AzureOpError;
+export type RegenerateSharedKeyError = AzureOpError;
 /** Regenerates the shared keys for a Log Analytics Workspace. These keys are used to connect Microsoft Operational Insights agents to the workspace. */
-export const RegenerateSharedKeys: API.OperationMethod<
-  RegenerateSharedKeysRequest,
+export const RegenerateSharedKey: API.OperationMethod<
+  RegenerateSharedKeyRequest,
   SharedKeys,
-  RegenerateSharedKeysError,
+  RegenerateSharedKeyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RegenerateSharedKeysRequest,
+  input: RegenerateSharedKeyRequest,
   output: SharedKeys,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,

@@ -107,13 +107,13 @@ export const CheckNameAvailabilityResult = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CheckNameAvailabilityResult>;
 
 /** The tags that will be assigned to the key. */
-export type CreateKeysIfNotExistRequestTagsMap = {
+export type CreateKeyIfNotExistRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const CreateKeysIfNotExistRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateKeyIfNotExistRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CreateKeysIfNotExistRequestTagsMap>;
+) as any as S.Schema<CreateKeyIfNotExistRequestTagsMap>;
 
 /** The object attributes managed by the Azure Key Vault service. */
 export interface KeyAttributesInput {
@@ -282,7 +282,7 @@ export const KeyPropertiesInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "KeyPropertiesInput",
 }) as any as S.Schema<KeyPropertiesInput>;
 
-export interface CreateKeysIfNotExistRequest {
+export interface CreateKeyIfNotExistRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -292,17 +292,17 @@ export interface CreateKeysIfNotExistRequest {
   /** The name of the key to be retrieved. */
   keyName: string;
   /** The tags that will be assigned to the key. */
-  tags?: CreateKeysIfNotExistRequestTagsMap;
+  tags?: CreateKeyIfNotExistRequestTagsMap;
   /** The properties of the key to be created. */
   properties: KeyPropertiesInput;
 }
-export const CreateKeysIfNotExistRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateKeyIfNotExistRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     vaultName: S.String.pipe(T.Label()),
     keyName: S.String.pipe(T.Label()),
-    tags: S.optional(CreateKeysIfNotExistRequestTagsMap),
+    tags: S.optional(CreateKeyIfNotExistRequestTagsMap),
     properties: KeyPropertiesInput,
   }).pipe(
     T.Http({
@@ -313,8 +313,8 @@ export const CreateKeysIfNotExistRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateKeysIfNotExistRequest",
-}) as any as S.Schema<CreateKeysIfNotExistRequest>;
+  identifier: "CreateKeyIfNotExistRequest",
+}) as any as S.Schema<CreateKeyIfNotExistRequest>;
 
 /** The type of identity that created the resource. */
 export type SystemDataCreatedByType =
@@ -472,15 +472,15 @@ export const KeyProperties = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "KeyProperties" }) as any as S.Schema<KeyProperties>;
 
 /** Resource tags */
-export type CreateKeysIfNotExistResponseTagsMap = {
+export type CreateKeyIfNotExistResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const CreateKeysIfNotExistResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateKeyIfNotExistResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CreateKeysIfNotExistResponseTagsMap>;
+) as any as S.Schema<CreateKeyIfNotExistResponseTagsMap>;
 
-export interface CreateKeysIfNotExistResponse {
+export interface CreateKeyIfNotExistResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -494,9 +494,9 @@ export interface CreateKeysIfNotExistResponse {
   /** The supported Azure location where the managed HSM Pool should be created. */
   location?: string;
   /** Resource tags */
-  tags?: CreateKeysIfNotExistResponseTagsMap;
+  tags?: CreateKeyIfNotExistResponseTagsMap;
 }
-export const CreateKeysIfNotExistResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateKeyIfNotExistResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -504,21 +504,21 @@ export const CreateKeysIfNotExistResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: KeyProperties,
     location: S.optional(S.String),
-    tags: S.optional(CreateKeysIfNotExistResponseTagsMap),
+    tags: S.optional(CreateKeyIfNotExistResponseTagsMap),
   }),
 ).annotate({
-  identifier: "CreateKeysIfNotExistResponse",
-}) as any as S.Schema<CreateKeysIfNotExistResponse>;
+  identifier: "CreateKeyIfNotExistResponse",
+}) as any as S.Schema<CreateKeyIfNotExistResponse>;
 
 /** The tags that will be assigned to the key. */
-export type CreateManagedHsmKeysIfNotExistRequestTagsMap = {
+export type CreateManagedHsmKeyIfNotExistRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const CreateManagedHsmKeysIfNotExistRequestTagsMap =
+export const CreateManagedHsmKeyIfNotExistRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<CreateManagedHsmKeysIfNotExistRequestTagsMap>;
+  ) as any as S.Schema<CreateManagedHsmKeyIfNotExistRequestTagsMap>;
 
 /** The object attributes managed by the Azure Key Vault service. */
 export type ManagedHsmKeyAttributesInput = KeyAttributesInput;
@@ -603,7 +603,7 @@ export const ManagedHsmKeyPropertiesInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "ManagedHsmKeyPropertiesInput",
 }) as any as S.Schema<ManagedHsmKeyPropertiesInput>;
 
-export interface CreateManagedHsmKeysIfNotExistRequest {
+export interface CreateManagedHsmKeyIfNotExistRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -613,18 +613,18 @@ export interface CreateManagedHsmKeysIfNotExistRequest {
   /** The name of the key to be created. The value you provide may be copied globally for the purpose of running the service. The value provided should not include personally identifiable or sensitive information. */
   keyName: string;
   /** The tags that will be assigned to the key. */
-  tags?: CreateManagedHsmKeysIfNotExistRequestTagsMap;
+  tags?: CreateManagedHsmKeyIfNotExistRequestTagsMap;
   /** The properties of the key to be created. */
   properties: ManagedHsmKeyPropertiesInput;
 }
-export const CreateManagedHsmKeysIfNotExistRequest = /*@__PURE__*/ S.suspend(
+export const CreateManagedHsmKeyIfNotExistRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       name: S.String.pipe(T.Label()),
       keyName: S.String.pipe(T.Label()),
-      tags: S.optional(CreateManagedHsmKeysIfNotExistRequestTagsMap),
+      tags: S.optional(CreateManagedHsmKeyIfNotExistRequestTagsMap),
       properties: ManagedHsmKeyPropertiesInput,
     }).pipe(
       T.Http({
@@ -635,8 +635,8 @@ export const CreateManagedHsmKeysIfNotExistRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "CreateManagedHsmKeysIfNotExistRequest",
-}) as any as S.Schema<CreateManagedHsmKeysIfNotExistRequest>;
+  identifier: "CreateManagedHsmKeyIfNotExistRequest",
+}) as any as S.Schema<CreateManagedHsmKeyIfNotExistRequest>;
 
 /** The object attributes managed by the Azure Key Vault service. */
 export type ManagedHsmKeyAttributes = KeyAttributes;
@@ -710,16 +710,16 @@ export const ManagedHsmKeyProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ManagedHsmKeyProperties>;
 
 /** Resource tags */
-export type CreateManagedHsmKeysIfNotExistResponseTagsMap = {
+export type CreateManagedHsmKeyIfNotExistResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const CreateManagedHsmKeysIfNotExistResponseTagsMap =
+export const CreateManagedHsmKeyIfNotExistResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<CreateManagedHsmKeysIfNotExistResponseTagsMap>;
+  ) as any as S.Schema<CreateManagedHsmKeyIfNotExistResponseTagsMap>;
 
-export interface CreateManagedHsmKeysIfNotExistResponse {
+export interface CreateManagedHsmKeyIfNotExistResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -731,9 +731,9 @@ export interface CreateManagedHsmKeysIfNotExistResponse {
   /** The properties of the key. */
   properties: ManagedHsmKeyProperties;
   /** Resource tags */
-  tags?: CreateManagedHsmKeysIfNotExistResponseTagsMap;
+  tags?: CreateManagedHsmKeyIfNotExistResponseTagsMap;
 }
-export const CreateManagedHsmKeysIfNotExistResponse = /*@__PURE__*/ S.suspend(
+export const CreateManagedHsmKeyIfNotExistResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -741,11 +741,11 @@ export const CreateManagedHsmKeysIfNotExistResponse = /*@__PURE__*/ S.suspend(
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       properties: ManagedHsmKeyProperties,
-      tags: S.optional(CreateManagedHsmKeysIfNotExistResponseTagsMap),
+      tags: S.optional(CreateManagedHsmKeyIfNotExistResponseTagsMap),
     }),
 ).annotate({
-  identifier: "CreateManagedHsmKeysIfNotExistResponse",
-}) as any as S.Schema<CreateManagedHsmKeysIfNotExistResponse>;
+  identifier: "CreateManagedHsmKeyIfNotExistResponse",
+}) as any as S.Schema<CreateManagedHsmKeyIfNotExistResponse>;
 
 export interface DeleteManagedHsmRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -1138,7 +1138,7 @@ export const DeleteVaultResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteVaultResponse",
 }) as any as S.Schema<DeleteVaultResponse>;
 
-export interface GetKeysRequest {
+export interface GetKeyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1148,7 +1148,7 @@ export interface GetKeysRequest {
   /** The name of the key to be retrieved. */
   keyName: string;
 }
-export const GetKeysRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetKeyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1162,16 +1162,16 @@ export const GetKeysRequest = /*@__PURE__*/ S.suspend(() =>
       apiVersion: "2026-02-01",
     }),
   ),
-).annotate({ identifier: "GetKeysRequest" }) as any as S.Schema<GetKeysRequest>;
+).annotate({ identifier: "GetKeyRequest" }) as any as S.Schema<GetKeyRequest>;
 
 /** Resource tags */
-export type GetKeysResponseTagsMap = { [key: string]: string | undefined };
-export const GetKeysResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetKeyResponseTagsMap = { [key: string]: string | undefined };
+export const GetKeyResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<GetKeysResponseTagsMap>;
+) as any as S.Schema<GetKeyResponseTagsMap>;
 
-export interface GetKeysResponse {
+export interface GetKeyResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1185,9 +1185,9 @@ export interface GetKeysResponse {
   /** The supported Azure location where the managed HSM Pool should be created. */
   location?: string;
   /** Resource tags */
-  tags?: GetKeysResponseTagsMap;
+  tags?: GetKeyResponseTagsMap;
 }
-export const GetKeysResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetKeyResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -1195,13 +1195,11 @@ export const GetKeysResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: KeyProperties,
     location: S.optional(S.String),
-    tags: S.optional(GetKeysResponseTagsMap),
+    tags: S.optional(GetKeyResponseTagsMap),
   }),
-).annotate({
-  identifier: "GetKeysResponse",
-}) as any as S.Schema<GetKeysResponse>;
+).annotate({ identifier: "GetKeyResponse" }) as any as S.Schema<GetKeyResponse>;
 
-export interface GetKeysVersionRequest {
+export interface GetKeyVersionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1213,7 +1211,7 @@ export interface GetKeysVersionRequest {
   /** The version of the key to be retrieved. */
   keyVersion: string;
 }
-export const GetKeysVersionRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetKeyVersionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1229,19 +1227,19 @@ export const GetKeysVersionRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetKeysVersionRequest",
-}) as any as S.Schema<GetKeysVersionRequest>;
+  identifier: "GetKeyVersionRequest",
+}) as any as S.Schema<GetKeyVersionRequest>;
 
 /** Resource tags */
-export type GetKeysVersionResponseTagsMap = {
+export type GetKeyVersionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const GetKeysVersionResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetKeyVersionResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<GetKeysVersionResponseTagsMap>;
+) as any as S.Schema<GetKeyVersionResponseTagsMap>;
 
-export interface GetKeysVersionResponse {
+export interface GetKeyVersionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1255,9 +1253,9 @@ export interface GetKeysVersionResponse {
   /** The supported Azure location where the managed HSM Pool should be created. */
   location?: string;
   /** Resource tags */
-  tags?: GetKeysVersionResponseTagsMap;
+  tags?: GetKeyVersionResponseTagsMap;
 }
-export const GetKeysVersionResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetKeyVersionResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -1265,11 +1263,11 @@ export const GetKeysVersionResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: KeyProperties,
     location: S.optional(S.String),
-    tags: S.optional(GetKeysVersionResponseTagsMap),
+    tags: S.optional(GetKeyVersionResponseTagsMap),
   }),
 ).annotate({
-  identifier: "GetKeysVersionResponse",
-}) as any as S.Schema<GetKeysVersionResponse>;
+  identifier: "GetKeyVersionResponse",
+}) as any as S.Schema<GetKeyVersionResponse>;
 
 export interface GetManagedHsmRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -1690,7 +1688,7 @@ export const GetManagedHsmDeletedResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetManagedHsmDeletedResponse",
 }) as any as S.Schema<GetManagedHsmDeletedResponse>;
 
-export interface GetManagedHsmKeysRequest {
+export interface GetManagedHsmKeyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1700,7 +1698,7 @@ export interface GetManagedHsmKeysRequest {
   /** The name of the key to be created. The value you provide may be copied globally for the purpose of running the service. The value provided should not include personally identifiable or sensitive information. */
   keyName: string;
 }
-export const GetManagedHsmKeysRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetManagedHsmKeyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1715,19 +1713,19 @@ export const GetManagedHsmKeysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetManagedHsmKeysRequest",
-}) as any as S.Schema<GetManagedHsmKeysRequest>;
+  identifier: "GetManagedHsmKeyRequest",
+}) as any as S.Schema<GetManagedHsmKeyRequest>;
 
 /** Resource tags */
-export type GetManagedHsmKeysResponseTagsMap = {
+export type GetManagedHsmKeyResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const GetManagedHsmKeysResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetManagedHsmKeyResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<GetManagedHsmKeysResponseTagsMap>;
+) as any as S.Schema<GetManagedHsmKeyResponseTagsMap>;
 
-export interface GetManagedHsmKeysResponse {
+export interface GetManagedHsmKeyResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1739,22 +1737,22 @@ export interface GetManagedHsmKeysResponse {
   /** The properties of the key. */
   properties: ManagedHsmKeyProperties;
   /** Resource tags */
-  tags?: GetManagedHsmKeysResponseTagsMap;
+  tags?: GetManagedHsmKeyResponseTagsMap;
 }
-export const GetManagedHsmKeysResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetManagedHsmKeyResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: ManagedHsmKeyProperties,
-    tags: S.optional(GetManagedHsmKeysResponseTagsMap),
+    tags: S.optional(GetManagedHsmKeyResponseTagsMap),
   }),
 ).annotate({
-  identifier: "GetManagedHsmKeysResponse",
-}) as any as S.Schema<GetManagedHsmKeysResponse>;
+  identifier: "GetManagedHsmKeyResponse",
+}) as any as S.Schema<GetManagedHsmKeyResponse>;
 
-export interface GetManagedHsmKeysVersionRequest {
+export interface GetManagedHsmKeyVersionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1766,7 +1764,7 @@ export interface GetManagedHsmKeysVersionRequest {
   /** The version of the key to be retrieved. */
   keyVersion: string;
 }
-export const GetManagedHsmKeysVersionRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetManagedHsmKeyVersionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1782,19 +1780,19 @@ export const GetManagedHsmKeysVersionRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetManagedHsmKeysVersionRequest",
-}) as any as S.Schema<GetManagedHsmKeysVersionRequest>;
+  identifier: "GetManagedHsmKeyVersionRequest",
+}) as any as S.Schema<GetManagedHsmKeyVersionRequest>;
 
 /** Resource tags */
-export type GetManagedHsmKeysVersionResponseTagsMap = {
+export type GetManagedHsmKeyVersionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const GetManagedHsmKeysVersionResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetManagedHsmKeyVersionResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<GetManagedHsmKeysVersionResponseTagsMap>;
+) as any as S.Schema<GetManagedHsmKeyVersionResponseTagsMap>;
 
-export interface GetManagedHsmKeysVersionResponse {
+export interface GetManagedHsmKeyVersionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1806,20 +1804,20 @@ export interface GetManagedHsmKeysVersionResponse {
   /** The properties of the key. */
   properties: ManagedHsmKeyProperties;
   /** Resource tags */
-  tags?: GetManagedHsmKeysVersionResponseTagsMap;
+  tags?: GetManagedHsmKeyVersionResponseTagsMap;
 }
-export const GetManagedHsmKeysVersionResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetManagedHsmKeyVersionResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: ManagedHsmKeyProperties,
-    tags: S.optional(GetManagedHsmKeysVersionResponseTagsMap),
+    tags: S.optional(GetManagedHsmKeyVersionResponseTagsMap),
   }),
 ).annotate({
-  identifier: "GetManagedHsmKeysVersionResponse",
-}) as any as S.Schema<GetManagedHsmKeysVersionResponse>;
+  identifier: "GetManagedHsmKeyVersionResponse",
+}) as any as S.Schema<GetManagedHsmKeyVersionResponse>;
 
 export interface GetMHSMPrivateEndpointConnectionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2621,7 +2619,7 @@ export const KeyListResult = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "KeyListResult" }) as any as S.Schema<KeyListResult>;
 
-export interface ListKeysVersionsRequest {
+export interface ListKeyVersionsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2631,7 +2629,7 @@ export interface ListKeysVersionsRequest {
   /** The name of the key version to be retrieved. */
   keyName: string;
 }
-export const ListKeysVersionsRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListKeyVersionsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2646,8 +2644,8 @@ export const ListKeysVersionsRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListKeysVersionsRequest",
-}) as any as S.Schema<ListKeysVersionsRequest>;
+  identifier: "ListKeyVersionsRequest",
+}) as any as S.Schema<ListKeyVersionsRequest>;
 
 export interface ListManagedHsmByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2913,7 +2911,7 @@ export const ManagedHsmKeyListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ManagedHsmKeyListResult",
 }) as any as S.Schema<ManagedHsmKeyListResult>;
 
-export interface ListManagedHsmKeysVersionsRequest {
+export interface ListManagedHsmKeyVersionsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2923,7 +2921,7 @@ export interface ListManagedHsmKeysVersionsRequest {
   /** The name of the key to be created. The value you provide may be copied globally for the purpose of running the service. The value provided should not include personally identifiable or sensitive information. */
   keyName: string;
 }
-export const ListManagedHsmKeysVersionsRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListManagedHsmKeyVersionsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2938,8 +2936,8 @@ export const ListManagedHsmKeysVersionsRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListManagedHsmKeysVersionsRequest",
-}) as any as S.Schema<ListManagedHsmKeysVersionsRequest>;
+  identifier: "ListManagedHsmKeyVersionsRequest",
+}) as any as S.Schema<ListManagedHsmKeyVersionsRequest>;
 
 export interface ListMHSMPrivateEndpointConnectionByResourceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -5234,31 +5232,31 @@ export const CheckVaultNameAvailability: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CreateKeysIfNotExistError = AzureOpError;
+export type CreateKeyIfNotExistError = AzureOpError;
 /** Creates the first version of a new key if it does not exist. If it already exists, then the existing key is returned without any write operations being performed. This API does not create subsequent versions, and does not update existing keys. */
-export const CreateKeysIfNotExist: API.OperationMethod<
-  CreateKeysIfNotExistRequest,
-  CreateKeysIfNotExistResponse,
-  CreateKeysIfNotExistError,
+export const CreateKeyIfNotExist: API.OperationMethod<
+  CreateKeyIfNotExistRequest,
+  CreateKeyIfNotExistResponse,
+  CreateKeyIfNotExistError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateKeysIfNotExistRequest,
-  output: CreateKeysIfNotExistResponse,
+  input: CreateKeyIfNotExistRequest,
+  output: CreateKeyIfNotExistResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateManagedHsmKeysIfNotExistError = AzureOpError;
+export type CreateManagedHsmKeyIfNotExistError = AzureOpError;
 /** Creates the first version of a new key if it does not exist. If it already exists, then the existing key is returned without any write operations being performed. This API does not create subsequent versions, and does not update existing keys. */
-export const CreateManagedHsmKeysIfNotExist: API.OperationMethod<
-  CreateManagedHsmKeysIfNotExistRequest,
-  CreateManagedHsmKeysIfNotExistResponse,
-  CreateManagedHsmKeysIfNotExistError,
+export const CreateManagedHsmKeyIfNotExist: API.OperationMethod<
+  CreateManagedHsmKeyIfNotExistRequest,
+  CreateManagedHsmKeyIfNotExistResponse,
+  CreateManagedHsmKeyIfNotExistError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateManagedHsmKeysIfNotExistRequest,
-  output: CreateManagedHsmKeysIfNotExistResponse,
+  input: CreateManagedHsmKeyIfNotExistRequest,
+  output: CreateManagedHsmKeyIfNotExistResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -5324,31 +5322,31 @@ export const DeleteVault: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetKeysError = AzureOpError;
+export type GetKeyError = AzureOpError;
 /** Gets the current version of the specified key from the specified key vault. */
-export const GetKeys: API.OperationMethod<
-  GetKeysRequest,
-  GetKeysResponse,
-  GetKeysError,
+export const GetKey: API.OperationMethod<
+  GetKeyRequest,
+  GetKeyResponse,
+  GetKeyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetKeysRequest,
-  output: GetKeysResponse,
+  input: GetKeyRequest,
+  output: GetKeyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetKeysVersionError = AzureOpError;
+export type GetKeyVersionError = AzureOpError;
 /** Gets the specified version of the specified key in the specified key vault. */
-export const GetKeysVersion: API.OperationMethod<
-  GetKeysVersionRequest,
-  GetKeysVersionResponse,
-  GetKeysVersionError,
+export const GetKeyVersion: API.OperationMethod<
+  GetKeyVersionRequest,
+  GetKeyVersionResponse,
+  GetKeyVersionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetKeysVersionRequest,
-  output: GetKeysVersionResponse,
+  input: GetKeyVersionRequest,
+  output: GetKeyVersionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -5384,31 +5382,31 @@ export const GetManagedHsmDeleted: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetManagedHsmKeysError = AzureOpError;
+export type GetManagedHsmKeyError = AzureOpError;
 /** Gets the current version of the specified key from the specified managed HSM. */
-export const GetManagedHsmKeys: API.OperationMethod<
-  GetManagedHsmKeysRequest,
-  GetManagedHsmKeysResponse,
-  GetManagedHsmKeysError,
+export const GetManagedHsmKey: API.OperationMethod<
+  GetManagedHsmKeyRequest,
+  GetManagedHsmKeyResponse,
+  GetManagedHsmKeyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetManagedHsmKeysRequest,
-  output: GetManagedHsmKeysResponse,
+  input: GetManagedHsmKeyRequest,
+  output: GetManagedHsmKeyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetManagedHsmKeysVersionError = AzureOpError;
+export type GetManagedHsmKeyVersionError = AzureOpError;
 /** Gets the specified version of the specified key in the specified managed HSM. */
-export const GetManagedHsmKeysVersion: API.OperationMethod<
-  GetManagedHsmKeysVersionRequest,
-  GetManagedHsmKeysVersionResponse,
-  GetManagedHsmKeysVersionError,
+export const GetManagedHsmKeyVersion: API.OperationMethod<
+  GetManagedHsmKeyVersionRequest,
+  GetManagedHsmKeyVersionResponse,
+  GetManagedHsmKeyVersionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetManagedHsmKeysVersionRequest,
-  output: GetManagedHsmKeysVersionResponse,
+  input: GetManagedHsmKeyVersionRequest,
+  output: GetManagedHsmKeyVersionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -5504,15 +5502,15 @@ export const ListKeys: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListKeysVersionsError = AzureOpError;
+export type ListKeyVersionsError = AzureOpError;
 /** Lists the keys in the specified key vault. */
-export const ListKeysVersions: API.OperationMethod<
-  ListKeysVersionsRequest,
+export const ListKeyVersions: API.OperationMethod<
+  ListKeyVersionsRequest,
   KeyListResult,
-  ListKeysVersionsError,
+  ListKeyVersionsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListKeysVersionsRequest,
+  input: ListKeyVersionsRequest,
   output: KeyListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -5579,15 +5577,15 @@ export const ListManagedHsmKeys: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListManagedHsmKeysVersionsError = AzureOpError;
+export type ListManagedHsmKeyVersionsError = AzureOpError;
 /** Lists the keys in the specified managed HSM. */
-export const ListManagedHsmKeysVersions: API.OperationMethod<
-  ListManagedHsmKeysVersionsRequest,
+export const ListManagedHsmKeyVersions: API.OperationMethod<
+  ListManagedHsmKeyVersionsRequest,
   ManagedHsmKeyListResult,
-  ListManagedHsmKeysVersionsError,
+  ListManagedHsmKeyVersionsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListManagedHsmKeysVersionsRequest,
+  input: ListManagedHsmKeyVersionsRequest,
   output: ManagedHsmKeyListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,

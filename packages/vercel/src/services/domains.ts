@@ -956,150 +956,150 @@ export const GetDomainVerificationRecordResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDomainVerificationRecordResponse>;
 
 /** This field is deprecated. Please use PATCH /v1/registrar/domains/{domainName}/nameservers instead. */
-export type PatchDomainRequestBodyCase0CustomNameserversList = Array<string>;
-export const PatchDomainRequestBodyCase0CustomNameserversList =
+export type UpdateDomainRequestBodyCase0CustomNameserversList = Array<string>;
+export const UpdateDomainRequestBodyCase0CustomNameserversList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<PatchDomainRequestBodyCase0CustomNameserversList>;
+  ) as any as S.Schema<UpdateDomainRequestBodyCase0CustomNameserversList>;
 
 /** Encrypted Client Hello enrollment. 'auto' leaves it to Vercel, 'disabled' never enrolls and opts out of automatic enrollment. */
-export type PatchDomainRequestBodyCase0EchMode = "auto" | "disabled";
-export const PatchDomainRequestBodyCase0EchMode = /*@__PURE__*/ S.String;
+export type UpdateDomainRequestBodyCase0EchMode = "auto" | "disabled";
+export const UpdateDomainRequestBodyCase0EchMode = /*@__PURE__*/ S.String;
 
 /** update */
-export interface PatchDomainRequestBodyCase0 {
+export interface UpdateDomainRequestBodyCase0 {
   op?: string;
   /** This field is deprecated. Please use PATCH /v1/registrar/domains/{domainName}/auto-renew instead. */
   renew?: boolean;
   /** This field is deprecated. Please use PATCH /v1/registrar/domains/{domainName}/nameservers instead. */
-  customNameservers?: PatchDomainRequestBodyCase0CustomNameserversList;
+  customNameservers?: UpdateDomainRequestBodyCase0CustomNameserversList;
   /** Specifies whether this is a DNS zone that intends to use Vercel's nameservers. */
   zone?: boolean;
   /** Encrypted Client Hello enrollment. 'auto' leaves it to Vercel, 'disabled' never enrolls and opts out of automatic enrollment. */
-  echMode?: PatchDomainRequestBodyCase0EchMode | (string & {});
+  echMode?: UpdateDomainRequestBodyCase0EchMode | (string & {});
 }
-export const PatchDomainRequestBodyCase0 = /*@__PURE__*/ S.suspend(() =>
+export const UpdateDomainRequestBodyCase0 = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     op: S.optional(S.String),
     renew: S.optional(S.Boolean),
     customNameservers: S.optional(
-      PatchDomainRequestBodyCase0CustomNameserversList,
+      UpdateDomainRequestBodyCase0CustomNameserversList,
     ),
     zone: S.optional(S.Boolean),
-    echMode: S.optional(PatchDomainRequestBodyCase0EchMode),
+    echMode: S.optional(UpdateDomainRequestBodyCase0EchMode),
   }),
 ).annotate({
-  identifier: "PatchDomainRequestBodyCase0",
-}) as any as S.Schema<PatchDomainRequestBodyCase0>;
+  identifier: "UpdateDomainRequestBodyCase0",
+}) as any as S.Schema<UpdateDomainRequestBodyCase0>;
 
 /** move-out */
-export interface PatchDomainRequestBodyCase1 {
+export interface UpdateDomainRequestBodyCase1 {
   op?: string;
   /** User or team to move domain to */
   destination?: string;
 }
-export const PatchDomainRequestBodyCase1 = /*@__PURE__*/ S.suspend(() =>
+export const UpdateDomainRequestBodyCase1 = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     op: S.optional(S.String),
     destination: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "PatchDomainRequestBodyCase1",
-}) as any as S.Schema<PatchDomainRequestBodyCase1>;
+  identifier: "UpdateDomainRequestBodyCase1",
+}) as any as S.Schema<UpdateDomainRequestBodyCase1>;
 
-export type PatchDomainRequestBody =
-  | PatchDomainRequestBodyCase0
-  | PatchDomainRequestBodyCase1;
-export const PatchDomainRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PatchDomainRequestBody>;
+export type UpdateDomainRequestBody =
+  | UpdateDomainRequestBodyCase0
+  | UpdateDomainRequestBodyCase1;
+export const UpdateDomainRequestBody =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDomainRequestBody>;
 
-export interface PatchDomainRequest {
+export interface UpdateDomainRequest {
   domain: string;
   /** The Team identifier to perform the request on behalf of. */
   teamId?: string;
   /** The Team slug to perform the request on behalf of. */
   slug?: string;
-  body: PatchDomainRequestBody;
+  body: UpdateDomainRequestBody;
 }
-export const PatchDomainRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateDomainRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     domain: S.String.pipe(T.Label()),
     teamId: S.optional(S.String.pipe(T.Query())),
     slug: S.optional(S.String.pipe(T.Query())),
-    body: PatchDomainRequestBody.pipe(T.HttpBody()),
+    body: UpdateDomainRequestBody.pipe(T.HttpBody()),
   }).pipe(T.Http({ method: "PATCH", uri: "/v3/domains/{domain}", code: 200 })),
 ).annotate({
-  identifier: "PatchDomainRequest",
-}) as any as S.Schema<PatchDomainRequest>;
+  identifier: "UpdateDomainRequest",
+}) as any as S.Schema<UpdateDomainRequest>;
 
-export interface PatchDomainResponseBodyCase0 {
+export interface UpdateDomainResponseBodyCase0 {
   moved: boolean;
 }
-export const PatchDomainResponseBodyCase0 = /*@__PURE__*/ S.suspend(() =>
+export const UpdateDomainResponseBodyCase0 = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     moved: S.Boolean,
   }),
 ).annotate({
-  identifier: "PatchDomainResponseBodyCase0",
-}) as any as S.Schema<PatchDomainResponseBodyCase0>;
+  identifier: "UpdateDomainResponseBodyCase0",
+}) as any as S.Schema<UpdateDomainResponseBodyCase0>;
 
-export interface PatchDomainResponseBodyCase1 {
+export interface UpdateDomainResponseBodyCase1 {
   moved: boolean;
   token: string;
 }
-export const PatchDomainResponseBodyCase1 = /*@__PURE__*/ S.suspend(() =>
+export const UpdateDomainResponseBodyCase1 = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     moved: S.Boolean,
     token: S.String,
   }),
 ).annotate({
-  identifier: "PatchDomainResponseBodyCase1",
-}) as any as S.Schema<PatchDomainResponseBodyCase1>;
+  identifier: "UpdateDomainResponseBodyCase1",
+}) as any as S.Schema<UpdateDomainResponseBodyCase1>;
 
-export type PatchDomainResponseBodyCase2CustomNameserversList = Array<string>;
-export const PatchDomainResponseBodyCase2CustomNameserversList =
+export type UpdateDomainResponseBodyCase2CustomNameserversList = Array<string>;
+export const UpdateDomainResponseBodyCase2CustomNameserversList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<PatchDomainResponseBodyCase2CustomNameserversList>;
+  ) as any as S.Schema<UpdateDomainResponseBodyCase2CustomNameserversList>;
 
-export type PatchDomainResponseBodyCase2EchMode =
+export type UpdateDomainResponseBodyCase2EchMode =
   | "auto"
   | "disabled"
   | "enabled";
-export const PatchDomainResponseBodyCase2EchMode = /*@__PURE__*/ S.String;
+export const UpdateDomainResponseBodyCase2EchMode = /*@__PURE__*/ S.String;
 
-export interface PatchDomainResponseBodyCase2 {
+export interface UpdateDomainResponseBodyCase2 {
   renew?: boolean;
-  customNameservers?: PatchDomainResponseBodyCase2CustomNameserversList;
+  customNameservers?: UpdateDomainResponseBodyCase2CustomNameserversList;
   zone?: boolean;
-  echMode: PatchDomainResponseBodyCase2EchMode;
+  echMode: UpdateDomainResponseBodyCase2EchMode;
 }
-export const PatchDomainResponseBodyCase2 = /*@__PURE__*/ S.suspend(() =>
+export const UpdateDomainResponseBodyCase2 = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     renew: S.optional(S.Boolean),
     customNameservers: S.optional(
-      PatchDomainResponseBodyCase2CustomNameserversList,
+      UpdateDomainResponseBodyCase2CustomNameserversList,
     ),
     zone: S.optional(S.Boolean),
-    echMode: PatchDomainResponseBodyCase2EchMode,
+    echMode: UpdateDomainResponseBodyCase2EchMode,
   }),
 ).annotate({
-  identifier: "PatchDomainResponseBodyCase2",
-}) as any as S.Schema<PatchDomainResponseBodyCase2>;
+  identifier: "UpdateDomainResponseBodyCase2",
+}) as any as S.Schema<UpdateDomainResponseBodyCase2>;
 
-export type PatchDomainResponseBody =
-  | PatchDomainResponseBodyCase0
-  | PatchDomainResponseBodyCase1
-  | PatchDomainResponseBodyCase2;
-export const PatchDomainResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PatchDomainResponseBody>;
+export type UpdateDomainResponseBody =
+  | UpdateDomainResponseBodyCase0
+  | UpdateDomainResponseBodyCase1
+  | UpdateDomainResponseBodyCase2;
+export const UpdateDomainResponseBody =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDomainResponseBody>;
 
-export type PatchDomainResponse = PatchDomainResponseBody;
-export const PatchDomainResponse = /*@__PURE__*/ S.suspend(() =>
-  PatchDomainResponseBody.pipe(T.RawResponseRoot()),
+export type UpdateDomainResponse = UpdateDomainResponseBody;
+export const UpdateDomainResponse = /*@__PURE__*/ S.suspend(() =>
+  UpdateDomainResponseBody.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "PatchDomainResponse",
-}) as any as S.Schema<PatchDomainResponse>;
+  identifier: "UpdateDomainResponse",
+}) as any as S.Schema<UpdateDomainResponse>;
 
 export type ClaimDomainOwnershipError =
   | BadRequest
@@ -1244,21 +1244,21 @@ export const getDomainVerificationRecord: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PatchDomainError =
+export type UpdateDomainError =
   | BadRequest
   | Forbidden
   | NotFound
   | Conflict
   | VercelOpError;
 /** Update or move apex domain Update or move apex domain. Note: This endpoint is no longer used for updating auto-renew or nameservers. For this, please use the endpoints [Update auto-renew for a domain](https://vercel.com/docs/rest-api/reference/endpoints/domains-registrar/update-auto-renew-for-a-domain) and [Update nameservers for a domain](https://vercel.com/docs/rest-api/reference/endpoints/domains-registrar/update-nameservers-for-a-domain). */
-export const patchDomain: API.OperationMethod<
-  PatchDomainRequest,
-  PatchDomainResponse,
-  PatchDomainError,
+export const updateDomain: API.OperationMethod<
+  UpdateDomainRequest,
+  UpdateDomainResponse,
+  UpdateDomainError,
   VercelOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PatchDomainRequest,
-  output: PatchDomainResponse,
+  input: UpdateDomainRequest,
+  output: UpdateDomainResponse,
   errors: [BadRequest, Forbidden, NotFound, Conflict],
   protocol: VercelProtocol,
   retry: Retry.Retry,

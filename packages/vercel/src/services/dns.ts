@@ -132,21 +132,21 @@ export const CreateRecordResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateRecordResponse",
 }) as any as S.Schema<CreateRecordResponse>;
 
-export interface GetDomainsRecordsByRecordIdRequest {
+export interface GetDomainsRecordRequest {
   /** The unique ID of the DNS record */
   recordId: string;
 }
-export const GetDomainsRecordsByRecordIdRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDomainsRecordRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     recordId: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({ method: "GET", uri: "/domains/records/{recordId}", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetDomainsRecordsByRecordIdRequest",
-}) as any as S.Schema<GetDomainsRecordsByRecordIdRequest>;
+  identifier: "GetDomainsRecordRequest",
+}) as any as S.Schema<GetDomainsRecordRequest>;
 
-export type GetDomainsRecordsByRecordIdResponseType =
+export type GetDomainsRecordResponseType =
   | "A"
   | "AAAA"
   | "ALIAS"
@@ -157,9 +157,9 @@ export type GetDomainsRecordsByRecordIdResponseType =
   | "NS"
   | "SRV"
   | "TXT";
-export const GetDomainsRecordsByRecordIdResponseType = /*@__PURE__*/ S.String;
+export const GetDomainsRecordResponseType = /*@__PURE__*/ S.String;
 
-export type GetDomainsRecordsByRecordIdResponseRecordType =
+export type GetDomainsRecordResponseRecordType =
   | "A"
   | "AAAA"
   | "ALIAS"
@@ -170,11 +170,10 @@ export type GetDomainsRecordsByRecordIdResponseRecordType =
   | "NS"
   | "SRV"
   | "TXT";
-export const GetDomainsRecordsByRecordIdResponseRecordType =
-  /*@__PURE__*/ S.String;
+export const GetDomainsRecordResponseRecordType = /*@__PURE__*/ S.String;
 
-export interface GetDomainsRecordsByRecordIdResponse {
-  type: GetDomainsRecordsByRecordIdResponseType;
+export interface GetDomainsRecordResponse {
+  type: GetDomainsRecordResponseType;
   id: string;
   name: string;
   value: string;
@@ -182,12 +181,12 @@ export interface GetDomainsRecordsByRecordIdResponse {
   domain: string;
   ttl?: number;
   comment?: string;
-  recordType: GetDomainsRecordsByRecordIdResponseRecordType;
+  recordType: GetDomainsRecordResponseRecordType;
   createdAt?: number | null;
 }
-export const GetDomainsRecordsByRecordIdResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetDomainsRecordResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    type: GetDomainsRecordsByRecordIdResponseType,
+    type: GetDomainsRecordResponseType,
     id: S.String,
     name: S.String,
     value: S.String,
@@ -195,12 +194,12 @@ export const GetDomainsRecordsByRecordIdResponse = /*@__PURE__*/ S.suspend(() =>
     domain: S.String,
     ttl: S.optional(S.Number),
     comment: S.optional(S.String),
-    recordType: GetDomainsRecordsByRecordIdResponseRecordType,
+    recordType: GetDomainsRecordResponseRecordType,
     createdAt: S.optional(S.NullOr(S.Number)),
   }),
 ).annotate({
-  identifier: "GetDomainsRecordsByRecordIdResponse",
-}) as any as S.Schema<GetDomainsRecordsByRecordIdResponse>;
+  identifier: "GetDomainsRecordResponse",
+}) as any as S.Schema<GetDomainsRecordResponse>;
 
 export interface GetRecordsRequest {
   domain: string;
@@ -625,19 +624,19 @@ export const createRecord: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetDomainsRecordsByRecordIdError =
+export type GetDomainsRecordError =
   | BadRequest
   | Forbidden
   | NotFound
   | VercelOpError;
-export const getDomainsRecordsByRecordId: API.OperationMethod<
-  GetDomainsRecordsByRecordIdRequest,
-  GetDomainsRecordsByRecordIdResponse,
-  GetDomainsRecordsByRecordIdError,
+export const getDomainsRecord: API.OperationMethod<
+  GetDomainsRecordRequest,
+  GetDomainsRecordResponse,
+  GetDomainsRecordError,
   VercelOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetDomainsRecordsByRecordIdRequest,
-  output: GetDomainsRecordsByRecordIdResponse,
+  input: GetDomainsRecordRequest,
+  output: GetDomainsRecordResponse,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: VercelProtocol,
   retry: Retry.Retry,

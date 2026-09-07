@@ -24629,7 +24629,7 @@
         "smithy.api#documentation": "Read Firewall Configuration\n\nRetrieve the specified firewall configuration for a project. The deployed configVersion will be `active`"
       }
     },
-    "com.vercel.security#DeleteSecurityFirewallConfigByConfigVersionRequest": {
+    "com.vercel.security#DeleteSecurityFirewallConfigRequest": {
       "type": "structure",
       "members": {
         "configVersion": {
@@ -24645,7 +24645,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.vercel.security#DeleteSecurityFirewallConfigByConfigVersionResponseBody": {
+    "com.vercel.security#DeleteSecurityFirewallConfigResponseBody": {
       "type": "enum",
       "members": {
         "VALUE": {
@@ -24657,11 +24657,11 @@
       },
       "traits": {}
     },
-    "com.vercel.security#DeleteSecurityFirewallConfigByConfigVersionResponse": {
+    "com.vercel.security#DeleteSecurityFirewallConfigResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.vercel.security#DeleteSecurityFirewallConfigByConfigVersionResponseBody",
+          "target": "com.vercel.security#DeleteSecurityFirewallConfigResponseBody",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -24672,13 +24672,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.vercel.security#DeleteSecurityFirewallConfigByConfigVersion": {
+    "com.vercel.security#DeleteSecurityFirewallConfig": {
       "type": "operation",
       "input": {
-        "target": "com.vercel.security#DeleteSecurityFirewallConfigByConfigVersionRequest"
+        "target": "com.vercel.security#DeleteSecurityFirewallConfigRequest"
       },
       "output": {
-        "target": "com.vercel.security#DeleteSecurityFirewallConfigByConfigVersionResponse"
+        "target": "com.vercel.security#DeleteSecurityFirewallConfigResponse"
       },
       "errors": [
         {
@@ -29713,7 +29713,7 @@
           "target": "com.vercel.security#GetFirewallConfig"
         },
         {
-          "target": "com.vercel.security#DeleteSecurityFirewallConfigByConfigVersion"
+          "target": "com.vercel.security#DeleteSecurityFirewallConfig"
         },
         {
           "target": "com.vercel.security#CreateSecurityFirewallConfigByConfigVersionActivate"

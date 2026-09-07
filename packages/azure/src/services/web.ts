@@ -4897,7 +4897,7 @@ export const CreateWebAppInstanceFunctionSlotResponse = /*@__PURE__*/ S.suspend(
   identifier: "CreateWebAppInstanceFunctionSlotResponse",
 }) as any as S.Schema<CreateWebAppInstanceFunctionSlotResponse>;
 
-export interface DeleteAiGatewaysRequest {
+export interface DeleteAiGatewayRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4905,7 +4905,7 @@ export interface DeleteAiGatewaysRequest {
   /** The name of the AI gateway */
   name: string;
 }
-export const DeleteAiGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteAiGatewayRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -4919,15 +4919,15 @@ export const DeleteAiGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteAiGatewaysRequest",
-}) as any as S.Schema<DeleteAiGatewaysRequest>;
+  identifier: "DeleteAiGatewayRequest",
+}) as any as S.Schema<DeleteAiGatewayRequest>;
 
-export interface DeleteAiGatewaysResponse {}
-export const DeleteAiGatewaysResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteAiGatewayResponse {}
+export const DeleteAiGatewayResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteAiGatewaysResponse",
-}) as any as S.Schema<DeleteAiGatewaysResponse>;
+  identifier: "DeleteAiGatewayResponse",
+}) as any as S.Schema<DeleteAiGatewayResponse>;
 
 export interface DeleteAppServiceEnvironmentRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -8335,7 +8335,7 @@ export const GenerateWebAppNewSitePublishingPasswordSlotResponse =
     identifier: "GenerateWebAppNewSitePublishingPasswordSlotResponse",
   }) as any as S.Schema<GenerateWebAppNewSitePublishingPasswordSlotResponse>;
 
-export interface GetAiGatewaysRequest {
+export interface GetAiGatewayRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -8343,7 +8343,7 @@ export interface GetAiGatewaysRequest {
   /** The name of the AI gateway */
   name: string;
 }
-export const GetAiGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetAiGatewayRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -8357,19 +8357,17 @@ export const GetAiGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetAiGatewaysRequest",
-}) as any as S.Schema<GetAiGatewaysRequest>;
+  identifier: "GetAiGatewayRequest",
+}) as any as S.Schema<GetAiGatewayRequest>;
 
 /** Resource tags. */
-export type GetAiGatewaysResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const GetAiGatewaysResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetAiGatewayResponseTagsMap = { [key: string]: string | undefined };
+export const GetAiGatewayResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<GetAiGatewaysResponseTagsMap>;
+) as any as S.Schema<GetAiGatewayResponseTagsMap>;
 
-export interface GetAiGatewaysResponse {
+export interface GetAiGatewayResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -8379,25 +8377,25 @@ export interface GetAiGatewaysResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: GetAiGatewaysResponseTagsMap;
+  tags?: GetAiGatewayResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: AiGatewayProperties;
 }
-export const GetAiGatewaysResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetAiGatewayResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(GetAiGatewaysResponseTagsMap),
+    tags: S.optional(GetAiGatewayResponseTagsMap),
     location: S.String,
     properties: S.optional(AiGatewayProperties),
   }),
 ).annotate({
-  identifier: "GetAiGatewaysResponse",
-}) as any as S.Schema<GetAiGatewaysResponse>;
+  identifier: "GetAiGatewayResponse",
+}) as any as S.Schema<GetAiGatewayResponse>;
 
 export interface GetAppServiceEnvironmentRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -25515,25 +25513,25 @@ export const KubeEnvironmentsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "KubeEnvironmentsCreateOrUpdateResponse",
 }) as any as S.Schema<KubeEnvironmentsCreateOrUpdateResponse>;
 
-export type ListAiGatewaysByResourceGroupRequestSelectList = Array<string>;
-export const ListAiGatewaysByResourceGroupRequestSelectList =
+export type ListAiGatewayByResourceGroupRequestSelectList = Array<string>;
+export const ListAiGatewayByResourceGroupRequestSelectList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<ListAiGatewaysByResourceGroupRequestSelectList>;
+  ) as any as S.Schema<ListAiGatewayByResourceGroupRequestSelectList>;
 
-export type ListAiGatewaysByResourceGroupRequestExpandList = Array<string>;
-export const ListAiGatewaysByResourceGroupRequestExpandList =
+export type ListAiGatewayByResourceGroupRequestExpandList = Array<string>;
+export const ListAiGatewayByResourceGroupRequestExpandList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<ListAiGatewaysByResourceGroupRequestExpandList>;
+  ) as any as S.Schema<ListAiGatewayByResourceGroupRequestExpandList>;
 
-export type ListAiGatewaysByResourceGroupRequestOrderbyList = Array<string>;
-export const ListAiGatewaysByResourceGroupRequestOrderbyList =
+export type ListAiGatewayByResourceGroupRequestOrderbyList = Array<string>;
+export const ListAiGatewayByResourceGroupRequestOrderbyList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<ListAiGatewaysByResourceGroupRequestOrderbyList>;
+  ) as any as S.Schema<ListAiGatewayByResourceGroupRequestOrderbyList>;
 
-export interface ListAiGatewaysByResourceGroupRequest {
+export interface ListAiGatewayByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -25547,41 +25545,40 @@ export interface ListAiGatewaysByResourceGroupRequest {
   /** Filter the result list using the given expression. */
   filter?: string;
   /** Select the specified fields to be included in the response. */
-  select?: ListAiGatewaysByResourceGroupRequestSelectList;
+  select?: ListAiGatewayByResourceGroupRequestSelectList;
   /** Expand the indicated resources into the response. */
-  expand?: ListAiGatewaysByResourceGroupRequestExpandList;
+  expand?: ListAiGatewayByResourceGroupRequestExpandList;
   /** Expressions that specify the order of returned results. */
-  orderby?: ListAiGatewaysByResourceGroupRequestOrderbyList;
+  orderby?: ListAiGatewayByResourceGroupRequestOrderbyList;
 }
-export const ListAiGatewaysByResourceGroupRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      top: S.optional(S.Number.pipe(T.Query())),
-      skip: S.optional(S.Number.pipe(T.Query())),
-      maxpagesize: S.optional(S.Number.pipe(T.Query())),
-      filter: S.optional(S.String.pipe(T.Query())),
-      select: S.optional(
-        ListAiGatewaysByResourceGroupRequestSelectList.pipe(T.Query()),
-      ),
-      expand: S.optional(
-        ListAiGatewaysByResourceGroupRequestExpandList.pipe(T.Query()),
-      ),
-      orderby: S.optional(
-        ListAiGatewaysByResourceGroupRequestOrderbyList.pipe(T.Query()),
-      ),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/aigateways",
-        code: 200,
-        apiVersion: "2026-07-15",
-      }),
+export const ListAiGatewayByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    top: S.optional(S.Number.pipe(T.Query())),
+    skip: S.optional(S.Number.pipe(T.Query())),
+    maxpagesize: S.optional(S.Number.pipe(T.Query())),
+    filter: S.optional(S.String.pipe(T.Query())),
+    select: S.optional(
+      ListAiGatewayByResourceGroupRequestSelectList.pipe(T.Query()),
     ),
+    expand: S.optional(
+      ListAiGatewayByResourceGroupRequestExpandList.pipe(T.Query()),
+    ),
+    orderby: S.optional(
+      ListAiGatewayByResourceGroupRequestOrderbyList.pipe(T.Query()),
+    ),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/aigateways",
+      code: 200,
+      apiVersion: "2026-07-15",
+    }),
+  ),
 ).annotate({
-  identifier: "ListAiGatewaysByResourceGroupRequest",
-}) as any as S.Schema<ListAiGatewaysByResourceGroupRequest>;
+  identifier: "ListAiGatewayByResourceGroupRequest",
+}) as any as S.Schema<ListAiGatewayByResourceGroupRequest>;
 
 /** Resource tags. */
 export type AiGatewayTagsMap = { [key: string]: string | undefined };
@@ -25641,11 +25638,11 @@ export const AiGatewayListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "AiGatewayListResult",
 }) as any as S.Schema<AiGatewayListResult>;
 
-export interface ListAiGatewaysBySubscriptionRequest {
+export interface ListAiGatewayBySubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
 }
-export const ListAiGatewaysBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListAiGatewayBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
   }).pipe(
@@ -25657,8 +25654,8 @@ export const ListAiGatewaysBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListAiGatewaysBySubscriptionRequest",
-}) as any as S.Schema<ListAiGatewaysBySubscriptionRequest>;
+  identifier: "ListAiGatewayBySubscriptionRequest",
+}) as any as S.Schema<ListAiGatewayBySubscriptionRequest>;
 
 export interface ListAppServiceEnvironmentAppServicePlansRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -36506,15 +36503,15 @@ export const MoveResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "MoveResponse" }) as any as S.Schema<MoveResponse>;
 
 /** Resource tags. */
-export type PatchAiGatewaysRequestTagsMap = {
+export type PatchAiGatewayRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const PatchAiGatewaysRequestTagsMap = /*@__PURE__*/ S.Record(
+export const PatchAiGatewayRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PatchAiGatewaysRequestTagsMap>;
+) as any as S.Schema<PatchAiGatewayRequestTagsMap>;
 
-export interface PatchAiGatewaysRequest {
+export interface PatchAiGatewayRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -36522,14 +36519,14 @@ export interface PatchAiGatewaysRequest {
   /** The name of the AI gateway */
   name: string;
   /** Resource tags. */
-  tags?: PatchAiGatewaysRequestTagsMap;
+  tags?: PatchAiGatewayRequestTagsMap;
 }
-export const PatchAiGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
+export const PatchAiGatewayRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     name: S.String.pipe(T.Label()),
-    tags: S.optional(PatchAiGatewaysRequestTagsMap),
+    tags: S.optional(PatchAiGatewayRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -36539,19 +36536,19 @@ export const PatchAiGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "PatchAiGatewaysRequest",
-}) as any as S.Schema<PatchAiGatewaysRequest>;
+  identifier: "PatchAiGatewayRequest",
+}) as any as S.Schema<PatchAiGatewayRequest>;
 
 /** Resource tags. */
-export type PatchAiGatewaysResponseTagsMap = {
+export type PatchAiGatewayResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const PatchAiGatewaysResponseTagsMap = /*@__PURE__*/ S.Record(
+export const PatchAiGatewayResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PatchAiGatewaysResponseTagsMap>;
+) as any as S.Schema<PatchAiGatewayResponseTagsMap>;
 
-export interface PatchAiGatewaysResponse {
+export interface PatchAiGatewayResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -36561,25 +36558,25 @@ export interface PatchAiGatewaysResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: PatchAiGatewaysResponseTagsMap;
+  tags?: PatchAiGatewayResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: AiGatewayProperties;
 }
-export const PatchAiGatewaysResponse = /*@__PURE__*/ S.suspend(() =>
+export const PatchAiGatewayResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(PatchAiGatewaysResponseTagsMap),
+    tags: S.optional(PatchAiGatewayResponseTagsMap),
     location: S.String,
     properties: S.optional(AiGatewayProperties),
   }),
 ).annotate({
-  identifier: "PatchAiGatewaysResponse",
-}) as any as S.Schema<PatchAiGatewaysResponse>;
+  identifier: "PatchAiGatewayResponse",
+}) as any as S.Schema<PatchAiGatewayResponse>;
 
 /** StaticSitesWorkflowPreviewRequest resource specific properties */
 export interface StaticSitesWorkflowPreviewRequestProperties {
@@ -50626,16 +50623,16 @@ export const CreateWebAppInstanceFunctionSlot: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteAiGatewaysError = AzureOpError;
+export type DeleteAiGatewayError = AzureOpError;
 /** Delete a AiGateway */
-export const DeleteAiGateways: API.OperationMethod<
-  DeleteAiGatewaysRequest,
-  DeleteAiGatewaysResponse,
-  DeleteAiGatewaysError,
+export const DeleteAiGateway: API.OperationMethod<
+  DeleteAiGatewayRequest,
+  DeleteAiGatewayResponse,
+  DeleteAiGatewayError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteAiGatewaysRequest,
-  output: DeleteAiGatewaysResponse,
+  input: DeleteAiGatewayRequest,
+  output: DeleteAiGatewayResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -51802,16 +51799,16 @@ export const GenerateWebAppNewSitePublishingPasswordSlot: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetAiGatewaysError = AzureOpError;
+export type GetAiGatewayError = AzureOpError;
 /** Get a AiGateway */
-export const GetAiGateways: API.OperationMethod<
-  GetAiGatewaysRequest,
-  GetAiGatewaysResponse,
-  GetAiGatewaysError,
+export const GetAiGateway: API.OperationMethod<
+  GetAiGatewayRequest,
+  GetAiGatewayResponse,
+  GetAiGatewayError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetAiGatewaysRequest,
-  output: GetAiGatewaysResponse,
+  input: GetAiGatewayRequest,
+  output: GetAiGatewayResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -54725,30 +54722,30 @@ export const KubeEnvironmentsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListAiGatewaysByResourceGroupError = AzureOpError;
+export type ListAiGatewayByResourceGroupError = AzureOpError;
 /** List AiGateway resources by resource group */
-export const ListAiGatewaysByResourceGroup: API.OperationMethod<
-  ListAiGatewaysByResourceGroupRequest,
+export const ListAiGatewayByResourceGroup: API.OperationMethod<
+  ListAiGatewayByResourceGroupRequest,
   AiGatewayListResult,
-  ListAiGatewaysByResourceGroupError,
+  ListAiGatewayByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListAiGatewaysByResourceGroupRequest,
+  input: ListAiGatewayByResourceGroupRequest,
   output: AiGatewayListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListAiGatewaysBySubscriptionError = AzureOpError;
+export type ListAiGatewayBySubscriptionError = AzureOpError;
 /** List AiGateway resources by subscription ID */
-export const ListAiGatewaysBySubscription: API.OperationMethod<
-  ListAiGatewaysBySubscriptionRequest,
+export const ListAiGatewayBySubscription: API.OperationMethod<
+  ListAiGatewayBySubscriptionRequest,
   AiGatewayListResult,
-  ListAiGatewaysBySubscriptionError,
+  ListAiGatewayBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListAiGatewaysBySubscriptionRequest,
+  input: ListAiGatewayBySubscriptionRequest,
   output: AiGatewayListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -57659,16 +57656,16 @@ export const Move: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PatchAiGatewaysError = AzureOpError;
+export type PatchAiGatewayError = AzureOpError;
 /** Update a AiGateway */
-export const PatchAiGateways: API.OperationMethod<
-  PatchAiGatewaysRequest,
-  PatchAiGatewaysResponse,
-  PatchAiGatewaysError,
+export const PatchAiGateway: API.OperationMethod<
+  PatchAiGatewayRequest,
+  PatchAiGatewayResponse,
+  PatchAiGatewayError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PatchAiGatewaysRequest,
-  output: PatchAiGatewaysResponse,
+  input: PatchAiGatewayRequest,
+  output: PatchAiGatewayResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

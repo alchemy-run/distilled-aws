@@ -132,6 +132,79 @@ export const CreateTeamResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateTeamResponse",
 }) as any as S.Schema<CreateTeamResponse>;
 
+export type CreateTeamDsyncRoleRequestRolesValueCase0 =
+  | "OWNER"
+  | "MEMBER"
+  | "DEVELOPER"
+  | "SECURITY"
+  | "BILLING"
+  | "VIEWER"
+  | "VIEWER_FOR_PLUS"
+  | "CONTRIBUTOR";
+export const CreateTeamDsyncRoleRequestRolesValueCase0 = /*@__PURE__*/ S.String;
+
+export interface CreateTeamDsyncRoleRequestRolesValueCase1 {
+  accessGroupId: string;
+}
+export const CreateTeamDsyncRoleRequestRolesValueCase1 =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      accessGroupId: S.String,
+    }),
+  ).annotate({
+    identifier: "CreateTeamDsyncRoleRequestRolesValueCase1",
+  }) as any as S.Schema<CreateTeamDsyncRoleRequestRolesValueCase1>;
+
+export type CreateTeamDsyncRoleRequestRolesValue =
+  | CreateTeamDsyncRoleRequestRolesValueCase0
+  | CreateTeamDsyncRoleRequestRolesValueCase1;
+export const CreateTeamDsyncRoleRequestRolesValue =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateTeamDsyncRoleRequestRolesValue>;
+
+/** Directory groups to role or access group mappings. */
+export type CreateTeamDsyncRoleRequestRolesMap = {
+  [key: string]: CreateTeamDsyncRoleRequestRolesValue | undefined;
+};
+export const CreateTeamDsyncRoleRequestRolesMap = /*@__PURE__*/ S.Record(
+  S.String,
+  CreateTeamDsyncRoleRequestRolesValue,
+) as any as S.Schema<CreateTeamDsyncRoleRequestRolesMap>;
+
+export interface CreateTeamDsyncRoleRequest {
+  /** The Team identifier to perform the request on behalf of. */
+  teamId: string;
+  /** The Team slug to perform the request on behalf of. */
+  slug?: string;
+  /** Directory groups to role or access group mappings. */
+  roles: CreateTeamDsyncRoleRequestRolesMap;
+}
+export const CreateTeamDsyncRoleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    teamId: S.String.pipe(T.Label()),
+    slug: S.optional(S.String.pipe(T.Query())),
+    roles: CreateTeamDsyncRoleRequestRolesMap,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/teams/{teamId}/dsync-roles",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateTeamDsyncRoleRequest",
+}) as any as S.Schema<CreateTeamDsyncRoleRequest>;
+
+export interface CreateTeamDsyncRoleResponse {
+  ok: boolean;
+}
+export const CreateTeamDsyncRoleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ok: S.Boolean,
+  }),
+).annotate({
+  identifier: "CreateTeamDsyncRoleResponse",
+}) as any as S.Schema<CreateTeamDsyncRoleResponse>;
+
 export interface DeleteMicrofrontendsGroupRequest {
   /** The Team identifier to perform the request on behalf of. */
   teamId: string;
@@ -346,16 +419,9 @@ export type TeamSamlDefaultRedirectUri = "v0.app" | "v0.dev" | "vercel.com";
 export const TeamSamlDefaultRedirectUri = /*@__PURE__*/ S.String;
 
 /** When "Directory Sync" is configured, this object contains a mapping of which Directory Group (by ID) should be assigned to which Vercel Team "role". */
-export interface TeamSamlRolesValueCase0 {
-  accessGroupId: string;
-}
-export const TeamSamlRolesValueCase0 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accessGroupId: S.String,
-  }),
-).annotate({
-  identifier: "TeamSamlRolesValueCase0",
-}) as any as S.Schema<TeamSamlRolesValueCase0>;
+export type TeamSamlRolesValueCase0 = CreateTeamDsyncRoleRequestRolesValueCase1;
+export const TeamSamlRolesValueCase0 =
+  CreateTeamDsyncRoleRequestRolesValueCase1;
 
 export type TeamSamlRolesValueCase1 =
   | "BILLING"
@@ -369,7 +435,7 @@ export type TeamSamlRolesValueCase1 =
 export const TeamSamlRolesValueCase1 = /*@__PURE__*/ S.String;
 
 export type TeamSamlRolesValue =
-  | TeamSamlRolesValueCase0
+  | CreateTeamDsyncRoleRequestRolesValueCase1
   | TeamSamlRolesValueCase1;
 export const TeamSamlRolesValue =
   /*@__PURE__*/ S.Unknown as any as S.Schema<TeamSamlRolesValue>;
@@ -2499,902 +2565,6 @@ export const JoinTeamResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "JoinTeamResponse",
 }) as any as S.Schema<JoinTeamResponse>;
 
-export type PatchTeamRequestSamlRolesValueCase0 =
-  | "OWNER"
-  | "MEMBER"
-  | "DEVELOPER"
-  | "SECURITY"
-  | "BILLING"
-  | "VIEWER"
-  | "VIEWER_FOR_PLUS"
-  | "CONTRIBUTOR";
-export const PatchTeamRequestSamlRolesValueCase0 = /*@__PURE__*/ S.String;
-
-export type PatchTeamRequestSamlRolesValueCase1 = TeamSamlRolesValueCase0;
-export const PatchTeamRequestSamlRolesValueCase1 = TeamSamlRolesValueCase0;
-
-export type PatchTeamRequestSamlRolesValue =
-  | PatchTeamRequestSamlRolesValueCase0
-  | TeamSamlRolesValueCase0;
-export const PatchTeamRequestSamlRolesValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PatchTeamRequestSamlRolesValue>;
-
-/** Directory groups to role or access group mappings. */
-export type PatchTeamRequestSamlRolesMap = {
-  [key: string]: PatchTeamRequestSamlRolesValue | undefined;
-};
-export const PatchTeamRequestSamlRolesMap = /*@__PURE__*/ S.Record(
-  S.String,
-  PatchTeamRequestSamlRolesValue,
-) as any as S.Schema<PatchTeamRequestSamlRolesMap>;
-
-export interface PatchTeamRequestSaml {
-  /** Require that members of the team use SAML Single Sign-On. */
-  enforced?: boolean;
-  /** Directory groups to role or access group mappings. */
-  roles?: PatchTeamRequestSamlRolesMap;
-}
-export const PatchTeamRequestSaml = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    enforced: S.optional(S.Boolean),
-    roles: S.optional(PatchTeamRequestSamlRolesMap),
-  }),
-).annotate({
-  identifier: "PatchTeamRequestSaml",
-}) as any as S.Schema<PatchTeamRequestSaml>;
-
-/** Whether or not remote caching is enabled for the team */
-export interface PatchTeamRequestRemoteCaching {
-  /** Enable or disable remote caching for the team. */
-  enabled?: boolean;
-}
-export const PatchTeamRequestRemoteCaching = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    enabled: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "PatchTeamRequestRemoteCaching",
-}) as any as S.Schema<PatchTeamRequestRemoteCaching>;
-
-/** Controls who can request access to protected deployments. */
-export type PatchTeamRequestDpAccessRequestsMode =
-  | "all"
-  | "none"
-  | "email-domain";
-export const PatchTeamRequestDpAccessRequestsMode = /*@__PURE__*/ S.String;
-
-/** Specify if the password will apply to every Deployment Target or just Preview */
-export type PatchTeamRequestDefaultDeploymentProtectionPasswordProtectionDeploymentType =
-  | "all"
-  | "preview"
-  | "prod_deployment_urls_and_all_previews"
-  | "all_except_custom_domains";
-export const PatchTeamRequestDefaultDeploymentProtectionPasswordProtectionDeploymentType =
-  /*@__PURE__*/ S.String;
-
-/** Allows to protect project deployments with a password */
-export interface PatchTeamRequestDefaultDeploymentProtectionPasswordProtection {
-  /** Specify if the password will apply to every Deployment Target or just Preview */
-  deploymentType:
-    | PatchTeamRequestDefaultDeploymentProtectionPasswordProtectionDeploymentType
-    | (string & {});
-  /** The password that will be used to protect Project Deployments */
-  password?: string | Redacted.Redacted<string> | null;
-}
-export const PatchTeamRequestDefaultDeploymentProtectionPasswordProtection =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      deploymentType:
-        PatchTeamRequestDefaultDeploymentProtectionPasswordProtectionDeploymentType,
-      password: S.optional(S.NullOr(S.String).pipe(T.SensitiveValue({}))),
-    }),
-  ).annotate({
-    identifier: "PatchTeamRequestDefaultDeploymentProtectionPasswordProtection",
-  }) as any as S.Schema<PatchTeamRequestDefaultDeploymentProtectionPasswordProtection>;
-
-/** Specify if the Vercel Authentication (SSO Protection) will apply to every Deployment Target or just Preview */
-export type PatchTeamRequestDefaultDeploymentProtectionSsoProtectionDeploymentType =
-  | "all"
-  | "preview"
-  | "prod_deployment_urls_and_all_previews"
-  | "all_except_custom_domains";
-export const PatchTeamRequestDefaultDeploymentProtectionSsoProtectionDeploymentType =
-  /*@__PURE__*/ S.String;
-
-/** Ensures visitors to your Preview Deployments are logged into Vercel and have a minimum of Viewer access on your team */
-export interface PatchTeamRequestDefaultDeploymentProtectionSsoProtection {
-  /** Specify if the Vercel Authentication (SSO Protection) will apply to every Deployment Target or just Preview */
-  deploymentType:
-    | PatchTeamRequestDefaultDeploymentProtectionSsoProtectionDeploymentType
-    | (string & {});
-}
-export const PatchTeamRequestDefaultDeploymentProtectionSsoProtection =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      deploymentType:
-        PatchTeamRequestDefaultDeploymentProtectionSsoProtectionDeploymentType,
-    }),
-  ).annotate({
-    identifier: "PatchTeamRequestDefaultDeploymentProtectionSsoProtection",
-  }) as any as S.Schema<PatchTeamRequestDefaultDeploymentProtectionSsoProtection>;
-
-/** Default deployment protection settings for new projects. */
-export interface PatchTeamRequestDefaultDeploymentProtection {
-  /** Allows to protect project deployments with a password */
-  passwordProtection?: PatchTeamRequestDefaultDeploymentProtectionPasswordProtection | null;
-  /** Ensures visitors to your Preview Deployments are logged into Vercel and have a minimum of Viewer access on your team */
-  ssoProtection?: PatchTeamRequestDefaultDeploymentProtectionSsoProtection | null;
-}
-export const PatchTeamRequestDefaultDeploymentProtection =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      passwordProtection: S.optional(
-        S.NullOr(PatchTeamRequestDefaultDeploymentProtectionPasswordProtection),
-      ),
-      ssoProtection: S.optional(
-        S.NullOr(PatchTeamRequestDefaultDeploymentProtectionSsoProtection),
-      ),
-    }),
-  ).annotate({
-    identifier: "PatchTeamRequestDefaultDeploymentProtection",
-  }) as any as S.Schema<PatchTeamRequestDefaultDeploymentProtection>;
-
-export type PatchTeamRequestDefaultPassportDeploymentType =
-  | "all"
-  | "preview"
-  | "prod_deployment_urls_and_all_previews"
-  | "all_except_custom_domains";
-export const PatchTeamRequestDefaultPassportDeploymentType =
-  /*@__PURE__*/ S.String;
-
-/** Default Passport configuration for new projects. */
-export interface PatchTeamRequestDefaultPassport {
-  connectorId: string;
-  deploymentType?:
-    | PatchTeamRequestDefaultPassportDeploymentType
-    | (string & {});
-}
-export const PatchTeamRequestDefaultPassport = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    connectorId: S.String,
-    deploymentType: S.optional(PatchTeamRequestDefaultPassportDeploymentType),
-  }),
-).annotate({
-  identifier: "PatchTeamRequestDefaultPassport",
-}) as any as S.Schema<PatchTeamRequestDefaultPassport>;
-
-/** The time period to keep non-production deployments for */
-export type PatchTeamRequestDefaultExpirationSettingsExpiration =
-  | "3y"
-  | "2y"
-  | "1y"
-  | "6m"
-  | "3m"
-  | "2m"
-  | "1m"
-  | "2w"
-  | "1w"
-  | "1d"
-  | "unlimited";
-export const PatchTeamRequestDefaultExpirationSettingsExpiration =
-  /*@__PURE__*/ S.String;
-
-/** The time period to keep production deployments for */
-export type PatchTeamRequestDefaultExpirationSettingsExpirationProduction =
-  | "3y"
-  | "2y"
-  | "1y"
-  | "6m"
-  | "3m"
-  | "2m"
-  | "1m"
-  | "2w"
-  | "1w"
-  | "1d"
-  | "unlimited";
-export const PatchTeamRequestDefaultExpirationSettingsExpirationProduction =
-  /*@__PURE__*/ S.String;
-
-/** The time period to keep canceled deployments for */
-export type PatchTeamRequestDefaultExpirationSettingsExpirationCanceled =
-  | "1y"
-  | "6m"
-  | "3m"
-  | "2m"
-  | "1m"
-  | "2w"
-  | "1w"
-  | "1d"
-  | "unlimited";
-export const PatchTeamRequestDefaultExpirationSettingsExpirationCanceled =
-  /*@__PURE__*/ S.String;
-
-/** The time period to keep errored deployments for */
-export type PatchTeamRequestDefaultExpirationSettingsExpirationErrored =
-  | "1y"
-  | "6m"
-  | "3m"
-  | "2m"
-  | "1m"
-  | "2w"
-  | "1w"
-  | "1d"
-  | "unlimited";
-export const PatchTeamRequestDefaultExpirationSettingsExpirationErrored =
-  /*@__PURE__*/ S.String;
-
-export interface PatchTeamRequestDefaultExpirationSettings {
-  /** The time period to keep non-production deployments for */
-  expiration?:
-    | PatchTeamRequestDefaultExpirationSettingsExpiration
-    | (string & {});
-  /** The time period to keep production deployments for */
-  expirationProduction?:
-    | PatchTeamRequestDefaultExpirationSettingsExpirationProduction
-    | (string & {});
-  /** The time period to keep canceled deployments for */
-  expirationCanceled?:
-    | PatchTeamRequestDefaultExpirationSettingsExpirationCanceled
-    | (string & {});
-  /** The time period to keep errored deployments for */
-  expirationErrored?:
-    | PatchTeamRequestDefaultExpirationSettingsExpirationErrored
-    | (string & {});
-}
-export const PatchTeamRequestDefaultExpirationSettings =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      expiration: S.optional(
-        PatchTeamRequestDefaultExpirationSettingsExpiration,
-      ),
-      expirationProduction: S.optional(
-        PatchTeamRequestDefaultExpirationSettingsExpirationProduction,
-      ),
-      expirationCanceled: S.optional(
-        PatchTeamRequestDefaultExpirationSettingsExpirationCanceled,
-      ),
-      expirationErrored: S.optional(
-        PatchTeamRequestDefaultExpirationSettingsExpirationErrored,
-      ),
-    }),
-  ).annotate({
-    identifier: "PatchTeamRequestDefaultExpirationSettings",
-  }) as any as S.Schema<PatchTeamRequestDefaultExpirationSettings>;
-
-export type PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase0Type =
-  "system";
-export const PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase0Type =
-  /*@__PURE__*/ S.String;
-
-export type PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase0Target =
-  | "production"
-  | "preview";
-export const PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase0Target =
-  /*@__PURE__*/ S.String;
-
-export interface PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase0 {
-  type: PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase0Type;
-  target:
-    | PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase0Target
-    | (string & {});
-}
-export const PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase0 =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase0Type,
-      target:
-        PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase0Target,
-    }),
-  ).annotate({
-    identifier:
-      "PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase0",
-  }) as any as S.Schema<PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase0>;
-
-export type PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase1Type =
-  "custom";
-export const PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase1Type =
-  /*@__PURE__*/ S.String;
-
-export interface PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase1 {
-  type: PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase1Type;
-  environmentId: string;
-}
-export const PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase1 =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase1Type,
-      environmentId: S.String,
-    }),
-  ).annotate({
-    identifier:
-      "PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase1",
-  }) as any as S.Schema<PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase1>;
-
-export type PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItem =
-  | PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase0
-  | PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase1;
-export const PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItem>;
-
-export type PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsList =
-  Array<PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItem>;
-export const PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsList =
-  /*@__PURE__*/ S.Array(
-    PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItem,
-  ) as any as S.Schema<PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsList>;
-
-export type PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase0Provider =
-  | "github"
-  | "bitbucket";
-export const PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase0Provider =
-  /*@__PURE__*/ S.String;
-
-export interface PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase0 {
-  provider:
-    | PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase0Provider
-    | (string & {});
-  org: string;
-  repo?: string;
-}
-export const PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase0 =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      provider:
-        PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase0Provider,
-      org: S.String,
-      repo: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier:
-      "PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase0",
-  }) as any as S.Schema<PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase0>;
-
-export type PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase1Provider =
-  "gitlab";
-export const PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase1Provider =
-  /*@__PURE__*/ S.String;
-
-export interface PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase1 {
-  provider: PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase1Provider;
-  namespace: string;
-  project?: string;
-}
-export const PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase1 =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      provider:
-        PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase1Provider,
-      namespace: S.String,
-      project: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier:
-      "PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase1",
-  }) as any as S.Schema<PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase1>;
-
-export type PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItem =
-  | PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase0
-  | PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase1;
-export const PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItem>;
-
-export type PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesList =
-  Array<PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItem>;
-export const PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesList =
-  /*@__PURE__*/ S.Array(
-    PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItem,
-  ) as any as S.Schema<PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesList>;
-
-export interface PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0Item {
-  enabled: boolean;
-  environments: PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsList;
-  sources: PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesList;
-}
-export const PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0Item =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      enabled: S.Boolean,
-      environments:
-        PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsList,
-      sources:
-        PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesList,
-    }),
-  ).annotate({
-    identifier: "PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0Item",
-  }) as any as S.Schema<PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0Item>;
-
-export type PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0List =
-  Array<PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0Item>;
-export const PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0List =
-  /*@__PURE__*/ S.Array(
-    PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0Item,
-  ) as any as S.Schema<PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0List>;
-
-export type PatchTeamRequestDeploymentPolicyCase0GitSources =
-  | PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0List
-  | string;
-export const PatchTeamRequestDeploymentPolicyCase0GitSources =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PatchTeamRequestDeploymentPolicyCase0GitSources>;
-
-export type PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase0Type =
-  "system";
-export const PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase0Type =
-  /*@__PURE__*/ S.String;
-
-export type PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase0Target =
-  | "production"
-  | "preview";
-export const PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase0Target =
-  /*@__PURE__*/ S.String;
-
-export interface PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase0 {
-  type: PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase0Type;
-  target:
-    | PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase0Target
-    | (string & {});
-}
-export const PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase0 =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase0Type,
-      target:
-        PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase0Target,
-    }),
-  ).annotate({
-    identifier:
-      "PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase0",
-  }) as any as S.Schema<PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase0>;
-
-export type PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase1Type =
-  "custom";
-export const PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase1Type =
-  /*@__PURE__*/ S.String;
-
-export interface PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase1 {
-  type: PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase1Type;
-  environmentId: string;
-}
-export const PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase1 =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase1Type,
-      environmentId: S.String,
-    }),
-  ).annotate({
-    identifier:
-      "PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase1",
-  }) as any as S.Schema<PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase1>;
-
-export type PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItem =
-  | PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase0
-  | PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase1;
-export const PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItem>;
-
-export type PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsList =
-  Array<PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItem>;
-export const PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsList =
-  /*@__PURE__*/ S.Array(
-    PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItem,
-  ) as any as S.Schema<PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsList>;
-
-export type PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemSourcesItem =
-  | "git"
-  | "cli"
-  | "rest-api"
-  | "deploy-hook"
-  | "integration"
-  | "v0";
-export const PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemSourcesItem =
-  /*@__PURE__*/ S.String;
-
-export type PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemSourcesList =
-  Array<
-    | PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemSourcesItem
-    | (string & {})
-  >;
-export const PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemSourcesList =
-  /*@__PURE__*/ S.Array(
-    PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemSourcesItem,
-  ) as any as S.Schema<PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemSourcesList>;
-
-export interface PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0Item {
-  enabled: boolean;
-  environments: PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsList;
-  sources: PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemSourcesList;
-}
-export const PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0Item =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      enabled: S.Boolean,
-      environments:
-        PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsList,
-      sources:
-        PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemSourcesList,
-    }),
-  ).annotate({
-    identifier:
-      "PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0Item",
-  }) as any as S.Schema<PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0Item>;
-
-export type PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0List =
-  Array<PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0Item>;
-export const PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0List =
-  /*@__PURE__*/ S.Array(
-    PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0Item,
-  ) as any as S.Schema<PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0List>;
-
-export type PatchTeamRequestDeploymentPolicyCase0DeploymentSources =
-  | PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0List
-  | string;
-export const PatchTeamRequestDeploymentPolicyCase0DeploymentSources =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PatchTeamRequestDeploymentPolicyCase0DeploymentSources>;
-
-/** Composable deployment-time policy. Each rule type holds a list of rules, one per environment scope. */
-export interface PatchTeamRequestDeploymentPolicyCase0 {
-  gitSources?: PatchTeamRequestDeploymentPolicyCase0GitSources;
-  deploymentSources?: PatchTeamRequestDeploymentPolicyCase0DeploymentSources;
-}
-export const PatchTeamRequestDeploymentPolicyCase0 = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      gitSources: S.optional(PatchTeamRequestDeploymentPolicyCase0GitSources),
-      deploymentSources: S.optional(
-        PatchTeamRequestDeploymentPolicyCase0DeploymentSources,
-      ),
-    }),
-).annotate({
-  identifier: "PatchTeamRequestDeploymentPolicyCase0",
-}) as any as S.Schema<PatchTeamRequestDeploymentPolicyCase0>;
-
-export type PatchTeamRequestDeploymentPolicy =
-  | PatchTeamRequestDeploymentPolicyCase0
-  | string;
-export const PatchTeamRequestDeploymentPolicy =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PatchTeamRequestDeploymentPolicy>;
-
-/** When enabled, deployment protection settings require stricter permissions (owner-only). */
-export interface PatchTeamRequestStrictDeploymentProtectionSettings {
-  /** Enable or disable strict deployment protection settings. */
-  enabled: boolean;
-}
-export const PatchTeamRequestStrictDeploymentProtectionSettings =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      enabled: S.Boolean,
-    }),
-  ).annotate({
-    identifier: "PatchTeamRequestStrictDeploymentProtectionSettings",
-  }) as any as S.Schema<PatchTeamRequestStrictDeploymentProtectionSettings>;
-
-/** When enabled, creating shareable links requires Owner role. */
-export interface PatchTeamRequestStrictShareableLinks {
-  /** Enable or disable requiring Owner role to create shareable links. */
-  enabled: boolean;
-}
-export const PatchTeamRequestStrictShareableLinks = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      enabled: S.Boolean,
-    }),
-).annotate({
-  identifier: "PatchTeamRequestStrictShareableLinks",
-}) as any as S.Schema<PatchTeamRequestStrictShareableLinks>;
-
-/** When enabled, adding, changing, or removing project password protection requires Owner role. */
-export interface PatchTeamRequestStrictPasswordProtectionSettings {
-  /** Enable or disable requiring Owner role to change project password protection. */
-  enabled: boolean;
-}
-export const PatchTeamRequestStrictPasswordProtectionSettings =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      enabled: S.Boolean,
-    }),
-  ).annotate({
-    identifier: "PatchTeamRequestStrictPasswordProtectionSettings",
-  }) as any as S.Schema<PatchTeamRequestStrictPasswordProtectionSettings>;
-
-/** When enabled, creating and managing connectors requires Owner role. */
-export interface PatchTeamRequestStrictConnectors {
-  /** Enable or disable requiring Owner role to manage connectors. */
-  enabled: boolean;
-}
-export const PatchTeamRequestStrictConnectors = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    enabled: S.Boolean,
-  }),
-).annotate({
-  identifier: "PatchTeamRequestStrictConnectors",
-}) as any as S.Schema<PatchTeamRequestStrictConnectors>;
-
-/** The NSNB preference for the team. */
-export type PatchTeamRequestNsnbConfigCase0Preference =
-  | "auto-approval"
-  | "manual-approval"
-  | "block";
-export const PatchTeamRequestNsnbConfigCase0Preference = /*@__PURE__*/ S.String;
-
-/** NSNB configuration for the team. */
-export interface PatchTeamRequestNsnbConfigCase0 {
-  /** The NSNB preference for the team. */
-  preference: PatchTeamRequestNsnbConfigCase0Preference | (string & {});
-}
-export const PatchTeamRequestNsnbConfigCase0 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    preference: PatchTeamRequestNsnbConfigCase0Preference,
-  }),
-).annotate({
-  identifier: "PatchTeamRequestNsnbConfigCase0",
-}) as any as S.Schema<PatchTeamRequestNsnbConfigCase0>;
-
-export type PatchTeamRequestNsnbConfig =
-  | PatchTeamRequestNsnbConfigCase0
-  | string;
-export const PatchTeamRequestNsnbConfig =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PatchTeamRequestNsnbConfig>;
-
-export type PatchTeamRequestDefaultProjectJobsCase0LintTargetsList =
-  Array<string>;
-export const PatchTeamRequestDefaultProjectJobsCase0LintTargetsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PatchTeamRequestDefaultProjectJobsCase0LintTargetsList>;
-
-export interface PatchTeamRequestDefaultProjectJobsCase0Lint {
-  targets: PatchTeamRequestDefaultProjectJobsCase0LintTargetsList;
-}
-export const PatchTeamRequestDefaultProjectJobsCase0Lint =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      targets: PatchTeamRequestDefaultProjectJobsCase0LintTargetsList,
-    }),
-  ).annotate({
-    identifier: "PatchTeamRequestDefaultProjectJobsCase0Lint",
-  }) as any as S.Schema<PatchTeamRequestDefaultProjectJobsCase0Lint>;
-
-export type PatchTeamRequestDefaultProjectJobsCase0TypecheckTargetsList =
-  Array<string>;
-export const PatchTeamRequestDefaultProjectJobsCase0TypecheckTargetsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PatchTeamRequestDefaultProjectJobsCase0TypecheckTargetsList>;
-
-export interface PatchTeamRequestDefaultProjectJobsCase0Typecheck {
-  targets: PatchTeamRequestDefaultProjectJobsCase0TypecheckTargetsList;
-}
-export const PatchTeamRequestDefaultProjectJobsCase0Typecheck =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      targets: PatchTeamRequestDefaultProjectJobsCase0TypecheckTargetsList,
-    }),
-  ).annotate({
-    identifier: "PatchTeamRequestDefaultProjectJobsCase0Typecheck",
-  }) as any as S.Schema<PatchTeamRequestDefaultProjectJobsCase0Typecheck>;
-
-/** Default job configuration applied to new projects created in this team. */
-export interface PatchTeamRequestDefaultProjectJobsCase0 {
-  lint?: PatchTeamRequestDefaultProjectJobsCase0Lint;
-  typecheck?: PatchTeamRequestDefaultProjectJobsCase0Typecheck;
-}
-export const PatchTeamRequestDefaultProjectJobsCase0 = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      lint: S.optional(PatchTeamRequestDefaultProjectJobsCase0Lint),
-      typecheck: S.optional(PatchTeamRequestDefaultProjectJobsCase0Typecheck),
-    }),
-).annotate({
-  identifier: "PatchTeamRequestDefaultProjectJobsCase0",
-}) as any as S.Schema<PatchTeamRequestDefaultProjectJobsCase0>;
-
-export type PatchTeamRequestDefaultProjectJobs =
-  | PatchTeamRequestDefaultProjectJobsCase0
-  | string;
-export const PatchTeamRequestDefaultProjectJobs =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PatchTeamRequestDefaultProjectJobs>;
-
-/** Default build machine type for new builds: standard, enhanced, turbo, or elastic. */
-export type PatchTeamRequestResourceConfigBuildMachineDefault =
-  | "basic"
-  | "enhanced"
-  | "turbo"
-  | "standard"
-  | "elastic";
-export const PatchTeamRequestResourceConfigBuildMachineDefault =
-  /*@__PURE__*/ S.String;
-
-/** Build machine configuration. */
-export interface PatchTeamRequestResourceConfigBuildMachine {
-  /** Default build machine type for new builds: standard, enhanced, turbo, or elastic. */
-  default?: PatchTeamRequestResourceConfigBuildMachineDefault | (string & {});
-}
-export const PatchTeamRequestResourceConfigBuildMachine =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      default: S.optional(PatchTeamRequestResourceConfigBuildMachineDefault),
-    }),
-  ).annotate({
-    identifier: "PatchTeamRequestResourceConfigBuildMachine",
-  }) as any as S.Schema<PatchTeamRequestResourceConfigBuildMachine>;
-
-/** Resource configuration for the team. */
-export interface PatchTeamRequestResourceConfig {
-  /** Build machine configuration. */
-  buildMachine?: PatchTeamRequestResourceConfigBuildMachine;
-}
-export const PatchTeamRequestResourceConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    buildMachine: S.optional(PatchTeamRequestResourceConfigBuildMachine),
-  }),
-).annotate({
-  identifier: "PatchTeamRequestResourceConfig",
-}) as any as S.Schema<PatchTeamRequestResourceConfig>;
-
-export interface PatchTeamRequest {
-  /** The Team identifier to perform the request on behalf of. */
-  teamId: string;
-  /** The Team slug to perform the request on behalf of. */
-  slug?: string;
-  /** The hash value of an uploaded image, or `null` to clear the avatar. */
-  avatar?: string | null;
-  /** A short text that describes the team. */
-  description?: string;
-  emailDomain?: string | null;
-  /** The name of the team. */
-  name?: string;
-  /** Suffix that will be used for all preview deployments. */
-  previewDeploymentSuffix?: string | null;
-  /** Create a new invite code and replace the current one. */
-  regenerateInviteCode?: boolean;
-  saml?: PatchTeamRequestSaml;
-  /** Enable preview toolbar: one of on, off or default. */
-  enablePreviewFeedback?: string;
-  /** Enable production toolbar: one of on, off or default. */
-  enableProductionFeedback?: string;
-  /** Sensitive environment variable policy: one of on, off or default. */
-  sensitiveEnvironmentVariablePolicy?: string;
-  /** Require production secrets to be in their own environment group: one of on, off or default. */
-  disjunctiveProductionSecretPolicy?: string;
-  /** Whether or not remote caching is enabled for the team */
-  remoteCaching?: PatchTeamRequestRemoteCaching;
-  /** Display or hide IP addresses in Monitoring queries. */
-  hideIpAddresses?: boolean;
-  /** Display or hide IP addresses in Log Drains. */
-  hideIpAddressesInLogDrains?: boolean;
-  /** Controls who can request access to protected deployments. */
-  dpAccessRequestsMode?: PatchTeamRequestDpAccessRequestsMode | (string & {});
-  /** When enabled, all projects in the team require commits to be signed and verified by the git provider before deployments will be created. */
-  requireVerifiedCommits?: boolean;
-  /** Default for projects in the team. When `true`, projects in this team will not emit GitHub repository-dispatch events on deployment events unless the project explicitly overrides this setting. */
-  disableRepositoryDispatchEvents?: boolean;
-  /** Default deployment protection settings for new projects. */
-  defaultDeploymentProtection?: PatchTeamRequestDefaultDeploymentProtection;
-  /** Default Passport configuration for new projects. */
-  defaultPassport?: PatchTeamRequestDefaultPassport | null;
-  defaultExpirationSettings?: PatchTeamRequestDefaultExpirationSettings;
-  deploymentPolicy?: PatchTeamRequestDeploymentPolicy;
-  /** When enabled, deployment protection settings require stricter permissions (owner-only). */
-  strictDeploymentProtectionSettings?: PatchTeamRequestStrictDeploymentProtectionSettings;
-  /** When enabled, creating shareable links requires Owner role. */
-  strictShareableLinks?: PatchTeamRequestStrictShareableLinks;
-  /** When enabled, adding, changing, or removing project password protection requires Owner role. */
-  strictPasswordProtectionSettings?: PatchTeamRequestStrictPasswordProtectionSettings;
-  /** When enabled, creating and managing connectors requires Owner role. */
-  strictConnectors?: PatchTeamRequestStrictConnectors;
-  nsnbConfig?: PatchTeamRequestNsnbConfig;
-  defaultProjectJobs?: PatchTeamRequestDefaultProjectJobs;
-  /** Resource configuration for the team. */
-  resourceConfig?: PatchTeamRequestResourceConfig;
-}
-export const PatchTeamRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    teamId: S.String.pipe(T.Label()),
-    slug: S.optional(S.String.pipe(T.Query())),
-    avatar: S.optional(S.NullOr(S.String)),
-    description: S.optional(S.String),
-    emailDomain: S.optional(S.NullOr(S.String)),
-    name: S.optional(S.String),
-    previewDeploymentSuffix: S.optional(S.NullOr(S.String)),
-    regenerateInviteCode: S.optional(S.Boolean),
-    saml: S.optional(PatchTeamRequestSaml),
-    enablePreviewFeedback: S.optional(S.String),
-    enableProductionFeedback: S.optional(S.String),
-    sensitiveEnvironmentVariablePolicy: S.optional(S.String),
-    disjunctiveProductionSecretPolicy: S.optional(S.String),
-    remoteCaching: S.optional(PatchTeamRequestRemoteCaching),
-    hideIpAddresses: S.optional(S.Boolean),
-    hideIpAddressesInLogDrains: S.optional(S.Boolean),
-    dpAccessRequestsMode: S.optional(PatchTeamRequestDpAccessRequestsMode),
-    requireVerifiedCommits: S.optional(S.Boolean),
-    disableRepositoryDispatchEvents: S.optional(S.Boolean),
-    defaultDeploymentProtection: S.optional(
-      PatchTeamRequestDefaultDeploymentProtection,
-    ),
-    defaultPassport: S.optional(S.NullOr(PatchTeamRequestDefaultPassport)),
-    defaultExpirationSettings: S.optional(
-      PatchTeamRequestDefaultExpirationSettings,
-    ),
-    deploymentPolicy: S.optional(PatchTeamRequestDeploymentPolicy),
-    strictDeploymentProtectionSettings: S.optional(
-      PatchTeamRequestStrictDeploymentProtectionSettings,
-    ),
-    strictShareableLinks: S.optional(PatchTeamRequestStrictShareableLinks),
-    strictPasswordProtectionSettings: S.optional(
-      PatchTeamRequestStrictPasswordProtectionSettings,
-    ),
-    strictConnectors: S.optional(PatchTeamRequestStrictConnectors),
-    nsnbConfig: S.optional(PatchTeamRequestNsnbConfig),
-    defaultProjectJobs: S.optional(PatchTeamRequestDefaultProjectJobs),
-    resourceConfig: S.optional(PatchTeamRequestResourceConfig),
-  }).pipe(T.Http({ method: "PATCH", uri: "/v2/teams/{teamId}", code: 200 })),
-).annotate({
-  identifier: "PatchTeamRequest",
-}) as any as S.Schema<PatchTeamRequest>;
-
-export type PostTeamDsyncRolesRequestRolesValueCase0 =
-  | "OWNER"
-  | "MEMBER"
-  | "DEVELOPER"
-  | "SECURITY"
-  | "BILLING"
-  | "VIEWER"
-  | "VIEWER_FOR_PLUS"
-  | "CONTRIBUTOR";
-export const PostTeamDsyncRolesRequestRolesValueCase0 = /*@__PURE__*/ S.String;
-
-export type PostTeamDsyncRolesRequestRolesValueCase1 = TeamSamlRolesValueCase0;
-export const PostTeamDsyncRolesRequestRolesValueCase1 = TeamSamlRolesValueCase0;
-
-export type PostTeamDsyncRolesRequestRolesValue =
-  | PostTeamDsyncRolesRequestRolesValueCase0
-  | TeamSamlRolesValueCase0;
-export const PostTeamDsyncRolesRequestRolesValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PostTeamDsyncRolesRequestRolesValue>;
-
-/** Directory groups to role or access group mappings. */
-export type PostTeamDsyncRolesRequestRolesMap = {
-  [key: string]: PostTeamDsyncRolesRequestRolesValue | undefined;
-};
-export const PostTeamDsyncRolesRequestRolesMap = /*@__PURE__*/ S.Record(
-  S.String,
-  PostTeamDsyncRolesRequestRolesValue,
-) as any as S.Schema<PostTeamDsyncRolesRequestRolesMap>;
-
-export interface PostTeamDsyncRolesRequest {
-  /** The Team identifier to perform the request on behalf of. */
-  teamId: string;
-  /** The Team slug to perform the request on behalf of. */
-  slug?: string;
-  /** Directory groups to role or access group mappings. */
-  roles: PostTeamDsyncRolesRequestRolesMap;
-}
-export const PostTeamDsyncRolesRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    teamId: S.String.pipe(T.Label()),
-    slug: S.optional(S.String.pipe(T.Query())),
-    roles: PostTeamDsyncRolesRequestRolesMap,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/teams/{teamId}/dsync-roles",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PostTeamDsyncRolesRequest",
-}) as any as S.Schema<PostTeamDsyncRolesRequest>;
-
-export interface PostTeamDsyncRolesResponse {
-  ok: boolean;
-}
-export const PostTeamDsyncRolesResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ok: S.Boolean,
-  }),
-).annotate({
-  identifier: "PostTeamDsyncRolesResponse",
-}) as any as S.Schema<PostTeamDsyncRolesResponse>;
-
 export interface RemoveTeamMemberRequest {
   teamId: string;
   /** The user ID of the member. */
@@ -3653,6 +2823,844 @@ export const UpdateMicrofrontendsGroupResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateMicrofrontendsGroupResponse",
 }) as any as S.Schema<UpdateMicrofrontendsGroupResponse>;
 
+export type UpdateTeamRequestSamlRolesValueCase0 =
+  | "OWNER"
+  | "MEMBER"
+  | "DEVELOPER"
+  | "SECURITY"
+  | "BILLING"
+  | "VIEWER"
+  | "VIEWER_FOR_PLUS"
+  | "CONTRIBUTOR";
+export const UpdateTeamRequestSamlRolesValueCase0 = /*@__PURE__*/ S.String;
+
+export type UpdateTeamRequestSamlRolesValueCase1 =
+  CreateTeamDsyncRoleRequestRolesValueCase1;
+export const UpdateTeamRequestSamlRolesValueCase1 =
+  CreateTeamDsyncRoleRequestRolesValueCase1;
+
+export type UpdateTeamRequestSamlRolesValue =
+  | UpdateTeamRequestSamlRolesValueCase0
+  | CreateTeamDsyncRoleRequestRolesValueCase1;
+export const UpdateTeamRequestSamlRolesValue =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateTeamRequestSamlRolesValue>;
+
+/** Directory groups to role or access group mappings. */
+export type UpdateTeamRequestSamlRolesMap = {
+  [key: string]: UpdateTeamRequestSamlRolesValue | undefined;
+};
+export const UpdateTeamRequestSamlRolesMap = /*@__PURE__*/ S.Record(
+  S.String,
+  UpdateTeamRequestSamlRolesValue,
+) as any as S.Schema<UpdateTeamRequestSamlRolesMap>;
+
+export interface UpdateTeamRequestSaml {
+  /** Require that members of the team use SAML Single Sign-On. */
+  enforced?: boolean;
+  /** Directory groups to role or access group mappings. */
+  roles?: UpdateTeamRequestSamlRolesMap;
+}
+export const UpdateTeamRequestSaml = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    enforced: S.optional(S.Boolean),
+    roles: S.optional(UpdateTeamRequestSamlRolesMap),
+  }),
+).annotate({
+  identifier: "UpdateTeamRequestSaml",
+}) as any as S.Schema<UpdateTeamRequestSaml>;
+
+/** Whether or not remote caching is enabled for the team */
+export interface UpdateTeamRequestRemoteCaching {
+  /** Enable or disable remote caching for the team. */
+  enabled?: boolean;
+}
+export const UpdateTeamRequestRemoteCaching = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    enabled: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "UpdateTeamRequestRemoteCaching",
+}) as any as S.Schema<UpdateTeamRequestRemoteCaching>;
+
+/** Controls who can request access to protected deployments. */
+export type UpdateTeamRequestDpAccessRequestsMode =
+  | "all"
+  | "none"
+  | "email-domain";
+export const UpdateTeamRequestDpAccessRequestsMode = /*@__PURE__*/ S.String;
+
+/** Specify if the password will apply to every Deployment Target or just Preview */
+export type UpdateTeamRequestDefaultDeploymentProtectionPasswordProtectionDeploymentType =
+  | "all"
+  | "preview"
+  | "prod_deployment_urls_and_all_previews"
+  | "all_except_custom_domains";
+export const UpdateTeamRequestDefaultDeploymentProtectionPasswordProtectionDeploymentType =
+  /*@__PURE__*/ S.String;
+
+/** Allows to protect project deployments with a password */
+export interface UpdateTeamRequestDefaultDeploymentProtectionPasswordProtection {
+  /** Specify if the password will apply to every Deployment Target or just Preview */
+  deploymentType:
+    | UpdateTeamRequestDefaultDeploymentProtectionPasswordProtectionDeploymentType
+    | (string & {});
+  /** The password that will be used to protect Project Deployments */
+  password?: string | Redacted.Redacted<string> | null;
+}
+export const UpdateTeamRequestDefaultDeploymentProtectionPasswordProtection =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      deploymentType:
+        UpdateTeamRequestDefaultDeploymentProtectionPasswordProtectionDeploymentType,
+      password: S.optional(S.NullOr(S.String).pipe(T.SensitiveValue({}))),
+    }),
+  ).annotate({
+    identifier:
+      "UpdateTeamRequestDefaultDeploymentProtectionPasswordProtection",
+  }) as any as S.Schema<UpdateTeamRequestDefaultDeploymentProtectionPasswordProtection>;
+
+/** Specify if the Vercel Authentication (SSO Protection) will apply to every Deployment Target or just Preview */
+export type UpdateTeamRequestDefaultDeploymentProtectionSsoProtectionDeploymentType =
+  | "all"
+  | "preview"
+  | "prod_deployment_urls_and_all_previews"
+  | "all_except_custom_domains";
+export const UpdateTeamRequestDefaultDeploymentProtectionSsoProtectionDeploymentType =
+  /*@__PURE__*/ S.String;
+
+/** Ensures visitors to your Preview Deployments are logged into Vercel and have a minimum of Viewer access on your team */
+export interface UpdateTeamRequestDefaultDeploymentProtectionSsoProtection {
+  /** Specify if the Vercel Authentication (SSO Protection) will apply to every Deployment Target or just Preview */
+  deploymentType:
+    | UpdateTeamRequestDefaultDeploymentProtectionSsoProtectionDeploymentType
+    | (string & {});
+}
+export const UpdateTeamRequestDefaultDeploymentProtectionSsoProtection =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      deploymentType:
+        UpdateTeamRequestDefaultDeploymentProtectionSsoProtectionDeploymentType,
+    }),
+  ).annotate({
+    identifier: "UpdateTeamRequestDefaultDeploymentProtectionSsoProtection",
+  }) as any as S.Schema<UpdateTeamRequestDefaultDeploymentProtectionSsoProtection>;
+
+/** Default deployment protection settings for new projects. */
+export interface UpdateTeamRequestDefaultDeploymentProtection {
+  /** Allows to protect project deployments with a password */
+  passwordProtection?: UpdateTeamRequestDefaultDeploymentProtectionPasswordProtection | null;
+  /** Ensures visitors to your Preview Deployments are logged into Vercel and have a minimum of Viewer access on your team */
+  ssoProtection?: UpdateTeamRequestDefaultDeploymentProtectionSsoProtection | null;
+}
+export const UpdateTeamRequestDefaultDeploymentProtection =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      passwordProtection: S.optional(
+        S.NullOr(
+          UpdateTeamRequestDefaultDeploymentProtectionPasswordProtection,
+        ),
+      ),
+      ssoProtection: S.optional(
+        S.NullOr(UpdateTeamRequestDefaultDeploymentProtectionSsoProtection),
+      ),
+    }),
+  ).annotate({
+    identifier: "UpdateTeamRequestDefaultDeploymentProtection",
+  }) as any as S.Schema<UpdateTeamRequestDefaultDeploymentProtection>;
+
+export type UpdateTeamRequestDefaultPassportDeploymentType =
+  | "all"
+  | "preview"
+  | "prod_deployment_urls_and_all_previews"
+  | "all_except_custom_domains";
+export const UpdateTeamRequestDefaultPassportDeploymentType =
+  /*@__PURE__*/ S.String;
+
+/** Default Passport configuration for new projects. */
+export interface UpdateTeamRequestDefaultPassport {
+  connectorId: string;
+  deploymentType?:
+    | UpdateTeamRequestDefaultPassportDeploymentType
+    | (string & {});
+}
+export const UpdateTeamRequestDefaultPassport = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    connectorId: S.String,
+    deploymentType: S.optional(UpdateTeamRequestDefaultPassportDeploymentType),
+  }),
+).annotate({
+  identifier: "UpdateTeamRequestDefaultPassport",
+}) as any as S.Schema<UpdateTeamRequestDefaultPassport>;
+
+/** The time period to keep non-production deployments for */
+export type UpdateTeamRequestDefaultExpirationSettingsExpiration =
+  | "3y"
+  | "2y"
+  | "1y"
+  | "6m"
+  | "3m"
+  | "2m"
+  | "1m"
+  | "2w"
+  | "1w"
+  | "1d"
+  | "unlimited";
+export const UpdateTeamRequestDefaultExpirationSettingsExpiration =
+  /*@__PURE__*/ S.String;
+
+/** The time period to keep production deployments for */
+export type UpdateTeamRequestDefaultExpirationSettingsExpirationProduction =
+  | "3y"
+  | "2y"
+  | "1y"
+  | "6m"
+  | "3m"
+  | "2m"
+  | "1m"
+  | "2w"
+  | "1w"
+  | "1d"
+  | "unlimited";
+export const UpdateTeamRequestDefaultExpirationSettingsExpirationProduction =
+  /*@__PURE__*/ S.String;
+
+/** The time period to keep canceled deployments for */
+export type UpdateTeamRequestDefaultExpirationSettingsExpirationCanceled =
+  | "1y"
+  | "6m"
+  | "3m"
+  | "2m"
+  | "1m"
+  | "2w"
+  | "1w"
+  | "1d"
+  | "unlimited";
+export const UpdateTeamRequestDefaultExpirationSettingsExpirationCanceled =
+  /*@__PURE__*/ S.String;
+
+/** The time period to keep errored deployments for */
+export type UpdateTeamRequestDefaultExpirationSettingsExpirationErrored =
+  | "1y"
+  | "6m"
+  | "3m"
+  | "2m"
+  | "1m"
+  | "2w"
+  | "1w"
+  | "1d"
+  | "unlimited";
+export const UpdateTeamRequestDefaultExpirationSettingsExpirationErrored =
+  /*@__PURE__*/ S.String;
+
+export interface UpdateTeamRequestDefaultExpirationSettings {
+  /** The time period to keep non-production deployments for */
+  expiration?:
+    | UpdateTeamRequestDefaultExpirationSettingsExpiration
+    | (string & {});
+  /** The time period to keep production deployments for */
+  expirationProduction?:
+    | UpdateTeamRequestDefaultExpirationSettingsExpirationProduction
+    | (string & {});
+  /** The time period to keep canceled deployments for */
+  expirationCanceled?:
+    | UpdateTeamRequestDefaultExpirationSettingsExpirationCanceled
+    | (string & {});
+  /** The time period to keep errored deployments for */
+  expirationErrored?:
+    | UpdateTeamRequestDefaultExpirationSettingsExpirationErrored
+    | (string & {});
+}
+export const UpdateTeamRequestDefaultExpirationSettings =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      expiration: S.optional(
+        UpdateTeamRequestDefaultExpirationSettingsExpiration,
+      ),
+      expirationProduction: S.optional(
+        UpdateTeamRequestDefaultExpirationSettingsExpirationProduction,
+      ),
+      expirationCanceled: S.optional(
+        UpdateTeamRequestDefaultExpirationSettingsExpirationCanceled,
+      ),
+      expirationErrored: S.optional(
+        UpdateTeamRequestDefaultExpirationSettingsExpirationErrored,
+      ),
+    }),
+  ).annotate({
+    identifier: "UpdateTeamRequestDefaultExpirationSettings",
+  }) as any as S.Schema<UpdateTeamRequestDefaultExpirationSettings>;
+
+export type UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase0Type =
+  "system";
+export const UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase0Type =
+  /*@__PURE__*/ S.String;
+
+export type UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase0Target =
+  | "production"
+  | "preview";
+export const UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase0Target =
+  /*@__PURE__*/ S.String;
+
+export interface UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase0 {
+  type: UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase0Type;
+  target:
+    | UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase0Target
+    | (string & {});
+}
+export const UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase0 =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase0Type,
+      target:
+        UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase0Target,
+    }),
+  ).annotate({
+    identifier:
+      "UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase0",
+  }) as any as S.Schema<UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase0>;
+
+export type UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase1Type =
+  "custom";
+export const UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase1Type =
+  /*@__PURE__*/ S.String;
+
+export interface UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase1 {
+  type: UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase1Type;
+  environmentId: string;
+}
+export const UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase1 =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase1Type,
+      environmentId: S.String,
+    }),
+  ).annotate({
+    identifier:
+      "UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase1",
+  }) as any as S.Schema<UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase1>;
+
+export type UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItem =
+  | UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase0
+  | UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase1;
+export const UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItem =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItem>;
+
+export type UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsList =
+  Array<UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItem>;
+export const UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsList =
+  /*@__PURE__*/ S.Array(
+    UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItem,
+  ) as any as S.Schema<UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsList>;
+
+export type UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase0Provider =
+  | "github"
+  | "bitbucket";
+export const UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase0Provider =
+  /*@__PURE__*/ S.String;
+
+export interface UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase0 {
+  provider:
+    | UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase0Provider
+    | (string & {});
+  org: string;
+  repo?: string;
+}
+export const UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase0 =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      provider:
+        UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase0Provider,
+      org: S.String,
+      repo: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier:
+      "UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase0",
+  }) as any as S.Schema<UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase0>;
+
+export type UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase1Provider =
+  "gitlab";
+export const UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase1Provider =
+  /*@__PURE__*/ S.String;
+
+export interface UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase1 {
+  provider: UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase1Provider;
+  namespace: string;
+  project?: string;
+}
+export const UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase1 =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      provider:
+        UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase1Provider,
+      namespace: S.String,
+      project: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier:
+      "UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase1",
+  }) as any as S.Schema<UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase1>;
+
+export type UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItem =
+  | UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase0
+  | UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase1;
+export const UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItem =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItem>;
+
+export type UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesList =
+  Array<UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItem>;
+export const UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesList =
+  /*@__PURE__*/ S.Array(
+    UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItem,
+  ) as any as S.Schema<UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesList>;
+
+export interface UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0Item {
+  enabled: boolean;
+  environments: UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsList;
+  sources: UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesList;
+}
+export const UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0Item =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      enabled: S.Boolean,
+      environments:
+        UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsList,
+      sources:
+        UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesList,
+    }),
+  ).annotate({
+    identifier: "UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0Item",
+  }) as any as S.Schema<UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0Item>;
+
+export type UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0List =
+  Array<UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0Item>;
+export const UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0List =
+  /*@__PURE__*/ S.Array(
+    UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0Item,
+  ) as any as S.Schema<UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0List>;
+
+export type UpdateTeamRequestDeploymentPolicyCase0GitSources =
+  | UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0List
+  | string;
+export const UpdateTeamRequestDeploymentPolicyCase0GitSources =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateTeamRequestDeploymentPolicyCase0GitSources>;
+
+export type UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase0Type =
+  "system";
+export const UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase0Type =
+  /*@__PURE__*/ S.String;
+
+export type UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase0Target =
+  | "production"
+  | "preview";
+export const UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase0Target =
+  /*@__PURE__*/ S.String;
+
+export interface UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase0 {
+  type: UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase0Type;
+  target:
+    | UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase0Target
+    | (string & {});
+}
+export const UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase0 =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase0Type,
+      target:
+        UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase0Target,
+    }),
+  ).annotate({
+    identifier:
+      "UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase0",
+  }) as any as S.Schema<UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase0>;
+
+export type UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase1Type =
+  "custom";
+export const UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase1Type =
+  /*@__PURE__*/ S.String;
+
+export interface UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase1 {
+  type: UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase1Type;
+  environmentId: string;
+}
+export const UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase1 =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase1Type,
+      environmentId: S.String,
+    }),
+  ).annotate({
+    identifier:
+      "UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase1",
+  }) as any as S.Schema<UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase1>;
+
+export type UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItem =
+  | UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase0
+  | UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase1;
+export const UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItem =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItem>;
+
+export type UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsList =
+  Array<UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItem>;
+export const UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsList =
+  /*@__PURE__*/ S.Array(
+    UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItem,
+  ) as any as S.Schema<UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsList>;
+
+export type UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemSourcesItem =
+  | "git"
+  | "cli"
+  | "rest-api"
+  | "deploy-hook"
+  | "integration"
+  | "v0";
+export const UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemSourcesItem =
+  /*@__PURE__*/ S.String;
+
+export type UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemSourcesList =
+  Array<
+    | UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemSourcesItem
+    | (string & {})
+  >;
+export const UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemSourcesList =
+  /*@__PURE__*/ S.Array(
+    UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemSourcesItem,
+  ) as any as S.Schema<UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemSourcesList>;
+
+export interface UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0Item {
+  enabled: boolean;
+  environments: UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsList;
+  sources: UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemSourcesList;
+}
+export const UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0Item =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      enabled: S.Boolean,
+      environments:
+        UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsList,
+      sources:
+        UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemSourcesList,
+    }),
+  ).annotate({
+    identifier:
+      "UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0Item",
+  }) as any as S.Schema<UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0Item>;
+
+export type UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0List =
+  Array<UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0Item>;
+export const UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0List =
+  /*@__PURE__*/ S.Array(
+    UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0Item,
+  ) as any as S.Schema<UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0List>;
+
+export type UpdateTeamRequestDeploymentPolicyCase0DeploymentSources =
+  | UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0List
+  | string;
+export const UpdateTeamRequestDeploymentPolicyCase0DeploymentSources =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateTeamRequestDeploymentPolicyCase0DeploymentSources>;
+
+/** Composable deployment-time policy. Each rule type holds a list of rules, one per environment scope. */
+export interface UpdateTeamRequestDeploymentPolicyCase0 {
+  gitSources?: UpdateTeamRequestDeploymentPolicyCase0GitSources;
+  deploymentSources?: UpdateTeamRequestDeploymentPolicyCase0DeploymentSources;
+}
+export const UpdateTeamRequestDeploymentPolicyCase0 = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      gitSources: S.optional(UpdateTeamRequestDeploymentPolicyCase0GitSources),
+      deploymentSources: S.optional(
+        UpdateTeamRequestDeploymentPolicyCase0DeploymentSources,
+      ),
+    }),
+).annotate({
+  identifier: "UpdateTeamRequestDeploymentPolicyCase0",
+}) as any as S.Schema<UpdateTeamRequestDeploymentPolicyCase0>;
+
+export type UpdateTeamRequestDeploymentPolicy =
+  | UpdateTeamRequestDeploymentPolicyCase0
+  | string;
+export const UpdateTeamRequestDeploymentPolicy =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateTeamRequestDeploymentPolicy>;
+
+/** When enabled, deployment protection settings require stricter permissions (owner-only). */
+export interface UpdateTeamRequestStrictDeploymentProtectionSettings {
+  /** Enable or disable strict deployment protection settings. */
+  enabled: boolean;
+}
+export const UpdateTeamRequestStrictDeploymentProtectionSettings =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      enabled: S.Boolean,
+    }),
+  ).annotate({
+    identifier: "UpdateTeamRequestStrictDeploymentProtectionSettings",
+  }) as any as S.Schema<UpdateTeamRequestStrictDeploymentProtectionSettings>;
+
+/** When enabled, creating shareable links requires Owner role. */
+export interface UpdateTeamRequestStrictShareableLinks {
+  /** Enable or disable requiring Owner role to create shareable links. */
+  enabled: boolean;
+}
+export const UpdateTeamRequestStrictShareableLinks = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      enabled: S.Boolean,
+    }),
+).annotate({
+  identifier: "UpdateTeamRequestStrictShareableLinks",
+}) as any as S.Schema<UpdateTeamRequestStrictShareableLinks>;
+
+/** When enabled, adding, changing, or removing project password protection requires Owner role. */
+export interface UpdateTeamRequestStrictPasswordProtectionSettings {
+  /** Enable or disable requiring Owner role to change project password protection. */
+  enabled: boolean;
+}
+export const UpdateTeamRequestStrictPasswordProtectionSettings =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      enabled: S.Boolean,
+    }),
+  ).annotate({
+    identifier: "UpdateTeamRequestStrictPasswordProtectionSettings",
+  }) as any as S.Schema<UpdateTeamRequestStrictPasswordProtectionSettings>;
+
+/** When enabled, creating and managing connectors requires Owner role. */
+export interface UpdateTeamRequestStrictConnectors {
+  /** Enable or disable requiring Owner role to manage connectors. */
+  enabled: boolean;
+}
+export const UpdateTeamRequestStrictConnectors = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    enabled: S.Boolean,
+  }),
+).annotate({
+  identifier: "UpdateTeamRequestStrictConnectors",
+}) as any as S.Schema<UpdateTeamRequestStrictConnectors>;
+
+/** The NSNB preference for the team. */
+export type UpdateTeamRequestNsnbConfigCase0Preference =
+  | "auto-approval"
+  | "manual-approval"
+  | "block";
+export const UpdateTeamRequestNsnbConfigCase0Preference =
+  /*@__PURE__*/ S.String;
+
+/** NSNB configuration for the team. */
+export interface UpdateTeamRequestNsnbConfigCase0 {
+  /** The NSNB preference for the team. */
+  preference: UpdateTeamRequestNsnbConfigCase0Preference | (string & {});
+}
+export const UpdateTeamRequestNsnbConfigCase0 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    preference: UpdateTeamRequestNsnbConfigCase0Preference,
+  }),
+).annotate({
+  identifier: "UpdateTeamRequestNsnbConfigCase0",
+}) as any as S.Schema<UpdateTeamRequestNsnbConfigCase0>;
+
+export type UpdateTeamRequestNsnbConfig =
+  | UpdateTeamRequestNsnbConfigCase0
+  | string;
+export const UpdateTeamRequestNsnbConfig =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateTeamRequestNsnbConfig>;
+
+export type UpdateTeamRequestDefaultProjectJobsCase0LintTargetsList =
+  Array<string>;
+export const UpdateTeamRequestDefaultProjectJobsCase0LintTargetsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<UpdateTeamRequestDefaultProjectJobsCase0LintTargetsList>;
+
+export interface UpdateTeamRequestDefaultProjectJobsCase0Lint {
+  targets: UpdateTeamRequestDefaultProjectJobsCase0LintTargetsList;
+}
+export const UpdateTeamRequestDefaultProjectJobsCase0Lint =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      targets: UpdateTeamRequestDefaultProjectJobsCase0LintTargetsList,
+    }),
+  ).annotate({
+    identifier: "UpdateTeamRequestDefaultProjectJobsCase0Lint",
+  }) as any as S.Schema<UpdateTeamRequestDefaultProjectJobsCase0Lint>;
+
+export type UpdateTeamRequestDefaultProjectJobsCase0TypecheckTargetsList =
+  Array<string>;
+export const UpdateTeamRequestDefaultProjectJobsCase0TypecheckTargetsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<UpdateTeamRequestDefaultProjectJobsCase0TypecheckTargetsList>;
+
+export interface UpdateTeamRequestDefaultProjectJobsCase0Typecheck {
+  targets: UpdateTeamRequestDefaultProjectJobsCase0TypecheckTargetsList;
+}
+export const UpdateTeamRequestDefaultProjectJobsCase0Typecheck =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      targets: UpdateTeamRequestDefaultProjectJobsCase0TypecheckTargetsList,
+    }),
+  ).annotate({
+    identifier: "UpdateTeamRequestDefaultProjectJobsCase0Typecheck",
+  }) as any as S.Schema<UpdateTeamRequestDefaultProjectJobsCase0Typecheck>;
+
+/** Default job configuration applied to new projects created in this team. */
+export interface UpdateTeamRequestDefaultProjectJobsCase0 {
+  lint?: UpdateTeamRequestDefaultProjectJobsCase0Lint;
+  typecheck?: UpdateTeamRequestDefaultProjectJobsCase0Typecheck;
+}
+export const UpdateTeamRequestDefaultProjectJobsCase0 = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      lint: S.optional(UpdateTeamRequestDefaultProjectJobsCase0Lint),
+      typecheck: S.optional(UpdateTeamRequestDefaultProjectJobsCase0Typecheck),
+    }),
+).annotate({
+  identifier: "UpdateTeamRequestDefaultProjectJobsCase0",
+}) as any as S.Schema<UpdateTeamRequestDefaultProjectJobsCase0>;
+
+export type UpdateTeamRequestDefaultProjectJobs =
+  | UpdateTeamRequestDefaultProjectJobsCase0
+  | string;
+export const UpdateTeamRequestDefaultProjectJobs =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateTeamRequestDefaultProjectJobs>;
+
+/** Default build machine type for new builds: standard, enhanced, turbo, or elastic. */
+export type UpdateTeamRequestResourceConfigBuildMachineDefault =
+  | "basic"
+  | "enhanced"
+  | "turbo"
+  | "standard"
+  | "elastic";
+export const UpdateTeamRequestResourceConfigBuildMachineDefault =
+  /*@__PURE__*/ S.String;
+
+/** Build machine configuration. */
+export interface UpdateTeamRequestResourceConfigBuildMachine {
+  /** Default build machine type for new builds: standard, enhanced, turbo, or elastic. */
+  default?: UpdateTeamRequestResourceConfigBuildMachineDefault | (string & {});
+}
+export const UpdateTeamRequestResourceConfigBuildMachine =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      default: S.optional(UpdateTeamRequestResourceConfigBuildMachineDefault),
+    }),
+  ).annotate({
+    identifier: "UpdateTeamRequestResourceConfigBuildMachine",
+  }) as any as S.Schema<UpdateTeamRequestResourceConfigBuildMachine>;
+
+/** Resource configuration for the team. */
+export interface UpdateTeamRequestResourceConfig {
+  /** Build machine configuration. */
+  buildMachine?: UpdateTeamRequestResourceConfigBuildMachine;
+}
+export const UpdateTeamRequestResourceConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    buildMachine: S.optional(UpdateTeamRequestResourceConfigBuildMachine),
+  }),
+).annotate({
+  identifier: "UpdateTeamRequestResourceConfig",
+}) as any as S.Schema<UpdateTeamRequestResourceConfig>;
+
+export interface UpdateTeamRequest {
+  /** The Team identifier to perform the request on behalf of. */
+  teamId: string;
+  /** The Team slug to perform the request on behalf of. */
+  slug?: string;
+  /** The hash value of an uploaded image, or `null` to clear the avatar. */
+  avatar?: string | null;
+  /** A short text that describes the team. */
+  description?: string;
+  emailDomain?: string | null;
+  /** The name of the team. */
+  name?: string;
+  /** Suffix that will be used for all preview deployments. */
+  previewDeploymentSuffix?: string | null;
+  /** Create a new invite code and replace the current one. */
+  regenerateInviteCode?: boolean;
+  saml?: UpdateTeamRequestSaml;
+  /** Enable preview toolbar: one of on, off or default. */
+  enablePreviewFeedback?: string;
+  /** Enable production toolbar: one of on, off or default. */
+  enableProductionFeedback?: string;
+  /** Sensitive environment variable policy: one of on, off or default. */
+  sensitiveEnvironmentVariablePolicy?: string;
+  /** Require production secrets to be in their own environment group: one of on, off or default. */
+  disjunctiveProductionSecretPolicy?: string;
+  /** Whether or not remote caching is enabled for the team */
+  remoteCaching?: UpdateTeamRequestRemoteCaching;
+  /** Display or hide IP addresses in Monitoring queries. */
+  hideIpAddresses?: boolean;
+  /** Display or hide IP addresses in Log Drains. */
+  hideIpAddressesInLogDrains?: boolean;
+  /** Controls who can request access to protected deployments. */
+  dpAccessRequestsMode?: UpdateTeamRequestDpAccessRequestsMode | (string & {});
+  /** When enabled, all projects in the team require commits to be signed and verified by the git provider before deployments will be created. */
+  requireVerifiedCommits?: boolean;
+  /** Default for projects in the team. When `true`, projects in this team will not emit GitHub repository-dispatch events on deployment events unless the project explicitly overrides this setting. */
+  disableRepositoryDispatchEvents?: boolean;
+  /** Default deployment protection settings for new projects. */
+  defaultDeploymentProtection?: UpdateTeamRequestDefaultDeploymentProtection;
+  /** Default Passport configuration for new projects. */
+  defaultPassport?: UpdateTeamRequestDefaultPassport | null;
+  defaultExpirationSettings?: UpdateTeamRequestDefaultExpirationSettings;
+  deploymentPolicy?: UpdateTeamRequestDeploymentPolicy;
+  /** When enabled, deployment protection settings require stricter permissions (owner-only). */
+  strictDeploymentProtectionSettings?: UpdateTeamRequestStrictDeploymentProtectionSettings;
+  /** When enabled, creating shareable links requires Owner role. */
+  strictShareableLinks?: UpdateTeamRequestStrictShareableLinks;
+  /** When enabled, adding, changing, or removing project password protection requires Owner role. */
+  strictPasswordProtectionSettings?: UpdateTeamRequestStrictPasswordProtectionSettings;
+  /** When enabled, creating and managing connectors requires Owner role. */
+  strictConnectors?: UpdateTeamRequestStrictConnectors;
+  nsnbConfig?: UpdateTeamRequestNsnbConfig;
+  defaultProjectJobs?: UpdateTeamRequestDefaultProjectJobs;
+  /** Resource configuration for the team. */
+  resourceConfig?: UpdateTeamRequestResourceConfig;
+}
+export const UpdateTeamRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    teamId: S.String.pipe(T.Label()),
+    slug: S.optional(S.String.pipe(T.Query())),
+    avatar: S.optional(S.NullOr(S.String)),
+    description: S.optional(S.String),
+    emailDomain: S.optional(S.NullOr(S.String)),
+    name: S.optional(S.String),
+    previewDeploymentSuffix: S.optional(S.NullOr(S.String)),
+    regenerateInviteCode: S.optional(S.Boolean),
+    saml: S.optional(UpdateTeamRequestSaml),
+    enablePreviewFeedback: S.optional(S.String),
+    enableProductionFeedback: S.optional(S.String),
+    sensitiveEnvironmentVariablePolicy: S.optional(S.String),
+    disjunctiveProductionSecretPolicy: S.optional(S.String),
+    remoteCaching: S.optional(UpdateTeamRequestRemoteCaching),
+    hideIpAddresses: S.optional(S.Boolean),
+    hideIpAddressesInLogDrains: S.optional(S.Boolean),
+    dpAccessRequestsMode: S.optional(UpdateTeamRequestDpAccessRequestsMode),
+    requireVerifiedCommits: S.optional(S.Boolean),
+    disableRepositoryDispatchEvents: S.optional(S.Boolean),
+    defaultDeploymentProtection: S.optional(
+      UpdateTeamRequestDefaultDeploymentProtection,
+    ),
+    defaultPassport: S.optional(S.NullOr(UpdateTeamRequestDefaultPassport)),
+    defaultExpirationSettings: S.optional(
+      UpdateTeamRequestDefaultExpirationSettings,
+    ),
+    deploymentPolicy: S.optional(UpdateTeamRequestDeploymentPolicy),
+    strictDeploymentProtectionSettings: S.optional(
+      UpdateTeamRequestStrictDeploymentProtectionSettings,
+    ),
+    strictShareableLinks: S.optional(UpdateTeamRequestStrictShareableLinks),
+    strictPasswordProtectionSettings: S.optional(
+      UpdateTeamRequestStrictPasswordProtectionSettings,
+    ),
+    strictConnectors: S.optional(UpdateTeamRequestStrictConnectors),
+    nsnbConfig: S.optional(UpdateTeamRequestNsnbConfig),
+    defaultProjectJobs: S.optional(UpdateTeamRequestDefaultProjectJobs),
+    resourceConfig: S.optional(UpdateTeamRequestResourceConfig),
+  }).pipe(T.Http({ method: "PATCH", uri: "/v2/teams/{teamId}", code: 200 })),
+).annotate({
+  identifier: "UpdateTeamRequest",
+}) as any as S.Schema<UpdateTeamRequest>;
+
 export type UpdateTeamMemberRequestTeamPermissionsItem =
   | "ConnectorManager"
   | "IntegrationManager"
@@ -3784,6 +3792,21 @@ export const createTeam: API.OperationMethod<
   input: CreateTeamRequest,
   output: CreateTeamResponse,
   errors: [BadRequest, Forbidden, NotFound, Conflict],
+  protocol: VercelProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateTeamDsyncRoleError = BadRequest | Forbidden | VercelOpError;
+/** Update Team Directory Sync Role Mappings Update the Directory Sync role mappings for a Team. This endpoint allows updating the mapping between directory groups and team roles or access groups. */
+export const createTeamDsyncRole: API.OperationMethod<
+  CreateTeamDsyncRoleRequest,
+  CreateTeamDsyncRoleResponse,
+  CreateTeamDsyncRoleError,
+  VercelOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateTeamDsyncRoleRequest,
+  output: CreateTeamDsyncRoleResponse,
+  errors: [BadRequest, Forbidden],
   protocol: VercelProtocol,
   retry: Retry.Retry,
 }));
@@ -3949,40 +3972,6 @@ export const joinTeam: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PatchTeamError =
-  | BadRequest
-  | PaymentRequired
-  | Forbidden
-  | VercelOpError;
-/** Update a Team Update the information of a Team specified by the `teamId` parameter. The request body should contain the information that will be updated on the Team. */
-export const patchTeam: API.OperationMethod<
-  PatchTeamRequest,
-  Team,
-  PatchTeamError,
-  VercelOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PatchTeamRequest,
-  output: Team,
-  errors: [BadRequest, PaymentRequired, Forbidden],
-  protocol: VercelProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostTeamDsyncRolesError = BadRequest | Forbidden | VercelOpError;
-/** Update Team Directory Sync Role Mappings Update the Directory Sync role mappings for a Team. This endpoint allows updating the mapping between directory groups and team roles or access groups. */
-export const postTeamDsyncRoles: API.OperationMethod<
-  PostTeamDsyncRolesRequest,
-  PostTeamDsyncRolesResponse,
-  PostTeamDsyncRolesError,
-  VercelOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostTeamDsyncRolesRequest,
-  output: PostTeamDsyncRolesResponse,
-  errors: [BadRequest, Forbidden],
-  protocol: VercelProtocol,
-  retry: Retry.Retry,
-}));
-
 export type RemoveTeamMemberError =
   | BadRequest
   | Forbidden
@@ -4036,6 +4025,25 @@ export const updateMicrofrontendsGroup: API.OperationMethod<
   input: UpdateMicrofrontendsGroupRequest,
   output: UpdateMicrofrontendsGroupResponse,
   errors: [BadRequest, Forbidden, NotFound],
+  protocol: VercelProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateTeamError =
+  | BadRequest
+  | PaymentRequired
+  | Forbidden
+  | VercelOpError;
+/** Update a Team Update the information of a Team specified by the `teamId` parameter. The request body should contain the information that will be updated on the Team. */
+export const updateTeam: API.OperationMethod<
+  UpdateTeamRequest,
+  Team,
+  UpdateTeamError,
+  VercelOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateTeamRequest,
+  output: Team,
+  errors: [BadRequest, PaymentRequired, Forbidden],
   protocol: VercelProtocol,
   retry: Retry.Retry,
 }));

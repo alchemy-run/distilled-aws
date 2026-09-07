@@ -3641,13 +3641,13 @@ export const CreateRestorePointResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateRestorePointResponse>;
 
 /** Resource tags. */
-export type CreateSshPublicKeysRequestTagsMap = {
+export type CreateSshPublicKeyRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const CreateSshPublicKeysRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateSshPublicKeyRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CreateSshPublicKeysRequestTagsMap>;
+) as any as S.Schema<CreateSshPublicKeyRequestTagsMap>;
 
 /** Properties of the SSH public key. */
 export interface SshPublicKeyResourceProperties {
@@ -3662,7 +3662,7 @@ export const SshPublicKeyResourceProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "SshPublicKeyResourceProperties",
 }) as any as S.Schema<SshPublicKeyResourceProperties>;
 
-export interface CreateSshPublicKeysRequest {
+export interface CreateSshPublicKeyRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3670,18 +3670,18 @@ export interface CreateSshPublicKeysRequest {
   /** The name of the SSH public key. */
   sshPublicKeyName: string;
   /** Resource tags. */
-  tags?: CreateSshPublicKeysRequestTagsMap;
+  tags?: CreateSshPublicKeyRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of the SSH public key. */
   properties?: SshPublicKeyResourceProperties;
 }
-export const CreateSshPublicKeysRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateSshPublicKeyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     sshPublicKeyName: S.String.pipe(T.Label()),
-    tags: S.optional(CreateSshPublicKeysRequestTagsMap),
+    tags: S.optional(CreateSshPublicKeyRequestTagsMap),
     location: S.String,
     properties: S.optional(SshPublicKeyResourceProperties),
   }).pipe(
@@ -3693,19 +3693,19 @@ export const CreateSshPublicKeysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateSshPublicKeysRequest",
-}) as any as S.Schema<CreateSshPublicKeysRequest>;
+  identifier: "CreateSshPublicKeyRequest",
+}) as any as S.Schema<CreateSshPublicKeyRequest>;
 
 /** Resource tags. */
-export type CreateSshPublicKeysResponseTagsMap = {
+export type CreateSshPublicKeyResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const CreateSshPublicKeysResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateSshPublicKeyResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CreateSshPublicKeysResponseTagsMap>;
+) as any as S.Schema<CreateSshPublicKeyResponseTagsMap>;
 
-export interface CreateSshPublicKeysResponse {
+export interface CreateSshPublicKeyResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -3715,25 +3715,25 @@ export interface CreateSshPublicKeysResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: CreateSshPublicKeysResponseTagsMap;
+  tags?: CreateSshPublicKeyResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of the SSH public key. */
   properties?: SshPublicKeyResourceProperties;
 }
-export const CreateSshPublicKeysResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateSshPublicKeyResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(CreateSshPublicKeysResponseTagsMap),
+    tags: S.optional(CreateSshPublicKeyResponseTagsMap),
     location: S.String,
     properties: S.optional(SshPublicKeyResourceProperties),
   }),
 ).annotate({
-  identifier: "CreateSshPublicKeysResponse",
-}) as any as S.Schema<CreateSshPublicKeysResponse>;
+  identifier: "CreateSshPublicKeyResponse",
+}) as any as S.Schema<CreateSshPublicKeyResponse>;
 
 /** Resource tags. */
 export type DedicatedHostGroupsCreateOrUpdateRequestTagsMap = {
@@ -4560,7 +4560,7 @@ export const DeleteRestorePointCollectionResponse = /*@__PURE__*/ S.suspend(
   identifier: "DeleteRestorePointCollectionResponse",
 }) as any as S.Schema<DeleteRestorePointCollectionResponse>;
 
-export interface DeleteSshPublicKeysRequest {
+export interface DeleteSshPublicKeyRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4568,7 +4568,7 @@ export interface DeleteSshPublicKeysRequest {
   /** The name of the SSH public key. */
   sshPublicKeyName: string;
 }
-export const DeleteSshPublicKeysRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteSshPublicKeyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -4582,15 +4582,15 @@ export const DeleteSshPublicKeysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteSshPublicKeysRequest",
-}) as any as S.Schema<DeleteSshPublicKeysRequest>;
+  identifier: "DeleteSshPublicKeyRequest",
+}) as any as S.Schema<DeleteSshPublicKeyRequest>;
 
-export interface DeleteSshPublicKeysResponse {}
-export const DeleteSshPublicKeysResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteSshPublicKeyResponse {}
+export const DeleteSshPublicKeyResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteSshPublicKeysResponse",
-}) as any as S.Schema<DeleteSshPublicKeysResponse>;
+  identifier: "DeleteSshPublicKeyResponse",
+}) as any as S.Schema<DeleteSshPublicKeyResponse>;
 
 export interface DeleteVirtualMachineRequest {
   /** The ID of the target subscription. */
@@ -5138,7 +5138,7 @@ export const ExportLogAnalyticsThrottledRequestsRequest =
 export type SshEncryptionTypes = "RSA" | "Ed25519";
 export const SshEncryptionTypes = /*@__PURE__*/ S.String;
 
-export interface GenerateSshPublicKeysKeyPairRequest {
+export interface GenerateSshPublicKeyKeyPairRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5148,7 +5148,7 @@ export interface GenerateSshPublicKeysKeyPairRequest {
   /** The encryption type of the SSH keys to be generated. See SshEncryptionTypes for possible set of values. If not provided, will default to RSA */
   encryptionType?: SshEncryptionTypes | (string & {});
 }
-export const GenerateSshPublicKeysKeyPairRequest = /*@__PURE__*/ S.suspend(() =>
+export const GenerateSshPublicKeyKeyPairRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -5163,8 +5163,8 @@ export const GenerateSshPublicKeysKeyPairRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GenerateSshPublicKeysKeyPairRequest",
-}) as any as S.Schema<GenerateSshPublicKeysKeyPairRequest>;
+  identifier: "GenerateSshPublicKeyKeyPairRequest",
+}) as any as S.Schema<GenerateSshPublicKeyKeyPairRequest>;
 
 /** Response from generation of an SSH key pair. */
 export interface SshPublicKeyGenerateKeyPairResult {
@@ -6518,7 +6518,7 @@ export const GetSpotPlacementScoreResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetSpotPlacementScoreResponse",
 }) as any as S.Schema<GetSpotPlacementScoreResponse>;
 
-export interface GetSshPublicKeysRequest {
+export interface GetSshPublicKeyRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -6526,7 +6526,7 @@ export interface GetSshPublicKeysRequest {
   /** The name of the SSH public key. */
   sshPublicKeyName: string;
 }
-export const GetSshPublicKeysRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetSshPublicKeyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -6540,19 +6540,19 @@ export const GetSshPublicKeysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetSshPublicKeysRequest",
-}) as any as S.Schema<GetSshPublicKeysRequest>;
+  identifier: "GetSshPublicKeyRequest",
+}) as any as S.Schema<GetSshPublicKeyRequest>;
 
 /** Resource tags. */
-export type GetSshPublicKeysResponseTagsMap = {
+export type GetSshPublicKeyResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const GetSshPublicKeysResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetSshPublicKeyResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<GetSshPublicKeysResponseTagsMap>;
+) as any as S.Schema<GetSshPublicKeyResponseTagsMap>;
 
-export interface GetSshPublicKeysResponse {
+export interface GetSshPublicKeyResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -6562,25 +6562,25 @@ export interface GetSshPublicKeysResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: GetSshPublicKeysResponseTagsMap;
+  tags?: GetSshPublicKeyResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of the SSH public key. */
   properties?: SshPublicKeyResourceProperties;
 }
-export const GetSshPublicKeysResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetSshPublicKeyResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(GetSshPublicKeysResponseTagsMap),
+    tags: S.optional(GetSshPublicKeyResponseTagsMap),
     location: S.String,
     properties: S.optional(SshPublicKeyResourceProperties),
   }),
 ).annotate({
-  identifier: "GetSshPublicKeysResponse",
-}) as any as S.Schema<GetSshPublicKeysResponse>;
+  identifier: "GetSshPublicKeyResponse",
+}) as any as S.Schema<GetSshPublicKeyResponse>;
 
 export type GetVirtualMachineRequestExpand =
   | "instanceView"
@@ -14350,13 +14350,13 @@ export const ListRestorePointCollectionsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListRestorePointCollectionsRequest",
 }) as any as S.Schema<ListRestorePointCollectionsRequest>;
 
-export interface ListSshPublicKeysByResourceGroupRequest {
+export interface ListSshPublicKeyByResourceGroupRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
 }
-export const ListSshPublicKeysByResourceGroupRequest = /*@__PURE__*/ S.suspend(
+export const ListSshPublicKeyByResourceGroupRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -14370,8 +14370,8 @@ export const ListSshPublicKeysByResourceGroupRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ListSshPublicKeysByResourceGroupRequest",
-}) as any as S.Schema<ListSshPublicKeysByResourceGroupRequest>;
+  identifier: "ListSshPublicKeyByResourceGroupRequest",
+}) as any as S.Schema<ListSshPublicKeyByResourceGroupRequest>;
 
 /** Resource tags. */
 export type SshPublicKeyResourceTagsMap = { [key: string]: string | undefined };
@@ -14433,11 +14433,11 @@ export const SshPublicKeysGroupListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "SshPublicKeysGroupListResult",
 }) as any as S.Schema<SshPublicKeysGroupListResult>;
 
-export interface ListSshPublicKeysBySubscriptionRequest {
+export interface ListSshPublicKeyBySubscriptionRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
 }
-export const ListSshPublicKeysBySubscriptionRequest = /*@__PURE__*/ S.suspend(
+export const ListSshPublicKeyBySubscriptionRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -14450,8 +14450,8 @@ export const ListSshPublicKeysBySubscriptionRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ListSshPublicKeysBySubscriptionRequest",
-}) as any as S.Schema<ListSshPublicKeysBySubscriptionRequest>;
+  identifier: "ListSshPublicKeyBySubscriptionRequest",
+}) as any as S.Schema<ListSshPublicKeyBySubscriptionRequest>;
 
 export interface ListUsageRequest {
   /** The ID of the target subscription. */
@@ -18352,15 +18352,15 @@ export const UpdateRestorePointCollectionResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateRestorePointCollectionResponse>;
 
 /** Resource tags */
-export type UpdateSshPublicKeysRequestTagsMap = {
+export type UpdateSshPublicKeyRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const UpdateSshPublicKeysRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateSshPublicKeyRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<UpdateSshPublicKeysRequestTagsMap>;
+) as any as S.Schema<UpdateSshPublicKeyRequestTagsMap>;
 
-export interface UpdateSshPublicKeysRequest {
+export interface UpdateSshPublicKeyRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -18368,16 +18368,16 @@ export interface UpdateSshPublicKeysRequest {
   /** The name of the SSH public key. */
   sshPublicKeyName: string;
   /** Resource tags */
-  tags?: UpdateSshPublicKeysRequestTagsMap;
+  tags?: UpdateSshPublicKeyRequestTagsMap;
   /** Properties of the SSH public key. */
   properties?: SshPublicKeyResourceProperties;
 }
-export const UpdateSshPublicKeysRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateSshPublicKeyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     sshPublicKeyName: S.String.pipe(T.Label()),
-    tags: S.optional(UpdateSshPublicKeysRequestTagsMap),
+    tags: S.optional(UpdateSshPublicKeyRequestTagsMap),
     properties: S.optional(SshPublicKeyResourceProperties),
   }).pipe(
     T.Http({
@@ -18388,19 +18388,19 @@ export const UpdateSshPublicKeysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateSshPublicKeysRequest",
-}) as any as S.Schema<UpdateSshPublicKeysRequest>;
+  identifier: "UpdateSshPublicKeyRequest",
+}) as any as S.Schema<UpdateSshPublicKeyRequest>;
 
 /** Resource tags. */
-export type UpdateSshPublicKeysResponseTagsMap = {
+export type UpdateSshPublicKeyResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const UpdateSshPublicKeysResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateSshPublicKeyResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<UpdateSshPublicKeysResponseTagsMap>;
+) as any as S.Schema<UpdateSshPublicKeyResponseTagsMap>;
 
-export interface UpdateSshPublicKeysResponse {
+export interface UpdateSshPublicKeyResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -18410,25 +18410,25 @@ export interface UpdateSshPublicKeysResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: UpdateSshPublicKeysResponseTagsMap;
+  tags?: UpdateSshPublicKeyResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of the SSH public key. */
   properties?: SshPublicKeyResourceProperties;
 }
-export const UpdateSshPublicKeysResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateSshPublicKeyResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(UpdateSshPublicKeysResponseTagsMap),
+    tags: S.optional(UpdateSshPublicKeyResponseTagsMap),
     location: S.String,
     properties: S.optional(SshPublicKeyResourceProperties),
   }),
 ).annotate({
-  identifier: "UpdateSshPublicKeysResponse",
-}) as any as S.Schema<UpdateSshPublicKeysResponse>;
+  identifier: "UpdateSshPublicKeyResponse",
+}) as any as S.Schema<UpdateSshPublicKeyResponse>;
 
 /** Resource tags */
 export type UpdateVirtualMachineRequestTagsMap = {
@@ -23580,16 +23580,16 @@ export const CreateRestorePoint: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CreateSshPublicKeysError = AzureOpError;
+export type CreateSshPublicKeyError = AzureOpError;
 /** Creates a new SSH public key resource. */
-export const CreateSshPublicKeys: API.OperationMethod<
-  CreateSshPublicKeysRequest,
-  CreateSshPublicKeysResponse,
-  CreateSshPublicKeysError,
+export const CreateSshPublicKey: API.OperationMethod<
+  CreateSshPublicKeyRequest,
+  CreateSshPublicKeyResponse,
+  CreateSshPublicKeyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateSshPublicKeysRequest,
-  output: CreateSshPublicKeysResponse,
+  input: CreateSshPublicKeyRequest,
+  output: CreateSshPublicKeyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -23790,16 +23790,16 @@ export const DeleteRestorePointCollection: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteSshPublicKeysError = AzureOpError;
+export type DeleteSshPublicKeyError = AzureOpError;
 /** Delete an SSH public key. */
-export const DeleteSshPublicKeys: API.OperationMethod<
-  DeleteSshPublicKeysRequest,
-  DeleteSshPublicKeysResponse,
-  DeleteSshPublicKeysError,
+export const DeleteSshPublicKey: API.OperationMethod<
+  DeleteSshPublicKeyRequest,
+  DeleteSshPublicKeyResponse,
+  DeleteSshPublicKeyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteSshPublicKeysRequest,
-  output: DeleteSshPublicKeysResponse,
+  input: DeleteSshPublicKeyRequest,
+  output: DeleteSshPublicKeyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -24001,15 +24001,15 @@ export const ExportLogAnalyticsThrottledRequests: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GenerateSshPublicKeysKeyPairError = AzureOpError;
+export type GenerateSshPublicKeyKeyPairError = AzureOpError;
 /** Generates and returns a public/private key pair and populates the SSH public key resource with the public key. The length of the key will be 3072 bits. This operation can only be performed once per SSH public key resource. */
-export const GenerateSshPublicKeysKeyPair: API.OperationMethod<
-  GenerateSshPublicKeysKeyPairRequest,
+export const GenerateSshPublicKeyKeyPair: API.OperationMethod<
+  GenerateSshPublicKeyKeyPairRequest,
   SshPublicKeyGenerateKeyPairResult,
-  GenerateSshPublicKeysKeyPairError,
+  GenerateSshPublicKeyKeyPairError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GenerateSshPublicKeysKeyPairRequest,
+  input: GenerateSshPublicKeyKeyPairRequest,
   output: SshPublicKeyGenerateKeyPairResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -24196,16 +24196,16 @@ export const GetSpotPlacementScore: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetSshPublicKeysError = AzureOpError;
+export type GetSshPublicKeyError = AzureOpError;
 /** Retrieves information about an SSH public key. */
-export const GetSshPublicKeys: API.OperationMethod<
-  GetSshPublicKeysRequest,
-  GetSshPublicKeysResponse,
-  GetSshPublicKeysError,
+export const GetSshPublicKey: API.OperationMethod<
+  GetSshPublicKeyRequest,
+  GetSshPublicKeyResponse,
+  GetSshPublicKeyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSshPublicKeysRequest,
-  output: GetSshPublicKeysResponse,
+  input: GetSshPublicKeyRequest,
+  output: GetSshPublicKeyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -24888,30 +24888,30 @@ export const ListRestorePointCollections: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListSshPublicKeysByResourceGroupError = AzureOpError;
+export type ListSshPublicKeyByResourceGroupError = AzureOpError;
 /** Lists all of the SSH public keys in the specified resource group. Use the nextLink property in the response to get the next page of SSH public keys. */
-export const ListSshPublicKeysByResourceGroup: API.OperationMethod<
-  ListSshPublicKeysByResourceGroupRequest,
+export const ListSshPublicKeyByResourceGroup: API.OperationMethod<
+  ListSshPublicKeyByResourceGroupRequest,
   SshPublicKeysGroupListResult,
-  ListSshPublicKeysByResourceGroupError,
+  ListSshPublicKeyByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListSshPublicKeysByResourceGroupRequest,
+  input: ListSshPublicKeyByResourceGroupRequest,
   output: SshPublicKeysGroupListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListSshPublicKeysBySubscriptionError = AzureOpError;
+export type ListSshPublicKeyBySubscriptionError = AzureOpError;
 /** Lists all of the SSH public keys in the subscription. Use the nextLink property in the response to get the next page of SSH public keys. */
-export const ListSshPublicKeysBySubscription: API.OperationMethod<
-  ListSshPublicKeysBySubscriptionRequest,
+export const ListSshPublicKeyBySubscription: API.OperationMethod<
+  ListSshPublicKeyBySubscriptionRequest,
   SshPublicKeysGroupListResult,
-  ListSshPublicKeysBySubscriptionError,
+  ListSshPublicKeyBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListSshPublicKeysBySubscriptionRequest,
+  input: ListSshPublicKeyBySubscriptionRequest,
   output: SshPublicKeysGroupListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -25853,16 +25853,16 @@ export const UpdateRestorePointCollection: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateSshPublicKeysError = AzureOpError;
+export type UpdateSshPublicKeyError = AzureOpError;
 /** Updates a new SSH public key resource. */
-export const UpdateSshPublicKeys: API.OperationMethod<
-  UpdateSshPublicKeysRequest,
-  UpdateSshPublicKeysResponse,
-  UpdateSshPublicKeysError,
+export const UpdateSshPublicKey: API.OperationMethod<
+  UpdateSshPublicKeyRequest,
+  UpdateSshPublicKeyResponse,
+  UpdateSshPublicKeyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateSshPublicKeysRequest,
-  output: UpdateSshPublicKeysResponse,
+  input: UpdateSshPublicKeyRequest,
+  output: UpdateSshPublicKeyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

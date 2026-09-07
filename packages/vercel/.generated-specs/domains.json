@@ -1902,7 +1902,7 @@
         "smithy.api#documentation": "Add an existing domain to the Vercel platform\n\nThis endpoint is used for adding a new apex domain name with Vercel for the authenticating user. Note: This endpoint is no longer used for initiating domain transfers from external registrars to Vercel. For this, please use the endpoint [Transfer-in a domain](https://vercel.com/docs/rest-api/reference/endpoints/domains-registrar/transfer-in-a-domain)."
       }
     },
-    "com.vercel.domains#PatchDomainRequestBodyCase0CustomNameserversList": {
+    "com.vercel.domains#UpdateDomainRequestBodyCase0CustomNameserversList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1911,7 +1911,7 @@
         "smithy.api#documentation": "This field is deprecated. Please use PATCH /v1/registrar/domains/{domainName}/nameservers instead."
       }
     },
-    "com.vercel.domains#PatchDomainRequestBodyCase0EchMode": {
+    "com.vercel.domains#UpdateDomainRequestBodyCase0EchMode": {
       "type": "enum",
       "members": {
         "AUTO": {
@@ -1931,7 +1931,7 @@
         "smithy.api#documentation": "Encrypted Client Hello enrollment. 'auto' leaves it to Vercel, 'disabled' never enrolls and opts out of automatic enrollment."
       }
     },
-    "com.vercel.domains#PatchDomainRequestBodyCase0": {
+    "com.vercel.domains#UpdateDomainRequestBodyCase0": {
       "type": "structure",
       "members": {
         "op": {
@@ -1944,7 +1944,7 @@
           }
         },
         "customNameservers": {
-          "target": "com.vercel.domains#PatchDomainRequestBodyCase0CustomNameserversList",
+          "target": "com.vercel.domains#UpdateDomainRequestBodyCase0CustomNameserversList",
           "traits": {
             "smithy.api#documentation": "This field is deprecated. Please use PATCH /v1/registrar/domains/{domainName}/nameservers instead."
           }
@@ -1956,7 +1956,7 @@
           }
         },
         "echMode": {
-          "target": "com.vercel.domains#PatchDomainRequestBodyCase0EchMode",
+          "target": "com.vercel.domains#UpdateDomainRequestBodyCase0EchMode",
           "traits": {
             "smithy.api#documentation": "Encrypted Client Hello enrollment. 'auto' leaves it to Vercel, 'disabled' never enrolls and opts out of automatic enrollment."
           }
@@ -1966,7 +1966,7 @@
         "smithy.api#documentation": "update"
       }
     },
-    "com.vercel.domains#PatchDomainRequestBodyCase1": {
+    "com.vercel.domains#UpdateDomainRequestBodyCase1": {
       "type": "structure",
       "members": {
         "op": {
@@ -1983,19 +1983,19 @@
         "smithy.api#documentation": "move-out"
       }
     },
-    "com.vercel.domains#PatchDomainRequestBody": {
+    "com.vercel.domains#UpdateDomainRequestBody": {
       "type": "union",
       "members": {
         "Case0": {
-          "target": "com.vercel.domains#PatchDomainRequestBodyCase0"
+          "target": "com.vercel.domains#UpdateDomainRequestBodyCase0"
         },
         "Case1": {
-          "target": "com.vercel.domains#PatchDomainRequestBodyCase1"
+          "target": "com.vercel.domains#UpdateDomainRequestBodyCase1"
         }
       },
       "traits": {}
     },
-    "com.vercel.domains#PatchDomainRequest": {
+    "com.vercel.domains#UpdateDomainRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -2020,7 +2020,7 @@
           }
         },
         "body": {
-          "target": "com.vercel.domains#PatchDomainRequestBody",
+          "target": "com.vercel.domains#UpdateDomainRequestBody",
           "traits": {
             "smithy.api#httpPayload": {},
             "smithy.api#required": {}
@@ -2031,7 +2031,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.vercel.domains#PatchDomainResponseBodyCase0": {
+    "com.vercel.domains#UpdateDomainResponseBodyCase0": {
       "type": "structure",
       "members": {
         "moved": {
@@ -2043,7 +2043,7 @@
       },
       "traits": {}
     },
-    "com.vercel.domains#PatchDomainResponseBodyCase1": {
+    "com.vercel.domains#UpdateDomainResponseBodyCase1": {
       "type": "structure",
       "members": {
         "moved": {
@@ -2061,14 +2061,14 @@
       },
       "traits": {}
     },
-    "com.vercel.domains#PatchDomainResponseBodyCase2CustomNameserversList": {
+    "com.vercel.domains#UpdateDomainResponseBodyCase2CustomNameserversList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.vercel.domains#PatchDomainResponseBodyCase2EchMode": {
+    "com.vercel.domains#UpdateDomainResponseBodyCase2EchMode": {
       "type": "enum",
       "members": {
         "AUTO": {
@@ -2092,20 +2092,20 @@
       },
       "traits": {}
     },
-    "com.vercel.domains#PatchDomainResponseBodyCase2": {
+    "com.vercel.domains#UpdateDomainResponseBodyCase2": {
       "type": "structure",
       "members": {
         "renew": {
           "target": "smithy.api#Boolean"
         },
         "customNameservers": {
-          "target": "com.vercel.domains#PatchDomainResponseBodyCase2CustomNameserversList"
+          "target": "com.vercel.domains#UpdateDomainResponseBodyCase2CustomNameserversList"
         },
         "zone": {
           "target": "smithy.api#Boolean"
         },
         "echMode": {
-          "target": "com.vercel.domains#PatchDomainResponseBodyCase2EchMode",
+          "target": "com.vercel.domains#UpdateDomainResponseBodyCase2EchMode",
           "traits": {
             "smithy.api#required": {}
           }
@@ -2113,26 +2113,26 @@
       },
       "traits": {}
     },
-    "com.vercel.domains#PatchDomainResponseBody": {
+    "com.vercel.domains#UpdateDomainResponseBody": {
       "type": "union",
       "members": {
         "Case0": {
-          "target": "com.vercel.domains#PatchDomainResponseBodyCase0"
+          "target": "com.vercel.domains#UpdateDomainResponseBodyCase0"
         },
         "Case1": {
-          "target": "com.vercel.domains#PatchDomainResponseBodyCase1"
+          "target": "com.vercel.domains#UpdateDomainResponseBodyCase1"
         },
         "Case2": {
-          "target": "com.vercel.domains#PatchDomainResponseBodyCase2"
+          "target": "com.vercel.domains#UpdateDomainResponseBodyCase2"
         }
       },
       "traits": {}
     },
-    "com.vercel.domains#PatchDomainResponse": {
+    "com.vercel.domains#UpdateDomainResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.vercel.domains#PatchDomainResponseBody",
+          "target": "com.vercel.domains#UpdateDomainResponseBody",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -2143,13 +2143,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.vercel.domains#PatchDomain": {
+    "com.vercel.domains#UpdateDomain": {
       "type": "operation",
       "input": {
-        "target": "com.vercel.domains#PatchDomainRequest"
+        "target": "com.vercel.domains#UpdateDomainRequest"
       },
       "output": {
-        "target": "com.vercel.domains#PatchDomainResponse"
+        "target": "com.vercel.domains#UpdateDomainResponse"
       },
       "errors": [
         {
@@ -2340,7 +2340,7 @@
           "target": "com.vercel.domains#CreateOrTransferDomain"
         },
         {
-          "target": "com.vercel.domains#PatchDomain"
+          "target": "com.vercel.domains#UpdateDomain"
         },
         {
           "target": "com.vercel.domains#DeleteDomain"

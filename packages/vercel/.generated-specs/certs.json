@@ -18,7 +18,7 @@
     "distilled.finalized": true
   },
   "shapes": {
-    "com.vercel.certs#GetCertByIdRequest": {
+    "com.vercel.certs#GetCertRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -48,14 +48,14 @@
         "smithy.api#input": {}
       }
     },
-    "com.vercel.certs#GetCertByIdResponseCnsList": {
+    "com.vercel.certs#GetCertResponseCnsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.vercel.certs#GetCertByIdResponse": {
+    "com.vercel.certs#GetCertResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -83,7 +83,7 @@
           }
         },
         "cns": {
-          "target": "com.vercel.certs#GetCertByIdResponseCnsList",
+          "target": "com.vercel.certs#GetCertResponseCnsList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -93,13 +93,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.vercel.certs#GetCertById": {
+    "com.vercel.certs#GetCert": {
       "type": "operation",
       "input": {
-        "target": "com.vercel.certs#GetCertByIdRequest"
+        "target": "com.vercel.certs#GetCertRequest"
       },
       "output": {
-        "target": "com.vercel.certs#GetCertByIdResponse"
+        "target": "com.vercel.certs#GetCertResponse"
       },
       "errors": [
         {
@@ -634,7 +634,7 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.vercel.certs#GetCertById"
+          "target": "com.vercel.certs#GetCert"
         },
         {
           "target": "com.vercel.certs#RemoveCert"

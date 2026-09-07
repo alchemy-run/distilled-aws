@@ -1647,7 +1647,7 @@ export const GetPrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
   identifier: "GetPrivateEndpointConnectionResponse",
 }) as any as S.Schema<GetPrivateEndpointConnectionResponse>;
 
-export interface GetQnAMakerEndpointKeysRequest {
+export interface GetQnAMakerEndpointKeyRequest {
   /** Azure Subscription ID. */
   subscriptionId: string;
   /** the host name of the QnA Maker endpoint */
@@ -1655,7 +1655,7 @@ export interface GetQnAMakerEndpointKeysRequest {
   /** Subscription key which provides access to this API. */
   authkey?: string;
 }
-export const GetQnAMakerEndpointKeysRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetQnAMakerEndpointKeyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     hostname: S.optional(S.String),
@@ -1669,8 +1669,8 @@ export const GetQnAMakerEndpointKeysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetQnAMakerEndpointKeysRequest",
-}) as any as S.Schema<GetQnAMakerEndpointKeysRequest>;
+  identifier: "GetQnAMakerEndpointKeyRequest",
+}) as any as S.Schema<GetQnAMakerEndpointKeyRequest>;
 
 /** Schema for EndpointKeys generate/refresh operations. */
 export interface QnAMakerEndpointKeysResponse {
@@ -3393,15 +3393,15 @@ export const GetPrivateEndpointConnection: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetQnAMakerEndpointKeysError = AzureOpError;
+export type GetQnAMakerEndpointKeyError = AzureOpError;
 /** Lists the QnA Maker endpoint keys */
-export const GetQnAMakerEndpointKeys: API.OperationMethod<
-  GetQnAMakerEndpointKeysRequest,
+export const GetQnAMakerEndpointKey: API.OperationMethod<
+  GetQnAMakerEndpointKeyRequest,
   QnAMakerEndpointKeysResponse,
-  GetQnAMakerEndpointKeysError,
+  GetQnAMakerEndpointKeyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetQnAMakerEndpointKeysRequest,
+  input: GetQnAMakerEndpointKeyRequest,
   output: QnAMakerEndpointKeysResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,

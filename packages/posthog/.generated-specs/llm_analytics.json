@@ -3242,7 +3242,7 @@
         }
       }
     },
-    "com.posthog.llm_analytics#CreateLlmAnalyticsProviderKeysRequest": {
+    "com.posthog.llm_analytics#CreateLlmAnalyticsProviderKeyRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3285,10 +3285,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.llm_analytics#CreateLlmAnalyticsProviderKeys": {
+    "com.posthog.llm_analytics#CreateLlmAnalyticsProviderKey": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.llm_analytics#CreateLlmAnalyticsProviderKeysRequest"
+        "target": "com.posthog.llm_analytics#CreateLlmAnalyticsProviderKeyRequest"
       },
       "output": {
         "target": "com.posthog.llm_analytics#LLMProviderKeyOutput"
@@ -3301,7 +3301,7 @@
         }
       }
     },
-    "com.posthog.llm_analytics#GetLlmAnalyticsProviderKeysRequest": {
+    "com.posthog.llm_analytics#GetLlmAnalyticsProviderKeyRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3325,10 +3325,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.llm_analytics#GetLlmAnalyticsProviderKeys": {
+    "com.posthog.llm_analytics#GetLlmAnalyticsProviderKey": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.llm_analytics#GetLlmAnalyticsProviderKeysRequest"
+        "target": "com.posthog.llm_analytics#GetLlmAnalyticsProviderKeyRequest"
       },
       "output": {
         "target": "com.posthog.llm_analytics#LLMProviderKeyOutput"
@@ -3341,7 +3341,7 @@
         }
       }
     },
-    "com.posthog.llm_analytics#UpdateLlmAnalyticsProviderKeysRequest": {
+    "com.posthog.llm_analytics#UpdateLlmAnalyticsProviderKeyRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3392,10 +3392,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.llm_analytics#UpdateLlmAnalyticsProviderKeys": {
+    "com.posthog.llm_analytics#UpdateLlmAnalyticsProviderKey": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.llm_analytics#UpdateLlmAnalyticsProviderKeysRequest"
+        "target": "com.posthog.llm_analytics#UpdateLlmAnalyticsProviderKeyRequest"
       },
       "output": {
         "target": "com.posthog.llm_analytics#LLMProviderKeyOutput"
@@ -5497,13 +5497,13 @@
           "target": "com.posthog.llm_analytics#ListLlmAnalyticsProviderKeys"
         },
         {
-          "target": "com.posthog.llm_analytics#CreateLlmAnalyticsProviderKeys"
+          "target": "com.posthog.llm_analytics#CreateLlmAnalyticsProviderKey"
         },
         {
-          "target": "com.posthog.llm_analytics#GetLlmAnalyticsProviderKeys"
+          "target": "com.posthog.llm_analytics#GetLlmAnalyticsProviderKey"
         },
         {
-          "target": "com.posthog.llm_analytics#UpdateLlmAnalyticsProviderKeys"
+          "target": "com.posthog.llm_analytics#UpdateLlmAnalyticsProviderKey"
         },
         {
           "target": "com.posthog.llm_analytics#UpdateLlmAnalyticsProviderKeysPartial"

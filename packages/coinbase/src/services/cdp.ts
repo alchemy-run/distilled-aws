@@ -6062,26 +6062,126 @@ export const WebhookSubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "WebhookSubscriptionResponse",
 }) as any as S.Schema<WebhookSubscriptionResponse>;
 
-export interface DeleteCustomerByIdRequest {
+/** JSON-RPC version, must be "2.0". */
+export type CreateX402DiscoveryMcpRequestJsonrpc = "2.0";
+export const CreateX402DiscoveryMcpRequestJsonrpc = /*@__PURE__*/ S.String;
+
+/** Request identifier. */
+export type CreateX402DiscoveryMcpRequestId = string | number;
+export const CreateX402DiscoveryMcpRequestId =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateX402DiscoveryMcpRequestId>;
+
+/** Optional parameters for the method. */
+export type CreateX402DiscoveryMcpRequestParamsMap = {
+  [key: string]: unknown | undefined;
+};
+export const CreateX402DiscoveryMcpRequestParamsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<CreateX402DiscoveryMcpRequestParamsMap>;
+
+export interface CreateX402DiscoveryMcpRequest {
+  /** JSON-RPC version, must be "2.0". */
+  jsonrpc: CreateX402DiscoveryMcpRequestJsonrpc | (string & {});
+  /** Request identifier. */
+  id?: CreateX402DiscoveryMcpRequestId;
+  /** The MCP method to invoke. */
+  method: string;
+  /** Optional parameters for the method. */
+  params?: CreateX402DiscoveryMcpRequestParamsMap;
+}
+export const CreateX402DiscoveryMcpRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    jsonrpc: CreateX402DiscoveryMcpRequestJsonrpc,
+    id: S.optional(CreateX402DiscoveryMcpRequestId),
+    method: S.String,
+    params: S.optional(CreateX402DiscoveryMcpRequestParamsMap),
+  }).pipe(T.Http({ method: "POST", uri: "/v2/x402/discovery/mcp", code: 200 })),
+).annotate({
+  identifier: "CreateX402DiscoveryMcpRequest",
+}) as any as S.Schema<CreateX402DiscoveryMcpRequest>;
+
+/** JSON-RPC version. */
+export type X402McpResponseJsonrpc = "2.0";
+export const X402McpResponseJsonrpc = /*@__PURE__*/ S.String;
+
+/** Request identifier (matches the request ID, null for notifications). */
+export type X402McpResponseId = string | number;
+export const X402McpResponseId =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<X402McpResponseId>;
+
+/** The result of the method call (present on success). */
+export type X402McpResponseResultMap = { [key: string]: unknown | undefined };
+export const X402McpResponseResultMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<X402McpResponseResultMap>;
+
+/** Additional error data. */
+export type X402McpErrorDataMap = { [key: string]: unknown | undefined };
+export const X402McpErrorDataMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<X402McpErrorDataMap>;
+
+/** JSON-RPC 2.0 error object. */
+export interface X402McpError {
+  /** Error code. */
+  code: number;
+  /** Error message. */
+  message: string;
+  /** Additional error data. */
+  data?: X402McpErrorDataMap;
+}
+export const X402McpError = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    code: S.Number,
+    message: S.String,
+    data: S.optional(X402McpErrorDataMap),
+  }),
+).annotate({ identifier: "X402McpError" }) as any as S.Schema<X402McpError>;
+
+/** A JSON-RPC 2.0 response for the Model Context Protocol. */
+export interface X402McpResponse {
+  /** JSON-RPC version. */
+  jsonrpc: X402McpResponseJsonrpc;
+  /** Request identifier (matches the request ID, null for notifications). */
+  id?: X402McpResponseId | null;
+  /** The result of the method call (present on success). */
+  result?: X402McpResponseResultMap;
+  error?: X402McpError;
+}
+export const X402McpResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    jsonrpc: X402McpResponseJsonrpc,
+    id: S.optional(S.NullOr(X402McpResponseId)),
+    result: S.optional(X402McpResponseResultMap),
+    error: S.optional(X402McpError),
+  }),
+).annotate({
+  identifier: "X402McpResponse",
+}) as any as S.Schema<X402McpResponse>;
+
+export interface DeleteCustomerRequest {
   /** The ID of the customer. */
   customerId: string;
 }
-export const DeleteCustomerByIdRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteCustomerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     customerId: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({ method: "DELETE", uri: "/v2/customers/{customerId}", code: 200 }),
   ),
 ).annotate({
-  identifier: "DeleteCustomerByIdRequest",
-}) as any as S.Schema<DeleteCustomerByIdRequest>;
+  identifier: "DeleteCustomerRequest",
+}) as any as S.Schema<DeleteCustomerRequest>;
 
-export interface DeleteCustomerByIdResponse {}
-export const DeleteCustomerByIdResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteCustomerResponse {}
+export const DeleteCustomerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteCustomerByIdResponse",
-}) as any as S.Schema<DeleteCustomerByIdResponse>;
+  identifier: "DeleteCustomerResponse",
+}) as any as S.Schema<DeleteCustomerResponse>;
 
 export interface DeletePolicyRequest {
   /** The ID of the policy to delete. */
@@ -6360,19 +6460,19 @@ export const Balance = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Balance" }) as any as S.Schema<Balance>;
 
-export interface GetCustomerByIdRequest {
+export interface GetCustomerRequest {
   /** The ID of the customer. */
   customerId: string;
 }
-export const GetCustomerByIdRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetCustomerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     customerId: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({ method: "GET", uri: "/v2/customers/{customerId}", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetCustomerByIdRequest",
-}) as any as S.Schema<GetCustomerByIdRequest>;
+  identifier: "GetCustomerRequest",
+}) as any as S.Schema<GetCustomerRequest>;
 
 export interface GetDelegationForEndUserRequest {
   /** The ID of the end user. */
@@ -6445,11 +6545,11 @@ export const GetDelegationForEndUserAccountResponse = /*@__PURE__*/ S.suspend(
   identifier: "GetDelegationForEndUserAccountResponse",
 }) as any as S.Schema<GetDelegationForEndUserAccountResponse>;
 
-export interface GetDepositDestinationByIdRequest {
+export interface GetDepositDestinationRequest {
   /** The ID of the deposit address to retrieve. */
   depositDestinationId: string;
 }
-export const GetDepositDestinationByIdRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDepositDestinationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     depositDestinationId: S.String.pipe(T.Label()),
   }).pipe(
@@ -6460,15 +6560,15 @@ export const GetDepositDestinationByIdRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetDepositDestinationByIdRequest",
-}) as any as S.Schema<GetDepositDestinationByIdRequest>;
+  identifier: "GetDepositDestinationRequest",
+}) as any as S.Schema<GetDepositDestinationRequest>;
 
-export type GetDepositDestinationByIdResponse = DepositDestination;
-export const GetDepositDestinationByIdResponse = /*@__PURE__*/ S.suspend(() =>
+export type GetDepositDestinationResponse = DepositDestination;
+export const GetDepositDestinationResponse = /*@__PURE__*/ S.suspend(() =>
   DepositDestination.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "GetDepositDestinationByIdResponse",
-}) as any as S.Schema<GetDepositDestinationByIdResponse>;
+  identifier: "GetDepositDestinationResponse",
+}) as any as S.Schema<GetDepositDestinationResponse>;
 
 export interface GetDisbursementRequest {
   /** The unique identifier of the disbursement. */
@@ -6532,12 +6632,12 @@ export const GetEvmAccountByNameRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetEvmAccountByNameRequest",
 }) as any as S.Schema<GetEvmAccountByNameRequest>;
 
-export interface GetEvmEip7702DelegationOperationByIdRequest {
+export interface GetEvmEip7702DelegationOperationRequest {
   /** The unique identifier for the delegation operation. */
   delegationOperationId: string;
 }
-export const GetEvmEip7702DelegationOperationByIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetEvmEip7702DelegationOperationRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       delegationOperationId: S.String.pipe(T.Label()),
     }).pipe(
@@ -6547,9 +6647,9 @@ export const GetEvmEip7702DelegationOperationByIdRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "GetEvmEip7702DelegationOperationByIdRequest",
-  }) as any as S.Schema<GetEvmEip7702DelegationOperationByIdRequest>;
+).annotate({
+  identifier: "GetEvmEip7702DelegationOperationRequest",
+}) as any as S.Schema<GetEvmEip7702DelegationOperationRequest>;
 
 /** The current status of the delegation operation. UNSPECIFIED means the status has not been set. PENDING means the operation has been created but not yet submitted. SUBMITTED means the operation has been submitted to the network. COMPLETED means the operation has completed successfully. FAILED means the operation has failed. */
 export type EvmEip7702DelegationOperationStatus =
@@ -6723,30 +6823,30 @@ export const GetFoundationAccountByIdRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetFoundationAccountByIdRequest",
 }) as any as S.Schema<GetFoundationAccountByIdRequest>;
 
-export interface GetOnrampOrderByIdRequest {
+export interface GetOnrampOrderRequest {
   /** The ID of the onramp order to retrieve. */
   orderId: string;
 }
-export const GetOnrampOrderByIdRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetOnrampOrderRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     orderId: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({ method: "GET", uri: "/v2/onramp/orders/{orderId}", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetOnrampOrderByIdRequest",
-}) as any as S.Schema<GetOnrampOrderByIdRequest>;
+  identifier: "GetOnrampOrderRequest",
+}) as any as S.Schema<GetOnrampOrderRequest>;
 
-export interface GetOnrampOrderByIdResponse {
+export interface GetOnrampOrderResponse {
   order: OnrampOrder;
 }
-export const GetOnrampOrderByIdResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetOnrampOrderResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     order: OnrampOrder,
   }),
 ).annotate({
-  identifier: "GetOnrampOrderByIdResponse",
-}) as any as S.Schema<GetOnrampOrderByIdResponse>;
+  identifier: "GetOnrampOrderResponse",
+}) as any as S.Schema<GetOnrampOrderResponse>;
 
 /** The type of user identifier: - `phone_number`: A phone number in E.164 format associated with an onramp user. */
 export type OnrampUserIdType = "phone_number";
@@ -7333,19 +7433,19 @@ export const OnchainDataSchemaResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "OnchainDataSchemaResponse",
 }) as any as S.Schema<OnchainDataSchemaResponse>;
 
-export interface GetTransferByIdRequest {
+export interface GetTransferRequest {
   /** The unique identifier of the transfer. */
   transferId: string;
 }
-export const GetTransferByIdRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetTransferRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     transferId: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({ method: "GET", uri: "/v2/transfers/{transferId}", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetTransferByIdRequest",
-}) as any as S.Schema<GetTransferByIdRequest>;
+  identifier: "GetTransferRequest",
+}) as any as S.Schema<GetTransferRequest>;
 
 export interface GetUserOperationRequest {
   /** The address of the Smart Account the user operation belongs to. */
@@ -9648,106 +9748,6 @@ export const LookupEndUserResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "LookupEndUserResponse",
 }) as any as S.Schema<LookupEndUserResponse>;
-
-/** JSON-RPC version, must be "2.0". */
-export type PostX402DiscoveryMcpRequestJsonrpc = "2.0";
-export const PostX402DiscoveryMcpRequestJsonrpc = /*@__PURE__*/ S.String;
-
-/** Request identifier. */
-export type PostX402DiscoveryMcpRequestId = string | number;
-export const PostX402DiscoveryMcpRequestId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PostX402DiscoveryMcpRequestId>;
-
-/** Optional parameters for the method. */
-export type PostX402DiscoveryMcpRequestParamsMap = {
-  [key: string]: unknown | undefined;
-};
-export const PostX402DiscoveryMcpRequestParamsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<PostX402DiscoveryMcpRequestParamsMap>;
-
-export interface PostX402DiscoveryMcpRequest {
-  /** JSON-RPC version, must be "2.0". */
-  jsonrpc: PostX402DiscoveryMcpRequestJsonrpc | (string & {});
-  /** Request identifier. */
-  id?: PostX402DiscoveryMcpRequestId;
-  /** The MCP method to invoke. */
-  method: string;
-  /** Optional parameters for the method. */
-  params?: PostX402DiscoveryMcpRequestParamsMap;
-}
-export const PostX402DiscoveryMcpRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    jsonrpc: PostX402DiscoveryMcpRequestJsonrpc,
-    id: S.optional(PostX402DiscoveryMcpRequestId),
-    method: S.String,
-    params: S.optional(PostX402DiscoveryMcpRequestParamsMap),
-  }).pipe(T.Http({ method: "POST", uri: "/v2/x402/discovery/mcp", code: 200 })),
-).annotate({
-  identifier: "PostX402DiscoveryMcpRequest",
-}) as any as S.Schema<PostX402DiscoveryMcpRequest>;
-
-/** JSON-RPC version. */
-export type X402McpResponseJsonrpc = "2.0";
-export const X402McpResponseJsonrpc = /*@__PURE__*/ S.String;
-
-/** Request identifier (matches the request ID, null for notifications). */
-export type X402McpResponseId = string | number;
-export const X402McpResponseId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<X402McpResponseId>;
-
-/** The result of the method call (present on success). */
-export type X402McpResponseResultMap = { [key: string]: unknown | undefined };
-export const X402McpResponseResultMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<X402McpResponseResultMap>;
-
-/** Additional error data. */
-export type X402McpErrorDataMap = { [key: string]: unknown | undefined };
-export const X402McpErrorDataMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<X402McpErrorDataMap>;
-
-/** JSON-RPC 2.0 error object. */
-export interface X402McpError {
-  /** Error code. */
-  code: number;
-  /** Error message. */
-  message: string;
-  /** Additional error data. */
-  data?: X402McpErrorDataMap;
-}
-export const X402McpError = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    code: S.Number,
-    message: S.String,
-    data: S.optional(X402McpErrorDataMap),
-  }),
-).annotate({ identifier: "X402McpError" }) as any as S.Schema<X402McpError>;
-
-/** A JSON-RPC 2.0 response for the Model Context Protocol. */
-export interface X402McpResponse {
-  /** JSON-RPC version. */
-  jsonrpc: X402McpResponseJsonrpc;
-  /** Request identifier (matches the request ID, null for notifications). */
-  id?: X402McpResponseId | null;
-  /** The result of the method call (present on success). */
-  result?: X402McpResponseResultMap;
-  error?: X402McpError;
-}
-export const X402McpResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    jsonrpc: X402McpResponseJsonrpc,
-    id: S.optional(S.NullOr(X402McpResponseId)),
-    result: S.optional(X402McpResponseResultMap),
-    error: S.optional(X402McpError),
-  }),
-).annotate({
-  identifier: "X402McpResponse",
-}) as any as S.Schema<X402McpResponse>;
 
 /** The list of calls to make from the Smart Account. */
 export type PrepareAndSendUserOperationRequestCallsList = Array<EvmCall>;
@@ -13467,16 +13467,31 @@ export const createWebhookSubscription: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteCustomerByIdError = CoinbaseOpError;
-/** Delete a customer Initiates deletion of the customer and all associated data. This operation is idempotent — repeated calls for an already-deleted customer return 204. A 404 is returned only when no customer with the given ID exists for the caller's entity. */
-export const deleteCustomerById: API.OperationMethod<
-  DeleteCustomerByIdRequest,
-  DeleteCustomerByIdResponse,
-  DeleteCustomerByIdError,
+export type CreateX402DiscoveryMcpError = CoinbaseOpError;
+/** Handle MCP JSON-RPC request Handles JSON-RPC requests for the Model Context Protocol (MCP). Supports MCP methods for discovering x402 payment resources and tools. */
+export const createX402DiscoveryMcp: API.OperationMethod<
+  CreateX402DiscoveryMcpRequest,
+  X402McpResponse,
+  CreateX402DiscoveryMcpError,
   CoinbaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteCustomerByIdRequest,
-  output: DeleteCustomerByIdResponse,
+  input: CreateX402DiscoveryMcpRequest,
+  output: X402McpResponse,
+  errors: [UnknownCoinbaseError],
+  protocol: CoinbaseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteCustomerError = CoinbaseOpError;
+/** Delete a customer Initiates deletion of the customer and all associated data. This operation is idempotent — repeated calls for an already-deleted customer return 204. A 404 is returned only when no customer with the given ID exists for the caller's entity. */
+export const deleteCustomer: API.OperationMethod<
+  DeleteCustomerRequest,
+  DeleteCustomerResponse,
+  DeleteCustomerError,
+  CoinbaseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteCustomerRequest,
+  output: DeleteCustomerResponse,
   errors: [UnknownCoinbaseError],
   protocol: CoinbaseProtocol,
   retry: Retry.Retry,
@@ -13602,15 +13617,15 @@ export const getBalanceByAsset: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetCustomerByIdError = CoinbaseOpError;
+export type GetCustomerError = CoinbaseOpError;
 /** Get a customer Get a customer by their ID. Returns the full customer object. */
-export const getCustomerById: API.OperationMethod<
-  GetCustomerByIdRequest,
+export const getCustomer: API.OperationMethod<
+  GetCustomerRequest,
   Customer,
-  GetCustomerByIdError,
+  GetCustomerError,
   CoinbaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetCustomerByIdRequest,
+  input: GetCustomerRequest,
   output: Customer,
   errors: [UnknownCoinbaseError],
   protocol: CoinbaseProtocol,
@@ -13647,16 +13662,16 @@ export const getDelegationForEndUserAccount: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetDepositDestinationByIdError = CoinbaseOpError;
+export type GetDepositDestinationError = CoinbaseOpError;
 /** Get deposit destination Get a specific deposit destination by its ID. */
-export const getDepositDestinationById: API.OperationMethod<
-  GetDepositDestinationByIdRequest,
-  GetDepositDestinationByIdResponse,
-  GetDepositDestinationByIdError,
+export const getDepositDestination: API.OperationMethod<
+  GetDepositDestinationRequest,
+  GetDepositDestinationResponse,
+  GetDepositDestinationError,
   CoinbaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetDepositDestinationByIdRequest,
-  output: GetDepositDestinationByIdResponse,
+  input: GetDepositDestinationRequest,
+  output: GetDepositDestinationResponse,
   errors: [UnknownCoinbaseError],
   protocol: CoinbaseProtocol,
   retry: Retry.Retry,
@@ -13722,15 +13737,15 @@ export const getEvmAccountByName: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetEvmEip7702DelegationOperationByIdError = CoinbaseOpError;
+export type GetEvmEip7702DelegationOperationError = CoinbaseOpError;
 /** Get EIP-7702 delegation operation by ID Returns the EIP-7702 delegation operation. Use the delegationOperationId returned by the Create EIP-7702 delegation endpoint to poll for operation completion. */
-export const getEvmEip7702DelegationOperationById: API.OperationMethod<
-  GetEvmEip7702DelegationOperationByIdRequest,
+export const getEvmEip7702DelegationOperation: API.OperationMethod<
+  GetEvmEip7702DelegationOperationRequest,
   EvmEip7702DelegationOperation,
-  GetEvmEip7702DelegationOperationByIdError,
+  GetEvmEip7702DelegationOperationError,
   CoinbaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetEvmEip7702DelegationOperationByIdRequest,
+  input: GetEvmEip7702DelegationOperationRequest,
   output: EvmEip7702DelegationOperation,
   errors: [UnknownCoinbaseError],
   protocol: CoinbaseProtocol,
@@ -13797,16 +13812,16 @@ export const getFoundationAccountById: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetOnrampOrderByIdError = CoinbaseOpError;
+export type GetOnrampOrderError = CoinbaseOpError;
 /** Get an onramp order by ID Get an onramp order by ID. */
-export const getOnrampOrderById: API.OperationMethod<
-  GetOnrampOrderByIdRequest,
-  GetOnrampOrderByIdResponse,
-  GetOnrampOrderByIdError,
+export const getOnrampOrder: API.OperationMethod<
+  GetOnrampOrderRequest,
+  GetOnrampOrderResponse,
+  GetOnrampOrderError,
   CoinbaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetOnrampOrderByIdRequest,
-  output: GetOnrampOrderByIdResponse,
+  input: GetOnrampOrderRequest,
+  output: GetOnrampOrderResponse,
   errors: [UnknownCoinbaseError],
   protocol: CoinbaseProtocol,
   retry: Retry.Retry,
@@ -13992,15 +14007,15 @@ export const getSQLSchema: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetTransferByIdError = CoinbaseOpError;
+export type GetTransferError = CoinbaseOpError;
 /** Get transfer Get a transfer by its ID. */
-export const getTransferById: API.OperationMethod<
-  GetTransferByIdRequest,
+export const getTransfer: API.OperationMethod<
+  GetTransferRequest,
   Transfer,
-  GetTransferByIdError,
+  GetTransferError,
   CoinbaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetTransferByIdRequest,
+  input: GetTransferRequest,
   output: Transfer,
   errors: [UnknownCoinbaseError],
   protocol: CoinbaseProtocol,
@@ -14557,21 +14572,6 @@ export const lookupEndUser: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: LookupEndUserRequest,
   output: LookupEndUserResponse,
-  errors: [UnknownCoinbaseError],
-  protocol: CoinbaseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostX402DiscoveryMcpError = CoinbaseOpError;
-/** Handle MCP JSON-RPC request Handles JSON-RPC requests for the Model Context Protocol (MCP). Supports MCP methods for discovering x402 payment resources and tools. */
-export const postX402DiscoveryMcp: API.OperationMethod<
-  PostX402DiscoveryMcpRequest,
-  X402McpResponse,
-  PostX402DiscoveryMcpError,
-  CoinbaseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostX402DiscoveryMcpRequest,
-  output: X402McpResponse,
   errors: [UnknownCoinbaseError],
   protocol: CoinbaseProtocol,
   retry: Retry.Retry,

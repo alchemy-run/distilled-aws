@@ -43942,13 +43942,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.apimanagement#UpdateQuotaByPeriodKeys": {
+    "com.azure.apimanagement#UpdateQuotaByPeriodKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.apimanagement#UpdateQuotaByPeriodKeysRequest"
+        "target": "com.azure.apimanagement#UpdateQuotaByPeriodKeyRequest"
       },
       "output": {
-        "target": "com.azure.apimanagement#UpdateQuotaByPeriodKeysResponse"
+        "target": "com.azure.apimanagement#UpdateQuotaByPeriodKeyResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -43961,7 +43961,7 @@
         "com.distilled.openapi#apiVersion": "2024-05-01"
       }
     },
-    "com.azure.apimanagement#UpdateQuotaByPeriodKeysResponse": {
+    "com.azure.apimanagement#UpdateQuotaByPeriodKeyResponse": {
       "type": "structure",
       "members": {
         "counterKey": {
@@ -44023,7 +44023,7 @@
         "smithy.api#documentation": "Quota counter value details."
       }
     },
-    "com.azure.apimanagement#UpdateQuotaByPeriodKeysRequest": {
+    "com.azure.apimanagement#UpdateQuotaByPeriodKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -44077,13 +44077,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.apimanagement#GetQuotaByPeriodKeys": {
+    "com.azure.apimanagement#GetQuotaByPeriodKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.apimanagement#GetQuotaByPeriodKeysRequest"
+        "target": "com.azure.apimanagement#GetQuotaByPeriodKeyRequest"
       },
       "output": {
-        "target": "com.azure.apimanagement#GetQuotaByPeriodKeysResponse"
+        "target": "com.azure.apimanagement#GetQuotaByPeriodKeyResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -44096,7 +44096,7 @@
         "com.distilled.openapi#apiVersion": "2024-05-01"
       }
     },
-    "com.azure.apimanagement#GetQuotaByPeriodKeysResponse": {
+    "com.azure.apimanagement#GetQuotaByPeriodKeyResponse": {
       "type": "structure",
       "members": {
         "counterKey": {
@@ -44138,7 +44138,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.apimanagement#GetQuotaByPeriodKeysRequest": {
+    "com.azure.apimanagement#GetQuotaByPeriodKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -44186,13 +44186,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.apimanagement#UpdateQuotaByCounterKeys": {
+    "com.azure.apimanagement#UpdateQuotaByCounterKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.apimanagement#UpdateQuotaByCounterKeysRequest"
+        "target": "com.azure.apimanagement#UpdateQuotaByCounterKeyRequest"
       },
       "output": {
-        "target": "com.azure.apimanagement#UpdateQuotaByCounterKeysResponse"
+        "target": "com.azure.apimanagement#UpdateQuotaByCounterKeyResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -44205,11 +44205,11 @@
         "com.distilled.openapi#apiVersion": "2024-05-01"
       }
     },
-    "com.azure.apimanagement#UpdateQuotaByCounterKeysResponse": {
+    "com.azure.apimanagement#UpdateQuotaByCounterKeyResponse": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.apimanagement#UpdateQuotaByCounterKeysResponseValueList",
+          "target": "com.azure.apimanagement#UpdateQuotaByCounterKeyResponseValueList",
           "traits": {
             "smithy.api#documentation": "Quota counter values."
           }
@@ -44231,7 +44231,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.apimanagement#UpdateQuotaByCounterKeysResponseValueList": {
+    "com.azure.apimanagement#UpdateQuotaByCounterKeyResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.apimanagement#QuotaCounterContract"
@@ -44282,7 +44282,7 @@
         "smithy.api#documentation": "Quota counter details."
       }
     },
-    "com.azure.apimanagement#UpdateQuotaByCounterKeysRequest": {
+    "com.azure.apimanagement#UpdateQuotaByCounterKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -44328,13 +44328,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.apimanagement#ListQuotaByCounterKeysByService": {
+    "com.azure.apimanagement#ListQuotaByCounterKeyByService": {
       "type": "operation",
       "input": {
-        "target": "com.azure.apimanagement#ListQuotaByCounterKeysByServiceRequest"
+        "target": "com.azure.apimanagement#ListQuotaByCounterKeyByServiceRequest"
       },
       "output": {
-        "target": "com.azure.apimanagement#ListQuotaByCounterKeysByServiceResponse"
+        "target": "com.azure.apimanagement#ListQuotaByCounterKeyByServiceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -44347,11 +44347,11 @@
         "com.distilled.openapi#apiVersion": "2024-05-01"
       }
     },
-    "com.azure.apimanagement#ListQuotaByCounterKeysByServiceResponse": {
+    "com.azure.apimanagement#ListQuotaByCounterKeyByServiceResponse": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.apimanagement#ListQuotaByCounterKeysByServiceResponseValueList",
+          "target": "com.azure.apimanagement#ListQuotaByCounterKeyByServiceResponseValueList",
           "traits": {
             "smithy.api#documentation": "Quota counter values."
           }
@@ -44373,7 +44373,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.apimanagement#ListQuotaByCounterKeysByServiceResponseValueList": {
+    "com.azure.apimanagement#ListQuotaByCounterKeyByServiceResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.apimanagement#QuotaCounterContract"
@@ -44382,7 +44382,7 @@
         "smithy.api#documentation": "Quota counter values."
       }
     },
-    "com.azure.apimanagement#ListQuotaByCounterKeysByServiceRequest": {
+    "com.azure.apimanagement#ListQuotaByCounterKeyByServiceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -69079,16 +69079,16 @@
           "target": "com.azure.apimanagement#ListProductByTags"
         },
         {
-          "target": "com.azure.apimanagement#UpdateQuotaByPeriodKeys"
+          "target": "com.azure.apimanagement#UpdateQuotaByPeriodKey"
         },
         {
-          "target": "com.azure.apimanagement#GetQuotaByPeriodKeys"
+          "target": "com.azure.apimanagement#GetQuotaByPeriodKey"
         },
         {
-          "target": "com.azure.apimanagement#UpdateQuotaByCounterKeys"
+          "target": "com.azure.apimanagement#UpdateQuotaByCounterKey"
         },
         {
-          "target": "com.azure.apimanagement#ListQuotaByCounterKeysByService"
+          "target": "com.azure.apimanagement#ListQuotaByCounterKeyByService"
         },
         {
           "target": "com.azure.apimanagement#ListRegionByService"

@@ -3030,6 +3030,154 @@ export const CreateInternalNetworkResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateInternalNetworkResponse>;
 
 /** Resource tags. */
+export type CreateInternetGatewayRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const CreateInternetGatewayRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<CreateInternetGatewayRequestTagsMap>;
+
+/** Gateway Type of the resource. */
+export type GatewayType = "Infrastructure" | "Workload";
+export const GatewayType = /*@__PURE__*/ S.String;
+
+/** Internet Gateway Properties defines the properties of the resource. */
+export interface InternetGatewayPropertiesInput {
+  /** Switch configuration description. */
+  annotation?: string;
+  /** ARM Resource ID of the Internet Gateway Rule. */
+  internetGatewayRuleId?: string;
+  /** Gateway Type of the resource. */
+  type?: GatewayType | (string & {});
+  /** Gateway Type of the resource. */
+  internetGatewayType?: GatewayType | (string & {});
+  /** ARM Resource ID of the Network Fabric Controller. */
+  networkFabricControllerId: string;
+}
+export const InternetGatewayPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    annotation: S.optional(S.String),
+    internetGatewayRuleId: S.optional(S.String),
+    type: S.optional(GatewayType),
+    internetGatewayType: S.optional(GatewayType),
+    networkFabricControllerId: S.String,
+  }),
+).annotate({
+  identifier: "InternetGatewayPropertiesInput",
+}) as any as S.Schema<InternetGatewayPropertiesInput>;
+
+export interface CreateInternetGatewayRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Internet Gateway. */
+  internetGatewayName: string;
+  /** Resource tags. */
+  tags?: CreateInternetGatewayRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The Internet Gateway Properties */
+  properties: InternetGatewayPropertiesInput;
+}
+export const CreateInternetGatewayRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    internetGatewayName: S.String.pipe(T.Label()),
+    tags: S.optional(CreateInternetGatewayRequestTagsMap),
+    location: S.String,
+    properties: InternetGatewayPropertiesInput,
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/internetGateways/{internetGatewayName}",
+      code: 200,
+      apiVersion: "2025-07-15",
+    }),
+  ),
+).annotate({
+  identifier: "CreateInternetGatewayRequest",
+}) as any as S.Schema<CreateInternetGatewayRequest>;
+
+/** Resource tags. */
+export type CreateInternetGatewayResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const CreateInternetGatewayResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<CreateInternetGatewayResponseTagsMap>;
+
+/** Internet Gateway Properties defines the properties of the resource. */
+export interface InternetGatewayProperties {
+  /** Switch configuration description. */
+  annotation?: string;
+  /** ARM Resource ID of the Internet Gateway Rule. */
+  internetGatewayRuleId?: string;
+  /** IPv4 Address of Internet Gateway. */
+  ipv4Address?: string;
+  /** Port number of Internet Gateway. */
+  port?: number;
+  /** Gateway Type of the resource. */
+  type?: GatewayType;
+  /** Gateway Type of the resource. */
+  internetGatewayType?: GatewayType;
+  /** ARM Resource ID of the Network Fabric Controller. */
+  networkFabricControllerId: string;
+  /** Details of the last operation performed on the resource */
+  lastOperation?: LastOperationProperties;
+  /** Provisioning state of resource. */
+  provisioningState?: ProvisioningState;
+}
+export const InternetGatewayProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    annotation: S.optional(S.String),
+    internetGatewayRuleId: S.optional(S.String),
+    ipv4Address: S.optional(S.String),
+    port: S.optional(S.Number),
+    type: S.optional(GatewayType),
+    internetGatewayType: S.optional(GatewayType),
+    networkFabricControllerId: S.String,
+    lastOperation: S.optional(LastOperationProperties),
+    provisioningState: S.optional(ProvisioningState),
+  }),
+).annotate({
+  identifier: "InternetGatewayProperties",
+}) as any as S.Schema<InternetGatewayProperties>;
+
+export interface CreateInternetGatewayResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: CreateInternetGatewayResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The Internet Gateway Properties */
+  properties: InternetGatewayProperties;
+}
+export const CreateInternetGatewayResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(CreateInternetGatewayResponseTagsMap),
+    location: S.String,
+    properties: InternetGatewayProperties,
+  }),
+).annotate({
+  identifier: "CreateInternetGatewayResponse",
+}) as any as S.Schema<CreateInternetGatewayResponse>;
+
+/** Resource tags. */
 export type CreateInternetGatewayRuleRequestTagsMap = {
   [key: string]: string | undefined;
 };
@@ -3243,154 +3391,6 @@ export const CreateInternetGatewayRuleResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "CreateInternetGatewayRuleResponse",
 }) as any as S.Schema<CreateInternetGatewayRuleResponse>;
-
-/** Resource tags. */
-export type CreateInternetGatewaysRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const CreateInternetGatewaysRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<CreateInternetGatewaysRequestTagsMap>;
-
-/** Gateway Type of the resource. */
-export type GatewayType = "Infrastructure" | "Workload";
-export const GatewayType = /*@__PURE__*/ S.String;
-
-/** Internet Gateway Properties defines the properties of the resource. */
-export interface InternetGatewayPropertiesInput {
-  /** Switch configuration description. */
-  annotation?: string;
-  /** ARM Resource ID of the Internet Gateway Rule. */
-  internetGatewayRuleId?: string;
-  /** Gateway Type of the resource. */
-  type?: GatewayType | (string & {});
-  /** Gateway Type of the resource. */
-  internetGatewayType?: GatewayType | (string & {});
-  /** ARM Resource ID of the Network Fabric Controller. */
-  networkFabricControllerId: string;
-}
-export const InternetGatewayPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    annotation: S.optional(S.String),
-    internetGatewayRuleId: S.optional(S.String),
-    type: S.optional(GatewayType),
-    internetGatewayType: S.optional(GatewayType),
-    networkFabricControllerId: S.String,
-  }),
-).annotate({
-  identifier: "InternetGatewayPropertiesInput",
-}) as any as S.Schema<InternetGatewayPropertiesInput>;
-
-export interface CreateInternetGatewaysRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Internet Gateway. */
-  internetGatewayName: string;
-  /** Resource tags. */
-  tags?: CreateInternetGatewaysRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The Internet Gateway Properties */
-  properties: InternetGatewayPropertiesInput;
-}
-export const CreateInternetGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    internetGatewayName: S.String.pipe(T.Label()),
-    tags: S.optional(CreateInternetGatewaysRequestTagsMap),
-    location: S.String,
-    properties: InternetGatewayPropertiesInput,
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/internetGateways/{internetGatewayName}",
-      code: 200,
-      apiVersion: "2025-07-15",
-    }),
-  ),
-).annotate({
-  identifier: "CreateInternetGatewaysRequest",
-}) as any as S.Schema<CreateInternetGatewaysRequest>;
-
-/** Resource tags. */
-export type CreateInternetGatewaysResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const CreateInternetGatewaysResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<CreateInternetGatewaysResponseTagsMap>;
-
-/** Internet Gateway Properties defines the properties of the resource. */
-export interface InternetGatewayProperties {
-  /** Switch configuration description. */
-  annotation?: string;
-  /** ARM Resource ID of the Internet Gateway Rule. */
-  internetGatewayRuleId?: string;
-  /** IPv4 Address of Internet Gateway. */
-  ipv4Address?: string;
-  /** Port number of Internet Gateway. */
-  port?: number;
-  /** Gateway Type of the resource. */
-  type?: GatewayType;
-  /** Gateway Type of the resource. */
-  internetGatewayType?: GatewayType;
-  /** ARM Resource ID of the Network Fabric Controller. */
-  networkFabricControllerId: string;
-  /** Details of the last operation performed on the resource */
-  lastOperation?: LastOperationProperties;
-  /** Provisioning state of resource. */
-  provisioningState?: ProvisioningState;
-}
-export const InternetGatewayProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    annotation: S.optional(S.String),
-    internetGatewayRuleId: S.optional(S.String),
-    ipv4Address: S.optional(S.String),
-    port: S.optional(S.Number),
-    type: S.optional(GatewayType),
-    internetGatewayType: S.optional(GatewayType),
-    networkFabricControllerId: S.String,
-    lastOperation: S.optional(LastOperationProperties),
-    provisioningState: S.optional(ProvisioningState),
-  }),
-).annotate({
-  identifier: "InternetGatewayProperties",
-}) as any as S.Schema<InternetGatewayProperties>;
-
-export interface CreateInternetGatewaysResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: CreateInternetGatewaysResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The Internet Gateway Properties */
-  properties: InternetGatewayProperties;
-}
-export const CreateInternetGatewaysResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(CreateInternetGatewaysResponseTagsMap),
-    location: S.String,
-    properties: InternetGatewayProperties,
-  }),
-).annotate({
-  identifier: "CreateInternetGatewaysResponse",
-}) as any as S.Schema<CreateInternetGatewaysResponse>;
 
 /** Resource tags. */
 export type CreateIpCommunityRequestTagsMap = {
@@ -8911,6 +8911,38 @@ export const DeleteInternalNetworkResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteInternalNetworkResponse",
 }) as any as S.Schema<DeleteInternalNetworkResponse>;
 
+export interface DeleteInternetGatewayRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Internet Gateway. */
+  internetGatewayName: string;
+}
+export const DeleteInternetGatewayRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    internetGatewayName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/internetGateways/{internetGatewayName}",
+      code: 200,
+      apiVersion: "2025-07-15",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteInternetGatewayRequest",
+}) as any as S.Schema<DeleteInternetGatewayRequest>;
+
+export interface DeleteInternetGatewayResponse {}
+export const DeleteInternetGatewayResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteInternetGatewayResponse",
+}) as any as S.Schema<DeleteInternetGatewayResponse>;
+
 export interface DeleteInternetGatewayRuleRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -8942,38 +8974,6 @@ export const DeleteInternetGatewayRuleResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DeleteInternetGatewayRuleResponse",
 }) as any as S.Schema<DeleteInternetGatewayRuleResponse>;
-
-export interface DeleteInternetGatewaysRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Internet Gateway. */
-  internetGatewayName: string;
-}
-export const DeleteInternetGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    internetGatewayName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/internetGateways/{internetGatewayName}",
-      code: 200,
-      apiVersion: "2025-07-15",
-    }),
-  ),
-).annotate({
-  identifier: "DeleteInternetGatewaysRequest",
-}) as any as S.Schema<DeleteInternetGatewaysRequest>;
-
-export interface DeleteInternetGatewaysResponse {}
-export const DeleteInternetGatewaysResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DeleteInternetGatewaysResponse",
-}) as any as S.Schema<DeleteInternetGatewaysResponse>;
 
 export interface DeleteIpCommunityRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -9762,6 +9762,70 @@ export const GetInternalNetworkResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetInternalNetworkResponse",
 }) as any as S.Schema<GetInternalNetworkResponse>;
 
+export interface GetInternetGatewayRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Internet Gateway. */
+  internetGatewayName: string;
+}
+export const GetInternetGatewayRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    internetGatewayName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/internetGateways/{internetGatewayName}",
+      code: 200,
+      apiVersion: "2025-07-15",
+    }),
+  ),
+).annotate({
+  identifier: "GetInternetGatewayRequest",
+}) as any as S.Schema<GetInternetGatewayRequest>;
+
+/** Resource tags. */
+export type GetInternetGatewayResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetInternetGatewayResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetInternetGatewayResponseTagsMap>;
+
+export interface GetInternetGatewayResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetInternetGatewayResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The Internet Gateway Properties */
+  properties: InternetGatewayProperties;
+}
+export const GetInternetGatewayResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetInternetGatewayResponseTagsMap),
+    location: S.String,
+    properties: InternetGatewayProperties,
+  }),
+).annotate({
+  identifier: "GetInternetGatewayResponse",
+}) as any as S.Schema<GetInternetGatewayResponse>;
+
 export interface GetInternetGatewayRuleRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -9825,70 +9889,6 @@ export const GetInternetGatewayRuleResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetInternetGatewayRuleResponse",
 }) as any as S.Schema<GetInternetGatewayRuleResponse>;
-
-export interface GetInternetGatewaysRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Internet Gateway. */
-  internetGatewayName: string;
-}
-export const GetInternetGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    internetGatewayName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/internetGateways/{internetGatewayName}",
-      code: 200,
-      apiVersion: "2025-07-15",
-    }),
-  ),
-).annotate({
-  identifier: "GetInternetGatewaysRequest",
-}) as any as S.Schema<GetInternetGatewaysRequest>;
-
-/** Resource tags. */
-export type GetInternetGatewaysResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const GetInternetGatewaysResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<GetInternetGatewaysResponseTagsMap>;
-
-export interface GetInternetGatewaysResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: GetInternetGatewaysResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The Internet Gateway Properties */
-  properties: InternetGatewayProperties;
-}
-export const GetInternetGatewaysResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(GetInternetGatewaysResponseTagsMap),
-    location: S.String,
-    properties: InternetGatewayProperties,
-  }),
-).annotate({
-  identifier: "GetInternetGatewaysResponse",
-}) as any as S.Schema<GetInternetGatewaysResponse>;
 
 export interface GetIpCommunityRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -11846,6 +11846,109 @@ export const InternalNetworksList = /*@__PURE__*/ S.suspend(() =>
   identifier: "InternalNetworksList",
 }) as any as S.Schema<InternalNetworksList>;
 
+export interface ListInternetGatewayByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListInternetGatewayByResourceGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/internetGateways",
+        code: 200,
+        apiVersion: "2025-07-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListInternetGatewayByResourceGroupRequest",
+  }) as any as S.Schema<ListInternetGatewayByResourceGroupRequest>;
+
+/** Resource tags. */
+export type InternetGatewayTagsMap = { [key: string]: string | undefined };
+export const InternetGatewayTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<InternetGatewayTagsMap>;
+
+/** The Internet Gateway resource definition. */
+export interface InternetGateway {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: InternetGatewayTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The Internet Gateway Properties */
+  properties: InternetGatewayProperties;
+}
+export const InternetGateway = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(InternetGatewayTagsMap),
+    location: S.String,
+    properties: InternetGatewayProperties,
+  }),
+).annotate({
+  identifier: "InternetGateway",
+}) as any as S.Schema<InternetGateway>;
+
+/** The InternetGateway items on this page */
+export type InternetGatewaysListResultValueList = Array<InternetGateway>;
+export const InternetGatewaysListResultValueList = /*@__PURE__*/ S.Array(
+  InternetGateway,
+) as any as S.Schema<InternetGatewaysListResultValueList>;
+
+/** Paged collection of InternetGateway items */
+export interface InternetGatewaysListResult {
+  /** The InternetGateway items on this page */
+  value: InternetGatewaysListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const InternetGatewaysListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: InternetGatewaysListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "InternetGatewaysListResult",
+}) as any as S.Schema<InternetGatewaysListResult>;
+
+export interface ListInternetGatewayBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const ListInternetGatewayBySubscriptionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ManagedNetworkFabric/internetGateways",
+        code: 200,
+        apiVersion: "2025-07-15",
+      }),
+    ),
+).annotate({
+  identifier: "ListInternetGatewayBySubscriptionRequest",
+}) as any as S.Schema<ListInternetGatewayBySubscriptionRequest>;
+
 export interface ListInternetGatewayRuleByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -11949,109 +12052,6 @@ export const ListInternetGatewayRuleBySubscriptionRequest =
   ).annotate({
     identifier: "ListInternetGatewayRuleBySubscriptionRequest",
   }) as any as S.Schema<ListInternetGatewayRuleBySubscriptionRequest>;
-
-export interface ListInternetGatewaysByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const ListInternetGatewaysByResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/internetGateways",
-        code: 200,
-        apiVersion: "2025-07-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "ListInternetGatewaysByResourceGroupRequest",
-  }) as any as S.Schema<ListInternetGatewaysByResourceGroupRequest>;
-
-/** Resource tags. */
-export type InternetGatewayTagsMap = { [key: string]: string | undefined };
-export const InternetGatewayTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<InternetGatewayTagsMap>;
-
-/** The Internet Gateway resource definition. */
-export interface InternetGateway {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: InternetGatewayTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The Internet Gateway Properties */
-  properties: InternetGatewayProperties;
-}
-export const InternetGateway = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(InternetGatewayTagsMap),
-    location: S.String,
-    properties: InternetGatewayProperties,
-  }),
-).annotate({
-  identifier: "InternetGateway",
-}) as any as S.Schema<InternetGateway>;
-
-/** The InternetGateway items on this page */
-export type InternetGatewaysListResultValueList = Array<InternetGateway>;
-export const InternetGatewaysListResultValueList = /*@__PURE__*/ S.Array(
-  InternetGateway,
-) as any as S.Schema<InternetGatewaysListResultValueList>;
-
-/** Paged collection of InternetGateway items */
-export interface InternetGatewaysListResult {
-  /** The InternetGateway items on this page */
-  value: InternetGatewaysListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const InternetGatewaysListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: InternetGatewaysListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "InternetGatewaysListResult",
-}) as any as S.Schema<InternetGatewaysListResult>;
-
-export interface ListInternetGatewaysBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-}
-export const ListInternetGatewaysBySubscriptionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ManagedNetworkFabric/internetGateways",
-        code: 200,
-        apiVersion: "2025-07-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "ListInternetGatewaysBySubscriptionRequest",
-  }) as any as S.Schema<ListInternetGatewaysBySubscriptionRequest>;
 
 export interface ListIpCommunityByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -20277,6 +20277,98 @@ export const UpdateInternalNetworkStaticRouteBfdAdministrativeStateRequest =
   }) as any as S.Schema<UpdateInternalNetworkStaticRouteBfdAdministrativeStateRequest>;
 
 /** Resource tags. */
+export type UpdateInternetGatewayRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateInternetGatewayRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateInternetGatewayRequestTagsMap>;
+
+/** PatchProperties for InternetGateway */
+export interface InternetGatewayPatchProperties {
+  /** ARM Resource ID of the Internet Gateway Rule. */
+  internetGatewayRuleId?: string;
+}
+export const InternetGatewayPatchProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    internetGatewayRuleId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "InternetGatewayPatchProperties",
+}) as any as S.Schema<InternetGatewayPatchProperties>;
+
+export interface UpdateInternetGatewayRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Internet Gateway. */
+  internetGatewayName: string;
+  /** Resource tags. */
+  tags?: UpdateInternetGatewayRequestTagsMap;
+  /** Resource properties. */
+  properties?: InternetGatewayPatchProperties;
+}
+export const UpdateInternetGatewayRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    internetGatewayName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateInternetGatewayRequestTagsMap),
+    properties: S.optional(InternetGatewayPatchProperties),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/internetGateways/{internetGatewayName}",
+      code: 200,
+      apiVersion: "2025-07-15",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateInternetGatewayRequest",
+}) as any as S.Schema<UpdateInternetGatewayRequest>;
+
+/** Resource tags. */
+export type UpdateInternetGatewayResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateInternetGatewayResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateInternetGatewayResponseTagsMap>;
+
+export interface UpdateInternetGatewayResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateInternetGatewayResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The Internet Gateway Properties */
+  properties: InternetGatewayProperties;
+}
+export const UpdateInternetGatewayResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateInternetGatewayResponseTagsMap),
+    location: S.String,
+    properties: InternetGatewayProperties,
+  }),
+).annotate({
+  identifier: "UpdateInternetGatewayResponse",
+}) as any as S.Schema<UpdateInternetGatewayResponse>;
+
+/** Resource tags. */
 export type UpdateInternetGatewayRuleRequestTagsMap = {
   [key: string]: string | undefined;
 };
@@ -20351,98 +20443,6 @@ export const UpdateInternetGatewayRuleResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "UpdateInternetGatewayRuleResponse",
 }) as any as S.Schema<UpdateInternetGatewayRuleResponse>;
-
-/** Resource tags. */
-export type UpdateInternetGatewaysRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const UpdateInternetGatewaysRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<UpdateInternetGatewaysRequestTagsMap>;
-
-/** PatchProperties for InternetGateway */
-export interface InternetGatewayPatchProperties {
-  /** ARM Resource ID of the Internet Gateway Rule. */
-  internetGatewayRuleId?: string;
-}
-export const InternetGatewayPatchProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    internetGatewayRuleId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "InternetGatewayPatchProperties",
-}) as any as S.Schema<InternetGatewayPatchProperties>;
-
-export interface UpdateInternetGatewaysRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Internet Gateway. */
-  internetGatewayName: string;
-  /** Resource tags. */
-  tags?: UpdateInternetGatewaysRequestTagsMap;
-  /** Resource properties. */
-  properties?: InternetGatewayPatchProperties;
-}
-export const UpdateInternetGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    internetGatewayName: S.String.pipe(T.Label()),
-    tags: S.optional(UpdateInternetGatewaysRequestTagsMap),
-    properties: S.optional(InternetGatewayPatchProperties),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/internetGateways/{internetGatewayName}",
-      code: 200,
-      apiVersion: "2025-07-15",
-    }),
-  ),
-).annotate({
-  identifier: "UpdateInternetGatewaysRequest",
-}) as any as S.Schema<UpdateInternetGatewaysRequest>;
-
-/** Resource tags. */
-export type UpdateInternetGatewaysResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const UpdateInternetGatewaysResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<UpdateInternetGatewaysResponseTagsMap>;
-
-export interface UpdateInternetGatewaysResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: UpdateInternetGatewaysResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The Internet Gateway Properties */
-  properties: InternetGatewayProperties;
-}
-export const UpdateInternetGatewaysResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(UpdateInternetGatewaysResponseTagsMap),
-    location: S.String,
-    properties: InternetGatewayProperties,
-  }),
-).annotate({
-  identifier: "UpdateInternetGatewaysResponse",
-}) as any as S.Schema<UpdateInternetGatewaysResponse>;
 
 /** Resource tags. */
 export type UpdateIpCommunityRequestTagsMap = {
@@ -25001,6 +25001,21 @@ export const CreateInternalNetwork: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type CreateInternetGatewayError = AzureOpError;
+/** Creates a Network Fabric Service Internet Gateway resource instance. */
+export const CreateInternetGateway: API.OperationMethod<
+  CreateInternetGatewayRequest,
+  CreateInternetGatewayResponse,
+  CreateInternetGatewayError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateInternetGatewayRequest,
+  output: CreateInternetGatewayResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type CreateInternetGatewayRuleError = AzureOpError;
 /** Creates an Internet Gateway rule resource. */
 export const CreateInternetGatewayRule: API.OperationMethod<
@@ -25011,21 +25026,6 @@ export const CreateInternetGatewayRule: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: CreateInternetGatewayRuleRequest,
   output: CreateInternetGatewayRuleResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CreateInternetGatewaysError = AzureOpError;
-/** Creates a Network Fabric Service Internet Gateway resource instance. */
-export const CreateInternetGateways: API.OperationMethod<
-  CreateInternetGatewaysRequest,
-  CreateInternetGatewaysResponse,
-  CreateInternetGatewaysError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CreateInternetGatewaysRequest,
-  output: CreateInternetGatewaysResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -25361,6 +25361,21 @@ export const DeleteInternalNetwork: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type DeleteInternetGatewayError = AzureOpError;
+/** Execute a delete on Network Fabric Service Internet Gateway. */
+export const DeleteInternetGateway: API.OperationMethod<
+  DeleteInternetGatewayRequest,
+  DeleteInternetGatewayResponse,
+  DeleteInternetGatewayError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteInternetGatewayRequest,
+  output: DeleteInternetGatewayResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type DeleteInternetGatewayRuleError = AzureOpError;
 /** Implements Internet Gateway Rules DELETE method. */
 export const DeleteInternetGatewayRule: API.OperationMethod<
@@ -25371,21 +25386,6 @@ export const DeleteInternetGatewayRule: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DeleteInternetGatewayRuleRequest,
   output: DeleteInternetGatewayRuleResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteInternetGatewaysError = AzureOpError;
-/** Execute a delete on Network Fabric Service Internet Gateway. */
-export const DeleteInternetGateways: API.OperationMethod<
-  DeleteInternetGatewaysRequest,
-  DeleteInternetGatewaysResponse,
-  DeleteInternetGatewaysError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteInternetGatewaysRequest,
-  output: DeleteInternetGatewaysResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -25721,6 +25721,21 @@ export const GetInternalNetwork: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetInternetGatewayError = AzureOpError;
+/** Implements Gateway GET method. */
+export const GetInternetGateway: API.OperationMethod<
+  GetInternetGatewayRequest,
+  GetInternetGatewayResponse,
+  GetInternetGatewayError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetInternetGatewayRequest,
+  output: GetInternetGatewayResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetInternetGatewayRuleError = AzureOpError;
 /** Gets an Internet Gateway Rule resource. */
 export const GetInternetGatewayRule: API.OperationMethod<
@@ -25731,21 +25746,6 @@ export const GetInternetGatewayRule: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetInternetGatewayRuleRequest,
   output: GetInternetGatewayRuleResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetInternetGatewaysError = AzureOpError;
-/** Implements Gateway GET method. */
-export const GetInternetGateways: API.OperationMethod<
-  GetInternetGatewaysRequest,
-  GetInternetGatewaysResponse,
-  GetInternetGatewaysError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetInternetGatewaysRequest,
-  output: GetInternetGatewaysResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -26141,6 +26141,36 @@ export const ListInternalNetworkByL3IsolationDomain: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ListInternetGatewayByResourceGroupError = AzureOpError;
+/** Displays Internet Gateways list by resource group GET method. */
+export const ListInternetGatewayByResourceGroup: API.OperationMethod<
+  ListInternetGatewayByResourceGroupRequest,
+  InternetGatewaysListResult,
+  ListInternetGatewayByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListInternetGatewayByResourceGroupRequest,
+  output: InternetGatewaysListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListInternetGatewayBySubscriptionError = AzureOpError;
+/** Displays Internet Gateways list by subscription GET method. */
+export const ListInternetGatewayBySubscription: API.OperationMethod<
+  ListInternetGatewayBySubscriptionRequest,
+  InternetGatewaysListResult,
+  ListInternetGatewayBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListInternetGatewayBySubscriptionRequest,
+  output: InternetGatewaysListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListInternetGatewayRuleByResourceGroupError = AzureOpError;
 /** Implements Internet Gateway Rules list by resource group GET method. */
 export const ListInternetGatewayRuleByResourceGroup: API.OperationMethod<
@@ -26166,36 +26196,6 @@ export const ListInternetGatewayRuleBySubscription: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListInternetGatewayRuleBySubscriptionRequest,
   output: InternetGatewayRulesListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListInternetGatewaysByResourceGroupError = AzureOpError;
-/** Displays Internet Gateways list by resource group GET method. */
-export const ListInternetGatewaysByResourceGroup: API.OperationMethod<
-  ListInternetGatewaysByResourceGroupRequest,
-  InternetGatewaysListResult,
-  ListInternetGatewaysByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListInternetGatewaysByResourceGroupRequest,
-  output: InternetGatewaysListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListInternetGatewaysBySubscriptionError = AzureOpError;
-/** Displays Internet Gateways list by subscription GET method. */
-export const ListInternetGatewaysBySubscription: API.OperationMethod<
-  ListInternetGatewaysBySubscriptionRequest,
-  InternetGatewaysListResult,
-  ListInternetGatewaysBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListInternetGatewaysBySubscriptionRequest,
-  output: InternetGatewaysListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -27329,6 +27329,21 @@ export const UpdateInternalNetworkStaticRouteBfdAdministrativeState: API.Operati
   retry: Retry.Retry,
 }));
 
+export type UpdateInternetGatewayError = AzureOpError;
+/** Execute patch on Network Fabric Service Internet Gateway. */
+export const UpdateInternetGateway: API.OperationMethod<
+  UpdateInternetGatewayRequest,
+  UpdateInternetGatewayResponse,
+  UpdateInternetGatewayError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateInternetGatewayRequest,
+  output: UpdateInternetGatewayResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type UpdateInternetGatewayRuleError = AzureOpError;
 /** API to update certain properties of the Internet Gateway Rule resource. */
 export const UpdateInternetGatewayRule: API.OperationMethod<
@@ -27339,21 +27354,6 @@ export const UpdateInternetGatewayRule: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: UpdateInternetGatewayRuleRequest,
   output: UpdateInternetGatewayRuleResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateInternetGatewaysError = AzureOpError;
-/** Execute patch on Network Fabric Service Internet Gateway. */
-export const UpdateInternetGateways: API.OperationMethod<
-  UpdateInternetGatewaysRequest,
-  UpdateInternetGatewaysResponse,
-  UpdateInternetGatewaysError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateInternetGatewaysRequest,
-  output: UpdateInternetGatewaysResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

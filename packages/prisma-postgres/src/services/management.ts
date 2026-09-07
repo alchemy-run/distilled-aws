@@ -59,5022 +59,13 @@ export class UnprocessableEntity
     [{ status: 422 }],
   ) {}
 
-export interface DeleteV1BranchesByBranchIdRequest {
-  branchId: string;
-}
-export const DeleteV1BranchesByBranchIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    branchId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "DELETE", uri: "/v1/branches/{branchId}", code: 200 }),
-  ),
-).annotate({
-  identifier: "DeleteV1BranchesByBranchIdRequest",
-}) as any as S.Schema<DeleteV1BranchesByBranchIdRequest>;
-
-export interface DeleteV1BranchesByBranchIdResponse {}
-export const DeleteV1BranchesByBranchIdResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DeleteV1BranchesByBranchIdResponse",
-}) as any as S.Schema<DeleteV1BranchesByBranchIdResponse>;
-
-export interface DeleteV1BucketsByBucketIdRequest {
-  bucketId: string;
-}
-export const DeleteV1BucketsByBucketIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    bucketId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "DELETE", uri: "/v1/buckets/{bucketId}", code: 200 }),
-  ),
-).annotate({
-  identifier: "DeleteV1BucketsByBucketIdRequest",
-}) as any as S.Schema<DeleteV1BucketsByBucketIdRequest>;
-
-export interface DeleteV1BucketsByBucketIdResponse {}
-export const DeleteV1BucketsByBucketIdResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DeleteV1BucketsByBucketIdResponse",
-}) as any as S.Schema<DeleteV1BucketsByBucketIdResponse>;
-
-export interface DeleteV1BucketsByBucketIdKeysByKeyIdRequest {
-  bucketId: string;
-  keyId: string;
-}
-export const DeleteV1BucketsByBucketIdKeysByKeyIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      bucketId: S.String.pipe(T.Label()),
-      keyId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/v1/buckets/{bucketId}/keys/{keyId}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "DeleteV1BucketsByBucketIdKeysByKeyIdRequest",
-  }) as any as S.Schema<DeleteV1BucketsByBucketIdKeysByKeyIdRequest>;
-
-export interface DeleteV1BucketsByBucketIdKeysByKeyIdResponse {}
-export const DeleteV1BucketsByBucketIdKeysByKeyIdResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteV1BucketsByBucketIdKeysByKeyIdResponse",
-  }) as any as S.Schema<DeleteV1BucketsByBucketIdKeysByKeyIdResponse>;
-
-export interface DeleteV1ConnectionsByIdRequest {
-  id: string;
-}
-export const DeleteV1ConnectionsByIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "DELETE", uri: "/v1/connections/{id}", code: 200 })),
-).annotate({
-  identifier: "DeleteV1ConnectionsByIdRequest",
-}) as any as S.Schema<DeleteV1ConnectionsByIdRequest>;
-
-export interface DeleteV1ConnectionsByIdResponse {}
-export const DeleteV1ConnectionsByIdResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DeleteV1ConnectionsByIdResponse",
-}) as any as S.Schema<DeleteV1ConnectionsByIdResponse>;
-
-export interface DeleteV1DatabasesByDatabaseIdRequest {
-  databaseId: string;
-}
-export const DeleteV1DatabasesByDatabaseIdRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      databaseId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/v1/databases/{databaseId}",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "DeleteV1DatabasesByDatabaseIdRequest",
-}) as any as S.Schema<DeleteV1DatabasesByDatabaseIdRequest>;
-
-export interface DeleteV1DatabasesByDatabaseIdResponse {}
-export const DeleteV1DatabasesByDatabaseIdResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "DeleteV1DatabasesByDatabaseIdResponse",
-}) as any as S.Schema<DeleteV1DatabasesByDatabaseIdResponse>;
-
-export interface DeleteV1DeploymentsByDeploymentIdRequest {
-  deploymentId: string;
-}
-export const DeleteV1DeploymentsByDeploymentIdRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      deploymentId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/v1/deployments/{deploymentId}",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "DeleteV1DeploymentsByDeploymentIdRequest",
-}) as any as S.Schema<DeleteV1DeploymentsByDeploymentIdRequest>;
-
-export interface DeleteV1DeploymentsByDeploymentIdResponse {}
-export const DeleteV1DeploymentsByDeploymentIdResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteV1DeploymentsByDeploymentIdResponse",
-  }) as any as S.Schema<DeleteV1DeploymentsByDeploymentIdResponse>;
-
-export interface DeleteV1DomainsByDomainIdRequest {
-  domainId: string;
-}
-export const DeleteV1DomainsByDomainIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    domainId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "DELETE", uri: "/v1/domains/{domainId}", code: 200 }),
-  ),
-).annotate({
-  identifier: "DeleteV1DomainsByDomainIdRequest",
-}) as any as S.Schema<DeleteV1DomainsByDomainIdRequest>;
-
-export interface DeleteV1DomainsByDomainIdResponse {}
-export const DeleteV1DomainsByDomainIdResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DeleteV1DomainsByDomainIdResponse",
-}) as any as S.Schema<DeleteV1DomainsByDomainIdResponse>;
-
-export interface DeleteV1EnvironmentVariablesByEnvVarIdRequest {
-  envVarId: string;
-}
-export const DeleteV1EnvironmentVariablesByEnvVarIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      envVarId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/v1/environment-variables/{envVarId}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "DeleteV1EnvironmentVariablesByEnvVarIdRequest",
-  }) as any as S.Schema<DeleteV1EnvironmentVariablesByEnvVarIdRequest>;
-
-export interface DeleteV1EnvironmentVariablesByEnvVarIdResponse {}
-export const DeleteV1EnvironmentVariablesByEnvVarIdResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteV1EnvironmentVariablesByEnvVarIdResponse",
-  }) as any as S.Schema<DeleteV1EnvironmentVariablesByEnvVarIdResponse>;
-
-export interface DeleteV1IntegrationsByIdRequest {
-  id: string;
-}
-export const DeleteV1IntegrationsByIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "DELETE", uri: "/v1/integrations/{id}", code: 200 }),
-  ),
-).annotate({
-  identifier: "DeleteV1IntegrationsByIdRequest",
-}) as any as S.Schema<DeleteV1IntegrationsByIdRequest>;
-
-export interface DeleteV1IntegrationsByIdResponse {}
-export const DeleteV1IntegrationsByIdResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DeleteV1IntegrationsByIdResponse",
-}) as any as S.Schema<DeleteV1IntegrationsByIdResponse>;
-
-export interface DeleteV1ProjectsByIdRequest {
-  id: string;
-}
-export const DeleteV1ProjectsByIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "DELETE", uri: "/v1/projects/{id}", code: 200 })),
-).annotate({
-  identifier: "DeleteV1ProjectsByIdRequest",
-}) as any as S.Schema<DeleteV1ProjectsByIdRequest>;
-
-export interface DeleteV1ProjectsByIdResponse {}
-export const DeleteV1ProjectsByIdResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DeleteV1ProjectsByIdResponse",
-}) as any as S.Schema<DeleteV1ProjectsByIdResponse>;
-
-export interface DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseRequest {
-  projectId: string;
-  branchId: string;
-}
-export const DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      projectId: S.String.pipe(T.Label()),
-      branchId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/v1/projects/{projectId}/branches/{branchId}/alchemy-state/lease",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseRequest",
-  }) as any as S.Schema<DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseRequest>;
-
-export interface DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseResponse {}
-export const DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier:
-      "DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseResponse",
-  }) as any as S.Schema<DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseResponse>;
-
-export interface DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackRequest {
-  projectId: string;
-  branchId: string;
-  stack: string;
-  stage?: string;
-}
-export const DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      projectId: S.String.pipe(T.Label()),
-      branchId: S.String.pipe(T.Label()),
-      stack: S.String.pipe(T.Label()),
-      stage: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/v1/projects/{projectId}/branches/{branchId}/alchemy-state/state/stacks/{stack}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackRequest",
-  }) as any as S.Schema<DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackRequest>;
-
-export interface DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackResponse {}
-export const DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier:
-      "DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackResponse",
-  }) as any as S.Schema<DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackResponse>;
-
-export interface DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqnRequest {
-  projectId: string;
-  branchId: string;
-  stack: string;
-  stage: string;
-  fqn: string;
-}
-export const DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqnRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      projectId: S.String.pipe(T.Label()),
-      branchId: S.String.pipe(T.Label()),
-      stack: S.String.pipe(T.Label()),
-      stage: S.String.pipe(T.Label()),
-      fqn: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/v1/projects/{projectId}/branches/{branchId}/alchemy-state/state/stacks/{stack}/stages/{stage}/resources/{fqn}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqnRequest",
-  }) as any as S.Schema<DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqnRequest>;
-
-export interface DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqnResponse {}
-export const DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqnResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier:
-      "DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqnResponse",
-  }) as any as S.Schema<DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqnResponse>;
-
-export interface DeleteV1ServicesByServiceIdRequest {
-  serviceId: string;
-}
-export const DeleteV1ServicesByServiceIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "DELETE", uri: "/v1/services/{serviceId}", code: 200 }),
-  ),
-).annotate({
-  identifier: "DeleteV1ServicesByServiceIdRequest",
-}) as any as S.Schema<DeleteV1ServicesByServiceIdRequest>;
-
-export interface DeleteV1ServicesByServiceIdResponse {}
-export const DeleteV1ServicesByServiceIdResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DeleteV1ServicesByServiceIdResponse",
-}) as any as S.Schema<DeleteV1ServicesByServiceIdResponse>;
-
-export interface DeleteV1SourceRepositoriesByIdRequest {
-  id: string;
-}
-export const DeleteV1SourceRepositoriesByIdRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/v1/source-repositories/{id}",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "DeleteV1SourceRepositoriesByIdRequest",
-}) as any as S.Schema<DeleteV1SourceRepositoriesByIdRequest>;
-
-export interface DeleteV1SourceRepositoriesByIdResponse {}
-export const DeleteV1SourceRepositoriesByIdResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "DeleteV1SourceRepositoriesByIdResponse",
-}) as any as S.Schema<DeleteV1SourceRepositoriesByIdResponse>;
-
-export interface DeleteV1WorkspacesByWorkspaceIdIntegrationsByClientIdRequest {
-  workspaceId: string;
-  clientId: string;
-}
-export const DeleteV1WorkspacesByWorkspaceIdIntegrationsByClientIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      workspaceId: S.String.pipe(T.Label()),
-      clientId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/v1/workspaces/{workspaceId}/integrations/{clientId}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "DeleteV1WorkspacesByWorkspaceIdIntegrationsByClientIdRequest",
-  }) as any as S.Schema<DeleteV1WorkspacesByWorkspaceIdIntegrationsByClientIdRequest>;
-
-export interface DeleteV1WorkspacesByWorkspaceIdIntegrationsByClientIdResponse {}
-export const DeleteV1WorkspacesByWorkspaceIdIntegrationsByClientIdResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteV1WorkspacesByWorkspaceIdIntegrationsByClientIdResponse",
-  }) as any as S.Schema<DeleteV1WorkspacesByWorkspaceIdIntegrationsByClientIdResponse>;
-
-export interface DeleteV1WorkspacesByWorkspaceIdServiceTokensByServiceTokenIdRequest {
-  workspaceId: string;
-  serviceTokenId: string;
-}
-export const DeleteV1WorkspacesByWorkspaceIdServiceTokensByServiceTokenIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      workspaceId: S.String.pipe(T.Label()),
-      serviceTokenId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/v1/workspaces/{workspaceId}/service-tokens/{serviceTokenId}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "DeleteV1WorkspacesByWorkspaceIdServiceTokensByServiceTokenIdRequest",
-  }) as any as S.Schema<DeleteV1WorkspacesByWorkspaceIdServiceTokensByServiceTokenIdRequest>;
-
-export interface DeleteV1WorkspacesByWorkspaceIdServiceTokensByServiceTokenIdResponse {}
-export const DeleteV1WorkspacesByWorkspaceIdServiceTokensByServiceTokenIdResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier:
-      "DeleteV1WorkspacesByWorkspaceIdServiceTokensByServiceTokenIdResponse",
-  }) as any as S.Schema<DeleteV1WorkspacesByWorkspaceIdServiceTokensByServiceTokenIdResponse>;
-
-export interface GetV1BranchesByBranchIdRequest {
-  branchId: string;
-}
-export const GetV1BranchesByBranchIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    branchId: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/v1/branches/{branchId}", code: 200 })),
-).annotate({
-  identifier: "GetV1BranchesByBranchIdRequest",
-}) as any as S.Schema<GetV1BranchesByBranchIdRequest>;
-
-export type GetV1BranchesByBranchIdResponseDataRole = "production" | "preview";
-export const GetV1BranchesByBranchIdResponseDataRole = /*@__PURE__*/ S.String;
-
-/** Thin reference to the parent Project. Member resources are intentionally NOT inlined — list /v1/databases?branchId=<br_xxx> or /v1/apps?branchId=<br_xxx> instead (see API design principles "Flat and Hierarchical Coexistence"). */
-export interface GetV1BranchesByBranchIdResponseDataProject {
-  id: string;
-  url: string;
-  name: string;
-}
-export const GetV1BranchesByBranchIdResponseDataProject =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.String,
-      url: S.String,
-      name: S.String,
-    }),
-  ).annotate({
-    identifier: "GetV1BranchesByBranchIdResponseDataProject",
-  }) as any as S.Schema<GetV1BranchesByBranchIdResponseDataProject>;
-
-export interface GetV1BranchesByBranchIdResponseData {
-  id: string;
-  type: string;
-  url: string;
-  gitName: string;
-  isDefault: boolean;
-  role: GetV1BranchesByBranchIdResponseDataRole;
-  createdAt: string;
-  updatedAt: string;
-  /** Thin reference to the parent Project. Member resources are intentionally NOT inlined — list /v1/databases?branchId=<br_xxx> or /v1/apps?branchId=<br_xxx> instead (see API design principles "Flat and Hierarchical Coexistence"). */
-  project: GetV1BranchesByBranchIdResponseDataProject;
-}
-export const GetV1BranchesByBranchIdResponseData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    type: S.String,
-    url: S.String,
-    gitName: S.String,
-    isDefault: S.Boolean,
-    role: GetV1BranchesByBranchIdResponseDataRole,
-    createdAt: S.String,
-    updatedAt: S.String,
-    project: GetV1BranchesByBranchIdResponseDataProject,
-  }),
-).annotate({
-  identifier: "GetV1BranchesByBranchIdResponseData",
-}) as any as S.Schema<GetV1BranchesByBranchIdResponseData>;
-
-export interface GetV1BranchesByBranchIdResponse {
-  data: GetV1BranchesByBranchIdResponseData;
-}
-export const GetV1BranchesByBranchIdResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: GetV1BranchesByBranchIdResponseData,
-  }),
-).annotate({
-  identifier: "GetV1BranchesByBranchIdResponse",
-}) as any as S.Schema<GetV1BranchesByBranchIdResponse>;
-
-export interface GetV1BucketsRequest {
-  cursor?: string;
-  limit?: number;
-  projectId?: string;
-  branchId?: string;
-  branchGitName?: string;
-}
-export const GetV1BucketsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    cursor: S.optional(S.String.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    projectId: S.optional(S.String.pipe(T.Query())),
-    branchId: S.optional(S.String.pipe(T.Query())),
-    branchGitName: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/v1/buckets", code: 200 })),
-).annotate({
-  identifier: "GetV1BucketsRequest",
-}) as any as S.Schema<GetV1BucketsRequest>;
-
-export type GetV1BucketsResponseDataItemProject =
-  GetV1BranchesByBranchIdResponseDataProject;
-export const GetV1BucketsResponseDataItemProject =
-  GetV1BranchesByBranchIdResponseDataProject;
-
-export interface GetV1BucketsResponseDataItem {
-  id: string;
-  type: string;
-  url: string;
-  name: string;
-  providerName: string;
-  status: string;
-  createdAt: string;
-  project: GetV1BranchesByBranchIdResponseDataProject;
-  branchId: string | null;
-}
-export const GetV1BucketsResponseDataItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    type: S.String,
-    url: S.String,
-    name: S.String,
-    providerName: S.String,
-    status: S.String,
-    createdAt: S.String,
-    project: GetV1BranchesByBranchIdResponseDataProject,
-    branchId: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "GetV1BucketsResponseDataItem",
-}) as any as S.Schema<GetV1BucketsResponseDataItem>;
-
-export type GetV1BucketsResponseDataList = Array<GetV1BucketsResponseDataItem>;
-export const GetV1BucketsResponseDataList = /*@__PURE__*/ S.Array(
-  GetV1BucketsResponseDataItem,
-) as any as S.Schema<GetV1BucketsResponseDataList>;
-
-export interface GetV1BucketsResponsePagination {
-  /** Next cursor to continue pagination */
-  nextCursor: string | null;
-  /** Whether there are more items to paginate */
-  hasMore: boolean;
-}
-export const GetV1BucketsResponsePagination = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextCursor: S.NullOr(S.String),
-    hasMore: S.Boolean,
-  }),
-).annotate({
-  identifier: "GetV1BucketsResponsePagination",
-}) as any as S.Schema<GetV1BucketsResponsePagination>;
-
-export interface GetV1BucketsResponse {
-  data: GetV1BucketsResponseDataList;
-  pagination: GetV1BucketsResponsePagination;
-}
-export const GetV1BucketsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: GetV1BucketsResponseDataList,
-    pagination: GetV1BucketsResponsePagination,
-  }),
-).annotate({
-  identifier: "GetV1BucketsResponse",
-}) as any as S.Schema<GetV1BucketsResponse>;
-
-export interface GetV1BucketsByBucketIdRequest {
-  bucketId: string;
-}
-export const GetV1BucketsByBucketIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    bucketId: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/v1/buckets/{bucketId}", code: 200 })),
-).annotate({
-  identifier: "GetV1BucketsByBucketIdRequest",
-}) as any as S.Schema<GetV1BucketsByBucketIdRequest>;
-
-export type GetV1BucketsByBucketIdResponseDataProject =
-  GetV1BranchesByBranchIdResponseDataProject;
-export const GetV1BucketsByBucketIdResponseDataProject =
-  GetV1BranchesByBranchIdResponseDataProject;
-
-export type GetV1BucketsByBucketIdResponseData = GetV1BucketsResponseDataItem;
-export const GetV1BucketsByBucketIdResponseData = GetV1BucketsResponseDataItem;
-
-export interface GetV1BucketsByBucketIdResponse {
-  data: GetV1BucketsResponseDataItem;
-}
-export const GetV1BucketsByBucketIdResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: GetV1BucketsResponseDataItem,
-  }),
-).annotate({
-  identifier: "GetV1BucketsByBucketIdResponse",
-}) as any as S.Schema<GetV1BucketsByBucketIdResponse>;
-
-export interface GetV1BucketsByBucketIdKeysRequest {
-  bucketId: string;
-  cursor?: string;
-  limit?: number;
-}
-export const GetV1BucketsByBucketIdKeysRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    bucketId: S.String.pipe(T.Label()),
-    cursor: S.optional(S.String.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/v1/buckets/{bucketId}/keys", code: 200 }),
-  ),
-).annotate({
-  identifier: "GetV1BucketsByBucketIdKeysRequest",
-}) as any as S.Schema<GetV1BucketsByBucketIdKeysRequest>;
-
-export type GetV1BucketsByBucketIdKeysResponseDataItemRole =
-  | "read"
-  | "read_write";
-export const GetV1BucketsByBucketIdKeysResponseDataItemRole =
-  /*@__PURE__*/ S.String;
-
-export interface GetV1BucketsByBucketIdKeysResponseDataItem {
-  id: string;
-  type: string;
-  name: string;
-  valueHint: string;
-  role: GetV1BucketsByBucketIdKeysResponseDataItemRole;
-  createdAt: string;
-}
-export const GetV1BucketsByBucketIdKeysResponseDataItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.String,
-      type: S.String,
-      name: S.String,
-      valueHint: S.String,
-      role: GetV1BucketsByBucketIdKeysResponseDataItemRole,
-      createdAt: S.String,
-    }),
-  ).annotate({
-    identifier: "GetV1BucketsByBucketIdKeysResponseDataItem",
-  }) as any as S.Schema<GetV1BucketsByBucketIdKeysResponseDataItem>;
-
-export type GetV1BucketsByBucketIdKeysResponseDataList =
-  Array<GetV1BucketsByBucketIdKeysResponseDataItem>;
-export const GetV1BucketsByBucketIdKeysResponseDataList = /*@__PURE__*/ S.Array(
-  GetV1BucketsByBucketIdKeysResponseDataItem,
-) as any as S.Schema<GetV1BucketsByBucketIdKeysResponseDataList>;
-
-export type GetV1BucketsByBucketIdKeysResponsePagination =
-  GetV1BucketsResponsePagination;
-export const GetV1BucketsByBucketIdKeysResponsePagination =
-  GetV1BucketsResponsePagination;
-
-export interface GetV1BucketsByBucketIdKeysResponse {
-  data: GetV1BucketsByBucketIdKeysResponseDataList;
-  pagination: GetV1BucketsResponsePagination;
-}
-export const GetV1BucketsByBucketIdKeysResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: GetV1BucketsByBucketIdKeysResponseDataList,
-    pagination: GetV1BucketsResponsePagination,
-  }),
-).annotate({
-  identifier: "GetV1BucketsByBucketIdKeysResponse",
-}) as any as S.Schema<GetV1BucketsByBucketIdKeysResponse>;
-
-export type GetV1BuildsRequestState =
-  | "pending"
-  | "running"
-  | "succeeded"
-  | "failed"
-  | "cancelled";
-export const GetV1BuildsRequestState = /*@__PURE__*/ S.String;
-
-export interface GetV1BuildsRequest {
-  cursor?: string;
-  limit?: number;
-  projectId?: string;
-  branchId?: string;
-  state?: GetV1BuildsRequestState | (string & {});
-}
-export const GetV1BuildsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    cursor: S.optional(S.String.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    projectId: S.optional(S.String.pipe(T.Query())),
-    branchId: S.optional(S.String.pipe(T.Query())),
-    state: S.optional(GetV1BuildsRequestState.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/v1/builds", code: 200 })),
-).annotate({
-  identifier: "GetV1BuildsRequest",
-}) as any as S.Schema<GetV1BuildsRequest>;
-
-export type GetV1BuildsResponseDataItemSource =
-  | "webhook"
-  | "setup"
-  | "manual"
-  | "ci"
-  | "cli";
-export const GetV1BuildsResponseDataItemSource = /*@__PURE__*/ S.String;
-
-export type GetV1BuildsResponseDataItemState =
-  | "pending"
-  | "running"
-  | "succeeded"
-  | "failed"
-  | "cancelled";
-export const GetV1BuildsResponseDataItemState = /*@__PURE__*/ S.String;
-
-/** Null when nothing reported a phase; the platform never invents an observation it did not receive. */
-export type GetV1BuildsResponseDataItemPhase = "queued" | "build" | "deploy";
-export const GetV1BuildsResponseDataItemPhase = /*@__PURE__*/ S.String;
-
-export interface GetV1BuildsResponseDataItem {
-  id: string;
-  source: GetV1BuildsResponseDataItemSource;
-  state: GetV1BuildsResponseDataItemState;
-  /** Null when nothing reported a phase; the platform never invents an observation it did not receive. */
-  phase: GetV1BuildsResponseDataItemPhase | null;
-  commitSha: string;
-  branchName: string;
-  /** Repository the build ran against. Set only when the workspace has a live link to it; a reported repository the platform does not know stays null. */
-  gitRepoId: string | null;
-  projectId: string | null;
-  branchId: string | null;
-  externalLogUrl: string | null;
-  deployedUrl: string | null;
-  applicationTopologyContentHash: string | null;
-  errorMessage: string | null;
-  failingStep: string | null;
-  createdAt: string;
-  startedAt: string | null;
-  finishedAt: string | null;
-}
-export const GetV1BuildsResponseDataItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    source: GetV1BuildsResponseDataItemSource,
-    state: GetV1BuildsResponseDataItemState,
-    phase: S.NullOr(GetV1BuildsResponseDataItemPhase),
-    commitSha: S.String,
-    branchName: S.String,
-    gitRepoId: S.NullOr(S.String),
-    projectId: S.NullOr(S.String),
-    branchId: S.NullOr(S.String),
-    externalLogUrl: S.NullOr(S.String),
-    deployedUrl: S.NullOr(S.String),
-    applicationTopologyContentHash: S.NullOr(S.String),
-    errorMessage: S.NullOr(S.String),
-    failingStep: S.NullOr(S.String),
-    createdAt: S.String,
-    startedAt: S.NullOr(S.String),
-    finishedAt: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "GetV1BuildsResponseDataItem",
-}) as any as S.Schema<GetV1BuildsResponseDataItem>;
-
-export type GetV1BuildsResponseDataList = Array<GetV1BuildsResponseDataItem>;
-export const GetV1BuildsResponseDataList = /*@__PURE__*/ S.Array(
-  GetV1BuildsResponseDataItem,
-) as any as S.Schema<GetV1BuildsResponseDataList>;
-
-export type GetV1BuildsResponsePagination = GetV1BucketsResponsePagination;
-export const GetV1BuildsResponsePagination = GetV1BucketsResponsePagination;
-
-export interface GetV1BuildsResponse {
-  data: GetV1BuildsResponseDataList;
-  pagination: GetV1BucketsResponsePagination;
-}
-export const GetV1BuildsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: GetV1BuildsResponseDataList,
-    pagination: GetV1BucketsResponsePagination,
-  }),
-).annotate({
-  identifier: "GetV1BuildsResponse",
-}) as any as S.Schema<GetV1BuildsResponse>;
-
-export interface GetV1BuildsByBuildIdRequest {
-  buildId: string;
-}
-export const GetV1BuildsByBuildIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    buildId: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/v1/builds/{buildId}", code: 200 })),
-).annotate({
-  identifier: "GetV1BuildsByBuildIdRequest",
-}) as any as S.Schema<GetV1BuildsByBuildIdRequest>;
-
-export type GetV1BuildsByBuildIdResponseDataSource =
-  | "webhook"
-  | "setup"
-  | "manual"
-  | "ci"
-  | "cli";
-export const GetV1BuildsByBuildIdResponseDataSource = /*@__PURE__*/ S.String;
-
-export type GetV1BuildsByBuildIdResponseDataState =
-  | "pending"
-  | "running"
-  | "succeeded"
-  | "failed"
-  | "cancelled";
-export const GetV1BuildsByBuildIdResponseDataState = /*@__PURE__*/ S.String;
-
-/** Null when nothing reported a phase; the platform never invents an observation it did not receive. */
-export type GetV1BuildsByBuildIdResponseDataPhase =
-  | "queued"
-  | "build"
-  | "deploy";
-export const GetV1BuildsByBuildIdResponseDataPhase = /*@__PURE__*/ S.String;
-
-export type GetV1BuildsByBuildIdResponseDataResourcesItemResourceType =
-  | "project"
-  | "branch"
-  | "database"
-  | "app"
-  | "deployment"
-  | "bucket"
-  | "service_key"
-  | "config_variable";
-export const GetV1BuildsByBuildIdResponseDataResourcesItemResourceType =
-  /*@__PURE__*/ S.String;
-
-export type GetV1BuildsByBuildIdResponseDataResourcesItemAction =
-  | "created"
-  | "acted_on"
-  | "deleted";
-export const GetV1BuildsByBuildIdResponseDataResourcesItemAction =
-  /*@__PURE__*/ S.String;
-
-export interface GetV1BuildsByBuildIdResponseDataResourcesItem {
-  resourceType: GetV1BuildsByBuildIdResponseDataResourcesItemResourceType;
-  /** Prefixed id of the reported resource. */
-  resourceId: string;
-  action: GetV1BuildsByBuildIdResponseDataResourcesItemAction;
-  createdAt: string;
-}
-export const GetV1BuildsByBuildIdResponseDataResourcesItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      resourceType: GetV1BuildsByBuildIdResponseDataResourcesItemResourceType,
-      resourceId: S.String,
-      action: GetV1BuildsByBuildIdResponseDataResourcesItemAction,
-      createdAt: S.String,
-    }),
-  ).annotate({
-    identifier: "GetV1BuildsByBuildIdResponseDataResourcesItem",
-  }) as any as S.Schema<GetV1BuildsByBuildIdResponseDataResourcesItem>;
-
-export type GetV1BuildsByBuildIdResponseDataResourcesList =
-  Array<GetV1BuildsByBuildIdResponseDataResourcesItem>;
-export const GetV1BuildsByBuildIdResponseDataResourcesList =
-  /*@__PURE__*/ S.Array(
-    GetV1BuildsByBuildIdResponseDataResourcesItem,
-  ) as any as S.Schema<GetV1BuildsByBuildIdResponseDataResourcesList>;
-
-export interface GetV1BuildsByBuildIdResponseData {
-  id: string;
-  source: GetV1BuildsByBuildIdResponseDataSource;
-  state: GetV1BuildsByBuildIdResponseDataState;
-  /** Null when nothing reported a phase; the platform never invents an observation it did not receive. */
-  phase: GetV1BuildsByBuildIdResponseDataPhase | null;
-  commitSha: string;
-  branchName: string;
-  /** Repository the build ran against. Set only when the workspace has a live link to it; a reported repository the platform does not know stays null. */
-  gitRepoId: string | null;
-  projectId: string | null;
-  branchId: string | null;
-  externalLogUrl: string | null;
-  deployedUrl: string | null;
-  applicationTopologyContentHash: string | null;
-  errorMessage: string | null;
-  failingStep: string | null;
-  createdAt: string;
-  startedAt: string | null;
-  finishedAt: string | null;
-  resources: GetV1BuildsByBuildIdResponseDataResourcesList;
-}
-export const GetV1BuildsByBuildIdResponseData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    source: GetV1BuildsByBuildIdResponseDataSource,
-    state: GetV1BuildsByBuildIdResponseDataState,
-    phase: S.NullOr(GetV1BuildsByBuildIdResponseDataPhase),
-    commitSha: S.String,
-    branchName: S.String,
-    gitRepoId: S.NullOr(S.String),
-    projectId: S.NullOr(S.String),
-    branchId: S.NullOr(S.String),
-    externalLogUrl: S.NullOr(S.String),
-    deployedUrl: S.NullOr(S.String),
-    applicationTopologyContentHash: S.NullOr(S.String),
-    errorMessage: S.NullOr(S.String),
-    failingStep: S.NullOr(S.String),
-    createdAt: S.String,
-    startedAt: S.NullOr(S.String),
-    finishedAt: S.NullOr(S.String),
-    resources: GetV1BuildsByBuildIdResponseDataResourcesList,
-  }),
-).annotate({
-  identifier: "GetV1BuildsByBuildIdResponseData",
-}) as any as S.Schema<GetV1BuildsByBuildIdResponseData>;
-
-export interface GetV1BuildsByBuildIdResponse {
-  data: GetV1BuildsByBuildIdResponseData;
-}
-export const GetV1BuildsByBuildIdResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: GetV1BuildsByBuildIdResponseData,
-  }),
-).annotate({
-  identifier: "GetV1BuildsByBuildIdResponse",
-}) as any as S.Schema<GetV1BuildsByBuildIdResponse>;
-
-export type GetV1BuildsByBuildIdLogsRequestFollow = "true" | "false";
-export const GetV1BuildsByBuildIdLogsRequestFollow = /*@__PURE__*/ S.String;
-
-export interface GetV1BuildsByBuildIdLogsRequest {
-  buildId: string;
-  follow?: GetV1BuildsByBuildIdLogsRequestFollow | (string & {});
-  cursor?: string;
-}
-export const GetV1BuildsByBuildIdLogsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    buildId: S.String.pipe(T.Label()),
-    follow: S.optional(GetV1BuildsByBuildIdLogsRequestFollow.pipe(T.Query())),
-    cursor: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/v1/builds/{buildId}/logs", code: 200 }),
-  ),
-).annotate({
-  identifier: "GetV1BuildsByBuildIdLogsRequest",
-}) as any as S.Schema<GetV1BuildsByBuildIdLogsRequest>;
-
-export interface GetV1BuildsByBuildIdLogsResponse {}
-export const GetV1BuildsByBuildIdLogsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "GetV1BuildsByBuildIdLogsResponse",
-}) as any as S.Schema<GetV1BuildsByBuildIdLogsResponse>;
-
-export interface GetV1ConnectionsRequest {
-  cursor?: string;
-  limit?: number;
-  databaseId?: string;
-}
-export const GetV1ConnectionsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    cursor: S.optional(S.String.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    databaseId: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/v1/connections", code: 200 })),
-).annotate({
-  identifier: "GetV1ConnectionsRequest",
-}) as any as S.Schema<GetV1ConnectionsRequest>;
-
-export type GetV1ConnectionsResponseDataItemKind = "postgres" | "accelerate";
-export const GetV1ConnectionsResponseDataItemKind = /*@__PURE__*/ S.String;
-
-export interface GetV1ConnectionsResponseDataItemEndpointsDirect {
-  host: string;
-  port: number;
-}
-export const GetV1ConnectionsResponseDataItemEndpointsDirect =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      host: S.String,
-      port: S.Number,
-    }),
-  ).annotate({
-    identifier: "GetV1ConnectionsResponseDataItemEndpointsDirect",
-  }) as any as S.Schema<GetV1ConnectionsResponseDataItemEndpointsDirect>;
-
-export type GetV1ConnectionsResponseDataItemEndpointsPooled =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-export const GetV1ConnectionsResponseDataItemEndpointsPooled =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-
-export type GetV1ConnectionsResponseDataItemEndpointsAccelerate =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-export const GetV1ConnectionsResponseDataItemEndpointsAccelerate =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-
-export interface GetV1ConnectionsResponseDataItemEndpoints {
-  direct?: GetV1ConnectionsResponseDataItemEndpointsDirect;
-  pooled?: GetV1ConnectionsResponseDataItemEndpointsDirect;
-  accelerate?: GetV1ConnectionsResponseDataItemEndpointsDirect;
-}
-export const GetV1ConnectionsResponseDataItemEndpoints =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      direct: S.optional(GetV1ConnectionsResponseDataItemEndpointsDirect),
-      pooled: S.optional(GetV1ConnectionsResponseDataItemEndpointsDirect),
-      accelerate: S.optional(GetV1ConnectionsResponseDataItemEndpointsDirect),
-    }),
-  ).annotate({
-    identifier: "GetV1ConnectionsResponseDataItemEndpoints",
-  }) as any as S.Schema<GetV1ConnectionsResponseDataItemEndpoints>;
-
-/** Deprecated: use `endpoints.direct` instead. */
-export interface GetV1ConnectionsResponseDataItemDirectConnection {
-  host: string;
-  pass: string;
-  user: string;
-}
-export const GetV1ConnectionsResponseDataItemDirectConnection =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      host: S.String,
-      pass: S.String,
-      user: S.String,
-    }),
-  ).annotate({
-    identifier: "GetV1ConnectionsResponseDataItemDirectConnection",
-  }) as any as S.Schema<GetV1ConnectionsResponseDataItemDirectConnection>;
-
-export type GetV1ConnectionsResponseDataItemDatabase =
-  GetV1BranchesByBranchIdResponseDataProject;
-export const GetV1ConnectionsResponseDataItemDatabase =
-  GetV1BranchesByBranchIdResponseDataProject;
-
-export interface GetV1ConnectionsResponseDataItem {
-  id: string;
-  type: string;
-  url: string;
-  name: string;
-  createdAt: string;
-  kind: GetV1ConnectionsResponseDataItemKind;
-  endpoints: GetV1ConnectionsResponseDataItemEndpoints;
-  /** Deprecated: use `endpoints.direct` instead. */
-  directConnection?: GetV1ConnectionsResponseDataItemDirectConnection | null;
-  database: GetV1BranchesByBranchIdResponseDataProject;
-}
-export const GetV1ConnectionsResponseDataItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    type: S.String,
-    url: S.String,
-    name: S.String,
-    createdAt: S.String,
-    kind: GetV1ConnectionsResponseDataItemKind,
-    endpoints: GetV1ConnectionsResponseDataItemEndpoints,
-    directConnection: S.optional(
-      S.NullOr(GetV1ConnectionsResponseDataItemDirectConnection),
-    ),
-    database: GetV1BranchesByBranchIdResponseDataProject,
-  }),
-).annotate({
-  identifier: "GetV1ConnectionsResponseDataItem",
-}) as any as S.Schema<GetV1ConnectionsResponseDataItem>;
-
-export type GetV1ConnectionsResponseDataList =
-  Array<GetV1ConnectionsResponseDataItem>;
-export const GetV1ConnectionsResponseDataList = /*@__PURE__*/ S.Array(
-  GetV1ConnectionsResponseDataItem,
-) as any as S.Schema<GetV1ConnectionsResponseDataList>;
-
-export type GetV1ConnectionsResponsePagination = GetV1BucketsResponsePagination;
-export const GetV1ConnectionsResponsePagination =
-  GetV1BucketsResponsePagination;
-
-export interface GetV1ConnectionsResponse {
-  data: GetV1ConnectionsResponseDataList;
-  pagination: GetV1BucketsResponsePagination;
-}
-export const GetV1ConnectionsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: GetV1ConnectionsResponseDataList,
-    pagination: GetV1BucketsResponsePagination,
-  }),
-).annotate({
-  identifier: "GetV1ConnectionsResponse",
-}) as any as S.Schema<GetV1ConnectionsResponse>;
-
-export interface GetV1ConnectionsByIdRequest {
-  id: string;
-}
-export const GetV1ConnectionsByIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/v1/connections/{id}", code: 200 })),
-).annotate({
-  identifier: "GetV1ConnectionsByIdRequest",
-}) as any as S.Schema<GetV1ConnectionsByIdRequest>;
-
-export type GetV1ConnectionsByIdResponseDataKind = "postgres" | "accelerate";
-export const GetV1ConnectionsByIdResponseDataKind = /*@__PURE__*/ S.String;
-
-export type GetV1ConnectionsByIdResponseDataEndpointsDirect =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-export const GetV1ConnectionsByIdResponseDataEndpointsDirect =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-
-export type GetV1ConnectionsByIdResponseDataEndpointsPooled =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-export const GetV1ConnectionsByIdResponseDataEndpointsPooled =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-
-export type GetV1ConnectionsByIdResponseDataEndpointsAccelerate =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-export const GetV1ConnectionsByIdResponseDataEndpointsAccelerate =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-
-export type GetV1ConnectionsByIdResponseDataEndpoints =
-  GetV1ConnectionsResponseDataItemEndpoints;
-export const GetV1ConnectionsByIdResponseDataEndpoints =
-  GetV1ConnectionsResponseDataItemEndpoints;
-
-/** Deprecated: use `endpoints.direct` instead. */
-export type GetV1ConnectionsByIdResponseDataDirectConnection =
-  GetV1ConnectionsResponseDataItemDirectConnection;
-export const GetV1ConnectionsByIdResponseDataDirectConnection =
-  GetV1ConnectionsResponseDataItemDirectConnection;
-
-export type GetV1ConnectionsByIdResponseDataDatabase =
-  GetV1BranchesByBranchIdResponseDataProject;
-export const GetV1ConnectionsByIdResponseDataDatabase =
-  GetV1BranchesByBranchIdResponseDataProject;
-
-export interface GetV1ConnectionsByIdResponseData {
-  id: string;
-  type: string;
-  url: string;
-  name: string;
-  createdAt: string;
-  kind: GetV1ConnectionsByIdResponseDataKind;
-  endpoints: GetV1ConnectionsResponseDataItemEndpoints;
-  /** Deprecated: use `endpoints.direct` instead. */
-  directConnection?: GetV1ConnectionsResponseDataItemDirectConnection | null;
-  database: GetV1BranchesByBranchIdResponseDataProject;
-}
-export const GetV1ConnectionsByIdResponseData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    type: S.String,
-    url: S.String,
-    name: S.String,
-    createdAt: S.String,
-    kind: GetV1ConnectionsByIdResponseDataKind,
-    endpoints: GetV1ConnectionsResponseDataItemEndpoints,
-    directConnection: S.optional(
-      S.NullOr(GetV1ConnectionsResponseDataItemDirectConnection),
-    ),
-    database: GetV1BranchesByBranchIdResponseDataProject,
-  }),
-).annotate({
-  identifier: "GetV1ConnectionsByIdResponseData",
-}) as any as S.Schema<GetV1ConnectionsByIdResponseData>;
-
-export interface GetV1ConnectionsByIdResponse {
-  data: GetV1ConnectionsByIdResponseData;
-}
-export const GetV1ConnectionsByIdResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: GetV1ConnectionsByIdResponseData,
-  }),
-).annotate({
-  identifier: "GetV1ConnectionsByIdResponse",
-}) as any as S.Schema<GetV1ConnectionsByIdResponse>;
-
-export interface GetV1DatabasesRequest {
-  cursor?: string;
-  limit?: number;
-  projectId?: string;
-  branchId?: string;
-  branchGitName?: string;
-}
-export const GetV1DatabasesRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    cursor: S.optional(S.String.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    projectId: S.optional(S.String.pipe(T.Query())),
-    branchId: S.optional(S.String.pipe(T.Query())),
-    branchGitName: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/v1/databases", code: 200 })),
-).annotate({
-  identifier: "GetV1DatabasesRequest",
-}) as any as S.Schema<GetV1DatabasesRequest>;
-
-export type GetV1DatabasesResponseDataItemStatus =
-  | "failure"
-  | "provisioning"
-  | "ready"
-  | "recovering";
-export const GetV1DatabasesResponseDataItemStatus = /*@__PURE__*/ S.String;
-
-export type GetV1DatabasesResponseDataItemConnectionsItemKind =
-  | "postgres"
-  | "accelerate";
-export const GetV1DatabasesResponseDataItemConnectionsItemKind =
-  /*@__PURE__*/ S.String;
-
-export type GetV1DatabasesResponseDataItemConnectionsItemEndpointsDirect =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-export const GetV1DatabasesResponseDataItemConnectionsItemEndpointsDirect =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-
-export type GetV1DatabasesResponseDataItemConnectionsItemEndpointsPooled =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-export const GetV1DatabasesResponseDataItemConnectionsItemEndpointsPooled =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-
-export type GetV1DatabasesResponseDataItemConnectionsItemEndpointsAccelerate =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-export const GetV1DatabasesResponseDataItemConnectionsItemEndpointsAccelerate =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-
-export type GetV1DatabasesResponseDataItemConnectionsItemEndpoints =
-  GetV1ConnectionsResponseDataItemEndpoints;
-export const GetV1DatabasesResponseDataItemConnectionsItemEndpoints =
-  GetV1ConnectionsResponseDataItemEndpoints;
-
-/** Deprecated: use `endpoints.direct` instead. */
-export type GetV1DatabasesResponseDataItemConnectionsItemDirectConnection =
-  GetV1ConnectionsResponseDataItemDirectConnection;
-export const GetV1DatabasesResponseDataItemConnectionsItemDirectConnection =
-  GetV1ConnectionsResponseDataItemDirectConnection;
-
-export type GetV1DatabasesResponseDataItemConnectionsItemDatabase =
-  GetV1BranchesByBranchIdResponseDataProject;
-export const GetV1DatabasesResponseDataItemConnectionsItemDatabase =
-  GetV1BranchesByBranchIdResponseDataProject;
-
-export interface GetV1DatabasesResponseDataItemConnectionsItem {
-  id: string;
-  type: string;
-  url: string;
-  name: string;
-  createdAt: string;
-  kind: GetV1DatabasesResponseDataItemConnectionsItemKind;
-  endpoints: GetV1ConnectionsResponseDataItemEndpoints;
-  /** Deprecated: use `endpoints.direct` instead. */
-  directConnection?: GetV1ConnectionsResponseDataItemDirectConnection | null;
-  database: GetV1BranchesByBranchIdResponseDataProject;
-}
-export const GetV1DatabasesResponseDataItemConnectionsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.String,
-      type: S.String,
-      url: S.String,
-      name: S.String,
-      createdAt: S.String,
-      kind: GetV1DatabasesResponseDataItemConnectionsItemKind,
-      endpoints: GetV1ConnectionsResponseDataItemEndpoints,
-      directConnection: S.optional(
-        S.NullOr(GetV1ConnectionsResponseDataItemDirectConnection),
-      ),
-      database: GetV1BranchesByBranchIdResponseDataProject,
-    }),
-  ).annotate({
-    identifier: "GetV1DatabasesResponseDataItemConnectionsItem",
-  }) as any as S.Schema<GetV1DatabasesResponseDataItemConnectionsItem>;
-
-export type GetV1DatabasesResponseDataItemConnectionsList =
-  Array<GetV1DatabasesResponseDataItemConnectionsItem>;
-export const GetV1DatabasesResponseDataItemConnectionsList =
-  /*@__PURE__*/ S.Array(
-    GetV1DatabasesResponseDataItemConnectionsItem,
-  ) as any as S.Schema<GetV1DatabasesResponseDataItemConnectionsList>;
-
-export type GetV1DatabasesResponseDataItemProject =
-  GetV1BranchesByBranchIdResponseDataProject;
-export const GetV1DatabasesResponseDataItemProject =
-  GetV1BranchesByBranchIdResponseDataProject;
-
-export interface GetV1DatabasesResponseDataItemRegion {
-  id: string;
-  name: string;
-}
-export const GetV1DatabasesResponseDataItemRegion = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String,
-      name: S.String,
-    }),
-).annotate({
-  identifier: "GetV1DatabasesResponseDataItemRegion",
-}) as any as S.Schema<GetV1DatabasesResponseDataItemRegion>;
-
-export interface GetV1DatabasesResponseDataItemSourceCase0 {
-  type: string;
-}
-export const GetV1DatabasesResponseDataItemSourceCase0 =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: S.String,
-    }),
-  ).annotate({
-    identifier: "GetV1DatabasesResponseDataItemSourceCase0",
-  }) as any as S.Schema<GetV1DatabasesResponseDataItemSourceCase0>;
-
-export interface GetV1DatabasesResponseDataItemSourceCase1 {
-  type: string;
-  databaseId: string;
-  /** ID of the backup to restore from */
-  backupId: string;
-}
-export const GetV1DatabasesResponseDataItemSourceCase1 =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: S.String,
-      databaseId: S.String,
-      backupId: S.String,
-    }),
-  ).annotate({
-    identifier: "GetV1DatabasesResponseDataItemSourceCase1",
-  }) as any as S.Schema<GetV1DatabasesResponseDataItemSourceCase1>;
-
-export interface GetV1DatabasesResponseDataItemSourceCase2 {
-  type: string;
-  databaseId: string;
-}
-export const GetV1DatabasesResponseDataItemSourceCase2 =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: S.String,
-      databaseId: S.String,
-    }),
-  ).annotate({
-    identifier: "GetV1DatabasesResponseDataItemSourceCase2",
-  }) as any as S.Schema<GetV1DatabasesResponseDataItemSourceCase2>;
-
-export type GetV1DatabasesResponseDataItemSource =
-  | GetV1DatabasesResponseDataItemSourceCase0
-  | GetV1DatabasesResponseDataItemSourceCase1
-  | GetV1DatabasesResponseDataItemSourceCase2;
-export const GetV1DatabasesResponseDataItemSource = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Union([
-      GetV1DatabasesResponseDataItemSourceCase0,
-      GetV1DatabasesResponseDataItemSourceCase1,
-      GetV1DatabasesResponseDataItemSourceCase2,
-    ]),
-) as any as S.Schema<GetV1DatabasesResponseDataItemSource>;
-
-export interface GetV1DatabasesResponseDataItem {
-  id: string;
-  type: string;
-  url: string;
-  name: string;
-  status: GetV1DatabasesResponseDataItemStatus;
-  createdAt: string;
-  isDefault: boolean;
-  defaultConnectionId: string | null;
-  connections: GetV1DatabasesResponseDataItemConnectionsList;
-  project: GetV1BranchesByBranchIdResponseDataProject;
-  region: GetV1DatabasesResponseDataItemRegion | null;
-  source: GetV1DatabasesResponseDataItemSource | null;
-  branchId: string | null;
-}
-export const GetV1DatabasesResponseDataItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    type: S.String,
-    url: S.String,
-    name: S.String,
-    status: GetV1DatabasesResponseDataItemStatus,
-    createdAt: S.String,
-    isDefault: S.Boolean,
-    defaultConnectionId: S.NullOr(S.String),
-    connections: GetV1DatabasesResponseDataItemConnectionsList,
-    project: GetV1BranchesByBranchIdResponseDataProject,
-    region: S.NullOr(GetV1DatabasesResponseDataItemRegion),
-    source: S.NullOr(GetV1DatabasesResponseDataItemSource),
-    branchId: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "GetV1DatabasesResponseDataItem",
-}) as any as S.Schema<GetV1DatabasesResponseDataItem>;
-
-export type GetV1DatabasesResponseDataList =
-  Array<GetV1DatabasesResponseDataItem>;
-export const GetV1DatabasesResponseDataList = /*@__PURE__*/ S.Array(
-  GetV1DatabasesResponseDataItem,
-) as any as S.Schema<GetV1DatabasesResponseDataList>;
-
-export type GetV1DatabasesResponsePagination = GetV1BucketsResponsePagination;
-export const GetV1DatabasesResponsePagination = GetV1BucketsResponsePagination;
-
-export interface GetV1DatabasesResponse {
-  data: GetV1DatabasesResponseDataList;
-  pagination: GetV1BucketsResponsePagination;
-}
-export const GetV1DatabasesResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: GetV1DatabasesResponseDataList,
-    pagination: GetV1BucketsResponsePagination,
-  }),
-).annotate({
-  identifier: "GetV1DatabasesResponse",
-}) as any as S.Schema<GetV1DatabasesResponse>;
-
-export interface GetV1DatabasesByDatabaseIdRequest {
-  databaseId: string;
-}
-export const GetV1DatabasesByDatabaseIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    databaseId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/v1/databases/{databaseId}", code: 200 }),
-  ),
-).annotate({
-  identifier: "GetV1DatabasesByDatabaseIdRequest",
-}) as any as S.Schema<GetV1DatabasesByDatabaseIdRequest>;
-
-export type GetV1DatabasesByDatabaseIdResponseDataStatus =
-  | "failure"
-  | "provisioning"
-  | "ready"
-  | "recovering";
-export const GetV1DatabasesByDatabaseIdResponseDataStatus =
-  /*@__PURE__*/ S.String;
-
-export type GetV1DatabasesByDatabaseIdResponseDataConnectionsItemKind =
-  | "postgres"
-  | "accelerate";
-export const GetV1DatabasesByDatabaseIdResponseDataConnectionsItemKind =
-  /*@__PURE__*/ S.String;
-
-export type GetV1DatabasesByDatabaseIdResponseDataConnectionsItemEndpointsDirect =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-export const GetV1DatabasesByDatabaseIdResponseDataConnectionsItemEndpointsDirect =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-
-export type GetV1DatabasesByDatabaseIdResponseDataConnectionsItemEndpointsPooled =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-export const GetV1DatabasesByDatabaseIdResponseDataConnectionsItemEndpointsPooled =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-
-export type GetV1DatabasesByDatabaseIdResponseDataConnectionsItemEndpointsAccelerate =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-export const GetV1DatabasesByDatabaseIdResponseDataConnectionsItemEndpointsAccelerate =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-
-export type GetV1DatabasesByDatabaseIdResponseDataConnectionsItemEndpoints =
-  GetV1ConnectionsResponseDataItemEndpoints;
-export const GetV1DatabasesByDatabaseIdResponseDataConnectionsItemEndpoints =
-  GetV1ConnectionsResponseDataItemEndpoints;
-
-/** Deprecated: use `endpoints.direct` instead. */
-export type GetV1DatabasesByDatabaseIdResponseDataConnectionsItemDirectConnection =
-  GetV1ConnectionsResponseDataItemDirectConnection;
-export const GetV1DatabasesByDatabaseIdResponseDataConnectionsItemDirectConnection =
-  GetV1ConnectionsResponseDataItemDirectConnection;
-
-export type GetV1DatabasesByDatabaseIdResponseDataConnectionsItemDatabase =
-  GetV1BranchesByBranchIdResponseDataProject;
-export const GetV1DatabasesByDatabaseIdResponseDataConnectionsItemDatabase =
-  GetV1BranchesByBranchIdResponseDataProject;
-
-export interface GetV1DatabasesByDatabaseIdResponseDataConnectionsItem {
-  id: string;
-  type: string;
-  url: string;
-  name: string;
-  createdAt: string;
-  kind: GetV1DatabasesByDatabaseIdResponseDataConnectionsItemKind;
-  endpoints: GetV1ConnectionsResponseDataItemEndpoints;
-  /** Deprecated: use `endpoints.direct` instead. */
-  directConnection?: GetV1ConnectionsResponseDataItemDirectConnection | null;
-  database: GetV1BranchesByBranchIdResponseDataProject;
-}
-export const GetV1DatabasesByDatabaseIdResponseDataConnectionsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.String,
-      type: S.String,
-      url: S.String,
-      name: S.String,
-      createdAt: S.String,
-      kind: GetV1DatabasesByDatabaseIdResponseDataConnectionsItemKind,
-      endpoints: GetV1ConnectionsResponseDataItemEndpoints,
-      directConnection: S.optional(
-        S.NullOr(GetV1ConnectionsResponseDataItemDirectConnection),
-      ),
-      database: GetV1BranchesByBranchIdResponseDataProject,
-    }),
-  ).annotate({
-    identifier: "GetV1DatabasesByDatabaseIdResponseDataConnectionsItem",
-  }) as any as S.Schema<GetV1DatabasesByDatabaseIdResponseDataConnectionsItem>;
-
-export type GetV1DatabasesByDatabaseIdResponseDataConnectionsList =
-  Array<GetV1DatabasesByDatabaseIdResponseDataConnectionsItem>;
-export const GetV1DatabasesByDatabaseIdResponseDataConnectionsList =
-  /*@__PURE__*/ S.Array(
-    GetV1DatabasesByDatabaseIdResponseDataConnectionsItem,
-  ) as any as S.Schema<GetV1DatabasesByDatabaseIdResponseDataConnectionsList>;
-
-export type GetV1DatabasesByDatabaseIdResponseDataProject =
-  GetV1BranchesByBranchIdResponseDataProject;
-export const GetV1DatabasesByDatabaseIdResponseDataProject =
-  GetV1BranchesByBranchIdResponseDataProject;
-
-export type GetV1DatabasesByDatabaseIdResponseDataRegion =
-  GetV1DatabasesResponseDataItemRegion;
-export const GetV1DatabasesByDatabaseIdResponseDataRegion =
-  GetV1DatabasesResponseDataItemRegion;
-
-export type GetV1DatabasesByDatabaseIdResponseDataSourceCase0 =
-  GetV1DatabasesResponseDataItemSourceCase0;
-export const GetV1DatabasesByDatabaseIdResponseDataSourceCase0 =
-  GetV1DatabasesResponseDataItemSourceCase0;
-
-export type GetV1DatabasesByDatabaseIdResponseDataSourceCase1 =
-  GetV1DatabasesResponseDataItemSourceCase1;
-export const GetV1DatabasesByDatabaseIdResponseDataSourceCase1 =
-  GetV1DatabasesResponseDataItemSourceCase1;
-
-export type GetV1DatabasesByDatabaseIdResponseDataSourceCase2 =
-  GetV1DatabasesResponseDataItemSourceCase2;
-export const GetV1DatabasesByDatabaseIdResponseDataSourceCase2 =
-  GetV1DatabasesResponseDataItemSourceCase2;
-
-export type GetV1DatabasesByDatabaseIdResponseDataSource =
-  | GetV1DatabasesResponseDataItemSourceCase0
-  | GetV1DatabasesResponseDataItemSourceCase1
-  | GetV1DatabasesResponseDataItemSourceCase2;
-export const GetV1DatabasesByDatabaseIdResponseDataSource =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Union([
-      GetV1DatabasesByDatabaseIdResponseDataSourceCase0,
-      GetV1DatabasesByDatabaseIdResponseDataSourceCase1,
-      GetV1DatabasesByDatabaseIdResponseDataSourceCase2,
-    ]),
-  ) as any as S.Schema<GetV1DatabasesByDatabaseIdResponseDataSource>;
-
-export interface GetV1DatabasesByDatabaseIdResponseData {
-  id: string;
-  type: string;
-  url: string;
-  name: string;
-  status: GetV1DatabasesByDatabaseIdResponseDataStatus;
-  createdAt: string;
-  isDefault: boolean;
-  defaultConnectionId: string | null;
-  connections: GetV1DatabasesByDatabaseIdResponseDataConnectionsList;
-  project: GetV1BranchesByBranchIdResponseDataProject;
-  region: GetV1DatabasesResponseDataItemRegion | null;
-  source: GetV1DatabasesByDatabaseIdResponseDataSource | null;
-  branchId: string | null;
-}
-export const GetV1DatabasesByDatabaseIdResponseData = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String,
-      type: S.String,
-      url: S.String,
-      name: S.String,
-      status: GetV1DatabasesByDatabaseIdResponseDataStatus,
-      createdAt: S.String,
-      isDefault: S.Boolean,
-      defaultConnectionId: S.NullOr(S.String),
-      connections: GetV1DatabasesByDatabaseIdResponseDataConnectionsList,
-      project: GetV1BranchesByBranchIdResponseDataProject,
-      region: S.NullOr(GetV1DatabasesResponseDataItemRegion),
-      source: S.NullOr(GetV1DatabasesByDatabaseIdResponseDataSource),
-      branchId: S.NullOr(S.String),
-    }),
-).annotate({
-  identifier: "GetV1DatabasesByDatabaseIdResponseData",
-}) as any as S.Schema<GetV1DatabasesByDatabaseIdResponseData>;
-
-export interface GetV1DatabasesByDatabaseIdResponse {
-  data: GetV1DatabasesByDatabaseIdResponseData;
-}
-export const GetV1DatabasesByDatabaseIdResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: GetV1DatabasesByDatabaseIdResponseData,
-  }),
-).annotate({
-  identifier: "GetV1DatabasesByDatabaseIdResponse",
-}) as any as S.Schema<GetV1DatabasesByDatabaseIdResponse>;
-
-export interface GetV1DatabasesByDatabaseIdBackupsRequest {
-  databaseId: string;
-  limit?: number;
-}
-export const GetV1DatabasesByDatabaseIdBackupsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      databaseId: S.String.pipe(T.Label()),
-      limit: S.optional(S.Number.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/databases/{databaseId}/backups",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "GetV1DatabasesByDatabaseIdBackupsRequest",
-}) as any as S.Schema<GetV1DatabasesByDatabaseIdBackupsRequest>;
-
-export type GetV1DatabasesByDatabaseIdBackupsResponseDataItemBackupType =
-  | "full"
-  | "incremental"
-  | "differential";
-export const GetV1DatabasesByDatabaseIdBackupsResponseDataItemBackupType =
-  /*@__PURE__*/ S.String;
-
-export type GetV1DatabasesByDatabaseIdBackupsResponseDataItemStatus =
-  | "running"
-  | "completed"
-  | "failed"
-  | "unknown";
-export const GetV1DatabasesByDatabaseIdBackupsResponseDataItemStatus =
-  /*@__PURE__*/ S.String;
-
-export interface GetV1DatabasesByDatabaseIdBackupsResponseDataItem {
-  id: string;
-  backupType: GetV1DatabasesByDatabaseIdBackupsResponseDataItemBackupType;
-  createdAt: string;
-  size?: number;
-  status: GetV1DatabasesByDatabaseIdBackupsResponseDataItemStatus;
-  type?: string;
-}
-export const GetV1DatabasesByDatabaseIdBackupsResponseDataItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.String,
-      backupType: GetV1DatabasesByDatabaseIdBackupsResponseDataItemBackupType,
-      createdAt: S.String,
-      size: S.optional(S.Number),
-      status: GetV1DatabasesByDatabaseIdBackupsResponseDataItemStatus,
-      type: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "GetV1DatabasesByDatabaseIdBackupsResponseDataItem",
-  }) as any as S.Schema<GetV1DatabasesByDatabaseIdBackupsResponseDataItem>;
-
-export type GetV1DatabasesByDatabaseIdBackupsResponseDataList =
-  Array<GetV1DatabasesByDatabaseIdBackupsResponseDataItem>;
-export const GetV1DatabasesByDatabaseIdBackupsResponseDataList =
-  /*@__PURE__*/ S.Array(
-    GetV1DatabasesByDatabaseIdBackupsResponseDataItem,
-  ) as any as S.Schema<GetV1DatabasesByDatabaseIdBackupsResponseDataList>;
-
-export interface GetV1DatabasesByDatabaseIdBackupsResponseMeta {
-  backupRetentionDays: number;
-}
-export const GetV1DatabasesByDatabaseIdBackupsResponseMeta =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      backupRetentionDays: S.Number,
-    }),
-  ).annotate({
-    identifier: "GetV1DatabasesByDatabaseIdBackupsResponseMeta",
-  }) as any as S.Schema<GetV1DatabasesByDatabaseIdBackupsResponseMeta>;
-
-export interface GetV1DatabasesByDatabaseIdBackupsResponsePagination {
-  hasMore: boolean;
-  limit: number | null;
-}
-export const GetV1DatabasesByDatabaseIdBackupsResponsePagination =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      hasMore: S.Boolean,
-      limit: S.NullOr(S.Number),
-    }),
-  ).annotate({
-    identifier: "GetV1DatabasesByDatabaseIdBackupsResponsePagination",
-  }) as any as S.Schema<GetV1DatabasesByDatabaseIdBackupsResponsePagination>;
-
-export interface GetV1DatabasesByDatabaseIdBackupsResponse {
-  data: GetV1DatabasesByDatabaseIdBackupsResponseDataList;
-  meta: GetV1DatabasesByDatabaseIdBackupsResponseMeta;
-  pagination: GetV1DatabasesByDatabaseIdBackupsResponsePagination;
-}
-export const GetV1DatabasesByDatabaseIdBackupsResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      data: GetV1DatabasesByDatabaseIdBackupsResponseDataList,
-      meta: GetV1DatabasesByDatabaseIdBackupsResponseMeta,
-      pagination: GetV1DatabasesByDatabaseIdBackupsResponsePagination,
-    }),
-  ).annotate({
-    identifier: "GetV1DatabasesByDatabaseIdBackupsResponse",
-  }) as any as S.Schema<GetV1DatabasesByDatabaseIdBackupsResponse>;
-
-export interface GetV1DatabasesByDatabaseIdConnectionsRequest {
-  databaseId: string;
-  cursor?: string;
-  limit?: number;
-}
-export const GetV1DatabasesByDatabaseIdConnectionsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      databaseId: S.String.pipe(T.Label()),
-      cursor: S.optional(S.String.pipe(T.Query())),
-      limit: S.optional(S.Number.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/databases/{databaseId}/connections",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetV1DatabasesByDatabaseIdConnectionsRequest",
-  }) as any as S.Schema<GetV1DatabasesByDatabaseIdConnectionsRequest>;
-
-export type GetV1DatabasesByDatabaseIdConnectionsResponseDataItemKind =
-  | "postgres"
-  | "accelerate";
-export const GetV1DatabasesByDatabaseIdConnectionsResponseDataItemKind =
-  /*@__PURE__*/ S.String;
-
-export type GetV1DatabasesByDatabaseIdConnectionsResponseDataItemEndpointsDirect =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-export const GetV1DatabasesByDatabaseIdConnectionsResponseDataItemEndpointsDirect =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-
-export type GetV1DatabasesByDatabaseIdConnectionsResponseDataItemEndpointsPooled =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-export const GetV1DatabasesByDatabaseIdConnectionsResponseDataItemEndpointsPooled =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-
-export type GetV1DatabasesByDatabaseIdConnectionsResponseDataItemEndpointsAccelerate =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-export const GetV1DatabasesByDatabaseIdConnectionsResponseDataItemEndpointsAccelerate =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-
-export type GetV1DatabasesByDatabaseIdConnectionsResponseDataItemEndpoints =
-  GetV1ConnectionsResponseDataItemEndpoints;
-export const GetV1DatabasesByDatabaseIdConnectionsResponseDataItemEndpoints =
-  GetV1ConnectionsResponseDataItemEndpoints;
-
-/** Deprecated: use `endpoints.direct` instead. */
-export type GetV1DatabasesByDatabaseIdConnectionsResponseDataItemDirectConnection =
-  GetV1ConnectionsResponseDataItemDirectConnection;
-export const GetV1DatabasesByDatabaseIdConnectionsResponseDataItemDirectConnection =
-  GetV1ConnectionsResponseDataItemDirectConnection;
-
-export type GetV1DatabasesByDatabaseIdConnectionsResponseDataItemDatabase =
-  GetV1BranchesByBranchIdResponseDataProject;
-export const GetV1DatabasesByDatabaseIdConnectionsResponseDataItemDatabase =
-  GetV1BranchesByBranchIdResponseDataProject;
-
-export interface GetV1DatabasesByDatabaseIdConnectionsResponseDataItem {
-  id: string;
-  type: string;
-  url: string;
-  name: string;
-  createdAt: string;
-  kind: GetV1DatabasesByDatabaseIdConnectionsResponseDataItemKind;
-  endpoints: GetV1ConnectionsResponseDataItemEndpoints;
-  /** Deprecated: use `endpoints.direct` instead. */
-  directConnection?: GetV1ConnectionsResponseDataItemDirectConnection | null;
-  database: GetV1BranchesByBranchIdResponseDataProject;
-}
-export const GetV1DatabasesByDatabaseIdConnectionsResponseDataItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.String,
-      type: S.String,
-      url: S.String,
-      name: S.String,
-      createdAt: S.String,
-      kind: GetV1DatabasesByDatabaseIdConnectionsResponseDataItemKind,
-      endpoints: GetV1ConnectionsResponseDataItemEndpoints,
-      directConnection: S.optional(
-        S.NullOr(GetV1ConnectionsResponseDataItemDirectConnection),
-      ),
-      database: GetV1BranchesByBranchIdResponseDataProject,
-    }),
-  ).annotate({
-    identifier: "GetV1DatabasesByDatabaseIdConnectionsResponseDataItem",
-  }) as any as S.Schema<GetV1DatabasesByDatabaseIdConnectionsResponseDataItem>;
-
-export type GetV1DatabasesByDatabaseIdConnectionsResponseDataList =
-  Array<GetV1DatabasesByDatabaseIdConnectionsResponseDataItem>;
-export const GetV1DatabasesByDatabaseIdConnectionsResponseDataList =
-  /*@__PURE__*/ S.Array(
-    GetV1DatabasesByDatabaseIdConnectionsResponseDataItem,
-  ) as any as S.Schema<GetV1DatabasesByDatabaseIdConnectionsResponseDataList>;
-
-export type GetV1DatabasesByDatabaseIdConnectionsResponsePagination =
-  GetV1BucketsResponsePagination;
-export const GetV1DatabasesByDatabaseIdConnectionsResponsePagination =
-  GetV1BucketsResponsePagination;
-
-export interface GetV1DatabasesByDatabaseIdConnectionsResponse {
-  data: GetV1DatabasesByDatabaseIdConnectionsResponseDataList;
-  pagination: GetV1BucketsResponsePagination;
-}
-export const GetV1DatabasesByDatabaseIdConnectionsResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      data: GetV1DatabasesByDatabaseIdConnectionsResponseDataList,
-      pagination: GetV1BucketsResponsePagination,
-    }),
-  ).annotate({
-    identifier: "GetV1DatabasesByDatabaseIdConnectionsResponse",
-  }) as any as S.Schema<GetV1DatabasesByDatabaseIdConnectionsResponse>;
-
-export interface GetV1DatabasesByDatabaseIdUsageRequest {
-  databaseId: string;
-  startDate?: string;
-  endDate?: string;
-}
-export const GetV1DatabasesByDatabaseIdUsageRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      databaseId: S.String.pipe(T.Label()),
-      startDate: S.optional(S.String.pipe(T.Query())),
-      endDate: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/databases/{databaseId}/usage",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "GetV1DatabasesByDatabaseIdUsageRequest",
-}) as any as S.Schema<GetV1DatabasesByDatabaseIdUsageRequest>;
-
-export interface GetV1DatabasesByDatabaseIdUsageResponsePeriod {
-  start: string;
-  end: string;
-}
-export const GetV1DatabasesByDatabaseIdUsageResponsePeriod =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      start: S.String,
-      end: S.String,
-    }),
-  ).annotate({
-    identifier: "GetV1DatabasesByDatabaseIdUsageResponsePeriod",
-  }) as any as S.Schema<GetV1DatabasesByDatabaseIdUsageResponsePeriod>;
-
-export interface GetV1DatabasesByDatabaseIdUsageResponseMetricsOperations {
-  used: number;
-  unit: string;
-}
-export const GetV1DatabasesByDatabaseIdUsageResponseMetricsOperations =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      used: S.Number,
-      unit: S.String,
-    }),
-  ).annotate({
-    identifier: "GetV1DatabasesByDatabaseIdUsageResponseMetricsOperations",
-  }) as any as S.Schema<GetV1DatabasesByDatabaseIdUsageResponseMetricsOperations>;
-
-export type GetV1DatabasesByDatabaseIdUsageResponseMetricsStorage =
-  GetV1DatabasesByDatabaseIdUsageResponseMetricsOperations;
-export const GetV1DatabasesByDatabaseIdUsageResponseMetricsStorage =
-  GetV1DatabasesByDatabaseIdUsageResponseMetricsOperations;
-
-export interface GetV1DatabasesByDatabaseIdUsageResponseMetrics {
-  operations: GetV1DatabasesByDatabaseIdUsageResponseMetricsOperations;
-  storage: GetV1DatabasesByDatabaseIdUsageResponseMetricsOperations;
-}
-export const GetV1DatabasesByDatabaseIdUsageResponseMetrics =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      operations: GetV1DatabasesByDatabaseIdUsageResponseMetricsOperations,
-      storage: GetV1DatabasesByDatabaseIdUsageResponseMetricsOperations,
-    }),
-  ).annotate({
-    identifier: "GetV1DatabasesByDatabaseIdUsageResponseMetrics",
-  }) as any as S.Schema<GetV1DatabasesByDatabaseIdUsageResponseMetrics>;
-
-export interface GetV1DatabasesByDatabaseIdUsageResponse {
-  period: GetV1DatabasesByDatabaseIdUsageResponsePeriod;
-  metrics: GetV1DatabasesByDatabaseIdUsageResponseMetrics;
-  generatedAt: string;
-}
-export const GetV1DatabasesByDatabaseIdUsageResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      period: GetV1DatabasesByDatabaseIdUsageResponsePeriod,
-      metrics: GetV1DatabasesByDatabaseIdUsageResponseMetrics,
-      generatedAt: S.String,
-    }),
-).annotate({
-  identifier: "GetV1DatabasesByDatabaseIdUsageResponse",
-}) as any as S.Schema<GetV1DatabasesByDatabaseIdUsageResponse>;
-
-export interface GetV1DeploymentsByDeploymentIdRequest {
-  deploymentId: string;
-}
-export const GetV1DeploymentsByDeploymentIdRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      deploymentId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/deployments/{deploymentId}",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "GetV1DeploymentsByDeploymentIdRequest",
-}) as any as S.Schema<GetV1DeploymentsByDeploymentIdRequest>;
-
-/** Environment variable names present on this compute version. Values are always redacted as "[redacted]" and must not be treated as deployed secret values. */
-export type GetV1DeploymentsByDeploymentIdResponseDataEnvVarsMap = {
-  [key: string]: string | undefined;
-};
-export const GetV1DeploymentsByDeploymentIdResponseDataEnvVarsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<GetV1DeploymentsByDeploymentIdResponseDataEnvVarsMap>;
-
-export interface GetV1DeploymentsByDeploymentIdResponseDataPortMapping {
-  http?: number;
-}
-export const GetV1DeploymentsByDeploymentIdResponseDataPortMapping =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      http: S.optional(S.Number),
-    }),
-  ).annotate({
-    identifier: "GetV1DeploymentsByDeploymentIdResponseDataPortMapping",
-  }) as any as S.Schema<GetV1DeploymentsByDeploymentIdResponseDataPortMapping>;
-
-export interface GetV1DeploymentsByDeploymentIdResponseData {
-  id: string;
-  type: string;
-  url: string;
-  serviceId: string;
-  foundryVersionId: string;
-  status: string;
-  previewDomain: string | null;
-  /** Environment variable names present on this compute version. Values are always redacted as "[redacted]" and must not be treated as deployed secret values. */
-  envVars?: GetV1DeploymentsByDeploymentIdResponseDataEnvVarsMap;
-  portMapping?: GetV1DeploymentsByDeploymentIdResponseDataPortMapping;
-  createdAt: string;
-}
-export const GetV1DeploymentsByDeploymentIdResponseData =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.String,
-      type: S.String,
-      url: S.String,
-      serviceId: S.String,
-      foundryVersionId: S.String,
-      status: S.String,
-      previewDomain: S.NullOr(S.String),
-      envVars: S.optional(GetV1DeploymentsByDeploymentIdResponseDataEnvVarsMap),
-      portMapping: S.optional(
-        GetV1DeploymentsByDeploymentIdResponseDataPortMapping,
-      ),
-      createdAt: S.String,
-    }),
-  ).annotate({
-    identifier: "GetV1DeploymentsByDeploymentIdResponseData",
-  }) as any as S.Schema<GetV1DeploymentsByDeploymentIdResponseData>;
-
-export interface GetV1DeploymentsByDeploymentIdResponse {
-  data: GetV1DeploymentsByDeploymentIdResponseData;
-}
-export const GetV1DeploymentsByDeploymentIdResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      data: GetV1DeploymentsByDeploymentIdResponseData,
-    }),
-).annotate({
-  identifier: "GetV1DeploymentsByDeploymentIdResponse",
-}) as any as S.Schema<GetV1DeploymentsByDeploymentIdResponse>;
-
-export type GetV1DeploymentsByDeploymentIdLogsRequestFromStart =
-  | "true"
-  | "false";
-export const GetV1DeploymentsByDeploymentIdLogsRequestFromStart =
-  /*@__PURE__*/ S.String;
-
-export interface GetV1DeploymentsByDeploymentIdLogsRequest {
-  deploymentId: string;
-  tail?: number;
-  from_start?:
-    | GetV1DeploymentsByDeploymentIdLogsRequestFromStart
-    | (string & {});
-  cursor?: string;
-}
-export const GetV1DeploymentsByDeploymentIdLogsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      deploymentId: S.String.pipe(T.Label()),
-      tail: S.optional(S.Number.pipe(T.Query())),
-      from_start: S.optional(
-        GetV1DeploymentsByDeploymentIdLogsRequestFromStart.pipe(T.Query()),
-      ),
-      cursor: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/deployments/{deploymentId}/logs",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetV1DeploymentsByDeploymentIdLogsRequest",
-  }) as any as S.Schema<GetV1DeploymentsByDeploymentIdLogsRequest>;
-
-export interface GetV1DeploymentsByDeploymentIdLogsResponse {}
-export const GetV1DeploymentsByDeploymentIdLogsResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "GetV1DeploymentsByDeploymentIdLogsResponse",
-  }) as any as S.Schema<GetV1DeploymentsByDeploymentIdLogsResponse>;
-
-export interface GetV1DomainsByDomainIdRequest {
-  domainId: string;
-}
-export const GetV1DomainsByDomainIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    domainId: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/v1/domains/{domainId}", code: 200 })),
-).annotate({
-  identifier: "GetV1DomainsByDomainIdRequest",
-}) as any as S.Schema<GetV1DomainsByDomainIdRequest>;
-
-export type GetV1DomainsByDomainIdResponseDataStatus =
-  | "pending_dns"
-  | "verifying"
-  | "verified_routing_blocked"
-  | "provisioning_tls"
-  | "active"
-  | "failed"
-  | "removing";
-export const GetV1DomainsByDomainIdResponseDataStatus = /*@__PURE__*/ S.String;
-
-export type GetV1DomainsByDomainIdResponseDataFailureCategory =
-  | "dns"
-  | "acme"
-  | "storage"
-  | "unknown";
-export const GetV1DomainsByDomainIdResponseDataFailureCategory =
-  /*@__PURE__*/ S.String;
-
-export interface GetV1DomainsByDomainIdResponseDataDnsRecordsItem {
-  type: string;
-  name: string;
-  value: string;
-  ttl: number | null;
-}
-export const GetV1DomainsByDomainIdResponseDataDnsRecordsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: S.String,
-      name: S.String,
-      value: S.String,
-      ttl: S.NullOr(S.Number),
-    }),
-  ).annotate({
-    identifier: "GetV1DomainsByDomainIdResponseDataDnsRecordsItem",
-  }) as any as S.Schema<GetV1DomainsByDomainIdResponseDataDnsRecordsItem>;
-
-export type GetV1DomainsByDomainIdResponseDataDnsRecordsList =
-  Array<GetV1DomainsByDomainIdResponseDataDnsRecordsItem>;
-export const GetV1DomainsByDomainIdResponseDataDnsRecordsList =
-  /*@__PURE__*/ S.Array(
-    GetV1DomainsByDomainIdResponseDataDnsRecordsItem,
-  ) as any as S.Schema<GetV1DomainsByDomainIdResponseDataDnsRecordsList>;
-
-export interface GetV1DomainsByDomainIdResponseData {
-  id: string;
-  type: string;
-  url: string;
-  hostname: string;
-  appId: string;
-  /** Deprecated: use `appId` instead. */
-  computeServiceId: string;
-  status: GetV1DomainsByDomainIdResponseDataStatus;
-  foundryStatus: string;
-  failureReason: string | null;
-  failureCategory: GetV1DomainsByDomainIdResponseDataFailureCategory | null;
-  certExpiresAt: string | null;
-  createdAt: string;
-  updatedAt: string;
-  dnsRecords: GetV1DomainsByDomainIdResponseDataDnsRecordsList;
-}
-export const GetV1DomainsByDomainIdResponseData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    type: S.String,
-    url: S.String,
-    hostname: S.String,
-    appId: S.String,
-    computeServiceId: S.String,
-    status: GetV1DomainsByDomainIdResponseDataStatus,
-    foundryStatus: S.String,
-    failureReason: S.NullOr(S.String),
-    failureCategory: S.NullOr(
-      GetV1DomainsByDomainIdResponseDataFailureCategory,
-    ),
-    certExpiresAt: S.NullOr(S.String),
-    createdAt: S.String,
-    updatedAt: S.String,
-    dnsRecords: GetV1DomainsByDomainIdResponseDataDnsRecordsList,
-  }),
-).annotate({
-  identifier: "GetV1DomainsByDomainIdResponseData",
-}) as any as S.Schema<GetV1DomainsByDomainIdResponseData>;
-
-export interface GetV1DomainsByDomainIdResponse {
-  data: GetV1DomainsByDomainIdResponseData;
-}
-export const GetV1DomainsByDomainIdResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: GetV1DomainsByDomainIdResponseData,
-  }),
-).annotate({
-  identifier: "GetV1DomainsByDomainIdResponse",
-}) as any as S.Schema<GetV1DomainsByDomainIdResponse>;
-
-export type GetV1EnvironmentVariablesRequestClass = "production" | "preview";
-export const GetV1EnvironmentVariablesRequestClass = /*@__PURE__*/ S.String;
-
-export interface GetV1EnvironmentVariablesRequest {
-  cursor?: string;
-  limit?: number;
-  projectId?: string;
-  class?: GetV1EnvironmentVariablesRequestClass | (string & {});
-  key?: string;
-  branchId?: string;
-}
-export const GetV1EnvironmentVariablesRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    cursor: S.optional(S.String.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    projectId: S.optional(S.String.pipe(T.Query())),
-    class: S.optional(GetV1EnvironmentVariablesRequestClass.pipe(T.Query())),
-    key: S.optional(S.String.pipe(T.Query())),
-    branchId: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/v1/environment-variables", code: 200 }),
-  ),
-).annotate({
-  identifier: "GetV1EnvironmentVariablesRequest",
-}) as any as S.Schema<GetV1EnvironmentVariablesRequest>;
-
-export type GetV1EnvironmentVariablesResponseDataItemClass =
-  | "production"
-  | "preview";
-export const GetV1EnvironmentVariablesResponseDataItemClass =
-  /*@__PURE__*/ S.String;
-
-export interface GetV1EnvironmentVariablesResponseDataItem {
-  id: string;
-  type: string;
-  url: string;
-  projectId: string;
-  branchId: string | null;
-  class: GetV1EnvironmentVariablesResponseDataItemClass;
-  key: string;
-  valueKid: string;
-  isManagedBySystem: boolean;
-  createdAt: string;
-  updatedAt: string;
-}
-export const GetV1EnvironmentVariablesResponseDataItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.String,
-      type: S.String,
-      url: S.String,
-      projectId: S.String,
-      branchId: S.NullOr(S.String),
-      class: GetV1EnvironmentVariablesResponseDataItemClass,
-      key: S.String,
-      valueKid: S.String,
-      isManagedBySystem: S.Boolean,
-      createdAt: S.String,
-      updatedAt: S.String,
-    }),
-  ).annotate({
-    identifier: "GetV1EnvironmentVariablesResponseDataItem",
-  }) as any as S.Schema<GetV1EnvironmentVariablesResponseDataItem>;
-
-export type GetV1EnvironmentVariablesResponseDataList =
-  Array<GetV1EnvironmentVariablesResponseDataItem>;
-export const GetV1EnvironmentVariablesResponseDataList = /*@__PURE__*/ S.Array(
-  GetV1EnvironmentVariablesResponseDataItem,
-) as any as S.Schema<GetV1EnvironmentVariablesResponseDataList>;
-
-export type GetV1EnvironmentVariablesResponsePagination =
-  GetV1BucketsResponsePagination;
-export const GetV1EnvironmentVariablesResponsePagination =
-  GetV1BucketsResponsePagination;
-
-export interface GetV1EnvironmentVariablesResponse {
-  data: GetV1EnvironmentVariablesResponseDataList;
-  pagination: GetV1BucketsResponsePagination;
-}
-export const GetV1EnvironmentVariablesResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: GetV1EnvironmentVariablesResponseDataList,
-    pagination: GetV1BucketsResponsePagination,
-  }),
-).annotate({
-  identifier: "GetV1EnvironmentVariablesResponse",
-}) as any as S.Schema<GetV1EnvironmentVariablesResponse>;
-
-export interface GetV1EnvironmentVariablesByEnvVarIdRequest {
-  envVarId: string;
-}
-export const GetV1EnvironmentVariablesByEnvVarIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      envVarId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/environment-variables/{envVarId}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetV1EnvironmentVariablesByEnvVarIdRequest",
-  }) as any as S.Schema<GetV1EnvironmentVariablesByEnvVarIdRequest>;
-
-export type GetV1EnvironmentVariablesByEnvVarIdResponseDataClass =
-  | "production"
-  | "preview";
-export const GetV1EnvironmentVariablesByEnvVarIdResponseDataClass =
-  /*@__PURE__*/ S.String;
-
-export interface GetV1EnvironmentVariablesByEnvVarIdResponseData {
-  id: string;
-  type: string;
-  url: string;
-  projectId: string;
-  branchId: string | null;
-  class: GetV1EnvironmentVariablesByEnvVarIdResponseDataClass;
-  key: string;
-  valueKid: string;
-  isManagedBySystem: boolean;
-  createdAt: string;
-  updatedAt: string;
-}
-export const GetV1EnvironmentVariablesByEnvVarIdResponseData =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.String,
-      type: S.String,
-      url: S.String,
-      projectId: S.String,
-      branchId: S.NullOr(S.String),
-      class: GetV1EnvironmentVariablesByEnvVarIdResponseDataClass,
-      key: S.String,
-      valueKid: S.String,
-      isManagedBySystem: S.Boolean,
-      createdAt: S.String,
-      updatedAt: S.String,
-    }),
-  ).annotate({
-    identifier: "GetV1EnvironmentVariablesByEnvVarIdResponseData",
-  }) as any as S.Schema<GetV1EnvironmentVariablesByEnvVarIdResponseData>;
-
-export interface GetV1EnvironmentVariablesByEnvVarIdResponse {
-  data: GetV1EnvironmentVariablesByEnvVarIdResponseData;
-}
-export const GetV1EnvironmentVariablesByEnvVarIdResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      data: GetV1EnvironmentVariablesByEnvVarIdResponseData,
-    }),
-  ).annotate({
-    identifier: "GetV1EnvironmentVariablesByEnvVarIdResponse",
-  }) as any as S.Schema<GetV1EnvironmentVariablesByEnvVarIdResponse>;
-
-export interface GetV1IntegrationsRequest {
-  cursor?: string;
-  limit?: number;
-  workspaceId: string;
-}
-export const GetV1IntegrationsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    cursor: S.optional(S.String.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    workspaceId: S.String.pipe(T.Query()),
-  }).pipe(T.Http({ method: "GET", uri: "/v1/integrations", code: 200 })),
-).annotate({
-  identifier: "GetV1IntegrationsRequest",
-}) as any as S.Schema<GetV1IntegrationsRequest>;
-
-export type GetV1IntegrationsResponseDataItemScopesList = Array<string>;
-export const GetV1IntegrationsResponseDataItemScopesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetV1IntegrationsResponseDataItemScopesList>;
-
-export interface GetV1IntegrationsResponseDataItemClient {
-  id: string;
-  name: string;
-  createdAt: string;
-}
-export const GetV1IntegrationsResponseDataItemClient = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String,
-      name: S.String,
-      createdAt: S.String,
-    }),
-).annotate({
-  identifier: "GetV1IntegrationsResponseDataItemClient",
-}) as any as S.Schema<GetV1IntegrationsResponseDataItemClient>;
-
-export interface GetV1IntegrationsResponseDataItemCreatedByUser {
-  id: string;
-  email: string;
-  displayName: string | null;
-}
-export const GetV1IntegrationsResponseDataItemCreatedByUser =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.String,
-      email: S.String,
-      displayName: S.NullOr(S.String),
-    }),
-  ).annotate({
-    identifier: "GetV1IntegrationsResponseDataItemCreatedByUser",
-  }) as any as S.Schema<GetV1IntegrationsResponseDataItemCreatedByUser>;
-
-export interface GetV1IntegrationsResponseDataItem {
-  id: string;
-  url: string;
-  createdAt: string;
-  scopes: GetV1IntegrationsResponseDataItemScopesList;
-  client: GetV1IntegrationsResponseDataItemClient;
-  createdByUser: GetV1IntegrationsResponseDataItemCreatedByUser;
-}
-export const GetV1IntegrationsResponseDataItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    url: S.String,
-    createdAt: S.String,
-    scopes: GetV1IntegrationsResponseDataItemScopesList,
-    client: GetV1IntegrationsResponseDataItemClient,
-    createdByUser: GetV1IntegrationsResponseDataItemCreatedByUser,
-  }),
-).annotate({
-  identifier: "GetV1IntegrationsResponseDataItem",
-}) as any as S.Schema<GetV1IntegrationsResponseDataItem>;
-
-export type GetV1IntegrationsResponseDataList =
-  Array<GetV1IntegrationsResponseDataItem>;
-export const GetV1IntegrationsResponseDataList = /*@__PURE__*/ S.Array(
-  GetV1IntegrationsResponseDataItem,
-) as any as S.Schema<GetV1IntegrationsResponseDataList>;
-
-export type GetV1IntegrationsResponsePagination =
-  GetV1BucketsResponsePagination;
-export const GetV1IntegrationsResponsePagination =
-  GetV1BucketsResponsePagination;
-
-export interface GetV1IntegrationsResponse {
-  data: GetV1IntegrationsResponseDataList;
-  pagination: GetV1BucketsResponsePagination;
-}
-export const GetV1IntegrationsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: GetV1IntegrationsResponseDataList,
-    pagination: GetV1BucketsResponsePagination,
-  }),
-).annotate({
-  identifier: "GetV1IntegrationsResponse",
-}) as any as S.Schema<GetV1IntegrationsResponse>;
-
-export interface GetV1IntegrationsByIdRequest {
-  id: string;
-}
-export const GetV1IntegrationsByIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/v1/integrations/{id}", code: 200 })),
-).annotate({
-  identifier: "GetV1IntegrationsByIdRequest",
-}) as any as S.Schema<GetV1IntegrationsByIdRequest>;
-
-export type GetV1IntegrationsByIdResponseDataScopesList = Array<string>;
-export const GetV1IntegrationsByIdResponseDataScopesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetV1IntegrationsByIdResponseDataScopesList>;
-
-export type GetV1IntegrationsByIdResponseDataClient =
-  GetV1IntegrationsResponseDataItemClient;
-export const GetV1IntegrationsByIdResponseDataClient =
-  GetV1IntegrationsResponseDataItemClient;
-
-export type GetV1IntegrationsByIdResponseDataCreatedByUser =
-  GetV1IntegrationsResponseDataItemCreatedByUser;
-export const GetV1IntegrationsByIdResponseDataCreatedByUser =
-  GetV1IntegrationsResponseDataItemCreatedByUser;
-
-export interface GetV1IntegrationsByIdResponseData {
-  id: string;
-  url: string;
-  createdAt: string;
-  scopes: GetV1IntegrationsByIdResponseDataScopesList;
-  client: GetV1IntegrationsResponseDataItemClient;
-  createdByUser: GetV1IntegrationsResponseDataItemCreatedByUser;
-}
-export const GetV1IntegrationsByIdResponseData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    url: S.String,
-    createdAt: S.String,
-    scopes: GetV1IntegrationsByIdResponseDataScopesList,
-    client: GetV1IntegrationsResponseDataItemClient,
-    createdByUser: GetV1IntegrationsResponseDataItemCreatedByUser,
-  }),
-).annotate({
-  identifier: "GetV1IntegrationsByIdResponseData",
-}) as any as S.Schema<GetV1IntegrationsByIdResponseData>;
-
-export interface GetV1IntegrationsByIdResponse {
-  data: GetV1IntegrationsByIdResponseData;
-}
-export const GetV1IntegrationsByIdResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: GetV1IntegrationsByIdResponseData,
-  }),
-).annotate({
-  identifier: "GetV1IntegrationsByIdResponse",
-}) as any as S.Schema<GetV1IntegrationsByIdResponse>;
-
-export interface GetV1MeRequest {}
-export const GetV1MeRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(T.Http({ method: "GET", uri: "/v1/me", code: 200 })),
-).annotate({ identifier: "GetV1MeRequest" }) as any as S.Schema<GetV1MeRequest>;
-
-export interface GetV1MeResponseDataUser {
-  id: string;
-  email: string;
-  name: string | null;
-}
-export const GetV1MeResponseDataUser = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    email: S.String,
-    name: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "GetV1MeResponseDataUser",
-}) as any as S.Schema<GetV1MeResponseDataUser>;
-
-export type GetV1MeResponseDataWorkspace = GetV1DatabasesResponseDataItemRegion;
-export const GetV1MeResponseDataWorkspace =
-  GetV1DatabasesResponseDataItemRegion;
-
-export type GetV1MeResponseDataCredentialType =
-  | "oauth"
-  | "service_token"
-  | "management_token";
-export const GetV1MeResponseDataCredentialType = /*@__PURE__*/ S.String;
-
-export interface GetV1MeResponseDataCredential {
-  type: GetV1MeResponseDataCredentialType;
-  id: string | null;
-  name: string | null;
-}
-export const GetV1MeResponseDataCredential = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: GetV1MeResponseDataCredentialType,
-    id: S.NullOr(S.String),
-    name: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "GetV1MeResponseDataCredential",
-}) as any as S.Schema<GetV1MeResponseDataCredential>;
-
-export interface GetV1MeResponseData {
-  user: GetV1MeResponseDataUser | null;
-  workspace: GetV1DatabasesResponseDataItemRegion | null;
-  credential: GetV1MeResponseDataCredential;
-}
-export const GetV1MeResponseData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    user: S.NullOr(GetV1MeResponseDataUser),
-    workspace: S.NullOr(GetV1DatabasesResponseDataItemRegion),
-    credential: GetV1MeResponseDataCredential,
-  }),
-).annotate({
-  identifier: "GetV1MeResponseData",
-}) as any as S.Schema<GetV1MeResponseData>;
-
-export interface GetV1MeResponse {
-  data: GetV1MeResponseData;
-}
-export const GetV1MeResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: GetV1MeResponseData,
-  }),
-).annotate({
-  identifier: "GetV1MeResponse",
-}) as any as S.Schema<GetV1MeResponse>;
-
-export interface GetV1ProjectsRequest {
-  cursor?: string;
-  limit?: number;
-  logicalId?: string;
-}
-export const GetV1ProjectsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    cursor: S.optional(S.String.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    logicalId: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/v1/projects", code: 200 })),
-).annotate({
-  identifier: "GetV1ProjectsRequest",
-}) as any as S.Schema<GetV1ProjectsRequest>;
-
-export type GetV1ProjectsResponseDataItemWorkspace =
-  GetV1BranchesByBranchIdResponseDataProject;
-export const GetV1ProjectsResponseDataItemWorkspace =
-  GetV1BranchesByBranchIdResponseDataProject;
-
-export interface GetV1ProjectsResponseDataItem {
-  id: string;
-  type: string;
-  url: string;
-  name: string;
-  logicalId: string | null;
-  createdAt: string;
-  defaultRegion: string | null;
-  workspace: GetV1BranchesByBranchIdResponseDataProject;
-}
-export const GetV1ProjectsResponseDataItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    type: S.String,
-    url: S.String,
-    name: S.String,
-    logicalId: S.NullOr(S.String),
-    createdAt: S.String,
-    defaultRegion: S.NullOr(S.String),
-    workspace: GetV1BranchesByBranchIdResponseDataProject,
-  }),
-).annotate({
-  identifier: "GetV1ProjectsResponseDataItem",
-}) as any as S.Schema<GetV1ProjectsResponseDataItem>;
-
-export type GetV1ProjectsResponseDataList =
-  Array<GetV1ProjectsResponseDataItem>;
-export const GetV1ProjectsResponseDataList = /*@__PURE__*/ S.Array(
-  GetV1ProjectsResponseDataItem,
-) as any as S.Schema<GetV1ProjectsResponseDataList>;
-
-export type GetV1ProjectsResponsePagination = GetV1BucketsResponsePagination;
-export const GetV1ProjectsResponsePagination = GetV1BucketsResponsePagination;
-
-export interface GetV1ProjectsResponse {
-  data: GetV1ProjectsResponseDataList;
-  pagination: GetV1BucketsResponsePagination;
-}
-export const GetV1ProjectsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: GetV1ProjectsResponseDataList,
-    pagination: GetV1BucketsResponsePagination,
-  }),
-).annotate({
-  identifier: "GetV1ProjectsResponse",
-}) as any as S.Schema<GetV1ProjectsResponse>;
-
-export interface GetV1ProjectsByIdRequest {
-  id: string;
-}
-export const GetV1ProjectsByIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/v1/projects/{id}", code: 200 })),
-).annotate({
-  identifier: "GetV1ProjectsByIdRequest",
-}) as any as S.Schema<GetV1ProjectsByIdRequest>;
-
-export type GetV1ProjectsByIdResponseDataWorkspace =
-  GetV1BranchesByBranchIdResponseDataProject;
-export const GetV1ProjectsByIdResponseDataWorkspace =
-  GetV1BranchesByBranchIdResponseDataProject;
-
-export type GetV1ProjectsByIdResponseData = GetV1ProjectsResponseDataItem;
-export const GetV1ProjectsByIdResponseData = GetV1ProjectsResponseDataItem;
-
-export interface GetV1ProjectsByIdResponse {
-  data: GetV1ProjectsResponseDataItem;
-}
-export const GetV1ProjectsByIdResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: GetV1ProjectsResponseDataItem,
-  }),
-).annotate({
-  identifier: "GetV1ProjectsByIdResponse",
-}) as any as S.Schema<GetV1ProjectsByIdResponse>;
-
-export interface GetV1ProjectsByProjectIdBranchesRequest {
-  projectId: string;
-  cursor?: string;
-  limit?: number;
-  gitName?: string;
-  gitNameContains?: string;
-}
-export const GetV1ProjectsByProjectIdBranchesRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      projectId: S.String.pipe(T.Label()),
-      cursor: S.optional(S.String.pipe(T.Query())),
-      limit: S.optional(S.Number.pipe(T.Query())),
-      gitName: S.optional(S.String.pipe(T.Query())),
-      gitNameContains: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/projects/{projectId}/branches",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "GetV1ProjectsByProjectIdBranchesRequest",
-}) as any as S.Schema<GetV1ProjectsByProjectIdBranchesRequest>;
-
-export type GetV1ProjectsByProjectIdBranchesResponseDataItemRole =
-  | "production"
-  | "preview";
-export const GetV1ProjectsByProjectIdBranchesResponseDataItemRole =
-  /*@__PURE__*/ S.String;
-
-/** Thin reference to the parent Project. Member resources are intentionally NOT inlined — list /v1/databases?branchId=<br_xxx> or /v1/apps?branchId=<br_xxx> instead (see API design principles "Flat and Hierarchical Coexistence"). */
-export type GetV1ProjectsByProjectIdBranchesResponseDataItemProject =
-  GetV1BranchesByBranchIdResponseDataProject;
-export const GetV1ProjectsByProjectIdBranchesResponseDataItemProject =
-  GetV1BranchesByBranchIdResponseDataProject;
-
-export interface GetV1ProjectsByProjectIdBranchesResponseDataItem {
-  id: string;
-  type: string;
-  url: string;
-  gitName: string;
-  isDefault: boolean;
-  role: GetV1ProjectsByProjectIdBranchesResponseDataItemRole;
-  createdAt: string;
-  updatedAt: string;
-  /** Thin reference to the parent Project. Member resources are intentionally NOT inlined — list /v1/databases?branchId=<br_xxx> or /v1/apps?branchId=<br_xxx> instead (see API design principles "Flat and Hierarchical Coexistence"). */
-  project: GetV1BranchesByBranchIdResponseDataProject;
-}
-export const GetV1ProjectsByProjectIdBranchesResponseDataItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.String,
-      type: S.String,
-      url: S.String,
-      gitName: S.String,
-      isDefault: S.Boolean,
-      role: GetV1ProjectsByProjectIdBranchesResponseDataItemRole,
-      createdAt: S.String,
-      updatedAt: S.String,
-      project: GetV1BranchesByBranchIdResponseDataProject,
-    }),
-  ).annotate({
-    identifier: "GetV1ProjectsByProjectIdBranchesResponseDataItem",
-  }) as any as S.Schema<GetV1ProjectsByProjectIdBranchesResponseDataItem>;
-
-export type GetV1ProjectsByProjectIdBranchesResponseDataList =
-  Array<GetV1ProjectsByProjectIdBranchesResponseDataItem>;
-export const GetV1ProjectsByProjectIdBranchesResponseDataList =
-  /*@__PURE__*/ S.Array(
-    GetV1ProjectsByProjectIdBranchesResponseDataItem,
-  ) as any as S.Schema<GetV1ProjectsByProjectIdBranchesResponseDataList>;
-
-export interface GetV1ProjectsByProjectIdBranchesResponsePagination {
-  nextCursor: string | null;
-  hasMore: boolean;
-}
-export const GetV1ProjectsByProjectIdBranchesResponsePagination =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      nextCursor: S.NullOr(S.String),
-      hasMore: S.Boolean,
-    }),
-  ).annotate({
-    identifier: "GetV1ProjectsByProjectIdBranchesResponsePagination",
-  }) as any as S.Schema<GetV1ProjectsByProjectIdBranchesResponsePagination>;
-
-export interface GetV1ProjectsByProjectIdBranchesResponse {
-  data: GetV1ProjectsByProjectIdBranchesResponseDataList;
-  pagination: GetV1ProjectsByProjectIdBranchesResponsePagination;
-}
-export const GetV1ProjectsByProjectIdBranchesResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      data: GetV1ProjectsByProjectIdBranchesResponseDataList,
-      pagination: GetV1ProjectsByProjectIdBranchesResponsePagination,
-    }),
-).annotate({
-  identifier: "GetV1ProjectsByProjectIdBranchesResponse",
-}) as any as S.Schema<GetV1ProjectsByProjectIdBranchesResponse>;
-
-export interface GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksRequest {
-  projectId: string;
-  branchId: string;
-}
-export const GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      projectId: S.String.pipe(T.Label()),
-      branchId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/projects/{projectId}/branches/{branchId}/alchemy-state/state/stacks",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksRequest",
-  }) as any as S.Schema<GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksRequest>;
-
-export type GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksResponseBodyList =
-  Array<string>;
-export const GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksResponseBodyList>;
-
-export type GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksResponse =
-  GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksResponseBodyList;
-export const GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier:
-      "GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksResponse",
-  }) as any as S.Schema<GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksResponse>;
-
-export interface GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesRequest {
-  projectId: string;
-  branchId: string;
-  stack: string;
-}
-export const GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      projectId: S.String.pipe(T.Label()),
-      branchId: S.String.pipe(T.Label()),
-      stack: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/projects/{projectId}/branches/{branchId}/alchemy-state/state/stacks/{stack}/stages",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesRequest",
-  }) as any as S.Schema<GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesRequest>;
-
-export type GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesResponseBodyList =
-  Array<string>;
-export const GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesResponseBodyList>;
-
-export type GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesResponse =
-  GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesResponseBodyList;
-export const GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier:
-      "GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesResponse",
-  }) as any as S.Schema<GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesResponse>;
-
-export interface GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageOutputRequest {
-  projectId: string;
-  branchId: string;
-  stack: string;
-  stage: string;
-}
-export const GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageOutputRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      projectId: S.String.pipe(T.Label()),
-      branchId: S.String.pipe(T.Label()),
-      stack: S.String.pipe(T.Label()),
-      stage: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/projects/{projectId}/branches/{branchId}/alchemy-state/state/stacks/{stack}/stages/{stage}/output",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageOutputRequest",
-  }) as any as S.Schema<GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageOutputRequest>;
-
-export type GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageOutputResponse =
-  unknown;
-export const GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageOutputResponse =
-  /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
-    identifier:
-      "GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageOutputResponse",
-  }) as any as S.Schema<GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageOutputResponse>;
-
-export interface GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageReplacedResourcesRequest {
-  projectId: string;
-  branchId: string;
-  stack: string;
-  stage: string;
-}
-export const GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageReplacedResourcesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      projectId: S.String.pipe(T.Label()),
-      branchId: S.String.pipe(T.Label()),
-      stack: S.String.pipe(T.Label()),
-      stage: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/projects/{projectId}/branches/{branchId}/alchemy-state/state/stacks/{stack}/stages/{stage}/replaced-resources",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageReplacedResourcesRequest",
-  }) as any as S.Schema<GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageReplacedResourcesRequest>;
-
-export type GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageReplacedResourcesResponseBodyList =
-  Array<unknown>;
-export const GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageReplacedResourcesResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageReplacedResourcesResponseBodyList>;
-
-export type GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageReplacedResourcesResponse =
-  GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageReplacedResourcesResponseBodyList;
-export const GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageReplacedResourcesResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageReplacedResourcesResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier:
-      "GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageReplacedResourcesResponse",
-  }) as any as S.Schema<GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageReplacedResourcesResponse>;
-
-export interface GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesRequest {
-  projectId: string;
-  branchId: string;
-  stack: string;
-  stage: string;
-}
-export const GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      projectId: S.String.pipe(T.Label()),
-      branchId: S.String.pipe(T.Label()),
-      stack: S.String.pipe(T.Label()),
-      stage: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/projects/{projectId}/branches/{branchId}/alchemy-state/state/stacks/{stack}/stages/{stage}/resources",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesRequest",
-  }) as any as S.Schema<GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesRequest>;
-
-export type GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesResponseBodyList =
-  Array<string>;
-export const GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesResponseBodyList>;
-
-export type GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesResponse =
-  GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesResponseBodyList;
-export const GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier:
-      "GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesResponse",
-  }) as any as S.Schema<GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesResponse>;
-
-export interface GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqnRequest {
-  projectId: string;
-  branchId: string;
-  stack: string;
-  stage: string;
-  fqn: string;
-}
-export const GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqnRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      projectId: S.String.pipe(T.Label()),
-      branchId: S.String.pipe(T.Label()),
-      stack: S.String.pipe(T.Label()),
-      stage: S.String.pipe(T.Label()),
-      fqn: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/projects/{projectId}/branches/{branchId}/alchemy-state/state/stacks/{stack}/stages/{stage}/resources/{fqn}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqnRequest",
-  }) as any as S.Schema<GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqnRequest>;
-
-export type GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqnResponse =
-  unknown;
-export const GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqnResponse =
-  /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
-    identifier:
-      "GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqnResponse",
-  }) as any as S.Schema<GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqnResponse>;
-
-export interface GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateVersionRequest {
-  projectId: string;
-  branchId: string;
-}
-export const GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateVersionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      projectId: S.String.pipe(T.Label()),
-      branchId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/projects/{projectId}/branches/{branchId}/alchemy-state/version",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateVersionRequest",
-  }) as any as S.Schema<GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateVersionRequest>;
-
-export interface GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateVersionResponse {
-  version: number;
-}
-export const GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateVersionResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      version: S.Number,
-    }),
-  ).annotate({
-    identifier:
-      "GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateVersionResponse",
-  }) as any as S.Schema<GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateVersionResponse>;
-
-export interface GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequest {
-  projectId: string;
-  branchId: string;
-}
-export const GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      projectId: S.String.pipe(T.Label()),
-      branchId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/projects/{projectId}/branches/{branchId}/application-topology",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequest",
-  }) as any as S.Schema<GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequest>;
-
-export type GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataNodesItemKind =
-  | "module"
-  | "service"
-  | "resource";
-export const GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataNodesItemKind =
-  /*@__PURE__*/ S.String;
-
-export interface GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataNodesItem {
-  logicalId: string;
-  parentLogicalId: string | null;
-  kind: GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataNodesItemKind;
-  type?: string;
-}
-export const GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataNodesItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      logicalId: S.String,
-      parentLogicalId: S.NullOr(S.String),
-      kind: GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataNodesItemKind,
-      type: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier:
-      "GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataNodesItem",
-  }) as any as S.Schema<GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataNodesItem>;
-
-export type GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataNodesList =
-  Array<GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataNodesItem>;
-export const GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataNodesList =
-  /*@__PURE__*/ S.Array(
-    GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataNodesItem,
-  ) as any as S.Schema<GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataNodesList>;
-
-export type GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataPortsItemDirection =
-  | "in"
-  | "out";
-export const GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataPortsItemDirection =
-  /*@__PURE__*/ S.String;
-
-export interface GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataPortsItem {
-  logicalId: string;
-  direction: GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataPortsItemDirection;
-  name: string;
-  contractKind?: string;
-  contractHash?: string;
-}
-export const GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataPortsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      logicalId: S.String,
-      direction:
-        GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataPortsItemDirection,
-      name: S.String,
-      contractKind: S.optional(S.String),
-      contractHash: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier:
-      "GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataPortsItem",
-  }) as any as S.Schema<GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataPortsItem>;
-
-export type GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataPortsList =
-  Array<GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataPortsItem>;
-export const GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataPortsList =
-  /*@__PURE__*/ S.Array(
-    GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataPortsItem,
-  ) as any as S.Schema<GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataPortsList>;
-
-export type GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemFromDirection =
-  | "in"
-  | "out";
-export const GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemFromDirection =
-  /*@__PURE__*/ S.String;
-
-export interface GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemFrom {
-  logicalId: string;
-  direction: GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemFromDirection;
-  name: string;
-}
-export const GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemFrom =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      logicalId: S.String,
-      direction:
-        GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemFromDirection,
-      name: S.String,
-    }),
-  ).annotate({
-    identifier:
-      "GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemFrom",
-  }) as any as S.Schema<GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemFrom>;
-
-export type GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemToDirection =
-  | "in"
-  | "out";
-export const GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemToDirection =
-  /*@__PURE__*/ S.String;
-
-export interface GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemTo {
-  logicalId: string;
-  direction: GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemToDirection;
-  name: string;
-}
-export const GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemTo =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      logicalId: S.String,
-      direction:
-        GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemToDirection,
-      name: S.String,
-    }),
-  ).annotate({
-    identifier:
-      "GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemTo",
-  }) as any as S.Schema<GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemTo>;
-
-export type GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemFamily =
-  | "communication"
-  | "data";
-export const GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemFamily =
-  /*@__PURE__*/ S.String;
-
-export interface GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItem {
-  from: GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemFrom;
-  to: GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemTo;
-  family: GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemFamily;
-  style?: string;
-}
-export const GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      from: GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemFrom,
-      to: GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemTo,
-      family:
-        GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemFamily,
-      style: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier:
-      "GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItem",
-  }) as any as S.Schema<GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItem>;
-
-export type GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesList =
-  Array<GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItem>;
-export const GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesList =
-  /*@__PURE__*/ S.Array(
-    GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItem,
-  ) as any as S.Schema<GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesList>;
-
-export interface GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseData {
-  nodes: GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataNodesList;
-  ports: GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataPortsList;
-  edges: GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesList;
-  contentHash?: string;
-  writtenAt?: string;
-}
-export const GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseData =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      nodes:
-        GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataNodesList,
-      ports:
-        GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataPortsList,
-      edges:
-        GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesList,
-      contentHash: S.optional(S.String),
-      writtenAt: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier:
-      "GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseData",
-  }) as any as S.Schema<GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseData>;
-
-export interface GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponse {
-  data: GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseData;
-}
-export const GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      data: GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseData,
-    }),
-  ).annotate({
-    identifier:
-      "GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponse",
-  }) as any as S.Schema<GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponse>;
-
-export interface GetV1ProjectsByProjectIdDatabasesRequest {
-  projectId: string;
-  cursor?: string;
-  limit?: number;
-}
-export const GetV1ProjectsByProjectIdDatabasesRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      projectId: S.String.pipe(T.Label()),
-      cursor: S.optional(S.String.pipe(T.Query())),
-      limit: S.optional(S.Number.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/projects/{projectId}/databases",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "GetV1ProjectsByProjectIdDatabasesRequest",
-}) as any as S.Schema<GetV1ProjectsByProjectIdDatabasesRequest>;
-
-export type GetV1ProjectsByProjectIdDatabasesResponseDataItemStatus =
-  | "failure"
-  | "provisioning"
-  | "ready"
-  | "recovering";
-export const GetV1ProjectsByProjectIdDatabasesResponseDataItemStatus =
-  /*@__PURE__*/ S.String;
-
-export type GetV1ProjectsByProjectIdDatabasesResponseDataItemConnectionsItemKind =
-  | "postgres"
-  | "accelerate";
-export const GetV1ProjectsByProjectIdDatabasesResponseDataItemConnectionsItemKind =
-  /*@__PURE__*/ S.String;
-
-export type GetV1ProjectsByProjectIdDatabasesResponseDataItemConnectionsItemEndpointsDirect =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-export const GetV1ProjectsByProjectIdDatabasesResponseDataItemConnectionsItemEndpointsDirect =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-
-export type GetV1ProjectsByProjectIdDatabasesResponseDataItemConnectionsItemEndpointsPooled =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-export const GetV1ProjectsByProjectIdDatabasesResponseDataItemConnectionsItemEndpointsPooled =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-
-export type GetV1ProjectsByProjectIdDatabasesResponseDataItemConnectionsItemEndpointsAccelerate =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-export const GetV1ProjectsByProjectIdDatabasesResponseDataItemConnectionsItemEndpointsAccelerate =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-
-export type GetV1ProjectsByProjectIdDatabasesResponseDataItemConnectionsItemEndpoints =
-  GetV1ConnectionsResponseDataItemEndpoints;
-export const GetV1ProjectsByProjectIdDatabasesResponseDataItemConnectionsItemEndpoints =
-  GetV1ConnectionsResponseDataItemEndpoints;
-
-/** Deprecated: use `endpoints.direct` instead. */
-export type GetV1ProjectsByProjectIdDatabasesResponseDataItemConnectionsItemDirectConnection =
-  GetV1ConnectionsResponseDataItemDirectConnection;
-export const GetV1ProjectsByProjectIdDatabasesResponseDataItemConnectionsItemDirectConnection =
-  GetV1ConnectionsResponseDataItemDirectConnection;
-
-export type GetV1ProjectsByProjectIdDatabasesResponseDataItemConnectionsItemDatabase =
-  GetV1BranchesByBranchIdResponseDataProject;
-export const GetV1ProjectsByProjectIdDatabasesResponseDataItemConnectionsItemDatabase =
-  GetV1BranchesByBranchIdResponseDataProject;
-
-export interface GetV1ProjectsByProjectIdDatabasesResponseDataItemConnectionsItem {
-  id: string;
-  type: string;
-  url: string;
-  name: string;
-  createdAt: string;
-  kind: GetV1ProjectsByProjectIdDatabasesResponseDataItemConnectionsItemKind;
-  endpoints: GetV1ConnectionsResponseDataItemEndpoints;
-  /** Deprecated: use `endpoints.direct` instead. */
-  directConnection?: GetV1ConnectionsResponseDataItemDirectConnection | null;
-  database: GetV1BranchesByBranchIdResponseDataProject;
-}
-export const GetV1ProjectsByProjectIdDatabasesResponseDataItemConnectionsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.String,
-      type: S.String,
-      url: S.String,
-      name: S.String,
-      createdAt: S.String,
-      kind: GetV1ProjectsByProjectIdDatabasesResponseDataItemConnectionsItemKind,
-      endpoints: GetV1ConnectionsResponseDataItemEndpoints,
-      directConnection: S.optional(
-        S.NullOr(GetV1ConnectionsResponseDataItemDirectConnection),
-      ),
-      database: GetV1BranchesByBranchIdResponseDataProject,
-    }),
-  ).annotate({
-    identifier:
-      "GetV1ProjectsByProjectIdDatabasesResponseDataItemConnectionsItem",
-  }) as any as S.Schema<GetV1ProjectsByProjectIdDatabasesResponseDataItemConnectionsItem>;
-
-export type GetV1ProjectsByProjectIdDatabasesResponseDataItemConnectionsList =
-  Array<GetV1ProjectsByProjectIdDatabasesResponseDataItemConnectionsItem>;
-export const GetV1ProjectsByProjectIdDatabasesResponseDataItemConnectionsList =
-  /*@__PURE__*/ S.Array(
-    GetV1ProjectsByProjectIdDatabasesResponseDataItemConnectionsItem,
-  ) as any as S.Schema<GetV1ProjectsByProjectIdDatabasesResponseDataItemConnectionsList>;
-
-export type GetV1ProjectsByProjectIdDatabasesResponseDataItemProject =
-  GetV1BranchesByBranchIdResponseDataProject;
-export const GetV1ProjectsByProjectIdDatabasesResponseDataItemProject =
-  GetV1BranchesByBranchIdResponseDataProject;
-
-export type GetV1ProjectsByProjectIdDatabasesResponseDataItemRegion =
-  GetV1DatabasesResponseDataItemRegion;
-export const GetV1ProjectsByProjectIdDatabasesResponseDataItemRegion =
-  GetV1DatabasesResponseDataItemRegion;
-
-export type GetV1ProjectsByProjectIdDatabasesResponseDataItemSourceCase0 =
-  GetV1DatabasesResponseDataItemSourceCase0;
-export const GetV1ProjectsByProjectIdDatabasesResponseDataItemSourceCase0 =
-  GetV1DatabasesResponseDataItemSourceCase0;
-
-export type GetV1ProjectsByProjectIdDatabasesResponseDataItemSourceCase1 =
-  GetV1DatabasesResponseDataItemSourceCase1;
-export const GetV1ProjectsByProjectIdDatabasesResponseDataItemSourceCase1 =
-  GetV1DatabasesResponseDataItemSourceCase1;
-
-export type GetV1ProjectsByProjectIdDatabasesResponseDataItemSourceCase2 =
-  GetV1DatabasesResponseDataItemSourceCase2;
-export const GetV1ProjectsByProjectIdDatabasesResponseDataItemSourceCase2 =
-  GetV1DatabasesResponseDataItemSourceCase2;
-
-export type GetV1ProjectsByProjectIdDatabasesResponseDataItemSource =
-  | GetV1DatabasesResponseDataItemSourceCase0
-  | GetV1DatabasesResponseDataItemSourceCase1
-  | GetV1DatabasesResponseDataItemSourceCase2;
-export const GetV1ProjectsByProjectIdDatabasesResponseDataItemSource =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Union([
-      GetV1ProjectsByProjectIdDatabasesResponseDataItemSourceCase0,
-      GetV1ProjectsByProjectIdDatabasesResponseDataItemSourceCase1,
-      GetV1ProjectsByProjectIdDatabasesResponseDataItemSourceCase2,
-    ]),
-  ) as any as S.Schema<GetV1ProjectsByProjectIdDatabasesResponseDataItemSource>;
-
-export interface GetV1ProjectsByProjectIdDatabasesResponseDataItem {
-  id: string;
-  type: string;
-  url: string;
-  name: string;
-  status: GetV1ProjectsByProjectIdDatabasesResponseDataItemStatus;
-  createdAt: string;
-  isDefault: boolean;
-  defaultConnectionId: string | null;
-  connections: GetV1ProjectsByProjectIdDatabasesResponseDataItemConnectionsList;
-  project: GetV1BranchesByBranchIdResponseDataProject;
-  region: GetV1DatabasesResponseDataItemRegion | null;
-  source: GetV1ProjectsByProjectIdDatabasesResponseDataItemSource | null;
-  branchId: string | null;
-}
-export const GetV1ProjectsByProjectIdDatabasesResponseDataItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.String,
-      type: S.String,
-      url: S.String,
-      name: S.String,
-      status: GetV1ProjectsByProjectIdDatabasesResponseDataItemStatus,
-      createdAt: S.String,
-      isDefault: S.Boolean,
-      defaultConnectionId: S.NullOr(S.String),
-      connections:
-        GetV1ProjectsByProjectIdDatabasesResponseDataItemConnectionsList,
-      project: GetV1BranchesByBranchIdResponseDataProject,
-      region: S.NullOr(GetV1DatabasesResponseDataItemRegion),
-      source: S.NullOr(GetV1ProjectsByProjectIdDatabasesResponseDataItemSource),
-      branchId: S.NullOr(S.String),
-    }),
-  ).annotate({
-    identifier: "GetV1ProjectsByProjectIdDatabasesResponseDataItem",
-  }) as any as S.Schema<GetV1ProjectsByProjectIdDatabasesResponseDataItem>;
-
-export type GetV1ProjectsByProjectIdDatabasesResponseDataList =
-  Array<GetV1ProjectsByProjectIdDatabasesResponseDataItem>;
-export const GetV1ProjectsByProjectIdDatabasesResponseDataList =
-  /*@__PURE__*/ S.Array(
-    GetV1ProjectsByProjectIdDatabasesResponseDataItem,
-  ) as any as S.Schema<GetV1ProjectsByProjectIdDatabasesResponseDataList>;
-
-export type GetV1ProjectsByProjectIdDatabasesResponsePagination =
-  GetV1BucketsResponsePagination;
-export const GetV1ProjectsByProjectIdDatabasesResponsePagination =
-  GetV1BucketsResponsePagination;
-
-export interface GetV1ProjectsByProjectIdDatabasesResponse {
-  data: GetV1ProjectsByProjectIdDatabasesResponseDataList;
-  pagination: GetV1BucketsResponsePagination;
-}
-export const GetV1ProjectsByProjectIdDatabasesResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      data: GetV1ProjectsByProjectIdDatabasesResponseDataList,
-      pagination: GetV1BucketsResponsePagination,
-    }),
-  ).annotate({
-    identifier: "GetV1ProjectsByProjectIdDatabasesResponse",
-  }) as any as S.Schema<GetV1ProjectsByProjectIdDatabasesResponse>;
-
-export type GetV1RegionsRequestProduct = "postgres" | "accelerate";
-export const GetV1RegionsRequestProduct = /*@__PURE__*/ S.String;
-
-export interface GetV1RegionsRequest {
-  product?: GetV1RegionsRequestProduct | (string & {});
-}
-export const GetV1RegionsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    product: S.optional(GetV1RegionsRequestProduct.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/v1/regions", code: 200 })),
-).annotate({
-  identifier: "GetV1RegionsRequest",
-}) as any as S.Schema<GetV1RegionsRequest>;
-
-export type GetV1RegionsResponseDataItemProduct = "postgres" | "accelerate";
-export const GetV1RegionsResponseDataItemProduct = /*@__PURE__*/ S.String;
-
-export type GetV1RegionsResponseDataItemStatus = "available" | "unavailable";
-export const GetV1RegionsResponseDataItemStatus = /*@__PURE__*/ S.String;
-
-export interface GetV1RegionsResponseDataItem {
-  id: string;
-  type: string;
-  name: string;
-  product: GetV1RegionsResponseDataItemProduct;
-  status?: GetV1RegionsResponseDataItemStatus;
-}
-export const GetV1RegionsResponseDataItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    type: S.String,
-    name: S.String,
-    product: GetV1RegionsResponseDataItemProduct,
-    status: S.optional(GetV1RegionsResponseDataItemStatus),
-  }),
-).annotate({
-  identifier: "GetV1RegionsResponseDataItem",
-}) as any as S.Schema<GetV1RegionsResponseDataItem>;
-
-export type GetV1RegionsResponseDataList = Array<GetV1RegionsResponseDataItem>;
-export const GetV1RegionsResponseDataList = /*@__PURE__*/ S.Array(
-  GetV1RegionsResponseDataItem,
-) as any as S.Schema<GetV1RegionsResponseDataList>;
-
-export interface GetV1RegionsResponse {
-  data: GetV1RegionsResponseDataList;
-}
-export const GetV1RegionsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: GetV1RegionsResponseDataList,
-  }),
-).annotate({
-  identifier: "GetV1RegionsResponse",
-}) as any as S.Schema<GetV1RegionsResponse>;
-
-export interface GetV1RegionsAccelerateRequest {}
-export const GetV1RegionsAccelerateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({ method: "GET", uri: "/v1/regions/accelerate", code: 200 }),
-  ),
-).annotate({
-  identifier: "GetV1RegionsAccelerateRequest",
-}) as any as S.Schema<GetV1RegionsAccelerateRequest>;
-
-export interface GetV1RegionsAccelerateResponseDataItem {
-  id: string;
-  type: string;
-  name: string;
-}
-export const GetV1RegionsAccelerateResponseDataItem = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String,
-      type: S.String,
-      name: S.String,
-    }),
-).annotate({
-  identifier: "GetV1RegionsAccelerateResponseDataItem",
-}) as any as S.Schema<GetV1RegionsAccelerateResponseDataItem>;
-
-export type GetV1RegionsAccelerateResponseDataList =
-  Array<GetV1RegionsAccelerateResponseDataItem>;
-export const GetV1RegionsAccelerateResponseDataList = /*@__PURE__*/ S.Array(
-  GetV1RegionsAccelerateResponseDataItem,
-) as any as S.Schema<GetV1RegionsAccelerateResponseDataList>;
-
-export interface GetV1RegionsAccelerateResponse {
-  data: GetV1RegionsAccelerateResponseDataList;
-}
-export const GetV1RegionsAccelerateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: GetV1RegionsAccelerateResponseDataList,
-  }),
-).annotate({
-  identifier: "GetV1RegionsAccelerateResponse",
-}) as any as S.Schema<GetV1RegionsAccelerateResponse>;
-
-export interface GetV1RegionsPostgresRequest {}
-export const GetV1RegionsPostgresRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({ method: "GET", uri: "/v1/regions/postgres", code: 200 }),
-  ),
-).annotate({
-  identifier: "GetV1RegionsPostgresRequest",
-}) as any as S.Schema<GetV1RegionsPostgresRequest>;
-
-export type GetV1RegionsPostgresResponseDataItemStatus =
-  | "available"
-  | "unavailable";
-export const GetV1RegionsPostgresResponseDataItemStatus =
-  /*@__PURE__*/ S.String;
-
-export interface GetV1RegionsPostgresResponseDataItem {
-  id: string;
-  type: string;
-  name: string;
-  status: GetV1RegionsPostgresResponseDataItemStatus;
-}
-export const GetV1RegionsPostgresResponseDataItem = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String,
-      type: S.String,
-      name: S.String,
-      status: GetV1RegionsPostgresResponseDataItemStatus,
-    }),
-).annotate({
-  identifier: "GetV1RegionsPostgresResponseDataItem",
-}) as any as S.Schema<GetV1RegionsPostgresResponseDataItem>;
-
-export type GetV1RegionsPostgresResponseDataList =
-  Array<GetV1RegionsPostgresResponseDataItem>;
-export const GetV1RegionsPostgresResponseDataList = /*@__PURE__*/ S.Array(
-  GetV1RegionsPostgresResponseDataItem,
-) as any as S.Schema<GetV1RegionsPostgresResponseDataList>;
-
-export interface GetV1RegionsPostgresResponse {
-  data: GetV1RegionsPostgresResponseDataList;
-}
-export const GetV1RegionsPostgresResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: GetV1RegionsPostgresResponseDataList,
-  }),
-).annotate({
-  identifier: "GetV1RegionsPostgresResponse",
-}) as any as S.Schema<GetV1RegionsPostgresResponse>;
-
-export interface GetV1ScmInstallationsRequest {
-  cursor?: string;
-  limit?: number;
-  workspaceId: string;
-}
-export const GetV1ScmInstallationsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    cursor: S.optional(S.String.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    workspaceId: S.String.pipe(T.Query()),
-  }).pipe(T.Http({ method: "GET", uri: "/v1/scm-installations", code: 200 })),
-).annotate({
-  identifier: "GetV1ScmInstallationsRequest",
-}) as any as S.Schema<GetV1ScmInstallationsRequest>;
-
-export type GetV1ScmInstallationsResponseDataItemProvider = "github";
-export const GetV1ScmInstallationsResponseDataItemProvider =
-  /*@__PURE__*/ S.String;
-
-export type GetV1ScmInstallationsResponseDataItemAccountType =
-  | "user"
-  | "organization";
-export const GetV1ScmInstallationsResponseDataItemAccountType =
-  /*@__PURE__*/ S.String;
-
-export interface GetV1ScmInstallationsResponseDataItem {
-  id: string;
-  type: string;
-  url: string;
-  provider: GetV1ScmInstallationsResponseDataItemProvider;
-  /** Numeric installation ID assigned by the SCM provider */
-  installationId: number;
-  /** Numeric account ID assigned by the SCM provider */
-  accountId: number;
-  accountLogin: string;
-  accountType: GetV1ScmInstallationsResponseDataItemAccountType;
-  suspended: boolean;
-  createdAt: string;
-  updatedAt: string;
-}
-export const GetV1ScmInstallationsResponseDataItem = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String,
-      type: S.String,
-      url: S.String,
-      provider: GetV1ScmInstallationsResponseDataItemProvider,
-      installationId: S.Number,
-      accountId: S.Number,
-      accountLogin: S.String,
-      accountType: GetV1ScmInstallationsResponseDataItemAccountType,
-      suspended: S.Boolean,
-      createdAt: S.String,
-      updatedAt: S.String,
-    }),
-).annotate({
-  identifier: "GetV1ScmInstallationsResponseDataItem",
-}) as any as S.Schema<GetV1ScmInstallationsResponseDataItem>;
-
-export type GetV1ScmInstallationsResponseDataList =
-  Array<GetV1ScmInstallationsResponseDataItem>;
-export const GetV1ScmInstallationsResponseDataList = /*@__PURE__*/ S.Array(
-  GetV1ScmInstallationsResponseDataItem,
-) as any as S.Schema<GetV1ScmInstallationsResponseDataList>;
-
-export type GetV1ScmInstallationsResponsePagination =
-  GetV1BucketsResponsePagination;
-export const GetV1ScmInstallationsResponsePagination =
-  GetV1BucketsResponsePagination;
-
-export interface GetV1ScmInstallationsResponse {
-  data: GetV1ScmInstallationsResponseDataList;
-  pagination: GetV1BucketsResponsePagination;
-}
-export const GetV1ScmInstallationsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: GetV1ScmInstallationsResponseDataList,
-    pagination: GetV1BucketsResponsePagination,
-  }),
-).annotate({
-  identifier: "GetV1ScmInstallationsResponse",
-}) as any as S.Schema<GetV1ScmInstallationsResponse>;
-
-export interface GetV1ScmInstallationsByInstallationIdRepositoriesRequest {
-  installationId: string;
-  cursor?: string;
-  limit?: number;
-}
-export const GetV1ScmInstallationsByInstallationIdRepositoriesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      installationId: S.String.pipe(T.Label()),
-      cursor: S.optional(S.String.pipe(T.Query())),
-      limit: S.optional(S.Number.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/scm-installations/{installationId}/repositories",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetV1ScmInstallationsByInstallationIdRepositoriesRequest",
-  }) as any as S.Schema<GetV1ScmInstallationsByInstallationIdRepositoriesRequest>;
-
-export interface GetV1ScmInstallationsByInstallationIdRepositoriesResponseDataItem {
-  /** Numeric repository ID assigned by the SCM provider */
-  id: number;
-  type: string;
-  /** Full repository name, e.g. "octocat/hello" */
-  fullName: string;
-  defaultBranch: string;
-  isPrivate: boolean;
-}
-export const GetV1ScmInstallationsByInstallationIdRepositoriesResponseDataItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.Number,
-      type: S.String,
-      fullName: S.String,
-      defaultBranch: S.String,
-      isPrivate: S.Boolean,
-    }),
-  ).annotate({
-    identifier:
-      "GetV1ScmInstallationsByInstallationIdRepositoriesResponseDataItem",
-  }) as any as S.Schema<GetV1ScmInstallationsByInstallationIdRepositoriesResponseDataItem>;
-
-export type GetV1ScmInstallationsByInstallationIdRepositoriesResponseDataList =
-  Array<GetV1ScmInstallationsByInstallationIdRepositoriesResponseDataItem>;
-export const GetV1ScmInstallationsByInstallationIdRepositoriesResponseDataList =
-  /*@__PURE__*/ S.Array(
-    GetV1ScmInstallationsByInstallationIdRepositoriesResponseDataItem,
-  ) as any as S.Schema<GetV1ScmInstallationsByInstallationIdRepositoriesResponseDataList>;
-
-export type GetV1ScmInstallationsByInstallationIdRepositoriesResponsePagination =
-  GetV1ProjectsByProjectIdBranchesResponsePagination;
-export const GetV1ScmInstallationsByInstallationIdRepositoriesResponsePagination =
-  GetV1ProjectsByProjectIdBranchesResponsePagination;
-
-export interface GetV1ScmInstallationsByInstallationIdRepositoriesResponse {
-  data: GetV1ScmInstallationsByInstallationIdRepositoriesResponseDataList;
-  pagination: GetV1ProjectsByProjectIdBranchesResponsePagination;
-}
-export const GetV1ScmInstallationsByInstallationIdRepositoriesResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      data: GetV1ScmInstallationsByInstallationIdRepositoriesResponseDataList,
-      pagination: GetV1ProjectsByProjectIdBranchesResponsePagination,
-    }),
-  ).annotate({
-    identifier: "GetV1ScmInstallationsByInstallationIdRepositoriesResponse",
-  }) as any as S.Schema<GetV1ScmInstallationsByInstallationIdRepositoriesResponse>;
-
-export interface GetV1ServicesRequest {
-  cursor?: string;
-  limit?: number;
-  projectId?: string;
-  branchId?: string;
-  branchGitName?: string;
-}
-export const GetV1ServicesRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    cursor: S.optional(S.String.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    projectId: S.optional(S.String.pipe(T.Query())),
-    branchId: S.optional(S.String.pipe(T.Query())),
-    branchGitName: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/v1/services", code: 200 })),
-).annotate({
-  identifier: "GetV1ServicesRequest",
-}) as any as S.Schema<GetV1ServicesRequest>;
-
-export type GetV1ServicesResponseDataItemRegion =
-  GetV1DatabasesResponseDataItemRegion;
-export const GetV1ServicesResponseDataItemRegion =
-  GetV1DatabasesResponseDataItemRegion;
-
-export interface GetV1ServicesResponseDataItem {
-  id: string;
-  type: string;
-  url: string;
-  name: string;
-  region: GetV1DatabasesResponseDataItemRegion;
-  projectId: string;
-  branchId: string | null;
-  latestDeploymentId: string | null;
-  appEndpointDomain: string;
-  createdAt: string;
-}
-export const GetV1ServicesResponseDataItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    type: S.String,
-    url: S.String,
-    name: S.String,
-    region: GetV1DatabasesResponseDataItemRegion,
-    projectId: S.String,
-    branchId: S.NullOr(S.String),
-    latestDeploymentId: S.NullOr(S.String),
-    appEndpointDomain: S.String,
-    createdAt: S.String,
-  }),
-).annotate({
-  identifier: "GetV1ServicesResponseDataItem",
-}) as any as S.Schema<GetV1ServicesResponseDataItem>;
-
-export type GetV1ServicesResponseDataList =
-  Array<GetV1ServicesResponseDataItem>;
-export const GetV1ServicesResponseDataList = /*@__PURE__*/ S.Array(
-  GetV1ServicesResponseDataItem,
-) as any as S.Schema<GetV1ServicesResponseDataList>;
-
-export type GetV1ServicesResponsePagination = GetV1BucketsResponsePagination;
-export const GetV1ServicesResponsePagination = GetV1BucketsResponsePagination;
-
-export interface GetV1ServicesResponse {
-  data: GetV1ServicesResponseDataList;
-  pagination: GetV1BucketsResponsePagination;
-}
-export const GetV1ServicesResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: GetV1ServicesResponseDataList,
-    pagination: GetV1BucketsResponsePagination,
-  }),
-).annotate({
-  identifier: "GetV1ServicesResponse",
-}) as any as S.Schema<GetV1ServicesResponse>;
-
-export interface GetV1ServicesByServiceIdRequest {
-  serviceId: string;
-}
-export const GetV1ServicesByServiceIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/v1/services/{serviceId}", code: 200 }),
-  ),
-).annotate({
-  identifier: "GetV1ServicesByServiceIdRequest",
-}) as any as S.Schema<GetV1ServicesByServiceIdRequest>;
-
-export type GetV1ServicesByServiceIdResponseDataRegion =
-  GetV1DatabasesResponseDataItemRegion;
-export const GetV1ServicesByServiceIdResponseDataRegion =
-  GetV1DatabasesResponseDataItemRegion;
-
-export type GetV1ServicesByServiceIdResponseData =
-  GetV1ServicesResponseDataItem;
-export const GetV1ServicesByServiceIdResponseData =
-  GetV1ServicesResponseDataItem;
-
-export interface GetV1ServicesByServiceIdResponse {
-  data: GetV1ServicesResponseDataItem;
-}
-export const GetV1ServicesByServiceIdResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: GetV1ServicesResponseDataItem,
-  }),
-).annotate({
-  identifier: "GetV1ServicesByServiceIdResponse",
-}) as any as S.Schema<GetV1ServicesByServiceIdResponse>;
-
-export interface GetV1ServicesByServiceIdDeploymentsRequest {
-  serviceId: string;
-  cursor?: string;
-  limit?: number;
-}
-export const GetV1ServicesByServiceIdDeploymentsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceId: S.String.pipe(T.Label()),
-      cursor: S.optional(S.String.pipe(T.Query())),
-      limit: S.optional(S.Number.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/services/{serviceId}/deployments",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetV1ServicesByServiceIdDeploymentsRequest",
-  }) as any as S.Schema<GetV1ServicesByServiceIdDeploymentsRequest>;
-
-export interface GetV1ServicesByServiceIdDeploymentsResponseDataItem {
-  id: string;
-  type: string;
-  url: string;
-  serviceId: string;
-  foundryVersionId: string;
-  createdAt: string;
-}
-export const GetV1ServicesByServiceIdDeploymentsResponseDataItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.String,
-      type: S.String,
-      url: S.String,
-      serviceId: S.String,
-      foundryVersionId: S.String,
-      createdAt: S.String,
-    }),
-  ).annotate({
-    identifier: "GetV1ServicesByServiceIdDeploymentsResponseDataItem",
-  }) as any as S.Schema<GetV1ServicesByServiceIdDeploymentsResponseDataItem>;
-
-export type GetV1ServicesByServiceIdDeploymentsResponseDataList =
-  Array<GetV1ServicesByServiceIdDeploymentsResponseDataItem>;
-export const GetV1ServicesByServiceIdDeploymentsResponseDataList =
-  /*@__PURE__*/ S.Array(
-    GetV1ServicesByServiceIdDeploymentsResponseDataItem,
-  ) as any as S.Schema<GetV1ServicesByServiceIdDeploymentsResponseDataList>;
-
-export type GetV1ServicesByServiceIdDeploymentsResponsePagination =
-  GetV1BucketsResponsePagination;
-export const GetV1ServicesByServiceIdDeploymentsResponsePagination =
-  GetV1BucketsResponsePagination;
-
-export interface GetV1ServicesByServiceIdDeploymentsResponse {
-  data: GetV1ServicesByServiceIdDeploymentsResponseDataList;
-  pagination: GetV1BucketsResponsePagination;
-}
-export const GetV1ServicesByServiceIdDeploymentsResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      data: GetV1ServicesByServiceIdDeploymentsResponseDataList,
-      pagination: GetV1BucketsResponsePagination,
-    }),
-  ).annotate({
-    identifier: "GetV1ServicesByServiceIdDeploymentsResponse",
-  }) as any as S.Schema<GetV1ServicesByServiceIdDeploymentsResponse>;
-
-export interface GetV1ServicesByServiceIdDomainsRequest {
-  serviceId: string;
-}
-export const GetV1ServicesByServiceIdDomainsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/services/{serviceId}/domains",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "GetV1ServicesByServiceIdDomainsRequest",
-}) as any as S.Schema<GetV1ServicesByServiceIdDomainsRequest>;
-
-export type GetV1ServicesByServiceIdDomainsResponseDataItemStatus =
-  | "pending_dns"
-  | "verifying"
-  | "verified_routing_blocked"
-  | "provisioning_tls"
-  | "active"
-  | "failed"
-  | "removing";
-export const GetV1ServicesByServiceIdDomainsResponseDataItemStatus =
-  /*@__PURE__*/ S.String;
-
-export type GetV1ServicesByServiceIdDomainsResponseDataItemFailureCategory =
-  | "dns"
-  | "acme"
-  | "storage"
-  | "unknown";
-export const GetV1ServicesByServiceIdDomainsResponseDataItemFailureCategory =
-  /*@__PURE__*/ S.String;
-
-export type GetV1ServicesByServiceIdDomainsResponseDataItemDnsRecordsItem =
-  GetV1DomainsByDomainIdResponseDataDnsRecordsItem;
-export const GetV1ServicesByServiceIdDomainsResponseDataItemDnsRecordsItem =
-  GetV1DomainsByDomainIdResponseDataDnsRecordsItem;
-
-export type GetV1ServicesByServiceIdDomainsResponseDataItemDnsRecordsList =
-  Array<GetV1DomainsByDomainIdResponseDataDnsRecordsItem>;
-export const GetV1ServicesByServiceIdDomainsResponseDataItemDnsRecordsList =
-  /*@__PURE__*/ S.Array(
-    GetV1DomainsByDomainIdResponseDataDnsRecordsItem,
-  ) as any as S.Schema<GetV1ServicesByServiceIdDomainsResponseDataItemDnsRecordsList>;
-
-export interface GetV1ServicesByServiceIdDomainsResponseDataItem {
-  id: string;
-  type: string;
-  url: string;
-  hostname: string;
-  appId: string;
-  /** Deprecated: use `appId` instead. */
-  computeServiceId: string;
-  status: GetV1ServicesByServiceIdDomainsResponseDataItemStatus;
-  foundryStatus: string;
-  failureReason: string | null;
-  failureCategory: GetV1ServicesByServiceIdDomainsResponseDataItemFailureCategory | null;
-  certExpiresAt: string | null;
-  createdAt: string;
-  updatedAt: string;
-  dnsRecords: GetV1ServicesByServiceIdDomainsResponseDataItemDnsRecordsList;
-}
-export const GetV1ServicesByServiceIdDomainsResponseDataItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.String,
-      type: S.String,
-      url: S.String,
-      hostname: S.String,
-      appId: S.String,
-      computeServiceId: S.String,
-      status: GetV1ServicesByServiceIdDomainsResponseDataItemStatus,
-      foundryStatus: S.String,
-      failureReason: S.NullOr(S.String),
-      failureCategory: S.NullOr(
-        GetV1ServicesByServiceIdDomainsResponseDataItemFailureCategory,
-      ),
-      certExpiresAt: S.NullOr(S.String),
-      createdAt: S.String,
-      updatedAt: S.String,
-      dnsRecords: GetV1ServicesByServiceIdDomainsResponseDataItemDnsRecordsList,
-    }),
-  ).annotate({
-    identifier: "GetV1ServicesByServiceIdDomainsResponseDataItem",
-  }) as any as S.Schema<GetV1ServicesByServiceIdDomainsResponseDataItem>;
-
-export type GetV1ServicesByServiceIdDomainsResponseDataList =
-  Array<GetV1ServicesByServiceIdDomainsResponseDataItem>;
-export const GetV1ServicesByServiceIdDomainsResponseDataList =
-  /*@__PURE__*/ S.Array(
-    GetV1ServicesByServiceIdDomainsResponseDataItem,
-  ) as any as S.Schema<GetV1ServicesByServiceIdDomainsResponseDataList>;
-
-export interface GetV1ServicesByServiceIdDomainsResponsePagination {
-  hasMore: boolean;
-  nextCursor: unknown | null;
-}
-export const GetV1ServicesByServiceIdDomainsResponsePagination =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      hasMore: S.Boolean,
-      nextCursor: S.NullOr(S.Unknown),
-    }),
-  ).annotate({
-    identifier: "GetV1ServicesByServiceIdDomainsResponsePagination",
-  }) as any as S.Schema<GetV1ServicesByServiceIdDomainsResponsePagination>;
-
-export interface GetV1ServicesByServiceIdDomainsResponse {
-  data: GetV1ServicesByServiceIdDomainsResponseDataList;
-  pagination: GetV1ServicesByServiceIdDomainsResponsePagination;
-}
-export const GetV1ServicesByServiceIdDomainsResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      data: GetV1ServicesByServiceIdDomainsResponseDataList,
-      pagination: GetV1ServicesByServiceIdDomainsResponsePagination,
-    }),
-).annotate({
-  identifier: "GetV1ServicesByServiceIdDomainsResponse",
-}) as any as S.Schema<GetV1ServicesByServiceIdDomainsResponse>;
-
-export interface GetV1SourceRepositoriesRequest {
-  cursor?: string;
-  limit?: number;
-  projectId: string;
-}
-export const GetV1SourceRepositoriesRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    cursor: S.optional(S.String.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    projectId: S.String.pipe(T.Query()),
-  }).pipe(T.Http({ method: "GET", uri: "/v1/source-repositories", code: 200 })),
-).annotate({
-  identifier: "GetV1SourceRepositoriesRequest",
-}) as any as S.Schema<GetV1SourceRepositoriesRequest>;
-
-export type GetV1SourceRepositoriesResponseDataItemProvider = "github";
-export const GetV1SourceRepositoriesResponseDataItemProvider =
-  /*@__PURE__*/ S.String;
-
-export type GetV1SourceRepositoriesResponseDataItemStatus =
-  | "active"
-  | "archived";
-export const GetV1SourceRepositoriesResponseDataItemStatus =
-  /*@__PURE__*/ S.String;
-
-export interface GetV1SourceRepositoriesResponseDataItem {
-  id: string;
-  type: string;
-  url: string;
-  repoId: number;
-  provider: GetV1SourceRepositoriesResponseDataItemProvider;
-  repoFullName: string;
-  defaultBranch: string;
-  isPrivate: boolean;
-  status: GetV1SourceRepositoriesResponseDataItemStatus;
-  projectId: string;
-  installationId: string;
-  createdAt: string;
-  updatedAt: string;
-}
-export const GetV1SourceRepositoriesResponseDataItem = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String,
-      type: S.String,
-      url: S.String,
-      repoId: S.Number,
-      provider: GetV1SourceRepositoriesResponseDataItemProvider,
-      repoFullName: S.String,
-      defaultBranch: S.String,
-      isPrivate: S.Boolean,
-      status: GetV1SourceRepositoriesResponseDataItemStatus,
-      projectId: S.String,
-      installationId: S.String,
-      createdAt: S.String,
-      updatedAt: S.String,
-    }),
-).annotate({
-  identifier: "GetV1SourceRepositoriesResponseDataItem",
-}) as any as S.Schema<GetV1SourceRepositoriesResponseDataItem>;
-
-export type GetV1SourceRepositoriesResponseDataList =
-  Array<GetV1SourceRepositoriesResponseDataItem>;
-export const GetV1SourceRepositoriesResponseDataList = /*@__PURE__*/ S.Array(
-  GetV1SourceRepositoriesResponseDataItem,
-) as any as S.Schema<GetV1SourceRepositoriesResponseDataList>;
-
-export type GetV1SourceRepositoriesResponsePagination =
-  GetV1ProjectsByProjectIdBranchesResponsePagination;
-export const GetV1SourceRepositoriesResponsePagination =
-  GetV1ProjectsByProjectIdBranchesResponsePagination;
-
-export interface GetV1SourceRepositoriesResponse {
-  data: GetV1SourceRepositoriesResponseDataList;
-  pagination: GetV1ProjectsByProjectIdBranchesResponsePagination;
-}
-export const GetV1SourceRepositoriesResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: GetV1SourceRepositoriesResponseDataList,
-    pagination: GetV1ProjectsByProjectIdBranchesResponsePagination,
-  }),
-).annotate({
-  identifier: "GetV1SourceRepositoriesResponse",
-}) as any as S.Schema<GetV1SourceRepositoriesResponse>;
-
-export interface GetV1SourceRepositoriesByIdRequest {
-  id: string;
-}
-export const GetV1SourceRepositoriesByIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/v1/source-repositories/{id}", code: 200 }),
-  ),
-).annotate({
-  identifier: "GetV1SourceRepositoriesByIdRequest",
-}) as any as S.Schema<GetV1SourceRepositoriesByIdRequest>;
-
-export type GetV1SourceRepositoriesByIdResponseDataProvider = "github";
-export const GetV1SourceRepositoriesByIdResponseDataProvider =
-  /*@__PURE__*/ S.String;
-
-export type GetV1SourceRepositoriesByIdResponseDataStatus =
-  | "active"
-  | "archived";
-export const GetV1SourceRepositoriesByIdResponseDataStatus =
-  /*@__PURE__*/ S.String;
-
-export interface GetV1SourceRepositoriesByIdResponseData {
-  id: string;
-  type: string;
-  url: string;
-  repoId: number;
-  provider: GetV1SourceRepositoriesByIdResponseDataProvider;
-  repoFullName: string;
-  defaultBranch: string;
-  isPrivate: boolean;
-  status: GetV1SourceRepositoriesByIdResponseDataStatus;
-  projectId: string;
-  installationId: string;
-  createdAt: string;
-  updatedAt: string;
-}
-export const GetV1SourceRepositoriesByIdResponseData = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String,
-      type: S.String,
-      url: S.String,
-      repoId: S.Number,
-      provider: GetV1SourceRepositoriesByIdResponseDataProvider,
-      repoFullName: S.String,
-      defaultBranch: S.String,
-      isPrivate: S.Boolean,
-      status: GetV1SourceRepositoriesByIdResponseDataStatus,
-      projectId: S.String,
-      installationId: S.String,
-      createdAt: S.String,
-      updatedAt: S.String,
-    }),
-).annotate({
-  identifier: "GetV1SourceRepositoriesByIdResponseData",
-}) as any as S.Schema<GetV1SourceRepositoriesByIdResponseData>;
-
-export interface GetV1SourceRepositoriesByIdResponse {
-  data: GetV1SourceRepositoriesByIdResponseData;
-}
-export const GetV1SourceRepositoriesByIdResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: GetV1SourceRepositoriesByIdResponseData,
-  }),
-).annotate({
-  identifier: "GetV1SourceRepositoriesByIdResponse",
-}) as any as S.Schema<GetV1SourceRepositoriesByIdResponse>;
-
-export interface GetV1WorkspacesRequest {
-  cursor?: string;
-  limit?: number;
-}
-export const GetV1WorkspacesRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    cursor: S.optional(S.String.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/v1/workspaces", code: 200 })),
-).annotate({
-  identifier: "GetV1WorkspacesRequest",
-}) as any as S.Schema<GetV1WorkspacesRequest>;
-
-export interface GetV1WorkspacesResponseDataItem {
-  id: string;
-  type: string;
-  url: string;
-  name: string;
-  createdAt: string;
-}
-export const GetV1WorkspacesResponseDataItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    type: S.String,
-    url: S.String,
-    name: S.String,
-    createdAt: S.String,
-  }),
-).annotate({
-  identifier: "GetV1WorkspacesResponseDataItem",
-}) as any as S.Schema<GetV1WorkspacesResponseDataItem>;
-
-export type GetV1WorkspacesResponseDataList =
-  Array<GetV1WorkspacesResponseDataItem>;
-export const GetV1WorkspacesResponseDataList = /*@__PURE__*/ S.Array(
-  GetV1WorkspacesResponseDataItem,
-) as any as S.Schema<GetV1WorkspacesResponseDataList>;
-
-export type GetV1WorkspacesResponsePagination = GetV1BucketsResponsePagination;
-export const GetV1WorkspacesResponsePagination = GetV1BucketsResponsePagination;
-
-export interface GetV1WorkspacesResponse {
-  data: GetV1WorkspacesResponseDataList;
-  pagination: GetV1BucketsResponsePagination;
-}
-export const GetV1WorkspacesResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: GetV1WorkspacesResponseDataList,
-    pagination: GetV1BucketsResponsePagination,
-  }),
-).annotate({
-  identifier: "GetV1WorkspacesResponse",
-}) as any as S.Schema<GetV1WorkspacesResponse>;
-
-export interface GetV1WorkspacesByIdRequest {
-  id: string;
-}
-export const GetV1WorkspacesByIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/v1/workspaces/{id}", code: 200 })),
-).annotate({
-  identifier: "GetV1WorkspacesByIdRequest",
-}) as any as S.Schema<GetV1WorkspacesByIdRequest>;
-
-export type GetV1WorkspacesByIdResponseData = GetV1WorkspacesResponseDataItem;
-export const GetV1WorkspacesByIdResponseData = GetV1WorkspacesResponseDataItem;
-
-export interface GetV1WorkspacesByIdResponse {
-  data: GetV1WorkspacesResponseDataItem;
-}
-export const GetV1WorkspacesByIdResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: GetV1WorkspacesResponseDataItem,
-  }),
-).annotate({
-  identifier: "GetV1WorkspacesByIdResponse",
-}) as any as S.Schema<GetV1WorkspacesByIdResponse>;
-
-export interface GetV1WorkspacesByIdSubscriptionRequest {
-  id: string;
-}
-export const GetV1WorkspacesByIdSubscriptionRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/workspaces/{id}/subscription",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "GetV1WorkspacesByIdSubscriptionRequest",
-}) as any as S.Schema<GetV1WorkspacesByIdSubscriptionRequest>;
-
-export interface GetV1WorkspacesByIdSubscriptionResponseData {
-  planName: string;
-  usageBlocked: boolean;
-  upgradeUrl: string;
-}
-export const GetV1WorkspacesByIdSubscriptionResponseData =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      planName: S.String,
-      usageBlocked: S.Boolean,
-      upgradeUrl: S.String,
-    }),
-  ).annotate({
-    identifier: "GetV1WorkspacesByIdSubscriptionResponseData",
-  }) as any as S.Schema<GetV1WorkspacesByIdSubscriptionResponseData>;
-
-export interface GetV1WorkspacesByIdSubscriptionResponse {
-  data: GetV1WorkspacesByIdSubscriptionResponseData;
-}
-export const GetV1WorkspacesByIdSubscriptionResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      data: GetV1WorkspacesByIdSubscriptionResponseData,
-    }),
-).annotate({
-  identifier: "GetV1WorkspacesByIdSubscriptionResponse",
-}) as any as S.Schema<GetV1WorkspacesByIdSubscriptionResponse>;
-
-export interface GetV1WorkspacesByWorkspaceIdIntegrationsRequest {
-  workspaceId: string;
-  cursor?: string;
-  limit?: number;
-}
-export const GetV1WorkspacesByWorkspaceIdIntegrationsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      workspaceId: S.String.pipe(T.Label()),
-      cursor: S.optional(S.String.pipe(T.Query())),
-      limit: S.optional(S.Number.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/workspaces/{workspaceId}/integrations",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetV1WorkspacesByWorkspaceIdIntegrationsRequest",
-  }) as any as S.Schema<GetV1WorkspacesByWorkspaceIdIntegrationsRequest>;
-
-export type GetV1WorkspacesByWorkspaceIdIntegrationsResponseDataItemScopesList =
-  Array<string>;
-export const GetV1WorkspacesByWorkspaceIdIntegrationsResponseDataItemScopesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetV1WorkspacesByWorkspaceIdIntegrationsResponseDataItemScopesList>;
-
-export type GetV1WorkspacesByWorkspaceIdIntegrationsResponseDataItemClient =
-  GetV1IntegrationsResponseDataItemClient;
-export const GetV1WorkspacesByWorkspaceIdIntegrationsResponseDataItemClient =
-  GetV1IntegrationsResponseDataItemClient;
-
-export type GetV1WorkspacesByWorkspaceIdIntegrationsResponseDataItemCreatedByUser =
-  GetV1IntegrationsResponseDataItemCreatedByUser;
-export const GetV1WorkspacesByWorkspaceIdIntegrationsResponseDataItemCreatedByUser =
-  GetV1IntegrationsResponseDataItemCreatedByUser;
-
-export interface GetV1WorkspacesByWorkspaceIdIntegrationsResponseDataItem {
-  id: string;
-  url: string;
-  createdAt: string;
-  scopes: GetV1WorkspacesByWorkspaceIdIntegrationsResponseDataItemScopesList;
-  client: GetV1IntegrationsResponseDataItemClient;
-  createdByUser: GetV1IntegrationsResponseDataItemCreatedByUser;
-}
-export const GetV1WorkspacesByWorkspaceIdIntegrationsResponseDataItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.String,
-      url: S.String,
-      createdAt: S.String,
-      scopes:
-        GetV1WorkspacesByWorkspaceIdIntegrationsResponseDataItemScopesList,
-      client: GetV1IntegrationsResponseDataItemClient,
-      createdByUser: GetV1IntegrationsResponseDataItemCreatedByUser,
-    }),
-  ).annotate({
-    identifier: "GetV1WorkspacesByWorkspaceIdIntegrationsResponseDataItem",
-  }) as any as S.Schema<GetV1WorkspacesByWorkspaceIdIntegrationsResponseDataItem>;
-
-export type GetV1WorkspacesByWorkspaceIdIntegrationsResponseDataList =
-  Array<GetV1WorkspacesByWorkspaceIdIntegrationsResponseDataItem>;
-export const GetV1WorkspacesByWorkspaceIdIntegrationsResponseDataList =
-  /*@__PURE__*/ S.Array(
-    GetV1WorkspacesByWorkspaceIdIntegrationsResponseDataItem,
-  ) as any as S.Schema<GetV1WorkspacesByWorkspaceIdIntegrationsResponseDataList>;
-
-export type GetV1WorkspacesByWorkspaceIdIntegrationsResponsePagination =
-  GetV1BucketsResponsePagination;
-export const GetV1WorkspacesByWorkspaceIdIntegrationsResponsePagination =
-  GetV1BucketsResponsePagination;
-
-export interface GetV1WorkspacesByWorkspaceIdIntegrationsResponse {
-  data: GetV1WorkspacesByWorkspaceIdIntegrationsResponseDataList;
-  pagination: GetV1BucketsResponsePagination;
-}
-export const GetV1WorkspacesByWorkspaceIdIntegrationsResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      data: GetV1WorkspacesByWorkspaceIdIntegrationsResponseDataList,
-      pagination: GetV1BucketsResponsePagination,
-    }),
-  ).annotate({
-    identifier: "GetV1WorkspacesByWorkspaceIdIntegrationsResponse",
-  }) as any as S.Schema<GetV1WorkspacesByWorkspaceIdIntegrationsResponse>;
-
-export interface GetV1WorkspacesByWorkspaceIdServiceTokensRequest {
-  workspaceId: string;
-  cursor?: string;
-  limit?: number;
-}
-export const GetV1WorkspacesByWorkspaceIdServiceTokensRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      workspaceId: S.String.pipe(T.Label()),
-      cursor: S.optional(S.String.pipe(T.Query())),
-      limit: S.optional(S.Number.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/workspaces/{workspaceId}/service-tokens",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetV1WorkspacesByWorkspaceIdServiceTokensRequest",
-  }) as any as S.Schema<GetV1WorkspacesByWorkspaceIdServiceTokensRequest>;
-
-export interface GetV1WorkspacesByWorkspaceIdServiceTokensResponseDataItem {
-  id: string;
-  type: string;
-  name: string;
-  valueHint: string;
-  createdAt: string;
-  expiresAt?: string | null;
-}
-export const GetV1WorkspacesByWorkspaceIdServiceTokensResponseDataItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.String,
-      type: S.String,
-      name: S.String,
-      valueHint: S.String,
-      createdAt: S.String,
-      expiresAt: S.optional(S.NullOr(S.String)),
-    }),
-  ).annotate({
-    identifier: "GetV1WorkspacesByWorkspaceIdServiceTokensResponseDataItem",
-  }) as any as S.Schema<GetV1WorkspacesByWorkspaceIdServiceTokensResponseDataItem>;
-
-export type GetV1WorkspacesByWorkspaceIdServiceTokensResponseDataList =
-  Array<GetV1WorkspacesByWorkspaceIdServiceTokensResponseDataItem>;
-export const GetV1WorkspacesByWorkspaceIdServiceTokensResponseDataList =
-  /*@__PURE__*/ S.Array(
-    GetV1WorkspacesByWorkspaceIdServiceTokensResponseDataItem,
-  ) as any as S.Schema<GetV1WorkspacesByWorkspaceIdServiceTokensResponseDataList>;
-
-export type GetV1WorkspacesByWorkspaceIdServiceTokensResponsePagination =
-  GetV1BucketsResponsePagination;
-export const GetV1WorkspacesByWorkspaceIdServiceTokensResponsePagination =
-  GetV1BucketsResponsePagination;
-
-export interface GetV1WorkspacesByWorkspaceIdServiceTokensResponse {
-  data: GetV1WorkspacesByWorkspaceIdServiceTokensResponseDataList;
-  pagination: GetV1BucketsResponsePagination;
-}
-export const GetV1WorkspacesByWorkspaceIdServiceTokensResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      data: GetV1WorkspacesByWorkspaceIdServiceTokensResponseDataList,
-      pagination: GetV1BucketsResponsePagination,
-    }),
-  ).annotate({
-    identifier: "GetV1WorkspacesByWorkspaceIdServiceTokensResponse",
-  }) as any as S.Schema<GetV1WorkspacesByWorkspaceIdServiceTokensResponse>;
-
-export interface PatchV1BranchesByBranchIdRequest {
-  branchId: string;
-  isDefault?: boolean | null;
-}
-export const PatchV1BranchesByBranchIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    branchId: S.String.pipe(T.Label()),
-    isDefault: S.optional(S.NullOr(S.Boolean)),
-  }).pipe(
-    T.Http({ method: "PATCH", uri: "/v1/branches/{branchId}", code: 200 }),
-  ),
-).annotate({
-  identifier: "PatchV1BranchesByBranchIdRequest",
-}) as any as S.Schema<PatchV1BranchesByBranchIdRequest>;
-
-export type PatchV1BranchesByBranchIdResponseDataRole =
-  | "production"
-  | "preview";
-export const PatchV1BranchesByBranchIdResponseDataRole = /*@__PURE__*/ S.String;
-
-/** Thin reference to the parent Project. Member resources are intentionally NOT inlined — list /v1/databases?branchId=<br_xxx> or /v1/apps?branchId=<br_xxx> instead (see API design principles "Flat and Hierarchical Coexistence"). */
-export type PatchV1BranchesByBranchIdResponseDataProject =
-  GetV1BranchesByBranchIdResponseDataProject;
-export const PatchV1BranchesByBranchIdResponseDataProject =
-  GetV1BranchesByBranchIdResponseDataProject;
-
-export interface PatchV1BranchesByBranchIdResponseData {
-  id: string;
-  type: string;
-  url: string;
-  gitName: string;
-  isDefault: boolean;
-  role: PatchV1BranchesByBranchIdResponseDataRole;
-  createdAt: string;
-  updatedAt: string;
-  /** Thin reference to the parent Project. Member resources are intentionally NOT inlined — list /v1/databases?branchId=<br_xxx> or /v1/apps?branchId=<br_xxx> instead (see API design principles "Flat and Hierarchical Coexistence"). */
-  project: GetV1BranchesByBranchIdResponseDataProject;
-}
-export const PatchV1BranchesByBranchIdResponseData = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String,
-      type: S.String,
-      url: S.String,
-      gitName: S.String,
-      isDefault: S.Boolean,
-      role: PatchV1BranchesByBranchIdResponseDataRole,
-      createdAt: S.String,
-      updatedAt: S.String,
-      project: GetV1BranchesByBranchIdResponseDataProject,
-    }),
-).annotate({
-  identifier: "PatchV1BranchesByBranchIdResponseData",
-}) as any as S.Schema<PatchV1BranchesByBranchIdResponseData>;
-
-export interface PatchV1BranchesByBranchIdResponse {
-  data: PatchV1BranchesByBranchIdResponseData;
-}
-export const PatchV1BranchesByBranchIdResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: PatchV1BranchesByBranchIdResponseData,
-  }),
-).annotate({
-  identifier: "PatchV1BranchesByBranchIdResponse",
-}) as any as S.Schema<PatchV1BranchesByBranchIdResponse>;
-
-/** How far the run has got. */
-export type PatchV1BuildsByBuildIdRequestPhase = "queued" | "build" | "deploy";
-export const PatchV1BuildsByBuildIdRequestPhase = /*@__PURE__*/ S.String;
-
-export type PatchV1BuildsByBuildIdRequestState =
-  | "pending"
-  | "running"
-  | "succeeded"
-  | "failed"
-  | "cancelled";
-export const PatchV1BuildsByBuildIdRequestState = /*@__PURE__*/ S.String;
-
-export interface PatchV1BuildsByBuildIdRequest {
-  buildId: string;
-  /** How far the run has got. */
-  phase?: PatchV1BuildsByBuildIdRequestPhase | (string & {});
-  state?: PatchV1BuildsByBuildIdRequestState | (string & {});
-  /** Name of the step that failed, free text — step names come from build tooling the platform cannot validate. */
-  failingStep?: string;
-  errorMessage?: string;
-  externalLogUrl?: string;
-  /** Project the build targets. Fill-only: a reporter that learns the project partway through a deploy may set it, but a value already recorded cannot be changed. */
-  projectId?: string;
-  /** Branch the build targets. Fill-only, like `projectId`. */
-  branchId?: string;
-  /** Where the deployed app can be reached. Fill-only, like the anchors. */
-  deployedUrl?: string;
-  /** Content hash of the application topology this run deploys, as submitted to the application-topology endpoint. A value match, never a reference: equal hashes identify the same graph. Fill-only, like the anchors. */
-  applicationTopologyContentHash?: string;
-}
-export const PatchV1BuildsByBuildIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    buildId: S.String.pipe(T.Label()),
-    phase: S.optional(PatchV1BuildsByBuildIdRequestPhase),
-    state: S.optional(PatchV1BuildsByBuildIdRequestState),
-    failingStep: S.optional(S.String),
-    errorMessage: S.optional(S.String),
-    externalLogUrl: S.optional(S.String),
-    projectId: S.optional(S.String),
-    branchId: S.optional(S.String),
-    deployedUrl: S.optional(S.String),
-    applicationTopologyContentHash: S.optional(S.String),
-  }).pipe(T.Http({ method: "PATCH", uri: "/v1/builds/{buildId}", code: 200 })),
-).annotate({
-  identifier: "PatchV1BuildsByBuildIdRequest",
-}) as any as S.Schema<PatchV1BuildsByBuildIdRequest>;
-
-export type PatchV1BuildsByBuildIdResponseDataSource =
-  | "webhook"
-  | "setup"
-  | "manual"
-  | "ci"
-  | "cli";
-export const PatchV1BuildsByBuildIdResponseDataSource = /*@__PURE__*/ S.String;
-
-export type PatchV1BuildsByBuildIdResponseDataState =
-  | "pending"
-  | "running"
-  | "succeeded"
-  | "failed"
-  | "cancelled";
-export const PatchV1BuildsByBuildIdResponseDataState = /*@__PURE__*/ S.String;
-
-/** Null when nothing reported a phase; the platform never invents an observation it did not receive. */
-export type PatchV1BuildsByBuildIdResponseDataPhase =
-  | "queued"
-  | "build"
-  | "deploy";
-export const PatchV1BuildsByBuildIdResponseDataPhase = /*@__PURE__*/ S.String;
-
-export interface PatchV1BuildsByBuildIdResponseData {
-  id: string;
-  source: PatchV1BuildsByBuildIdResponseDataSource;
-  state: PatchV1BuildsByBuildIdResponseDataState;
-  /** Null when nothing reported a phase; the platform never invents an observation it did not receive. */
-  phase: PatchV1BuildsByBuildIdResponseDataPhase | null;
-  commitSha: string;
-  branchName: string;
-  /** Repository the build ran against. Set only when the workspace has a live link to it; a reported repository the platform does not know stays null. */
-  gitRepoId: string | null;
-  projectId: string | null;
-  branchId: string | null;
-  externalLogUrl: string | null;
-  deployedUrl: string | null;
-  applicationTopologyContentHash: string | null;
-  errorMessage: string | null;
-  failingStep: string | null;
-  createdAt: string;
-  startedAt: string | null;
-  finishedAt: string | null;
-}
-export const PatchV1BuildsByBuildIdResponseData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    source: PatchV1BuildsByBuildIdResponseDataSource,
-    state: PatchV1BuildsByBuildIdResponseDataState,
-    phase: S.NullOr(PatchV1BuildsByBuildIdResponseDataPhase),
-    commitSha: S.String,
-    branchName: S.String,
-    gitRepoId: S.NullOr(S.String),
-    projectId: S.NullOr(S.String),
-    branchId: S.NullOr(S.String),
-    externalLogUrl: S.NullOr(S.String),
-    deployedUrl: S.NullOr(S.String),
-    applicationTopologyContentHash: S.NullOr(S.String),
-    errorMessage: S.NullOr(S.String),
-    failingStep: S.NullOr(S.String),
-    createdAt: S.String,
-    startedAt: S.NullOr(S.String),
-    finishedAt: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "PatchV1BuildsByBuildIdResponseData",
-}) as any as S.Schema<PatchV1BuildsByBuildIdResponseData>;
-
-export interface PatchV1BuildsByBuildIdResponse {
-  data: PatchV1BuildsByBuildIdResponseData;
-}
-export const PatchV1BuildsByBuildIdResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: PatchV1BuildsByBuildIdResponseData,
-  }),
-).annotate({
-  identifier: "PatchV1BuildsByBuildIdResponse",
-}) as any as S.Schema<PatchV1BuildsByBuildIdResponse>;
-
-export interface PatchV1DatabasesByDatabaseIdRequest {
-  databaseId: string;
-  /** New display name for the database */
-  name?: string;
-  /** ID of the Branch to move the database to. Every database belongs to a Branch, so null (detach) is rejected. */
-  branchId?: string | null;
-  /** Git name of the Branch to move the database to; the Branch is created when it does not exist. Mutually exclusive with branchId. Every database belongs to a Branch, so null (detach) is rejected. */
-  branchGitName?: string | null;
-}
-export const PatchV1DatabasesByDatabaseIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    databaseId: S.String.pipe(T.Label()),
-    name: S.optional(S.String),
-    branchId: S.optional(S.NullOr(S.String)),
-    branchGitName: S.optional(S.NullOr(S.String)),
-  }).pipe(
-    T.Http({ method: "PATCH", uri: "/v1/databases/{databaseId}", code: 200 }),
-  ),
-).annotate({
-  identifier: "PatchV1DatabasesByDatabaseIdRequest",
-}) as any as S.Schema<PatchV1DatabasesByDatabaseIdRequest>;
-
-export type PatchV1DatabasesByDatabaseIdResponseDataStatus =
-  | "failure"
-  | "provisioning"
-  | "ready"
-  | "recovering";
-export const PatchV1DatabasesByDatabaseIdResponseDataStatus =
-  /*@__PURE__*/ S.String;
-
-export type PatchV1DatabasesByDatabaseIdResponseDataConnectionsItemKind =
-  | "postgres"
-  | "accelerate";
-export const PatchV1DatabasesByDatabaseIdResponseDataConnectionsItemKind =
-  /*@__PURE__*/ S.String;
-
-export type PatchV1DatabasesByDatabaseIdResponseDataConnectionsItemEndpointsDirect =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-export const PatchV1DatabasesByDatabaseIdResponseDataConnectionsItemEndpointsDirect =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-
-export type PatchV1DatabasesByDatabaseIdResponseDataConnectionsItemEndpointsPooled =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-export const PatchV1DatabasesByDatabaseIdResponseDataConnectionsItemEndpointsPooled =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-
-export type PatchV1DatabasesByDatabaseIdResponseDataConnectionsItemEndpointsAccelerate =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-export const PatchV1DatabasesByDatabaseIdResponseDataConnectionsItemEndpointsAccelerate =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-
-export type PatchV1DatabasesByDatabaseIdResponseDataConnectionsItemEndpoints =
-  GetV1ConnectionsResponseDataItemEndpoints;
-export const PatchV1DatabasesByDatabaseIdResponseDataConnectionsItemEndpoints =
-  GetV1ConnectionsResponseDataItemEndpoints;
-
-/** Deprecated: use `endpoints.direct` instead. */
-export type PatchV1DatabasesByDatabaseIdResponseDataConnectionsItemDirectConnection =
-  GetV1ConnectionsResponseDataItemDirectConnection;
-export const PatchV1DatabasesByDatabaseIdResponseDataConnectionsItemDirectConnection =
-  GetV1ConnectionsResponseDataItemDirectConnection;
-
-export type PatchV1DatabasesByDatabaseIdResponseDataConnectionsItemDatabase =
-  GetV1BranchesByBranchIdResponseDataProject;
-export const PatchV1DatabasesByDatabaseIdResponseDataConnectionsItemDatabase =
-  GetV1BranchesByBranchIdResponseDataProject;
-
-export interface PatchV1DatabasesByDatabaseIdResponseDataConnectionsItem {
-  id: string;
-  type: string;
-  url: string;
-  name: string;
-  createdAt: string;
-  kind: PatchV1DatabasesByDatabaseIdResponseDataConnectionsItemKind;
-  endpoints: GetV1ConnectionsResponseDataItemEndpoints;
-  /** Deprecated: use `endpoints.direct` instead. */
-  directConnection?: GetV1ConnectionsResponseDataItemDirectConnection | null;
-  database: GetV1BranchesByBranchIdResponseDataProject;
-}
-export const PatchV1DatabasesByDatabaseIdResponseDataConnectionsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.String,
-      type: S.String,
-      url: S.String,
-      name: S.String,
-      createdAt: S.String,
-      kind: PatchV1DatabasesByDatabaseIdResponseDataConnectionsItemKind,
-      endpoints: GetV1ConnectionsResponseDataItemEndpoints,
-      directConnection: S.optional(
-        S.NullOr(GetV1ConnectionsResponseDataItemDirectConnection),
-      ),
-      database: GetV1BranchesByBranchIdResponseDataProject,
-    }),
-  ).annotate({
-    identifier: "PatchV1DatabasesByDatabaseIdResponseDataConnectionsItem",
-  }) as any as S.Schema<PatchV1DatabasesByDatabaseIdResponseDataConnectionsItem>;
-
-export type PatchV1DatabasesByDatabaseIdResponseDataConnectionsList =
-  Array<PatchV1DatabasesByDatabaseIdResponseDataConnectionsItem>;
-export const PatchV1DatabasesByDatabaseIdResponseDataConnectionsList =
-  /*@__PURE__*/ S.Array(
-    PatchV1DatabasesByDatabaseIdResponseDataConnectionsItem,
-  ) as any as S.Schema<PatchV1DatabasesByDatabaseIdResponseDataConnectionsList>;
-
-export type PatchV1DatabasesByDatabaseIdResponseDataProject =
-  GetV1BranchesByBranchIdResponseDataProject;
-export const PatchV1DatabasesByDatabaseIdResponseDataProject =
-  GetV1BranchesByBranchIdResponseDataProject;
-
-export type PatchV1DatabasesByDatabaseIdResponseDataRegion =
-  GetV1DatabasesResponseDataItemRegion;
-export const PatchV1DatabasesByDatabaseIdResponseDataRegion =
-  GetV1DatabasesResponseDataItemRegion;
-
-export type PatchV1DatabasesByDatabaseIdResponseDataSourceCase0 =
-  GetV1DatabasesResponseDataItemSourceCase0;
-export const PatchV1DatabasesByDatabaseIdResponseDataSourceCase0 =
-  GetV1DatabasesResponseDataItemSourceCase0;
-
-export type PatchV1DatabasesByDatabaseIdResponseDataSourceCase1 =
-  GetV1DatabasesResponseDataItemSourceCase1;
-export const PatchV1DatabasesByDatabaseIdResponseDataSourceCase1 =
-  GetV1DatabasesResponseDataItemSourceCase1;
-
-export type PatchV1DatabasesByDatabaseIdResponseDataSourceCase2 =
-  GetV1DatabasesResponseDataItemSourceCase2;
-export const PatchV1DatabasesByDatabaseIdResponseDataSourceCase2 =
-  GetV1DatabasesResponseDataItemSourceCase2;
-
-export type PatchV1DatabasesByDatabaseIdResponseDataSource =
-  | GetV1DatabasesResponseDataItemSourceCase0
-  | GetV1DatabasesResponseDataItemSourceCase1
-  | GetV1DatabasesResponseDataItemSourceCase2;
-export const PatchV1DatabasesByDatabaseIdResponseDataSource =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Union([
-      PatchV1DatabasesByDatabaseIdResponseDataSourceCase0,
-      PatchV1DatabasesByDatabaseIdResponseDataSourceCase1,
-      PatchV1DatabasesByDatabaseIdResponseDataSourceCase2,
-    ]),
-  ) as any as S.Schema<PatchV1DatabasesByDatabaseIdResponseDataSource>;
-
-export interface PatchV1DatabasesByDatabaseIdResponseData {
-  id: string;
-  type: string;
-  url: string;
-  name: string;
-  status: PatchV1DatabasesByDatabaseIdResponseDataStatus;
-  createdAt: string;
-  isDefault: boolean;
-  defaultConnectionId: string | null;
-  connections: PatchV1DatabasesByDatabaseIdResponseDataConnectionsList;
-  project: GetV1BranchesByBranchIdResponseDataProject;
-  region: GetV1DatabasesResponseDataItemRegion | null;
-  source: PatchV1DatabasesByDatabaseIdResponseDataSource | null;
-  branchId: string | null;
-}
-export const PatchV1DatabasesByDatabaseIdResponseData = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String,
-      type: S.String,
-      url: S.String,
-      name: S.String,
-      status: PatchV1DatabasesByDatabaseIdResponseDataStatus,
-      createdAt: S.String,
-      isDefault: S.Boolean,
-      defaultConnectionId: S.NullOr(S.String),
-      connections: PatchV1DatabasesByDatabaseIdResponseDataConnectionsList,
-      project: GetV1BranchesByBranchIdResponseDataProject,
-      region: S.NullOr(GetV1DatabasesResponseDataItemRegion),
-      source: S.NullOr(PatchV1DatabasesByDatabaseIdResponseDataSource),
-      branchId: S.NullOr(S.String),
-    }),
-).annotate({
-  identifier: "PatchV1DatabasesByDatabaseIdResponseData",
-}) as any as S.Schema<PatchV1DatabasesByDatabaseIdResponseData>;
-
-export interface PatchV1DatabasesByDatabaseIdResponse {
-  data: PatchV1DatabasesByDatabaseIdResponseData;
-}
-export const PatchV1DatabasesByDatabaseIdResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      data: PatchV1DatabasesByDatabaseIdResponseData,
-    }),
-).annotate({
-  identifier: "PatchV1DatabasesByDatabaseIdResponse",
-}) as any as S.Schema<PatchV1DatabasesByDatabaseIdResponse>;
-
-export interface PatchV1EnvironmentVariablesByEnvVarIdRequest {
-  envVarId: string;
-  value: string;
-}
-export const PatchV1EnvironmentVariablesByEnvVarIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      envVarId: S.String.pipe(T.Label()),
-      value: S.String,
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/v1/environment-variables/{envVarId}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PatchV1EnvironmentVariablesByEnvVarIdRequest",
-  }) as any as S.Schema<PatchV1EnvironmentVariablesByEnvVarIdRequest>;
-
-export type PatchV1EnvironmentVariablesByEnvVarIdResponseDataClass =
-  | "production"
-  | "preview";
-export const PatchV1EnvironmentVariablesByEnvVarIdResponseDataClass =
-  /*@__PURE__*/ S.String;
-
-export interface PatchV1EnvironmentVariablesByEnvVarIdResponseData {
-  id: string;
-  type: string;
-  url: string;
-  projectId: string;
-  branchId: string | null;
-  class: PatchV1EnvironmentVariablesByEnvVarIdResponseDataClass;
-  key: string;
-  valueKid: string;
-  isManagedBySystem: boolean;
-  createdAt: string;
-  updatedAt: string;
-}
-export const PatchV1EnvironmentVariablesByEnvVarIdResponseData =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.String,
-      type: S.String,
-      url: S.String,
-      projectId: S.String,
-      branchId: S.NullOr(S.String),
-      class: PatchV1EnvironmentVariablesByEnvVarIdResponseDataClass,
-      key: S.String,
-      valueKid: S.String,
-      isManagedBySystem: S.Boolean,
-      createdAt: S.String,
-      updatedAt: S.String,
-    }),
-  ).annotate({
-    identifier: "PatchV1EnvironmentVariablesByEnvVarIdResponseData",
-  }) as any as S.Schema<PatchV1EnvironmentVariablesByEnvVarIdResponseData>;
-
-export interface PatchV1EnvironmentVariablesByEnvVarIdResponse {
-  data: PatchV1EnvironmentVariablesByEnvVarIdResponseData;
-}
-export const PatchV1EnvironmentVariablesByEnvVarIdResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      data: PatchV1EnvironmentVariablesByEnvVarIdResponseData,
-    }),
-  ).annotate({
-    identifier: "PatchV1EnvironmentVariablesByEnvVarIdResponse",
-  }) as any as S.Schema<PatchV1EnvironmentVariablesByEnvVarIdResponse>;
-
-export type PatchV1ProjectsByIdRequestSettingsMap = {
-  [key: string]: unknown | undefined;
-};
-export const PatchV1ProjectsByIdRequestSettingsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<PatchV1ProjectsByIdRequestSettingsMap>;
-
-export interface PatchV1ProjectsByIdRequest {
-  id: string;
-  name?: string;
-  settings?: PatchV1ProjectsByIdRequestSettingsMap;
-}
-export const PatchV1ProjectsByIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    name: S.optional(S.String),
-    settings: S.optional(PatchV1ProjectsByIdRequestSettingsMap),
-  }).pipe(T.Http({ method: "PATCH", uri: "/v1/projects/{id}", code: 200 })),
-).annotate({
-  identifier: "PatchV1ProjectsByIdRequest",
-}) as any as S.Schema<PatchV1ProjectsByIdRequest>;
-
-export type PatchV1ProjectsByIdResponseDataWorkspace =
-  GetV1BranchesByBranchIdResponseDataProject;
-export const PatchV1ProjectsByIdResponseDataWorkspace =
-  GetV1BranchesByBranchIdResponseDataProject;
-
-export type PatchV1ProjectsByIdResponseData = GetV1ProjectsResponseDataItem;
-export const PatchV1ProjectsByIdResponseData = GetV1ProjectsResponseDataItem;
-
-export interface PatchV1ProjectsByIdResponse {
-  data: GetV1ProjectsResponseDataItem;
-}
-export const PatchV1ProjectsByIdResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: GetV1ProjectsResponseDataItem,
-  }),
-).annotate({
-  identifier: "PatchV1ProjectsByIdResponse",
-}) as any as S.Schema<PatchV1ProjectsByIdResponse>;
-
-export interface PatchV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseRequest {
-  projectId: string;
-  branchId: string;
-  /** Requested lease TTL in seconds. Default 60, clamped to [30, 300]. */
-  ttlSeconds?: number;
-}
-export const PatchV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      projectId: S.String.pipe(T.Label()),
-      branchId: S.String.pipe(T.Label()),
-      ttlSeconds: S.optional(S.Number),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/v1/projects/{projectId}/branches/{branchId}/alchemy-state/lease",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "PatchV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseRequest",
-  }) as any as S.Schema<PatchV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseRequest>;
-
-export interface PatchV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseResponseData {
-  /** Capability token for the deploy lease. Send it in the Alchemy-State-Lease-Id header with every state operation; do not log it. */
-  leaseId: string;
-  /** Lease expiry as an ISO-8601 timestamp. */
-  expiresAt: string;
-}
-export const PatchV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseResponseData =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      leaseId: S.String,
-      expiresAt: S.String,
-    }),
-  ).annotate({
-    identifier:
-      "PatchV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseResponseData",
-  }) as any as S.Schema<PatchV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseResponseData>;
-
-export interface PatchV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseResponse {
-  data: PatchV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseResponseData;
-}
-export const PatchV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      data: PatchV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseResponseData,
-    }),
-  ).annotate({
-    identifier:
-      "PatchV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseResponse",
-  }) as any as S.Schema<PatchV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseResponse>;
-
-export interface PatchV1ServicesByServiceIdRequest {
-  serviceId: string;
-  displayName?: string;
-  branchId?: string | null;
-  branchGitName?: string | null;
-}
-export const PatchV1ServicesByServiceIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceId: S.String.pipe(T.Label()),
-    displayName: S.optional(S.String),
-    branchId: S.optional(S.NullOr(S.String)),
-    branchGitName: S.optional(S.NullOr(S.String)),
-  }).pipe(
-    T.Http({ method: "PATCH", uri: "/v1/services/{serviceId}", code: 200 }),
-  ),
-).annotate({
-  identifier: "PatchV1ServicesByServiceIdRequest",
-}) as any as S.Schema<PatchV1ServicesByServiceIdRequest>;
-
-export type PatchV1ServicesByServiceIdResponseDataRegion =
-  GetV1DatabasesResponseDataItemRegion;
-export const PatchV1ServicesByServiceIdResponseDataRegion =
-  GetV1DatabasesResponseDataItemRegion;
-
-export type PatchV1ServicesByServiceIdResponseData =
-  GetV1ServicesResponseDataItem;
-export const PatchV1ServicesByServiceIdResponseData =
-  GetV1ServicesResponseDataItem;
-
-export interface PatchV1ServicesByServiceIdResponse {
-  data: GetV1ServicesResponseDataItem;
-}
-export const PatchV1ServicesByServiceIdResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: GetV1ServicesResponseDataItem,
-  }),
-).annotate({
-  identifier: "PatchV1ServicesByServiceIdResponse",
-}) as any as S.Schema<PatchV1ServicesByServiceIdResponse>;
-
-export interface PostV1AuthGithubActionsTokenRequest {
+export interface CreateAuthGithubActionsTokenRequest {
   /** The GitHub Actions OIDC token with audience `prisma-cloud`. */
   token: string;
   /** Requested token lifetime in seconds. Defaults to 1800 (30 min); capped at 3600 (60 min). */
   expiresInSeconds?: number;
 }
-export const PostV1AuthGithubActionsTokenRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateAuthGithubActionsTokenRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     token: S.String,
     expiresInSeconds: S.optional(S.Number),
@@ -5082,10 +73,10 @@ export const PostV1AuthGithubActionsTokenRequest = /*@__PURE__*/ S.suspend(() =>
     T.Http({ method: "POST", uri: "/v1/auth/github-actions/token", code: 200 }),
   ),
 ).annotate({
-  identifier: "PostV1AuthGithubActionsTokenRequest",
-}) as any as S.Schema<PostV1AuthGithubActionsTokenRequest>;
+  identifier: "CreateAuthGithubActionsTokenRequest",
+}) as any as S.Schema<CreateAuthGithubActionsTokenRequest>;
 
-export interface PostV1AuthGithubActionsTokenResponseData {
+export interface CreateAuthGithubActionsTokenResponseData {
   /** Prefixed integration token ID (`itgr_` prefix). */
   id: string;
   type: string;
@@ -5096,7 +87,7 @@ export interface PostV1AuthGithubActionsTokenResponseData {
   /** Prefixed workspace ID the token is scoped to. */
   workspaceId: string;
 }
-export const PostV1AuthGithubActionsTokenResponseData = /*@__PURE__*/ S.suspend(
+export const CreateAuthGithubActionsTokenResponseData = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.String,
@@ -5106,22 +97,22 @@ export const PostV1AuthGithubActionsTokenResponseData = /*@__PURE__*/ S.suspend(
       workspaceId: S.String,
     }),
 ).annotate({
-  identifier: "PostV1AuthGithubActionsTokenResponseData",
-}) as any as S.Schema<PostV1AuthGithubActionsTokenResponseData>;
+  identifier: "CreateAuthGithubActionsTokenResponseData",
+}) as any as S.Schema<CreateAuthGithubActionsTokenResponseData>;
 
-export interface PostV1AuthGithubActionsTokenResponse {
-  data: PostV1AuthGithubActionsTokenResponseData;
+export interface CreateAuthGithubActionsTokenResponse {
+  data: CreateAuthGithubActionsTokenResponseData;
 }
-export const PostV1AuthGithubActionsTokenResponse = /*@__PURE__*/ S.suspend(
+export const CreateAuthGithubActionsTokenResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      data: PostV1AuthGithubActionsTokenResponseData,
+      data: CreateAuthGithubActionsTokenResponseData,
     }),
 ).annotate({
-  identifier: "PostV1AuthGithubActionsTokenResponse",
-}) as any as S.Schema<PostV1AuthGithubActionsTokenResponse>;
+  identifier: "CreateAuthGithubActionsTokenResponse",
+}) as any as S.Schema<CreateAuthGithubActionsTokenResponse>;
 
-export interface PostV1BucketsRequest {
+export interface CreateBucketRequest {
   /** ID of the project to create the bucket in */
   projectId: string;
   /** Display name for the bucket. Generated if omitted. */
@@ -5131,7 +122,7 @@ export interface PostV1BucketsRequest {
   /** Git name of the branch to associate the bucket with. Mutually exclusive with branchId. */
   branchGitName?: string;
 }
-export const PostV1BucketsRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateBucketRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     projectId: S.String,
     name: S.optional(S.String),
@@ -5139,102 +130,134 @@ export const PostV1BucketsRequest = /*@__PURE__*/ S.suspend(() =>
     branchGitName: S.optional(S.String),
   }).pipe(T.Http({ method: "POST", uri: "/v1/buckets", code: 200 })),
 ).annotate({
-  identifier: "PostV1BucketsRequest",
-}) as any as S.Schema<PostV1BucketsRequest>;
+  identifier: "CreateBucketRequest",
+}) as any as S.Schema<CreateBucketRequest>;
 
-export type PostV1BucketsResponseDataProject =
-  GetV1BranchesByBranchIdResponseDataProject;
-export const PostV1BucketsResponseDataProject =
-  GetV1BranchesByBranchIdResponseDataProject;
-
-export type PostV1BucketsResponseData = GetV1BucketsResponseDataItem;
-export const PostV1BucketsResponseData = GetV1BucketsResponseDataItem;
-
-export interface PostV1BucketsResponse {
-  data: GetV1BucketsResponseDataItem;
+export interface CreateBucketResponseDataProject {
+  id: string;
+  url: string;
+  name: string;
 }
-export const PostV1BucketsResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateBucketResponseDataProject = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    data: GetV1BucketsResponseDataItem,
+    id: S.String,
+    url: S.String,
+    name: S.String,
   }),
 ).annotate({
-  identifier: "PostV1BucketsResponse",
-}) as any as S.Schema<PostV1BucketsResponse>;
+  identifier: "CreateBucketResponseDataProject",
+}) as any as S.Schema<CreateBucketResponseDataProject>;
+
+export interface CreateBucketResponseData {
+  id: string;
+  type: string;
+  url: string;
+  name: string;
+  providerName: string;
+  status: string;
+  createdAt: string;
+  project: CreateBucketResponseDataProject;
+  branchId: string | null;
+}
+export const CreateBucketResponseData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    type: S.String,
+    url: S.String,
+    name: S.String,
+    providerName: S.String,
+    status: S.String,
+    createdAt: S.String,
+    project: CreateBucketResponseDataProject,
+    branchId: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "CreateBucketResponseData",
+}) as any as S.Schema<CreateBucketResponseData>;
+
+export interface CreateBucketResponse {
+  data: CreateBucketResponseData;
+}
+export const CreateBucketResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: CreateBucketResponseData,
+  }),
+).annotate({
+  identifier: "CreateBucketResponse",
+}) as any as S.Schema<CreateBucketResponse>;
 
 /** Access role for the key: "read" or "read_write". */
-export type PostV1BucketsByBucketIdKeysRequestRole = "read" | "read_write";
-export const PostV1BucketsByBucketIdKeysRequestRole = /*@__PURE__*/ S.String;
+export type CreateBucketKeyRequestRole = "read" | "read_write";
+export const CreateBucketKeyRequestRole = /*@__PURE__*/ S.String;
 
-export interface PostV1BucketsByBucketIdKeysRequest {
+export interface CreateBucketKeyRequest {
   bucketId: string;
   /** Display name for the key. Generated if omitted. */
   name?: string;
   /** Access role for the key: "read" or "read_write". */
-  role: PostV1BucketsByBucketIdKeysRequestRole | (string & {});
+  role: CreateBucketKeyRequestRole | (string & {});
 }
-export const PostV1BucketsByBucketIdKeysRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateBucketKeyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     bucketId: S.String.pipe(T.Label()),
     name: S.optional(S.String),
-    role: PostV1BucketsByBucketIdKeysRequestRole,
+    role: CreateBucketKeyRequestRole,
   }).pipe(
     T.Http({ method: "POST", uri: "/v1/buckets/{bucketId}/keys", code: 200 }),
   ),
 ).annotate({
-  identifier: "PostV1BucketsByBucketIdKeysRequest",
-}) as any as S.Schema<PostV1BucketsByBucketIdKeysRequest>;
+  identifier: "CreateBucketKeyRequest",
+}) as any as S.Schema<CreateBucketKeyRequest>;
 
-export type PostV1BucketsByBucketIdKeysResponseDataRole = "read" | "read_write";
-export const PostV1BucketsByBucketIdKeysResponseDataRole =
-  /*@__PURE__*/ S.String;
+export type CreateBucketKeyResponseDataRole = "read" | "read_write";
+export const CreateBucketKeyResponseDataRole = /*@__PURE__*/ S.String;
 
-export interface PostV1BucketsByBucketIdKeysResponseData {
+export interface CreateBucketKeyResponseData {
   id: string;
   type: string;
   name: string;
   valueHint: string;
-  role: PostV1BucketsByBucketIdKeysResponseDataRole;
+  role: CreateBucketKeyResponseDataRole;
   createdAt: string;
   secretAccessKey: string | Redacted.Redacted<string>;
   accessKeyId: string | Redacted.Redacted<string>;
   endpoint: string;
   bucketName: string;
 }
-export const PostV1BucketsByBucketIdKeysResponseData = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String,
-      type: S.String,
-      name: S.String,
-      valueHint: S.String,
-      role: PostV1BucketsByBucketIdKeysResponseDataRole,
-      createdAt: S.String,
-      secretAccessKey: S.String.pipe(T.SensitiveValue({})),
-      accessKeyId: S.String.pipe(T.SensitiveValue({})),
-      endpoint: S.String,
-      bucketName: S.String,
-    }),
-).annotate({
-  identifier: "PostV1BucketsByBucketIdKeysResponseData",
-}) as any as S.Schema<PostV1BucketsByBucketIdKeysResponseData>;
-
-export interface PostV1BucketsByBucketIdKeysResponse {
-  data: PostV1BucketsByBucketIdKeysResponseData;
-}
-export const PostV1BucketsByBucketIdKeysResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateBucketKeyResponseData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    data: PostV1BucketsByBucketIdKeysResponseData,
+    id: S.String,
+    type: S.String,
+    name: S.String,
+    valueHint: S.String,
+    role: CreateBucketKeyResponseDataRole,
+    createdAt: S.String,
+    secretAccessKey: S.String.pipe(T.SensitiveValue({})),
+    accessKeyId: S.String.pipe(T.SensitiveValue({})),
+    endpoint: S.String,
+    bucketName: S.String,
   }),
 ).annotate({
-  identifier: "PostV1BucketsByBucketIdKeysResponse",
-}) as any as S.Schema<PostV1BucketsByBucketIdKeysResponse>;
+  identifier: "CreateBucketKeyResponseData",
+}) as any as S.Schema<CreateBucketKeyResponseData>;
+
+export interface CreateBucketKeyResponse {
+  data: CreateBucketKeyResponseData;
+}
+export const CreateBucketKeyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: CreateBucketKeyResponseData,
+  }),
+).annotate({
+  identifier: "CreateBucketKeyResponse",
+}) as any as S.Schema<CreateBucketKeyResponse>;
 
 /** `ci` for a build reported from a CI run, `cli` for a deploy run directly by a human or agent. */
-export type PostV1BuildsRequestSource = "ci" | "cli";
-export const PostV1BuildsRequestSource = /*@__PURE__*/ S.String;
+export type CreateBuildRequestSource = "ci" | "cli";
+export const CreateBuildRequestSource = /*@__PURE__*/ S.String;
 
 /** Identifies the CI run. Supplying it makes creation idempotent — a repeat call for the same run returns the build that already exists. Omit it for builds with no run to name, such as a deploy from a laptop, where every call creates a new build. */
-export interface PostV1BuildsRequestRunIdentity {
+export interface CreateBuildRequestRunIdentity {
   /** CI provider the run identity belongs to. */
   provider: string;
   /** Provider's repository id (for GitHub, the numeric repo id). */
@@ -5244,7 +267,7 @@ export interface PostV1BuildsRequestRunIdentity {
   /** Attempt number of the run; a re-run is a separate build. */
   runAttempt: number;
 }
-export const PostV1BuildsRequestRunIdentity = /*@__PURE__*/ S.suspend(() =>
+export const CreateBuildRequestRunIdentity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     provider: S.String,
     repositoryId: S.String,
@@ -5252,18 +275,18 @@ export const PostV1BuildsRequestRunIdentity = /*@__PURE__*/ S.suspend(() =>
     runAttempt: S.Number,
   }),
 ).annotate({
-  identifier: "PostV1BuildsRequestRunIdentity",
-}) as any as S.Schema<PostV1BuildsRequestRunIdentity>;
+  identifier: "CreateBuildRequestRunIdentity",
+}) as any as S.Schema<CreateBuildRequestRunIdentity>;
 
-export interface PostV1BuildsRequest {
+export interface CreateBuildRequest {
   /** `ci` for a build reported from a CI run, `cli` for a deploy run directly by a human or agent. */
-  source: PostV1BuildsRequestSource | (string & {});
+  source: CreateBuildRequestSource | (string & {});
   /** Commit the build ran on. */
   commitSha: string;
   /** Git branch name. */
   branchName: string;
   /** Identifies the CI run. Supplying it makes creation idempotent — a repeat call for the same run returns the build that already exists. Omit it for builds with no run to name, such as a deploy from a laptop, where every call creates a new build. */
-  runIdentity?: PostV1BuildsRequestRunIdentity;
+  runIdentity?: CreateBuildRequestRunIdentity;
   /** Link to the run's logs in the reporter's own system. */
   externalLogUrl?: string;
   /** Project the build targets, when it exists. A build may be reported before its project does. */
@@ -5272,47 +295,47 @@ export interface PostV1BuildsRequest {
   /** Content hash of the application topology this run deploys, as submitted to the application-topology endpoint. A value match, never a reference: equal hashes identify the same graph. */
   applicationTopologyContentHash?: string;
 }
-export const PostV1BuildsRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateBuildRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    source: PostV1BuildsRequestSource,
+    source: CreateBuildRequestSource,
     commitSha: S.String,
     branchName: S.String,
-    runIdentity: S.optional(PostV1BuildsRequestRunIdentity),
+    runIdentity: S.optional(CreateBuildRequestRunIdentity),
     externalLogUrl: S.optional(S.String),
     projectId: S.optional(S.String),
     branchId: S.optional(S.String),
     applicationTopologyContentHash: S.optional(S.String),
   }).pipe(T.Http({ method: "POST", uri: "/v1/builds", code: 200 })),
 ).annotate({
-  identifier: "PostV1BuildsRequest",
-}) as any as S.Schema<PostV1BuildsRequest>;
+  identifier: "CreateBuildRequest",
+}) as any as S.Schema<CreateBuildRequest>;
 
-export type PostV1BuildsResponseDataSource =
+export type CreateBuildResponseDataSource =
   | "webhook"
   | "setup"
   | "manual"
   | "ci"
   | "cli";
-export const PostV1BuildsResponseDataSource = /*@__PURE__*/ S.String;
+export const CreateBuildResponseDataSource = /*@__PURE__*/ S.String;
 
-export type PostV1BuildsResponseDataState =
+export type CreateBuildResponseDataState =
   | "pending"
   | "running"
   | "succeeded"
   | "failed"
   | "cancelled";
-export const PostV1BuildsResponseDataState = /*@__PURE__*/ S.String;
+export const CreateBuildResponseDataState = /*@__PURE__*/ S.String;
 
 /** Null when nothing reported a phase; the platform never invents an observation it did not receive. */
-export type PostV1BuildsResponseDataPhase = "queued" | "build" | "deploy";
-export const PostV1BuildsResponseDataPhase = /*@__PURE__*/ S.String;
+export type CreateBuildResponseDataPhase = "queued" | "build" | "deploy";
+export const CreateBuildResponseDataPhase = /*@__PURE__*/ S.String;
 
-export interface PostV1BuildsResponseData {
+export interface CreateBuildResponseData {
   id: string;
-  source: PostV1BuildsResponseDataSource;
-  state: PostV1BuildsResponseDataState;
+  source: CreateBuildResponseDataSource;
+  state: CreateBuildResponseDataState;
   /** Null when nothing reported a phase; the platform never invents an observation it did not receive. */
-  phase: PostV1BuildsResponseDataPhase | null;
+  phase: CreateBuildResponseDataPhase | null;
   commitSha: string;
   branchName: string;
   /** Repository the build ran against. Set only when the workspace has a live link to it; a reported repository the platform does not know stays null. */
@@ -5328,12 +351,12 @@ export interface PostV1BuildsResponseData {
   startedAt: string | null;
   finishedAt: string | null;
 }
-export const PostV1BuildsResponseData = /*@__PURE__*/ S.suspend(() =>
+export const CreateBuildResponseData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
-    source: PostV1BuildsResponseDataSource,
-    state: PostV1BuildsResponseDataState,
-    phase: S.NullOr(PostV1BuildsResponseDataPhase),
+    source: CreateBuildResponseDataSource,
+    state: CreateBuildResponseDataState,
+    phase: S.NullOr(CreateBuildResponseDataPhase),
     commitSha: S.String,
     branchName: S.String,
     gitRepoId: S.NullOr(S.String),
@@ -5349,42 +372,42 @@ export const PostV1BuildsResponseData = /*@__PURE__*/ S.suspend(() =>
     finishedAt: S.NullOr(S.String),
   }),
 ).annotate({
-  identifier: "PostV1BuildsResponseData",
-}) as any as S.Schema<PostV1BuildsResponseData>;
+  identifier: "CreateBuildResponseData",
+}) as any as S.Schema<CreateBuildResponseData>;
 
-export interface PostV1BuildsResponse {
-  data: PostV1BuildsResponseData;
+export interface CreateBuildResponse {
+  data: CreateBuildResponseData;
 }
-export const PostV1BuildsResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateBuildResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    data: PostV1BuildsResponseData,
+    data: CreateBuildResponseData,
   }),
 ).annotate({
-  identifier: "PostV1BuildsResponse",
-}) as any as S.Schema<PostV1BuildsResponse>;
+  identifier: "CreateBuildResponse",
+}) as any as S.Schema<CreateBuildResponse>;
 
-export interface PostV1ConnectionsRequest {
+export interface CreateConnectionRequest {
   databaseId: string;
   name: string;
 }
-export const PostV1ConnectionsRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateConnectionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     databaseId: S.String,
     name: S.String,
   }).pipe(T.Http({ method: "POST", uri: "/v1/connections", code: 200 })),
 ).annotate({
-  identifier: "PostV1ConnectionsRequest",
-}) as any as S.Schema<PostV1ConnectionsRequest>;
+  identifier: "CreateConnectionRequest",
+}) as any as S.Schema<CreateConnectionRequest>;
 
-export type PostV1ConnectionsResponseDataKind = "postgres" | "accelerate";
-export const PostV1ConnectionsResponseDataKind = /*@__PURE__*/ S.String;
+export type CreateConnectionResponseDataKind = "postgres" | "accelerate";
+export const CreateConnectionResponseDataKind = /*@__PURE__*/ S.String;
 
-export interface PostV1ConnectionsResponseDataEndpointsDirect {
+export interface CreateConnectionResponseDataEndpointsDirect {
   host: string;
   port: number;
   connectionString: string | Redacted.Redacted<string>;
 }
-export const PostV1ConnectionsResponseDataEndpointsDirect =
+export const CreateConnectionResponseDataEndpointsDirect =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       host: S.String,
@@ -5392,59 +415,70 @@ export const PostV1ConnectionsResponseDataEndpointsDirect =
       connectionString: S.String.pipe(T.SensitiveValue({})),
     }),
   ).annotate({
-    identifier: "PostV1ConnectionsResponseDataEndpointsDirect",
-  }) as any as S.Schema<PostV1ConnectionsResponseDataEndpointsDirect>;
+    identifier: "CreateConnectionResponseDataEndpointsDirect",
+  }) as any as S.Schema<CreateConnectionResponseDataEndpointsDirect>;
 
-export type PostV1ConnectionsResponseDataEndpointsPooled =
-  PostV1ConnectionsResponseDataEndpointsDirect;
-export const PostV1ConnectionsResponseDataEndpointsPooled =
-  PostV1ConnectionsResponseDataEndpointsDirect;
+export type CreateConnectionResponseDataEndpointsPooled =
+  CreateConnectionResponseDataEndpointsDirect;
+export const CreateConnectionResponseDataEndpointsPooled =
+  CreateConnectionResponseDataEndpointsDirect;
 
-export type PostV1ConnectionsResponseDataEndpointsAccelerate =
-  PostV1ConnectionsResponseDataEndpointsDirect;
-export const PostV1ConnectionsResponseDataEndpointsAccelerate =
-  PostV1ConnectionsResponseDataEndpointsDirect;
+export type CreateConnectionResponseDataEndpointsAccelerate =
+  CreateConnectionResponseDataEndpointsDirect;
+export const CreateConnectionResponseDataEndpointsAccelerate =
+  CreateConnectionResponseDataEndpointsDirect;
 
-export interface PostV1ConnectionsResponseDataEndpoints {
-  direct?: PostV1ConnectionsResponseDataEndpointsDirect;
-  pooled?: PostV1ConnectionsResponseDataEndpointsDirect;
-  accelerate?: PostV1ConnectionsResponseDataEndpointsDirect;
+export interface CreateConnectionResponseDataEndpoints {
+  direct?: CreateConnectionResponseDataEndpointsDirect;
+  pooled?: CreateConnectionResponseDataEndpointsDirect;
+  accelerate?: CreateConnectionResponseDataEndpointsDirect;
 }
-export const PostV1ConnectionsResponseDataEndpoints = /*@__PURE__*/ S.suspend(
+export const CreateConnectionResponseDataEndpoints = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      direct: S.optional(PostV1ConnectionsResponseDataEndpointsDirect),
-      pooled: S.optional(PostV1ConnectionsResponseDataEndpointsDirect),
-      accelerate: S.optional(PostV1ConnectionsResponseDataEndpointsDirect),
+      direct: S.optional(CreateConnectionResponseDataEndpointsDirect),
+      pooled: S.optional(CreateConnectionResponseDataEndpointsDirect),
+      accelerate: S.optional(CreateConnectionResponseDataEndpointsDirect),
     }),
 ).annotate({
-  identifier: "PostV1ConnectionsResponseDataEndpoints",
-}) as any as S.Schema<PostV1ConnectionsResponseDataEndpoints>;
+  identifier: "CreateConnectionResponseDataEndpoints",
+}) as any as S.Schema<CreateConnectionResponseDataEndpoints>;
 
 /** Deprecated: use `endpoints.direct` instead. */
-export type PostV1ConnectionsResponseDataDirectConnection =
-  GetV1ConnectionsResponseDataItemDirectConnection;
-export const PostV1ConnectionsResponseDataDirectConnection =
-  GetV1ConnectionsResponseDataItemDirectConnection;
+export interface CreateConnectionResponseDataDirectConnection {
+  host: string;
+  pass: string;
+  user: string;
+}
+export const CreateConnectionResponseDataDirectConnection =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      host: S.String,
+      pass: S.String,
+      user: S.String,
+    }),
+  ).annotate({
+    identifier: "CreateConnectionResponseDataDirectConnection",
+  }) as any as S.Schema<CreateConnectionResponseDataDirectConnection>;
 
-export type PostV1ConnectionsResponseDataDatabase =
-  GetV1BranchesByBranchIdResponseDataProject;
-export const PostV1ConnectionsResponseDataDatabase =
-  GetV1BranchesByBranchIdResponseDataProject;
+export type CreateConnectionResponseDataDatabase =
+  CreateBucketResponseDataProject;
+export const CreateConnectionResponseDataDatabase =
+  CreateBucketResponseDataProject;
 
-export interface PostV1ConnectionsResponseData {
+export interface CreateConnectionResponseData {
   id: string;
   type: string;
   url: string;
   name: string;
   createdAt: string;
-  kind: PostV1ConnectionsResponseDataKind;
-  endpoints: PostV1ConnectionsResponseDataEndpoints;
+  kind: CreateConnectionResponseDataKind;
+  endpoints: CreateConnectionResponseDataEndpoints;
   /** Deprecated: use `endpoints.direct.connectionString` or `endpoints.pooled.connectionString` instead. */
   connectionString: string | Redacted.Redacted<string>;
   /** Deprecated: use `endpoints.direct` instead. */
-  directConnection?: GetV1ConnectionsResponseDataItemDirectConnection | null;
-  database: GetV1BranchesByBranchIdResponseDataProject;
+  directConnection?: CreateConnectionResponseDataDirectConnection | null;
+  database: CreateBucketResponseDataProject;
   /** Deprecated: use `endpoints.direct` instead. */
   host: string | null;
   /** Deprecated: use `endpoints.direct.connectionString` or `endpoints.pooled.connectionString` instead. */
@@ -5452,102 +486,99 @@ export interface PostV1ConnectionsResponseData {
   /** Deprecated: use `endpoints.direct.connectionString` or `endpoints.pooled.connectionString` instead. */
   user: string | null;
 }
-export const PostV1ConnectionsResponseData = /*@__PURE__*/ S.suspend(() =>
+export const CreateConnectionResponseData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
     type: S.String,
     url: S.String,
     name: S.String,
     createdAt: S.String,
-    kind: PostV1ConnectionsResponseDataKind,
-    endpoints: PostV1ConnectionsResponseDataEndpoints,
+    kind: CreateConnectionResponseDataKind,
+    endpoints: CreateConnectionResponseDataEndpoints,
     connectionString: S.String.pipe(T.SensitiveValue({})),
     directConnection: S.optional(
-      S.NullOr(GetV1ConnectionsResponseDataItemDirectConnection),
+      S.NullOr(CreateConnectionResponseDataDirectConnection),
     ),
-    database: GetV1BranchesByBranchIdResponseDataProject,
+    database: CreateBucketResponseDataProject,
     host: S.NullOr(S.String),
     pass: S.NullOr(S.String),
     user: S.NullOr(S.String),
   }),
 ).annotate({
-  identifier: "PostV1ConnectionsResponseData",
-}) as any as S.Schema<PostV1ConnectionsResponseData>;
+  identifier: "CreateConnectionResponseData",
+}) as any as S.Schema<CreateConnectionResponseData>;
 
-export interface PostV1ConnectionsResponse {
-  data: PostV1ConnectionsResponseData;
+export interface CreateConnectionResponse {
+  data: CreateConnectionResponseData;
 }
-export const PostV1ConnectionsResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateConnectionResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    data: PostV1ConnectionsResponseData,
+    data: CreateConnectionResponseData,
   }),
 ).annotate({
-  identifier: "PostV1ConnectionsResponse",
-}) as any as S.Schema<PostV1ConnectionsResponse>;
+  identifier: "CreateConnectionResponse",
+}) as any as S.Schema<CreateConnectionResponse>;
 
-export interface PostV1ConnectionsByIdRotateRequest {
+export interface CreateConnectionRotateRequest {
   id: string;
 }
-export const PostV1ConnectionsByIdRotateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateConnectionRotateRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({ method: "POST", uri: "/v1/connections/{id}/rotate", code: 200 }),
   ),
 ).annotate({
-  identifier: "PostV1ConnectionsByIdRotateRequest",
-}) as any as S.Schema<PostV1ConnectionsByIdRotateRequest>;
+  identifier: "CreateConnectionRotateRequest",
+}) as any as S.Schema<CreateConnectionRotateRequest>;
 
-export type PostV1ConnectionsByIdRotateResponseDataKind =
-  | "postgres"
-  | "accelerate";
-export const PostV1ConnectionsByIdRotateResponseDataKind =
-  /*@__PURE__*/ S.String;
+export type CreateConnectionRotateResponseDataKind = "postgres" | "accelerate";
+export const CreateConnectionRotateResponseDataKind = /*@__PURE__*/ S.String;
 
-export type PostV1ConnectionsByIdRotateResponseDataEndpointsDirect =
-  PostV1ConnectionsResponseDataEndpointsDirect;
-export const PostV1ConnectionsByIdRotateResponseDataEndpointsDirect =
-  PostV1ConnectionsResponseDataEndpointsDirect;
+export type CreateConnectionRotateResponseDataEndpointsDirect =
+  CreateConnectionResponseDataEndpointsDirect;
+export const CreateConnectionRotateResponseDataEndpointsDirect =
+  CreateConnectionResponseDataEndpointsDirect;
 
-export type PostV1ConnectionsByIdRotateResponseDataEndpointsPooled =
-  PostV1ConnectionsResponseDataEndpointsDirect;
-export const PostV1ConnectionsByIdRotateResponseDataEndpointsPooled =
-  PostV1ConnectionsResponseDataEndpointsDirect;
+export type CreateConnectionRotateResponseDataEndpointsPooled =
+  CreateConnectionResponseDataEndpointsDirect;
+export const CreateConnectionRotateResponseDataEndpointsPooled =
+  CreateConnectionResponseDataEndpointsDirect;
 
-export type PostV1ConnectionsByIdRotateResponseDataEndpointsAccelerate =
-  PostV1ConnectionsResponseDataEndpointsDirect;
-export const PostV1ConnectionsByIdRotateResponseDataEndpointsAccelerate =
-  PostV1ConnectionsResponseDataEndpointsDirect;
+export type CreateConnectionRotateResponseDataEndpointsAccelerate =
+  CreateConnectionResponseDataEndpointsDirect;
+export const CreateConnectionRotateResponseDataEndpointsAccelerate =
+  CreateConnectionResponseDataEndpointsDirect;
 
-export type PostV1ConnectionsByIdRotateResponseDataEndpoints =
-  PostV1ConnectionsResponseDataEndpoints;
-export const PostV1ConnectionsByIdRotateResponseDataEndpoints =
-  PostV1ConnectionsResponseDataEndpoints;
+export type CreateConnectionRotateResponseDataEndpoints =
+  CreateConnectionResponseDataEndpoints;
+export const CreateConnectionRotateResponseDataEndpoints =
+  CreateConnectionResponseDataEndpoints;
 
 /** Deprecated: use `endpoints.direct` instead. */
-export type PostV1ConnectionsByIdRotateResponseDataDirectConnection =
-  GetV1ConnectionsResponseDataItemDirectConnection;
-export const PostV1ConnectionsByIdRotateResponseDataDirectConnection =
-  GetV1ConnectionsResponseDataItemDirectConnection;
+export type CreateConnectionRotateResponseDataDirectConnection =
+  CreateConnectionResponseDataDirectConnection;
+export const CreateConnectionRotateResponseDataDirectConnection =
+  CreateConnectionResponseDataDirectConnection;
 
-export type PostV1ConnectionsByIdRotateResponseDataDatabase =
-  GetV1BranchesByBranchIdResponseDataProject;
-export const PostV1ConnectionsByIdRotateResponseDataDatabase =
-  GetV1BranchesByBranchIdResponseDataProject;
+export type CreateConnectionRotateResponseDataDatabase =
+  CreateBucketResponseDataProject;
+export const CreateConnectionRotateResponseDataDatabase =
+  CreateBucketResponseDataProject;
 
-export interface PostV1ConnectionsByIdRotateResponseData {
+export interface CreateConnectionRotateResponseData {
   id: string;
   type: string;
   url: string;
   name: string;
   createdAt: string;
-  kind: PostV1ConnectionsByIdRotateResponseDataKind;
-  endpoints: PostV1ConnectionsResponseDataEndpoints;
+  kind: CreateConnectionRotateResponseDataKind;
+  endpoints: CreateConnectionResponseDataEndpoints;
   /** Deprecated: use `endpoints.direct.connectionString` or `endpoints.pooled.connectionString` instead. */
   connectionString: string | Redacted.Redacted<string>;
   /** Deprecated: use `endpoints.direct` instead. */
-  directConnection?: GetV1ConnectionsResponseDataItemDirectConnection | null;
-  database: GetV1BranchesByBranchIdResponseDataProject;
+  directConnection?: CreateConnectionResponseDataDirectConnection | null;
+  database: CreateBucketResponseDataProject;
   /** Deprecated: use `endpoints.direct` instead. */
   host: string | null;
   /** Deprecated: use `endpoints.direct.connectionString` or `endpoints.pooled.connectionString` instead. */
@@ -5555,42 +586,41 @@ export interface PostV1ConnectionsByIdRotateResponseData {
   /** Deprecated: use `endpoints.direct.connectionString` or `endpoints.pooled.connectionString` instead. */
   user: string | null;
 }
-export const PostV1ConnectionsByIdRotateResponseData = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String,
-      type: S.String,
-      url: S.String,
-      name: S.String,
-      createdAt: S.String,
-      kind: PostV1ConnectionsByIdRotateResponseDataKind,
-      endpoints: PostV1ConnectionsResponseDataEndpoints,
-      connectionString: S.String.pipe(T.SensitiveValue({})),
-      directConnection: S.optional(
-        S.NullOr(GetV1ConnectionsResponseDataItemDirectConnection),
-      ),
-      database: GetV1BranchesByBranchIdResponseDataProject,
-      host: S.NullOr(S.String),
-      pass: S.NullOr(S.String),
-      user: S.NullOr(S.String),
-    }),
-).annotate({
-  identifier: "PostV1ConnectionsByIdRotateResponseData",
-}) as any as S.Schema<PostV1ConnectionsByIdRotateResponseData>;
-
-export interface PostV1ConnectionsByIdRotateResponse {
-  data: PostV1ConnectionsByIdRotateResponseData;
-}
-export const PostV1ConnectionsByIdRotateResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateConnectionRotateResponseData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    data: PostV1ConnectionsByIdRotateResponseData,
+    id: S.String,
+    type: S.String,
+    url: S.String,
+    name: S.String,
+    createdAt: S.String,
+    kind: CreateConnectionRotateResponseDataKind,
+    endpoints: CreateConnectionResponseDataEndpoints,
+    connectionString: S.String.pipe(T.SensitiveValue({})),
+    directConnection: S.optional(
+      S.NullOr(CreateConnectionResponseDataDirectConnection),
+    ),
+    database: CreateBucketResponseDataProject,
+    host: S.NullOr(S.String),
+    pass: S.NullOr(S.String),
+    user: S.NullOr(S.String),
   }),
 ).annotate({
-  identifier: "PostV1ConnectionsByIdRotateResponse",
-}) as any as S.Schema<PostV1ConnectionsByIdRotateResponse>;
+  identifier: "CreateConnectionRotateResponseData",
+}) as any as S.Schema<CreateConnectionRotateResponseData>;
+
+export interface CreateConnectionRotateResponse {
+  data: CreateConnectionRotateResponseData;
+}
+export const CreateConnectionRotateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: CreateConnectionRotateResponseData,
+  }),
+).annotate({
+  identifier: "CreateConnectionRotateResponse",
+}) as any as S.Schema<CreateConnectionRotateResponse>;
 
 /** Region for the database. Use "inherit" to use the project default database region. */
-export type PostV1DatabasesRequestRegion =
+export type CreateDatabaseRequestRegion =
   | "us-east-1"
   | "us-west-1"
   | "eu-west-3"
@@ -5598,106 +628,112 @@ export type PostV1DatabasesRequestRegion =
   | "ap-northeast-1"
   | "ap-southeast-1"
   | "inherit";
-export const PostV1DatabasesRequestRegion = /*@__PURE__*/ S.String;
+export const CreateDatabaseRequestRegion = /*@__PURE__*/ S.String;
 
-export type PostV1DatabasesRequestSourceCase0 =
-  GetV1DatabasesResponseDataItemSourceCase0;
-export const PostV1DatabasesRequestSourceCase0 =
-  GetV1DatabasesResponseDataItemSourceCase0;
+export interface CreateDatabaseRequestSourceCase0 {
+  type: string;
+}
+export const CreateDatabaseRequestSourceCase0 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.String,
+  }),
+).annotate({
+  identifier: "CreateDatabaseRequestSourceCase0",
+}) as any as S.Schema<CreateDatabaseRequestSourceCase0>;
 
-export interface PostV1DatabasesRequestSourceCase1 {
+export interface CreateDatabaseRequestSourceCase1 {
   type: string;
   /** ID of the database the backup belongs to */
   databaseId: string;
   /** ID of the backup to restore from */
   backupId: string;
 }
-export const PostV1DatabasesRequestSourceCase1 = /*@__PURE__*/ S.suspend(() =>
+export const CreateDatabaseRequestSourceCase1 = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     type: S.String,
     databaseId: S.String,
     backupId: S.String,
   }),
 ).annotate({
-  identifier: "PostV1DatabasesRequestSourceCase1",
-}) as any as S.Schema<PostV1DatabasesRequestSourceCase1>;
+  identifier: "CreateDatabaseRequestSourceCase1",
+}) as any as S.Schema<CreateDatabaseRequestSourceCase1>;
 
-export interface PostV1DatabasesRequestSourceCase2 {
+export interface CreateDatabaseRequestSourceCase2 {
   type: string;
   /** ID of the database to clone from */
   databaseId: string;
 }
-export const PostV1DatabasesRequestSourceCase2 = /*@__PURE__*/ S.suspend(() =>
+export const CreateDatabaseRequestSourceCase2 = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     type: S.String,
     databaseId: S.String,
   }),
 ).annotate({
-  identifier: "PostV1DatabasesRequestSourceCase2",
-}) as any as S.Schema<PostV1DatabasesRequestSourceCase2>;
+  identifier: "CreateDatabaseRequestSourceCase2",
+}) as any as S.Schema<CreateDatabaseRequestSourceCase2>;
 
 /** Source to create the database from. Omit to create an empty database. */
-export type PostV1DatabasesRequestSource =
-  | GetV1DatabasesResponseDataItemSourceCase0
-  | PostV1DatabasesRequestSourceCase1
-  | PostV1DatabasesRequestSourceCase2;
-export const PostV1DatabasesRequestSource = /*@__PURE__*/ S.suspend(() =>
+export type CreateDatabaseRequestSource =
+  | CreateDatabaseRequestSourceCase0
+  | CreateDatabaseRequestSourceCase1
+  | CreateDatabaseRequestSourceCase2;
+export const CreateDatabaseRequestSource = /*@__PURE__*/ S.suspend(() =>
   S.Union([
-    PostV1DatabasesRequestSourceCase0,
-    PostV1DatabasesRequestSourceCase1,
-    PostV1DatabasesRequestSourceCase2,
+    CreateDatabaseRequestSourceCase0,
+    CreateDatabaseRequestSourceCase1,
+    CreateDatabaseRequestSourceCase2,
   ]),
-) as any as S.Schema<PostV1DatabasesRequestSource>;
+) as any as S.Schema<CreateDatabaseRequestSource>;
 
-export interface PostV1DatabasesRequest {
+export interface CreateDatabaseRequest {
   /** ID of the project to create the database in */
   projectId: string;
   /** Region for the database. Use "inherit" to use the project default database region. */
-  region?: PostV1DatabasesRequestRegion | (string & {});
+  region?: CreateDatabaseRequestRegion | (string & {});
   /** Display name for the database */
   name?: string;
   /** Whether this is the default database */
   isDefault?: boolean;
   /** Source to create the database from. Omit to create an empty database. */
-  source?: PostV1DatabasesRequestSource;
+  source?: CreateDatabaseRequestSource;
   /** ID of the Branch to attach the database to. Omit to attach the database to the project's default Branch. Every database belongs to a Branch, so null is rejected. */
   branchId?: string | null;
   /** Git name of the Branch to attach the database to; the Branch is created when it does not exist. Mutually exclusive with branchId. Omit to attach to the project's default Branch. Every database belongs to a Branch, so null is rejected. */
   branchGitName?: string | null;
 }
-export const PostV1DatabasesRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateDatabaseRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     projectId: S.String,
-    region: S.optional(PostV1DatabasesRequestRegion),
+    region: S.optional(CreateDatabaseRequestRegion),
     name: S.optional(S.String),
     isDefault: S.optional(S.Boolean),
-    source: S.optional(PostV1DatabasesRequestSource),
+    source: S.optional(CreateDatabaseRequestSource),
     branchId: S.optional(S.NullOr(S.String)),
     branchGitName: S.optional(S.NullOr(S.String)),
   }).pipe(T.Http({ method: "POST", uri: "/v1/databases", code: 200 })),
 ).annotate({
-  identifier: "PostV1DatabasesRequest",
-}) as any as S.Schema<PostV1DatabasesRequest>;
+  identifier: "CreateDatabaseRequest",
+}) as any as S.Schema<CreateDatabaseRequest>;
 
-export type PostV1DatabasesResponseDataStatus =
+export type CreateDatabaseResponseDataStatus =
   | "failure"
   | "provisioning"
   | "ready"
   | "recovering";
-export const PostV1DatabasesResponseDataStatus = /*@__PURE__*/ S.String;
+export const CreateDatabaseResponseDataStatus = /*@__PURE__*/ S.String;
 
-export type PostV1DatabasesResponseDataConnectionsItemKind =
+export type CreateDatabaseResponseDataConnectionsItemKind =
   | "postgres"
   | "accelerate";
-export const PostV1DatabasesResponseDataConnectionsItemKind =
+export const CreateDatabaseResponseDataConnectionsItemKind =
   /*@__PURE__*/ S.String;
 
-export interface PostV1DatabasesResponseDataConnectionsItemEndpointsDirect {
+export interface CreateDatabaseResponseDataConnectionsItemEndpointsDirect {
   host: string;
   port: number;
   connectionString?: string | Redacted.Redacted<string>;
 }
-export const PostV1DatabasesResponseDataConnectionsItemEndpointsDirect =
+export const CreateDatabaseResponseDataConnectionsItemEndpointsDirect =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       host: S.String,
@@ -5705,65 +741,65 @@ export const PostV1DatabasesResponseDataConnectionsItemEndpointsDirect =
       connectionString: S.optional(S.String.pipe(T.SensitiveValue({}))),
     }),
   ).annotate({
-    identifier: "PostV1DatabasesResponseDataConnectionsItemEndpointsDirect",
-  }) as any as S.Schema<PostV1DatabasesResponseDataConnectionsItemEndpointsDirect>;
+    identifier: "CreateDatabaseResponseDataConnectionsItemEndpointsDirect",
+  }) as any as S.Schema<CreateDatabaseResponseDataConnectionsItemEndpointsDirect>;
 
-export type PostV1DatabasesResponseDataConnectionsItemEndpointsPooled =
-  PostV1DatabasesResponseDataConnectionsItemEndpointsDirect;
-export const PostV1DatabasesResponseDataConnectionsItemEndpointsPooled =
-  PostV1DatabasesResponseDataConnectionsItemEndpointsDirect;
+export type CreateDatabaseResponseDataConnectionsItemEndpointsPooled =
+  CreateDatabaseResponseDataConnectionsItemEndpointsDirect;
+export const CreateDatabaseResponseDataConnectionsItemEndpointsPooled =
+  CreateDatabaseResponseDataConnectionsItemEndpointsDirect;
 
-export type PostV1DatabasesResponseDataConnectionsItemEndpointsAccelerate =
-  PostV1DatabasesResponseDataConnectionsItemEndpointsDirect;
-export const PostV1DatabasesResponseDataConnectionsItemEndpointsAccelerate =
-  PostV1DatabasesResponseDataConnectionsItemEndpointsDirect;
+export type CreateDatabaseResponseDataConnectionsItemEndpointsAccelerate =
+  CreateDatabaseResponseDataConnectionsItemEndpointsDirect;
+export const CreateDatabaseResponseDataConnectionsItemEndpointsAccelerate =
+  CreateDatabaseResponseDataConnectionsItemEndpointsDirect;
 
-export interface PostV1DatabasesResponseDataConnectionsItemEndpoints {
-  direct?: PostV1DatabasesResponseDataConnectionsItemEndpointsDirect;
-  pooled?: PostV1DatabasesResponseDataConnectionsItemEndpointsDirect;
-  accelerate?: PostV1DatabasesResponseDataConnectionsItemEndpointsDirect;
+export interface CreateDatabaseResponseDataConnectionsItemEndpoints {
+  direct?: CreateDatabaseResponseDataConnectionsItemEndpointsDirect;
+  pooled?: CreateDatabaseResponseDataConnectionsItemEndpointsDirect;
+  accelerate?: CreateDatabaseResponseDataConnectionsItemEndpointsDirect;
 }
-export const PostV1DatabasesResponseDataConnectionsItemEndpoints =
+export const CreateDatabaseResponseDataConnectionsItemEndpoints =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       direct: S.optional(
-        PostV1DatabasesResponseDataConnectionsItemEndpointsDirect,
+        CreateDatabaseResponseDataConnectionsItemEndpointsDirect,
       ),
       pooled: S.optional(
-        PostV1DatabasesResponseDataConnectionsItemEndpointsDirect,
+        CreateDatabaseResponseDataConnectionsItemEndpointsDirect,
       ),
       accelerate: S.optional(
-        PostV1DatabasesResponseDataConnectionsItemEndpointsDirect,
+        CreateDatabaseResponseDataConnectionsItemEndpointsDirect,
       ),
     }),
   ).annotate({
-    identifier: "PostV1DatabasesResponseDataConnectionsItemEndpoints",
-  }) as any as S.Schema<PostV1DatabasesResponseDataConnectionsItemEndpoints>;
+    identifier: "CreateDatabaseResponseDataConnectionsItemEndpoints",
+  }) as any as S.Schema<CreateDatabaseResponseDataConnectionsItemEndpoints>;
 
 /** Deprecated: use `endpoints.direct` instead. */
-export type PostV1DatabasesResponseDataConnectionsItemDirectConnection =
-  GetV1ConnectionsResponseDataItemDirectConnection;
-export const PostV1DatabasesResponseDataConnectionsItemDirectConnection =
-  GetV1ConnectionsResponseDataItemDirectConnection;
+export type CreateDatabaseResponseDataConnectionsItemDirectConnection =
+  CreateConnectionResponseDataDirectConnection;
+export const CreateDatabaseResponseDataConnectionsItemDirectConnection =
+  CreateConnectionResponseDataDirectConnection;
 
-export type PostV1DatabasesResponseDataConnectionsItemDatabase =
-  GetV1BranchesByBranchIdResponseDataProject;
-export const PostV1DatabasesResponseDataConnectionsItemDatabase =
-  GetV1BranchesByBranchIdResponseDataProject;
+export type CreateDatabaseResponseDataConnectionsItemDatabase =
+  CreateBucketResponseDataProject;
+export const CreateDatabaseResponseDataConnectionsItemDatabase =
+  CreateBucketResponseDataProject;
 
-export interface PostV1DatabasesResponseDataConnectionsItem {
+export interface CreateDatabaseResponseDataConnectionsItem {
   id: string;
   type: string;
   url: string;
   name: string;
   createdAt: string;
-  kind: PostV1DatabasesResponseDataConnectionsItemKind;
-  endpoints: PostV1DatabasesResponseDataConnectionsItemEndpoints;
+  kind: CreateDatabaseResponseDataConnectionsItemKind;
+  endpoints: CreateDatabaseResponseDataConnectionsItemEndpoints;
   /** Deprecated: use `endpoints.direct` instead. */
-  directConnection?: GetV1ConnectionsResponseDataItemDirectConnection | null;
-  database: GetV1BranchesByBranchIdResponseDataProject;
+  directConnection?: CreateConnectionResponseDataDirectConnection | null;
+  database: CreateBucketResponseDataProject;
 }
-export const PostV1DatabasesResponseDataConnectionsItem =
+export const CreateDatabaseResponseDataConnectionsItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.String,
@@ -5771,176 +807,202 @@ export const PostV1DatabasesResponseDataConnectionsItem =
       url: S.String,
       name: S.String,
       createdAt: S.String,
-      kind: PostV1DatabasesResponseDataConnectionsItemKind,
-      endpoints: PostV1DatabasesResponseDataConnectionsItemEndpoints,
+      kind: CreateDatabaseResponseDataConnectionsItemKind,
+      endpoints: CreateDatabaseResponseDataConnectionsItemEndpoints,
       directConnection: S.optional(
-        S.NullOr(GetV1ConnectionsResponseDataItemDirectConnection),
+        S.NullOr(CreateConnectionResponseDataDirectConnection),
       ),
-      database: GetV1BranchesByBranchIdResponseDataProject,
+      database: CreateBucketResponseDataProject,
     }),
   ).annotate({
-    identifier: "PostV1DatabasesResponseDataConnectionsItem",
-  }) as any as S.Schema<PostV1DatabasesResponseDataConnectionsItem>;
+    identifier: "CreateDatabaseResponseDataConnectionsItem",
+  }) as any as S.Schema<CreateDatabaseResponseDataConnectionsItem>;
 
-export type PostV1DatabasesResponseDataConnectionsList =
-  Array<PostV1DatabasesResponseDataConnectionsItem>;
-export const PostV1DatabasesResponseDataConnectionsList = /*@__PURE__*/ S.Array(
-  PostV1DatabasesResponseDataConnectionsItem,
-) as any as S.Schema<PostV1DatabasesResponseDataConnectionsList>;
+export type CreateDatabaseResponseDataConnectionsList =
+  Array<CreateDatabaseResponseDataConnectionsItem>;
+export const CreateDatabaseResponseDataConnectionsList = /*@__PURE__*/ S.Array(
+  CreateDatabaseResponseDataConnectionsItem,
+) as any as S.Schema<CreateDatabaseResponseDataConnectionsList>;
 
-export type PostV1DatabasesResponseDataProject =
-  GetV1BranchesByBranchIdResponseDataProject;
-export const PostV1DatabasesResponseDataProject =
-  GetV1BranchesByBranchIdResponseDataProject;
+export type CreateDatabaseResponseDataProject = CreateBucketResponseDataProject;
+export const CreateDatabaseResponseDataProject =
+  CreateBucketResponseDataProject;
 
-export type PostV1DatabasesResponseDataRegion =
-  GetV1DatabasesResponseDataItemRegion;
-export const PostV1DatabasesResponseDataRegion =
-  GetV1DatabasesResponseDataItemRegion;
+export interface CreateDatabaseResponseDataRegion {
+  id: string;
+  name: string;
+}
+export const CreateDatabaseResponseDataRegion = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    name: S.String,
+  }),
+).annotate({
+  identifier: "CreateDatabaseResponseDataRegion",
+}) as any as S.Schema<CreateDatabaseResponseDataRegion>;
 
-export type PostV1DatabasesResponseDataSourceCase0 =
-  GetV1DatabasesResponseDataItemSourceCase0;
-export const PostV1DatabasesResponseDataSourceCase0 =
-  GetV1DatabasesResponseDataItemSourceCase0;
+export type CreateDatabaseResponseDataSourceCase0 =
+  CreateDatabaseRequestSourceCase0;
+export const CreateDatabaseResponseDataSourceCase0 =
+  CreateDatabaseRequestSourceCase0;
 
-export type PostV1DatabasesResponseDataSourceCase1 =
-  GetV1DatabasesResponseDataItemSourceCase1;
-export const PostV1DatabasesResponseDataSourceCase1 =
-  GetV1DatabasesResponseDataItemSourceCase1;
+export interface CreateDatabaseResponseDataSourceCase1 {
+  type: string;
+  databaseId: string;
+  /** ID of the backup to restore from */
+  backupId: string;
+}
+export const CreateDatabaseResponseDataSourceCase1 = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      type: S.String,
+      databaseId: S.String,
+      backupId: S.String,
+    }),
+).annotate({
+  identifier: "CreateDatabaseResponseDataSourceCase1",
+}) as any as S.Schema<CreateDatabaseResponseDataSourceCase1>;
 
-export type PostV1DatabasesResponseDataSourceCase2 =
-  GetV1DatabasesResponseDataItemSourceCase2;
-export const PostV1DatabasesResponseDataSourceCase2 =
-  GetV1DatabasesResponseDataItemSourceCase2;
+export interface CreateDatabaseResponseDataSourceCase2 {
+  type: string;
+  databaseId: string;
+}
+export const CreateDatabaseResponseDataSourceCase2 = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      type: S.String,
+      databaseId: S.String,
+    }),
+).annotate({
+  identifier: "CreateDatabaseResponseDataSourceCase2",
+}) as any as S.Schema<CreateDatabaseResponseDataSourceCase2>;
 
-export type PostV1DatabasesResponseDataSource =
-  | GetV1DatabasesResponseDataItemSourceCase0
-  | GetV1DatabasesResponseDataItemSourceCase1
-  | GetV1DatabasesResponseDataItemSourceCase2;
-export const PostV1DatabasesResponseDataSource = /*@__PURE__*/ S.suspend(() =>
+export type CreateDatabaseResponseDataSource =
+  | CreateDatabaseRequestSourceCase0
+  | CreateDatabaseResponseDataSourceCase1
+  | CreateDatabaseResponseDataSourceCase2;
+export const CreateDatabaseResponseDataSource = /*@__PURE__*/ S.suspend(() =>
   S.Union([
-    PostV1DatabasesResponseDataSourceCase0,
-    PostV1DatabasesResponseDataSourceCase1,
-    PostV1DatabasesResponseDataSourceCase2,
+    CreateDatabaseResponseDataSourceCase0,
+    CreateDatabaseResponseDataSourceCase1,
+    CreateDatabaseResponseDataSourceCase2,
   ]),
-) as any as S.Schema<PostV1DatabasesResponseDataSource>;
+) as any as S.Schema<CreateDatabaseResponseDataSource>;
 
-export interface PostV1DatabasesResponseData {
+export interface CreateDatabaseResponseData {
   id: string;
   type: string;
   url: string;
   name: string;
-  status: PostV1DatabasesResponseDataStatus;
+  status: CreateDatabaseResponseDataStatus;
   createdAt: string;
   isDefault: boolean;
   defaultConnectionId: string | null;
-  connections: PostV1DatabasesResponseDataConnectionsList;
-  project: GetV1BranchesByBranchIdResponseDataProject;
-  region: GetV1DatabasesResponseDataItemRegion | null;
-  source: PostV1DatabasesResponseDataSource | null;
+  connections: CreateDatabaseResponseDataConnectionsList;
+  project: CreateBucketResponseDataProject;
+  region: CreateDatabaseResponseDataRegion | null;
+  source: CreateDatabaseResponseDataSource | null;
   branchId: string | null;
 }
-export const PostV1DatabasesResponseData = /*@__PURE__*/ S.suspend(() =>
+export const CreateDatabaseResponseData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
     type: S.String,
     url: S.String,
     name: S.String,
-    status: PostV1DatabasesResponseDataStatus,
+    status: CreateDatabaseResponseDataStatus,
     createdAt: S.String,
     isDefault: S.Boolean,
     defaultConnectionId: S.NullOr(S.String),
-    connections: PostV1DatabasesResponseDataConnectionsList,
-    project: GetV1BranchesByBranchIdResponseDataProject,
-    region: S.NullOr(GetV1DatabasesResponseDataItemRegion),
-    source: S.NullOr(PostV1DatabasesResponseDataSource),
+    connections: CreateDatabaseResponseDataConnectionsList,
+    project: CreateBucketResponseDataProject,
+    region: S.NullOr(CreateDatabaseResponseDataRegion),
+    source: S.NullOr(CreateDatabaseResponseDataSource),
     branchId: S.NullOr(S.String),
   }),
 ).annotate({
-  identifier: "PostV1DatabasesResponseData",
-}) as any as S.Schema<PostV1DatabasesResponseData>;
+  identifier: "CreateDatabaseResponseData",
+}) as any as S.Schema<CreateDatabaseResponseData>;
 
-export interface PostV1DatabasesResponse {
-  data: PostV1DatabasesResponseData;
+export interface CreateDatabaseResponse {
+  data: CreateDatabaseResponseData;
 }
-export const PostV1DatabasesResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateDatabaseResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    data: PostV1DatabasesResponseData,
+    data: CreateDatabaseResponseData,
   }),
 ).annotate({
-  identifier: "PostV1DatabasesResponse",
-}) as any as S.Schema<PostV1DatabasesResponse>;
+  identifier: "CreateDatabaseResponse",
+}) as any as S.Schema<CreateDatabaseResponse>;
 
-export interface PostV1DatabasesByDatabaseIdConnectionsRequest {
+export interface CreateDatabaseConnectionRequest {
   databaseId: string;
   name: string;
 }
-export const PostV1DatabasesByDatabaseIdConnectionsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      databaseId: S.String.pipe(T.Label()),
-      name: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/databases/{databaseId}/connections",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostV1DatabasesByDatabaseIdConnectionsRequest",
-  }) as any as S.Schema<PostV1DatabasesByDatabaseIdConnectionsRequest>;
+export const CreateDatabaseConnectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    databaseId: S.String.pipe(T.Label()),
+    name: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/databases/{databaseId}/connections",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateDatabaseConnectionRequest",
+}) as any as S.Schema<CreateDatabaseConnectionRequest>;
 
-export type PostV1DatabasesByDatabaseIdConnectionsResponseDataKind =
+export type CreateDatabaseConnectionResponseDataKind =
   | "postgres"
   | "accelerate";
-export const PostV1DatabasesByDatabaseIdConnectionsResponseDataKind =
-  /*@__PURE__*/ S.String;
+export const CreateDatabaseConnectionResponseDataKind = /*@__PURE__*/ S.String;
 
-export type PostV1DatabasesByDatabaseIdConnectionsResponseDataEndpointsDirect =
-  PostV1ConnectionsResponseDataEndpointsDirect;
-export const PostV1DatabasesByDatabaseIdConnectionsResponseDataEndpointsDirect =
-  PostV1ConnectionsResponseDataEndpointsDirect;
+export type CreateDatabaseConnectionResponseDataEndpointsDirect =
+  CreateConnectionResponseDataEndpointsDirect;
+export const CreateDatabaseConnectionResponseDataEndpointsDirect =
+  CreateConnectionResponseDataEndpointsDirect;
 
-export type PostV1DatabasesByDatabaseIdConnectionsResponseDataEndpointsPooled =
-  PostV1ConnectionsResponseDataEndpointsDirect;
-export const PostV1DatabasesByDatabaseIdConnectionsResponseDataEndpointsPooled =
-  PostV1ConnectionsResponseDataEndpointsDirect;
+export type CreateDatabaseConnectionResponseDataEndpointsPooled =
+  CreateConnectionResponseDataEndpointsDirect;
+export const CreateDatabaseConnectionResponseDataEndpointsPooled =
+  CreateConnectionResponseDataEndpointsDirect;
 
-export type PostV1DatabasesByDatabaseIdConnectionsResponseDataEndpointsAccelerate =
-  PostV1ConnectionsResponseDataEndpointsDirect;
-export const PostV1DatabasesByDatabaseIdConnectionsResponseDataEndpointsAccelerate =
-  PostV1ConnectionsResponseDataEndpointsDirect;
+export type CreateDatabaseConnectionResponseDataEndpointsAccelerate =
+  CreateConnectionResponseDataEndpointsDirect;
+export const CreateDatabaseConnectionResponseDataEndpointsAccelerate =
+  CreateConnectionResponseDataEndpointsDirect;
 
-export type PostV1DatabasesByDatabaseIdConnectionsResponseDataEndpoints =
-  PostV1ConnectionsResponseDataEndpoints;
-export const PostV1DatabasesByDatabaseIdConnectionsResponseDataEndpoints =
-  PostV1ConnectionsResponseDataEndpoints;
+export type CreateDatabaseConnectionResponseDataEndpoints =
+  CreateConnectionResponseDataEndpoints;
+export const CreateDatabaseConnectionResponseDataEndpoints =
+  CreateConnectionResponseDataEndpoints;
 
 /** Deprecated: use `endpoints.direct` instead. */
-export type PostV1DatabasesByDatabaseIdConnectionsResponseDataDirectConnection =
-  GetV1ConnectionsResponseDataItemDirectConnection;
-export const PostV1DatabasesByDatabaseIdConnectionsResponseDataDirectConnection =
-  GetV1ConnectionsResponseDataItemDirectConnection;
+export type CreateDatabaseConnectionResponseDataDirectConnection =
+  CreateConnectionResponseDataDirectConnection;
+export const CreateDatabaseConnectionResponseDataDirectConnection =
+  CreateConnectionResponseDataDirectConnection;
 
-export type PostV1DatabasesByDatabaseIdConnectionsResponseDataDatabase =
-  GetV1BranchesByBranchIdResponseDataProject;
-export const PostV1DatabasesByDatabaseIdConnectionsResponseDataDatabase =
-  GetV1BranchesByBranchIdResponseDataProject;
+export type CreateDatabaseConnectionResponseDataDatabase =
+  CreateBucketResponseDataProject;
+export const CreateDatabaseConnectionResponseDataDatabase =
+  CreateBucketResponseDataProject;
 
-export interface PostV1DatabasesByDatabaseIdConnectionsResponseData {
+export interface CreateDatabaseConnectionResponseData {
   id: string;
   type: string;
   url: string;
   name: string;
   createdAt: string;
-  kind: PostV1DatabasesByDatabaseIdConnectionsResponseDataKind;
-  endpoints: PostV1ConnectionsResponseDataEndpoints;
+  kind: CreateDatabaseConnectionResponseDataKind;
+  endpoints: CreateConnectionResponseDataEndpoints;
   /** Deprecated: use `endpoints.direct.connectionString` or `endpoints.pooled.connectionString` instead. */
   connectionString: string | Redacted.Redacted<string>;
   /** Deprecated: use `endpoints.direct` instead. */
-  directConnection?: GetV1ConnectionsResponseDataItemDirectConnection | null;
-  database: GetV1BranchesByBranchIdResponseDataProject;
+  directConnection?: CreateConnectionResponseDataDirectConnection | null;
+  database: CreateBucketResponseDataProject;
   /** Deprecated: use `endpoints.direct` instead. */
   host: string | null;
   /** Deprecated: use `endpoints.direct.connectionString` or `endpoints.pooled.connectionString` instead. */
@@ -5948,124 +1010,148 @@ export interface PostV1DatabasesByDatabaseIdConnectionsResponseData {
   /** Deprecated: use `endpoints.direct.connectionString` or `endpoints.pooled.connectionString` instead. */
   user: string | null;
 }
-export const PostV1DatabasesByDatabaseIdConnectionsResponseData =
-  /*@__PURE__*/ S.suspend(() =>
+export const CreateDatabaseConnectionResponseData = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       id: S.String,
       type: S.String,
       url: S.String,
       name: S.String,
       createdAt: S.String,
-      kind: PostV1DatabasesByDatabaseIdConnectionsResponseDataKind,
-      endpoints: PostV1ConnectionsResponseDataEndpoints,
+      kind: CreateDatabaseConnectionResponseDataKind,
+      endpoints: CreateConnectionResponseDataEndpoints,
       connectionString: S.String.pipe(T.SensitiveValue({})),
       directConnection: S.optional(
-        S.NullOr(GetV1ConnectionsResponseDataItemDirectConnection),
+        S.NullOr(CreateConnectionResponseDataDirectConnection),
       ),
-      database: GetV1BranchesByBranchIdResponseDataProject,
+      database: CreateBucketResponseDataProject,
       host: S.NullOr(S.String),
       pass: S.NullOr(S.String),
       user: S.NullOr(S.String),
     }),
-  ).annotate({
-    identifier: "PostV1DatabasesByDatabaseIdConnectionsResponseData",
-  }) as any as S.Schema<PostV1DatabasesByDatabaseIdConnectionsResponseData>;
+).annotate({
+  identifier: "CreateDatabaseConnectionResponseData",
+}) as any as S.Schema<CreateDatabaseConnectionResponseData>;
 
-export interface PostV1DatabasesByDatabaseIdConnectionsResponse {
-  data: PostV1DatabasesByDatabaseIdConnectionsResponseData;
+export interface CreateDatabaseConnectionResponse {
+  data: CreateDatabaseConnectionResponseData;
 }
-export const PostV1DatabasesByDatabaseIdConnectionsResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      data: PostV1DatabasesByDatabaseIdConnectionsResponseData,
-    }),
-  ).annotate({
-    identifier: "PostV1DatabasesByDatabaseIdConnectionsResponse",
-  }) as any as S.Schema<PostV1DatabasesByDatabaseIdConnectionsResponse>;
+export const CreateDatabaseConnectionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: CreateDatabaseConnectionResponseData,
+  }),
+).annotate({
+  identifier: "CreateDatabaseConnectionResponse",
+}) as any as S.Schema<CreateDatabaseConnectionResponse>;
 
-export type PostV1DatabasesByTargetDatabaseIdRestoreRequestSource =
-  PostV1DatabasesRequestSourceCase1;
-export const PostV1DatabasesByTargetDatabaseIdRestoreRequestSource =
-  PostV1DatabasesRequestSourceCase1;
+export type CreateDatabaseRestoreRequestSource =
+  CreateDatabaseRequestSourceCase1;
+export const CreateDatabaseRestoreRequestSource =
+  CreateDatabaseRequestSourceCase1;
 
-export interface PostV1DatabasesByTargetDatabaseIdRestoreRequest {
+export interface CreateDatabaseRestoreRequest {
   targetDatabaseId: string;
-  source: PostV1DatabasesRequestSourceCase1;
+  source: CreateDatabaseRequestSourceCase1;
 }
-export const PostV1DatabasesByTargetDatabaseIdRestoreRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      targetDatabaseId: S.String.pipe(T.Label()),
-      source: PostV1DatabasesRequestSourceCase1,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/databases/{targetDatabaseId}/restore",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostV1DatabasesByTargetDatabaseIdRestoreRequest",
-  }) as any as S.Schema<PostV1DatabasesByTargetDatabaseIdRestoreRequest>;
+export const CreateDatabaseRestoreRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    targetDatabaseId: S.String.pipe(T.Label()),
+    source: CreateDatabaseRequestSourceCase1,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/databases/{targetDatabaseId}/restore",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateDatabaseRestoreRequest",
+}) as any as S.Schema<CreateDatabaseRestoreRequest>;
 
-export type PostV1DatabasesByTargetDatabaseIdRestoreResponseDataStatus =
+export type CreateDatabaseRestoreResponseDataStatus =
   | "failure"
   | "provisioning"
   | "ready"
   | "recovering";
-export const PostV1DatabasesByTargetDatabaseIdRestoreResponseDataStatus =
-  /*@__PURE__*/ S.String;
+export const CreateDatabaseRestoreResponseDataStatus = /*@__PURE__*/ S.String;
 
-export type PostV1DatabasesByTargetDatabaseIdRestoreResponseDataConnectionsItemKind =
+export type CreateDatabaseRestoreResponseDataConnectionsItemKind =
   | "postgres"
   | "accelerate";
-export const PostV1DatabasesByTargetDatabaseIdRestoreResponseDataConnectionsItemKind =
+export const CreateDatabaseRestoreResponseDataConnectionsItemKind =
   /*@__PURE__*/ S.String;
 
-export type PostV1DatabasesByTargetDatabaseIdRestoreResponseDataConnectionsItemEndpointsDirect =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-export const PostV1DatabasesByTargetDatabaseIdRestoreResponseDataConnectionsItemEndpointsDirect =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
+export interface CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect {
+  host: string;
+  port: number;
+}
+export const CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      host: S.String,
+      port: S.Number,
+    }),
+  ).annotate({
+    identifier:
+      "CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect",
+  }) as any as S.Schema<CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect>;
 
-export type PostV1DatabasesByTargetDatabaseIdRestoreResponseDataConnectionsItemEndpointsPooled =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-export const PostV1DatabasesByTargetDatabaseIdRestoreResponseDataConnectionsItemEndpointsPooled =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
+export type CreateDatabaseRestoreResponseDataConnectionsItemEndpointsPooled =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+export const CreateDatabaseRestoreResponseDataConnectionsItemEndpointsPooled =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
 
-export type PostV1DatabasesByTargetDatabaseIdRestoreResponseDataConnectionsItemEndpointsAccelerate =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-export const PostV1DatabasesByTargetDatabaseIdRestoreResponseDataConnectionsItemEndpointsAccelerate =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
+export type CreateDatabaseRestoreResponseDataConnectionsItemEndpointsAccelerate =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+export const CreateDatabaseRestoreResponseDataConnectionsItemEndpointsAccelerate =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
 
-export type PostV1DatabasesByTargetDatabaseIdRestoreResponseDataConnectionsItemEndpoints =
-  GetV1ConnectionsResponseDataItemEndpoints;
-export const PostV1DatabasesByTargetDatabaseIdRestoreResponseDataConnectionsItemEndpoints =
-  GetV1ConnectionsResponseDataItemEndpoints;
+export interface CreateDatabaseRestoreResponseDataConnectionsItemEndpoints {
+  direct?: CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+  pooled?: CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+  accelerate?: CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+}
+export const CreateDatabaseRestoreResponseDataConnectionsItemEndpoints =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      direct: S.optional(
+        CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect,
+      ),
+      pooled: S.optional(
+        CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect,
+      ),
+      accelerate: S.optional(
+        CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect,
+      ),
+    }),
+  ).annotate({
+    identifier: "CreateDatabaseRestoreResponseDataConnectionsItemEndpoints",
+  }) as any as S.Schema<CreateDatabaseRestoreResponseDataConnectionsItemEndpoints>;
 
 /** Deprecated: use `endpoints.direct` instead. */
-export type PostV1DatabasesByTargetDatabaseIdRestoreResponseDataConnectionsItemDirectConnection =
-  GetV1ConnectionsResponseDataItemDirectConnection;
-export const PostV1DatabasesByTargetDatabaseIdRestoreResponseDataConnectionsItemDirectConnection =
-  GetV1ConnectionsResponseDataItemDirectConnection;
+export type CreateDatabaseRestoreResponseDataConnectionsItemDirectConnection =
+  CreateConnectionResponseDataDirectConnection;
+export const CreateDatabaseRestoreResponseDataConnectionsItemDirectConnection =
+  CreateConnectionResponseDataDirectConnection;
 
-export type PostV1DatabasesByTargetDatabaseIdRestoreResponseDataConnectionsItemDatabase =
-  GetV1BranchesByBranchIdResponseDataProject;
-export const PostV1DatabasesByTargetDatabaseIdRestoreResponseDataConnectionsItemDatabase =
-  GetV1BranchesByBranchIdResponseDataProject;
+export type CreateDatabaseRestoreResponseDataConnectionsItemDatabase =
+  CreateBucketResponseDataProject;
+export const CreateDatabaseRestoreResponseDataConnectionsItemDatabase =
+  CreateBucketResponseDataProject;
 
-export interface PostV1DatabasesByTargetDatabaseIdRestoreResponseDataConnectionsItem {
+export interface CreateDatabaseRestoreResponseDataConnectionsItem {
   id: string;
   type: string;
   url: string;
   name: string;
   createdAt: string;
-  kind: PostV1DatabasesByTargetDatabaseIdRestoreResponseDataConnectionsItemKind;
-  endpoints: GetV1ConnectionsResponseDataItemEndpoints;
+  kind: CreateDatabaseRestoreResponseDataConnectionsItemKind;
+  endpoints: CreateDatabaseRestoreResponseDataConnectionsItemEndpoints;
   /** Deprecated: use `endpoints.direct` instead. */
-  directConnection?: GetV1ConnectionsResponseDataItemDirectConnection | null;
-  database: GetV1BranchesByBranchIdResponseDataProject;
+  directConnection?: CreateConnectionResponseDataDirectConnection | null;
+  database: CreateBucketResponseDataProject;
 }
-export const PostV1DatabasesByTargetDatabaseIdRestoreResponseDataConnectionsItem =
+export const CreateDatabaseRestoreResponseDataConnectionsItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.String,
@@ -6073,180 +1159,173 @@ export const PostV1DatabasesByTargetDatabaseIdRestoreResponseDataConnectionsItem
       url: S.String,
       name: S.String,
       createdAt: S.String,
-      kind: PostV1DatabasesByTargetDatabaseIdRestoreResponseDataConnectionsItemKind,
-      endpoints: GetV1ConnectionsResponseDataItemEndpoints,
+      kind: CreateDatabaseRestoreResponseDataConnectionsItemKind,
+      endpoints: CreateDatabaseRestoreResponseDataConnectionsItemEndpoints,
       directConnection: S.optional(
-        S.NullOr(GetV1ConnectionsResponseDataItemDirectConnection),
+        S.NullOr(CreateConnectionResponseDataDirectConnection),
       ),
-      database: GetV1BranchesByBranchIdResponseDataProject,
+      database: CreateBucketResponseDataProject,
     }),
   ).annotate({
-    identifier:
-      "PostV1DatabasesByTargetDatabaseIdRestoreResponseDataConnectionsItem",
-  }) as any as S.Schema<PostV1DatabasesByTargetDatabaseIdRestoreResponseDataConnectionsItem>;
+    identifier: "CreateDatabaseRestoreResponseDataConnectionsItem",
+  }) as any as S.Schema<CreateDatabaseRestoreResponseDataConnectionsItem>;
 
-export type PostV1DatabasesByTargetDatabaseIdRestoreResponseDataConnectionsList =
-  Array<PostV1DatabasesByTargetDatabaseIdRestoreResponseDataConnectionsItem>;
-export const PostV1DatabasesByTargetDatabaseIdRestoreResponseDataConnectionsList =
+export type CreateDatabaseRestoreResponseDataConnectionsList =
+  Array<CreateDatabaseRestoreResponseDataConnectionsItem>;
+export const CreateDatabaseRestoreResponseDataConnectionsList =
   /*@__PURE__*/ S.Array(
-    PostV1DatabasesByTargetDatabaseIdRestoreResponseDataConnectionsItem,
-  ) as any as S.Schema<PostV1DatabasesByTargetDatabaseIdRestoreResponseDataConnectionsList>;
+    CreateDatabaseRestoreResponseDataConnectionsItem,
+  ) as any as S.Schema<CreateDatabaseRestoreResponseDataConnectionsList>;
 
-export type PostV1DatabasesByTargetDatabaseIdRestoreResponseDataProject =
-  GetV1BranchesByBranchIdResponseDataProject;
-export const PostV1DatabasesByTargetDatabaseIdRestoreResponseDataProject =
-  GetV1BranchesByBranchIdResponseDataProject;
+export type CreateDatabaseRestoreResponseDataProject =
+  CreateBucketResponseDataProject;
+export const CreateDatabaseRestoreResponseDataProject =
+  CreateBucketResponseDataProject;
 
-export type PostV1DatabasesByTargetDatabaseIdRestoreResponseDataRegion =
-  GetV1DatabasesResponseDataItemRegion;
-export const PostV1DatabasesByTargetDatabaseIdRestoreResponseDataRegion =
-  GetV1DatabasesResponseDataItemRegion;
+export type CreateDatabaseRestoreResponseDataRegion =
+  CreateDatabaseResponseDataRegion;
+export const CreateDatabaseRestoreResponseDataRegion =
+  CreateDatabaseResponseDataRegion;
 
-export interface PostV1DatabasesByTargetDatabaseIdRestoreResponseDataSource {
+export interface CreateDatabaseRestoreResponseDataSource {
   type: string;
   databaseId: string;
   backupId: string;
 }
-export const PostV1DatabasesByTargetDatabaseIdRestoreResponseDataSource =
-  /*@__PURE__*/ S.suspend(() =>
+export const CreateDatabaseRestoreResponseDataSource = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       type: S.String,
       databaseId: S.String,
       backupId: S.String,
     }),
-  ).annotate({
-    identifier: "PostV1DatabasesByTargetDatabaseIdRestoreResponseDataSource",
-  }) as any as S.Schema<PostV1DatabasesByTargetDatabaseIdRestoreResponseDataSource>;
+).annotate({
+  identifier: "CreateDatabaseRestoreResponseDataSource",
+}) as any as S.Schema<CreateDatabaseRestoreResponseDataSource>;
 
-export interface PostV1DatabasesByTargetDatabaseIdRestoreResponseData {
+export interface CreateDatabaseRestoreResponseData {
   id: string;
   type: string;
   url: string;
   name: string;
-  status: PostV1DatabasesByTargetDatabaseIdRestoreResponseDataStatus;
+  status: CreateDatabaseRestoreResponseDataStatus;
   createdAt: string;
   isDefault: boolean;
   defaultConnectionId: string | null;
-  connections: PostV1DatabasesByTargetDatabaseIdRestoreResponseDataConnectionsList;
-  project: GetV1BranchesByBranchIdResponseDataProject;
-  region: GetV1DatabasesResponseDataItemRegion | null;
-  source: PostV1DatabasesByTargetDatabaseIdRestoreResponseDataSource;
+  connections: CreateDatabaseRestoreResponseDataConnectionsList;
+  project: CreateBucketResponseDataProject;
+  region: CreateDatabaseResponseDataRegion | null;
+  source: CreateDatabaseRestoreResponseDataSource;
   branchId: string | null;
 }
-export const PostV1DatabasesByTargetDatabaseIdRestoreResponseData =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.String,
-      type: S.String,
-      url: S.String,
-      name: S.String,
-      status: PostV1DatabasesByTargetDatabaseIdRestoreResponseDataStatus,
-      createdAt: S.String,
-      isDefault: S.Boolean,
-      defaultConnectionId: S.NullOr(S.String),
-      connections:
-        PostV1DatabasesByTargetDatabaseIdRestoreResponseDataConnectionsList,
-      project: GetV1BranchesByBranchIdResponseDataProject,
-      region: S.NullOr(GetV1DatabasesResponseDataItemRegion),
-      source: PostV1DatabasesByTargetDatabaseIdRestoreResponseDataSource,
-      branchId: S.NullOr(S.String),
-    }),
-  ).annotate({
-    identifier: "PostV1DatabasesByTargetDatabaseIdRestoreResponseData",
-  }) as any as S.Schema<PostV1DatabasesByTargetDatabaseIdRestoreResponseData>;
+export const CreateDatabaseRestoreResponseData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    type: S.String,
+    url: S.String,
+    name: S.String,
+    status: CreateDatabaseRestoreResponseDataStatus,
+    createdAt: S.String,
+    isDefault: S.Boolean,
+    defaultConnectionId: S.NullOr(S.String),
+    connections: CreateDatabaseRestoreResponseDataConnectionsList,
+    project: CreateBucketResponseDataProject,
+    region: S.NullOr(CreateDatabaseResponseDataRegion),
+    source: CreateDatabaseRestoreResponseDataSource,
+    branchId: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "CreateDatabaseRestoreResponseData",
+}) as any as S.Schema<CreateDatabaseRestoreResponseData>;
 
-export interface PostV1DatabasesByTargetDatabaseIdRestoreResponse {
-  data: PostV1DatabasesByTargetDatabaseIdRestoreResponseData;
+export interface CreateDatabaseRestoreResponse {
+  data: CreateDatabaseRestoreResponseData;
 }
-export const PostV1DatabasesByTargetDatabaseIdRestoreResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      data: PostV1DatabasesByTargetDatabaseIdRestoreResponseData,
-    }),
-  ).annotate({
-    identifier: "PostV1DatabasesByTargetDatabaseIdRestoreResponse",
-  }) as any as S.Schema<PostV1DatabasesByTargetDatabaseIdRestoreResponse>;
+export const CreateDatabaseRestoreResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: CreateDatabaseRestoreResponseData,
+  }),
+).annotate({
+  identifier: "CreateDatabaseRestoreResponse",
+}) as any as S.Schema<CreateDatabaseRestoreResponse>;
 
-export interface PostV1DeploymentsByDeploymentIdStartRequest {
+export interface CreateDeploymentStartRequest {
   deploymentId: string;
 }
-export const PostV1DeploymentsByDeploymentIdStartRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      deploymentId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/deployments/{deploymentId}/start",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostV1DeploymentsByDeploymentIdStartRequest",
-  }) as any as S.Schema<PostV1DeploymentsByDeploymentIdStartRequest>;
+export const CreateDeploymentStartRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    deploymentId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/deployments/{deploymentId}/start",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateDeploymentStartRequest",
+}) as any as S.Schema<CreateDeploymentStartRequest>;
 
-export interface PostV1DeploymentsByDeploymentIdStartResponseData {
+export interface CreateDeploymentStartResponseData {
   previewDomain: string;
 }
-export const PostV1DeploymentsByDeploymentIdStartResponseData =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      previewDomain: S.String,
-    }),
-  ).annotate({
-    identifier: "PostV1DeploymentsByDeploymentIdStartResponseData",
-  }) as any as S.Schema<PostV1DeploymentsByDeploymentIdStartResponseData>;
+export const CreateDeploymentStartResponseData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    previewDomain: S.String,
+  }),
+).annotate({
+  identifier: "CreateDeploymentStartResponseData",
+}) as any as S.Schema<CreateDeploymentStartResponseData>;
 
-export interface PostV1DeploymentsByDeploymentIdStartResponse {
-  data: PostV1DeploymentsByDeploymentIdStartResponseData;
+export interface CreateDeploymentStartResponse {
+  data: CreateDeploymentStartResponseData;
 }
-export const PostV1DeploymentsByDeploymentIdStartResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      data: PostV1DeploymentsByDeploymentIdStartResponseData,
-    }),
-  ).annotate({
-    identifier: "PostV1DeploymentsByDeploymentIdStartResponse",
-  }) as any as S.Schema<PostV1DeploymentsByDeploymentIdStartResponse>;
+export const CreateDeploymentStartResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: CreateDeploymentStartResponseData,
+  }),
+).annotate({
+  identifier: "CreateDeploymentStartResponse",
+}) as any as S.Schema<CreateDeploymentStartResponse>;
 
-export interface PostV1DeploymentsByDeploymentIdStopRequest {
+export interface CreateDeploymentStopRequest {
   deploymentId: string;
 }
-export const PostV1DeploymentsByDeploymentIdStopRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      deploymentId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/deployments/{deploymentId}/stop",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostV1DeploymentsByDeploymentIdStopRequest",
-  }) as any as S.Schema<PostV1DeploymentsByDeploymentIdStopRequest>;
+export const CreateDeploymentStopRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    deploymentId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/deployments/{deploymentId}/stop",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateDeploymentStopRequest",
+}) as any as S.Schema<CreateDeploymentStopRequest>;
 
-export interface PostV1DeploymentsByDeploymentIdStopResponse {}
-export const PostV1DeploymentsByDeploymentIdStopResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PostV1DeploymentsByDeploymentIdStopResponse",
-  }) as any as S.Schema<PostV1DeploymentsByDeploymentIdStopResponse>;
+export interface CreateDeploymentStopResponse {}
+export const CreateDeploymentStopResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "CreateDeploymentStopResponse",
+}) as any as S.Schema<CreateDeploymentStopResponse>;
 
-export interface PostV1DomainsByDomainIdRetryRequest {
+export interface CreateDomainRetryRequest {
   domainId: string;
 }
-export const PostV1DomainsByDomainIdRetryRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateDomainRetryRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     domainId: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({ method: "POST", uri: "/v1/domains/{domainId}/retry", code: 200 }),
   ),
 ).annotate({
-  identifier: "PostV1DomainsByDomainIdRetryRequest",
-}) as any as S.Schema<PostV1DomainsByDomainIdRetryRequest>;
+  identifier: "CreateDomainRetryRequest",
+}) as any as S.Schema<CreateDomainRetryRequest>;
 
-export type PostV1DomainsByDomainIdRetryResponseDataStatus =
+export type CreateDomainRetryResponseDataStatus =
   | "pending_dns"
   | "verifying"
   | "verified_routing_blocked"
@@ -6254,30 +1333,42 @@ export type PostV1DomainsByDomainIdRetryResponseDataStatus =
   | "active"
   | "failed"
   | "removing";
-export const PostV1DomainsByDomainIdRetryResponseDataStatus =
-  /*@__PURE__*/ S.String;
+export const CreateDomainRetryResponseDataStatus = /*@__PURE__*/ S.String;
 
-export type PostV1DomainsByDomainIdRetryResponseDataFailureCategory =
+export type CreateDomainRetryResponseDataFailureCategory =
   | "dns"
   | "acme"
   | "storage"
   | "unknown";
-export const PostV1DomainsByDomainIdRetryResponseDataFailureCategory =
+export const CreateDomainRetryResponseDataFailureCategory =
   /*@__PURE__*/ S.String;
 
-export type PostV1DomainsByDomainIdRetryResponseDataDnsRecordsItem =
-  GetV1DomainsByDomainIdResponseDataDnsRecordsItem;
-export const PostV1DomainsByDomainIdRetryResponseDataDnsRecordsItem =
-  GetV1DomainsByDomainIdResponseDataDnsRecordsItem;
+export interface CreateDomainRetryResponseDataDnsRecordsItem {
+  type: string;
+  name: string;
+  value: string;
+  ttl: number | null;
+}
+export const CreateDomainRetryResponseDataDnsRecordsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: S.String,
+      name: S.String,
+      value: S.String,
+      ttl: S.NullOr(S.Number),
+    }),
+  ).annotate({
+    identifier: "CreateDomainRetryResponseDataDnsRecordsItem",
+  }) as any as S.Schema<CreateDomainRetryResponseDataDnsRecordsItem>;
 
-export type PostV1DomainsByDomainIdRetryResponseDataDnsRecordsList =
-  Array<GetV1DomainsByDomainIdResponseDataDnsRecordsItem>;
-export const PostV1DomainsByDomainIdRetryResponseDataDnsRecordsList =
+export type CreateDomainRetryResponseDataDnsRecordsList =
+  Array<CreateDomainRetryResponseDataDnsRecordsItem>;
+export const CreateDomainRetryResponseDataDnsRecordsList =
   /*@__PURE__*/ S.Array(
-    GetV1DomainsByDomainIdResponseDataDnsRecordsItem,
-  ) as any as S.Schema<PostV1DomainsByDomainIdRetryResponseDataDnsRecordsList>;
+    CreateDomainRetryResponseDataDnsRecordsItem,
+  ) as any as S.Schema<CreateDomainRetryResponseDataDnsRecordsList>;
 
-export interface PostV1DomainsByDomainIdRetryResponseData {
+export interface CreateDomainRetryResponseData {
   id: string;
   type: string;
   url: string;
@@ -6285,95 +1376,91 @@ export interface PostV1DomainsByDomainIdRetryResponseData {
   appId: string;
   /** Deprecated: use `appId` instead. */
   computeServiceId: string;
-  status: PostV1DomainsByDomainIdRetryResponseDataStatus;
+  status: CreateDomainRetryResponseDataStatus;
   foundryStatus: string;
   failureReason: string | null;
-  failureCategory: PostV1DomainsByDomainIdRetryResponseDataFailureCategory | null;
+  failureCategory: CreateDomainRetryResponseDataFailureCategory | null;
   certExpiresAt: string | null;
   createdAt: string;
   updatedAt: string;
-  dnsRecords: PostV1DomainsByDomainIdRetryResponseDataDnsRecordsList;
+  dnsRecords: CreateDomainRetryResponseDataDnsRecordsList;
 }
-export const PostV1DomainsByDomainIdRetryResponseData = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String,
-      type: S.String,
-      url: S.String,
-      hostname: S.String,
-      appId: S.String,
-      computeServiceId: S.String,
-      status: PostV1DomainsByDomainIdRetryResponseDataStatus,
-      foundryStatus: S.String,
-      failureReason: S.NullOr(S.String),
-      failureCategory: S.NullOr(
-        PostV1DomainsByDomainIdRetryResponseDataFailureCategory,
-      ),
-      certExpiresAt: S.NullOr(S.String),
-      createdAt: S.String,
-      updatedAt: S.String,
-      dnsRecords: PostV1DomainsByDomainIdRetryResponseDataDnsRecordsList,
-    }),
+export const CreateDomainRetryResponseData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    type: S.String,
+    url: S.String,
+    hostname: S.String,
+    appId: S.String,
+    computeServiceId: S.String,
+    status: CreateDomainRetryResponseDataStatus,
+    foundryStatus: S.String,
+    failureReason: S.NullOr(S.String),
+    failureCategory: S.NullOr(CreateDomainRetryResponseDataFailureCategory),
+    certExpiresAt: S.NullOr(S.String),
+    createdAt: S.String,
+    updatedAt: S.String,
+    dnsRecords: CreateDomainRetryResponseDataDnsRecordsList,
+  }),
 ).annotate({
-  identifier: "PostV1DomainsByDomainIdRetryResponseData",
-}) as any as S.Schema<PostV1DomainsByDomainIdRetryResponseData>;
+  identifier: "CreateDomainRetryResponseData",
+}) as any as S.Schema<CreateDomainRetryResponseData>;
 
-export interface PostV1DomainsByDomainIdRetryResponse {
-  data: PostV1DomainsByDomainIdRetryResponseData;
+export interface CreateDomainRetryResponse {
+  data: CreateDomainRetryResponseData;
 }
-export const PostV1DomainsByDomainIdRetryResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      data: PostV1DomainsByDomainIdRetryResponseData,
-    }),
+export const CreateDomainRetryResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: CreateDomainRetryResponseData,
+  }),
 ).annotate({
-  identifier: "PostV1DomainsByDomainIdRetryResponse",
-}) as any as S.Schema<PostV1DomainsByDomainIdRetryResponse>;
+  identifier: "CreateDomainRetryResponse",
+}) as any as S.Schema<CreateDomainRetryResponse>;
 
-export type PostV1EnvironmentVariablesRequestClass = "production" | "preview";
-export const PostV1EnvironmentVariablesRequestClass = /*@__PURE__*/ S.String;
+export type CreateEnvironmentVariableRequestClass = "production" | "preview";
+export const CreateEnvironmentVariableRequestClass = /*@__PURE__*/ S.String;
 
-export interface PostV1EnvironmentVariablesRequest {
+export interface CreateEnvironmentVariableRequest {
   projectId: string;
   branchId?: string;
-  class: PostV1EnvironmentVariablesRequestClass | (string & {});
+  class: CreateEnvironmentVariableRequestClass | (string & {});
   key: string;
   value: string;
 }
-export const PostV1EnvironmentVariablesRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateEnvironmentVariableRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     projectId: S.String,
     branchId: S.optional(S.String),
-    class: PostV1EnvironmentVariablesRequestClass,
+    class: CreateEnvironmentVariableRequestClass,
     key: S.String,
     value: S.String,
   }).pipe(
     T.Http({ method: "POST", uri: "/v1/environment-variables", code: 200 }),
   ),
 ).annotate({
-  identifier: "PostV1EnvironmentVariablesRequest",
-}) as any as S.Schema<PostV1EnvironmentVariablesRequest>;
+  identifier: "CreateEnvironmentVariableRequest",
+}) as any as S.Schema<CreateEnvironmentVariableRequest>;
 
-export type PostV1EnvironmentVariablesResponseDataClass =
+export type CreateEnvironmentVariableResponseDataClass =
   | "production"
   | "preview";
-export const PostV1EnvironmentVariablesResponseDataClass =
+export const CreateEnvironmentVariableResponseDataClass =
   /*@__PURE__*/ S.String;
 
-export interface PostV1EnvironmentVariablesResponseData {
+export interface CreateEnvironmentVariableResponseData {
   id: string;
   type: string;
   url: string;
   projectId: string;
   branchId: string | null;
-  class: PostV1EnvironmentVariablesResponseDataClass;
+  class: CreateEnvironmentVariableResponseDataClass;
   key: string;
   valueKid: string;
   isManagedBySystem: boolean;
   createdAt: string;
   updatedAt: string;
 }
-export const PostV1EnvironmentVariablesResponseData = /*@__PURE__*/ S.suspend(
+export const CreateEnvironmentVariableResponseData = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.String,
@@ -6381,7 +1468,7 @@ export const PostV1EnvironmentVariablesResponseData = /*@__PURE__*/ S.suspend(
       url: S.String,
       projectId: S.String,
       branchId: S.NullOr(S.String),
-      class: PostV1EnvironmentVariablesResponseDataClass,
+      class: CreateEnvironmentVariableResponseDataClass,
       key: S.String,
       valueKid: S.String,
       isManagedBySystem: S.Boolean,
@@ -6389,104 +1476,104 @@ export const PostV1EnvironmentVariablesResponseData = /*@__PURE__*/ S.suspend(
       updatedAt: S.String,
     }),
 ).annotate({
-  identifier: "PostV1EnvironmentVariablesResponseData",
-}) as any as S.Schema<PostV1EnvironmentVariablesResponseData>;
+  identifier: "CreateEnvironmentVariableResponseData",
+}) as any as S.Schema<CreateEnvironmentVariableResponseData>;
 
-export interface PostV1EnvironmentVariablesResponse {
-  data: PostV1EnvironmentVariablesResponseData;
+export interface CreateEnvironmentVariableResponse {
+  data: CreateEnvironmentVariableResponseData;
 }
-export const PostV1EnvironmentVariablesResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateEnvironmentVariableResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    data: PostV1EnvironmentVariablesResponseData,
+    data: CreateEnvironmentVariableResponseData,
   }),
 ).annotate({
-  identifier: "PostV1EnvironmentVariablesResponse",
-}) as any as S.Schema<PostV1EnvironmentVariablesResponse>;
+  identifier: "CreateEnvironmentVariableResponse",
+}) as any as S.Schema<CreateEnvironmentVariableResponse>;
 
-export type PostV1ProjectsRequestRegion =
+export type CreateProjectRequestRegion =
   | "us-east-1"
   | "us-west-1"
   | "eu-west-3"
   | "eu-central-1"
   | "ap-northeast-1"
   | "ap-southeast-1";
-export const PostV1ProjectsRequestRegion = /*@__PURE__*/ S.String;
+export const CreateProjectRequestRegion = /*@__PURE__*/ S.String;
 
-export interface PostV1ProjectsRequest {
+export interface CreateProjectRequest {
   createDatabase?: boolean;
   name?: string;
-  region?: PostV1ProjectsRequestRegion | (string & {});
+  region?: CreateProjectRequestRegion | (string & {});
   logicalId?: string;
 }
-export const PostV1ProjectsRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateProjectRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     createDatabase: S.optional(S.Boolean),
     name: S.optional(S.String),
-    region: S.optional(PostV1ProjectsRequestRegion),
+    region: S.optional(CreateProjectRequestRegion),
     logicalId: S.optional(S.String),
   }).pipe(T.Http({ method: "POST", uri: "/v1/projects", code: 200 })),
 ).annotate({
-  identifier: "PostV1ProjectsRequest",
-}) as any as S.Schema<PostV1ProjectsRequest>;
+  identifier: "CreateProjectRequest",
+}) as any as S.Schema<CreateProjectRequest>;
 
-export type PostV1ProjectsResponseDataWorkspace =
-  GetV1BranchesByBranchIdResponseDataProject;
-export const PostV1ProjectsResponseDataWorkspace =
-  GetV1BranchesByBranchIdResponseDataProject;
+export type CreateProjectResponseDataWorkspace =
+  CreateBucketResponseDataProject;
+export const CreateProjectResponseDataWorkspace =
+  CreateBucketResponseDataProject;
 
-export type PostV1ProjectsResponseDataDatabaseStatus = "provisioning" | "ready";
-export const PostV1ProjectsResponseDataDatabaseStatus = /*@__PURE__*/ S.String;
+export type CreateProjectResponseDataDatabaseStatus = "provisioning" | "ready";
+export const CreateProjectResponseDataDatabaseStatus = /*@__PURE__*/ S.String;
 
-export type PostV1ProjectsResponseDataDatabaseConnectionsItemKind =
+export type CreateProjectResponseDataDatabaseConnectionsItemKind =
   | "postgres"
   | "accelerate";
-export const PostV1ProjectsResponseDataDatabaseConnectionsItemKind =
+export const CreateProjectResponseDataDatabaseConnectionsItemKind =
   /*@__PURE__*/ S.String;
 
-export type PostV1ProjectsResponseDataDatabaseConnectionsItemEndpointsDirect =
-  PostV1DatabasesResponseDataConnectionsItemEndpointsDirect;
-export const PostV1ProjectsResponseDataDatabaseConnectionsItemEndpointsDirect =
-  PostV1DatabasesResponseDataConnectionsItemEndpointsDirect;
+export type CreateProjectResponseDataDatabaseConnectionsItemEndpointsDirect =
+  CreateDatabaseResponseDataConnectionsItemEndpointsDirect;
+export const CreateProjectResponseDataDatabaseConnectionsItemEndpointsDirect =
+  CreateDatabaseResponseDataConnectionsItemEndpointsDirect;
 
-export type PostV1ProjectsResponseDataDatabaseConnectionsItemEndpointsPooled =
-  PostV1DatabasesResponseDataConnectionsItemEndpointsDirect;
-export const PostV1ProjectsResponseDataDatabaseConnectionsItemEndpointsPooled =
-  PostV1DatabasesResponseDataConnectionsItemEndpointsDirect;
+export type CreateProjectResponseDataDatabaseConnectionsItemEndpointsPooled =
+  CreateDatabaseResponseDataConnectionsItemEndpointsDirect;
+export const CreateProjectResponseDataDatabaseConnectionsItemEndpointsPooled =
+  CreateDatabaseResponseDataConnectionsItemEndpointsDirect;
 
-export type PostV1ProjectsResponseDataDatabaseConnectionsItemEndpointsAccelerate =
-  PostV1DatabasesResponseDataConnectionsItemEndpointsDirect;
-export const PostV1ProjectsResponseDataDatabaseConnectionsItemEndpointsAccelerate =
-  PostV1DatabasesResponseDataConnectionsItemEndpointsDirect;
+export type CreateProjectResponseDataDatabaseConnectionsItemEndpointsAccelerate =
+  CreateDatabaseResponseDataConnectionsItemEndpointsDirect;
+export const CreateProjectResponseDataDatabaseConnectionsItemEndpointsAccelerate =
+  CreateDatabaseResponseDataConnectionsItemEndpointsDirect;
 
-export type PostV1ProjectsResponseDataDatabaseConnectionsItemEndpoints =
-  PostV1DatabasesResponseDataConnectionsItemEndpoints;
-export const PostV1ProjectsResponseDataDatabaseConnectionsItemEndpoints =
-  PostV1DatabasesResponseDataConnectionsItemEndpoints;
+export type CreateProjectResponseDataDatabaseConnectionsItemEndpoints =
+  CreateDatabaseResponseDataConnectionsItemEndpoints;
+export const CreateProjectResponseDataDatabaseConnectionsItemEndpoints =
+  CreateDatabaseResponseDataConnectionsItemEndpoints;
 
 /** Deprecated: use `endpoints.direct` instead. */
-export type PostV1ProjectsResponseDataDatabaseConnectionsItemDirectConnection =
-  GetV1ConnectionsResponseDataItemDirectConnection;
-export const PostV1ProjectsResponseDataDatabaseConnectionsItemDirectConnection =
-  GetV1ConnectionsResponseDataItemDirectConnection;
+export type CreateProjectResponseDataDatabaseConnectionsItemDirectConnection =
+  CreateConnectionResponseDataDirectConnection;
+export const CreateProjectResponseDataDatabaseConnectionsItemDirectConnection =
+  CreateConnectionResponseDataDirectConnection;
 
-export type PostV1ProjectsResponseDataDatabaseConnectionsItemDatabase =
-  GetV1BranchesByBranchIdResponseDataProject;
-export const PostV1ProjectsResponseDataDatabaseConnectionsItemDatabase =
-  GetV1BranchesByBranchIdResponseDataProject;
+export type CreateProjectResponseDataDatabaseConnectionsItemDatabase =
+  CreateBucketResponseDataProject;
+export const CreateProjectResponseDataDatabaseConnectionsItemDatabase =
+  CreateBucketResponseDataProject;
 
-export interface PostV1ProjectsResponseDataDatabaseConnectionsItem {
+export interface CreateProjectResponseDataDatabaseConnectionsItem {
   id: string;
   type: string;
   url: string;
   name: string;
   createdAt: string;
-  kind: PostV1ProjectsResponseDataDatabaseConnectionsItemKind;
-  endpoints: PostV1DatabasesResponseDataConnectionsItemEndpoints;
+  kind: CreateProjectResponseDataDatabaseConnectionsItemKind;
+  endpoints: CreateDatabaseResponseDataConnectionsItemEndpoints;
   /** Deprecated: use `endpoints.direct` instead. */
-  directConnection?: GetV1ConnectionsResponseDataItemDirectConnection | null;
-  database: GetV1BranchesByBranchIdResponseDataProject;
+  directConnection?: CreateConnectionResponseDataDirectConnection | null;
+  database: CreateBucketResponseDataProject;
 }
-export const PostV1ProjectsResponseDataDatabaseConnectionsItem =
+export const CreateProjectResponseDataDatabaseConnectionsItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.String,
@@ -6494,103 +1581,103 @@ export const PostV1ProjectsResponseDataDatabaseConnectionsItem =
       url: S.String,
       name: S.String,
       createdAt: S.String,
-      kind: PostV1ProjectsResponseDataDatabaseConnectionsItemKind,
-      endpoints: PostV1DatabasesResponseDataConnectionsItemEndpoints,
+      kind: CreateProjectResponseDataDatabaseConnectionsItemKind,
+      endpoints: CreateDatabaseResponseDataConnectionsItemEndpoints,
       directConnection: S.optional(
-        S.NullOr(GetV1ConnectionsResponseDataItemDirectConnection),
+        S.NullOr(CreateConnectionResponseDataDirectConnection),
       ),
-      database: GetV1BranchesByBranchIdResponseDataProject,
+      database: CreateBucketResponseDataProject,
     }),
   ).annotate({
-    identifier: "PostV1ProjectsResponseDataDatabaseConnectionsItem",
-  }) as any as S.Schema<PostV1ProjectsResponseDataDatabaseConnectionsItem>;
+    identifier: "CreateProjectResponseDataDatabaseConnectionsItem",
+  }) as any as S.Schema<CreateProjectResponseDataDatabaseConnectionsItem>;
 
-export type PostV1ProjectsResponseDataDatabaseConnectionsList =
-  Array<PostV1ProjectsResponseDataDatabaseConnectionsItem>;
-export const PostV1ProjectsResponseDataDatabaseConnectionsList =
+export type CreateProjectResponseDataDatabaseConnectionsList =
+  Array<CreateProjectResponseDataDatabaseConnectionsItem>;
+export const CreateProjectResponseDataDatabaseConnectionsList =
   /*@__PURE__*/ S.Array(
-    PostV1ProjectsResponseDataDatabaseConnectionsItem,
-  ) as any as S.Schema<PostV1ProjectsResponseDataDatabaseConnectionsList>;
+    CreateProjectResponseDataDatabaseConnectionsItem,
+  ) as any as S.Schema<CreateProjectResponseDataDatabaseConnectionsList>;
 
-export type PostV1ProjectsResponseDataDatabaseRegion =
-  GetV1DatabasesResponseDataItemRegion;
-export const PostV1ProjectsResponseDataDatabaseRegion =
-  GetV1DatabasesResponseDataItemRegion;
+export type CreateProjectResponseDataDatabaseRegion =
+  CreateDatabaseResponseDataRegion;
+export const CreateProjectResponseDataDatabaseRegion =
+  CreateDatabaseResponseDataRegion;
 
-export type PostV1ProjectsResponseDataDatabaseSourceCase0 =
-  GetV1DatabasesResponseDataItemSourceCase0;
-export const PostV1ProjectsResponseDataDatabaseSourceCase0 =
-  GetV1DatabasesResponseDataItemSourceCase0;
+export type CreateProjectResponseDataDatabaseSourceCase0 =
+  CreateDatabaseRequestSourceCase0;
+export const CreateProjectResponseDataDatabaseSourceCase0 =
+  CreateDatabaseRequestSourceCase0;
 
-export type PostV1ProjectsResponseDataDatabaseSourceCase1 =
-  GetV1DatabasesResponseDataItemSourceCase1;
-export const PostV1ProjectsResponseDataDatabaseSourceCase1 =
-  GetV1DatabasesResponseDataItemSourceCase1;
+export type CreateProjectResponseDataDatabaseSourceCase1 =
+  CreateDatabaseResponseDataSourceCase1;
+export const CreateProjectResponseDataDatabaseSourceCase1 =
+  CreateDatabaseResponseDataSourceCase1;
 
-export type PostV1ProjectsResponseDataDatabaseSourceCase2 =
-  GetV1DatabasesResponseDataItemSourceCase2;
-export const PostV1ProjectsResponseDataDatabaseSourceCase2 =
-  GetV1DatabasesResponseDataItemSourceCase2;
+export type CreateProjectResponseDataDatabaseSourceCase2 =
+  CreateDatabaseResponseDataSourceCase2;
+export const CreateProjectResponseDataDatabaseSourceCase2 =
+  CreateDatabaseResponseDataSourceCase2;
 
-export type PostV1ProjectsResponseDataDatabaseSource =
-  | GetV1DatabasesResponseDataItemSourceCase0
-  | GetV1DatabasesResponseDataItemSourceCase1
-  | GetV1DatabasesResponseDataItemSourceCase2;
-export const PostV1ProjectsResponseDataDatabaseSource = /*@__PURE__*/ S.suspend(
+export type CreateProjectResponseDataDatabaseSource =
+  | CreateDatabaseRequestSourceCase0
+  | CreateDatabaseResponseDataSourceCase1
+  | CreateDatabaseResponseDataSourceCase2;
+export const CreateProjectResponseDataDatabaseSource = /*@__PURE__*/ S.suspend(
   () =>
     S.Union([
-      PostV1ProjectsResponseDataDatabaseSourceCase0,
-      PostV1ProjectsResponseDataDatabaseSourceCase1,
-      PostV1ProjectsResponseDataDatabaseSourceCase2,
+      CreateProjectResponseDataDatabaseSourceCase0,
+      CreateProjectResponseDataDatabaseSourceCase1,
+      CreateProjectResponseDataDatabaseSourceCase2,
     ]),
-) as any as S.Schema<PostV1ProjectsResponseDataDatabaseSource>;
+) as any as S.Schema<CreateProjectResponseDataDatabaseSource>;
 
-export type PostV1ProjectsResponseDataDatabaseApiKeysItemKind =
+export type CreateProjectResponseDataDatabaseApiKeysItemKind =
   | "postgres"
   | "accelerate";
-export const PostV1ProjectsResponseDataDatabaseApiKeysItemKind =
+export const CreateProjectResponseDataDatabaseApiKeysItemKind =
   /*@__PURE__*/ S.String;
 
-export type PostV1ProjectsResponseDataDatabaseApiKeysItemEndpointsDirect =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-export const PostV1ProjectsResponseDataDatabaseApiKeysItemEndpointsDirect =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
+export type CreateProjectResponseDataDatabaseApiKeysItemEndpointsDirect =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+export const CreateProjectResponseDataDatabaseApiKeysItemEndpointsDirect =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
 
-export type PostV1ProjectsResponseDataDatabaseApiKeysItemEndpointsPooled =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-export const PostV1ProjectsResponseDataDatabaseApiKeysItemEndpointsPooled =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
+export type CreateProjectResponseDataDatabaseApiKeysItemEndpointsPooled =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+export const CreateProjectResponseDataDatabaseApiKeysItemEndpointsPooled =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
 
-export type PostV1ProjectsResponseDataDatabaseApiKeysItemEndpointsAccelerate =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-export const PostV1ProjectsResponseDataDatabaseApiKeysItemEndpointsAccelerate =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
+export type CreateProjectResponseDataDatabaseApiKeysItemEndpointsAccelerate =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+export const CreateProjectResponseDataDatabaseApiKeysItemEndpointsAccelerate =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
 
-export type PostV1ProjectsResponseDataDatabaseApiKeysItemEndpoints =
-  GetV1ConnectionsResponseDataItemEndpoints;
-export const PostV1ProjectsResponseDataDatabaseApiKeysItemEndpoints =
-  GetV1ConnectionsResponseDataItemEndpoints;
+export type CreateProjectResponseDataDatabaseApiKeysItemEndpoints =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpoints;
+export const CreateProjectResponseDataDatabaseApiKeysItemEndpoints =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpoints;
 
 /** Deprecated: use `endpoints.direct` instead. */
-export type PostV1ProjectsResponseDataDatabaseApiKeysItemDirectConnection =
-  GetV1ConnectionsResponseDataItemDirectConnection;
-export const PostV1ProjectsResponseDataDatabaseApiKeysItemDirectConnection =
-  GetV1ConnectionsResponseDataItemDirectConnection;
+export type CreateProjectResponseDataDatabaseApiKeysItemDirectConnection =
+  CreateConnectionResponseDataDirectConnection;
+export const CreateProjectResponseDataDatabaseApiKeysItemDirectConnection =
+  CreateConnectionResponseDataDirectConnection;
 
-export interface PostV1ProjectsResponseDataDatabaseApiKeysItem {
+export interface CreateProjectResponseDataDatabaseApiKeysItem {
   id: string;
   type: string;
   url: string;
   name: string;
   createdAt: string;
-  kind: PostV1ProjectsResponseDataDatabaseApiKeysItemKind;
-  endpoints: GetV1ConnectionsResponseDataItemEndpoints;
+  kind: CreateProjectResponseDataDatabaseApiKeysItemKind;
+  endpoints: CreateDatabaseRestoreResponseDataConnectionsItemEndpoints;
   /** Deprecated: use `endpoints.direct.connectionString` or `endpoints.pooled.connectionString` instead. */
   connectionString: string | Redacted.Redacted<string>;
   /** Deprecated: use `endpoints.direct` instead. */
-  directConnection?: GetV1ConnectionsResponseDataItemDirectConnection | null;
+  directConnection?: CreateConnectionResponseDataDirectConnection | null;
 }
-export const PostV1ProjectsResponseDataDatabaseApiKeysItem =
+export const CreateProjectResponseDataDatabaseApiKeysItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.String,
@@ -6598,76 +1685,74 @@ export const PostV1ProjectsResponseDataDatabaseApiKeysItem =
       url: S.String,
       name: S.String,
       createdAt: S.String,
-      kind: PostV1ProjectsResponseDataDatabaseApiKeysItemKind,
-      endpoints: GetV1ConnectionsResponseDataItemEndpoints,
+      kind: CreateProjectResponseDataDatabaseApiKeysItemKind,
+      endpoints: CreateDatabaseRestoreResponseDataConnectionsItemEndpoints,
       connectionString: S.String.pipe(T.SensitiveValue({})),
       directConnection: S.optional(
-        S.NullOr(GetV1ConnectionsResponseDataItemDirectConnection),
+        S.NullOr(CreateConnectionResponseDataDirectConnection),
       ),
     }),
   ).annotate({
-    identifier: "PostV1ProjectsResponseDataDatabaseApiKeysItem",
-  }) as any as S.Schema<PostV1ProjectsResponseDataDatabaseApiKeysItem>;
+    identifier: "CreateProjectResponseDataDatabaseApiKeysItem",
+  }) as any as S.Schema<CreateProjectResponseDataDatabaseApiKeysItem>;
 
 /** Deprecated: use `connections[]` instead. */
-export type PostV1ProjectsResponseDataDatabaseApiKeysList =
-  Array<PostV1ProjectsResponseDataDatabaseApiKeysItem>;
-export const PostV1ProjectsResponseDataDatabaseApiKeysList =
+export type CreateProjectResponseDataDatabaseApiKeysList =
+  Array<CreateProjectResponseDataDatabaseApiKeysItem>;
+export const CreateProjectResponseDataDatabaseApiKeysList =
   /*@__PURE__*/ S.Array(
-    PostV1ProjectsResponseDataDatabaseApiKeysItem,
-  ) as any as S.Schema<PostV1ProjectsResponseDataDatabaseApiKeysList>;
+    CreateProjectResponseDataDatabaseApiKeysItem,
+  ) as any as S.Schema<CreateProjectResponseDataDatabaseApiKeysList>;
 
 /** Deprecated: use `connections[].endpoints.direct` instead. */
-export type PostV1ProjectsResponseDataDatabaseDirectConnection =
-  GetV1ConnectionsResponseDataItemDirectConnection;
-export const PostV1ProjectsResponseDataDatabaseDirectConnection =
-  GetV1ConnectionsResponseDataItemDirectConnection;
+export type CreateProjectResponseDataDatabaseDirectConnection =
+  CreateConnectionResponseDataDirectConnection;
+export const CreateProjectResponseDataDatabaseDirectConnection =
+  CreateConnectionResponseDataDirectConnection;
 
-export interface PostV1ProjectsResponseDataDatabase {
+export interface CreateProjectResponseDataDatabase {
   id: string;
   type: string;
   url: string;
   name: string;
-  status: PostV1ProjectsResponseDataDatabaseStatus;
+  status: CreateProjectResponseDataDatabaseStatus;
   createdAt: string;
   isDefault: boolean;
   defaultConnectionId: string | null;
-  connections: PostV1ProjectsResponseDataDatabaseConnectionsList;
-  region: GetV1DatabasesResponseDataItemRegion;
-  source: PostV1ProjectsResponseDataDatabaseSource | null;
+  connections: CreateProjectResponseDataDatabaseConnectionsList;
+  region: CreateDatabaseResponseDataRegion;
+  source: CreateProjectResponseDataDatabaseSource | null;
   branchId: string | null;
   /** Deprecated: use `connections[]` instead. */
-  apiKeys: PostV1ProjectsResponseDataDatabaseApiKeysList;
+  apiKeys: CreateProjectResponseDataDatabaseApiKeysList;
   /** Deprecated: use `connections[].endpoints.direct.connectionString` or `connections[].endpoints.pooled.connectionString`. */
   connectionString: string | Redacted.Redacted<string>;
   /** Deprecated: use `connections[].endpoints.direct` instead. */
-  directConnection: GetV1ConnectionsResponseDataItemDirectConnection | null;
+  directConnection: CreateConnectionResponseDataDirectConnection | null;
 }
-export const PostV1ProjectsResponseDataDatabase = /*@__PURE__*/ S.suspend(() =>
+export const CreateProjectResponseDataDatabase = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
     type: S.String,
     url: S.String,
     name: S.String,
-    status: PostV1ProjectsResponseDataDatabaseStatus,
+    status: CreateProjectResponseDataDatabaseStatus,
     createdAt: S.String,
     isDefault: S.Boolean,
     defaultConnectionId: S.NullOr(S.String),
-    connections: PostV1ProjectsResponseDataDatabaseConnectionsList,
-    region: GetV1DatabasesResponseDataItemRegion,
-    source: S.NullOr(PostV1ProjectsResponseDataDatabaseSource),
+    connections: CreateProjectResponseDataDatabaseConnectionsList,
+    region: CreateDatabaseResponseDataRegion,
+    source: S.NullOr(CreateProjectResponseDataDatabaseSource),
     branchId: S.NullOr(S.String),
-    apiKeys: PostV1ProjectsResponseDataDatabaseApiKeysList,
+    apiKeys: CreateProjectResponseDataDatabaseApiKeysList,
     connectionString: S.NullOr(S.String).pipe(T.SensitiveValue({})),
-    directConnection: S.NullOr(
-      GetV1ConnectionsResponseDataItemDirectConnection,
-    ),
+    directConnection: S.NullOr(CreateConnectionResponseDataDirectConnection),
   }),
 ).annotate({
-  identifier: "PostV1ProjectsResponseDataDatabase",
-}) as any as S.Schema<PostV1ProjectsResponseDataDatabase>;
+  identifier: "CreateProjectResponseDataDatabase",
+}) as any as S.Schema<CreateProjectResponseDataDatabase>;
 
-export interface PostV1ProjectsResponseData {
+export interface CreateProjectResponseData {
   id: string;
   type: string;
   url: string;
@@ -6675,10 +1760,10 @@ export interface PostV1ProjectsResponseData {
   logicalId: string | null;
   createdAt: string;
   defaultRegion: string | null;
-  workspace: GetV1BranchesByBranchIdResponseDataProject;
-  database: PostV1ProjectsResponseDataDatabase | null;
+  workspace: CreateBucketResponseDataProject;
+  database: CreateProjectResponseDataDatabase | null;
 }
-export const PostV1ProjectsResponseData = /*@__PURE__*/ S.suspend(() =>
+export const CreateProjectResponseData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
     type: S.String,
@@ -6687,122 +1772,94 @@ export const PostV1ProjectsResponseData = /*@__PURE__*/ S.suspend(() =>
     logicalId: S.NullOr(S.String),
     createdAt: S.String,
     defaultRegion: S.NullOr(S.String),
-    workspace: GetV1BranchesByBranchIdResponseDataProject,
-    database: S.NullOr(PostV1ProjectsResponseDataDatabase),
+    workspace: CreateBucketResponseDataProject,
+    database: S.NullOr(CreateProjectResponseDataDatabase),
   }),
 ).annotate({
-  identifier: "PostV1ProjectsResponseData",
-}) as any as S.Schema<PostV1ProjectsResponseData>;
+  identifier: "CreateProjectResponseData",
+}) as any as S.Schema<CreateProjectResponseData>;
 
-export interface PostV1ProjectsResponse {
-  data: PostV1ProjectsResponseData;
+export interface CreateProjectResponse {
+  data: CreateProjectResponseData;
 }
-export const PostV1ProjectsResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateProjectResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    data: PostV1ProjectsResponseData,
+    data: CreateProjectResponseData,
   }),
 ).annotate({
-  identifier: "PostV1ProjectsResponse",
-}) as any as S.Schema<PostV1ProjectsResponse>;
+  identifier: "CreateProjectResponse",
+}) as any as S.Schema<CreateProjectResponse>;
 
-export interface PostV1ProjectsByIdTransferRequest {
-  id: string;
-  recipientAccessToken: string;
-}
-export const PostV1ProjectsByIdTransferRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    recipientAccessToken: S.String,
-  }).pipe(
-    T.Http({ method: "POST", uri: "/v1/projects/{id}/transfer", code: 200 }),
-  ),
-).annotate({
-  identifier: "PostV1ProjectsByIdTransferRequest",
-}) as any as S.Schema<PostV1ProjectsByIdTransferRequest>;
-
-export interface PostV1ProjectsByIdTransferResponse {}
-export const PostV1ProjectsByIdTransferResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "PostV1ProjectsByIdTransferResponse",
-}) as any as S.Schema<PostV1ProjectsByIdTransferResponse>;
-
-export interface PostV1ProjectsByProjectIdBranchesRequest {
+export interface CreateProjectBranchRequest {
   projectId: string;
   gitName: string;
   isDefault?: boolean;
 }
-export const PostV1ProjectsByProjectIdBranchesRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      projectId: S.String.pipe(T.Label()),
-      gitName: S.String,
-      isDefault: S.optional(S.Boolean),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/projects/{projectId}/branches",
-        code: 200,
-      }),
-    ),
+export const CreateProjectBranchRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    projectId: S.String.pipe(T.Label()),
+    gitName: S.String,
+    isDefault: S.optional(S.Boolean),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/projects/{projectId}/branches",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "PostV1ProjectsByProjectIdBranchesRequest",
-}) as any as S.Schema<PostV1ProjectsByProjectIdBranchesRequest>;
+  identifier: "CreateProjectBranchRequest",
+}) as any as S.Schema<CreateProjectBranchRequest>;
 
-export type PostV1ProjectsByProjectIdBranchesResponseDataRole =
-  | "production"
-  | "preview";
-export const PostV1ProjectsByProjectIdBranchesResponseDataRole =
-  /*@__PURE__*/ S.String;
+export type CreateProjectBranchResponseDataRole = "production" | "preview";
+export const CreateProjectBranchResponseDataRole = /*@__PURE__*/ S.String;
 
 /** Thin reference to the parent Project. Member resources are intentionally NOT inlined — list /v1/databases?branchId=<br_xxx> or /v1/apps?branchId=<br_xxx> instead (see API design principles "Flat and Hierarchical Coexistence"). */
-export type PostV1ProjectsByProjectIdBranchesResponseDataProject =
-  GetV1BranchesByBranchIdResponseDataProject;
-export const PostV1ProjectsByProjectIdBranchesResponseDataProject =
-  GetV1BranchesByBranchIdResponseDataProject;
+export type CreateProjectBranchResponseDataProject =
+  CreateBucketResponseDataProject;
+export const CreateProjectBranchResponseDataProject =
+  CreateBucketResponseDataProject;
 
-export interface PostV1ProjectsByProjectIdBranchesResponseData {
+export interface CreateProjectBranchResponseData {
   id: string;
   type: string;
   url: string;
   gitName: string;
   isDefault: boolean;
-  role: PostV1ProjectsByProjectIdBranchesResponseDataRole;
+  role: CreateProjectBranchResponseDataRole;
   createdAt: string;
   updatedAt: string;
   /** Thin reference to the parent Project. Member resources are intentionally NOT inlined — list /v1/databases?branchId=<br_xxx> or /v1/apps?branchId=<br_xxx> instead (see API design principles "Flat and Hierarchical Coexistence"). */
-  project: GetV1BranchesByBranchIdResponseDataProject;
+  project: CreateBucketResponseDataProject;
 }
-export const PostV1ProjectsByProjectIdBranchesResponseData =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.String,
-      type: S.String,
-      url: S.String,
-      gitName: S.String,
-      isDefault: S.Boolean,
-      role: PostV1ProjectsByProjectIdBranchesResponseDataRole,
-      createdAt: S.String,
-      updatedAt: S.String,
-      project: GetV1BranchesByBranchIdResponseDataProject,
-    }),
-  ).annotate({
-    identifier: "PostV1ProjectsByProjectIdBranchesResponseData",
-  }) as any as S.Schema<PostV1ProjectsByProjectIdBranchesResponseData>;
+export const CreateProjectBranchResponseData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    type: S.String,
+    url: S.String,
+    gitName: S.String,
+    isDefault: S.Boolean,
+    role: CreateProjectBranchResponseDataRole,
+    createdAt: S.String,
+    updatedAt: S.String,
+    project: CreateBucketResponseDataProject,
+  }),
+).annotate({
+  identifier: "CreateProjectBranchResponseData",
+}) as any as S.Schema<CreateProjectBranchResponseData>;
 
-export interface PostV1ProjectsByProjectIdBranchesResponse {
-  data: PostV1ProjectsByProjectIdBranchesResponseData;
+export interface CreateProjectBranchResponse {
+  data: CreateProjectBranchResponseData;
 }
-export const PostV1ProjectsByProjectIdBranchesResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      data: PostV1ProjectsByProjectIdBranchesResponseData,
-    }),
-  ).annotate({
-    identifier: "PostV1ProjectsByProjectIdBranchesResponse",
-  }) as any as S.Schema<PostV1ProjectsByProjectIdBranchesResponse>;
+export const CreateProjectBranchResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: CreateProjectBranchResponseData,
+  }),
+).annotate({
+  identifier: "CreateProjectBranchResponse",
+}) as any as S.Schema<CreateProjectBranchResponse>;
 
-export interface PostV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseRequest {
+export interface CreateProjectBranchAlchemyStateLeaseRequest {
   projectId: string;
   branchId: string;
   /** Alchemy stack name (opaque wire value). */
@@ -6814,7 +1871,7 @@ export interface PostV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseReq
   /** Free-form description of the acquiring deploy, echoed in the contention error so a blocked deploy can name who holds the lease. */
   holderDescription?: string;
 }
-export const PostV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseRequest =
+export const CreateProjectBranchAlchemyStateLeaseRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       projectId: S.String.pipe(T.Label()),
@@ -6831,29 +1888,38 @@ export const PostV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseRequest
       }),
     ),
   ).annotate({
-    identifier:
-      "PostV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseRequest",
-  }) as any as S.Schema<PostV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseRequest>;
+    identifier: "CreateProjectBranchAlchemyStateLeaseRequest",
+  }) as any as S.Schema<CreateProjectBranchAlchemyStateLeaseRequest>;
 
-export type PostV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseResponseData =
-  PatchV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseResponseData;
-export const PostV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseResponseData =
-  PatchV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseResponseData;
-
-export interface PostV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseResponse {
-  data: PatchV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseResponseData;
+export interface CreateProjectBranchAlchemyStateLeaseResponseData {
+  /** Capability token for the deploy lease. Send it in the Alchemy-State-Lease-Id header with every state operation; do not log it. */
+  leaseId: string;
+  /** Lease expiry as an ISO-8601 timestamp. */
+  expiresAt: string;
 }
-export const PostV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseResponse =
+export const CreateProjectBranchAlchemyStateLeaseResponseData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      data: PatchV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseResponseData,
+      leaseId: S.String,
+      expiresAt: S.String,
     }),
   ).annotate({
-    identifier:
-      "PostV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseResponse",
-  }) as any as S.Schema<PostV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseResponse>;
+    identifier: "CreateProjectBranchAlchemyStateLeaseResponseData",
+  }) as any as S.Schema<CreateProjectBranchAlchemyStateLeaseResponseData>;
 
-export type PostV1ProjectsByProjectIdDatabasesRequestRegion =
+export interface CreateProjectBranchAlchemyStateLeaseResponse {
+  data: CreateProjectBranchAlchemyStateLeaseResponseData;
+}
+export const CreateProjectBranchAlchemyStateLeaseResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      data: CreateProjectBranchAlchemyStateLeaseResponseData,
+    }),
+  ).annotate({
+    identifier: "CreateProjectBranchAlchemyStateLeaseResponse",
+  }) as any as S.Schema<CreateProjectBranchAlchemyStateLeaseResponse>;
+
+export type CreateProjectDatabaseRequestRegion =
   | "us-east-1"
   | "us-west-1"
   | "eu-west-3"
@@ -6861,139 +1927,131 @@ export type PostV1ProjectsByProjectIdDatabasesRequestRegion =
   | "ap-northeast-1"
   | "ap-southeast-1"
   | "inherit";
-export const PostV1ProjectsByProjectIdDatabasesRequestRegion =
-  /*@__PURE__*/ S.String;
+export const CreateProjectDatabaseRequestRegion = /*@__PURE__*/ S.String;
 
 /** Deprecated: use `source` instead. */
-export interface PostV1ProjectsByProjectIdDatabasesRequestFromDatabase {
+export interface CreateProjectDatabaseRequestFromDatabase {
   id: string;
   backupId?: string;
 }
-export const PostV1ProjectsByProjectIdDatabasesRequestFromDatabase =
-  /*@__PURE__*/ S.suspend(() =>
+export const CreateProjectDatabaseRequestFromDatabase = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       id: S.String,
       backupId: S.optional(S.String),
     }),
-  ).annotate({
-    identifier: "PostV1ProjectsByProjectIdDatabasesRequestFromDatabase",
-  }) as any as S.Schema<PostV1ProjectsByProjectIdDatabasesRequestFromDatabase>;
+).annotate({
+  identifier: "CreateProjectDatabaseRequestFromDatabase",
+}) as any as S.Schema<CreateProjectDatabaseRequestFromDatabase>;
 
-export type PostV1ProjectsByProjectIdDatabasesRequestSourceCase0 =
-  GetV1DatabasesResponseDataItemSourceCase0;
-export const PostV1ProjectsByProjectIdDatabasesRequestSourceCase0 =
-  GetV1DatabasesResponseDataItemSourceCase0;
+export type CreateProjectDatabaseRequestSourceCase0 =
+  CreateDatabaseRequestSourceCase0;
+export const CreateProjectDatabaseRequestSourceCase0 =
+  CreateDatabaseRequestSourceCase0;
 
-export type PostV1ProjectsByProjectIdDatabasesRequestSourceCase1 =
-  PostV1DatabasesRequestSourceCase1;
-export const PostV1ProjectsByProjectIdDatabasesRequestSourceCase1 =
-  PostV1DatabasesRequestSourceCase1;
+export type CreateProjectDatabaseRequestSourceCase1 =
+  CreateDatabaseRequestSourceCase1;
+export const CreateProjectDatabaseRequestSourceCase1 =
+  CreateDatabaseRequestSourceCase1;
 
-export type PostV1ProjectsByProjectIdDatabasesRequestSourceCase2 =
-  PostV1DatabasesRequestSourceCase2;
-export const PostV1ProjectsByProjectIdDatabasesRequestSourceCase2 =
-  PostV1DatabasesRequestSourceCase2;
+export type CreateProjectDatabaseRequestSourceCase2 =
+  CreateDatabaseRequestSourceCase2;
+export const CreateProjectDatabaseRequestSourceCase2 =
+  CreateDatabaseRequestSourceCase2;
 
-export type PostV1ProjectsByProjectIdDatabasesRequestSource =
-  | GetV1DatabasesResponseDataItemSourceCase0
-  | PostV1DatabasesRequestSourceCase1
-  | PostV1DatabasesRequestSourceCase2;
-export const PostV1ProjectsByProjectIdDatabasesRequestSource =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Union([
-      PostV1ProjectsByProjectIdDatabasesRequestSourceCase0,
-      PostV1ProjectsByProjectIdDatabasesRequestSourceCase1,
-      PostV1ProjectsByProjectIdDatabasesRequestSourceCase2,
-    ]),
-  ) as any as S.Schema<PostV1ProjectsByProjectIdDatabasesRequestSource>;
+export type CreateProjectDatabaseRequestSource =
+  | CreateDatabaseRequestSourceCase0
+  | CreateDatabaseRequestSourceCase1
+  | CreateDatabaseRequestSourceCase2;
+export const CreateProjectDatabaseRequestSource = /*@__PURE__*/ S.suspend(() =>
+  S.Union([
+    CreateProjectDatabaseRequestSourceCase0,
+    CreateProjectDatabaseRequestSourceCase1,
+    CreateProjectDatabaseRequestSourceCase2,
+  ]),
+) as any as S.Schema<CreateProjectDatabaseRequestSource>;
 
-export interface PostV1ProjectsByProjectIdDatabasesRequest {
+export interface CreateProjectDatabaseRequest {
   projectId: string;
-  region?: PostV1ProjectsByProjectIdDatabasesRequestRegion | (string & {});
+  region?: CreateProjectDatabaseRequestRegion | (string & {});
   name?: string;
   isDefault?: boolean;
   /** Deprecated: use `source` instead. */
-  fromDatabase?: PostV1ProjectsByProjectIdDatabasesRequestFromDatabase;
-  source?: PostV1ProjectsByProjectIdDatabasesRequestSource;
+  fromDatabase?: CreateProjectDatabaseRequestFromDatabase;
+  source?: CreateProjectDatabaseRequestSource;
 }
-export const PostV1ProjectsByProjectIdDatabasesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      projectId: S.String.pipe(T.Label()),
-      region: S.optional(PostV1ProjectsByProjectIdDatabasesRequestRegion),
-      name: S.optional(S.String),
-      isDefault: S.optional(S.Boolean),
-      fromDatabase: S.optional(
-        PostV1ProjectsByProjectIdDatabasesRequestFromDatabase,
-      ),
-      source: S.optional(PostV1ProjectsByProjectIdDatabasesRequestSource),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/projects/{projectId}/databases",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostV1ProjectsByProjectIdDatabasesRequest",
-  }) as any as S.Schema<PostV1ProjectsByProjectIdDatabasesRequest>;
+export const CreateProjectDatabaseRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    projectId: S.String.pipe(T.Label()),
+    region: S.optional(CreateProjectDatabaseRequestRegion),
+    name: S.optional(S.String),
+    isDefault: S.optional(S.Boolean),
+    fromDatabase: S.optional(CreateProjectDatabaseRequestFromDatabase),
+    source: S.optional(CreateProjectDatabaseRequestSource),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/projects/{projectId}/databases",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateProjectDatabaseRequest",
+}) as any as S.Schema<CreateProjectDatabaseRequest>;
 
-export type PostV1ProjectsByProjectIdDatabasesResponseDataStatus =
-  | "provisioning"
-  | "ready";
-export const PostV1ProjectsByProjectIdDatabasesResponseDataStatus =
-  /*@__PURE__*/ S.String;
+export type CreateProjectDatabaseResponseDataStatus = "provisioning" | "ready";
+export const CreateProjectDatabaseResponseDataStatus = /*@__PURE__*/ S.String;
 
-export type PostV1ProjectsByProjectIdDatabasesResponseDataConnectionsItemKind =
+export type CreateProjectDatabaseResponseDataConnectionsItemKind =
   | "postgres"
   | "accelerate";
-export const PostV1ProjectsByProjectIdDatabasesResponseDataConnectionsItemKind =
+export const CreateProjectDatabaseResponseDataConnectionsItemKind =
   /*@__PURE__*/ S.String;
 
-export type PostV1ProjectsByProjectIdDatabasesResponseDataConnectionsItemEndpointsDirect =
-  PostV1DatabasesResponseDataConnectionsItemEndpointsDirect;
-export const PostV1ProjectsByProjectIdDatabasesResponseDataConnectionsItemEndpointsDirect =
-  PostV1DatabasesResponseDataConnectionsItemEndpointsDirect;
+export type CreateProjectDatabaseResponseDataConnectionsItemEndpointsDirect =
+  CreateDatabaseResponseDataConnectionsItemEndpointsDirect;
+export const CreateProjectDatabaseResponseDataConnectionsItemEndpointsDirect =
+  CreateDatabaseResponseDataConnectionsItemEndpointsDirect;
 
-export type PostV1ProjectsByProjectIdDatabasesResponseDataConnectionsItemEndpointsPooled =
-  PostV1DatabasesResponseDataConnectionsItemEndpointsDirect;
-export const PostV1ProjectsByProjectIdDatabasesResponseDataConnectionsItemEndpointsPooled =
-  PostV1DatabasesResponseDataConnectionsItemEndpointsDirect;
+export type CreateProjectDatabaseResponseDataConnectionsItemEndpointsPooled =
+  CreateDatabaseResponseDataConnectionsItemEndpointsDirect;
+export const CreateProjectDatabaseResponseDataConnectionsItemEndpointsPooled =
+  CreateDatabaseResponseDataConnectionsItemEndpointsDirect;
 
-export type PostV1ProjectsByProjectIdDatabasesResponseDataConnectionsItemEndpointsAccelerate =
-  PostV1DatabasesResponseDataConnectionsItemEndpointsDirect;
-export const PostV1ProjectsByProjectIdDatabasesResponseDataConnectionsItemEndpointsAccelerate =
-  PostV1DatabasesResponseDataConnectionsItemEndpointsDirect;
+export type CreateProjectDatabaseResponseDataConnectionsItemEndpointsAccelerate =
+  CreateDatabaseResponseDataConnectionsItemEndpointsDirect;
+export const CreateProjectDatabaseResponseDataConnectionsItemEndpointsAccelerate =
+  CreateDatabaseResponseDataConnectionsItemEndpointsDirect;
 
-export type PostV1ProjectsByProjectIdDatabasesResponseDataConnectionsItemEndpoints =
-  PostV1DatabasesResponseDataConnectionsItemEndpoints;
-export const PostV1ProjectsByProjectIdDatabasesResponseDataConnectionsItemEndpoints =
-  PostV1DatabasesResponseDataConnectionsItemEndpoints;
+export type CreateProjectDatabaseResponseDataConnectionsItemEndpoints =
+  CreateDatabaseResponseDataConnectionsItemEndpoints;
+export const CreateProjectDatabaseResponseDataConnectionsItemEndpoints =
+  CreateDatabaseResponseDataConnectionsItemEndpoints;
 
 /** Deprecated: use `endpoints.direct` instead. */
-export type PostV1ProjectsByProjectIdDatabasesResponseDataConnectionsItemDirectConnection =
-  GetV1ConnectionsResponseDataItemDirectConnection;
-export const PostV1ProjectsByProjectIdDatabasesResponseDataConnectionsItemDirectConnection =
-  GetV1ConnectionsResponseDataItemDirectConnection;
+export type CreateProjectDatabaseResponseDataConnectionsItemDirectConnection =
+  CreateConnectionResponseDataDirectConnection;
+export const CreateProjectDatabaseResponseDataConnectionsItemDirectConnection =
+  CreateConnectionResponseDataDirectConnection;
 
-export type PostV1ProjectsByProjectIdDatabasesResponseDataConnectionsItemDatabase =
-  GetV1BranchesByBranchIdResponseDataProject;
-export const PostV1ProjectsByProjectIdDatabasesResponseDataConnectionsItemDatabase =
-  GetV1BranchesByBranchIdResponseDataProject;
+export type CreateProjectDatabaseResponseDataConnectionsItemDatabase =
+  CreateBucketResponseDataProject;
+export const CreateProjectDatabaseResponseDataConnectionsItemDatabase =
+  CreateBucketResponseDataProject;
 
-export interface PostV1ProjectsByProjectIdDatabasesResponseDataConnectionsItem {
+export interface CreateProjectDatabaseResponseDataConnectionsItem {
   id: string;
   type: string;
   url: string;
   name: string;
   createdAt: string;
-  kind: PostV1ProjectsByProjectIdDatabasesResponseDataConnectionsItemKind;
-  endpoints: PostV1DatabasesResponseDataConnectionsItemEndpoints;
+  kind: CreateProjectDatabaseResponseDataConnectionsItemKind;
+  endpoints: CreateDatabaseResponseDataConnectionsItemEndpoints;
   /** Deprecated: use `endpoints.direct` instead. */
-  directConnection?: GetV1ConnectionsResponseDataItemDirectConnection | null;
-  database: GetV1BranchesByBranchIdResponseDataProject;
+  directConnection?: CreateConnectionResponseDataDirectConnection | null;
+  database: CreateBucketResponseDataProject;
 }
-export const PostV1ProjectsByProjectIdDatabasesResponseDataConnectionsItem =
+export const CreateProjectDatabaseResponseDataConnectionsItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.String,
@@ -7001,108 +2059,108 @@ export const PostV1ProjectsByProjectIdDatabasesResponseDataConnectionsItem =
       url: S.String,
       name: S.String,
       createdAt: S.String,
-      kind: PostV1ProjectsByProjectIdDatabasesResponseDataConnectionsItemKind,
-      endpoints: PostV1DatabasesResponseDataConnectionsItemEndpoints,
+      kind: CreateProjectDatabaseResponseDataConnectionsItemKind,
+      endpoints: CreateDatabaseResponseDataConnectionsItemEndpoints,
       directConnection: S.optional(
-        S.NullOr(GetV1ConnectionsResponseDataItemDirectConnection),
+        S.NullOr(CreateConnectionResponseDataDirectConnection),
       ),
-      database: GetV1BranchesByBranchIdResponseDataProject,
+      database: CreateBucketResponseDataProject,
     }),
   ).annotate({
-    identifier: "PostV1ProjectsByProjectIdDatabasesResponseDataConnectionsItem",
-  }) as any as S.Schema<PostV1ProjectsByProjectIdDatabasesResponseDataConnectionsItem>;
+    identifier: "CreateProjectDatabaseResponseDataConnectionsItem",
+  }) as any as S.Schema<CreateProjectDatabaseResponseDataConnectionsItem>;
 
-export type PostV1ProjectsByProjectIdDatabasesResponseDataConnectionsList =
-  Array<PostV1ProjectsByProjectIdDatabasesResponseDataConnectionsItem>;
-export const PostV1ProjectsByProjectIdDatabasesResponseDataConnectionsList =
+export type CreateProjectDatabaseResponseDataConnectionsList =
+  Array<CreateProjectDatabaseResponseDataConnectionsItem>;
+export const CreateProjectDatabaseResponseDataConnectionsList =
   /*@__PURE__*/ S.Array(
-    PostV1ProjectsByProjectIdDatabasesResponseDataConnectionsItem,
-  ) as any as S.Schema<PostV1ProjectsByProjectIdDatabasesResponseDataConnectionsList>;
+    CreateProjectDatabaseResponseDataConnectionsItem,
+  ) as any as S.Schema<CreateProjectDatabaseResponseDataConnectionsList>;
 
-export type PostV1ProjectsByProjectIdDatabasesResponseDataProject =
-  GetV1BranchesByBranchIdResponseDataProject;
-export const PostV1ProjectsByProjectIdDatabasesResponseDataProject =
-  GetV1BranchesByBranchIdResponseDataProject;
+export type CreateProjectDatabaseResponseDataProject =
+  CreateBucketResponseDataProject;
+export const CreateProjectDatabaseResponseDataProject =
+  CreateBucketResponseDataProject;
 
-export type PostV1ProjectsByProjectIdDatabasesResponseDataRegion =
-  GetV1DatabasesResponseDataItemRegion;
-export const PostV1ProjectsByProjectIdDatabasesResponseDataRegion =
-  GetV1DatabasesResponseDataItemRegion;
+export type CreateProjectDatabaseResponseDataRegion =
+  CreateDatabaseResponseDataRegion;
+export const CreateProjectDatabaseResponseDataRegion =
+  CreateDatabaseResponseDataRegion;
 
-export type PostV1ProjectsByProjectIdDatabasesResponseDataSourceCase0 =
-  GetV1DatabasesResponseDataItemSourceCase0;
-export const PostV1ProjectsByProjectIdDatabasesResponseDataSourceCase0 =
-  GetV1DatabasesResponseDataItemSourceCase0;
+export type CreateProjectDatabaseResponseDataSourceCase0 =
+  CreateDatabaseRequestSourceCase0;
+export const CreateProjectDatabaseResponseDataSourceCase0 =
+  CreateDatabaseRequestSourceCase0;
 
-export type PostV1ProjectsByProjectIdDatabasesResponseDataSourceCase1 =
-  GetV1DatabasesResponseDataItemSourceCase1;
-export const PostV1ProjectsByProjectIdDatabasesResponseDataSourceCase1 =
-  GetV1DatabasesResponseDataItemSourceCase1;
+export type CreateProjectDatabaseResponseDataSourceCase1 =
+  CreateDatabaseResponseDataSourceCase1;
+export const CreateProjectDatabaseResponseDataSourceCase1 =
+  CreateDatabaseResponseDataSourceCase1;
 
-export type PostV1ProjectsByProjectIdDatabasesResponseDataSourceCase2 =
-  GetV1DatabasesResponseDataItemSourceCase2;
-export const PostV1ProjectsByProjectIdDatabasesResponseDataSourceCase2 =
-  GetV1DatabasesResponseDataItemSourceCase2;
+export type CreateProjectDatabaseResponseDataSourceCase2 =
+  CreateDatabaseResponseDataSourceCase2;
+export const CreateProjectDatabaseResponseDataSourceCase2 =
+  CreateDatabaseResponseDataSourceCase2;
 
-export type PostV1ProjectsByProjectIdDatabasesResponseDataSource =
-  | GetV1DatabasesResponseDataItemSourceCase0
-  | GetV1DatabasesResponseDataItemSourceCase1
-  | GetV1DatabasesResponseDataItemSourceCase2;
-export const PostV1ProjectsByProjectIdDatabasesResponseDataSource =
-  /*@__PURE__*/ S.suspend(() =>
+export type CreateProjectDatabaseResponseDataSource =
+  | CreateDatabaseRequestSourceCase0
+  | CreateDatabaseResponseDataSourceCase1
+  | CreateDatabaseResponseDataSourceCase2;
+export const CreateProjectDatabaseResponseDataSource = /*@__PURE__*/ S.suspend(
+  () =>
     S.Union([
-      PostV1ProjectsByProjectIdDatabasesResponseDataSourceCase0,
-      PostV1ProjectsByProjectIdDatabasesResponseDataSourceCase1,
-      PostV1ProjectsByProjectIdDatabasesResponseDataSourceCase2,
+      CreateProjectDatabaseResponseDataSourceCase0,
+      CreateProjectDatabaseResponseDataSourceCase1,
+      CreateProjectDatabaseResponseDataSourceCase2,
     ]),
-  ) as any as S.Schema<PostV1ProjectsByProjectIdDatabasesResponseDataSource>;
+) as any as S.Schema<CreateProjectDatabaseResponseDataSource>;
 
-export type PostV1ProjectsByProjectIdDatabasesResponseDataApiKeysItemKind =
+export type CreateProjectDatabaseResponseDataApiKeysItemKind =
   | "postgres"
   | "accelerate";
-export const PostV1ProjectsByProjectIdDatabasesResponseDataApiKeysItemKind =
+export const CreateProjectDatabaseResponseDataApiKeysItemKind =
   /*@__PURE__*/ S.String;
 
-export type PostV1ProjectsByProjectIdDatabasesResponseDataApiKeysItemEndpointsDirect =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-export const PostV1ProjectsByProjectIdDatabasesResponseDataApiKeysItemEndpointsDirect =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
+export type CreateProjectDatabaseResponseDataApiKeysItemEndpointsDirect =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+export const CreateProjectDatabaseResponseDataApiKeysItemEndpointsDirect =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
 
-export type PostV1ProjectsByProjectIdDatabasesResponseDataApiKeysItemEndpointsPooled =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-export const PostV1ProjectsByProjectIdDatabasesResponseDataApiKeysItemEndpointsPooled =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
+export type CreateProjectDatabaseResponseDataApiKeysItemEndpointsPooled =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+export const CreateProjectDatabaseResponseDataApiKeysItemEndpointsPooled =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
 
-export type PostV1ProjectsByProjectIdDatabasesResponseDataApiKeysItemEndpointsAccelerate =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
-export const PostV1ProjectsByProjectIdDatabasesResponseDataApiKeysItemEndpointsAccelerate =
-  GetV1ConnectionsResponseDataItemEndpointsDirect;
+export type CreateProjectDatabaseResponseDataApiKeysItemEndpointsAccelerate =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+export const CreateProjectDatabaseResponseDataApiKeysItemEndpointsAccelerate =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
 
-export type PostV1ProjectsByProjectIdDatabasesResponseDataApiKeysItemEndpoints =
-  GetV1ConnectionsResponseDataItemEndpoints;
-export const PostV1ProjectsByProjectIdDatabasesResponseDataApiKeysItemEndpoints =
-  GetV1ConnectionsResponseDataItemEndpoints;
+export type CreateProjectDatabaseResponseDataApiKeysItemEndpoints =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpoints;
+export const CreateProjectDatabaseResponseDataApiKeysItemEndpoints =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpoints;
 
 /** Deprecated: use `endpoints.direct` instead. */
-export type PostV1ProjectsByProjectIdDatabasesResponseDataApiKeysItemDirectConnection =
-  GetV1ConnectionsResponseDataItemDirectConnection;
-export const PostV1ProjectsByProjectIdDatabasesResponseDataApiKeysItemDirectConnection =
-  GetV1ConnectionsResponseDataItemDirectConnection;
+export type CreateProjectDatabaseResponseDataApiKeysItemDirectConnection =
+  CreateConnectionResponseDataDirectConnection;
+export const CreateProjectDatabaseResponseDataApiKeysItemDirectConnection =
+  CreateConnectionResponseDataDirectConnection;
 
-export interface PostV1ProjectsByProjectIdDatabasesResponseDataApiKeysItem {
+export interface CreateProjectDatabaseResponseDataApiKeysItem {
   id: string;
   type: string;
   url: string;
   name: string;
   createdAt: string;
-  kind: PostV1ProjectsByProjectIdDatabasesResponseDataApiKeysItemKind;
-  endpoints: GetV1ConnectionsResponseDataItemEndpoints;
+  kind: CreateProjectDatabaseResponseDataApiKeysItemKind;
+  endpoints: CreateDatabaseRestoreResponseDataConnectionsItemEndpoints;
   /** Deprecated: use `endpoints.direct.connectionString` or `endpoints.pooled.connectionString` instead. */
   connectionString: string | Redacted.Redacted<string>;
   /** Deprecated: use `endpoints.direct` instead. */
-  directConnection?: GetV1ConnectionsResponseDataItemDirectConnection | null;
+  directConnection?: CreateConnectionResponseDataDirectConnection | null;
 }
-export const PostV1ProjectsByProjectIdDatabasesResponseDataApiKeysItem =
+export const CreateProjectDatabaseResponseDataApiKeysItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.String,
@@ -7110,103 +2168,120 @@ export const PostV1ProjectsByProjectIdDatabasesResponseDataApiKeysItem =
       url: S.String,
       name: S.String,
       createdAt: S.String,
-      kind: PostV1ProjectsByProjectIdDatabasesResponseDataApiKeysItemKind,
-      endpoints: GetV1ConnectionsResponseDataItemEndpoints,
+      kind: CreateProjectDatabaseResponseDataApiKeysItemKind,
+      endpoints: CreateDatabaseRestoreResponseDataConnectionsItemEndpoints,
       connectionString: S.String.pipe(T.SensitiveValue({})),
       directConnection: S.optional(
-        S.NullOr(GetV1ConnectionsResponseDataItemDirectConnection),
+        S.NullOr(CreateConnectionResponseDataDirectConnection),
       ),
     }),
   ).annotate({
-    identifier: "PostV1ProjectsByProjectIdDatabasesResponseDataApiKeysItem",
-  }) as any as S.Schema<PostV1ProjectsByProjectIdDatabasesResponseDataApiKeysItem>;
+    identifier: "CreateProjectDatabaseResponseDataApiKeysItem",
+  }) as any as S.Schema<CreateProjectDatabaseResponseDataApiKeysItem>;
 
 /** Deprecated: use `connections[]` instead. */
-export type PostV1ProjectsByProjectIdDatabasesResponseDataApiKeysList =
-  Array<PostV1ProjectsByProjectIdDatabasesResponseDataApiKeysItem>;
-export const PostV1ProjectsByProjectIdDatabasesResponseDataApiKeysList =
+export type CreateProjectDatabaseResponseDataApiKeysList =
+  Array<CreateProjectDatabaseResponseDataApiKeysItem>;
+export const CreateProjectDatabaseResponseDataApiKeysList =
   /*@__PURE__*/ S.Array(
-    PostV1ProjectsByProjectIdDatabasesResponseDataApiKeysItem,
-  ) as any as S.Schema<PostV1ProjectsByProjectIdDatabasesResponseDataApiKeysList>;
+    CreateProjectDatabaseResponseDataApiKeysItem,
+  ) as any as S.Schema<CreateProjectDatabaseResponseDataApiKeysList>;
 
 /** Deprecated: use `connections[].endpoints.direct` instead. */
-export type PostV1ProjectsByProjectIdDatabasesResponseDataDirectConnection =
-  GetV1ConnectionsResponseDataItemDirectConnection;
-export const PostV1ProjectsByProjectIdDatabasesResponseDataDirectConnection =
-  GetV1ConnectionsResponseDataItemDirectConnection;
+export type CreateProjectDatabaseResponseDataDirectConnection =
+  CreateConnectionResponseDataDirectConnection;
+export const CreateProjectDatabaseResponseDataDirectConnection =
+  CreateConnectionResponseDataDirectConnection;
 
-export interface PostV1ProjectsByProjectIdDatabasesResponseData {
+export interface CreateProjectDatabaseResponseData {
   id: string;
   type: string;
   url: string;
   name: string;
-  status: PostV1ProjectsByProjectIdDatabasesResponseDataStatus;
+  status: CreateProjectDatabaseResponseDataStatus;
   createdAt: string;
   isDefault: boolean;
   defaultConnectionId: string | null;
-  connections: PostV1ProjectsByProjectIdDatabasesResponseDataConnectionsList;
-  project: GetV1BranchesByBranchIdResponseDataProject;
-  region: GetV1DatabasesResponseDataItemRegion;
-  source: PostV1ProjectsByProjectIdDatabasesResponseDataSource | null;
+  connections: CreateProjectDatabaseResponseDataConnectionsList;
+  project: CreateBucketResponseDataProject;
+  region: CreateDatabaseResponseDataRegion;
+  source: CreateProjectDatabaseResponseDataSource | null;
   branchId: string | null;
   /** Deprecated: use `connections[]` instead. */
-  apiKeys: PostV1ProjectsByProjectIdDatabasesResponseDataApiKeysList;
+  apiKeys: CreateProjectDatabaseResponseDataApiKeysList;
   /** Deprecated: use `connections[].endpoints.direct.connectionString` or `connections[].endpoints.pooled.connectionString`. */
   connectionString: string | Redacted.Redacted<string>;
   /** Deprecated: use `connections[].endpoints.direct` instead. */
-  directConnection: GetV1ConnectionsResponseDataItemDirectConnection | null;
+  directConnection: CreateConnectionResponseDataDirectConnection | null;
 }
-export const PostV1ProjectsByProjectIdDatabasesResponseData =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.String,
-      type: S.String,
-      url: S.String,
-      name: S.String,
-      status: PostV1ProjectsByProjectIdDatabasesResponseDataStatus,
-      createdAt: S.String,
-      isDefault: S.Boolean,
-      defaultConnectionId: S.NullOr(S.String),
-      connections:
-        PostV1ProjectsByProjectIdDatabasesResponseDataConnectionsList,
-      project: GetV1BranchesByBranchIdResponseDataProject,
-      region: GetV1DatabasesResponseDataItemRegion,
-      source: S.NullOr(PostV1ProjectsByProjectIdDatabasesResponseDataSource),
-      branchId: S.NullOr(S.String),
-      apiKeys: PostV1ProjectsByProjectIdDatabasesResponseDataApiKeysList,
-      connectionString: S.NullOr(S.String).pipe(T.SensitiveValue({})),
-      directConnection: S.NullOr(
-        GetV1ConnectionsResponseDataItemDirectConnection,
-      ),
-    }),
-  ).annotate({
-    identifier: "PostV1ProjectsByProjectIdDatabasesResponseData",
-  }) as any as S.Schema<PostV1ProjectsByProjectIdDatabasesResponseData>;
+export const CreateProjectDatabaseResponseData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    type: S.String,
+    url: S.String,
+    name: S.String,
+    status: CreateProjectDatabaseResponseDataStatus,
+    createdAt: S.String,
+    isDefault: S.Boolean,
+    defaultConnectionId: S.NullOr(S.String),
+    connections: CreateProjectDatabaseResponseDataConnectionsList,
+    project: CreateBucketResponseDataProject,
+    region: CreateDatabaseResponseDataRegion,
+    source: S.NullOr(CreateProjectDatabaseResponseDataSource),
+    branchId: S.NullOr(S.String),
+    apiKeys: CreateProjectDatabaseResponseDataApiKeysList,
+    connectionString: S.NullOr(S.String).pipe(T.SensitiveValue({})),
+    directConnection: S.NullOr(CreateConnectionResponseDataDirectConnection),
+  }),
+).annotate({
+  identifier: "CreateProjectDatabaseResponseData",
+}) as any as S.Schema<CreateProjectDatabaseResponseData>;
 
-export interface PostV1ProjectsByProjectIdDatabasesResponse {
-  data: PostV1ProjectsByProjectIdDatabasesResponseData;
+export interface CreateProjectDatabaseResponse {
+  data: CreateProjectDatabaseResponseData;
 }
-export const PostV1ProjectsByProjectIdDatabasesResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      data: PostV1ProjectsByProjectIdDatabasesResponseData,
-    }),
-  ).annotate({
-    identifier: "PostV1ProjectsByProjectIdDatabasesResponse",
-  }) as any as S.Schema<PostV1ProjectsByProjectIdDatabasesResponse>;
+export const CreateProjectDatabaseResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: CreateProjectDatabaseResponseData,
+  }),
+).annotate({
+  identifier: "CreateProjectDatabaseResponse",
+}) as any as S.Schema<CreateProjectDatabaseResponse>;
 
-export type PostV1ScmInstallationsInstallIntentsRequestProvider = "github";
-export const PostV1ScmInstallationsInstallIntentsRequestProvider =
+export interface CreateProjectTransferRequest {
+  id: string;
+  recipientAccessToken: string;
+}
+export const CreateProjectTransferRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    recipientAccessToken: S.String,
+  }).pipe(
+    T.Http({ method: "POST", uri: "/v1/projects/{id}/transfer", code: 200 }),
+  ),
+).annotate({
+  identifier: "CreateProjectTransferRequest",
+}) as any as S.Schema<CreateProjectTransferRequest>;
+
+export interface CreateProjectTransferResponse {}
+export const CreateProjectTransferResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "CreateProjectTransferResponse",
+}) as any as S.Schema<CreateProjectTransferResponse>;
+
+export type CreateScmInstallationsInstallIntentRequestProvider = "github";
+export const CreateScmInstallationsInstallIntentRequestProvider =
   /*@__PURE__*/ S.String;
 
-export interface PostV1ScmInstallationsInstallIntentsRequest {
-  provider: PostV1ScmInstallationsInstallIntentsRequestProvider | (string & {});
+export interface CreateScmInstallationsInstallIntentRequest {
+  provider: CreateScmInstallationsInstallIntentRequestProvider | (string & {});
   workspaceId: string;
 }
-export const PostV1ScmInstallationsInstallIntentsRequest =
+export const CreateScmInstallationsInstallIntentRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      provider: PostV1ScmInstallationsInstallIntentsRequestProvider,
+      provider: CreateScmInstallationsInstallIntentRequestProvider,
       workspaceId: S.String,
     }).pipe(
       T.Http({
@@ -7216,179 +2291,197 @@ export const PostV1ScmInstallationsInstallIntentsRequest =
       }),
     ),
   ).annotate({
-    identifier: "PostV1ScmInstallationsInstallIntentsRequest",
-  }) as any as S.Schema<PostV1ScmInstallationsInstallIntentsRequest>;
+    identifier: "CreateScmInstallationsInstallIntentRequest",
+  }) as any as S.Schema<CreateScmInstallationsInstallIntentRequest>;
 
-export type PostV1ScmInstallationsInstallIntentsResponseDataProvider = "github";
-export const PostV1ScmInstallationsInstallIntentsResponseDataProvider =
+export type CreateScmInstallationsInstallIntentResponseDataProvider = "github";
+export const CreateScmInstallationsInstallIntentResponseDataProvider =
   /*@__PURE__*/ S.String;
 
-export interface PostV1ScmInstallationsInstallIntentsResponseData {
+export interface CreateScmInstallationsInstallIntentResponseData {
   type: string;
-  provider: PostV1ScmInstallationsInstallIntentsResponseDataProvider;
+  provider: CreateScmInstallationsInstallIntentResponseDataProvider;
   workspaceId: string;
   installUrl: string;
 }
-export const PostV1ScmInstallationsInstallIntentsResponseData =
+export const CreateScmInstallationsInstallIntentResponseData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       type: S.String,
-      provider: PostV1ScmInstallationsInstallIntentsResponseDataProvider,
+      provider: CreateScmInstallationsInstallIntentResponseDataProvider,
       workspaceId: S.String,
       installUrl: S.String,
     }),
   ).annotate({
-    identifier: "PostV1ScmInstallationsInstallIntentsResponseData",
-  }) as any as S.Schema<PostV1ScmInstallationsInstallIntentsResponseData>;
+    identifier: "CreateScmInstallationsInstallIntentResponseData",
+  }) as any as S.Schema<CreateScmInstallationsInstallIntentResponseData>;
 
-export interface PostV1ScmInstallationsInstallIntentsResponse {
-  data: PostV1ScmInstallationsInstallIntentsResponseData;
+export interface CreateScmInstallationsInstallIntentResponse {
+  data: CreateScmInstallationsInstallIntentResponseData;
 }
-export const PostV1ScmInstallationsInstallIntentsResponse =
+export const CreateScmInstallationsInstallIntentResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      data: PostV1ScmInstallationsInstallIntentsResponseData,
+      data: CreateScmInstallationsInstallIntentResponseData,
     }),
   ).annotate({
-    identifier: "PostV1ScmInstallationsInstallIntentsResponse",
-  }) as any as S.Schema<PostV1ScmInstallationsInstallIntentsResponse>;
+    identifier: "CreateScmInstallationsInstallIntentResponse",
+  }) as any as S.Schema<CreateScmInstallationsInstallIntentResponse>;
 
-export type PostV1ServicesRequestRegionId =
+export type CreateServiceRequestRegionId =
   | "us-east-1"
   | "us-west-1"
   | "eu-west-3"
   | "eu-central-1"
   | "ap-northeast-1"
   | "ap-southeast-1";
-export const PostV1ServicesRequestRegionId = /*@__PURE__*/ S.String;
+export const CreateServiceRequestRegionId = /*@__PURE__*/ S.String;
 
-export interface PostV1ServicesRequest {
+export interface CreateServiceRequest {
   displayName: string;
-  regionId?: PostV1ServicesRequestRegionId | (string & {});
+  regionId?: CreateServiceRequestRegionId | (string & {});
   branchId?: string | null;
   branchGitName?: string | null;
   projectId: string;
 }
-export const PostV1ServicesRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateServiceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     displayName: S.String,
-    regionId: S.optional(PostV1ServicesRequestRegionId),
+    regionId: S.optional(CreateServiceRequestRegionId),
     branchId: S.optional(S.NullOr(S.String)),
     branchGitName: S.optional(S.NullOr(S.String)),
     projectId: S.String,
   }).pipe(T.Http({ method: "POST", uri: "/v1/services", code: 200 })),
 ).annotate({
-  identifier: "PostV1ServicesRequest",
-}) as any as S.Schema<PostV1ServicesRequest>;
+  identifier: "CreateServiceRequest",
+}) as any as S.Schema<CreateServiceRequest>;
 
-export type PostV1ServicesResponseDataRegion =
-  GetV1DatabasesResponseDataItemRegion;
-export const PostV1ServicesResponseDataRegion =
-  GetV1DatabasesResponseDataItemRegion;
+export type CreateServiceResponseDataRegion = CreateDatabaseResponseDataRegion;
+export const CreateServiceResponseDataRegion = CreateDatabaseResponseDataRegion;
 
-export type PostV1ServicesResponseData = GetV1ServicesResponseDataItem;
-export const PostV1ServicesResponseData = GetV1ServicesResponseDataItem;
-
-export interface PostV1ServicesResponse {
-  data: GetV1ServicesResponseDataItem;
+export interface CreateServiceResponseData {
+  id: string;
+  type: string;
+  url: string;
+  name: string;
+  region: CreateDatabaseResponseDataRegion;
+  projectId: string;
+  branchId: string | null;
+  latestDeploymentId: string | null;
+  appEndpointDomain: string;
+  createdAt: string;
 }
-export const PostV1ServicesResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateServiceResponseData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    data: GetV1ServicesResponseDataItem,
+    id: S.String,
+    type: S.String,
+    url: S.String,
+    name: S.String,
+    region: CreateDatabaseResponseDataRegion,
+    projectId: S.String,
+    branchId: S.NullOr(S.String),
+    latestDeploymentId: S.NullOr(S.String),
+    appEndpointDomain: S.String,
+    createdAt: S.String,
   }),
 ).annotate({
-  identifier: "PostV1ServicesResponse",
-}) as any as S.Schema<PostV1ServicesResponse>;
+  identifier: "CreateServiceResponseData",
+}) as any as S.Schema<CreateServiceResponseData>;
 
-export interface PostV1ServicesByServiceIdDeploymentsRequestPortMapping {
+export interface CreateServiceResponse {
+  data: CreateServiceResponseData;
+}
+export const CreateServiceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: CreateServiceResponseData,
+  }),
+).annotate({
+  identifier: "CreateServiceResponse",
+}) as any as S.Schema<CreateServiceResponse>;
+
+export interface CreateServiceDeploymentRequestPortMapping {
   http?: number | null;
 }
-export const PostV1ServicesByServiceIdDeploymentsRequestPortMapping =
+export const CreateServiceDeploymentRequestPortMapping =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       http: S.optional(S.NullOr(S.Number)),
     }),
   ).annotate({
-    identifier: "PostV1ServicesByServiceIdDeploymentsRequestPortMapping",
-  }) as any as S.Schema<PostV1ServicesByServiceIdDeploymentsRequestPortMapping>;
+    identifier: "CreateServiceDeploymentRequestPortMapping",
+  }) as any as S.Schema<CreateServiceDeploymentRequestPortMapping>;
 
-export interface PostV1ServicesByServiceIdDeploymentsRequest {
+export interface CreateServiceDeploymentRequest {
   serviceId: string;
-  portMapping?: PostV1ServicesByServiceIdDeploymentsRequestPortMapping;
+  portMapping?: CreateServiceDeploymentRequestPortMapping;
   skipCodeUpload?: boolean;
 }
-export const PostV1ServicesByServiceIdDeploymentsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceId: S.String.pipe(T.Label()),
-      portMapping: S.optional(
-        PostV1ServicesByServiceIdDeploymentsRequestPortMapping,
-      ),
-      skipCodeUpload: S.optional(S.Boolean),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/services/{serviceId}/deployments",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostV1ServicesByServiceIdDeploymentsRequest",
-  }) as any as S.Schema<PostV1ServicesByServiceIdDeploymentsRequest>;
+export const CreateServiceDeploymentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceId: S.String.pipe(T.Label()),
+    portMapping: S.optional(CreateServiceDeploymentRequestPortMapping),
+    skipCodeUpload: S.optional(S.Boolean),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/services/{serviceId}/deployments",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateServiceDeploymentRequest",
+}) as any as S.Schema<CreateServiceDeploymentRequest>;
 
-export interface PostV1ServicesByServiceIdDeploymentsResponseData {
+export interface CreateServiceDeploymentResponseData {
   id: string;
   type: string;
   url: string;
   foundryVersionId: string;
   uploadUrl: string | null;
 }
-export const PostV1ServicesByServiceIdDeploymentsResponseData =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.String,
-      type: S.String,
-      url: S.String,
-      foundryVersionId: S.String,
-      uploadUrl: S.NullOr(S.String),
-    }),
-  ).annotate({
-    identifier: "PostV1ServicesByServiceIdDeploymentsResponseData",
-  }) as any as S.Schema<PostV1ServicesByServiceIdDeploymentsResponseData>;
+export const CreateServiceDeploymentResponseData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    type: S.String,
+    url: S.String,
+    foundryVersionId: S.String,
+    uploadUrl: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "CreateServiceDeploymentResponseData",
+}) as any as S.Schema<CreateServiceDeploymentResponseData>;
 
-export interface PostV1ServicesByServiceIdDeploymentsResponse {
-  data: PostV1ServicesByServiceIdDeploymentsResponseData;
+export interface CreateServiceDeploymentResponse {
+  data: CreateServiceDeploymentResponseData;
 }
-export const PostV1ServicesByServiceIdDeploymentsResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      data: PostV1ServicesByServiceIdDeploymentsResponseData,
-    }),
-  ).annotate({
-    identifier: "PostV1ServicesByServiceIdDeploymentsResponse",
-  }) as any as S.Schema<PostV1ServicesByServiceIdDeploymentsResponse>;
+export const CreateServiceDeploymentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: CreateServiceDeploymentResponseData,
+  }),
+).annotate({
+  identifier: "CreateServiceDeploymentResponse",
+}) as any as S.Schema<CreateServiceDeploymentResponse>;
 
-export interface PostV1ServicesByServiceIdDomainsRequest {
+export interface CreateServiceDomainRequest {
   serviceId: string;
   hostname: string;
 }
-export const PostV1ServicesByServiceIdDomainsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceId: S.String.pipe(T.Label()),
-      hostname: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/services/{serviceId}/domains",
-        code: 200,
-      }),
-    ),
+export const CreateServiceDomainRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceId: S.String.pipe(T.Label()),
+    hostname: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/services/{serviceId}/domains",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "PostV1ServicesByServiceIdDomainsRequest",
-}) as any as S.Schema<PostV1ServicesByServiceIdDomainsRequest>;
+  identifier: "CreateServiceDomainRequest",
+}) as any as S.Schema<CreateServiceDomainRequest>;
 
-export type PostV1ServicesByServiceIdDomainsResponseDataStatus =
+export type CreateServiceDomainResponseDataStatus =
   | "pending_dns"
   | "verifying"
   | "verified_routing_blocked"
@@ -7396,30 +2489,29 @@ export type PostV1ServicesByServiceIdDomainsResponseDataStatus =
   | "active"
   | "failed"
   | "removing";
-export const PostV1ServicesByServiceIdDomainsResponseDataStatus =
-  /*@__PURE__*/ S.String;
+export const CreateServiceDomainResponseDataStatus = /*@__PURE__*/ S.String;
 
-export type PostV1ServicesByServiceIdDomainsResponseDataFailureCategory =
+export type CreateServiceDomainResponseDataFailureCategory =
   | "dns"
   | "acme"
   | "storage"
   | "unknown";
-export const PostV1ServicesByServiceIdDomainsResponseDataFailureCategory =
+export const CreateServiceDomainResponseDataFailureCategory =
   /*@__PURE__*/ S.String;
 
-export type PostV1ServicesByServiceIdDomainsResponseDataDnsRecordsItem =
-  GetV1DomainsByDomainIdResponseDataDnsRecordsItem;
-export const PostV1ServicesByServiceIdDomainsResponseDataDnsRecordsItem =
-  GetV1DomainsByDomainIdResponseDataDnsRecordsItem;
+export type CreateServiceDomainResponseDataDnsRecordsItem =
+  CreateDomainRetryResponseDataDnsRecordsItem;
+export const CreateServiceDomainResponseDataDnsRecordsItem =
+  CreateDomainRetryResponseDataDnsRecordsItem;
 
-export type PostV1ServicesByServiceIdDomainsResponseDataDnsRecordsList =
-  Array<GetV1DomainsByDomainIdResponseDataDnsRecordsItem>;
-export const PostV1ServicesByServiceIdDomainsResponseDataDnsRecordsList =
+export type CreateServiceDomainResponseDataDnsRecordsList =
+  Array<CreateDomainRetryResponseDataDnsRecordsItem>;
+export const CreateServiceDomainResponseDataDnsRecordsList =
   /*@__PURE__*/ S.Array(
-    GetV1DomainsByDomainIdResponseDataDnsRecordsItem,
-  ) as any as S.Schema<PostV1ServicesByServiceIdDomainsResponseDataDnsRecordsList>;
+    CreateDomainRetryResponseDataDnsRecordsItem,
+  ) as any as S.Schema<CreateServiceDomainResponseDataDnsRecordsList>;
 
-export interface PostV1ServicesByServiceIdDomainsResponseData {
+export interface CreateServiceDomainResponseData {
   id: string;
   type: string;
   url: string;
@@ -7427,148 +2519,139 @@ export interface PostV1ServicesByServiceIdDomainsResponseData {
   appId: string;
   /** Deprecated: use `appId` instead. */
   computeServiceId: string;
-  status: PostV1ServicesByServiceIdDomainsResponseDataStatus;
+  status: CreateServiceDomainResponseDataStatus;
   foundryStatus: string;
   failureReason: string | null;
-  failureCategory: PostV1ServicesByServiceIdDomainsResponseDataFailureCategory | null;
+  failureCategory: CreateServiceDomainResponseDataFailureCategory | null;
   certExpiresAt: string | null;
   createdAt: string;
   updatedAt: string;
-  dnsRecords: PostV1ServicesByServiceIdDomainsResponseDataDnsRecordsList;
+  dnsRecords: CreateServiceDomainResponseDataDnsRecordsList;
 }
-export const PostV1ServicesByServiceIdDomainsResponseData =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.String,
-      type: S.String,
-      url: S.String,
-      hostname: S.String,
-      appId: S.String,
-      computeServiceId: S.String,
-      status: PostV1ServicesByServiceIdDomainsResponseDataStatus,
-      foundryStatus: S.String,
-      failureReason: S.NullOr(S.String),
-      failureCategory: S.NullOr(
-        PostV1ServicesByServiceIdDomainsResponseDataFailureCategory,
-      ),
-      certExpiresAt: S.NullOr(S.String),
-      createdAt: S.String,
-      updatedAt: S.String,
-      dnsRecords: PostV1ServicesByServiceIdDomainsResponseDataDnsRecordsList,
-    }),
-  ).annotate({
-    identifier: "PostV1ServicesByServiceIdDomainsResponseData",
-  }) as any as S.Schema<PostV1ServicesByServiceIdDomainsResponseData>;
-
-export interface PostV1ServicesByServiceIdDomainsResponse {
-  data: PostV1ServicesByServiceIdDomainsResponseData;
-}
-export const PostV1ServicesByServiceIdDomainsResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      data: PostV1ServicesByServiceIdDomainsResponseData,
-    }),
+export const CreateServiceDomainResponseData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    type: S.String,
+    url: S.String,
+    hostname: S.String,
+    appId: S.String,
+    computeServiceId: S.String,
+    status: CreateServiceDomainResponseDataStatus,
+    foundryStatus: S.String,
+    failureReason: S.NullOr(S.String),
+    failureCategory: S.NullOr(CreateServiceDomainResponseDataFailureCategory),
+    certExpiresAt: S.NullOr(S.String),
+    createdAt: S.String,
+    updatedAt: S.String,
+    dnsRecords: CreateServiceDomainResponseDataDnsRecordsList,
+  }),
 ).annotate({
-  identifier: "PostV1ServicesByServiceIdDomainsResponse",
-}) as any as S.Schema<PostV1ServicesByServiceIdDomainsResponse>;
+  identifier: "CreateServiceDomainResponseData",
+}) as any as S.Schema<CreateServiceDomainResponseData>;
 
-export interface PostV1ServicesByServiceIdPromoteRequest {
+export interface CreateServiceDomainResponse {
+  data: CreateServiceDomainResponseData;
+}
+export const CreateServiceDomainResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: CreateServiceDomainResponseData,
+  }),
+).annotate({
+  identifier: "CreateServiceDomainResponse",
+}) as any as S.Schema<CreateServiceDomainResponse>;
+
+export interface CreateServicePromoteRequest {
   serviceId: string;
   deploymentId?: string;
   /** Deprecated: use `deploymentId` instead. Ignored when `deploymentId` is also present. */
   versionId?: string;
 }
-export const PostV1ServicesByServiceIdPromoteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceId: S.String.pipe(T.Label()),
-      deploymentId: S.optional(S.String),
-      versionId: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/services/{serviceId}/promote",
-        code: 200,
-      }),
-    ),
+export const CreateServicePromoteRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceId: S.String.pipe(T.Label()),
+    deploymentId: S.optional(S.String),
+    versionId: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/services/{serviceId}/promote",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "PostV1ServicesByServiceIdPromoteRequest",
-}) as any as S.Schema<PostV1ServicesByServiceIdPromoteRequest>;
+  identifier: "CreateServicePromoteRequest",
+}) as any as S.Schema<CreateServicePromoteRequest>;
 
-export interface PostV1ServicesByServiceIdPromoteResponseData {
+export interface CreateServicePromoteResponseData {
   appEndpointDomain: string;
   reassignedDomains: number;
 }
-export const PostV1ServicesByServiceIdPromoteResponseData =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      appEndpointDomain: S.String,
-      reassignedDomains: S.Number,
-    }),
-  ).annotate({
-    identifier: "PostV1ServicesByServiceIdPromoteResponseData",
-  }) as any as S.Schema<PostV1ServicesByServiceIdPromoteResponseData>;
-
-export interface PostV1ServicesByServiceIdPromoteResponse {
-  data: PostV1ServicesByServiceIdPromoteResponseData;
-}
-export const PostV1ServicesByServiceIdPromoteResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      data: PostV1ServicesByServiceIdPromoteResponseData,
-    }),
+export const CreateServicePromoteResponseData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    appEndpointDomain: S.String,
+    reassignedDomains: S.Number,
+  }),
 ).annotate({
-  identifier: "PostV1ServicesByServiceIdPromoteResponse",
-}) as any as S.Schema<PostV1ServicesByServiceIdPromoteResponse>;
+  identifier: "CreateServicePromoteResponseData",
+}) as any as S.Schema<CreateServicePromoteResponseData>;
 
-export interface PostV1ServicesByServiceIdRollbackRequest {
+export interface CreateServicePromoteResponse {
+  data: CreateServicePromoteResponseData;
+}
+export const CreateServicePromoteResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: CreateServicePromoteResponseData,
+  }),
+).annotate({
+  identifier: "CreateServicePromoteResponse",
+}) as any as S.Schema<CreateServicePromoteResponse>;
+
+export interface CreateServiceRollbackRequest {
   serviceId: string;
   deploymentId?: string;
   /** Deprecated: use `deploymentId` instead. Ignored when `deploymentId` is also present. */
   versionId?: string;
 }
-export const PostV1ServicesByServiceIdRollbackRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceId: S.String.pipe(T.Label()),
-      deploymentId: S.optional(S.String),
-      versionId: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/services/{serviceId}/rollback",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "PostV1ServicesByServiceIdRollbackRequest",
-}) as any as S.Schema<PostV1ServicesByServiceIdRollbackRequest>;
-
-export type PostV1ServicesByServiceIdRollbackResponseData =
-  PostV1ServicesByServiceIdPromoteResponseData;
-export const PostV1ServicesByServiceIdRollbackResponseData =
-  PostV1ServicesByServiceIdPromoteResponseData;
-
-export interface PostV1ServicesByServiceIdRollbackResponse {
-  data: PostV1ServicesByServiceIdPromoteResponseData;
-}
-export const PostV1ServicesByServiceIdRollbackResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      data: PostV1ServicesByServiceIdPromoteResponseData,
+export const CreateServiceRollbackRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceId: S.String.pipe(T.Label()),
+    deploymentId: S.optional(S.String),
+    versionId: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/services/{serviceId}/rollback",
+      code: 200,
     }),
-  ).annotate({
-    identifier: "PostV1ServicesByServiceIdRollbackResponse",
-  }) as any as S.Schema<PostV1ServicesByServiceIdRollbackResponse>;
+  ),
+).annotate({
+  identifier: "CreateServiceRollbackRequest",
+}) as any as S.Schema<CreateServiceRollbackRequest>;
 
-export interface PostV1SourceRepositoriesRequest {
+export type CreateServiceRollbackResponseData =
+  CreateServicePromoteResponseData;
+export const CreateServiceRollbackResponseData =
+  CreateServicePromoteResponseData;
+
+export interface CreateServiceRollbackResponse {
+  data: CreateServicePromoteResponseData;
+}
+export const CreateServiceRollbackResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: CreateServicePromoteResponseData,
+  }),
+).annotate({
+  identifier: "CreateServiceRollbackResponse",
+}) as any as S.Schema<CreateServiceRollbackResponse>;
+
+export interface CreateSourceRepositoryRequest {
   projectId: string;
   provider: string;
   providerRepositoryId: number;
   /** Optional SCM installation ID to use for linking. When omitted, the API auto-picks the workspace's installation. */
   installationId?: string;
 }
-export const PostV1SourceRepositoriesRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateSourceRepositoryRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     projectId: S.String,
     provider: S.String,
@@ -7578,86 +2661,83 @@ export const PostV1SourceRepositoriesRequest = /*@__PURE__*/ S.suspend(() =>
     T.Http({ method: "POST", uri: "/v1/source-repositories", code: 200 }),
   ),
 ).annotate({
-  identifier: "PostV1SourceRepositoriesRequest",
-}) as any as S.Schema<PostV1SourceRepositoriesRequest>;
+  identifier: "CreateSourceRepositoryRequest",
+}) as any as S.Schema<CreateSourceRepositoryRequest>;
 
-export type PostV1SourceRepositoriesResponseDataProvider = "github";
-export const PostV1SourceRepositoriesResponseDataProvider =
+export type CreateSourceRepositoryResponseDataProvider = "github";
+export const CreateSourceRepositoryResponseDataProvider =
   /*@__PURE__*/ S.String;
 
-export type PostV1SourceRepositoriesResponseDataStatus = "active" | "archived";
-export const PostV1SourceRepositoriesResponseDataStatus =
-  /*@__PURE__*/ S.String;
+export type CreateSourceRepositoryResponseDataStatus = "active" | "archived";
+export const CreateSourceRepositoryResponseDataStatus = /*@__PURE__*/ S.String;
 
-export interface PostV1SourceRepositoriesResponseData {
+export interface CreateSourceRepositoryResponseData {
   id: string;
   type: string;
   url: string;
   repoId: number;
-  provider: PostV1SourceRepositoriesResponseDataProvider;
+  provider: CreateSourceRepositoryResponseDataProvider;
   repoFullName: string;
   defaultBranch: string;
   isPrivate: boolean;
-  status: PostV1SourceRepositoriesResponseDataStatus;
+  status: CreateSourceRepositoryResponseDataStatus;
   projectId: string;
   installationId: string;
   createdAt: string;
   updatedAt: string;
 }
-export const PostV1SourceRepositoriesResponseData = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String,
-      type: S.String,
-      url: S.String,
-      repoId: S.Number,
-      provider: PostV1SourceRepositoriesResponseDataProvider,
-      repoFullName: S.String,
-      defaultBranch: S.String,
-      isPrivate: S.Boolean,
-      status: PostV1SourceRepositoriesResponseDataStatus,
-      projectId: S.String,
-      installationId: S.String,
-      createdAt: S.String,
-      updatedAt: S.String,
-    }),
-).annotate({
-  identifier: "PostV1SourceRepositoriesResponseData",
-}) as any as S.Schema<PostV1SourceRepositoriesResponseData>;
-
-export interface PostV1SourceRepositoriesResponse {
-  data: PostV1SourceRepositoriesResponseData;
-}
-export const PostV1SourceRepositoriesResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateSourceRepositoryResponseData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    data: PostV1SourceRepositoriesResponseData,
+    id: S.String,
+    type: S.String,
+    url: S.String,
+    repoId: S.Number,
+    provider: CreateSourceRepositoryResponseDataProvider,
+    repoFullName: S.String,
+    defaultBranch: S.String,
+    isPrivate: S.Boolean,
+    status: CreateSourceRepositoryResponseDataStatus,
+    projectId: S.String,
+    installationId: S.String,
+    createdAt: S.String,
+    updatedAt: S.String,
   }),
 ).annotate({
-  identifier: "PostV1SourceRepositoriesResponse",
-}) as any as S.Schema<PostV1SourceRepositoriesResponse>;
+  identifier: "CreateSourceRepositoryResponseData",
+}) as any as S.Schema<CreateSourceRepositoryResponseData>;
 
-export interface PostV1WorkspacesByWorkspaceIdServiceTokensRequest {
+export interface CreateSourceRepositoryResponse {
+  data: CreateSourceRepositoryResponseData;
+}
+export const CreateSourceRepositoryResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: CreateSourceRepositoryResponseData,
+  }),
+).annotate({
+  identifier: "CreateSourceRepositoryResponse",
+}) as any as S.Schema<CreateSourceRepositoryResponse>;
+
+export interface CreateWorkspaceServiceTokenRequest {
   workspaceId: string;
   /** Display name for the service token. */
   name: string;
 }
-export const PostV1WorkspacesByWorkspaceIdServiceTokensRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      workspaceId: S.String.pipe(T.Label()),
-      name: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/workspaces/{workspaceId}/service-tokens",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostV1WorkspacesByWorkspaceIdServiceTokensRequest",
-  }) as any as S.Schema<PostV1WorkspacesByWorkspaceIdServiceTokensRequest>;
+export const CreateWorkspaceServiceTokenRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    workspaceId: S.String.pipe(T.Label()),
+    name: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/workspaces/{workspaceId}/service-tokens",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateWorkspaceServiceTokenRequest",
+}) as any as S.Schema<CreateWorkspaceServiceTokenRequest>;
 
-export interface PostV1WorkspacesByWorkspaceIdServiceTokensResponseData {
+export interface CreateWorkspaceServiceTokenResponseData {
   id: string;
   type: string;
   name: string;
@@ -7666,8 +2746,8 @@ export interface PostV1WorkspacesByWorkspaceIdServiceTokensResponseData {
   expiresAt?: string | null;
   value: string;
 }
-export const PostV1WorkspacesByWorkspaceIdServiceTokensResponseData =
-  /*@__PURE__*/ S.suspend(() =>
+export const CreateWorkspaceServiceTokenResponseData = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       id: S.String,
       type: S.String,
@@ -7677,23 +2757,655 @@ export const PostV1WorkspacesByWorkspaceIdServiceTokensResponseData =
       expiresAt: S.optional(S.NullOr(S.String)),
       value: S.String,
     }),
-  ).annotate({
-    identifier: "PostV1WorkspacesByWorkspaceIdServiceTokensResponseData",
-  }) as any as S.Schema<PostV1WorkspacesByWorkspaceIdServiceTokensResponseData>;
+).annotate({
+  identifier: "CreateWorkspaceServiceTokenResponseData",
+}) as any as S.Schema<CreateWorkspaceServiceTokenResponseData>;
 
-export interface PostV1WorkspacesByWorkspaceIdServiceTokensResponse {
-  data: PostV1WorkspacesByWorkspaceIdServiceTokensResponseData;
+export interface CreateWorkspaceServiceTokenResponse {
+  data: CreateWorkspaceServiceTokenResponseData;
 }
-export const PostV1WorkspacesByWorkspaceIdServiceTokensResponse =
+export const CreateWorkspaceServiceTokenResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: CreateWorkspaceServiceTokenResponseData,
+  }),
+).annotate({
+  identifier: "CreateWorkspaceServiceTokenResponse",
+}) as any as S.Schema<CreateWorkspaceServiceTokenResponse>;
+
+export interface DeleteBranchRequest {
+  branchId: string;
+}
+export const DeleteBranchRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    branchId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "DELETE", uri: "/v1/branches/{branchId}", code: 200 }),
+  ),
+).annotate({
+  identifier: "DeleteBranchRequest",
+}) as any as S.Schema<DeleteBranchRequest>;
+
+export interface DeleteBranchResponse {}
+export const DeleteBranchResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteBranchResponse",
+}) as any as S.Schema<DeleteBranchResponse>;
+
+export interface DeleteBucketRequest {
+  bucketId: string;
+}
+export const DeleteBucketRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    bucketId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "DELETE", uri: "/v1/buckets/{bucketId}", code: 200 }),
+  ),
+).annotate({
+  identifier: "DeleteBucketRequest",
+}) as any as S.Schema<DeleteBucketRequest>;
+
+export interface DeleteBucketResponse {}
+export const DeleteBucketResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteBucketResponse",
+}) as any as S.Schema<DeleteBucketResponse>;
+
+export interface DeleteBucketKeyRequest {
+  bucketId: string;
+  keyId: string;
+}
+export const DeleteBucketKeyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    bucketId: S.String.pipe(T.Label()),
+    keyId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/v1/buckets/{bucketId}/keys/{keyId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteBucketKeyRequest",
+}) as any as S.Schema<DeleteBucketKeyRequest>;
+
+export interface DeleteBucketKeyResponse {}
+export const DeleteBucketKeyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteBucketKeyResponse",
+}) as any as S.Schema<DeleteBucketKeyResponse>;
+
+export interface DeleteConnectionRequest {
+  id: string;
+}
+export const DeleteConnectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "DELETE", uri: "/v1/connections/{id}", code: 200 })),
+).annotate({
+  identifier: "DeleteConnectionRequest",
+}) as any as S.Schema<DeleteConnectionRequest>;
+
+export interface DeleteConnectionResponse {}
+export const DeleteConnectionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteConnectionResponse",
+}) as any as S.Schema<DeleteConnectionResponse>;
+
+export interface DeleteDatabaseRequest {
+  databaseId: string;
+}
+export const DeleteDatabaseRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    databaseId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "DELETE", uri: "/v1/databases/{databaseId}", code: 200 }),
+  ),
+).annotate({
+  identifier: "DeleteDatabaseRequest",
+}) as any as S.Schema<DeleteDatabaseRequest>;
+
+export interface DeleteDatabaseResponse {}
+export const DeleteDatabaseResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteDatabaseResponse",
+}) as any as S.Schema<DeleteDatabaseResponse>;
+
+export interface DeleteDeploymentRequest {
+  deploymentId: string;
+}
+export const DeleteDeploymentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    deploymentId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/v1/deployments/{deploymentId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteDeploymentRequest",
+}) as any as S.Schema<DeleteDeploymentRequest>;
+
+export interface DeleteDeploymentResponse {}
+export const DeleteDeploymentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteDeploymentResponse",
+}) as any as S.Schema<DeleteDeploymentResponse>;
+
+export interface DeleteDomainRequest {
+  domainId: string;
+}
+export const DeleteDomainRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    domainId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "DELETE", uri: "/v1/domains/{domainId}", code: 200 }),
+  ),
+).annotate({
+  identifier: "DeleteDomainRequest",
+}) as any as S.Schema<DeleteDomainRequest>;
+
+export interface DeleteDomainResponse {}
+export const DeleteDomainResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteDomainResponse",
+}) as any as S.Schema<DeleteDomainResponse>;
+
+export interface DeleteEnvironmentVariableRequest {
+  envVarId: string;
+}
+export const DeleteEnvironmentVariableRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    envVarId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/v1/environment-variables/{envVarId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteEnvironmentVariableRequest",
+}) as any as S.Schema<DeleteEnvironmentVariableRequest>;
+
+export interface DeleteEnvironmentVariableResponse {}
+export const DeleteEnvironmentVariableResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteEnvironmentVariableResponse",
+}) as any as S.Schema<DeleteEnvironmentVariableResponse>;
+
+export interface DeleteIntegrationRequest {
+  id: string;
+}
+export const DeleteIntegrationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "DELETE", uri: "/v1/integrations/{id}", code: 200 }),
+  ),
+).annotate({
+  identifier: "DeleteIntegrationRequest",
+}) as any as S.Schema<DeleteIntegrationRequest>;
+
+export interface DeleteIntegrationResponse {}
+export const DeleteIntegrationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteIntegrationResponse",
+}) as any as S.Schema<DeleteIntegrationResponse>;
+
+export interface DeleteProjectRequest {
+  id: string;
+}
+export const DeleteProjectRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "DELETE", uri: "/v1/projects/{id}", code: 200 })),
+).annotate({
+  identifier: "DeleteProjectRequest",
+}) as any as S.Schema<DeleteProjectRequest>;
+
+export interface DeleteProjectResponse {}
+export const DeleteProjectResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteProjectResponse",
+}) as any as S.Schema<DeleteProjectResponse>;
+
+export interface DeleteProjectBranchAlchemyStateLeaseRequest {
+  projectId: string;
+  branchId: string;
+}
+export const DeleteProjectBranchAlchemyStateLeaseRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      data: PostV1WorkspacesByWorkspaceIdServiceTokensResponseData,
-    }),
+      projectId: S.String.pipe(T.Label()),
+      branchId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/v1/projects/{projectId}/branches/{branchId}/alchemy-state/lease",
+        code: 200,
+      }),
+    ),
   ).annotate({
-    identifier: "PostV1WorkspacesByWorkspaceIdServiceTokensResponse",
-  }) as any as S.Schema<PostV1WorkspacesByWorkspaceIdServiceTokensResponse>;
+    identifier: "DeleteProjectBranchAlchemyStateLeaseRequest",
+  }) as any as S.Schema<DeleteProjectBranchAlchemyStateLeaseRequest>;
 
-export type PutV1BuildsByBuildIdResourcesByResourceTypeByResourceIdRequestResourceType =
+export interface DeleteProjectBranchAlchemyStateLeaseResponse {}
+export const DeleteProjectBranchAlchemyStateLeaseResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DeleteProjectBranchAlchemyStateLeaseResponse",
+  }) as any as S.Schema<DeleteProjectBranchAlchemyStateLeaseResponse>;
+
+export interface DeleteProjectBranchAlchemyStateStateStackRequest {
+  projectId: string;
+  branchId: string;
+  stack: string;
+  stage?: string;
+}
+export const DeleteProjectBranchAlchemyStateStateStackRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      projectId: S.String.pipe(T.Label()),
+      branchId: S.String.pipe(T.Label()),
+      stack: S.String.pipe(T.Label()),
+      stage: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/v1/projects/{projectId}/branches/{branchId}/alchemy-state/state/stacks/{stack}",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "DeleteProjectBranchAlchemyStateStateStackRequest",
+  }) as any as S.Schema<DeleteProjectBranchAlchemyStateStateStackRequest>;
+
+export interface DeleteProjectBranchAlchemyStateStateStackResponse {}
+export const DeleteProjectBranchAlchemyStateStateStackResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DeleteProjectBranchAlchemyStateStateStackResponse",
+  }) as any as S.Schema<DeleteProjectBranchAlchemyStateStateStackResponse>;
+
+export interface DeleteProjectBranchAlchemyStateStateStackStageResourceRequest {
+  projectId: string;
+  branchId: string;
+  stack: string;
+  stage: string;
+  fqn: string;
+}
+export const DeleteProjectBranchAlchemyStateStateStackStageResourceRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      projectId: S.String.pipe(T.Label()),
+      branchId: S.String.pipe(T.Label()),
+      stack: S.String.pipe(T.Label()),
+      stage: S.String.pipe(T.Label()),
+      fqn: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/v1/projects/{projectId}/branches/{branchId}/alchemy-state/state/stacks/{stack}/stages/{stage}/resources/{fqn}",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "DeleteProjectBranchAlchemyStateStateStackStageResourceRequest",
+  }) as any as S.Schema<DeleteProjectBranchAlchemyStateStateStackStageResourceRequest>;
+
+export interface DeleteProjectBranchAlchemyStateStateStackStageResourceResponse {}
+export const DeleteProjectBranchAlchemyStateStateStackStageResourceResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier:
+      "DeleteProjectBranchAlchemyStateStateStackStageResourceResponse",
+  }) as any as S.Schema<DeleteProjectBranchAlchemyStateStateStackStageResourceResponse>;
+
+export interface DeleteServiceRequest {
+  serviceId: string;
+}
+export const DeleteServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "DELETE", uri: "/v1/services/{serviceId}", code: 200 }),
+  ),
+).annotate({
+  identifier: "DeleteServiceRequest",
+}) as any as S.Schema<DeleteServiceRequest>;
+
+export interface DeleteServiceResponse {}
+export const DeleteServiceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteServiceResponse",
+}) as any as S.Schema<DeleteServiceResponse>;
+
+export interface DeleteSourceRepositoryRequest {
+  id: string;
+}
+export const DeleteSourceRepositoryRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/v1/source-repositories/{id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteSourceRepositoryRequest",
+}) as any as S.Schema<DeleteSourceRepositoryRequest>;
+
+export interface DeleteSourceRepositoryResponse {}
+export const DeleteSourceRepositoryResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteSourceRepositoryResponse",
+}) as any as S.Schema<DeleteSourceRepositoryResponse>;
+
+export interface DeleteWorkspaceIntegrationRequest {
+  workspaceId: string;
+  clientId: string;
+}
+export const DeleteWorkspaceIntegrationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    workspaceId: S.String.pipe(T.Label()),
+    clientId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/v1/workspaces/{workspaceId}/integrations/{clientId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteWorkspaceIntegrationRequest",
+}) as any as S.Schema<DeleteWorkspaceIntegrationRequest>;
+
+export interface DeleteWorkspaceIntegrationResponse {}
+export const DeleteWorkspaceIntegrationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteWorkspaceIntegrationResponse",
+}) as any as S.Schema<DeleteWorkspaceIntegrationResponse>;
+
+export interface DeleteWorkspaceServiceTokenRequest {
+  workspaceId: string;
+  serviceTokenId: string;
+}
+export const DeleteWorkspaceServiceTokenRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    workspaceId: S.String.pipe(T.Label()),
+    serviceTokenId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/v1/workspaces/{workspaceId}/service-tokens/{serviceTokenId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteWorkspaceServiceTokenRequest",
+}) as any as S.Schema<DeleteWorkspaceServiceTokenRequest>;
+
+export interface DeleteWorkspaceServiceTokenResponse {}
+export const DeleteWorkspaceServiceTokenResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteWorkspaceServiceTokenResponse",
+}) as any as S.Schema<DeleteWorkspaceServiceTokenResponse>;
+
+export interface GetBranchRequest {
+  branchId: string;
+}
+export const GetBranchRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    branchId: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/v1/branches/{branchId}", code: 200 })),
+).annotate({
+  identifier: "GetBranchRequest",
+}) as any as S.Schema<GetBranchRequest>;
+
+export type GetBranchResponseDataRole = "production" | "preview";
+export const GetBranchResponseDataRole = /*@__PURE__*/ S.String;
+
+/** Thin reference to the parent Project. Member resources are intentionally NOT inlined — list /v1/databases?branchId=<br_xxx> or /v1/apps?branchId=<br_xxx> instead (see API design principles "Flat and Hierarchical Coexistence"). */
+export type GetBranchResponseDataProject = CreateBucketResponseDataProject;
+export const GetBranchResponseDataProject = CreateBucketResponseDataProject;
+
+export interface GetBranchResponseData {
+  id: string;
+  type: string;
+  url: string;
+  gitName: string;
+  isDefault: boolean;
+  role: GetBranchResponseDataRole;
+  createdAt: string;
+  updatedAt: string;
+  /** Thin reference to the parent Project. Member resources are intentionally NOT inlined — list /v1/databases?branchId=<br_xxx> or /v1/apps?branchId=<br_xxx> instead (see API design principles "Flat and Hierarchical Coexistence"). */
+  project: CreateBucketResponseDataProject;
+}
+export const GetBranchResponseData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    type: S.String,
+    url: S.String,
+    gitName: S.String,
+    isDefault: S.Boolean,
+    role: GetBranchResponseDataRole,
+    createdAt: S.String,
+    updatedAt: S.String,
+    project: CreateBucketResponseDataProject,
+  }),
+).annotate({
+  identifier: "GetBranchResponseData",
+}) as any as S.Schema<GetBranchResponseData>;
+
+export interface GetBranchResponse {
+  data: GetBranchResponseData;
+}
+export const GetBranchResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: GetBranchResponseData,
+  }),
+).annotate({
+  identifier: "GetBranchResponse",
+}) as any as S.Schema<GetBranchResponse>;
+
+export interface GetBucketRequest {
+  bucketId: string;
+}
+export const GetBucketRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    bucketId: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/v1/buckets/{bucketId}", code: 200 })),
+).annotate({
+  identifier: "GetBucketRequest",
+}) as any as S.Schema<GetBucketRequest>;
+
+export type GetBucketResponseDataProject = CreateBucketResponseDataProject;
+export const GetBucketResponseDataProject = CreateBucketResponseDataProject;
+
+export type GetBucketResponseData = CreateBucketResponseData;
+export const GetBucketResponseData = CreateBucketResponseData;
+
+export interface GetBucketResponse {
+  data: CreateBucketResponseData;
+}
+export const GetBucketResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: CreateBucketResponseData,
+  }),
+).annotate({
+  identifier: "GetBucketResponse",
+}) as any as S.Schema<GetBucketResponse>;
+
+export interface GetBucketKeysRequest {
+  bucketId: string;
+  cursor?: string;
+  limit?: number;
+}
+export const GetBucketKeysRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    bucketId: S.String.pipe(T.Label()),
+    cursor: S.optional(S.String.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/v1/buckets/{bucketId}/keys", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetBucketKeysRequest",
+}) as any as S.Schema<GetBucketKeysRequest>;
+
+export type GetBucketKeysResponseDataItemRole = "read" | "read_write";
+export const GetBucketKeysResponseDataItemRole = /*@__PURE__*/ S.String;
+
+export interface GetBucketKeysResponseDataItem {
+  id: string;
+  type: string;
+  name: string;
+  valueHint: string;
+  role: GetBucketKeysResponseDataItemRole;
+  createdAt: string;
+}
+export const GetBucketKeysResponseDataItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    type: S.String,
+    name: S.String,
+    valueHint: S.String,
+    role: GetBucketKeysResponseDataItemRole,
+    createdAt: S.String,
+  }),
+).annotate({
+  identifier: "GetBucketKeysResponseDataItem",
+}) as any as S.Schema<GetBucketKeysResponseDataItem>;
+
+export type GetBucketKeysResponseDataList =
+  Array<GetBucketKeysResponseDataItem>;
+export const GetBucketKeysResponseDataList = /*@__PURE__*/ S.Array(
+  GetBucketKeysResponseDataItem,
+) as any as S.Schema<GetBucketKeysResponseDataList>;
+
+export interface GetBucketKeysResponsePagination {
+  /** Next cursor to continue pagination */
+  nextCursor: string | null;
+  /** Whether there are more items to paginate */
+  hasMore: boolean;
+}
+export const GetBucketKeysResponsePagination = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextCursor: S.NullOr(S.String),
+    hasMore: S.Boolean,
+  }),
+).annotate({
+  identifier: "GetBucketKeysResponsePagination",
+}) as any as S.Schema<GetBucketKeysResponsePagination>;
+
+export interface GetBucketKeysResponse {
+  data: GetBucketKeysResponseDataList;
+  pagination: GetBucketKeysResponsePagination;
+}
+export const GetBucketKeysResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: GetBucketKeysResponseDataList,
+    pagination: GetBucketKeysResponsePagination,
+  }),
+).annotate({
+  identifier: "GetBucketKeysResponse",
+}) as any as S.Schema<GetBucketKeysResponse>;
+
+export interface GetBucketsRequest {
+  cursor?: string;
+  limit?: number;
+  projectId?: string;
+  branchId?: string;
+  branchGitName?: string;
+}
+export const GetBucketsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    cursor: S.optional(S.String.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    projectId: S.optional(S.String.pipe(T.Query())),
+    branchId: S.optional(S.String.pipe(T.Query())),
+    branchGitName: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/v1/buckets", code: 200 })),
+).annotate({
+  identifier: "GetBucketsRequest",
+}) as any as S.Schema<GetBucketsRequest>;
+
+export type GetBucketsResponseDataItemProject = CreateBucketResponseDataProject;
+export const GetBucketsResponseDataItemProject =
+  CreateBucketResponseDataProject;
+
+export type GetBucketsResponseDataItem = CreateBucketResponseData;
+export const GetBucketsResponseDataItem = CreateBucketResponseData;
+
+export type GetBucketsResponseDataList = Array<CreateBucketResponseData>;
+export const GetBucketsResponseDataList = /*@__PURE__*/ S.Array(
+  CreateBucketResponseData,
+) as any as S.Schema<GetBucketsResponseDataList>;
+
+export type GetBucketsResponsePagination = GetBucketKeysResponsePagination;
+export const GetBucketsResponsePagination = GetBucketKeysResponsePagination;
+
+export interface GetBucketsResponse {
+  data: GetBucketsResponseDataList;
+  pagination: GetBucketKeysResponsePagination;
+}
+export const GetBucketsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: GetBucketsResponseDataList,
+    pagination: GetBucketKeysResponsePagination,
+  }),
+).annotate({
+  identifier: "GetBucketsResponse",
+}) as any as S.Schema<GetBucketsResponse>;
+
+export interface GetBuildRequest {
+  buildId: string;
+}
+export const GetBuildRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    buildId: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/v1/builds/{buildId}", code: 200 })),
+).annotate({
+  identifier: "GetBuildRequest",
+}) as any as S.Schema<GetBuildRequest>;
+
+export type GetBuildResponseDataSource =
+  | "webhook"
+  | "setup"
+  | "manual"
+  | "ci"
+  | "cli";
+export const GetBuildResponseDataSource = /*@__PURE__*/ S.String;
+
+export type GetBuildResponseDataState =
+  | "pending"
+  | "running"
+  | "succeeded"
+  | "failed"
+  | "cancelled";
+export const GetBuildResponseDataState = /*@__PURE__*/ S.String;
+
+/** Null when nothing reported a phase; the platform never invents an observation it did not receive. */
+export type GetBuildResponseDataPhase = "queued" | "build" | "deploy";
+export const GetBuildResponseDataPhase = /*@__PURE__*/ S.String;
+
+export type GetBuildResponseDataResourcesItemResourceType =
   | "project"
   | "branch"
   | "database"
@@ -7702,65 +3414,3526 @@ export type PutV1BuildsByBuildIdResourcesByResourceTypeByResourceIdRequestResour
   | "bucket"
   | "service_key"
   | "config_variable";
-export const PutV1BuildsByBuildIdResourcesByResourceTypeByResourceIdRequestResourceType =
+export const GetBuildResponseDataResourcesItemResourceType =
   /*@__PURE__*/ S.String;
 
-/** The strongest effect the build had on the resource. Re-reporting is safe: a weaker action never overwrites a stronger one, so `created` survives a later `acted_on`. */
-export type PutV1BuildsByBuildIdResourcesByResourceTypeByResourceIdRequestAction =
+export type GetBuildResponseDataResourcesItemAction =
   | "created"
   | "acted_on"
   | "deleted";
-export const PutV1BuildsByBuildIdResourcesByResourceTypeByResourceIdRequestAction =
+export const GetBuildResponseDataResourcesItemAction = /*@__PURE__*/ S.String;
+
+export interface GetBuildResponseDataResourcesItem {
+  resourceType: GetBuildResponseDataResourcesItemResourceType;
+  /** Prefixed id of the reported resource. */
+  resourceId: string;
+  action: GetBuildResponseDataResourcesItemAction;
+  createdAt: string;
+}
+export const GetBuildResponseDataResourcesItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceType: GetBuildResponseDataResourcesItemResourceType,
+    resourceId: S.String,
+    action: GetBuildResponseDataResourcesItemAction,
+    createdAt: S.String,
+  }),
+).annotate({
+  identifier: "GetBuildResponseDataResourcesItem",
+}) as any as S.Schema<GetBuildResponseDataResourcesItem>;
+
+export type GetBuildResponseDataResourcesList =
+  Array<GetBuildResponseDataResourcesItem>;
+export const GetBuildResponseDataResourcesList = /*@__PURE__*/ S.Array(
+  GetBuildResponseDataResourcesItem,
+) as any as S.Schema<GetBuildResponseDataResourcesList>;
+
+export interface GetBuildResponseData {
+  id: string;
+  source: GetBuildResponseDataSource;
+  state: GetBuildResponseDataState;
+  /** Null when nothing reported a phase; the platform never invents an observation it did not receive. */
+  phase: GetBuildResponseDataPhase | null;
+  commitSha: string;
+  branchName: string;
+  /** Repository the build ran against. Set only when the workspace has a live link to it; a reported repository the platform does not know stays null. */
+  gitRepoId: string | null;
+  projectId: string | null;
+  branchId: string | null;
+  externalLogUrl: string | null;
+  deployedUrl: string | null;
+  applicationTopologyContentHash: string | null;
+  errorMessage: string | null;
+  failingStep: string | null;
+  createdAt: string;
+  startedAt: string | null;
+  finishedAt: string | null;
+  resources: GetBuildResponseDataResourcesList;
+}
+export const GetBuildResponseData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    source: GetBuildResponseDataSource,
+    state: GetBuildResponseDataState,
+    phase: S.NullOr(GetBuildResponseDataPhase),
+    commitSha: S.String,
+    branchName: S.String,
+    gitRepoId: S.NullOr(S.String),
+    projectId: S.NullOr(S.String),
+    branchId: S.NullOr(S.String),
+    externalLogUrl: S.NullOr(S.String),
+    deployedUrl: S.NullOr(S.String),
+    applicationTopologyContentHash: S.NullOr(S.String),
+    errorMessage: S.NullOr(S.String),
+    failingStep: S.NullOr(S.String),
+    createdAt: S.String,
+    startedAt: S.NullOr(S.String),
+    finishedAt: S.NullOr(S.String),
+    resources: GetBuildResponseDataResourcesList,
+  }),
+).annotate({
+  identifier: "GetBuildResponseData",
+}) as any as S.Schema<GetBuildResponseData>;
+
+export interface GetBuildResponse {
+  data: GetBuildResponseData;
+}
+export const GetBuildResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: GetBuildResponseData,
+  }),
+).annotate({
+  identifier: "GetBuildResponse",
+}) as any as S.Schema<GetBuildResponse>;
+
+export type GetBuildLogsRequestFollow = "true" | "false";
+export const GetBuildLogsRequestFollow = /*@__PURE__*/ S.String;
+
+export interface GetBuildLogsRequest {
+  buildId: string;
+  follow?: GetBuildLogsRequestFollow | (string & {});
+  cursor?: string;
+}
+export const GetBuildLogsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    buildId: S.String.pipe(T.Label()),
+    follow: S.optional(GetBuildLogsRequestFollow.pipe(T.Query())),
+    cursor: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/v1/builds/{buildId}/logs", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetBuildLogsRequest",
+}) as any as S.Schema<GetBuildLogsRequest>;
+
+export interface GetBuildLogsResponse {}
+export const GetBuildLogsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "GetBuildLogsResponse",
+}) as any as S.Schema<GetBuildLogsResponse>;
+
+export type GetBuildsRequestState =
+  | "pending"
+  | "running"
+  | "succeeded"
+  | "failed"
+  | "cancelled";
+export const GetBuildsRequestState = /*@__PURE__*/ S.String;
+
+export interface GetBuildsRequest {
+  cursor?: string;
+  limit?: number;
+  projectId?: string;
+  branchId?: string;
+  state?: GetBuildsRequestState | (string & {});
+}
+export const GetBuildsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    cursor: S.optional(S.String.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    projectId: S.optional(S.String.pipe(T.Query())),
+    branchId: S.optional(S.String.pipe(T.Query())),
+    state: S.optional(GetBuildsRequestState.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/v1/builds", code: 200 })),
+).annotate({
+  identifier: "GetBuildsRequest",
+}) as any as S.Schema<GetBuildsRequest>;
+
+export type GetBuildsResponseDataItemSource =
+  | "webhook"
+  | "setup"
+  | "manual"
+  | "ci"
+  | "cli";
+export const GetBuildsResponseDataItemSource = /*@__PURE__*/ S.String;
+
+export type GetBuildsResponseDataItemState =
+  | "pending"
+  | "running"
+  | "succeeded"
+  | "failed"
+  | "cancelled";
+export const GetBuildsResponseDataItemState = /*@__PURE__*/ S.String;
+
+/** Null when nothing reported a phase; the platform never invents an observation it did not receive. */
+export type GetBuildsResponseDataItemPhase = "queued" | "build" | "deploy";
+export const GetBuildsResponseDataItemPhase = /*@__PURE__*/ S.String;
+
+export interface GetBuildsResponseDataItem {
+  id: string;
+  source: GetBuildsResponseDataItemSource;
+  state: GetBuildsResponseDataItemState;
+  /** Null when nothing reported a phase; the platform never invents an observation it did not receive. */
+  phase: GetBuildsResponseDataItemPhase | null;
+  commitSha: string;
+  branchName: string;
+  /** Repository the build ran against. Set only when the workspace has a live link to it; a reported repository the platform does not know stays null. */
+  gitRepoId: string | null;
+  projectId: string | null;
+  branchId: string | null;
+  externalLogUrl: string | null;
+  deployedUrl: string | null;
+  applicationTopologyContentHash: string | null;
+  errorMessage: string | null;
+  failingStep: string | null;
+  createdAt: string;
+  startedAt: string | null;
+  finishedAt: string | null;
+}
+export const GetBuildsResponseDataItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    source: GetBuildsResponseDataItemSource,
+    state: GetBuildsResponseDataItemState,
+    phase: S.NullOr(GetBuildsResponseDataItemPhase),
+    commitSha: S.String,
+    branchName: S.String,
+    gitRepoId: S.NullOr(S.String),
+    projectId: S.NullOr(S.String),
+    branchId: S.NullOr(S.String),
+    externalLogUrl: S.NullOr(S.String),
+    deployedUrl: S.NullOr(S.String),
+    applicationTopologyContentHash: S.NullOr(S.String),
+    errorMessage: S.NullOr(S.String),
+    failingStep: S.NullOr(S.String),
+    createdAt: S.String,
+    startedAt: S.NullOr(S.String),
+    finishedAt: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "GetBuildsResponseDataItem",
+}) as any as S.Schema<GetBuildsResponseDataItem>;
+
+export type GetBuildsResponseDataList = Array<GetBuildsResponseDataItem>;
+export const GetBuildsResponseDataList = /*@__PURE__*/ S.Array(
+  GetBuildsResponseDataItem,
+) as any as S.Schema<GetBuildsResponseDataList>;
+
+export type GetBuildsResponsePagination = GetBucketKeysResponsePagination;
+export const GetBuildsResponsePagination = GetBucketKeysResponsePagination;
+
+export interface GetBuildsResponse {
+  data: GetBuildsResponseDataList;
+  pagination: GetBucketKeysResponsePagination;
+}
+export const GetBuildsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: GetBuildsResponseDataList,
+    pagination: GetBucketKeysResponsePagination,
+  }),
+).annotate({
+  identifier: "GetBuildsResponse",
+}) as any as S.Schema<GetBuildsResponse>;
+
+export interface GetConnectionRequest {
+  id: string;
+}
+export const GetConnectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/v1/connections/{id}", code: 200 })),
+).annotate({
+  identifier: "GetConnectionRequest",
+}) as any as S.Schema<GetConnectionRequest>;
+
+export type GetConnectionResponseDataKind = "postgres" | "accelerate";
+export const GetConnectionResponseDataKind = /*@__PURE__*/ S.String;
+
+export type GetConnectionResponseDataEndpointsDirect =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+export const GetConnectionResponseDataEndpointsDirect =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+
+export type GetConnectionResponseDataEndpointsPooled =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+export const GetConnectionResponseDataEndpointsPooled =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+
+export type GetConnectionResponseDataEndpointsAccelerate =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+export const GetConnectionResponseDataEndpointsAccelerate =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+
+export type GetConnectionResponseDataEndpoints =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpoints;
+export const GetConnectionResponseDataEndpoints =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpoints;
+
+/** Deprecated: use `endpoints.direct` instead. */
+export type GetConnectionResponseDataDirectConnection =
+  CreateConnectionResponseDataDirectConnection;
+export const GetConnectionResponseDataDirectConnection =
+  CreateConnectionResponseDataDirectConnection;
+
+export type GetConnectionResponseDataDatabase = CreateBucketResponseDataProject;
+export const GetConnectionResponseDataDatabase =
+  CreateBucketResponseDataProject;
+
+export interface GetConnectionResponseData {
+  id: string;
+  type: string;
+  url: string;
+  name: string;
+  createdAt: string;
+  kind: GetConnectionResponseDataKind;
+  endpoints: CreateDatabaseRestoreResponseDataConnectionsItemEndpoints;
+  /** Deprecated: use `endpoints.direct` instead. */
+  directConnection?: CreateConnectionResponseDataDirectConnection | null;
+  database: CreateBucketResponseDataProject;
+}
+export const GetConnectionResponseData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    type: S.String,
+    url: S.String,
+    name: S.String,
+    createdAt: S.String,
+    kind: GetConnectionResponseDataKind,
+    endpoints: CreateDatabaseRestoreResponseDataConnectionsItemEndpoints,
+    directConnection: S.optional(
+      S.NullOr(CreateConnectionResponseDataDirectConnection),
+    ),
+    database: CreateBucketResponseDataProject,
+  }),
+).annotate({
+  identifier: "GetConnectionResponseData",
+}) as any as S.Schema<GetConnectionResponseData>;
+
+export interface GetConnectionResponse {
+  data: GetConnectionResponseData;
+}
+export const GetConnectionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: GetConnectionResponseData,
+  }),
+).annotate({
+  identifier: "GetConnectionResponse",
+}) as any as S.Schema<GetConnectionResponse>;
+
+export interface GetConnectionsRequest {
+  cursor?: string;
+  limit?: number;
+  databaseId?: string;
+}
+export const GetConnectionsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    cursor: S.optional(S.String.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    databaseId: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/v1/connections", code: 200 })),
+).annotate({
+  identifier: "GetConnectionsRequest",
+}) as any as S.Schema<GetConnectionsRequest>;
+
+export type GetConnectionsResponseDataItemKind = "postgres" | "accelerate";
+export const GetConnectionsResponseDataItemKind = /*@__PURE__*/ S.String;
+
+export type GetConnectionsResponseDataItemEndpointsDirect =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+export const GetConnectionsResponseDataItemEndpointsDirect =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+
+export type GetConnectionsResponseDataItemEndpointsPooled =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+export const GetConnectionsResponseDataItemEndpointsPooled =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+
+export type GetConnectionsResponseDataItemEndpointsAccelerate =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+export const GetConnectionsResponseDataItemEndpointsAccelerate =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+
+export type GetConnectionsResponseDataItemEndpoints =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpoints;
+export const GetConnectionsResponseDataItemEndpoints =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpoints;
+
+/** Deprecated: use `endpoints.direct` instead. */
+export type GetConnectionsResponseDataItemDirectConnection =
+  CreateConnectionResponseDataDirectConnection;
+export const GetConnectionsResponseDataItemDirectConnection =
+  CreateConnectionResponseDataDirectConnection;
+
+export type GetConnectionsResponseDataItemDatabase =
+  CreateBucketResponseDataProject;
+export const GetConnectionsResponseDataItemDatabase =
+  CreateBucketResponseDataProject;
+
+export interface GetConnectionsResponseDataItem {
+  id: string;
+  type: string;
+  url: string;
+  name: string;
+  createdAt: string;
+  kind: GetConnectionsResponseDataItemKind;
+  endpoints: CreateDatabaseRestoreResponseDataConnectionsItemEndpoints;
+  /** Deprecated: use `endpoints.direct` instead. */
+  directConnection?: CreateConnectionResponseDataDirectConnection | null;
+  database: CreateBucketResponseDataProject;
+}
+export const GetConnectionsResponseDataItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    type: S.String,
+    url: S.String,
+    name: S.String,
+    createdAt: S.String,
+    kind: GetConnectionsResponseDataItemKind,
+    endpoints: CreateDatabaseRestoreResponseDataConnectionsItemEndpoints,
+    directConnection: S.optional(
+      S.NullOr(CreateConnectionResponseDataDirectConnection),
+    ),
+    database: CreateBucketResponseDataProject,
+  }),
+).annotate({
+  identifier: "GetConnectionsResponseDataItem",
+}) as any as S.Schema<GetConnectionsResponseDataItem>;
+
+export type GetConnectionsResponseDataList =
+  Array<GetConnectionsResponseDataItem>;
+export const GetConnectionsResponseDataList = /*@__PURE__*/ S.Array(
+  GetConnectionsResponseDataItem,
+) as any as S.Schema<GetConnectionsResponseDataList>;
+
+export type GetConnectionsResponsePagination = GetBucketKeysResponsePagination;
+export const GetConnectionsResponsePagination = GetBucketKeysResponsePagination;
+
+export interface GetConnectionsResponse {
+  data: GetConnectionsResponseDataList;
+  pagination: GetBucketKeysResponsePagination;
+}
+export const GetConnectionsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: GetConnectionsResponseDataList,
+    pagination: GetBucketKeysResponsePagination,
+  }),
+).annotate({
+  identifier: "GetConnectionsResponse",
+}) as any as S.Schema<GetConnectionsResponse>;
+
+export interface GetDatabaseRequest {
+  databaseId: string;
+}
+export const GetDatabaseRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    databaseId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/v1/databases/{databaseId}", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetDatabaseRequest",
+}) as any as S.Schema<GetDatabaseRequest>;
+
+export type GetDatabaseResponseDataStatus =
+  | "failure"
+  | "provisioning"
+  | "ready"
+  | "recovering";
+export const GetDatabaseResponseDataStatus = /*@__PURE__*/ S.String;
+
+export type GetDatabaseResponseDataConnectionsItemKind =
+  | "postgres"
+  | "accelerate";
+export const GetDatabaseResponseDataConnectionsItemKind =
   /*@__PURE__*/ S.String;
 
-export interface PutV1BuildsByBuildIdResourcesByResourceTypeByResourceIdRequest {
-  buildId: string;
-  resourceType:
-    | PutV1BuildsByBuildIdResourcesByResourceTypeByResourceIdRequestResourceType
-    | (string & {});
-  resourceId: string;
-  /** The strongest effect the build had on the resource. Re-reporting is safe: a weaker action never overwrites a stronger one, so `created` survives a later `acted_on`. */
-  action:
-    | PutV1BuildsByBuildIdResourcesByResourceTypeByResourceIdRequestAction
-    | (string & {});
+export type GetDatabaseResponseDataConnectionsItemEndpointsDirect =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+export const GetDatabaseResponseDataConnectionsItemEndpointsDirect =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+
+export type GetDatabaseResponseDataConnectionsItemEndpointsPooled =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+export const GetDatabaseResponseDataConnectionsItemEndpointsPooled =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+
+export type GetDatabaseResponseDataConnectionsItemEndpointsAccelerate =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+export const GetDatabaseResponseDataConnectionsItemEndpointsAccelerate =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+
+export type GetDatabaseResponseDataConnectionsItemEndpoints =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpoints;
+export const GetDatabaseResponseDataConnectionsItemEndpoints =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpoints;
+
+/** Deprecated: use `endpoints.direct` instead. */
+export type GetDatabaseResponseDataConnectionsItemDirectConnection =
+  CreateConnectionResponseDataDirectConnection;
+export const GetDatabaseResponseDataConnectionsItemDirectConnection =
+  CreateConnectionResponseDataDirectConnection;
+
+export type GetDatabaseResponseDataConnectionsItemDatabase =
+  CreateBucketResponseDataProject;
+export const GetDatabaseResponseDataConnectionsItemDatabase =
+  CreateBucketResponseDataProject;
+
+export interface GetDatabaseResponseDataConnectionsItem {
+  id: string;
+  type: string;
+  url: string;
+  name: string;
+  createdAt: string;
+  kind: GetDatabaseResponseDataConnectionsItemKind;
+  endpoints: CreateDatabaseRestoreResponseDataConnectionsItemEndpoints;
+  /** Deprecated: use `endpoints.direct` instead. */
+  directConnection?: CreateConnectionResponseDataDirectConnection | null;
+  database: CreateBucketResponseDataProject;
 }
-export const PutV1BuildsByBuildIdResourcesByResourceTypeByResourceIdRequest =
+export const GetDatabaseResponseDataConnectionsItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.String,
+      type: S.String,
+      url: S.String,
+      name: S.String,
+      createdAt: S.String,
+      kind: GetDatabaseResponseDataConnectionsItemKind,
+      endpoints: CreateDatabaseRestoreResponseDataConnectionsItemEndpoints,
+      directConnection: S.optional(
+        S.NullOr(CreateConnectionResponseDataDirectConnection),
+      ),
+      database: CreateBucketResponseDataProject,
+    }),
+).annotate({
+  identifier: "GetDatabaseResponseDataConnectionsItem",
+}) as any as S.Schema<GetDatabaseResponseDataConnectionsItem>;
+
+export type GetDatabaseResponseDataConnectionsList =
+  Array<GetDatabaseResponseDataConnectionsItem>;
+export const GetDatabaseResponseDataConnectionsList = /*@__PURE__*/ S.Array(
+  GetDatabaseResponseDataConnectionsItem,
+) as any as S.Schema<GetDatabaseResponseDataConnectionsList>;
+
+export type GetDatabaseResponseDataProject = CreateBucketResponseDataProject;
+export const GetDatabaseResponseDataProject = CreateBucketResponseDataProject;
+
+export type GetDatabaseResponseDataRegion = CreateDatabaseResponseDataRegion;
+export const GetDatabaseResponseDataRegion = CreateDatabaseResponseDataRegion;
+
+export type GetDatabaseResponseDataSourceCase0 =
+  CreateDatabaseRequestSourceCase0;
+export const GetDatabaseResponseDataSourceCase0 =
+  CreateDatabaseRequestSourceCase0;
+
+export type GetDatabaseResponseDataSourceCase1 =
+  CreateDatabaseResponseDataSourceCase1;
+export const GetDatabaseResponseDataSourceCase1 =
+  CreateDatabaseResponseDataSourceCase1;
+
+export type GetDatabaseResponseDataSourceCase2 =
+  CreateDatabaseResponseDataSourceCase2;
+export const GetDatabaseResponseDataSourceCase2 =
+  CreateDatabaseResponseDataSourceCase2;
+
+export type GetDatabaseResponseDataSource =
+  | CreateDatabaseRequestSourceCase0
+  | CreateDatabaseResponseDataSourceCase1
+  | CreateDatabaseResponseDataSourceCase2;
+export const GetDatabaseResponseDataSource = /*@__PURE__*/ S.suspend(() =>
+  S.Union([
+    GetDatabaseResponseDataSourceCase0,
+    GetDatabaseResponseDataSourceCase1,
+    GetDatabaseResponseDataSourceCase2,
+  ]),
+) as any as S.Schema<GetDatabaseResponseDataSource>;
+
+export interface GetDatabaseResponseData {
+  id: string;
+  type: string;
+  url: string;
+  name: string;
+  status: GetDatabaseResponseDataStatus;
+  createdAt: string;
+  isDefault: boolean;
+  defaultConnectionId: string | null;
+  connections: GetDatabaseResponseDataConnectionsList;
+  project: CreateBucketResponseDataProject;
+  region: CreateDatabaseResponseDataRegion | null;
+  source: GetDatabaseResponseDataSource | null;
+  branchId: string | null;
+}
+export const GetDatabaseResponseData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    type: S.String,
+    url: S.String,
+    name: S.String,
+    status: GetDatabaseResponseDataStatus,
+    createdAt: S.String,
+    isDefault: S.Boolean,
+    defaultConnectionId: S.NullOr(S.String),
+    connections: GetDatabaseResponseDataConnectionsList,
+    project: CreateBucketResponseDataProject,
+    region: S.NullOr(CreateDatabaseResponseDataRegion),
+    source: S.NullOr(GetDatabaseResponseDataSource),
+    branchId: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "GetDatabaseResponseData",
+}) as any as S.Schema<GetDatabaseResponseData>;
+
+export interface GetDatabaseResponse {
+  data: GetDatabaseResponseData;
+}
+export const GetDatabaseResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: GetDatabaseResponseData,
+  }),
+).annotate({
+  identifier: "GetDatabaseResponse",
+}) as any as S.Schema<GetDatabaseResponse>;
+
+export interface GetDatabaseBackupsRequest {
+  databaseId: string;
+  limit?: number;
+}
+export const GetDatabaseBackupsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    databaseId: S.String.pipe(T.Label()),
+    limit: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/databases/{databaseId}/backups",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetDatabaseBackupsRequest",
+}) as any as S.Schema<GetDatabaseBackupsRequest>;
+
+export type GetDatabaseBackupsResponseDataItemBackupType =
+  | "full"
+  | "incremental"
+  | "differential";
+export const GetDatabaseBackupsResponseDataItemBackupType =
+  /*@__PURE__*/ S.String;
+
+export type GetDatabaseBackupsResponseDataItemStatus =
+  | "running"
+  | "completed"
+  | "failed"
+  | "unknown";
+export const GetDatabaseBackupsResponseDataItemStatus = /*@__PURE__*/ S.String;
+
+export interface GetDatabaseBackupsResponseDataItem {
+  id: string;
+  backupType: GetDatabaseBackupsResponseDataItemBackupType;
+  createdAt: string;
+  size?: number;
+  status: GetDatabaseBackupsResponseDataItemStatus;
+  type?: string;
+}
+export const GetDatabaseBackupsResponseDataItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    backupType: GetDatabaseBackupsResponseDataItemBackupType,
+    createdAt: S.String,
+    size: S.optional(S.Number),
+    status: GetDatabaseBackupsResponseDataItemStatus,
+    type: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetDatabaseBackupsResponseDataItem",
+}) as any as S.Schema<GetDatabaseBackupsResponseDataItem>;
+
+export type GetDatabaseBackupsResponseDataList =
+  Array<GetDatabaseBackupsResponseDataItem>;
+export const GetDatabaseBackupsResponseDataList = /*@__PURE__*/ S.Array(
+  GetDatabaseBackupsResponseDataItem,
+) as any as S.Schema<GetDatabaseBackupsResponseDataList>;
+
+export interface GetDatabaseBackupsResponseMeta {
+  backupRetentionDays: number;
+}
+export const GetDatabaseBackupsResponseMeta = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    backupRetentionDays: S.Number,
+  }),
+).annotate({
+  identifier: "GetDatabaseBackupsResponseMeta",
+}) as any as S.Schema<GetDatabaseBackupsResponseMeta>;
+
+export interface GetDatabaseBackupsResponsePagination {
+  hasMore: boolean;
+  limit: number | null;
+}
+export const GetDatabaseBackupsResponsePagination = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      hasMore: S.Boolean,
+      limit: S.NullOr(S.Number),
+    }),
+).annotate({
+  identifier: "GetDatabaseBackupsResponsePagination",
+}) as any as S.Schema<GetDatabaseBackupsResponsePagination>;
+
+export interface GetDatabaseBackupsResponse {
+  data: GetDatabaseBackupsResponseDataList;
+  meta: GetDatabaseBackupsResponseMeta;
+  pagination: GetDatabaseBackupsResponsePagination;
+}
+export const GetDatabaseBackupsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: GetDatabaseBackupsResponseDataList,
+    meta: GetDatabaseBackupsResponseMeta,
+    pagination: GetDatabaseBackupsResponsePagination,
+  }),
+).annotate({
+  identifier: "GetDatabaseBackupsResponse",
+}) as any as S.Schema<GetDatabaseBackupsResponse>;
+
+export interface GetDatabaseConnectionsRequest {
+  databaseId: string;
+  cursor?: string;
+  limit?: number;
+}
+export const GetDatabaseConnectionsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    databaseId: S.String.pipe(T.Label()),
+    cursor: S.optional(S.String.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/databases/{databaseId}/connections",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetDatabaseConnectionsRequest",
+}) as any as S.Schema<GetDatabaseConnectionsRequest>;
+
+export type GetDatabaseConnectionsResponseDataItemKind =
+  | "postgres"
+  | "accelerate";
+export const GetDatabaseConnectionsResponseDataItemKind =
+  /*@__PURE__*/ S.String;
+
+export type GetDatabaseConnectionsResponseDataItemEndpointsDirect =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+export const GetDatabaseConnectionsResponseDataItemEndpointsDirect =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+
+export type GetDatabaseConnectionsResponseDataItemEndpointsPooled =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+export const GetDatabaseConnectionsResponseDataItemEndpointsPooled =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+
+export type GetDatabaseConnectionsResponseDataItemEndpointsAccelerate =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+export const GetDatabaseConnectionsResponseDataItemEndpointsAccelerate =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+
+export type GetDatabaseConnectionsResponseDataItemEndpoints =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpoints;
+export const GetDatabaseConnectionsResponseDataItemEndpoints =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpoints;
+
+/** Deprecated: use `endpoints.direct` instead. */
+export type GetDatabaseConnectionsResponseDataItemDirectConnection =
+  CreateConnectionResponseDataDirectConnection;
+export const GetDatabaseConnectionsResponseDataItemDirectConnection =
+  CreateConnectionResponseDataDirectConnection;
+
+export type GetDatabaseConnectionsResponseDataItemDatabase =
+  CreateBucketResponseDataProject;
+export const GetDatabaseConnectionsResponseDataItemDatabase =
+  CreateBucketResponseDataProject;
+
+export interface GetDatabaseConnectionsResponseDataItem {
+  id: string;
+  type: string;
+  url: string;
+  name: string;
+  createdAt: string;
+  kind: GetDatabaseConnectionsResponseDataItemKind;
+  endpoints: CreateDatabaseRestoreResponseDataConnectionsItemEndpoints;
+  /** Deprecated: use `endpoints.direct` instead. */
+  directConnection?: CreateConnectionResponseDataDirectConnection | null;
+  database: CreateBucketResponseDataProject;
+}
+export const GetDatabaseConnectionsResponseDataItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.String,
+      type: S.String,
+      url: S.String,
+      name: S.String,
+      createdAt: S.String,
+      kind: GetDatabaseConnectionsResponseDataItemKind,
+      endpoints: CreateDatabaseRestoreResponseDataConnectionsItemEndpoints,
+      directConnection: S.optional(
+        S.NullOr(CreateConnectionResponseDataDirectConnection),
+      ),
+      database: CreateBucketResponseDataProject,
+    }),
+).annotate({
+  identifier: "GetDatabaseConnectionsResponseDataItem",
+}) as any as S.Schema<GetDatabaseConnectionsResponseDataItem>;
+
+export type GetDatabaseConnectionsResponseDataList =
+  Array<GetDatabaseConnectionsResponseDataItem>;
+export const GetDatabaseConnectionsResponseDataList = /*@__PURE__*/ S.Array(
+  GetDatabaseConnectionsResponseDataItem,
+) as any as S.Schema<GetDatabaseConnectionsResponseDataList>;
+
+export type GetDatabaseConnectionsResponsePagination =
+  GetBucketKeysResponsePagination;
+export const GetDatabaseConnectionsResponsePagination =
+  GetBucketKeysResponsePagination;
+
+export interface GetDatabaseConnectionsResponse {
+  data: GetDatabaseConnectionsResponseDataList;
+  pagination: GetBucketKeysResponsePagination;
+}
+export const GetDatabaseConnectionsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: GetDatabaseConnectionsResponseDataList,
+    pagination: GetBucketKeysResponsePagination,
+  }),
+).annotate({
+  identifier: "GetDatabaseConnectionsResponse",
+}) as any as S.Schema<GetDatabaseConnectionsResponse>;
+
+export interface GetDatabasesRequest {
+  cursor?: string;
+  limit?: number;
+  projectId?: string;
+  branchId?: string;
+  branchGitName?: string;
+}
+export const GetDatabasesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    cursor: S.optional(S.String.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    projectId: S.optional(S.String.pipe(T.Query())),
+    branchId: S.optional(S.String.pipe(T.Query())),
+    branchGitName: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/v1/databases", code: 200 })),
+).annotate({
+  identifier: "GetDatabasesRequest",
+}) as any as S.Schema<GetDatabasesRequest>;
+
+export type GetDatabasesResponseDataItemStatus =
+  | "failure"
+  | "provisioning"
+  | "ready"
+  | "recovering";
+export const GetDatabasesResponseDataItemStatus = /*@__PURE__*/ S.String;
+
+export type GetDatabasesResponseDataItemConnectionsItemKind =
+  | "postgres"
+  | "accelerate";
+export const GetDatabasesResponseDataItemConnectionsItemKind =
+  /*@__PURE__*/ S.String;
+
+export type GetDatabasesResponseDataItemConnectionsItemEndpointsDirect =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+export const GetDatabasesResponseDataItemConnectionsItemEndpointsDirect =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+
+export type GetDatabasesResponseDataItemConnectionsItemEndpointsPooled =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+export const GetDatabasesResponseDataItemConnectionsItemEndpointsPooled =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+
+export type GetDatabasesResponseDataItemConnectionsItemEndpointsAccelerate =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+export const GetDatabasesResponseDataItemConnectionsItemEndpointsAccelerate =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+
+export type GetDatabasesResponseDataItemConnectionsItemEndpoints =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpoints;
+export const GetDatabasesResponseDataItemConnectionsItemEndpoints =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpoints;
+
+/** Deprecated: use `endpoints.direct` instead. */
+export type GetDatabasesResponseDataItemConnectionsItemDirectConnection =
+  CreateConnectionResponseDataDirectConnection;
+export const GetDatabasesResponseDataItemConnectionsItemDirectConnection =
+  CreateConnectionResponseDataDirectConnection;
+
+export type GetDatabasesResponseDataItemConnectionsItemDatabase =
+  CreateBucketResponseDataProject;
+export const GetDatabasesResponseDataItemConnectionsItemDatabase =
+  CreateBucketResponseDataProject;
+
+export interface GetDatabasesResponseDataItemConnectionsItem {
+  id: string;
+  type: string;
+  url: string;
+  name: string;
+  createdAt: string;
+  kind: GetDatabasesResponseDataItemConnectionsItemKind;
+  endpoints: CreateDatabaseRestoreResponseDataConnectionsItemEndpoints;
+  /** Deprecated: use `endpoints.direct` instead. */
+  directConnection?: CreateConnectionResponseDataDirectConnection | null;
+  database: CreateBucketResponseDataProject;
+}
+export const GetDatabasesResponseDataItemConnectionsItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      buildId: S.String.pipe(T.Label()),
-      resourceType:
-        PutV1BuildsByBuildIdResourcesByResourceTypeByResourceIdRequestResourceType.pipe(
-          T.Label(),
-        ),
-      resourceId: S.String.pipe(T.Label()),
-      action:
-        PutV1BuildsByBuildIdResourcesByResourceTypeByResourceIdRequestAction,
+      id: S.String,
+      type: S.String,
+      url: S.String,
+      name: S.String,
+      createdAt: S.String,
+      kind: GetDatabasesResponseDataItemConnectionsItemKind,
+      endpoints: CreateDatabaseRestoreResponseDataConnectionsItemEndpoints,
+      directConnection: S.optional(
+        S.NullOr(CreateConnectionResponseDataDirectConnection),
+      ),
+      database: CreateBucketResponseDataProject,
+    }),
+  ).annotate({
+    identifier: "GetDatabasesResponseDataItemConnectionsItem",
+  }) as any as S.Schema<GetDatabasesResponseDataItemConnectionsItem>;
+
+export type GetDatabasesResponseDataItemConnectionsList =
+  Array<GetDatabasesResponseDataItemConnectionsItem>;
+export const GetDatabasesResponseDataItemConnectionsList =
+  /*@__PURE__*/ S.Array(
+    GetDatabasesResponseDataItemConnectionsItem,
+  ) as any as S.Schema<GetDatabasesResponseDataItemConnectionsList>;
+
+export type GetDatabasesResponseDataItemProject =
+  CreateBucketResponseDataProject;
+export const GetDatabasesResponseDataItemProject =
+  CreateBucketResponseDataProject;
+
+export type GetDatabasesResponseDataItemRegion =
+  CreateDatabaseResponseDataRegion;
+export const GetDatabasesResponseDataItemRegion =
+  CreateDatabaseResponseDataRegion;
+
+export type GetDatabasesResponseDataItemSourceCase0 =
+  CreateDatabaseRequestSourceCase0;
+export const GetDatabasesResponseDataItemSourceCase0 =
+  CreateDatabaseRequestSourceCase0;
+
+export type GetDatabasesResponseDataItemSourceCase1 =
+  CreateDatabaseResponseDataSourceCase1;
+export const GetDatabasesResponseDataItemSourceCase1 =
+  CreateDatabaseResponseDataSourceCase1;
+
+export type GetDatabasesResponseDataItemSourceCase2 =
+  CreateDatabaseResponseDataSourceCase2;
+export const GetDatabasesResponseDataItemSourceCase2 =
+  CreateDatabaseResponseDataSourceCase2;
+
+export type GetDatabasesResponseDataItemSource =
+  | CreateDatabaseRequestSourceCase0
+  | CreateDatabaseResponseDataSourceCase1
+  | CreateDatabaseResponseDataSourceCase2;
+export const GetDatabasesResponseDataItemSource = /*@__PURE__*/ S.suspend(() =>
+  S.Union([
+    GetDatabasesResponseDataItemSourceCase0,
+    GetDatabasesResponseDataItemSourceCase1,
+    GetDatabasesResponseDataItemSourceCase2,
+  ]),
+) as any as S.Schema<GetDatabasesResponseDataItemSource>;
+
+export interface GetDatabasesResponseDataItem {
+  id: string;
+  type: string;
+  url: string;
+  name: string;
+  status: GetDatabasesResponseDataItemStatus;
+  createdAt: string;
+  isDefault: boolean;
+  defaultConnectionId: string | null;
+  connections: GetDatabasesResponseDataItemConnectionsList;
+  project: CreateBucketResponseDataProject;
+  region: CreateDatabaseResponseDataRegion | null;
+  source: GetDatabasesResponseDataItemSource | null;
+  branchId: string | null;
+}
+export const GetDatabasesResponseDataItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    type: S.String,
+    url: S.String,
+    name: S.String,
+    status: GetDatabasesResponseDataItemStatus,
+    createdAt: S.String,
+    isDefault: S.Boolean,
+    defaultConnectionId: S.NullOr(S.String),
+    connections: GetDatabasesResponseDataItemConnectionsList,
+    project: CreateBucketResponseDataProject,
+    region: S.NullOr(CreateDatabaseResponseDataRegion),
+    source: S.NullOr(GetDatabasesResponseDataItemSource),
+    branchId: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "GetDatabasesResponseDataItem",
+}) as any as S.Schema<GetDatabasesResponseDataItem>;
+
+export type GetDatabasesResponseDataList = Array<GetDatabasesResponseDataItem>;
+export const GetDatabasesResponseDataList = /*@__PURE__*/ S.Array(
+  GetDatabasesResponseDataItem,
+) as any as S.Schema<GetDatabasesResponseDataList>;
+
+export type GetDatabasesResponsePagination = GetBucketKeysResponsePagination;
+export const GetDatabasesResponsePagination = GetBucketKeysResponsePagination;
+
+export interface GetDatabasesResponse {
+  data: GetDatabasesResponseDataList;
+  pagination: GetBucketKeysResponsePagination;
+}
+export const GetDatabasesResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: GetDatabasesResponseDataList,
+    pagination: GetBucketKeysResponsePagination,
+  }),
+).annotate({
+  identifier: "GetDatabasesResponse",
+}) as any as S.Schema<GetDatabasesResponse>;
+
+export interface GetDatabaseUsageRequest {
+  databaseId: string;
+  startDate?: string;
+  endDate?: string;
+}
+export const GetDatabaseUsageRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    databaseId: S.String.pipe(T.Label()),
+    startDate: S.optional(S.String.pipe(T.Query())),
+    endDate: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/databases/{databaseId}/usage",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetDatabaseUsageRequest",
+}) as any as S.Schema<GetDatabaseUsageRequest>;
+
+export interface GetDatabaseUsageResponsePeriod {
+  start: string;
+  end: string;
+}
+export const GetDatabaseUsageResponsePeriod = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    start: S.String,
+    end: S.String,
+  }),
+).annotate({
+  identifier: "GetDatabaseUsageResponsePeriod",
+}) as any as S.Schema<GetDatabaseUsageResponsePeriod>;
+
+export interface GetDatabaseUsageResponseMetricsOperations {
+  used: number;
+  unit: string;
+}
+export const GetDatabaseUsageResponseMetricsOperations =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      used: S.Number,
+      unit: S.String,
+    }),
+  ).annotate({
+    identifier: "GetDatabaseUsageResponseMetricsOperations",
+  }) as any as S.Schema<GetDatabaseUsageResponseMetricsOperations>;
+
+export type GetDatabaseUsageResponseMetricsStorage =
+  GetDatabaseUsageResponseMetricsOperations;
+export const GetDatabaseUsageResponseMetricsStorage =
+  GetDatabaseUsageResponseMetricsOperations;
+
+export interface GetDatabaseUsageResponseMetrics {
+  operations: GetDatabaseUsageResponseMetricsOperations;
+  storage: GetDatabaseUsageResponseMetricsOperations;
+}
+export const GetDatabaseUsageResponseMetrics = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    operations: GetDatabaseUsageResponseMetricsOperations,
+    storage: GetDatabaseUsageResponseMetricsOperations,
+  }),
+).annotate({
+  identifier: "GetDatabaseUsageResponseMetrics",
+}) as any as S.Schema<GetDatabaseUsageResponseMetrics>;
+
+export interface GetDatabaseUsageResponse {
+  period: GetDatabaseUsageResponsePeriod;
+  metrics: GetDatabaseUsageResponseMetrics;
+  generatedAt: string;
+}
+export const GetDatabaseUsageResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    period: GetDatabaseUsageResponsePeriod,
+    metrics: GetDatabaseUsageResponseMetrics,
+    generatedAt: S.String,
+  }),
+).annotate({
+  identifier: "GetDatabaseUsageResponse",
+}) as any as S.Schema<GetDatabaseUsageResponse>;
+
+export interface GetDeploymentRequest {
+  deploymentId: string;
+}
+export const GetDeploymentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    deploymentId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/v1/deployments/{deploymentId}", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetDeploymentRequest",
+}) as any as S.Schema<GetDeploymentRequest>;
+
+/** Environment variable names present on this compute version. Values are always redacted as "[redacted]" and must not be treated as deployed secret values. */
+export type GetDeploymentResponseDataEnvVarsMap = {
+  [key: string]: string | undefined;
+};
+export const GetDeploymentResponseDataEnvVarsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetDeploymentResponseDataEnvVarsMap>;
+
+export interface GetDeploymentResponseDataPortMapping {
+  http?: number;
+}
+export const GetDeploymentResponseDataPortMapping = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      http: S.optional(S.Number),
+    }),
+).annotate({
+  identifier: "GetDeploymentResponseDataPortMapping",
+}) as any as S.Schema<GetDeploymentResponseDataPortMapping>;
+
+export interface GetDeploymentResponseData {
+  id: string;
+  type: string;
+  url: string;
+  serviceId: string;
+  foundryVersionId: string;
+  status: string;
+  previewDomain: string | null;
+  /** Environment variable names present on this compute version. Values are always redacted as "[redacted]" and must not be treated as deployed secret values. */
+  envVars?: GetDeploymentResponseDataEnvVarsMap;
+  portMapping?: GetDeploymentResponseDataPortMapping;
+  createdAt: string;
+}
+export const GetDeploymentResponseData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    type: S.String,
+    url: S.String,
+    serviceId: S.String,
+    foundryVersionId: S.String,
+    status: S.String,
+    previewDomain: S.NullOr(S.String),
+    envVars: S.optional(GetDeploymentResponseDataEnvVarsMap),
+    portMapping: S.optional(GetDeploymentResponseDataPortMapping),
+    createdAt: S.String,
+  }),
+).annotate({
+  identifier: "GetDeploymentResponseData",
+}) as any as S.Schema<GetDeploymentResponseData>;
+
+export interface GetDeploymentResponse {
+  data: GetDeploymentResponseData;
+}
+export const GetDeploymentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: GetDeploymentResponseData,
+  }),
+).annotate({
+  identifier: "GetDeploymentResponse",
+}) as any as S.Schema<GetDeploymentResponse>;
+
+export type GetDeploymentLogsRequestFromStart = "true" | "false";
+export const GetDeploymentLogsRequestFromStart = /*@__PURE__*/ S.String;
+
+export interface GetDeploymentLogsRequest {
+  deploymentId: string;
+  tail?: number;
+  from_start?: GetDeploymentLogsRequestFromStart | (string & {});
+  cursor?: string;
+}
+export const GetDeploymentLogsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    deploymentId: S.String.pipe(T.Label()),
+    tail: S.optional(S.Number.pipe(T.Query())),
+    from_start: S.optional(GetDeploymentLogsRequestFromStart.pipe(T.Query())),
+    cursor: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/deployments/{deploymentId}/logs",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetDeploymentLogsRequest",
+}) as any as S.Schema<GetDeploymentLogsRequest>;
+
+export interface GetDeploymentLogsResponse {}
+export const GetDeploymentLogsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "GetDeploymentLogsResponse",
+}) as any as S.Schema<GetDeploymentLogsResponse>;
+
+export interface GetDomainRequest {
+  domainId: string;
+}
+export const GetDomainRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    domainId: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/v1/domains/{domainId}", code: 200 })),
+).annotate({
+  identifier: "GetDomainRequest",
+}) as any as S.Schema<GetDomainRequest>;
+
+export type GetDomainResponseDataStatus =
+  | "pending_dns"
+  | "verifying"
+  | "verified_routing_blocked"
+  | "provisioning_tls"
+  | "active"
+  | "failed"
+  | "removing";
+export const GetDomainResponseDataStatus = /*@__PURE__*/ S.String;
+
+export type GetDomainResponseDataFailureCategory =
+  | "dns"
+  | "acme"
+  | "storage"
+  | "unknown";
+export const GetDomainResponseDataFailureCategory = /*@__PURE__*/ S.String;
+
+export type GetDomainResponseDataDnsRecordsItem =
+  CreateDomainRetryResponseDataDnsRecordsItem;
+export const GetDomainResponseDataDnsRecordsItem =
+  CreateDomainRetryResponseDataDnsRecordsItem;
+
+export type GetDomainResponseDataDnsRecordsList =
+  Array<CreateDomainRetryResponseDataDnsRecordsItem>;
+export const GetDomainResponseDataDnsRecordsList = /*@__PURE__*/ S.Array(
+  CreateDomainRetryResponseDataDnsRecordsItem,
+) as any as S.Schema<GetDomainResponseDataDnsRecordsList>;
+
+export interface GetDomainResponseData {
+  id: string;
+  type: string;
+  url: string;
+  hostname: string;
+  appId: string;
+  /** Deprecated: use `appId` instead. */
+  computeServiceId: string;
+  status: GetDomainResponseDataStatus;
+  foundryStatus: string;
+  failureReason: string | null;
+  failureCategory: GetDomainResponseDataFailureCategory | null;
+  certExpiresAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+  dnsRecords: GetDomainResponseDataDnsRecordsList;
+}
+export const GetDomainResponseData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    type: S.String,
+    url: S.String,
+    hostname: S.String,
+    appId: S.String,
+    computeServiceId: S.String,
+    status: GetDomainResponseDataStatus,
+    foundryStatus: S.String,
+    failureReason: S.NullOr(S.String),
+    failureCategory: S.NullOr(GetDomainResponseDataFailureCategory),
+    certExpiresAt: S.NullOr(S.String),
+    createdAt: S.String,
+    updatedAt: S.String,
+    dnsRecords: GetDomainResponseDataDnsRecordsList,
+  }),
+).annotate({
+  identifier: "GetDomainResponseData",
+}) as any as S.Schema<GetDomainResponseData>;
+
+export interface GetDomainResponse {
+  data: GetDomainResponseData;
+}
+export const GetDomainResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: GetDomainResponseData,
+  }),
+).annotate({
+  identifier: "GetDomainResponse",
+}) as any as S.Schema<GetDomainResponse>;
+
+export interface GetEnvironmentVariableRequest {
+  envVarId: string;
+}
+export const GetEnvironmentVariableRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    envVarId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/environment-variables/{envVarId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetEnvironmentVariableRequest",
+}) as any as S.Schema<GetEnvironmentVariableRequest>;
+
+export type GetEnvironmentVariableResponseDataClass = "production" | "preview";
+export const GetEnvironmentVariableResponseDataClass = /*@__PURE__*/ S.String;
+
+export interface GetEnvironmentVariableResponseData {
+  id: string;
+  type: string;
+  url: string;
+  projectId: string;
+  branchId: string | null;
+  class: GetEnvironmentVariableResponseDataClass;
+  key: string;
+  valueKid: string;
+  isManagedBySystem: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+export const GetEnvironmentVariableResponseData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    type: S.String,
+    url: S.String,
+    projectId: S.String,
+    branchId: S.NullOr(S.String),
+    class: GetEnvironmentVariableResponseDataClass,
+    key: S.String,
+    valueKid: S.String,
+    isManagedBySystem: S.Boolean,
+    createdAt: S.String,
+    updatedAt: S.String,
+  }),
+).annotate({
+  identifier: "GetEnvironmentVariableResponseData",
+}) as any as S.Schema<GetEnvironmentVariableResponseData>;
+
+export interface GetEnvironmentVariableResponse {
+  data: GetEnvironmentVariableResponseData;
+}
+export const GetEnvironmentVariableResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: GetEnvironmentVariableResponseData,
+  }),
+).annotate({
+  identifier: "GetEnvironmentVariableResponse",
+}) as any as S.Schema<GetEnvironmentVariableResponse>;
+
+export type GetEnvironmentVariablesRequestClass = "production" | "preview";
+export const GetEnvironmentVariablesRequestClass = /*@__PURE__*/ S.String;
+
+export interface GetEnvironmentVariablesRequest {
+  cursor?: string;
+  limit?: number;
+  projectId?: string;
+  class?: GetEnvironmentVariablesRequestClass | (string & {});
+  key?: string;
+  branchId?: string;
+}
+export const GetEnvironmentVariablesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    cursor: S.optional(S.String.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    projectId: S.optional(S.String.pipe(T.Query())),
+    class: S.optional(GetEnvironmentVariablesRequestClass.pipe(T.Query())),
+    key: S.optional(S.String.pipe(T.Query())),
+    branchId: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/v1/environment-variables", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetEnvironmentVariablesRequest",
+}) as any as S.Schema<GetEnvironmentVariablesRequest>;
+
+export type GetEnvironmentVariablesResponseDataItemClass =
+  | "production"
+  | "preview";
+export const GetEnvironmentVariablesResponseDataItemClass =
+  /*@__PURE__*/ S.String;
+
+export interface GetEnvironmentVariablesResponseDataItem {
+  id: string;
+  type: string;
+  url: string;
+  projectId: string;
+  branchId: string | null;
+  class: GetEnvironmentVariablesResponseDataItemClass;
+  key: string;
+  valueKid: string;
+  isManagedBySystem: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+export const GetEnvironmentVariablesResponseDataItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.String,
+      type: S.String,
+      url: S.String,
+      projectId: S.String,
+      branchId: S.NullOr(S.String),
+      class: GetEnvironmentVariablesResponseDataItemClass,
+      key: S.String,
+      valueKid: S.String,
+      isManagedBySystem: S.Boolean,
+      createdAt: S.String,
+      updatedAt: S.String,
+    }),
+).annotate({
+  identifier: "GetEnvironmentVariablesResponseDataItem",
+}) as any as S.Schema<GetEnvironmentVariablesResponseDataItem>;
+
+export type GetEnvironmentVariablesResponseDataList =
+  Array<GetEnvironmentVariablesResponseDataItem>;
+export const GetEnvironmentVariablesResponseDataList = /*@__PURE__*/ S.Array(
+  GetEnvironmentVariablesResponseDataItem,
+) as any as S.Schema<GetEnvironmentVariablesResponseDataList>;
+
+export type GetEnvironmentVariablesResponsePagination =
+  GetBucketKeysResponsePagination;
+export const GetEnvironmentVariablesResponsePagination =
+  GetBucketKeysResponsePagination;
+
+export interface GetEnvironmentVariablesResponse {
+  data: GetEnvironmentVariablesResponseDataList;
+  pagination: GetBucketKeysResponsePagination;
+}
+export const GetEnvironmentVariablesResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: GetEnvironmentVariablesResponseDataList,
+    pagination: GetBucketKeysResponsePagination,
+  }),
+).annotate({
+  identifier: "GetEnvironmentVariablesResponse",
+}) as any as S.Schema<GetEnvironmentVariablesResponse>;
+
+export interface GetIntegrationRequest {
+  id: string;
+}
+export const GetIntegrationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/v1/integrations/{id}", code: 200 })),
+).annotate({
+  identifier: "GetIntegrationRequest",
+}) as any as S.Schema<GetIntegrationRequest>;
+
+export type GetIntegrationResponseDataScopesList = Array<string>;
+export const GetIntegrationResponseDataScopesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GetIntegrationResponseDataScopesList>;
+
+export interface GetIntegrationResponseDataClient {
+  id: string;
+  name: string;
+  createdAt: string;
+}
+export const GetIntegrationResponseDataClient = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    name: S.String,
+    createdAt: S.String,
+  }),
+).annotate({
+  identifier: "GetIntegrationResponseDataClient",
+}) as any as S.Schema<GetIntegrationResponseDataClient>;
+
+export interface GetIntegrationResponseDataCreatedByUser {
+  id: string;
+  email: string;
+  displayName: string | null;
+}
+export const GetIntegrationResponseDataCreatedByUser = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.String,
+      email: S.String,
+      displayName: S.NullOr(S.String),
+    }),
+).annotate({
+  identifier: "GetIntegrationResponseDataCreatedByUser",
+}) as any as S.Schema<GetIntegrationResponseDataCreatedByUser>;
+
+export interface GetIntegrationResponseData {
+  id: string;
+  url: string;
+  createdAt: string;
+  scopes: GetIntegrationResponseDataScopesList;
+  client: GetIntegrationResponseDataClient;
+  createdByUser: GetIntegrationResponseDataCreatedByUser;
+}
+export const GetIntegrationResponseData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    url: S.String,
+    createdAt: S.String,
+    scopes: GetIntegrationResponseDataScopesList,
+    client: GetIntegrationResponseDataClient,
+    createdByUser: GetIntegrationResponseDataCreatedByUser,
+  }),
+).annotate({
+  identifier: "GetIntegrationResponseData",
+}) as any as S.Schema<GetIntegrationResponseData>;
+
+export interface GetIntegrationResponse {
+  data: GetIntegrationResponseData;
+}
+export const GetIntegrationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: GetIntegrationResponseData,
+  }),
+).annotate({
+  identifier: "GetIntegrationResponse",
+}) as any as S.Schema<GetIntegrationResponse>;
+
+export interface GetIntegrationsRequest {
+  cursor?: string;
+  limit?: number;
+  workspaceId: string;
+}
+export const GetIntegrationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    cursor: S.optional(S.String.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    workspaceId: S.String.pipe(T.Query()),
+  }).pipe(T.Http({ method: "GET", uri: "/v1/integrations", code: 200 })),
+).annotate({
+  identifier: "GetIntegrationsRequest",
+}) as any as S.Schema<GetIntegrationsRequest>;
+
+export type GetIntegrationsResponseDataItemScopesList = Array<string>;
+export const GetIntegrationsResponseDataItemScopesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GetIntegrationsResponseDataItemScopesList>;
+
+export type GetIntegrationsResponseDataItemClient =
+  GetIntegrationResponseDataClient;
+export const GetIntegrationsResponseDataItemClient =
+  GetIntegrationResponseDataClient;
+
+export type GetIntegrationsResponseDataItemCreatedByUser =
+  GetIntegrationResponseDataCreatedByUser;
+export const GetIntegrationsResponseDataItemCreatedByUser =
+  GetIntegrationResponseDataCreatedByUser;
+
+export interface GetIntegrationsResponseDataItem {
+  id: string;
+  url: string;
+  createdAt: string;
+  scopes: GetIntegrationsResponseDataItemScopesList;
+  client: GetIntegrationResponseDataClient;
+  createdByUser: GetIntegrationResponseDataCreatedByUser;
+}
+export const GetIntegrationsResponseDataItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    url: S.String,
+    createdAt: S.String,
+    scopes: GetIntegrationsResponseDataItemScopesList,
+    client: GetIntegrationResponseDataClient,
+    createdByUser: GetIntegrationResponseDataCreatedByUser,
+  }),
+).annotate({
+  identifier: "GetIntegrationsResponseDataItem",
+}) as any as S.Schema<GetIntegrationsResponseDataItem>;
+
+export type GetIntegrationsResponseDataList =
+  Array<GetIntegrationsResponseDataItem>;
+export const GetIntegrationsResponseDataList = /*@__PURE__*/ S.Array(
+  GetIntegrationsResponseDataItem,
+) as any as S.Schema<GetIntegrationsResponseDataList>;
+
+export type GetIntegrationsResponsePagination = GetBucketKeysResponsePagination;
+export const GetIntegrationsResponsePagination =
+  GetBucketKeysResponsePagination;
+
+export interface GetIntegrationsResponse {
+  data: GetIntegrationsResponseDataList;
+  pagination: GetBucketKeysResponsePagination;
+}
+export const GetIntegrationsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: GetIntegrationsResponseDataList,
+    pagination: GetBucketKeysResponsePagination,
+  }),
+).annotate({
+  identifier: "GetIntegrationsResponse",
+}) as any as S.Schema<GetIntegrationsResponse>;
+
+export interface GetMeRequest {}
+export const GetMeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(T.Http({ method: "GET", uri: "/v1/me", code: 200 })),
+).annotate({ identifier: "GetMeRequest" }) as any as S.Schema<GetMeRequest>;
+
+export interface GetMeResponseDataUser {
+  id: string;
+  email: string;
+  name: string | null;
+}
+export const GetMeResponseDataUser = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    email: S.String,
+    name: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "GetMeResponseDataUser",
+}) as any as S.Schema<GetMeResponseDataUser>;
+
+export type GetMeResponseDataWorkspace = CreateDatabaseResponseDataRegion;
+export const GetMeResponseDataWorkspace = CreateDatabaseResponseDataRegion;
+
+export type GetMeResponseDataCredentialType =
+  | "oauth"
+  | "service_token"
+  | "management_token";
+export const GetMeResponseDataCredentialType = /*@__PURE__*/ S.String;
+
+export interface GetMeResponseDataCredential {
+  type: GetMeResponseDataCredentialType;
+  id: string | null;
+  name: string | null;
+}
+export const GetMeResponseDataCredential = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: GetMeResponseDataCredentialType,
+    id: S.NullOr(S.String),
+    name: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "GetMeResponseDataCredential",
+}) as any as S.Schema<GetMeResponseDataCredential>;
+
+export interface GetMeResponseData {
+  user: GetMeResponseDataUser | null;
+  workspace: CreateDatabaseResponseDataRegion | null;
+  credential: GetMeResponseDataCredential;
+}
+export const GetMeResponseData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    user: S.NullOr(GetMeResponseDataUser),
+    workspace: S.NullOr(CreateDatabaseResponseDataRegion),
+    credential: GetMeResponseDataCredential,
+  }),
+).annotate({
+  identifier: "GetMeResponseData",
+}) as any as S.Schema<GetMeResponseData>;
+
+export interface GetMeResponse {
+  data: GetMeResponseData;
+}
+export const GetMeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: GetMeResponseData,
+  }),
+).annotate({ identifier: "GetMeResponse" }) as any as S.Schema<GetMeResponse>;
+
+export interface GetProjectRequest {
+  id: string;
+}
+export const GetProjectRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/v1/projects/{id}", code: 200 })),
+).annotate({
+  identifier: "GetProjectRequest",
+}) as any as S.Schema<GetProjectRequest>;
+
+export type GetProjectResponseDataWorkspace = CreateBucketResponseDataProject;
+export const GetProjectResponseDataWorkspace = CreateBucketResponseDataProject;
+
+export interface GetProjectResponseData {
+  id: string;
+  type: string;
+  url: string;
+  name: string;
+  logicalId: string | null;
+  createdAt: string;
+  defaultRegion: string | null;
+  workspace: CreateBucketResponseDataProject;
+}
+export const GetProjectResponseData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    type: S.String,
+    url: S.String,
+    name: S.String,
+    logicalId: S.NullOr(S.String),
+    createdAt: S.String,
+    defaultRegion: S.NullOr(S.String),
+    workspace: CreateBucketResponseDataProject,
+  }),
+).annotate({
+  identifier: "GetProjectResponseData",
+}) as any as S.Schema<GetProjectResponseData>;
+
+export interface GetProjectResponse {
+  data: GetProjectResponseData;
+}
+export const GetProjectResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: GetProjectResponseData,
+  }),
+).annotate({
+  identifier: "GetProjectResponse",
+}) as any as S.Schema<GetProjectResponse>;
+
+export interface GetProjectBranchAlchemyStateStateStacksRequest {
+  projectId: string;
+  branchId: string;
+}
+export const GetProjectBranchAlchemyStateStateStacksRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      projectId: S.String.pipe(T.Label()),
+      branchId: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
-        method: "PUT",
-        uri: "/v1/builds/{buildId}/resources/{resourceType}/{resourceId}",
+        method: "GET",
+        uri: "/v1/projects/{projectId}/branches/{branchId}/alchemy-state/state/stacks",
         code: 200,
       }),
     ),
   ).annotate({
-    identifier:
-      "PutV1BuildsByBuildIdResourcesByResourceTypeByResourceIdRequest",
-  }) as any as S.Schema<PutV1BuildsByBuildIdResourcesByResourceTypeByResourceIdRequest>;
+    identifier: "GetProjectBranchAlchemyStateStateStacksRequest",
+  }) as any as S.Schema<GetProjectBranchAlchemyStateStateStacksRequest>;
 
-export interface PutV1BuildsByBuildIdResourcesByResourceTypeByResourceIdResponse {}
-export const PutV1BuildsByBuildIdResourcesByResourceTypeByResourceIdResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier:
-      "PutV1BuildsByBuildIdResourcesByResourceTypeByResourceIdResponse",
-  }) as any as S.Schema<PutV1BuildsByBuildIdResourcesByResourceTypeByResourceIdResponse>;
+export type GetProjectBranchAlchemyStateStateStacksResponseBodyList =
+  Array<string>;
+export const GetProjectBranchAlchemyStateStateStacksResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<GetProjectBranchAlchemyStateStateStacksResponseBodyList>;
 
-export interface PutV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageOutputRequest {
+export type GetProjectBranchAlchemyStateStateStacksResponse =
+  GetProjectBranchAlchemyStateStateStacksResponseBodyList;
+export const GetProjectBranchAlchemyStateStateStacksResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    GetProjectBranchAlchemyStateStateStacksResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "GetProjectBranchAlchemyStateStateStacksResponse",
+  }) as any as S.Schema<GetProjectBranchAlchemyStateStateStacksResponse>;
+
+export interface GetProjectBranchAlchemyStateStateStackStageOutputRequest {
   projectId: string;
   branchId: string;
   stack: string;
   stage: string;
 }
-export const PutV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageOutputRequest =
+export const GetProjectBranchAlchemyStateStateStackStageOutputRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      projectId: S.String.pipe(T.Label()),
+      branchId: S.String.pipe(T.Label()),
+      stack: S.String.pipe(T.Label()),
+      stage: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/v1/projects/{projectId}/branches/{branchId}/alchemy-state/state/stacks/{stack}/stages/{stage}/output",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "GetProjectBranchAlchemyStateStateStackStageOutputRequest",
+  }) as any as S.Schema<GetProjectBranchAlchemyStateStateStackStageOutputRequest>;
+
+export type GetProjectBranchAlchemyStateStateStackStageOutputResponse = unknown;
+export const GetProjectBranchAlchemyStateStateStackStageOutputResponse =
+  /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
+    identifier: "GetProjectBranchAlchemyStateStateStackStageOutputResponse",
+  }) as any as S.Schema<GetProjectBranchAlchemyStateStateStackStageOutputResponse>;
+
+export interface GetProjectBranchAlchemyStateStateStackStageReplacedResourcesRequest {
+  projectId: string;
+  branchId: string;
+  stack: string;
+  stage: string;
+}
+export const GetProjectBranchAlchemyStateStateStackStageReplacedResourcesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      projectId: S.String.pipe(T.Label()),
+      branchId: S.String.pipe(T.Label()),
+      stack: S.String.pipe(T.Label()),
+      stage: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/v1/projects/{projectId}/branches/{branchId}/alchemy-state/state/stacks/{stack}/stages/{stage}/replaced-resources",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier:
+      "GetProjectBranchAlchemyStateStateStackStageReplacedResourcesRequest",
+  }) as any as S.Schema<GetProjectBranchAlchemyStateStateStackStageReplacedResourcesRequest>;
+
+export type GetProjectBranchAlchemyStateStateStackStageReplacedResourcesResponseBodyList =
+  Array<unknown>;
+export const GetProjectBranchAlchemyStateStateStackStageReplacedResourcesResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<GetProjectBranchAlchemyStateStateStackStageReplacedResourcesResponseBodyList>;
+
+export type GetProjectBranchAlchemyStateStateStackStageReplacedResourcesResponse =
+  GetProjectBranchAlchemyStateStateStackStageReplacedResourcesResponseBodyList;
+export const GetProjectBranchAlchemyStateStateStackStageReplacedResourcesResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    GetProjectBranchAlchemyStateStateStackStageReplacedResourcesResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier:
+      "GetProjectBranchAlchemyStateStateStackStageReplacedResourcesResponse",
+  }) as any as S.Schema<GetProjectBranchAlchemyStateStateStackStageReplacedResourcesResponse>;
+
+export interface GetProjectBranchAlchemyStateStateStackStageResourceRequest {
+  projectId: string;
+  branchId: string;
+  stack: string;
+  stage: string;
+  fqn: string;
+}
+export const GetProjectBranchAlchemyStateStateStackStageResourceRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      projectId: S.String.pipe(T.Label()),
+      branchId: S.String.pipe(T.Label()),
+      stack: S.String.pipe(T.Label()),
+      stage: S.String.pipe(T.Label()),
+      fqn: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/v1/projects/{projectId}/branches/{branchId}/alchemy-state/state/stacks/{stack}/stages/{stage}/resources/{fqn}",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "GetProjectBranchAlchemyStateStateStackStageResourceRequest",
+  }) as any as S.Schema<GetProjectBranchAlchemyStateStateStackStageResourceRequest>;
+
+export type GetProjectBranchAlchemyStateStateStackStageResourceResponse =
+  unknown;
+export const GetProjectBranchAlchemyStateStateStackStageResourceResponse =
+  /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
+    identifier: "GetProjectBranchAlchemyStateStateStackStageResourceResponse",
+  }) as any as S.Schema<GetProjectBranchAlchemyStateStateStackStageResourceResponse>;
+
+export interface GetProjectBranchAlchemyStateStateStackStageResourcesRequest {
+  projectId: string;
+  branchId: string;
+  stack: string;
+  stage: string;
+}
+export const GetProjectBranchAlchemyStateStateStackStageResourcesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      projectId: S.String.pipe(T.Label()),
+      branchId: S.String.pipe(T.Label()),
+      stack: S.String.pipe(T.Label()),
+      stage: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/v1/projects/{projectId}/branches/{branchId}/alchemy-state/state/stacks/{stack}/stages/{stage}/resources",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "GetProjectBranchAlchemyStateStateStackStageResourcesRequest",
+  }) as any as S.Schema<GetProjectBranchAlchemyStateStateStackStageResourcesRequest>;
+
+export type GetProjectBranchAlchemyStateStateStackStageResourcesResponseBodyList =
+  Array<string>;
+export const GetProjectBranchAlchemyStateStateStackStageResourcesResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<GetProjectBranchAlchemyStateStateStackStageResourcesResponseBodyList>;
+
+export type GetProjectBranchAlchemyStateStateStackStageResourcesResponse =
+  GetProjectBranchAlchemyStateStateStackStageResourcesResponseBodyList;
+export const GetProjectBranchAlchemyStateStateStackStageResourcesResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    GetProjectBranchAlchemyStateStateStackStageResourcesResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "GetProjectBranchAlchemyStateStateStackStageResourcesResponse",
+  }) as any as S.Schema<GetProjectBranchAlchemyStateStateStackStageResourcesResponse>;
+
+export interface GetProjectBranchAlchemyStateStateStackStagesRequest {
+  projectId: string;
+  branchId: string;
+  stack: string;
+}
+export const GetProjectBranchAlchemyStateStateStackStagesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      projectId: S.String.pipe(T.Label()),
+      branchId: S.String.pipe(T.Label()),
+      stack: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/v1/projects/{projectId}/branches/{branchId}/alchemy-state/state/stacks/{stack}/stages",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "GetProjectBranchAlchemyStateStateStackStagesRequest",
+  }) as any as S.Schema<GetProjectBranchAlchemyStateStateStackStagesRequest>;
+
+export type GetProjectBranchAlchemyStateStateStackStagesResponseBodyList =
+  Array<string>;
+export const GetProjectBranchAlchemyStateStateStackStagesResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<GetProjectBranchAlchemyStateStateStackStagesResponseBodyList>;
+
+export type GetProjectBranchAlchemyStateStateStackStagesResponse =
+  GetProjectBranchAlchemyStateStateStackStagesResponseBodyList;
+export const GetProjectBranchAlchemyStateStateStackStagesResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    GetProjectBranchAlchemyStateStateStackStagesResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "GetProjectBranchAlchemyStateStateStackStagesResponse",
+  }) as any as S.Schema<GetProjectBranchAlchemyStateStateStackStagesResponse>;
+
+export interface GetProjectBranchAlchemyStateVersionRequest {
+  projectId: string;
+  branchId: string;
+}
+export const GetProjectBranchAlchemyStateVersionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      projectId: S.String.pipe(T.Label()),
+      branchId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/v1/projects/{projectId}/branches/{branchId}/alchemy-state/version",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "GetProjectBranchAlchemyStateVersionRequest",
+  }) as any as S.Schema<GetProjectBranchAlchemyStateVersionRequest>;
+
+export interface GetProjectBranchAlchemyStateVersionResponse {
+  version: number;
+}
+export const GetProjectBranchAlchemyStateVersionResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      version: S.Number,
+    }),
+  ).annotate({
+    identifier: "GetProjectBranchAlchemyStateVersionResponse",
+  }) as any as S.Schema<GetProjectBranchAlchemyStateVersionResponse>;
+
+export interface GetProjectBranchApplicationTopologyRequest {
+  projectId: string;
+  branchId: string;
+}
+export const GetProjectBranchApplicationTopologyRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      projectId: S.String.pipe(T.Label()),
+      branchId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/v1/projects/{projectId}/branches/{branchId}/application-topology",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "GetProjectBranchApplicationTopologyRequest",
+  }) as any as S.Schema<GetProjectBranchApplicationTopologyRequest>;
+
+export type GetProjectBranchApplicationTopologyResponseDataNodesItemKind =
+  | "module"
+  | "service"
+  | "resource";
+export const GetProjectBranchApplicationTopologyResponseDataNodesItemKind =
+  /*@__PURE__*/ S.String;
+
+export interface GetProjectBranchApplicationTopologyResponseDataNodesItem {
+  logicalId: string;
+  parentLogicalId: string | null;
+  kind: GetProjectBranchApplicationTopologyResponseDataNodesItemKind;
+  type?: string;
+}
+export const GetProjectBranchApplicationTopologyResponseDataNodesItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      logicalId: S.String,
+      parentLogicalId: S.NullOr(S.String),
+      kind: GetProjectBranchApplicationTopologyResponseDataNodesItemKind,
+      type: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "GetProjectBranchApplicationTopologyResponseDataNodesItem",
+  }) as any as S.Schema<GetProjectBranchApplicationTopologyResponseDataNodesItem>;
+
+export type GetProjectBranchApplicationTopologyResponseDataNodesList =
+  Array<GetProjectBranchApplicationTopologyResponseDataNodesItem>;
+export const GetProjectBranchApplicationTopologyResponseDataNodesList =
+  /*@__PURE__*/ S.Array(
+    GetProjectBranchApplicationTopologyResponseDataNodesItem,
+  ) as any as S.Schema<GetProjectBranchApplicationTopologyResponseDataNodesList>;
+
+export type GetProjectBranchApplicationTopologyResponseDataPortsItemDirection =
+  | "in"
+  | "out";
+export const GetProjectBranchApplicationTopologyResponseDataPortsItemDirection =
+  /*@__PURE__*/ S.String;
+
+export interface GetProjectBranchApplicationTopologyResponseDataPortsItem {
+  logicalId: string;
+  direction: GetProjectBranchApplicationTopologyResponseDataPortsItemDirection;
+  name: string;
+  contractKind?: string;
+  contractHash?: string;
+}
+export const GetProjectBranchApplicationTopologyResponseDataPortsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      logicalId: S.String,
+      direction:
+        GetProjectBranchApplicationTopologyResponseDataPortsItemDirection,
+      name: S.String,
+      contractKind: S.optional(S.String),
+      contractHash: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "GetProjectBranchApplicationTopologyResponseDataPortsItem",
+  }) as any as S.Schema<GetProjectBranchApplicationTopologyResponseDataPortsItem>;
+
+export type GetProjectBranchApplicationTopologyResponseDataPortsList =
+  Array<GetProjectBranchApplicationTopologyResponseDataPortsItem>;
+export const GetProjectBranchApplicationTopologyResponseDataPortsList =
+  /*@__PURE__*/ S.Array(
+    GetProjectBranchApplicationTopologyResponseDataPortsItem,
+  ) as any as S.Schema<GetProjectBranchApplicationTopologyResponseDataPortsList>;
+
+export type GetProjectBranchApplicationTopologyResponseDataEdgesItemFromDirection =
+  | "in"
+  | "out";
+export const GetProjectBranchApplicationTopologyResponseDataEdgesItemFromDirection =
+  /*@__PURE__*/ S.String;
+
+export interface GetProjectBranchApplicationTopologyResponseDataEdgesItemFrom {
+  logicalId: string;
+  direction: GetProjectBranchApplicationTopologyResponseDataEdgesItemFromDirection;
+  name: string;
+}
+export const GetProjectBranchApplicationTopologyResponseDataEdgesItemFrom =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      logicalId: S.String,
+      direction:
+        GetProjectBranchApplicationTopologyResponseDataEdgesItemFromDirection,
+      name: S.String,
+    }),
+  ).annotate({
+    identifier: "GetProjectBranchApplicationTopologyResponseDataEdgesItemFrom",
+  }) as any as S.Schema<GetProjectBranchApplicationTopologyResponseDataEdgesItemFrom>;
+
+export type GetProjectBranchApplicationTopologyResponseDataEdgesItemToDirection =
+  | "in"
+  | "out";
+export const GetProjectBranchApplicationTopologyResponseDataEdgesItemToDirection =
+  /*@__PURE__*/ S.String;
+
+export interface GetProjectBranchApplicationTopologyResponseDataEdgesItemTo {
+  logicalId: string;
+  direction: GetProjectBranchApplicationTopologyResponseDataEdgesItemToDirection;
+  name: string;
+}
+export const GetProjectBranchApplicationTopologyResponseDataEdgesItemTo =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      logicalId: S.String,
+      direction:
+        GetProjectBranchApplicationTopologyResponseDataEdgesItemToDirection,
+      name: S.String,
+    }),
+  ).annotate({
+    identifier: "GetProjectBranchApplicationTopologyResponseDataEdgesItemTo",
+  }) as any as S.Schema<GetProjectBranchApplicationTopologyResponseDataEdgesItemTo>;
+
+export type GetProjectBranchApplicationTopologyResponseDataEdgesItemFamily =
+  | "communication"
+  | "data";
+export const GetProjectBranchApplicationTopologyResponseDataEdgesItemFamily =
+  /*@__PURE__*/ S.String;
+
+export interface GetProjectBranchApplicationTopologyResponseDataEdgesItem {
+  from: GetProjectBranchApplicationTopologyResponseDataEdgesItemFrom;
+  to: GetProjectBranchApplicationTopologyResponseDataEdgesItemTo;
+  family: GetProjectBranchApplicationTopologyResponseDataEdgesItemFamily;
+  style?: string;
+}
+export const GetProjectBranchApplicationTopologyResponseDataEdgesItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      from: GetProjectBranchApplicationTopologyResponseDataEdgesItemFrom,
+      to: GetProjectBranchApplicationTopologyResponseDataEdgesItemTo,
+      family: GetProjectBranchApplicationTopologyResponseDataEdgesItemFamily,
+      style: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "GetProjectBranchApplicationTopologyResponseDataEdgesItem",
+  }) as any as S.Schema<GetProjectBranchApplicationTopologyResponseDataEdgesItem>;
+
+export type GetProjectBranchApplicationTopologyResponseDataEdgesList =
+  Array<GetProjectBranchApplicationTopologyResponseDataEdgesItem>;
+export const GetProjectBranchApplicationTopologyResponseDataEdgesList =
+  /*@__PURE__*/ S.Array(
+    GetProjectBranchApplicationTopologyResponseDataEdgesItem,
+  ) as any as S.Schema<GetProjectBranchApplicationTopologyResponseDataEdgesList>;
+
+export interface GetProjectBranchApplicationTopologyResponseData {
+  nodes: GetProjectBranchApplicationTopologyResponseDataNodesList;
+  ports: GetProjectBranchApplicationTopologyResponseDataPortsList;
+  edges: GetProjectBranchApplicationTopologyResponseDataEdgesList;
+  contentHash?: string;
+  writtenAt?: string;
+}
+export const GetProjectBranchApplicationTopologyResponseData =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      nodes: GetProjectBranchApplicationTopologyResponseDataNodesList,
+      ports: GetProjectBranchApplicationTopologyResponseDataPortsList,
+      edges: GetProjectBranchApplicationTopologyResponseDataEdgesList,
+      contentHash: S.optional(S.String),
+      writtenAt: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "GetProjectBranchApplicationTopologyResponseData",
+  }) as any as S.Schema<GetProjectBranchApplicationTopologyResponseData>;
+
+export interface GetProjectBranchApplicationTopologyResponse {
+  data: GetProjectBranchApplicationTopologyResponseData;
+}
+export const GetProjectBranchApplicationTopologyResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      data: GetProjectBranchApplicationTopologyResponseData,
+    }),
+  ).annotate({
+    identifier: "GetProjectBranchApplicationTopologyResponse",
+  }) as any as S.Schema<GetProjectBranchApplicationTopologyResponse>;
+
+export interface GetProjectBranchesRequest {
+  projectId: string;
+  cursor?: string;
+  limit?: number;
+  gitName?: string;
+  gitNameContains?: string;
+}
+export const GetProjectBranchesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    projectId: S.String.pipe(T.Label()),
+    cursor: S.optional(S.String.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    gitName: S.optional(S.String.pipe(T.Query())),
+    gitNameContains: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/projects/{projectId}/branches",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetProjectBranchesRequest",
+}) as any as S.Schema<GetProjectBranchesRequest>;
+
+export type GetProjectBranchesResponseDataItemRole = "production" | "preview";
+export const GetProjectBranchesResponseDataItemRole = /*@__PURE__*/ S.String;
+
+/** Thin reference to the parent Project. Member resources are intentionally NOT inlined — list /v1/databases?branchId=<br_xxx> or /v1/apps?branchId=<br_xxx> instead (see API design principles "Flat and Hierarchical Coexistence"). */
+export type GetProjectBranchesResponseDataItemProject =
+  CreateBucketResponseDataProject;
+export const GetProjectBranchesResponseDataItemProject =
+  CreateBucketResponseDataProject;
+
+export interface GetProjectBranchesResponseDataItem {
+  id: string;
+  type: string;
+  url: string;
+  gitName: string;
+  isDefault: boolean;
+  role: GetProjectBranchesResponseDataItemRole;
+  createdAt: string;
+  updatedAt: string;
+  /** Thin reference to the parent Project. Member resources are intentionally NOT inlined — list /v1/databases?branchId=<br_xxx> or /v1/apps?branchId=<br_xxx> instead (see API design principles "Flat and Hierarchical Coexistence"). */
+  project: CreateBucketResponseDataProject;
+}
+export const GetProjectBranchesResponseDataItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    type: S.String,
+    url: S.String,
+    gitName: S.String,
+    isDefault: S.Boolean,
+    role: GetProjectBranchesResponseDataItemRole,
+    createdAt: S.String,
+    updatedAt: S.String,
+    project: CreateBucketResponseDataProject,
+  }),
+).annotate({
+  identifier: "GetProjectBranchesResponseDataItem",
+}) as any as S.Schema<GetProjectBranchesResponseDataItem>;
+
+export type GetProjectBranchesResponseDataList =
+  Array<GetProjectBranchesResponseDataItem>;
+export const GetProjectBranchesResponseDataList = /*@__PURE__*/ S.Array(
+  GetProjectBranchesResponseDataItem,
+) as any as S.Schema<GetProjectBranchesResponseDataList>;
+
+export interface GetProjectBranchesResponsePagination {
+  nextCursor: string | null;
+  hasMore: boolean;
+}
+export const GetProjectBranchesResponsePagination = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      nextCursor: S.NullOr(S.String),
+      hasMore: S.Boolean,
+    }),
+).annotate({
+  identifier: "GetProjectBranchesResponsePagination",
+}) as any as S.Schema<GetProjectBranchesResponsePagination>;
+
+export interface GetProjectBranchesResponse {
+  data: GetProjectBranchesResponseDataList;
+  pagination: GetProjectBranchesResponsePagination;
+}
+export const GetProjectBranchesResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: GetProjectBranchesResponseDataList,
+    pagination: GetProjectBranchesResponsePagination,
+  }),
+).annotate({
+  identifier: "GetProjectBranchesResponse",
+}) as any as S.Schema<GetProjectBranchesResponse>;
+
+export interface GetProjectDatabasesRequest {
+  projectId: string;
+  cursor?: string;
+  limit?: number;
+}
+export const GetProjectDatabasesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    projectId: S.String.pipe(T.Label()),
+    cursor: S.optional(S.String.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/projects/{projectId}/databases",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetProjectDatabasesRequest",
+}) as any as S.Schema<GetProjectDatabasesRequest>;
+
+export type GetProjectDatabasesResponseDataItemStatus =
+  | "failure"
+  | "provisioning"
+  | "ready"
+  | "recovering";
+export const GetProjectDatabasesResponseDataItemStatus = /*@__PURE__*/ S.String;
+
+export type GetProjectDatabasesResponseDataItemConnectionsItemKind =
+  | "postgres"
+  | "accelerate";
+export const GetProjectDatabasesResponseDataItemConnectionsItemKind =
+  /*@__PURE__*/ S.String;
+
+export type GetProjectDatabasesResponseDataItemConnectionsItemEndpointsDirect =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+export const GetProjectDatabasesResponseDataItemConnectionsItemEndpointsDirect =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+
+export type GetProjectDatabasesResponseDataItemConnectionsItemEndpointsPooled =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+export const GetProjectDatabasesResponseDataItemConnectionsItemEndpointsPooled =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+
+export type GetProjectDatabasesResponseDataItemConnectionsItemEndpointsAccelerate =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+export const GetProjectDatabasesResponseDataItemConnectionsItemEndpointsAccelerate =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+
+export type GetProjectDatabasesResponseDataItemConnectionsItemEndpoints =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpoints;
+export const GetProjectDatabasesResponseDataItemConnectionsItemEndpoints =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpoints;
+
+/** Deprecated: use `endpoints.direct` instead. */
+export type GetProjectDatabasesResponseDataItemConnectionsItemDirectConnection =
+  CreateConnectionResponseDataDirectConnection;
+export const GetProjectDatabasesResponseDataItemConnectionsItemDirectConnection =
+  CreateConnectionResponseDataDirectConnection;
+
+export type GetProjectDatabasesResponseDataItemConnectionsItemDatabase =
+  CreateBucketResponseDataProject;
+export const GetProjectDatabasesResponseDataItemConnectionsItemDatabase =
+  CreateBucketResponseDataProject;
+
+export interface GetProjectDatabasesResponseDataItemConnectionsItem {
+  id: string;
+  type: string;
+  url: string;
+  name: string;
+  createdAt: string;
+  kind: GetProjectDatabasesResponseDataItemConnectionsItemKind;
+  endpoints: CreateDatabaseRestoreResponseDataConnectionsItemEndpoints;
+  /** Deprecated: use `endpoints.direct` instead. */
+  directConnection?: CreateConnectionResponseDataDirectConnection | null;
+  database: CreateBucketResponseDataProject;
+}
+export const GetProjectDatabasesResponseDataItemConnectionsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.String,
+      type: S.String,
+      url: S.String,
+      name: S.String,
+      createdAt: S.String,
+      kind: GetProjectDatabasesResponseDataItemConnectionsItemKind,
+      endpoints: CreateDatabaseRestoreResponseDataConnectionsItemEndpoints,
+      directConnection: S.optional(
+        S.NullOr(CreateConnectionResponseDataDirectConnection),
+      ),
+      database: CreateBucketResponseDataProject,
+    }),
+  ).annotate({
+    identifier: "GetProjectDatabasesResponseDataItemConnectionsItem",
+  }) as any as S.Schema<GetProjectDatabasesResponseDataItemConnectionsItem>;
+
+export type GetProjectDatabasesResponseDataItemConnectionsList =
+  Array<GetProjectDatabasesResponseDataItemConnectionsItem>;
+export const GetProjectDatabasesResponseDataItemConnectionsList =
+  /*@__PURE__*/ S.Array(
+    GetProjectDatabasesResponseDataItemConnectionsItem,
+  ) as any as S.Schema<GetProjectDatabasesResponseDataItemConnectionsList>;
+
+export type GetProjectDatabasesResponseDataItemProject =
+  CreateBucketResponseDataProject;
+export const GetProjectDatabasesResponseDataItemProject =
+  CreateBucketResponseDataProject;
+
+export type GetProjectDatabasesResponseDataItemRegion =
+  CreateDatabaseResponseDataRegion;
+export const GetProjectDatabasesResponseDataItemRegion =
+  CreateDatabaseResponseDataRegion;
+
+export type GetProjectDatabasesResponseDataItemSourceCase0 =
+  CreateDatabaseRequestSourceCase0;
+export const GetProjectDatabasesResponseDataItemSourceCase0 =
+  CreateDatabaseRequestSourceCase0;
+
+export type GetProjectDatabasesResponseDataItemSourceCase1 =
+  CreateDatabaseResponseDataSourceCase1;
+export const GetProjectDatabasesResponseDataItemSourceCase1 =
+  CreateDatabaseResponseDataSourceCase1;
+
+export type GetProjectDatabasesResponseDataItemSourceCase2 =
+  CreateDatabaseResponseDataSourceCase2;
+export const GetProjectDatabasesResponseDataItemSourceCase2 =
+  CreateDatabaseResponseDataSourceCase2;
+
+export type GetProjectDatabasesResponseDataItemSource =
+  | CreateDatabaseRequestSourceCase0
+  | CreateDatabaseResponseDataSourceCase1
+  | CreateDatabaseResponseDataSourceCase2;
+export const GetProjectDatabasesResponseDataItemSource =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Union([
+      GetProjectDatabasesResponseDataItemSourceCase0,
+      GetProjectDatabasesResponseDataItemSourceCase1,
+      GetProjectDatabasesResponseDataItemSourceCase2,
+    ]),
+  ) as any as S.Schema<GetProjectDatabasesResponseDataItemSource>;
+
+export interface GetProjectDatabasesResponseDataItem {
+  id: string;
+  type: string;
+  url: string;
+  name: string;
+  status: GetProjectDatabasesResponseDataItemStatus;
+  createdAt: string;
+  isDefault: boolean;
+  defaultConnectionId: string | null;
+  connections: GetProjectDatabasesResponseDataItemConnectionsList;
+  project: CreateBucketResponseDataProject;
+  region: CreateDatabaseResponseDataRegion | null;
+  source: GetProjectDatabasesResponseDataItemSource | null;
+  branchId: string | null;
+}
+export const GetProjectDatabasesResponseDataItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    type: S.String,
+    url: S.String,
+    name: S.String,
+    status: GetProjectDatabasesResponseDataItemStatus,
+    createdAt: S.String,
+    isDefault: S.Boolean,
+    defaultConnectionId: S.NullOr(S.String),
+    connections: GetProjectDatabasesResponseDataItemConnectionsList,
+    project: CreateBucketResponseDataProject,
+    region: S.NullOr(CreateDatabaseResponseDataRegion),
+    source: S.NullOr(GetProjectDatabasesResponseDataItemSource),
+    branchId: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "GetProjectDatabasesResponseDataItem",
+}) as any as S.Schema<GetProjectDatabasesResponseDataItem>;
+
+export type GetProjectDatabasesResponseDataList =
+  Array<GetProjectDatabasesResponseDataItem>;
+export const GetProjectDatabasesResponseDataList = /*@__PURE__*/ S.Array(
+  GetProjectDatabasesResponseDataItem,
+) as any as S.Schema<GetProjectDatabasesResponseDataList>;
+
+export type GetProjectDatabasesResponsePagination =
+  GetBucketKeysResponsePagination;
+export const GetProjectDatabasesResponsePagination =
+  GetBucketKeysResponsePagination;
+
+export interface GetProjectDatabasesResponse {
+  data: GetProjectDatabasesResponseDataList;
+  pagination: GetBucketKeysResponsePagination;
+}
+export const GetProjectDatabasesResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: GetProjectDatabasesResponseDataList,
+    pagination: GetBucketKeysResponsePagination,
+  }),
+).annotate({
+  identifier: "GetProjectDatabasesResponse",
+}) as any as S.Schema<GetProjectDatabasesResponse>;
+
+export interface GetProjectsRequest {
+  cursor?: string;
+  limit?: number;
+  logicalId?: string;
+}
+export const GetProjectsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    cursor: S.optional(S.String.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    logicalId: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/v1/projects", code: 200 })),
+).annotate({
+  identifier: "GetProjectsRequest",
+}) as any as S.Schema<GetProjectsRequest>;
+
+export type GetProjectsResponseDataItemWorkspace =
+  CreateBucketResponseDataProject;
+export const GetProjectsResponseDataItemWorkspace =
+  CreateBucketResponseDataProject;
+
+export type GetProjectsResponseDataItem = GetProjectResponseData;
+export const GetProjectsResponseDataItem = GetProjectResponseData;
+
+export type GetProjectsResponseDataList = Array<GetProjectResponseData>;
+export const GetProjectsResponseDataList = /*@__PURE__*/ S.Array(
+  GetProjectResponseData,
+) as any as S.Schema<GetProjectsResponseDataList>;
+
+export type GetProjectsResponsePagination = GetBucketKeysResponsePagination;
+export const GetProjectsResponsePagination = GetBucketKeysResponsePagination;
+
+export interface GetProjectsResponse {
+  data: GetProjectsResponseDataList;
+  pagination: GetBucketKeysResponsePagination;
+}
+export const GetProjectsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: GetProjectsResponseDataList,
+    pagination: GetBucketKeysResponsePagination,
+  }),
+).annotate({
+  identifier: "GetProjectsResponse",
+}) as any as S.Schema<GetProjectsResponse>;
+
+export type GetRegionsRequestProduct = "postgres" | "accelerate";
+export const GetRegionsRequestProduct = /*@__PURE__*/ S.String;
+
+export interface GetRegionsRequest {
+  product?: GetRegionsRequestProduct | (string & {});
+}
+export const GetRegionsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    product: S.optional(GetRegionsRequestProduct.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/v1/regions", code: 200 })),
+).annotate({
+  identifier: "GetRegionsRequest",
+}) as any as S.Schema<GetRegionsRequest>;
+
+export type GetRegionsResponseDataItemProduct = "postgres" | "accelerate";
+export const GetRegionsResponseDataItemProduct = /*@__PURE__*/ S.String;
+
+export type GetRegionsResponseDataItemStatus = "available" | "unavailable";
+export const GetRegionsResponseDataItemStatus = /*@__PURE__*/ S.String;
+
+export interface GetRegionsResponseDataItem {
+  id: string;
+  type: string;
+  name: string;
+  product: GetRegionsResponseDataItemProduct;
+  status?: GetRegionsResponseDataItemStatus;
+}
+export const GetRegionsResponseDataItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    type: S.String,
+    name: S.String,
+    product: GetRegionsResponseDataItemProduct,
+    status: S.optional(GetRegionsResponseDataItemStatus),
+  }),
+).annotate({
+  identifier: "GetRegionsResponseDataItem",
+}) as any as S.Schema<GetRegionsResponseDataItem>;
+
+export type GetRegionsResponseDataList = Array<GetRegionsResponseDataItem>;
+export const GetRegionsResponseDataList = /*@__PURE__*/ S.Array(
+  GetRegionsResponseDataItem,
+) as any as S.Schema<GetRegionsResponseDataList>;
+
+export interface GetRegionsResponse {
+  data: GetRegionsResponseDataList;
+}
+export const GetRegionsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: GetRegionsResponseDataList,
+  }),
+).annotate({
+  identifier: "GetRegionsResponse",
+}) as any as S.Schema<GetRegionsResponse>;
+
+export interface GetRegionsAccelerateRequest {}
+export const GetRegionsAccelerateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({ method: "GET", uri: "/v1/regions/accelerate", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetRegionsAccelerateRequest",
+}) as any as S.Schema<GetRegionsAccelerateRequest>;
+
+export interface GetRegionsAccelerateResponseDataItem {
+  id: string;
+  type: string;
+  name: string;
+}
+export const GetRegionsAccelerateResponseDataItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.String,
+      type: S.String,
+      name: S.String,
+    }),
+).annotate({
+  identifier: "GetRegionsAccelerateResponseDataItem",
+}) as any as S.Schema<GetRegionsAccelerateResponseDataItem>;
+
+export type GetRegionsAccelerateResponseDataList =
+  Array<GetRegionsAccelerateResponseDataItem>;
+export const GetRegionsAccelerateResponseDataList = /*@__PURE__*/ S.Array(
+  GetRegionsAccelerateResponseDataItem,
+) as any as S.Schema<GetRegionsAccelerateResponseDataList>;
+
+export interface GetRegionsAccelerateResponse {
+  data: GetRegionsAccelerateResponseDataList;
+}
+export const GetRegionsAccelerateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: GetRegionsAccelerateResponseDataList,
+  }),
+).annotate({
+  identifier: "GetRegionsAccelerateResponse",
+}) as any as S.Schema<GetRegionsAccelerateResponse>;
+
+export interface GetRegionsPostgresRequest {}
+export const GetRegionsPostgresRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({ method: "GET", uri: "/v1/regions/postgres", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetRegionsPostgresRequest",
+}) as any as S.Schema<GetRegionsPostgresRequest>;
+
+export type GetRegionsPostgresResponseDataItemStatus =
+  | "available"
+  | "unavailable";
+export const GetRegionsPostgresResponseDataItemStatus = /*@__PURE__*/ S.String;
+
+export interface GetRegionsPostgresResponseDataItem {
+  id: string;
+  type: string;
+  name: string;
+  status: GetRegionsPostgresResponseDataItemStatus;
+}
+export const GetRegionsPostgresResponseDataItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    type: S.String,
+    name: S.String,
+    status: GetRegionsPostgresResponseDataItemStatus,
+  }),
+).annotate({
+  identifier: "GetRegionsPostgresResponseDataItem",
+}) as any as S.Schema<GetRegionsPostgresResponseDataItem>;
+
+export type GetRegionsPostgresResponseDataList =
+  Array<GetRegionsPostgresResponseDataItem>;
+export const GetRegionsPostgresResponseDataList = /*@__PURE__*/ S.Array(
+  GetRegionsPostgresResponseDataItem,
+) as any as S.Schema<GetRegionsPostgresResponseDataList>;
+
+export interface GetRegionsPostgresResponse {
+  data: GetRegionsPostgresResponseDataList;
+}
+export const GetRegionsPostgresResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: GetRegionsPostgresResponseDataList,
+  }),
+).annotate({
+  identifier: "GetRegionsPostgresResponse",
+}) as any as S.Schema<GetRegionsPostgresResponse>;
+
+export interface GetScmInstallationRepositoriesRequest {
+  installationId: string;
+  cursor?: string;
+  limit?: number;
+}
+export const GetScmInstallationRepositoriesRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      installationId: S.String.pipe(T.Label()),
+      cursor: S.optional(S.String.pipe(T.Query())),
+      limit: S.optional(S.Number.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/v1/scm-installations/{installationId}/repositories",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "GetScmInstallationRepositoriesRequest",
+}) as any as S.Schema<GetScmInstallationRepositoriesRequest>;
+
+export interface GetScmInstallationRepositoriesResponseDataItem {
+  /** Numeric repository ID assigned by the SCM provider */
+  id: number;
+  type: string;
+  /** Full repository name, e.g. "octocat/hello" */
+  fullName: string;
+  defaultBranch: string;
+  isPrivate: boolean;
+}
+export const GetScmInstallationRepositoriesResponseDataItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.Number,
+      type: S.String,
+      fullName: S.String,
+      defaultBranch: S.String,
+      isPrivate: S.Boolean,
+    }),
+  ).annotate({
+    identifier: "GetScmInstallationRepositoriesResponseDataItem",
+  }) as any as S.Schema<GetScmInstallationRepositoriesResponseDataItem>;
+
+export type GetScmInstallationRepositoriesResponseDataList =
+  Array<GetScmInstallationRepositoriesResponseDataItem>;
+export const GetScmInstallationRepositoriesResponseDataList =
+  /*@__PURE__*/ S.Array(
+    GetScmInstallationRepositoriesResponseDataItem,
+  ) as any as S.Schema<GetScmInstallationRepositoriesResponseDataList>;
+
+export type GetScmInstallationRepositoriesResponsePagination =
+  GetProjectBranchesResponsePagination;
+export const GetScmInstallationRepositoriesResponsePagination =
+  GetProjectBranchesResponsePagination;
+
+export interface GetScmInstallationRepositoriesResponse {
+  data: GetScmInstallationRepositoriesResponseDataList;
+  pagination: GetProjectBranchesResponsePagination;
+}
+export const GetScmInstallationRepositoriesResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      data: GetScmInstallationRepositoriesResponseDataList,
+      pagination: GetProjectBranchesResponsePagination,
+    }),
+).annotate({
+  identifier: "GetScmInstallationRepositoriesResponse",
+}) as any as S.Schema<GetScmInstallationRepositoriesResponse>;
+
+export interface GetScmInstallationsRequest {
+  cursor?: string;
+  limit?: number;
+  workspaceId: string;
+}
+export const GetScmInstallationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    cursor: S.optional(S.String.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    workspaceId: S.String.pipe(T.Query()),
+  }).pipe(T.Http({ method: "GET", uri: "/v1/scm-installations", code: 200 })),
+).annotate({
+  identifier: "GetScmInstallationsRequest",
+}) as any as S.Schema<GetScmInstallationsRequest>;
+
+export type GetScmInstallationsResponseDataItemProvider = "github";
+export const GetScmInstallationsResponseDataItemProvider =
+  /*@__PURE__*/ S.String;
+
+export type GetScmInstallationsResponseDataItemAccountType =
+  | "user"
+  | "organization";
+export const GetScmInstallationsResponseDataItemAccountType =
+  /*@__PURE__*/ S.String;
+
+export interface GetScmInstallationsResponseDataItem {
+  id: string;
+  type: string;
+  url: string;
+  provider: GetScmInstallationsResponseDataItemProvider;
+  /** Numeric installation ID assigned by the SCM provider */
+  installationId: number;
+  /** Numeric account ID assigned by the SCM provider */
+  accountId: number;
+  accountLogin: string;
+  accountType: GetScmInstallationsResponseDataItemAccountType;
+  suspended: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+export const GetScmInstallationsResponseDataItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    type: S.String,
+    url: S.String,
+    provider: GetScmInstallationsResponseDataItemProvider,
+    installationId: S.Number,
+    accountId: S.Number,
+    accountLogin: S.String,
+    accountType: GetScmInstallationsResponseDataItemAccountType,
+    suspended: S.Boolean,
+    createdAt: S.String,
+    updatedAt: S.String,
+  }),
+).annotate({
+  identifier: "GetScmInstallationsResponseDataItem",
+}) as any as S.Schema<GetScmInstallationsResponseDataItem>;
+
+export type GetScmInstallationsResponseDataList =
+  Array<GetScmInstallationsResponseDataItem>;
+export const GetScmInstallationsResponseDataList = /*@__PURE__*/ S.Array(
+  GetScmInstallationsResponseDataItem,
+) as any as S.Schema<GetScmInstallationsResponseDataList>;
+
+export type GetScmInstallationsResponsePagination =
+  GetBucketKeysResponsePagination;
+export const GetScmInstallationsResponsePagination =
+  GetBucketKeysResponsePagination;
+
+export interface GetScmInstallationsResponse {
+  data: GetScmInstallationsResponseDataList;
+  pagination: GetBucketKeysResponsePagination;
+}
+export const GetScmInstallationsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: GetScmInstallationsResponseDataList,
+    pagination: GetBucketKeysResponsePagination,
+  }),
+).annotate({
+  identifier: "GetScmInstallationsResponse",
+}) as any as S.Schema<GetScmInstallationsResponse>;
+
+export interface GetServiceRequest {
+  serviceId: string;
+}
+export const GetServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/v1/services/{serviceId}", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetServiceRequest",
+}) as any as S.Schema<GetServiceRequest>;
+
+export type GetServiceResponseDataRegion = CreateDatabaseResponseDataRegion;
+export const GetServiceResponseDataRegion = CreateDatabaseResponseDataRegion;
+
+export type GetServiceResponseData = CreateServiceResponseData;
+export const GetServiceResponseData = CreateServiceResponseData;
+
+export interface GetServiceResponse {
+  data: CreateServiceResponseData;
+}
+export const GetServiceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: CreateServiceResponseData,
+  }),
+).annotate({
+  identifier: "GetServiceResponse",
+}) as any as S.Schema<GetServiceResponse>;
+
+export interface GetServiceDeploymentsRequest {
+  serviceId: string;
+  cursor?: string;
+  limit?: number;
+}
+export const GetServiceDeploymentsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceId: S.String.pipe(T.Label()),
+    cursor: S.optional(S.String.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/services/{serviceId}/deployments",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetServiceDeploymentsRequest",
+}) as any as S.Schema<GetServiceDeploymentsRequest>;
+
+export interface GetServiceDeploymentsResponseDataItem {
+  id: string;
+  type: string;
+  url: string;
+  serviceId: string;
+  foundryVersionId: string;
+  createdAt: string;
+}
+export const GetServiceDeploymentsResponseDataItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.String,
+      type: S.String,
+      url: S.String,
+      serviceId: S.String,
+      foundryVersionId: S.String,
+      createdAt: S.String,
+    }),
+).annotate({
+  identifier: "GetServiceDeploymentsResponseDataItem",
+}) as any as S.Schema<GetServiceDeploymentsResponseDataItem>;
+
+export type GetServiceDeploymentsResponseDataList =
+  Array<GetServiceDeploymentsResponseDataItem>;
+export const GetServiceDeploymentsResponseDataList = /*@__PURE__*/ S.Array(
+  GetServiceDeploymentsResponseDataItem,
+) as any as S.Schema<GetServiceDeploymentsResponseDataList>;
+
+export type GetServiceDeploymentsResponsePagination =
+  GetBucketKeysResponsePagination;
+export const GetServiceDeploymentsResponsePagination =
+  GetBucketKeysResponsePagination;
+
+export interface GetServiceDeploymentsResponse {
+  data: GetServiceDeploymentsResponseDataList;
+  pagination: GetBucketKeysResponsePagination;
+}
+export const GetServiceDeploymentsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: GetServiceDeploymentsResponseDataList,
+    pagination: GetBucketKeysResponsePagination,
+  }),
+).annotate({
+  identifier: "GetServiceDeploymentsResponse",
+}) as any as S.Schema<GetServiceDeploymentsResponse>;
+
+export interface GetServiceDomainsRequest {
+  serviceId: string;
+}
+export const GetServiceDomainsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/services/{serviceId}/domains",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetServiceDomainsRequest",
+}) as any as S.Schema<GetServiceDomainsRequest>;
+
+export type GetServiceDomainsResponseDataItemStatus =
+  | "pending_dns"
+  | "verifying"
+  | "verified_routing_blocked"
+  | "provisioning_tls"
+  | "active"
+  | "failed"
+  | "removing";
+export const GetServiceDomainsResponseDataItemStatus = /*@__PURE__*/ S.String;
+
+export type GetServiceDomainsResponseDataItemFailureCategory =
+  | "dns"
+  | "acme"
+  | "storage"
+  | "unknown";
+export const GetServiceDomainsResponseDataItemFailureCategory =
+  /*@__PURE__*/ S.String;
+
+export type GetServiceDomainsResponseDataItemDnsRecordsItem =
+  CreateDomainRetryResponseDataDnsRecordsItem;
+export const GetServiceDomainsResponseDataItemDnsRecordsItem =
+  CreateDomainRetryResponseDataDnsRecordsItem;
+
+export type GetServiceDomainsResponseDataItemDnsRecordsList =
+  Array<CreateDomainRetryResponseDataDnsRecordsItem>;
+export const GetServiceDomainsResponseDataItemDnsRecordsList =
+  /*@__PURE__*/ S.Array(
+    CreateDomainRetryResponseDataDnsRecordsItem,
+  ) as any as S.Schema<GetServiceDomainsResponseDataItemDnsRecordsList>;
+
+export interface GetServiceDomainsResponseDataItem {
+  id: string;
+  type: string;
+  url: string;
+  hostname: string;
+  appId: string;
+  /** Deprecated: use `appId` instead. */
+  computeServiceId: string;
+  status: GetServiceDomainsResponseDataItemStatus;
+  foundryStatus: string;
+  failureReason: string | null;
+  failureCategory: GetServiceDomainsResponseDataItemFailureCategory | null;
+  certExpiresAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+  dnsRecords: GetServiceDomainsResponseDataItemDnsRecordsList;
+}
+export const GetServiceDomainsResponseDataItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    type: S.String,
+    url: S.String,
+    hostname: S.String,
+    appId: S.String,
+    computeServiceId: S.String,
+    status: GetServiceDomainsResponseDataItemStatus,
+    foundryStatus: S.String,
+    failureReason: S.NullOr(S.String),
+    failureCategory: S.NullOr(GetServiceDomainsResponseDataItemFailureCategory),
+    certExpiresAt: S.NullOr(S.String),
+    createdAt: S.String,
+    updatedAt: S.String,
+    dnsRecords: GetServiceDomainsResponseDataItemDnsRecordsList,
+  }),
+).annotate({
+  identifier: "GetServiceDomainsResponseDataItem",
+}) as any as S.Schema<GetServiceDomainsResponseDataItem>;
+
+export type GetServiceDomainsResponseDataList =
+  Array<GetServiceDomainsResponseDataItem>;
+export const GetServiceDomainsResponseDataList = /*@__PURE__*/ S.Array(
+  GetServiceDomainsResponseDataItem,
+) as any as S.Schema<GetServiceDomainsResponseDataList>;
+
+export interface GetServiceDomainsResponsePagination {
+  hasMore: boolean;
+  nextCursor: unknown | null;
+}
+export const GetServiceDomainsResponsePagination = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    hasMore: S.Boolean,
+    nextCursor: S.NullOr(S.Unknown),
+  }),
+).annotate({
+  identifier: "GetServiceDomainsResponsePagination",
+}) as any as S.Schema<GetServiceDomainsResponsePagination>;
+
+export interface GetServiceDomainsResponse {
+  data: GetServiceDomainsResponseDataList;
+  pagination: GetServiceDomainsResponsePagination;
+}
+export const GetServiceDomainsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: GetServiceDomainsResponseDataList,
+    pagination: GetServiceDomainsResponsePagination,
+  }),
+).annotate({
+  identifier: "GetServiceDomainsResponse",
+}) as any as S.Schema<GetServiceDomainsResponse>;
+
+export interface GetServicesRequest {
+  cursor?: string;
+  limit?: number;
+  projectId?: string;
+  branchId?: string;
+  branchGitName?: string;
+}
+export const GetServicesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    cursor: S.optional(S.String.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    projectId: S.optional(S.String.pipe(T.Query())),
+    branchId: S.optional(S.String.pipe(T.Query())),
+    branchGitName: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/v1/services", code: 200 })),
+).annotate({
+  identifier: "GetServicesRequest",
+}) as any as S.Schema<GetServicesRequest>;
+
+export type GetServicesResponseDataItemRegion =
+  CreateDatabaseResponseDataRegion;
+export const GetServicesResponseDataItemRegion =
+  CreateDatabaseResponseDataRegion;
+
+export type GetServicesResponseDataItem = CreateServiceResponseData;
+export const GetServicesResponseDataItem = CreateServiceResponseData;
+
+export type GetServicesResponseDataList = Array<CreateServiceResponseData>;
+export const GetServicesResponseDataList = /*@__PURE__*/ S.Array(
+  CreateServiceResponseData,
+) as any as S.Schema<GetServicesResponseDataList>;
+
+export type GetServicesResponsePagination = GetBucketKeysResponsePagination;
+export const GetServicesResponsePagination = GetBucketKeysResponsePagination;
+
+export interface GetServicesResponse {
+  data: GetServicesResponseDataList;
+  pagination: GetBucketKeysResponsePagination;
+}
+export const GetServicesResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: GetServicesResponseDataList,
+    pagination: GetBucketKeysResponsePagination,
+  }),
+).annotate({
+  identifier: "GetServicesResponse",
+}) as any as S.Schema<GetServicesResponse>;
+
+export interface GetSourceRepositoriesRequest {
+  cursor?: string;
+  limit?: number;
+  projectId: string;
+}
+export const GetSourceRepositoriesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    cursor: S.optional(S.String.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    projectId: S.String.pipe(T.Query()),
+  }).pipe(T.Http({ method: "GET", uri: "/v1/source-repositories", code: 200 })),
+).annotate({
+  identifier: "GetSourceRepositoriesRequest",
+}) as any as S.Schema<GetSourceRepositoriesRequest>;
+
+export type GetSourceRepositoriesResponseDataItemProvider = "github";
+export const GetSourceRepositoriesResponseDataItemProvider =
+  /*@__PURE__*/ S.String;
+
+export type GetSourceRepositoriesResponseDataItemStatus = "active" | "archived";
+export const GetSourceRepositoriesResponseDataItemStatus =
+  /*@__PURE__*/ S.String;
+
+export interface GetSourceRepositoriesResponseDataItem {
+  id: string;
+  type: string;
+  url: string;
+  repoId: number;
+  provider: GetSourceRepositoriesResponseDataItemProvider;
+  repoFullName: string;
+  defaultBranch: string;
+  isPrivate: boolean;
+  status: GetSourceRepositoriesResponseDataItemStatus;
+  projectId: string;
+  installationId: string;
+  createdAt: string;
+  updatedAt: string;
+}
+export const GetSourceRepositoriesResponseDataItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.String,
+      type: S.String,
+      url: S.String,
+      repoId: S.Number,
+      provider: GetSourceRepositoriesResponseDataItemProvider,
+      repoFullName: S.String,
+      defaultBranch: S.String,
+      isPrivate: S.Boolean,
+      status: GetSourceRepositoriesResponseDataItemStatus,
+      projectId: S.String,
+      installationId: S.String,
+      createdAt: S.String,
+      updatedAt: S.String,
+    }),
+).annotate({
+  identifier: "GetSourceRepositoriesResponseDataItem",
+}) as any as S.Schema<GetSourceRepositoriesResponseDataItem>;
+
+export type GetSourceRepositoriesResponseDataList =
+  Array<GetSourceRepositoriesResponseDataItem>;
+export const GetSourceRepositoriesResponseDataList = /*@__PURE__*/ S.Array(
+  GetSourceRepositoriesResponseDataItem,
+) as any as S.Schema<GetSourceRepositoriesResponseDataList>;
+
+export type GetSourceRepositoriesResponsePagination =
+  GetProjectBranchesResponsePagination;
+export const GetSourceRepositoriesResponsePagination =
+  GetProjectBranchesResponsePagination;
+
+export interface GetSourceRepositoriesResponse {
+  data: GetSourceRepositoriesResponseDataList;
+  pagination: GetProjectBranchesResponsePagination;
+}
+export const GetSourceRepositoriesResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: GetSourceRepositoriesResponseDataList,
+    pagination: GetProjectBranchesResponsePagination,
+  }),
+).annotate({
+  identifier: "GetSourceRepositoriesResponse",
+}) as any as S.Schema<GetSourceRepositoriesResponse>;
+
+export interface GetSourceRepositoryRequest {
+  id: string;
+}
+export const GetSourceRepositoryRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/v1/source-repositories/{id}", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetSourceRepositoryRequest",
+}) as any as S.Schema<GetSourceRepositoryRequest>;
+
+export type GetSourceRepositoryResponseDataProvider = "github";
+export const GetSourceRepositoryResponseDataProvider = /*@__PURE__*/ S.String;
+
+export type GetSourceRepositoryResponseDataStatus = "active" | "archived";
+export const GetSourceRepositoryResponseDataStatus = /*@__PURE__*/ S.String;
+
+export interface GetSourceRepositoryResponseData {
+  id: string;
+  type: string;
+  url: string;
+  repoId: number;
+  provider: GetSourceRepositoryResponseDataProvider;
+  repoFullName: string;
+  defaultBranch: string;
+  isPrivate: boolean;
+  status: GetSourceRepositoryResponseDataStatus;
+  projectId: string;
+  installationId: string;
+  createdAt: string;
+  updatedAt: string;
+}
+export const GetSourceRepositoryResponseData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    type: S.String,
+    url: S.String,
+    repoId: S.Number,
+    provider: GetSourceRepositoryResponseDataProvider,
+    repoFullName: S.String,
+    defaultBranch: S.String,
+    isPrivate: S.Boolean,
+    status: GetSourceRepositoryResponseDataStatus,
+    projectId: S.String,
+    installationId: S.String,
+    createdAt: S.String,
+    updatedAt: S.String,
+  }),
+).annotate({
+  identifier: "GetSourceRepositoryResponseData",
+}) as any as S.Schema<GetSourceRepositoryResponseData>;
+
+export interface GetSourceRepositoryResponse {
+  data: GetSourceRepositoryResponseData;
+}
+export const GetSourceRepositoryResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: GetSourceRepositoryResponseData,
+  }),
+).annotate({
+  identifier: "GetSourceRepositoryResponse",
+}) as any as S.Schema<GetSourceRepositoryResponse>;
+
+export interface GetWorkspaceRequest {
+  id: string;
+}
+export const GetWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/v1/workspaces/{id}", code: 200 })),
+).annotate({
+  identifier: "GetWorkspaceRequest",
+}) as any as S.Schema<GetWorkspaceRequest>;
+
+export interface GetWorkspaceResponseData {
+  id: string;
+  type: string;
+  url: string;
+  name: string;
+  createdAt: string;
+}
+export const GetWorkspaceResponseData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    type: S.String,
+    url: S.String,
+    name: S.String,
+    createdAt: S.String,
+  }),
+).annotate({
+  identifier: "GetWorkspaceResponseData",
+}) as any as S.Schema<GetWorkspaceResponseData>;
+
+export interface GetWorkspaceResponse {
+  data: GetWorkspaceResponseData;
+}
+export const GetWorkspaceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: GetWorkspaceResponseData,
+  }),
+).annotate({
+  identifier: "GetWorkspaceResponse",
+}) as any as S.Schema<GetWorkspaceResponse>;
+
+export interface GetWorkspaceIntegrationsRequest {
+  workspaceId: string;
+  cursor?: string;
+  limit?: number;
+}
+export const GetWorkspaceIntegrationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    workspaceId: S.String.pipe(T.Label()),
+    cursor: S.optional(S.String.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/workspaces/{workspaceId}/integrations",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetWorkspaceIntegrationsRequest",
+}) as any as S.Schema<GetWorkspaceIntegrationsRequest>;
+
+export type GetWorkspaceIntegrationsResponseDataItemScopesList = Array<string>;
+export const GetWorkspaceIntegrationsResponseDataItemScopesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<GetWorkspaceIntegrationsResponseDataItemScopesList>;
+
+export type GetWorkspaceIntegrationsResponseDataItemClient =
+  GetIntegrationResponseDataClient;
+export const GetWorkspaceIntegrationsResponseDataItemClient =
+  GetIntegrationResponseDataClient;
+
+export type GetWorkspaceIntegrationsResponseDataItemCreatedByUser =
+  GetIntegrationResponseDataCreatedByUser;
+export const GetWorkspaceIntegrationsResponseDataItemCreatedByUser =
+  GetIntegrationResponseDataCreatedByUser;
+
+export interface GetWorkspaceIntegrationsResponseDataItem {
+  id: string;
+  url: string;
+  createdAt: string;
+  scopes: GetWorkspaceIntegrationsResponseDataItemScopesList;
+  client: GetIntegrationResponseDataClient;
+  createdByUser: GetIntegrationResponseDataCreatedByUser;
+}
+export const GetWorkspaceIntegrationsResponseDataItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.String,
+      url: S.String,
+      createdAt: S.String,
+      scopes: GetWorkspaceIntegrationsResponseDataItemScopesList,
+      client: GetIntegrationResponseDataClient,
+      createdByUser: GetIntegrationResponseDataCreatedByUser,
+    }),
+).annotate({
+  identifier: "GetWorkspaceIntegrationsResponseDataItem",
+}) as any as S.Schema<GetWorkspaceIntegrationsResponseDataItem>;
+
+export type GetWorkspaceIntegrationsResponseDataList =
+  Array<GetWorkspaceIntegrationsResponseDataItem>;
+export const GetWorkspaceIntegrationsResponseDataList = /*@__PURE__*/ S.Array(
+  GetWorkspaceIntegrationsResponseDataItem,
+) as any as S.Schema<GetWorkspaceIntegrationsResponseDataList>;
+
+export type GetWorkspaceIntegrationsResponsePagination =
+  GetBucketKeysResponsePagination;
+export const GetWorkspaceIntegrationsResponsePagination =
+  GetBucketKeysResponsePagination;
+
+export interface GetWorkspaceIntegrationsResponse {
+  data: GetWorkspaceIntegrationsResponseDataList;
+  pagination: GetBucketKeysResponsePagination;
+}
+export const GetWorkspaceIntegrationsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: GetWorkspaceIntegrationsResponseDataList,
+    pagination: GetBucketKeysResponsePagination,
+  }),
+).annotate({
+  identifier: "GetWorkspaceIntegrationsResponse",
+}) as any as S.Schema<GetWorkspaceIntegrationsResponse>;
+
+export interface GetWorkspacesRequest {
+  cursor?: string;
+  limit?: number;
+}
+export const GetWorkspacesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    cursor: S.optional(S.String.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/v1/workspaces", code: 200 })),
+).annotate({
+  identifier: "GetWorkspacesRequest",
+}) as any as S.Schema<GetWorkspacesRequest>;
+
+export type GetWorkspacesResponseDataItem = GetWorkspaceResponseData;
+export const GetWorkspacesResponseDataItem = GetWorkspaceResponseData;
+
+export type GetWorkspacesResponseDataList = Array<GetWorkspaceResponseData>;
+export const GetWorkspacesResponseDataList = /*@__PURE__*/ S.Array(
+  GetWorkspaceResponseData,
+) as any as S.Schema<GetWorkspacesResponseDataList>;
+
+export type GetWorkspacesResponsePagination = GetBucketKeysResponsePagination;
+export const GetWorkspacesResponsePagination = GetBucketKeysResponsePagination;
+
+export interface GetWorkspacesResponse {
+  data: GetWorkspacesResponseDataList;
+  pagination: GetBucketKeysResponsePagination;
+}
+export const GetWorkspacesResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: GetWorkspacesResponseDataList,
+    pagination: GetBucketKeysResponsePagination,
+  }),
+).annotate({
+  identifier: "GetWorkspacesResponse",
+}) as any as S.Schema<GetWorkspacesResponse>;
+
+export interface GetWorkspaceServiceTokensRequest {
+  workspaceId: string;
+  cursor?: string;
+  limit?: number;
+}
+export const GetWorkspaceServiceTokensRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    workspaceId: S.String.pipe(T.Label()),
+    cursor: S.optional(S.String.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/workspaces/{workspaceId}/service-tokens",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetWorkspaceServiceTokensRequest",
+}) as any as S.Schema<GetWorkspaceServiceTokensRequest>;
+
+export interface GetWorkspaceServiceTokensResponseDataItem {
+  id: string;
+  type: string;
+  name: string;
+  valueHint: string;
+  createdAt: string;
+  expiresAt?: string | null;
+}
+export const GetWorkspaceServiceTokensResponseDataItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.String,
+      type: S.String,
+      name: S.String,
+      valueHint: S.String,
+      createdAt: S.String,
+      expiresAt: S.optional(S.NullOr(S.String)),
+    }),
+  ).annotate({
+    identifier: "GetWorkspaceServiceTokensResponseDataItem",
+  }) as any as S.Schema<GetWorkspaceServiceTokensResponseDataItem>;
+
+export type GetWorkspaceServiceTokensResponseDataList =
+  Array<GetWorkspaceServiceTokensResponseDataItem>;
+export const GetWorkspaceServiceTokensResponseDataList = /*@__PURE__*/ S.Array(
+  GetWorkspaceServiceTokensResponseDataItem,
+) as any as S.Schema<GetWorkspaceServiceTokensResponseDataList>;
+
+export type GetWorkspaceServiceTokensResponsePagination =
+  GetBucketKeysResponsePagination;
+export const GetWorkspaceServiceTokensResponsePagination =
+  GetBucketKeysResponsePagination;
+
+export interface GetWorkspaceServiceTokensResponse {
+  data: GetWorkspaceServiceTokensResponseDataList;
+  pagination: GetBucketKeysResponsePagination;
+}
+export const GetWorkspaceServiceTokensResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: GetWorkspaceServiceTokensResponseDataList,
+    pagination: GetBucketKeysResponsePagination,
+  }),
+).annotate({
+  identifier: "GetWorkspaceServiceTokensResponse",
+}) as any as S.Schema<GetWorkspaceServiceTokensResponse>;
+
+export interface GetWorkspaceSubscriptionRequest {
+  id: string;
+}
+export const GetWorkspaceSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/workspaces/{id}/subscription",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetWorkspaceSubscriptionRequest",
+}) as any as S.Schema<GetWorkspaceSubscriptionRequest>;
+
+export interface GetWorkspaceSubscriptionResponseData {
+  planName: string;
+  usageBlocked: boolean;
+  upgradeUrl: string;
+}
+export const GetWorkspaceSubscriptionResponseData = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      planName: S.String,
+      usageBlocked: S.Boolean,
+      upgradeUrl: S.String,
+    }),
+).annotate({
+  identifier: "GetWorkspaceSubscriptionResponseData",
+}) as any as S.Schema<GetWorkspaceSubscriptionResponseData>;
+
+export interface GetWorkspaceSubscriptionResponse {
+  data: GetWorkspaceSubscriptionResponseData;
+}
+export const GetWorkspaceSubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: GetWorkspaceSubscriptionResponseData,
+  }),
+).annotate({
+  identifier: "GetWorkspaceSubscriptionResponse",
+}) as any as S.Schema<GetWorkspaceSubscriptionResponse>;
+
+export type PutBuildResourceRequestResourceType =
+  | "project"
+  | "branch"
+  | "database"
+  | "app"
+  | "deployment"
+  | "bucket"
+  | "service_key"
+  | "config_variable";
+export const PutBuildResourceRequestResourceType = /*@__PURE__*/ S.String;
+
+/** The strongest effect the build had on the resource. Re-reporting is safe: a weaker action never overwrites a stronger one, so `created` survives a later `acted_on`. */
+export type PutBuildResourceRequestAction = "created" | "acted_on" | "deleted";
+export const PutBuildResourceRequestAction = /*@__PURE__*/ S.String;
+
+export interface PutBuildResourceRequest {
+  buildId: string;
+  resourceType: PutBuildResourceRequestResourceType | (string & {});
+  resourceId: string;
+  /** The strongest effect the build had on the resource. Re-reporting is safe: a weaker action never overwrites a stronger one, so `created` survives a later `acted_on`. */
+  action: PutBuildResourceRequestAction | (string & {});
+}
+export const PutBuildResourceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    buildId: S.String.pipe(T.Label()),
+    resourceType: PutBuildResourceRequestResourceType.pipe(T.Label()),
+    resourceId: S.String.pipe(T.Label()),
+    action: PutBuildResourceRequestAction,
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/v1/builds/{buildId}/resources/{resourceType}/{resourceId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "PutBuildResourceRequest",
+}) as any as S.Schema<PutBuildResourceRequest>;
+
+export interface PutBuildResourceResponse {}
+export const PutBuildResourceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "PutBuildResourceResponse",
+}) as any as S.Schema<PutBuildResourceResponse>;
+
+export interface PutProjectBranchAlchemyStateStateStackStageOutputRequest {
+  projectId: string;
+  branchId: string;
+  stack: string;
+  stage: string;
+}
+export const PutProjectBranchAlchemyStateStateStackStageOutputRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       projectId: S.String.pipe(T.Label()),
@@ -7775,26 +6948,23 @@ export const PutV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksBy
       }),
     ),
   ).annotate({
-    identifier:
-      "PutV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageOutputRequest",
-  }) as any as S.Schema<PutV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageOutputRequest>;
+    identifier: "PutProjectBranchAlchemyStateStateStackStageOutputRequest",
+  }) as any as S.Schema<PutProjectBranchAlchemyStateStateStackStageOutputRequest>;
 
-export type PutV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageOutputResponse =
-  unknown;
-export const PutV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageOutputResponse =
+export type PutProjectBranchAlchemyStateStateStackStageOutputResponse = unknown;
+export const PutProjectBranchAlchemyStateStateStackStageOutputResponse =
   /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
-    identifier:
-      "PutV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageOutputResponse",
-  }) as any as S.Schema<PutV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageOutputResponse>;
+    identifier: "PutProjectBranchAlchemyStateStateStackStageOutputResponse",
+  }) as any as S.Schema<PutProjectBranchAlchemyStateStateStackStageOutputResponse>;
 
-export interface PutV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqnRequest {
+export interface PutProjectBranchAlchemyStateStateStackStageResourceRequest {
   projectId: string;
   branchId: string;
   stack: string;
   stage: string;
   fqn: string;
 }
-export const PutV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqnRequest =
+export const PutProjectBranchAlchemyStateStateStackStageResourceRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       projectId: S.String.pipe(T.Label()),
@@ -7810,197 +6980,182 @@ export const PutV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksBy
       }),
     ),
   ).annotate({
-    identifier:
-      "PutV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqnRequest",
-  }) as any as S.Schema<PutV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqnRequest>;
+    identifier: "PutProjectBranchAlchemyStateStateStackStageResourceRequest",
+  }) as any as S.Schema<PutProjectBranchAlchemyStateStateStackStageResourceRequest>;
 
-export type PutV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqnResponse =
+export type PutProjectBranchAlchemyStateStateStackStageResourceResponse =
   unknown;
-export const PutV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqnResponse =
+export const PutProjectBranchAlchemyStateStateStackStageResourceResponse =
   /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
-    identifier:
-      "PutV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqnResponse",
-  }) as any as S.Schema<PutV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqnResponse>;
+    identifier: "PutProjectBranchAlchemyStateStateStackStageResourceResponse",
+  }) as any as S.Schema<PutProjectBranchAlchemyStateStateStackStageResourceResponse>;
 
-export type PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestNodesItemKind =
+export type PutProjectBranchApplicationTopologyRequestNodesItemKind =
   | "module"
   | "service"
   | "resource";
-export const PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestNodesItemKind =
+export const PutProjectBranchApplicationTopologyRequestNodesItemKind =
   /*@__PURE__*/ S.String;
 
-export interface PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestNodesItem {
+export interface PutProjectBranchApplicationTopologyRequestNodesItem {
   logicalId: string;
   parentLogicalId: string | null;
-  kind:
-    | PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestNodesItemKind
-    | (string & {});
+  kind: PutProjectBranchApplicationTopologyRequestNodesItemKind | (string & {});
   type?: string;
 }
-export const PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestNodesItem =
+export const PutProjectBranchApplicationTopologyRequestNodesItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       logicalId: S.String,
       parentLogicalId: S.NullOr(S.String),
-      kind: PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestNodesItemKind,
+      kind: PutProjectBranchApplicationTopologyRequestNodesItemKind,
       type: S.optional(S.String),
     }),
   ).annotate({
-    identifier:
-      "PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestNodesItem",
-  }) as any as S.Schema<PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestNodesItem>;
+    identifier: "PutProjectBranchApplicationTopologyRequestNodesItem",
+  }) as any as S.Schema<PutProjectBranchApplicationTopologyRequestNodesItem>;
 
-export type PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestNodesList =
-  Array<PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestNodesItem>;
-export const PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestNodesList =
+export type PutProjectBranchApplicationTopologyRequestNodesList =
+  Array<PutProjectBranchApplicationTopologyRequestNodesItem>;
+export const PutProjectBranchApplicationTopologyRequestNodesList =
   /*@__PURE__*/ S.Array(
-    PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestNodesItem,
-  ) as any as S.Schema<PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestNodesList>;
+    PutProjectBranchApplicationTopologyRequestNodesItem,
+  ) as any as S.Schema<PutProjectBranchApplicationTopologyRequestNodesList>;
 
-export type PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestPortsItemDirection =
+export type PutProjectBranchApplicationTopologyRequestPortsItemDirection =
   | "in"
   | "out";
-export const PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestPortsItemDirection =
+export const PutProjectBranchApplicationTopologyRequestPortsItemDirection =
   /*@__PURE__*/ S.String;
 
-export interface PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestPortsItem {
+export interface PutProjectBranchApplicationTopologyRequestPortsItem {
   logicalId: string;
   direction:
-    | PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestPortsItemDirection
+    | PutProjectBranchApplicationTopologyRequestPortsItemDirection
     | (string & {});
   name: string;
   contractKind?: string;
   contractHash?: string;
 }
-export const PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestPortsItem =
+export const PutProjectBranchApplicationTopologyRequestPortsItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       logicalId: S.String,
-      direction:
-        PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestPortsItemDirection,
+      direction: PutProjectBranchApplicationTopologyRequestPortsItemDirection,
       name: S.String,
       contractKind: S.optional(S.String),
       contractHash: S.optional(S.String),
     }),
   ).annotate({
-    identifier:
-      "PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestPortsItem",
-  }) as any as S.Schema<PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestPortsItem>;
+    identifier: "PutProjectBranchApplicationTopologyRequestPortsItem",
+  }) as any as S.Schema<PutProjectBranchApplicationTopologyRequestPortsItem>;
 
-export type PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestPortsList =
-  Array<PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestPortsItem>;
-export const PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestPortsList =
+export type PutProjectBranchApplicationTopologyRequestPortsList =
+  Array<PutProjectBranchApplicationTopologyRequestPortsItem>;
+export const PutProjectBranchApplicationTopologyRequestPortsList =
   /*@__PURE__*/ S.Array(
-    PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestPortsItem,
-  ) as any as S.Schema<PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestPortsList>;
+    PutProjectBranchApplicationTopologyRequestPortsItem,
+  ) as any as S.Schema<PutProjectBranchApplicationTopologyRequestPortsList>;
 
-export type PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestEdgesItemFromDirection =
+export type PutProjectBranchApplicationTopologyRequestEdgesItemFromDirection =
   | "in"
   | "out";
-export const PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestEdgesItemFromDirection =
+export const PutProjectBranchApplicationTopologyRequestEdgesItemFromDirection =
   /*@__PURE__*/ S.String;
 
-export interface PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestEdgesItemFrom {
+export interface PutProjectBranchApplicationTopologyRequestEdgesItemFrom {
   logicalId: string;
   direction:
-    | PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestEdgesItemFromDirection
+    | PutProjectBranchApplicationTopologyRequestEdgesItemFromDirection
     | (string & {});
   name: string;
 }
-export const PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestEdgesItemFrom =
+export const PutProjectBranchApplicationTopologyRequestEdgesItemFrom =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       logicalId: S.String,
       direction:
-        PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestEdgesItemFromDirection,
+        PutProjectBranchApplicationTopologyRequestEdgesItemFromDirection,
       name: S.String,
     }),
   ).annotate({
-    identifier:
-      "PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestEdgesItemFrom",
-  }) as any as S.Schema<PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestEdgesItemFrom>;
+    identifier: "PutProjectBranchApplicationTopologyRequestEdgesItemFrom",
+  }) as any as S.Schema<PutProjectBranchApplicationTopologyRequestEdgesItemFrom>;
 
-export type PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestEdgesItemToDirection =
+export type PutProjectBranchApplicationTopologyRequestEdgesItemToDirection =
   | "in"
   | "out";
-export const PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestEdgesItemToDirection =
+export const PutProjectBranchApplicationTopologyRequestEdgesItemToDirection =
   /*@__PURE__*/ S.String;
 
-export interface PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestEdgesItemTo {
+export interface PutProjectBranchApplicationTopologyRequestEdgesItemTo {
   logicalId: string;
   direction:
-    | PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestEdgesItemToDirection
+    | PutProjectBranchApplicationTopologyRequestEdgesItemToDirection
     | (string & {});
   name: string;
 }
-export const PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestEdgesItemTo =
+export const PutProjectBranchApplicationTopologyRequestEdgesItemTo =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       logicalId: S.String,
-      direction:
-        PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestEdgesItemToDirection,
+      direction: PutProjectBranchApplicationTopologyRequestEdgesItemToDirection,
       name: S.String,
     }),
   ).annotate({
-    identifier:
-      "PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestEdgesItemTo",
-  }) as any as S.Schema<PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestEdgesItemTo>;
+    identifier: "PutProjectBranchApplicationTopologyRequestEdgesItemTo",
+  }) as any as S.Schema<PutProjectBranchApplicationTopologyRequestEdgesItemTo>;
 
-export type PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestEdgesItemFamily =
+export type PutProjectBranchApplicationTopologyRequestEdgesItemFamily =
   | "communication"
   | "data";
-export const PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestEdgesItemFamily =
+export const PutProjectBranchApplicationTopologyRequestEdgesItemFamily =
   /*@__PURE__*/ S.String;
 
-export interface PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestEdgesItem {
-  from: PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestEdgesItemFrom;
-  to: PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestEdgesItemTo;
+export interface PutProjectBranchApplicationTopologyRequestEdgesItem {
+  from: PutProjectBranchApplicationTopologyRequestEdgesItemFrom;
+  to: PutProjectBranchApplicationTopologyRequestEdgesItemTo;
   family:
-    | PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestEdgesItemFamily
+    | PutProjectBranchApplicationTopologyRequestEdgesItemFamily
     | (string & {});
   style?: string;
 }
-export const PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestEdgesItem =
+export const PutProjectBranchApplicationTopologyRequestEdgesItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      from: PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestEdgesItemFrom,
-      to: PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestEdgesItemTo,
-      family:
-        PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestEdgesItemFamily,
+      from: PutProjectBranchApplicationTopologyRequestEdgesItemFrom,
+      to: PutProjectBranchApplicationTopologyRequestEdgesItemTo,
+      family: PutProjectBranchApplicationTopologyRequestEdgesItemFamily,
       style: S.optional(S.String),
     }),
   ).annotate({
-    identifier:
-      "PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestEdgesItem",
-  }) as any as S.Schema<PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestEdgesItem>;
+    identifier: "PutProjectBranchApplicationTopologyRequestEdgesItem",
+  }) as any as S.Schema<PutProjectBranchApplicationTopologyRequestEdgesItem>;
 
-export type PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestEdgesList =
-  Array<PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestEdgesItem>;
-export const PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestEdgesList =
+export type PutProjectBranchApplicationTopologyRequestEdgesList =
+  Array<PutProjectBranchApplicationTopologyRequestEdgesItem>;
+export const PutProjectBranchApplicationTopologyRequestEdgesList =
   /*@__PURE__*/ S.Array(
-    PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestEdgesItem,
-  ) as any as S.Schema<PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestEdgesList>;
+    PutProjectBranchApplicationTopologyRequestEdgesItem,
+  ) as any as S.Schema<PutProjectBranchApplicationTopologyRequestEdgesList>;
 
-export interface PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequest {
+export interface PutProjectBranchApplicationTopologyRequest {
   projectId: string;
   branchId: string;
   contentHash?: string;
-  nodes: PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestNodesList;
-  ports: PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestPortsList;
-  edges: PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestEdgesList;
+  nodes: PutProjectBranchApplicationTopologyRequestNodesList;
+  ports: PutProjectBranchApplicationTopologyRequestPortsList;
+  edges: PutProjectBranchApplicationTopologyRequestEdgesList;
 }
-export const PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequest =
+export const PutProjectBranchApplicationTopologyRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       projectId: S.String.pipe(T.Label()),
       branchId: S.String.pipe(T.Label()),
       contentHash: S.optional(S.String),
-      nodes:
-        PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestNodesList,
-      ports:
-        PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestPortsList,
-      edges:
-        PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequestEdgesList,
+      nodes: PutProjectBranchApplicationTopologyRequestNodesList,
+      ports: PutProjectBranchApplicationTopologyRequestPortsList,
+      edges: PutProjectBranchApplicationTopologyRequestEdgesList,
     }).pipe(
       T.Http({
         method: "PUT",
@@ -8009,1632 +7164,853 @@ export const PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyReques
       }),
     ),
   ).annotate({
-    identifier:
-      "PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequest",
-  }) as any as S.Schema<PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequest>;
+    identifier: "PutProjectBranchApplicationTopologyRequest",
+  }) as any as S.Schema<PutProjectBranchApplicationTopologyRequest>;
 
-export type PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataNodesItemKind =
+export type PutProjectBranchApplicationTopologyResponseDataNodesItemKind =
   | "module"
   | "service"
   | "resource";
-export const PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataNodesItemKind =
+export const PutProjectBranchApplicationTopologyResponseDataNodesItemKind =
   /*@__PURE__*/ S.String;
 
-export interface PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataNodesItem {
+export interface PutProjectBranchApplicationTopologyResponseDataNodesItem {
   logicalId: string;
   parentLogicalId: string | null;
-  kind: PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataNodesItemKind;
+  kind: PutProjectBranchApplicationTopologyResponseDataNodesItemKind;
   type?: string;
 }
-export const PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataNodesItem =
+export const PutProjectBranchApplicationTopologyResponseDataNodesItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       logicalId: S.String,
       parentLogicalId: S.NullOr(S.String),
-      kind: PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataNodesItemKind,
+      kind: PutProjectBranchApplicationTopologyResponseDataNodesItemKind,
       type: S.optional(S.String),
     }),
   ).annotate({
-    identifier:
-      "PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataNodesItem",
-  }) as any as S.Schema<PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataNodesItem>;
+    identifier: "PutProjectBranchApplicationTopologyResponseDataNodesItem",
+  }) as any as S.Schema<PutProjectBranchApplicationTopologyResponseDataNodesItem>;
 
-export type PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataNodesList =
-  Array<PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataNodesItem>;
-export const PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataNodesList =
+export type PutProjectBranchApplicationTopologyResponseDataNodesList =
+  Array<PutProjectBranchApplicationTopologyResponseDataNodesItem>;
+export const PutProjectBranchApplicationTopologyResponseDataNodesList =
   /*@__PURE__*/ S.Array(
-    PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataNodesItem,
-  ) as any as S.Schema<PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataNodesList>;
+    PutProjectBranchApplicationTopologyResponseDataNodesItem,
+  ) as any as S.Schema<PutProjectBranchApplicationTopologyResponseDataNodesList>;
 
-export type PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataPortsItemDirection =
+export type PutProjectBranchApplicationTopologyResponseDataPortsItemDirection =
   | "in"
   | "out";
-export const PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataPortsItemDirection =
+export const PutProjectBranchApplicationTopologyResponseDataPortsItemDirection =
   /*@__PURE__*/ S.String;
 
-export interface PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataPortsItem {
+export interface PutProjectBranchApplicationTopologyResponseDataPortsItem {
   logicalId: string;
-  direction: PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataPortsItemDirection;
+  direction: PutProjectBranchApplicationTopologyResponseDataPortsItemDirection;
   name: string;
   contractKind?: string;
   contractHash?: string;
 }
-export const PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataPortsItem =
+export const PutProjectBranchApplicationTopologyResponseDataPortsItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       logicalId: S.String,
       direction:
-        PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataPortsItemDirection,
+        PutProjectBranchApplicationTopologyResponseDataPortsItemDirection,
       name: S.String,
       contractKind: S.optional(S.String),
       contractHash: S.optional(S.String),
     }),
   ).annotate({
-    identifier:
-      "PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataPortsItem",
-  }) as any as S.Schema<PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataPortsItem>;
+    identifier: "PutProjectBranchApplicationTopologyResponseDataPortsItem",
+  }) as any as S.Schema<PutProjectBranchApplicationTopologyResponseDataPortsItem>;
 
-export type PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataPortsList =
-  Array<PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataPortsItem>;
-export const PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataPortsList =
+export type PutProjectBranchApplicationTopologyResponseDataPortsList =
+  Array<PutProjectBranchApplicationTopologyResponseDataPortsItem>;
+export const PutProjectBranchApplicationTopologyResponseDataPortsList =
   /*@__PURE__*/ S.Array(
-    PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataPortsItem,
-  ) as any as S.Schema<PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataPortsList>;
+    PutProjectBranchApplicationTopologyResponseDataPortsItem,
+  ) as any as S.Schema<PutProjectBranchApplicationTopologyResponseDataPortsList>;
 
-export type PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemFromDirection =
+export type PutProjectBranchApplicationTopologyResponseDataEdgesItemFromDirection =
   | "in"
   | "out";
-export const PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemFromDirection =
+export const PutProjectBranchApplicationTopologyResponseDataEdgesItemFromDirection =
   /*@__PURE__*/ S.String;
 
-export interface PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemFrom {
+export interface PutProjectBranchApplicationTopologyResponseDataEdgesItemFrom {
   logicalId: string;
-  direction: PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemFromDirection;
+  direction: PutProjectBranchApplicationTopologyResponseDataEdgesItemFromDirection;
   name: string;
 }
-export const PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemFrom =
+export const PutProjectBranchApplicationTopologyResponseDataEdgesItemFrom =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       logicalId: S.String,
       direction:
-        PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemFromDirection,
+        PutProjectBranchApplicationTopologyResponseDataEdgesItemFromDirection,
       name: S.String,
     }),
   ).annotate({
-    identifier:
-      "PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemFrom",
-  }) as any as S.Schema<PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemFrom>;
+    identifier: "PutProjectBranchApplicationTopologyResponseDataEdgesItemFrom",
+  }) as any as S.Schema<PutProjectBranchApplicationTopologyResponseDataEdgesItemFrom>;
 
-export type PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemToDirection =
+export type PutProjectBranchApplicationTopologyResponseDataEdgesItemToDirection =
   | "in"
   | "out";
-export const PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemToDirection =
+export const PutProjectBranchApplicationTopologyResponseDataEdgesItemToDirection =
   /*@__PURE__*/ S.String;
 
-export interface PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemTo {
+export interface PutProjectBranchApplicationTopologyResponseDataEdgesItemTo {
   logicalId: string;
-  direction: PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemToDirection;
+  direction: PutProjectBranchApplicationTopologyResponseDataEdgesItemToDirection;
   name: string;
 }
-export const PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemTo =
+export const PutProjectBranchApplicationTopologyResponseDataEdgesItemTo =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       logicalId: S.String,
       direction:
-        PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemToDirection,
+        PutProjectBranchApplicationTopologyResponseDataEdgesItemToDirection,
       name: S.String,
     }),
   ).annotate({
-    identifier:
-      "PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemTo",
-  }) as any as S.Schema<PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemTo>;
+    identifier: "PutProjectBranchApplicationTopologyResponseDataEdgesItemTo",
+  }) as any as S.Schema<PutProjectBranchApplicationTopologyResponseDataEdgesItemTo>;
 
-export type PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemFamily =
+export type PutProjectBranchApplicationTopologyResponseDataEdgesItemFamily =
   | "communication"
   | "data";
-export const PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemFamily =
+export const PutProjectBranchApplicationTopologyResponseDataEdgesItemFamily =
   /*@__PURE__*/ S.String;
 
-export interface PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItem {
-  from: PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemFrom;
-  to: PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemTo;
-  family: PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemFamily;
+export interface PutProjectBranchApplicationTopologyResponseDataEdgesItem {
+  from: PutProjectBranchApplicationTopologyResponseDataEdgesItemFrom;
+  to: PutProjectBranchApplicationTopologyResponseDataEdgesItemTo;
+  family: PutProjectBranchApplicationTopologyResponseDataEdgesItemFamily;
   style?: string;
 }
-export const PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItem =
+export const PutProjectBranchApplicationTopologyResponseDataEdgesItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      from: PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemFrom,
-      to: PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemTo,
-      family:
-        PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItemFamily,
+      from: PutProjectBranchApplicationTopologyResponseDataEdgesItemFrom,
+      to: PutProjectBranchApplicationTopologyResponseDataEdgesItemTo,
+      family: PutProjectBranchApplicationTopologyResponseDataEdgesItemFamily,
       style: S.optional(S.String),
     }),
   ).annotate({
-    identifier:
-      "PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItem",
-  }) as any as S.Schema<PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItem>;
+    identifier: "PutProjectBranchApplicationTopologyResponseDataEdgesItem",
+  }) as any as S.Schema<PutProjectBranchApplicationTopologyResponseDataEdgesItem>;
 
-export type PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesList =
-  Array<PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItem>;
-export const PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesList =
+export type PutProjectBranchApplicationTopologyResponseDataEdgesList =
+  Array<PutProjectBranchApplicationTopologyResponseDataEdgesItem>;
+export const PutProjectBranchApplicationTopologyResponseDataEdgesList =
   /*@__PURE__*/ S.Array(
-    PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesItem,
-  ) as any as S.Schema<PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesList>;
+    PutProjectBranchApplicationTopologyResponseDataEdgesItem,
+  ) as any as S.Schema<PutProjectBranchApplicationTopologyResponseDataEdgesList>;
 
-export interface PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseData {
-  nodes: PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataNodesList;
-  ports: PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataPortsList;
-  edges: PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesList;
+export interface PutProjectBranchApplicationTopologyResponseData {
+  nodes: PutProjectBranchApplicationTopologyResponseDataNodesList;
+  ports: PutProjectBranchApplicationTopologyResponseDataPortsList;
+  edges: PutProjectBranchApplicationTopologyResponseDataEdgesList;
   contentHash?: string;
   writtenAt?: string;
 }
-export const PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseData =
+export const PutProjectBranchApplicationTopologyResponseData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      nodes:
-        PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataNodesList,
-      ports:
-        PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataPortsList,
-      edges:
-        PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseDataEdgesList,
+      nodes: PutProjectBranchApplicationTopologyResponseDataNodesList,
+      ports: PutProjectBranchApplicationTopologyResponseDataPortsList,
+      edges: PutProjectBranchApplicationTopologyResponseDataEdgesList,
       contentHash: S.optional(S.String),
       writtenAt: S.optional(S.String),
     }),
   ).annotate({
-    identifier:
-      "PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseData",
-  }) as any as S.Schema<PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseData>;
+    identifier: "PutProjectBranchApplicationTopologyResponseData",
+  }) as any as S.Schema<PutProjectBranchApplicationTopologyResponseData>;
 
-export interface PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponse {
-  data: PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseData;
+export interface PutProjectBranchApplicationTopologyResponse {
+  data: PutProjectBranchApplicationTopologyResponseData;
 }
-export const PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponse =
+export const PutProjectBranchApplicationTopologyResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      data: PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponseData,
+      data: PutProjectBranchApplicationTopologyResponseData,
     }),
   ).annotate({
-    identifier:
-      "PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponse",
-  }) as any as S.Schema<PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponse>;
-
-export type DeleteV1BranchesByBranchIdError =
-  | NotFound
-  | Conflict
-  | UnprocessableEntity
-  | PrismaPostgresOpError;
-/** Soft-delete a branch ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Soft-deletes a Branch (sets deletedAt). Refuses if the Branch is the Project's current default, the Project's production Branch, or has live members. */
-export const deleteV1BranchesByBranchId: API.OperationMethod<
-  DeleteV1BranchesByBranchIdRequest,
-  DeleteV1BranchesByBranchIdResponse,
-  DeleteV1BranchesByBranchIdError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteV1BranchesByBranchIdRequest,
-  output: DeleteV1BranchesByBranchIdResponse,
-  errors: [NotFound, Conflict, UnprocessableEntity, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteV1BucketsByBucketIdError = NotFound | PrismaPostgresOpError;
-/** Delete bucket Permanently deletes the bucket with the given ID, all objects stored in it, and all its access keys. This action cannot be undone. */
-export const deleteV1BucketsByBucketId: API.OperationMethod<
-  DeleteV1BucketsByBucketIdRequest,
-  DeleteV1BucketsByBucketIdResponse,
-  DeleteV1BucketsByBucketIdError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteV1BucketsByBucketIdRequest,
-  output: DeleteV1BucketsByBucketIdResponse,
-  errors: [NotFound, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteV1BucketsByBucketIdKeysByKeyIdError =
-  | NotFound
-  | PrismaPostgresOpError;
-/** Delete bucket key Revokes and deletes the bucket key with the given ID. */
-export const deleteV1BucketsByBucketIdKeysByKeyId: API.OperationMethod<
-  DeleteV1BucketsByBucketIdKeysByKeyIdRequest,
-  DeleteV1BucketsByBucketIdKeysByKeyIdResponse,
-  DeleteV1BucketsByBucketIdKeysByKeyIdError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteV1BucketsByBucketIdKeysByKeyIdRequest,
-  output: DeleteV1BucketsByBucketIdKeysByKeyIdResponse,
-  errors: [NotFound, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteV1ConnectionsByIdError =
-  | NotFound
-  | UnprocessableEntity
-  | PrismaPostgresOpError;
-/** Delete connection Deletes the connection with the given ID. */
-export const deleteV1ConnectionsById: API.OperationMethod<
-  DeleteV1ConnectionsByIdRequest,
-  DeleteV1ConnectionsByIdResponse,
-  DeleteV1ConnectionsByIdError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteV1ConnectionsByIdRequest,
-  output: DeleteV1ConnectionsByIdResponse,
-  errors: [NotFound, UnprocessableEntity, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteV1DatabasesByDatabaseIdError =
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | PrismaPostgresOpError;
-/** Delete database Deletes the database with the given ID. */
-export const deleteV1DatabasesByDatabaseId: API.OperationMethod<
-  DeleteV1DatabasesByDatabaseIdRequest,
-  DeleteV1DatabasesByDatabaseIdResponse,
-  DeleteV1DatabasesByDatabaseIdError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteV1DatabasesByDatabaseIdRequest,
-  output: DeleteV1DatabasesByDatabaseIdResponse,
-  errors: [
-    Forbidden,
-    NotFound,
-    UnprocessableEntity,
-    UnknownPrismaPostgresError,
-  ],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteV1DeploymentsByDeploymentIdError =
-  | Forbidden
-  | NotFound
-  | Conflict
-  | PrismaPostgresOpError;
-/** Delete deployment ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Permanently deletes the deployment, its metadata, and any associated VM. The deployment must be stopped or in the `new` state before it can be deleted. */
-export const deleteV1DeploymentsByDeploymentId: API.OperationMethod<
-  DeleteV1DeploymentsByDeploymentIdRequest,
-  DeleteV1DeploymentsByDeploymentIdResponse,
-  DeleteV1DeploymentsByDeploymentIdError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteV1DeploymentsByDeploymentIdRequest,
-  output: DeleteV1DeploymentsByDeploymentIdResponse,
-  errors: [Forbidden, NotFound, Conflict, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteV1DomainsByDomainIdError =
-  | Forbidden
-  | NotFound
-  | PrismaPostgresOpError;
-/** Delete a custom domain ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Removes a custom domain binding. Authorization is derived from the parent compute service's workspace. */
-export const deleteV1DomainsByDomainId: API.OperationMethod<
-  DeleteV1DomainsByDomainIdRequest,
-  DeleteV1DomainsByDomainIdResponse,
-  DeleteV1DomainsByDomainIdError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteV1DomainsByDomainIdRequest,
-  output: DeleteV1DomainsByDomainIdResponse,
-  errors: [Forbidden, NotFound, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteV1EnvironmentVariablesByEnvVarIdError =
-  | NotFound
-  | UnprocessableEntity
-  | PrismaPostgresOpError;
-/** Delete an environment variable ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Removes an environment variable. A second delete of the same variable returns 404. */
-export const deleteV1EnvironmentVariablesByEnvVarId: API.OperationMethod<
-  DeleteV1EnvironmentVariablesByEnvVarIdRequest,
-  DeleteV1EnvironmentVariablesByEnvVarIdResponse,
-  DeleteV1EnvironmentVariablesByEnvVarIdError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteV1EnvironmentVariablesByEnvVarIdRequest,
-  output: DeleteV1EnvironmentVariablesByEnvVarIdResponse,
-  errors: [NotFound, UnprocessableEntity, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteV1IntegrationsByIdError =
-  | NotFound
-  | UnprocessableEntity
-  | PrismaPostgresOpError;
-/** Delete integration Revokes the integration tokens by integration ID. */
-export const deleteV1IntegrationsById: API.OperationMethod<
-  DeleteV1IntegrationsByIdRequest,
-  DeleteV1IntegrationsByIdResponse,
-  DeleteV1IntegrationsByIdError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteV1IntegrationsByIdRequest,
-  output: DeleteV1IntegrationsByIdResponse,
-  errors: [NotFound, UnprocessableEntity, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteV1ProjectsByIdError =
-  | BadRequest
-  | NotFound
-  | UnprocessableEntity
-  | PrismaPostgresOpError;
-/** Delete project Deletes the project with the given ID. */
-export const deleteV1ProjectsById: API.OperationMethod<
-  DeleteV1ProjectsByIdRequest,
-  DeleteV1ProjectsByIdResponse,
-  DeleteV1ProjectsByIdError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteV1ProjectsByIdRequest,
-  output: DeleteV1ProjectsByIdResponse,
-  errors: [
-    BadRequest,
-    NotFound,
-    UnprocessableEntity,
-    UnknownPrismaPostgresError,
-  ],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseError =
-  | NotFound
-  | PrismaPostgresOpError;
-/** Release Alchemy deploy lease ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Releases the deploy lease addressed by the Alchemy-State-Lease-Id header on clean deploy exit. A missing, replaced, or expired lease returns 404 — a lost lease at release time is surfaced, not idempotently swallowed. */
-export const deleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLease: API.OperationMethod<
-  DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseRequest,
-  DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseResponse,
-  DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseRequest,
-  output:
-    DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseResponse,
-  errors: [NotFound, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackError =
-  | NotFound
-  | Conflict
-  | PrismaPostgresOpError;
-/** Delete Alchemy stack state ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Deletes every resource-state and output row of the stack, or only the given stage's rows when the stage query parameter is set. Requires a live deploy lease on the affected stage; without a stage it additionally requires that no other stage of the stack holds a live lease, so one stage's deploy can never delete state another stage's deploy is using. Idempotent. */
-export const deleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStack: API.OperationMethod<
-  DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackRequest,
-  DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackResponse,
-  DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackRequest,
-  output:
-    DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackResponse,
-  errors: [NotFound, Conflict, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqnError =
-  | NotFound
-  | Conflict
-  | PrismaPostgresOpError;
-/** Delete Alchemy resource state ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Deletes the resource state row. Idempotent: deleting an absent row also returns 204. */
-export const deleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqn: API.OperationMethod<
-  DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqnRequest,
-  DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqnResponse,
-  DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqnError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqnRequest,
-  output:
-    DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqnResponse,
-  errors: [NotFound, Conflict, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteV1ServicesByServiceIdError =
-  | Forbidden
-  | NotFound
-  | Conflict
-  | PrismaPostgresOpError;
-/** Delete service ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Deletes a service. Deployments under the service are deleted before the service is deleted. */
-export const deleteV1ServicesByServiceId: API.OperationMethod<
-  DeleteV1ServicesByServiceIdRequest,
-  DeleteV1ServicesByServiceIdResponse,
-  DeleteV1ServicesByServiceIdError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteV1ServicesByServiceIdRequest,
-  output: DeleteV1ServicesByServiceIdResponse,
-  errors: [Forbidden, NotFound, Conflict, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteV1SourceRepositoriesByIdError =
-  | NotFound
-  | PrismaPostgresOpError;
-/** Disconnect a source repository ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Disconnects the source repository link. Existing branches and their attached resources are preserved. */
-export const deleteV1SourceRepositoriesById: API.OperationMethod<
-  DeleteV1SourceRepositoriesByIdRequest,
-  DeleteV1SourceRepositoriesByIdResponse,
-  DeleteV1SourceRepositoriesByIdError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteV1SourceRepositoriesByIdRequest,
-  output: DeleteV1SourceRepositoriesByIdResponse,
-  errors: [NotFound, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteV1WorkspacesByWorkspaceIdIntegrationsByClientIdError =
-  | NotFound
-  | UnprocessableEntity
-  | PrismaPostgresOpError;
-/** Revoke integration tokens Revokes the integration tokens with the given client ID. */
-export const deleteV1WorkspacesByWorkspaceIdIntegrationsByClientId: API.OperationMethod<
-  DeleteV1WorkspacesByWorkspaceIdIntegrationsByClientIdRequest,
-  DeleteV1WorkspacesByWorkspaceIdIntegrationsByClientIdResponse,
-  DeleteV1WorkspacesByWorkspaceIdIntegrationsByClientIdError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteV1WorkspacesByWorkspaceIdIntegrationsByClientIdRequest,
-  output: DeleteV1WorkspacesByWorkspaceIdIntegrationsByClientIdResponse,
-  errors: [NotFound, UnprocessableEntity, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteV1WorkspacesByWorkspaceIdServiceTokensByServiceTokenIdError =
-  | NotFound
-  | PrismaPostgresOpError;
-/** Delete service token Revokes the service token with the given ID by deleting it. */
-export const deleteV1WorkspacesByWorkspaceIdServiceTokensByServiceTokenId: API.OperationMethod<
-  DeleteV1WorkspacesByWorkspaceIdServiceTokensByServiceTokenIdRequest,
-  DeleteV1WorkspacesByWorkspaceIdServiceTokensByServiceTokenIdResponse,
-  DeleteV1WorkspacesByWorkspaceIdServiceTokensByServiceTokenIdError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteV1WorkspacesByWorkspaceIdServiceTokensByServiceTokenIdRequest,
-  output: DeleteV1WorkspacesByWorkspaceIdServiceTokensByServiceTokenIdResponse,
-  errors: [NotFound, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1BranchesByBranchIdError = NotFound | PrismaPostgresOpError;
-/** Get a branch ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Returns a single Branch by ID. Member resources are not inlined — list them via /v1/databases?branchId= and /v1/apps?branchId=. */
-export const getV1BranchesByBranchId: API.OperationMethod<
-  GetV1BranchesByBranchIdRequest,
-  GetV1BranchesByBranchIdResponse,
-  GetV1BranchesByBranchIdError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1BranchesByBranchIdRequest,
-  output: GetV1BranchesByBranchIdResponse,
-  errors: [NotFound, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1BucketsError = PrismaPostgresOpError;
-/** List buckets Returns all object-store buckets the token has access to. Optionally filter by project ID. */
-export const getV1Buckets: API.OperationMethod<
-  GetV1BucketsRequest,
-  GetV1BucketsResponse,
-  GetV1BucketsError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1BucketsRequest,
-  output: GetV1BucketsResponse,
-  errors: [UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1BucketsByBucketIdError = NotFound | PrismaPostgresOpError;
-/** Get bucket Returns the bucket with the given ID. */
-export const getV1BucketsByBucketId: API.OperationMethod<
-  GetV1BucketsByBucketIdRequest,
-  GetV1BucketsByBucketIdResponse,
-  GetV1BucketsByBucketIdError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1BucketsByBucketIdRequest,
-  output: GetV1BucketsByBucketIdResponse,
-  errors: [NotFound, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1BucketsByBucketIdKeysError = NotFound | PrismaPostgresOpError;
-/** List bucket keys Returns all access keys for the given bucket. */
-export const getV1BucketsByBucketIdKeys: API.OperationMethod<
-  GetV1BucketsByBucketIdKeysRequest,
-  GetV1BucketsByBucketIdKeysResponse,
-  GetV1BucketsByBucketIdKeysError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1BucketsByBucketIdKeysRequest,
-  output: GetV1BucketsByBucketIdKeysResponse,
-  errors: [NotFound, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1BuildsError = NotFound | PrismaPostgresOpError;
-/** List builds ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Lists the builds of the caller's workspace, newest first, filtered by project, branch, or state. `cursor` is opaque: pass back the `nextCursor` the previous page returned. */
-export const getV1Builds: API.OperationMethod<
-  GetV1BuildsRequest,
-  GetV1BuildsResponse,
-  GetV1BuildsError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1BuildsRequest,
-  output: GetV1BuildsResponse,
-  errors: [NotFound, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1BuildsByBuildIdError = NotFound | PrismaPostgresOpError;
-/** Get a build ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Returns one build with the resources it reported acting on. */
-export const getV1BuildsByBuildId: API.OperationMethod<
-  GetV1BuildsByBuildIdRequest,
-  GetV1BuildsByBuildIdResponse,
-  GetV1BuildsByBuildIdError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1BuildsByBuildIdRequest,
-  output: GetV1BuildsByBuildIdResponse,
-  errors: [NotFound, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1BuildsByBuildIdLogsError = NotFound | PrismaPostgresOpError;
-/** Stream build logs ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Streams the full build log for a build as newline-delimited JSON (`application/x-ndjson`). Each line is a JSON object discriminated by `type`: `log` (a build output line) or `terminal` (end-of-stream marker with a `cursor` for resumption). The default is a finite dump that ends once the stream is drained; pass `follow=true` to keep the connection open for an in-flight build, and `cursor` to resume from a prior terminal cursor. */
-export const getV1BuildsByBuildIdLogs: API.OperationMethod<
-  GetV1BuildsByBuildIdLogsRequest,
-  GetV1BuildsByBuildIdLogsResponse,
-  GetV1BuildsByBuildIdLogsError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1BuildsByBuildIdLogsRequest,
-  output: GetV1BuildsByBuildIdLogsResponse,
-  errors: [NotFound, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1ConnectionsError = PrismaPostgresOpError;
-/** List connections Returns all connections the actor has access to, with optional database filter. */
-export const getV1Connections: API.OperationMethod<
-  GetV1ConnectionsRequest,
-  GetV1ConnectionsResponse,
-  GetV1ConnectionsError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1ConnectionsRequest,
-  output: GetV1ConnectionsResponse,
-  errors: [UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1ConnectionsByIdError =
-  | NotFound
-  | UnprocessableEntity
-  | PrismaPostgresOpError;
-/** Get connection Returns the connection with the given ID. */
-export const getV1ConnectionsById: API.OperationMethod<
-  GetV1ConnectionsByIdRequest,
-  GetV1ConnectionsByIdResponse,
-  GetV1ConnectionsByIdError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1ConnectionsByIdRequest,
-  output: GetV1ConnectionsByIdResponse,
-  errors: [NotFound, UnprocessableEntity, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1DatabasesError = Forbidden | PrismaPostgresOpError;
-/** List databases Returns all databases the token has access to. Optionally filter by project ID. */
-export const getV1Databases: API.OperationMethod<
-  GetV1DatabasesRequest,
-  GetV1DatabasesResponse,
-  GetV1DatabasesError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1DatabasesRequest,
-  output: GetV1DatabasesResponse,
-  errors: [Forbidden, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1DatabasesByDatabaseIdError =
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | PrismaPostgresOpError;
-/** Get database Returns the database with the given ID. */
-export const getV1DatabasesByDatabaseId: API.OperationMethod<
-  GetV1DatabasesByDatabaseIdRequest,
-  GetV1DatabasesByDatabaseIdResponse,
-  GetV1DatabasesByDatabaseIdError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1DatabasesByDatabaseIdRequest,
-  output: GetV1DatabasesByDatabaseIdResponse,
-  errors: [
-    Forbidden,
-    NotFound,
-    UnprocessableEntity,
-    UnknownPrismaPostgresError,
-  ],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1DatabasesByDatabaseIdBackupsError =
-  | NotFound
-  | UnprocessableEntity
-  | PrismaPostgresOpError;
-/** Get list of backups Returns backups for the specified database. */
-export const getV1DatabasesByDatabaseIdBackups: API.OperationMethod<
-  GetV1DatabasesByDatabaseIdBackupsRequest,
-  GetV1DatabasesByDatabaseIdBackupsResponse,
-  GetV1DatabasesByDatabaseIdBackupsError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1DatabasesByDatabaseIdBackupsRequest,
-  output: GetV1DatabasesByDatabaseIdBackupsResponse,
-  errors: [NotFound, UnprocessableEntity, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1DatabasesByDatabaseIdConnectionsError =
-  | UnprocessableEntity
-  | PrismaPostgresOpError;
-/** Get list of database connections Returns all connections for the given database. */
-export const getV1DatabasesByDatabaseIdConnections: API.OperationMethod<
-  GetV1DatabasesByDatabaseIdConnectionsRequest,
-  GetV1DatabasesByDatabaseIdConnectionsResponse,
-  GetV1DatabasesByDatabaseIdConnectionsError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1DatabasesByDatabaseIdConnectionsRequest,
-  output: GetV1DatabasesByDatabaseIdConnectionsResponse,
-  errors: [UnprocessableEntity, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1DatabasesByDatabaseIdUsageError =
-  | BadRequest
-  | NotFound
-  | UnprocessableEntity
-  | PrismaPostgresOpError;
-/** Get database usage metrics Returns usage metrics for the specified database. */
-export const getV1DatabasesByDatabaseIdUsage: API.OperationMethod<
-  GetV1DatabasesByDatabaseIdUsageRequest,
-  GetV1DatabasesByDatabaseIdUsageResponse,
-  GetV1DatabasesByDatabaseIdUsageError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1DatabasesByDatabaseIdUsageRequest,
-  output: GetV1DatabasesByDatabaseIdUsageResponse,
-  errors: [
-    BadRequest,
-    NotFound,
-    UnprocessableEntity,
-    UnknownPrismaPostgresError,
-  ],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1DeploymentsByDeploymentIdError =
-  | Forbidden
-  | NotFound
-  | PrismaPostgresOpError;
-/** Get deployment ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Returns a deployment by ID, including its current status derived from the underlying VM state. */
-export const getV1DeploymentsByDeploymentId: API.OperationMethod<
-  GetV1DeploymentsByDeploymentIdRequest,
-  GetV1DeploymentsByDeploymentIdResponse,
-  GetV1DeploymentsByDeploymentIdError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1DeploymentsByDeploymentIdRequest,
-  output: GetV1DeploymentsByDeploymentIdResponse,
-  errors: [Forbidden, NotFound, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1DeploymentsByDeploymentIdLogsError =
-  | Forbidden
-  | NotFound
-  | PrismaPostgresOpError;
-/** Get deployment logs ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Returns log output for the specified deployment. Each record is a JSON object with `type: "log"` (log text + byte metadata) or `type: "terminal"` (end-of-page signal with a resume cursor). A plain GET responds with newline-delimited JSON (`application/x-ndjson`): it drains the requested window (`tail`, `from_start`, or `cursor`), ends with a terminal record carrying the cursor for the next page, and closes. Send an `Upgrade: websocket` header to follow the log live instead; a live segment ends after 10 minutes with the same terminal/cursor mechanism. */
-export const getV1DeploymentsByDeploymentIdLogs: API.OperationMethod<
-  GetV1DeploymentsByDeploymentIdLogsRequest,
-  GetV1DeploymentsByDeploymentIdLogsResponse,
-  GetV1DeploymentsByDeploymentIdLogsError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1DeploymentsByDeploymentIdLogsRequest,
-  output: GetV1DeploymentsByDeploymentIdLogsResponse,
-  errors: [Forbidden, NotFound, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1DomainsByDomainIdError =
-  | Forbidden
-  | NotFound
-  | PrismaPostgresOpError;
-/** Get a custom domain ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Returns details for a custom domain by id. Authorization is derived from the parent compute service's workspace. */
-export const getV1DomainsByDomainId: API.OperationMethod<
-  GetV1DomainsByDomainIdRequest,
-  GetV1DomainsByDomainIdResponse,
-  GetV1DomainsByDomainIdError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1DomainsByDomainIdRequest,
-  output: GetV1DomainsByDomainIdResponse,
-  errors: [Forbidden, NotFound, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1EnvironmentVariablesError =
-  | UnprocessableEntity
-  | PrismaPostgresOpError;
-/** List environment variables ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Returns a paginated list of environment variables. All filters are optional; combine `projectId`, `class`, and `key` to look up a specific variable by name. */
-export const getV1EnvironmentVariables: API.OperationMethod<
-  GetV1EnvironmentVariablesRequest,
-  GetV1EnvironmentVariablesResponse,
-  GetV1EnvironmentVariablesError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1EnvironmentVariablesRequest,
-  output: GetV1EnvironmentVariablesResponse,
-  errors: [UnprocessableEntity, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1EnvironmentVariablesByEnvVarIdError =
-  | NotFound
-  | UnprocessableEntity
-  | PrismaPostgresOpError;
-/** Get an environment variable ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Returns a single environment variable's metadata. The value is not returned. */
-export const getV1EnvironmentVariablesByEnvVarId: API.OperationMethod<
-  GetV1EnvironmentVariablesByEnvVarIdRequest,
-  GetV1EnvironmentVariablesByEnvVarIdResponse,
-  GetV1EnvironmentVariablesByEnvVarIdError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1EnvironmentVariablesByEnvVarIdRequest,
-  output: GetV1EnvironmentVariablesByEnvVarIdResponse,
-  errors: [NotFound, UnprocessableEntity, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1IntegrationsError = PrismaPostgresOpError;
-/** Get list of integrations Returns integrations filtered by workspace ID. */
-export const getV1Integrations: API.OperationMethod<
-  GetV1IntegrationsRequest,
-  GetV1IntegrationsResponse,
-  GetV1IntegrationsError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1IntegrationsRequest,
-  output: GetV1IntegrationsResponse,
-  errors: [UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1IntegrationsByIdError =
-  | NotFound
-  | UnprocessableEntity
-  | PrismaPostgresOpError;
-/** Get integration by ID Returns a single integration by its ID. */
-export const getV1IntegrationsById: API.OperationMethod<
-  GetV1IntegrationsByIdRequest,
-  GetV1IntegrationsByIdResponse,
-  GetV1IntegrationsByIdError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1IntegrationsByIdRequest,
-  output: GetV1IntegrationsByIdResponse,
-  errors: [NotFound, UnprocessableEntity, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1MeError = PrismaPostgresOpError;
-/** Get current authenticated principal Returns the user, workspace, and credential represented by the current token. */
-export const getV1Me: API.OperationMethod<
-  GetV1MeRequest,
-  GetV1MeResponse,
-  GetV1MeError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1MeRequest,
-  output: GetV1MeResponse,
-  errors: [UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1ProjectsError = PrismaPostgresOpError;
-/** Get list of projects Returns the list of projects the token has access to. */
-export const getV1Projects: API.OperationMethod<
-  GetV1ProjectsRequest,
-  GetV1ProjectsResponse,
-  GetV1ProjectsError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1ProjectsRequest,
-  output: GetV1ProjectsResponse,
-  errors: [UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1ProjectsByIdError =
-  | NotFound
-  | UnprocessableEntity
-  | PrismaPostgresOpError;
-/** Get project Returns the project with the given ID. */
-export const getV1ProjectsById: API.OperationMethod<
-  GetV1ProjectsByIdRequest,
-  GetV1ProjectsByIdResponse,
-  GetV1ProjectsByIdError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1ProjectsByIdRequest,
-  output: GetV1ProjectsByIdResponse,
-  errors: [NotFound, UnprocessableEntity, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1ProjectsByProjectIdBranchesError =
-  | NotFound
-  | UnprocessableEntity
-  | PrismaPostgresOpError;
-/** List branches in a project ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Returns the live Branches of a Project. Supports two mutually exclusive filters: ?gitName= (exact match — at most one row), ?gitNameContains= (case-sensitive substring). Soft-deleted Branches are not returned. Ordered by createdAt ascending. */
-export const getV1ProjectsByProjectIdBranches: API.OperationMethod<
-  GetV1ProjectsByProjectIdBranchesRequest,
-  GetV1ProjectsByProjectIdBranchesResponse,
-  GetV1ProjectsByProjectIdBranchesError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1ProjectsByProjectIdBranchesRequest,
-  output: GetV1ProjectsByProjectIdBranchesResponse,
-  errors: [NotFound, UnprocessableEntity, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksError =
-  | NotFound
-  | Conflict
-  | PrismaPostgresOpError;
-/** List Alchemy stacks ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Lists the distinct stack names with state or output rows on the branch. Requires no deploy lease: the stock client's auth probe (checkHttpStateStoreAuth) calls this endpoint bare, and it exposes stack names only. */
-export const getV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacks: API.OperationMethod<
-  GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksRequest,
-  GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksResponse,
-  GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksRequest,
-  output:
-    GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksResponse,
-  errors: [NotFound, Conflict, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesError =
-  | NotFound
-  | Conflict
-  | PrismaPostgresOpError;
-/** List Alchemy stages ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Lists the distinct stage names with state or output rows for the stack. Accepts a live deploy lease on any stage of the stack. */
-export const getV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStages: API.OperationMethod<
-  GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesRequest,
-  GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesResponse,
-  GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesRequest,
-  output:
-    GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesResponse,
-  errors: [NotFound, Conflict, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageOutputError =
-  | NotFound
-  | Conflict
-  | PrismaPostgresOpError;
-/** Get Alchemy stack output ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Returns the stored stack output for the stage, or a JSON null body when absent (the stock client maps null to undefined). */
-export const getV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageOutput: API.OperationMethod<
-  GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageOutputRequest,
-  GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageOutputResponse,
-  GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageOutputError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageOutputRequest,
-  output:
-    GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageOutputResponse,
-  errors: [NotFound, Conflict, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageReplacedResourcesError =
-  | NotFound
-  | Conflict
-  | PrismaPostgresOpError;
-/** List replaced Alchemy resources ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Returns the decrypted resource states of the stage whose status is "replaced". */
-export const getV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageReplacedResources: API.OperationMethod<
-  GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageReplacedResourcesRequest,
-  GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageReplacedResourcesResponse,
-  GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageReplacedResourcesError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageReplacedResourcesRequest,
-  output:
-    GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageReplacedResourcesResponse,
-  errors: [NotFound, Conflict, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesError =
-  | NotFound
-  | Conflict
-  | PrismaPostgresOpError;
-/** List Alchemy resources ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Lists the resource FQNs stored for the stage, ordered by FQN. */
-export const getV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResources: API.OperationMethod<
-  GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesRequest,
-  GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesResponse,
-  GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesRequest,
-  output:
-    GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesResponse,
-  errors: [NotFound, Conflict, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqnError =
-  | NotFound
-  | Conflict
-  | PrismaPostgresOpError;
-/** Get Alchemy resource state ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Returns the stored resource state, or a JSON null body when absent (the stock client maps null to undefined). */
-export const getV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqn: API.OperationMethod<
-  GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqnRequest,
-  GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqnResponse,
-  GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqnError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqnRequest,
-  output:
-    GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqnResponse,
-  errors: [NotFound, Conflict, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateVersionError =
-  PrismaPostgresOpError;
-/** Alchemy state store version ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Unauthenticated contract-version probe served verbatim from the pinned alchemy HttpStateApi contract. Returns the constant only and never inspects the addressed project or branch. */
-export const getV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateVersion: API.OperationMethod<
-  GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateVersionRequest,
-  GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateVersionResponse,
-  GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateVersionError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateVersionRequest,
-  output: GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateVersionResponse,
-  errors: [UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyError =
-  | NotFound
-  | PrismaPostgresOpError;
-/** Get branch topology ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Returns the stored topology graph for the branch — the same shape Composer submitted. Nodes, ports, and edges are returned in deterministic order. */
-export const getV1ProjectsByProjectIdBranchesByBranchIdApplicationTopology: API.OperationMethod<
-  GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequest,
-  GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponse,
-  GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequest,
-  output: GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponse,
-  errors: [NotFound, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1ProjectsByProjectIdDatabasesError =
-  | NotFound
-  | UnprocessableEntity
-  | PrismaPostgresOpError;
-/** Get list of databases Returns databases for the given project. */
-export const getV1ProjectsByProjectIdDatabases: API.OperationMethod<
-  GetV1ProjectsByProjectIdDatabasesRequest,
-  GetV1ProjectsByProjectIdDatabasesResponse,
-  GetV1ProjectsByProjectIdDatabasesError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1ProjectsByProjectIdDatabasesRequest,
-  output: GetV1ProjectsByProjectIdDatabasesResponse,
-  errors: [NotFound, UnprocessableEntity, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1RegionsError = PrismaPostgresOpError;
-/** Get all regions Returns all available regions across products. Optionally filter by product. */
-export const getV1Regions: API.OperationMethod<
-  GetV1RegionsRequest,
-  GetV1RegionsResponse,
-  GetV1RegionsError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1RegionsRequest,
-  output: GetV1RegionsResponse,
-  errors: [UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1RegionsAccelerateError = PrismaPostgresOpError;
-/** Get Prisma Accelerate regions Returns all available regions for Prisma Accelerate. */
-export const getV1RegionsAccelerate: API.OperationMethod<
-  GetV1RegionsAccelerateRequest,
-  GetV1RegionsAccelerateResponse,
-  GetV1RegionsAccelerateError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1RegionsAccelerateRequest,
-  output: GetV1RegionsAccelerateResponse,
-  errors: [UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1RegionsPostgresError = PrismaPostgresOpError;
-/** Get Prisma Postgres regions Returns all available regions for Prisma Postgres. */
-export const getV1RegionsPostgres: API.OperationMethod<
-  GetV1RegionsPostgresRequest,
-  GetV1RegionsPostgresResponse,
-  GetV1RegionsPostgresError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1RegionsPostgresRequest,
-  output: GetV1RegionsPostgresResponse,
-  errors: [UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1ScmInstallationsError = PrismaPostgresOpError;
-/** List SCM installations for a workspace ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Lists active SCM installations connected to the given workspace. */
-export const getV1ScmInstallations: API.OperationMethod<
-  GetV1ScmInstallationsRequest,
-  GetV1ScmInstallationsResponse,
-  GetV1ScmInstallationsError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1ScmInstallationsRequest,
-  output: GetV1ScmInstallationsResponse,
-  errors: [UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1ScmInstallationsByInstallationIdRepositoriesError =
-  | NotFound
-  | UnprocessableEntity
-  | PrismaPostgresOpError;
-/** List repositories accessible to an SCM installation ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Lists repositories accessible to the given SCM installation. */
-export const getV1ScmInstallationsByInstallationIdRepositories: API.OperationMethod<
-  GetV1ScmInstallationsByInstallationIdRepositoriesRequest,
-  GetV1ScmInstallationsByInstallationIdRepositoriesResponse,
-  GetV1ScmInstallationsByInstallationIdRepositoriesError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1ScmInstallationsByInstallationIdRepositoriesRequest,
-  output: GetV1ScmInstallationsByInstallationIdRepositoriesResponse,
-  errors: [NotFound, UnprocessableEntity, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1ServicesError =
-  | Forbidden
-  | UnprocessableEntity
-  | PrismaPostgresOpError;
-/** List services ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Returns all services the token has access to, ordered by creation time (oldest first). Optionally filter by project ID. Supports cursor-based pagination. */
-export const getV1Services: API.OperationMethod<
-  GetV1ServicesRequest,
-  GetV1ServicesResponse,
-  GetV1ServicesError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1ServicesRequest,
-  output: GetV1ServicesResponse,
-  errors: [Forbidden, UnprocessableEntity, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1ServicesByServiceIdError =
-  | Forbidden
-  | NotFound
-  | PrismaPostgresOpError;
-/** Get service ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Returns a service by ID, including its region and active promoted deployment reference. */
-export const getV1ServicesByServiceId: API.OperationMethod<
-  GetV1ServicesByServiceIdRequest,
-  GetV1ServicesByServiceIdResponse,
-  GetV1ServicesByServiceIdError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1ServicesByServiceIdRequest,
-  output: GetV1ServicesByServiceIdResponse,
-  errors: [Forbidden, NotFound, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1ServicesByServiceIdDeploymentsError =
-  | Forbidden
-  | NotFound
-  | PrismaPostgresOpError;
-/** List deployments ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Returns all deployments belonging to a service, ordered by creation time (newest first). Supports cursor-based pagination. */
-export const getV1ServicesByServiceIdDeployments: API.OperationMethod<
-  GetV1ServicesByServiceIdDeploymentsRequest,
-  GetV1ServicesByServiceIdDeploymentsResponse,
-  GetV1ServicesByServiceIdDeploymentsError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1ServicesByServiceIdDeploymentsRequest,
-  output: GetV1ServicesByServiceIdDeploymentsResponse,
-  errors: [Forbidden, NotFound, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1ServicesByServiceIdDomainsError =
-  | Forbidden
-  | NotFound
-  | PrismaPostgresOpError;
-/** List custom domains for a service ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Returns all custom domains attached to any deployment of the service. Domains are aggregated across all deployments since Foundry lists per deployment. */
-export const getV1ServicesByServiceIdDomains: API.OperationMethod<
-  GetV1ServicesByServiceIdDomainsRequest,
-  GetV1ServicesByServiceIdDomainsResponse,
-  GetV1ServicesByServiceIdDomainsError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1ServicesByServiceIdDomainsRequest,
-  output: GetV1ServicesByServiceIdDomainsResponse,
-  errors: [Forbidden, NotFound, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1SourceRepositoriesError = NotFound | PrismaPostgresOpError;
-/** List source repositories ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Returns source repositories linked to a project. Requires projectId query parameter. */
-export const getV1SourceRepositories: API.OperationMethod<
-  GetV1SourceRepositoriesRequest,
-  GetV1SourceRepositoriesResponse,
-  GetV1SourceRepositoriesError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1SourceRepositoriesRequest,
-  output: GetV1SourceRepositoriesResponse,
-  errors: [NotFound, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1SourceRepositoriesByIdError = NotFound | PrismaPostgresOpError;
-/** Get a source repository ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Returns a single source repository link by ID. */
-export const getV1SourceRepositoriesById: API.OperationMethod<
-  GetV1SourceRepositoriesByIdRequest,
-  GetV1SourceRepositoriesByIdResponse,
-  GetV1SourceRepositoriesByIdError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1SourceRepositoriesByIdRequest,
-  output: GetV1SourceRepositoriesByIdResponse,
-  errors: [NotFound, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1WorkspacesError = PrismaPostgresOpError;
-/** Get list of workspaces Returns the list of workspaces the current token can access. */
-export const getV1Workspaces: API.OperationMethod<
-  GetV1WorkspacesRequest,
-  GetV1WorkspacesResponse,
-  GetV1WorkspacesError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1WorkspacesRequest,
-  output: GetV1WorkspacesResponse,
-  errors: [UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1WorkspacesByIdError =
-  | NotFound
-  | UnprocessableEntity
-  | PrismaPostgresOpError;
-/** Get workspace Returns the workspace with the given ID. */
-export const getV1WorkspacesById: API.OperationMethod<
-  GetV1WorkspacesByIdRequest,
-  GetV1WorkspacesByIdResponse,
-  GetV1WorkspacesByIdError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1WorkspacesByIdRequest,
-  output: GetV1WorkspacesByIdResponse,
-  errors: [NotFound, UnprocessableEntity, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1WorkspacesByIdSubscriptionError =
-  | NotFound
-  | PrismaPostgresOpError;
-/** Get workspace subscription Returns subscription information for the workspace with the given ID. */
-export const getV1WorkspacesByIdSubscription: API.OperationMethod<
-  GetV1WorkspacesByIdSubscriptionRequest,
-  GetV1WorkspacesByIdSubscriptionResponse,
-  GetV1WorkspacesByIdSubscriptionError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1WorkspacesByIdSubscriptionRequest,
-  output: GetV1WorkspacesByIdSubscriptionResponse,
-  errors: [NotFound, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1WorkspacesByWorkspaceIdIntegrationsError =
-  | NotFound
-  | UnprocessableEntity
-  | PrismaPostgresOpError;
-/** Get list of integrations Returns integrations for the given workspace. */
-export const getV1WorkspacesByWorkspaceIdIntegrations: API.OperationMethod<
-  GetV1WorkspacesByWorkspaceIdIntegrationsRequest,
-  GetV1WorkspacesByWorkspaceIdIntegrationsResponse,
-  GetV1WorkspacesByWorkspaceIdIntegrationsError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1WorkspacesByWorkspaceIdIntegrationsRequest,
-  output: GetV1WorkspacesByWorkspaceIdIntegrationsResponse,
-  errors: [NotFound, UnprocessableEntity, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1WorkspacesByWorkspaceIdServiceTokensError =
-  PrismaPostgresOpError;
-/** List service tokens Returns the service tokens for the given workspace, newest first. */
-export const getV1WorkspacesByWorkspaceIdServiceTokens: API.OperationMethod<
-  GetV1WorkspacesByWorkspaceIdServiceTokensRequest,
-  GetV1WorkspacesByWorkspaceIdServiceTokensResponse,
-  GetV1WorkspacesByWorkspaceIdServiceTokensError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1WorkspacesByWorkspaceIdServiceTokensRequest,
-  output: GetV1WorkspacesByWorkspaceIdServiceTokensResponse,
-  errors: [UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PatchV1BranchesByBranchIdError =
-  | NotFound
-  | UnprocessableEntity
-  | PrismaPostgresOpError;
-/** Update a branch ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Promotes a Branch to be the Project's default. Only isDefault is mutable — gitName rename and role changes are rejected. */
-export const patchV1BranchesByBranchId: API.OperationMethod<
-  PatchV1BranchesByBranchIdRequest,
-  PatchV1BranchesByBranchIdResponse,
-  PatchV1BranchesByBranchIdError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PatchV1BranchesByBranchIdRequest,
-  output: PatchV1BranchesByBranchIdResponse,
-  errors: [NotFound, UnprocessableEntity, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PatchV1BuildsByBuildIdError =
-  | NotFound
-  | Conflict
-  | PrismaPostgresOpError;
-/** Update a build ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Records progress on a build. Any holder of the workspace token may patch any field — the webhook, the CI run and Composer each report the part of a deploy they can see, and the token is the boundary. Reaching `running` stamps `startedAt` and reaching a terminal state stamps `finishedAt`, both only if unset, so re-reporting the same state does not move the clock. `projectId`, `branchId`, `deployedUrl` and `applicationTopologyContentHash` are fill-only: a reporter that resolves them partway through a deploy sets them here, but a value already recorded cannot be changed and the attempt is a conflict. Sending the value already recorded is accepted and changes nothing. An anchor must belong to the caller's workspace and agree with the anchors the build already carries, so a branch from another project is refused. */
-export const patchV1BuildsByBuildId: API.OperationMethod<
-  PatchV1BuildsByBuildIdRequest,
-  PatchV1BuildsByBuildIdResponse,
-  PatchV1BuildsByBuildIdError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PatchV1BuildsByBuildIdRequest,
-  output: PatchV1BuildsByBuildIdResponse,
-  errors: [NotFound, Conflict, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PatchV1DatabasesByDatabaseIdError =
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | PrismaPostgresOpError;
-/** Update database Updates the database with the given ID. */
-export const patchV1DatabasesByDatabaseId: API.OperationMethod<
-  PatchV1DatabasesByDatabaseIdRequest,
-  PatchV1DatabasesByDatabaseIdResponse,
-  PatchV1DatabasesByDatabaseIdError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PatchV1DatabasesByDatabaseIdRequest,
-  output: PatchV1DatabasesByDatabaseIdResponse,
-  errors: [
-    Forbidden,
-    NotFound,
-    UnprocessableEntity,
-    UnknownPrismaPostgresError,
-  ],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PatchV1EnvironmentVariablesByEnvVarIdError =
-  | NotFound
-  | UnprocessableEntity
-  | PrismaPostgresOpError;
-/** Update an environment variable's value ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Replaces the value of an existing environment variable. Only the value is mutable — the project, environment, key, and branch are fixed at create-time. */
-export const patchV1EnvironmentVariablesByEnvVarId: API.OperationMethod<
-  PatchV1EnvironmentVariablesByEnvVarIdRequest,
-  PatchV1EnvironmentVariablesByEnvVarIdResponse,
-  PatchV1EnvironmentVariablesByEnvVarIdError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PatchV1EnvironmentVariablesByEnvVarIdRequest,
-  output: PatchV1EnvironmentVariablesByEnvVarIdResponse,
-  errors: [NotFound, UnprocessableEntity, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PatchV1ProjectsByIdError =
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | PrismaPostgresOpError;
-/** Update project Updates the project with the given ID. */
-export const patchV1ProjectsById: API.OperationMethod<
-  PatchV1ProjectsByIdRequest,
-  PatchV1ProjectsByIdResponse,
-  PatchV1ProjectsByIdError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PatchV1ProjectsByIdRequest,
-  output: PatchV1ProjectsByIdResponse,
-  errors: [
-    Forbidden,
-    NotFound,
-    UnprocessableEntity,
-    UnknownPrismaPostgresError,
-  ],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PatchV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseError =
-  | NotFound
-  | PrismaPostgresOpError;
-/** Heartbeat Alchemy deploy lease ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Extends the unexpired deploy lease addressed by the Alchemy-State-Lease-Id header from now. A missing, replaced, or expired lease returns 404 — the lost-lease signal; an expired lease can never be revived. */
-export const patchV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLease: API.OperationMethod<
-  PatchV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseRequest,
-  PatchV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseResponse,
-  PatchV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PatchV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseRequest,
-  output: PatchV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseResponse,
-  errors: [NotFound, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PatchV1ServicesByServiceIdError =
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | PrismaPostgresOpError;
-/** Update service ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Updates the display name of a service. */
-export const patchV1ServicesByServiceId: API.OperationMethod<
-  PatchV1ServicesByServiceIdRequest,
-  PatchV1ServicesByServiceIdResponse,
-  PatchV1ServicesByServiceIdError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PatchV1ServicesByServiceIdRequest,
-  output: PatchV1ServicesByServiceIdResponse,
-  errors: [
-    Forbidden,
-    NotFound,
-    UnprocessableEntity,
-    UnknownPrismaPostgresError,
-  ],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostV1AuthGithubActionsTokenError = PrismaPostgresOpError;
+    identifier: "PutProjectBranchApplicationTopologyResponse",
+  }) as any as S.Schema<PutProjectBranchApplicationTopologyResponse>;
+
+export interface UpdateBranchRequest {
+  branchId: string;
+  isDefault?: boolean | null;
+}
+export const UpdateBranchRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    branchId: S.String.pipe(T.Label()),
+    isDefault: S.optional(S.NullOr(S.Boolean)),
+  }).pipe(
+    T.Http({ method: "PATCH", uri: "/v1/branches/{branchId}", code: 200 }),
+  ),
+).annotate({
+  identifier: "UpdateBranchRequest",
+}) as any as S.Schema<UpdateBranchRequest>;
+
+export type UpdateBranchResponseDataRole = "production" | "preview";
+export const UpdateBranchResponseDataRole = /*@__PURE__*/ S.String;
+
+/** Thin reference to the parent Project. Member resources are intentionally NOT inlined — list /v1/databases?branchId=<br_xxx> or /v1/apps?branchId=<br_xxx> instead (see API design principles "Flat and Hierarchical Coexistence"). */
+export type UpdateBranchResponseDataProject = CreateBucketResponseDataProject;
+export const UpdateBranchResponseDataProject = CreateBucketResponseDataProject;
+
+export interface UpdateBranchResponseData {
+  id: string;
+  type: string;
+  url: string;
+  gitName: string;
+  isDefault: boolean;
+  role: UpdateBranchResponseDataRole;
+  createdAt: string;
+  updatedAt: string;
+  /** Thin reference to the parent Project. Member resources are intentionally NOT inlined — list /v1/databases?branchId=<br_xxx> or /v1/apps?branchId=<br_xxx> instead (see API design principles "Flat and Hierarchical Coexistence"). */
+  project: CreateBucketResponseDataProject;
+}
+export const UpdateBranchResponseData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    type: S.String,
+    url: S.String,
+    gitName: S.String,
+    isDefault: S.Boolean,
+    role: UpdateBranchResponseDataRole,
+    createdAt: S.String,
+    updatedAt: S.String,
+    project: CreateBucketResponseDataProject,
+  }),
+).annotate({
+  identifier: "UpdateBranchResponseData",
+}) as any as S.Schema<UpdateBranchResponseData>;
+
+export interface UpdateBranchResponse {
+  data: UpdateBranchResponseData;
+}
+export const UpdateBranchResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: UpdateBranchResponseData,
+  }),
+).annotate({
+  identifier: "UpdateBranchResponse",
+}) as any as S.Schema<UpdateBranchResponse>;
+
+/** How far the run has got. */
+export type UpdateBuildRequestPhase = "queued" | "build" | "deploy";
+export const UpdateBuildRequestPhase = /*@__PURE__*/ S.String;
+
+export type UpdateBuildRequestState =
+  | "pending"
+  | "running"
+  | "succeeded"
+  | "failed"
+  | "cancelled";
+export const UpdateBuildRequestState = /*@__PURE__*/ S.String;
+
+export interface UpdateBuildRequest {
+  buildId: string;
+  /** How far the run has got. */
+  phase?: UpdateBuildRequestPhase | (string & {});
+  state?: UpdateBuildRequestState | (string & {});
+  /** Name of the step that failed, free text — step names come from build tooling the platform cannot validate. */
+  failingStep?: string;
+  errorMessage?: string;
+  externalLogUrl?: string;
+  /** Project the build targets. Fill-only: a reporter that learns the project partway through a deploy may set it, but a value already recorded cannot be changed. */
+  projectId?: string;
+  /** Branch the build targets. Fill-only, like `projectId`. */
+  branchId?: string;
+  /** Where the deployed app can be reached. Fill-only, like the anchors. */
+  deployedUrl?: string;
+  /** Content hash of the application topology this run deploys, as submitted to the application-topology endpoint. A value match, never a reference: equal hashes identify the same graph. Fill-only, like the anchors. */
+  applicationTopologyContentHash?: string;
+}
+export const UpdateBuildRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    buildId: S.String.pipe(T.Label()),
+    phase: S.optional(UpdateBuildRequestPhase),
+    state: S.optional(UpdateBuildRequestState),
+    failingStep: S.optional(S.String),
+    errorMessage: S.optional(S.String),
+    externalLogUrl: S.optional(S.String),
+    projectId: S.optional(S.String),
+    branchId: S.optional(S.String),
+    deployedUrl: S.optional(S.String),
+    applicationTopologyContentHash: S.optional(S.String),
+  }).pipe(T.Http({ method: "PATCH", uri: "/v1/builds/{buildId}", code: 200 })),
+).annotate({
+  identifier: "UpdateBuildRequest",
+}) as any as S.Schema<UpdateBuildRequest>;
+
+export type UpdateBuildResponseDataSource =
+  | "webhook"
+  | "setup"
+  | "manual"
+  | "ci"
+  | "cli";
+export const UpdateBuildResponseDataSource = /*@__PURE__*/ S.String;
+
+export type UpdateBuildResponseDataState =
+  | "pending"
+  | "running"
+  | "succeeded"
+  | "failed"
+  | "cancelled";
+export const UpdateBuildResponseDataState = /*@__PURE__*/ S.String;
+
+/** Null when nothing reported a phase; the platform never invents an observation it did not receive. */
+export type UpdateBuildResponseDataPhase = "queued" | "build" | "deploy";
+export const UpdateBuildResponseDataPhase = /*@__PURE__*/ S.String;
+
+export interface UpdateBuildResponseData {
+  id: string;
+  source: UpdateBuildResponseDataSource;
+  state: UpdateBuildResponseDataState;
+  /** Null when nothing reported a phase; the platform never invents an observation it did not receive. */
+  phase: UpdateBuildResponseDataPhase | null;
+  commitSha: string;
+  branchName: string;
+  /** Repository the build ran against. Set only when the workspace has a live link to it; a reported repository the platform does not know stays null. */
+  gitRepoId: string | null;
+  projectId: string | null;
+  branchId: string | null;
+  externalLogUrl: string | null;
+  deployedUrl: string | null;
+  applicationTopologyContentHash: string | null;
+  errorMessage: string | null;
+  failingStep: string | null;
+  createdAt: string;
+  startedAt: string | null;
+  finishedAt: string | null;
+}
+export const UpdateBuildResponseData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    source: UpdateBuildResponseDataSource,
+    state: UpdateBuildResponseDataState,
+    phase: S.NullOr(UpdateBuildResponseDataPhase),
+    commitSha: S.String,
+    branchName: S.String,
+    gitRepoId: S.NullOr(S.String),
+    projectId: S.NullOr(S.String),
+    branchId: S.NullOr(S.String),
+    externalLogUrl: S.NullOr(S.String),
+    deployedUrl: S.NullOr(S.String),
+    applicationTopologyContentHash: S.NullOr(S.String),
+    errorMessage: S.NullOr(S.String),
+    failingStep: S.NullOr(S.String),
+    createdAt: S.String,
+    startedAt: S.NullOr(S.String),
+    finishedAt: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "UpdateBuildResponseData",
+}) as any as S.Schema<UpdateBuildResponseData>;
+
+export interface UpdateBuildResponse {
+  data: UpdateBuildResponseData;
+}
+export const UpdateBuildResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: UpdateBuildResponseData,
+  }),
+).annotate({
+  identifier: "UpdateBuildResponse",
+}) as any as S.Schema<UpdateBuildResponse>;
+
+export interface UpdateDatabaseRequest {
+  databaseId: string;
+  /** New display name for the database */
+  name?: string;
+  /** ID of the Branch to move the database to. Every database belongs to a Branch, so null (detach) is rejected. */
+  branchId?: string | null;
+  /** Git name of the Branch to move the database to; the Branch is created when it does not exist. Mutually exclusive with branchId. Every database belongs to a Branch, so null (detach) is rejected. */
+  branchGitName?: string | null;
+}
+export const UpdateDatabaseRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    databaseId: S.String.pipe(T.Label()),
+    name: S.optional(S.String),
+    branchId: S.optional(S.NullOr(S.String)),
+    branchGitName: S.optional(S.NullOr(S.String)),
+  }).pipe(
+    T.Http({ method: "PATCH", uri: "/v1/databases/{databaseId}", code: 200 }),
+  ),
+).annotate({
+  identifier: "UpdateDatabaseRequest",
+}) as any as S.Schema<UpdateDatabaseRequest>;
+
+export type UpdateDatabaseResponseDataStatus =
+  | "failure"
+  | "provisioning"
+  | "ready"
+  | "recovering";
+export const UpdateDatabaseResponseDataStatus = /*@__PURE__*/ S.String;
+
+export type UpdateDatabaseResponseDataConnectionsItemKind =
+  | "postgres"
+  | "accelerate";
+export const UpdateDatabaseResponseDataConnectionsItemKind =
+  /*@__PURE__*/ S.String;
+
+export type UpdateDatabaseResponseDataConnectionsItemEndpointsDirect =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+export const UpdateDatabaseResponseDataConnectionsItemEndpointsDirect =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+
+export type UpdateDatabaseResponseDataConnectionsItemEndpointsPooled =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+export const UpdateDatabaseResponseDataConnectionsItemEndpointsPooled =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+
+export type UpdateDatabaseResponseDataConnectionsItemEndpointsAccelerate =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+export const UpdateDatabaseResponseDataConnectionsItemEndpointsAccelerate =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
+
+export type UpdateDatabaseResponseDataConnectionsItemEndpoints =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpoints;
+export const UpdateDatabaseResponseDataConnectionsItemEndpoints =
+  CreateDatabaseRestoreResponseDataConnectionsItemEndpoints;
+
+/** Deprecated: use `endpoints.direct` instead. */
+export type UpdateDatabaseResponseDataConnectionsItemDirectConnection =
+  CreateConnectionResponseDataDirectConnection;
+export const UpdateDatabaseResponseDataConnectionsItemDirectConnection =
+  CreateConnectionResponseDataDirectConnection;
+
+export type UpdateDatabaseResponseDataConnectionsItemDatabase =
+  CreateBucketResponseDataProject;
+export const UpdateDatabaseResponseDataConnectionsItemDatabase =
+  CreateBucketResponseDataProject;
+
+export interface UpdateDatabaseResponseDataConnectionsItem {
+  id: string;
+  type: string;
+  url: string;
+  name: string;
+  createdAt: string;
+  kind: UpdateDatabaseResponseDataConnectionsItemKind;
+  endpoints: CreateDatabaseRestoreResponseDataConnectionsItemEndpoints;
+  /** Deprecated: use `endpoints.direct` instead. */
+  directConnection?: CreateConnectionResponseDataDirectConnection | null;
+  database: CreateBucketResponseDataProject;
+}
+export const UpdateDatabaseResponseDataConnectionsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.String,
+      type: S.String,
+      url: S.String,
+      name: S.String,
+      createdAt: S.String,
+      kind: UpdateDatabaseResponseDataConnectionsItemKind,
+      endpoints: CreateDatabaseRestoreResponseDataConnectionsItemEndpoints,
+      directConnection: S.optional(
+        S.NullOr(CreateConnectionResponseDataDirectConnection),
+      ),
+      database: CreateBucketResponseDataProject,
+    }),
+  ).annotate({
+    identifier: "UpdateDatabaseResponseDataConnectionsItem",
+  }) as any as S.Schema<UpdateDatabaseResponseDataConnectionsItem>;
+
+export type UpdateDatabaseResponseDataConnectionsList =
+  Array<UpdateDatabaseResponseDataConnectionsItem>;
+export const UpdateDatabaseResponseDataConnectionsList = /*@__PURE__*/ S.Array(
+  UpdateDatabaseResponseDataConnectionsItem,
+) as any as S.Schema<UpdateDatabaseResponseDataConnectionsList>;
+
+export type UpdateDatabaseResponseDataProject = CreateBucketResponseDataProject;
+export const UpdateDatabaseResponseDataProject =
+  CreateBucketResponseDataProject;
+
+export type UpdateDatabaseResponseDataRegion = CreateDatabaseResponseDataRegion;
+export const UpdateDatabaseResponseDataRegion =
+  CreateDatabaseResponseDataRegion;
+
+export type UpdateDatabaseResponseDataSourceCase0 =
+  CreateDatabaseRequestSourceCase0;
+export const UpdateDatabaseResponseDataSourceCase0 =
+  CreateDatabaseRequestSourceCase0;
+
+export type UpdateDatabaseResponseDataSourceCase1 =
+  CreateDatabaseResponseDataSourceCase1;
+export const UpdateDatabaseResponseDataSourceCase1 =
+  CreateDatabaseResponseDataSourceCase1;
+
+export type UpdateDatabaseResponseDataSourceCase2 =
+  CreateDatabaseResponseDataSourceCase2;
+export const UpdateDatabaseResponseDataSourceCase2 =
+  CreateDatabaseResponseDataSourceCase2;
+
+export type UpdateDatabaseResponseDataSource =
+  | CreateDatabaseRequestSourceCase0
+  | CreateDatabaseResponseDataSourceCase1
+  | CreateDatabaseResponseDataSourceCase2;
+export const UpdateDatabaseResponseDataSource = /*@__PURE__*/ S.suspend(() =>
+  S.Union([
+    UpdateDatabaseResponseDataSourceCase0,
+    UpdateDatabaseResponseDataSourceCase1,
+    UpdateDatabaseResponseDataSourceCase2,
+  ]),
+) as any as S.Schema<UpdateDatabaseResponseDataSource>;
+
+export interface UpdateDatabaseResponseData {
+  id: string;
+  type: string;
+  url: string;
+  name: string;
+  status: UpdateDatabaseResponseDataStatus;
+  createdAt: string;
+  isDefault: boolean;
+  defaultConnectionId: string | null;
+  connections: UpdateDatabaseResponseDataConnectionsList;
+  project: CreateBucketResponseDataProject;
+  region: CreateDatabaseResponseDataRegion | null;
+  source: UpdateDatabaseResponseDataSource | null;
+  branchId: string | null;
+}
+export const UpdateDatabaseResponseData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    type: S.String,
+    url: S.String,
+    name: S.String,
+    status: UpdateDatabaseResponseDataStatus,
+    createdAt: S.String,
+    isDefault: S.Boolean,
+    defaultConnectionId: S.NullOr(S.String),
+    connections: UpdateDatabaseResponseDataConnectionsList,
+    project: CreateBucketResponseDataProject,
+    region: S.NullOr(CreateDatabaseResponseDataRegion),
+    source: S.NullOr(UpdateDatabaseResponseDataSource),
+    branchId: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "UpdateDatabaseResponseData",
+}) as any as S.Schema<UpdateDatabaseResponseData>;
+
+export interface UpdateDatabaseResponse {
+  data: UpdateDatabaseResponseData;
+}
+export const UpdateDatabaseResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: UpdateDatabaseResponseData,
+  }),
+).annotate({
+  identifier: "UpdateDatabaseResponse",
+}) as any as S.Schema<UpdateDatabaseResponse>;
+
+export interface UpdateEnvironmentVariableRequest {
+  envVarId: string;
+  value: string;
+}
+export const UpdateEnvironmentVariableRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    envVarId: S.String.pipe(T.Label()),
+    value: S.String,
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/v1/environment-variables/{envVarId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateEnvironmentVariableRequest",
+}) as any as S.Schema<UpdateEnvironmentVariableRequest>;
+
+export type UpdateEnvironmentVariableResponseDataClass =
+  | "production"
+  | "preview";
+export const UpdateEnvironmentVariableResponseDataClass =
+  /*@__PURE__*/ S.String;
+
+export interface UpdateEnvironmentVariableResponseData {
+  id: string;
+  type: string;
+  url: string;
+  projectId: string;
+  branchId: string | null;
+  class: UpdateEnvironmentVariableResponseDataClass;
+  key: string;
+  valueKid: string;
+  isManagedBySystem: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+export const UpdateEnvironmentVariableResponseData = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.String,
+      type: S.String,
+      url: S.String,
+      projectId: S.String,
+      branchId: S.NullOr(S.String),
+      class: UpdateEnvironmentVariableResponseDataClass,
+      key: S.String,
+      valueKid: S.String,
+      isManagedBySystem: S.Boolean,
+      createdAt: S.String,
+      updatedAt: S.String,
+    }),
+).annotate({
+  identifier: "UpdateEnvironmentVariableResponseData",
+}) as any as S.Schema<UpdateEnvironmentVariableResponseData>;
+
+export interface UpdateEnvironmentVariableResponse {
+  data: UpdateEnvironmentVariableResponseData;
+}
+export const UpdateEnvironmentVariableResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: UpdateEnvironmentVariableResponseData,
+  }),
+).annotate({
+  identifier: "UpdateEnvironmentVariableResponse",
+}) as any as S.Schema<UpdateEnvironmentVariableResponse>;
+
+export type UpdateProjectRequestSettingsMap = {
+  [key: string]: unknown | undefined;
+};
+export const UpdateProjectRequestSettingsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<UpdateProjectRequestSettingsMap>;
+
+export interface UpdateProjectRequest {
+  id: string;
+  name?: string;
+  settings?: UpdateProjectRequestSettingsMap;
+}
+export const UpdateProjectRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    name: S.optional(S.String),
+    settings: S.optional(UpdateProjectRequestSettingsMap),
+  }).pipe(T.Http({ method: "PATCH", uri: "/v1/projects/{id}", code: 200 })),
+).annotate({
+  identifier: "UpdateProjectRequest",
+}) as any as S.Schema<UpdateProjectRequest>;
+
+export type UpdateProjectResponseDataWorkspace =
+  CreateBucketResponseDataProject;
+export const UpdateProjectResponseDataWorkspace =
+  CreateBucketResponseDataProject;
+
+export type UpdateProjectResponseData = GetProjectResponseData;
+export const UpdateProjectResponseData = GetProjectResponseData;
+
+export interface UpdateProjectResponse {
+  data: GetProjectResponseData;
+}
+export const UpdateProjectResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: GetProjectResponseData,
+  }),
+).annotate({
+  identifier: "UpdateProjectResponse",
+}) as any as S.Schema<UpdateProjectResponse>;
+
+export interface UpdateProjectBranchAlchemyStateLeaseRequest {
+  projectId: string;
+  branchId: string;
+  /** Requested lease TTL in seconds. Default 60, clamped to [30, 300]. */
+  ttlSeconds?: number;
+}
+export const UpdateProjectBranchAlchemyStateLeaseRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      projectId: S.String.pipe(T.Label()),
+      branchId: S.String.pipe(T.Label()),
+      ttlSeconds: S.optional(S.Number),
+    }).pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/v1/projects/{projectId}/branches/{branchId}/alchemy-state/lease",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "UpdateProjectBranchAlchemyStateLeaseRequest",
+  }) as any as S.Schema<UpdateProjectBranchAlchemyStateLeaseRequest>;
+
+export type UpdateProjectBranchAlchemyStateLeaseResponseData =
+  CreateProjectBranchAlchemyStateLeaseResponseData;
+export const UpdateProjectBranchAlchemyStateLeaseResponseData =
+  CreateProjectBranchAlchemyStateLeaseResponseData;
+
+export interface UpdateProjectBranchAlchemyStateLeaseResponse {
+  data: CreateProjectBranchAlchemyStateLeaseResponseData;
+}
+export const UpdateProjectBranchAlchemyStateLeaseResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      data: CreateProjectBranchAlchemyStateLeaseResponseData,
+    }),
+  ).annotate({
+    identifier: "UpdateProjectBranchAlchemyStateLeaseResponse",
+  }) as any as S.Schema<UpdateProjectBranchAlchemyStateLeaseResponse>;
+
+export interface UpdateServiceRequest {
+  serviceId: string;
+  displayName?: string;
+  branchId?: string | null;
+  branchGitName?: string | null;
+}
+export const UpdateServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceId: S.String.pipe(T.Label()),
+    displayName: S.optional(S.String),
+    branchId: S.optional(S.NullOr(S.String)),
+    branchGitName: S.optional(S.NullOr(S.String)),
+  }).pipe(
+    T.Http({ method: "PATCH", uri: "/v1/services/{serviceId}", code: 200 }),
+  ),
+).annotate({
+  identifier: "UpdateServiceRequest",
+}) as any as S.Schema<UpdateServiceRequest>;
+
+export type UpdateServiceResponseDataRegion = CreateDatabaseResponseDataRegion;
+export const UpdateServiceResponseDataRegion = CreateDatabaseResponseDataRegion;
+
+export type UpdateServiceResponseData = CreateServiceResponseData;
+export const UpdateServiceResponseData = CreateServiceResponseData;
+
+export interface UpdateServiceResponse {
+  data: CreateServiceResponseData;
+}
+export const UpdateServiceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: CreateServiceResponseData,
+  }),
+).annotate({
+  identifier: "UpdateServiceResponse",
+}) as any as S.Schema<UpdateServiceResponse>;
+
+export type CreateAuthGithubActionsTokenError = PrismaPostgresOpError;
 /** Exchange a GitHub Actions OIDC token for a workspace service token ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Verifies the GitHub Actions OIDC token and mints a short-lived workspace service token. The caller must request the token with audience `prisma-cloud`. Any verification failure returns a generic 401 — the response never reveals whether a repository is connected. */
-export const postV1AuthGithubActionsToken: API.OperationMethod<
-  PostV1AuthGithubActionsTokenRequest,
-  PostV1AuthGithubActionsTokenResponse,
-  PostV1AuthGithubActionsTokenError,
+export const createAuthGithubActionsToken: API.OperationMethod<
+  CreateAuthGithubActionsTokenRequest,
+  CreateAuthGithubActionsTokenResponse,
+  CreateAuthGithubActionsTokenError,
   PrismaPostgresOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostV1AuthGithubActionsTokenRequest,
-  output: PostV1AuthGithubActionsTokenResponse,
+  input: CreateAuthGithubActionsTokenRequest,
+  output: CreateAuthGithubActionsTokenResponse,
   errors: [UnknownPrismaPostgresError],
   protocol: PrismaPostgresProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostV1BucketsError =
+export type CreateBucketError =
   | BadRequest
   | Forbidden
   | NotFound
   | PrismaPostgresOpError;
 /** Create bucket Creates a new object-store bucket in the specified project. */
-export const postV1Buckets: API.OperationMethod<
-  PostV1BucketsRequest,
-  PostV1BucketsResponse,
-  PostV1BucketsError,
+export const createBucket: API.OperationMethod<
+  CreateBucketRequest,
+  CreateBucketResponse,
+  CreateBucketError,
   PrismaPostgresOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostV1BucketsRequest,
-  output: PostV1BucketsResponse,
+  input: CreateBucketRequest,
+  output: CreateBucketResponse,
   errors: [BadRequest, Forbidden, NotFound, UnknownPrismaPostgresError],
   protocol: PrismaPostgresProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostV1BucketsByBucketIdKeysError =
+export type CreateBucketKeyError =
   | BadRequest
   | NotFound
   | PrismaPostgresOpError;
 /** Create bucket key Creates a new access key for the given bucket. The `secretAccessKey` field is returned exactly once in this response and is never stored — copy it immediately. */
-export const postV1BucketsByBucketIdKeys: API.OperationMethod<
-  PostV1BucketsByBucketIdKeysRequest,
-  PostV1BucketsByBucketIdKeysResponse,
-  PostV1BucketsByBucketIdKeysError,
+export const createBucketKey: API.OperationMethod<
+  CreateBucketKeyRequest,
+  CreateBucketKeyResponse,
+  CreateBucketKeyError,
   PrismaPostgresOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostV1BucketsByBucketIdKeysRequest,
-  output: PostV1BucketsByBucketIdKeysResponse,
+  input: CreateBucketKeyRequest,
+  output: CreateBucketKeyResponse,
   errors: [BadRequest, NotFound, UnknownPrismaPostgresError],
   protocol: PrismaPostgresProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostV1BuildsError = NotFound | PrismaPostgresOpError;
+export type CreateBuildError = NotFound | PrismaPostgresOpError;
 /** Report a build ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Records a build any deploy tool is running — a CI workflow, a deploy script, or Composer from a laptop. The workspace comes from the token, never from the body, which is what lets a build be reported before the project it will create exists. Supplying `runIdentity` makes the call idempotent: a repeat for the same run returns the build already recorded rather than a second one. The response is the same either way; a caller cannot tell whether it created the build or joined one. A build reported with no `runIdentity` has no dedup key, so a client that retries a lost response creates a second build. Supply a `runIdentity` whenever the run has one. */
-export const postV1Builds: API.OperationMethod<
-  PostV1BuildsRequest,
-  PostV1BuildsResponse,
-  PostV1BuildsError,
+export const createBuild: API.OperationMethod<
+  CreateBuildRequest,
+  CreateBuildResponse,
+  CreateBuildError,
   PrismaPostgresOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostV1BuildsRequest,
-  output: PostV1BuildsResponse,
+  input: CreateBuildRequest,
+  output: CreateBuildResponse,
   errors: [NotFound, UnknownPrismaPostgresError],
   protocol: PrismaPostgresProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostV1ConnectionsError =
+export type CreateConnectionError =
   | NotFound
   | UnprocessableEntity
   | PrismaPostgresOpError;
 /** Create connection Creates a new connection for the specified database. */
-export const postV1Connections: API.OperationMethod<
-  PostV1ConnectionsRequest,
-  PostV1ConnectionsResponse,
-  PostV1ConnectionsError,
+export const createConnection: API.OperationMethod<
+  CreateConnectionRequest,
+  CreateConnectionResponse,
+  CreateConnectionError,
   PrismaPostgresOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostV1ConnectionsRequest,
-  output: PostV1ConnectionsResponse,
+  input: CreateConnectionRequest,
+  output: CreateConnectionResponse,
   errors: [NotFound, UnprocessableEntity, UnknownPrismaPostgresError],
   protocol: PrismaPostgresProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostV1ConnectionsByIdRotateError = NotFound | PrismaPostgresOpError;
+export type CreateConnectionRotateError = NotFound | PrismaPostgresOpError;
 /** Rotate connection credentials Generates new credentials for the connection with the given ID. Revocation of the previous credentials is best-effort. */
-export const postV1ConnectionsByIdRotate: API.OperationMethod<
-  PostV1ConnectionsByIdRotateRequest,
-  PostV1ConnectionsByIdRotateResponse,
-  PostV1ConnectionsByIdRotateError,
+export const createConnectionRotate: API.OperationMethod<
+  CreateConnectionRotateRequest,
+  CreateConnectionRotateResponse,
+  CreateConnectionRotateError,
   PrismaPostgresOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostV1ConnectionsByIdRotateRequest,
-  output: PostV1ConnectionsByIdRotateResponse,
+  input: CreateConnectionRotateRequest,
+  output: CreateConnectionRotateResponse,
   errors: [NotFound, UnknownPrismaPostgresError],
   protocol: PrismaPostgresProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostV1DatabasesError =
+export type CreateDatabaseError =
   | BadRequest
   | Forbidden
   | NotFound
   | UnprocessableEntity
   | PrismaPostgresOpError;
 /** Create database Creates a new database in the specified project. */
-export const postV1Databases: API.OperationMethod<
-  PostV1DatabasesRequest,
-  PostV1DatabasesResponse,
-  PostV1DatabasesError,
+export const createDatabase: API.OperationMethod<
+  CreateDatabaseRequest,
+  CreateDatabaseResponse,
+  CreateDatabaseError,
   PrismaPostgresOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostV1DatabasesRequest,
-  output: PostV1DatabasesResponse,
+  input: CreateDatabaseRequest,
+  output: CreateDatabaseResponse,
   errors: [
     BadRequest,
     Forbidden,
@@ -9646,205 +8022,186 @@ export const postV1Databases: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PostV1DatabasesByDatabaseIdConnectionsError =
+export type CreateDatabaseConnectionError =
   | NotFound
   | UnprocessableEntity
   | PrismaPostgresOpError;
 /** Create database connection string Creates a new connection string for the given database. */
-export const postV1DatabasesByDatabaseIdConnections: API.OperationMethod<
-  PostV1DatabasesByDatabaseIdConnectionsRequest,
-  PostV1DatabasesByDatabaseIdConnectionsResponse,
-  PostV1DatabasesByDatabaseIdConnectionsError,
+export const createDatabaseConnection: API.OperationMethod<
+  CreateDatabaseConnectionRequest,
+  CreateDatabaseConnectionResponse,
+  CreateDatabaseConnectionError,
   PrismaPostgresOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostV1DatabasesByDatabaseIdConnectionsRequest,
-  output: PostV1DatabasesByDatabaseIdConnectionsResponse,
+  input: CreateDatabaseConnectionRequest,
+  output: CreateDatabaseConnectionResponse,
   errors: [NotFound, UnprocessableEntity, UnknownPrismaPostgresError],
   protocol: PrismaPostgresProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostV1DatabasesByTargetDatabaseIdRestoreError =
+export type CreateDatabaseRestoreError =
   | NotFound
   | Conflict
   | UnprocessableEntity
   | PrismaPostgresOpError;
 /** Restore database (destructive) ⚠️ **Destructive operation** — this immediately and irreversibly overwrites all data in the target database with the contents of the specified backup. Any data written since the backup was taken will be lost. Ensure you have a recent backup of the target database before proceeding. Replaces the data in an existing database from a backup. Connections and credentials are preserved — only the data layer is replaced. */
-export const postV1DatabasesByTargetDatabaseIdRestore: API.OperationMethod<
-  PostV1DatabasesByTargetDatabaseIdRestoreRequest,
-  PostV1DatabasesByTargetDatabaseIdRestoreResponse,
-  PostV1DatabasesByTargetDatabaseIdRestoreError,
+export const createDatabaseRestore: API.OperationMethod<
+  CreateDatabaseRestoreRequest,
+  CreateDatabaseRestoreResponse,
+  CreateDatabaseRestoreError,
   PrismaPostgresOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostV1DatabasesByTargetDatabaseIdRestoreRequest,
-  output: PostV1DatabasesByTargetDatabaseIdRestoreResponse,
+  input: CreateDatabaseRestoreRequest,
+  output: CreateDatabaseRestoreResponse,
   errors: [NotFound, Conflict, UnprocessableEntity, UnknownPrismaPostgresError],
   protocol: PrismaPostgresProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostV1DeploymentsByDeploymentIdStartError =
+export type CreateDeploymentStartError =
   | Forbidden
   | NotFound
   | Conflict
   | PrismaPostgresOpError;
 /** Start deployment ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Requests VM creation and startup for the deployment. The artifact must be uploaded before calling this endpoint. Returns a preview domain that becomes reachable once the VM is running. Poll the status endpoint until `running` is reached. */
-export const postV1DeploymentsByDeploymentIdStart: API.OperationMethod<
-  PostV1DeploymentsByDeploymentIdStartRequest,
-  PostV1DeploymentsByDeploymentIdStartResponse,
-  PostV1DeploymentsByDeploymentIdStartError,
+export const createDeploymentStart: API.OperationMethod<
+  CreateDeploymentStartRequest,
+  CreateDeploymentStartResponse,
+  CreateDeploymentStartError,
   PrismaPostgresOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostV1DeploymentsByDeploymentIdStartRequest,
-  output: PostV1DeploymentsByDeploymentIdStartResponse,
+  input: CreateDeploymentStartRequest,
+  output: CreateDeploymentStartResponse,
   errors: [Forbidden, NotFound, Conflict, UnknownPrismaPostgresError],
   protocol: PrismaPostgresProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostV1DeploymentsByDeploymentIdStopError =
+export type CreateDeploymentStopError =
   | Forbidden
   | NotFound
   | Conflict
   | PrismaPostgresOpError;
 /** Stop deployment ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Requests VM shutdown for the deployment. The deployment record and metadata are retained. Poll the status endpoint until `stopped` is reached. */
-export const postV1DeploymentsByDeploymentIdStop: API.OperationMethod<
-  PostV1DeploymentsByDeploymentIdStopRequest,
-  PostV1DeploymentsByDeploymentIdStopResponse,
-  PostV1DeploymentsByDeploymentIdStopError,
+export const createDeploymentStop: API.OperationMethod<
+  CreateDeploymentStopRequest,
+  CreateDeploymentStopResponse,
+  CreateDeploymentStopError,
   PrismaPostgresOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostV1DeploymentsByDeploymentIdStopRequest,
-  output: PostV1DeploymentsByDeploymentIdStopResponse,
+  input: CreateDeploymentStopRequest,
+  output: CreateDeploymentStopResponse,
   errors: [Forbidden, NotFound, Conflict, UnknownPrismaPostgresError],
   protocol: PrismaPostgresProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostV1DomainsByDomainIdRetryError =
+export type CreateDomainRetryError =
   | Forbidden
   | NotFound
   | Conflict
   | PrismaPostgresOpError;
 /** Retry custom domain provisioning ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Retries DNS verification and certificate issuance for a failed or pending domain. Returns 409 if the domain is not yet eligible for retry (e.g. still provisioning). */
-export const postV1DomainsByDomainIdRetry: API.OperationMethod<
-  PostV1DomainsByDomainIdRetryRequest,
-  PostV1DomainsByDomainIdRetryResponse,
-  PostV1DomainsByDomainIdRetryError,
+export const createDomainRetry: API.OperationMethod<
+  CreateDomainRetryRequest,
+  CreateDomainRetryResponse,
+  CreateDomainRetryError,
   PrismaPostgresOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostV1DomainsByDomainIdRetryRequest,
-  output: PostV1DomainsByDomainIdRetryResponse,
+  input: CreateDomainRetryRequest,
+  output: CreateDomainRetryResponse,
   errors: [Forbidden, NotFound, Conflict, UnknownPrismaPostgresError],
   protocol: PrismaPostgresProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostV1EnvironmentVariablesError =
+export type CreateEnvironmentVariableError =
   | NotFound
   | Conflict
   | UnprocessableEntity
   | PrismaPostgresOpError;
 /** Create an environment variable ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Creates a new environment variable in a project's `production` or `preview` environment, or a preview branch override when `branchId` is supplied. Returns 409 if a variable with the same key already exists in that scope — use PATCH to replace its value. Values are stored encrypted and are not returned by subsequent reads. */
-export const postV1EnvironmentVariables: API.OperationMethod<
-  PostV1EnvironmentVariablesRequest,
-  PostV1EnvironmentVariablesResponse,
-  PostV1EnvironmentVariablesError,
+export const createEnvironmentVariable: API.OperationMethod<
+  CreateEnvironmentVariableRequest,
+  CreateEnvironmentVariableResponse,
+  CreateEnvironmentVariableError,
   PrismaPostgresOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostV1EnvironmentVariablesRequest,
-  output: PostV1EnvironmentVariablesResponse,
+  input: CreateEnvironmentVariableRequest,
+  output: CreateEnvironmentVariableResponse,
   errors: [NotFound, Conflict, UnprocessableEntity, UnknownPrismaPostgresError],
   protocol: PrismaPostgresProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostV1ProjectsError = UnprocessableEntity | PrismaPostgresOpError;
+export type CreateProjectError = UnprocessableEntity | PrismaPostgresOpError;
 /** Create project with a postgres database Creates a new project with a postgres database. */
-export const postV1Projects: API.OperationMethod<
-  PostV1ProjectsRequest,
-  PostV1ProjectsResponse,
-  PostV1ProjectsError,
+export const createProject: API.OperationMethod<
+  CreateProjectRequest,
+  CreateProjectResponse,
+  CreateProjectError,
   PrismaPostgresOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostV1ProjectsRequest,
-  output: PostV1ProjectsResponse,
+  input: CreateProjectRequest,
+  output: CreateProjectResponse,
   errors: [UnprocessableEntity, UnknownPrismaPostgresError],
   protocol: PrismaPostgresProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostV1ProjectsByIdTransferError =
-  | NotFound
-  | Conflict
-  | UnprocessableEntity
-  | PrismaPostgresOpError;
-/** Transfer project Transfer the project with the given ID to the new owner's workspace */
-export const postV1ProjectsByIdTransfer: API.OperationMethod<
-  PostV1ProjectsByIdTransferRequest,
-  PostV1ProjectsByIdTransferResponse,
-  PostV1ProjectsByIdTransferError,
-  PrismaPostgresOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostV1ProjectsByIdTransferRequest,
-  output: PostV1ProjectsByIdTransferResponse,
-  errors: [NotFound, Conflict, UnprocessableEntity, UnknownPrismaPostgresError],
-  protocol: PrismaPostgresProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostV1ProjectsByProjectIdBranchesError =
+export type CreateProjectBranchError =
   | NotFound
   | Conflict
   | UnprocessableEntity
   | PrismaPostgresOpError;
 /** Create a branch ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Creates a Branch under the specified Project. The first Branch in a Project is always created with isDefault=true and role=production regardless of the body value. Later Branches are created with role=preview. Setting isDefault=true while another Branch already holds the default atomically swaps the default flag only. */
-export const postV1ProjectsByProjectIdBranches: API.OperationMethod<
-  PostV1ProjectsByProjectIdBranchesRequest,
-  PostV1ProjectsByProjectIdBranchesResponse,
-  PostV1ProjectsByProjectIdBranchesError,
+export const createProjectBranch: API.OperationMethod<
+  CreateProjectBranchRequest,
+  CreateProjectBranchResponse,
+  CreateProjectBranchError,
   PrismaPostgresOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostV1ProjectsByProjectIdBranchesRequest,
-  output: PostV1ProjectsByProjectIdBranchesResponse,
+  input: CreateProjectBranchRequest,
+  output: CreateProjectBranchResponse,
   errors: [NotFound, Conflict, UnprocessableEntity, UnknownPrismaPostgresError],
   protocol: PrismaPostgresProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseError =
+export type CreateProjectBranchAlchemyStateLeaseError =
   | NotFound
   | Conflict
   | PrismaPostgresOpError;
 /** Acquire Alchemy deploy lease ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Acquires the deploy lease for a (branch, stack, stage). An expired lease is replaced atomically; a live lease fails fast with 409 naming the current holder — there is no queueing. Every Alchemy state operation requires a live deploy lease. */
-export const postV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLease: API.OperationMethod<
-  PostV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseRequest,
-  PostV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseResponse,
-  PostV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseError,
+export const createProjectBranchAlchemyStateLease: API.OperationMethod<
+  CreateProjectBranchAlchemyStateLeaseRequest,
+  CreateProjectBranchAlchemyStateLeaseResponse,
+  CreateProjectBranchAlchemyStateLeaseError,
   PrismaPostgresOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseRequest,
-  output: PostV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLeaseResponse,
+  input: CreateProjectBranchAlchemyStateLeaseRequest,
+  output: CreateProjectBranchAlchemyStateLeaseResponse,
   errors: [NotFound, Conflict, UnknownPrismaPostgresError],
   protocol: PrismaPostgresProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostV1ProjectsByProjectIdDatabasesError =
+export type CreateProjectDatabaseError =
   | BadRequest
   | Forbidden
   | NotFound
   | UnprocessableEntity
   | PrismaPostgresOpError;
 /** Create database Creates a new database for the given project. */
-export const postV1ProjectsByProjectIdDatabases: API.OperationMethod<
-  PostV1ProjectsByProjectIdDatabasesRequest,
-  PostV1ProjectsByProjectIdDatabasesResponse,
-  PostV1ProjectsByProjectIdDatabasesError,
+export const createProjectDatabase: API.OperationMethod<
+  CreateProjectDatabaseRequest,
+  CreateProjectDatabaseResponse,
+  CreateProjectDatabaseError,
   PrismaPostgresOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostV1ProjectsByProjectIdDatabasesRequest,
-  output: PostV1ProjectsByProjectIdDatabasesResponse,
+  input: CreateProjectDatabaseRequest,
+  output: CreateProjectDatabaseResponse,
   errors: [
     BadRequest,
     Forbidden,
@@ -9856,20 +8213,39 @@ export const postV1ProjectsByProjectIdDatabases: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PostV1ScmInstallationsInstallIntentsError =
+export type CreateProjectTransferError =
+  | NotFound
+  | Conflict
+  | UnprocessableEntity
+  | PrismaPostgresOpError;
+/** Transfer project Transfer the project with the given ID to the new owner's workspace */
+export const createProjectTransfer: API.OperationMethod<
+  CreateProjectTransferRequest,
+  CreateProjectTransferResponse,
+  CreateProjectTransferError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateProjectTransferRequest,
+  output: CreateProjectTransferResponse,
+  errors: [NotFound, Conflict, UnprocessableEntity, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateScmInstallationsInstallIntentError =
   | Forbidden
   | NotFound
   | UnprocessableEntity
   | PrismaPostgresOpError;
 /** Create an SCM App installation intent ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Creates an installation intent for the given workspace and returns a provider-specific URL that the user opens to install the SCM app. Currently only `github` is supported. */
-export const postV1ScmInstallationsInstallIntents: API.OperationMethod<
-  PostV1ScmInstallationsInstallIntentsRequest,
-  PostV1ScmInstallationsInstallIntentsResponse,
-  PostV1ScmInstallationsInstallIntentsError,
+export const createScmInstallationsInstallIntent: API.OperationMethod<
+  CreateScmInstallationsInstallIntentRequest,
+  CreateScmInstallationsInstallIntentResponse,
+  CreateScmInstallationsInstallIntentError,
   PrismaPostgresOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostV1ScmInstallationsInstallIntentsRequest,
-  output: PostV1ScmInstallationsInstallIntentsResponse,
+  input: CreateScmInstallationsInstallIntentRequest,
+  output: CreateScmInstallationsInstallIntentResponse,
   errors: [
     Forbidden,
     NotFound,
@@ -9880,21 +8256,21 @@ export const postV1ScmInstallationsInstallIntents: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PostV1ServicesError =
+export type CreateServiceError =
   | Forbidden
   | NotFound
   | Conflict
   | UnprocessableEntity
   | PrismaPostgresOpError;
 /** Create service ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Creates a new service under the specified project. The `projectId` is required in the request body. The service is placed in the given region, or the project's default region if omitted (falling back to us-east-1). Returns `409 Conflict` with the existing service's id, name, and branch if a service with the same name already exists on the resolved branch. */
-export const postV1Services: API.OperationMethod<
-  PostV1ServicesRequest,
-  PostV1ServicesResponse,
-  PostV1ServicesError,
+export const createService: API.OperationMethod<
+  CreateServiceRequest,
+  CreateServiceResponse,
+  CreateServiceError,
   PrismaPostgresOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostV1ServicesRequest,
-  output: PostV1ServicesResponse,
+  input: CreateServiceRequest,
+  output: CreateServiceResponse,
   errors: [
     Forbidden,
     NotFound,
@@ -9906,20 +8282,20 @@ export const postV1Services: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PostV1ServicesByServiceIdDeploymentsError =
+export type CreateServiceDeploymentError =
   | Forbidden
   | NotFound
   | UnprocessableEntity
   | PrismaPostgresOpError;
 /** Create deployment ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Creates a new deployment under the specified service. Returns a pre-signed upload URL for the artifact unless `skipCodeUpload` is set (which forks the active promoted deployment's artifact). Environment variables are resolved automatically from the service's attached Branch (production-class templates for the production Branch; preview-class templates for preview Branches). Manage env vars via the `/v1/environment-variables` endpoints, not as part of the deploy payload. */
-export const postV1ServicesByServiceIdDeployments: API.OperationMethod<
-  PostV1ServicesByServiceIdDeploymentsRequest,
-  PostV1ServicesByServiceIdDeploymentsResponse,
-  PostV1ServicesByServiceIdDeploymentsError,
+export const createServiceDeployment: API.OperationMethod<
+  CreateServiceDeploymentRequest,
+  CreateServiceDeploymentResponse,
+  CreateServiceDeploymentError,
   PrismaPostgresOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostV1ServicesByServiceIdDeploymentsRequest,
-  output: PostV1ServicesByServiceIdDeploymentsResponse,
+  input: CreateServiceDeploymentRequest,
+  output: CreateServiceDeploymentResponse,
   errors: [
     Forbidden,
     NotFound,
@@ -9930,7 +8306,7 @@ export const postV1ServicesByServiceIdDeployments: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PostV1ServicesByServiceIdDomainsError =
+export type CreateServiceDomainError =
   | BadRequest
   | Forbidden
   | NotFound
@@ -9938,14 +8314,14 @@ export type PostV1ServicesByServiceIdDomainsError =
   | UnprocessableEntity
   | PrismaPostgresOpError;
 /** Create a custom domain ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Registers a custom hostname for the service. The hostname must CNAME to the regional switchboard target before DNS verification can succeed. Returns 429 if the service has reached its domain quota (default: 3). */
-export const postV1ServicesByServiceIdDomains: API.OperationMethod<
-  PostV1ServicesByServiceIdDomainsRequest,
-  PostV1ServicesByServiceIdDomainsResponse,
-  PostV1ServicesByServiceIdDomainsError,
+export const createServiceDomain: API.OperationMethod<
+  CreateServiceDomainRequest,
+  CreateServiceDomainResponse,
+  CreateServiceDomainError,
   PrismaPostgresOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostV1ServicesByServiceIdDomainsRequest,
-  output: PostV1ServicesByServiceIdDomainsResponse,
+  input: CreateServiceDomainRequest,
+  output: CreateServiceDomainResponse,
   errors: [
     BadRequest,
     Forbidden,
@@ -9958,21 +8334,21 @@ export const postV1ServicesByServiceIdDomains: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PostV1ServicesByServiceIdPromoteError =
+export type CreateServicePromoteError =
   | Forbidden
   | NotFound
   | Conflict
   | UnprocessableEntity
   | PrismaPostgresOpError;
 /** Promote deployment ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Promotes a deployment to be the active deployment behind the service's stable endpoint. The deployment must be running. Returns the service endpoint domain. */
-export const postV1ServicesByServiceIdPromote: API.OperationMethod<
-  PostV1ServicesByServiceIdPromoteRequest,
-  PostV1ServicesByServiceIdPromoteResponse,
-  PostV1ServicesByServiceIdPromoteError,
+export const createServicePromote: API.OperationMethod<
+  CreateServicePromoteRequest,
+  CreateServicePromoteResponse,
+  CreateServicePromoteError,
   PrismaPostgresOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostV1ServicesByServiceIdPromoteRequest,
-  output: PostV1ServicesByServiceIdPromoteResponse,
+  input: CreateServicePromoteRequest,
+  output: CreateServicePromoteResponse,
   errors: [
     Forbidden,
     NotFound,
@@ -9984,21 +8360,21 @@ export const postV1ServicesByServiceIdPromote: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PostV1ServicesByServiceIdRollbackError =
+export type CreateServiceRollbackError =
   | Forbidden
   | NotFound
   | Conflict
   | UnprocessableEntity
   | PrismaPostgresOpError;
 /** Roll a service back to an existing deployment ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Makes any eligible existing deployment live behind the service's stable endpoint (rollback or roll-forward). Unlike promote, a stopped target is started and waited until it is running before the endpoint is switched, so the currently-live deployment keeps serving with zero downtime. Returns the service endpoint domain. */
-export const postV1ServicesByServiceIdRollback: API.OperationMethod<
-  PostV1ServicesByServiceIdRollbackRequest,
-  PostV1ServicesByServiceIdRollbackResponse,
-  PostV1ServicesByServiceIdRollbackError,
+export const createServiceRollback: API.OperationMethod<
+  CreateServiceRollbackRequest,
+  CreateServiceRollbackResponse,
+  CreateServiceRollbackError,
   PrismaPostgresOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostV1ServicesByServiceIdRollbackRequest,
-  output: PostV1ServicesByServiceIdRollbackResponse,
+  input: CreateServiceRollbackRequest,
+  output: CreateServiceRollbackResponse,
   errors: [
     Forbidden,
     NotFound,
@@ -10010,21 +8386,21 @@ export const postV1ServicesByServiceIdRollback: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PostV1SourceRepositoriesError =
+export type CreateSourceRepositoryError =
   | Forbidden
   | NotFound
   | Conflict
   | UnprocessableEntity
   | PrismaPostgresOpError;
 /** Link a source repository to a project ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Links a GitHub repository to a Prisma project via an existing SCM installation. */
-export const postV1SourceRepositories: API.OperationMethod<
-  PostV1SourceRepositoriesRequest,
-  PostV1SourceRepositoriesResponse,
-  PostV1SourceRepositoriesError,
+export const createSourceRepository: API.OperationMethod<
+  CreateSourceRepositoryRequest,
+  CreateSourceRepositoryResponse,
+  CreateSourceRepositoryError,
   PrismaPostgresOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostV1SourceRepositoriesRequest,
-  output: PostV1SourceRepositoriesResponse,
+  input: CreateSourceRepositoryRequest,
+  output: CreateSourceRepositoryResponse,
   errors: [
     Forbidden,
     NotFound,
@@ -10036,95 +8412,1368 @@ export const postV1SourceRepositories: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PostV1WorkspacesByWorkspaceIdServiceTokensError =
+export type CreateWorkspaceServiceTokenError =
   | NotFound
   | UnprocessableEntity
   | PrismaPostgresOpError;
 /** Create service token Creates a new service token for the given workspace. The `value` field is returned exactly once in this response and is never stored — copy it immediately. */
-export const postV1WorkspacesByWorkspaceIdServiceTokens: API.OperationMethod<
-  PostV1WorkspacesByWorkspaceIdServiceTokensRequest,
-  PostV1WorkspacesByWorkspaceIdServiceTokensResponse,
-  PostV1WorkspacesByWorkspaceIdServiceTokensError,
+export const createWorkspaceServiceToken: API.OperationMethod<
+  CreateWorkspaceServiceTokenRequest,
+  CreateWorkspaceServiceTokenResponse,
+  CreateWorkspaceServiceTokenError,
   PrismaPostgresOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostV1WorkspacesByWorkspaceIdServiceTokensRequest,
-  output: PostV1WorkspacesByWorkspaceIdServiceTokensResponse,
+  input: CreateWorkspaceServiceTokenRequest,
+  output: CreateWorkspaceServiceTokenResponse,
   errors: [NotFound, UnprocessableEntity, UnknownPrismaPostgresError],
   protocol: PrismaPostgresProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutV1BuildsByBuildIdResourcesByResourceTypeByResourceIdError =
+export type DeleteBranchError =
   | NotFound
+  | Conflict
+  | UnprocessableEntity
   | PrismaPostgresOpError;
-/** Report a resource a build acted on ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Records that the build created, acted on, or deleted a platform resource — the provenance a deploy run leaves behind. Idempotent: re-reporting the same resource updates the row rather than adding one, and never weakens the recorded action. The resource must belong to the caller's workspace, and must still be findable: a soft-deleted resource can be reported, but `project`, `database`, `service_key` and `config_variable` leave no row behind, so a build that deletes one must report it before deleting it. Reporting a deployment as `created` also attaches the deployment to the build and records the app it deployed into, both in the same transaction, because a deployment relates its build to that app whether or not the reporter says so. */
-export const putV1BuildsByBuildIdResourcesByResourceTypeByResourceId: API.OperationMethod<
-  PutV1BuildsByBuildIdResourcesByResourceTypeByResourceIdRequest,
-  PutV1BuildsByBuildIdResourcesByResourceTypeByResourceIdResponse,
-  PutV1BuildsByBuildIdResourcesByResourceTypeByResourceIdError,
+/** Soft-delete a branch ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Soft-deletes a Branch (sets deletedAt). Refuses if the Branch is the Project's current default, the Project's production Branch, or has live members. */
+export const deleteBranch: API.OperationMethod<
+  DeleteBranchRequest,
+  DeleteBranchResponse,
+  DeleteBranchError,
   PrismaPostgresOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutV1BuildsByBuildIdResourcesByResourceTypeByResourceIdRequest,
-  output: PutV1BuildsByBuildIdResourcesByResourceTypeByResourceIdResponse,
+  input: DeleteBranchRequest,
+  output: DeleteBranchResponse,
+  errors: [NotFound, Conflict, UnprocessableEntity, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteBucketError = NotFound | PrismaPostgresOpError;
+/** Delete bucket Permanently deletes the bucket with the given ID, all objects stored in it, and all its access keys. This action cannot be undone. */
+export const deleteBucket: API.OperationMethod<
+  DeleteBucketRequest,
+  DeleteBucketResponse,
+  DeleteBucketError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteBucketRequest,
+  output: DeleteBucketResponse,
   errors: [NotFound, UnknownPrismaPostgresError],
   protocol: PrismaPostgresProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageOutputError =
+export type DeleteBucketKeyError = NotFound | PrismaPostgresOpError;
+/** Delete bucket key Revokes and deletes the bucket key with the given ID. */
+export const deleteBucketKey: API.OperationMethod<
+  DeleteBucketKeyRequest,
+  DeleteBucketKeyResponse,
+  DeleteBucketKeyError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteBucketKeyRequest,
+  output: DeleteBucketKeyResponse,
+  errors: [NotFound, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteConnectionError =
+  | NotFound
+  | UnprocessableEntity
+  | PrismaPostgresOpError;
+/** Delete connection Deletes the connection with the given ID. */
+export const deleteConnection: API.OperationMethod<
+  DeleteConnectionRequest,
+  DeleteConnectionResponse,
+  DeleteConnectionError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteConnectionRequest,
+  output: DeleteConnectionResponse,
+  errors: [NotFound, UnprocessableEntity, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteDatabaseError =
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | PrismaPostgresOpError;
+/** Delete database Deletes the database with the given ID. */
+export const deleteDatabase: API.OperationMethod<
+  DeleteDatabaseRequest,
+  DeleteDatabaseResponse,
+  DeleteDatabaseError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDatabaseRequest,
+  output: DeleteDatabaseResponse,
+  errors: [
+    Forbidden,
+    NotFound,
+    UnprocessableEntity,
+    UnknownPrismaPostgresError,
+  ],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteDeploymentError =
+  | Forbidden
+  | NotFound
+  | Conflict
+  | PrismaPostgresOpError;
+/** Delete deployment ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Permanently deletes the deployment, its metadata, and any associated VM. The deployment must be stopped or in the `new` state before it can be deleted. */
+export const deleteDeployment: API.OperationMethod<
+  DeleteDeploymentRequest,
+  DeleteDeploymentResponse,
+  DeleteDeploymentError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDeploymentRequest,
+  output: DeleteDeploymentResponse,
+  errors: [Forbidden, NotFound, Conflict, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteDomainError = Forbidden | NotFound | PrismaPostgresOpError;
+/** Delete a custom domain ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Removes a custom domain binding. Authorization is derived from the parent compute service's workspace. */
+export const deleteDomain: API.OperationMethod<
+  DeleteDomainRequest,
+  DeleteDomainResponse,
+  DeleteDomainError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDomainRequest,
+  output: DeleteDomainResponse,
+  errors: [Forbidden, NotFound, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteEnvironmentVariableError =
+  | NotFound
+  | UnprocessableEntity
+  | PrismaPostgresOpError;
+/** Delete an environment variable ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Removes an environment variable. A second delete of the same variable returns 404. */
+export const deleteEnvironmentVariable: API.OperationMethod<
+  DeleteEnvironmentVariableRequest,
+  DeleteEnvironmentVariableResponse,
+  DeleteEnvironmentVariableError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteEnvironmentVariableRequest,
+  output: DeleteEnvironmentVariableResponse,
+  errors: [NotFound, UnprocessableEntity, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteIntegrationError =
+  | NotFound
+  | UnprocessableEntity
+  | PrismaPostgresOpError;
+/** Delete integration Revokes the integration tokens by integration ID. */
+export const deleteIntegration: API.OperationMethod<
+  DeleteIntegrationRequest,
+  DeleteIntegrationResponse,
+  DeleteIntegrationError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteIntegrationRequest,
+  output: DeleteIntegrationResponse,
+  errors: [NotFound, UnprocessableEntity, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteProjectError =
+  | BadRequest
+  | NotFound
+  | UnprocessableEntity
+  | PrismaPostgresOpError;
+/** Delete project Deletes the project with the given ID. */
+export const deleteProject: API.OperationMethod<
+  DeleteProjectRequest,
+  DeleteProjectResponse,
+  DeleteProjectError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteProjectRequest,
+  output: DeleteProjectResponse,
+  errors: [
+    BadRequest,
+    NotFound,
+    UnprocessableEntity,
+    UnknownPrismaPostgresError,
+  ],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteProjectBranchAlchemyStateLeaseError =
+  | NotFound
+  | PrismaPostgresOpError;
+/** Release Alchemy deploy lease ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Releases the deploy lease addressed by the Alchemy-State-Lease-Id header on clean deploy exit. A missing, replaced, or expired lease returns 404 — a lost lease at release time is surfaced, not idempotently swallowed. */
+export const deleteProjectBranchAlchemyStateLease: API.OperationMethod<
+  DeleteProjectBranchAlchemyStateLeaseRequest,
+  DeleteProjectBranchAlchemyStateLeaseResponse,
+  DeleteProjectBranchAlchemyStateLeaseError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteProjectBranchAlchemyStateLeaseRequest,
+  output: DeleteProjectBranchAlchemyStateLeaseResponse,
+  errors: [NotFound, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteProjectBranchAlchemyStateStateStackError =
+  | NotFound
+  | Conflict
+  | PrismaPostgresOpError;
+/** Delete Alchemy stack state ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Deletes every resource-state and output row of the stack, or only the given stage's rows when the stage query parameter is set. Requires a live deploy lease on the affected stage; without a stage it additionally requires that no other stage of the stack holds a live lease, so one stage's deploy can never delete state another stage's deploy is using. Idempotent. */
+export const deleteProjectBranchAlchemyStateStateStack: API.OperationMethod<
+  DeleteProjectBranchAlchemyStateStateStackRequest,
+  DeleteProjectBranchAlchemyStateStateStackResponse,
+  DeleteProjectBranchAlchemyStateStateStackError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteProjectBranchAlchemyStateStateStackRequest,
+  output: DeleteProjectBranchAlchemyStateStateStackResponse,
+  errors: [NotFound, Conflict, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteProjectBranchAlchemyStateStateStackStageResourceError =
+  | NotFound
+  | Conflict
+  | PrismaPostgresOpError;
+/** Delete Alchemy resource state ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Deletes the resource state row. Idempotent: deleting an absent row also returns 204. */
+export const deleteProjectBranchAlchemyStateStateStackStageResource: API.OperationMethod<
+  DeleteProjectBranchAlchemyStateStateStackStageResourceRequest,
+  DeleteProjectBranchAlchemyStateStateStackStageResourceResponse,
+  DeleteProjectBranchAlchemyStateStateStackStageResourceError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteProjectBranchAlchemyStateStateStackStageResourceRequest,
+  output: DeleteProjectBranchAlchemyStateStateStackStageResourceResponse,
+  errors: [NotFound, Conflict, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteServiceError =
+  | Forbidden
+  | NotFound
+  | Conflict
+  | PrismaPostgresOpError;
+/** Delete service ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Deletes a service. Deployments under the service are deleted before the service is deleted. */
+export const deleteService: API.OperationMethod<
+  DeleteServiceRequest,
+  DeleteServiceResponse,
+  DeleteServiceError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteServiceRequest,
+  output: DeleteServiceResponse,
+  errors: [Forbidden, NotFound, Conflict, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteSourceRepositoryError = NotFound | PrismaPostgresOpError;
+/** Disconnect a source repository ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Disconnects the source repository link. Existing branches and their attached resources are preserved. */
+export const deleteSourceRepository: API.OperationMethod<
+  DeleteSourceRepositoryRequest,
+  DeleteSourceRepositoryResponse,
+  DeleteSourceRepositoryError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteSourceRepositoryRequest,
+  output: DeleteSourceRepositoryResponse,
+  errors: [NotFound, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteWorkspaceIntegrationError =
+  | NotFound
+  | UnprocessableEntity
+  | PrismaPostgresOpError;
+/** Revoke integration tokens Revokes the integration tokens with the given client ID. */
+export const deleteWorkspaceIntegration: API.OperationMethod<
+  DeleteWorkspaceIntegrationRequest,
+  DeleteWorkspaceIntegrationResponse,
+  DeleteWorkspaceIntegrationError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteWorkspaceIntegrationRequest,
+  output: DeleteWorkspaceIntegrationResponse,
+  errors: [NotFound, UnprocessableEntity, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteWorkspaceServiceTokenError = NotFound | PrismaPostgresOpError;
+/** Delete service token Revokes the service token with the given ID by deleting it. */
+export const deleteWorkspaceServiceToken: API.OperationMethod<
+  DeleteWorkspaceServiceTokenRequest,
+  DeleteWorkspaceServiceTokenResponse,
+  DeleteWorkspaceServiceTokenError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteWorkspaceServiceTokenRequest,
+  output: DeleteWorkspaceServiceTokenResponse,
+  errors: [NotFound, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBranchError = NotFound | PrismaPostgresOpError;
+/** Get a branch ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Returns a single Branch by ID. Member resources are not inlined — list them via /v1/databases?branchId= and /v1/apps?branchId=. */
+export const getBranch: API.OperationMethod<
+  GetBranchRequest,
+  GetBranchResponse,
+  GetBranchError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBranchRequest,
+  output: GetBranchResponse,
+  errors: [NotFound, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBucketError = NotFound | PrismaPostgresOpError;
+/** Get bucket Returns the bucket with the given ID. */
+export const getBucket: API.OperationMethod<
+  GetBucketRequest,
+  GetBucketResponse,
+  GetBucketError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBucketRequest,
+  output: GetBucketResponse,
+  errors: [NotFound, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBucketKeysError = NotFound | PrismaPostgresOpError;
+/** List bucket keys Returns all access keys for the given bucket. */
+export const getBucketKeys: API.OperationMethod<
+  GetBucketKeysRequest,
+  GetBucketKeysResponse,
+  GetBucketKeysError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBucketKeysRequest,
+  output: GetBucketKeysResponse,
+  errors: [NotFound, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBucketsError = PrismaPostgresOpError;
+/** List buckets Returns all object-store buckets the token has access to. Optionally filter by project ID. */
+export const getBuckets: API.OperationMethod<
+  GetBucketsRequest,
+  GetBucketsResponse,
+  GetBucketsError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBucketsRequest,
+  output: GetBucketsResponse,
+  errors: [UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBuildError = NotFound | PrismaPostgresOpError;
+/** Get a build ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Returns one build with the resources it reported acting on. */
+export const getBuild: API.OperationMethod<
+  GetBuildRequest,
+  GetBuildResponse,
+  GetBuildError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBuildRequest,
+  output: GetBuildResponse,
+  errors: [NotFound, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBuildLogsError = NotFound | PrismaPostgresOpError;
+/** Stream build logs ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Streams the full build log for a build as newline-delimited JSON (`application/x-ndjson`). Each line is a JSON object discriminated by `type`: `log` (a build output line) or `terminal` (end-of-stream marker with a `cursor` for resumption). The default is a finite dump that ends once the stream is drained; pass `follow=true` to keep the connection open for an in-flight build, and `cursor` to resume from a prior terminal cursor. */
+export const getBuildLogs: API.OperationMethod<
+  GetBuildLogsRequest,
+  GetBuildLogsResponse,
+  GetBuildLogsError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBuildLogsRequest,
+  output: GetBuildLogsResponse,
+  errors: [NotFound, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBuildsError = NotFound | PrismaPostgresOpError;
+/** List builds ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Lists the builds of the caller's workspace, newest first, filtered by project, branch, or state. `cursor` is opaque: pass back the `nextCursor` the previous page returned. */
+export const getBuilds: API.OperationMethod<
+  GetBuildsRequest,
+  GetBuildsResponse,
+  GetBuildsError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBuildsRequest,
+  output: GetBuildsResponse,
+  errors: [NotFound, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetConnectionError =
+  | NotFound
+  | UnprocessableEntity
+  | PrismaPostgresOpError;
+/** Get connection Returns the connection with the given ID. */
+export const getConnection: API.OperationMethod<
+  GetConnectionRequest,
+  GetConnectionResponse,
+  GetConnectionError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetConnectionRequest,
+  output: GetConnectionResponse,
+  errors: [NotFound, UnprocessableEntity, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetConnectionsError = PrismaPostgresOpError;
+/** List connections Returns all connections the actor has access to, with optional database filter. */
+export const getConnections: API.OperationMethod<
+  GetConnectionsRequest,
+  GetConnectionsResponse,
+  GetConnectionsError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetConnectionsRequest,
+  output: GetConnectionsResponse,
+  errors: [UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDatabaseError =
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | PrismaPostgresOpError;
+/** Get database Returns the database with the given ID. */
+export const getDatabase: API.OperationMethod<
+  GetDatabaseRequest,
+  GetDatabaseResponse,
+  GetDatabaseError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDatabaseRequest,
+  output: GetDatabaseResponse,
+  errors: [
+    Forbidden,
+    NotFound,
+    UnprocessableEntity,
+    UnknownPrismaPostgresError,
+  ],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDatabaseBackupsError =
+  | NotFound
+  | UnprocessableEntity
+  | PrismaPostgresOpError;
+/** Get list of backups Returns backups for the specified database. */
+export const getDatabaseBackups: API.OperationMethod<
+  GetDatabaseBackupsRequest,
+  GetDatabaseBackupsResponse,
+  GetDatabaseBackupsError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDatabaseBackupsRequest,
+  output: GetDatabaseBackupsResponse,
+  errors: [NotFound, UnprocessableEntity, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDatabaseConnectionsError =
+  | UnprocessableEntity
+  | PrismaPostgresOpError;
+/** Get list of database connections Returns all connections for the given database. */
+export const getDatabaseConnections: API.OperationMethod<
+  GetDatabaseConnectionsRequest,
+  GetDatabaseConnectionsResponse,
+  GetDatabaseConnectionsError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDatabaseConnectionsRequest,
+  output: GetDatabaseConnectionsResponse,
+  errors: [UnprocessableEntity, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDatabasesError = Forbidden | PrismaPostgresOpError;
+/** List databases Returns all databases the token has access to. Optionally filter by project ID. */
+export const getDatabases: API.OperationMethod<
+  GetDatabasesRequest,
+  GetDatabasesResponse,
+  GetDatabasesError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDatabasesRequest,
+  output: GetDatabasesResponse,
+  errors: [Forbidden, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDatabaseUsageError =
+  | BadRequest
+  | NotFound
+  | UnprocessableEntity
+  | PrismaPostgresOpError;
+/** Get database usage metrics Returns usage metrics for the specified database. */
+export const getDatabaseUsage: API.OperationMethod<
+  GetDatabaseUsageRequest,
+  GetDatabaseUsageResponse,
+  GetDatabaseUsageError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDatabaseUsageRequest,
+  output: GetDatabaseUsageResponse,
+  errors: [
+    BadRequest,
+    NotFound,
+    UnprocessableEntity,
+    UnknownPrismaPostgresError,
+  ],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDeploymentError = Forbidden | NotFound | PrismaPostgresOpError;
+/** Get deployment ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Returns a deployment by ID, including its current status derived from the underlying VM state. */
+export const getDeployment: API.OperationMethod<
+  GetDeploymentRequest,
+  GetDeploymentResponse,
+  GetDeploymentError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDeploymentRequest,
+  output: GetDeploymentResponse,
+  errors: [Forbidden, NotFound, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDeploymentLogsError =
+  | Forbidden
+  | NotFound
+  | PrismaPostgresOpError;
+/** Get deployment logs ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Returns log output for the specified deployment. Each record is a JSON object with `type: "log"` (log text + byte metadata) or `type: "terminal"` (end-of-page signal with a resume cursor). A plain GET responds with newline-delimited JSON (`application/x-ndjson`): it drains the requested window (`tail`, `from_start`, or `cursor`), ends with a terminal record carrying the cursor for the next page, and closes. Send an `Upgrade: websocket` header to follow the log live instead; a live segment ends after 10 minutes with the same terminal/cursor mechanism. */
+export const getDeploymentLogs: API.OperationMethod<
+  GetDeploymentLogsRequest,
+  GetDeploymentLogsResponse,
+  GetDeploymentLogsError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDeploymentLogsRequest,
+  output: GetDeploymentLogsResponse,
+  errors: [Forbidden, NotFound, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDomainError = Forbidden | NotFound | PrismaPostgresOpError;
+/** Get a custom domain ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Returns details for a custom domain by id. Authorization is derived from the parent compute service's workspace. */
+export const getDomain: API.OperationMethod<
+  GetDomainRequest,
+  GetDomainResponse,
+  GetDomainError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDomainRequest,
+  output: GetDomainResponse,
+  errors: [Forbidden, NotFound, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEnvironmentVariableError =
+  | NotFound
+  | UnprocessableEntity
+  | PrismaPostgresOpError;
+/** Get an environment variable ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Returns a single environment variable's metadata. The value is not returned. */
+export const getEnvironmentVariable: API.OperationMethod<
+  GetEnvironmentVariableRequest,
+  GetEnvironmentVariableResponse,
+  GetEnvironmentVariableError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEnvironmentVariableRequest,
+  output: GetEnvironmentVariableResponse,
+  errors: [NotFound, UnprocessableEntity, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEnvironmentVariablesError =
+  | UnprocessableEntity
+  | PrismaPostgresOpError;
+/** List environment variables ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Returns a paginated list of environment variables. All filters are optional; combine `projectId`, `class`, and `key` to look up a specific variable by name. */
+export const getEnvironmentVariables: API.OperationMethod<
+  GetEnvironmentVariablesRequest,
+  GetEnvironmentVariablesResponse,
+  GetEnvironmentVariablesError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEnvironmentVariablesRequest,
+  output: GetEnvironmentVariablesResponse,
+  errors: [UnprocessableEntity, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetIntegrationError =
+  | NotFound
+  | UnprocessableEntity
+  | PrismaPostgresOpError;
+/** Get integration by ID Returns a single integration by its ID. */
+export const getIntegration: API.OperationMethod<
+  GetIntegrationRequest,
+  GetIntegrationResponse,
+  GetIntegrationError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetIntegrationRequest,
+  output: GetIntegrationResponse,
+  errors: [NotFound, UnprocessableEntity, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetIntegrationsError = PrismaPostgresOpError;
+/** Get list of integrations Returns integrations filtered by workspace ID. */
+export const getIntegrations: API.OperationMethod<
+  GetIntegrationsRequest,
+  GetIntegrationsResponse,
+  GetIntegrationsError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetIntegrationsRequest,
+  output: GetIntegrationsResponse,
+  errors: [UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetMeError = PrismaPostgresOpError;
+/** Get current authenticated principal Returns the user, workspace, and credential represented by the current token. */
+export const getMe: API.OperationMethod<
+  GetMeRequest,
+  GetMeResponse,
+  GetMeError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetMeRequest,
+  output: GetMeResponse,
+  errors: [UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetProjectError =
+  | NotFound
+  | UnprocessableEntity
+  | PrismaPostgresOpError;
+/** Get project Returns the project with the given ID. */
+export const getProject: API.OperationMethod<
+  GetProjectRequest,
+  GetProjectResponse,
+  GetProjectError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetProjectRequest,
+  output: GetProjectResponse,
+  errors: [NotFound, UnprocessableEntity, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetProjectBranchAlchemyStateStateStacksError =
+  | NotFound
+  | Conflict
+  | PrismaPostgresOpError;
+/** List Alchemy stacks ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Lists the distinct stack names with state or output rows on the branch. Requires no deploy lease: the stock client's auth probe (checkHttpStateStoreAuth) calls this endpoint bare, and it exposes stack names only. */
+export const getProjectBranchAlchemyStateStateStacks: API.OperationMethod<
+  GetProjectBranchAlchemyStateStateStacksRequest,
+  GetProjectBranchAlchemyStateStateStacksResponse,
+  GetProjectBranchAlchemyStateStateStacksError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetProjectBranchAlchemyStateStateStacksRequest,
+  output: GetProjectBranchAlchemyStateStateStacksResponse,
+  errors: [NotFound, Conflict, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetProjectBranchAlchemyStateStateStackStageOutputError =
+  | NotFound
+  | Conflict
+  | PrismaPostgresOpError;
+/** Get Alchemy stack output ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Returns the stored stack output for the stage, or a JSON null body when absent (the stock client maps null to undefined). */
+export const getProjectBranchAlchemyStateStateStackStageOutput: API.OperationMethod<
+  GetProjectBranchAlchemyStateStateStackStageOutputRequest,
+  GetProjectBranchAlchemyStateStateStackStageOutputResponse,
+  GetProjectBranchAlchemyStateStateStackStageOutputError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetProjectBranchAlchemyStateStateStackStageOutputRequest,
+  output: GetProjectBranchAlchemyStateStateStackStageOutputResponse,
+  errors: [NotFound, Conflict, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetProjectBranchAlchemyStateStateStackStageReplacedResourcesError =
+  | NotFound
+  | Conflict
+  | PrismaPostgresOpError;
+/** List replaced Alchemy resources ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Returns the decrypted resource states of the stage whose status is "replaced". */
+export const getProjectBranchAlchemyStateStateStackStageReplacedResources: API.OperationMethod<
+  GetProjectBranchAlchemyStateStateStackStageReplacedResourcesRequest,
+  GetProjectBranchAlchemyStateStateStackStageReplacedResourcesResponse,
+  GetProjectBranchAlchemyStateStateStackStageReplacedResourcesError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetProjectBranchAlchemyStateStateStackStageReplacedResourcesRequest,
+  output: GetProjectBranchAlchemyStateStateStackStageReplacedResourcesResponse,
+  errors: [NotFound, Conflict, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetProjectBranchAlchemyStateStateStackStageResourceError =
+  | NotFound
+  | Conflict
+  | PrismaPostgresOpError;
+/** Get Alchemy resource state ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Returns the stored resource state, or a JSON null body when absent (the stock client maps null to undefined). */
+export const getProjectBranchAlchemyStateStateStackStageResource: API.OperationMethod<
+  GetProjectBranchAlchemyStateStateStackStageResourceRequest,
+  GetProjectBranchAlchemyStateStateStackStageResourceResponse,
+  GetProjectBranchAlchemyStateStateStackStageResourceError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetProjectBranchAlchemyStateStateStackStageResourceRequest,
+  output: GetProjectBranchAlchemyStateStateStackStageResourceResponse,
+  errors: [NotFound, Conflict, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetProjectBranchAlchemyStateStateStackStageResourcesError =
+  | NotFound
+  | Conflict
+  | PrismaPostgresOpError;
+/** List Alchemy resources ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Lists the resource FQNs stored for the stage, ordered by FQN. */
+export const getProjectBranchAlchemyStateStateStackStageResources: API.OperationMethod<
+  GetProjectBranchAlchemyStateStateStackStageResourcesRequest,
+  GetProjectBranchAlchemyStateStateStackStageResourcesResponse,
+  GetProjectBranchAlchemyStateStateStackStageResourcesError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetProjectBranchAlchemyStateStateStackStageResourcesRequest,
+  output: GetProjectBranchAlchemyStateStateStackStageResourcesResponse,
+  errors: [NotFound, Conflict, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetProjectBranchAlchemyStateStateStackStagesError =
+  | NotFound
+  | Conflict
+  | PrismaPostgresOpError;
+/** List Alchemy stages ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Lists the distinct stage names with state or output rows for the stack. Accepts a live deploy lease on any stage of the stack. */
+export const getProjectBranchAlchemyStateStateStackStages: API.OperationMethod<
+  GetProjectBranchAlchemyStateStateStackStagesRequest,
+  GetProjectBranchAlchemyStateStateStackStagesResponse,
+  GetProjectBranchAlchemyStateStateStackStagesError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetProjectBranchAlchemyStateStateStackStagesRequest,
+  output: GetProjectBranchAlchemyStateStateStackStagesResponse,
+  errors: [NotFound, Conflict, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetProjectBranchAlchemyStateVersionError = PrismaPostgresOpError;
+/** Alchemy state store version ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Unauthenticated contract-version probe served verbatim from the pinned alchemy HttpStateApi contract. Returns the constant only and never inspects the addressed project or branch. */
+export const getProjectBranchAlchemyStateVersion: API.OperationMethod<
+  GetProjectBranchAlchemyStateVersionRequest,
+  GetProjectBranchAlchemyStateVersionResponse,
+  GetProjectBranchAlchemyStateVersionError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetProjectBranchAlchemyStateVersionRequest,
+  output: GetProjectBranchAlchemyStateVersionResponse,
+  errors: [UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetProjectBranchApplicationTopologyError =
+  | NotFound
+  | PrismaPostgresOpError;
+/** Get branch topology ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Returns the stored topology graph for the branch — the same shape Composer submitted. Nodes, ports, and edges are returned in deterministic order. */
+export const getProjectBranchApplicationTopology: API.OperationMethod<
+  GetProjectBranchApplicationTopologyRequest,
+  GetProjectBranchApplicationTopologyResponse,
+  GetProjectBranchApplicationTopologyError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetProjectBranchApplicationTopologyRequest,
+  output: GetProjectBranchApplicationTopologyResponse,
+  errors: [NotFound, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetProjectBranchesError =
+  | NotFound
+  | UnprocessableEntity
+  | PrismaPostgresOpError;
+/** List branches in a project ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Returns the live Branches of a Project. Supports two mutually exclusive filters: ?gitName= (exact match — at most one row), ?gitNameContains= (case-sensitive substring). Soft-deleted Branches are not returned. Ordered by createdAt ascending. */
+export const getProjectBranches: API.OperationMethod<
+  GetProjectBranchesRequest,
+  GetProjectBranchesResponse,
+  GetProjectBranchesError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetProjectBranchesRequest,
+  output: GetProjectBranchesResponse,
+  errors: [NotFound, UnprocessableEntity, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetProjectDatabasesError =
+  | NotFound
+  | UnprocessableEntity
+  | PrismaPostgresOpError;
+/** Get list of databases Returns databases for the given project. */
+export const getProjectDatabases: API.OperationMethod<
+  GetProjectDatabasesRequest,
+  GetProjectDatabasesResponse,
+  GetProjectDatabasesError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetProjectDatabasesRequest,
+  output: GetProjectDatabasesResponse,
+  errors: [NotFound, UnprocessableEntity, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetProjectsError = PrismaPostgresOpError;
+/** Get list of projects Returns the list of projects the token has access to. */
+export const getProjects: API.OperationMethod<
+  GetProjectsRequest,
+  GetProjectsResponse,
+  GetProjectsError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetProjectsRequest,
+  output: GetProjectsResponse,
+  errors: [UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetRegionsError = PrismaPostgresOpError;
+/** Get all regions Returns all available regions across products. Optionally filter by product. */
+export const getRegions: API.OperationMethod<
+  GetRegionsRequest,
+  GetRegionsResponse,
+  GetRegionsError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetRegionsRequest,
+  output: GetRegionsResponse,
+  errors: [UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetRegionsAccelerateError = PrismaPostgresOpError;
+/** Get Prisma Accelerate regions Returns all available regions for Prisma Accelerate. */
+export const getRegionsAccelerate: API.OperationMethod<
+  GetRegionsAccelerateRequest,
+  GetRegionsAccelerateResponse,
+  GetRegionsAccelerateError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetRegionsAccelerateRequest,
+  output: GetRegionsAccelerateResponse,
+  errors: [UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetRegionsPostgresError = PrismaPostgresOpError;
+/** Get Prisma Postgres regions Returns all available regions for Prisma Postgres. */
+export const getRegionsPostgres: API.OperationMethod<
+  GetRegionsPostgresRequest,
+  GetRegionsPostgresResponse,
+  GetRegionsPostgresError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetRegionsPostgresRequest,
+  output: GetRegionsPostgresResponse,
+  errors: [UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetScmInstallationRepositoriesError =
+  | NotFound
+  | UnprocessableEntity
+  | PrismaPostgresOpError;
+/** List repositories accessible to an SCM installation ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Lists repositories accessible to the given SCM installation. */
+export const getScmInstallationRepositories: API.OperationMethod<
+  GetScmInstallationRepositoriesRequest,
+  GetScmInstallationRepositoriesResponse,
+  GetScmInstallationRepositoriesError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetScmInstallationRepositoriesRequest,
+  output: GetScmInstallationRepositoriesResponse,
+  errors: [NotFound, UnprocessableEntity, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetScmInstallationsError = PrismaPostgresOpError;
+/** List SCM installations for a workspace ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Lists active SCM installations connected to the given workspace. */
+export const getScmInstallations: API.OperationMethod<
+  GetScmInstallationsRequest,
+  GetScmInstallationsResponse,
+  GetScmInstallationsError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetScmInstallationsRequest,
+  output: GetScmInstallationsResponse,
+  errors: [UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetServiceError = Forbidden | NotFound | PrismaPostgresOpError;
+/** Get service ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Returns a service by ID, including its region and active promoted deployment reference. */
+export const getService: API.OperationMethod<
+  GetServiceRequest,
+  GetServiceResponse,
+  GetServiceError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetServiceRequest,
+  output: GetServiceResponse,
+  errors: [Forbidden, NotFound, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetServiceDeploymentsError =
+  | Forbidden
+  | NotFound
+  | PrismaPostgresOpError;
+/** List deployments ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Returns all deployments belonging to a service, ordered by creation time (newest first). Supports cursor-based pagination. */
+export const getServiceDeployments: API.OperationMethod<
+  GetServiceDeploymentsRequest,
+  GetServiceDeploymentsResponse,
+  GetServiceDeploymentsError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetServiceDeploymentsRequest,
+  output: GetServiceDeploymentsResponse,
+  errors: [Forbidden, NotFound, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetServiceDomainsError =
+  | Forbidden
+  | NotFound
+  | PrismaPostgresOpError;
+/** List custom domains for a service ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Returns all custom domains attached to any deployment of the service. Domains are aggregated across all deployments since Foundry lists per deployment. */
+export const getServiceDomains: API.OperationMethod<
+  GetServiceDomainsRequest,
+  GetServiceDomainsResponse,
+  GetServiceDomainsError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetServiceDomainsRequest,
+  output: GetServiceDomainsResponse,
+  errors: [Forbidden, NotFound, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetServicesError =
+  | Forbidden
+  | UnprocessableEntity
+  | PrismaPostgresOpError;
+/** List services ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Returns all services the token has access to, ordered by creation time (oldest first). Optionally filter by project ID. Supports cursor-based pagination. */
+export const getServices: API.OperationMethod<
+  GetServicesRequest,
+  GetServicesResponse,
+  GetServicesError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetServicesRequest,
+  output: GetServicesResponse,
+  errors: [Forbidden, UnprocessableEntity, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSourceRepositoriesError = NotFound | PrismaPostgresOpError;
+/** List source repositories ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Returns source repositories linked to a project. Requires projectId query parameter. */
+export const getSourceRepositories: API.OperationMethod<
+  GetSourceRepositoriesRequest,
+  GetSourceRepositoriesResponse,
+  GetSourceRepositoriesError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSourceRepositoriesRequest,
+  output: GetSourceRepositoriesResponse,
+  errors: [NotFound, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSourceRepositoryError = NotFound | PrismaPostgresOpError;
+/** Get a source repository ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Returns a single source repository link by ID. */
+export const getSourceRepository: API.OperationMethod<
+  GetSourceRepositoryRequest,
+  GetSourceRepositoryResponse,
+  GetSourceRepositoryError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSourceRepositoryRequest,
+  output: GetSourceRepositoryResponse,
+  errors: [NotFound, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWorkspaceError =
+  | NotFound
+  | UnprocessableEntity
+  | PrismaPostgresOpError;
+/** Get workspace Returns the workspace with the given ID. */
+export const getWorkspace: API.OperationMethod<
+  GetWorkspaceRequest,
+  GetWorkspaceResponse,
+  GetWorkspaceError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWorkspaceRequest,
+  output: GetWorkspaceResponse,
+  errors: [NotFound, UnprocessableEntity, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWorkspaceIntegrationsError =
+  | NotFound
+  | UnprocessableEntity
+  | PrismaPostgresOpError;
+/** Get list of integrations Returns integrations for the given workspace. */
+export const getWorkspaceIntegrations: API.OperationMethod<
+  GetWorkspaceIntegrationsRequest,
+  GetWorkspaceIntegrationsResponse,
+  GetWorkspaceIntegrationsError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWorkspaceIntegrationsRequest,
+  output: GetWorkspaceIntegrationsResponse,
+  errors: [NotFound, UnprocessableEntity, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWorkspacesError = PrismaPostgresOpError;
+/** Get list of workspaces Returns the list of workspaces the current token can access. */
+export const getWorkspaces: API.OperationMethod<
+  GetWorkspacesRequest,
+  GetWorkspacesResponse,
+  GetWorkspacesError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWorkspacesRequest,
+  output: GetWorkspacesResponse,
+  errors: [UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWorkspaceServiceTokensError = PrismaPostgresOpError;
+/** List service tokens Returns the service tokens for the given workspace, newest first. */
+export const getWorkspaceServiceTokens: API.OperationMethod<
+  GetWorkspaceServiceTokensRequest,
+  GetWorkspaceServiceTokensResponse,
+  GetWorkspaceServiceTokensError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWorkspaceServiceTokensRequest,
+  output: GetWorkspaceServiceTokensResponse,
+  errors: [UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWorkspaceSubscriptionError = NotFound | PrismaPostgresOpError;
+/** Get workspace subscription Returns subscription information for the workspace with the given ID. */
+export const getWorkspaceSubscription: API.OperationMethod<
+  GetWorkspaceSubscriptionRequest,
+  GetWorkspaceSubscriptionResponse,
+  GetWorkspaceSubscriptionError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWorkspaceSubscriptionRequest,
+  output: GetWorkspaceSubscriptionResponse,
+  errors: [NotFound, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutBuildResourceError = NotFound | PrismaPostgresOpError;
+/** Report a resource a build acted on ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Records that the build created, acted on, or deleted a platform resource — the provenance a deploy run leaves behind. Idempotent: re-reporting the same resource updates the row rather than adding one, and never weakens the recorded action. The resource must belong to the caller's workspace, and must still be findable: a soft-deleted resource can be reported, but `project`, `database`, `service_key` and `config_variable` leave no row behind, so a build that deletes one must report it before deleting it. Reporting a deployment as `created` also attaches the deployment to the build and records the app it deployed into, both in the same transaction, because a deployment relates its build to that app whether or not the reporter says so. */
+export const putBuildResource: API.OperationMethod<
+  PutBuildResourceRequest,
+  PutBuildResourceResponse,
+  PutBuildResourceError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutBuildResourceRequest,
+  output: PutBuildResourceResponse,
+  errors: [NotFound, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutProjectBranchAlchemyStateStateStackStageOutputError =
   | NotFound
   | Conflict
   | PrismaPostgresOpError;
 /** Set Alchemy stack output ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Overwrites the stack output for the stage, encrypted at rest, and echoes the stored value. */
-export const putV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageOutput: API.OperationMethod<
-  PutV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageOutputRequest,
-  PutV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageOutputResponse,
-  PutV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageOutputError,
+export const putProjectBranchAlchemyStateStateStackStageOutput: API.OperationMethod<
+  PutProjectBranchAlchemyStateStateStackStageOutputRequest,
+  PutProjectBranchAlchemyStateStateStackStageOutputResponse,
+  PutProjectBranchAlchemyStateStateStackStageOutputError,
   PrismaPostgresOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input:
-    PutV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageOutputRequest,
-  output:
-    PutV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageOutputResponse,
+  input: PutProjectBranchAlchemyStateStateStackStageOutputRequest,
+  output: PutProjectBranchAlchemyStateStateStackStageOutputResponse,
   errors: [NotFound, Conflict, UnknownPrismaPostgresError],
   protocol: PrismaPostgresProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqnError =
+export type PutProjectBranchAlchemyStateStateStackStageResourceError =
   | NotFound
   | Conflict
   | PrismaPostgresOpError;
 /** Set Alchemy resource state ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Stores the resource state encrypted at rest and echoes the stored value. */
-export const putV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqn: API.OperationMethod<
-  PutV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqnRequest,
-  PutV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqnResponse,
-  PutV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqnError,
+export const putProjectBranchAlchemyStateStateStackStageResource: API.OperationMethod<
+  PutProjectBranchAlchemyStateStateStackStageResourceRequest,
+  PutProjectBranchAlchemyStateStateStackStageResourceResponse,
+  PutProjectBranchAlchemyStateStateStackStageResourceError,
   PrismaPostgresOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input:
-    PutV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqnRequest,
-  output:
-    PutV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqnResponse,
+  input: PutProjectBranchAlchemyStateStateStackStageResourceRequest,
+  output: PutProjectBranchAlchemyStateStateStackStageResourceResponse,
   errors: [NotFound, Conflict, UnknownPrismaPostgresError],
   protocol: PrismaPostgresProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyError =
+export type PutProjectBranchApplicationTopologyError =
   | NotFound
   | UnprocessableEntity
   | PrismaPostgresOpError;
 /** Replace branch topology ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Atomically replaces the entire topology for a branch. Composer calls this after Load, before the apply. On error, Composer warns and continues — the previous topology is preserved. */
-export const putV1ProjectsByProjectIdBranchesByBranchIdApplicationTopology: API.OperationMethod<
-  PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequest,
-  PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponse,
-  PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyError,
+export const putProjectBranchApplicationTopology: API.OperationMethod<
+  PutProjectBranchApplicationTopologyRequest,
+  PutProjectBranchApplicationTopologyResponse,
+  PutProjectBranchApplicationTopologyError,
   PrismaPostgresOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyRequest,
-  output: PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopologyResponse,
+  input: PutProjectBranchApplicationTopologyRequest,
+  output: PutProjectBranchApplicationTopologyResponse,
   errors: [NotFound, UnprocessableEntity, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateBranchError =
+  | NotFound
+  | UnprocessableEntity
+  | PrismaPostgresOpError;
+/** Update a branch ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Promotes a Branch to be the Project's default. Only isDefault is mutable — gitName rename and role changes are rejected. */
+export const updateBranch: API.OperationMethod<
+  UpdateBranchRequest,
+  UpdateBranchResponse,
+  UpdateBranchError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateBranchRequest,
+  output: UpdateBranchResponse,
+  errors: [NotFound, UnprocessableEntity, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateBuildError = NotFound | Conflict | PrismaPostgresOpError;
+/** Update a build ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Records progress on a build. Any holder of the workspace token may patch any field — the webhook, the CI run and Composer each report the part of a deploy they can see, and the token is the boundary. Reaching `running` stamps `startedAt` and reaching a terminal state stamps `finishedAt`, both only if unset, so re-reporting the same state does not move the clock. `projectId`, `branchId`, `deployedUrl` and `applicationTopologyContentHash` are fill-only: a reporter that resolves them partway through a deploy sets them here, but a value already recorded cannot be changed and the attempt is a conflict. Sending the value already recorded is accepted and changes nothing. An anchor must belong to the caller's workspace and agree with the anchors the build already carries, so a branch from another project is refused. */
+export const updateBuild: API.OperationMethod<
+  UpdateBuildRequest,
+  UpdateBuildResponse,
+  UpdateBuildError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateBuildRequest,
+  output: UpdateBuildResponse,
+  errors: [NotFound, Conflict, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateDatabaseError =
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | PrismaPostgresOpError;
+/** Update database Updates the database with the given ID. */
+export const updateDatabase: API.OperationMethod<
+  UpdateDatabaseRequest,
+  UpdateDatabaseResponse,
+  UpdateDatabaseError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateDatabaseRequest,
+  output: UpdateDatabaseResponse,
+  errors: [
+    Forbidden,
+    NotFound,
+    UnprocessableEntity,
+    UnknownPrismaPostgresError,
+  ],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateEnvironmentVariableError =
+  | NotFound
+  | UnprocessableEntity
+  | PrismaPostgresOpError;
+/** Update an environment variable's value ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Replaces the value of an existing environment variable. Only the value is mutable — the project, environment, key, and branch are fixed at create-time. */
+export const updateEnvironmentVariable: API.OperationMethod<
+  UpdateEnvironmentVariableRequest,
+  UpdateEnvironmentVariableResponse,
+  UpdateEnvironmentVariableError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateEnvironmentVariableRequest,
+  output: UpdateEnvironmentVariableResponse,
+  errors: [NotFound, UnprocessableEntity, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateProjectError =
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | PrismaPostgresOpError;
+/** Update project Updates the project with the given ID. */
+export const updateProject: API.OperationMethod<
+  UpdateProjectRequest,
+  UpdateProjectResponse,
+  UpdateProjectError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateProjectRequest,
+  output: UpdateProjectResponse,
+  errors: [
+    Forbidden,
+    NotFound,
+    UnprocessableEntity,
+    UnknownPrismaPostgresError,
+  ],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateProjectBranchAlchemyStateLeaseError =
+  | NotFound
+  | PrismaPostgresOpError;
+/** Heartbeat Alchemy deploy lease ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Extends the unexpired deploy lease addressed by the Alchemy-State-Lease-Id header from now. A missing, replaced, or expired lease returns 404 — the lost-lease signal; an expired lease can never be revived. */
+export const updateProjectBranchAlchemyStateLease: API.OperationMethod<
+  UpdateProjectBranchAlchemyStateLeaseRequest,
+  UpdateProjectBranchAlchemyStateLeaseResponse,
+  UpdateProjectBranchAlchemyStateLeaseError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateProjectBranchAlchemyStateLeaseRequest,
+  output: UpdateProjectBranchAlchemyStateLeaseResponse,
+  errors: [NotFound, UnknownPrismaPostgresError],
+  protocol: PrismaPostgresProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateServiceError =
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | PrismaPostgresOpError;
+/** Update service ⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️ Updates the display name of a service. */
+export const updateService: API.OperationMethod<
+  UpdateServiceRequest,
+  UpdateServiceResponse,
+  UpdateServiceError,
+  PrismaPostgresOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateServiceRequest,
+  output: UpdateServiceResponse,
+  errors: [
+    Forbidden,
+    NotFound,
+    UnprocessableEntity,
+    UnknownPrismaPostgresError,
+  ],
   protocol: PrismaPostgresProtocol,
   retry: Retry.Retry,
 }));

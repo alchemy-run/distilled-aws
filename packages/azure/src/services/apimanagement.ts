@@ -14399,7 +14399,7 @@ export const GetProductWikiResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetProductWikiResponse",
 }) as any as S.Schema<GetProductWikiResponse>;
 
-export interface GetQuotaByPeriodKeysRequest {
+export interface GetQuotaByPeriodKeyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -14411,7 +14411,7 @@ export interface GetQuotaByPeriodKeysRequest {
   /** Quota period key identifier. */
   quotaPeriodKey: string;
 }
-export const GetQuotaByPeriodKeysRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetQuotaByPeriodKeyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -14427,8 +14427,8 @@ export const GetQuotaByPeriodKeysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetQuotaByPeriodKeysRequest",
-}) as any as S.Schema<GetQuotaByPeriodKeysRequest>;
+  identifier: "GetQuotaByPeriodKeyRequest",
+}) as any as S.Schema<GetQuotaByPeriodKeyRequest>;
 
 /** Quota counter value details. */
 export interface QuotaCounterValueContractProperties {
@@ -14446,7 +14446,7 @@ export const QuotaCounterValueContractProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "QuotaCounterValueContractProperties",
 }) as any as S.Schema<QuotaCounterValueContractProperties>;
 
-export interface GetQuotaByPeriodKeysResponse {
+export interface GetQuotaByPeriodKeyResponse {
   /** The Key value of the Counter. Must not be empty. */
   counterKey: string;
   /** Identifier of the Period for which the counter was collected. Must not be empty. */
@@ -14458,7 +14458,7 @@ export interface GetQuotaByPeriodKeysResponse {
   /** Quota Value Properties */
   value?: QuotaCounterValueContractProperties;
 }
-export const GetQuotaByPeriodKeysResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetQuotaByPeriodKeyResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     counterKey: S.String,
     periodKey: S.String,
@@ -14467,8 +14467,8 @@ export const GetQuotaByPeriodKeysResponse = /*@__PURE__*/ S.suspend(() =>
     value: S.optional(QuotaCounterValueContractProperties),
   }),
 ).annotate({
-  identifier: "GetQuotaByPeriodKeysResponse",
-}) as any as S.Schema<GetQuotaByPeriodKeysResponse>;
+  identifier: "GetQuotaByPeriodKeyResponse",
+}) as any as S.Schema<GetQuotaByPeriodKeyResponse>;
 
 export interface GetSubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -24358,7 +24358,7 @@ export const ListProductWikisResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListProductWikisResponse",
 }) as any as S.Schema<ListProductWikisResponse>;
 
-export interface ListQuotaByCounterKeysByServiceRequest {
+export interface ListQuotaByCounterKeyByServiceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -24368,7 +24368,7 @@ export interface ListQuotaByCounterKeysByServiceRequest {
   /** Quota counter key identifier.This is the result of expression defined in counter-key attribute of the quota-by-key policy.For Example, if you specify counter-key="boo" in the policy, then it’s accessible by "boo" counter key. But if it’s defined as counter-key="@("b"+"a")" then it will be accessible by "ba" key */
   quotaCounterKey: string;
 }
-export const ListQuotaByCounterKeysByServiceRequest = /*@__PURE__*/ S.suspend(
+export const ListQuotaByCounterKeyByServiceRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -24384,8 +24384,8 @@ export const ListQuotaByCounterKeysByServiceRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ListQuotaByCounterKeysByServiceRequest",
-}) as any as S.Schema<ListQuotaByCounterKeysByServiceRequest>;
+  identifier: "ListQuotaByCounterKeyByServiceRequest",
+}) as any as S.Schema<ListQuotaByCounterKeyByServiceRequest>;
 
 /** Quota counter details. */
 export interface QuotaCounterContract {
@@ -24413,31 +24413,31 @@ export const QuotaCounterContract = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<QuotaCounterContract>;
 
 /** Quota counter values. */
-export type ListQuotaByCounterKeysByServiceResponseValueList =
+export type ListQuotaByCounterKeyByServiceResponseValueList =
   Array<QuotaCounterContract>;
-export const ListQuotaByCounterKeysByServiceResponseValueList =
+export const ListQuotaByCounterKeyByServiceResponseValueList =
   /*@__PURE__*/ S.Array(
     QuotaCounterContract,
-  ) as any as S.Schema<ListQuotaByCounterKeysByServiceResponseValueList>;
+  ) as any as S.Schema<ListQuotaByCounterKeyByServiceResponseValueList>;
 
-export interface ListQuotaByCounterKeysByServiceResponse {
+export interface ListQuotaByCounterKeyByServiceResponse {
   /** Quota counter values. */
-  value?: ListQuotaByCounterKeysByServiceResponseValueList;
+  value?: ListQuotaByCounterKeyByServiceResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
   nextLink?: string;
 }
-export const ListQuotaByCounterKeysByServiceResponse = /*@__PURE__*/ S.suspend(
+export const ListQuotaByCounterKeyByServiceResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      value: S.optional(ListQuotaByCounterKeysByServiceResponseValueList),
+      value: S.optional(ListQuotaByCounterKeyByServiceResponseValueList),
       count: S.optional(S.Number),
       nextLink: S.optional(S.String),
     }),
 ).annotate({
-  identifier: "ListQuotaByCounterKeysByServiceResponse",
-}) as any as S.Schema<ListQuotaByCounterKeysByServiceResponse>;
+  identifier: "ListQuotaByCounterKeyByServiceResponse",
+}) as any as S.Schema<ListQuotaByCounterKeyByServiceResponse>;
 
 export interface ListRegionByServiceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -34031,7 +34031,7 @@ export const UpdateProductWikiResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateProductWikiResponse",
 }) as any as S.Schema<UpdateProductWikiResponse>;
 
-export interface UpdateQuotaByCounterKeysRequest {
+export interface UpdateQuotaByCounterKeyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -34043,7 +34043,7 @@ export interface UpdateQuotaByCounterKeysRequest {
   /** Quota counter value details. */
   properties?: QuotaCounterValueContractProperties;
 }
-export const UpdateQuotaByCounterKeysRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateQuotaByCounterKeyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -34059,35 +34059,35 @@ export const UpdateQuotaByCounterKeysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateQuotaByCounterKeysRequest",
-}) as any as S.Schema<UpdateQuotaByCounterKeysRequest>;
+  identifier: "UpdateQuotaByCounterKeyRequest",
+}) as any as S.Schema<UpdateQuotaByCounterKeyRequest>;
 
 /** Quota counter values. */
-export type UpdateQuotaByCounterKeysResponseValueList =
+export type UpdateQuotaByCounterKeyResponseValueList =
   Array<QuotaCounterContract>;
-export const UpdateQuotaByCounterKeysResponseValueList = /*@__PURE__*/ S.Array(
+export const UpdateQuotaByCounterKeyResponseValueList = /*@__PURE__*/ S.Array(
   QuotaCounterContract,
-) as any as S.Schema<UpdateQuotaByCounterKeysResponseValueList>;
+) as any as S.Schema<UpdateQuotaByCounterKeyResponseValueList>;
 
-export interface UpdateQuotaByCounterKeysResponse {
+export interface UpdateQuotaByCounterKeyResponse {
   /** Quota counter values. */
-  value?: UpdateQuotaByCounterKeysResponseValueList;
+  value?: UpdateQuotaByCounterKeyResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
   nextLink?: string;
 }
-export const UpdateQuotaByCounterKeysResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateQuotaByCounterKeyResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(UpdateQuotaByCounterKeysResponseValueList),
+    value: S.optional(UpdateQuotaByCounterKeyResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "UpdateQuotaByCounterKeysResponse",
-}) as any as S.Schema<UpdateQuotaByCounterKeysResponse>;
+  identifier: "UpdateQuotaByCounterKeyResponse",
+}) as any as S.Schema<UpdateQuotaByCounterKeyResponse>;
 
-export interface UpdateQuotaByPeriodKeysRequest {
+export interface UpdateQuotaByPeriodKeyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -34101,7 +34101,7 @@ export interface UpdateQuotaByPeriodKeysRequest {
   /** Quota counter value details. */
   properties?: QuotaCounterValueContractProperties;
 }
-export const UpdateQuotaByPeriodKeysRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateQuotaByPeriodKeyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -34118,10 +34118,10 @@ export const UpdateQuotaByPeriodKeysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateQuotaByPeriodKeysRequest",
-}) as any as S.Schema<UpdateQuotaByPeriodKeysRequest>;
+  identifier: "UpdateQuotaByPeriodKeyRequest",
+}) as any as S.Schema<UpdateQuotaByPeriodKeyRequest>;
 
-export interface UpdateQuotaByPeriodKeysResponse {
+export interface UpdateQuotaByPeriodKeyResponse {
   /** The Key value of the Counter. Must not be empty. */
   counterKey: string;
   /** Identifier of the Period for which the counter was collected. Must not be empty. */
@@ -34133,7 +34133,7 @@ export interface UpdateQuotaByPeriodKeysResponse {
   /** Quota Value Properties */
   value?: QuotaCounterValueContractProperties;
 }
-export const UpdateQuotaByPeriodKeysResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateQuotaByPeriodKeyResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     counterKey: S.String,
     periodKey: S.String,
@@ -34142,8 +34142,8 @@ export const UpdateQuotaByPeriodKeysResponse = /*@__PURE__*/ S.suspend(() =>
     value: S.optional(QuotaCounterValueContractProperties),
   }),
 ).annotate({
-  identifier: "UpdateQuotaByPeriodKeysResponse",
-}) as any as S.Schema<UpdateQuotaByPeriodKeysResponse>;
+  identifier: "UpdateQuotaByPeriodKeyResponse",
+}) as any as S.Schema<UpdateQuotaByPeriodKeyResponse>;
 
 export type UpdateSubscriptionRequestAppType = "portal" | "developerPortal";
 export const UpdateSubscriptionRequestAppType = /*@__PURE__*/ S.String;
@@ -40311,16 +40311,16 @@ export const GetProductWiki: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetQuotaByPeriodKeysError = AzureOpError;
+export type GetQuotaByPeriodKeyError = AzureOpError;
 /** Gets the value of the quota counter associated with the counter-key in the policy for the specific period in service instance. */
-export const GetQuotaByPeriodKeys: API.OperationMethod<
-  GetQuotaByPeriodKeysRequest,
-  GetQuotaByPeriodKeysResponse,
-  GetQuotaByPeriodKeysError,
+export const GetQuotaByPeriodKey: API.OperationMethod<
+  GetQuotaByPeriodKeyRequest,
+  GetQuotaByPeriodKeyResponse,
+  GetQuotaByPeriodKeyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetQuotaByPeriodKeysRequest,
-  output: GetQuotaByPeriodKeysResponse,
+  input: GetQuotaByPeriodKeyRequest,
+  output: GetQuotaByPeriodKeyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -42324,16 +42324,16 @@ export const ListProductWikis: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListQuotaByCounterKeysByServiceError = AzureOpError;
+export type ListQuotaByCounterKeyByServiceError = AzureOpError;
 /** Lists a collection of current quota counter periods associated with the counter-key configured in the policy on the specified service instance. The api does not support paging yet. */
-export const ListQuotaByCounterKeysByService: API.OperationMethod<
-  ListQuotaByCounterKeysByServiceRequest,
-  ListQuotaByCounterKeysByServiceResponse,
-  ListQuotaByCounterKeysByServiceError,
+export const ListQuotaByCounterKeyByService: API.OperationMethod<
+  ListQuotaByCounterKeyByServiceRequest,
+  ListQuotaByCounterKeyByServiceResponse,
+  ListQuotaByCounterKeyByServiceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListQuotaByCounterKeysByServiceRequest,
-  output: ListQuotaByCounterKeysByServiceResponse,
+  input: ListQuotaByCounterKeyByServiceRequest,
+  output: ListQuotaByCounterKeyByServiceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -44321,31 +44321,31 @@ export const UpdateProductWiki: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateQuotaByCounterKeysError = AzureOpError;
+export type UpdateQuotaByCounterKeyError = AzureOpError;
 /** Updates all the quota counter values specified with the existing quota counter key to a value in the specified service instance. This should be used for reset of the quota counter values. */
-export const UpdateQuotaByCounterKeys: API.OperationMethod<
-  UpdateQuotaByCounterKeysRequest,
-  UpdateQuotaByCounterKeysResponse,
-  UpdateQuotaByCounterKeysError,
+export const UpdateQuotaByCounterKey: API.OperationMethod<
+  UpdateQuotaByCounterKeyRequest,
+  UpdateQuotaByCounterKeyResponse,
+  UpdateQuotaByCounterKeyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateQuotaByCounterKeysRequest,
-  output: UpdateQuotaByCounterKeysResponse,
+  input: UpdateQuotaByCounterKeyRequest,
+  output: UpdateQuotaByCounterKeyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateQuotaByPeriodKeysError = AzureOpError;
+export type UpdateQuotaByPeriodKeyError = AzureOpError;
 /** Updates an existing quota counter value in the specified service instance. */
-export const UpdateQuotaByPeriodKeys: API.OperationMethod<
-  UpdateQuotaByPeriodKeysRequest,
-  UpdateQuotaByPeriodKeysResponse,
-  UpdateQuotaByPeriodKeysError,
+export const UpdateQuotaByPeriodKey: API.OperationMethod<
+  UpdateQuotaByPeriodKeyRequest,
+  UpdateQuotaByPeriodKeyResponse,
+  UpdateQuotaByPeriodKeyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateQuotaByPeriodKeysRequest,
-  output: UpdateQuotaByPeriodKeysResponse,
+  input: UpdateQuotaByPeriodKeyRequest,
+  output: UpdateQuotaByPeriodKeyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

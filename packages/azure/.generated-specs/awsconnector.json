@@ -81242,10 +81242,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.awsconnector#DeleteKmsKeys": {
+    "com.azure.awsconnector#DeleteKmsKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.awsconnector#DeleteKmsKeysRequest"
+        "target": "com.azure.awsconnector#DeleteKmsKeyRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -81261,7 +81261,7 @@
         "com.distilled.openapi#apiVersion": "2024-12-01"
       }
     },
-    "com.azure.awsconnector#DeleteKmsKeysRequest": {
+    "com.azure.awsconnector#DeleteKmsKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -81293,13 +81293,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.awsconnector#UpdateKmsKeys": {
+    "com.azure.awsconnector#UpdateKmsKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.awsconnector#UpdateKmsKeysRequest"
+        "target": "com.azure.awsconnector#UpdateKmsKeyRequest"
       },
       "output": {
-        "target": "com.azure.awsconnector#UpdateKmsKeysResponse"
+        "target": "com.azure.awsconnector#UpdateKmsKeyResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -81312,7 +81312,7 @@
         "com.distilled.openapi#apiVersion": "2024-12-01"
       }
     },
-    "com.azure.awsconnector#UpdateKmsKeysResponse": {
+    "com.azure.awsconnector#UpdateKmsKeyResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -81340,7 +81340,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.awsconnector#UpdateKmsKeysResponseTagsMap",
+          "target": "com.azure.awsconnector#UpdateKmsKeyResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -81702,7 +81702,7 @@
         "smithy.api#documentation": "The key policy to attach to the KMS key. If you provide a key policy, it must meet the following criteria:  +  The key policy must allow the caller to make a subsequent [PutKeyPolicy](https://docs.aws.amazon.com/kms/latest/APIReference/API_PutKeyPolicy.html) request on the KMS key. This reduces the risk that the KMS key becomes unmanageable. For more information, see [Default key policy](https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam) in the *Developer Guide*. (To omit this condition, set ``BypassPolicyLockoutSafetyCheck`` to true.)  +  Each statement in the key policy must contain one or more principals. The principals in the key policy must exist and be visible to KMS. When you create a new AWS principal (for example, an IAM user or role), you might need to enforce a delay before including the new principal in a key policy because the new principal might not be immediately visible to KMS. For more information, see [Changes that I make are not always immediately visible](https://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_general.html#troubleshoot_general_eventual-consistency) in the *User Guide*.   If you do not provide a key policy, KMS attaches a default key policy to the KMS key. For more information, see [Default key policy](https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default) in the *Developer Guide*. A key policy document can include only the following characters:  +  Printable ASCII characters  +  Printable characters in the Basic Latin and Latin-1 Supplement character set  +  The tab (``\\u0009``), line feed (``\\u000A``), and carriage return (``\\u000D``) special characters    *Minimum*: ``1``   *Maximum*: ``32768``"
       }
     },
-    "com.azure.awsconnector#UpdateKmsKeysResponseTagsMap": {
+    "com.azure.awsconnector#UpdateKmsKeyResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -81714,7 +81714,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.awsconnector#UpdateKmsKeysRequest": {
+    "com.azure.awsconnector#UpdateKmsKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -81742,7 +81742,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.awsconnector#UpdateKmsKeysRequestTagsMap",
+          "target": "com.azure.awsconnector#UpdateKmsKeyRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -81752,7 +81752,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.awsconnector#UpdateKmsKeysRequestTagsMap": {
+    "com.azure.awsconnector#UpdateKmsKeyRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -81977,13 +81977,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.awsconnector#GetKmsKeys": {
+    "com.azure.awsconnector#GetKmsKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.awsconnector#GetKmsKeysRequest"
+        "target": "com.azure.awsconnector#GetKmsKeyRequest"
       },
       "output": {
-        "target": "com.azure.awsconnector#GetKmsKeysResponse"
+        "target": "com.azure.awsconnector#GetKmsKeyResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -81996,7 +81996,7 @@
         "com.distilled.openapi#apiVersion": "2024-12-01"
       }
     },
-    "com.azure.awsconnector#GetKmsKeysResponse": {
+    "com.azure.awsconnector#GetKmsKeyResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -82024,7 +82024,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.awsconnector#GetKmsKeysResponseTagsMap",
+          "target": "com.azure.awsconnector#GetKmsKeyResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -82047,7 +82047,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.awsconnector#GetKmsKeysResponseTagsMap": {
+    "com.azure.awsconnector#GetKmsKeyResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -82059,7 +82059,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.awsconnector#GetKmsKeysRequest": {
+    "com.azure.awsconnector#GetKmsKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -82091,10 +82091,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.awsconnector#ListKmsKeysByResourceGroup": {
+    "com.azure.awsconnector#ListKmsKeyByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.awsconnector#ListKmsKeysByResourceGroupRequest"
+        "target": "com.azure.awsconnector#ListKmsKeyByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.awsconnector#KmsKeyListResult"
@@ -82203,7 +82203,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.awsconnector#ListKmsKeysByResourceGroupRequest": {
+    "com.azure.awsconnector#ListKmsKeyByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -82227,10 +82227,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.awsconnector#ListKmsKeysBySubscription": {
+    "com.azure.awsconnector#ListKmsKeyBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.awsconnector#ListKmsKeysBySubscriptionRequest"
+        "target": "com.azure.awsconnector#ListKmsKeyBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.awsconnector#KmsKeyListResult"
@@ -82246,7 +82246,7 @@
         "com.distilled.openapi#apiVersion": "2024-12-01"
       }
     },
-    "com.azure.awsconnector#ListKmsKeysBySubscriptionRequest": {
+    "com.azure.awsconnector#ListKmsKeyBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -132653,22 +132653,22 @@
           "target": "com.azure.awsconnector#ListKmsAliasBySubscription"
         },
         {
-          "target": "com.azure.awsconnector#DeleteKmsKeys"
+          "target": "com.azure.awsconnector#DeleteKmsKey"
         },
         {
-          "target": "com.azure.awsconnector#UpdateKmsKeys"
+          "target": "com.azure.awsconnector#UpdateKmsKey"
         },
         {
           "target": "com.azure.awsconnector#KmsKeysCreateOrReplace"
         },
         {
-          "target": "com.azure.awsconnector#GetKmsKeys"
+          "target": "com.azure.awsconnector#GetKmsKey"
         },
         {
-          "target": "com.azure.awsconnector#ListKmsKeysByResourceGroup"
+          "target": "com.azure.awsconnector#ListKmsKeyByResourceGroup"
         },
         {
-          "target": "com.azure.awsconnector#ListKmsKeysBySubscription"
+          "target": "com.azure.awsconnector#ListKmsKeyBySubscription"
         },
         {
           "target": "com.azure.awsconnector#DeleteLambdaFunction"

@@ -1699,7 +1699,7 @@ export const DeleteIpFirewallRuleResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteIpFirewallRuleResponse",
 }) as any as S.Schema<DeleteIpFirewallRuleResponse>;
 
-export interface DeleteKeysRequest {
+export interface DeleteKeyRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1709,7 +1709,7 @@ export interface DeleteKeysRequest {
   /** The name of the workspace key */
   keyName: string;
 }
-export const DeleteKeysRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteKeyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1724,8 +1724,8 @@ export const DeleteKeysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteKeysRequest",
-}) as any as S.Schema<DeleteKeysRequest>;
+  identifier: "DeleteKeyRequest",
+}) as any as S.Schema<DeleteKeyRequest>;
 
 /** Key properties */
 export interface KeyProperties {
@@ -1741,7 +1741,7 @@ export const KeyProperties = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "KeyProperties" }) as any as S.Schema<KeyProperties>;
 
-export interface DeleteKeysResponse {
+export interface DeleteKeyResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -1751,7 +1751,7 @@ export interface DeleteKeysResponse {
   /** Keys resource properties */
   properties?: KeyProperties;
 }
-export const DeleteKeysResponse = /*@__PURE__*/ S.suspend(() =>
+export const DeleteKeyResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -1759,8 +1759,8 @@ export const DeleteKeysResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(KeyProperties),
   }),
 ).annotate({
-  identifier: "DeleteKeysResponse",
-}) as any as S.Schema<DeleteKeysResponse>;
+  identifier: "DeleteKeyResponse",
+}) as any as S.Schema<DeleteKeyResponse>;
 
 export interface DeletePrivateEndpointConnectionRequest {
   /** The ID of the target subscription. */
@@ -3866,7 +3866,7 @@ export const GetIpFirewallRuleResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetIpFirewallRuleResponse",
 }) as any as S.Schema<GetIpFirewallRuleResponse>;
 
-export interface GetKeysRequest {
+export interface GetKeyRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3876,7 +3876,7 @@ export interface GetKeysRequest {
   /** The name of the workspace key */
   keyName: string;
 }
-export const GetKeysRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetKeyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -3890,9 +3890,9 @@ export const GetKeysRequest = /*@__PURE__*/ S.suspend(() =>
       apiVersion: "2021-06-01",
     }),
   ),
-).annotate({ identifier: "GetKeysRequest" }) as any as S.Schema<GetKeysRequest>;
+).annotate({ identifier: "GetKeyRequest" }) as any as S.Schema<GetKeyRequest>;
 
-export interface GetKeysResponse {
+export interface GetKeyResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -3902,16 +3902,14 @@ export interface GetKeysResponse {
   /** Keys resource properties */
   properties?: KeyProperties;
 }
-export const GetKeysResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetKeyResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     properties: S.optional(KeyProperties),
   }),
-).annotate({
-  identifier: "GetKeysResponse",
-}) as any as S.Schema<GetKeysResponse>;
+).annotate({ identifier: "GetKeyResponse" }) as any as S.Schema<GetKeyResponse>;
 
 export interface GetLibraryRequest {
   /** The ID of the target subscription. */
@@ -8417,7 +8415,7 @@ export const IpFirewallRuleInfoListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "IpFirewallRuleInfoListResult",
 }) as any as S.Schema<IpFirewallRuleInfoListResult>;
 
-export interface ListKeysByWorkspaceRequest {
+export interface ListKeyByWorkspaceRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -8425,7 +8423,7 @@ export interface ListKeysByWorkspaceRequest {
   /** The name of the workspace. */
   workspaceName: string;
 }
-export const ListKeysByWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListKeyByWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -8439,8 +8437,8 @@ export const ListKeysByWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListKeysByWorkspaceRequest",
-}) as any as S.Schema<ListKeysByWorkspaceRequest>;
+  identifier: "ListKeyByWorkspaceRequest",
+}) as any as S.Schema<ListKeyByWorkspaceRequest>;
 
 /** A workspace key */
 export interface Key {
@@ -11461,13 +11459,13 @@ export const SsisObjectMetadataStatusResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SsisObjectMetadataStatusResponse>;
 
 /** The name of the authentication key to regenerate. */
-export type RegenerateIntegrationRuntimeAuthKeysRequestKeyName =
+export type RegenerateIntegrationRuntimeAuthKeyRequestKeyName =
   | "authKey1"
   | "authKey2";
-export const RegenerateIntegrationRuntimeAuthKeysRequestKeyName =
+export const RegenerateIntegrationRuntimeAuthKeyRequestKeyName =
   /*@__PURE__*/ S.String;
 
-export interface RegenerateIntegrationRuntimeAuthKeysRequest {
+export interface RegenerateIntegrationRuntimeAuthKeyRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -11477,16 +11475,16 @@ export interface RegenerateIntegrationRuntimeAuthKeysRequest {
   /** Integration runtime name */
   integrationRuntimeName: string;
   /** The name of the authentication key to regenerate. */
-  keyName?: RegenerateIntegrationRuntimeAuthKeysRequestKeyName | (string & {});
+  keyName?: RegenerateIntegrationRuntimeAuthKeyRequestKeyName | (string & {});
 }
-export const RegenerateIntegrationRuntimeAuthKeysRequest =
+export const RegenerateIntegrationRuntimeAuthKeyRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       workspaceName: S.String.pipe(T.Label()),
       integrationRuntimeName: S.String.pipe(T.Label()),
-      keyName: S.optional(RegenerateIntegrationRuntimeAuthKeysRequestKeyName),
+      keyName: S.optional(RegenerateIntegrationRuntimeAuthKeyRequestKeyName),
     }).pipe(
       T.Http({
         method: "POST",
@@ -11496,8 +11494,8 @@ export const RegenerateIntegrationRuntimeAuthKeysRequest =
       }),
     ),
   ).annotate({
-    identifier: "RegenerateIntegrationRuntimeAuthKeysRequest",
-  }) as any as S.Schema<RegenerateIntegrationRuntimeAuthKeysRequest>;
+    identifier: "RegenerateIntegrationRuntimeAuthKeyRequest",
+  }) as any as S.Schema<RegenerateIntegrationRuntimeAuthKeyRequest>;
 
 /** IP firewall rule properties */
 export type ReplaceIpFirewallRuleAllRequestIpFirewallRulesMap = {
@@ -14428,16 +14426,16 @@ export const DeleteIpFirewallRule: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteKeysError = AzureOpError;
+export type DeleteKeyError = AzureOpError;
 /** Deletes a workspace key */
-export const DeleteKeys: API.OperationMethod<
-  DeleteKeysRequest,
-  DeleteKeysResponse,
-  DeleteKeysError,
+export const DeleteKey: API.OperationMethod<
+  DeleteKeyRequest,
+  DeleteKeyResponse,
+  DeleteKeyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteKeysRequest,
-  output: DeleteKeysResponse,
+  input: DeleteKeyRequest,
+  output: DeleteKeyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14896,16 +14894,16 @@ export const GetIpFirewallRule: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetKeysError = AzureOpError;
+export type GetKeyError = AzureOpError;
 /** Gets a workspace key */
-export const GetKeys: API.OperationMethod<
-  GetKeysRequest,
-  GetKeysResponse,
-  GetKeysError,
+export const GetKey: API.OperationMethod<
+  GetKeyRequest,
+  GetKeyResponse,
+  GetKeyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetKeysRequest,
-  output: GetKeysResponse,
+  input: GetKeyRequest,
+  output: GetKeyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -15710,15 +15708,15 @@ export const ListIpFirewallRuleByWorkspace: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListKeysByWorkspaceError = AzureOpError;
+export type ListKeyByWorkspaceError = AzureOpError;
 /** Returns a list of keys in a workspace */
-export const ListKeysByWorkspace: API.OperationMethod<
-  ListKeysByWorkspaceRequest,
+export const ListKeyByWorkspace: API.OperationMethod<
+  ListKeyByWorkspaceRequest,
   KeyInfoListResult,
-  ListKeysByWorkspaceError,
+  ListKeyByWorkspaceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListKeysByWorkspaceRequest,
+  input: ListKeyByWorkspaceRequest,
   output: KeyInfoListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -16333,15 +16331,15 @@ export const RefreshIntegrationRuntimeObjectMetadata: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type RegenerateIntegrationRuntimeAuthKeysError = AzureOpError;
+export type RegenerateIntegrationRuntimeAuthKeyError = AzureOpError;
 /** Regenerate integration runtime authentication key Regenerate the authentication key for an integration runtime */
-export const RegenerateIntegrationRuntimeAuthKeys: API.OperationMethod<
-  RegenerateIntegrationRuntimeAuthKeysRequest,
+export const RegenerateIntegrationRuntimeAuthKey: API.OperationMethod<
+  RegenerateIntegrationRuntimeAuthKeyRequest,
   IntegrationRuntimeAuthKeys,
-  RegenerateIntegrationRuntimeAuthKeysError,
+  RegenerateIntegrationRuntimeAuthKeyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RegenerateIntegrationRuntimeAuthKeysRequest,
+  input: RegenerateIntegrationRuntimeAuthKeyRequest,
   output: IntegrationRuntimeAuthKeys,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,

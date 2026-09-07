@@ -18,10 +18,10 @@
     "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.network#StopApplicationGateways": {
+    "com.azure.network#StopApplicationGateway": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#StopApplicationGatewaysRequest"
+        "target": "com.azure.network#StopApplicationGatewayRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -37,7 +37,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#StopApplicationGatewaysRequest": {
+    "com.azure.network#StopApplicationGatewayRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -69,10 +69,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#StartApplicationGateways": {
+    "com.azure.network#StartApplicationGateway": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#StartApplicationGatewaysRequest"
+        "target": "com.azure.network#StartApplicationGatewayRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -88,7 +88,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#StartApplicationGatewaysRequest": {
+    "com.azure.network#StartApplicationGatewayRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10218,10 +10218,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#DeleteApplicationGateways": {
+    "com.azure.network#DeleteApplicationGateway": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#DeleteApplicationGatewaysRequest"
+        "target": "com.azure.network#DeleteApplicationGatewayRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -10237,7 +10237,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#DeleteApplicationGatewaysRequest": {
+    "com.azure.network#DeleteApplicationGatewayRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10269,13 +10269,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#UpdateApplicationGatewaysTags": {
+    "com.azure.network#UpdateApplicationGatewayTags": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#UpdateApplicationGatewaysTagsRequest"
+        "target": "com.azure.network#UpdateApplicationGatewayTagsRequest"
       },
       "output": {
-        "target": "com.azure.network#UpdateApplicationGatewaysTagsResponse"
+        "target": "com.azure.network#UpdateApplicationGatewayTagsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10288,7 +10288,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#UpdateApplicationGatewaysTagsResponse": {
+    "com.azure.network#UpdateApplicationGatewayTagsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -10316,7 +10316,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.network#UpdateApplicationGatewaysTagsResponseTagsMap",
+          "target": "com.azure.network#UpdateApplicationGatewayTagsResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -10334,13 +10334,13 @@
           }
         },
         "zones": {
-          "target": "com.azure.network#UpdateApplicationGatewaysTagsResponseZonesList",
+          "target": "com.azure.network#UpdateApplicationGatewayTagsResponseZonesList",
           "traits": {
             "smithy.api#documentation": "A list of availability zones denoting where the resource needs to come from."
           }
         },
         "identity": {
-          "target": "com.azure.network#UpdateApplicationGatewaysTagsResponseIdentity",
+          "target": "com.azure.network#UpdateApplicationGatewayTagsResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Identity for the resource."
           }
@@ -10350,7 +10350,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.network#UpdateApplicationGatewaysTagsResponseIdentity": {
+    "com.azure.network#UpdateApplicationGatewayTagsResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -10372,7 +10372,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.network#UpdateApplicationGatewaysTagsResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.network#UpdateApplicationGatewayTagsResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The list of user identities associated with resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'."
           }
@@ -10382,7 +10382,7 @@
         "smithy.api#documentation": "Identity for the resource."
       }
     },
-    "com.azure.network#UpdateApplicationGatewaysTagsResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.network#UpdateApplicationGatewayTagsResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10394,7 +10394,7 @@
         "smithy.api#documentation": "The list of user identities associated with resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'."
       }
     },
-    "com.azure.network#UpdateApplicationGatewaysTagsResponseZonesList": {
+    "com.azure.network#UpdateApplicationGatewayTagsResponseZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -15750,7 +15750,7 @@
         "smithy.api#documentation": "Name of an application gateway SKU."
       }
     },
-    "com.azure.network#UpdateApplicationGatewaysTagsResponseTagsMap": {
+    "com.azure.network#UpdateApplicationGatewayTagsResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -15762,7 +15762,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.network#UpdateApplicationGatewaysTagsRequest": {
+    "com.azure.network#UpdateApplicationGatewayTagsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15790,7 +15790,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.network#UpdateApplicationGatewaysTagsRequestTagsMap",
+          "target": "com.azure.network#UpdateApplicationGatewayTagsRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -15800,7 +15800,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#UpdateApplicationGatewaysTagsRequestTagsMap": {
+    "com.azure.network#UpdateApplicationGatewayTagsRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -17858,13 +17858,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.network#GetApplicationGateways": {
+    "com.azure.network#GetApplicationGateway": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#GetApplicationGatewaysRequest"
+        "target": "com.azure.network#GetApplicationGatewayRequest"
       },
       "output": {
-        "target": "com.azure.network#GetApplicationGatewaysResponse"
+        "target": "com.azure.network#GetApplicationGatewayResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -17877,7 +17877,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#GetApplicationGatewaysResponse": {
+    "com.azure.network#GetApplicationGatewayResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -17905,7 +17905,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.network#GetApplicationGatewaysResponseTagsMap",
+          "target": "com.azure.network#GetApplicationGatewayResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -17923,13 +17923,13 @@
           }
         },
         "zones": {
-          "target": "com.azure.network#GetApplicationGatewaysResponseZonesList",
+          "target": "com.azure.network#GetApplicationGatewayResponseZonesList",
           "traits": {
             "smithy.api#documentation": "A list of availability zones denoting where the resource needs to come from."
           }
         },
         "identity": {
-          "target": "com.azure.network#GetApplicationGatewaysResponseIdentity",
+          "target": "com.azure.network#GetApplicationGatewayResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Identity for the resource."
           }
@@ -17939,7 +17939,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.network#GetApplicationGatewaysResponseIdentity": {
+    "com.azure.network#GetApplicationGatewayResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -17961,7 +17961,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.network#GetApplicationGatewaysResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.network#GetApplicationGatewayResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The list of user identities associated with resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'."
           }
@@ -17971,7 +17971,7 @@
         "smithy.api#documentation": "Identity for the resource."
       }
     },
-    "com.azure.network#GetApplicationGatewaysResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.network#GetApplicationGatewayResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -17983,7 +17983,7 @@
         "smithy.api#documentation": "The list of user identities associated with resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'."
       }
     },
-    "com.azure.network#GetApplicationGatewaysResponseZonesList": {
+    "com.azure.network#GetApplicationGatewayResponseZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -17992,7 +17992,7 @@
         "smithy.api#documentation": "A list of availability zones denoting where the resource needs to come from."
       }
     },
-    "com.azure.network#GetApplicationGatewaysResponseTagsMap": {
+    "com.azure.network#GetApplicationGatewayResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -18004,7 +18004,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.network#GetApplicationGatewaysRequest": {
+    "com.azure.network#GetApplicationGatewayRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -21368,10 +21368,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#ListApplicationGatewaysAll": {
+    "com.azure.network#ListApplicationGatewayAll": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#ListApplicationGatewaysAllRequest"
+        "target": "com.azure.network#ListApplicationGatewayAllRequest"
       },
       "output": {
         "target": "com.azure.network#ApplicationGatewayListResult"
@@ -21387,7 +21387,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#ListApplicationGatewaysAllRequest": {
+    "com.azure.network#ListApplicationGatewayAllRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -21403,10 +21403,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#ListApplicationGatewaysAvailableWafRuleSets": {
+    "com.azure.network#ListApplicationGatewayAvailableWafRuleSets": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#ListApplicationGatewaysAvailableWafRuleSetsRequest"
+        "target": "com.azure.network#ListApplicationGatewayAvailableWafRuleSetsRequest"
       },
       "output": {
         "target": "com.azure.network#ApplicationGatewayAvailableWafRuleSetsResult"
@@ -21634,7 +21634,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.network#ListApplicationGatewaysAvailableWafRuleSetsRequest": {
+    "com.azure.network#ListApplicationGatewayAvailableWafRuleSetsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -21650,13 +21650,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#GetApplicationGatewaysSslPredefinedPolicy": {
+    "com.azure.network#GetApplicationGatewaySslPredefinedPolicy": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#GetApplicationGatewaysSslPredefinedPolicyRequest"
+        "target": "com.azure.network#GetApplicationGatewaySslPredefinedPolicyRequest"
       },
       "output": {
-        "target": "com.azure.network#GetApplicationGatewaysSslPredefinedPolicyResponse"
+        "target": "com.azure.network#GetApplicationGatewaySslPredefinedPolicyResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -21669,7 +21669,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#GetApplicationGatewaysSslPredefinedPolicyResponse": {
+    "com.azure.network#GetApplicationGatewaySslPredefinedPolicyResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -21932,7 +21932,7 @@
         "smithy.api#documentation": "Ssl cipher suites enums."
       }
     },
-    "com.azure.network#GetApplicationGatewaysSslPredefinedPolicyRequest": {
+    "com.azure.network#GetApplicationGatewaySslPredefinedPolicyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -21956,10 +21956,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#ListApplicationGatewaysAvailableSslPredefinedPolicies": {
+    "com.azure.network#ListApplicationGatewayAvailableSslPredefinedPolicies": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#ListApplicationGatewaysAvailableSslPredefinedPoliciesRequest"
+        "target": "com.azure.network#ListApplicationGatewayAvailableSslPredefinedPoliciesRequest"
       },
       "output": {
         "target": "com.azure.network#ApplicationGatewayAvailableSslPredefinedPolicies"
@@ -22031,7 +22031,7 @@
         "smithy.api#documentation": "An Ssl predefined policy."
       }
     },
-    "com.azure.network#ListApplicationGatewaysAvailableSslPredefinedPoliciesRequest": {
+    "com.azure.network#ListApplicationGatewayAvailableSslPredefinedPoliciesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -22047,13 +22047,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#ListApplicationGatewaysAvailableSslOptions": {
+    "com.azure.network#ListApplicationGatewayAvailableSslOptions": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#ListApplicationGatewaysAvailableSslOptionsRequest"
+        "target": "com.azure.network#ListApplicationGatewayAvailableSslOptionsRequest"
       },
       "output": {
-        "target": "com.azure.network#ListApplicationGatewaysAvailableSslOptionsResponse"
+        "target": "com.azure.network#ListApplicationGatewayAvailableSslOptionsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -22066,7 +22066,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#ListApplicationGatewaysAvailableSslOptionsResponse": {
+    "com.azure.network#ListApplicationGatewayAvailableSslOptionsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -22094,7 +22094,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.network#ListApplicationGatewaysAvailableSslOptionsResponseTagsMap",
+          "target": "com.azure.network#ListApplicationGatewayAvailableSslOptionsResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -22429,7 +22429,7 @@
         "smithy.api#documentation": "Reference to another subresource."
       }
     },
-    "com.azure.network#ListApplicationGatewaysAvailableSslOptionsResponseTagsMap": {
+    "com.azure.network#ListApplicationGatewayAvailableSslOptionsResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -22441,7 +22441,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.network#ListApplicationGatewaysAvailableSslOptionsRequest": {
+    "com.azure.network#ListApplicationGatewayAvailableSslOptionsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -22457,13 +22457,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#ListApplicationGatewaysAvailableServerVariables": {
+    "com.azure.network#ListApplicationGatewayAvailableServerVariables": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#ListApplicationGatewaysAvailableServerVariablesRequest"
+        "target": "com.azure.network#ListApplicationGatewayAvailableServerVariablesRequest"
       },
       "output": {
-        "target": "com.azure.network#ListApplicationGatewaysAvailableServerVariablesResponse"
+        "target": "com.azure.network#ListApplicationGatewayAvailableServerVariablesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -22476,11 +22476,11 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#ListApplicationGatewaysAvailableServerVariablesResponse": {
+    "com.azure.network#ListApplicationGatewayAvailableServerVariablesResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.azure.network#ListApplicationGatewaysAvailableServerVariablesResponseBodyList",
+          "target": "com.azure.network#ListApplicationGatewayAvailableServerVariablesResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -22491,14 +22491,14 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.network#ListApplicationGatewaysAvailableServerVariablesResponseBodyList": {
+    "com.azure.network#ListApplicationGatewayAvailableServerVariablesResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.azure.network#ListApplicationGatewaysAvailableServerVariablesRequest": {
+    "com.azure.network#ListApplicationGatewayAvailableServerVariablesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -22514,13 +22514,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#ListApplicationGatewaysAvailableResponseHeaders": {
+    "com.azure.network#ListApplicationGatewayAvailableResponseHeaders": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#ListApplicationGatewaysAvailableResponseHeadersRequest"
+        "target": "com.azure.network#ListApplicationGatewayAvailableResponseHeadersRequest"
       },
       "output": {
-        "target": "com.azure.network#ListApplicationGatewaysAvailableResponseHeadersResponse"
+        "target": "com.azure.network#ListApplicationGatewayAvailableResponseHeadersResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -22533,11 +22533,11 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#ListApplicationGatewaysAvailableResponseHeadersResponse": {
+    "com.azure.network#ListApplicationGatewayAvailableResponseHeadersResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.azure.network#ListApplicationGatewaysAvailableResponseHeadersResponseBodyList",
+          "target": "com.azure.network#ListApplicationGatewayAvailableResponseHeadersResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -22548,14 +22548,14 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.network#ListApplicationGatewaysAvailableResponseHeadersResponseBodyList": {
+    "com.azure.network#ListApplicationGatewayAvailableResponseHeadersResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.azure.network#ListApplicationGatewaysAvailableResponseHeadersRequest": {
+    "com.azure.network#ListApplicationGatewayAvailableResponseHeadersRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -22571,13 +22571,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#ListApplicationGatewaysAvailableRequestHeaders": {
+    "com.azure.network#ListApplicationGatewayAvailableRequestHeaders": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#ListApplicationGatewaysAvailableRequestHeadersRequest"
+        "target": "com.azure.network#ListApplicationGatewayAvailableRequestHeadersRequest"
       },
       "output": {
-        "target": "com.azure.network#ListApplicationGatewaysAvailableRequestHeadersResponse"
+        "target": "com.azure.network#ListApplicationGatewayAvailableRequestHeadersResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -22590,11 +22590,11 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#ListApplicationGatewaysAvailableRequestHeadersResponse": {
+    "com.azure.network#ListApplicationGatewayAvailableRequestHeadersResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.azure.network#ListApplicationGatewaysAvailableRequestHeadersResponseBodyList",
+          "target": "com.azure.network#ListApplicationGatewayAvailableRequestHeadersResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -22605,14 +22605,14 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.network#ListApplicationGatewaysAvailableRequestHeadersResponseBodyList": {
+    "com.azure.network#ListApplicationGatewayAvailableRequestHeadersResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.azure.network#ListApplicationGatewaysAvailableRequestHeadersRequest": {
+    "com.azure.network#ListApplicationGatewayAvailableRequestHeadersRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -69685,13 +69685,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#StopVirtualNetworkGatewaysExpressRouteSiteFailoverSimulation": {
+    "com.azure.network#StopVirtualNetworkGatewayExpressRouteSiteFailoverSimulation": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#StopVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationRequest"
+        "target": "com.azure.network#StopVirtualNetworkGatewayExpressRouteSiteFailoverSimulationRequest"
       },
       "output": {
-        "target": "com.azure.network#StopVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationResponse"
+        "target": "com.azure.network#StopVirtualNetworkGatewayExpressRouteSiteFailoverSimulationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -69704,7 +69704,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#StopVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationResponse": {
+    "com.azure.network#StopVirtualNetworkGatewayExpressRouteSiteFailoverSimulationResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -69719,7 +69719,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.network#StopVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationRequest": {
+    "com.azure.network#StopVirtualNetworkGatewayExpressRouteSiteFailoverSimulationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -69759,7 +69759,7 @@
           }
         },
         "details": {
-          "target": "com.azure.network#StopVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationRequestDetailsList",
+          "target": "com.azure.network#StopVirtualNetworkGatewayExpressRouteSiteFailoverSimulationRequestDetailsList",
           "traits": {
             "smithy.api#documentation": "List of all the failover connections for this peering location"
           }
@@ -69769,7 +69769,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#StopVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationRequestDetailsList": {
+    "com.azure.network#StopVirtualNetworkGatewayExpressRouteSiteFailoverSimulationRequestDetailsList": {
       "type": "list",
       "member": {
         "target": "com.azure.network#FailoverConnectionDetails"
@@ -69802,13 +69802,13 @@
       },
       "traits": {}
     },
-    "com.azure.network#StopVirtualNetworkGatewaysPacketCapture": {
+    "com.azure.network#StopVirtualNetworkGatewayPacketCapture": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#StopVirtualNetworkGatewaysPacketCaptureRequest"
+        "target": "com.azure.network#StopVirtualNetworkGatewayPacketCaptureRequest"
       },
       "output": {
-        "target": "com.azure.network#StopVirtualNetworkGatewaysPacketCaptureResponse"
+        "target": "com.azure.network#StopVirtualNetworkGatewayPacketCaptureResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -69821,7 +69821,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#StopVirtualNetworkGatewaysPacketCaptureResponse": {
+    "com.azure.network#StopVirtualNetworkGatewayPacketCaptureResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -69836,7 +69836,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.network#StopVirtualNetworkGatewaysPacketCaptureRequest": {
+    "com.azure.network#StopVirtualNetworkGatewayPacketCaptureRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -69874,13 +69874,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#StartVirtualNetworkGatewaysExpressRouteSiteFailoverSimulation": {
+    "com.azure.network#StartVirtualNetworkGatewayExpressRouteSiteFailoverSimulation": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#StartVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationRequest"
+        "target": "com.azure.network#StartVirtualNetworkGatewayExpressRouteSiteFailoverSimulationRequest"
       },
       "output": {
-        "target": "com.azure.network#StartVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationResponse"
+        "target": "com.azure.network#StartVirtualNetworkGatewayExpressRouteSiteFailoverSimulationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -69893,7 +69893,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#StartVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationResponse": {
+    "com.azure.network#StartVirtualNetworkGatewayExpressRouteSiteFailoverSimulationResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -69908,7 +69908,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.network#StartVirtualNetworkGatewaysExpressRouteSiteFailoverSimulationRequest": {
+    "com.azure.network#StartVirtualNetworkGatewayExpressRouteSiteFailoverSimulationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -69948,13 +69948,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#StartVirtualNetworkGatewaysPacketCapture": {
+    "com.azure.network#StartVirtualNetworkGatewayPacketCapture": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#StartVirtualNetworkGatewaysPacketCaptureRequest"
+        "target": "com.azure.network#StartVirtualNetworkGatewayPacketCaptureRequest"
       },
       "output": {
-        "target": "com.azure.network#StartVirtualNetworkGatewaysPacketCaptureResponse"
+        "target": "com.azure.network#StartVirtualNetworkGatewayPacketCaptureResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -69967,7 +69967,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#StartVirtualNetworkGatewaysPacketCaptureResponse": {
+    "com.azure.network#StartVirtualNetworkGatewayPacketCaptureResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -69982,7 +69982,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.network#StartVirtualNetworkGatewaysPacketCaptureRequest": {
+    "com.azure.network#StartVirtualNetworkGatewayPacketCaptureRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -70020,10 +70020,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#SetVirtualNetworkGatewaysVpnclientIpsecParameters": {
+    "com.azure.network#SetVirtualNetworkGatewayVpnclientIpsecParameters": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#SetVirtualNetworkGatewaysVpnclientIpsecParametersRequest"
+        "target": "com.azure.network#SetVirtualNetworkGatewayVpnclientIpsecParametersRequest"
       },
       "output": {
         "target": "com.azure.network#VpnClientIPsecParameters"
@@ -70421,7 +70421,7 @@
         "smithy.api#documentation": "The IPSec encryption algorithm (IKE phase 1)."
       }
     },
-    "com.azure.network#SetVirtualNetworkGatewaysVpnclientIpsecParametersRequest": {
+    "com.azure.network#SetVirtualNetworkGatewayVpnclientIpsecParametersRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -70463,42 +70463,42 @@
           }
         },
         "ipsecEncryption": {
-          "target": "com.azure.network#SetVirtualNetworkGatewaysVpnclientIpsecParametersRequestIpsecEncryption",
+          "target": "com.azure.network#SetVirtualNetworkGatewayVpnclientIpsecParametersRequestIpsecEncryption",
           "traits": {
             "smithy.api#documentation": "The IPSec encryption algorithm (IKE phase 1).",
             "smithy.api#required": {}
           }
         },
         "ipsecIntegrity": {
-          "target": "com.azure.network#SetVirtualNetworkGatewaysVpnclientIpsecParametersRequestIpsecIntegrity",
+          "target": "com.azure.network#SetVirtualNetworkGatewayVpnclientIpsecParametersRequestIpsecIntegrity",
           "traits": {
             "smithy.api#documentation": "The IPSec integrity algorithm (IKE phase 1).",
             "smithy.api#required": {}
           }
         },
         "ikeEncryption": {
-          "target": "com.azure.network#SetVirtualNetworkGatewaysVpnclientIpsecParametersRequestIkeEncryption",
+          "target": "com.azure.network#SetVirtualNetworkGatewayVpnclientIpsecParametersRequestIkeEncryption",
           "traits": {
             "smithy.api#documentation": "The IKE encryption algorithm (IKE phase 2).",
             "smithy.api#required": {}
           }
         },
         "ikeIntegrity": {
-          "target": "com.azure.network#SetVirtualNetworkGatewaysVpnclientIpsecParametersRequestIkeIntegrity",
+          "target": "com.azure.network#SetVirtualNetworkGatewayVpnclientIpsecParametersRequestIkeIntegrity",
           "traits": {
             "smithy.api#documentation": "The IKE integrity algorithm (IKE phase 2).",
             "smithy.api#required": {}
           }
         },
         "dhGroup": {
-          "target": "com.azure.network#SetVirtualNetworkGatewaysVpnclientIpsecParametersRequestDhGroup",
+          "target": "com.azure.network#SetVirtualNetworkGatewayVpnclientIpsecParametersRequestDhGroup",
           "traits": {
             "smithy.api#documentation": "The DH Groups used in IKE Phase 1 for initial SA.",
             "smithy.api#required": {}
           }
         },
         "pfsGroup": {
-          "target": "com.azure.network#SetVirtualNetworkGatewaysVpnclientIpsecParametersRequestPfsGroup",
+          "target": "com.azure.network#SetVirtualNetworkGatewayVpnclientIpsecParametersRequestPfsGroup",
           "traits": {
             "smithy.api#documentation": "The Pfs Groups used in IKE Phase 2 for new child SA.",
             "smithy.api#required": {}
@@ -70509,7 +70509,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#SetVirtualNetworkGatewaysVpnclientIpsecParametersRequestPfsGroup": {
+    "com.azure.network#SetVirtualNetworkGatewayVpnclientIpsecParametersRequestPfsGroup": {
       "type": "enum",
       "members": {
         "NONE": {
@@ -70571,7 +70571,7 @@
         "smithy.api#documentation": "The Pfs Groups used in IKE Phase 2 for new child SA."
       }
     },
-    "com.azure.network#SetVirtualNetworkGatewaysVpnclientIpsecParametersRequestDhGroup": {
+    "com.azure.network#SetVirtualNetworkGatewayVpnclientIpsecParametersRequestDhGroup": {
       "type": "enum",
       "members": {
         "NONE": {
@@ -70627,7 +70627,7 @@
         "smithy.api#documentation": "The DH Groups used in IKE Phase 1 for initial SA."
       }
     },
-    "com.azure.network#SetVirtualNetworkGatewaysVpnclientIpsecParametersRequestIkeIntegrity": {
+    "com.azure.network#SetVirtualNetworkGatewayVpnclientIpsecParametersRequestIkeIntegrity": {
       "type": "enum",
       "members": {
         "MD5": {
@@ -70671,7 +70671,7 @@
         "smithy.api#documentation": "The IKE integrity algorithm (IKE phase 2)."
       }
     },
-    "com.azure.network#SetVirtualNetworkGatewaysVpnclientIpsecParametersRequestIkeEncryption": {
+    "com.azure.network#SetVirtualNetworkGatewayVpnclientIpsecParametersRequestIkeEncryption": {
       "type": "enum",
       "members": {
         "DES": {
@@ -70721,7 +70721,7 @@
         "smithy.api#documentation": "The IKE encryption algorithm (IKE phase 2)."
       }
     },
-    "com.azure.network#SetVirtualNetworkGatewaysVpnclientIpsecParametersRequestIpsecIntegrity": {
+    "com.azure.network#SetVirtualNetworkGatewayVpnclientIpsecParametersRequestIpsecIntegrity": {
       "type": "enum",
       "members": {
         "MD5": {
@@ -70765,7 +70765,7 @@
         "smithy.api#documentation": "The IPSec integrity algorithm (IKE phase 1)."
       }
     },
-    "com.azure.network#SetVirtualNetworkGatewaysVpnclientIpsecParametersRequestIpsecEncryption": {
+    "com.azure.network#SetVirtualNetworkGatewayVpnclientIpsecParametersRequestIpsecEncryption": {
       "type": "enum",
       "members": {
         "NONE": {
@@ -70827,10 +70827,10 @@
         "smithy.api#documentation": "The IPSec encryption algorithm (IKE phase 1)."
       }
     },
-    "com.azure.network#ResetVirtualNetworkGatewaysVpnClientSharedKey": {
+    "com.azure.network#ResetVirtualNetworkGatewayVpnClientSharedKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#ResetVirtualNetworkGatewaysVpnClientSharedKeyRequest"
+        "target": "com.azure.network#ResetVirtualNetworkGatewayVpnClientSharedKeyRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -70846,7 +70846,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#ResetVirtualNetworkGatewaysVpnClientSharedKeyRequest": {
+    "com.azure.network#ResetVirtualNetworkGatewayVpnClientSharedKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -70878,13 +70878,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#ResetVirtualNetworkGateways": {
+    "com.azure.network#ResetVirtualNetworkGateway": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#ResetVirtualNetworkGatewaysRequest"
+        "target": "com.azure.network#ResetVirtualNetworkGatewayRequest"
       },
       "output": {
-        "target": "com.azure.network#ResetVirtualNetworkGatewaysResponse"
+        "target": "com.azure.network#ResetVirtualNetworkGatewayResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -70897,7 +70897,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#ResetVirtualNetworkGatewaysResponse": {
+    "com.azure.network#ResetVirtualNetworkGatewayResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -70925,7 +70925,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.network#ResetVirtualNetworkGatewaysResponseTagsMap",
+          "target": "com.azure.network#ResetVirtualNetworkGatewayResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -70938,7 +70938,7 @@
           }
         },
         "extendedLocation": {
-          "target": "com.azure.network#ResetVirtualNetworkGatewaysResponseExtendedLocation",
+          "target": "com.azure.network#ResetVirtualNetworkGatewayResponseExtendedLocation",
           "traits": {
             "smithy.api#documentation": "ExtendedLocation complex type."
           }
@@ -70950,7 +70950,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.network#ResetVirtualNetworkGatewaysResponseIdentity",
+          "target": "com.azure.network#ResetVirtualNetworkGatewayResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Identity for the resource."
           }
@@ -70960,7 +70960,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.network#ResetVirtualNetworkGatewaysResponseIdentity": {
+    "com.azure.network#ResetVirtualNetworkGatewayResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -70982,7 +70982,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.network#ResetVirtualNetworkGatewaysResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.network#ResetVirtualNetworkGatewayResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The list of user identities associated with resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'."
           }
@@ -70992,7 +70992,7 @@
         "smithy.api#documentation": "Identity for the resource."
       }
     },
-    "com.azure.network#ResetVirtualNetworkGatewaysResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.network#ResetVirtualNetworkGatewayResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -71004,7 +71004,7 @@
         "smithy.api#documentation": "The list of user identities associated with resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'."
       }
     },
-    "com.azure.network#ResetVirtualNetworkGatewaysResponseExtendedLocation": {
+    "com.azure.network#ResetVirtualNetworkGatewayResponseExtendedLocation": {
       "type": "structure",
       "members": {
         "name": {
@@ -73539,7 +73539,7 @@
       },
       "traits": {}
     },
-    "com.azure.network#ResetVirtualNetworkGatewaysResponseTagsMap": {
+    "com.azure.network#ResetVirtualNetworkGatewayResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -73551,7 +73551,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.network#ResetVirtualNetworkGatewaysRequest": {
+    "com.azure.network#ResetVirtualNetworkGatewayRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -73590,10 +73590,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#InvokeVirtualNetworkGatewaysPrepareMigration": {
+    "com.azure.network#InvokeVirtualNetworkGatewayPrepareMigration": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#InvokeVirtualNetworkGatewaysPrepareMigrationRequest"
+        "target": "com.azure.network#InvokeVirtualNetworkGatewayPrepareMigrationRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -73609,7 +73609,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#InvokeVirtualNetworkGatewaysPrepareMigrationRequest": {
+    "com.azure.network#InvokeVirtualNetworkGatewayPrepareMigrationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -73637,7 +73637,7 @@
           }
         },
         "migrationType": {
-          "target": "com.azure.network#InvokeVirtualNetworkGatewaysPrepareMigrationRequestMigrationType",
+          "target": "com.azure.network#InvokeVirtualNetworkGatewayPrepareMigrationRequestMigrationType",
           "traits": {
             "smithy.api#documentation": "MigrationType for the virtual network gateway.",
             "smithy.api#required": {}
@@ -73654,7 +73654,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#InvokeVirtualNetworkGatewaysPrepareMigrationRequestMigrationType": {
+    "com.azure.network#InvokeVirtualNetworkGatewayPrepareMigrationRequestMigrationType": {
       "type": "enum",
       "members": {
         "UPGRADEDEPLOYMENTTOSTANDARDIP": {
@@ -74020,10 +74020,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#ListVirtualNetworkGatewaysRadiusSecrets": {
+    "com.azure.network#ListVirtualNetworkGatewayRadiusSecrets": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#ListVirtualNetworkGatewaysRadiusSecretsRequest"
+        "target": "com.azure.network#ListVirtualNetworkGatewayRadiusSecretsRequest"
       },
       "output": {
         "target": "com.azure.network#RadiusAuthServerListResult"
@@ -74089,7 +74089,7 @@
         "smithy.api#documentation": "Gateway or VpnServerConfiguration Radius server with radius secret details"
       }
     },
-    "com.azure.network#ListVirtualNetworkGatewaysRadiusSecretsRequest": {
+    "com.azure.network#ListVirtualNetworkGatewayRadiusSecretsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -74121,13 +74121,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#GetVirtualNetworkGatewaysVpnProfilePackageUrl": {
+    "com.azure.network#GetVirtualNetworkGatewayVpnProfilePackageUrl": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#GetVirtualNetworkGatewaysVpnProfilePackageUrlRequest"
+        "target": "com.azure.network#GetVirtualNetworkGatewayVpnProfilePackageUrlRequest"
       },
       "output": {
-        "target": "com.azure.network#GetVirtualNetworkGatewaysVpnProfilePackageUrlResponse"
+        "target": "com.azure.network#GetVirtualNetworkGatewayVpnProfilePackageUrlResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -74140,7 +74140,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#GetVirtualNetworkGatewaysVpnProfilePackageUrlResponse": {
+    "com.azure.network#GetVirtualNetworkGatewayVpnProfilePackageUrlResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -74155,7 +74155,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.network#GetVirtualNetworkGatewaysVpnProfilePackageUrlRequest": {
+    "com.azure.network#GetVirtualNetworkGatewayVpnProfilePackageUrlRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -74187,10 +74187,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#GetVirtualNetworkGatewaysVpnclientIpsecParameters": {
+    "com.azure.network#GetVirtualNetworkGatewayVpnclientIpsecParameters": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#GetVirtualNetworkGatewaysVpnclientIpsecParametersRequest"
+        "target": "com.azure.network#GetVirtualNetworkGatewayVpnclientIpsecParametersRequest"
       },
       "output": {
         "target": "com.azure.network#VpnClientIPsecParameters"
@@ -74206,7 +74206,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#GetVirtualNetworkGatewaysVpnclientIpsecParametersRequest": {
+    "com.azure.network#GetVirtualNetworkGatewayVpnclientIpsecParametersRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -74238,10 +74238,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#GetVirtualNetworkGatewaysVpnclientConnectionHealth": {
+    "com.azure.network#GetVirtualNetworkGatewayVpnclientConnectionHealth": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#GetVirtualNetworkGatewaysVpnclientConnectionHealthRequest"
+        "target": "com.azure.network#GetVirtualNetworkGatewayVpnclientConnectionHealthRequest"
       },
       "output": {
         "target": "com.azure.network#VpnClientConnectionHealthDetailListResult"
@@ -74360,7 +74360,7 @@
         "smithy.api#documentation": "VPN client connection health detail."
       }
     },
-    "com.azure.network#GetVirtualNetworkGatewaysVpnclientConnectionHealthRequest": {
+    "com.azure.network#GetVirtualNetworkGatewayVpnclientConnectionHealthRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -74392,10 +74392,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#GetVirtualNetworkGatewaysRoutesInformation": {
+    "com.azure.network#GetVirtualNetworkGatewayRoutesInformation": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#GetVirtualNetworkGatewaysRoutesInformationRequest"
+        "target": "com.azure.network#GetVirtualNetworkGatewayRoutesInformationRequest"
       },
       "output": {
         "target": "com.azure.network#GatewayRouteSetsInformation"
@@ -74570,7 +74570,7 @@
         "smithy.api#documentation": "List of different locations from where the routes are learned"
       }
     },
-    "com.azure.network#GetVirtualNetworkGatewaysRoutesInformationRequest": {
+    "com.azure.network#GetVirtualNetworkGatewayRoutesInformationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -74609,10 +74609,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#GetVirtualNetworkGatewaysResiliencyInformation": {
+    "com.azure.network#GetVirtualNetworkGatewayResiliencyInformation": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#GetVirtualNetworkGatewaysResiliencyInformationRequest"
+        "target": "com.azure.network#GetVirtualNetworkGatewayResiliencyInformationRequest"
       },
       "output": {
         "target": "com.azure.network#GatewayResiliencyInformation"
@@ -74772,7 +74772,7 @@
         "smithy.api#documentation": "Resiliency Recommendation details"
       }
     },
-    "com.azure.network#GetVirtualNetworkGatewaysResiliencyInformationRequest": {
+    "com.azure.network#GetVirtualNetworkGatewayResiliencyInformationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -74811,10 +74811,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#GetVirtualNetworkGatewaysLearnedRoutes": {
+    "com.azure.network#GetVirtualNetworkGatewayLearnedRoutes": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#GetVirtualNetworkGatewaysLearnedRoutesRequest"
+        "target": "com.azure.network#GetVirtualNetworkGatewayLearnedRoutesRequest"
       },
       "output": {
         "target": "com.azure.network#GatewayRouteListResult"
@@ -74903,7 +74903,7 @@
         "smithy.api#documentation": "Gateway routing details."
       }
     },
-    "com.azure.network#GetVirtualNetworkGatewaysLearnedRoutesRequest": {
+    "com.azure.network#GetVirtualNetworkGatewayLearnedRoutesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -74935,13 +74935,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#GetVirtualNetworkGatewaysFailoverSingleTestDetails": {
+    "com.azure.network#GetVirtualNetworkGatewayFailoverSingleTestDetails": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#GetVirtualNetworkGatewaysFailoverSingleTestDetailsRequest"
+        "target": "com.azure.network#GetVirtualNetworkGatewayFailoverSingleTestDetailsRequest"
       },
       "output": {
-        "target": "com.azure.network#GetVirtualNetworkGatewaysFailoverSingleTestDetailsResponse"
+        "target": "com.azure.network#GetVirtualNetworkGatewayFailoverSingleTestDetailsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -74954,11 +74954,11 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#GetVirtualNetworkGatewaysFailoverSingleTestDetailsResponse": {
+    "com.azure.network#GetVirtualNetworkGatewayFailoverSingleTestDetailsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.azure.network#GetVirtualNetworkGatewaysFailoverSingleTestDetailsResponseBodyList",
+          "target": "com.azure.network#GetVirtualNetworkGatewayFailoverSingleTestDetailsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -74969,7 +74969,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.network#GetVirtualNetworkGatewaysFailoverSingleTestDetailsResponseBodyList": {
+    "com.azure.network#GetVirtualNetworkGatewayFailoverSingleTestDetailsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.azure.network#ExpressRouteFailoverSingleTestDetails"
@@ -75157,7 +75157,7 @@
         "smithy.api#documentation": "The current status of the test"
       }
     },
-    "com.azure.network#GetVirtualNetworkGatewaysFailoverSingleTestDetailsRequest": {
+    "com.azure.network#GetVirtualNetworkGatewayFailoverSingleTestDetailsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -75205,13 +75205,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#GetVirtualNetworkGatewaysFailoverAllTestDetails": {
+    "com.azure.network#GetVirtualNetworkGatewayFailoverAllTestDetails": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#GetVirtualNetworkGatewaysFailoverAllTestDetailsRequest"
+        "target": "com.azure.network#GetVirtualNetworkGatewayFailoverAllTestDetailsRequest"
       },
       "output": {
-        "target": "com.azure.network#GetVirtualNetworkGatewaysFailoverAllTestDetailsResponse"
+        "target": "com.azure.network#GetVirtualNetworkGatewayFailoverAllTestDetailsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -75224,11 +75224,11 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#GetVirtualNetworkGatewaysFailoverAllTestDetailsResponse": {
+    "com.azure.network#GetVirtualNetworkGatewayFailoverAllTestDetailsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.azure.network#GetVirtualNetworkGatewaysFailoverAllTestDetailsResponseBodyList",
+          "target": "com.azure.network#GetVirtualNetworkGatewayFailoverAllTestDetailsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -75239,7 +75239,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.network#GetVirtualNetworkGatewaysFailoverAllTestDetailsResponseBodyList": {
+    "com.azure.network#GetVirtualNetworkGatewayFailoverAllTestDetailsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.azure.network#ExpressRouteFailoverTestDetails"
@@ -75497,7 +75497,7 @@
       },
       "traits": {}
     },
-    "com.azure.network#GetVirtualNetworkGatewaysFailoverAllTestDetailsRequest": {
+    "com.azure.network#GetVirtualNetworkGatewayFailoverAllTestDetailsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -75545,10 +75545,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#GetVirtualNetworkGatewaysEffectiveRoutes": {
+    "com.azure.network#GetVirtualNetworkGatewayEffectiveRoutes": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#GetVirtualNetworkGatewaysEffectiveRoutesRequest"
+        "target": "com.azure.network#GetVirtualNetworkGatewayEffectiveRoutesRequest"
       },
       "output": {
         "target": "com.azure.network#GatewayEffectiveRouteListResult"
@@ -75654,7 +75654,7 @@
         "smithy.api#documentation": "The list of address prefixes for the effective route."
       }
     },
-    "com.azure.network#GetVirtualNetworkGatewaysEffectiveRoutesRequest": {
+    "com.azure.network#GetVirtualNetworkGatewayEffectiveRoutesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -75686,10 +75686,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#GetVirtualNetworkGatewaysBgpPeerStatus": {
+    "com.azure.network#GetVirtualNetworkGatewayBgpPeerStatus": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#GetVirtualNetworkGatewaysBgpPeerStatusRequest"
+        "target": "com.azure.network#GetVirtualNetworkGatewayBgpPeerStatusRequest"
       },
       "output": {
         "target": "com.azure.network#BgpPeerStatusListResult"
@@ -75822,7 +75822,7 @@
         "smithy.api#documentation": "The BGP peer state."
       }
     },
-    "com.azure.network#GetVirtualNetworkGatewaysBgpPeerStatusRequest": {
+    "com.azure.network#GetVirtualNetworkGatewayBgpPeerStatusRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -75861,10 +75861,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#GetVirtualNetworkGatewaysAdvertisedRoutes": {
+    "com.azure.network#GetVirtualNetworkGatewayAdvertisedRoutes": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#GetVirtualNetworkGatewaysAdvertisedRoutesRequest"
+        "target": "com.azure.network#GetVirtualNetworkGatewayAdvertisedRoutesRequest"
       },
       "output": {
         "target": "com.azure.network#GatewayRouteListResult"
@@ -75880,7 +75880,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#GetVirtualNetworkGatewaysAdvertisedRoutesRequest": {
+    "com.azure.network#GetVirtualNetworkGatewayAdvertisedRoutesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -75920,13 +75920,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#GenerateVirtualNetworkGatewaysVpnProfile": {
+    "com.azure.network#GenerateVirtualNetworkGatewayVpnProfile": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#GenerateVirtualNetworkGatewaysVpnProfileRequest"
+        "target": "com.azure.network#GenerateVirtualNetworkGatewayVpnProfileRequest"
       },
       "output": {
-        "target": "com.azure.network#GenerateVirtualNetworkGatewaysVpnProfileResponse"
+        "target": "com.azure.network#GenerateVirtualNetworkGatewayVpnProfileResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -75939,7 +75939,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#GenerateVirtualNetworkGatewaysVpnProfileResponse": {
+    "com.azure.network#GenerateVirtualNetworkGatewayVpnProfileResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -75954,7 +75954,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.network#GenerateVirtualNetworkGatewaysVpnProfileRequest": {
+    "com.azure.network#GenerateVirtualNetworkGatewayVpnProfileRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -75982,13 +75982,13 @@
           }
         },
         "processorArchitecture": {
-          "target": "com.azure.network#GenerateVirtualNetworkGatewaysVpnProfileRequestProcessorArchitecture",
+          "target": "com.azure.network#GenerateVirtualNetworkGatewayVpnProfileRequestProcessorArchitecture",
           "traits": {
             "smithy.api#documentation": "VPN client Processor Architecture."
           }
         },
         "authenticationMethod": {
-          "target": "com.azure.network#GenerateVirtualNetworkGatewaysVpnProfileRequestAuthenticationMethod",
+          "target": "com.azure.network#GenerateVirtualNetworkGatewayVpnProfileRequestAuthenticationMethod",
           "traits": {
             "smithy.api#documentation": "VPN client authentication method."
           }
@@ -76000,7 +76000,7 @@
           }
         },
         "clientRootCertificates": {
-          "target": "com.azure.network#GenerateVirtualNetworkGatewaysVpnProfileRequestClientRootCertificatesList",
+          "target": "com.azure.network#GenerateVirtualNetworkGatewayVpnProfileRequestClientRootCertificatesList",
           "traits": {
             "smithy.api#documentation": "A list of client root certificates public certificate data encoded as Base-64 strings. Optional parameter for external radius based authentication with EAPTLS."
           }
@@ -76010,7 +76010,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#GenerateVirtualNetworkGatewaysVpnProfileRequestClientRootCertificatesList": {
+    "com.azure.network#GenerateVirtualNetworkGatewayVpnProfileRequestClientRootCertificatesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -76019,7 +76019,7 @@
         "smithy.api#documentation": "A list of client root certificates public certificate data encoded as Base-64 strings. Optional parameter for external radius based authentication with EAPTLS."
       }
     },
-    "com.azure.network#GenerateVirtualNetworkGatewaysVpnProfileRequestAuthenticationMethod": {
+    "com.azure.network#GenerateVirtualNetworkGatewayVpnProfileRequestAuthenticationMethod": {
       "type": "enum",
       "members": {
         "EAPTLS": {
@@ -76039,7 +76039,7 @@
         "smithy.api#documentation": "VPN client authentication method."
       }
     },
-    "com.azure.network#GenerateVirtualNetworkGatewaysVpnProfileRequestProcessorArchitecture": {
+    "com.azure.network#GenerateVirtualNetworkGatewayVpnProfileRequestProcessorArchitecture": {
       "type": "enum",
       "members": {
         "AMD64": {
@@ -76249,10 +76249,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#DisconnectVirtualNetworkGatewaysVirtualNetworkGatewayVpnConnections": {
+    "com.azure.network#DisconnectVirtualNetworkGatewayVirtualNetworkGatewayVpnConnections": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#DisconnectVirtualNetworkGatewaysVirtualNetworkGatewayVpnConnectionsRequest"
+        "target": "com.azure.network#DisconnectVirtualNetworkGatewayVirtualNetworkGatewayVpnConnectionsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -76268,7 +76268,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#DisconnectVirtualNetworkGatewaysVirtualNetworkGatewayVpnConnectionsRequest": {
+    "com.azure.network#DisconnectVirtualNetworkGatewayVirtualNetworkGatewayVpnConnectionsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -76296,7 +76296,7 @@
           }
         },
         "vpnConnectionIds": {
-          "target": "com.azure.network#DisconnectVirtualNetworkGatewaysVirtualNetworkGatewayVpnConnectionsRequestVpnConnectionIdsList",
+          "target": "com.azure.network#DisconnectVirtualNetworkGatewayVirtualNetworkGatewayVpnConnectionsRequestVpnConnectionIdsList",
           "traits": {
             "smithy.api#documentation": "List of p2s vpn connection Ids."
           }
@@ -76306,7 +76306,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#DisconnectVirtualNetworkGatewaysVirtualNetworkGatewayVpnConnectionsRequestVpnConnectionIdsList": {
+    "com.azure.network#DisconnectVirtualNetworkGatewayVirtualNetworkGatewayVpnConnectionsRequestVpnConnectionIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -76315,10 +76315,10 @@
         "smithy.api#documentation": "List of p2s vpn connection Ids."
       }
     },
-    "com.azure.network#ListVirtualNetworkGatewaysConnections": {
+    "com.azure.network#ListVirtualNetworkGatewayConnections2": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#ListVirtualNetworkGatewaysConnectionsRequest"
+        "target": "com.azure.network#ListVirtualNetworkGatewayConnectionsRequest2"
       },
       "output": {
         "target": "com.azure.network#VirtualNetworkGatewayListConnectionsResult"
@@ -77197,7 +77197,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.network#ListVirtualNetworkGatewaysConnectionsRequest": {
+    "com.azure.network#ListVirtualNetworkGatewayConnectionsRequest2": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -77229,10 +77229,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#InvokeVirtualNetworkGatewaysCommitMigration": {
+    "com.azure.network#InvokeVirtualNetworkGatewayCommitMigration": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#InvokeVirtualNetworkGatewaysCommitMigrationRequest"
+        "target": "com.azure.network#InvokeVirtualNetworkGatewayCommitMigrationRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -77248,7 +77248,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#InvokeVirtualNetworkGatewaysCommitMigrationRequest": {
+    "com.azure.network#InvokeVirtualNetworkGatewayCommitMigrationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -77280,10 +77280,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#InvokeVirtualNetworkGatewaysAbortMigration": {
+    "com.azure.network#InvokeVirtualNetworkGatewayAbortMigration": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#InvokeVirtualNetworkGatewaysAbortMigrationRequest"
+        "target": "com.azure.network#InvokeVirtualNetworkGatewayAbortMigrationRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -77299,7 +77299,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#InvokeVirtualNetworkGatewaysAbortMigrationRequest": {
+    "com.azure.network#InvokeVirtualNetworkGatewayAbortMigrationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -77331,10 +77331,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#DeleteVirtualNetworkGateways": {
+    "com.azure.network#DeleteVirtualNetworkGateway": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#DeleteVirtualNetworkGatewaysRequest"
+        "target": "com.azure.network#DeleteVirtualNetworkGatewayRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -77350,7 +77350,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#DeleteVirtualNetworkGatewaysRequest": {
+    "com.azure.network#DeleteVirtualNetworkGatewayRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -77382,13 +77382,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#UpdateVirtualNetworkGatewaysTags": {
+    "com.azure.network#UpdateVirtualNetworkGatewayTags": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#UpdateVirtualNetworkGatewaysTagsRequest"
+        "target": "com.azure.network#UpdateVirtualNetworkGatewayTagsRequest"
       },
       "output": {
-        "target": "com.azure.network#UpdateVirtualNetworkGatewaysTagsResponse"
+        "target": "com.azure.network#UpdateVirtualNetworkGatewayTagsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -77401,7 +77401,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#UpdateVirtualNetworkGatewaysTagsResponse": {
+    "com.azure.network#UpdateVirtualNetworkGatewayTagsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -77429,7 +77429,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.network#UpdateVirtualNetworkGatewaysTagsResponseTagsMap",
+          "target": "com.azure.network#UpdateVirtualNetworkGatewayTagsResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -77442,7 +77442,7 @@
           }
         },
         "extendedLocation": {
-          "target": "com.azure.network#UpdateVirtualNetworkGatewaysTagsResponseExtendedLocation",
+          "target": "com.azure.network#UpdateVirtualNetworkGatewayTagsResponseExtendedLocation",
           "traits": {
             "smithy.api#documentation": "ExtendedLocation complex type."
           }
@@ -77454,7 +77454,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.network#UpdateVirtualNetworkGatewaysTagsResponseIdentity",
+          "target": "com.azure.network#UpdateVirtualNetworkGatewayTagsResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Identity for the resource."
           }
@@ -77464,7 +77464,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.network#UpdateVirtualNetworkGatewaysTagsResponseIdentity": {
+    "com.azure.network#UpdateVirtualNetworkGatewayTagsResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -77486,7 +77486,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.network#UpdateVirtualNetworkGatewaysTagsResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.network#UpdateVirtualNetworkGatewayTagsResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The list of user identities associated with resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'."
           }
@@ -77496,7 +77496,7 @@
         "smithy.api#documentation": "Identity for the resource."
       }
     },
-    "com.azure.network#UpdateVirtualNetworkGatewaysTagsResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.network#UpdateVirtualNetworkGatewayTagsResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -77508,7 +77508,7 @@
         "smithy.api#documentation": "The list of user identities associated with resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'."
       }
     },
-    "com.azure.network#UpdateVirtualNetworkGatewaysTagsResponseExtendedLocation": {
+    "com.azure.network#UpdateVirtualNetworkGatewayTagsResponseExtendedLocation": {
       "type": "structure",
       "members": {
         "name": {
@@ -77528,7 +77528,7 @@
         "smithy.api#documentation": "ExtendedLocation complex type."
       }
     },
-    "com.azure.network#UpdateVirtualNetworkGatewaysTagsResponseTagsMap": {
+    "com.azure.network#UpdateVirtualNetworkGatewayTagsResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -77540,7 +77540,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.network#UpdateVirtualNetworkGatewaysTagsRequest": {
+    "com.azure.network#UpdateVirtualNetworkGatewayTagsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -77568,7 +77568,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.network#UpdateVirtualNetworkGatewaysTagsRequestTagsMap",
+          "target": "com.azure.network#UpdateVirtualNetworkGatewayTagsRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -77578,7 +77578,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#UpdateVirtualNetworkGatewaysTagsRequestTagsMap": {
+    "com.azure.network#UpdateVirtualNetworkGatewayTagsRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -79343,13 +79343,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.network#GetVirtualNetworkGateways": {
+    "com.azure.network#GetVirtualNetworkGateway": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#GetVirtualNetworkGatewaysRequest"
+        "target": "com.azure.network#GetVirtualNetworkGatewayRequest"
       },
       "output": {
-        "target": "com.azure.network#GetVirtualNetworkGatewaysResponse"
+        "target": "com.azure.network#GetVirtualNetworkGatewayResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -79362,7 +79362,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#GetVirtualNetworkGatewaysResponse": {
+    "com.azure.network#GetVirtualNetworkGatewayResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -79390,7 +79390,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.network#GetVirtualNetworkGatewaysResponseTagsMap",
+          "target": "com.azure.network#GetVirtualNetworkGatewayResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -79403,7 +79403,7 @@
           }
         },
         "extendedLocation": {
-          "target": "com.azure.network#GetVirtualNetworkGatewaysResponseExtendedLocation",
+          "target": "com.azure.network#GetVirtualNetworkGatewayResponseExtendedLocation",
           "traits": {
             "smithy.api#documentation": "ExtendedLocation complex type."
           }
@@ -79415,7 +79415,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.network#GetVirtualNetworkGatewaysResponseIdentity",
+          "target": "com.azure.network#GetVirtualNetworkGatewayResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Identity for the resource."
           }
@@ -79425,7 +79425,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.network#GetVirtualNetworkGatewaysResponseIdentity": {
+    "com.azure.network#GetVirtualNetworkGatewayResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -79447,7 +79447,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.network#GetVirtualNetworkGatewaysResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.network#GetVirtualNetworkGatewayResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The list of user identities associated with resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'."
           }
@@ -79457,7 +79457,7 @@
         "smithy.api#documentation": "Identity for the resource."
       }
     },
-    "com.azure.network#GetVirtualNetworkGatewaysResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.network#GetVirtualNetworkGatewayResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -79469,7 +79469,7 @@
         "smithy.api#documentation": "The list of user identities associated with resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'."
       }
     },
-    "com.azure.network#GetVirtualNetworkGatewaysResponseExtendedLocation": {
+    "com.azure.network#GetVirtualNetworkGatewayResponseExtendedLocation": {
       "type": "structure",
       "members": {
         "name": {
@@ -79489,7 +79489,7 @@
         "smithy.api#documentation": "ExtendedLocation complex type."
       }
     },
-    "com.azure.network#GetVirtualNetworkGatewaysResponseTagsMap": {
+    "com.azure.network#GetVirtualNetworkGatewayResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -79501,7 +79501,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.network#GetVirtualNetworkGatewaysRequest": {
+    "com.azure.network#GetVirtualNetworkGatewayRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -79745,10 +79745,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#DeleteLocalNetworkGateways": {
+    "com.azure.network#DeleteLocalNetworkGateway": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#DeleteLocalNetworkGatewaysRequest"
+        "target": "com.azure.network#DeleteLocalNetworkGatewayRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -79764,7 +79764,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#DeleteLocalNetworkGatewaysRequest": {
+    "com.azure.network#DeleteLocalNetworkGatewayRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -79796,13 +79796,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#UpdateLocalNetworkGatewaysTags": {
+    "com.azure.network#UpdateLocalNetworkGatewayTags": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#UpdateLocalNetworkGatewaysTagsRequest"
+        "target": "com.azure.network#UpdateLocalNetworkGatewayTagsRequest"
       },
       "output": {
-        "target": "com.azure.network#UpdateLocalNetworkGatewaysTagsResponse"
+        "target": "com.azure.network#UpdateLocalNetworkGatewayTagsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -79815,7 +79815,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#UpdateLocalNetworkGatewaysTagsResponse": {
+    "com.azure.network#UpdateLocalNetworkGatewayTagsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -79843,7 +79843,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.network#UpdateLocalNetworkGatewaysTagsResponseTagsMap",
+          "target": "com.azure.network#UpdateLocalNetworkGatewayTagsResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -79992,7 +79992,7 @@
         "smithy.api#documentation": "A list of address blocks reserved for this virtual network in CIDR notation."
       }
     },
-    "com.azure.network#UpdateLocalNetworkGatewaysTagsResponseTagsMap": {
+    "com.azure.network#UpdateLocalNetworkGatewayTagsResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -80004,7 +80004,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.network#UpdateLocalNetworkGatewaysTagsRequest": {
+    "com.azure.network#UpdateLocalNetworkGatewayTagsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -80032,7 +80032,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.network#UpdateLocalNetworkGatewaysTagsRequestTagsMap",
+          "target": "com.azure.network#UpdateLocalNetworkGatewayTagsRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -80042,7 +80042,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#UpdateLocalNetworkGatewaysTagsRequestTagsMap": {
+    "com.azure.network#UpdateLocalNetworkGatewayTagsRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -80325,13 +80325,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.network#GetLocalNetworkGateways": {
+    "com.azure.network#GetLocalNetworkGateway": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#GetLocalNetworkGatewaysRequest"
+        "target": "com.azure.network#GetLocalNetworkGatewayRequest"
       },
       "output": {
-        "target": "com.azure.network#GetLocalNetworkGatewaysResponse"
+        "target": "com.azure.network#GetLocalNetworkGatewayResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -80344,7 +80344,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#GetLocalNetworkGatewaysResponse": {
+    "com.azure.network#GetLocalNetworkGatewayResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -80372,7 +80372,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.network#GetLocalNetworkGatewaysResponseTagsMap",
+          "target": "com.azure.network#GetLocalNetworkGatewayResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -80395,7 +80395,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.network#GetLocalNetworkGatewaysResponseTagsMap": {
+    "com.azure.network#GetLocalNetworkGatewayResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -80407,7 +80407,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.network#GetLocalNetworkGatewaysRequest": {
+    "com.azure.network#GetLocalNetworkGatewayRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -117647,13 +117647,13 @@
         "smithy.api#documentation": "Display metadata associated with the operation."
       }
     },
-    "com.azure.network#UpdateServiceGatewaysServices": {
+    "com.azure.network#UpdateServiceGatewayServices": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#UpdateServiceGatewaysServicesRequest"
+        "target": "com.azure.network#UpdateServiceGatewayServicesRequest"
       },
       "output": {
-        "target": "com.azure.network#UpdateServiceGatewaysServicesResponse"
+        "target": "com.azure.network#UpdateServiceGatewayServicesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -117666,7 +117666,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#UpdateServiceGatewaysServicesResponse": {
+    "com.azure.network#UpdateServiceGatewayServicesResponse": {
       "type": "structure",
       "members": {
         "status": {
@@ -117680,7 +117680,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.network#UpdateServiceGatewaysServicesRequest": {
+    "com.azure.network#UpdateServiceGatewayServicesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -117708,13 +117708,13 @@
           }
         },
         "action": {
-          "target": "com.azure.network#UpdateServiceGatewaysServicesRequestAction",
+          "target": "com.azure.network#UpdateServiceGatewayServicesRequestAction",
           "traits": {
             "smithy.api#documentation": "Specifies the type of update operation to perform on services within the service gateway.\n\n- FullUpdate: Replaces all existing services with the new list provided in the request. Any previously defined services not included will be removed.\n- PartialUpdate: Updates only the specified services."
           }
         },
         "serviceRequests": {
-          "target": "com.azure.network#UpdateServiceGatewaysServicesRequestServiceRequestsList",
+          "target": "com.azure.network#UpdateServiceGatewayServicesRequestServiceRequestsList",
           "traits": {
             "smithy.api#documentation": "Collection of service updates."
           }
@@ -117724,7 +117724,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#UpdateServiceGatewaysServicesRequestServiceRequestsList": {
+    "com.azure.network#UpdateServiceGatewayServicesRequestServiceRequestsList": {
       "type": "list",
       "member": {
         "target": "com.azure.network#ServiceGatewayServiceRequestInput"
@@ -117866,7 +117866,7 @@
         "smithy.api#documentation": "Name of the service."
       }
     },
-    "com.azure.network#UpdateServiceGatewaysServicesRequestAction": {
+    "com.azure.network#UpdateServiceGatewayServicesRequestAction": {
       "type": "enum",
       "members": {
         "FULLUPDATE": {
@@ -117886,13 +117886,13 @@
         "smithy.api#documentation": "Specifies the type of update operation to perform on services within the service gateway.\n\n- FullUpdate: Replaces all existing services with the new list provided in the request. Any previously defined services not included will be removed.\n- PartialUpdate: Updates only the specified services."
       }
     },
-    "com.azure.network#UpdateServiceGatewaysAddressLocations": {
+    "com.azure.network#UpdateServiceGatewayAddressLocations": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#UpdateServiceGatewaysAddressLocationsRequest"
+        "target": "com.azure.network#UpdateServiceGatewayAddressLocationsRequest"
       },
       "output": {
-        "target": "com.azure.network#UpdateServiceGatewaysAddressLocationsResponse"
+        "target": "com.azure.network#UpdateServiceGatewayAddressLocationsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -117905,7 +117905,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#UpdateServiceGatewaysAddressLocationsResponse": {
+    "com.azure.network#UpdateServiceGatewayAddressLocationsResponse": {
       "type": "structure",
       "members": {
         "status": {
@@ -117919,7 +117919,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.network#UpdateServiceGatewaysAddressLocationsRequest": {
+    "com.azure.network#UpdateServiceGatewayAddressLocationsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -117947,13 +117947,13 @@
           }
         },
         "action": {
-          "target": "com.azure.network#UpdateServiceGatewaysAddressLocationsRequestAction",
+          "target": "com.azure.network#UpdateServiceGatewayAddressLocationsRequestAction",
           "traits": {
             "smithy.api#documentation": "Specifies the type of update operation to perform on address locations within the service gateway.\n\n- FullUpdate: Replaces all existing address location data with the new list provided in the request. Any previously defined locations not included will be removed.\n- PartialUpdate: Updates only the specified address locations."
           }
         },
         "addressLocations": {
-          "target": "com.azure.network#UpdateServiceGatewaysAddressLocationsRequestAddressLocationsList",
+          "target": "com.azure.network#UpdateServiceGatewayAddressLocationsRequestAddressLocationsList",
           "traits": {
             "smithy.api#documentation": "An array of address locations to create or update."
           }
@@ -117963,7 +117963,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#UpdateServiceGatewaysAddressLocationsRequestAddressLocationsList": {
+    "com.azure.network#UpdateServiceGatewayAddressLocationsRequestAddressLocationsList": {
       "type": "list",
       "member": {
         "target": "com.azure.network#ServiceGatewayAddressLocation"
@@ -118056,7 +118056,7 @@
         "smithy.api#documentation": "Specifies the type of update operation to perform on addresses within the address location of service gateway.\n\n- FullUpdate: Replaces all existing address data with the new list provided in the request. Any previously defined addresses not included will be removed.\n- PartialUpdate: Updates only the specified addresses."
       }
     },
-    "com.azure.network#UpdateServiceGatewaysAddressLocationsRequestAction": {
+    "com.azure.network#UpdateServiceGatewayAddressLocationsRequestAction": {
       "type": "enum",
       "members": {
         "FULLUPDATE": {
@@ -118076,10 +118076,10 @@
         "smithy.api#documentation": "Specifies the type of update operation to perform on address locations within the service gateway.\n\n- FullUpdate: Replaces all existing address location data with the new list provided in the request. Any previously defined locations not included will be removed.\n- PartialUpdate: Updates only the specified address locations."
       }
     },
-    "com.azure.network#GetServiceGatewaysServices": {
+    "com.azure.network#GetServiceGatewayServices": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#GetServiceGatewaysServicesRequest"
+        "target": "com.azure.network#GetServiceGatewayServicesRequest"
       },
       "output": {
         "target": "com.azure.network#GetServiceGatewayServicesResult"
@@ -121847,7 +121847,7 @@
         "smithy.api#documentation": "Name of the service."
       }
     },
-    "com.azure.network#GetServiceGatewaysServicesRequest": {
+    "com.azure.network#GetServiceGatewayServicesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -121879,10 +121879,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#GetServiceGatewaysAddressLocations": {
+    "com.azure.network#GetServiceGatewayAddressLocations": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#GetServiceGatewaysAddressLocationsRequest"
+        "target": "com.azure.network#GetServiceGatewayAddressLocationsRequest"
       },
       "output": {
         "target": "com.azure.network#GetServiceGatewayAddressLocationsResult"
@@ -121957,7 +121957,7 @@
         "smithy.api#documentation": "An array of addresses to create or update in locations."
       }
     },
-    "com.azure.network#GetServiceGatewaysAddressLocationsRequest": {
+    "com.azure.network#GetServiceGatewayAddressLocationsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -121989,10 +121989,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#DeleteServiceGateways": {
+    "com.azure.network#DeleteServiceGateway": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#DeleteServiceGatewaysRequest"
+        "target": "com.azure.network#DeleteServiceGatewayRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -122008,7 +122008,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#DeleteServiceGatewaysRequest": {
+    "com.azure.network#DeleteServiceGatewayRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -122040,13 +122040,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#UpdateServiceGatewaysTags": {
+    "com.azure.network#UpdateServiceGatewayTags": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#UpdateServiceGatewaysTagsRequest"
+        "target": "com.azure.network#UpdateServiceGatewayTagsRequest"
       },
       "output": {
-        "target": "com.azure.network#UpdateServiceGatewaysTagsResponse"
+        "target": "com.azure.network#UpdateServiceGatewayTagsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -122059,7 +122059,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#UpdateServiceGatewaysTagsResponse": {
+    "com.azure.network#UpdateServiceGatewayTagsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -122081,13 +122081,13 @@
           }
         },
         "systemData": {
-          "target": "com.azure.network#UpdateServiceGatewaysTagsResponseSystemData",
+          "target": "com.azure.network#UpdateServiceGatewayTagsResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
         },
         "tags": {
-          "target": "com.azure.network#UpdateServiceGatewaysTagsResponseTagsMap",
+          "target": "com.azure.network#UpdateServiceGatewayTagsResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -122118,7 +122118,7 @@
           }
         },
         "zones": {
-          "target": "com.azure.network#UpdateServiceGatewaysTagsResponseZonesList",
+          "target": "com.azure.network#UpdateServiceGatewayTagsResponseZonesList",
           "traits": {
             "smithy.api#documentation": "A list of availability zones denoting the zone in which service gateway should be deployed.\n\n- The zone values must be provided as strings representing numeric identifiers like \"1\", \"2\", \"3\" etc."
           }
@@ -122128,7 +122128,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.network#UpdateServiceGatewaysTagsResponseZonesList": {
+    "com.azure.network#UpdateServiceGatewayTagsResponseZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -123226,7 +123226,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.network#UpdateServiceGatewaysTagsResponseTagsMap": {
+    "com.azure.network#UpdateServiceGatewayTagsResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -123238,7 +123238,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.network#UpdateServiceGatewaysTagsResponseSystemData": {
+    "com.azure.network#UpdateServiceGatewayTagsResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -123248,7 +123248,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.network#UpdateServiceGatewaysTagsResponseSystemDataCreatedByType",
+          "target": "com.azure.network#UpdateServiceGatewayTagsResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -123266,7 +123266,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.network#UpdateServiceGatewaysTagsResponseSystemDataLastModifiedByType",
+          "target": "com.azure.network#UpdateServiceGatewayTagsResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -123282,7 +123282,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.network#UpdateServiceGatewaysTagsResponseSystemDataLastModifiedByType": {
+    "com.azure.network#UpdateServiceGatewayTagsResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -123314,7 +123314,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.network#UpdateServiceGatewaysTagsResponseSystemDataCreatedByType": {
+    "com.azure.network#UpdateServiceGatewayTagsResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -123346,7 +123346,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.network#UpdateServiceGatewaysTagsRequest": {
+    "com.azure.network#UpdateServiceGatewayTagsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -123374,7 +123374,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.network#UpdateServiceGatewaysTagsRequestTagsMap",
+          "target": "com.azure.network#UpdateServiceGatewayTagsRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -123384,7 +123384,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#UpdateServiceGatewaysTagsRequestTagsMap": {
+    "com.azure.network#UpdateServiceGatewayTagsRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -124857,13 +124857,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.network#GetServiceGateways": {
+    "com.azure.network#GetServiceGateway": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#GetServiceGatewaysRequest"
+        "target": "com.azure.network#GetServiceGatewayRequest"
       },
       "output": {
-        "target": "com.azure.network#GetServiceGatewaysResponse"
+        "target": "com.azure.network#GetServiceGatewayResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -124876,7 +124876,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#GetServiceGatewaysResponse": {
+    "com.azure.network#GetServiceGatewayResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -124898,13 +124898,13 @@
           }
         },
         "systemData": {
-          "target": "com.azure.network#GetServiceGatewaysResponseSystemData",
+          "target": "com.azure.network#GetServiceGatewayResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
         },
         "tags": {
-          "target": "com.azure.network#GetServiceGatewaysResponseTagsMap",
+          "target": "com.azure.network#GetServiceGatewayResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -124935,7 +124935,7 @@
           }
         },
         "zones": {
-          "target": "com.azure.network#GetServiceGatewaysResponseZonesList",
+          "target": "com.azure.network#GetServiceGatewayResponseZonesList",
           "traits": {
             "smithy.api#documentation": "A list of availability zones denoting the zone in which service gateway should be deployed.\n\n- The zone values must be provided as strings representing numeric identifiers like \"1\", \"2\", \"3\" etc."
           }
@@ -124945,7 +124945,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.network#GetServiceGatewaysResponseZonesList": {
+    "com.azure.network#GetServiceGatewayResponseZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -124954,7 +124954,7 @@
         "smithy.api#documentation": "A list of availability zones denoting the zone in which service gateway should be deployed.\n\n- The zone values must be provided as strings representing numeric identifiers like \"1\", \"2\", \"3\" etc."
       }
     },
-    "com.azure.network#GetServiceGatewaysResponseTagsMap": {
+    "com.azure.network#GetServiceGatewayResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -124966,7 +124966,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.network#GetServiceGatewaysResponseSystemData": {
+    "com.azure.network#GetServiceGatewayResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -124976,7 +124976,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.network#GetServiceGatewaysResponseSystemDataCreatedByType",
+          "target": "com.azure.network#GetServiceGatewayResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -124994,7 +124994,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.network#GetServiceGatewaysResponseSystemDataLastModifiedByType",
+          "target": "com.azure.network#GetServiceGatewayResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -125010,7 +125010,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.network#GetServiceGatewaysResponseSystemDataLastModifiedByType": {
+    "com.azure.network#GetServiceGatewayResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -125042,7 +125042,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.network#GetServiceGatewaysResponseSystemDataCreatedByType": {
+    "com.azure.network#GetServiceGatewayResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -125074,7 +125074,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.network#GetServiceGatewaysRequest": {
+    "com.azure.network#GetServiceGatewayRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -125377,10 +125377,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#ListServiceGatewaysAll": {
+    "com.azure.network#ListServiceGatewayAll": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#ListServiceGatewaysAllRequest"
+        "target": "com.azure.network#ListServiceGatewayAllRequest"
       },
       "output": {
         "target": "com.azure.network#ServiceGatewayListResult"
@@ -125396,7 +125396,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#ListServiceGatewaysAllRequest": {
+    "com.azure.network#ListServiceGatewayAllRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -154727,10 +154727,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#DeleteNatGateways": {
+    "com.azure.network#DeleteNatGateway": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#DeleteNatGatewaysRequest"
+        "target": "com.azure.network#DeleteNatGatewayRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -154746,7 +154746,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#DeleteNatGatewaysRequest": {
+    "com.azure.network#DeleteNatGatewayRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -154778,13 +154778,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#UpdateNatGatewaysTags": {
+    "com.azure.network#UpdateNatGatewayTags": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#UpdateNatGatewaysTagsRequest"
+        "target": "com.azure.network#UpdateNatGatewayTagsRequest"
       },
       "output": {
-        "target": "com.azure.network#UpdateNatGatewaysTagsResponse"
+        "target": "com.azure.network#UpdateNatGatewayTagsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -154797,7 +154797,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#UpdateNatGatewaysTagsResponse": {
+    "com.azure.network#UpdateNatGatewayTagsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -154825,7 +154825,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.network#UpdateNatGatewaysTagsResponseTagsMap",
+          "target": "com.azure.network#UpdateNatGatewayTagsResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -154843,7 +154843,7 @@
           }
         },
         "zones": {
-          "target": "com.azure.network#UpdateNatGatewaysTagsResponseZonesList",
+          "target": "com.azure.network#UpdateNatGatewayTagsResponseZonesList",
           "traits": {
             "smithy.api#documentation": "A list of availability zones denoting the zone in which Nat Gateway should be deployed."
           }
@@ -154859,7 +154859,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.network#UpdateNatGatewaysTagsResponseZonesList": {
+    "com.azure.network#UpdateNatGatewayTagsResponseZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -154868,7 +154868,7 @@
         "smithy.api#documentation": "A list of availability zones denoting the zone in which Nat Gateway should be deployed."
       }
     },
-    "com.azure.network#UpdateNatGatewaysTagsResponseTagsMap": {
+    "com.azure.network#UpdateNatGatewayTagsResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -154880,7 +154880,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.network#UpdateNatGatewaysTagsRequest": {
+    "com.azure.network#UpdateNatGatewayTagsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -154908,7 +154908,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.network#UpdateNatGatewaysTagsRequestTagsMap",
+          "target": "com.azure.network#UpdateNatGatewayTagsRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -154918,7 +154918,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#UpdateNatGatewaysTagsRequestTagsMap": {
+    "com.azure.network#UpdateNatGatewayTagsRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -155121,13 +155121,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.network#GetNatGateways": {
+    "com.azure.network#GetNatGateway": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#GetNatGatewaysRequest"
+        "target": "com.azure.network#GetNatGatewayRequest"
       },
       "output": {
-        "target": "com.azure.network#GetNatGatewaysResponse"
+        "target": "com.azure.network#GetNatGatewayResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -155140,7 +155140,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#GetNatGatewaysResponse": {
+    "com.azure.network#GetNatGatewayResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -155168,7 +155168,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.network#GetNatGatewaysResponseTagsMap",
+          "target": "com.azure.network#GetNatGatewayResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -155186,7 +155186,7 @@
           }
         },
         "zones": {
-          "target": "com.azure.network#GetNatGatewaysResponseZonesList",
+          "target": "com.azure.network#GetNatGatewayResponseZonesList",
           "traits": {
             "smithy.api#documentation": "A list of availability zones denoting the zone in which Nat Gateway should be deployed."
           }
@@ -155202,7 +155202,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.network#GetNatGatewaysResponseZonesList": {
+    "com.azure.network#GetNatGatewayResponseZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -155211,7 +155211,7 @@
         "smithy.api#documentation": "A list of availability zones denoting the zone in which Nat Gateway should be deployed."
       }
     },
-    "com.azure.network#GetNatGatewaysResponseTagsMap": {
+    "com.azure.network#GetNatGatewayResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -155223,7 +155223,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.network#GetNatGatewaysRequest": {
+    "com.azure.network#GetNatGatewayRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -165332,10 +165332,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#ListNatGatewaysAll": {
+    "com.azure.network#ListNatGatewayAll": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#ListNatGatewaysAllRequest"
+        "target": "com.azure.network#ListNatGatewayAllRequest"
       },
       "output": {
         "target": "com.azure.network#NatGatewayListResult"
@@ -165351,7 +165351,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#ListNatGatewaysAllRequest": {
+    "com.azure.network#ListNatGatewayAllRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -180643,13 +180643,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#StopVpnGatewaysPacketCapture": {
+    "com.azure.network#StopVpnGatewayPacketCapture": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#StopVpnGatewaysPacketCaptureRequest"
+        "target": "com.azure.network#StopVpnGatewayPacketCaptureRequest"
       },
       "output": {
-        "target": "com.azure.network#StopVpnGatewaysPacketCaptureResponse"
+        "target": "com.azure.network#StopVpnGatewayPacketCaptureResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -180662,7 +180662,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#StopVpnGatewaysPacketCaptureResponse": {
+    "com.azure.network#StopVpnGatewayPacketCaptureResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -180677,7 +180677,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.network#StopVpnGatewaysPacketCaptureRequest": {
+    "com.azure.network#StopVpnGatewayPacketCaptureRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -180715,13 +180715,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#StartVpnGatewaysPacketCapture": {
+    "com.azure.network#StartVpnGatewayPacketCapture": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#StartVpnGatewaysPacketCaptureRequest"
+        "target": "com.azure.network#StartVpnGatewayPacketCaptureRequest"
       },
       "output": {
-        "target": "com.azure.network#StartVpnGatewaysPacketCaptureResponse"
+        "target": "com.azure.network#StartVpnGatewayPacketCaptureResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -180734,7 +180734,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#StartVpnGatewaysPacketCaptureResponse": {
+    "com.azure.network#StartVpnGatewayPacketCaptureResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -180749,7 +180749,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.network#StartVpnGatewaysPacketCaptureRequest": {
+    "com.azure.network#StartVpnGatewayPacketCaptureRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -180787,13 +180787,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#ResetVpnGateways": {
+    "com.azure.network#ResetVpnGateway": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#ResetVpnGatewaysRequest"
+        "target": "com.azure.network#ResetVpnGatewayRequest"
       },
       "output": {
-        "target": "com.azure.network#ResetVpnGatewaysResponse"
+        "target": "com.azure.network#ResetVpnGatewayResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -180806,7 +180806,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#ResetVpnGatewaysResponse": {
+    "com.azure.network#ResetVpnGatewayResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -180834,7 +180834,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.network#ResetVpnGatewaysResponseTagsMap",
+          "target": "com.azure.network#ResetVpnGatewayResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -181332,7 +181332,7 @@
         "smithy.api#documentation": "Reference to another subresource."
       }
     },
-    "com.azure.network#ResetVpnGatewaysResponseTagsMap": {
+    "com.azure.network#ResetVpnGatewayResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -181344,7 +181344,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.network#ResetVpnGatewaysRequest": {
+    "com.azure.network#ResetVpnGatewayRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -181881,10 +181881,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#DeleteVpnGateways": {
+    "com.azure.network#DeleteVpnGateway": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#DeleteVpnGatewaysRequest"
+        "target": "com.azure.network#DeleteVpnGatewayRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -181900,7 +181900,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#DeleteVpnGatewaysRequest": {
+    "com.azure.network#DeleteVpnGatewayRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -181932,13 +181932,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#UpdateVpnGatewaysTags": {
+    "com.azure.network#UpdateVpnGatewayTags": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#UpdateVpnGatewaysTagsRequest"
+        "target": "com.azure.network#UpdateVpnGatewayTagsRequest"
       },
       "output": {
-        "target": "com.azure.network#UpdateVpnGatewaysTagsResponse"
+        "target": "com.azure.network#UpdateVpnGatewayTagsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -181951,7 +181951,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#UpdateVpnGatewaysTagsResponse": {
+    "com.azure.network#UpdateVpnGatewayTagsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -181979,7 +181979,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.network#UpdateVpnGatewaysTagsResponseTagsMap",
+          "target": "com.azure.network#UpdateVpnGatewayTagsResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -182001,7 +182001,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.network#UpdateVpnGatewaysTagsResponseTagsMap": {
+    "com.azure.network#UpdateVpnGatewayTagsResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -182013,7 +182013,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.network#UpdateVpnGatewaysTagsRequest": {
+    "com.azure.network#UpdateVpnGatewayTagsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -182041,7 +182041,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.network#UpdateVpnGatewaysTagsRequestTagsMap",
+          "target": "com.azure.network#UpdateVpnGatewayTagsRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -182051,7 +182051,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#UpdateVpnGatewaysTagsRequestTagsMap": {
+    "com.azure.network#UpdateVpnGatewayTagsRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -182437,13 +182437,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.network#GetVpnGateways": {
+    "com.azure.network#GetVpnGateway": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#GetVpnGatewaysRequest"
+        "target": "com.azure.network#GetVpnGatewayRequest"
       },
       "output": {
-        "target": "com.azure.network#GetVpnGatewaysResponse"
+        "target": "com.azure.network#GetVpnGatewayResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -182456,7 +182456,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#GetVpnGatewaysResponse": {
+    "com.azure.network#GetVpnGatewayResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -182484,7 +182484,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.network#GetVpnGatewaysResponseTagsMap",
+          "target": "com.azure.network#GetVpnGatewayResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -182506,7 +182506,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.network#GetVpnGatewaysResponseTagsMap": {
+    "com.azure.network#GetVpnGatewayResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -182518,7 +182518,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.network#GetVpnGatewaysRequest": {
+    "com.azure.network#GetVpnGatewayRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -182550,10 +182550,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#ListVpnGatewaysByResourceGroup": {
+    "com.azure.network#ListVpnGatewayByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#ListVpnGatewaysByResourceGroupRequest"
+        "target": "com.azure.network#ListVpnGatewayByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.network#ListVpnGatewaysResult"
@@ -182661,7 +182661,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.network#ListVpnGatewaysByResourceGroupRequest": {
+    "com.azure.network#ListVpnGatewayByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -195422,13 +195422,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#ResetP2SVpnGateways": {
+    "com.azure.network#ResetP2SVpnGateway": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#ResetP2SVpnGatewaysRequest"
+        "target": "com.azure.network#ResetP2SVpnGatewayRequest"
       },
       "output": {
-        "target": "com.azure.network#ResetP2SVpnGatewaysResponse"
+        "target": "com.azure.network#ResetP2SVpnGatewayResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -195441,7 +195441,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#ResetP2SVpnGatewaysResponse": {
+    "com.azure.network#ResetP2SVpnGatewayResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -195469,7 +195469,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.network#ResetP2SVpnGatewaysResponseTagsMap",
+          "target": "com.azure.network#ResetP2SVpnGatewayResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -195491,7 +195491,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.network#ResetP2SVpnGatewaysResponseTagsMap": {
+    "com.azure.network#ResetP2SVpnGatewayResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -195503,7 +195503,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.network#ResetP2SVpnGatewaysRequest": {
+    "com.azure.network#ResetP2SVpnGatewayRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -195535,10 +195535,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#GetP2sVpnGatewaysP2sVpnConnectionHealthDetailed": {
+    "com.azure.network#GetP2sVpnGatewayP2sVpnConnectionHealthDetailed": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#GetP2sVpnGatewaysP2sVpnConnectionHealthDetailedRequest"
+        "target": "com.azure.network#GetP2sVpnGatewayP2sVpnConnectionHealthDetailedRequest"
       },
       "output": {
         "target": "com.azure.network#P2SVpnConnectionHealth"
@@ -195568,7 +195568,7 @@
         "smithy.api#documentation": "P2S Vpn connection detailed health written to sas url."
       }
     },
-    "com.azure.network#GetP2sVpnGatewaysP2sVpnConnectionHealthDetailedRequest": {
+    "com.azure.network#GetP2sVpnGatewayP2sVpnConnectionHealthDetailedRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -195596,7 +195596,7 @@
           }
         },
         "vpnUserNamesFilter": {
-          "target": "com.azure.network#GetP2sVpnGatewaysP2sVpnConnectionHealthDetailedRequestVpnUserNamesFilterList",
+          "target": "com.azure.network#GetP2sVpnGatewayP2sVpnConnectionHealthDetailedRequestVpnUserNamesFilterList",
           "traits": {
             "smithy.api#documentation": "The list of p2s vpn user names whose p2s vpn connection detailed health to retrieve for."
           }
@@ -195612,7 +195612,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#GetP2sVpnGatewaysP2sVpnConnectionHealthDetailedRequestVpnUserNamesFilterList": {
+    "com.azure.network#GetP2sVpnGatewayP2sVpnConnectionHealthDetailedRequestVpnUserNamesFilterList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -195621,13 +195621,13 @@
         "smithy.api#documentation": "The list of p2s vpn user names whose p2s vpn connection detailed health to retrieve for."
       }
     },
-    "com.azure.network#GetP2sVpnGatewaysP2sVpnConnectionHealth": {
+    "com.azure.network#GetP2sVpnGatewayP2sVpnConnectionHealth": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#GetP2sVpnGatewaysP2sVpnConnectionHealthRequest"
+        "target": "com.azure.network#GetP2sVpnGatewayP2sVpnConnectionHealthRequest"
       },
       "output": {
-        "target": "com.azure.network#GetP2sVpnGatewaysP2sVpnConnectionHealthResponse"
+        "target": "com.azure.network#GetP2sVpnGatewayP2sVpnConnectionHealthResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -195640,7 +195640,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#GetP2sVpnGatewaysP2sVpnConnectionHealthResponse": {
+    "com.azure.network#GetP2sVpnGatewayP2sVpnConnectionHealthResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -195668,7 +195668,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.network#GetP2sVpnGatewaysP2sVpnConnectionHealthResponseTagsMap",
+          "target": "com.azure.network#GetP2sVpnGatewayP2sVpnConnectionHealthResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -195690,7 +195690,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.network#GetP2sVpnGatewaysP2sVpnConnectionHealthResponseTagsMap": {
+    "com.azure.network#GetP2sVpnGatewayP2sVpnConnectionHealthResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -195702,7 +195702,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.network#GetP2sVpnGatewaysP2sVpnConnectionHealthRequest": {
+    "com.azure.network#GetP2sVpnGatewayP2sVpnConnectionHealthRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -195734,10 +195734,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#GenerateP2sVpnGatewaysVpnProfile": {
+    "com.azure.network#GenerateP2sVpnGatewayVpnProfile": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#GenerateP2sVpnGatewaysVpnProfileRequest"
+        "target": "com.azure.network#GenerateP2sVpnGatewayVpnProfileRequest"
       },
       "output": {
         "target": "com.azure.network#VpnProfileResponse"
@@ -195753,7 +195753,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#GenerateP2sVpnGatewaysVpnProfileRequest": {
+    "com.azure.network#GenerateP2sVpnGatewayVpnProfileRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -195781,7 +195781,7 @@
           }
         },
         "authenticationMethod": {
-          "target": "com.azure.network#GenerateP2sVpnGatewaysVpnProfileRequestAuthenticationMethod",
+          "target": "com.azure.network#GenerateP2sVpnGatewayVpnProfileRequestAuthenticationMethod",
           "traits": {
             "smithy.api#documentation": "VPN client authentication method."
           }
@@ -195791,7 +195791,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#GenerateP2sVpnGatewaysVpnProfileRequestAuthenticationMethod": {
+    "com.azure.network#GenerateP2sVpnGatewayVpnProfileRequestAuthenticationMethod": {
       "type": "enum",
       "members": {
         "EAPTLS": {
@@ -195811,10 +195811,10 @@
         "smithy.api#documentation": "VPN client authentication method."
       }
     },
-    "com.azure.network#DisconnectP2sVpnGatewaysP2sVpnConnections": {
+    "com.azure.network#DisconnectP2sVpnGatewayP2sVpnConnections": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#DisconnectP2sVpnGatewaysP2sVpnConnectionsRequest"
+        "target": "com.azure.network#DisconnectP2sVpnGatewayP2sVpnConnectionsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -195830,7 +195830,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#DisconnectP2sVpnGatewaysP2sVpnConnectionsRequest": {
+    "com.azure.network#DisconnectP2sVpnGatewayP2sVpnConnectionsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -195858,7 +195858,7 @@
           }
         },
         "vpnConnectionIds": {
-          "target": "com.azure.network#DisconnectP2sVpnGatewaysP2sVpnConnectionsRequestVpnConnectionIdsList",
+          "target": "com.azure.network#DisconnectP2sVpnGatewayP2sVpnConnectionsRequestVpnConnectionIdsList",
           "traits": {
             "smithy.api#documentation": "List of p2s vpn connection Ids."
           }
@@ -195868,7 +195868,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#DisconnectP2sVpnGatewaysP2sVpnConnectionsRequestVpnConnectionIdsList": {
+    "com.azure.network#DisconnectP2sVpnGatewayP2sVpnConnectionsRequestVpnConnectionIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -195877,10 +195877,10 @@
         "smithy.api#documentation": "List of p2s vpn connection Ids."
       }
     },
-    "com.azure.network#DeleteP2sVpnGateways": {
+    "com.azure.network#DeleteP2sVpnGateway": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#DeleteP2sVpnGatewaysRequest"
+        "target": "com.azure.network#DeleteP2sVpnGatewayRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -195896,7 +195896,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#DeleteP2sVpnGatewaysRequest": {
+    "com.azure.network#DeleteP2sVpnGatewayRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -195928,13 +195928,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#UpdateP2sVpnGatewaysTags": {
+    "com.azure.network#UpdateP2sVpnGatewayTags": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#UpdateP2sVpnGatewaysTagsRequest"
+        "target": "com.azure.network#UpdateP2sVpnGatewayTagsRequest"
       },
       "output": {
-        "target": "com.azure.network#UpdateP2sVpnGatewaysTagsResponse"
+        "target": "com.azure.network#UpdateP2sVpnGatewayTagsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -195947,7 +195947,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#UpdateP2sVpnGatewaysTagsResponse": {
+    "com.azure.network#UpdateP2sVpnGatewayTagsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -195975,7 +195975,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.network#UpdateP2sVpnGatewaysTagsResponseTagsMap",
+          "target": "com.azure.network#UpdateP2sVpnGatewayTagsResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -195997,7 +195997,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.network#UpdateP2sVpnGatewaysTagsResponseTagsMap": {
+    "com.azure.network#UpdateP2sVpnGatewayTagsResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -196009,7 +196009,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.network#UpdateP2sVpnGatewaysTagsRequest": {
+    "com.azure.network#UpdateP2sVpnGatewayTagsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -196037,7 +196037,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.network#UpdateP2sVpnGatewaysTagsRequestTagsMap",
+          "target": "com.azure.network#UpdateP2sVpnGatewayTagsRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -196047,7 +196047,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#UpdateP2sVpnGatewaysTagsRequestTagsMap": {
+    "com.azure.network#UpdateP2sVpnGatewayTagsRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -196517,13 +196517,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.network#GetP2sVpnGateways": {
+    "com.azure.network#GetP2sVpnGateway": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#GetP2sVpnGatewaysRequest"
+        "target": "com.azure.network#GetP2sVpnGatewayRequest"
       },
       "output": {
-        "target": "com.azure.network#GetP2sVpnGatewaysResponse"
+        "target": "com.azure.network#GetP2sVpnGatewayResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -196536,7 +196536,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#GetP2sVpnGatewaysResponse": {
+    "com.azure.network#GetP2sVpnGatewayResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -196564,7 +196564,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.network#GetP2sVpnGatewaysResponseTagsMap",
+          "target": "com.azure.network#GetP2sVpnGatewayResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -196586,7 +196586,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.network#GetP2sVpnGatewaysResponseTagsMap": {
+    "com.azure.network#GetP2sVpnGatewayResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -196598,7 +196598,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.network#GetP2sVpnGatewaysRequest": {
+    "com.azure.network#GetP2sVpnGatewayRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -196630,10 +196630,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#ListP2sVpnGatewaysByResourceGroup": {
+    "com.azure.network#ListP2sVpnGatewayByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#ListP2sVpnGatewaysByResourceGroupRequest"
+        "target": "com.azure.network#ListP2sVpnGatewayByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.network#ListP2SVpnGatewaysResult"
@@ -196679,7 +196679,7 @@
         "smithy.api#documentation": "The P2SVpnGateway items on this page"
       }
     },
-    "com.azure.network#ListP2sVpnGatewaysByResourceGroupRequest": {
+    "com.azure.network#ListP2sVpnGatewayByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -197260,13 +197260,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#StopExpressRouteGatewaysSiteFailoverTest": {
+    "com.azure.network#StopExpressRouteGatewaySiteFailoverTest": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#StopExpressRouteGatewaysSiteFailoverTestRequest"
+        "target": "com.azure.network#StopExpressRouteGatewaySiteFailoverTestRequest"
       },
       "output": {
-        "target": "com.azure.network#StopExpressRouteGatewaysSiteFailoverTestResponse"
+        "target": "com.azure.network#StopExpressRouteGatewaySiteFailoverTestResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -197279,7 +197279,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#StopExpressRouteGatewaysSiteFailoverTestResponse": {
+    "com.azure.network#StopExpressRouteGatewaySiteFailoverTestResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -197294,7 +197294,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.network#StopExpressRouteGatewaysSiteFailoverTestRequest": {
+    "com.azure.network#StopExpressRouteGatewaySiteFailoverTestRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -197334,7 +197334,7 @@
           }
         },
         "details": {
-          "target": "com.azure.network#StopExpressRouteGatewaysSiteFailoverTestRequestDetailsList",
+          "target": "com.azure.network#StopExpressRouteGatewaySiteFailoverTestRequestDetailsList",
           "traits": {
             "smithy.api#documentation": "List of all the failover connections for this peering location"
           }
@@ -197344,7 +197344,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#StopExpressRouteGatewaysSiteFailoverTestRequestDetailsList": {
+    "com.azure.network#StopExpressRouteGatewaySiteFailoverTestRequestDetailsList": {
       "type": "list",
       "member": {
         "target": "com.azure.network#FailoverConnectionDetails"
@@ -197353,13 +197353,13 @@
         "smithy.api#documentation": "List of all the failover connections for this peering location"
       }
     },
-    "com.azure.network#StartExpressRouteGatewaysSiteFailoverTest": {
+    "com.azure.network#StartExpressRouteGatewaySiteFailoverTest": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#StartExpressRouteGatewaysSiteFailoverTestRequest"
+        "target": "com.azure.network#StartExpressRouteGatewaySiteFailoverTestRequest"
       },
       "output": {
-        "target": "com.azure.network#StartExpressRouteGatewaysSiteFailoverTestResponse"
+        "target": "com.azure.network#StartExpressRouteGatewaySiteFailoverTestResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -197372,7 +197372,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#StartExpressRouteGatewaysSiteFailoverTestResponse": {
+    "com.azure.network#StartExpressRouteGatewaySiteFailoverTestResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -197387,7 +197387,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.network#StartExpressRouteGatewaysSiteFailoverTestRequest": {
+    "com.azure.network#StartExpressRouteGatewaySiteFailoverTestRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -197427,13 +197427,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#GetExpressRouteGatewaysRoutesInformation": {
+    "com.azure.network#GetExpressRouteGatewayRoutesInformation": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#GetExpressRouteGatewaysRoutesInformationRequest"
+        "target": "com.azure.network#GetExpressRouteGatewayRoutesInformationRequest"
       },
       "output": {
-        "target": "com.azure.network#GetExpressRouteGatewaysRoutesInformationResponse"
+        "target": "com.azure.network#GetExpressRouteGatewayRoutesInformationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -197446,7 +197446,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#GetExpressRouteGatewaysRoutesInformationResponse": {
+    "com.azure.network#GetExpressRouteGatewayRoutesInformationResponse": {
       "type": "structure",
       "members": {
         "lastComputedTime": {
@@ -197468,13 +197468,13 @@
           }
         },
         "routeSets": {
-          "target": "com.azure.network#GetExpressRouteGatewaysRoutesInformationResponseRouteSetsList",
+          "target": "com.azure.network#GetExpressRouteGatewayRoutesInformationResponseRouteSetsList",
           "traits": {
             "smithy.api#documentation": "List of Gateway Route Sets"
           }
         },
         "circuitsMetadataMap": {
-          "target": "com.azure.network#GetExpressRouteGatewaysRoutesInformationResponseCircuitsMetadataMapMap",
+          "target": "com.azure.network#GetExpressRouteGatewayRoutesInformationResponseCircuitsMetadataMapMap",
           "traits": {
             "smithy.api#documentation": "Dictionary containing map of the circuit id and circuit details"
           }
@@ -197484,7 +197484,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.network#GetExpressRouteGatewaysRoutesInformationResponseCircuitsMetadataMapMap": {
+    "com.azure.network#GetExpressRouteGatewayRoutesInformationResponseCircuitsMetadataMapMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -197496,7 +197496,7 @@
         "smithy.api#documentation": "Dictionary containing map of the circuit id and circuit details"
       }
     },
-    "com.azure.network#GetExpressRouteGatewaysRoutesInformationResponseRouteSetsList": {
+    "com.azure.network#GetExpressRouteGatewayRoutesInformationResponseRouteSetsList": {
       "type": "list",
       "member": {
         "target": "com.azure.network#GatewayRouteSet"
@@ -197505,7 +197505,7 @@
         "smithy.api#documentation": "List of Gateway Route Sets"
       }
     },
-    "com.azure.network#GetExpressRouteGatewaysRoutesInformationRequest": {
+    "com.azure.network#GetExpressRouteGatewayRoutesInformationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -197544,13 +197544,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#GetExpressRouteGatewaysResiliencyInformation": {
+    "com.azure.network#GetExpressRouteGatewayResiliencyInformation": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#GetExpressRouteGatewaysResiliencyInformationRequest"
+        "target": "com.azure.network#GetExpressRouteGatewayResiliencyInformationRequest"
       },
       "output": {
-        "target": "com.azure.network#GetExpressRouteGatewaysResiliencyInformationResponse"
+        "target": "com.azure.network#GetExpressRouteGatewayResiliencyInformationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -197563,7 +197563,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#GetExpressRouteGatewaysResiliencyInformationResponse": {
+    "com.azure.network#GetExpressRouteGatewayResiliencyInformationResponse": {
       "type": "structure",
       "members": {
         "overallScore": {
@@ -197603,7 +197603,7 @@
           }
         },
         "components": {
-          "target": "com.azure.network#GetExpressRouteGatewaysResiliencyInformationResponseComponentsList",
+          "target": "com.azure.network#GetExpressRouteGatewayResiliencyInformationResponseComponentsList",
           "traits": {
             "smithy.api#documentation": "List of Resiliency based Recommendation Components for the gateway"
           }
@@ -197613,7 +197613,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.network#GetExpressRouteGatewaysResiliencyInformationResponseComponentsList": {
+    "com.azure.network#GetExpressRouteGatewayResiliencyInformationResponseComponentsList": {
       "type": "list",
       "member": {
         "target": "com.azure.network#ResiliencyRecommendationComponents"
@@ -197622,7 +197622,7 @@
         "smithy.api#documentation": "List of Resiliency based Recommendation Components for the gateway"
       }
     },
-    "com.azure.network#GetExpressRouteGatewaysResiliencyInformationRequest": {
+    "com.azure.network#GetExpressRouteGatewayResiliencyInformationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -197661,13 +197661,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#GetExpressRouteGatewaysFailoverSingleTestDetails": {
+    "com.azure.network#GetExpressRouteGatewayFailoverSingleTestDetails": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#GetExpressRouteGatewaysFailoverSingleTestDetailsRequest"
+        "target": "com.azure.network#GetExpressRouteGatewayFailoverSingleTestDetailsRequest"
       },
       "output": {
-        "target": "com.azure.network#GetExpressRouteGatewaysFailoverSingleTestDetailsResponse"
+        "target": "com.azure.network#GetExpressRouteGatewayFailoverSingleTestDetailsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -197680,11 +197680,11 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#GetExpressRouteGatewaysFailoverSingleTestDetailsResponse": {
+    "com.azure.network#GetExpressRouteGatewayFailoverSingleTestDetailsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.azure.network#GetExpressRouteGatewaysFailoverSingleTestDetailsResponseBodyList",
+          "target": "com.azure.network#GetExpressRouteGatewayFailoverSingleTestDetailsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -197695,14 +197695,14 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.network#GetExpressRouteGatewaysFailoverSingleTestDetailsResponseBodyList": {
+    "com.azure.network#GetExpressRouteGatewayFailoverSingleTestDetailsResponseBodyList": {
       "type": "list",
       "member": {
-        "target": "com.azure.network#GetExpressRouteGatewaysFailoverSingleTestDetailsResponseBodyItem"
+        "target": "com.azure.network#GetExpressRouteGatewayFailoverSingleTestDetailsResponseBodyItem"
       },
       "traits": {}
     },
-    "com.azure.network#GetExpressRouteGatewaysFailoverSingleTestDetailsResponseBodyItem": {
+    "com.azure.network#GetExpressRouteGatewayFailoverSingleTestDetailsResponseBodyItem": {
       "type": "structure",
       "members": {
         "peeringLocation": {
@@ -197712,7 +197712,7 @@
           }
         },
         "status": {
-          "target": "com.azure.network#GetExpressRouteGatewaysFailoverSingleTestDetailsResponseBodyItemStatus",
+          "target": "com.azure.network#GetExpressRouteGatewayFailoverSingleTestDetailsResponseBodyItemStatus",
           "traits": {
             "smithy.api#documentation": "The current status of the test"
           }
@@ -197730,13 +197730,13 @@
           }
         },
         "redundantRoutes": {
-          "target": "com.azure.network#GetExpressRouteGatewaysFailoverSingleTestDetailsResponseBodyItemRedundantRoutesList",
+          "target": "com.azure.network#GetExpressRouteGatewayFailoverSingleTestDetailsResponseBodyItemRedundantRoutesList",
           "traits": {
             "smithy.api#documentation": "List of routes received from this peering as well as some other peering location"
           }
         },
         "nonRedundantRoutes": {
-          "target": "com.azure.network#GetExpressRouteGatewaysFailoverSingleTestDetailsResponseBodyItemNonRedundantRoutesList",
+          "target": "com.azure.network#GetExpressRouteGatewayFailoverSingleTestDetailsResponseBodyItemNonRedundantRoutesList",
           "traits": {
             "smithy.api#documentation": "List of al the routes that were received only from this peering location"
           }
@@ -197748,7 +197748,7 @@
           }
         },
         "failoverConnectionDetails": {
-          "target": "com.azure.network#GetExpressRouteGatewaysFailoverSingleTestDetailsResponseBodyItemFailoverConnectionDetailsList",
+          "target": "com.azure.network#GetExpressRouteGatewayFailoverSingleTestDetailsResponseBodyItemFailoverConnectionDetailsList",
           "traits": {
             "smithy.api#documentation": "List of all the failover connections for this peering location"
           }
@@ -197758,7 +197758,7 @@
         "smithy.api#documentation": "ExpressRoute failover single test details"
       }
     },
-    "com.azure.network#GetExpressRouteGatewaysFailoverSingleTestDetailsResponseBodyItemFailoverConnectionDetailsList": {
+    "com.azure.network#GetExpressRouteGatewayFailoverSingleTestDetailsResponseBodyItemFailoverConnectionDetailsList": {
       "type": "list",
       "member": {
         "target": "com.azure.network#FailoverConnectionDetails"
@@ -197767,7 +197767,7 @@
         "smithy.api#documentation": "List of all the failover connections for this peering location"
       }
     },
-    "com.azure.network#GetExpressRouteGatewaysFailoverSingleTestDetailsResponseBodyItemNonRedundantRoutesList": {
+    "com.azure.network#GetExpressRouteGatewayFailoverSingleTestDetailsResponseBodyItemNonRedundantRoutesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -197776,7 +197776,7 @@
         "smithy.api#documentation": "List of al the routes that were received only from this peering location"
       }
     },
-    "com.azure.network#GetExpressRouteGatewaysFailoverSingleTestDetailsResponseBodyItemRedundantRoutesList": {
+    "com.azure.network#GetExpressRouteGatewayFailoverSingleTestDetailsResponseBodyItemRedundantRoutesList": {
       "type": "list",
       "member": {
         "target": "com.azure.network#ExpressRouteFailoverRedundantRoute"
@@ -197785,7 +197785,7 @@
         "smithy.api#documentation": "List of routes received from this peering as well as some other peering location"
       }
     },
-    "com.azure.network#GetExpressRouteGatewaysFailoverSingleTestDetailsResponseBodyItemStatus": {
+    "com.azure.network#GetExpressRouteGatewayFailoverSingleTestDetailsResponseBodyItemStatus": {
       "type": "enum",
       "members": {
         "NOTSTARTED": {
@@ -197847,7 +197847,7 @@
         "smithy.api#documentation": "The current status of the test"
       }
     },
-    "com.azure.network#GetExpressRouteGatewaysFailoverSingleTestDetailsRequest": {
+    "com.azure.network#GetExpressRouteGatewayFailoverSingleTestDetailsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -197895,13 +197895,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#GetExpressRouteGatewaysFailoverAllTestsDetails": {
+    "com.azure.network#GetExpressRouteGatewayFailoverAllTestsDetails": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#GetExpressRouteGatewaysFailoverAllTestsDetailsRequest"
+        "target": "com.azure.network#GetExpressRouteGatewayFailoverAllTestsDetailsRequest"
       },
       "output": {
-        "target": "com.azure.network#GetExpressRouteGatewaysFailoverAllTestsDetailsResponse"
+        "target": "com.azure.network#GetExpressRouteGatewayFailoverAllTestsDetailsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -197914,11 +197914,11 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#GetExpressRouteGatewaysFailoverAllTestsDetailsResponse": {
+    "com.azure.network#GetExpressRouteGatewayFailoverAllTestsDetailsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.azure.network#GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyList",
+          "target": "com.azure.network#GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -197929,14 +197929,14 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.network#GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyList": {
+    "com.azure.network#GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyList": {
       "type": "list",
       "member": {
-        "target": "com.azure.network#GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyItem"
+        "target": "com.azure.network#GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyItem"
       },
       "traits": {}
     },
-    "com.azure.network#GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyItem": {
+    "com.azure.network#GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyItem": {
       "type": "structure",
       "members": {
         "peeringLocation": {
@@ -197946,13 +197946,13 @@
           }
         },
         "circuits": {
-          "target": "com.azure.network#GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyItemCircuitsList",
+          "target": "com.azure.network#GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyItemCircuitsList",
           "traits": {
             "smithy.api#documentation": "All circuits in the peering location"
           }
         },
         "status": {
-          "target": "com.azure.network#GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyItemStatus",
+          "target": "com.azure.network#GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyItemStatus",
           "traits": {
             "smithy.api#documentation": "The current status of the test"
           }
@@ -197970,7 +197970,7 @@
           }
         },
         "connections": {
-          "target": "com.azure.network#GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyItemConnectionsList",
+          "target": "com.azure.network#GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyItemConnectionsList",
           "traits": {
             "smithy.api#documentation": "All connections to the circuits in the peering location"
           }
@@ -197982,13 +197982,13 @@
           }
         },
         "testType": {
-          "target": "com.azure.network#GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyItemTestType",
+          "target": "com.azure.network#GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyItemTestType",
           "traits": {
             "smithy.api#documentation": "The type of failover test"
           }
         },
         "issues": {
-          "target": "com.azure.network#GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyItemIssuesList",
+          "target": "com.azure.network#GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyItemIssuesList",
           "traits": {
             "smithy.api#documentation": "A list of all issues with the test"
           }
@@ -197998,7 +197998,7 @@
         "smithy.api#documentation": "ExpressRoute failover test details"
       }
     },
-    "com.azure.network#GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyItemIssuesList": {
+    "com.azure.network#GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyItemIssuesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -198007,7 +198007,7 @@
         "smithy.api#documentation": "A list of all issues with the test"
       }
     },
-    "com.azure.network#GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyItemTestType": {
+    "com.azure.network#GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyItemTestType": {
       "type": "enum",
       "members": {
         "SINGLESITEFAILOVER": {
@@ -198033,7 +198033,7 @@
         "smithy.api#documentation": "The type of failover test"
       }
     },
-    "com.azure.network#GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyItemConnectionsList": {
+    "com.azure.network#GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyItemConnectionsList": {
       "type": "list",
       "member": {
         "target": "com.azure.network#ExpressRouteFailoverConnectionResourceDetails"
@@ -198042,7 +198042,7 @@
         "smithy.api#documentation": "All connections to the circuits in the peering location"
       }
     },
-    "com.azure.network#GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyItemStatus": {
+    "com.azure.network#GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyItemStatus": {
       "type": "enum",
       "members": {
         "NOTSTARTED": {
@@ -198104,7 +198104,7 @@
         "smithy.api#documentation": "The current status of the test"
       }
     },
-    "com.azure.network#GetExpressRouteGatewaysFailoverAllTestsDetailsResponseBodyItemCircuitsList": {
+    "com.azure.network#GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyItemCircuitsList": {
       "type": "list",
       "member": {
         "target": "com.azure.network#ExpressRouteFailoverCircuitResourceDetails"
@@ -198113,7 +198113,7 @@
         "smithy.api#documentation": "All circuits in the peering location"
       }
     },
-    "com.azure.network#GetExpressRouteGatewaysFailoverAllTestsDetailsRequest": {
+    "com.azure.network#GetExpressRouteGatewayFailoverAllTestsDetailsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -198726,10 +198726,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#DeleteExpressRouteGateways": {
+    "com.azure.network#DeleteExpressRouteGateway": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#DeleteExpressRouteGatewaysRequest"
+        "target": "com.azure.network#DeleteExpressRouteGatewayRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -198745,7 +198745,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#DeleteExpressRouteGatewaysRequest": {
+    "com.azure.network#DeleteExpressRouteGatewayRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -198777,13 +198777,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#UpdateExpressRouteGatewaysTags": {
+    "com.azure.network#UpdateExpressRouteGatewayTags": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#UpdateExpressRouteGatewaysTagsRequest"
+        "target": "com.azure.network#UpdateExpressRouteGatewayTagsRequest"
       },
       "output": {
-        "target": "com.azure.network#UpdateExpressRouteGatewaysTagsResponse"
+        "target": "com.azure.network#UpdateExpressRouteGatewayTagsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -198796,7 +198796,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#UpdateExpressRouteGatewaysTagsResponse": {
+    "com.azure.network#UpdateExpressRouteGatewayTagsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -198824,7 +198824,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.network#UpdateExpressRouteGatewaysTagsResponseTagsMap",
+          "target": "com.azure.network#UpdateExpressRouteGatewayTagsResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -198986,7 +198986,7 @@
         "smithy.api#documentation": "Minimum and maximum number of scale units to deploy."
       }
     },
-    "com.azure.network#UpdateExpressRouteGatewaysTagsResponseTagsMap": {
+    "com.azure.network#UpdateExpressRouteGatewayTagsResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -198998,7 +198998,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.network#UpdateExpressRouteGatewaysTagsRequest": {
+    "com.azure.network#UpdateExpressRouteGatewayTagsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -199026,7 +199026,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.network#UpdateExpressRouteGatewaysTagsRequestTagsMap",
+          "target": "com.azure.network#UpdateExpressRouteGatewayTagsRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -199036,7 +199036,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#UpdateExpressRouteGatewaysTagsRequestTagsMap": {
+    "com.azure.network#UpdateExpressRouteGatewayTagsRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -199316,13 +199316,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.network#GetExpressRouteGateways": {
+    "com.azure.network#GetExpressRouteGateway": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#GetExpressRouteGatewaysRequest"
+        "target": "com.azure.network#GetExpressRouteGatewayRequest"
       },
       "output": {
-        "target": "com.azure.network#GetExpressRouteGatewaysResponse"
+        "target": "com.azure.network#GetExpressRouteGatewayResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -199335,7 +199335,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#GetExpressRouteGatewaysResponse": {
+    "com.azure.network#GetExpressRouteGatewayResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -199363,7 +199363,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.network#GetExpressRouteGatewaysResponseTagsMap",
+          "target": "com.azure.network#GetExpressRouteGatewayResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -199385,7 +199385,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.network#GetExpressRouteGatewaysResponseTagsMap": {
+    "com.azure.network#GetExpressRouteGatewayResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -199397,7 +199397,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.network#GetExpressRouteGatewaysRequest": {
+    "com.azure.network#GetExpressRouteGatewayRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -199429,10 +199429,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#ListExpressRouteGatewaysByResourceGroup": {
+    "com.azure.network#ListExpressRouteGatewayByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#ListExpressRouteGatewaysByResourceGroupRequest"
+        "target": "com.azure.network#ListExpressRouteGatewayByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.network#ExpressRouteGatewayList"
@@ -199533,7 +199533,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.network#ListExpressRouteGatewaysByResourceGroupRequest": {
+    "com.azure.network#ListExpressRouteGatewayByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -199767,10 +199767,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.network#ListExpressRouteGatewaysBySubscription": {
+    "com.azure.network#ListExpressRouteGatewayBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.network#ListExpressRouteGatewaysBySubscriptionRequest"
+        "target": "com.azure.network#ListExpressRouteGatewayBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.network#ExpressRouteGatewayList"
@@ -199786,7 +199786,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.network#ListExpressRouteGatewaysBySubscriptionRequest": {
+    "com.azure.network#ListExpressRouteGatewayBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -199807,10 +199807,10 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.network#StopApplicationGateways"
+          "target": "com.azure.network#StopApplicationGateway"
         },
         {
-          "target": "com.azure.network#StartApplicationGateways"
+          "target": "com.azure.network#StartApplicationGateway"
         },
         {
           "target": "com.azure.network#ListApplicationGatewayPrivateLinkResources"
@@ -199834,16 +199834,16 @@
           "target": "com.azure.network#ApplicationGatewaysBackendHealth"
         },
         {
-          "target": "com.azure.network#DeleteApplicationGateways"
+          "target": "com.azure.network#DeleteApplicationGateway"
         },
         {
-          "target": "com.azure.network#UpdateApplicationGatewaysTags"
+          "target": "com.azure.network#UpdateApplicationGatewayTags"
         },
         {
           "target": "com.azure.network#ApplicationGatewaysCreateOrUpdate"
         },
         {
-          "target": "com.azure.network#GetApplicationGateways"
+          "target": "com.azure.network#GetApplicationGateway"
         },
         {
           "target": "com.azure.network#ListApplicationGateways"
@@ -199867,28 +199867,28 @@
           "target": "com.azure.network#GetApplicationGatewayWafDynamicManifest"
         },
         {
-          "target": "com.azure.network#ListApplicationGatewaysAll"
+          "target": "com.azure.network#ListApplicationGatewayAll"
         },
         {
-          "target": "com.azure.network#ListApplicationGatewaysAvailableWafRuleSets"
+          "target": "com.azure.network#ListApplicationGatewayAvailableWafRuleSets"
         },
         {
-          "target": "com.azure.network#GetApplicationGatewaysSslPredefinedPolicy"
+          "target": "com.azure.network#GetApplicationGatewaySslPredefinedPolicy"
         },
         {
-          "target": "com.azure.network#ListApplicationGatewaysAvailableSslPredefinedPolicies"
+          "target": "com.azure.network#ListApplicationGatewayAvailableSslPredefinedPolicies"
         },
         {
-          "target": "com.azure.network#ListApplicationGatewaysAvailableSslOptions"
+          "target": "com.azure.network#ListApplicationGatewayAvailableSslOptions"
         },
         {
-          "target": "com.azure.network#ListApplicationGatewaysAvailableServerVariables"
+          "target": "com.azure.network#ListApplicationGatewayAvailableServerVariables"
         },
         {
-          "target": "com.azure.network#ListApplicationGatewaysAvailableResponseHeaders"
+          "target": "com.azure.network#ListApplicationGatewayAvailableResponseHeaders"
         },
         {
-          "target": "com.azure.network#ListApplicationGatewaysAvailableRequestHeaders"
+          "target": "com.azure.network#ListApplicationGatewayAvailableRequestHeaders"
         },
         {
           "target": "com.azure.network#ListWebApplicationFirewallPolicyAll"
@@ -200428,28 +200428,28 @@
           "target": "com.azure.network#VirtualNetworkGatewaysSupportedVpnDevices"
         },
         {
-          "target": "com.azure.network#StopVirtualNetworkGatewaysExpressRouteSiteFailoverSimulation"
+          "target": "com.azure.network#StopVirtualNetworkGatewayExpressRouteSiteFailoverSimulation"
         },
         {
-          "target": "com.azure.network#StopVirtualNetworkGatewaysPacketCapture"
+          "target": "com.azure.network#StopVirtualNetworkGatewayPacketCapture"
         },
         {
-          "target": "com.azure.network#StartVirtualNetworkGatewaysExpressRouteSiteFailoverSimulation"
+          "target": "com.azure.network#StartVirtualNetworkGatewayExpressRouteSiteFailoverSimulation"
         },
         {
-          "target": "com.azure.network#StartVirtualNetworkGatewaysPacketCapture"
+          "target": "com.azure.network#StartVirtualNetworkGatewayPacketCapture"
         },
         {
-          "target": "com.azure.network#SetVirtualNetworkGatewaysVpnclientIpsecParameters"
+          "target": "com.azure.network#SetVirtualNetworkGatewayVpnclientIpsecParameters"
         },
         {
-          "target": "com.azure.network#ResetVirtualNetworkGatewaysVpnClientSharedKey"
+          "target": "com.azure.network#ResetVirtualNetworkGatewayVpnClientSharedKey"
         },
         {
-          "target": "com.azure.network#ResetVirtualNetworkGateways"
+          "target": "com.azure.network#ResetVirtualNetworkGateway"
         },
         {
-          "target": "com.azure.network#InvokeVirtualNetworkGatewaysPrepareMigration"
+          "target": "com.azure.network#InvokeVirtualNetworkGatewayPrepareMigration"
         },
         {
           "target": "com.azure.network#DeleteVirtualNetworkGatewayNatRule"
@@ -200464,43 +200464,43 @@
           "target": "com.azure.network#ListVirtualNetworkGatewayNatRuleByVirtualNetworkGateway"
         },
         {
-          "target": "com.azure.network#ListVirtualNetworkGatewaysRadiusSecrets"
+          "target": "com.azure.network#ListVirtualNetworkGatewayRadiusSecrets"
         },
         {
-          "target": "com.azure.network#GetVirtualNetworkGatewaysVpnProfilePackageUrl"
+          "target": "com.azure.network#GetVirtualNetworkGatewayVpnProfilePackageUrl"
         },
         {
-          "target": "com.azure.network#GetVirtualNetworkGatewaysVpnclientIpsecParameters"
+          "target": "com.azure.network#GetVirtualNetworkGatewayVpnclientIpsecParameters"
         },
         {
-          "target": "com.azure.network#GetVirtualNetworkGatewaysVpnclientConnectionHealth"
+          "target": "com.azure.network#GetVirtualNetworkGatewayVpnclientConnectionHealth"
         },
         {
-          "target": "com.azure.network#GetVirtualNetworkGatewaysRoutesInformation"
+          "target": "com.azure.network#GetVirtualNetworkGatewayRoutesInformation"
         },
         {
-          "target": "com.azure.network#GetVirtualNetworkGatewaysResiliencyInformation"
+          "target": "com.azure.network#GetVirtualNetworkGatewayResiliencyInformation"
         },
         {
-          "target": "com.azure.network#GetVirtualNetworkGatewaysLearnedRoutes"
+          "target": "com.azure.network#GetVirtualNetworkGatewayLearnedRoutes"
         },
         {
-          "target": "com.azure.network#GetVirtualNetworkGatewaysFailoverSingleTestDetails"
+          "target": "com.azure.network#GetVirtualNetworkGatewayFailoverSingleTestDetails"
         },
         {
-          "target": "com.azure.network#GetVirtualNetworkGatewaysFailoverAllTestDetails"
+          "target": "com.azure.network#GetVirtualNetworkGatewayFailoverAllTestDetails"
         },
         {
-          "target": "com.azure.network#GetVirtualNetworkGatewaysEffectiveRoutes"
+          "target": "com.azure.network#GetVirtualNetworkGatewayEffectiveRoutes"
         },
         {
-          "target": "com.azure.network#GetVirtualNetworkGatewaysBgpPeerStatus"
+          "target": "com.azure.network#GetVirtualNetworkGatewayBgpPeerStatus"
         },
         {
-          "target": "com.azure.network#GetVirtualNetworkGatewaysAdvertisedRoutes"
+          "target": "com.azure.network#GetVirtualNetworkGatewayAdvertisedRoutes"
         },
         {
-          "target": "com.azure.network#GenerateVirtualNetworkGatewaysVpnProfile"
+          "target": "com.azure.network#GenerateVirtualNetworkGatewayVpnProfile"
         },
         {
           "target": "com.azure.network#VirtualNetworkGatewaysGeneratevpnclientpackage"
@@ -200509,43 +200509,43 @@
           "target": "com.azure.network#VirtualNetworkGatewaysInvokeExecuteMigration"
         },
         {
-          "target": "com.azure.network#DisconnectVirtualNetworkGatewaysVirtualNetworkGatewayVpnConnections"
+          "target": "com.azure.network#DisconnectVirtualNetworkGatewayVirtualNetworkGatewayVpnConnections"
         },
         {
-          "target": "com.azure.network#ListVirtualNetworkGatewaysConnections"
+          "target": "com.azure.network#ListVirtualNetworkGatewayConnections2"
         },
         {
-          "target": "com.azure.network#InvokeVirtualNetworkGatewaysCommitMigration"
+          "target": "com.azure.network#InvokeVirtualNetworkGatewayCommitMigration"
         },
         {
-          "target": "com.azure.network#InvokeVirtualNetworkGatewaysAbortMigration"
+          "target": "com.azure.network#InvokeVirtualNetworkGatewayAbortMigration"
         },
         {
-          "target": "com.azure.network#DeleteVirtualNetworkGateways"
+          "target": "com.azure.network#DeleteVirtualNetworkGateway"
         },
         {
-          "target": "com.azure.network#UpdateVirtualNetworkGatewaysTags"
+          "target": "com.azure.network#UpdateVirtualNetworkGatewayTags"
         },
         {
           "target": "com.azure.network#VirtualNetworkGatewaysCreateOrUpdate"
         },
         {
-          "target": "com.azure.network#GetVirtualNetworkGateways"
+          "target": "com.azure.network#GetVirtualNetworkGateway"
         },
         {
           "target": "com.azure.network#ListVirtualNetworkGateways"
         },
         {
-          "target": "com.azure.network#DeleteLocalNetworkGateways"
+          "target": "com.azure.network#DeleteLocalNetworkGateway"
         },
         {
-          "target": "com.azure.network#UpdateLocalNetworkGatewaysTags"
+          "target": "com.azure.network#UpdateLocalNetworkGatewayTags"
         },
         {
           "target": "com.azure.network#LocalNetworkGatewaysCreateOrUpdate"
         },
         {
-          "target": "com.azure.network#GetLocalNetworkGateways"
+          "target": "com.azure.network#GetLocalNetworkGateway"
         },
         {
           "target": "com.azure.network#ListLocalNetworkGateways"
@@ -201049,34 +201049,34 @@
           "target": "com.azure.network#ListOperations"
         },
         {
-          "target": "com.azure.network#UpdateServiceGatewaysServices"
+          "target": "com.azure.network#UpdateServiceGatewayServices"
         },
         {
-          "target": "com.azure.network#UpdateServiceGatewaysAddressLocations"
+          "target": "com.azure.network#UpdateServiceGatewayAddressLocations"
         },
         {
-          "target": "com.azure.network#GetServiceGatewaysServices"
+          "target": "com.azure.network#GetServiceGatewayServices"
         },
         {
-          "target": "com.azure.network#GetServiceGatewaysAddressLocations"
+          "target": "com.azure.network#GetServiceGatewayAddressLocations"
         },
         {
-          "target": "com.azure.network#DeleteServiceGateways"
+          "target": "com.azure.network#DeleteServiceGateway"
         },
         {
-          "target": "com.azure.network#UpdateServiceGatewaysTags"
+          "target": "com.azure.network#UpdateServiceGatewayTags"
         },
         {
           "target": "com.azure.network#ServiceGatewaysCreateOrUpdate"
         },
         {
-          "target": "com.azure.network#GetServiceGateways"
+          "target": "com.azure.network#GetServiceGateway"
         },
         {
           "target": "com.azure.network#ListServiceGateways"
         },
         {
-          "target": "com.azure.network#ListServiceGatewaysAll"
+          "target": "com.azure.network#ListServiceGatewayAll"
         },
         {
           "target": "com.azure.network#GetPublicIPAddressCloudServicePublicIPAddress"
@@ -201538,16 +201538,16 @@
           "target": "com.azure.network#ListNetworkInterfaces"
         },
         {
-          "target": "com.azure.network#DeleteNatGateways"
+          "target": "com.azure.network#DeleteNatGateway"
         },
         {
-          "target": "com.azure.network#UpdateNatGatewaysTags"
+          "target": "com.azure.network#UpdateNatGatewayTags"
         },
         {
           "target": "com.azure.network#NatGatewaysCreateOrUpdate"
         },
         {
-          "target": "com.azure.network#GetNatGateways"
+          "target": "com.azure.network#GetNatGateway"
         },
         {
           "target": "com.azure.network#ListNatGateways"
@@ -201757,7 +201757,7 @@
           "target": "com.azure.network#ListNetworkInterfaceAll"
         },
         {
-          "target": "com.azure.network#ListNatGatewaysAll"
+          "target": "com.azure.network#ListNatGatewayAll"
         },
         {
           "target": "com.azure.network#ListAvailableEndpointServices"
@@ -201925,13 +201925,13 @@
           "target": "com.azure.network#ListVpnConnectionByVpnGateway"
         },
         {
-          "target": "com.azure.network#StopVpnGatewaysPacketCapture"
+          "target": "com.azure.network#StopVpnGatewayPacketCapture"
         },
         {
-          "target": "com.azure.network#StartVpnGatewaysPacketCapture"
+          "target": "com.azure.network#StartVpnGatewayPacketCapture"
         },
         {
-          "target": "com.azure.network#ResetVpnGateways"
+          "target": "com.azure.network#ResetVpnGateway"
         },
         {
           "target": "com.azure.network#DeleteNatRule"
@@ -201946,19 +201946,19 @@
           "target": "com.azure.network#ListNatRuleByVpnGateway"
         },
         {
-          "target": "com.azure.network#DeleteVpnGateways"
+          "target": "com.azure.network#DeleteVpnGateway"
         },
         {
-          "target": "com.azure.network#UpdateVpnGatewaysTags"
+          "target": "com.azure.network#UpdateVpnGatewayTags"
         },
         {
           "target": "com.azure.network#VpnGatewaysCreateOrUpdate"
         },
         {
-          "target": "com.azure.network#GetVpnGateways"
+          "target": "com.azure.network#GetVpnGateway"
         },
         {
-          "target": "com.azure.network#ListVpnGatewaysByResourceGroup"
+          "target": "com.azure.network#ListVpnGatewayByResourceGroup"
         },
         {
           "target": "com.azure.network#ListVpnServerConfigurationsAssociatedWithVirtualWan"
@@ -202114,34 +202114,34 @@
           "target": "com.azure.network#ListVirtualHubByResourceGroup"
         },
         {
-          "target": "com.azure.network#ResetP2SVpnGateways"
+          "target": "com.azure.network#ResetP2SVpnGateway"
         },
         {
-          "target": "com.azure.network#GetP2sVpnGatewaysP2sVpnConnectionHealthDetailed"
+          "target": "com.azure.network#GetP2sVpnGatewayP2sVpnConnectionHealthDetailed"
         },
         {
-          "target": "com.azure.network#GetP2sVpnGatewaysP2sVpnConnectionHealth"
+          "target": "com.azure.network#GetP2sVpnGatewayP2sVpnConnectionHealth"
         },
         {
-          "target": "com.azure.network#GenerateP2sVpnGatewaysVpnProfile"
+          "target": "com.azure.network#GenerateP2sVpnGatewayVpnProfile"
         },
         {
-          "target": "com.azure.network#DisconnectP2sVpnGatewaysP2sVpnConnections"
+          "target": "com.azure.network#DisconnectP2sVpnGatewayP2sVpnConnections"
         },
         {
-          "target": "com.azure.network#DeleteP2sVpnGateways"
+          "target": "com.azure.network#DeleteP2sVpnGateway"
         },
         {
-          "target": "com.azure.network#UpdateP2sVpnGatewaysTags"
+          "target": "com.azure.network#UpdateP2sVpnGatewayTags"
         },
         {
           "target": "com.azure.network#P2sVpnGatewaysCreateOrUpdate"
         },
         {
-          "target": "com.azure.network#GetP2sVpnGateways"
+          "target": "com.azure.network#GetP2sVpnGateway"
         },
         {
-          "target": "com.azure.network#ListP2sVpnGatewaysByResourceGroup"
+          "target": "com.azure.network#ListP2sVpnGatewayByResourceGroup"
         },
         {
           "target": "com.azure.network#DeleteNetworkVirtualApplianceConnection"
@@ -202156,22 +202156,22 @@
           "target": "com.azure.network#ListNetworkVirtualApplianceConnections"
         },
         {
-          "target": "com.azure.network#StopExpressRouteGatewaysSiteFailoverTest"
+          "target": "com.azure.network#StopExpressRouteGatewaySiteFailoverTest"
         },
         {
-          "target": "com.azure.network#StartExpressRouteGatewaysSiteFailoverTest"
+          "target": "com.azure.network#StartExpressRouteGatewaySiteFailoverTest"
         },
         {
-          "target": "com.azure.network#GetExpressRouteGatewaysRoutesInformation"
+          "target": "com.azure.network#GetExpressRouteGatewayRoutesInformation"
         },
         {
-          "target": "com.azure.network#GetExpressRouteGatewaysResiliencyInformation"
+          "target": "com.azure.network#GetExpressRouteGatewayResiliencyInformation"
         },
         {
-          "target": "com.azure.network#GetExpressRouteGatewaysFailoverSingleTestDetails"
+          "target": "com.azure.network#GetExpressRouteGatewayFailoverSingleTestDetails"
         },
         {
-          "target": "com.azure.network#GetExpressRouteGatewaysFailoverAllTestsDetails"
+          "target": "com.azure.network#GetExpressRouteGatewayFailoverAllTestsDetails"
         },
         {
           "target": "com.azure.network#DeleteExpressRouteConnection"
@@ -202186,19 +202186,19 @@
           "target": "com.azure.network#ListExpressRouteConnections"
         },
         {
-          "target": "com.azure.network#DeleteExpressRouteGateways"
+          "target": "com.azure.network#DeleteExpressRouteGateway"
         },
         {
-          "target": "com.azure.network#UpdateExpressRouteGatewaysTags"
+          "target": "com.azure.network#UpdateExpressRouteGatewayTags"
         },
         {
           "target": "com.azure.network#ExpressRouteGatewaysCreateOrUpdate"
         },
         {
-          "target": "com.azure.network#GetExpressRouteGateways"
+          "target": "com.azure.network#GetExpressRouteGateway"
         },
         {
-          "target": "com.azure.network#ListExpressRouteGatewaysByResourceGroup"
+          "target": "com.azure.network#ListExpressRouteGatewayByResourceGroup"
         },
         {
           "target": "com.azure.network#ListVpnSites"
@@ -202219,7 +202219,7 @@
           "target": "com.azure.network#ListP2sVpnGateways"
         },
         {
-          "target": "com.azure.network#ListExpressRouteGatewaysBySubscription"
+          "target": "com.azure.network#ListExpressRouteGatewayBySubscription"
         }
       ],
       "traits": {

@@ -1091,7 +1091,7 @@ export const CryptoCertificateResourceListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "CryptoCertificateResourceListResult",
 }) as any as S.Schema<CryptoCertificateResourceListResult>;
 
-export interface ListCryptoKeysByFirmwareRequest {
+export interface ListCryptoKeyByFirmwareRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1101,7 +1101,7 @@ export interface ListCryptoKeysByFirmwareRequest {
   /** The id of the firmware. */
   firmwareId: string;
 }
-export const ListCryptoKeysByFirmwareRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListCryptoKeyByFirmwareRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1116,8 +1116,8 @@ export const ListCryptoKeysByFirmwareRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListCryptoKeysByFirmwareRequest",
-}) as any as S.Schema<ListCryptoKeysByFirmwareRequest>;
+  identifier: "ListCryptoKeyByFirmwareRequest",
+}) as any as S.Schema<ListCryptoKeyByFirmwareRequest>;
 
 /** Different types of cryptographic keys. */
 export type CryptoKeyType = "Public" | "Private";
@@ -2396,15 +2396,15 @@ export const ListCryptoCertificateByFirmware: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListCryptoKeysByFirmwareError = AzureOpError;
+export type ListCryptoKeyByFirmwareError = AzureOpError;
 /** Lists crypto key analysis results of a firmware. */
-export const ListCryptoKeysByFirmware: API.OperationMethod<
-  ListCryptoKeysByFirmwareRequest,
+export const ListCryptoKeyByFirmware: API.OperationMethod<
+  ListCryptoKeyByFirmwareRequest,
   CryptoKeyResourceListResult,
-  ListCryptoKeysByFirmwareError,
+  ListCryptoKeyByFirmwareError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListCryptoKeysByFirmwareRequest,
+  input: ListCryptoKeyByFirmwareRequest,
   output: CryptoKeyResourceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,

@@ -2074,7 +2074,7 @@
         "smithy.api#documentation": "Create a customer\n\nCreate a new customer record. You can optionally request capabilities\nand submit verification requirements in the same request.\n\nThis endpoint supports creating a customer with:\n- Minimal data (customer type only)\n- Capability requests\n- KYC data submission\n- Combined request for capability and required info for verification"
       }
     },
-    "com.coinbase.cdp#GetCustomerByIdRequest": {
+    "com.coinbase.cdp#GetCustomerRequest": {
       "type": "structure",
       "members": {
         "customerId": {
@@ -2090,10 +2090,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.coinbase.cdp#GetCustomerById": {
+    "com.coinbase.cdp#GetCustomer": {
       "type": "operation",
       "input": {
-        "target": "com.coinbase.cdp#GetCustomerByIdRequest"
+        "target": "com.coinbase.cdp#GetCustomerRequest"
       },
       "output": {
         "target": "com.coinbase.cdp#Customer"
@@ -2206,7 +2206,7 @@
         "smithy.api#documentation": "Update a customer\n\nUpdate customer information and/or request capability changes.\nThis endpoint supports partial updates. Provide only the fields you wish to change."
       }
     },
-    "com.coinbase.cdp#DeleteCustomerByIdRequest": {
+    "com.coinbase.cdp#DeleteCustomerRequest": {
       "type": "structure",
       "members": {
         "customerId": {
@@ -2222,10 +2222,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.coinbase.cdp#DeleteCustomerById": {
+    "com.coinbase.cdp#DeleteCustomer": {
       "type": "operation",
       "input": {
-        "target": "com.coinbase.cdp#DeleteCustomerByIdRequest"
+        "target": "com.coinbase.cdp#DeleteCustomerRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3030,7 +3030,7 @@
         "smithy.api#documentation": "Create deposit destination\n\nCreate a new deposit destination for an account. Two types are supported:\n\n- `crypto` (public): provisions a cryptocurrency address on the requested\n  network. The returned `crypto.address` is the deposit address; funds\n  sent to it are credited to the `target` account in the specified asset.\n  For Customer-owned accounts, the Customer must have the `custodyCrypto`\n  and `custodyStablecoin` capabilities enabled.\n\n\n- `fiat` (private-beta): provisions a bank\n  account at a CDP banking partner. The server picks the account type\n  (e.g. `us_bank`) and supported payment rails based on the account's\n  eligibility; pass `fiat.paymentRail` to influence partner selection.\n  The returned `fiat` object contains the bank account details the\n  depositor needs to send funds. For Customer-owned accounts, the Customer\n  must have the `custodyFiat` capability enabled. Requires account\n  enablement — contact your Coinbase representative for access. Fields\n  and behavior may change before general availability.\n\n\nFor Customer-owned accounts not authorized for the required capabilities,\nthe request is rejected with `customer_not_authorized` (HTTP 403).\n\n\nThe created destination's `status` starts as `pending` for fiat (it\nbecomes `active` once the partner provisioning callback completes) and\n`active` for crypto."
       }
     },
-    "com.coinbase.cdp#GetDepositDestinationByIdRequest": {
+    "com.coinbase.cdp#GetDepositDestinationRequest": {
       "type": "structure",
       "members": {
         "depositDestinationId": {
@@ -3046,7 +3046,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.coinbase.cdp#GetDepositDestinationByIdResponse": {
+    "com.coinbase.cdp#GetDepositDestinationResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -3061,13 +3061,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.coinbase.cdp#GetDepositDestinationById": {
+    "com.coinbase.cdp#GetDepositDestination": {
       "type": "operation",
       "input": {
-        "target": "com.coinbase.cdp#GetDepositDestinationByIdRequest"
+        "target": "com.coinbase.cdp#GetDepositDestinationRequest"
       },
       "output": {
-        "target": "com.coinbase.cdp#GetDepositDestinationByIdResponse"
+        "target": "com.coinbase.cdp#GetDepositDestinationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4138,7 +4138,7 @@
         "smithy.api#documentation": "Create transfer\n\nCreate a new transfer to move funds from a source to a target.\nAll transfers first transition to `quoted`. If `execute: false`, the transfer stays quoted until you call `/v2/transfers/{transferId}/execute`.\nIf `execute: true`, quoted status emits momentarily before the transfer moves to `processing`, where execution proceeds. Subscribe to the transfers webhook to  follow progress in real time instead of polling."
       }
     },
-    "com.coinbase.cdp#GetTransferByIdRequest": {
+    "com.coinbase.cdp#GetTransferRequest": {
       "type": "structure",
       "members": {
         "transferId": {
@@ -4154,10 +4154,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.coinbase.cdp#GetTransferById": {
+    "com.coinbase.cdp#GetTransfer": {
       "type": "operation",
       "input": {
-        "target": "com.coinbase.cdp#GetTransferByIdRequest"
+        "target": "com.coinbase.cdp#GetTransferRequest"
       },
       "output": {
         "target": "com.coinbase.cdp#Transfer"
@@ -12641,7 +12641,7 @@
         "smithy.api#documentation": "Create EIP-7702 delegation\n\nCreates an EIP-7702 delegation for an EVM EOA account, upgrading it with smart account capabilities.\n\nThis endpoint:\n- Retrieves delegation artifacts from onchain\n- Signs the EIP-7702 authorization for delegation\n- Assembles and submits a Type 4 transaction\n- Creates an associated smart account object\n\nThe delegation allows the EVM EOA to be used as a smart account, which enables batched transactions and gas sponsorship via paymaster."
       }
     },
-    "com.coinbase.cdp#GetEvmEip7702DelegationOperationByIdRequest": {
+    "com.coinbase.cdp#GetEvmEip7702DelegationOperationRequest": {
       "type": "structure",
       "members": {
         "delegationOperationId": {
@@ -12735,10 +12735,10 @@
         "smithy.api#documentation": "The current status of the delegation operation.\nUNSPECIFIED means the status has not been set. PENDING means the operation has been created but not yet submitted. SUBMITTED means the operation has been submitted to the network. COMPLETED means the operation has completed successfully. FAILED means the operation has failed."
       }
     },
-    "com.coinbase.cdp#GetEvmEip7702DelegationOperationById": {
+    "com.coinbase.cdp#GetEvmEip7702DelegationOperation": {
       "type": "operation",
       "input": {
-        "target": "com.coinbase.cdp#GetEvmEip7702DelegationOperationByIdRequest"
+        "target": "com.coinbase.cdp#GetEvmEip7702DelegationOperationRequest"
       },
       "output": {
         "target": "com.coinbase.cdp#EvmEip7702DelegationOperation"
@@ -25419,7 +25419,7 @@
         "smithy.api#documentation": "Search x402 resources\n\nSearches for active x402 resources using a text query and optional filters.\nSupports both text-based and vector-based search depending on availability. Results are sorted by relevance and quality score.\nLegacy network names (e.g., `base`, `base-sepolia`, `solana`) are automatically normalized to their CAIP-2 equivalents.\nThe response is limited to 20 items per request. If more results exist, `partialResults` will be `true`."
       }
     },
-    "com.coinbase.cdp#PostX402DiscoveryMcpRequestJsonrpc": {
+    "com.coinbase.cdp#CreateX402DiscoveryMcpRequestJsonrpc": {
       "type": "enum",
       "members": {
         "_2_0": {
@@ -25433,7 +25433,7 @@
         "smithy.api#documentation": "JSON-RPC version, must be \"2.0\"."
       }
     },
-    "com.coinbase.cdp#PostX402DiscoveryMcpRequestId": {
+    "com.coinbase.cdp#CreateX402DiscoveryMcpRequestId": {
       "type": "union",
       "members": {
         "Case0": {
@@ -25447,7 +25447,7 @@
         "smithy.api#documentation": "Request identifier."
       }
     },
-    "com.coinbase.cdp#PostX402DiscoveryMcpRequestParamsMap": {
+    "com.coinbase.cdp#CreateX402DiscoveryMcpRequestParamsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -25459,18 +25459,18 @@
         "smithy.api#documentation": "Optional parameters for the method."
       }
     },
-    "com.coinbase.cdp#PostX402DiscoveryMcpRequest": {
+    "com.coinbase.cdp#CreateX402DiscoveryMcpRequest": {
       "type": "structure",
       "members": {
         "jsonrpc": {
-          "target": "com.coinbase.cdp#PostX402DiscoveryMcpRequestJsonrpc",
+          "target": "com.coinbase.cdp#CreateX402DiscoveryMcpRequestJsonrpc",
           "traits": {
             "smithy.api#documentation": "JSON-RPC version, must be \"2.0\".",
             "smithy.api#required": {}
           }
         },
         "id": {
-          "target": "com.coinbase.cdp#PostX402DiscoveryMcpRequestId",
+          "target": "com.coinbase.cdp#CreateX402DiscoveryMcpRequestId",
           "traits": {
             "smithy.api#documentation": "Request identifier."
           }
@@ -25483,7 +25483,7 @@
           }
         },
         "params": {
-          "target": "com.coinbase.cdp#PostX402DiscoveryMcpRequestParamsMap",
+          "target": "com.coinbase.cdp#CreateX402DiscoveryMcpRequestParamsMap",
           "traits": {
             "smithy.api#documentation": "Optional parameters for the method."
           }
@@ -25604,10 +25604,10 @@
         "smithy.api#documentation": "Additional error data."
       }
     },
-    "com.coinbase.cdp#PostX402DiscoveryMcp": {
+    "com.coinbase.cdp#CreateX402DiscoveryMcp": {
       "type": "operation",
       "input": {
-        "target": "com.coinbase.cdp#PostX402DiscoveryMcpRequest"
+        "target": "com.coinbase.cdp#CreateX402DiscoveryMcpRequest"
       },
       "output": {
         "target": "com.coinbase.cdp#X402McpResponse"
@@ -26685,7 +26685,7 @@
         "smithy.api#documentation": "Create an onramp order\n\nCreate a new Onramp order or get a quote for an Onramp order. Either `paymentAmount` or `purchaseAmount` must be provided.\n\nThis API supports two modes:\n\n**Headless mode (standard)**: returns a seamless Apple Pay or Google Pay button that you integrate directly into your app. Your app collects and verifies the user's contact details before calling this endpoint — `phoneNumber`, `email`, `phoneNumberVerifiedAt`, and `agreementAcceptedAt` are required and enforced server-side.\n\n**Embedded mode**: returns a webview that collects and verifies the user's contact and identity information, then shows the payment screen. Omit both `phoneNumber` and `email` from the request to select this mode. Embedded mode requires account enablement; contact the Onramp team for access.\n\nRead more about the difference between the two modes in the [Headless Onramp overview](https://docs.cdp.coinbase.com/onramp/headless-onramp/overview).\n\nThis API supports the `GUEST_CHECKOUT_APPLE_PAY` and `GUEST_CHECKOUT_GOOGLE_PAY` payment methods.\n\nFor detailed integration instructions and to get access to this API, refer to the  [Guest Checkout Onramp API docs](https://docs.cdp.coinbase.com/onramp/headless-onramp/overview)."
       }
     },
-    "com.coinbase.cdp#GetOnrampOrderByIdRequest": {
+    "com.coinbase.cdp#GetOnrampOrderRequest": {
       "type": "structure",
       "members": {
         "orderId": {
@@ -26701,7 +26701,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.coinbase.cdp#GetOnrampOrderByIdResponse": {
+    "com.coinbase.cdp#GetOnrampOrderResponse": {
       "type": "structure",
       "members": {
         "order": {
@@ -26715,13 +26715,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.coinbase.cdp#GetOnrampOrderById": {
+    "com.coinbase.cdp#GetOnrampOrder": {
       "type": "operation",
       "input": {
-        "target": "com.coinbase.cdp#GetOnrampOrderByIdRequest"
+        "target": "com.coinbase.cdp#GetOnrampOrderRequest"
       },
       "output": {
-        "target": "com.coinbase.cdp#GetOnrampOrderByIdResponse"
+        "target": "com.coinbase.cdp#GetOnrampOrderResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -27832,13 +27832,13 @@
           "target": "com.coinbase.cdp#CreateCustomer"
         },
         {
-          "target": "com.coinbase.cdp#GetCustomerById"
+          "target": "com.coinbase.cdp#GetCustomer"
         },
         {
           "target": "com.coinbase.cdp#UpdateCustomerById"
         },
         {
-          "target": "com.coinbase.cdp#DeleteCustomerById"
+          "target": "com.coinbase.cdp#DeleteCustomer"
         },
         {
           "target": "com.coinbase.cdp#ListDepositDestinations"
@@ -27847,7 +27847,7 @@
           "target": "com.coinbase.cdp#CreateDepositDestination"
         },
         {
-          "target": "com.coinbase.cdp#GetDepositDestinationById"
+          "target": "com.coinbase.cdp#GetDepositDestination"
         },
         {
           "target": "com.coinbase.cdp#ListTransfers"
@@ -27856,7 +27856,7 @@
           "target": "com.coinbase.cdp#CreateTransfer"
         },
         {
-          "target": "com.coinbase.cdp#GetTransferById"
+          "target": "com.coinbase.cdp#GetTransfer"
         },
         {
           "target": "com.coinbase.cdp#ExecuteFundTransfer"
@@ -28042,7 +28042,7 @@
           "target": "com.coinbase.cdp#CreateEvmEip7702Delegation"
         },
         {
-          "target": "com.coinbase.cdp#GetEvmEip7702DelegationOperationById"
+          "target": "com.coinbase.cdp#GetEvmEip7702DelegationOperation"
         },
         {
           "target": "com.coinbase.cdp#ListEvmSmartAccounts"
@@ -28207,7 +28207,7 @@
           "target": "com.coinbase.cdp#SearchX402Resources"
         },
         {
-          "target": "com.coinbase.cdp#PostX402DiscoveryMcp"
+          "target": "com.coinbase.cdp#CreateX402DiscoveryMcp"
         },
         {
           "target": "com.coinbase.cdp#ListX402Bundles"
@@ -28228,7 +28228,7 @@
           "target": "com.coinbase.cdp#CreateOnrampOrder"
         },
         {
-          "target": "com.coinbase.cdp#GetOnrampOrderById"
+          "target": "com.coinbase.cdp#GetOnrampOrder"
         },
         {
           "target": "com.coinbase.cdp#CreateOnrampSession"

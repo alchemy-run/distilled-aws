@@ -48,7 +48,7 @@ export class PaymentRequired
     [{ status: 402 }],
   ) {}
 
-export interface GetCertByIdRequest {
+export interface GetCertRequest {
   /** The cert id */
   id: string;
   /** The Team identifier to perform the request on behalf of. */
@@ -56,39 +56,37 @@ export interface GetCertByIdRequest {
   /** The Team slug to perform the request on behalf of. */
   slug?: string;
 }
-export const GetCertByIdRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetCertRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String.pipe(T.Label()),
     teamId: S.optional(S.String.pipe(T.Query())),
     slug: S.optional(S.String.pipe(T.Query())),
   }).pipe(T.Http({ method: "GET", uri: "/v8/certs/{id}", code: 200 })),
-).annotate({
-  identifier: "GetCertByIdRequest",
-}) as any as S.Schema<GetCertByIdRequest>;
+).annotate({ identifier: "GetCertRequest" }) as any as S.Schema<GetCertRequest>;
 
-export type GetCertByIdResponseCnsList = Array<string>;
-export const GetCertByIdResponseCnsList = /*@__PURE__*/ S.Array(
+export type GetCertResponseCnsList = Array<string>;
+export const GetCertResponseCnsList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<GetCertByIdResponseCnsList>;
+) as any as S.Schema<GetCertResponseCnsList>;
 
-export interface GetCertByIdResponse {
+export interface GetCertResponse {
   id: string;
   createdAt: number;
   expiresAt: number;
   autoRenew: boolean;
-  cns: GetCertByIdResponseCnsList;
+  cns: GetCertResponseCnsList;
 }
-export const GetCertByIdResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetCertResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
     createdAt: S.Number,
     expiresAt: S.Number,
     autoRenew: S.Boolean,
-    cns: GetCertByIdResponseCnsList,
+    cns: GetCertResponseCnsList,
   }),
 ).annotate({
-  identifier: "GetCertByIdResponse",
-}) as any as S.Schema<GetCertByIdResponse>;
+  identifier: "GetCertResponse",
+}) as any as S.Schema<GetCertResponse>;
 
 export interface GetCertsRequest {
   /** The Team identifier to perform the request on behalf of. */
@@ -288,20 +286,16 @@ export const UploadCertResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UploadCertResponse",
 }) as any as S.Schema<UploadCertResponse>;
 
-export type GetCertByIdError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | VercelOpError;
+export type GetCertError = BadRequest | Forbidden | NotFound | VercelOpError;
 /** Get cert by id Get cert by id */
-export const getCertById: API.OperationMethod<
-  GetCertByIdRequest,
-  GetCertByIdResponse,
-  GetCertByIdError,
+export const getCert: API.OperationMethod<
+  GetCertRequest,
+  GetCertResponse,
+  GetCertError,
   VercelOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetCertByIdRequest,
-  output: GetCertByIdResponse,
+  input: GetCertRequest,
+  output: GetCertResponse,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: VercelProtocol,
   retry: Retry.Retry,

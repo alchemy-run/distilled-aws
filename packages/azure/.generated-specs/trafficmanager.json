@@ -2223,10 +2223,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.trafficmanager#DeleteTrafficManagerUserMetricsKeys": {
+    "com.azure.trafficmanager#DeleteTrafficManagerUserMetricsKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.trafficmanager#DeleteTrafficManagerUserMetricsKeysRequest"
+        "target": "com.azure.trafficmanager#DeleteTrafficManagerUserMetricsKeyRequest"
       },
       "output": {
         "target": "com.azure.trafficmanager#DeleteOperationResult"
@@ -2242,7 +2242,7 @@
         "com.distilled.openapi#apiVersion": "2022-04-01"
       }
     },
-    "com.azure.trafficmanager#DeleteTrafficManagerUserMetricsKeysRequest": {
+    "com.azure.trafficmanager#DeleteTrafficManagerUserMetricsKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2339,13 +2339,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.trafficmanager#GetTrafficManagerUserMetricsKeys": {
+    "com.azure.trafficmanager#GetTrafficManagerUserMetricsKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.trafficmanager#GetTrafficManagerUserMetricsKeysRequest"
+        "target": "com.azure.trafficmanager#GetTrafficManagerUserMetricsKeyRequest"
       },
       "output": {
-        "target": "com.azure.trafficmanager#GetTrafficManagerUserMetricsKeysResponse"
+        "target": "com.azure.trafficmanager#GetTrafficManagerUserMetricsKeyResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2358,7 +2358,7 @@
         "com.distilled.openapi#apiVersion": "2022-04-01"
       }
     },
-    "com.azure.trafficmanager#GetTrafficManagerUserMetricsKeysResponse": {
+    "com.azure.trafficmanager#GetTrafficManagerUserMetricsKeyResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2390,7 +2390,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.trafficmanager#GetTrafficManagerUserMetricsKeysRequest": {
+    "com.azure.trafficmanager#GetTrafficManagerUserMetricsKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2668,13 +2668,13 @@
           "target": "com.azure.trafficmanager#ListProfileBySubscription"
         },
         {
-          "target": "com.azure.trafficmanager#DeleteTrafficManagerUserMetricsKeys"
+          "target": "com.azure.trafficmanager#DeleteTrafficManagerUserMetricsKey"
         },
         {
           "target": "com.azure.trafficmanager#TrafficManagerUserMetricsKeysCreateOrUpdate"
         },
         {
-          "target": "com.azure.trafficmanager#GetTrafficManagerUserMetricsKeys"
+          "target": "com.azure.trafficmanager#GetTrafficManagerUserMetricsKey"
         },
         {
           "target": "com.azure.trafficmanager#CheckProfileTrafficManagerNameAvailabilityV2"

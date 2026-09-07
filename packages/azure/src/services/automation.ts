@@ -8837,7 +8837,7 @@ export const JobStreamListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "JobStreamListResult",
 }) as any as S.Schema<JobStreamListResult>;
 
-export interface ListKeysByAutomationAccountRequest {
+export interface ListKeyByAutomationAccountRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -8845,7 +8845,7 @@ export interface ListKeysByAutomationAccountRequest {
   /** The name of the automation account. */
   automationAccountName: string;
 }
-export const ListKeysByAutomationAccountRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListKeyByAutomationAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -8859,8 +8859,8 @@ export const ListKeysByAutomationAccountRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListKeysByAutomationAccountRequest",
-}) as any as S.Schema<ListKeysByAutomationAccountRequest>;
+  identifier: "ListKeyByAutomationAccountRequest",
+}) as any as S.Schema<ListKeyByAutomationAccountRequest>;
 
 /** Automation key name. */
 export type AutomationKeyName = "Primary" | "Secondary";
@@ -15446,15 +15446,15 @@ export const ListJobStreamByJob: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListKeysByAutomationAccountError = AzureOpError;
+export type ListKeyByAutomationAccountError = AzureOpError;
 /** Retrieve the automation keys for an account. */
-export const ListKeysByAutomationAccount: API.OperationMethod<
-  ListKeysByAutomationAccountRequest,
+export const ListKeyByAutomationAccount: API.OperationMethod<
+  ListKeyByAutomationAccountRequest,
   KeyListResult,
-  ListKeysByAutomationAccountError,
+  ListKeyByAutomationAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListKeysByAutomationAccountRequest,
+  input: ListKeyByAutomationAccountRequest,
   output: KeyListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,

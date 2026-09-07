@@ -16093,10 +16093,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.automation#ListKeysByAutomationAccount": {
+    "com.azure.automation#ListKeyByAutomationAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.automation#ListKeysByAutomationAccountRequest"
+        "target": "com.azure.automation#ListKeyByAutomationAccountRequest"
       },
       "output": {
         "target": "com.azure.automation#KeyListResult"
@@ -16199,7 +16199,7 @@
         "smithy.api#documentation": "Automation key name."
       }
     },
-    "com.azure.automation#ListKeysByAutomationAccountRequest": {
+    "com.azure.automation#ListKeyByAutomationAccountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -24970,7 +24970,7 @@
           "target": "com.azure.automation#ListModuleByAutomationAccount"
         },
         {
-          "target": "com.azure.automation#ListKeysByAutomationAccount"
+          "target": "com.azure.automation#ListKeyByAutomationAccount"
         },
         {
           "target": "com.azure.automation#ListAutomationAccountDeletedRunbooks"

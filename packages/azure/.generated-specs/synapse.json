@@ -3256,10 +3256,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#RegenerateIntegrationRuntimeAuthKeys": {
+    "com.azure.synapse#RegenerateIntegrationRuntimeAuthKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.synapse#RegenerateIntegrationRuntimeAuthKeysRequest"
+        "target": "com.azure.synapse#RegenerateIntegrationRuntimeAuthKeyRequest"
       },
       "output": {
         "target": "com.azure.synapse#IntegrationRuntimeAuthKeys"
@@ -3275,7 +3275,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.synapse#RegenerateIntegrationRuntimeAuthKeysRequest": {
+    "com.azure.synapse#RegenerateIntegrationRuntimeAuthKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3311,7 +3311,7 @@
           }
         },
         "keyName": {
-          "target": "com.azure.synapse#RegenerateIntegrationRuntimeAuthKeysRequestKeyName",
+          "target": "com.azure.synapse#RegenerateIntegrationRuntimeAuthKeyRequestKeyName",
           "traits": {
             "smithy.api#documentation": "The name of the authentication key to regenerate."
           }
@@ -3321,7 +3321,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#RegenerateIntegrationRuntimeAuthKeysRequestKeyName": {
+    "com.azure.synapse#RegenerateIntegrationRuntimeAuthKeyRequestKeyName": {
       "type": "enum",
       "members": {
         "AUTHKEY1": {
@@ -4805,13 +4805,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#DeleteKeys": {
+    "com.azure.synapse#DeleteKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.synapse#DeleteKeysRequest"
+        "target": "com.azure.synapse#DeleteKeyRequest"
       },
       "output": {
-        "target": "com.azure.synapse#DeleteKeysResponse"
+        "target": "com.azure.synapse#DeleteKeyResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4824,7 +4824,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.synapse#DeleteKeysResponse": {
+    "com.azure.synapse#DeleteKeyResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4876,7 +4876,7 @@
         "smithy.api#documentation": "Key properties"
       }
     },
-    "com.azure.synapse#DeleteKeysRequest": {
+    "com.azure.synapse#DeleteKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5013,13 +5013,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#GetKeys": {
+    "com.azure.synapse#GetKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.synapse#GetKeysRequest"
+        "target": "com.azure.synapse#GetKeyRequest"
       },
       "output": {
-        "target": "com.azure.synapse#GetKeysResponse"
+        "target": "com.azure.synapse#GetKeyResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5032,7 +5032,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.synapse#GetKeysResponse": {
+    "com.azure.synapse#GetKeyResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5064,7 +5064,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.synapse#GetKeysRequest": {
+    "com.azure.synapse#GetKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5104,10 +5104,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#ListKeysByWorkspace": {
+    "com.azure.synapse#ListKeyByWorkspace": {
       "type": "operation",
       "input": {
-        "target": "com.azure.synapse#ListKeysByWorkspaceRequest"
+        "target": "com.azure.synapse#ListKeyByWorkspaceRequest"
       },
       "output": {
         "target": "com.azure.synapse#KeyInfoListResult"
@@ -5184,7 +5184,7 @@
         "smithy.api#documentation": "A workspace key"
       }
     },
-    "com.azure.synapse#ListKeysByWorkspaceRequest": {
+    "com.azure.synapse#ListKeyByWorkspaceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -24933,7 +24933,7 @@
           "target": "com.azure.synapse#ListIntegrationRuntimeAuthKeys"
         },
         {
-          "target": "com.azure.synapse#RegenerateIntegrationRuntimeAuthKeys"
+          "target": "com.azure.synapse#RegenerateIntegrationRuntimeAuthKey"
         },
         {
           "target": "com.azure.synapse#StartIntegrationRuntime"
@@ -24978,16 +24978,16 @@
           "target": "com.azure.synapse#GetIntegrationRuntime"
         },
         {
-          "target": "com.azure.synapse#DeleteKeys"
+          "target": "com.azure.synapse#DeleteKey"
         },
         {
           "target": "com.azure.synapse#KeysCreateOrUpdate"
         },
         {
-          "target": "com.azure.synapse#GetKeys"
+          "target": "com.azure.synapse#GetKey"
         },
         {
-          "target": "com.azure.synapse#ListKeysByWorkspace"
+          "target": "com.azure.synapse#ListKeyByWorkspace"
         },
         {
           "target": "com.azure.synapse#ListLibraryByWorkspace"

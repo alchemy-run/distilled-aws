@@ -131,7 +131,7 @@
         }
       }
     },
-    "com.posthog.customer_journeys#CreateCustomerJourneysRequest": {
+    "com.posthog.customer_journeys#CreateCustomerJourneyRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -159,10 +159,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.customer_journeys#CreateCustomerJourneys": {
+    "com.posthog.customer_journeys#CreateCustomerJourney": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.customer_journeys#CreateCustomerJourneysRequest"
+        "target": "com.posthog.customer_journeys#CreateCustomerJourneyRequest"
       },
       "output": {
         "target": "com.posthog.customer_journeys#CustomerJourney"
@@ -175,7 +175,7 @@
         }
       }
     },
-    "com.posthog.customer_journeys#GetCustomerJourneysRequest": {
+    "com.posthog.customer_journeys#GetCustomerJourneyRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -198,10 +198,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.customer_journeys#GetCustomerJourneys": {
+    "com.posthog.customer_journeys#GetCustomerJourney": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.customer_journeys#GetCustomerJourneysRequest"
+        "target": "com.posthog.customer_journeys#GetCustomerJourneyRequest"
       },
       "output": {
         "target": "com.posthog.customer_journeys#CustomerJourney"
@@ -214,7 +214,7 @@
         }
       }
     },
-    "com.posthog.customer_journeys#UpdateCustomerJourneysRequest": {
+    "com.posthog.customer_journeys#UpdateCustomerJourneyRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -249,10 +249,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.customer_journeys#UpdateCustomerJourneys": {
+    "com.posthog.customer_journeys#UpdateCustomerJourney": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.customer_journeys#UpdateCustomerJourneysRequest"
+        "target": "com.posthog.customer_journeys#UpdateCustomerJourneyRequest"
       },
       "output": {
         "target": "com.posthog.customer_journeys#CustomerJourney"
@@ -363,13 +363,13 @@
           "target": "com.posthog.customer_journeys#ListCustomerJourneys"
         },
         {
-          "target": "com.posthog.customer_journeys#CreateCustomerJourneys"
+          "target": "com.posthog.customer_journeys#CreateCustomerJourney"
         },
         {
-          "target": "com.posthog.customer_journeys#GetCustomerJourneys"
+          "target": "com.posthog.customer_journeys#GetCustomerJourney"
         },
         {
-          "target": "com.posthog.customer_journeys#UpdateCustomerJourneys"
+          "target": "com.posthog.customer_journeys#UpdateCustomerJourney"
         },
         {
           "target": "com.posthog.customer_journeys#UpdateCustomerJourneysPartial"

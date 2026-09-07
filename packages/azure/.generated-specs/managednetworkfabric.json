@@ -36779,10 +36779,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.managednetworkfabric#DeleteInternetGateways": {
+    "com.azure.managednetworkfabric#DeleteInternetGateway": {
       "type": "operation",
       "input": {
-        "target": "com.azure.managednetworkfabric#DeleteInternetGatewaysRequest"
+        "target": "com.azure.managednetworkfabric#DeleteInternetGatewayRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -36798,7 +36798,7 @@
         "com.distilled.openapi#apiVersion": "2025-07-15"
       }
     },
-    "com.azure.managednetworkfabric#DeleteInternetGatewaysRequest": {
+    "com.azure.managednetworkfabric#DeleteInternetGatewayRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -36830,13 +36830,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.managednetworkfabric#UpdateInternetGateways": {
+    "com.azure.managednetworkfabric#UpdateInternetGateway": {
       "type": "operation",
       "input": {
-        "target": "com.azure.managednetworkfabric#UpdateInternetGatewaysRequest"
+        "target": "com.azure.managednetworkfabric#UpdateInternetGatewayRequest"
       },
       "output": {
-        "target": "com.azure.managednetworkfabric#UpdateInternetGatewaysResponse"
+        "target": "com.azure.managednetworkfabric#UpdateInternetGatewayResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -36849,7 +36849,7 @@
         "com.distilled.openapi#apiVersion": "2025-07-15"
       }
     },
-    "com.azure.managednetworkfabric#UpdateInternetGatewaysResponse": {
+    "com.azure.managednetworkfabric#UpdateInternetGatewayResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -36877,7 +36877,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.managednetworkfabric#UpdateInternetGatewaysResponseTagsMap",
+          "target": "com.azure.managednetworkfabric#UpdateInternetGatewayResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -36984,7 +36984,7 @@
         "smithy.api#documentation": "Gateway Type of the resource."
       }
     },
-    "com.azure.managednetworkfabric#UpdateInternetGatewaysResponseTagsMap": {
+    "com.azure.managednetworkfabric#UpdateInternetGatewayResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -36996,7 +36996,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.managednetworkfabric#UpdateInternetGatewaysRequest": {
+    "com.azure.managednetworkfabric#UpdateInternetGatewayRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -37024,7 +37024,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.managednetworkfabric#UpdateInternetGatewaysRequestTagsMap",
+          "target": "com.azure.managednetworkfabric#UpdateInternetGatewayRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -37054,7 +37054,7 @@
         "smithy.api#documentation": "PatchProperties for InternetGateway "
       }
     },
-    "com.azure.managednetworkfabric#UpdateInternetGatewaysRequestTagsMap": {
+    "com.azure.managednetworkfabric#UpdateInternetGatewayRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -37066,13 +37066,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.managednetworkfabric#CreateInternetGateways": {
+    "com.azure.managednetworkfabric#CreateInternetGateway": {
       "type": "operation",
       "input": {
-        "target": "com.azure.managednetworkfabric#CreateInternetGatewaysRequest"
+        "target": "com.azure.managednetworkfabric#CreateInternetGatewayRequest"
       },
       "output": {
-        "target": "com.azure.managednetworkfabric#CreateInternetGatewaysResponse"
+        "target": "com.azure.managednetworkfabric#CreateInternetGatewayResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -37085,7 +37085,7 @@
         "com.distilled.openapi#apiVersion": "2025-07-15"
       }
     },
-    "com.azure.managednetworkfabric#CreateInternetGatewaysResponse": {
+    "com.azure.managednetworkfabric#CreateInternetGatewayResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -37113,7 +37113,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.managednetworkfabric#CreateInternetGatewaysResponseTagsMap",
+          "target": "com.azure.managednetworkfabric#CreateInternetGatewayResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -37137,7 +37137,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.managednetworkfabric#CreateInternetGatewaysResponseTagsMap": {
+    "com.azure.managednetworkfabric#CreateInternetGatewayResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -37149,7 +37149,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.managednetworkfabric#CreateInternetGatewaysRequest": {
+    "com.azure.managednetworkfabric#CreateInternetGatewayRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -37177,7 +37177,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.managednetworkfabric#CreateInternetGatewaysRequestTagsMap",
+          "target": "com.azure.managednetworkfabric#CreateInternetGatewayRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -37240,7 +37240,7 @@
         "smithy.api#documentation": "Internet Gateway Properties defines the properties of the resource."
       }
     },
-    "com.azure.managednetworkfabric#CreateInternetGatewaysRequestTagsMap": {
+    "com.azure.managednetworkfabric#CreateInternetGatewayRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -37252,13 +37252,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.managednetworkfabric#GetInternetGateways": {
+    "com.azure.managednetworkfabric#GetInternetGateway": {
       "type": "operation",
       "input": {
-        "target": "com.azure.managednetworkfabric#GetInternetGatewaysRequest"
+        "target": "com.azure.managednetworkfabric#GetInternetGatewayRequest"
       },
       "output": {
-        "target": "com.azure.managednetworkfabric#GetInternetGatewaysResponse"
+        "target": "com.azure.managednetworkfabric#GetInternetGatewayResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -37271,7 +37271,7 @@
         "com.distilled.openapi#apiVersion": "2025-07-15"
       }
     },
-    "com.azure.managednetworkfabric#GetInternetGatewaysResponse": {
+    "com.azure.managednetworkfabric#GetInternetGatewayResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -37299,7 +37299,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.managednetworkfabric#GetInternetGatewaysResponseTagsMap",
+          "target": "com.azure.managednetworkfabric#GetInternetGatewayResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -37323,7 +37323,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.managednetworkfabric#GetInternetGatewaysResponseTagsMap": {
+    "com.azure.managednetworkfabric#GetInternetGatewayResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -37335,7 +37335,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.managednetworkfabric#GetInternetGatewaysRequest": {
+    "com.azure.managednetworkfabric#GetInternetGatewayRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -37367,10 +37367,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.managednetworkfabric#ListInternetGatewaysByResourceGroup": {
+    "com.azure.managednetworkfabric#ListInternetGatewayByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.managednetworkfabric#ListInternetGatewaysByResourceGroupRequest"
+        "target": "com.azure.managednetworkfabric#ListInternetGatewayByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.managednetworkfabric#InternetGatewaysListResult"
@@ -37480,7 +37480,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.managednetworkfabric#ListInternetGatewaysByResourceGroupRequest": {
+    "com.azure.managednetworkfabric#ListInternetGatewayByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -42115,10 +42115,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.managednetworkfabric#ListInternetGatewaysBySubscription": {
+    "com.azure.managednetworkfabric#ListInternetGatewayBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.managednetworkfabric#ListInternetGatewaysBySubscriptionRequest"
+        "target": "com.azure.managednetworkfabric#ListInternetGatewayBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.managednetworkfabric#InternetGatewaysListResult"
@@ -42134,7 +42134,7 @@
         "com.distilled.openapi#apiVersion": "2025-07-15"
       }
     },
-    "com.azure.managednetworkfabric#ListInternetGatewaysBySubscriptionRequest": {
+    "com.azure.managednetworkfabric#ListInternetGatewayBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -42875,19 +42875,19 @@
           "target": "com.azure.managednetworkfabric#ListIpCommunityByResourceGroup"
         },
         {
-          "target": "com.azure.managednetworkfabric#DeleteInternetGateways"
+          "target": "com.azure.managednetworkfabric#DeleteInternetGateway"
         },
         {
-          "target": "com.azure.managednetworkfabric#UpdateInternetGateways"
+          "target": "com.azure.managednetworkfabric#UpdateInternetGateway"
         },
         {
-          "target": "com.azure.managednetworkfabric#CreateInternetGateways"
+          "target": "com.azure.managednetworkfabric#CreateInternetGateway"
         },
         {
-          "target": "com.azure.managednetworkfabric#GetInternetGateways"
+          "target": "com.azure.managednetworkfabric#GetInternetGateway"
         },
         {
-          "target": "com.azure.managednetworkfabric#ListInternetGatewaysByResourceGroup"
+          "target": "com.azure.managednetworkfabric#ListInternetGatewayByResourceGroup"
         },
         {
           "target": "com.azure.managednetworkfabric#DeleteInternetGatewayRule"
@@ -42989,7 +42989,7 @@
           "target": "com.azure.managednetworkfabric#ListIpCommunityBySubscription"
         },
         {
-          "target": "com.azure.managednetworkfabric#ListInternetGatewaysBySubscription"
+          "target": "com.azure.managednetworkfabric#ListInternetGatewayBySubscription"
         },
         {
           "target": "com.azure.managednetworkfabric#ListInternetGatewayRuleBySubscription"

@@ -10837,10 +10837,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridcompute#DeleteGateways": {
+    "com.azure.hybridcompute#DeleteGateway": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#DeleteGatewaysRequest"
+        "target": "com.azure.hybridcompute#DeleteGatewayRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -10856,7 +10856,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-15"
       }
     },
-    "com.azure.hybridcompute#DeleteGatewaysRequest": {
+    "com.azure.hybridcompute#DeleteGatewayRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10888,13 +10888,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridcompute#UpdateGateways": {
+    "com.azure.hybridcompute#UpdateGateway": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#UpdateGatewaysRequest"
+        "target": "com.azure.hybridcompute#UpdateGatewayRequest"
       },
       "output": {
-        "target": "com.azure.hybridcompute#UpdateGatewaysResponse"
+        "target": "com.azure.hybridcompute#UpdateGatewayResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10907,7 +10907,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-15"
       }
     },
-    "com.azure.hybridcompute#UpdateGatewaysResponse": {
+    "com.azure.hybridcompute#UpdateGatewayResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -10935,7 +10935,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridcompute#UpdateGatewaysResponseTagsMap",
+          "target": "com.azure.hybridcompute#UpdateGatewayResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -11034,7 +11034,7 @@
         "smithy.api#documentation": "The type of the Gateway resource."
       }
     },
-    "com.azure.hybridcompute#UpdateGatewaysResponseTagsMap": {
+    "com.azure.hybridcompute#UpdateGatewayResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -11046,7 +11046,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.hybridcompute#UpdateGatewaysRequest": {
+    "com.azure.hybridcompute#UpdateGatewayRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11074,7 +11074,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridcompute#UpdateGatewaysRequestTagsMap",
+          "target": "com.azure.hybridcompute#UpdateGatewayRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags"
           }
@@ -11128,7 +11128,7 @@
         "smithy.api#documentation": "Specifies the list of features that are enabled for this Gateway."
       }
     },
-    "com.azure.hybridcompute#UpdateGatewaysRequestTagsMap": {
+    "com.azure.hybridcompute#UpdateGatewayRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -11329,13 +11329,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.hybridcompute#GetGateways": {
+    "com.azure.hybridcompute#GetGateway": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#GetGatewaysRequest"
+        "target": "com.azure.hybridcompute#GetGatewayRequest"
       },
       "output": {
-        "target": "com.azure.hybridcompute#GetGatewaysResponse"
+        "target": "com.azure.hybridcompute#GetGatewayResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11348,7 +11348,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-15"
       }
     },
-    "com.azure.hybridcompute#GetGatewaysResponse": {
+    "com.azure.hybridcompute#GetGatewayResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -11376,7 +11376,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridcompute#GetGatewaysResponseTagsMap",
+          "target": "com.azure.hybridcompute#GetGatewayResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -11399,7 +11399,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hybridcompute#GetGatewaysResponseTagsMap": {
+    "com.azure.hybridcompute#GetGatewayResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -11411,7 +11411,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.hybridcompute#GetGatewaysRequest": {
+    "com.azure.hybridcompute#GetGatewayRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11443,10 +11443,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridcompute#ListGatewaysByResourceGroup": {
+    "com.azure.hybridcompute#ListGatewayByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#ListGatewaysByResourceGroupRequest"
+        "target": "com.azure.hybridcompute#ListGatewayByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.hybridcompute#GatewaysListResult"
@@ -11555,7 +11555,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.hybridcompute#ListGatewaysByResourceGroupRequest": {
+    "com.azure.hybridcompute#ListGatewayByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12520,10 +12520,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridcompute#ListGatewaysBySubscription": {
+    "com.azure.hybridcompute#ListGatewayBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#ListGatewaysBySubscriptionRequest"
+        "target": "com.azure.hybridcompute#ListGatewayBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.hybridcompute#GatewaysListResult"
@@ -12539,7 +12539,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-15"
       }
     },
-    "com.azure.hybridcompute#ListGatewaysBySubscriptionRequest": {
+    "com.azure.hybridcompute#ListGatewayBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13266,19 +13266,19 @@
           "target": "com.azure.hybridcompute#ListLicenseByResourceGroup"
         },
         {
-          "target": "com.azure.hybridcompute#DeleteGateways"
+          "target": "com.azure.hybridcompute#DeleteGateway"
         },
         {
-          "target": "com.azure.hybridcompute#UpdateGateways"
+          "target": "com.azure.hybridcompute#UpdateGateway"
         },
         {
           "target": "com.azure.hybridcompute#GatewaysCreateOrUpdate"
         },
         {
-          "target": "com.azure.hybridcompute#GetGateways"
+          "target": "com.azure.hybridcompute#GetGateway"
         },
         {
-          "target": "com.azure.hybridcompute#ListGatewaysByResourceGroup"
+          "target": "com.azure.hybridcompute#ListGatewayByResourceGroup"
         },
         {
           "target": "com.azure.hybridcompute#PatchSettings2"
@@ -13311,7 +13311,7 @@
           "target": "com.azure.hybridcompute#ListLicenseBySubscription"
         },
         {
-          "target": "com.azure.hybridcompute#ListGatewaysBySubscription"
+          "target": "com.azure.hybridcompute#ListGatewayBySubscription"
         },
         {
           "target": "com.azure.hybridcompute#ListOperations"

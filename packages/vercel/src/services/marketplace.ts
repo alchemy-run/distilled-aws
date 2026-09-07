@@ -204,12 +204,12 @@ export const CreateInstallationsByIntegrationConfigurationIdResourcesByResourceI
       "CreateInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsResponse",
   }) as any as S.Schema<CreateInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsResponse>;
 
-export interface DeleteInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsByItemIdRequest {
+export interface DeleteInstallationResourceExperimentationItemRequest {
   integrationConfigurationId: string;
   resourceId: string;
   itemId: string;
 }
-export const DeleteInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsByItemIdRequest =
+export const DeleteInstallationResourceExperimentationItemRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       integrationConfigurationId: S.String.pipe(T.Label()),
@@ -223,16 +223,14 @@ export const DeleteInstallationsByIntegrationConfigurationIdResourcesByResourceI
       }),
     ),
   ).annotate({
-    identifier:
-      "DeleteInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsByItemIdRequest",
-  }) as any as S.Schema<DeleteInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsByItemIdRequest>;
+    identifier: "DeleteInstallationResourceExperimentationItemRequest",
+  }) as any as S.Schema<DeleteInstallationResourceExperimentationItemRequest>;
 
-export interface DeleteInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsByItemIdResponse {}
-export const DeleteInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsByItemIdResponse =
+export interface DeleteInstallationResourceExperimentationItemResponse {}
+export const DeleteInstallationResourceExperimentationItemResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier:
-      "DeleteInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsByItemIdResponse",
-  }) as any as S.Schema<DeleteInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsByItemIdResponse>;
+    identifier: "DeleteInstallationResourceExperimentationItemResponse",
+  }) as any as S.Schema<DeleteInstallationResourceExperimentationItemResponse>;
 
 export interface DeleteIntegrationResourceRequest {
   integrationConfigurationId: string;
@@ -333,11 +331,11 @@ export const GetAccountInfoResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetAccountInfoResponse",
 }) as any as S.Schema<GetAccountInfoResponse>;
 
-export interface GetInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigRequest {
+export interface GetInstallationResourceExperimentationGlobalConfigRequest {
   integrationConfigurationId: string;
   resourceId: string;
 }
-export const GetInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigRequest =
+export const GetInstallationResourceExperimentationGlobalConfigRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       integrationConfigurationId: S.String.pipe(T.Label()),
@@ -350,9 +348,8 @@ export const GetInstallationsByIntegrationConfigurationIdResourcesByResourceIdEx
       }),
     ),
   ).annotate({
-    identifier:
-      "GetInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigRequest",
-  }) as any as S.Schema<GetInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigRequest>;
+    identifier: "GetInstallationResourceExperimentationGlobalConfigRequest",
+  }) as any as S.Schema<GetInstallationResourceExperimentationGlobalConfigRequest>;
 
 export type GlobalConfigItemValueCase2Map = {
   [key: string]: GlobalConfigItemValue | undefined;
@@ -376,41 +373,39 @@ export type GlobalConfigItemValue =
 export const GlobalConfigItemValue =
   /*@__PURE__*/ S.Unknown as any as S.Schema<GlobalConfigItemValue>;
 
-export type GetInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigResponseItemsMap =
+export type GetInstallationResourceExperimentationGlobalConfigResponseItemsMap =
   { [key: string]: GlobalConfigItemValue | undefined };
-export const GetInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigResponseItemsMap =
+export const GetInstallationResourceExperimentationGlobalConfigResponseItemsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     GlobalConfigItemValue,
-  ) as any as S.Schema<GetInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigResponseItemsMap>;
+  ) as any as S.Schema<GetInstallationResourceExperimentationGlobalConfigResponseItemsMap>;
 
-export type GetInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigResponsePurpose =
+export type GetInstallationResourceExperimentationGlobalConfigResponsePurpose =
   | "experimentation"
   | "flags";
-export const GetInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigResponsePurpose =
+export const GetInstallationResourceExperimentationGlobalConfigResponsePurpose =
   /*@__PURE__*/ S.String;
 
-export interface GetInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigResponse {
-  items: GetInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigResponseItemsMap;
+export interface GetInstallationResourceExperimentationGlobalConfigResponse {
+  items: GetInstallationResourceExperimentationGlobalConfigResponseItemsMap;
   updatedAt: number;
   digest: string;
-  purpose?: GetInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigResponsePurpose;
+  purpose?: GetInstallationResourceExperimentationGlobalConfigResponsePurpose;
 }
-export const GetInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigResponse =
+export const GetInstallationResourceExperimentationGlobalConfigResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      items:
-        GetInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigResponseItemsMap,
+      items: GetInstallationResourceExperimentationGlobalConfigResponseItemsMap,
       updatedAt: S.Number,
       digest: S.String,
       purpose: S.optional(
-        GetInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigResponsePurpose,
+        GetInstallationResourceExperimentationGlobalConfigResponsePurpose,
       ),
     }),
   ).annotate({
-    identifier:
-      "GetInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigResponse",
-  }) as any as S.Schema<GetInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigResponse>;
+    identifier: "GetInstallationResourceExperimentationGlobalConfigResponse",
+  }) as any as S.Schema<GetInstallationResourceExperimentationGlobalConfigResponse>;
 
 export interface GetIntegrationResourceRequest {
   /** The ID of the integration configuration (installation) the resource belongs to */
@@ -1088,11 +1083,11 @@ export const GetMemberResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetMemberResponse",
 }) as any as S.Schema<GetMemberResponse>;
 
-export interface HeadInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigRequest {
+export interface HeadInstallationResourceExperimentationGlobalConfigRequest {
   integrationConfigurationId: string;
   resourceId: string;
 }
-export const HeadInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigRequest =
+export const HeadInstallationResourceExperimentationGlobalConfigRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       integrationConfigurationId: S.String.pipe(T.Label()),
@@ -1105,16 +1100,14 @@ export const HeadInstallationsByIntegrationConfigurationIdResourcesByResourceIdE
       }),
     ),
   ).annotate({
-    identifier:
-      "HeadInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigRequest",
-  }) as any as S.Schema<HeadInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigRequest>;
+    identifier: "HeadInstallationResourceExperimentationGlobalConfigRequest",
+  }) as any as S.Schema<HeadInstallationResourceExperimentationGlobalConfigRequest>;
 
-export interface HeadInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigResponse {}
-export const HeadInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigResponse =
+export interface HeadInstallationResourceExperimentationGlobalConfigResponse {}
+export const HeadInstallationResourceExperimentationGlobalConfigResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier:
-      "HeadInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigResponse",
-  }) as any as S.Schema<HeadInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigResponse>;
+    identifier: "HeadInstallationResourceExperimentationGlobalConfigResponse",
+  }) as any as S.Schema<HeadInstallationResourceExperimentationGlobalConfigResponse>;
 
 export type ImportResourceRequestOwnership = "owned" | "linked" | "sandbox";
 export const ImportResourceRequestOwnership = /*@__PURE__*/ S.String;
@@ -2435,22 +2428,20 @@ export const createInstallationsByIntegrationConfigurationIdResourcesByResourceI
   retry: Retry.Retry,
 }));
 
-export type DeleteInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsByItemIdError =
+export type DeleteInstallationResourceExperimentationItemError =
   | BadRequest
   | Forbidden
   | NotFound
   | VercelOpError;
 /** Delete an existing experimentation item Delete an existing experimentation item */
-export const deleteInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsByItemId: API.OperationMethod<
-  DeleteInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsByItemIdRequest,
-  DeleteInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsByItemIdResponse,
-  DeleteInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsByItemIdError,
+export const deleteInstallationResourceExperimentationItem: API.OperationMethod<
+  DeleteInstallationResourceExperimentationItemRequest,
+  DeleteInstallationResourceExperimentationItemResponse,
+  DeleteInstallationResourceExperimentationItemError,
   VercelOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input:
-    DeleteInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsByItemIdRequest,
-  output:
-    DeleteInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsByItemIdResponse,
+  input: DeleteInstallationResourceExperimentationItemRequest,
+  output: DeleteInstallationResourceExperimentationItemResponse,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: VercelProtocol,
   retry: Retry.Retry,
@@ -2513,22 +2504,20 @@ export const getAccountInfo: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigError =
+export type GetInstallationResourceExperimentationGlobalConfigError =
   | BadRequest
   | Forbidden
   | NotFound
   | VercelOpError;
 /** Get the data of a user-provided Global Config When the user enabled Global Config syncing, then this endpoint can be used by the partner to fetch the contents of the Global Config. */
-export const getInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfig: API.OperationMethod<
-  GetInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigRequest,
-  GetInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigResponse,
-  GetInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigError,
+export const getInstallationResourceExperimentationGlobalConfig: API.OperationMethod<
+  GetInstallationResourceExperimentationGlobalConfigRequest,
+  GetInstallationResourceExperimentationGlobalConfigResponse,
+  GetInstallationResourceExperimentationGlobalConfigError,
   VercelOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input:
-    GetInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigRequest,
-  output:
-    GetInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigResponse,
+  input: GetInstallationResourceExperimentationGlobalConfigRequest,
+  output: GetInstallationResourceExperimentationGlobalConfigResponse,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: VercelProtocol,
   retry: Retry.Retry,
@@ -2602,22 +2591,20 @@ export const getMember: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type HeadInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigError =
+export type HeadInstallationResourceExperimentationGlobalConfigError =
   | BadRequest
   | Forbidden
   | NotFound
   | VercelOpError;
 /** Get the data of a user-provided Global Config When the user enabled Global Config syncing, then this endpoint can be used by the partner to fetch the contents of the Global Config. */
-export const headInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfig: API.OperationMethod<
-  HeadInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigRequest,
-  HeadInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigResponse,
-  HeadInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigError,
+export const headInstallationResourceExperimentationGlobalConfig: API.OperationMethod<
+  HeadInstallationResourceExperimentationGlobalConfigRequest,
+  HeadInstallationResourceExperimentationGlobalConfigResponse,
+  HeadInstallationResourceExperimentationGlobalConfigError,
   VercelOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input:
-    HeadInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigRequest,
-  output:
-    HeadInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigResponse,
+  input: HeadInstallationResourceExperimentationGlobalConfigRequest,
+  output: HeadInstallationResourceExperimentationGlobalConfigResponse,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: VercelProtocol,
   retry: Retry.Retry,

@@ -5201,7 +5201,7 @@
         "smithy.api#documentation": "Get a Team\n\nGet information for the Team specified by the `teamId` parameter."
       }
     },
-    "com.vercel.teams#PatchTeamRequestSamlRolesValueCase0": {
+    "com.vercel.teams#UpdateTeamRequestSamlRolesValueCase0": {
       "type": "enum",
       "members": {
         "OWNER": {
@@ -5255,7 +5255,7 @@
       },
       "traits": {}
     },
-    "com.vercel.teams#PatchTeamRequestSamlRolesValueCase1": {
+    "com.vercel.teams#UpdateTeamRequestSamlRolesValueCase1": {
       "type": "structure",
       "members": {
         "accessGroupId": {
@@ -5267,31 +5267,31 @@
       },
       "traits": {}
     },
-    "com.vercel.teams#PatchTeamRequestSamlRolesValue": {
+    "com.vercel.teams#UpdateTeamRequestSamlRolesValue": {
       "type": "union",
       "members": {
         "Case0": {
-          "target": "com.vercel.teams#PatchTeamRequestSamlRolesValueCase0"
+          "target": "com.vercel.teams#UpdateTeamRequestSamlRolesValueCase0"
         },
         "Case1": {
-          "target": "com.vercel.teams#PatchTeamRequestSamlRolesValueCase1"
+          "target": "com.vercel.teams#UpdateTeamRequestSamlRolesValueCase1"
         }
       },
       "traits": {}
     },
-    "com.vercel.teams#PatchTeamRequestSamlRolesMap": {
+    "com.vercel.teams#UpdateTeamRequestSamlRolesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "com.vercel.teams#PatchTeamRequestSamlRolesValue"
+        "target": "com.vercel.teams#UpdateTeamRequestSamlRolesValue"
       },
       "traits": {
         "smithy.api#documentation": "Directory groups to role or access group mappings."
       }
     },
-    "com.vercel.teams#PatchTeamRequestSaml": {
+    "com.vercel.teams#UpdateTeamRequestSaml": {
       "type": "structure",
       "members": {
         "enforced": {
@@ -5301,7 +5301,7 @@
           }
         },
         "roles": {
-          "target": "com.vercel.teams#PatchTeamRequestSamlRolesMap",
+          "target": "com.vercel.teams#UpdateTeamRequestSamlRolesMap",
           "traits": {
             "smithy.api#documentation": "Directory groups to role or access group mappings."
           }
@@ -5309,7 +5309,7 @@
       },
       "traits": {}
     },
-    "com.vercel.teams#PatchTeamRequestRemoteCaching": {
+    "com.vercel.teams#UpdateTeamRequestRemoteCaching": {
       "type": "structure",
       "members": {
         "enabled": {
@@ -5323,7 +5323,7 @@
         "smithy.api#documentation": "Whether or not remote caching is enabled for the team"
       }
     },
-    "com.vercel.teams#PatchTeamRequestDpAccessRequestsMode": {
+    "com.vercel.teams#UpdateTeamRequestDpAccessRequestsMode": {
       "type": "enum",
       "members": {
         "ALL": {
@@ -5349,7 +5349,7 @@
         "smithy.api#documentation": "Controls who can request access to protected deployments."
       }
     },
-    "com.vercel.teams#PatchTeamRequestDefaultDeploymentProtectionPasswordProtectionDeploymentType": {
+    "com.vercel.teams#UpdateTeamRequestDefaultDeploymentProtectionPasswordProtectionDeploymentType": {
       "type": "enum",
       "members": {
         "ALL": {
@@ -5381,11 +5381,11 @@
         "smithy.api#documentation": "Specify if the password will apply to every Deployment Target or just Preview"
       }
     },
-    "com.vercel.teams#PatchTeamRequestDefaultDeploymentProtectionPasswordProtection": {
+    "com.vercel.teams#UpdateTeamRequestDefaultDeploymentProtectionPasswordProtection": {
       "type": "structure",
       "members": {
         "deploymentType": {
-          "target": "com.vercel.teams#PatchTeamRequestDefaultDeploymentProtectionPasswordProtectionDeploymentType",
+          "target": "com.vercel.teams#UpdateTeamRequestDefaultDeploymentProtectionPasswordProtectionDeploymentType",
           "traits": {
             "smithy.api#documentation": "Specify if the password will apply to every Deployment Target or just Preview",
             "smithy.api#required": {}
@@ -5404,7 +5404,7 @@
         "smithy.api#documentation": "Allows to protect project deployments with a password"
       }
     },
-    "com.vercel.teams#PatchTeamRequestDefaultDeploymentProtectionSsoProtectionDeploymentType": {
+    "com.vercel.teams#UpdateTeamRequestDefaultDeploymentProtectionSsoProtectionDeploymentType": {
       "type": "enum",
       "members": {
         "ALL": {
@@ -5436,11 +5436,11 @@
         "smithy.api#documentation": "Specify if the Vercel Authentication (SSO Protection) will apply to every Deployment Target or just Preview"
       }
     },
-    "com.vercel.teams#PatchTeamRequestDefaultDeploymentProtectionSsoProtection": {
+    "com.vercel.teams#UpdateTeamRequestDefaultDeploymentProtectionSsoProtection": {
       "type": "structure",
       "members": {
         "deploymentType": {
-          "target": "com.vercel.teams#PatchTeamRequestDefaultDeploymentProtectionSsoProtectionDeploymentType",
+          "target": "com.vercel.teams#UpdateTeamRequestDefaultDeploymentProtectionSsoProtectionDeploymentType",
           "traits": {
             "smithy.api#documentation": "Specify if the Vercel Authentication (SSO Protection) will apply to every Deployment Target or just Preview",
             "smithy.api#required": {}
@@ -5451,18 +5451,18 @@
         "smithy.api#documentation": "Ensures visitors to your Preview Deployments are logged into Vercel and have a minimum of Viewer access on your team"
       }
     },
-    "com.vercel.teams#PatchTeamRequestDefaultDeploymentProtection": {
+    "com.vercel.teams#UpdateTeamRequestDefaultDeploymentProtection": {
       "type": "structure",
       "members": {
         "passwordProtection": {
-          "target": "com.vercel.teams#PatchTeamRequestDefaultDeploymentProtectionPasswordProtection",
+          "target": "com.vercel.teams#UpdateTeamRequestDefaultDeploymentProtectionPasswordProtection",
           "traits": {
             "smithy.api#documentation": "Allows to protect project deployments with a password",
             "com.distilled.openapi#nullable": {}
           }
         },
         "ssoProtection": {
-          "target": "com.vercel.teams#PatchTeamRequestDefaultDeploymentProtectionSsoProtection",
+          "target": "com.vercel.teams#UpdateTeamRequestDefaultDeploymentProtectionSsoProtection",
           "traits": {
             "smithy.api#documentation": "Ensures visitors to your Preview Deployments are logged into Vercel and have a minimum of Viewer access on your team",
             "com.distilled.openapi#nullable": {}
@@ -5473,7 +5473,7 @@
         "smithy.api#documentation": "Default deployment protection settings for new projects."
       }
     },
-    "com.vercel.teams#PatchTeamRequestDefaultPassportDeploymentType": {
+    "com.vercel.teams#UpdateTeamRequestDefaultPassportDeploymentType": {
       "type": "enum",
       "members": {
         "ALL": {
@@ -5503,7 +5503,7 @@
       },
       "traits": {}
     },
-    "com.vercel.teams#PatchTeamRequestDefaultPassport": {
+    "com.vercel.teams#UpdateTeamRequestDefaultPassport": {
       "type": "structure",
       "members": {
         "connectorId": {
@@ -5513,14 +5513,14 @@
           }
         },
         "deploymentType": {
-          "target": "com.vercel.teams#PatchTeamRequestDefaultPassportDeploymentType"
+          "target": "com.vercel.teams#UpdateTeamRequestDefaultPassportDeploymentType"
         }
       },
       "traits": {
         "smithy.api#documentation": "Default Passport configuration for new projects."
       }
     },
-    "com.vercel.teams#PatchTeamRequestDefaultExpirationSettingsExpiration": {
+    "com.vercel.teams#UpdateTeamRequestDefaultExpirationSettingsExpiration": {
       "type": "enum",
       "members": {
         "_3Y": {
@@ -5594,7 +5594,7 @@
         "smithy.api#documentation": "The time period to keep non-production deployments for"
       }
     },
-    "com.vercel.teams#PatchTeamRequestDefaultExpirationSettingsExpirationProduction": {
+    "com.vercel.teams#UpdateTeamRequestDefaultExpirationSettingsExpirationProduction": {
       "type": "enum",
       "members": {
         "_3Y": {
@@ -5668,7 +5668,7 @@
         "smithy.api#documentation": "The time period to keep production deployments for"
       }
     },
-    "com.vercel.teams#PatchTeamRequestDefaultExpirationSettingsExpirationCanceled": {
+    "com.vercel.teams#UpdateTeamRequestDefaultExpirationSettingsExpirationCanceled": {
       "type": "enum",
       "members": {
         "_1Y": {
@@ -5730,7 +5730,7 @@
         "smithy.api#documentation": "The time period to keep canceled deployments for"
       }
     },
-    "com.vercel.teams#PatchTeamRequestDefaultExpirationSettingsExpirationErrored": {
+    "com.vercel.teams#UpdateTeamRequestDefaultExpirationSettingsExpirationErrored": {
       "type": "enum",
       "members": {
         "_1Y": {
@@ -5792,29 +5792,29 @@
         "smithy.api#documentation": "The time period to keep errored deployments for"
       }
     },
-    "com.vercel.teams#PatchTeamRequestDefaultExpirationSettings": {
+    "com.vercel.teams#UpdateTeamRequestDefaultExpirationSettings": {
       "type": "structure",
       "members": {
         "expiration": {
-          "target": "com.vercel.teams#PatchTeamRequestDefaultExpirationSettingsExpiration",
+          "target": "com.vercel.teams#UpdateTeamRequestDefaultExpirationSettingsExpiration",
           "traits": {
             "smithy.api#documentation": "The time period to keep non-production deployments for"
           }
         },
         "expirationProduction": {
-          "target": "com.vercel.teams#PatchTeamRequestDefaultExpirationSettingsExpirationProduction",
+          "target": "com.vercel.teams#UpdateTeamRequestDefaultExpirationSettingsExpirationProduction",
           "traits": {
             "smithy.api#documentation": "The time period to keep production deployments for"
           }
         },
         "expirationCanceled": {
-          "target": "com.vercel.teams#PatchTeamRequestDefaultExpirationSettingsExpirationCanceled",
+          "target": "com.vercel.teams#UpdateTeamRequestDefaultExpirationSettingsExpirationCanceled",
           "traits": {
             "smithy.api#documentation": "The time period to keep canceled deployments for"
           }
         },
         "expirationErrored": {
-          "target": "com.vercel.teams#PatchTeamRequestDefaultExpirationSettingsExpirationErrored",
+          "target": "com.vercel.teams#UpdateTeamRequestDefaultExpirationSettingsExpirationErrored",
           "traits": {
             "smithy.api#documentation": "The time period to keep errored deployments for"
           }
@@ -5822,7 +5822,7 @@
       },
       "traits": {}
     },
-    "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase0Type": {
+    "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase0Type": {
       "type": "enum",
       "members": {
         "SYSTEM": {
@@ -5834,7 +5834,7 @@
       },
       "traits": {}
     },
-    "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase0Target": {
+    "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase0Target": {
       "type": "enum",
       "members": {
         "PRODUCTION": {
@@ -5852,17 +5852,17 @@
       },
       "traits": {}
     },
-    "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase0": {
+    "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase0": {
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase0Type",
+          "target": "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase0Type",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "target": {
-          "target": "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase0Target",
+          "target": "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase0Target",
           "traits": {
             "smithy.api#required": {}
           }
@@ -5870,7 +5870,7 @@
       },
       "traits": {}
     },
-    "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase1Type": {
+    "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase1Type": {
       "type": "enum",
       "members": {
         "CUSTOM": {
@@ -5882,11 +5882,11 @@
       },
       "traits": {}
     },
-    "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase1": {
+    "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase1": {
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase1Type",
+          "target": "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase1Type",
           "traits": {
             "smithy.api#required": {}
           }
@@ -5900,26 +5900,26 @@
       },
       "traits": {}
     },
-    "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItem": {
+    "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItem": {
       "type": "union",
       "members": {
         "Case0": {
-          "target": "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase0"
+          "target": "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase0"
         },
         "Case1": {
-          "target": "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase1"
+          "target": "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase1"
         }
       },
       "traits": {}
     },
-    "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsList": {
+    "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsList": {
       "type": "list",
       "member": {
-        "target": "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItem"
+        "target": "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItem"
       },
       "traits": {}
     },
-    "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase0Provider": {
+    "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase0Provider": {
       "type": "enum",
       "members": {
         "GITHUB": {
@@ -5937,11 +5937,11 @@
       },
       "traits": {}
     },
-    "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase0": {
+    "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase0": {
       "type": "structure",
       "members": {
         "provider": {
-          "target": "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase0Provider",
+          "target": "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase0Provider",
           "traits": {
             "smithy.api#required": {}
           }
@@ -5958,7 +5958,7 @@
       },
       "traits": {}
     },
-    "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase1Provider": {
+    "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase1Provider": {
       "type": "enum",
       "members": {
         "GITLAB": {
@@ -5970,11 +5970,11 @@
       },
       "traits": {}
     },
-    "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase1": {
+    "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase1": {
       "type": "structure",
       "members": {
         "provider": {
-          "target": "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase1Provider",
+          "target": "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase1Provider",
           "traits": {
             "smithy.api#required": {}
           }
@@ -5991,26 +5991,26 @@
       },
       "traits": {}
     },
-    "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItem": {
+    "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItem": {
       "type": "union",
       "members": {
         "Case0": {
-          "target": "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase0"
+          "target": "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase0"
         },
         "Case1": {
-          "target": "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase1"
+          "target": "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase1"
         }
       },
       "traits": {}
     },
-    "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesList": {
+    "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesList": {
       "type": "list",
       "member": {
-        "target": "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItem"
+        "target": "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItem"
       },
       "traits": {}
     },
-    "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0Item": {
+    "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0Item": {
       "type": "structure",
       "members": {
         "enabled": {
@@ -6020,13 +6020,13 @@
           }
         },
         "environments": {
-          "target": "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsList",
+          "target": "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsList",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "sources": {
-          "target": "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesList",
+          "target": "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -6034,18 +6034,18 @@
       },
       "traits": {}
     },
-    "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0List": {
+    "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0List": {
       "type": "list",
       "member": {
-        "target": "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0Item"
+        "target": "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0Item"
       },
       "traits": {}
     },
-    "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0GitSources": {
+    "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0GitSources": {
       "type": "union",
       "members": {
         "Case0": {
-          "target": "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0GitSourcesCase0List"
+          "target": "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0List"
         },
         "Case1": {
           "target": "smithy.api#String"
@@ -6053,7 +6053,7 @@
       },
       "traits": {}
     },
-    "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase0Type": {
+    "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase0Type": {
       "type": "enum",
       "members": {
         "SYSTEM": {
@@ -6065,7 +6065,7 @@
       },
       "traits": {}
     },
-    "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase0Target": {
+    "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase0Target": {
       "type": "enum",
       "members": {
         "PRODUCTION": {
@@ -6083,17 +6083,17 @@
       },
       "traits": {}
     },
-    "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase0": {
+    "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase0": {
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase0Type",
+          "target": "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase0Type",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "target": {
-          "target": "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase0Target",
+          "target": "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase0Target",
           "traits": {
             "smithy.api#required": {}
           }
@@ -6101,7 +6101,7 @@
       },
       "traits": {}
     },
-    "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase1Type": {
+    "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase1Type": {
       "type": "enum",
       "members": {
         "CUSTOM": {
@@ -6113,11 +6113,11 @@
       },
       "traits": {}
     },
-    "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase1": {
+    "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase1": {
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase1Type",
+          "target": "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase1Type",
           "traits": {
             "smithy.api#required": {}
           }
@@ -6131,26 +6131,26 @@
       },
       "traits": {}
     },
-    "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItem": {
+    "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItem": {
       "type": "union",
       "members": {
         "Case0": {
-          "target": "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase0"
+          "target": "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase0"
         },
         "Case1": {
-          "target": "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase1"
+          "target": "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase1"
         }
       },
       "traits": {}
     },
-    "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsList": {
+    "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsList": {
       "type": "list",
       "member": {
-        "target": "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItem"
+        "target": "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItem"
       },
       "traits": {}
     },
-    "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemSourcesItem": {
+    "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemSourcesItem": {
       "type": "enum",
       "members": {
         "GIT": {
@@ -6192,14 +6192,14 @@
       },
       "traits": {}
     },
-    "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemSourcesList": {
+    "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemSourcesList": {
       "type": "list",
       "member": {
-        "target": "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemSourcesItem"
+        "target": "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemSourcesItem"
       },
       "traits": {}
     },
-    "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0Item": {
+    "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0Item": {
       "type": "structure",
       "members": {
         "enabled": {
@@ -6209,13 +6209,13 @@
           }
         },
         "environments": {
-          "target": "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsList",
+          "target": "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsList",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "sources": {
-          "target": "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemSourcesList",
+          "target": "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemSourcesList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -6223,18 +6223,18 @@
       },
       "traits": {}
     },
-    "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0List": {
+    "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0List": {
       "type": "list",
       "member": {
-        "target": "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0Item"
+        "target": "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0Item"
       },
       "traits": {}
     },
-    "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0DeploymentSources": {
+    "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0DeploymentSources": {
       "type": "union",
       "members": {
         "Case0": {
-          "target": "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0List"
+          "target": "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0List"
         },
         "Case1": {
           "target": "smithy.api#String"
@@ -6242,25 +6242,25 @@
       },
       "traits": {}
     },
-    "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0": {
+    "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0": {
       "type": "structure",
       "members": {
         "gitSources": {
-          "target": "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0GitSources"
+          "target": "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0GitSources"
         },
         "deploymentSources": {
-          "target": "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0DeploymentSources"
+          "target": "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0DeploymentSources"
         }
       },
       "traits": {
         "smithy.api#documentation": "Composable deployment-time policy. Each rule type holds a list of rules, one per environment scope."
       }
     },
-    "com.vercel.teams#PatchTeamRequestDeploymentPolicy": {
+    "com.vercel.teams#UpdateTeamRequestDeploymentPolicy": {
       "type": "union",
       "members": {
         "Case0": {
-          "target": "com.vercel.teams#PatchTeamRequestDeploymentPolicyCase0"
+          "target": "com.vercel.teams#UpdateTeamRequestDeploymentPolicyCase0"
         },
         "Case1": {
           "target": "smithy.api#String"
@@ -6268,7 +6268,7 @@
       },
       "traits": {}
     },
-    "com.vercel.teams#PatchTeamRequestStrictDeploymentProtectionSettings": {
+    "com.vercel.teams#UpdateTeamRequestStrictDeploymentProtectionSettings": {
       "type": "structure",
       "members": {
         "enabled": {
@@ -6283,7 +6283,7 @@
         "smithy.api#documentation": "When enabled, deployment protection settings require stricter permissions (owner-only)."
       }
     },
-    "com.vercel.teams#PatchTeamRequestStrictShareableLinks": {
+    "com.vercel.teams#UpdateTeamRequestStrictShareableLinks": {
       "type": "structure",
       "members": {
         "enabled": {
@@ -6298,7 +6298,7 @@
         "smithy.api#documentation": "When enabled, creating shareable links requires Owner role."
       }
     },
-    "com.vercel.teams#PatchTeamRequestStrictPasswordProtectionSettings": {
+    "com.vercel.teams#UpdateTeamRequestStrictPasswordProtectionSettings": {
       "type": "structure",
       "members": {
         "enabled": {
@@ -6313,7 +6313,7 @@
         "smithy.api#documentation": "When enabled, adding, changing, or removing project password protection requires Owner role."
       }
     },
-    "com.vercel.teams#PatchTeamRequestStrictConnectors": {
+    "com.vercel.teams#UpdateTeamRequestStrictConnectors": {
       "type": "structure",
       "members": {
         "enabled": {
@@ -6328,7 +6328,7 @@
         "smithy.api#documentation": "When enabled, creating and managing connectors requires Owner role."
       }
     },
-    "com.vercel.teams#PatchTeamRequestNsnbConfigCase0Preference": {
+    "com.vercel.teams#UpdateTeamRequestNsnbConfigCase0Preference": {
       "type": "enum",
       "members": {
         "AUTO_APPROVAL": {
@@ -6354,11 +6354,11 @@
         "smithy.api#documentation": "The NSNB preference for the team."
       }
     },
-    "com.vercel.teams#PatchTeamRequestNsnbConfigCase0": {
+    "com.vercel.teams#UpdateTeamRequestNsnbConfigCase0": {
       "type": "structure",
       "members": {
         "preference": {
-          "target": "com.vercel.teams#PatchTeamRequestNsnbConfigCase0Preference",
+          "target": "com.vercel.teams#UpdateTeamRequestNsnbConfigCase0Preference",
           "traits": {
             "smithy.api#documentation": "The NSNB preference for the team.",
             "smithy.api#required": {}
@@ -6369,11 +6369,11 @@
         "smithy.api#documentation": "NSNB configuration for the team."
       }
     },
-    "com.vercel.teams#PatchTeamRequestNsnbConfig": {
+    "com.vercel.teams#UpdateTeamRequestNsnbConfig": {
       "type": "union",
       "members": {
         "Case0": {
-          "target": "com.vercel.teams#PatchTeamRequestNsnbConfigCase0"
+          "target": "com.vercel.teams#UpdateTeamRequestNsnbConfigCase0"
         },
         "Case1": {
           "target": "smithy.api#String"
@@ -6381,18 +6381,18 @@
       },
       "traits": {}
     },
-    "com.vercel.teams#PatchTeamRequestDefaultProjectJobsCase0LintTargetsList": {
+    "com.vercel.teams#UpdateTeamRequestDefaultProjectJobsCase0LintTargetsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.vercel.teams#PatchTeamRequestDefaultProjectJobsCase0Lint": {
+    "com.vercel.teams#UpdateTeamRequestDefaultProjectJobsCase0Lint": {
       "type": "structure",
       "members": {
         "targets": {
-          "target": "com.vercel.teams#PatchTeamRequestDefaultProjectJobsCase0LintTargetsList",
+          "target": "com.vercel.teams#UpdateTeamRequestDefaultProjectJobsCase0LintTargetsList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -6400,18 +6400,18 @@
       },
       "traits": {}
     },
-    "com.vercel.teams#PatchTeamRequestDefaultProjectJobsCase0TypecheckTargetsList": {
+    "com.vercel.teams#UpdateTeamRequestDefaultProjectJobsCase0TypecheckTargetsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.vercel.teams#PatchTeamRequestDefaultProjectJobsCase0Typecheck": {
+    "com.vercel.teams#UpdateTeamRequestDefaultProjectJobsCase0Typecheck": {
       "type": "structure",
       "members": {
         "targets": {
-          "target": "com.vercel.teams#PatchTeamRequestDefaultProjectJobsCase0TypecheckTargetsList",
+          "target": "com.vercel.teams#UpdateTeamRequestDefaultProjectJobsCase0TypecheckTargetsList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -6419,25 +6419,25 @@
       },
       "traits": {}
     },
-    "com.vercel.teams#PatchTeamRequestDefaultProjectJobsCase0": {
+    "com.vercel.teams#UpdateTeamRequestDefaultProjectJobsCase0": {
       "type": "structure",
       "members": {
         "lint": {
-          "target": "com.vercel.teams#PatchTeamRequestDefaultProjectJobsCase0Lint"
+          "target": "com.vercel.teams#UpdateTeamRequestDefaultProjectJobsCase0Lint"
         },
         "typecheck": {
-          "target": "com.vercel.teams#PatchTeamRequestDefaultProjectJobsCase0Typecheck"
+          "target": "com.vercel.teams#UpdateTeamRequestDefaultProjectJobsCase0Typecheck"
         }
       },
       "traits": {
         "smithy.api#documentation": "Default job configuration applied to new projects created in this team."
       }
     },
-    "com.vercel.teams#PatchTeamRequestDefaultProjectJobs": {
+    "com.vercel.teams#UpdateTeamRequestDefaultProjectJobs": {
       "type": "union",
       "members": {
         "Case0": {
-          "target": "com.vercel.teams#PatchTeamRequestDefaultProjectJobsCase0"
+          "target": "com.vercel.teams#UpdateTeamRequestDefaultProjectJobsCase0"
         },
         "Case1": {
           "target": "smithy.api#String"
@@ -6445,7 +6445,7 @@
       },
       "traits": {}
     },
-    "com.vercel.teams#PatchTeamRequestResourceConfigBuildMachineDefault": {
+    "com.vercel.teams#UpdateTeamRequestResourceConfigBuildMachineDefault": {
       "type": "enum",
       "members": {
         "BASIC": {
@@ -6483,11 +6483,11 @@
         "smithy.api#documentation": "Default build machine type for new builds: standard, enhanced, turbo, or elastic."
       }
     },
-    "com.vercel.teams#PatchTeamRequestResourceConfigBuildMachine": {
+    "com.vercel.teams#UpdateTeamRequestResourceConfigBuildMachine": {
       "type": "structure",
       "members": {
         "default": {
-          "target": "com.vercel.teams#PatchTeamRequestResourceConfigBuildMachineDefault",
+          "target": "com.vercel.teams#UpdateTeamRequestResourceConfigBuildMachineDefault",
           "traits": {
             "smithy.api#documentation": "Default build machine type for new builds: standard, enhanced, turbo, or elastic."
           }
@@ -6497,11 +6497,11 @@
         "smithy.api#documentation": "Build machine configuration."
       }
     },
-    "com.vercel.teams#PatchTeamRequestResourceConfig": {
+    "com.vercel.teams#UpdateTeamRequestResourceConfig": {
       "type": "structure",
       "members": {
         "buildMachine": {
-          "target": "com.vercel.teams#PatchTeamRequestResourceConfigBuildMachine",
+          "target": "com.vercel.teams#UpdateTeamRequestResourceConfigBuildMachine",
           "traits": {
             "smithy.api#documentation": "Build machine configuration."
           }
@@ -6511,7 +6511,7 @@
         "smithy.api#documentation": "Resource configuration for the team."
       }
     },
-    "com.vercel.teams#PatchTeamRequest": {
+    "com.vercel.teams#UpdateTeamRequest": {
       "type": "structure",
       "members": {
         "teamId": {
@@ -6568,7 +6568,7 @@
           }
         },
         "saml": {
-          "target": "com.vercel.teams#PatchTeamRequestSaml"
+          "target": "com.vercel.teams#UpdateTeamRequestSaml"
         },
         "enablePreviewFeedback": {
           "target": "smithy.api#String",
@@ -6595,7 +6595,7 @@
           }
         },
         "remoteCaching": {
-          "target": "com.vercel.teams#PatchTeamRequestRemoteCaching",
+          "target": "com.vercel.teams#UpdateTeamRequestRemoteCaching",
           "traits": {
             "smithy.api#documentation": "Whether or not remote caching is enabled for the team"
           }
@@ -6613,7 +6613,7 @@
           }
         },
         "dpAccessRequestsMode": {
-          "target": "com.vercel.teams#PatchTeamRequestDpAccessRequestsMode",
+          "target": "com.vercel.teams#UpdateTeamRequestDpAccessRequestsMode",
           "traits": {
             "smithy.api#documentation": "Controls who can request access to protected deployments."
           }
@@ -6631,56 +6631,56 @@
           }
         },
         "defaultDeploymentProtection": {
-          "target": "com.vercel.teams#PatchTeamRequestDefaultDeploymentProtection",
+          "target": "com.vercel.teams#UpdateTeamRequestDefaultDeploymentProtection",
           "traits": {
             "smithy.api#documentation": "Default deployment protection settings for new projects."
           }
         },
         "defaultPassport": {
-          "target": "com.vercel.teams#PatchTeamRequestDefaultPassport",
+          "target": "com.vercel.teams#UpdateTeamRequestDefaultPassport",
           "traits": {
             "smithy.api#documentation": "Default Passport configuration for new projects.",
             "com.distilled.openapi#nullable": {}
           }
         },
         "defaultExpirationSettings": {
-          "target": "com.vercel.teams#PatchTeamRequestDefaultExpirationSettings"
+          "target": "com.vercel.teams#UpdateTeamRequestDefaultExpirationSettings"
         },
         "deploymentPolicy": {
-          "target": "com.vercel.teams#PatchTeamRequestDeploymentPolicy"
+          "target": "com.vercel.teams#UpdateTeamRequestDeploymentPolicy"
         },
         "strictDeploymentProtectionSettings": {
-          "target": "com.vercel.teams#PatchTeamRequestStrictDeploymentProtectionSettings",
+          "target": "com.vercel.teams#UpdateTeamRequestStrictDeploymentProtectionSettings",
           "traits": {
             "smithy.api#documentation": "When enabled, deployment protection settings require stricter permissions (owner-only)."
           }
         },
         "strictShareableLinks": {
-          "target": "com.vercel.teams#PatchTeamRequestStrictShareableLinks",
+          "target": "com.vercel.teams#UpdateTeamRequestStrictShareableLinks",
           "traits": {
             "smithy.api#documentation": "When enabled, creating shareable links requires Owner role."
           }
         },
         "strictPasswordProtectionSettings": {
-          "target": "com.vercel.teams#PatchTeamRequestStrictPasswordProtectionSettings",
+          "target": "com.vercel.teams#UpdateTeamRequestStrictPasswordProtectionSettings",
           "traits": {
             "smithy.api#documentation": "When enabled, adding, changing, or removing project password protection requires Owner role."
           }
         },
         "strictConnectors": {
-          "target": "com.vercel.teams#PatchTeamRequestStrictConnectors",
+          "target": "com.vercel.teams#UpdateTeamRequestStrictConnectors",
           "traits": {
             "smithy.api#documentation": "When enabled, creating and managing connectors requires Owner role."
           }
         },
         "nsnbConfig": {
-          "target": "com.vercel.teams#PatchTeamRequestNsnbConfig"
+          "target": "com.vercel.teams#UpdateTeamRequestNsnbConfig"
         },
         "defaultProjectJobs": {
-          "target": "com.vercel.teams#PatchTeamRequestDefaultProjectJobs"
+          "target": "com.vercel.teams#UpdateTeamRequestDefaultProjectJobs"
         },
         "resourceConfig": {
-          "target": "com.vercel.teams#PatchTeamRequestResourceConfig",
+          "target": "com.vercel.teams#UpdateTeamRequestResourceConfig",
           "traits": {
             "smithy.api#documentation": "Resource configuration for the team."
           }
@@ -6690,10 +6690,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.vercel.teams#PatchTeam": {
+    "com.vercel.teams#UpdateTeam": {
       "type": "operation",
       "input": {
-        "target": "com.vercel.teams#PatchTeamRequest"
+        "target": "com.vercel.teams#UpdateTeamRequest"
       },
       "output": {
         "target": "com.vercel.teams#Team"
@@ -7748,7 +7748,7 @@
         "smithy.api#documentation": "Create a Team\n\nCreate a new Team under your account. You need to send a POST request with the desired Team slug, and optionally the Team name."
       }
     },
-    "com.vercel.teams#PostTeamDsyncRolesRequestRolesValueCase0": {
+    "com.vercel.teams#CreateTeamDsyncRoleRequestRolesValueCase0": {
       "type": "enum",
       "members": {
         "OWNER": {
@@ -7802,7 +7802,7 @@
       },
       "traits": {}
     },
-    "com.vercel.teams#PostTeamDsyncRolesRequestRolesValueCase1": {
+    "com.vercel.teams#CreateTeamDsyncRoleRequestRolesValueCase1": {
       "type": "structure",
       "members": {
         "accessGroupId": {
@@ -7814,31 +7814,31 @@
       },
       "traits": {}
     },
-    "com.vercel.teams#PostTeamDsyncRolesRequestRolesValue": {
+    "com.vercel.teams#CreateTeamDsyncRoleRequestRolesValue": {
       "type": "union",
       "members": {
         "Case0": {
-          "target": "com.vercel.teams#PostTeamDsyncRolesRequestRolesValueCase0"
+          "target": "com.vercel.teams#CreateTeamDsyncRoleRequestRolesValueCase0"
         },
         "Case1": {
-          "target": "com.vercel.teams#PostTeamDsyncRolesRequestRolesValueCase1"
+          "target": "com.vercel.teams#CreateTeamDsyncRoleRequestRolesValueCase1"
         }
       },
       "traits": {}
     },
-    "com.vercel.teams#PostTeamDsyncRolesRequestRolesMap": {
+    "com.vercel.teams#CreateTeamDsyncRoleRequestRolesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "com.vercel.teams#PostTeamDsyncRolesRequestRolesValue"
+        "target": "com.vercel.teams#CreateTeamDsyncRoleRequestRolesValue"
       },
       "traits": {
         "smithy.api#documentation": "Directory groups to role or access group mappings."
       }
     },
-    "com.vercel.teams#PostTeamDsyncRolesRequest": {
+    "com.vercel.teams#CreateTeamDsyncRoleRequest": {
       "type": "structure",
       "members": {
         "teamId": {
@@ -7857,7 +7857,7 @@
           }
         },
         "roles": {
-          "target": "com.vercel.teams#PostTeamDsyncRolesRequestRolesMap",
+          "target": "com.vercel.teams#CreateTeamDsyncRoleRequestRolesMap",
           "traits": {
             "smithy.api#documentation": "Directory groups to role or access group mappings.",
             "smithy.api#required": {}
@@ -7868,7 +7868,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.vercel.teams#PostTeamDsyncRolesResponse": {
+    "com.vercel.teams#CreateTeamDsyncRoleResponse": {
       "type": "structure",
       "members": {
         "ok": {
@@ -7882,13 +7882,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.vercel.teams#PostTeamDsyncRoles": {
+    "com.vercel.teams#CreateTeamDsyncRole": {
       "type": "operation",
       "input": {
-        "target": "com.vercel.teams#PostTeamDsyncRolesRequest"
+        "target": "com.vercel.teams#CreateTeamDsyncRoleRequest"
       },
       "output": {
-        "target": "com.vercel.teams#PostTeamDsyncRolesResponse"
+        "target": "com.vercel.teams#CreateTeamDsyncRoleResponse"
       },
       "errors": [
         {
@@ -8375,7 +8375,7 @@
           "target": "com.vercel.teams#GetTeam"
         },
         {
-          "target": "com.vercel.teams#PatchTeam"
+          "target": "com.vercel.teams#UpdateTeam"
         },
         {
           "target": "com.vercel.teams#GetTeams"
@@ -8384,7 +8384,7 @@
           "target": "com.vercel.teams#CreateTeam"
         },
         {
-          "target": "com.vercel.teams#PostTeamDsyncRoles"
+          "target": "com.vercel.teams#CreateTeamDsyncRole"
         },
         {
           "target": "com.vercel.teams#DeleteTeam"

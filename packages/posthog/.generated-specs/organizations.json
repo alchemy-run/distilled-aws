@@ -4702,7 +4702,7 @@
         }
       }
     },
-    "com.posthog.organizations#GetMembersScopedApiKeysRequest": {
+    "com.posthog.organizations#GetMembersScopedApiKeyRequest": {
       "type": "structure",
       "members": {
         "organization_id": {
@@ -4725,10 +4725,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.organizations#GetMembersScopedApiKeys": {
+    "com.posthog.organizations#GetMembersScopedApiKey": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.organizations#GetMembersScopedApiKeysRequest"
+        "target": "com.posthog.organizations#GetMembersScopedApiKeyRequest"
       },
       "output": {
         "target": "com.posthog.organizations#OrganizationMember"
@@ -22839,7 +22839,7 @@
           "target": "com.posthog.organizations#GetMembersGithubLogin"
         },
         {
-          "target": "com.posthog.organizations#GetMembersScopedApiKeys"
+          "target": "com.posthog.organizations#GetMembersScopedApiKey"
         },
         {
           "target": "com.posthog.organizations#ListOauthApplications"

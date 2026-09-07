@@ -893,7 +893,7 @@ export const GetCustomEnvironmentResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetCustomEnvironmentResponse",
 }) as any as S.Schema<GetCustomEnvironmentResponse>;
 
-export interface GetProjectsByIdOrNameCustomEnvironmentsRequest {
+export interface GetProjectCustomEnvironmentsRequest {
   /** The unique project identifier or the project name */
   idOrName: string;
   /** Fetch custom environments for a specific git branch */
@@ -903,74 +903,73 @@ export interface GetProjectsByIdOrNameCustomEnvironmentsRequest {
   /** The Team slug to perform the request on behalf of. */
   slug?: string;
 }
-export const GetProjectsByIdOrNameCustomEnvironmentsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      idOrName: S.String.pipe(T.Label()),
-      gitBranch: S.optional(S.String.pipe(T.Query())),
-      teamId: S.optional(S.String.pipe(T.Query())),
-      slug: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v9/projects/{idOrName}/custom-environments",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetProjectsByIdOrNameCustomEnvironmentsRequest",
-  }) as any as S.Schema<GetProjectsByIdOrNameCustomEnvironmentsRequest>;
+export const GetProjectCustomEnvironmentsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    idOrName: S.String.pipe(T.Label()),
+    gitBranch: S.optional(S.String.pipe(T.Query())),
+    teamId: S.optional(S.String.pipe(T.Query())),
+    slug: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v9/projects/{idOrName}/custom-environments",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetProjectCustomEnvironmentsRequest",
+}) as any as S.Schema<GetProjectCustomEnvironmentsRequest>;
 
 /** The maximum number of custom environments allowed either by the team's plan type or a custom override. */
-export interface GetProjectsByIdOrNameCustomEnvironmentsResponseAccountLimit {
+export interface GetProjectCustomEnvironmentsResponseAccountLimit {
   total: number;
 }
-export const GetProjectsByIdOrNameCustomEnvironmentsResponseAccountLimit =
+export const GetProjectCustomEnvironmentsResponseAccountLimit =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       total: S.Number,
     }),
   ).annotate({
-    identifier: "GetProjectsByIdOrNameCustomEnvironmentsResponseAccountLimit",
-  }) as any as S.Schema<GetProjectsByIdOrNameCustomEnvironmentsResponseAccountLimit>;
+    identifier: "GetProjectCustomEnvironmentsResponseAccountLimit",
+  }) as any as S.Schema<GetProjectCustomEnvironmentsResponseAccountLimit>;
 
 /** The type of environment (production, preview, or development) */
-export type GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemType =
+export type GetProjectCustomEnvironmentsResponseEnvironmentsItemType =
   | "development"
   | "preview"
   | "production";
-export const GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemType =
+export const GetProjectCustomEnvironmentsResponseEnvironmentsItemType =
   /*@__PURE__*/ S.String;
 
-export type GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemDomainsItemRedirectStatusCode =
+export type GetProjectCustomEnvironmentsResponseEnvironmentsItemDomainsItemRedirectStatusCode =
   | 301
   | 302
   | 307
   | 308;
-export const GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemDomainsItemRedirectStatusCode =
+export const GetProjectCustomEnvironmentsResponseEnvironmentsItemDomainsItemRedirectStatusCode =
   /*@__PURE__*/ S.Number;
 
 /** A list of verification challenges, one of which must be completed to verify the domain for use on the project. After the challenge is complete `POST /projects/:idOrName/domains/:domain/verify` to verify the domain. Possible challenges: - If `verification.type = TXT` the `verification.domain` will be checked for a TXT record matching `verification.value`. */
-export type GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemDomainsItemVerificationItem =
+export type GetProjectCustomEnvironmentsResponseEnvironmentsItemDomainsItemVerificationItem =
   CreateCustomEnvironmentResponseDomainsItemVerificationItem;
-export const GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemDomainsItemVerificationItem =
+export const GetProjectCustomEnvironmentsResponseEnvironmentsItemDomainsItemVerificationItem =
   CreateCustomEnvironmentResponseDomainsItemVerificationItem;
 
 /** A list of verification challenges, one of which must be completed to verify the domain for use on the project. After the challenge is complete `POST /projects/:idOrName/domains/:domain/verify` to verify the domain. Possible challenges: - If `verification.type = TXT` the `verification.domain` will be checked for a TXT record matching `verification.value`. */
-export type GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemDomainsItemVerificationList =
+export type GetProjectCustomEnvironmentsResponseEnvironmentsItemDomainsItemVerificationList =
   Array<CreateCustomEnvironmentResponseDomainsItemVerificationItem>;
-export const GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemDomainsItemVerificationList =
+export const GetProjectCustomEnvironmentsResponseEnvironmentsItemDomainsItemVerificationList =
   /*@__PURE__*/ S.Array(
     CreateCustomEnvironmentResponseDomainsItemVerificationItem,
-  ) as any as S.Schema<GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemDomainsItemVerificationList>;
+  ) as any as S.Schema<GetProjectCustomEnvironmentsResponseEnvironmentsItemDomainsItemVerificationList>;
 
 /** List of domains associated with this environment */
-export interface GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemDomainsItem {
+export interface GetProjectCustomEnvironmentsResponseEnvironmentsItemDomainsItem {
   name: string;
   apexName: string;
   projectId: string;
   redirect?: string | null;
-  redirectStatusCode?: GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemDomainsItemRedirectStatusCode | null;
+  redirectStatusCode?: GetProjectCustomEnvironmentsResponseEnvironmentsItemDomainsItemRedirectStatusCode | null;
   gitBranch?: string | null;
   customEnvironmentId?: string | null;
   updatedAt?: number;
@@ -978,9 +977,9 @@ export interface GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItem
   /** `true` if the domain is verified for use with the project. If `false` it will not be used as an alias on this project until the challenge in `verification` is completed. */
   verified: boolean;
   /** A list of verification challenges, one of which must be completed to verify the domain for use on the project. After the challenge is complete `POST /projects/:idOrName/domains/:domain/verify` to verify the domain. Possible challenges: - If `verification.type = TXT` the `verification.domain` will be checked for a TXT record matching `verification.value`. */
-  verification?: GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemDomainsItemVerificationList;
+  verification?: GetProjectCustomEnvironmentsResponseEnvironmentsItemDomainsItemVerificationList;
 }
-export const GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemDomainsItem =
+export const GetProjectCustomEnvironmentsResponseEnvironmentsItemDomainsItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       name: S.String,
@@ -989,7 +988,7 @@ export const GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemDoma
       redirect: S.optional(S.NullOr(S.String)),
       redirectStatusCode: S.optional(
         S.NullOr(
-          GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemDomainsItemRedirectStatusCode,
+          GetProjectCustomEnvironmentsResponseEnvironmentsItemDomainsItemRedirectStatusCode,
         ),
       ),
       gitBranch: S.optional(S.NullOr(S.String)),
@@ -998,59 +997,59 @@ export const GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemDoma
       createdAt: S.optional(S.Number),
       verified: S.Boolean,
       verification: S.optional(
-        GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemDomainsItemVerificationList,
+        GetProjectCustomEnvironmentsResponseEnvironmentsItemDomainsItemVerificationList,
       ),
     }),
   ).annotate({
     identifier:
-      "GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemDomainsItem",
-  }) as any as S.Schema<GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemDomainsItem>;
+      "GetProjectCustomEnvironmentsResponseEnvironmentsItemDomainsItem",
+  }) as any as S.Schema<GetProjectCustomEnvironmentsResponseEnvironmentsItemDomainsItem>;
 
 /** List of domains associated with this environment */
-export type GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemDomainsList =
-  Array<GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemDomainsItem>;
-export const GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemDomainsList =
+export type GetProjectCustomEnvironmentsResponseEnvironmentsItemDomainsList =
+  Array<GetProjectCustomEnvironmentsResponseEnvironmentsItemDomainsItem>;
+export const GetProjectCustomEnvironmentsResponseEnvironmentsItemDomainsList =
   /*@__PURE__*/ S.Array(
-    GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemDomainsItem,
-  ) as any as S.Schema<GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemDomainsList>;
+    GetProjectCustomEnvironmentsResponseEnvironmentsItemDomainsItem,
+  ) as any as S.Schema<GetProjectCustomEnvironmentsResponseEnvironmentsItemDomainsList>;
 
 /** The type of matching to perform */
-export type GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemBranchMatcherType =
+export type GetProjectCustomEnvironmentsResponseEnvironmentsItemBranchMatcherType =
   | "endsWith"
   | "equals"
   | "startsWith";
-export const GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemBranchMatcherType =
+export const GetProjectCustomEnvironmentsResponseEnvironmentsItemBranchMatcherType =
   /*@__PURE__*/ S.String;
 
 /** Configuration for matching git branches to this environment */
-export interface GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemBranchMatcher {
+export interface GetProjectCustomEnvironmentsResponseEnvironmentsItemBranchMatcher {
   /** The type of matching to perform */
-  type: GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemBranchMatcherType;
+  type: GetProjectCustomEnvironmentsResponseEnvironmentsItemBranchMatcherType;
   /** The pattern to match against branch names */
   pattern: string;
 }
-export const GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemBranchMatcher =
+export const GetProjectCustomEnvironmentsResponseEnvironmentsItemBranchMatcher =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      type: GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemBranchMatcherType,
+      type: GetProjectCustomEnvironmentsResponseEnvironmentsItemBranchMatcherType,
       pattern: S.String,
     }),
   ).annotate({
     identifier:
-      "GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemBranchMatcher",
-  }) as any as S.Schema<GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemBranchMatcher>;
+      "GetProjectCustomEnvironmentsResponseEnvironmentsItemBranchMatcher",
+  }) as any as S.Schema<GetProjectCustomEnvironmentsResponseEnvironmentsItemBranchMatcher>;
 
 /** List of aliases for the current deployment */
-export type GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemCurrentDeploymentAliasesList =
+export type GetProjectCustomEnvironmentsResponseEnvironmentsItemCurrentDeploymentAliasesList =
   Array<string>;
-export const GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemCurrentDeploymentAliasesList =
+export const GetProjectCustomEnvironmentsResponseEnvironmentsItemCurrentDeploymentAliasesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemCurrentDeploymentAliasesList>;
+  ) as any as S.Schema<GetProjectCustomEnvironmentsResponseEnvironmentsItemCurrentDeploymentAliasesList>;
 
-export interface GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItem {
+export interface GetProjectCustomEnvironmentsResponseEnvironmentsItem {
   /** The type of environment (production, preview, or development) */
-  type: GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemType;
+  type: GetProjectCustomEnvironmentsResponseEnvironmentsItemType;
   /** Optional description of the environment's purpose */
   description?: string;
   /** Timestamp when the environment was created */
@@ -1062,58 +1061,56 @@ export interface GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItem
   /** Unique identifier for the custom environment (format: env_*) */
   id: string;
   /** List of domains associated with this environment */
-  domains?: GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemDomainsList;
+  domains?: GetProjectCustomEnvironmentsResponseEnvironmentsItemDomainsList;
   /** Configuration for matching git branches to this environment */
-  branchMatcher?: GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemBranchMatcher;
+  branchMatcher?: GetProjectCustomEnvironmentsResponseEnvironmentsItemBranchMatcher;
   /** List of aliases for the current deployment */
-  currentDeploymentAliases?: GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemCurrentDeploymentAliasesList;
+  currentDeploymentAliases?: GetProjectCustomEnvironmentsResponseEnvironmentsItemCurrentDeploymentAliasesList;
 }
-export const GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItem =
+export const GetProjectCustomEnvironmentsResponseEnvironmentsItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      type: GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemType,
+      type: GetProjectCustomEnvironmentsResponseEnvironmentsItemType,
       description: S.optional(S.String),
       createdAt: S.Number,
       updatedAt: S.Number,
       slug: S.String,
       id: S.String,
       domains: S.optional(
-        GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemDomainsList,
+        GetProjectCustomEnvironmentsResponseEnvironmentsItemDomainsList,
       ),
       branchMatcher: S.optional(
-        GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemBranchMatcher,
+        GetProjectCustomEnvironmentsResponseEnvironmentsItemBranchMatcher,
       ),
       currentDeploymentAliases: S.optional(
-        GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItemCurrentDeploymentAliasesList,
+        GetProjectCustomEnvironmentsResponseEnvironmentsItemCurrentDeploymentAliasesList,
       ),
     }),
   ).annotate({
-    identifier:
-      "GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItem",
-  }) as any as S.Schema<GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItem>;
+    identifier: "GetProjectCustomEnvironmentsResponseEnvironmentsItem",
+  }) as any as S.Schema<GetProjectCustomEnvironmentsResponseEnvironmentsItem>;
 
-export type GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsList =
-  Array<GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItem>;
-export const GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsList =
+export type GetProjectCustomEnvironmentsResponseEnvironmentsList =
+  Array<GetProjectCustomEnvironmentsResponseEnvironmentsItem>;
+export const GetProjectCustomEnvironmentsResponseEnvironmentsList =
   /*@__PURE__*/ S.Array(
-    GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsItem,
-  ) as any as S.Schema<GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsList>;
+    GetProjectCustomEnvironmentsResponseEnvironmentsItem,
+  ) as any as S.Schema<GetProjectCustomEnvironmentsResponseEnvironmentsList>;
 
-export interface GetProjectsByIdOrNameCustomEnvironmentsResponse {
+export interface GetProjectCustomEnvironmentsResponse {
   /** The maximum number of custom environments allowed either by the team's plan type or a custom override. */
-  accountLimit: GetProjectsByIdOrNameCustomEnvironmentsResponseAccountLimit;
-  environments: GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsList;
+  accountLimit: GetProjectCustomEnvironmentsResponseAccountLimit;
+  environments: GetProjectCustomEnvironmentsResponseEnvironmentsList;
 }
-export const GetProjectsByIdOrNameCustomEnvironmentsResponse =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetProjectCustomEnvironmentsResponse = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
-      accountLimit: GetProjectsByIdOrNameCustomEnvironmentsResponseAccountLimit,
-      environments:
-        GetProjectsByIdOrNameCustomEnvironmentsResponseEnvironmentsList,
+      accountLimit: GetProjectCustomEnvironmentsResponseAccountLimit,
+      environments: GetProjectCustomEnvironmentsResponseEnvironmentsList,
     }),
-  ).annotate({
-    identifier: "GetProjectsByIdOrNameCustomEnvironmentsResponse",
-  }) as any as S.Schema<GetProjectsByIdOrNameCustomEnvironmentsResponse>;
+).annotate({
+  identifier: "GetProjectCustomEnvironmentsResponse",
+}) as any as S.Schema<GetProjectCustomEnvironmentsResponse>;
 
 export interface GetSharedEnvVarRequest {
   /** The unique ID for the Shared Environment Variable to get the decrypted value. */
@@ -2268,19 +2265,19 @@ export const getCustomEnvironment: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetProjectsByIdOrNameCustomEnvironmentsError =
+export type GetProjectCustomEnvironmentsError =
   | BadRequest
   | Forbidden
   | VercelOpError;
 /** Retrieve custom environments Retrieve custom environments for the project. Must not be named 'Production' or 'Preview'. */
-export const getProjectsByIdOrNameCustomEnvironments: API.OperationMethod<
-  GetProjectsByIdOrNameCustomEnvironmentsRequest,
-  GetProjectsByIdOrNameCustomEnvironmentsResponse,
-  GetProjectsByIdOrNameCustomEnvironmentsError,
+export const getProjectCustomEnvironments: API.OperationMethod<
+  GetProjectCustomEnvironmentsRequest,
+  GetProjectCustomEnvironmentsResponse,
+  GetProjectCustomEnvironmentsError,
   VercelOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetProjectsByIdOrNameCustomEnvironmentsRequest,
-  output: GetProjectsByIdOrNameCustomEnvironmentsResponse,
+  input: GetProjectCustomEnvironmentsRequest,
+  output: GetProjectCustomEnvironmentsResponse,
   errors: [BadRequest, Forbidden],
   protocol: VercelProtocol,
   retry: Retry.Retry,
