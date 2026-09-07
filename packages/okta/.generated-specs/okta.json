@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.okta.management#GetWellKnownAppAuthenticatorConfigurationRequest": {
@@ -2093,7 +2094,7 @@
         "smithy.api#documentation": "Deactivate an agent pool update\n\nDeactivates scheduled agent pool update"
       }
     },
-    "com.okta.management#PauseAgentPoolsUpdateRequest": {
+    "com.okta.management#UpdatePauseAgentPoolRequest": {
       "type": "structure",
       "members": {
         "poolId": {
@@ -2117,10 +2118,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.okta.management#PauseAgentPoolsUpdate": {
+    "com.okta.management#UpdatePauseAgentPool": {
       "type": "operation",
       "input": {
-        "target": "com.okta.management#PauseAgentPoolsUpdateRequest"
+        "target": "com.okta.management#UpdatePauseAgentPoolRequest"
       },
       "output": {
         "target": "com.okta.management#AgentPoolUpdate"
@@ -30822,7 +30823,7 @@
         "smithy.api#documentation": "Retrieve the disaster recovery status for all domains\n\nRetrieves the failover or failback status for all the domains for your org"
       }
     },
-    "com.okta.management#GetDRStatusForDomainRequest": {
+    "com.okta.management#GetDRStatusByDomainRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -30838,7 +30839,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.okta.management#GetDRStatusForDomainResponseStatusList": {
+    "com.okta.management#GetDRStatusByDomainResponseStatusList": {
       "type": "list",
       "member": {
         "target": "com.okta.management#DRStatusItem"
@@ -30847,11 +30848,11 @@
         "smithy.api#documentation": "List of domains and their disaster recovery status"
       }
     },
-    "com.okta.management#GetDRStatusForDomainResponse": {
+    "com.okta.management#GetDRStatusByDomainResponse": {
       "type": "structure",
       "members": {
         "status": {
-          "target": "com.okta.management#GetDRStatusForDomainResponseStatusList",
+          "target": "com.okta.management#GetDRStatusByDomainResponseStatusList",
           "traits": {
             "smithy.api#documentation": "List of domains and their disaster recovery status"
           }
@@ -30861,13 +30862,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.okta.management#GetDRStatusForDomain": {
+    "com.okta.management#GetDRStatusByDomain": {
       "type": "operation",
       "input": {
-        "target": "com.okta.management#GetDRStatusForDomainRequest"
+        "target": "com.okta.management#GetDRStatusByDomainRequest"
       },
       "output": {
-        "target": "com.okta.management#GetDRStatusForDomainResponse"
+        "target": "com.okta.management#GetDRStatusByDomainResponse"
       },
       "errors": [
         {
@@ -76223,7 +76224,7 @@
         "smithy.api#documentation": "Assign a client role\n\nAssigns a [standard role](/openapi/okta-management/guides/roles/#standard-roles) to a client app.\n\nYou can also assign a custom role to a client app, but the preferred method to assign a custom role to a client is to create a binding between the custom role, the resource set, and the client app. See [Create a role resource set binding](/openapi/okta-management/management/roledresourcesetbinding/createresourcesetbinding).\n\n> **Notes:**\n> * The request payload is different for standard and custom role assignments.\n> * For IAM-based standard role assignments, use the request payload for standard roles. However, the response payload for IAM-based role assignments is similar to the custom role's assignment response."
       }
     },
-    "com.okta.management#RetrieveClientRoleRequest": {
+    "com.okta.management#GetClientRoleRequest": {
       "type": "structure",
       "members": {
         "clientId": {
@@ -76247,7 +76248,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.okta.management#RetrieveClientRoleResponseBody": {
+    "com.okta.management#GetClientRoleResponseBody": {
       "type": "union",
       "members": {
         "StandardRole": {
@@ -76259,11 +76260,11 @@
       },
       "traits": {}
     },
-    "com.okta.management#RetrieveClientRoleResponse": {
+    "com.okta.management#GetClientRoleResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.okta.management#RetrieveClientRoleResponseBody",
+          "target": "com.okta.management#GetClientRoleResponseBody",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -76274,13 +76275,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.okta.management#RetrieveClientRole": {
+    "com.okta.management#GetClientRole": {
       "type": "operation",
       "input": {
-        "target": "com.okta.management#RetrieveClientRoleRequest"
+        "target": "com.okta.management#GetClientRoleRequest"
       },
       "output": {
-        "target": "com.okta.management#RetrieveClientRoleResponse"
+        "target": "com.okta.management#GetClientRoleResponse"
       },
       "errors": [
         {
@@ -78957,7 +78958,7 @@
           "target": "com.okta.management#DeactivateAgentPoolsUpdate"
         },
         {
-          "target": "com.okta.management#PauseAgentPoolsUpdate"
+          "target": "com.okta.management#UpdatePauseAgentPool"
         },
         {
           "target": "com.okta.management#ResumeAgentPoolsUpdate"
@@ -79728,7 +79729,7 @@
           "target": "com.okta.management#GetDRStatus"
         },
         {
-          "target": "com.okta.management#GetDRStatusForDomain"
+          "target": "com.okta.management#GetDRStatusByDomain"
         },
         {
           "target": "com.okta.management#ListEmailDomains"
@@ -81006,7 +81007,7 @@
           "target": "com.okta.management#AssignRoleToClient"
         },
         {
-          "target": "com.okta.management#RetrieveClientRole"
+          "target": "com.okta.management#GetClientRole"
         },
         {
           "target": "com.okta.management#DeleteRoleFromClient"

@@ -19403,6 +19403,38 @@ export const GetClientPrivilegesSettingRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetClientPrivilegesSettingRequest",
 }) as any as S.Schema<GetClientPrivilegesSettingRequest>;
 
+export interface GetClientRoleRequest {
+  /** `client_id` of the app */
+  clientId: string;
+  /** The `id` of the role assignment */
+  roleAssignmentId: string;
+}
+export const GetClientRoleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    clientId: S.String.pipe(T.Label()),
+    roleAssignmentId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/oauth2/v1/clients/{clientId}/roles/{roleAssignmentId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetClientRoleRequest",
+}) as any as S.Schema<GetClientRoleRequest>;
+
+export type GetClientRoleResponseBody = StandardRole | CustomRole;
+export const GetClientRoleResponseBody =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<GetClientRoleResponseBody>;
+
+export type GetClientRoleResponse = GetClientRoleResponseBody;
+export const GetClientRoleResponse = /*@__PURE__*/ S.suspend(() =>
+  GetClientRoleResponseBody.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "GetClientRoleResponse",
+}) as any as S.Schema<GetClientRoleResponse>;
+
 export interface GetCrossAppAccessConnectionRequest {
   /** Application ID */
   appId: string;
@@ -20693,37 +20725,37 @@ export const GetDRStatusResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetDRStatusResponse",
 }) as any as S.Schema<GetDRStatusResponse>;
 
-export interface GetDRStatusForDomainRequest {
+export interface GetDRStatusByDomainRequest {
   /** The Okta domain name of your org or one of your custom domains */
   domain: string;
 }
-export const GetDRStatusForDomainRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDRStatusByDomainRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     domain: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({ method: "GET", uri: "/api/v1/dr/status/{domain}", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetDRStatusForDomainRequest",
-}) as any as S.Schema<GetDRStatusForDomainRequest>;
+  identifier: "GetDRStatusByDomainRequest",
+}) as any as S.Schema<GetDRStatusByDomainRequest>;
 
 /** List of domains and their disaster recovery status */
-export type GetDRStatusForDomainResponseStatusList = Array<DRStatusItem>;
-export const GetDRStatusForDomainResponseStatusList = /*@__PURE__*/ S.Array(
+export type GetDRStatusByDomainResponseStatusList = Array<DRStatusItem>;
+export const GetDRStatusByDomainResponseStatusList = /*@__PURE__*/ S.Array(
   DRStatusItem,
-) as any as S.Schema<GetDRStatusForDomainResponseStatusList>;
+) as any as S.Schema<GetDRStatusByDomainResponseStatusList>;
 
-export interface GetDRStatusForDomainResponse {
+export interface GetDRStatusByDomainResponse {
   /** List of domains and their disaster recovery status */
-  status?: GetDRStatusForDomainResponseStatusList;
+  status?: GetDRStatusByDomainResponseStatusList;
 }
-export const GetDRStatusForDomainResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetDRStatusByDomainResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    status: S.optional(GetDRStatusForDomainResponseStatusList),
+    status: S.optional(GetDRStatusByDomainResponseStatusList),
   }),
 ).annotate({
-  identifier: "GetDRStatusForDomainResponse",
-}) as any as S.Schema<GetDRStatusForDomainResponse>;
+  identifier: "GetDRStatusByDomainResponse",
+}) as any as S.Schema<GetDRStatusByDomainResponse>;
 
 export interface GetEmailCustomizationRequest {
   /** The ID of the brand */
@@ -31798,27 +31830,6 @@ export const OptOutUsersFromOktaCommunicationEmailsRequest =
     identifier: "OptOutUsersFromOktaCommunicationEmailsRequest",
   }) as any as S.Schema<OptOutUsersFromOktaCommunicationEmailsRequest>;
 
-export interface PauseAgentPoolsUpdateRequest {
-  /** ID of the agent pool for which the settings apply to */
-  poolId: string;
-  /** ID of the update */
-  updateId: string;
-}
-export const PauseAgentPoolsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    poolId: S.String.pipe(T.Label()),
-    updateId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/v1/agentPools/{poolId}/updates/{updateId}/pause",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PauseAgentPoolsUpdateRequest",
-}) as any as S.Schema<PauseAgentPoolsUpdateRequest>;
-
 export interface PreviewSAMLmetadataForApplicationRequest {
   /** Application ID */
   appId: string;
@@ -34542,38 +34553,6 @@ export const ResumeAgentPoolsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ResumeAgentPoolsUpdateRequest",
 }) as any as S.Schema<ResumeAgentPoolsUpdateRequest>;
-
-export interface RetrieveClientRoleRequest {
-  /** `client_id` of the app */
-  clientId: string;
-  /** The `id` of the role assignment */
-  roleAssignmentId: string;
-}
-export const RetrieveClientRoleRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    clientId: S.String.pipe(T.Label()),
-    roleAssignmentId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/oauth2/v1/clients/{clientId}/roles/{roleAssignmentId}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "RetrieveClientRoleRequest",
-}) as any as S.Schema<RetrieveClientRoleRequest>;
-
-export type RetrieveClientRoleResponseBody = StandardRole | CustomRole;
-export const RetrieveClientRoleResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RetrieveClientRoleResponseBody>;
-
-export type RetrieveClientRoleResponse = RetrieveClientRoleResponseBody;
-export const RetrieveClientRoleResponse = /*@__PURE__*/ S.suspend(() =>
-  RetrieveClientRoleResponseBody.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "RetrieveClientRoleResponse",
-}) as any as S.Schema<RetrieveClientRoleResponse>;
 
 export interface RetryAgentPoolsUpdateRequest {
   /** ID of the agent pool for which the settings apply to */
@@ -37565,6 +37544,27 @@ export const UpdateOrgSettingsRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "UpdateOrgSettingsRequest",
 }) as any as S.Schema<UpdateOrgSettingsRequest>;
+
+export interface UpdatePauseAgentPoolRequest {
+  /** ID of the agent pool for which the settings apply to */
+  poolId: string;
+  /** ID of the update */
+  updateId: string;
+}
+export const UpdatePauseAgentPoolRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    poolId: S.String.pipe(T.Label()),
+    updateId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/v1/agentPools/{poolId}/updates/{updateId}/pause",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdatePauseAgentPoolRequest",
+}) as any as S.Schema<UpdatePauseAgentPoolRequest>;
 
 export interface UpdateProfileMappingRequest {
   /** `id` of the Mapping */
@@ -43474,6 +43474,21 @@ export const getClientPrivilegesSetting: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetClientRoleError = Forbidden | NotFound | OktaOpError;
+/** Retrieve a client role Retrieves a role assignment (identified by `roleAssignmentId`) for a client app (identified by `clientId`) */
+export const getClientRole: API.OperationMethod<
+  GetClientRoleRequest,
+  GetClientRoleResponse,
+  GetClientRoleError,
+  OktaOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetClientRoleRequest,
+  output: GetClientRoleResponse,
+  errors: [Forbidden, NotFound, UnknownOktaError],
+  protocol: OktaProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetCrossAppAccessConnectionError =
   | Forbidden
   | NotFound
@@ -43768,16 +43783,16 @@ export const getDRStatus: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetDRStatusForDomainError = BadRequest | Forbidden | OktaOpError;
+export type GetDRStatusByDomainError = BadRequest | Forbidden | OktaOpError;
 /** Retrieve the disaster recovery status for a domain Retrieves the failover or failback status for the domain specified in the request path */
-export const getDRStatusForDomain: API.OperationMethod<
-  GetDRStatusForDomainRequest,
-  GetDRStatusForDomainResponse,
-  GetDRStatusForDomainError,
+export const getDRStatusByDomain: API.OperationMethod<
+  GetDRStatusByDomainRequest,
+  GetDRStatusByDomainResponse,
+  GetDRStatusByDomainError,
   OktaOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetDRStatusForDomainRequest,
-  output: GetDRStatusForDomainResponse,
+  input: GetDRStatusByDomainRequest,
+  output: GetDRStatusByDomainResponse,
   errors: [BadRequest, Forbidden, UnknownOktaError],
   protocol: OktaProtocol,
   retry: Retry.Retry,
@@ -47615,21 +47630,6 @@ export const optOutUsersFromOktaCommunicationEmails: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PauseAgentPoolsUpdateError = Forbidden | NotFound | OktaOpError;
-/** Pause an agent pool update Pauses a running or queued agent pool update */
-export const pauseAgentPoolsUpdate: API.OperationMethod<
-  PauseAgentPoolsUpdateRequest,
-  AgentPoolUpdate,
-  PauseAgentPoolsUpdateError,
-  OktaOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PauseAgentPoolsUpdateRequest,
-  output: AgentPoolUpdate,
-  errors: [Forbidden, NotFound, UnknownOktaError],
-  protocol: OktaProtocol,
-  retry: Retry.Retry,
-}));
-
 export type PreviewSAMLmetadataForApplicationError =
   | Forbidden
   | NotFound
@@ -49063,21 +49063,6 @@ export const resumeAgentPoolsUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type RetrieveClientRoleError = Forbidden | NotFound | OktaOpError;
-/** Retrieve a client role Retrieves a role assignment (identified by `roleAssignmentId`) for a client app (identified by `clientId`) */
-export const retrieveClientRole: API.OperationMethod<
-  RetrieveClientRoleRequest,
-  RetrieveClientRoleResponse,
-  RetrieveClientRoleError,
-  OktaOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveClientRoleRequest,
-  output: RetrieveClientRoleResponse,
-  errors: [Forbidden, NotFound, UnknownOktaError],
-  protocol: OktaProtocol,
-  retry: Retry.Retry,
-}));
-
 export type RetryAgentPoolsUpdateError = Forbidden | NotFound | OktaOpError;
 /** Retry an agent pool update Retries an agent pool update if the update is unsuccessful or communication with Okta was interrupted during an agent auto-update */
 export const retryAgentPoolsUpdate: API.OperationMethod<
@@ -50431,6 +50416,21 @@ export const updateOrgSettings: API.OperationMethod<
   input: UpdateOrgSettingsRequest,
   output: OrgSetting,
   errors: [BadRequest, Forbidden, UnknownOktaError],
+  protocol: OktaProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdatePauseAgentPoolError = Forbidden | NotFound | OktaOpError;
+/** Pause an agent pool update Pauses a running or queued agent pool update */
+export const updatePauseAgentPool: API.OperationMethod<
+  UpdatePauseAgentPoolRequest,
+  AgentPoolUpdate,
+  UpdatePauseAgentPoolError,
+  OktaOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdatePauseAgentPoolRequest,
+  output: AgentPoolUpdate,
+  errors: [Forbidden, NotFound, UnknownOktaError],
   protocol: OktaProtocol,
   retry: Retry.Retry,
 }));
