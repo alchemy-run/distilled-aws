@@ -173,3 +173,8 @@
 	url = https://github.com/distilled-mirror/spec-mirror-clerk.git
 	ignore = dirty
 	shallow = true
+[submodule "packages/grafana/specs/spec-mirror-grafana"]
+	path = packages/grafana/specs/spec-mirror-grafana
+	url = https://github.com/distilled-mirror/spec-mirror-grafana.git
+	ignore = dirty
+	shallow = true

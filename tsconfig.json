@@ -219,6 +219,12 @@
     },
     {
       "path": "./packages/clerk/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/grafana/tsconfig.json"
+    },
+    {
+      "path": "./packages/grafana/tsconfig.scripts.json"
     }
   ]
 }
