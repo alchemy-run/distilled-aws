@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.launchdarkly.api#RootResponse": {
@@ -1303,7 +1304,7 @@
         "smithy.api#documentation": "Get application by key\n\nRetrieve an application by the application key.\n\n### Expanding the application response\n\nLaunchDarkly supports expanding the \"Get application\" response to include additional fields.\n\nTo expand the response, append the `expand` query parameter and include the following:\n\n* `flags` includes details on the flags that have been evaluated by the application\n\nFor example, use `?expand=flags` to include the `flags` field in the response. By default, this field is **not** included in the response."
       }
     },
-    "com.launchdarkly.api#PatchApplicationRequest": {
+    "com.launchdarkly.api#UpdateApplicationRequest": {
       "type": "structure",
       "members": {
         "applicationKey": {
@@ -1326,10 +1327,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.launchdarkly.api#PatchApplication": {
+    "com.launchdarkly.api#UpdateApplication": {
       "type": "operation",
       "input": {
-        "target": "com.launchdarkly.api#PatchApplicationRequest"
+        "target": "com.launchdarkly.api#UpdateApplicationRequest"
       },
       "output": {
         "target": "com.launchdarkly.api#ApplicationRep"
@@ -1581,7 +1582,7 @@
         "smithy.api#documentation": "Get application versions by application key\n\nGet a list of versions for a specific application in an account."
       }
     },
-    "com.launchdarkly.api#PatchApplicationVersionRequest": {
+    "com.launchdarkly.api#UpdateApplicationVersionRequest": {
       "type": "structure",
       "members": {
         "applicationKey": {
@@ -1612,10 +1613,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.launchdarkly.api#PatchApplicationVersion": {
+    "com.launchdarkly.api#UpdateApplicationVersion": {
       "type": "operation",
       "input": {
-        "target": "com.launchdarkly.api#PatchApplicationVersionRequest"
+        "target": "com.launchdarkly.api#UpdateApplicationVersionRequest"
       },
       "output": {
         "target": "com.launchdarkly.api#ApplicationVersionRep"
@@ -3365,7 +3366,7 @@
         "smithy.api#documentation": "List approval requests\n\nGet all approval requests.\n\n### Filtering approvals\n\nLaunchDarkly supports the `filter` query param for filtering, with the following fields:\n\n- `notifyMemberIds` filters for only approvals that are assigned to a member in the specified list. For example: `filter=notifyMemberIds anyOf [\"memberId1\", \"memberId2\"]`.\n- `requestorId` filters for only approvals that correspond to the ID of the member who requested the approval. For example: `filter=requestorId equals 457034721476302714390214`.\n- `resourceId` filters for only approvals that correspond to the the specified resource identifier. For example: `filter=resourceId equals proj/my-project:env/my-environment:flag/my-flag`.\n- `resourceKind` filters for only approvals that correspond to the specified resource kind. For example: `filter=resourceKind equals flag`. Currently, `flag`, `segment`, and `aiConfig` resource kinds are supported.\n- `reviewStatus` filters for only approvals which correspond to the review status in the specified list. The possible values are `approved`, `declined`, and `pending`. For example: `filter=reviewStatus anyOf [\"pending\", \"approved\"]`.\n- `status` filters for only approvals which correspond to the status in the specified list. The possible values are `pending`, `scheduled`, `failed`, and `completed`. For example: `filter=status anyOf [\"pending\", \"scheduled\"]`.\n\nYou can also apply multiple filters at once. For example, setting `filter=projectKey equals my-project, reviewStatus anyOf [\"pending\",\"approved\"]` matches approval requests which correspond to the `my-project` project key, and a review status of either `pending` or `approved`.\n\n### Expanding approval response\n\nLaunchDarkly supports the `expand` query param to include additional fields in the response, with the following fields:\n\n- `flag` includes the flag the approval request belongs to\n- `project` includes the project the approval request belongs to\n- `environments` includes the environments the approval request relates to\n\nFor example, `expand=project,flag` includes the `project` and `flag` fields in the response."
       }
     },
-    "com.launchdarkly.api#PostApprovalRequestRequestNotifyMemberIdsList": {
+    "com.launchdarkly.api#CreateApprovalRequestRequestNotifyMemberIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -3374,7 +3375,7 @@
         "smithy.api#documentation": "An array of member IDs. These members are notified to review the approval request."
       }
     },
-    "com.launchdarkly.api#PostApprovalRequestRequestNotifyTeamKeysList": {
+    "com.launchdarkly.api#CreateApprovalRequestRequestNotifyTeamKeysList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -3393,7 +3394,7 @@
       },
       "traits": {}
     },
-    "com.launchdarkly.api#PostApprovalRequestRequest": {
+    "com.launchdarkly.api#CreateApprovalRequestRequest": {
       "type": "structure",
       "members": {
         "resourceId": {
@@ -3424,13 +3425,13 @@
           }
         },
         "notifyMemberIds": {
-          "target": "com.launchdarkly.api#PostApprovalRequestRequestNotifyMemberIdsList",
+          "target": "com.launchdarkly.api#CreateApprovalRequestRequestNotifyMemberIdsList",
           "traits": {
             "smithy.api#documentation": "An array of member IDs. These members are notified to review the approval request."
           }
         },
         "notifyTeamKeys": {
-          "target": "com.launchdarkly.api#PostApprovalRequestRequestNotifyTeamKeysList",
+          "target": "com.launchdarkly.api#CreateApprovalRequestRequestNotifyTeamKeysList",
           "traits": {
             "smithy.api#documentation": "An array of team keys. The members of these teams are notified to review the approval request."
           }
@@ -3698,10 +3699,10 @@
         "smithy.api#documentation": "The location and content type of related resources"
       }
     },
-    "com.launchdarkly.api#PostApprovalRequest": {
+    "com.launchdarkly.api#CreateApprovalRequest": {
       "type": "operation",
       "input": {
-        "target": "com.launchdarkly.api#PostApprovalRequestRequest"
+        "target": "com.launchdarkly.api#CreateApprovalRequestRequest"
       },
       "output": {
         "target": "com.launchdarkly.api#ApprovalRequestResponse"
@@ -3774,7 +3775,7 @@
         "smithy.api#documentation": "Get approval request\n\nGet an approval request by approval request ID.\n\n### Expanding approval response\n\nLaunchDarkly supports the `expand` query param to include additional fields in the response, with the following fields:\n\n- `environments` includes the environments the approval request relates to\n- `flag` includes the flag the approval request belongs to\n- `project` includes the project the approval request belongs to\n- `resource` includes details on the resource (flag or segment) the approval request relates to\n\nFor example, `expand=project,flag` includes the `project` and `flag` fields in the response."
       }
     },
-    "com.launchdarkly.api#PatchApprovalRequestRequest": {
+    "com.launchdarkly.api#UpdateApprovalRequestRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -4043,10 +4044,10 @@
         "smithy.api#documentation": "The location and content type of related resources"
       }
     },
-    "com.launchdarkly.api#PatchApprovalRequest": {
+    "com.launchdarkly.api#UpdateApprovalRequest": {
       "type": "operation",
       "input": {
-        "target": "com.launchdarkly.api#PatchApprovalRequestRequest"
+        "target": "com.launchdarkly.api#UpdateApprovalRequestRequest"
       },
       "output": {
         "target": "com.launchdarkly.api#FlagConfigApprovalRequestResponse"
@@ -4109,7 +4110,7 @@
         "smithy.api#documentation": "Delete approval request\n\nDelete an approval request."
       }
     },
-    "com.launchdarkly.api#PostApprovalRequestApplyRequest": {
+    "com.launchdarkly.api#CreateApprovalRequestApplyRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -4131,10 +4132,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.launchdarkly.api#PostApprovalRequestApply": {
+    "com.launchdarkly.api#CreateApprovalRequestApply": {
       "type": "operation",
       "input": {
-        "target": "com.launchdarkly.api#PostApprovalRequestApplyRequest"
+        "target": "com.launchdarkly.api#CreateApprovalRequestApplyRequest"
       },
       "output": {
         "target": "com.launchdarkly.api#ApprovalRequestResponse"
@@ -4159,7 +4160,7 @@
         "smithy.api#documentation": "Apply approval request\n\nApply an approval request that has been approved. This endpoint works with any approval requests."
       }
     },
-    "com.launchdarkly.api#PostApprovalRequestReviewRequestKind": {
+    "com.launchdarkly.api#CreateApprovalRequestReviewRequestKind": {
       "type": "enum",
       "members": {
         "APPROVE": {
@@ -4185,7 +4186,7 @@
         "smithy.api#documentation": "The type of review for this approval request"
       }
     },
-    "com.launchdarkly.api#PostApprovalRequestReviewRequest": {
+    "com.launchdarkly.api#CreateApprovalRequestReviewRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -4197,7 +4198,7 @@
           }
         },
         "kind": {
-          "target": "com.launchdarkly.api#PostApprovalRequestReviewRequestKind",
+          "target": "com.launchdarkly.api#CreateApprovalRequestReviewRequestKind",
           "traits": {
             "smithy.api#documentation": "The type of review for this approval request"
           }
@@ -4213,10 +4214,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.launchdarkly.api#PostApprovalRequestReview": {
+    "com.launchdarkly.api#CreateApprovalRequestReview": {
       "type": "operation",
       "input": {
-        "target": "com.launchdarkly.api#PostApprovalRequestReviewRequest"
+        "target": "com.launchdarkly.api#CreateApprovalRequestReviewRequest"
       },
       "output": {
         "target": "com.launchdarkly.api#ApprovalRequestResponse"
@@ -7508,7 +7509,7 @@
         "smithy.api#documentation": "Generate warehouse destination setup script\n\nGenerate the SQL setup script required to prepare a warehouse for LaunchDarkly Data Export. For Snowflake, this also generates a key pair. Custom Snowflake object names may be provided. If omitted, defaults are used."
       }
     },
-    "com.launchdarkly.api#PostDestinationRequestKind": {
+    "com.launchdarkly.api#UpdateDestinationRequestKind": {
       "type": "enum",
       "members": {
         "GOOGLE_PUBSUB": {
@@ -7570,7 +7571,7 @@
         "smithy.api#documentation": "The type of Data Export destination"
       }
     },
-    "com.launchdarkly.api#PostDestinationRequest": {
+    "com.launchdarkly.api#UpdateDestinationRequest": {
       "type": "structure",
       "members": {
         "projectKey": {
@@ -7596,7 +7597,7 @@
           }
         },
         "kind": {
-          "target": "com.launchdarkly.api#PostDestinationRequestKind",
+          "target": "com.launchdarkly.api#UpdateDestinationRequestKind",
           "traits": {
             "smithy.api#documentation": "The type of Data Export destination"
           }
@@ -7618,10 +7619,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.launchdarkly.api#PostDestination": {
+    "com.launchdarkly.api#UpdateDestination": {
       "type": "operation",
       "input": {
-        "target": "com.launchdarkly.api#PostDestinationRequest"
+        "target": "com.launchdarkly.api#UpdateDestinationRequest"
       },
       "output": {
         "target": "com.launchdarkly.api#Destination"
@@ -7703,7 +7704,7 @@
         "smithy.api#documentation": "Get destination\n\nGet a single Data Export destination by ID."
       }
     },
-    "com.launchdarkly.api#PatchDestinationRequest": {
+    "com.launchdarkly.api#UpdateDestinationByIdRequest": {
       "type": "structure",
       "members": {
         "projectKey": {
@@ -7742,10 +7743,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.launchdarkly.api#PatchDestination": {
+    "com.launchdarkly.api#UpdateDestinationById": {
       "type": "operation",
       "input": {
-        "target": "com.launchdarkly.api#PatchDestinationRequest"
+        "target": "com.launchdarkly.api#UpdateDestinationByIdRequest"
       },
       "output": {
         "target": "com.launchdarkly.api#Destination"
@@ -16738,7 +16739,7 @@
         "smithy.api#documentation": "An array of the member's teams"
       }
     },
-    "com.launchdarkly.api#PostMembersRequest": {
+    "com.launchdarkly.api#CreateMemberRequest": {
       "type": "structure",
       "members": {
         "body": {
@@ -16753,10 +16754,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.launchdarkly.api#PostMembers": {
+    "com.launchdarkly.api#CreateMember": {
       "type": "operation",
       "input": {
-        "target": "com.launchdarkly.api#PostMembersRequest"
+        "target": "com.launchdarkly.api#CreateMemberRequest"
       },
       "output": {
         "target": "com.launchdarkly.api#Members"
@@ -16781,7 +16782,7 @@
         "smithy.api#documentation": "Invite new members\n\nInvite one or more new members to join an account. Each member is sent an invitation. Members with Admin or Owner roles may create new members, as well as anyone with a `createMember` permission for \"member/\\*\". If a member cannot be invited, the entire request is rejected and no members are invited from that request.\n\nEach member _must_ have an `email` field and either a `role` or a `customRoles` field. If any of the fields are not populated correctly, the request is rejected with the reason specified in the \"message\" field of the response.\n\nValid base role names that you can provide for the `role` field include `reader`, `writer`, `admin`, `owner/admin`, and `no_access`. To learn more about base roles, read [Organization roles](https://launchdarkly.com/docs/home/account/roles/organization-roles).\n\nIf you are using the `customRoles` field instead, you can provide the key for any role that you have created, or for any preset [organization role](https://launchdarkly.com/docs/home/account/roles/organization-roles) or [project role](https://launchdarkly.com/docs/home/account/roles/project-roles) provided by LaunchDarkly. Some preset roles additionally require that you specify `roleAttributes`. To learn more, read [Using role scope](https://launchdarkly.com/docs/home/account/roles/role-scope).\n\nRequests to create account members will not work if SCIM is enabled for the account.\n\nYou can assign new members to teams with the `teamKeys` field. Teams are available only on Enterprise plans. If your plan does not include teams, a request that includes a non-empty `teamKeys` field returns an HTTP response code of 403 (Forbidden). Omit `teamKeys` to invite members without assigning them to a team.\n\n_No more than 50 members may be created per request._\n\nA request may also fail because of conflicts with existing members. These conflicts are reported using the additional `code` and `invalid_emails` response fields with the following possible values for `code`:\n\n- **email_already_exists_in_account**: A member with this email address already exists in this account.\n- **email_taken_in_different_account**: A member with this email address exists in another account.\n- **duplicate_email**s: This request contains two or more members with the same email address.\n\nA request that fails for one of the above reasons returns an HTTP response code of 400 (Bad Request)."
       }
     },
-    "com.launchdarkly.api#PatchMembersRequest": {
+    "com.launchdarkly.api#UpdateMembersRequest": {
       "type": "structure",
       "members": {
         "comment": {
@@ -16848,10 +16849,10 @@
         "smithy.api#documentation": "A list of member IDs and errors for the members whose updates failed."
       }
     },
-    "com.launchdarkly.api#PatchMembers": {
+    "com.launchdarkly.api#UpdateMembers": {
       "type": "operation",
       "input": {
-        "target": "com.launchdarkly.api#PatchMembersRequest"
+        "target": "com.launchdarkly.api#UpdateMembersRequest"
       },
       "output": {
         "target": "com.launchdarkly.api#BulkEditMembersRep"
@@ -16924,7 +16925,7 @@
         "smithy.api#documentation": "Get account member\n\nGet a single account member by member ID.\n\n`me` is a reserved value for the `id` parameter that returns the caller's member information.\n\n### Expanding the member response\nLaunchDarkly supports the following fields for expanding the \"Get member\" response. By default, these fields are **not** included in the response.\n\nTo expand the response, append the `expand` query parameter and add a comma-separated list with any of the following fields:\n\n* `customRoles` includes details on each custom role assigned to the member, including the role key, name, and ID.\n* `roleAttributes` includes a list of the role attributes that you have assigned to the member.\n\nFor example, `expand=customRoles,roleAttributes` includes both the `customRolesInfo` and `roleAttributes` fields in the response."
       }
     },
-    "com.launchdarkly.api#PatchMemberRequest": {
+    "com.launchdarkly.api#UpdateMemberRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -16947,10 +16948,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.launchdarkly.api#PatchMember": {
+    "com.launchdarkly.api#UpdateMember": {
       "type": "operation",
       "input": {
-        "target": "com.launchdarkly.api#PatchMemberRequest"
+        "target": "com.launchdarkly.api#UpdateMemberRequest"
       },
       "output": {
         "target": "com.launchdarkly.api#Member"
@@ -17022,7 +17023,7 @@
         "smithy.api#documentation": "Delete account member\n\nDelete a single account member by ID. Requests to delete account members will not work if SCIM is enabled for the account."
       }
     },
-    "com.launchdarkly.api#PostMemberTeamsRequestTeamKeysList": {
+    "com.launchdarkly.api#CreateMemberTeamRequestTeamKeysList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -17031,7 +17032,7 @@
         "smithy.api#documentation": "List of team keys"
       }
     },
-    "com.launchdarkly.api#PostMemberTeamsRequest": {
+    "com.launchdarkly.api#CreateMemberTeamRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -17043,7 +17044,7 @@
           }
         },
         "teamKeys": {
-          "target": "com.launchdarkly.api#PostMemberTeamsRequestTeamKeysList",
+          "target": "com.launchdarkly.api#CreateMemberTeamRequestTeamKeysList",
           "traits": {
             "smithy.api#documentation": "List of team keys",
             "smithy.api#required": {}
@@ -17054,10 +17055,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.launchdarkly.api#PostMemberTeams": {
+    "com.launchdarkly.api#CreateMemberTeam": {
       "type": "operation",
       "input": {
-        "target": "com.launchdarkly.api#PostMemberTeamsRequest"
+        "target": "com.launchdarkly.api#CreateMemberTeamRequest"
       },
       "output": {
         "target": "com.launchdarkly.api#Member"
@@ -19066,7 +19067,7 @@
       },
       "traits": {}
     },
-    "com.launchdarkly.api#PostProjectRequestTagsList": {
+    "com.launchdarkly.api#CreateProjectRequestTagsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -19177,7 +19178,7 @@
       },
       "traits": {}
     },
-    "com.launchdarkly.api#PostProjectRequestEnvironmentsList": {
+    "com.launchdarkly.api#CreateProjectRequestEnvironmentsList": {
       "type": "list",
       "member": {
         "target": "com.launchdarkly.api#EnvironmentPost"
@@ -19242,7 +19243,7 @@
         "smithy.api#documentation": "The casing convention to enforce for new flag keys in this project"
       }
     },
-    "com.launchdarkly.api#PostProjectRequest": {
+    "com.launchdarkly.api#CreateProjectRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -19272,13 +19273,13 @@
           }
         },
         "tags": {
-          "target": "com.launchdarkly.api#PostProjectRequestTagsList",
+          "target": "com.launchdarkly.api#CreateProjectRequestTagsList",
           "traits": {
             "smithy.api#documentation": "Tags for the project"
           }
         },
         "environments": {
-          "target": "com.launchdarkly.api#PostProjectRequestEnvironmentsList",
+          "target": "com.launchdarkly.api#CreateProjectRequestEnvironmentsList",
           "traits": {
             "smithy.api#documentation": "Creates the provided environments for this project. If omitted default environments will be created instead."
           }
@@ -19397,10 +19398,10 @@
         "smithy.api#documentation": "A list of environments for the project"
       }
     },
-    "com.launchdarkly.api#PostProject": {
+    "com.launchdarkly.api#CreateProject": {
       "type": "operation",
       "input": {
-        "target": "com.launchdarkly.api#PostProjectRequest"
+        "target": "com.launchdarkly.api#CreateProjectRequest"
       },
       "output": {
         "target": "com.launchdarkly.api#ProjectRep"
@@ -19476,7 +19477,7 @@
         "smithy.api#documentation": "Get project\n\nGet a single project by key.\n\n### Expanding the project response\n\nLaunchDarkly supports one field for expanding the \"Get project\" response. By default, these fields are **not** included in the response.\n\nTo expand the response, append the `expand` query parameter and add a comma-separated list with any of the following fields:\n* `environments` includes a paginated list of the project environments.\n\nFor example, `expand=environments` includes the `environments` field for the project in the response."
       }
     },
-    "com.launchdarkly.api#PatchProjectRequest": {
+    "com.launchdarkly.api#UpdateProjectRequest": {
       "type": "structure",
       "members": {
         "projectKey": {
@@ -19499,10 +19500,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.launchdarkly.api#PatchProject": {
+    "com.launchdarkly.api#UpdateProject": {
       "type": "operation",
       "input": {
-        "target": "com.launchdarkly.api#PatchProjectRequest"
+        "target": "com.launchdarkly.api#UpdateProjectRequest"
       },
       "output": {
         "target": "com.launchdarkly.api#ProjectRep"
@@ -30942,7 +30943,7 @@
         "smithy.api#documentation": "List segments\n\nGet a list of all segments in the given project.\n\nSegments can be rule-based, list-based, or synced. Big segments include larger list-based segments and synced segments. Some fields in the response only apply to big segments.\n\n### Filtering segments\n\nThe `filter` parameter supports the following operators: `equals`, `anyOf`, and `exists`.\n\nYou can also combine filters in the following ways:\n\n- Use a comma (`,`) as an AND operator\n- Use a vertical bar (`|`) as an OR operator\n- Use parentheses (`()`) to group filters\n\n#### Supported fields and operators\n\nYou can only filter certain fields in segments when using the `filter` parameter. Additionally, you can only filter some fields with certain operators.\n\nWhen you search for segments, the `filter` parameter supports the following fields and operators:\n\n\nHere are a few examples:\n\n* The filter `?filter=tags anyOf [\"enterprise\", \"beta\"],query equals \"toggle\"` matches segments with \"toggle\" in their key, name, or description that also have \"enterprise\" or \"beta\" as a tag.\n* The filter `?filter=excludedKeys anyOf [\"segmentKey1\", \"segmentKey2\"]` excludes the segments with those keys from the results.\n* The filter `?filter=unbounded equals true` matches larger list-based segments and synced segments.\n\nThe documented values for `filter` query parameters are prior to URL encoding. For example, the `[` in `?filter=tags anyOf [\"enterprise\", \"beta\"]` must be encoded to `%5B`."
       }
     },
-    "com.launchdarkly.api#PostSegmentRequestTagsList": {
+    "com.launchdarkly.api#UpdateSegmentRequestTagsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -30951,7 +30952,7 @@
         "smithy.api#documentation": "Tags for the segment"
       }
     },
-    "com.launchdarkly.api#PostSegmentRequest": {
+    "com.launchdarkly.api#UpdateSegmentRequest": {
       "type": "structure",
       "members": {
         "projectKey": {
@@ -30991,7 +30992,7 @@
           }
         },
         "tags": {
-          "target": "com.launchdarkly.api#PostSegmentRequestTagsList",
+          "target": "com.launchdarkly.api#UpdateSegmentRequestTagsList",
           "traits": {
             "smithy.api#documentation": "Tags for the segment"
           }
@@ -31013,10 +31014,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.launchdarkly.api#PostSegment": {
+    "com.launchdarkly.api#UpdateSegment": {
       "type": "operation",
       "input": {
-        "target": "com.launchdarkly.api#PostSegmentRequest"
+        "target": "com.launchdarkly.api#UpdateSegmentRequest"
       },
       "output": {
         "target": "com.launchdarkly.api#UserSegment"
@@ -31095,7 +31096,7 @@
         "smithy.api#documentation": "Get segment\n\nGet a single segment by key.<br/><br/>Segments can be rule-based, list-based, or synced. Big segments include larger list-based segments and synced segments. Some fields in the response only apply to big segments."
       }
     },
-    "com.launchdarkly.api#PatchSegmentRequest": {
+    "com.launchdarkly.api#UpdateSegmentBySegmentKeyRequest": {
       "type": "structure",
       "members": {
         "projectKey": {
@@ -31147,10 +31148,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.launchdarkly.api#PatchSegment": {
+    "com.launchdarkly.api#UpdateSegmentBySegmentKey": {
       "type": "operation",
       "input": {
-        "target": "com.launchdarkly.api#PatchSegmentRequest"
+        "target": "com.launchdarkly.api#UpdateSegmentBySegmentKeyRequest"
       },
       "output": {
         "target": "com.launchdarkly.api#UserSegment"
@@ -32901,7 +32902,7 @@
         "smithy.api#documentation": "List teams\n\nReturn a list of teams.\n\nBy default, this returns the first 20 teams. Page through this list with the `limit` parameter and by following the `first`, `prev`, `next`, and `last` links in the `_links` field that returns. If those links do not appear, the pages they refer to don't exist. For example, the `first` and `prev` links will be missing from the response on the first page, because there is no previous page and you cannot return to the first page when you are already on the first page.\n\n### Filtering teams\n\nLaunchDarkly supports the following fields for filters:\n\n- `query` is a string that matches against the teams' names and keys. It is not case-sensitive.\n  - A request with `query:abc` returns teams with the string `abc` in their name or key.\n- `nomembers` is a boolean that filters the list of teams who have 0 members\n  - A request with `nomembers:true` returns teams that have 0 members\n  - A request with `nomembers:false` returns teams that have 1 or more members\n\n### Expanding the teams response\nLaunchDarkly supports expanding several fields in the \"List teams\" response. By default, these fields are **not** included in the response.\n\nTo expand the response, append the `expand` query parameter and add a comma-separated list with any of the following fields:\n\n* `members` includes the total count of members that belong to the team.\n* `roles` includes a paginated list of the custom roles that you have assigned to the team.\n* `roleAttributes` includes a list of the role attributes that you have assigned to the team.\n* `projects` includes a paginated list of the projects that the team has any write access to.\n* `maintainers` includes a paginated list of the maintainers that you have assigned to the team.\n\nFor example, `expand=members,maintainers` includes the `members` and `maintainers` fields in the response."
       }
     },
-    "com.launchdarkly.api#PostTeamRequestCustomRoleKeysList": {
+    "com.launchdarkly.api#CreateTeamRequestCustomRoleKeysList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -32910,7 +32911,7 @@
         "smithy.api#documentation": "List of custom role keys the team will access"
       }
     },
-    "com.launchdarkly.api#PostTeamRequestMemberIDsList": {
+    "com.launchdarkly.api#CreateTeamRequestMemberIDsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -32975,7 +32976,7 @@
         "smithy.api#documentation": "A list of member IDs who receive the permission grant."
       }
     },
-    "com.launchdarkly.api#PostTeamRequestPermissionGrantsList": {
+    "com.launchdarkly.api#CreateTeamRequestPermissionGrantsList": {
       "type": "list",
       "member": {
         "target": "com.launchdarkly.api#PermissionGrantInput"
@@ -32984,7 +32985,7 @@
         "smithy.api#documentation": "A list of permission grants. Permission grants allow access to a specific action, without having to create or update a custom role."
       }
     },
-    "com.launchdarkly.api#PostTeamRequest": {
+    "com.launchdarkly.api#CreateTeamRequest": {
       "type": "structure",
       "members": {
         "expand": {
@@ -32995,7 +32996,7 @@
           }
         },
         "customRoleKeys": {
-          "target": "com.launchdarkly.api#PostTeamRequestCustomRoleKeysList",
+          "target": "com.launchdarkly.api#CreateTeamRequestCustomRoleKeysList",
           "traits": {
             "smithy.api#documentation": "List of custom role keys the team will access"
           }
@@ -33014,7 +33015,7 @@
           }
         },
         "memberIDs": {
-          "target": "com.launchdarkly.api#PostTeamRequestMemberIDsList",
+          "target": "com.launchdarkly.api#CreateTeamRequestMemberIDsList",
           "traits": {
             "smithy.api#documentation": "A list of member IDs who belong to the team"
           }
@@ -33027,7 +33028,7 @@
           }
         },
         "permissionGrants": {
-          "target": "com.launchdarkly.api#PostTeamRequestPermissionGrantsList",
+          "target": "com.launchdarkly.api#CreateTeamRequestPermissionGrantsList",
           "traits": {
             "smithy.api#documentation": "A list of permission grants. Permission grants allow access to a specific action, without having to create or update a custom role."
           }
@@ -33043,10 +33044,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.launchdarkly.api#PostTeam": {
+    "com.launchdarkly.api#CreateTeam": {
       "type": "operation",
       "input": {
-        "target": "com.launchdarkly.api#PostTeamRequest"
+        "target": "com.launchdarkly.api#CreateTeamRequest"
       },
       "output": {
         "target": "com.launchdarkly.api#Team"
@@ -33065,7 +33066,7 @@
         "smithy.api#documentation": "Create team\n\nCreate a team. To learn more, read [Creating a team](https://launchdarkly.com/docs/home/account/create-teams).\n\n### Expanding the teams response\nLaunchDarkly supports four fields for expanding the \"Create team\" response. By default, these fields are **not** included in the response.\n\nTo expand the response, append the `expand` query parameter and add a comma-separated list with any of the following fields:\n\n* `members` includes the total count of members that belong to the team.\n* `roles` includes a paginated list of the custom roles that you have assigned to the team.\n* `projects` includes a paginated list of the projects that the team has any write access to.\n* `maintainers` includes a paginated list of the maintainers that you have assigned to the team.\n\nFor example, `expand=members,roles` includes the `members` and `roles` fields in the response."
       }
     },
-    "com.launchdarkly.api#PatchTeamsRequest": {
+    "com.launchdarkly.api#UpdateTeamsRequest": {
       "type": "structure",
       "members": {
         "comment": {
@@ -33147,10 +33148,10 @@
         "smithy.api#documentation": "A list of team keys and errors for the teams whose updates failed."
       }
     },
-    "com.launchdarkly.api#PatchTeams": {
+    "com.launchdarkly.api#UpdateTeams": {
       "type": "operation",
       "input": {
-        "target": "com.launchdarkly.api#PatchTeamsRequest"
+        "target": "com.launchdarkly.api#UpdateTeamsRequest"
       },
       "output": {
         "target": "com.launchdarkly.api#BulkEditTeamsRep"
@@ -33226,7 +33227,7 @@
         "smithy.api#documentation": "Get team\n\nFetch a team by key.\n\n### Expanding the teams response\nLaunchDarkly supports several fields for expanding the \"Get team\" response. By default, these fields are **not** included in the response.\n\nTo expand the response, append the `expand` query parameter and add a comma-separated list with any of the following fields:\n\n* `members` includes the total count of members that belong to the team.\n* `roles` includes a paginated list of the custom roles that you have assigned to the team.\n* `roleAttributes` includes a list of the role attributes that you have assigned to the team.\n* `projects` includes a paginated list of the projects that the team has any write access to.\n* `maintainers` includes a paginated list of the maintainers that you have assigned to the team.\n\nFor example, `expand=members,roles` includes the `members` and `roles` fields in the response."
       }
     },
-    "com.launchdarkly.api#PatchTeamRequest": {
+    "com.launchdarkly.api#UpdateTeamRequest": {
       "type": "structure",
       "members": {
         "teamKey": {
@@ -33262,10 +33263,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.launchdarkly.api#PatchTeam": {
+    "com.launchdarkly.api#UpdateTeam": {
       "type": "operation",
       "input": {
-        "target": "com.launchdarkly.api#PatchTeamRequest"
+        "target": "com.launchdarkly.api#UpdateTeamRequest"
       },
       "output": {
         "target": "com.launchdarkly.api#Team"
@@ -33386,7 +33387,7 @@
         "smithy.api#documentation": "Get team maintainers\n\nFetch the maintainers that have been assigned to the team. To learn more, read [Managing team maintainers](https://launchdarkly.com/docs/home/account/team-maintainers)."
       }
     },
-    "com.launchdarkly.api#PostTeamMembersRequest": {
+    "com.launchdarkly.api#CreateTeamMemberRequest": {
       "type": "structure",
       "members": {
         "teamKey": {
@@ -33455,10 +33456,10 @@
         "smithy.api#documentation": "An array of details about the members requested to be added to this team"
       }
     },
-    "com.launchdarkly.api#PostTeamMembers": {
+    "com.launchdarkly.api#CreateTeamMember": {
       "type": "operation",
       "input": {
-        "target": "com.launchdarkly.api#PostTeamMembersRequest"
+        "target": "com.launchdarkly.api#CreateTeamMemberRequest"
       },
       "output": {
         "target": "com.launchdarkly.api#TeamImportsRep"
@@ -34014,7 +34015,7 @@
         "smithy.api#documentation": "List access tokens\n\nFetch a list of all access tokens."
       }
     },
-    "com.launchdarkly.api#PostTokenRequestRole": {
+    "com.launchdarkly.api#CreateTokenRequestRole": {
       "type": "enum",
       "members": {
         "READER": {
@@ -34040,7 +34041,7 @@
         "smithy.api#documentation": "Base role for the token"
       }
     },
-    "com.launchdarkly.api#PostTokenRequestCustomRoleIdsList": {
+    "com.launchdarkly.api#CreateTokenRequestCustomRoleIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -34049,7 +34050,7 @@
         "smithy.api#documentation": "A list of custom role IDs to use as access limits for the access token"
       }
     },
-    "com.launchdarkly.api#PostTokenRequestInlineRoleList": {
+    "com.launchdarkly.api#CreateTokenRequestInlineRoleList": {
       "type": "list",
       "member": {
         "target": "com.launchdarkly.api#StatementPost"
@@ -34058,7 +34059,7 @@
         "smithy.api#documentation": "A JSON array of statements represented as JSON objects with three attributes: effect, resources, actions. May be used in place of a role."
       }
     },
-    "com.launchdarkly.api#PostTokenRequest": {
+    "com.launchdarkly.api#CreateTokenRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -34074,19 +34075,19 @@
           }
         },
         "role": {
-          "target": "com.launchdarkly.api#PostTokenRequestRole",
+          "target": "com.launchdarkly.api#CreateTokenRequestRole",
           "traits": {
             "smithy.api#documentation": "Base role for the token"
           }
         },
         "customRoleIds": {
-          "target": "com.launchdarkly.api#PostTokenRequestCustomRoleIdsList",
+          "target": "com.launchdarkly.api#CreateTokenRequestCustomRoleIdsList",
           "traits": {
             "smithy.api#documentation": "A list of custom role IDs to use as access limits for the access token"
           }
         },
         "inlineRole": {
-          "target": "com.launchdarkly.api#PostTokenRequestInlineRoleList",
+          "target": "com.launchdarkly.api#CreateTokenRequestInlineRoleList",
           "traits": {
             "smithy.api#documentation": "A JSON array of statements represented as JSON objects with three attributes: effect, resources, actions. May be used in place of a role."
           }
@@ -34108,10 +34109,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.launchdarkly.api#PostToken": {
+    "com.launchdarkly.api#CreateToken": {
       "type": "operation",
       "input": {
-        "target": "com.launchdarkly.api#PostTokenRequest"
+        "target": "com.launchdarkly.api#CreateTokenRequest"
       },
       "output": {
         "target": "com.launchdarkly.api#Token"
@@ -34174,7 +34175,7 @@
         "smithy.api#documentation": "Get access token\n\nGet a single access token by ID."
       }
     },
-    "com.launchdarkly.api#PatchTokenRequest": {
+    "com.launchdarkly.api#UpdateTokenRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -34197,10 +34198,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.launchdarkly.api#PatchToken": {
+    "com.launchdarkly.api#UpdateToken": {
       "type": "operation",
       "input": {
-        "target": "com.launchdarkly.api#PatchTokenRequest"
+        "target": "com.launchdarkly.api#UpdateTokenRequest"
       },
       "output": {
         "target": "com.launchdarkly.api#Token"
@@ -36872,7 +36873,7 @@
         "smithy.api#documentation": "List webhooks\n\nFetch a list of all webhooks."
       }
     },
-    "com.launchdarkly.api#PostWebhookRequestTagsList": {
+    "com.launchdarkly.api#CreateWebhookRequestTagsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -36881,7 +36882,7 @@
         "smithy.api#documentation": "List of tags for this webhook"
       }
     },
-    "com.launchdarkly.api#PostWebhookRequest": {
+    "com.launchdarkly.api#CreateWebhookRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -36925,7 +36926,7 @@
           }
         },
         "tags": {
-          "target": "com.launchdarkly.api#PostWebhookRequestTagsList",
+          "target": "com.launchdarkly.api#CreateWebhookRequestTagsList",
           "traits": {
             "smithy.api#documentation": "List of tags for this webhook"
           }
@@ -36935,10 +36936,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.launchdarkly.api#PostWebhook": {
+    "com.launchdarkly.api#CreateWebhook": {
       "type": "operation",
       "input": {
-        "target": "com.launchdarkly.api#PostWebhookRequest"
+        "target": "com.launchdarkly.api#CreateWebhookRequest"
       },
       "output": {
         "target": "com.launchdarkly.api#Webhook"
@@ -37001,7 +37002,7 @@
         "smithy.api#documentation": "Get webhook\n\nGet a single webhook by ID."
       }
     },
-    "com.launchdarkly.api#PatchWebhookRequest": {
+    "com.launchdarkly.api#UpdateWebhookRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -37024,10 +37025,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.launchdarkly.api#PatchWebhook": {
+    "com.launchdarkly.api#UpdateWebhook": {
       "type": "operation",
       "input": {
-        "target": "com.launchdarkly.api#PatchWebhookRequest"
+        "target": "com.launchdarkly.api#UpdateWebhookRequest"
       },
       "output": {
         "target": "com.launchdarkly.api#Webhook"
@@ -55617,7 +55618,7 @@
           "target": "com.launchdarkly.api#GetApplication"
         },
         {
-          "target": "com.launchdarkly.api#PatchApplication"
+          "target": "com.launchdarkly.api#UpdateApplication"
         },
         {
           "target": "com.launchdarkly.api#DeleteApplication"
@@ -55626,7 +55627,7 @@
           "target": "com.launchdarkly.api#GetApplicationVersions"
         },
         {
-          "target": "com.launchdarkly.api#PatchApplicationVersion"
+          "target": "com.launchdarkly.api#UpdateApplicationVersion"
         },
         {
           "target": "com.launchdarkly.api#DeleteApplicationVersion"
@@ -55635,22 +55636,22 @@
           "target": "com.launchdarkly.api#GetApprovalRequests"
         },
         {
-          "target": "com.launchdarkly.api#PostApprovalRequest"
+          "target": "com.launchdarkly.api#CreateApprovalRequest"
         },
         {
           "target": "com.launchdarkly.api#GetApprovalRequest"
         },
         {
-          "target": "com.launchdarkly.api#PatchApprovalRequest"
+          "target": "com.launchdarkly.api#UpdateApprovalRequest"
         },
         {
           "target": "com.launchdarkly.api#DeleteApprovalRequest"
         },
         {
-          "target": "com.launchdarkly.api#PostApprovalRequestApply"
+          "target": "com.launchdarkly.api#CreateApprovalRequestApply"
         },
         {
-          "target": "com.launchdarkly.api#PostApprovalRequestReview"
+          "target": "com.launchdarkly.api#CreateApprovalRequestReview"
         },
         {
           "target": "com.launchdarkly.api#GetAuditLogEntries"
@@ -55725,13 +55726,13 @@
           "target": "com.launchdarkly.api#PostGenerateWarehouseDestinationSetupScript"
         },
         {
-          "target": "com.launchdarkly.api#PostDestination"
+          "target": "com.launchdarkly.api#UpdateDestination"
         },
         {
           "target": "com.launchdarkly.api#GetDestination"
         },
         {
-          "target": "com.launchdarkly.api#PatchDestination"
+          "target": "com.launchdarkly.api#UpdateDestinationById"
         },
         {
           "target": "com.launchdarkly.api#DeleteDestination"
@@ -55905,22 +55906,22 @@
           "target": "com.launchdarkly.api#GetMembers"
         },
         {
-          "target": "com.launchdarkly.api#PostMembers"
+          "target": "com.launchdarkly.api#CreateMember"
         },
         {
-          "target": "com.launchdarkly.api#PatchMembers"
+          "target": "com.launchdarkly.api#UpdateMembers"
         },
         {
           "target": "com.launchdarkly.api#GetMember"
         },
         {
-          "target": "com.launchdarkly.api#PatchMember"
+          "target": "com.launchdarkly.api#UpdateMember"
         },
         {
           "target": "com.launchdarkly.api#DeleteMember"
         },
         {
-          "target": "com.launchdarkly.api#PostMemberTeams"
+          "target": "com.launchdarkly.api#CreateMemberTeam"
         },
         {
           "target": "com.launchdarkly.api#GetMetrics"
@@ -55959,13 +55960,13 @@
           "target": "com.launchdarkly.api#GetProjects"
         },
         {
-          "target": "com.launchdarkly.api#PostProject"
+          "target": "com.launchdarkly.api#CreateProject"
         },
         {
           "target": "com.launchdarkly.api#GetProject"
         },
         {
-          "target": "com.launchdarkly.api#PatchProject"
+          "target": "com.launchdarkly.api#UpdateProject"
         },
         {
           "target": "com.launchdarkly.api#DeleteProject"
@@ -56208,13 +56209,13 @@
           "target": "com.launchdarkly.api#GetSegments"
         },
         {
-          "target": "com.launchdarkly.api#PostSegment"
+          "target": "com.launchdarkly.api#UpdateSegment"
         },
         {
           "target": "com.launchdarkly.api#GetSegment"
         },
         {
-          "target": "com.launchdarkly.api#PatchSegment"
+          "target": "com.launchdarkly.api#UpdateSegmentBySegmentKey"
         },
         {
           "target": "com.launchdarkly.api#DeleteSegment"
@@ -56259,16 +56260,16 @@
           "target": "com.launchdarkly.api#GetTeams"
         },
         {
-          "target": "com.launchdarkly.api#PostTeam"
+          "target": "com.launchdarkly.api#CreateTeam"
         },
         {
-          "target": "com.launchdarkly.api#PatchTeams"
+          "target": "com.launchdarkly.api#UpdateTeams"
         },
         {
           "target": "com.launchdarkly.api#GetTeam"
         },
         {
-          "target": "com.launchdarkly.api#PatchTeam"
+          "target": "com.launchdarkly.api#UpdateTeam"
         },
         {
           "target": "com.launchdarkly.api#DeleteTeam"
@@ -56277,7 +56278,7 @@
           "target": "com.launchdarkly.api#GetTeamMaintainers"
         },
         {
-          "target": "com.launchdarkly.api#PostTeamMembers"
+          "target": "com.launchdarkly.api#CreateTeamMember"
         },
         {
           "target": "com.launchdarkly.api#GetTeamRoles"
@@ -56295,13 +56296,13 @@
           "target": "com.launchdarkly.api#GetTokens"
         },
         {
-          "target": "com.launchdarkly.api#PostToken"
+          "target": "com.launchdarkly.api#CreateToken"
         },
         {
           "target": "com.launchdarkly.api#GetToken"
         },
         {
-          "target": "com.launchdarkly.api#PatchToken"
+          "target": "com.launchdarkly.api#UpdateToken"
         },
         {
           "target": "com.launchdarkly.api#DeleteToken"
@@ -56388,13 +56389,13 @@
           "target": "com.launchdarkly.api#GetAllWebhooks"
         },
         {
-          "target": "com.launchdarkly.api#PostWebhook"
+          "target": "com.launchdarkly.api#CreateWebhook"
         },
         {
           "target": "com.launchdarkly.api#GetWebhook"
         },
         {
-          "target": "com.launchdarkly.api#PatchWebhook"
+          "target": "com.launchdarkly.api#UpdateWebhook"
         },
         {
           "target": "com.launchdarkly.api#DeleteWebhook"

@@ -1664,6 +1664,410 @@ export const AnnouncementResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "AnnouncementResponse",
 }) as any as S.Schema<AnnouncementResponse>;
 
+export type Instruction = { [key: string]: unknown | undefined };
+export const Instruction = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<Instruction>;
+
+export type Instructions = Array<Instruction>;
+export const Instructions = /*@__PURE__*/ S.Array(
+  Instruction,
+) as any as S.Schema<Instructions>;
+
+/** An array of member IDs. These members are notified to review the approval request. */
+export type CreateApprovalRequestRequestNotifyMemberIdsList = Array<string>;
+export const CreateApprovalRequestRequestNotifyMemberIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateApprovalRequestRequestNotifyMemberIdsList>;
+
+/** An array of team keys. The members of these teams are notified to review the approval request. */
+export type CreateApprovalRequestRequestNotifyTeamKeysList = Array<string>;
+export const CreateApprovalRequestRequestNotifyTeamKeysList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateApprovalRequestRequestNotifyTeamKeysList>;
+
+export type FormVariableConfig = { [key: string]: unknown | undefined };
+export const FormVariableConfig = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<FormVariableConfig>;
+
+export interface CreateApprovalRequestRequest {
+  /** String representation of the resource specifier */
+  resourceId: string;
+  /** Optional comment describing the approval request */
+  comment?: string;
+  /** A brief description of the changes you're requesting */
+  description: string;
+  /** List of instructions in semantic patch format to be applied to the feature flag. Review the [Update feature flag](https://launchdarkly.com/docs/ld-docs/api/feature-flags/patch-feature-flag) documentation for details on available instructions. */
+  instructions: Instructions;
+  /** An array of member IDs. These members are notified to review the approval request. */
+  notifyMemberIds?: CreateApprovalRequestRequestNotifyMemberIdsList;
+  /** An array of team keys. The members of these teams are notified to review the approval request. */
+  notifyTeamKeys?: CreateApprovalRequestRequestNotifyTeamKeysList;
+  /** Additional approval request fields for third-party integration approval systems. If you are using a third-party integration to manage approval requests, these additional fields will be described in the <code>manifest.json</code> for that integration, at https://github.com/launchdarkly/integration-framework. */
+  integrationConfig?: FormVariableConfig;
+}
+export const CreateApprovalRequestRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceId: S.String,
+    comment: S.optional(S.String),
+    description: S.String,
+    instructions: Instructions,
+    notifyMemberIds: S.optional(
+      CreateApprovalRequestRequestNotifyMemberIdsList,
+    ),
+    notifyTeamKeys: S.optional(CreateApprovalRequestRequestNotifyTeamKeysList),
+    integrationConfig: S.optional(FormVariableConfig),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/api/v2/approval-requests", code: 200 }),
+  ),
+).annotate({
+  identifier: "CreateApprovalRequestRequest",
+}) as any as S.Schema<CreateApprovalRequestRequest>;
+
+/** Current status of the review of this approval request */
+export type ApprovalRequestResponseReviewStatus =
+  | "approved"
+  | "declined"
+  | "pending";
+export const ApprovalRequestResponseReviewStatus = /*@__PURE__*/ S.String;
+
+/** The type of review action to take */
+export type ReviewResponseKind = "approve" | "decline" | "comment";
+export const ReviewResponseKind = /*@__PURE__*/ S.String;
+
+export interface ReviewResponse {
+  /** The approval request ID */
+  _id: string;
+  /** The type of review action to take */
+  kind: ReviewResponseKind;
+  /** Timestamp of when the request was created */
+  creationDate?: number;
+  /** A comment describing the approval response */
+  comment?: string;
+  /** ID of account member that reviewed request */
+  memberId?: string;
+  /** ID of account service token that reviewed request */
+  serviceTokenId?: string;
+}
+export const ReviewResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    _id: S.String,
+    kind: ReviewResponseKind,
+    creationDate: S.optional(S.Number),
+    comment: S.optional(S.String),
+    memberId: S.optional(S.String),
+    serviceTokenId: S.optional(S.String),
+  }),
+).annotate({ identifier: "ReviewResponse" }) as any as S.Schema<ReviewResponse>;
+
+/** An array of individual reviews of this approval request */
+export type ApprovalRequestResponseAllReviewsList = Array<ReviewResponse>;
+export const ApprovalRequestResponseAllReviewsList = /*@__PURE__*/ S.Array(
+  ReviewResponse,
+) as any as S.Schema<ApprovalRequestResponseAllReviewsList>;
+
+/** An array of member IDs. These members are notified to review the approval request. */
+export type ApprovalRequestResponseNotifyMemberIdsList = Array<string>;
+export const ApprovalRequestResponseNotifyMemberIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ApprovalRequestResponseNotifyMemberIdsList>;
+
+/** Current status of the approval request */
+export type ApprovalRequestResponseStatus =
+  | "pending"
+  | "completed"
+  | "failed"
+  | "scheduled";
+export const ApprovalRequestResponseStatus = /*@__PURE__*/ S.String;
+
+export interface Conflict2 {
+  /** Instruction in semantic patch format to be applied to the feature flag */
+  instruction?: Instruction;
+  /** Reason why the conflict exists */
+  reason?: string;
+}
+export const Conflict2 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    instruction: S.optional(Instruction),
+    reason: S.optional(S.String),
+  }),
+).annotate({ identifier: "Conflict2" }) as any as S.Schema<Conflict2>;
+
+/** Details on any conflicting approval requests */
+export type ApprovalRequestResponseConflictsList = Array<Conflict2>;
+export const ApprovalRequestResponseConflictsList = /*@__PURE__*/ S.Array(
+  Conflict2,
+) as any as S.Schema<ApprovalRequestResponseConflictsList>;
+
+/** The location and content type of related resources */
+export type ApprovalRequestResponseLinksMap = {
+  [key: string]: unknown | undefined;
+};
+export const ApprovalRequestResponseLinksMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<ApprovalRequestResponseLinksMap>;
+
+export interface IntegrationStatus {
+  display: string;
+  value: string;
+}
+export const IntegrationStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    display: S.String,
+    value: S.String,
+  }),
+).annotate({
+  identifier: "IntegrationStatus",
+}) as any as S.Schema<IntegrationStatus>;
+
+export interface IntegrationMetadata {
+  externalId: string;
+  externalStatus: IntegrationStatus;
+  externalUrl: string;
+  lastChecked: number;
+}
+export const IntegrationMetadata = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    externalId: S.String,
+    externalStatus: IntegrationStatus,
+    externalUrl: S.String,
+    lastChecked: S.Number,
+  }),
+).annotate({
+  identifier: "IntegrationMetadata",
+}) as any as S.Schema<IntegrationMetadata>;
+
+export interface CopiedFromEnv {
+  /** Key of feature flag copied */
+  key: string;
+  /** Version of feature flag copied */
+  version?: number;
+}
+export const CopiedFromEnv = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    key: S.String,
+    version: S.optional(S.Number),
+  }),
+).annotate({ identifier: "CopiedFromEnv" }) as any as S.Schema<CopiedFromEnv>;
+
+export interface CustomWorkflowStageMeta {
+  /** The zero-based index of the workflow stage */
+  index?: number;
+  /** The name of the workflow stage */
+  name?: string;
+}
+export const CustomWorkflowStageMeta = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    index: S.optional(S.Number),
+    name: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CustomWorkflowStageMeta",
+}) as any as S.Schema<CustomWorkflowStageMeta>;
+
+export interface CustomWorkflowMeta {
+  /** The name of the workflow stage that required this approval request */
+  name?: string;
+  /** Details on the stage of the workflow where this approval request is required */
+  stage?: CustomWorkflowStageMeta;
+}
+export const CustomWorkflowMeta = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    stage: S.optional(CustomWorkflowStageMeta),
+  }),
+).annotate({
+  identifier: "CustomWorkflowMeta",
+}) as any as S.Schema<CustomWorkflowMeta>;
+
+export type ApprovalSettingsServiceConfigMap = {
+  [key: string]: unknown | undefined;
+};
+export const ApprovalSettingsServiceConfigMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<ApprovalSettingsServiceConfigMap>;
+
+/** Require approval only on flags with the provided tags. Otherwise all flags will require approval. */
+export type ApprovalSettingsRequiredApprovalTagsList = Array<string>;
+export const ApprovalSettingsRequiredApprovalTagsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ApprovalSettingsRequiredApprovalTagsList>;
+
+export interface ApprovalSettings {
+  /** If approvals are required for this environment */
+  required: boolean;
+  /** Whether to skip approvals for pending changes */
+  bypassApprovalsForPendingChanges: boolean;
+  /** Sets the amount of approvals required before a member can apply a change. The minimum is one and the maximum is five. */
+  minNumApprovals: number;
+  /** Allow someone who makes an approval request to apply their own change */
+  canReviewOwnRequest: boolean;
+  /** Allow applying the change as long as at least one person has approved */
+  canApplyDeclinedChanges: boolean;
+  /** Automatically apply changes that have been approved by all reviewers. This field is only applicable for approval services other than LaunchDarkly. */
+  autoApplyApprovedChanges?: boolean;
+  /** Which service to use for managing approvals */
+  serviceKind: string;
+  serviceConfig: ApprovalSettingsServiceConfigMap;
+  /** Require approval only on flags with the provided tags. Otherwise all flags will require approval. */
+  requiredApprovalTags: ApprovalSettingsRequiredApprovalTagsList;
+  /** Optional field for integration configuration ID of a custom approval integration. This is an Enterprise-only feature. */
+  serviceKindConfigurationId?: string;
+}
+export const ApprovalSettings = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    required: S.Boolean,
+    bypassApprovalsForPendingChanges: S.Boolean,
+    minNumApprovals: S.Number,
+    canReviewOwnRequest: S.Boolean,
+    canApplyDeclinedChanges: S.Boolean,
+    autoApplyApprovedChanges: S.optional(S.Boolean),
+    serviceKind: S.String,
+    serviceConfig: ApprovalSettingsServiceConfigMap,
+    requiredApprovalTags: ApprovalSettingsRequiredApprovalTagsList,
+    serviceKindConfigurationId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ApprovalSettings",
+}) as any as S.Schema<ApprovalSettings>;
+
+export interface ApprovalRequestResponse {
+  /** The ID of this approval request */
+  _id: string;
+  /** Version of the approval request */
+  _version: number;
+  /** Timestamp of when the approval request was created */
+  creationDate: number;
+  /** The approval service for this request. May be LaunchDarkly or an external approval service, such as ServiceNow or JIRA. */
+  serviceKind: string;
+  /** The ID of the member who requested the approval */
+  requestorId?: string;
+  /** A human-friendly name for the approval request */
+  description?: string;
+  /** Current status of the review of this approval request */
+  reviewStatus: ApprovalRequestResponseReviewStatus;
+  /** An array of individual reviews of this approval request */
+  allReviews: ApprovalRequestResponseAllReviewsList;
+  /** An array of member IDs. These members are notified to review the approval request. */
+  notifyMemberIds: ApprovalRequestResponseNotifyMemberIdsList;
+  /** Timestamp of when the approval request was applied */
+  appliedDate?: number;
+  /** The member ID of the member who applied the approval request */
+  appliedByMemberId?: string;
+  /** The service token ID of the service token which applied the approval request */
+  appliedByServiceTokenId?: string;
+  /** Current status of the approval request */
+  status: ApprovalRequestResponseStatus;
+  /** List of instructions in semantic patch format to be applied to the feature flag */
+  instructions: Instructions;
+  /** Details on any conflicting approval requests */
+  conflicts: ApprovalRequestResponseConflictsList;
+  /** The location and content type of related resources */
+  _links: ApprovalRequestResponseLinksMap;
+  /** Timestamp for when instructions will be executed */
+  executionDate?: number;
+  /** ID of scheduled change to edit or delete */
+  operatingOnId?: string;
+  /** Details about the object in an external service corresponding to this approval request, such as a ServiceNow change request or a JIRA ticket, if an external approval service is being used */
+  integrationMetadata?: IntegrationMetadata;
+  /** Details about the source feature flag, if copied */
+  source?: CopiedFromEnv;
+  /** Details about the custom workflow, if this approval request is part of a custom workflow */
+  customWorkflowMetadata?: CustomWorkflowMeta;
+  /** String representation of a resource */
+  resourceId?: string;
+  /** The settings for this approval */
+  approvalSettings?: ApprovalSettings;
+}
+export const ApprovalRequestResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    _id: S.String,
+    _version: S.Number,
+    creationDate: S.Number,
+    serviceKind: S.String,
+    requestorId: S.optional(S.String),
+    description: S.optional(S.String),
+    reviewStatus: ApprovalRequestResponseReviewStatus,
+    allReviews: ApprovalRequestResponseAllReviewsList,
+    notifyMemberIds: ApprovalRequestResponseNotifyMemberIdsList,
+    appliedDate: S.optional(S.Number),
+    appliedByMemberId: S.optional(S.String),
+    appliedByServiceTokenId: S.optional(S.String),
+    status: ApprovalRequestResponseStatus,
+    instructions: Instructions,
+    conflicts: ApprovalRequestResponseConflictsList,
+    _links: ApprovalRequestResponseLinksMap,
+    executionDate: S.optional(S.Number),
+    operatingOnId: S.optional(S.String),
+    integrationMetadata: S.optional(IntegrationMetadata),
+    source: S.optional(CopiedFromEnv),
+    customWorkflowMetadata: S.optional(CustomWorkflowMeta),
+    resourceId: S.optional(S.String),
+    approvalSettings: S.optional(ApprovalSettings),
+  }),
+).annotate({
+  identifier: "ApprovalRequestResponse",
+}) as any as S.Schema<ApprovalRequestResponse>;
+
+export interface CreateApprovalRequestApplyRequest {
+  /** The approval request ID */
+  id: string;
+  /** Optional comment about the approval request */
+  comment?: string;
+}
+export const CreateApprovalRequestApplyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    comment: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/v2/approval-requests/{id}/apply",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateApprovalRequestApplyRequest",
+}) as any as S.Schema<CreateApprovalRequestApplyRequest>;
+
+/** The type of review for this approval request */
+export type CreateApprovalRequestReviewRequestKind =
+  | "approve"
+  | "comment"
+  | "decline";
+export const CreateApprovalRequestReviewRequestKind = /*@__PURE__*/ S.String;
+
+export interface CreateApprovalRequestReviewRequest {
+  /** The approval request ID */
+  id: string;
+  /** The type of review for this approval request */
+  kind?: CreateApprovalRequestReviewRequestKind | (string & {});
+  /** Optional comment about the approval request */
+  comment?: string;
+}
+export const CreateApprovalRequestReviewRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    kind: S.optional(CreateApprovalRequestReviewRequestKind),
+    comment: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/v2/approval-requests/{id}/reviews",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateApprovalRequestReviewRequest",
+}) as any as S.Schema<CreateApprovalRequestReviewRequest>;
+
 export interface CreateBigSegmentExportRequest {
   /** The project key */
   projectKey: string;
@@ -1735,12 +2139,6 @@ export const CreateBigSegmentImportResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "CreateBigSegmentImportResponse",
 }) as any as S.Schema<CreateBigSegmentImportResponse>;
-
-export type FormVariableConfig = { [key: string]: unknown | undefined };
-export const FormVariableConfig = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<FormVariableConfig>;
 
 /** Tags to associate with the integration */
 export type CreateBigSegmentStoreIntegrationRequestTagsList = Array<string>;
@@ -3276,58 +3674,6 @@ export const EnvironmentTagsList = /*@__PURE__*/ S.Array(
   S.String,
 ) as any as S.Schema<EnvironmentTagsList>;
 
-export type ApprovalSettingsServiceConfigMap = {
-  [key: string]: unknown | undefined;
-};
-export const ApprovalSettingsServiceConfigMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<ApprovalSettingsServiceConfigMap>;
-
-/** Require approval only on flags with the provided tags. Otherwise all flags will require approval. */
-export type ApprovalSettingsRequiredApprovalTagsList = Array<string>;
-export const ApprovalSettingsRequiredApprovalTagsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ApprovalSettingsRequiredApprovalTagsList>;
-
-export interface ApprovalSettings {
-  /** If approvals are required for this environment */
-  required: boolean;
-  /** Whether to skip approvals for pending changes */
-  bypassApprovalsForPendingChanges: boolean;
-  /** Sets the amount of approvals required before a member can apply a change. The minimum is one and the maximum is five. */
-  minNumApprovals: number;
-  /** Allow someone who makes an approval request to apply their own change */
-  canReviewOwnRequest: boolean;
-  /** Allow applying the change as long as at least one person has approved */
-  canApplyDeclinedChanges: boolean;
-  /** Automatically apply changes that have been approved by all reviewers. This field is only applicable for approval services other than LaunchDarkly. */
-  autoApplyApprovedChanges?: boolean;
-  /** Which service to use for managing approvals */
-  serviceKind: string;
-  serviceConfig: ApprovalSettingsServiceConfigMap;
-  /** Require approval only on flags with the provided tags. Otherwise all flags will require approval. */
-  requiredApprovalTags: ApprovalSettingsRequiredApprovalTagsList;
-  /** Optional field for integration configuration ID of a custom approval integration. This is an Enterprise-only feature. */
-  serviceKindConfigurationId?: string;
-}
-export const ApprovalSettings = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    required: S.Boolean,
-    bypassApprovalsForPendingChanges: S.Boolean,
-    minNumApprovals: S.Number,
-    canReviewOwnRequest: S.Boolean,
-    canApplyDeclinedChanges: S.Boolean,
-    autoApplyApprovedChanges: S.optional(S.Boolean),
-    serviceKind: S.String,
-    serviceConfig: ApprovalSettingsServiceConfigMap,
-    requiredApprovalTags: ApprovalSettingsRequiredApprovalTagsList,
-    serviceKindConfigurationId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ApprovalSettings",
-}) as any as S.Schema<ApprovalSettings>;
-
 /** Details about the approval settings for other resources in this environment, organized by resource kind (for example, "aiconfig" and "segment") */
 export type EnvironmentResourceApprovalSettingsMap = {
   [key: string]: ApprovalSettings | undefined;
@@ -4226,6 +4572,316 @@ export const LayerRep = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "LayerRep" }) as any as S.Schema<LayerRep>;
 
+/** The member's initial role, if you are using a base role for the initial role */
+export type NewMemberFormRole = "reader" | "writer" | "admin" | "no_access";
+export const NewMemberFormRole = /*@__PURE__*/ S.String;
+
+/** An array of the member's initial roles, if you are using custom roles or preset roles provided by LaunchDarkly */
+export type NewMemberFormCustomRolesList = Array<string>;
+export const NewMemberFormCustomRolesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<NewMemberFormCustomRolesList>;
+
+/** An array of the member's teams */
+export type NewMemberFormTeamKeysList = Array<string>;
+export const NewMemberFormTeamKeysList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<NewMemberFormTeamKeysList>;
+
+export type RoleAttributeValues = Array<string>;
+export const RoleAttributeValues = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<RoleAttributeValues>;
+
+export type RoleAttributeMap = {
+  [key: string]: RoleAttributeValues | undefined;
+};
+export const RoleAttributeMap = /*@__PURE__*/ S.Record(
+  S.String,
+  RoleAttributeValues,
+) as any as S.Schema<RoleAttributeMap>;
+
+export interface NewMemberForm {
+  /** The member's email */
+  email: string;
+  /** The member's password */
+  password?: string | Redacted.Redacted<string>;
+  /** The member's first name */
+  firstName?: string;
+  /** The member's last name */
+  lastName?: string;
+  /** The member's initial role, if you are using a base role for the initial role */
+  role?: NewMemberFormRole | (string & {});
+  /** An array of the member's initial roles, if you are using custom roles or preset roles provided by LaunchDarkly */
+  customRoles?: NewMemberFormCustomRolesList;
+  /** An array of the member's teams */
+  teamKeys?: NewMemberFormTeamKeysList;
+  /** An object of role attributes for the member */
+  roleAttributes?: RoleAttributeMap;
+}
+export const NewMemberForm = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    email: S.String,
+    password: S.optional(S.String.pipe(T.SensitiveValue({}))),
+    firstName: S.optional(S.String),
+    lastName: S.optional(S.String),
+    role: S.optional(NewMemberFormRole),
+    customRoles: S.optional(NewMemberFormCustomRolesList),
+    teamKeys: S.optional(NewMemberFormTeamKeysList),
+    roleAttributes: S.optional(RoleAttributeMap),
+  }),
+).annotate({ identifier: "NewMemberForm" }) as any as S.Schema<NewMemberForm>;
+
+export type NewMemberFormListPost = Array<NewMemberForm>;
+export const NewMemberFormListPost = /*@__PURE__*/ S.Array(
+  NewMemberForm,
+) as any as S.Schema<NewMemberFormListPost>;
+
+export interface CreateMemberRequest {
+  body: NewMemberFormListPost;
+}
+export const CreateMemberRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    body: NewMemberFormListPost.pipe(T.HttpBody()),
+  }).pipe(T.Http({ method: "POST", uri: "/api/v2/members", code: 200 })),
+).annotate({
+  identifier: "CreateMemberRequest",
+}) as any as S.Schema<CreateMemberRequest>;
+
+/** The location and content type of related resources */
+export type MemberLinksMap = { [key: string]: Link | undefined };
+export const MemberLinksMap = /*@__PURE__*/ S.Record(
+  S.String,
+  Link,
+) as any as S.Schema<MemberLinksMap>;
+
+/** The set of additional roles, besides the base role, assigned to the member */
+export type MemberCustomRolesList = Array<string>;
+export const MemberCustomRolesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<MemberCustomRolesList>;
+
+/** Default dashboards that the member has chosen to ignore */
+export type MemberExcludedDashboardsList = Array<string>;
+export const MemberExcludedDashboardsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<MemberExcludedDashboardsList>;
+
+export interface LastSeenMetadata {
+  /** The ID of the token used in the member's last session */
+  tokenId?: string;
+}
+export const LastSeenMetadata = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    tokenId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "LastSeenMetadata",
+}) as any as S.Schema<LastSeenMetadata>;
+
+/** A list of keys of the custom roles this team has access to */
+export type MemberTeamSummaryRepCustomRoleKeysList = Array<string>;
+export const MemberTeamSummaryRepCustomRoleKeysList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<MemberTeamSummaryRepCustomRoleKeysList>;
+
+export type MemberTeamSummaryRepLinksMap = { [key: string]: Link | undefined };
+export const MemberTeamSummaryRepLinksMap = /*@__PURE__*/ S.Record(
+  S.String,
+  Link,
+) as any as S.Schema<MemberTeamSummaryRepLinksMap>;
+
+export interface MemberTeamSummaryRep {
+  /** A list of keys of the custom roles this team has access to */
+  customRoleKeys: MemberTeamSummaryRepCustomRoleKeysList;
+  /** The team key */
+  key: string;
+  _links?: MemberTeamSummaryRepLinksMap;
+  /** The team name */
+  name: string;
+}
+export const MemberTeamSummaryRep = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    customRoleKeys: MemberTeamSummaryRepCustomRoleKeysList,
+    key: S.String,
+    _links: S.optional(MemberTeamSummaryRepLinksMap),
+    name: S.String,
+  }),
+).annotate({
+  identifier: "MemberTeamSummaryRep",
+}) as any as S.Schema<MemberTeamSummaryRep>;
+
+/** Details on the teams this member is assigned to */
+export type MemberTeamsList = Array<MemberTeamSummaryRep>;
+export const MemberTeamsList = /*@__PURE__*/ S.Array(
+  MemberTeamSummaryRep,
+) as any as S.Schema<MemberTeamsList>;
+
+/** A list of actions to allow. A permission grant may have either an <code>actionSet</code> or a list of <code>actions</code> but not both at the same time. */
+export type MemberPermissionGrantSummaryRepActionsList = Array<string>;
+export const MemberPermissionGrantSummaryRepActionsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<MemberPermissionGrantSummaryRepActionsList>;
+
+export interface MemberPermissionGrantSummaryRep {
+  /** The name of the group of related actions to allow. A permission grant may have either an <code>actionSet</code> or a list of <code>actions</code> but not both at the same time. */
+  actionSet?: string;
+  /** A list of actions to allow. A permission grant may have either an <code>actionSet</code> or a list of <code>actions</code> but not both at the same time. */
+  actions?: MemberPermissionGrantSummaryRepActionsList;
+  /** The resource for which the actions are allowed */
+  resource: string;
+}
+export const MemberPermissionGrantSummaryRep = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    actionSet: S.optional(S.String),
+    actions: S.optional(MemberPermissionGrantSummaryRepActionsList),
+    resource: S.String,
+  }),
+).annotate({
+  identifier: "MemberPermissionGrantSummaryRep",
+}) as any as S.Schema<MemberPermissionGrantSummaryRep>;
+
+/** A list of permission grants. Permission grants allow a member to have access to a specific action, without having to create or update a custom role. */
+export type MemberPermissionGrantsList = Array<MemberPermissionGrantSummaryRep>;
+export const MemberPermissionGrantsList = /*@__PURE__*/ S.Array(
+  MemberPermissionGrantSummaryRep,
+) as any as S.Schema<MemberPermissionGrantsList>;
+
+/** A list of OAuth providers */
+export type MemberOauthProvidersList = Array<string>;
+export const MemberOauthProvidersList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<MemberOauthProvidersList>;
+
+export interface Member {
+  /** The location and content type of related resources */
+  _links: MemberLinksMap;
+  /** The member's ID */
+  _id: string;
+  /** The member's first name */
+  firstName?: string;
+  /** The member's last name */
+  lastName?: string;
+  /** The member's base role. If the member has no additional roles, this role will be in effect. */
+  role: string;
+  /** The member's email address */
+  email: string;
+  /** Whether the member has a pending invitation */
+  _pendingInvite: boolean;
+  /** Whether the member's email address has been verified */
+  _verified: boolean;
+  /** The member's email address before it has been verified, for accounts where email verification is required */
+  _pendingEmail?: string;
+  /** The set of additional roles, besides the base role, assigned to the member */
+  customRoles: MemberCustomRolesList;
+  /** Whether multi-factor authentication is enabled for this member */
+  mfa: string;
+  /** Default dashboards that the member has chosen to ignore */
+  excludedDashboards?: MemberExcludedDashboardsList;
+  /** The member's last session date (as Unix milliseconds since epoch) */
+  _lastSeen: number;
+  /** Additional metadata associated with the member's last session, for example, whether a token was used */
+  _lastSeenMetadata?: LastSeenMetadata;
+  /** Details on the member account in an external source, if this member is provisioned externally */
+  _integrationMetadata?: IntegrationMetadata;
+  /** Details on the teams this member is assigned to */
+  teams?: MemberTeamsList;
+  /** A list of permission grants. Permission grants allow a member to have access to a specific action, without having to create or update a custom role. */
+  permissionGrants?: MemberPermissionGrantsList;
+  /** Timestamp of when the member was created */
+  creationDate: number;
+  /** A list of OAuth providers */
+  oauthProviders?: MemberOauthProvidersList;
+  /** Whether the member has a password set (basic auth). False for OAuth-only or SCIM-provisioned members without a password. */
+  hasPassword?: boolean;
+  /** Version of the current configuration */
+  version?: number;
+  /** The role attributes for the member */
+  roleAttributes?: RoleAttributeMap;
+  mfaEnforced?: boolean;
+  mfaGracePeriodExpiresAt?: number;
+}
+export const Member = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    _links: MemberLinksMap,
+    _id: S.String,
+    firstName: S.optional(S.String),
+    lastName: S.optional(S.String),
+    role: S.String,
+    email: S.String,
+    _pendingInvite: S.Boolean,
+    _verified: S.Boolean,
+    _pendingEmail: S.optional(S.String),
+    customRoles: MemberCustomRolesList,
+    mfa: S.String,
+    excludedDashboards: S.optional(MemberExcludedDashboardsList),
+    _lastSeen: S.Number,
+    _lastSeenMetadata: S.optional(LastSeenMetadata),
+    _integrationMetadata: S.optional(IntegrationMetadata),
+    teams: S.optional(MemberTeamsList),
+    permissionGrants: S.optional(MemberPermissionGrantsList),
+    creationDate: S.Number,
+    oauthProviders: S.optional(MemberOauthProvidersList),
+    hasPassword: S.optional(S.Boolean),
+    version: S.optional(S.Number),
+    roleAttributes: S.optional(RoleAttributeMap),
+    mfaEnforced: S.optional(S.Boolean),
+    mfaGracePeriodExpiresAt: S.optional(S.Number),
+  }),
+).annotate({ identifier: "Member" }) as any as S.Schema<Member>;
+
+/** An array of members */
+export type MembersItemsList = Array<Member>;
+export const MembersItemsList = /*@__PURE__*/ S.Array(
+  Member,
+) as any as S.Schema<MembersItemsList>;
+
+/** The location and content type of related resources */
+export type MembersLinksMap = { [key: string]: Link | undefined };
+export const MembersLinksMap = /*@__PURE__*/ S.Record(
+  S.String,
+  Link,
+) as any as S.Schema<MembersLinksMap>;
+
+export interface Members {
+  /** An array of members */
+  items: MembersItemsList;
+  /** The location and content type of related resources */
+  _links: MembersLinksMap;
+  /** The number of members returned */
+  totalCount?: number;
+}
+export const Members = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    items: MembersItemsList,
+    _links: MembersLinksMap,
+    totalCount: S.optional(S.Number),
+  }),
+).annotate({ identifier: "Members" }) as any as S.Schema<Members>;
+
+/** List of team keys */
+export type CreateMemberTeamRequestTeamKeysList = Array<string>;
+export const CreateMemberTeamRequestTeamKeysList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateMemberTeamRequestTeamKeysList>;
+
+export interface CreateMemberTeamRequest {
+  /** The member ID */
+  id: string;
+  /** List of team keys */
+  teamKeys: CreateMemberTeamRequestTeamKeysList;
+}
+export const CreateMemberTeamRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    teamKeys: CreateMemberTeamRequestTeamKeysList,
+  }).pipe(
+    T.Http({ method: "POST", uri: "/api/v2/members/{id}/teams", code: 200 }),
+  ),
+).annotate({
+  identifier: "CreateMemberTeamRequest",
+}) as any as S.Schema<CreateMemberTeamRequest>;
+
 /** The type of the metric group */
 export type CreateMetricGroupRequestKind = "funnel" | "standard";
 export const CreateMetricGroupRequestKind = /*@__PURE__*/ S.String;
@@ -4317,38 +4973,6 @@ export const MetricGroupRepTagsList = /*@__PURE__*/ S.Array(
 /** The type of the maintainer */
 export type MaintainerRepKind = "member" | "team";
 export const MaintainerRepKind = /*@__PURE__*/ S.String;
-
-/** A list of keys of the custom roles this team has access to */
-export type MemberTeamSummaryRepCustomRoleKeysList = Array<string>;
-export const MemberTeamSummaryRepCustomRoleKeysList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<MemberTeamSummaryRepCustomRoleKeysList>;
-
-export type MemberTeamSummaryRepLinksMap = { [key: string]: Link | undefined };
-export const MemberTeamSummaryRepLinksMap = /*@__PURE__*/ S.Record(
-  S.String,
-  Link,
-) as any as S.Schema<MemberTeamSummaryRepLinksMap>;
-
-export interface MemberTeamSummaryRep {
-  /** A list of keys of the custom roles this team has access to */
-  customRoleKeys: MemberTeamSummaryRepCustomRoleKeysList;
-  /** The team key */
-  key: string;
-  _links?: MemberTeamSummaryRepLinksMap;
-  /** The team name */
-  name: string;
-}
-export const MemberTeamSummaryRep = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    customRoleKeys: MemberTeamSummaryRepCustomRoleKeysList,
-    key: S.String,
-    _links: S.optional(MemberTeamSummaryRepLinksMap),
-    name: S.String,
-  }),
-).annotate({
-  identifier: "MemberTeamSummaryRep",
-}) as any as S.Schema<MemberTeamSummaryRep>;
 
 export interface MaintainerRep {
   /** The ID of the maintainer member, or the key of the maintainer team */
@@ -4532,6 +5156,206 @@ export const Client = /*@__PURE__*/ S.suspend(() =>
     _creationDate: S.Number,
   }),
 ).annotate({ identifier: "Client" }) as any as S.Schema<Client>;
+
+export interface DefaultClientSideAvailabilityPost {
+  /** Whether to enable availability for client-side SDKs. */
+  usingEnvironmentId: boolean;
+  /** Whether to enable availability for mobile SDKs. */
+  usingMobileKey: boolean;
+}
+export const DefaultClientSideAvailabilityPost = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    usingEnvironmentId: S.Boolean,
+    usingMobileKey: S.Boolean,
+  }),
+).annotate({
+  identifier: "DefaultClientSideAvailabilityPost",
+}) as any as S.Schema<DefaultClientSideAvailabilityPost>;
+
+/** Tags for the project */
+export type CreateProjectRequestTagsList = Array<string>;
+export const CreateProjectRequestTagsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateProjectRequestTagsList>;
+
+/** Tags to apply to the new environment */
+export type EnvironmentPostTagsList = Array<string>;
+export const EnvironmentPostTagsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<EnvironmentPostTagsList>;
+
+export interface SourceEnv {
+  /** The key of the source environment to clone from */
+  key?: string;
+  /** (Optional) The version number of the source environment to clone from. Used for optimistic locking */
+  version?: number;
+}
+export const SourceEnv = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    key: S.optional(S.String),
+    version: S.optional(S.Number),
+  }),
+).annotate({ identifier: "SourceEnv" }) as any as S.Schema<SourceEnv>;
+
+export interface EnvironmentPost {
+  /** A human-friendly name for the new environment */
+  name: string;
+  /** A project-unique key for the new environment */
+  key: string;
+  /** A color to indicate this environment in the UI */
+  color: string;
+  /** The default time (in minutes) that the PHP SDK can cache feature flag rules locally */
+  defaultTtl?: number;
+  /** Ensures that one end user of the client-side SDK cannot inspect the variations for another end user */
+  secureMode?: boolean;
+  /** Enables tracking detailed information for new flags by default */
+  defaultTrackEvents?: boolean;
+  /** Requires confirmation for all flag and segment changes via the UI in this environment */
+  confirmChanges?: boolean;
+  /** Requires comments for all flag and segment changes via the UI in this environment */
+  requireComments?: boolean;
+  /** Tags to apply to the new environment */
+  tags?: EnvironmentPostTagsList;
+  /** Indicates that the new environment created will be cloned from the provided source environment */
+  source?: SourceEnv;
+  /** Whether the environment is critical */
+  critical?: boolean;
+}
+export const EnvironmentPost = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    key: S.String,
+    color: S.String,
+    defaultTtl: S.optional(S.Number),
+    secureMode: S.optional(S.Boolean),
+    defaultTrackEvents: S.optional(S.Boolean),
+    confirmChanges: S.optional(S.Boolean),
+    requireComments: S.optional(S.Boolean),
+    tags: S.optional(EnvironmentPostTagsList),
+    source: S.optional(SourceEnv),
+    critical: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "EnvironmentPost",
+}) as any as S.Schema<EnvironmentPost>;
+
+/** Creates the provided environments for this project. If omitted default environments will be created instead. */
+export type CreateProjectRequestEnvironmentsList = Array<EnvironmentPost>;
+export const CreateProjectRequestEnvironmentsList = /*@__PURE__*/ S.Array(
+  EnvironmentPost,
+) as any as S.Schema<CreateProjectRequestEnvironmentsList>;
+
+/** The casing convention to enforce for new flag keys in this project */
+export type NamingConventionCase =
+  | "camelCase"
+  | "upperCamelCase"
+  | "snakeCase"
+  | "kebabCase"
+  | "constantCase";
+export const NamingConventionCase = /*@__PURE__*/ S.String;
+
+export interface NamingConvention {
+  /** The casing convention to enforce for new flag keys in this project */
+  case?: NamingConventionCase | (string & {});
+  /** The prefix to enforce for new flag keys in this project */
+  prefix?: string;
+}
+export const NamingConvention = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    case: S.optional(NamingConventionCase),
+    prefix: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "NamingConvention",
+}) as any as S.Schema<NamingConvention>;
+
+export interface CreateProjectRequest {
+  /** A human-friendly name for the project. */
+  name: string;
+  /** A unique key used to reference the project in your code. */
+  key: string;
+  /** Whether or not flags created in this project are made available to the client-side JavaScript SDK by default. */
+  includeInSnippetByDefault?: boolean;
+  /** Controls which client-side SDKs can use new flags by default. */
+  defaultClientSideAvailability?: DefaultClientSideAvailabilityPost;
+  /** Tags for the project */
+  tags?: CreateProjectRequestTagsList;
+  /** Creates the provided environments for this project. If omitted default environments will be created instead. */
+  environments?: CreateProjectRequestEnvironmentsList;
+  /** The flag key convention for this project. Omit this field if you don't want to enforce any conventions for flag keys. */
+  namingConvention?: NamingConvention;
+}
+export const CreateProjectRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    key: S.String,
+    includeInSnippetByDefault: S.optional(S.Boolean),
+    defaultClientSideAvailability: S.optional(
+      DefaultClientSideAvailabilityPost,
+    ),
+    tags: S.optional(CreateProjectRequestTagsList),
+    environments: S.optional(CreateProjectRequestEnvironmentsList),
+    namingConvention: S.optional(NamingConvention),
+  }).pipe(T.Http({ method: "POST", uri: "/api/v2/projects", code: 200 })),
+).annotate({
+  identifier: "CreateProjectRequest",
+}) as any as S.Schema<CreateProjectRequest>;
+
+/** The location and content type of related resources */
+export type ProjectRepLinksMap = { [key: string]: Link | undefined };
+export const ProjectRepLinksMap = /*@__PURE__*/ S.Record(
+  S.String,
+  Link,
+) as any as S.Schema<ProjectRepLinksMap>;
+
+/** A list of tags for the project */
+export type ProjectRepTagsList = Array<string>;
+export const ProjectRepTagsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ProjectRepTagsList>;
+
+/** A list of environments for the project */
+export type ProjectRepEnvironmentsList = Array<Environment>;
+export const ProjectRepEnvironmentsList = /*@__PURE__*/ S.Array(
+  Environment,
+) as any as S.Schema<ProjectRepEnvironmentsList>;
+
+export interface ProjectRep {
+  /** The location and content type of related resources */
+  _links: ProjectRepLinksMap;
+  /** The ID of this project */
+  _id: string;
+  /** The key of this project */
+  key: string;
+  /** Whether or not flags created in this project are made available to the client-side JavaScript SDK by default */
+  includeInSnippetByDefault: boolean;
+  /** Describes which client-side SDKs can use new flags by default */
+  defaultClientSideAvailability?: ClientSideAvailability;
+  /** A human-friendly name for the project */
+  name: string;
+  /** Details on the allowed and denied actions for this project */
+  _access?: Access;
+  /** A list of tags for the project */
+  tags: ProjectRepTagsList;
+  /** The key of the default release pipeline for this project */
+  defaultReleasePipelineKey?: string;
+  /** A list of environments for the project */
+  environments: ProjectRepEnvironmentsList;
+}
+export const ProjectRep = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    _links: ProjectRepLinksMap,
+    _id: S.String,
+    key: S.String,
+    includeInSnippetByDefault: S.Boolean,
+    defaultClientSideAvailability: S.optional(ClientSideAvailability),
+    name: S.String,
+    _access: S.optional(Access),
+    tags: ProjectRepTagsList,
+    defaultReleasePipelineKey: S.optional(S.String),
+    environments: ProjectRepEnvironmentsList,
+  }),
+).annotate({ identifier: "ProjectRep" }) as any as S.Schema<ProjectRep>;
 
 export interface CreateReleaseForFlagRequest {
   /** The project key */
@@ -4991,11 +5815,460 @@ export const Integration = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Integration" }) as any as S.Schema<Integration>;
 
-export type Instruction = { [key: string]: unknown | undefined };
-export const Instruction = /*@__PURE__*/ S.Record(
+/** List of custom role keys the team will access */
+export type CreateTeamRequestCustomRoleKeysList = Array<string>;
+export const CreateTeamRequestCustomRoleKeysList = /*@__PURE__*/ S.Array(
   S.String,
-  S.Unknown,
-) as any as S.Schema<Instruction>;
+) as any as S.Schema<CreateTeamRequestCustomRoleKeysList>;
+
+/** A list of member IDs who belong to the team */
+export type CreateTeamRequestMemberIDsList = Array<string>;
+export const CreateTeamRequestMemberIDsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateTeamRequestMemberIDsList>;
+
+/** A group of related actions to allow. Specify either <code>actionSet</code> or <code>actions</code>. Use <code>maintainTeam</code> to add team maintainers. */
+export type PermissionGrantInputActionSet = "maintainTeam";
+export const PermissionGrantInputActionSet = /*@__PURE__*/ S.String;
+
+/** A list of actions to allow. Specify either <code>actionSet</code> or <code>actions</code>. To learn more, read [Role actions](https://launchdarkly.com/docs/ld-docs/home/account/role-actions). */
+export type PermissionGrantInputActionsList = Array<string>;
+export const PermissionGrantInputActionsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<PermissionGrantInputActionsList>;
+
+/** A list of member IDs who receive the permission grant. */
+export type PermissionGrantInputMemberIDsList = Array<string>;
+export const PermissionGrantInputMemberIDsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<PermissionGrantInputMemberIDsList>;
+
+export interface PermissionGrantInput {
+  /** A group of related actions to allow. Specify either <code>actionSet</code> or <code>actions</code>. Use <code>maintainTeam</code> to add team maintainers. */
+  actionSet?: PermissionGrantInputActionSet | (string & {});
+  /** A list of actions to allow. Specify either <code>actionSet</code> or <code>actions</code>. To learn more, read [Role actions](https://launchdarkly.com/docs/ld-docs/home/account/role-actions). */
+  actions?: PermissionGrantInputActionsList;
+  /** A list of member IDs who receive the permission grant. */
+  memberIDs?: PermissionGrantInputMemberIDsList;
+}
+export const PermissionGrantInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    actionSet: S.optional(PermissionGrantInputActionSet),
+    actions: S.optional(PermissionGrantInputActionsList),
+    memberIDs: S.optional(PermissionGrantInputMemberIDsList),
+  }),
+).annotate({
+  identifier: "PermissionGrantInput",
+}) as any as S.Schema<PermissionGrantInput>;
+
+/** A list of permission grants. Permission grants allow access to a specific action, without having to create or update a custom role. */
+export type CreateTeamRequestPermissionGrantsList = Array<PermissionGrantInput>;
+export const CreateTeamRequestPermissionGrantsList = /*@__PURE__*/ S.Array(
+  PermissionGrantInput,
+) as any as S.Schema<CreateTeamRequestPermissionGrantsList>;
+
+export interface CreateTeamRequest {
+  /** A comma-separated list of properties that can reveal additional information in the response. Supported fields are explained above. */
+  expand?: string;
+  /** List of custom role keys the team will access */
+  customRoleKeys?: CreateTeamRequestCustomRoleKeysList;
+  /** A description of the team */
+  description?: string;
+  /** The team key */
+  key: string;
+  /** A list of member IDs who belong to the team */
+  memberIDs?: CreateTeamRequestMemberIDsList;
+  /** A human-friendly name for the team */
+  name: string;
+  /** A list of permission grants. Permission grants allow access to a specific action, without having to create or update a custom role. */
+  permissionGrants?: CreateTeamRequestPermissionGrantsList;
+  /** A map of role attributes for the team */
+  roleAttributes?: RoleAttributeMap;
+}
+export const CreateTeamRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    expand: S.optional(S.String.pipe(T.Query())),
+    customRoleKeys: S.optional(CreateTeamRequestCustomRoleKeysList),
+    description: S.optional(S.String),
+    key: S.String,
+    memberIDs: S.optional(CreateTeamRequestMemberIDsList),
+    name: S.String,
+    permissionGrants: S.optional(CreateTeamRequestPermissionGrantsList),
+    roleAttributes: S.optional(RoleAttributeMap),
+  }).pipe(T.Http({ method: "POST", uri: "/api/v2/teams", code: 200 })),
+).annotate({
+  identifier: "CreateTeamRequest",
+}) as any as S.Schema<CreateTeamRequest>;
+
+/** The location and content type of related resources */
+export type TeamLinksMap = { [key: string]: Link | undefined };
+export const TeamLinksMap = /*@__PURE__*/ S.Record(
+  S.String,
+  Link,
+) as any as S.Schema<TeamLinksMap>;
+
+/** The location and content type of related resources */
+export type ProjectSummaryLinksMap = { [key: string]: Link | undefined };
+export const ProjectSummaryLinksMap = /*@__PURE__*/ S.Record(
+  S.String,
+  Link,
+) as any as S.Schema<ProjectSummaryLinksMap>;
+
+export interface ProjectSummary {
+  /** The ID of this project */
+  _id: string;
+  /** The location and content type of related resources */
+  _links: ProjectSummaryLinksMap;
+  /** The project key */
+  key: string;
+  /** The project name */
+  name: string;
+}
+export const ProjectSummary = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    _id: S.String,
+    _links: ProjectSummaryLinksMap,
+    key: S.String,
+    name: S.String,
+  }),
+).annotate({ identifier: "ProjectSummary" }) as any as S.Schema<ProjectSummary>;
+
+/** Details on each project where team members have write privileges on at least one resource type (e.g. flags) */
+export type TeamProjectsItemsList = Array<ProjectSummary>;
+export const TeamProjectsItemsList = /*@__PURE__*/ S.Array(
+  ProjectSummary,
+) as any as S.Schema<TeamProjectsItemsList>;
+
+export interface TeamProjects {
+  totalCount?: number;
+  /** Details on each project where team members have write privileges on at least one resource type (e.g. flags) */
+  items?: TeamProjectsItemsList;
+}
+export const TeamProjects = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    totalCount: S.optional(S.Number),
+    items: S.optional(TeamProjectsItemsList),
+  }),
+).annotate({ identifier: "TeamProjects" }) as any as S.Schema<TeamProjects>;
+
+export interface TeamCustomRole {
+  /** The key of the custom role */
+  key?: string;
+  /** The name of the custom role */
+  name?: string;
+  /** Details on the projects where team members have write privileges on at least one resource type (e.g. flags) */
+  projects?: TeamProjects;
+  /** Timestamp of when the custom role was assigned to this team */
+  appliedOn?: number;
+}
+export const TeamCustomRole = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    key: S.optional(S.String),
+    name: S.optional(S.String),
+    projects: S.optional(TeamProjects),
+    appliedOn: S.optional(S.Number),
+  }),
+).annotate({ identifier: "TeamCustomRole" }) as any as S.Schema<TeamCustomRole>;
+
+/** An array of the custom roles that have been assigned to this team */
+export type TeamCustomRolesItemsList = Array<TeamCustomRole>;
+export const TeamCustomRolesItemsList = /*@__PURE__*/ S.Array(
+  TeamCustomRole,
+) as any as S.Schema<TeamCustomRolesItemsList>;
+
+/** The location and content type of related resources */
+export type TeamCustomRolesLinksMap = { [key: string]: Link | undefined };
+export const TeamCustomRolesLinksMap = /*@__PURE__*/ S.Record(
+  S.String,
+  Link,
+) as any as S.Schema<TeamCustomRolesLinksMap>;
+
+export interface TeamCustomRoles {
+  /** The number of custom roles assigned to this team */
+  totalCount?: number;
+  /** An array of the custom roles that have been assigned to this team */
+  items?: TeamCustomRolesItemsList;
+  /** The location and content type of related resources */
+  _links?: TeamCustomRolesLinksMap;
+}
+export const TeamCustomRoles = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    totalCount: S.optional(S.Number),
+    items: S.optional(TeamCustomRolesItemsList),
+    _links: S.optional(TeamCustomRolesLinksMap),
+  }),
+).annotate({
+  identifier: "TeamCustomRoles",
+}) as any as S.Schema<TeamCustomRoles>;
+
+export interface TeamMembers {
+  /** The total count of members that belong to the team */
+  totalCount?: number;
+}
+export const TeamMembers = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    totalCount: S.optional(S.Number),
+  }),
+).annotate({ identifier: "TeamMembers" }) as any as S.Schema<TeamMembers>;
+
+/** Details on the members that have been assigned as maintainers of the team */
+export type TeamMaintainersItemsList = Array<MemberSummary>;
+export const TeamMaintainersItemsList = /*@__PURE__*/ S.Array(
+  MemberSummary,
+) as any as S.Schema<TeamMaintainersItemsList>;
+
+/** The location and content type of related resources */
+export type TeamMaintainersLinksMap = { [key: string]: Link | undefined };
+export const TeamMaintainersLinksMap = /*@__PURE__*/ S.Record(
+  S.String,
+  Link,
+) as any as S.Schema<TeamMaintainersLinksMap>;
+
+export interface TeamMaintainers {
+  /** The number of maintainers of the team */
+  totalCount?: number;
+  /** Details on the members that have been assigned as maintainers of the team */
+  items?: TeamMaintainersItemsList;
+  /** The location and content type of related resources */
+  _links?: TeamMaintainersLinksMap;
+}
+export const TeamMaintainers = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    totalCount: S.optional(S.Number),
+    items: S.optional(TeamMaintainersItemsList),
+    _links: S.optional(TeamMaintainersLinksMap),
+  }),
+).annotate({
+  identifier: "TeamMaintainers",
+}) as any as S.Schema<TeamMaintainers>;
+
+export interface Team {
+  /** A description of the team */
+  description?: string;
+  /** The team key */
+  key?: string;
+  /** A human-friendly name for the team */
+  name?: string;
+  /** Details on the allowed and denied actions for this team */
+  _access?: Access;
+  /** Timestamp of when the team was created */
+  _creationDate?: number;
+  /** The location and content type of related resources */
+  _links?: TeamLinksMap;
+  /** Timestamp of when the team was most recently updated */
+  _lastModified?: number;
+  /** The team version */
+  _version?: number;
+  /** Whether the team has been synced with an external identity provider (IdP). Team sync is available to customers on an Enterprise plan. */
+  _idpSynced?: boolean;
+  /** A map of role attributes for the team */
+  roleAttributes?: RoleAttributeMap;
+  /** Paginated list of the custom roles assigned to this team. Only included if specified in the <code>expand</code> query parameter. */
+  roles?: TeamCustomRoles;
+  /** Details on the total count of members that belong to the team. Only included if specified in the <code>expand</code> query parameter. */
+  members?: TeamMembers;
+  /** Paginated list of the projects that the team has any write access to. Only included if specified in the <code>expand</code> query parameter. */
+  projects?: TeamProjects;
+  /** Paginated list of the maintainers assigned to this team. Only included if specified in the <code>expand</code> query parameter. */
+  maintainers?: TeamMaintainers;
+}
+export const Team = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    description: S.optional(S.String),
+    key: S.optional(S.String),
+    name: S.optional(S.String),
+    _access: S.optional(Access),
+    _creationDate: S.optional(S.Number),
+    _links: S.optional(TeamLinksMap),
+    _lastModified: S.optional(S.Number),
+    _version: S.optional(S.Number),
+    _idpSynced: S.optional(S.Boolean),
+    roleAttributes: S.optional(RoleAttributeMap),
+    roles: S.optional(TeamCustomRoles),
+    members: S.optional(TeamMembers),
+    projects: S.optional(TeamProjects),
+    maintainers: S.optional(TeamMaintainers),
+  }),
+).annotate({ identifier: "Team" }) as any as S.Schema<Team>;
+
+export interface CreateTeamMemberRequest {
+  /** The team key */
+  teamKey: string;
+  /** CSV file containing email addresses */
+  file?: string;
+}
+export const CreateTeamMemberRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    teamKey: S.String.pipe(T.Label()),
+    file: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/v2/teams/{teamKey}/members",
+      code: 200,
+      contentType: "multipart",
+    }),
+  ),
+).annotate({
+  identifier: "CreateTeamMemberRequest",
+}) as any as S.Schema<CreateTeamMemberRequest>;
+
+export interface MemberImportItem {
+  /** An error message, including CSV line number, if the <code>status</code> is <code>error</code> */
+  message?: string;
+  /** Whether this member can be successfully imported (<code>success</code>) or not (<code>error</code>). Even if the status is <code>success</code>, members are only added to a team on a <code>201</code> response. */
+  status: string;
+  /** The email address for the member requested to be added to this team. May be blank or an error, such as 'invalid email format', if the email address cannot be found or parsed. */
+  value: string;
+}
+export const MemberImportItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    message: S.optional(S.String),
+    status: S.String,
+    value: S.String,
+  }),
+).annotate({
+  identifier: "MemberImportItem",
+}) as any as S.Schema<MemberImportItem>;
+
+/** An array of details about the members requested to be added to this team */
+export type TeamImportsRepItemsList = Array<MemberImportItem>;
+export const TeamImportsRepItemsList = /*@__PURE__*/ S.Array(
+  MemberImportItem,
+) as any as S.Schema<TeamImportsRepItemsList>;
+
+export interface TeamImportsRep {
+  /** An array of details about the members requested to be added to this team */
+  items?: TeamImportsRepItemsList;
+}
+export const TeamImportsRep = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    items: S.optional(TeamImportsRepItemsList),
+  }),
+).annotate({ identifier: "TeamImportsRep" }) as any as S.Schema<TeamImportsRep>;
+
+/** Base role for the token */
+export type CreateTokenRequestRole = "reader" | "writer" | "admin";
+export const CreateTokenRequestRole = /*@__PURE__*/ S.String;
+
+/** A list of custom role IDs to use as access limits for the access token */
+export type CreateTokenRequestCustomRoleIdsList = Array<string>;
+export const CreateTokenRequestCustomRoleIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateTokenRequestCustomRoleIdsList>;
+
+/** A JSON array of statements represented as JSON objects with three attributes: effect, resources, actions. May be used in place of a role. */
+export type CreateTokenRequestInlineRoleList = Array<StatementPost>;
+export const CreateTokenRequestInlineRoleList = /*@__PURE__*/ S.Array(
+  StatementPost,
+) as any as S.Schema<CreateTokenRequestInlineRoleList>;
+
+export interface CreateTokenRequest {
+  /** A human-friendly name for the access token */
+  name?: string;
+  /** A description for the access token */
+  description?: string;
+  /** Base role for the token */
+  role?: CreateTokenRequestRole | (string & {});
+  /** A list of custom role IDs to use as access limits for the access token */
+  customRoleIds?: CreateTokenRequestCustomRoleIdsList;
+  /** A JSON array of statements represented as JSON objects with three attributes: effect, resources, actions. May be used in place of a role. */
+  inlineRole?: CreateTokenRequestInlineRoleList;
+  /** Whether the token is a service token */
+  serviceToken?: boolean;
+  /** The default API version for this token */
+  defaultApiVersion?: number;
+}
+export const CreateTokenRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    description: S.optional(S.String),
+    role: S.optional(CreateTokenRequestRole),
+    customRoleIds: S.optional(CreateTokenRequestCustomRoleIdsList),
+    inlineRole: S.optional(CreateTokenRequestInlineRoleList),
+    serviceToken: S.optional(S.Boolean),
+    defaultApiVersion: S.optional(S.Number),
+  }).pipe(T.Http({ method: "POST", uri: "/api/v2/tokens", code: 200 })),
+).annotate({
+  identifier: "CreateTokenRequest",
+}) as any as S.Schema<CreateTokenRequest>;
+
+/** A list of custom role IDs to use as access limits for the access token */
+export type TokenCustomRoleIdsList = Array<string>;
+export const TokenCustomRoleIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<TokenCustomRoleIdsList>;
+
+/** An array of policy statements, with three attributes: effect, resources, actions. May be used in place of a role. */
+export type TokenInlineRoleList = Array<Statement>;
+export const TokenInlineRoleList = /*@__PURE__*/ S.Array(
+  Statement,
+) as any as S.Schema<TokenInlineRoleList>;
+
+/** The location and content type of related resources */
+export type TokenLinksMap = { [key: string]: Link | undefined };
+export const TokenLinksMap = /*@__PURE__*/ S.Record(
+  S.String,
+  Link,
+) as any as S.Schema<TokenLinksMap>;
+
+export interface Token {
+  /** The ID of the access token */
+  _id: string;
+  /** The ID of the owner of the account for the access token */
+  ownerId: string;
+  /** The ID of the member who created the access token */
+  memberId: string;
+  /** Details on the member who created the access token */
+  _member?: MemberSummary;
+  /** A human-friendly name for the access token */
+  name?: string;
+  /** A description for the access token */
+  description?: string;
+  /** Timestamp of when the access token was created */
+  creationDate: number;
+  /** Timestamp of the last modification of the access token */
+  lastModified: number;
+  /** A list of custom role IDs to use as access limits for the access token */
+  customRoleIds?: TokenCustomRoleIdsList;
+  /** An array of policy statements, with three attributes: effect, resources, actions. May be used in place of a role. */
+  inlineRole?: TokenInlineRoleList;
+  /** Base role for the token */
+  role?: string;
+  /** The token value. When creating or resetting, contains the entire token value. Otherwise, contains the last four characters. */
+  token?: string;
+  /** Whether this is a service token or a personal token */
+  serviceToken?: boolean;
+  /** The location and content type of related resources */
+  _links: TokenLinksMap;
+  /** The default API version for this token */
+  defaultApiVersion?: number;
+  /** Timestamp of when the access token was last used */
+  lastUsed?: number;
+  /** Timestamp of when the access token expires. Omitted when the token has no expiry. */
+  expiry?: number;
+}
+export const Token = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    _id: S.String,
+    ownerId: S.String,
+    memberId: S.String,
+    _member: S.optional(MemberSummary),
+    name: S.optional(S.String),
+    description: S.optional(S.String),
+    creationDate: S.Number,
+    lastModified: S.Number,
+    customRoleIds: S.optional(TokenCustomRoleIdsList),
+    inlineRole: S.optional(TokenInlineRoleList),
+    role: S.optional(S.String),
+    token: S.optional(S.String),
+    serviceToken: S.optional(S.Boolean),
+    _links: TokenLinksMap,
+    defaultApiVersion: S.optional(S.Number),
+    lastUsed: S.optional(S.Number),
+    expiry: S.optional(S.Number),
+  }),
+).annotate({ identifier: "Token" }) as any as S.Schema<Token>;
 
 /** The action to perform when triggering. This should be an array with a single object that looks like <code>{"kind": "flag_action"}</code>. Supported flag actions are <code>turnFlagOn</code> and <code>turnFlagOff</code>. */
 export type CreateTriggerWorkflowRequestInstructionsList = Array<Instruction>;
@@ -5040,11 +6313,6 @@ export const CreateTriggerWorkflowRequest = /*@__PURE__*/ S.suspend(() =>
 /** The trigger state: active, inactive, or failed */
 export type TriggerWorkflowRepStatus = "active" | "inactive" | "failed";
 export const TriggerWorkflowRepStatus = /*@__PURE__*/ S.String;
-
-export type Instructions = Array<Instruction>;
-export const Instructions = /*@__PURE__*/ S.Array(
-  Instruction,
-) as any as S.Schema<Instructions>;
 
 /** The marshalled JSON request body for the incoming trigger webhook. If this is empty or contains invalid JSON, the timestamp is recorded but this field will be empty. */
 export type RecentTriggerBodyJsonBodyMap = {
@@ -6039,6 +7307,95 @@ export const View = /*@__PURE__*/ S.suspend(() =>
     resourcesExpanded: S.optional(ExpandedLinkedResources),
   }),
 ).annotate({ identifier: "View" }) as any as S.Schema<View>;
+
+/** List of tags for this webhook */
+export type CreateWebhookRequestTagsList = Array<string>;
+export const CreateWebhookRequestTagsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateWebhookRequestTagsList>;
+
+export interface CreateWebhookRequest {
+  /** A human-readable name for your webhook */
+  name?: string;
+  /** The URL of the remote webhook */
+  url: string;
+  /** If sign is true, and the secret attribute is omitted, LaunchDarkly automatically generates a secret for you. */
+  secret?: string | Redacted.Redacted<string>;
+  /** Represents a Custom role policy, defining a resource kinds filter the webhook should respond to. */
+  statements?: StatementPostList;
+  /** If sign is false, the webhook does not include a signature header, and the secret can be omitted. */
+  sign: boolean;
+  /** Whether or not this webhook is enabled. */
+  on: boolean;
+  /** List of tags for this webhook */
+  tags?: CreateWebhookRequestTagsList;
+}
+export const CreateWebhookRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    url: S.String,
+    secret: S.optional(S.String.pipe(T.SensitiveValue({}))),
+    statements: S.optional(StatementPostList),
+    sign: S.Boolean,
+    on: S.Boolean,
+    tags: S.optional(CreateWebhookRequestTagsList),
+  }).pipe(T.Http({ method: "POST", uri: "/api/v2/webhooks", code: 200 })),
+).annotate({
+  identifier: "CreateWebhookRequest",
+}) as any as S.Schema<CreateWebhookRequest>;
+
+/** The location and content type of related resources */
+export type WebhookLinksMap = { [key: string]: Link | undefined };
+export const WebhookLinksMap = /*@__PURE__*/ S.Record(
+  S.String,
+  Link,
+) as any as S.Schema<WebhookLinksMap>;
+
+/** Represents a Custom role policy, defining a resource kinds filter the webhook responds to. */
+export type WebhookStatementsList = Array<Statement>;
+export const WebhookStatementsList = /*@__PURE__*/ S.Array(
+  Statement,
+) as any as S.Schema<WebhookStatementsList>;
+
+/** List of tags for this webhook */
+export type WebhookTagsList = Array<string>;
+export const WebhookTagsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<WebhookTagsList>;
+
+export interface Webhook {
+  /** The location and content type of related resources */
+  _links: WebhookLinksMap;
+  /** The ID of this webhook */
+  _id: string;
+  /** A human-readable name for this webhook */
+  name?: string;
+  /** The URL to which LaunchDarkly sends an HTTP POST payload for this webhook */
+  url: string;
+  /** The secret for this webhook */
+  secret?: string | Redacted.Redacted<string>;
+  /** Represents a Custom role policy, defining a resource kinds filter the webhook responds to. */
+  statements?: WebhookStatementsList;
+  /** Whether or not this webhook is enabled */
+  on: boolean;
+  /** List of tags for this webhook */
+  tags: WebhookTagsList;
+  /** Details on the allowed and denied actions for this webhook */
+  _access?: Access;
+}
+export const Webhook = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    _links: WebhookLinksMap,
+    _id: S.String,
+    name: S.optional(S.String),
+    url: S.String,
+    secret: S.optional(S.String.pipe(T.SensitiveValue({}))),
+    statements: S.optional(WebhookStatementsList),
+    on: S.Boolean,
+    tags: WebhookTagsList,
+    _access: S.optional(Access),
+  }),
+).annotate({ identifier: "Webhook" }) as any as S.Schema<Webhook>;
 
 /** A list of member IDs for the members to request approval from for this stage */
 export type ConditionInputNotifyMemberIdsList = Array<string>;
@@ -10328,59 +11685,6 @@ export const WebhooksLinksMap = /*@__PURE__*/ S.Record(
   Link,
 ) as any as S.Schema<WebhooksLinksMap>;
 
-/** The location and content type of related resources */
-export type WebhookLinksMap = { [key: string]: Link | undefined };
-export const WebhookLinksMap = /*@__PURE__*/ S.Record(
-  S.String,
-  Link,
-) as any as S.Schema<WebhookLinksMap>;
-
-/** Represents a Custom role policy, defining a resource kinds filter the webhook responds to. */
-export type WebhookStatementsList = Array<Statement>;
-export const WebhookStatementsList = /*@__PURE__*/ S.Array(
-  Statement,
-) as any as S.Schema<WebhookStatementsList>;
-
-/** List of tags for this webhook */
-export type WebhookTagsList = Array<string>;
-export const WebhookTagsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<WebhookTagsList>;
-
-export interface Webhook {
-  /** The location and content type of related resources */
-  _links: WebhookLinksMap;
-  /** The ID of this webhook */
-  _id: string;
-  /** A human-readable name for this webhook */
-  name?: string;
-  /** The URL to which LaunchDarkly sends an HTTP POST payload for this webhook */
-  url: string;
-  /** The secret for this webhook */
-  secret?: string | Redacted.Redacted<string>;
-  /** Represents a Custom role policy, defining a resource kinds filter the webhook responds to. */
-  statements?: WebhookStatementsList;
-  /** Whether or not this webhook is enabled */
-  on: boolean;
-  /** List of tags for this webhook */
-  tags: WebhookTagsList;
-  /** Details on the allowed and denied actions for this webhook */
-  _access?: Access;
-}
-export const Webhook = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    _links: WebhookLinksMap,
-    _id: S.String,
-    name: S.optional(S.String),
-    url: S.String,
-    secret: S.optional(S.String.pipe(T.SensitiveValue({}))),
-    statements: S.optional(WebhookStatementsList),
-    on: S.Boolean,
-    tags: WebhookTagsList,
-    _access: S.optional(Access),
-  }),
-).annotate({ identifier: "Webhook" }) as any as S.Schema<Webhook>;
-
 /** An array of webhooks */
 export type WebhooksItemsList = Array<Webhook>;
 export const WebhooksItemsList = /*@__PURE__*/ S.Array(
@@ -10785,35 +12089,6 @@ export type FlagConfigApprovalRequestResponseReviewStatus =
 export const FlagConfigApprovalRequestResponseReviewStatus =
   /*@__PURE__*/ S.String;
 
-/** The type of review action to take */
-export type ReviewResponseKind = "approve" | "decline" | "comment";
-export const ReviewResponseKind = /*@__PURE__*/ S.String;
-
-export interface ReviewResponse {
-  /** The approval request ID */
-  _id: string;
-  /** The type of review action to take */
-  kind: ReviewResponseKind;
-  /** Timestamp of when the request was created */
-  creationDate?: number;
-  /** A comment describing the approval response */
-  comment?: string;
-  /** ID of account member that reviewed request */
-  memberId?: string;
-  /** ID of account service token that reviewed request */
-  serviceTokenId?: string;
-}
-export const ReviewResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    _id: S.String,
-    kind: ReviewResponseKind,
-    creationDate: S.optional(S.Number),
-    comment: S.optional(S.String),
-    memberId: S.optional(S.String),
-    serviceTokenId: S.optional(S.String),
-  }),
-).annotate({ identifier: "ReviewResponse" }) as any as S.Schema<ReviewResponse>;
-
 /** An array of individual reviews of this approval request */
 export type FlagConfigApprovalRequestResponseAllReviewsList =
   Array<ReviewResponse>;
@@ -10838,19 +12113,6 @@ export type FlagConfigApprovalRequestResponseStatus =
   | "scheduled";
 export const FlagConfigApprovalRequestResponseStatus = /*@__PURE__*/ S.String;
 
-export interface Conflict2 {
-  /** Instruction in semantic patch format to be applied to the feature flag */
-  instruction?: Instruction;
-  /** Reason why the conflict exists */
-  reason?: string;
-}
-export const Conflict2 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    instruction: S.optional(Instruction),
-    reason: S.optional(S.String),
-  }),
-).annotate({ identifier: "Conflict2" }) as any as S.Schema<Conflict2>;
-
 /** Details on any conflicting approval requests */
 export type FlagConfigApprovalRequestResponseConflictsList = Array<Conflict2>;
 export const FlagConfigApprovalRequestResponseConflictsList =
@@ -10866,79 +12128,6 @@ export const FlagConfigApprovalRequestResponseLinksMap = /*@__PURE__*/ S.Record(
   S.String,
   S.Unknown,
 ) as any as S.Schema<FlagConfigApprovalRequestResponseLinksMap>;
-
-export interface IntegrationStatus {
-  display: string;
-  value: string;
-}
-export const IntegrationStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    display: S.String,
-    value: S.String,
-  }),
-).annotate({
-  identifier: "IntegrationStatus",
-}) as any as S.Schema<IntegrationStatus>;
-
-export interface IntegrationMetadata {
-  externalId: string;
-  externalStatus: IntegrationStatus;
-  externalUrl: string;
-  lastChecked: number;
-}
-export const IntegrationMetadata = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    externalId: S.String,
-    externalStatus: IntegrationStatus,
-    externalUrl: S.String,
-    lastChecked: S.Number,
-  }),
-).annotate({
-  identifier: "IntegrationMetadata",
-}) as any as S.Schema<IntegrationMetadata>;
-
-export interface CopiedFromEnv {
-  /** Key of feature flag copied */
-  key: string;
-  /** Version of feature flag copied */
-  version?: number;
-}
-export const CopiedFromEnv = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    key: S.String,
-    version: S.optional(S.Number),
-  }),
-).annotate({ identifier: "CopiedFromEnv" }) as any as S.Schema<CopiedFromEnv>;
-
-export interface CustomWorkflowStageMeta {
-  /** The zero-based index of the workflow stage */
-  index?: number;
-  /** The name of the workflow stage */
-  name?: string;
-}
-export const CustomWorkflowStageMeta = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    index: S.optional(S.Number),
-    name: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CustomWorkflowStageMeta",
-}) as any as S.Schema<CustomWorkflowStageMeta>;
-
-export interface CustomWorkflowMeta {
-  /** The name of the workflow stage that required this approval request */
-  name?: string;
-  /** Details on the stage of the workflow where this approval request is required */
-  stage?: CustomWorkflowStageMeta;
-}
-export const CustomWorkflowMeta = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    stage: S.optional(CustomWorkflowStageMeta),
-  }),
-).annotate({
-  identifier: "CustomWorkflowMeta",
-}) as any as S.Schema<CustomWorkflowMeta>;
 
 export interface FlagConfigApprovalRequestResponse {
   /** The ID of this approval request */
@@ -16871,32 +18060,6 @@ export const GetInsightsRepositoriesRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetInsightsRepositoriesRequest",
 }) as any as S.Schema<GetInsightsRepositoriesRequest>;
 
-/** The location and content type of related resources */
-export type ProjectSummaryLinksMap = { [key: string]: Link | undefined };
-export const ProjectSummaryLinksMap = /*@__PURE__*/ S.Record(
-  S.String,
-  Link,
-) as any as S.Schema<ProjectSummaryLinksMap>;
-
-export interface ProjectSummary {
-  /** The ID of this project */
-  _id: string;
-  /** The location and content type of related resources */
-  _links: ProjectSummaryLinksMap;
-  /** The project key */
-  key: string;
-  /** The project name */
-  name: string;
-}
-export const ProjectSummary = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    _id: S.String,
-    _links: ProjectSummaryLinksMap,
-    key: S.String,
-    name: S.String,
-  }),
-).annotate({ identifier: "ProjectSummary" }) as any as S.Schema<ProjectSummary>;
-
 export type ProjectSummaryCollectionItemsList = Array<ProjectSummary>;
 export const ProjectSummaryCollectionItemsList = /*@__PURE__*/ S.Array(
   ProjectSummary,
@@ -17643,169 +18806,6 @@ export const GetMemberRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetMemberRequest",
 }) as any as S.Schema<GetMemberRequest>;
 
-/** The location and content type of related resources */
-export type MemberLinksMap = { [key: string]: Link | undefined };
-export const MemberLinksMap = /*@__PURE__*/ S.Record(
-  S.String,
-  Link,
-) as any as S.Schema<MemberLinksMap>;
-
-/** The set of additional roles, besides the base role, assigned to the member */
-export type MemberCustomRolesList = Array<string>;
-export const MemberCustomRolesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<MemberCustomRolesList>;
-
-/** Default dashboards that the member has chosen to ignore */
-export type MemberExcludedDashboardsList = Array<string>;
-export const MemberExcludedDashboardsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<MemberExcludedDashboardsList>;
-
-export interface LastSeenMetadata {
-  /** The ID of the token used in the member's last session */
-  tokenId?: string;
-}
-export const LastSeenMetadata = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    tokenId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "LastSeenMetadata",
-}) as any as S.Schema<LastSeenMetadata>;
-
-/** Details on the teams this member is assigned to */
-export type MemberTeamsList = Array<MemberTeamSummaryRep>;
-export const MemberTeamsList = /*@__PURE__*/ S.Array(
-  MemberTeamSummaryRep,
-) as any as S.Schema<MemberTeamsList>;
-
-/** A list of actions to allow. A permission grant may have either an <code>actionSet</code> or a list of <code>actions</code> but not both at the same time. */
-export type MemberPermissionGrantSummaryRepActionsList = Array<string>;
-export const MemberPermissionGrantSummaryRepActionsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<MemberPermissionGrantSummaryRepActionsList>;
-
-export interface MemberPermissionGrantSummaryRep {
-  /** The name of the group of related actions to allow. A permission grant may have either an <code>actionSet</code> or a list of <code>actions</code> but not both at the same time. */
-  actionSet?: string;
-  /** A list of actions to allow. A permission grant may have either an <code>actionSet</code> or a list of <code>actions</code> but not both at the same time. */
-  actions?: MemberPermissionGrantSummaryRepActionsList;
-  /** The resource for which the actions are allowed */
-  resource: string;
-}
-export const MemberPermissionGrantSummaryRep = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    actionSet: S.optional(S.String),
-    actions: S.optional(MemberPermissionGrantSummaryRepActionsList),
-    resource: S.String,
-  }),
-).annotate({
-  identifier: "MemberPermissionGrantSummaryRep",
-}) as any as S.Schema<MemberPermissionGrantSummaryRep>;
-
-/** A list of permission grants. Permission grants allow a member to have access to a specific action, without having to create or update a custom role. */
-export type MemberPermissionGrantsList = Array<MemberPermissionGrantSummaryRep>;
-export const MemberPermissionGrantsList = /*@__PURE__*/ S.Array(
-  MemberPermissionGrantSummaryRep,
-) as any as S.Schema<MemberPermissionGrantsList>;
-
-/** A list of OAuth providers */
-export type MemberOauthProvidersList = Array<string>;
-export const MemberOauthProvidersList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<MemberOauthProvidersList>;
-
-export type RoleAttributeValues = Array<string>;
-export const RoleAttributeValues = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<RoleAttributeValues>;
-
-export type RoleAttributeMap = {
-  [key: string]: RoleAttributeValues | undefined;
-};
-export const RoleAttributeMap = /*@__PURE__*/ S.Record(
-  S.String,
-  RoleAttributeValues,
-) as any as S.Schema<RoleAttributeMap>;
-
-export interface Member {
-  /** The location and content type of related resources */
-  _links: MemberLinksMap;
-  /** The member's ID */
-  _id: string;
-  /** The member's first name */
-  firstName?: string;
-  /** The member's last name */
-  lastName?: string;
-  /** The member's base role. If the member has no additional roles, this role will be in effect. */
-  role: string;
-  /** The member's email address */
-  email: string;
-  /** Whether the member has a pending invitation */
-  _pendingInvite: boolean;
-  /** Whether the member's email address has been verified */
-  _verified: boolean;
-  /** The member's email address before it has been verified, for accounts where email verification is required */
-  _pendingEmail?: string;
-  /** The set of additional roles, besides the base role, assigned to the member */
-  customRoles: MemberCustomRolesList;
-  /** Whether multi-factor authentication is enabled for this member */
-  mfa: string;
-  /** Default dashboards that the member has chosen to ignore */
-  excludedDashboards?: MemberExcludedDashboardsList;
-  /** The member's last session date (as Unix milliseconds since epoch) */
-  _lastSeen: number;
-  /** Additional metadata associated with the member's last session, for example, whether a token was used */
-  _lastSeenMetadata?: LastSeenMetadata;
-  /** Details on the member account in an external source, if this member is provisioned externally */
-  _integrationMetadata?: IntegrationMetadata;
-  /** Details on the teams this member is assigned to */
-  teams?: MemberTeamsList;
-  /** A list of permission grants. Permission grants allow a member to have access to a specific action, without having to create or update a custom role. */
-  permissionGrants?: MemberPermissionGrantsList;
-  /** Timestamp of when the member was created */
-  creationDate: number;
-  /** A list of OAuth providers */
-  oauthProviders?: MemberOauthProvidersList;
-  /** Whether the member has a password set (basic auth). False for OAuth-only or SCIM-provisioned members without a password. */
-  hasPassword?: boolean;
-  /** Version of the current configuration */
-  version?: number;
-  /** The role attributes for the member */
-  roleAttributes?: RoleAttributeMap;
-  mfaEnforced?: boolean;
-  mfaGracePeriodExpiresAt?: number;
-}
-export const Member = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    _links: MemberLinksMap,
-    _id: S.String,
-    firstName: S.optional(S.String),
-    lastName: S.optional(S.String),
-    role: S.String,
-    email: S.String,
-    _pendingInvite: S.Boolean,
-    _verified: S.Boolean,
-    _pendingEmail: S.optional(S.String),
-    customRoles: MemberCustomRolesList,
-    mfa: S.String,
-    excludedDashboards: S.optional(MemberExcludedDashboardsList),
-    _lastSeen: S.Number,
-    _lastSeenMetadata: S.optional(LastSeenMetadata),
-    _integrationMetadata: S.optional(IntegrationMetadata),
-    teams: S.optional(MemberTeamsList),
-    permissionGrants: S.optional(MemberPermissionGrantsList),
-    creationDate: S.Number,
-    oauthProviders: S.optional(MemberOauthProvidersList),
-    hasPassword: S.optional(S.Boolean),
-    version: S.optional(S.Number),
-    roleAttributes: S.optional(RoleAttributeMap),
-    mfaEnforced: S.optional(S.Boolean),
-    mfaGracePeriodExpiresAt: S.optional(S.Number),
-  }),
-).annotate({ identifier: "Member" }) as any as S.Schema<Member>;
-
 export interface GetMembersRequest {
   /** The number of members to return in the response. Defaults to 20. */
   limit?: number;
@@ -17829,35 +18829,6 @@ export const GetMembersRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetMembersRequest",
 }) as any as S.Schema<GetMembersRequest>;
-
-/** An array of members */
-export type MembersItemsList = Array<Member>;
-export const MembersItemsList = /*@__PURE__*/ S.Array(
-  Member,
-) as any as S.Schema<MembersItemsList>;
-
-/** The location and content type of related resources */
-export type MembersLinksMap = { [key: string]: Link | undefined };
-export const MembersLinksMap = /*@__PURE__*/ S.Record(
-  S.String,
-  Link,
-) as any as S.Schema<MembersLinksMap>;
-
-export interface Members {
-  /** An array of members */
-  items: MembersItemsList;
-  /** The location and content type of related resources */
-  _links: MembersLinksMap;
-  /** The number of members returned */
-  totalCount?: number;
-}
-export const Members = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    items: MembersItemsList,
-    _links: MembersLinksMap,
-    totalCount: S.optional(S.Number),
-  }),
-).annotate({ identifier: "Members" }) as any as S.Schema<Members>;
 
 export interface GetMetricRequest {
   /** The project key */
@@ -20430,171 +21401,6 @@ export const GetTeamRequest = /*@__PURE__*/ S.suspend(() =>
   }).pipe(T.Http({ method: "GET", uri: "/api/v2/teams/{teamKey}", code: 200 })),
 ).annotate({ identifier: "GetTeamRequest" }) as any as S.Schema<GetTeamRequest>;
 
-/** The location and content type of related resources */
-export type TeamLinksMap = { [key: string]: Link | undefined };
-export const TeamLinksMap = /*@__PURE__*/ S.Record(
-  S.String,
-  Link,
-) as any as S.Schema<TeamLinksMap>;
-
-/** Details on each project where team members have write privileges on at least one resource type (e.g. flags) */
-export type TeamProjectsItemsList = Array<ProjectSummary>;
-export const TeamProjectsItemsList = /*@__PURE__*/ S.Array(
-  ProjectSummary,
-) as any as S.Schema<TeamProjectsItemsList>;
-
-export interface TeamProjects {
-  totalCount?: number;
-  /** Details on each project where team members have write privileges on at least one resource type (e.g. flags) */
-  items?: TeamProjectsItemsList;
-}
-export const TeamProjects = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    totalCount: S.optional(S.Number),
-    items: S.optional(TeamProjectsItemsList),
-  }),
-).annotate({ identifier: "TeamProjects" }) as any as S.Schema<TeamProjects>;
-
-export interface TeamCustomRole {
-  /** The key of the custom role */
-  key?: string;
-  /** The name of the custom role */
-  name?: string;
-  /** Details on the projects where team members have write privileges on at least one resource type (e.g. flags) */
-  projects?: TeamProjects;
-  /** Timestamp of when the custom role was assigned to this team */
-  appliedOn?: number;
-}
-export const TeamCustomRole = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    key: S.optional(S.String),
-    name: S.optional(S.String),
-    projects: S.optional(TeamProjects),
-    appliedOn: S.optional(S.Number),
-  }),
-).annotate({ identifier: "TeamCustomRole" }) as any as S.Schema<TeamCustomRole>;
-
-/** An array of the custom roles that have been assigned to this team */
-export type TeamCustomRolesItemsList = Array<TeamCustomRole>;
-export const TeamCustomRolesItemsList = /*@__PURE__*/ S.Array(
-  TeamCustomRole,
-) as any as S.Schema<TeamCustomRolesItemsList>;
-
-/** The location and content type of related resources */
-export type TeamCustomRolesLinksMap = { [key: string]: Link | undefined };
-export const TeamCustomRolesLinksMap = /*@__PURE__*/ S.Record(
-  S.String,
-  Link,
-) as any as S.Schema<TeamCustomRolesLinksMap>;
-
-export interface TeamCustomRoles {
-  /** The number of custom roles assigned to this team */
-  totalCount?: number;
-  /** An array of the custom roles that have been assigned to this team */
-  items?: TeamCustomRolesItemsList;
-  /** The location and content type of related resources */
-  _links?: TeamCustomRolesLinksMap;
-}
-export const TeamCustomRoles = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    totalCount: S.optional(S.Number),
-    items: S.optional(TeamCustomRolesItemsList),
-    _links: S.optional(TeamCustomRolesLinksMap),
-  }),
-).annotate({
-  identifier: "TeamCustomRoles",
-}) as any as S.Schema<TeamCustomRoles>;
-
-export interface TeamMembers {
-  /** The total count of members that belong to the team */
-  totalCount?: number;
-}
-export const TeamMembers = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    totalCount: S.optional(S.Number),
-  }),
-).annotate({ identifier: "TeamMembers" }) as any as S.Schema<TeamMembers>;
-
-/** Details on the members that have been assigned as maintainers of the team */
-export type TeamMaintainersItemsList = Array<MemberSummary>;
-export const TeamMaintainersItemsList = /*@__PURE__*/ S.Array(
-  MemberSummary,
-) as any as S.Schema<TeamMaintainersItemsList>;
-
-/** The location and content type of related resources */
-export type TeamMaintainersLinksMap = { [key: string]: Link | undefined };
-export const TeamMaintainersLinksMap = /*@__PURE__*/ S.Record(
-  S.String,
-  Link,
-) as any as S.Schema<TeamMaintainersLinksMap>;
-
-export interface TeamMaintainers {
-  /** The number of maintainers of the team */
-  totalCount?: number;
-  /** Details on the members that have been assigned as maintainers of the team */
-  items?: TeamMaintainersItemsList;
-  /** The location and content type of related resources */
-  _links?: TeamMaintainersLinksMap;
-}
-export const TeamMaintainers = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    totalCount: S.optional(S.Number),
-    items: S.optional(TeamMaintainersItemsList),
-    _links: S.optional(TeamMaintainersLinksMap),
-  }),
-).annotate({
-  identifier: "TeamMaintainers",
-}) as any as S.Schema<TeamMaintainers>;
-
-export interface Team {
-  /** A description of the team */
-  description?: string;
-  /** The team key */
-  key?: string;
-  /** A human-friendly name for the team */
-  name?: string;
-  /** Details on the allowed and denied actions for this team */
-  _access?: Access;
-  /** Timestamp of when the team was created */
-  _creationDate?: number;
-  /** The location and content type of related resources */
-  _links?: TeamLinksMap;
-  /** Timestamp of when the team was most recently updated */
-  _lastModified?: number;
-  /** The team version */
-  _version?: number;
-  /** Whether the team has been synced with an external identity provider (IdP). Team sync is available to customers on an Enterprise plan. */
-  _idpSynced?: boolean;
-  /** A map of role attributes for the team */
-  roleAttributes?: RoleAttributeMap;
-  /** Paginated list of the custom roles assigned to this team. Only included if specified in the <code>expand</code> query parameter. */
-  roles?: TeamCustomRoles;
-  /** Details on the total count of members that belong to the team. Only included if specified in the <code>expand</code> query parameter. */
-  members?: TeamMembers;
-  /** Paginated list of the projects that the team has any write access to. Only included if specified in the <code>expand</code> query parameter. */
-  projects?: TeamProjects;
-  /** Paginated list of the maintainers assigned to this team. Only included if specified in the <code>expand</code> query parameter. */
-  maintainers?: TeamMaintainers;
-}
-export const Team = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    description: S.optional(S.String),
-    key: S.optional(S.String),
-    name: S.optional(S.String),
-    _access: S.optional(Access),
-    _creationDate: S.optional(S.Number),
-    _links: S.optional(TeamLinksMap),
-    _lastModified: S.optional(S.Number),
-    _version: S.optional(S.Number),
-    _idpSynced: S.optional(S.Boolean),
-    roleAttributes: S.optional(RoleAttributeMap),
-    roles: S.optional(TeamCustomRoles),
-    members: S.optional(TeamMembers),
-    projects: S.optional(TeamProjects),
-    maintainers: S.optional(TeamMaintainers),
-  }),
-).annotate({ identifier: "Team" }) as any as S.Schema<Team>;
-
 export interface GetTeamMaintainersRequest {
   /** The team key */
   teamKey: string;
@@ -20700,83 +21506,6 @@ export const GetTokenRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetTokenRequest",
 }) as any as S.Schema<GetTokenRequest>;
-
-/** A list of custom role IDs to use as access limits for the access token */
-export type TokenCustomRoleIdsList = Array<string>;
-export const TokenCustomRoleIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<TokenCustomRoleIdsList>;
-
-/** An array of policy statements, with three attributes: effect, resources, actions. May be used in place of a role. */
-export type TokenInlineRoleList = Array<Statement>;
-export const TokenInlineRoleList = /*@__PURE__*/ S.Array(
-  Statement,
-) as any as S.Schema<TokenInlineRoleList>;
-
-/** The location and content type of related resources */
-export type TokenLinksMap = { [key: string]: Link | undefined };
-export const TokenLinksMap = /*@__PURE__*/ S.Record(
-  S.String,
-  Link,
-) as any as S.Schema<TokenLinksMap>;
-
-export interface Token {
-  /** The ID of the access token */
-  _id: string;
-  /** The ID of the owner of the account for the access token */
-  ownerId: string;
-  /** The ID of the member who created the access token */
-  memberId: string;
-  /** Details on the member who created the access token */
-  _member?: MemberSummary;
-  /** A human-friendly name for the access token */
-  name?: string;
-  /** A description for the access token */
-  description?: string;
-  /** Timestamp of when the access token was created */
-  creationDate: number;
-  /** Timestamp of the last modification of the access token */
-  lastModified: number;
-  /** A list of custom role IDs to use as access limits for the access token */
-  customRoleIds?: TokenCustomRoleIdsList;
-  /** An array of policy statements, with three attributes: effect, resources, actions. May be used in place of a role. */
-  inlineRole?: TokenInlineRoleList;
-  /** Base role for the token */
-  role?: string;
-  /** The token value. When creating or resetting, contains the entire token value. Otherwise, contains the last four characters. */
-  token?: string;
-  /** Whether this is a service token or a personal token */
-  serviceToken?: boolean;
-  /** The location and content type of related resources */
-  _links: TokenLinksMap;
-  /** The default API version for this token */
-  defaultApiVersion?: number;
-  /** Timestamp of when the access token was last used */
-  lastUsed?: number;
-  /** Timestamp of when the access token expires. Omitted when the token has no expiry. */
-  expiry?: number;
-}
-export const Token = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    _id: S.String,
-    ownerId: S.String,
-    memberId: S.String,
-    _member: S.optional(MemberSummary),
-    name: S.optional(S.String),
-    description: S.optional(S.String),
-    creationDate: S.Number,
-    lastModified: S.Number,
-    customRoleIds: S.optional(TokenCustomRoleIdsList),
-    inlineRole: S.optional(TokenInlineRoleList),
-    role: S.optional(S.String),
-    token: S.optional(S.String),
-    serviceToken: S.optional(S.Boolean),
-    _links: TokenLinksMap,
-    defaultApiVersion: S.optional(S.Number),
-    lastUsed: S.optional(S.Number),
-    expiry: S.optional(S.Number),
-  }),
-).annotate({ identifier: "Token" }) as any as S.Schema<Token>;
 
 export interface GetTokensRequest {
   /** If set to true, and the authentication access token has the 'Admin' role, personal access tokens for all members will be retrieved. */
@@ -22899,94 +23628,6 @@ export const PatchAIToolRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "PatchAIToolRequest",
 }) as any as S.Schema<PatchAIToolRequest>;
 
-export interface PatchOperation {
-  /** The type of operation to perform */
-  op: string;
-  /** A JSON Pointer string specifying the part of the document to operate on */
-  path: string;
-  /** A JSON value used in "add", "replace", and "test" operations */
-  value?: unknown;
-}
-export const PatchOperation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    op: S.String,
-    path: S.String,
-    value: S.optional(S.Unknown),
-  }),
-).annotate({ identifier: "PatchOperation" }) as any as S.Schema<PatchOperation>;
-
-export type JSONPatch = Array<PatchOperation>;
-export const JSONPatch = /*@__PURE__*/ S.Array(
-  PatchOperation,
-) as any as S.Schema<JSONPatch>;
-
-export interface PatchApplicationRequest {
-  /** The application key */
-  applicationKey: string;
-  body: JSONPatch;
-}
-export const PatchApplicationRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    applicationKey: S.String.pipe(T.Label()),
-    body: JSONPatch.pipe(T.HttpBody()),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/api/v2/applications/{applicationKey}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PatchApplicationRequest",
-}) as any as S.Schema<PatchApplicationRequest>;
-
-export interface PatchApplicationVersionRequest {
-  /** The application key */
-  applicationKey: string;
-  /** The application version key */
-  versionKey: string;
-  body: JSONPatch;
-}
-export const PatchApplicationVersionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    applicationKey: S.String.pipe(T.Label()),
-    versionKey: S.String.pipe(T.Label()),
-    body: JSONPatch.pipe(T.HttpBody()),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/api/v2/applications/{applicationKey}/versions/{versionKey}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PatchApplicationVersionRequest",
-}) as any as S.Schema<PatchApplicationVersionRequest>;
-
-export interface PatchApprovalRequestRequest {
-  /** The approval ID */
-  id: string;
-  /** Optional comment describing the update */
-  comment?: string;
-  /** The instructions to perform when updating */
-  instructions: Instructions;
-}
-export const PatchApprovalRequestRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    comment: S.optional(S.String),
-    instructions: Instructions,
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/api/v2/approval-requests/{id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PatchApprovalRequestRequest",
-}) as any as S.Schema<PatchApprovalRequestRequest>;
-
 /** Require approval only on flags with the provided tags. Otherwise all flags will require approval. */
 export type PatchApprovalRequestSettingsRequestRequiredApprovalTagsList =
   Array<string>;
@@ -23067,6 +23708,27 @@ export const PatchApprovalRequestSettingsResponse = /*@__PURE__*/ S.suspend(
   identifier: "PatchApprovalRequestSettingsResponse",
 }) as any as S.Schema<PatchApprovalRequestSettingsResponse>;
 
+export interface PatchOperation {
+  /** The type of operation to perform */
+  op: string;
+  /** A JSON Pointer string specifying the part of the document to operate on */
+  path: string;
+  /** A JSON value used in "add", "replace", and "test" operations */
+  value?: unknown;
+}
+export const PatchOperation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    op: S.String,
+    path: S.String,
+    value: S.optional(S.Unknown),
+  }),
+).annotate({ identifier: "PatchOperation" }) as any as S.Schema<PatchOperation>;
+
+export type JSONPatch = Array<PatchOperation>;
+export const JSONPatch = /*@__PURE__*/ S.Array(
+  PatchOperation,
+) as any as S.Schema<JSONPatch>;
+
 export interface PatchBigSegmentStoreIntegrationRequest {
   /** The project key */
   projectKey: string;
@@ -23120,32 +23782,6 @@ export const PatchCustomRoleRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "PatchCustomRoleRequest",
 }) as any as S.Schema<PatchCustomRoleRequest>;
-
-export interface PatchDestinationRequest {
-  /** The project key */
-  projectKey: string;
-  /** The environment key */
-  environmentKey: string;
-  /** The Data Export destination ID */
-  id: string;
-  body: JSONPatch;
-}
-export const PatchDestinationRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    projectKey: S.String.pipe(T.Label()),
-    environmentKey: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    body: JSONPatch.pipe(T.HttpBody()),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/api/v2/destinations/{projectKey}/{environmentKey}/{id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PatchDestinationRequest",
-}) as any as S.Schema<PatchDestinationRequest>;
 
 export interface PatchEnvironmentRequest {
   /** The project key */
@@ -23877,71 +24513,6 @@ export const PatchIpAllowlistEntryRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "PatchIpAllowlistEntryRequest",
 }) as any as S.Schema<PatchIpAllowlistEntryRequest>;
 
-export interface PatchMemberRequest {
-  /** The member ID */
-  id: string;
-  body: JSONPatch;
-}
-export const PatchMemberRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    body: JSONPatch.pipe(T.HttpBody()),
-  }).pipe(T.Http({ method: "PATCH", uri: "/api/v2/members/{id}", code: 200 })),
-).annotate({
-  identifier: "PatchMemberRequest",
-}) as any as S.Schema<PatchMemberRequest>;
-
-export interface PatchMembersRequest {
-  /** Optional comment describing the update */
-  comment?: string;
-  /** The instructions to perform when updating. This should be an array with objects that look like <code>{"kind": "update_action"}</code>. Some instructions also require additional parameters as part of this object. */
-  instructions: Instructions;
-}
-export const PatchMembersRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    comment: S.optional(S.String),
-    instructions: Instructions,
-  }).pipe(T.Http({ method: "PATCH", uri: "/api/v2/members", code: 200 })),
-).annotate({
-  identifier: "PatchMembersRequest",
-}) as any as S.Schema<PatchMembersRequest>;
-
-/** A list of members IDs of the members who were successfully updated. */
-export type BulkEditMembersRepMembersList = Array<string>;
-export const BulkEditMembersRepMembersList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<BulkEditMembersRepMembersList>;
-
-export type BulkEditMembersRepErrorsItemMap = {
-  [key: string]: string | undefined;
-};
-export const BulkEditMembersRepErrorsItemMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<BulkEditMembersRepErrorsItemMap>;
-
-/** A list of member IDs and errors for the members whose updates failed. */
-export type BulkEditMembersRepErrorsList =
-  Array<BulkEditMembersRepErrorsItemMap>;
-export const BulkEditMembersRepErrorsList = /*@__PURE__*/ S.Array(
-  BulkEditMembersRepErrorsItemMap,
-) as any as S.Schema<BulkEditMembersRepErrorsList>;
-
-export interface BulkEditMembersRep {
-  /** A list of members IDs of the members who were successfully updated. */
-  members?: BulkEditMembersRepMembersList;
-  /** A list of member IDs and errors for the members whose updates failed. */
-  errors?: BulkEditMembersRepErrorsList;
-}
-export const BulkEditMembersRep = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    members: S.optional(BulkEditMembersRepMembersList),
-    errors: S.optional(BulkEditMembersRepErrorsList),
-  }),
-).annotate({
-  identifier: "BulkEditMembersRep",
-}) as any as S.Schema<BulkEditMembersRep>;
-
 export interface PatchMetricRequest {
   /** The project key */
   projectKey: string;
@@ -24059,82 +24630,6 @@ export const PatchOAuthClientRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "PatchOAuthClientRequest",
 }) as any as S.Schema<PatchOAuthClientRequest>;
-
-export interface PatchProjectRequest {
-  /** The project key */
-  projectKey: string;
-  body: JSONPatch;
-}
-export const PatchProjectRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    projectKey: S.String.pipe(T.Label()),
-    body: JSONPatch.pipe(T.HttpBody()),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/api/v2/projects/{projectKey}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PatchProjectRequest",
-}) as any as S.Schema<PatchProjectRequest>;
-
-/** The location and content type of related resources */
-export type ProjectRepLinksMap = { [key: string]: Link | undefined };
-export const ProjectRepLinksMap = /*@__PURE__*/ S.Record(
-  S.String,
-  Link,
-) as any as S.Schema<ProjectRepLinksMap>;
-
-/** A list of tags for the project */
-export type ProjectRepTagsList = Array<string>;
-export const ProjectRepTagsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ProjectRepTagsList>;
-
-/** A list of environments for the project */
-export type ProjectRepEnvironmentsList = Array<Environment>;
-export const ProjectRepEnvironmentsList = /*@__PURE__*/ S.Array(
-  Environment,
-) as any as S.Schema<ProjectRepEnvironmentsList>;
-
-export interface ProjectRep {
-  /** The location and content type of related resources */
-  _links: ProjectRepLinksMap;
-  /** The ID of this project */
-  _id: string;
-  /** The key of this project */
-  key: string;
-  /** Whether or not flags created in this project are made available to the client-side JavaScript SDK by default */
-  includeInSnippetByDefault: boolean;
-  /** Describes which client-side SDKs can use new flags by default */
-  defaultClientSideAvailability?: ClientSideAvailability;
-  /** A human-friendly name for the project */
-  name: string;
-  /** Details on the allowed and denied actions for this project */
-  _access?: Access;
-  /** A list of tags for the project */
-  tags: ProjectRepTagsList;
-  /** The key of the default release pipeline for this project */
-  defaultReleasePipelineKey?: string;
-  /** A list of environments for the project */
-  environments: ProjectRepEnvironmentsList;
-}
-export const ProjectRep = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    _links: ProjectRepLinksMap,
-    _id: S.String,
-    key: S.String,
-    includeInSnippetByDefault: S.Boolean,
-    defaultClientSideAvailability: S.optional(ClientSideAvailability),
-    name: S.String,
-    _access: S.optional(Access),
-    tags: ProjectRepTagsList,
-    defaultReleasePipelineKey: S.optional(S.String),
-    environments: ProjectRepEnvironmentsList,
-  }),
-).annotate({ identifier: "ProjectRep" }) as any as S.Schema<ProjectRep>;
 
 export type PatchPromptSnippetRequestTagsList = Array<string>;
 export const PatchPromptSnippetRequestTagsList = /*@__PURE__*/ S.Array(
@@ -24273,135 +24768,6 @@ export const PatchSdkKeyByKeyRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "PatchSdkKeyByKeyRequest",
 }) as any as S.Schema<PatchSdkKeyByKeyRequest>;
 
-export interface PatchSegmentRequest {
-  /** The project key */
-  projectKey: string;
-  /** The environment key */
-  environmentKey: string;
-  /** The segment key */
-  segmentKey: string;
-  /** If true, the patch will be validated but not persisted. Returns a preview of the segment after the patch is applied. */
-  dryRun?: boolean;
-  /** A JSON patch representation of the change to make */
-  patch: JSONPatch;
-  /** Optional comment */
-  comment?: string;
-}
-export const PatchSegmentRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    projectKey: S.String.pipe(T.Label()),
-    environmentKey: S.String.pipe(T.Label()),
-    segmentKey: S.String.pipe(T.Label()),
-    dryRun: S.optional(S.Boolean.pipe(T.Query())),
-    patch: JSONPatch,
-    comment: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/api/v2/segments/{projectKey}/{environmentKey}/{segmentKey}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PatchSegmentRequest",
-}) as any as S.Schema<PatchSegmentRequest>;
-
-export interface PatchTeamRequest {
-  /** The team key */
-  teamKey: string;
-  /** A comma-separated list of properties that can reveal additional information in the response. Supported fields are explained above. */
-  expand?: string;
-  /** Optional comment describing the update */
-  comment?: string;
-  /** The instructions to perform when updating. This should be an array with objects that look like <code>{"kind": "update_action"}</code>. Some instructions also require additional parameters as part of this object. */
-  instructions: Instructions;
-}
-export const PatchTeamRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    teamKey: S.String.pipe(T.Label()),
-    expand: S.optional(S.String.pipe(T.Query())),
-    comment: S.optional(S.String),
-    instructions: Instructions,
-  }).pipe(
-    T.Http({ method: "PATCH", uri: "/api/v2/teams/{teamKey}", code: 200 }),
-  ),
-).annotate({
-  identifier: "PatchTeamRequest",
-}) as any as S.Schema<PatchTeamRequest>;
-
-export interface PatchTeamsRequest {
-  /** Optional comment describing the update */
-  comment?: string;
-  /** The instructions to perform when updating. This should be an array with objects that look like <code>{"kind": "update_action"}</code>. Some instructions also require additional parameters as part of this object. */
-  instructions: Instructions;
-}
-export const PatchTeamsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    comment: S.optional(S.String),
-    instructions: Instructions,
-  }).pipe(T.Http({ method: "PATCH", uri: "/api/v2/teams", code: 200 })),
-).annotate({
-  identifier: "PatchTeamsRequest",
-}) as any as S.Schema<PatchTeamsRequest>;
-
-/** A list of member IDs of the members who were added to the teams. */
-export type BulkEditTeamsRepMemberIDsList = Array<string>;
-export const BulkEditTeamsRepMemberIDsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<BulkEditTeamsRepMemberIDsList>;
-
-/** A list of team keys of the teams that were successfully updated. */
-export type BulkEditTeamsRepTeamKeysList = Array<string>;
-export const BulkEditTeamsRepTeamKeysList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<BulkEditTeamsRepTeamKeysList>;
-
-export type BulkEditTeamsRepErrorsItemMap = {
-  [key: string]: string | undefined;
-};
-export const BulkEditTeamsRepErrorsItemMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<BulkEditTeamsRepErrorsItemMap>;
-
-/** A list of team keys and errors for the teams whose updates failed. */
-export type BulkEditTeamsRepErrorsList = Array<BulkEditTeamsRepErrorsItemMap>;
-export const BulkEditTeamsRepErrorsList = /*@__PURE__*/ S.Array(
-  BulkEditTeamsRepErrorsItemMap,
-) as any as S.Schema<BulkEditTeamsRepErrorsList>;
-
-export interface BulkEditTeamsRep {
-  /** A list of member IDs of the members who were added to the teams. */
-  memberIDs?: BulkEditTeamsRepMemberIDsList;
-  /** A list of team keys of the teams that were successfully updated. */
-  teamKeys?: BulkEditTeamsRepTeamKeysList;
-  /** A list of team keys and errors for the teams whose updates failed. */
-  errors?: BulkEditTeamsRepErrorsList;
-}
-export const BulkEditTeamsRep = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    memberIDs: S.optional(BulkEditTeamsRepMemberIDsList),
-    teamKeys: S.optional(BulkEditTeamsRepTeamKeysList),
-    errors: S.optional(BulkEditTeamsRepErrorsList),
-  }),
-).annotate({
-  identifier: "BulkEditTeamsRep",
-}) as any as S.Schema<BulkEditTeamsRep>;
-
-export interface PatchTokenRequest {
-  /** The ID of the access token to update */
-  id: string;
-  body: JSONPatch;
-}
-export const PatchTokenRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    body: JSONPatch.pipe(T.HttpBody()),
-  }).pipe(T.Http({ method: "PATCH", uri: "/api/v2/tokens/{id}", code: 200 })),
-).annotate({
-  identifier: "PatchTokenRequest",
-}) as any as S.Schema<PatchTokenRequest>;
-
 /** The instructions to perform when updating. This should be an array with objects that look like <code>{"kind": "trigger_action"}</code>. */
 export type PatchTriggerWorkflowRequestInstructionsList = Array<Instruction>;
 export const PatchTriggerWorkflowRequestInstructionsList =
@@ -24441,20 +24807,6 @@ export const PatchTriggerWorkflowRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "PatchTriggerWorkflowRequest",
 }) as any as S.Schema<PatchTriggerWorkflowRequest>;
-
-export interface PatchWebhookRequest {
-  /** The ID of the webhook to update */
-  id: string;
-  body: JSONPatch;
-}
-export const PatchWebhookRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    body: JSONPatch.pipe(T.HttpBody()),
-  }).pipe(T.Http({ method: "PATCH", uri: "/api/v2/webhooks/{id}", code: 200 })),
-).annotate({
-  identifier: "PatchWebhookRequest",
-}) as any as S.Schema<PatchWebhookRequest>;
 
 export interface PostAdaptiveTriggerRequest {
   projectKey: string;
@@ -24974,193 +25326,6 @@ export const PostAIToolRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "PostAIToolRequest",
 }) as any as S.Schema<PostAIToolRequest>;
 
-/** An array of member IDs. These members are notified to review the approval request. */
-export type PostApprovalRequestRequestNotifyMemberIdsList = Array<string>;
-export const PostApprovalRequestRequestNotifyMemberIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostApprovalRequestRequestNotifyMemberIdsList>;
-
-/** An array of team keys. The members of these teams are notified to review the approval request. */
-export type PostApprovalRequestRequestNotifyTeamKeysList = Array<string>;
-export const PostApprovalRequestRequestNotifyTeamKeysList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostApprovalRequestRequestNotifyTeamKeysList>;
-
-export interface PostApprovalRequestRequest {
-  /** String representation of the resource specifier */
-  resourceId: string;
-  /** Optional comment describing the approval request */
-  comment?: string;
-  /** A brief description of the changes you're requesting */
-  description: string;
-  /** List of instructions in semantic patch format to be applied to the feature flag. Review the [Update feature flag](https://launchdarkly.com/docs/ld-docs/api/feature-flags/patch-feature-flag) documentation for details on available instructions. */
-  instructions: Instructions;
-  /** An array of member IDs. These members are notified to review the approval request. */
-  notifyMemberIds?: PostApprovalRequestRequestNotifyMemberIdsList;
-  /** An array of team keys. The members of these teams are notified to review the approval request. */
-  notifyTeamKeys?: PostApprovalRequestRequestNotifyTeamKeysList;
-  /** Additional approval request fields for third-party integration approval systems. If you are using a third-party integration to manage approval requests, these additional fields will be described in the <code>manifest.json</code> for that integration, at https://github.com/launchdarkly/integration-framework. */
-  integrationConfig?: FormVariableConfig;
-}
-export const PostApprovalRequestRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceId: S.String,
-    comment: S.optional(S.String),
-    description: S.String,
-    instructions: Instructions,
-    notifyMemberIds: S.optional(PostApprovalRequestRequestNotifyMemberIdsList),
-    notifyTeamKeys: S.optional(PostApprovalRequestRequestNotifyTeamKeysList),
-    integrationConfig: S.optional(FormVariableConfig),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/api/v2/approval-requests", code: 200 }),
-  ),
-).annotate({
-  identifier: "PostApprovalRequestRequest",
-}) as any as S.Schema<PostApprovalRequestRequest>;
-
-/** Current status of the review of this approval request */
-export type ApprovalRequestResponseReviewStatus =
-  | "approved"
-  | "declined"
-  | "pending";
-export const ApprovalRequestResponseReviewStatus = /*@__PURE__*/ S.String;
-
-/** An array of individual reviews of this approval request */
-export type ApprovalRequestResponseAllReviewsList = Array<ReviewResponse>;
-export const ApprovalRequestResponseAllReviewsList = /*@__PURE__*/ S.Array(
-  ReviewResponse,
-) as any as S.Schema<ApprovalRequestResponseAllReviewsList>;
-
-/** An array of member IDs. These members are notified to review the approval request. */
-export type ApprovalRequestResponseNotifyMemberIdsList = Array<string>;
-export const ApprovalRequestResponseNotifyMemberIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ApprovalRequestResponseNotifyMemberIdsList>;
-
-/** Current status of the approval request */
-export type ApprovalRequestResponseStatus =
-  | "pending"
-  | "completed"
-  | "failed"
-  | "scheduled";
-export const ApprovalRequestResponseStatus = /*@__PURE__*/ S.String;
-
-/** Details on any conflicting approval requests */
-export type ApprovalRequestResponseConflictsList = Array<Conflict2>;
-export const ApprovalRequestResponseConflictsList = /*@__PURE__*/ S.Array(
-  Conflict2,
-) as any as S.Schema<ApprovalRequestResponseConflictsList>;
-
-/** The location and content type of related resources */
-export type ApprovalRequestResponseLinksMap = {
-  [key: string]: unknown | undefined;
-};
-export const ApprovalRequestResponseLinksMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<ApprovalRequestResponseLinksMap>;
-
-export interface ApprovalRequestResponse {
-  /** The ID of this approval request */
-  _id: string;
-  /** Version of the approval request */
-  _version: number;
-  /** Timestamp of when the approval request was created */
-  creationDate: number;
-  /** The approval service for this request. May be LaunchDarkly or an external approval service, such as ServiceNow or JIRA. */
-  serviceKind: string;
-  /** The ID of the member who requested the approval */
-  requestorId?: string;
-  /** A human-friendly name for the approval request */
-  description?: string;
-  /** Current status of the review of this approval request */
-  reviewStatus: ApprovalRequestResponseReviewStatus;
-  /** An array of individual reviews of this approval request */
-  allReviews: ApprovalRequestResponseAllReviewsList;
-  /** An array of member IDs. These members are notified to review the approval request. */
-  notifyMemberIds: ApprovalRequestResponseNotifyMemberIdsList;
-  /** Timestamp of when the approval request was applied */
-  appliedDate?: number;
-  /** The member ID of the member who applied the approval request */
-  appliedByMemberId?: string;
-  /** The service token ID of the service token which applied the approval request */
-  appliedByServiceTokenId?: string;
-  /** Current status of the approval request */
-  status: ApprovalRequestResponseStatus;
-  /** List of instructions in semantic patch format to be applied to the feature flag */
-  instructions: Instructions;
-  /** Details on any conflicting approval requests */
-  conflicts: ApprovalRequestResponseConflictsList;
-  /** The location and content type of related resources */
-  _links: ApprovalRequestResponseLinksMap;
-  /** Timestamp for when instructions will be executed */
-  executionDate?: number;
-  /** ID of scheduled change to edit or delete */
-  operatingOnId?: string;
-  /** Details about the object in an external service corresponding to this approval request, such as a ServiceNow change request or a JIRA ticket, if an external approval service is being used */
-  integrationMetadata?: IntegrationMetadata;
-  /** Details about the source feature flag, if copied */
-  source?: CopiedFromEnv;
-  /** Details about the custom workflow, if this approval request is part of a custom workflow */
-  customWorkflowMetadata?: CustomWorkflowMeta;
-  /** String representation of a resource */
-  resourceId?: string;
-  /** The settings for this approval */
-  approvalSettings?: ApprovalSettings;
-}
-export const ApprovalRequestResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    _id: S.String,
-    _version: S.Number,
-    creationDate: S.Number,
-    serviceKind: S.String,
-    requestorId: S.optional(S.String),
-    description: S.optional(S.String),
-    reviewStatus: ApprovalRequestResponseReviewStatus,
-    allReviews: ApprovalRequestResponseAllReviewsList,
-    notifyMemberIds: ApprovalRequestResponseNotifyMemberIdsList,
-    appliedDate: S.optional(S.Number),
-    appliedByMemberId: S.optional(S.String),
-    appliedByServiceTokenId: S.optional(S.String),
-    status: ApprovalRequestResponseStatus,
-    instructions: Instructions,
-    conflicts: ApprovalRequestResponseConflictsList,
-    _links: ApprovalRequestResponseLinksMap,
-    executionDate: S.optional(S.Number),
-    operatingOnId: S.optional(S.String),
-    integrationMetadata: S.optional(IntegrationMetadata),
-    source: S.optional(CopiedFromEnv),
-    customWorkflowMetadata: S.optional(CustomWorkflowMeta),
-    resourceId: S.optional(S.String),
-    approvalSettings: S.optional(ApprovalSettings),
-  }),
-).annotate({
-  identifier: "ApprovalRequestResponse",
-}) as any as S.Schema<ApprovalRequestResponse>;
-
-export interface PostApprovalRequestApplyRequest {
-  /** The approval request ID */
-  id: string;
-  /** Optional comment about the approval request */
-  comment?: string;
-}
-export const PostApprovalRequestApplyRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    comment: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/v2/approval-requests/{id}/apply",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PostApprovalRequestApplyRequest",
-}) as any as S.Schema<PostApprovalRequestApplyRequest>;
-
 export interface PostApprovalRequestApplyForFlagRequest {
   /** The project key */
   projectKey: string;
@@ -25258,37 +25423,6 @@ export const PostApprovalRequestForFlagRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "PostApprovalRequestForFlagRequest",
 }) as any as S.Schema<PostApprovalRequestForFlagRequest>;
-
-/** The type of review for this approval request */
-export type PostApprovalRequestReviewRequestKind =
-  | "approve"
-  | "comment"
-  | "decline";
-export const PostApprovalRequestReviewRequestKind = /*@__PURE__*/ S.String;
-
-export interface PostApprovalRequestReviewRequest {
-  /** The approval request ID */
-  id: string;
-  /** The type of review for this approval request */
-  kind?: PostApprovalRequestReviewRequestKind | (string & {});
-  /** Optional comment about the approval request */
-  comment?: string;
-}
-export const PostApprovalRequestReviewRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    kind: S.optional(PostApprovalRequestReviewRequestKind),
-    comment: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/v2/approval-requests/{id}/reviews",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PostApprovalRequestReviewRequest",
-}) as any as S.Schema<PostApprovalRequestReviewRequest>;
 
 /** The type of review for this approval request */
 export type PostApprovalRequestReviewForFlagRequestKind =
@@ -25474,52 +25608,6 @@ export const PostCustomRoleRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "PostCustomRoleRequest",
 }) as any as S.Schema<PostCustomRoleRequest>;
 
-/** The type of Data Export destination */
-export type PostDestinationRequestKind =
-  | "google-pubsub"
-  | "kinesis"
-  | "mparticle"
-  | "segment"
-  | "azure-event-hubs"
-  | "snowflake-v2"
-  | "databricks"
-  | "bigquery"
-  | "redshift";
-export const PostDestinationRequestKind = /*@__PURE__*/ S.String;
-
-export interface PostDestinationRequest {
-  /** The project key */
-  projectKey: string;
-  /** The environment key */
-  environmentKey: string;
-  /** A human-readable name for your Data Export destination */
-  name?: string;
-  /** The type of Data Export destination */
-  kind?: PostDestinationRequestKind | (string & {});
-  /** An object with the configuration parameters required for the destination type */
-  config?: unknown;
-  /** Whether the export is on. Displayed as the integration status in the LaunchDarkly UI. */
-  on?: boolean;
-}
-export const PostDestinationRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    projectKey: S.String.pipe(T.Label()),
-    environmentKey: S.String.pipe(T.Label()),
-    name: S.optional(S.String),
-    kind: S.optional(PostDestinationRequestKind),
-    config: S.optional(S.Unknown),
-    on: S.optional(S.Boolean),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/v2/destinations/{projectKey}/{environmentKey}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PostDestinationRequest",
-}) as any as S.Schema<PostDestinationRequest>;
-
 export interface PostDisableAdaptiveTriggerRequest {
   projectKey: string;
   environmentKey: string;
@@ -25581,19 +25669,6 @@ export type PostEnvironmentRequestTagsList = Array<string>;
 export const PostEnvironmentRequestTagsList = /*@__PURE__*/ S.Array(
   S.String,
 ) as any as S.Schema<PostEnvironmentRequestTagsList>;
-
-export interface SourceEnv {
-  /** The key of the source environment to clone from */
-  key?: string;
-  /** (Optional) The version number of the source environment to clone from. Used for optimistic locking */
-  version?: number;
-}
-export const SourceEnv = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    key: S.optional(S.String),
-    version: S.optional(S.Number),
-  }),
-).annotate({ identifier: "SourceEnv" }) as any as S.Schema<SourceEnv>;
 
 export interface PostEnvironmentRequest {
   /** The project key */
@@ -26260,92 +26335,6 @@ export const PostHoldoutRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "PostHoldoutRequest",
 }) as any as S.Schema<PostHoldoutRequest>;
 
-/** The member's initial role, if you are using a base role for the initial role */
-export type NewMemberFormRole = "reader" | "writer" | "admin" | "no_access";
-export const NewMemberFormRole = /*@__PURE__*/ S.String;
-
-/** An array of the member's initial roles, if you are using custom roles or preset roles provided by LaunchDarkly */
-export type NewMemberFormCustomRolesList = Array<string>;
-export const NewMemberFormCustomRolesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<NewMemberFormCustomRolesList>;
-
-/** An array of the member's teams */
-export type NewMemberFormTeamKeysList = Array<string>;
-export const NewMemberFormTeamKeysList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<NewMemberFormTeamKeysList>;
-
-export interface NewMemberForm {
-  /** The member's email */
-  email: string;
-  /** The member's password */
-  password?: string | Redacted.Redacted<string>;
-  /** The member's first name */
-  firstName?: string;
-  /** The member's last name */
-  lastName?: string;
-  /** The member's initial role, if you are using a base role for the initial role */
-  role?: NewMemberFormRole | (string & {});
-  /** An array of the member's initial roles, if you are using custom roles or preset roles provided by LaunchDarkly */
-  customRoles?: NewMemberFormCustomRolesList;
-  /** An array of the member's teams */
-  teamKeys?: NewMemberFormTeamKeysList;
-  /** An object of role attributes for the member */
-  roleAttributes?: RoleAttributeMap;
-}
-export const NewMemberForm = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    email: S.String,
-    password: S.optional(S.String.pipe(T.SensitiveValue({}))),
-    firstName: S.optional(S.String),
-    lastName: S.optional(S.String),
-    role: S.optional(NewMemberFormRole),
-    customRoles: S.optional(NewMemberFormCustomRolesList),
-    teamKeys: S.optional(NewMemberFormTeamKeysList),
-    roleAttributes: S.optional(RoleAttributeMap),
-  }),
-).annotate({ identifier: "NewMemberForm" }) as any as S.Schema<NewMemberForm>;
-
-export type NewMemberFormListPost = Array<NewMemberForm>;
-export const NewMemberFormListPost = /*@__PURE__*/ S.Array(
-  NewMemberForm,
-) as any as S.Schema<NewMemberFormListPost>;
-
-export interface PostMembersRequest {
-  body: NewMemberFormListPost;
-}
-export const PostMembersRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    body: NewMemberFormListPost.pipe(T.HttpBody()),
-  }).pipe(T.Http({ method: "POST", uri: "/api/v2/members", code: 200 })),
-).annotate({
-  identifier: "PostMembersRequest",
-}) as any as S.Schema<PostMembersRequest>;
-
-/** List of team keys */
-export type PostMemberTeamsRequestTeamKeysList = Array<string>;
-export const PostMemberTeamsRequestTeamKeysList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PostMemberTeamsRequestTeamKeysList>;
-
-export interface PostMemberTeamsRequest {
-  /** The member ID */
-  id: string;
-  /** List of team keys */
-  teamKeys: PostMemberTeamsRequestTeamKeysList;
-}
-export const PostMemberTeamsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    teamKeys: PostMemberTeamsRequestTeamKeysList,
-  }).pipe(
-    T.Http({ method: "POST", uri: "/api/v2/members/{id}/teams", code: 200 }),
-  ),
-).annotate({
-  identifier: "PostMemberTeamsRequest",
-}) as any as S.Schema<PostMemberTeamsRequest>;
-
 /** The kind of event your metric will track */
 export type PostMetricRequestKind = "pageview" | "click" | "custom" | "trace";
 export const PostMetricRequestKind = /*@__PURE__*/ S.String;
@@ -26708,137 +26697,6 @@ export const PostModelConfigRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "PostModelConfigRequest",
 }) as any as S.Schema<PostModelConfigRequest>;
-
-export interface DefaultClientSideAvailabilityPost {
-  /** Whether to enable availability for client-side SDKs. */
-  usingEnvironmentId: boolean;
-  /** Whether to enable availability for mobile SDKs. */
-  usingMobileKey: boolean;
-}
-export const DefaultClientSideAvailabilityPost = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    usingEnvironmentId: S.Boolean,
-    usingMobileKey: S.Boolean,
-  }),
-).annotate({
-  identifier: "DefaultClientSideAvailabilityPost",
-}) as any as S.Schema<DefaultClientSideAvailabilityPost>;
-
-/** Tags for the project */
-export type PostProjectRequestTagsList = Array<string>;
-export const PostProjectRequestTagsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PostProjectRequestTagsList>;
-
-/** Tags to apply to the new environment */
-export type EnvironmentPostTagsList = Array<string>;
-export const EnvironmentPostTagsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<EnvironmentPostTagsList>;
-
-export interface EnvironmentPost {
-  /** A human-friendly name for the new environment */
-  name: string;
-  /** A project-unique key for the new environment */
-  key: string;
-  /** A color to indicate this environment in the UI */
-  color: string;
-  /** The default time (in minutes) that the PHP SDK can cache feature flag rules locally */
-  defaultTtl?: number;
-  /** Ensures that one end user of the client-side SDK cannot inspect the variations for another end user */
-  secureMode?: boolean;
-  /** Enables tracking detailed information for new flags by default */
-  defaultTrackEvents?: boolean;
-  /** Requires confirmation for all flag and segment changes via the UI in this environment */
-  confirmChanges?: boolean;
-  /** Requires comments for all flag and segment changes via the UI in this environment */
-  requireComments?: boolean;
-  /** Tags to apply to the new environment */
-  tags?: EnvironmentPostTagsList;
-  /** Indicates that the new environment created will be cloned from the provided source environment */
-  source?: SourceEnv;
-  /** Whether the environment is critical */
-  critical?: boolean;
-}
-export const EnvironmentPost = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    key: S.String,
-    color: S.String,
-    defaultTtl: S.optional(S.Number),
-    secureMode: S.optional(S.Boolean),
-    defaultTrackEvents: S.optional(S.Boolean),
-    confirmChanges: S.optional(S.Boolean),
-    requireComments: S.optional(S.Boolean),
-    tags: S.optional(EnvironmentPostTagsList),
-    source: S.optional(SourceEnv),
-    critical: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "EnvironmentPost",
-}) as any as S.Schema<EnvironmentPost>;
-
-/** Creates the provided environments for this project. If omitted default environments will be created instead. */
-export type PostProjectRequestEnvironmentsList = Array<EnvironmentPost>;
-export const PostProjectRequestEnvironmentsList = /*@__PURE__*/ S.Array(
-  EnvironmentPost,
-) as any as S.Schema<PostProjectRequestEnvironmentsList>;
-
-/** The casing convention to enforce for new flag keys in this project */
-export type NamingConventionCase =
-  | "camelCase"
-  | "upperCamelCase"
-  | "snakeCase"
-  | "kebabCase"
-  | "constantCase";
-export const NamingConventionCase = /*@__PURE__*/ S.String;
-
-export interface NamingConvention {
-  /** The casing convention to enforce for new flag keys in this project */
-  case?: NamingConventionCase | (string & {});
-  /** The prefix to enforce for new flag keys in this project */
-  prefix?: string;
-}
-export const NamingConvention = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    case: S.optional(NamingConventionCase),
-    prefix: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "NamingConvention",
-}) as any as S.Schema<NamingConvention>;
-
-export interface PostProjectRequest {
-  /** A human-friendly name for the project. */
-  name: string;
-  /** A unique key used to reference the project in your code. */
-  key: string;
-  /** Whether or not flags created in this project are made available to the client-side JavaScript SDK by default. */
-  includeInSnippetByDefault?: boolean;
-  /** Controls which client-side SDKs can use new flags by default. */
-  defaultClientSideAvailability?: DefaultClientSideAvailabilityPost;
-  /** Tags for the project */
-  tags?: PostProjectRequestTagsList;
-  /** Creates the provided environments for this project. If omitted default environments will be created instead. */
-  environments?: PostProjectRequestEnvironmentsList;
-  /** The flag key convention for this project. Omit this field if you don't want to enforce any conventions for flag keys. */
-  namingConvention?: NamingConvention;
-}
-export const PostProjectRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    key: S.String,
-    includeInSnippetByDefault: S.optional(S.Boolean),
-    defaultClientSideAvailability: S.optional(
-      DefaultClientSideAvailabilityPost,
-    ),
-    tags: S.optional(PostProjectRequestTagsList),
-    environments: S.optional(PostProjectRequestEnvironmentsList),
-    namingConvention: S.optional(NamingConvention),
-  }).pipe(T.Http({ method: "POST", uri: "/api/v2/projects", code: 200 })),
-).annotate({
-  identifier: "PostProjectRequest",
-}) as any as S.Schema<PostProjectRequest>;
 
 export type PostPromptSnippetRequestTagsList = Array<string>;
 export const PostPromptSnippetRequestTagsList = /*@__PURE__*/ S.Array(
@@ -27214,274 +27072,6 @@ export const PostSdkKeyRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "PostSdkKeyRequest",
 }) as any as S.Schema<PostSdkKeyRequest>;
-
-/** Tags for the segment */
-export type PostSegmentRequestTagsList = Array<string>;
-export const PostSegmentRequestTagsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PostSegmentRequestTagsList>;
-
-export interface PostSegmentRequest {
-  /** The project key */
-  projectKey: string;
-  /** The environment key */
-  environmentKey: string;
-  /** A human-friendly name for the segment */
-  name: string;
-  /** A unique key used to reference the segment */
-  key: string;
-  /** A description of the segment's purpose */
-  description?: string;
-  /** Tags for the segment */
-  tags?: PostSegmentRequestTagsList;
-  /** Whether to create a standard segment (<code>false</code>) or a big segment (<code>true</code>). Standard segments include rule-based and smaller list-based segments. Big segments include larger list-based segments and synced segments. Only use a big segment if you need to add more than 15,000 individual targets. */
-  unbounded?: boolean;
-  /** For big segments, the targeted context kind. */
-  unboundedContextKind?: string;
-}
-export const PostSegmentRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    projectKey: S.String.pipe(T.Label()),
-    environmentKey: S.String.pipe(T.Label()),
-    name: S.String,
-    key: S.String,
-    description: S.optional(S.String),
-    tags: S.optional(PostSegmentRequestTagsList),
-    unbounded: S.optional(S.Boolean),
-    unboundedContextKind: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/v2/segments/{projectKey}/{environmentKey}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PostSegmentRequest",
-}) as any as S.Schema<PostSegmentRequest>;
-
-/** List of custom role keys the team will access */
-export type PostTeamRequestCustomRoleKeysList = Array<string>;
-export const PostTeamRequestCustomRoleKeysList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PostTeamRequestCustomRoleKeysList>;
-
-/** A list of member IDs who belong to the team */
-export type PostTeamRequestMemberIDsList = Array<string>;
-export const PostTeamRequestMemberIDsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PostTeamRequestMemberIDsList>;
-
-/** A group of related actions to allow. Specify either <code>actionSet</code> or <code>actions</code>. Use <code>maintainTeam</code> to add team maintainers. */
-export type PermissionGrantInputActionSet = "maintainTeam";
-export const PermissionGrantInputActionSet = /*@__PURE__*/ S.String;
-
-/** A list of actions to allow. Specify either <code>actionSet</code> or <code>actions</code>. To learn more, read [Role actions](https://launchdarkly.com/docs/ld-docs/home/account/role-actions). */
-export type PermissionGrantInputActionsList = Array<string>;
-export const PermissionGrantInputActionsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PermissionGrantInputActionsList>;
-
-/** A list of member IDs who receive the permission grant. */
-export type PermissionGrantInputMemberIDsList = Array<string>;
-export const PermissionGrantInputMemberIDsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PermissionGrantInputMemberIDsList>;
-
-export interface PermissionGrantInput {
-  /** A group of related actions to allow. Specify either <code>actionSet</code> or <code>actions</code>. Use <code>maintainTeam</code> to add team maintainers. */
-  actionSet?: PermissionGrantInputActionSet | (string & {});
-  /** A list of actions to allow. Specify either <code>actionSet</code> or <code>actions</code>. To learn more, read [Role actions](https://launchdarkly.com/docs/ld-docs/home/account/role-actions). */
-  actions?: PermissionGrantInputActionsList;
-  /** A list of member IDs who receive the permission grant. */
-  memberIDs?: PermissionGrantInputMemberIDsList;
-}
-export const PermissionGrantInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    actionSet: S.optional(PermissionGrantInputActionSet),
-    actions: S.optional(PermissionGrantInputActionsList),
-    memberIDs: S.optional(PermissionGrantInputMemberIDsList),
-  }),
-).annotate({
-  identifier: "PermissionGrantInput",
-}) as any as S.Schema<PermissionGrantInput>;
-
-/** A list of permission grants. Permission grants allow access to a specific action, without having to create or update a custom role. */
-export type PostTeamRequestPermissionGrantsList = Array<PermissionGrantInput>;
-export const PostTeamRequestPermissionGrantsList = /*@__PURE__*/ S.Array(
-  PermissionGrantInput,
-) as any as S.Schema<PostTeamRequestPermissionGrantsList>;
-
-export interface PostTeamRequest {
-  /** A comma-separated list of properties that can reveal additional information in the response. Supported fields are explained above. */
-  expand?: string;
-  /** List of custom role keys the team will access */
-  customRoleKeys?: PostTeamRequestCustomRoleKeysList;
-  /** A description of the team */
-  description?: string;
-  /** The team key */
-  key: string;
-  /** A list of member IDs who belong to the team */
-  memberIDs?: PostTeamRequestMemberIDsList;
-  /** A human-friendly name for the team */
-  name: string;
-  /** A list of permission grants. Permission grants allow access to a specific action, without having to create or update a custom role. */
-  permissionGrants?: PostTeamRequestPermissionGrantsList;
-  /** A map of role attributes for the team */
-  roleAttributes?: RoleAttributeMap;
-}
-export const PostTeamRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    expand: S.optional(S.String.pipe(T.Query())),
-    customRoleKeys: S.optional(PostTeamRequestCustomRoleKeysList),
-    description: S.optional(S.String),
-    key: S.String,
-    memberIDs: S.optional(PostTeamRequestMemberIDsList),
-    name: S.String,
-    permissionGrants: S.optional(PostTeamRequestPermissionGrantsList),
-    roleAttributes: S.optional(RoleAttributeMap),
-  }).pipe(T.Http({ method: "POST", uri: "/api/v2/teams", code: 200 })),
-).annotate({
-  identifier: "PostTeamRequest",
-}) as any as S.Schema<PostTeamRequest>;
-
-export interface PostTeamMembersRequest {
-  /** The team key */
-  teamKey: string;
-  /** CSV file containing email addresses */
-  file?: string;
-}
-export const PostTeamMembersRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    teamKey: S.String.pipe(T.Label()),
-    file: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/v2/teams/{teamKey}/members",
-      code: 200,
-      contentType: "multipart",
-    }),
-  ),
-).annotate({
-  identifier: "PostTeamMembersRequest",
-}) as any as S.Schema<PostTeamMembersRequest>;
-
-export interface MemberImportItem {
-  /** An error message, including CSV line number, if the <code>status</code> is <code>error</code> */
-  message?: string;
-  /** Whether this member can be successfully imported (<code>success</code>) or not (<code>error</code>). Even if the status is <code>success</code>, members are only added to a team on a <code>201</code> response. */
-  status: string;
-  /** The email address for the member requested to be added to this team. May be blank or an error, such as 'invalid email format', if the email address cannot be found or parsed. */
-  value: string;
-}
-export const MemberImportItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    message: S.optional(S.String),
-    status: S.String,
-    value: S.String,
-  }),
-).annotate({
-  identifier: "MemberImportItem",
-}) as any as S.Schema<MemberImportItem>;
-
-/** An array of details about the members requested to be added to this team */
-export type TeamImportsRepItemsList = Array<MemberImportItem>;
-export const TeamImportsRepItemsList = /*@__PURE__*/ S.Array(
-  MemberImportItem,
-) as any as S.Schema<TeamImportsRepItemsList>;
-
-export interface TeamImportsRep {
-  /** An array of details about the members requested to be added to this team */
-  items?: TeamImportsRepItemsList;
-}
-export const TeamImportsRep = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    items: S.optional(TeamImportsRepItemsList),
-  }),
-).annotate({ identifier: "TeamImportsRep" }) as any as S.Schema<TeamImportsRep>;
-
-/** Base role for the token */
-export type PostTokenRequestRole = "reader" | "writer" | "admin";
-export const PostTokenRequestRole = /*@__PURE__*/ S.String;
-
-/** A list of custom role IDs to use as access limits for the access token */
-export type PostTokenRequestCustomRoleIdsList = Array<string>;
-export const PostTokenRequestCustomRoleIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PostTokenRequestCustomRoleIdsList>;
-
-/** A JSON array of statements represented as JSON objects with three attributes: effect, resources, actions. May be used in place of a role. */
-export type PostTokenRequestInlineRoleList = Array<StatementPost>;
-export const PostTokenRequestInlineRoleList = /*@__PURE__*/ S.Array(
-  StatementPost,
-) as any as S.Schema<PostTokenRequestInlineRoleList>;
-
-export interface PostTokenRequest {
-  /** A human-friendly name for the access token */
-  name?: string;
-  /** A description for the access token */
-  description?: string;
-  /** Base role for the token */
-  role?: PostTokenRequestRole | (string & {});
-  /** A list of custom role IDs to use as access limits for the access token */
-  customRoleIds?: PostTokenRequestCustomRoleIdsList;
-  /** A JSON array of statements represented as JSON objects with three attributes: effect, resources, actions. May be used in place of a role. */
-  inlineRole?: PostTokenRequestInlineRoleList;
-  /** Whether the token is a service token */
-  serviceToken?: boolean;
-  /** The default API version for this token */
-  defaultApiVersion?: number;
-}
-export const PostTokenRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    description: S.optional(S.String),
-    role: S.optional(PostTokenRequestRole),
-    customRoleIds: S.optional(PostTokenRequestCustomRoleIdsList),
-    inlineRole: S.optional(PostTokenRequestInlineRoleList),
-    serviceToken: S.optional(S.Boolean),
-    defaultApiVersion: S.optional(S.Number),
-  }).pipe(T.Http({ method: "POST", uri: "/api/v2/tokens", code: 200 })),
-).annotate({
-  identifier: "PostTokenRequest",
-}) as any as S.Schema<PostTokenRequest>;
-
-/** List of tags for this webhook */
-export type PostWebhookRequestTagsList = Array<string>;
-export const PostWebhookRequestTagsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PostWebhookRequestTagsList>;
-
-export interface PostWebhookRequest {
-  /** A human-readable name for your webhook */
-  name?: string;
-  /** The URL of the remote webhook */
-  url: string;
-  /** If sign is true, and the secret attribute is omitted, LaunchDarkly automatically generates a secret for you. */
-  secret?: string | Redacted.Redacted<string>;
-  /** Represents a Custom role policy, defining a resource kinds filter the webhook should respond to. */
-  statements?: StatementPostList;
-  /** If sign is false, the webhook does not include a signature header, and the secret can be omitted. */
-  sign: boolean;
-  /** Whether or not this webhook is enabled. */
-  on: boolean;
-  /** List of tags for this webhook */
-  tags?: PostWebhookRequestTagsList;
-}
-export const PostWebhookRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    url: S.String,
-    secret: S.optional(S.String.pipe(T.SensitiveValue({}))),
-    statements: S.optional(StatementPostList),
-    sign: S.Boolean,
-    on: S.Boolean,
-    tags: S.optional(PostWebhookRequestTagsList),
-  }).pipe(T.Http({ method: "POST", uri: "/api/v2/webhooks", code: 200 })),
-).annotate({
-  identifier: "PostWebhookRequest",
-}) as any as S.Schema<PostWebhookRequest>;
 
 /** A list of the workflow stages */
 export type PostWorkflowRequestStagesList = Array<StageInput>;
@@ -28130,6 +27720,73 @@ export const UpdateAnnouncementPublicRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateAnnouncementPublicRequest",
 }) as any as S.Schema<UpdateAnnouncementPublicRequest>;
 
+export interface UpdateApplicationRequest {
+  /** The application key */
+  applicationKey: string;
+  body: JSONPatch;
+}
+export const UpdateApplicationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    applicationKey: S.String.pipe(T.Label()),
+    body: JSONPatch.pipe(T.HttpBody()),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/api/v2/applications/{applicationKey}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateApplicationRequest",
+}) as any as S.Schema<UpdateApplicationRequest>;
+
+export interface UpdateApplicationVersionRequest {
+  /** The application key */
+  applicationKey: string;
+  /** The application version key */
+  versionKey: string;
+  body: JSONPatch;
+}
+export const UpdateApplicationVersionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    applicationKey: S.String.pipe(T.Label()),
+    versionKey: S.String.pipe(T.Label()),
+    body: JSONPatch.pipe(T.HttpBody()),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/api/v2/applications/{applicationKey}/versions/{versionKey}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateApplicationVersionRequest",
+}) as any as S.Schema<UpdateApplicationVersionRequest>;
+
+export interface UpdateApprovalRequestRequest {
+  /** The approval ID */
+  id: string;
+  /** Optional comment describing the update */
+  comment?: string;
+  /** The instructions to perform when updating */
+  instructions: Instructions;
+}
+export const UpdateApprovalRequestRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    comment: S.optional(S.String),
+    instructions: Instructions,
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/api/v2/approval-requests/{id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateApprovalRequestRequest",
+}) as any as S.Schema<UpdateApprovalRequestRequest>;
+
 export type SegmentUserListAddList = Array<string>;
 export const SegmentUserListAddList = /*@__PURE__*/ S.Array(
   S.String,
@@ -28244,6 +27901,78 @@ export const UpdateDeploymentRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateDeploymentRequest",
 }) as any as S.Schema<UpdateDeploymentRequest>;
 
+/** The type of Data Export destination */
+export type UpdateDestinationRequestKind =
+  | "google-pubsub"
+  | "kinesis"
+  | "mparticle"
+  | "segment"
+  | "azure-event-hubs"
+  | "snowflake-v2"
+  | "databricks"
+  | "bigquery"
+  | "redshift";
+export const UpdateDestinationRequestKind = /*@__PURE__*/ S.String;
+
+export interface UpdateDestinationRequest {
+  /** The project key */
+  projectKey: string;
+  /** The environment key */
+  environmentKey: string;
+  /** A human-readable name for your Data Export destination */
+  name?: string;
+  /** The type of Data Export destination */
+  kind?: UpdateDestinationRequestKind | (string & {});
+  /** An object with the configuration parameters required for the destination type */
+  config?: unknown;
+  /** Whether the export is on. Displayed as the integration status in the LaunchDarkly UI. */
+  on?: boolean;
+}
+export const UpdateDestinationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    projectKey: S.String.pipe(T.Label()),
+    environmentKey: S.String.pipe(T.Label()),
+    name: S.optional(S.String),
+    kind: S.optional(UpdateDestinationRequestKind),
+    config: S.optional(S.Unknown),
+    on: S.optional(S.Boolean),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/v2/destinations/{projectKey}/{environmentKey}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateDestinationRequest",
+}) as any as S.Schema<UpdateDestinationRequest>;
+
+export interface UpdateDestinationByIdRequest {
+  /** The project key */
+  projectKey: string;
+  /** The environment key */
+  environmentKey: string;
+  /** The Data Export destination ID */
+  id: string;
+  body: JSONPatch;
+}
+export const UpdateDestinationByIdRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    projectKey: S.String.pipe(T.Label()),
+    environmentKey: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    body: JSONPatch.pipe(T.HttpBody()),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/api/v2/destinations/{projectKey}/{environmentKey}/{id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateDestinationByIdRequest",
+}) as any as S.Schema<UpdateDestinationByIdRequest>;
+
 export interface UpdateFlagLinkRequest {
   /** The project key */
   projectKey: string;
@@ -28320,6 +28049,71 @@ export const UpdateLayerRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "UpdateLayerRequest",
 }) as any as S.Schema<UpdateLayerRequest>;
+
+export interface UpdateMemberRequest {
+  /** The member ID */
+  id: string;
+  body: JSONPatch;
+}
+export const UpdateMemberRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    body: JSONPatch.pipe(T.HttpBody()),
+  }).pipe(T.Http({ method: "PATCH", uri: "/api/v2/members/{id}", code: 200 })),
+).annotate({
+  identifier: "UpdateMemberRequest",
+}) as any as S.Schema<UpdateMemberRequest>;
+
+export interface UpdateMembersRequest {
+  /** Optional comment describing the update */
+  comment?: string;
+  /** The instructions to perform when updating. This should be an array with objects that look like <code>{"kind": "update_action"}</code>. Some instructions also require additional parameters as part of this object. */
+  instructions: Instructions;
+}
+export const UpdateMembersRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    comment: S.optional(S.String),
+    instructions: Instructions,
+  }).pipe(T.Http({ method: "PATCH", uri: "/api/v2/members", code: 200 })),
+).annotate({
+  identifier: "UpdateMembersRequest",
+}) as any as S.Schema<UpdateMembersRequest>;
+
+/** A list of members IDs of the members who were successfully updated. */
+export type BulkEditMembersRepMembersList = Array<string>;
+export const BulkEditMembersRepMembersList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<BulkEditMembersRepMembersList>;
+
+export type BulkEditMembersRepErrorsItemMap = {
+  [key: string]: string | undefined;
+};
+export const BulkEditMembersRepErrorsItemMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<BulkEditMembersRepErrorsItemMap>;
+
+/** A list of member IDs and errors for the members whose updates failed. */
+export type BulkEditMembersRepErrorsList =
+  Array<BulkEditMembersRepErrorsItemMap>;
+export const BulkEditMembersRepErrorsList = /*@__PURE__*/ S.Array(
+  BulkEditMembersRepErrorsItemMap,
+) as any as S.Schema<BulkEditMembersRepErrorsList>;
+
+export interface BulkEditMembersRep {
+  /** A list of members IDs of the members who were successfully updated. */
+  members?: BulkEditMembersRepMembersList;
+  /** A list of member IDs and errors for the members whose updates failed. */
+  errors?: BulkEditMembersRepErrorsList;
+}
+export const BulkEditMembersRep = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    members: S.optional(BulkEditMembersRepMembersList),
+    errors: S.optional(BulkEditMembersRepErrorsList),
+  }),
+).annotate({
+  identifier: "BulkEditMembersRep",
+}) as any as S.Schema<BulkEditMembersRep>;
 
 export interface ReleaseGuardianConfigurationInput {
   /** The monitoring window in milliseconds */
@@ -28414,6 +28208,104 @@ export const UpdatePhaseStatusRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdatePhaseStatusRequest",
 }) as any as S.Schema<UpdatePhaseStatusRequest>;
 
+export interface UpdateProjectRequest {
+  /** The project key */
+  projectKey: string;
+  body: JSONPatch;
+}
+export const UpdateProjectRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    projectKey: S.String.pipe(T.Label()),
+    body: JSONPatch.pipe(T.HttpBody()),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/api/v2/projects/{projectKey}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateProjectRequest",
+}) as any as S.Schema<UpdateProjectRequest>;
+
+/** Tags for the segment */
+export type UpdateSegmentRequestTagsList = Array<string>;
+export const UpdateSegmentRequestTagsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<UpdateSegmentRequestTagsList>;
+
+export interface UpdateSegmentRequest {
+  /** The project key */
+  projectKey: string;
+  /** The environment key */
+  environmentKey: string;
+  /** A human-friendly name for the segment */
+  name: string;
+  /** A unique key used to reference the segment */
+  key: string;
+  /** A description of the segment's purpose */
+  description?: string;
+  /** Tags for the segment */
+  tags?: UpdateSegmentRequestTagsList;
+  /** Whether to create a standard segment (<code>false</code>) or a big segment (<code>true</code>). Standard segments include rule-based and smaller list-based segments. Big segments include larger list-based segments and synced segments. Only use a big segment if you need to add more than 15,000 individual targets. */
+  unbounded?: boolean;
+  /** For big segments, the targeted context kind. */
+  unboundedContextKind?: string;
+}
+export const UpdateSegmentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    projectKey: S.String.pipe(T.Label()),
+    environmentKey: S.String.pipe(T.Label()),
+    name: S.String,
+    key: S.String,
+    description: S.optional(S.String),
+    tags: S.optional(UpdateSegmentRequestTagsList),
+    unbounded: S.optional(S.Boolean),
+    unboundedContextKind: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/v2/segments/{projectKey}/{environmentKey}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateSegmentRequest",
+}) as any as S.Schema<UpdateSegmentRequest>;
+
+export interface UpdateSegmentBySegmentKeyRequest {
+  /** The project key */
+  projectKey: string;
+  /** The environment key */
+  environmentKey: string;
+  /** The segment key */
+  segmentKey: string;
+  /** If true, the patch will be validated but not persisted. Returns a preview of the segment after the patch is applied. */
+  dryRun?: boolean;
+  /** A JSON patch representation of the change to make */
+  patch: JSONPatch;
+  /** Optional comment */
+  comment?: string;
+}
+export const UpdateSegmentBySegmentKeyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    projectKey: S.String.pipe(T.Label()),
+    environmentKey: S.String.pipe(T.Label()),
+    segmentKey: S.String.pipe(T.Label()),
+    dryRun: S.optional(S.Boolean.pipe(T.Query())),
+    patch: JSONPatch,
+    comment: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/api/v2/segments/{projectKey}/{environmentKey}/{segmentKey}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateSegmentBySegmentKeyRequest",
+}) as any as S.Schema<UpdateSegmentBySegmentKeyRequest>;
+
 export interface UpdateSubscriptionRequest {
   /** The integration key */
   integrationKey: string;
@@ -28436,6 +28328,102 @@ export const UpdateSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "UpdateSubscriptionRequest",
 }) as any as S.Schema<UpdateSubscriptionRequest>;
+
+export interface UpdateTeamRequest {
+  /** The team key */
+  teamKey: string;
+  /** A comma-separated list of properties that can reveal additional information in the response. Supported fields are explained above. */
+  expand?: string;
+  /** Optional comment describing the update */
+  comment?: string;
+  /** The instructions to perform when updating. This should be an array with objects that look like <code>{"kind": "update_action"}</code>. Some instructions also require additional parameters as part of this object. */
+  instructions: Instructions;
+}
+export const UpdateTeamRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    teamKey: S.String.pipe(T.Label()),
+    expand: S.optional(S.String.pipe(T.Query())),
+    comment: S.optional(S.String),
+    instructions: Instructions,
+  }).pipe(
+    T.Http({ method: "PATCH", uri: "/api/v2/teams/{teamKey}", code: 200 }),
+  ),
+).annotate({
+  identifier: "UpdateTeamRequest",
+}) as any as S.Schema<UpdateTeamRequest>;
+
+export interface UpdateTeamsRequest {
+  /** Optional comment describing the update */
+  comment?: string;
+  /** The instructions to perform when updating. This should be an array with objects that look like <code>{"kind": "update_action"}</code>. Some instructions also require additional parameters as part of this object. */
+  instructions: Instructions;
+}
+export const UpdateTeamsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    comment: S.optional(S.String),
+    instructions: Instructions,
+  }).pipe(T.Http({ method: "PATCH", uri: "/api/v2/teams", code: 200 })),
+).annotate({
+  identifier: "UpdateTeamsRequest",
+}) as any as S.Schema<UpdateTeamsRequest>;
+
+/** A list of member IDs of the members who were added to the teams. */
+export type BulkEditTeamsRepMemberIDsList = Array<string>;
+export const BulkEditTeamsRepMemberIDsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<BulkEditTeamsRepMemberIDsList>;
+
+/** A list of team keys of the teams that were successfully updated. */
+export type BulkEditTeamsRepTeamKeysList = Array<string>;
+export const BulkEditTeamsRepTeamKeysList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<BulkEditTeamsRepTeamKeysList>;
+
+export type BulkEditTeamsRepErrorsItemMap = {
+  [key: string]: string | undefined;
+};
+export const BulkEditTeamsRepErrorsItemMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<BulkEditTeamsRepErrorsItemMap>;
+
+/** A list of team keys and errors for the teams whose updates failed. */
+export type BulkEditTeamsRepErrorsList = Array<BulkEditTeamsRepErrorsItemMap>;
+export const BulkEditTeamsRepErrorsList = /*@__PURE__*/ S.Array(
+  BulkEditTeamsRepErrorsItemMap,
+) as any as S.Schema<BulkEditTeamsRepErrorsList>;
+
+export interface BulkEditTeamsRep {
+  /** A list of member IDs of the members who were added to the teams. */
+  memberIDs?: BulkEditTeamsRepMemberIDsList;
+  /** A list of team keys of the teams that were successfully updated. */
+  teamKeys?: BulkEditTeamsRepTeamKeysList;
+  /** A list of team keys and errors for the teams whose updates failed. */
+  errors?: BulkEditTeamsRepErrorsList;
+}
+export const BulkEditTeamsRep = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    memberIDs: S.optional(BulkEditTeamsRepMemberIDsList),
+    teamKeys: S.optional(BulkEditTeamsRepTeamKeysList),
+    errors: S.optional(BulkEditTeamsRepErrorsList),
+  }),
+).annotate({
+  identifier: "BulkEditTeamsRep",
+}) as any as S.Schema<BulkEditTeamsRep>;
+
+export interface UpdateTokenRequest {
+  /** The ID of the access token to update */
+  id: string;
+  body: JSONPatch;
+}
+export const UpdateTokenRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    body: JSONPatch.pipe(T.HttpBody()),
+  }).pipe(T.Http({ method: "PATCH", uri: "/api/v2/tokens/{id}", code: 200 })),
+).annotate({
+  identifier: "UpdateTokenRequest",
+}) as any as S.Schema<UpdateTokenRequest>;
 
 /** Tags associated with this view */
 export type UpdateViewRequestTagsList = Array<string>;
@@ -28476,6 +28464,20 @@ export const UpdateViewRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "UpdateViewRequest",
 }) as any as S.Schema<UpdateViewRequest>;
+
+export interface UpdateWebhookRequest {
+  /** The ID of the webhook to update */
+  id: string;
+  body: JSONPatch;
+}
+export const UpdateWebhookRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    body: JSONPatch.pipe(T.HttpBody()),
+  }).pipe(T.Http({ method: "PATCH", uri: "/api/v2/webhooks/{id}", code: 200 })),
+).annotate({
+  identifier: "UpdateWebhookRequest",
+}) as any as S.Schema<UpdateWebhookRequest>;
 
 export interface ValidateIntegrationDeliveryConfigurationRequest {
   /** The project key */
@@ -28576,6 +28578,62 @@ export const createAnnouncementPublic: API.OperationMethod<
   input: CreateAnnouncementPublicRequest,
   output: AnnouncementResponse,
   errors: [BadRequest, Forbidden, NotFound, Conflict, UnknownLaunchDarklyError],
+  protocol: LaunchDarklyProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateApprovalRequestError =
+  | BadRequest
+  | Forbidden
+  | LaunchDarklyOpError;
+/** Create approval request Create an approval request. This endpoint requires a list of `instructions`, in semantic patch format, that will be applied when the approval request is approved and applied. ### Flags If you are creating an approval request for a flag, you can use the following `instructions`: - `addVariation` - `removeVariation` - `updateVariation` - `updateDefaultVariation` For details on using these instructions, read [Update feature flag](https://launchdarkly.com/docs/api/feature-flags/patch-feature-flag). To create an approval for a flag specific to an environment, use [Create approval request for a flag](https://launchdarkly.com/docs/api/approvals/post-approval-request-for-flag). ### AgentControl If you are creating an approval request for an AgentControl config, you can use the semantic patch instructions listed under [Update config targeting](https://launchdarkly.com/docs/api/agent-control/patch-ai-config-targeting). ### Segments If you are creating an approval request for a segment, you can use the semantic patch instructions listed under [Patch segment](https://launchdarkly.com/docs/api/segments/patch-segment). */
+export const createApprovalRequest: API.OperationMethod<
+  CreateApprovalRequestRequest,
+  ApprovalRequestResponse,
+  CreateApprovalRequestError,
+  LaunchDarklyOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateApprovalRequestRequest,
+  output: ApprovalRequestResponse,
+  errors: [BadRequest, Forbidden, UnknownLaunchDarklyError],
+  protocol: LaunchDarklyProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateApprovalRequestApplyError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | LaunchDarklyOpError;
+/** Apply approval request Apply an approval request that has been approved. This endpoint works with any approval requests. */
+export const createApprovalRequestApply: API.OperationMethod<
+  CreateApprovalRequestApplyRequest,
+  ApprovalRequestResponse,
+  CreateApprovalRequestApplyError,
+  LaunchDarklyOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateApprovalRequestApplyRequest,
+  output: ApprovalRequestResponse,
+  errors: [BadRequest, Forbidden, NotFound, UnknownLaunchDarklyError],
+  protocol: LaunchDarklyProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateApprovalRequestReviewError =
+  | BadRequest
+  | NotFound
+  | Conflict
+  | LaunchDarklyOpError;
+/** Review approval request Review an approval request by approving or denying changes. */
+export const createApprovalRequestReview: API.OperationMethod<
+  CreateApprovalRequestReviewRequest,
+  ApprovalRequestResponse,
+  CreateApprovalRequestReviewError,
+  LaunchDarklyOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateApprovalRequestReviewRequest,
+  output: ApprovalRequestResponse,
+  errors: [BadRequest, NotFound, Conflict, UnknownLaunchDarklyError],
   protocol: LaunchDarklyProtocol,
   retry: Retry.Retry,
 }));
@@ -28812,6 +28870,45 @@ export const createLayer: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type CreateMemberError =
+  | BadRequest
+  | Forbidden
+  | Conflict
+  | LaunchDarklyOpError;
+/** Invite new members Invite one or more new members to join an account. Each member is sent an invitation. Members with Admin or Owner roles may create new members, as well as anyone with a `createMember` permission for "member/\*". If a member cannot be invited, the entire request is rejected and no members are invited from that request. Each member _must_ have an `email` field and either a `role` or a `customRoles` field. If any of the fields are not populated correctly, the request is rejected with the reason specified in the "message" field of the response. Valid base role names that you can provide for the `role` field include `reader`, `writer`, `admin`, `owner/admin`, and `no_access`. To learn more about base roles, read [Organization roles](https://launchdarkly.com/docs/home/account/roles/organization-roles). If you are using the `customRoles` field instead, you can provide the key for any role that you have created, or for any preset [organization role](https://launchdarkly.com/docs/home/account/roles/organization-roles) or [project role](https://launchdarkly.com/docs/home/account/roles/project-roles) provided by LaunchDarkly. Some preset roles additionally require that you specify `roleAttributes`. To learn more, read [Using role scope](https://launchdarkly.com/docs/home/account/roles/role-scope). Requests to create account members will not work if SCIM is enabled for the account. You can assign new members to teams with the `teamKeys` field. Teams are available only on Enterprise plans. If your plan does not include teams, a request that includes a non-empty `teamKeys` field returns an HTTP response code of 403 (Forbidden). Omit `teamKeys` to invite members without assigning them to a team. _No more than 50 members may be created per request._ A request may also fail because of conflicts with existing members. These conflicts are reported using the additional `code` and `invalid_emails` response fields with the following possible values for `code`: - **email_already_exists_in_account**: A member with this email address already exists in this account. - **email_taken_in_different_account**: A member with this email address exists in another account. - **duplicate_email**s: This request contains two or more members with the same email address. A request that fails for one of the above reasons returns an HTTP response code of 400 (Bad Request). */
+export const createMember: API.OperationMethod<
+  CreateMemberRequest,
+  Members,
+  CreateMemberError,
+  LaunchDarklyOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateMemberRequest,
+  output: Members,
+  errors: [BadRequest, Forbidden, Conflict, UnknownLaunchDarklyError],
+  protocol: LaunchDarklyProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateMemberTeamError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | Conflict
+  | LaunchDarklyOpError;
+/** Add a member to teams Add one member to one or more teams. */
+export const createMemberTeam: API.OperationMethod<
+  CreateMemberTeamRequest,
+  Member,
+  CreateMemberTeamError,
+  LaunchDarklyOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateMemberTeamRequest,
+  output: Member,
+  errors: [BadRequest, Forbidden, NotFound, Conflict, UnknownLaunchDarklyError],
+  protocol: LaunchDarklyProtocol,
+  retry: Retry.Retry,
+}));
+
 export type CreateMetricGroupError =
   | BadRequest
   | Forbidden
@@ -28845,6 +28942,25 @@ export const createOAuth2Client: API.OperationMethod<
   input: CreateOAuth2ClientRequest,
   output: Client,
   errors: [BadRequest, Forbidden, UnknownLaunchDarklyError],
+  protocol: LaunchDarklyProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateProjectError =
+  | BadRequest
+  | Forbidden
+  | Conflict
+  | LaunchDarklyOpError;
+/** Create project Create a new project with the given key and name. Project keys must be unique within an account. */
+export const createProject: API.OperationMethod<
+  CreateProjectRequest,
+  ProjectRep,
+  CreateProjectError,
+  LaunchDarklyOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateProjectRequest,
+  output: ProjectRep,
+  errors: [BadRequest, Forbidden, Conflict, UnknownLaunchDarklyError],
   protocol: LaunchDarklyProtocol,
   retry: Retry.Retry,
 }));
@@ -28886,6 +29002,51 @@ export const createSubscription: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type CreateTeamError = BadRequest | LaunchDarklyOpError;
+/** Create team Create a team. To learn more, read [Creating a team](https://launchdarkly.com/docs/home/account/create-teams). ### Expanding the teams response LaunchDarkly supports four fields for expanding the "Create team" response. By default, these fields are **not** included in the response. To expand the response, append the `expand` query parameter and add a comma-separated list with any of the following fields: * `members` includes the total count of members that belong to the team. * `roles` includes a paginated list of the custom roles that you have assigned to the team. * `projects` includes a paginated list of the projects that the team has any write access to. * `maintainers` includes a paginated list of the maintainers that you have assigned to the team. For example, `expand=members,roles` includes the `members` and `roles` fields in the response. */
+export const createTeam: API.OperationMethod<
+  CreateTeamRequest,
+  Team,
+  CreateTeamError,
+  LaunchDarklyOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateTeamRequest,
+  output: Team,
+  errors: [BadRequest, UnknownLaunchDarklyError],
+  protocol: LaunchDarklyProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateTeamMemberError = BadRequest | LaunchDarklyOpError;
+/** Add multiple members to team Add multiple members to an existing team by uploading a CSV file of member email addresses. Your CSV file must include email addresses in the first column. You can include data in additional columns, but LaunchDarkly ignores all data outside the first column. Headers are optional. To learn more, read [Manage team members](https://launchdarkly.com/docs/home/account/manage-teams#manage-team-members). **Members are only added on a `201` response.** A `207` indicates the CSV file contains a combination of valid and invalid entries. A `207` results in no members being added to the team. On a `207` response, if an entry contains bad input, the `message` field contains the row number as well as the reason for the error. The `message` field is omitted if the entry is valid. Example `207` response: ```json { "items": [ { "status": "success", "value": "new-team-member@acme.com" }, { "message": "Line 2: empty row", "status": "error", "value": "" }, { "message": "Line 3: email already exists in the specified team", "status": "error", "value": "existing-team-member@acme.com" }, { "message": "Line 4: invalid email formatting", "status": "error", "value": "invalid email format" } ] } ``` Message | Resolution --- | --- Empty row | This line is blank. Add an email address and try again. Duplicate entry | This email address appears in the file twice. Remove the email from the file and try again. Email already exists in the specified team | This member is already on your team. Remove the email from the file and try again. Invalid formatting | This email address is not formatted correctly. Fix the formatting and try again. Email does not belong to a LaunchDarkly member | The email address doesn't belong to a LaunchDarkly account member. Invite them to LaunchDarkly, then re-add them to the team. On a `400` response, the `message` field may contain errors specific to this endpoint. Example `400` response: ```json { "code": "invalid_request", "message": "Unable to process file" } ``` Message | Resolution --- | --- Unable to process file | LaunchDarkly could not process the file for an unspecified reason. Review your file for errors and try again. File exceeds 25mb | Break up your file into multiple files of less than 25mbs each. All emails have invalid formatting | None of the email addresses in the file are in the correct format. Fix the formatting and try again. All emails belong to existing team members | All listed members are already on this team. Populate the file with member emails that do not belong to the team and try again. File is empty | The CSV file does not contain any email addresses. Populate the file and try again. No emails belong to members of your LaunchDarkly organization | None of the email addresses belong to members of your LaunchDarkly account. Invite these members to LaunchDarkly, then re-add them to the team. */
+export const createTeamMember: API.OperationMethod<
+  CreateTeamMemberRequest,
+  TeamImportsRep,
+  CreateTeamMemberError,
+  LaunchDarklyOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateTeamMemberRequest,
+  output: TeamImportsRep,
+  errors: [BadRequest, UnknownLaunchDarklyError],
+  protocol: LaunchDarklyProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateTokenError = BadRequest | Forbidden | LaunchDarklyOpError;
+/** Create access token Create a new access token. */
+export const createToken: API.OperationMethod<
+  CreateTokenRequest,
+  Token,
+  CreateTokenError,
+  LaunchDarklyOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateTokenRequest,
+  output: Token,
+  errors: [BadRequest, Forbidden, UnknownLaunchDarklyError],
+  protocol: LaunchDarklyProtocol,
+  retry: Retry.Retry,
+}));
+
 export type CreateTriggerWorkflowError =
   | BadRequest
   | Forbidden
@@ -28920,6 +29081,21 @@ export const createView: API.OperationMethod<
   input: CreateViewRequest,
   output: View,
   errors: [BadRequest, Forbidden, NotFound, UnknownLaunchDarklyError],
+  protocol: LaunchDarklyProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateWebhookError = BadRequest | Forbidden | LaunchDarklyOpError;
+/** Creates a webhook Create a new webhook. */
+export const createWebhook: API.OperationMethod<
+  CreateWebhookRequest,
+  Webhook,
+  CreateWebhookError,
+  LaunchDarklyOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateWebhookRequest,
+  output: Webhook,
+  errors: [BadRequest, Forbidden, UnknownLaunchDarklyError],
   protocol: LaunchDarklyProtocol,
   retry: Retry.Retry,
 }));
@@ -33361,62 +33537,6 @@ export const patchAITool: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PatchApplicationError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | LaunchDarklyOpError;
-/** Update application Update an application. You can update the `description` and `kind` fields. Requires a [JSON patch](https://datatracker.ietf.org/doc/html/rfc6902) representation of the desired changes to the application. To learn more, read [Updates](https://launchdarkly.com/docs/api#updates). */
-export const patchApplication: API.OperationMethod<
-  PatchApplicationRequest,
-  ApplicationRep,
-  PatchApplicationError,
-  LaunchDarklyOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PatchApplicationRequest,
-  output: ApplicationRep,
-  errors: [BadRequest, Forbidden, NotFound, UnknownLaunchDarklyError],
-  protocol: LaunchDarklyProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PatchApplicationVersionError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | LaunchDarklyOpError;
-/** Update application version Update an application version. You can update the `supported` field. Requires a [JSON patch](https://datatracker.ietf.org/doc/html/rfc6902) representation of the desired changes to the application version. To learn more, read [Updates](https://launchdarkly.com/docs/api#updates). */
-export const patchApplicationVersion: API.OperationMethod<
-  PatchApplicationVersionRequest,
-  ApplicationVersionRep,
-  PatchApplicationVersionError,
-  LaunchDarklyOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PatchApplicationVersionRequest,
-  output: ApplicationVersionRep,
-  errors: [BadRequest, Forbidden, NotFound, UnknownLaunchDarklyError],
-  protocol: LaunchDarklyProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PatchApprovalRequestError =
-  | Forbidden
-  | NotFound
-  | LaunchDarklyOpError;
-/** Update approval request Perform a partial update to an approval request. Updating an approval request uses the semantic patch format. This endpoint works with any approval requests. To make a semantic patch request, you must append `domain-model=launchdarkly.semanticpatch` to your `Content-Type` header. To learn more, read [Updates using semantic patch](https://launchdarkly.com/docs/api#updates-using-semantic-patch). ### Instructions Semantic patch requests support the following `kind` instructions for updating an approval request. #### addReviewers Adds the specified members and teams to the existing list of reviewers. You must include at least one of `notifyMemberIds` and `notifyTeamKeys`. ##### Parameters - `notifyMemberIds`: (Optional) List of member IDs. - `notifyTeamKeys`: (Optional) List of team keys. Here's an example: ```json { "instructions": [{ "kind": "addReviewers", "notifyMemberIds": [ "user-key-123abc", "user-key-456def" ], "notifyTeamKeys": [ "team-key-789abc"] }] } ``` #### updateDescription Updates the description (title) of the approval request. ##### Parameters - `value`: (Required) The new description for the approval request. Must be non-empty and no more than 5000 characters. Here's an example: ```json { "instructions": [{ "kind": "updateDescription", "value": "Updated approval request title" }] } ``` */
-export const patchApprovalRequest: API.OperationMethod<
-  PatchApprovalRequestRequest,
-  FlagConfigApprovalRequestResponse,
-  PatchApprovalRequestError,
-  LaunchDarklyOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PatchApprovalRequestRequest,
-  output: FlagConfigApprovalRequestResponse,
-  errors: [Forbidden, NotFound, UnknownLaunchDarklyError],
-  protocol: LaunchDarklyProtocol,
-  retry: Retry.Retry,
-}));
-
 export type PatchApprovalRequestSettingsError =
   | BadRequest
   | Forbidden
@@ -33471,26 +33591,6 @@ export const patchCustomRole: API.OperationMethod<
   input: PatchCustomRoleRequest,
   output: CustomRole,
   errors: [BadRequest, NotFound, Conflict, UnknownLaunchDarklyError],
-  protocol: LaunchDarklyProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PatchDestinationError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | Conflict
-  | LaunchDarklyOpError;
-/** Update Data Export destination Update a Data Export destination. Updating a destination uses a [JSON patch](https://datatracker.ietf.org/doc/html/rfc6902) or [JSON merge patch](https://datatracker.ietf.org/doc/html/rfc7386) representation of the desired changes. To learn more, read [Updates](https://launchdarkly.com/docs/api#updates). */
-export const patchDestination: API.OperationMethod<
-  PatchDestinationRequest,
-  Destination,
-  PatchDestinationError,
-  LaunchDarklyOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PatchDestinationRequest,
-  output: Destination,
-  errors: [BadRequest, Forbidden, NotFound, Conflict, UnknownLaunchDarklyError],
   protocol: LaunchDarklyProtocol,
   retry: Retry.Retry,
 }));
@@ -33818,45 +33918,6 @@ export const patchIpAllowlistEntry: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PatchMemberError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | Conflict
-  | LaunchDarklyOpError;
-/** Modify an account member Update a single account member. Updating a member uses a [JSON patch](https://datatracker.ietf.org/doc/html/rfc6902) representation of the desired changes. To learn more, read [Updates](https://launchdarkly.com/docs/api#updates). To update fields in the account member object that are arrays, set the `path` to the name of the field and then append `/<array index>`. Use `/0` to add to the beginning of the array. Use `/-` to add to the end of the array. For example, to add a new custom role to a member, use the following request body: ``` [ { "op": "add", "path": "/customRoles/0", "value": "some-role-id" } ] ``` You can update only an account member's role or custom role using a JSON patch. Members can update their own names and email addresses though the LaunchDarkly UI. When SAML SSO or SCIM is enabled for the account, account members are managed in the Identity Provider (IdP). Requests to update account members will succeed, but the IdP will override the update shortly afterwards. */
-export const patchMember: API.OperationMethod<
-  PatchMemberRequest,
-  Member,
-  PatchMemberError,
-  LaunchDarklyOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PatchMemberRequest,
-  output: Member,
-  errors: [BadRequest, Forbidden, NotFound, Conflict, UnknownLaunchDarklyError],
-  protocol: LaunchDarklyProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PatchMembersError =
-  | BadRequest
-  | Forbidden
-  | Conflict
-  | LaunchDarklyOpError;
-/** Modify account members > ### Full use of this API resource is an Enterprise feature > > The ability to perform a partial update to multiple members is available to customers on an Enterprise plan. If you are on another plan, you can update members individually. To learn more, [read about our pricing](https://launchdarkly.com/pricing/). To upgrade your plan, [contact Sales](https://launchdarkly.com/contact-sales/). Perform a partial update to multiple members. Updating members uses the semantic patch format. To make a semantic patch request, you must append `domain-model=launchdarkly.semanticpatch` to your `Content-Type` header. To learn more, read [Updates using semantic patch](https://launchdarkly.com/docs/api#updates-using-semantic-patch). ### Instructions Semantic patch requests support the following `kind` instructions for updating members. <details> <summary>Click to expand instructions for <strong>updating members</strong></summary> #### replaceMembersRoles Replaces the roles of the specified members. This also removes all custom roles assigned to the specified members. ##### Parameters - `value`: The new role. Must be a valid [base role](https://launchdarkly.com/docs/home/getting-started/vocabulary#base-role). To learn more, read [Roles](https://launchdarkly.com/docs/home/account/roles). - `memberIDs`: List of member IDs. Here's an example: ```json { "instructions": [{ "kind": "replaceMembersRoles", "value": "reader", "memberIDs": [ "1234a56b7c89d012345e678f", "507f1f77bcf86cd799439011" ] }] } ``` #### replaceAllMembersRoles Replaces the roles of all members. This also removes all custom roles assigned to the specified members. Members that match any of the filters are **excluded** from the update. ##### Parameters - `value`: The new role. Must be a valid [base role](https://launchdarkly.com/docs/home/getting-started/vocabulary#base-role). To learn more, read [Roles](https://launchdarkly.com/docs/home/account/roles). - `filterLastSeen`: (Optional) A JSON object with one of the following formats: - `{"never": true}` - Members that have never been active, such as those who have not accepted their invitation to LaunchDarkly, or have not logged in after being provisioned via SCIM. - `{"noData": true}` - Members that have not been active since LaunchDarkly began recording last seen timestamps. - `{"before": 1608672063611}` - Members that have not been active since the provided value, which should be a timestamp in Unix epoch milliseconds. - `filterQuery`: (Optional) A string that matches against the members' emails and names. It is not case sensitive. - `filterRoles`: (Optional) A `|` separated list of roles and custom roles. For the purposes of this filtering, `Owner` counts as `Admin`. - `filterTeamKey`: (Optional) A string that matches against the key of the team the members belong to. It is not case sensitive. - `ignoredMemberIDs`: (Optional) A list of member IDs. Here's an example: ```json { "instructions": [{ "kind": "replaceAllMembersRoles", "value": "reader", "filterLastSeen": { "never": true } }] } ``` #### replaceMembersCustomRoles Replaces the custom roles of the specified members. ##### Parameters - `values`: List of new custom roles. Must be a valid custom role key or ID. - `memberIDs`: List of member IDs. Here's an example: ```json { "instructions": [{ "kind": "replaceMembersCustomRoles", "values": [ "example-custom-role" ], "memberIDs": [ "1234a56b7c89d012345e678f", "507f1f77bcf86cd799439011" ] }] } ``` #### replaceAllMembersCustomRoles Replaces the custom roles of all members. Members that match any of the filters are **excluded** from the update. ##### Parameters - `values`: List of new roles. Must be a valid custom role key or ID. - `filterLastSeen`: (Optional) A JSON object with one of the following formats: - `{"never": true}` - Members that have never been active, such as those who have not accepted their invitation to LaunchDarkly, or have not logged in after being provisioned via SCIM. - `{"noData": true}` - Members that have not been active since LaunchDarkly began recording last seen timestamps. - `{"before": 1608672063611}` - Members that have not been active since the provided value, which should be a timestamp in Unix epoch milliseconds. - `filterQuery`: (Optional) A string that matches against the members' emails and names. It is not case sensitive. - `filterRoles`: (Optional) A `|` separated list of roles and custom roles. For the purposes of this filtering, `Owner` counts as `Admin`. - `filterTeamKey`: (Optional) A string that matches against the key of the team the members belong to. It is not case sensitive. - `ignoredMemberIDs`: (Optional) A list of member IDs. Here's an example: ```json { "instructions": [{ "kind": "replaceAllMembersCustomRoles", "values": [ "example-custom-role" ], "filterLastSeen": { "never": true } }] } ``` #### replaceMembersRoleAttributes Replaces the role attributes of the specified members. ##### Parameters - `value`: Map of role attribute keys to lists of values. - `memberIDs`: List of member IDs. Here's an example: ```json { "instructions": [{ "kind": "replaceMembersRoleAttributes", "value": { "myRoleProjectKey": ["mobile", "web"], "myRoleEnvironmentKey": ["production"] }, "memberIDs": [ "1234a56b7c89d012345e678f", "507f1f77bcf86cd799439011" ] }] } ``` </details> */
-export const patchMembers: API.OperationMethod<
-  PatchMembersRequest,
-  BulkEditMembersRep,
-  PatchMembersError,
-  LaunchDarklyOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PatchMembersRequest,
-  output: BulkEditMembersRep,
-  errors: [BadRequest, Forbidden, Conflict, UnknownLaunchDarklyError],
-  protocol: LaunchDarklyProtocol,
-  retry: Retry.Retry,
-}));
-
 export type PatchMetricError =
   | BadRequest
   | NotFound
@@ -33929,26 +33990,6 @@ export const patchOAuthClient: API.OperationMethod<
   input: PatchOAuthClientRequest,
   output: Client,
   errors: [BadRequest, Forbidden, NotFound, UnknownLaunchDarklyError],
-  protocol: LaunchDarklyProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PatchProjectError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | Conflict
-  | LaunchDarklyOpError;
-/** Update project Update a project. Updating a project uses a [JSON patch](https://datatracker.ietf.org/doc/html/rfc6902) representation of the desired changes. To learn more, read [Updates](https://launchdarkly.com/docs/api#updates).<br/><br/>To add an element to the project fields that are arrays, set the `path` to the name of the field and then append `/<array index>`. Use `/0` to add to the beginning of the array. Use `/-` to add to the end of the array. For example, `"path": "/tags/0"` adds a tag.<br/><br/>Note that `tags` are always deduplicated and returned in alphabetical order, regardless of the array index used in the patch path. */
-export const patchProject: API.OperationMethod<
-  PatchProjectRequest,
-  ProjectRep,
-  PatchProjectError,
-  LaunchDarklyOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PatchProjectRequest,
-  output: ProjectRep,
-  errors: [BadRequest, Forbidden, NotFound, Conflict, UnknownLaunchDarklyError],
   protocol: LaunchDarklyProtocol,
   retry: Retry.Retry,
 }));
@@ -34057,92 +34098,6 @@ export const patchSdkKeyByKey: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PatchSegmentError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | Conflict
-  | LaunchDarklyOpError;
-/** Patch segment Update a segment. The request body must be a valid semantic patch, JSON patch, or JSON merge patch. To learn more the different formats, read [Updates](https://launchdarkly.com/docs/api#updates). ### Using semantic patches on a segment To make a semantic patch request, you must append `domain-model=launchdarkly.semanticpatch` to your `Content-Type` header. To learn more, read [Updates using semantic patch](https://launchdarkly.com/docs/api#updates-using-semantic-patch). The body of a semantic patch request for updating segments requires an `environmentKey` in addition to `instructions` and an optional `comment`. The body of the request takes the following properties: * `comment` (string): (Optional) A description of the update. * `environmentKey` (string): (Required) The key of the LaunchDarkly environment. * `instructions` (array): (Required) A list of actions the update should perform. Each action in the list must be an object with a `kind` property that indicates the instruction. If the action requires parameters, you must include those parameters as additional fields in the object. ### Instructions Semantic patch requests support the following `kind` instructions for updating segments. <details> <summary>Click to expand instructions for <strong>updating segment details and settings</strong></summary> #### addTags Adds tags to the segment. ##### Parameters - `values`: A list of tags to add. Here's an example: ```json { "instructions": [{ "kind": "addTags", "values": ["tag1", "tag2"] }] } ``` #### removeTags Removes tags from the segment. ##### Parameters - `values`: A list of tags to remove. Here's an example: ```json { "instructions": [{ "kind": "removeTags", "values": ["tag1", "tag2"] }] } ``` #### updateName Updates the name of the segment. ##### Parameters - `value`: Name of the segment. Here's an example: ```json { "instructions": [{ "kind": "updateName", "value": "Updated segment name" }] } ``` </details> <details> <summary>Click to expand instructions for <strong>updating segment individual targets</strong></summary> #### addExcludedTargets Adds context keys to the individual context targets excluded from the segment for the specified `contextKind`. Returns an error if this causes the same context key to be both included and excluded, or if the number of operations on targets exceeds the batch limit of 1,500. ##### Parameters - `contextKind`: The context kind the targets should be added to. - `values`: List of keys. Here's an example: ```json { "instructions": [{ "kind": "addExcludedTargets", "contextKind": "org", "values": [ "org-key-123abc", "org-key-456def" ] }] } ``` #### addExcludedUsers Adds user keys to the individual user targets excluded from the segment. Returns an error if this causes the same user key to be both included and excluded, or if the number of operations on targets exceeds the batch limit of 1,500. If you are working with contexts, use `addExcludedTargets` instead of this instruction. ##### Parameters - `values`: List of user keys. Here's an example: ```json { "instructions": [{ "kind": "addExcludedUsers", "values": [ "user-key-123abc", "user-key-456def" ] }] } ``` #### addIncludedTargets Adds context keys to the individual context targets included in the segment for the specified `contextKind`. Returns an error if this causes the same context key to be both included and excluded, or if the number of operations on targets exceeds the batch limit of 1,500. ##### Parameters - `contextKind`: The context kind the targets should be added to. - `values`: List of keys. Here's an example: ```json { "instructions": [{ "kind": "addIncludedTargets", "contextKind": "org", "values": [ "org-key-123abc", "org-key-456def" ] }] } ``` #### addIncludedUsers Adds user keys to the individual user targets included in the segment. Returns an error if this causes the same user key to be both included and excluded, or if the number of operations on targets exceeds the batch limit of 1,500. If you are working with contexts, use `addIncludedTargets` instead of this instruction. ##### Parameters - `values`: List of user keys. Here's an example: ```json { "instructions": [{ "kind": "addIncludedUsers", "values": [ "user-key-123abc", "user-key-456def" ] }] } ``` #### removeExcludedTargets Removes context keys from the individual context targets excluded from the segment for the specified `contextKind`. Returns an error if the number of operations on targets exceeds the batch limit of 1,500. ##### Parameters - `contextKind`: The context kind the targets should be removed from. - `values`: List of keys. Here's an example: ```json { "instructions": [{ "kind": "removeExcludedTargets", "contextKind": "org", "values": [ "org-key-123abc", "org-key-456def" ] }] } ``` #### removeExcludedUsers Removes user keys from the individual user targets excluded from the segment. If you are working with contexts, use `removeExcludedTargets` instead of this instruction. Returns an error if the number of operations on targets exceeds the batch limit of 1,500. ##### Parameters - `values`: List of user keys. Here's an example: ```json { "instructions": [{ "kind": "removeExcludedUsers", "values": [ "user-key-123abc", "user-key-456def" ] }] } ``` #### removeIncludedTargets Removes context keys from the individual context targets included in the segment for the specified `contextKind`. Returns an error if the number of operations on targets exceeds the batch limit of 1,500. ##### Parameters - `contextKind`: The context kind the targets should be removed from. - `values`: List of keys. Here's an example: ```json { "instructions": [{ "kind": "removeIncludedTargets", "contextKind": "org", "values": [ "org-key-123abc", "org-key-456def" ] }] } ``` #### removeIncludedUsers Removes user keys from the individual user targets included in the segment. If you are working with contexts, use `removeIncludedTargets` instead of this instruction. Returns an error if the number of operations on targets exceeds the batch limit of 1,500. ##### Parameters - `values`: List of user keys. Here's an example: ```json { "instructions": [{ "kind": "removeIncludedUsers", "values": [ "user-key-123abc", "user-key-456def" ] }] } ``` </details> <details> <summary>Click to expand instructions for <strong>updating segment targeting rules</strong></summary> #### addClauses Adds the given clauses to the rule indicated by `ruleId`. ##### Parameters - `clauses`: Array of clause objects, with `contextKind` (string), `attribute` (string), `op` (string), `negate` (boolean), and `values` (array of strings, numbers, or dates) properties. The `contextKind`, if not provided, defaults to `user`. The `contextKind`, `attribute`, and `values` are case sensitive. The `op` must be lower-case. - `ruleId`: ID of a rule in the segment. Here's an example: ```json { "instructions": [{ "kind": "addClauses", "clauses": [ { "attribute": "email", "negate": false, "op": "contains", "values": ["value1"] } ], "ruleId": "a902ef4a-2faf-4eaf-88e1-ecc356708a29", }] } ``` #### addRule Adds a new targeting rule to the segment. The rule may contain `clauses`. ##### Parameters - `clauses`: Array of clause objects, with `contextKind` (string), `attribute` (string), `op` (string), `negate` (boolean), and `values` (array of strings, numbers, or dates) properties. The `contextKind`, if not provided, defaults to `user`. The `contextKind`, `attribute`, and `values` are case sensitive. The `op` must be lower-case. - `description`: A description of the rule. Here's an example: ```json { "instructions": [{ "kind": "addRule", "clauses": [ { "attribute": "email", "op": "contains", "negate": false, "values": ["@launchdarkly.com"] } ], "description": "Targeting rule for LaunchDarkly employees", }] } ``` #### addValuesToClause Adds `values` to the values of the clause that `ruleId` and `clauseId` indicate. Does not update the context kind, attribute, or operator. ##### Parameters - `ruleId`: ID of a rule in the segment. - `clauseId`: ID of a clause in that rule. - `values`: Array of strings, case sensitive. Here's an example: ```json { "instructions": [{ "kind": "addValuesToClause", "ruleId": "a902ef4a-2faf-4eaf-88e1-ecc356708a29", "clauseId": "10a58772-3121-400f-846b-b8a04e8944ed", "values": ["beta_testers"] }] } ``` #### removeClauses Removes the clauses specified by `clauseIds` from the rule indicated by `ruleId`. ##### Parameters - `ruleId`: ID of a rule in the segment. - `clauseIds`: Array of IDs of clauses in the rule. Here's an example: ```json { "instructions": [{ "kind": "removeClauses", "ruleId": "a902ef4a-2faf-4eaf-88e1-ecc356708a29", "clauseIds": ["10a58772-3121-400f-846b-b8a04e8944ed", "36a461dc-235e-4b08-97b9-73ce9365873e"] }] } ``` #### removeRule Removes the targeting rule specified by `ruleId`. Does nothing if the rule does not exist. ##### Parameters - `ruleId`: ID of a rule in the segment. Here's an example: ```json { "instructions": [{ "kind": "removeRule", "ruleId": "a902ef4a-2faf-4eaf-88e1-ecc356708a29" }] } ``` #### removeValuesFromClause Removes `values` from the values of the clause indicated by `ruleId` and `clauseId`. Does not update the context kind, attribute, or operator. ##### Parameters - `ruleId`: ID of a rule in the segment. - `clauseId`: ID of a clause in that rule. - `values`: Array of strings, case sensitive. Here's an example: ```json { "instructions": [{ "kind": "removeValuesFromClause", "ruleId": "a902ef4a-2faf-4eaf-88e1-ecc356708a29", "clauseId": "10a58772-3121-400f-846b-b8a04e8944ed", "values": ["beta_testers"] }] } ``` #### reorderRules Rearranges the rules to match the order given in `ruleIds`. Returns an error if `ruleIds` does not match the current set of rules in the segment. ##### Parameters - `ruleIds`: Array of IDs of all targeting rules in the segment. Here's an example: ```json { "instructions": [{ "kind": "reorderRules", "ruleIds": ["a902ef4a-2faf-4eaf-88e1-ecc356708a29", "63c238d1-835d-435e-8f21-c8d5e40b2a3d"] }] } ``` #### updateClause Replaces the clause indicated by `ruleId` and `clauseId` with `clause`. ##### Parameters - `ruleId`: ID of a rule in the segment. - `clauseId`: ID of a clause in that rule. - `clause`: New `clause` object, with `contextKind` (string), `attribute` (string), `op` (string), `negate` (boolean), and `values` (array of strings, numbers, or dates) properties. The `contextKind`, if not provided, defaults to `user`. The `contextKind`, `attribute`, and `values` are case sensitive. The `op` must be lower-case. Here's an example: ```json { "instructions": [{ "kind": "updateClause", "ruleId": "a902ef4a-2faf-4eaf-88e1-ecc356708a29", "clauseId": "10c7462a-2062-45ba-a8bb-dfb3de0f8af5", "clause": { "contextKind": "user", "attribute": "country", "op": "in", "negate": false, "values": ["Mexico", "Canada"] } }] } ``` #### updateRuleDescription Updates the description of the segment targeting rule. ##### Parameters - `description`: The new human-readable description for this rule. - `ruleId`: The ID of the rule. You can retrieve this by making a GET request for the segment. Here's an example: ```json { "instructions": [{ "kind": "updateRuleDescription", "description": "New rule description", "ruleId": "a902ef4a-2faf-4eaf-88e1-ecc356708a29" }] } ``` #### updateRuleRolloutAndContextKind For a rule that includes a percentage of targets, updates the percentage and the context kind of the targets to include. ##### Parameters - `ruleId`: The ID of a targeting rule in the segment that includes a percentage of targets. - `weight`: The weight, in thousandths of a percent (0-100000). - `contextKind`: The context kind. Here's an example: ```json { "instructions": [{ "kind": "reorderRules", "ruleId": "a902ef4a-2faf-4eaf-88e1-ecc356708a29", "weight": "20000", "contextKind": "device" }] } ``` </details> <details> <summary>Click to expand instructions for <strong>working with Big Segments</strong></summary> A "big segment" is a segment that is either a synced segment, or a list-based segment with more than 15,000 entries that includes only one targeted context kind. LaunchDarkly uses different implementations for different types of segments so that all of your segments have good performance. The following semantic patch instructions apply only to these [larger list-based segments](https://launchdarkly.com/docs/home/flags/segments-create#create-larger-list-based-segments). #### addBigSegmentExcludedTargets For use with [larger list-based segments](https://launchdarkly.com/docs/home/flags/segments-create#create-larger-list-based-segments) ONLY. Adds context keys to the context targets excluded from the segment. Returns an error if this causes the same context key to be both included and excluded. ##### Parameters - `values`: List of context keys. Here's an example: ```json { "instructions": [{ "kind": "addBigSegmentExcludedTargets", "values": [ "org-key-123abc", "org-key-456def" ] }] } ``` #### addBigSegmentIncludedTargets For use with [larger list-based segments](https://launchdarkly.com/docs/home/flags/segments-create#create-larger-list-based-segments) ONLY. Adds context keys to the context targets included in the segment. Returns an error if this causes the same context key to be both included and excluded. ##### Parameters - `values`: List of context keys. Here's an example: ```json { "instructions": [{ "kind": "addBigSegmentIncludedTargets", "values": [ "org-key-123abc", "org-key-456def" ] }] } ``` #### processBigSegmentImport For use with [larger list-based segments](https://launchdarkly.com/docs/home/flags/segments-create#create-larger-list-based-segments) ONLY. Processes a segment import. ##### Parameters - `importId`: The ID of the import. The import ID is returned in the `Location` header as part of the [Create big segment import](https://launchdarkly.com/docs/api/segments/create-big-segment-import) request. Here's an example: ```json { "instructions": [{ "kind": "processBigSegmentImport", "importId": "a902ef4a-2faf-4eaf-88e1-ecc356708a29" }] } ``` #### removeBigSegmentExcludedTargets For use with [larger list-based segments](https://launchdarkly.com/docs/home/flags/segments-create#create-larger-list-based-segments) ONLY. Removes context keys from the context targets excluded from the segment. ##### Parameters - `values`: List of context keys. Here's an example: ```json { "instructions": [{ "kind": "removeBigSegmentExcludedTargets", "values": [ "org-key-123abc", "org-key-456def" ] }] } ``` #### removeBigSegmentIncludedTargets For use with [larger list-based segments](https://launchdarkly.com/docs/home/flags/segments-create#create-larger-list-based-segments) ONLY. Removes context keys from the context targets included in the segment. ##### Parameters - `values`: List of context keys. Here's an example: ```json { "instructions": [{ "kind": "removeBigSegmentIncludedTargets", "values": [ "org-key-123abc", "org-key-456def" ] }] } ``` </details> ### Using JSON patches on a segment If you do not include the header described above, you can use a [JSON patch](https://launchdarkly.com/docs/api#updates-using-json-patch) or [JSON merge patch](https://datatracker.ietf.org/doc/html/rfc7386) representation of the desired changes. For example, to update the description for a segment with a JSON patch, use the following request body: ```json { "patch": [ { "op": "replace", "path": "/description", "value": "new description" } ] } ``` To update fields in the segment that are arrays, set the `path` to the name of the field and then append `/<array index>`. Use `/0` to add the new entry to the beginning of the array. Use `/-` to add the new entry to the end of the array. For example, to add a rule to a segment, use the following request body: ```json { "patch":[ { "op": "add", "path": "/rules/0", "value": { "clauses": [{ "contextKind": "user", "attribute": "email", "op": "endsWith", "values": [".edu"], "negate": false }] } } ] } ``` To add or remove targets from segments, we recommend using semantic patch. Semantic patch for segments includes specific instructions for adding and removing both included and excluded targets. */
-export const patchSegment: API.OperationMethod<
-  PatchSegmentRequest,
-  UserSegment,
-  PatchSegmentError,
-  LaunchDarklyOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PatchSegmentRequest,
-  output: UserSegment,
-  errors: [BadRequest, Forbidden, NotFound, Conflict, UnknownLaunchDarklyError],
-  protocol: LaunchDarklyProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PatchTeamError =
-  | BadRequest
-  | NotFound
-  | Conflict
-  | LaunchDarklyOpError;
-/** Update team Perform a partial update to a team. Updating a team uses the semantic patch format. To make a semantic patch request, you must append `domain-model=launchdarkly.semanticpatch` to your `Content-Type` header. To learn more, read [Updates using semantic patch](https://launchdarkly.com/docs/api#updates-using-semantic-patch). ### Instructions Semantic patch requests support the following `kind` instructions for updating teams. Several of the instructions require one or more member IDs as parameters. The member ID is returned as part of the [List account members](https://launchdarkly.com/docs/api/account-members/get-members) response. It is the `_id` field of each element in the `items` array. <details> <summary>Click to expand instructions for <strong>updating teams</strong></summary> #### addCustomRoles Adds custom roles to the team. Team members will have these custom roles granted to them. ##### Parameters - `values`: List of custom role keys. Here's an example: ```json { "instructions": [{ "kind": "addCustomRoles", "values": [ "example-custom-role" ] }] } ``` #### addMembers Adds members to the team. ##### Parameters - `values`: List of member IDs to add. Here's an example: ```json { "instructions": [{ "kind": "addMembers", "values": [ "1234a56b7c89d012345e678f", "507f1f77bcf86cd799439011" ] }] } ``` #### addPermissionGrants Adds permission grants to members for the team. For example, a permission grant could allow a member to act as a team maintainer. A permission grant may have either an `actionSet` or a list of `actions` but not both at the same time. The members do not have to be team members to have a permission grant for the team. ##### Parameters - `actionSet`: Name of the action set. - `actions`: List of actions. - `memberIDs`: List of member IDs. Here's an example: ```json { "instructions": [{ "kind": "addPermissionGrants", "actions": [ "updateTeamName", "updateTeamDescription" ], "memberIDs": [ "1234a56b7c89d012345e678f", "507f1f77bcf86cd799439011" ] }] } ``` #### addRoleAttribute Adds a role attribute to a team. Team members will have these role attribute values scoped for all custom roles granted to them. ##### Parameters - `key`: The role attribute key to add. - `values`: List of role attribute values for that key. Here's an example: ```json { "instructions": [ { "kind": "addRoleAttribute", "key": "testAttribute", "values": ["someNewValue", "someOtherNewValue"] } ] } ``` #### removeCustomRoles Removes custom roles from the team. The app will no longer grant these custom roles to the team members. ##### Parameters - `values`: List of custom role keys. Here's an example: ```json { "instructions": [{ "kind": "removeCustomRoles", "values": [ "example-custom-role" ] }] } ``` #### removeMembers Removes members from the team. ##### Parameters - `values`: List of member IDs to remove. Here's an example: ```json { "instructions": [{ "kind": "removeMembers", "values": [ "1234a56b7c89d012345e678f", "507f1f77bcf86cd799439011" ] }] } ``` #### removePermissionGrants Removes permission grants from members for the team. A permission grant may have either an `actionSet` or a list of `actions` but not both at the same time. The `actionSet` and `actions` must match an existing permission grant. ##### Parameters - `actionSet`: Name of the action set. - `actions`: List of actions. - `memberIDs`: List of member IDs. Here's an example: ```json { "instructions": [{ "kind": "removePermissionGrants", "actions": [ "updateTeamName", "updateTeamDescription" ], "memberIDs": [ "1234a56b7c89d012345e678f", "507f1f77bcf86cd799439011" ] }] } ``` #### removeRoleAttribute Removes a role attribute from the team. ##### Parameters - `key`: The role attribute key to remove. Here's an example: ```json { "instructions": [ { "kind": "removeRoleAttribute", "key": "testAttribute" } ] } ``` #### replaceMembers Replaces the existing members of the team with the new members. ##### Parameters - `values`: List of member IDs of the new members. Here's an example: ```json { "instructions": [{ "kind": "replaceMembers", "values": [ "1234a56b7c89d012345e678f", "507f1f77bcf86cd799439011" ] }] } ``` #### replaceRoleAttributes Replaces the existing role attributes for the team with new role attributes. ##### Parameters - `value`: A map of role attribute keys to lists of role attribute values Here's an example: ```json { "instructions": [{ "kind": "replaceRoleAttributes", "value": { "testAttribute": [ "someNewValue", "someOtherNewValue" ], "projectRoleAttribute": [ "project1", "project2"] } }] } ``` #### updateDescription Updates the description of the team. ##### Parameters - `value`: The new description. Here's an example: ```json { "instructions": [{ "kind": "updateDescription", "value": "Updated team description" }] } ``` #### updateName Updates the name of the team. ##### Parameters - `value`: The new name. Here's an example: ```json { "instructions": [{ "kind": "updateName", "value": "Updated team name" }] } ``` #### updateRoleAttribute Updates a role attribute on the team. Any existing values for the given key will be replaced with the new values. Team members will have these role attribute values scoped for all custom roles granted to them. ##### Parameters - `key`: The role attribute key to update. - `values`: List of role attribute values for that key. Here's an example: ```json { "instructions": [ { "kind": "updateRoleAttribute", "key": "testAttribute", "values": ["someNewValue", "someOtherNewValue"] } ] } ``` </details> ### Expanding the teams response LaunchDarkly supports four fields for expanding the "Update team" response. By default, these fields are **not** included in the response. To expand the response, append the `expand` query parameter and add a comma-separated list with any of the following fields: * `members` includes the total count of members that belong to the team. * `roles` includes a paginated list of the custom roles that you have assigned to the team. * `projects` includes a paginated list of the projects that the team has any write access to. * `maintainers` includes a paginated list of the maintainers that you have assigned to the team. For example, `expand=members,roles` includes the `members` and `roles` fields in the response. */
-export const patchTeam: API.OperationMethod<
-  PatchTeamRequest,
-  Team,
-  PatchTeamError,
-  LaunchDarklyOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PatchTeamRequest,
-  output: Team,
-  errors: [BadRequest, NotFound, Conflict, UnknownLaunchDarklyError],
-  protocol: LaunchDarklyProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PatchTeamsError =
-  | BadRequest
-  | Forbidden
-  | Conflict
-  | LaunchDarklyOpError;
-/** Update teams Perform a partial update to multiple teams. Updating teams uses the semantic patch format. To make a semantic patch request, you must append `domain-model=launchdarkly.semanticpatch` to your `Content-Type` header. To learn more, read [Updates using semantic patch](https://launchdarkly.com/docs/api#updates-using-semantic-patch). ### Instructions Semantic patch requests support the following `kind` instructions for updating teams. <details> <summary>Click to expand instructions for <strong>updating teams</strong></summary> #### addMembersToTeams Add the members to teams. ##### Parameters - `memberIDs`: List of member IDs to add. - `teamKeys`: List of teams to update. Here's an example: ```json { "instructions": [{ "kind": "addMembersToTeams", "memberIDs": [ "1234a56b7c89d012345e678f" ], "teamKeys": [ "example-team-1", "example-team-2" ] }] } ``` #### addAllMembersToTeams Add all members to the team. Members that match any of the filters are **excluded** from the update. ##### Parameters - `teamKeys`: List of teams to update. - `filterLastSeen`: (Optional) A JSON object with one of the following formats: - `{"never": true}` - Members that have never been active, such as those who have not accepted their invitation to LaunchDarkly, or have not logged in after being provisioned via SCIM. - `{"noData": true}` - Members that have not been active since LaunchDarkly began recording last seen timestamps. - `{"before": 1608672063611}` - Members that have not been active since the provided value, which should be a timestamp in Unix epoch milliseconds. - `filterQuery`: (Optional) A string that matches against the members' emails and names. It is not case sensitive. - `filterRoles`: (Optional) A `|` separated list of roles and custom roles. For the purposes of this filtering, `Owner` counts as `Admin`. - `filterTeamKey`: (Optional) A string that matches against the key of the team the members belong to. It is not case sensitive. - `ignoredMemberIDs`: (Optional) A list of member IDs. Here's an example: ```json { "instructions": [{ "kind": "addAllMembersToTeams", "teamKeys": [ "example-team-1", "example-team-2" ], "filterLastSeen": { "never": true } }] } ``` </details> */
-export const patchTeams: API.OperationMethod<
-  PatchTeamsRequest,
-  BulkEditTeamsRep,
-  PatchTeamsError,
-  LaunchDarklyOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PatchTeamsRequest,
-  output: BulkEditTeamsRep,
-  errors: [BadRequest, Forbidden, Conflict, UnknownLaunchDarklyError],
-  protocol: LaunchDarklyProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PatchTokenError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | Conflict
-  | UnprocessableEntity
-  | LaunchDarklyOpError;
-/** Patch access token Update an access token's settings. Updating an access token uses a [JSON patch](https://datatracker.ietf.org/doc/html/rfc6902) representation of the desired changes. To learn more, read [Updates](https://launchdarkly.com/docs/api#updates). */
-export const patchToken: API.OperationMethod<
-  PatchTokenRequest,
-  Token,
-  PatchTokenError,
-  LaunchDarklyOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PatchTokenRequest,
-  output: Token,
-  errors: [
-    BadRequest,
-    Forbidden,
-    NotFound,
-    Conflict,
-    UnprocessableEntity,
-    UnknownLaunchDarklyError,
-  ],
-  protocol: LaunchDarklyProtocol,
-  retry: Retry.Retry,
-}));
-
 export type PatchTriggerWorkflowError =
   | BadRequest
   | Forbidden
@@ -34159,25 +34114,6 @@ export const patchTriggerWorkflow: API.OperationMethod<
   input: PatchTriggerWorkflowRequest,
   output: TriggerWorkflowRep,
   errors: [BadRequest, Forbidden, NotFound, Conflict, UnknownLaunchDarklyError],
-  protocol: LaunchDarklyProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PatchWebhookError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | LaunchDarklyOpError;
-/** Update webhook Update a webhook's settings. Updating webhook settings uses a [JSON patch](https://datatracker.ietf.org/doc/html/rfc6902) representation of the desired changes. To learn more, read [Updates](https://launchdarkly.com/docs/api#updates). */
-export const patchWebhook: API.OperationMethod<
-  PatchWebhookRequest,
-  Webhook,
-  PatchWebhookError,
-  LaunchDarklyOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PatchWebhookRequest,
-  output: Webhook,
-  errors: [BadRequest, Forbidden, NotFound, UnknownLaunchDarklyError],
   protocol: LaunchDarklyProtocol,
   retry: Retry.Retry,
 }));
@@ -34327,43 +34263,6 @@ export const postAITool: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PostApprovalRequestError =
-  | BadRequest
-  | Forbidden
-  | LaunchDarklyOpError;
-/** Create approval request Create an approval request. This endpoint requires a list of `instructions`, in semantic patch format, that will be applied when the approval request is approved and applied. ### Flags If you are creating an approval request for a flag, you can use the following `instructions`: - `addVariation` - `removeVariation` - `updateVariation` - `updateDefaultVariation` For details on using these instructions, read [Update feature flag](https://launchdarkly.com/docs/api/feature-flags/patch-feature-flag). To create an approval for a flag specific to an environment, use [Create approval request for a flag](https://launchdarkly.com/docs/api/approvals/post-approval-request-for-flag). ### AgentControl If you are creating an approval request for an AgentControl config, you can use the semantic patch instructions listed under [Update config targeting](https://launchdarkly.com/docs/api/agent-control/patch-ai-config-targeting). ### Segments If you are creating an approval request for a segment, you can use the semantic patch instructions listed under [Patch segment](https://launchdarkly.com/docs/api/segments/patch-segment). */
-export const postApprovalRequest: API.OperationMethod<
-  PostApprovalRequestRequest,
-  ApprovalRequestResponse,
-  PostApprovalRequestError,
-  LaunchDarklyOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostApprovalRequestRequest,
-  output: ApprovalRequestResponse,
-  errors: [BadRequest, Forbidden, UnknownLaunchDarklyError],
-  protocol: LaunchDarklyProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostApprovalRequestApplyError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | LaunchDarklyOpError;
-/** Apply approval request Apply an approval request that has been approved. This endpoint works with any approval requests. */
-export const postApprovalRequestApply: API.OperationMethod<
-  PostApprovalRequestApplyRequest,
-  ApprovalRequestResponse,
-  PostApprovalRequestApplyError,
-  LaunchDarklyOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostApprovalRequestApplyRequest,
-  output: ApprovalRequestResponse,
-  errors: [BadRequest, Forbidden, NotFound, UnknownLaunchDarklyError],
-  protocol: LaunchDarklyProtocol,
-  retry: Retry.Retry,
-}));
-
 export type PostApprovalRequestApplyForFlagError =
   | BadRequest
   | Forbidden
@@ -34397,25 +34296,6 @@ export const postApprovalRequestForFlag: API.OperationMethod<
   input: PostApprovalRequestForFlagRequest,
   output: FlagConfigApprovalRequestResponse,
   errors: [BadRequest, Forbidden, UnknownLaunchDarklyError],
-  protocol: LaunchDarklyProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostApprovalRequestReviewError =
-  | BadRequest
-  | NotFound
-  | Conflict
-  | LaunchDarklyOpError;
-/** Review approval request Review an approval request by approving or denying changes. */
-export const postApprovalRequestReview: API.OperationMethod<
-  PostApprovalRequestReviewRequest,
-  ApprovalRequestResponse,
-  PostApprovalRequestReviewError,
-  LaunchDarklyOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostApprovalRequestReviewRequest,
-  output: ApprovalRequestResponse,
-  errors: [BadRequest, NotFound, Conflict, UnknownLaunchDarklyError],
   protocol: LaunchDarklyProtocol,
   retry: Retry.Retry,
 }));
@@ -34508,25 +34388,6 @@ export const postCustomRole: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: PostCustomRoleRequest,
   output: CustomRole,
-  errors: [BadRequest, Forbidden, Conflict, UnknownLaunchDarklyError],
-  protocol: LaunchDarklyProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostDestinationError =
-  | BadRequest
-  | Forbidden
-  | Conflict
-  | LaunchDarklyOpError;
-/** Create Data Export destination Create a new Data Export destination. In the `config` request body parameter, the fields required depend on the type of Data Export destination. <details> <summary>Click to expand <code>config</code> parameter details</summary> #### Azure Event Hubs To create a Data Export destination with a `kind` of `azure-event-hubs`, the `config` object requires the following fields: * `namespace`: The Event Hub Namespace name * `name`: The Event Hub name * `policyName`: The shared access signature policy name. You can find your policy name in the settings of your Azure Event Hubs Namespace. * `policyKey`: The shared access signature key. You can find your policy key in the settings of your Azure Event Hubs Namespace. #### Google Cloud Pub/Sub To create a Data Export destination with a `kind` of `google-pubsub`, the `config` object requires the following fields: * `project`: The Google PubSub project ID for the project to publish to * `topic`: The Google PubSub topic ID for the topic to publish to #### Amazon Kinesis To create a Data Export destination with a `kind` of `kinesis`, the `config` object requires the following fields: * `region`: The Kinesis stream's AWS region key * `roleArn`: The Amazon Resource Name (ARN) of the AWS role that will be writing to Kinesis * `streamName`: The name of the Kinesis stream that LaunchDarkly is sending events to. This is not the ARN of the stream. #### mParticle To create a Data Export destination with a `kind` of `mparticle`, the `config` object requires the following fields: * `apiKey`: The mParticle API key * `secret`: The mParticle API secret * `userIdentity`: The type of identifier you use to identify your end users in mParticle * `anonymousUserIdentity`: The type of identifier you use to identify your anonymous end users in mParticle #### Segment To create a Data Export destination with a `kind` of `segment`, the `config` object requires the following fields: * `writeKey`: The Segment write key. This is used to authenticate LaunchDarkly's calls to Segment. #### Snowflake To create a Data Export destination with a `kind` of `snowflake-v2`, the `config` object requires the following fields: * `publicKey`: The `publicKey` is returned as part of the [Generate Snowflake destination key pair](https://launchdarkly.com/docs/api/data-export-destinations/post-generate-warehouse-destination-key-pair) response. It is the `public_key` field. * `snowflakeHostAddress`: Your Snowflake account URL. </details> */
-export const postDestination: API.OperationMethod<
-  PostDestinationRequest,
-  Destination,
-  PostDestinationError,
-  LaunchDarklyOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostDestinationRequest,
-  output: Destination,
   errors: [BadRequest, Forbidden, Conflict, UnknownLaunchDarklyError],
   protocol: LaunchDarklyProtocol,
   retry: Retry.Retry,
@@ -34753,45 +34614,6 @@ export const postHoldout: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PostMembersError =
-  | BadRequest
-  | Forbidden
-  | Conflict
-  | LaunchDarklyOpError;
-/** Invite new members Invite one or more new members to join an account. Each member is sent an invitation. Members with Admin or Owner roles may create new members, as well as anyone with a `createMember` permission for "member/\*". If a member cannot be invited, the entire request is rejected and no members are invited from that request. Each member _must_ have an `email` field and either a `role` or a `customRoles` field. If any of the fields are not populated correctly, the request is rejected with the reason specified in the "message" field of the response. Valid base role names that you can provide for the `role` field include `reader`, `writer`, `admin`, `owner/admin`, and `no_access`. To learn more about base roles, read [Organization roles](https://launchdarkly.com/docs/home/account/roles/organization-roles). If you are using the `customRoles` field instead, you can provide the key for any role that you have created, or for any preset [organization role](https://launchdarkly.com/docs/home/account/roles/organization-roles) or [project role](https://launchdarkly.com/docs/home/account/roles/project-roles) provided by LaunchDarkly. Some preset roles additionally require that you specify `roleAttributes`. To learn more, read [Using role scope](https://launchdarkly.com/docs/home/account/roles/role-scope). Requests to create account members will not work if SCIM is enabled for the account. You can assign new members to teams with the `teamKeys` field. Teams are available only on Enterprise plans. If your plan does not include teams, a request that includes a non-empty `teamKeys` field returns an HTTP response code of 403 (Forbidden). Omit `teamKeys` to invite members without assigning them to a team. _No more than 50 members may be created per request._ A request may also fail because of conflicts with existing members. These conflicts are reported using the additional `code` and `invalid_emails` response fields with the following possible values for `code`: - **email_already_exists_in_account**: A member with this email address already exists in this account. - **email_taken_in_different_account**: A member with this email address exists in another account. - **duplicate_email**s: This request contains two or more members with the same email address. A request that fails for one of the above reasons returns an HTTP response code of 400 (Bad Request). */
-export const postMembers: API.OperationMethod<
-  PostMembersRequest,
-  Members,
-  PostMembersError,
-  LaunchDarklyOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostMembersRequest,
-  output: Members,
-  errors: [BadRequest, Forbidden, Conflict, UnknownLaunchDarklyError],
-  protocol: LaunchDarklyProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostMemberTeamsError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | Conflict
-  | LaunchDarklyOpError;
-/** Add a member to teams Add one member to one or more teams. */
-export const postMemberTeams: API.OperationMethod<
-  PostMemberTeamsRequest,
-  Member,
-  PostMemberTeamsError,
-  LaunchDarklyOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostMemberTeamsRequest,
-  output: Member,
-  errors: [BadRequest, Forbidden, NotFound, Conflict, UnknownLaunchDarklyError],
-  protocol: LaunchDarklyProtocol,
-  retry: Retry.Retry,
-}));
-
 export type PostMetricError =
   | BadRequest
   | Forbidden
@@ -34846,25 +34668,6 @@ export const postModelConfig: API.OperationMethod<
   input: PostModelConfigRequest,
   output: ModelConfig,
   errors: [BadRequest, Forbidden, NotFound, UnknownLaunchDarklyError],
-  protocol: LaunchDarklyProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostProjectError =
-  | BadRequest
-  | Forbidden
-  | Conflict
-  | LaunchDarklyOpError;
-/** Create project Create a new project with the given key and name. Project keys must be unique within an account. */
-export const postProject: API.OperationMethod<
-  PostProjectRequest,
-  ProjectRep,
-  PostProjectError,
-  LaunchDarklyOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostProjectRequest,
-  output: ProjectRep,
-  errors: [BadRequest, Forbidden, Conflict, UnknownLaunchDarklyError],
   protocol: LaunchDarklyProtocol,
   retry: Retry.Retry,
 }));
@@ -35017,85 +34820,6 @@ export const postSdkKey: API.OperationMethod<
   input: PostSdkKeyRequest,
   output: SdkKey,
   errors: [BadRequest, Forbidden, NotFound, Conflict, UnknownLaunchDarklyError],
-  protocol: LaunchDarklyProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostSegmentError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | LaunchDarklyOpError;
-/** Create segment Create a new segment. */
-export const postSegment: API.OperationMethod<
-  PostSegmentRequest,
-  UserSegment,
-  PostSegmentError,
-  LaunchDarklyOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostSegmentRequest,
-  output: UserSegment,
-  errors: [BadRequest, Forbidden, NotFound, UnknownLaunchDarklyError],
-  protocol: LaunchDarklyProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostTeamError = BadRequest | LaunchDarklyOpError;
-/** Create team Create a team. To learn more, read [Creating a team](https://launchdarkly.com/docs/home/account/create-teams). ### Expanding the teams response LaunchDarkly supports four fields for expanding the "Create team" response. By default, these fields are **not** included in the response. To expand the response, append the `expand` query parameter and add a comma-separated list with any of the following fields: * `members` includes the total count of members that belong to the team. * `roles` includes a paginated list of the custom roles that you have assigned to the team. * `projects` includes a paginated list of the projects that the team has any write access to. * `maintainers` includes a paginated list of the maintainers that you have assigned to the team. For example, `expand=members,roles` includes the `members` and `roles` fields in the response. */
-export const postTeam: API.OperationMethod<
-  PostTeamRequest,
-  Team,
-  PostTeamError,
-  LaunchDarklyOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostTeamRequest,
-  output: Team,
-  errors: [BadRequest, UnknownLaunchDarklyError],
-  protocol: LaunchDarklyProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostTeamMembersError = BadRequest | LaunchDarklyOpError;
-/** Add multiple members to team Add multiple members to an existing team by uploading a CSV file of member email addresses. Your CSV file must include email addresses in the first column. You can include data in additional columns, but LaunchDarkly ignores all data outside the first column. Headers are optional. To learn more, read [Manage team members](https://launchdarkly.com/docs/home/account/manage-teams#manage-team-members). **Members are only added on a `201` response.** A `207` indicates the CSV file contains a combination of valid and invalid entries. A `207` results in no members being added to the team. On a `207` response, if an entry contains bad input, the `message` field contains the row number as well as the reason for the error. The `message` field is omitted if the entry is valid. Example `207` response: ```json { "items": [ { "status": "success", "value": "new-team-member@acme.com" }, { "message": "Line 2: empty row", "status": "error", "value": "" }, { "message": "Line 3: email already exists in the specified team", "status": "error", "value": "existing-team-member@acme.com" }, { "message": "Line 4: invalid email formatting", "status": "error", "value": "invalid email format" } ] } ``` Message | Resolution --- | --- Empty row | This line is blank. Add an email address and try again. Duplicate entry | This email address appears in the file twice. Remove the email from the file and try again. Email already exists in the specified team | This member is already on your team. Remove the email from the file and try again. Invalid formatting | This email address is not formatted correctly. Fix the formatting and try again. Email does not belong to a LaunchDarkly member | The email address doesn't belong to a LaunchDarkly account member. Invite them to LaunchDarkly, then re-add them to the team. On a `400` response, the `message` field may contain errors specific to this endpoint. Example `400` response: ```json { "code": "invalid_request", "message": "Unable to process file" } ``` Message | Resolution --- | --- Unable to process file | LaunchDarkly could not process the file for an unspecified reason. Review your file for errors and try again. File exceeds 25mb | Break up your file into multiple files of less than 25mbs each. All emails have invalid formatting | None of the email addresses in the file are in the correct format. Fix the formatting and try again. All emails belong to existing team members | All listed members are already on this team. Populate the file with member emails that do not belong to the team and try again. File is empty | The CSV file does not contain any email addresses. Populate the file and try again. No emails belong to members of your LaunchDarkly organization | None of the email addresses belong to members of your LaunchDarkly account. Invite these members to LaunchDarkly, then re-add them to the team. */
-export const postTeamMembers: API.OperationMethod<
-  PostTeamMembersRequest,
-  TeamImportsRep,
-  PostTeamMembersError,
-  LaunchDarklyOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostTeamMembersRequest,
-  output: TeamImportsRep,
-  errors: [BadRequest, UnknownLaunchDarklyError],
-  protocol: LaunchDarklyProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostTokenError = BadRequest | Forbidden | LaunchDarklyOpError;
-/** Create access token Create a new access token. */
-export const postToken: API.OperationMethod<
-  PostTokenRequest,
-  Token,
-  PostTokenError,
-  LaunchDarklyOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostTokenRequest,
-  output: Token,
-  errors: [BadRequest, Forbidden, UnknownLaunchDarklyError],
-  protocol: LaunchDarklyProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostWebhookError = BadRequest | Forbidden | LaunchDarklyOpError;
-/** Creates a webhook Create a new webhook. */
-export const postWebhook: API.OperationMethod<
-  PostWebhookRequest,
-  Webhook,
-  PostWebhookError,
-  LaunchDarklyOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostWebhookRequest,
-  output: Webhook,
-  errors: [BadRequest, Forbidden, UnknownLaunchDarklyError],
   protocol: LaunchDarklyProtocol,
   retry: Retry.Retry,
 }));
@@ -35424,6 +35148,62 @@ export const updateAnnouncementPublic: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type UpdateApplicationError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | LaunchDarklyOpError;
+/** Update application Update an application. You can update the `description` and `kind` fields. Requires a [JSON patch](https://datatracker.ietf.org/doc/html/rfc6902) representation of the desired changes to the application. To learn more, read [Updates](https://launchdarkly.com/docs/api#updates). */
+export const updateApplication: API.OperationMethod<
+  UpdateApplicationRequest,
+  ApplicationRep,
+  UpdateApplicationError,
+  LaunchDarklyOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateApplicationRequest,
+  output: ApplicationRep,
+  errors: [BadRequest, Forbidden, NotFound, UnknownLaunchDarklyError],
+  protocol: LaunchDarklyProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateApplicationVersionError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | LaunchDarklyOpError;
+/** Update application version Update an application version. You can update the `supported` field. Requires a [JSON patch](https://datatracker.ietf.org/doc/html/rfc6902) representation of the desired changes to the application version. To learn more, read [Updates](https://launchdarkly.com/docs/api#updates). */
+export const updateApplicationVersion: API.OperationMethod<
+  UpdateApplicationVersionRequest,
+  ApplicationVersionRep,
+  UpdateApplicationVersionError,
+  LaunchDarklyOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateApplicationVersionRequest,
+  output: ApplicationVersionRep,
+  errors: [BadRequest, Forbidden, NotFound, UnknownLaunchDarklyError],
+  protocol: LaunchDarklyProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateApprovalRequestError =
+  | Forbidden
+  | NotFound
+  | LaunchDarklyOpError;
+/** Update approval request Perform a partial update to an approval request. Updating an approval request uses the semantic patch format. This endpoint works with any approval requests. To make a semantic patch request, you must append `domain-model=launchdarkly.semanticpatch` to your `Content-Type` header. To learn more, read [Updates using semantic patch](https://launchdarkly.com/docs/api#updates-using-semantic-patch). ### Instructions Semantic patch requests support the following `kind` instructions for updating an approval request. #### addReviewers Adds the specified members and teams to the existing list of reviewers. You must include at least one of `notifyMemberIds` and `notifyTeamKeys`. ##### Parameters - `notifyMemberIds`: (Optional) List of member IDs. - `notifyTeamKeys`: (Optional) List of team keys. Here's an example: ```json { "instructions": [{ "kind": "addReviewers", "notifyMemberIds": [ "user-key-123abc", "user-key-456def" ], "notifyTeamKeys": [ "team-key-789abc"] }] } ``` #### updateDescription Updates the description (title) of the approval request. ##### Parameters - `value`: (Required) The new description for the approval request. Must be non-empty and no more than 5000 characters. Here's an example: ```json { "instructions": [{ "kind": "updateDescription", "value": "Updated approval request title" }] } ``` */
+export const updateApprovalRequest: API.OperationMethod<
+  UpdateApprovalRequestRequest,
+  FlagConfigApprovalRequestResponse,
+  UpdateApprovalRequestError,
+  LaunchDarklyOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateApprovalRequestRequest,
+  output: FlagConfigApprovalRequestResponse,
+  errors: [Forbidden, NotFound, UnknownLaunchDarklyError],
+  protocol: LaunchDarklyProtocol,
+  retry: Retry.Retry,
+}));
+
 export type UpdateBigSegmentContextTargetsError =
   | BadRequest
   | NotFound
@@ -35475,6 +35255,45 @@ export const updateDeployment: API.OperationMethod<
   input: UpdateDeploymentRequest,
   output: DeploymentRep,
   errors: [BadRequest, Forbidden, NotFound, UnknownLaunchDarklyError],
+  protocol: LaunchDarklyProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateDestinationError =
+  | BadRequest
+  | Forbidden
+  | Conflict
+  | LaunchDarklyOpError;
+/** Create Data Export destination Create a new Data Export destination. In the `config` request body parameter, the fields required depend on the type of Data Export destination. <details> <summary>Click to expand <code>config</code> parameter details</summary> #### Azure Event Hubs To create a Data Export destination with a `kind` of `azure-event-hubs`, the `config` object requires the following fields: * `namespace`: The Event Hub Namespace name * `name`: The Event Hub name * `policyName`: The shared access signature policy name. You can find your policy name in the settings of your Azure Event Hubs Namespace. * `policyKey`: The shared access signature key. You can find your policy key in the settings of your Azure Event Hubs Namespace. #### Google Cloud Pub/Sub To create a Data Export destination with a `kind` of `google-pubsub`, the `config` object requires the following fields: * `project`: The Google PubSub project ID for the project to publish to * `topic`: The Google PubSub topic ID for the topic to publish to #### Amazon Kinesis To create a Data Export destination with a `kind` of `kinesis`, the `config` object requires the following fields: * `region`: The Kinesis stream's AWS region key * `roleArn`: The Amazon Resource Name (ARN) of the AWS role that will be writing to Kinesis * `streamName`: The name of the Kinesis stream that LaunchDarkly is sending events to. This is not the ARN of the stream. #### mParticle To create a Data Export destination with a `kind` of `mparticle`, the `config` object requires the following fields: * `apiKey`: The mParticle API key * `secret`: The mParticle API secret * `userIdentity`: The type of identifier you use to identify your end users in mParticle * `anonymousUserIdentity`: The type of identifier you use to identify your anonymous end users in mParticle #### Segment To create a Data Export destination with a `kind` of `segment`, the `config` object requires the following fields: * `writeKey`: The Segment write key. This is used to authenticate LaunchDarkly's calls to Segment. #### Snowflake To create a Data Export destination with a `kind` of `snowflake-v2`, the `config` object requires the following fields: * `publicKey`: The `publicKey` is returned as part of the [Generate Snowflake destination key pair](https://launchdarkly.com/docs/api/data-export-destinations/post-generate-warehouse-destination-key-pair) response. It is the `public_key` field. * `snowflakeHostAddress`: Your Snowflake account URL. </details> */
+export const updateDestination: API.OperationMethod<
+  UpdateDestinationRequest,
+  Destination,
+  UpdateDestinationError,
+  LaunchDarklyOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateDestinationRequest,
+  output: Destination,
+  errors: [BadRequest, Forbidden, Conflict, UnknownLaunchDarklyError],
+  protocol: LaunchDarklyProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateDestinationByIdError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | Conflict
+  | LaunchDarklyOpError;
+/** Update Data Export destination Update a Data Export destination. Updating a destination uses a [JSON patch](https://datatracker.ietf.org/doc/html/rfc6902) or [JSON merge patch](https://datatracker.ietf.org/doc/html/rfc7386) representation of the desired changes. To learn more, read [Updates](https://launchdarkly.com/docs/api#updates). */
+export const updateDestinationById: API.OperationMethod<
+  UpdateDestinationByIdRequest,
+  Destination,
+  UpdateDestinationByIdError,
+  LaunchDarklyOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateDestinationByIdRequest,
+  output: Destination,
+  errors: [BadRequest, Forbidden, NotFound, Conflict, UnknownLaunchDarklyError],
   protocol: LaunchDarklyProtocol,
   retry: Retry.Retry,
 }));
@@ -35538,6 +35357,45 @@ export const updateLayer: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type UpdateMemberError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | Conflict
+  | LaunchDarklyOpError;
+/** Modify an account member Update a single account member. Updating a member uses a [JSON patch](https://datatracker.ietf.org/doc/html/rfc6902) representation of the desired changes. To learn more, read [Updates](https://launchdarkly.com/docs/api#updates). To update fields in the account member object that are arrays, set the `path` to the name of the field and then append `/<array index>`. Use `/0` to add to the beginning of the array. Use `/-` to add to the end of the array. For example, to add a new custom role to a member, use the following request body: ``` [ { "op": "add", "path": "/customRoles/0", "value": "some-role-id" } ] ``` You can update only an account member's role or custom role using a JSON patch. Members can update their own names and email addresses though the LaunchDarkly UI. When SAML SSO or SCIM is enabled for the account, account members are managed in the Identity Provider (IdP). Requests to update account members will succeed, but the IdP will override the update shortly afterwards. */
+export const updateMember: API.OperationMethod<
+  UpdateMemberRequest,
+  Member,
+  UpdateMemberError,
+  LaunchDarklyOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateMemberRequest,
+  output: Member,
+  errors: [BadRequest, Forbidden, NotFound, Conflict, UnknownLaunchDarklyError],
+  protocol: LaunchDarklyProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateMembersError =
+  | BadRequest
+  | Forbidden
+  | Conflict
+  | LaunchDarklyOpError;
+/** Modify account members > ### Full use of this API resource is an Enterprise feature > > The ability to perform a partial update to multiple members is available to customers on an Enterprise plan. If you are on another plan, you can update members individually. To learn more, [read about our pricing](https://launchdarkly.com/pricing/). To upgrade your plan, [contact Sales](https://launchdarkly.com/contact-sales/). Perform a partial update to multiple members. Updating members uses the semantic patch format. To make a semantic patch request, you must append `domain-model=launchdarkly.semanticpatch` to your `Content-Type` header. To learn more, read [Updates using semantic patch](https://launchdarkly.com/docs/api#updates-using-semantic-patch). ### Instructions Semantic patch requests support the following `kind` instructions for updating members. <details> <summary>Click to expand instructions for <strong>updating members</strong></summary> #### replaceMembersRoles Replaces the roles of the specified members. This also removes all custom roles assigned to the specified members. ##### Parameters - `value`: The new role. Must be a valid [base role](https://launchdarkly.com/docs/home/getting-started/vocabulary#base-role). To learn more, read [Roles](https://launchdarkly.com/docs/home/account/roles). - `memberIDs`: List of member IDs. Here's an example: ```json { "instructions": [{ "kind": "replaceMembersRoles", "value": "reader", "memberIDs": [ "1234a56b7c89d012345e678f", "507f1f77bcf86cd799439011" ] }] } ``` #### replaceAllMembersRoles Replaces the roles of all members. This also removes all custom roles assigned to the specified members. Members that match any of the filters are **excluded** from the update. ##### Parameters - `value`: The new role. Must be a valid [base role](https://launchdarkly.com/docs/home/getting-started/vocabulary#base-role). To learn more, read [Roles](https://launchdarkly.com/docs/home/account/roles). - `filterLastSeen`: (Optional) A JSON object with one of the following formats: - `{"never": true}` - Members that have never been active, such as those who have not accepted their invitation to LaunchDarkly, or have not logged in after being provisioned via SCIM. - `{"noData": true}` - Members that have not been active since LaunchDarkly began recording last seen timestamps. - `{"before": 1608672063611}` - Members that have not been active since the provided value, which should be a timestamp in Unix epoch milliseconds. - `filterQuery`: (Optional) A string that matches against the members' emails and names. It is not case sensitive. - `filterRoles`: (Optional) A `|` separated list of roles and custom roles. For the purposes of this filtering, `Owner` counts as `Admin`. - `filterTeamKey`: (Optional) A string that matches against the key of the team the members belong to. It is not case sensitive. - `ignoredMemberIDs`: (Optional) A list of member IDs. Here's an example: ```json { "instructions": [{ "kind": "replaceAllMembersRoles", "value": "reader", "filterLastSeen": { "never": true } }] } ``` #### replaceMembersCustomRoles Replaces the custom roles of the specified members. ##### Parameters - `values`: List of new custom roles. Must be a valid custom role key or ID. - `memberIDs`: List of member IDs. Here's an example: ```json { "instructions": [{ "kind": "replaceMembersCustomRoles", "values": [ "example-custom-role" ], "memberIDs": [ "1234a56b7c89d012345e678f", "507f1f77bcf86cd799439011" ] }] } ``` #### replaceAllMembersCustomRoles Replaces the custom roles of all members. Members that match any of the filters are **excluded** from the update. ##### Parameters - `values`: List of new roles. Must be a valid custom role key or ID. - `filterLastSeen`: (Optional) A JSON object with one of the following formats: - `{"never": true}` - Members that have never been active, such as those who have not accepted their invitation to LaunchDarkly, or have not logged in after being provisioned via SCIM. - `{"noData": true}` - Members that have not been active since LaunchDarkly began recording last seen timestamps. - `{"before": 1608672063611}` - Members that have not been active since the provided value, which should be a timestamp in Unix epoch milliseconds. - `filterQuery`: (Optional) A string that matches against the members' emails and names. It is not case sensitive. - `filterRoles`: (Optional) A `|` separated list of roles and custom roles. For the purposes of this filtering, `Owner` counts as `Admin`. - `filterTeamKey`: (Optional) A string that matches against the key of the team the members belong to. It is not case sensitive. - `ignoredMemberIDs`: (Optional) A list of member IDs. Here's an example: ```json { "instructions": [{ "kind": "replaceAllMembersCustomRoles", "values": [ "example-custom-role" ], "filterLastSeen": { "never": true } }] } ``` #### replaceMembersRoleAttributes Replaces the role attributes of the specified members. ##### Parameters - `value`: Map of role attribute keys to lists of values. - `memberIDs`: List of member IDs. Here's an example: ```json { "instructions": [{ "kind": "replaceMembersRoleAttributes", "value": { "myRoleProjectKey": ["mobile", "web"], "myRoleEnvironmentKey": ["production"] }, "memberIDs": [ "1234a56b7c89d012345e678f", "507f1f77bcf86cd799439011" ] }] } ``` </details> */
+export const updateMembers: API.OperationMethod<
+  UpdateMembersRequest,
+  BulkEditMembersRep,
+  UpdateMembersError,
+  LaunchDarklyOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateMembersRequest,
+  output: BulkEditMembersRep,
+  errors: [BadRequest, Forbidden, Conflict, UnknownLaunchDarklyError],
+  protocol: LaunchDarklyProtocol,
+  retry: Retry.Retry,
+}));
+
 export type UpdatePhaseStatusError =
   | BadRequest
   | NotFound
@@ -35552,6 +35410,65 @@ export const updatePhaseStatus: API.OperationMethod<
   input: UpdatePhaseStatusRequest,
   output: Release,
   errors: [BadRequest, NotFound, UnknownLaunchDarklyError],
+  protocol: LaunchDarklyProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateProjectError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | Conflict
+  | LaunchDarklyOpError;
+/** Update project Update a project. Updating a project uses a [JSON patch](https://datatracker.ietf.org/doc/html/rfc6902) representation of the desired changes. To learn more, read [Updates](https://launchdarkly.com/docs/api#updates).<br/><br/>To add an element to the project fields that are arrays, set the `path` to the name of the field and then append `/<array index>`. Use `/0` to add to the beginning of the array. Use `/-` to add to the end of the array. For example, `"path": "/tags/0"` adds a tag.<br/><br/>Note that `tags` are always deduplicated and returned in alphabetical order, regardless of the array index used in the patch path. */
+export const updateProject: API.OperationMethod<
+  UpdateProjectRequest,
+  ProjectRep,
+  UpdateProjectError,
+  LaunchDarklyOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateProjectRequest,
+  output: ProjectRep,
+  errors: [BadRequest, Forbidden, NotFound, Conflict, UnknownLaunchDarklyError],
+  protocol: LaunchDarklyProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateSegmentError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | LaunchDarklyOpError;
+/** Create segment Create a new segment. */
+export const updateSegment: API.OperationMethod<
+  UpdateSegmentRequest,
+  UserSegment,
+  UpdateSegmentError,
+  LaunchDarklyOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateSegmentRequest,
+  output: UserSegment,
+  errors: [BadRequest, Forbidden, NotFound, UnknownLaunchDarklyError],
+  protocol: LaunchDarklyProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateSegmentBySegmentKeyError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | Conflict
+  | LaunchDarklyOpError;
+/** Patch segment Update a segment. The request body must be a valid semantic patch, JSON patch, or JSON merge patch. To learn more the different formats, read [Updates](https://launchdarkly.com/docs/api#updates). ### Using semantic patches on a segment To make a semantic patch request, you must append `domain-model=launchdarkly.semanticpatch` to your `Content-Type` header. To learn more, read [Updates using semantic patch](https://launchdarkly.com/docs/api#updates-using-semantic-patch). The body of a semantic patch request for updating segments requires an `environmentKey` in addition to `instructions` and an optional `comment`. The body of the request takes the following properties: * `comment` (string): (Optional) A description of the update. * `environmentKey` (string): (Required) The key of the LaunchDarkly environment. * `instructions` (array): (Required) A list of actions the update should perform. Each action in the list must be an object with a `kind` property that indicates the instruction. If the action requires parameters, you must include those parameters as additional fields in the object. ### Instructions Semantic patch requests support the following `kind` instructions for updating segments. <details> <summary>Click to expand instructions for <strong>updating segment details and settings</strong></summary> #### addTags Adds tags to the segment. ##### Parameters - `values`: A list of tags to add. Here's an example: ```json { "instructions": [{ "kind": "addTags", "values": ["tag1", "tag2"] }] } ``` #### removeTags Removes tags from the segment. ##### Parameters - `values`: A list of tags to remove. Here's an example: ```json { "instructions": [{ "kind": "removeTags", "values": ["tag1", "tag2"] }] } ``` #### updateName Updates the name of the segment. ##### Parameters - `value`: Name of the segment. Here's an example: ```json { "instructions": [{ "kind": "updateName", "value": "Updated segment name" }] } ``` </details> <details> <summary>Click to expand instructions for <strong>updating segment individual targets</strong></summary> #### addExcludedTargets Adds context keys to the individual context targets excluded from the segment for the specified `contextKind`. Returns an error if this causes the same context key to be both included and excluded, or if the number of operations on targets exceeds the batch limit of 1,500. ##### Parameters - `contextKind`: The context kind the targets should be added to. - `values`: List of keys. Here's an example: ```json { "instructions": [{ "kind": "addExcludedTargets", "contextKind": "org", "values": [ "org-key-123abc", "org-key-456def" ] }] } ``` #### addExcludedUsers Adds user keys to the individual user targets excluded from the segment. Returns an error if this causes the same user key to be both included and excluded, or if the number of operations on targets exceeds the batch limit of 1,500. If you are working with contexts, use `addExcludedTargets` instead of this instruction. ##### Parameters - `values`: List of user keys. Here's an example: ```json { "instructions": [{ "kind": "addExcludedUsers", "values": [ "user-key-123abc", "user-key-456def" ] }] } ``` #### addIncludedTargets Adds context keys to the individual context targets included in the segment for the specified `contextKind`. Returns an error if this causes the same context key to be both included and excluded, or if the number of operations on targets exceeds the batch limit of 1,500. ##### Parameters - `contextKind`: The context kind the targets should be added to. - `values`: List of keys. Here's an example: ```json { "instructions": [{ "kind": "addIncludedTargets", "contextKind": "org", "values": [ "org-key-123abc", "org-key-456def" ] }] } ``` #### addIncludedUsers Adds user keys to the individual user targets included in the segment. Returns an error if this causes the same user key to be both included and excluded, or if the number of operations on targets exceeds the batch limit of 1,500. If you are working with contexts, use `addIncludedTargets` instead of this instruction. ##### Parameters - `values`: List of user keys. Here's an example: ```json { "instructions": [{ "kind": "addIncludedUsers", "values": [ "user-key-123abc", "user-key-456def" ] }] } ``` #### removeExcludedTargets Removes context keys from the individual context targets excluded from the segment for the specified `contextKind`. Returns an error if the number of operations on targets exceeds the batch limit of 1,500. ##### Parameters - `contextKind`: The context kind the targets should be removed from. - `values`: List of keys. Here's an example: ```json { "instructions": [{ "kind": "removeExcludedTargets", "contextKind": "org", "values": [ "org-key-123abc", "org-key-456def" ] }] } ``` #### removeExcludedUsers Removes user keys from the individual user targets excluded from the segment. If you are working with contexts, use `removeExcludedTargets` instead of this instruction. Returns an error if the number of operations on targets exceeds the batch limit of 1,500. ##### Parameters - `values`: List of user keys. Here's an example: ```json { "instructions": [{ "kind": "removeExcludedUsers", "values": [ "user-key-123abc", "user-key-456def" ] }] } ``` #### removeIncludedTargets Removes context keys from the individual context targets included in the segment for the specified `contextKind`. Returns an error if the number of operations on targets exceeds the batch limit of 1,500. ##### Parameters - `contextKind`: The context kind the targets should be removed from. - `values`: List of keys. Here's an example: ```json { "instructions": [{ "kind": "removeIncludedTargets", "contextKind": "org", "values": [ "org-key-123abc", "org-key-456def" ] }] } ``` #### removeIncludedUsers Removes user keys from the individual user targets included in the segment. If you are working with contexts, use `removeIncludedTargets` instead of this instruction. Returns an error if the number of operations on targets exceeds the batch limit of 1,500. ##### Parameters - `values`: List of user keys. Here's an example: ```json { "instructions": [{ "kind": "removeIncludedUsers", "values": [ "user-key-123abc", "user-key-456def" ] }] } ``` </details> <details> <summary>Click to expand instructions for <strong>updating segment targeting rules</strong></summary> #### addClauses Adds the given clauses to the rule indicated by `ruleId`. ##### Parameters - `clauses`: Array of clause objects, with `contextKind` (string), `attribute` (string), `op` (string), `negate` (boolean), and `values` (array of strings, numbers, or dates) properties. The `contextKind`, if not provided, defaults to `user`. The `contextKind`, `attribute`, and `values` are case sensitive. The `op` must be lower-case. - `ruleId`: ID of a rule in the segment. Here's an example: ```json { "instructions": [{ "kind": "addClauses", "clauses": [ { "attribute": "email", "negate": false, "op": "contains", "values": ["value1"] } ], "ruleId": "a902ef4a-2faf-4eaf-88e1-ecc356708a29", }] } ``` #### addRule Adds a new targeting rule to the segment. The rule may contain `clauses`. ##### Parameters - `clauses`: Array of clause objects, with `contextKind` (string), `attribute` (string), `op` (string), `negate` (boolean), and `values` (array of strings, numbers, or dates) properties. The `contextKind`, if not provided, defaults to `user`. The `contextKind`, `attribute`, and `values` are case sensitive. The `op` must be lower-case. - `description`: A description of the rule. Here's an example: ```json { "instructions": [{ "kind": "addRule", "clauses": [ { "attribute": "email", "op": "contains", "negate": false, "values": ["@launchdarkly.com"] } ], "description": "Targeting rule for LaunchDarkly employees", }] } ``` #### addValuesToClause Adds `values` to the values of the clause that `ruleId` and `clauseId` indicate. Does not update the context kind, attribute, or operator. ##### Parameters - `ruleId`: ID of a rule in the segment. - `clauseId`: ID of a clause in that rule. - `values`: Array of strings, case sensitive. Here's an example: ```json { "instructions": [{ "kind": "addValuesToClause", "ruleId": "a902ef4a-2faf-4eaf-88e1-ecc356708a29", "clauseId": "10a58772-3121-400f-846b-b8a04e8944ed", "values": ["beta_testers"] }] } ``` #### removeClauses Removes the clauses specified by `clauseIds` from the rule indicated by `ruleId`. ##### Parameters - `ruleId`: ID of a rule in the segment. - `clauseIds`: Array of IDs of clauses in the rule. Here's an example: ```json { "instructions": [{ "kind": "removeClauses", "ruleId": "a902ef4a-2faf-4eaf-88e1-ecc356708a29", "clauseIds": ["10a58772-3121-400f-846b-b8a04e8944ed", "36a461dc-235e-4b08-97b9-73ce9365873e"] }] } ``` #### removeRule Removes the targeting rule specified by `ruleId`. Does nothing if the rule does not exist. ##### Parameters - `ruleId`: ID of a rule in the segment. Here's an example: ```json { "instructions": [{ "kind": "removeRule", "ruleId": "a902ef4a-2faf-4eaf-88e1-ecc356708a29" }] } ``` #### removeValuesFromClause Removes `values` from the values of the clause indicated by `ruleId` and `clauseId`. Does not update the context kind, attribute, or operator. ##### Parameters - `ruleId`: ID of a rule in the segment. - `clauseId`: ID of a clause in that rule. - `values`: Array of strings, case sensitive. Here's an example: ```json { "instructions": [{ "kind": "removeValuesFromClause", "ruleId": "a902ef4a-2faf-4eaf-88e1-ecc356708a29", "clauseId": "10a58772-3121-400f-846b-b8a04e8944ed", "values": ["beta_testers"] }] } ``` #### reorderRules Rearranges the rules to match the order given in `ruleIds`. Returns an error if `ruleIds` does not match the current set of rules in the segment. ##### Parameters - `ruleIds`: Array of IDs of all targeting rules in the segment. Here's an example: ```json { "instructions": [{ "kind": "reorderRules", "ruleIds": ["a902ef4a-2faf-4eaf-88e1-ecc356708a29", "63c238d1-835d-435e-8f21-c8d5e40b2a3d"] }] } ``` #### updateClause Replaces the clause indicated by `ruleId` and `clauseId` with `clause`. ##### Parameters - `ruleId`: ID of a rule in the segment. - `clauseId`: ID of a clause in that rule. - `clause`: New `clause` object, with `contextKind` (string), `attribute` (string), `op` (string), `negate` (boolean), and `values` (array of strings, numbers, or dates) properties. The `contextKind`, if not provided, defaults to `user`. The `contextKind`, `attribute`, and `values` are case sensitive. The `op` must be lower-case. Here's an example: ```json { "instructions": [{ "kind": "updateClause", "ruleId": "a902ef4a-2faf-4eaf-88e1-ecc356708a29", "clauseId": "10c7462a-2062-45ba-a8bb-dfb3de0f8af5", "clause": { "contextKind": "user", "attribute": "country", "op": "in", "negate": false, "values": ["Mexico", "Canada"] } }] } ``` #### updateRuleDescription Updates the description of the segment targeting rule. ##### Parameters - `description`: The new human-readable description for this rule. - `ruleId`: The ID of the rule. You can retrieve this by making a GET request for the segment. Here's an example: ```json { "instructions": [{ "kind": "updateRuleDescription", "description": "New rule description", "ruleId": "a902ef4a-2faf-4eaf-88e1-ecc356708a29" }] } ``` #### updateRuleRolloutAndContextKind For a rule that includes a percentage of targets, updates the percentage and the context kind of the targets to include. ##### Parameters - `ruleId`: The ID of a targeting rule in the segment that includes a percentage of targets. - `weight`: The weight, in thousandths of a percent (0-100000). - `contextKind`: The context kind. Here's an example: ```json { "instructions": [{ "kind": "reorderRules", "ruleId": "a902ef4a-2faf-4eaf-88e1-ecc356708a29", "weight": "20000", "contextKind": "device" }] } ``` </details> <details> <summary>Click to expand instructions for <strong>working with Big Segments</strong></summary> A "big segment" is a segment that is either a synced segment, or a list-based segment with more than 15,000 entries that includes only one targeted context kind. LaunchDarkly uses different implementations for different types of segments so that all of your segments have good performance. The following semantic patch instructions apply only to these [larger list-based segments](https://launchdarkly.com/docs/home/flags/segments-create#create-larger-list-based-segments). #### addBigSegmentExcludedTargets For use with [larger list-based segments](https://launchdarkly.com/docs/home/flags/segments-create#create-larger-list-based-segments) ONLY. Adds context keys to the context targets excluded from the segment. Returns an error if this causes the same context key to be both included and excluded. ##### Parameters - `values`: List of context keys. Here's an example: ```json { "instructions": [{ "kind": "addBigSegmentExcludedTargets", "values": [ "org-key-123abc", "org-key-456def" ] }] } ``` #### addBigSegmentIncludedTargets For use with [larger list-based segments](https://launchdarkly.com/docs/home/flags/segments-create#create-larger-list-based-segments) ONLY. Adds context keys to the context targets included in the segment. Returns an error if this causes the same context key to be both included and excluded. ##### Parameters - `values`: List of context keys. Here's an example: ```json { "instructions": [{ "kind": "addBigSegmentIncludedTargets", "values": [ "org-key-123abc", "org-key-456def" ] }] } ``` #### processBigSegmentImport For use with [larger list-based segments](https://launchdarkly.com/docs/home/flags/segments-create#create-larger-list-based-segments) ONLY. Processes a segment import. ##### Parameters - `importId`: The ID of the import. The import ID is returned in the `Location` header as part of the [Create big segment import](https://launchdarkly.com/docs/api/segments/create-big-segment-import) request. Here's an example: ```json { "instructions": [{ "kind": "processBigSegmentImport", "importId": "a902ef4a-2faf-4eaf-88e1-ecc356708a29" }] } ``` #### removeBigSegmentExcludedTargets For use with [larger list-based segments](https://launchdarkly.com/docs/home/flags/segments-create#create-larger-list-based-segments) ONLY. Removes context keys from the context targets excluded from the segment. ##### Parameters - `values`: List of context keys. Here's an example: ```json { "instructions": [{ "kind": "removeBigSegmentExcludedTargets", "values": [ "org-key-123abc", "org-key-456def" ] }] } ``` #### removeBigSegmentIncludedTargets For use with [larger list-based segments](https://launchdarkly.com/docs/home/flags/segments-create#create-larger-list-based-segments) ONLY. Removes context keys from the context targets included in the segment. ##### Parameters - `values`: List of context keys. Here's an example: ```json { "instructions": [{ "kind": "removeBigSegmentIncludedTargets", "values": [ "org-key-123abc", "org-key-456def" ] }] } ``` </details> ### Using JSON patches on a segment If you do not include the header described above, you can use a [JSON patch](https://launchdarkly.com/docs/api#updates-using-json-patch) or [JSON merge patch](https://datatracker.ietf.org/doc/html/rfc7386) representation of the desired changes. For example, to update the description for a segment with a JSON patch, use the following request body: ```json { "patch": [ { "op": "replace", "path": "/description", "value": "new description" } ] } ``` To update fields in the segment that are arrays, set the `path` to the name of the field and then append `/<array index>`. Use `/0` to add the new entry to the beginning of the array. Use `/-` to add the new entry to the end of the array. For example, to add a rule to a segment, use the following request body: ```json { "patch":[ { "op": "add", "path": "/rules/0", "value": { "clauses": [{ "contextKind": "user", "attribute": "email", "op": "endsWith", "values": [".edu"], "negate": false }] } } ] } ``` To add or remove targets from segments, we recommend using semantic patch. Semantic patch for segments includes specific instructions for adding and removing both included and excluded targets. */
+export const updateSegmentBySegmentKey: API.OperationMethod<
+  UpdateSegmentBySegmentKeyRequest,
+  UserSegment,
+  UpdateSegmentBySegmentKeyError,
+  LaunchDarklyOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateSegmentBySegmentKeyRequest,
+  output: UserSegment,
+  errors: [BadRequest, Forbidden, NotFound, Conflict, UnknownLaunchDarklyError],
   protocol: LaunchDarklyProtocol,
   retry: Retry.Retry,
 }));
@@ -35576,6 +35493,72 @@ export const updateSubscription: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type UpdateTeamError =
+  | BadRequest
+  | NotFound
+  | Conflict
+  | LaunchDarklyOpError;
+/** Update team Perform a partial update to a team. Updating a team uses the semantic patch format. To make a semantic patch request, you must append `domain-model=launchdarkly.semanticpatch` to your `Content-Type` header. To learn more, read [Updates using semantic patch](https://launchdarkly.com/docs/api#updates-using-semantic-patch). ### Instructions Semantic patch requests support the following `kind` instructions for updating teams. Several of the instructions require one or more member IDs as parameters. The member ID is returned as part of the [List account members](https://launchdarkly.com/docs/api/account-members/get-members) response. It is the `_id` field of each element in the `items` array. <details> <summary>Click to expand instructions for <strong>updating teams</strong></summary> #### addCustomRoles Adds custom roles to the team. Team members will have these custom roles granted to them. ##### Parameters - `values`: List of custom role keys. Here's an example: ```json { "instructions": [{ "kind": "addCustomRoles", "values": [ "example-custom-role" ] }] } ``` #### addMembers Adds members to the team. ##### Parameters - `values`: List of member IDs to add. Here's an example: ```json { "instructions": [{ "kind": "addMembers", "values": [ "1234a56b7c89d012345e678f", "507f1f77bcf86cd799439011" ] }] } ``` #### addPermissionGrants Adds permission grants to members for the team. For example, a permission grant could allow a member to act as a team maintainer. A permission grant may have either an `actionSet` or a list of `actions` but not both at the same time. The members do not have to be team members to have a permission grant for the team. ##### Parameters - `actionSet`: Name of the action set. - `actions`: List of actions. - `memberIDs`: List of member IDs. Here's an example: ```json { "instructions": [{ "kind": "addPermissionGrants", "actions": [ "updateTeamName", "updateTeamDescription" ], "memberIDs": [ "1234a56b7c89d012345e678f", "507f1f77bcf86cd799439011" ] }] } ``` #### addRoleAttribute Adds a role attribute to a team. Team members will have these role attribute values scoped for all custom roles granted to them. ##### Parameters - `key`: The role attribute key to add. - `values`: List of role attribute values for that key. Here's an example: ```json { "instructions": [ { "kind": "addRoleAttribute", "key": "testAttribute", "values": ["someNewValue", "someOtherNewValue"] } ] } ``` #### removeCustomRoles Removes custom roles from the team. The app will no longer grant these custom roles to the team members. ##### Parameters - `values`: List of custom role keys. Here's an example: ```json { "instructions": [{ "kind": "removeCustomRoles", "values": [ "example-custom-role" ] }] } ``` #### removeMembers Removes members from the team. ##### Parameters - `values`: List of member IDs to remove. Here's an example: ```json { "instructions": [{ "kind": "removeMembers", "values": [ "1234a56b7c89d012345e678f", "507f1f77bcf86cd799439011" ] }] } ``` #### removePermissionGrants Removes permission grants from members for the team. A permission grant may have either an `actionSet` or a list of `actions` but not both at the same time. The `actionSet` and `actions` must match an existing permission grant. ##### Parameters - `actionSet`: Name of the action set. - `actions`: List of actions. - `memberIDs`: List of member IDs. Here's an example: ```json { "instructions": [{ "kind": "removePermissionGrants", "actions": [ "updateTeamName", "updateTeamDescription" ], "memberIDs": [ "1234a56b7c89d012345e678f", "507f1f77bcf86cd799439011" ] }] } ``` #### removeRoleAttribute Removes a role attribute from the team. ##### Parameters - `key`: The role attribute key to remove. Here's an example: ```json { "instructions": [ { "kind": "removeRoleAttribute", "key": "testAttribute" } ] } ``` #### replaceMembers Replaces the existing members of the team with the new members. ##### Parameters - `values`: List of member IDs of the new members. Here's an example: ```json { "instructions": [{ "kind": "replaceMembers", "values": [ "1234a56b7c89d012345e678f", "507f1f77bcf86cd799439011" ] }] } ``` #### replaceRoleAttributes Replaces the existing role attributes for the team with new role attributes. ##### Parameters - `value`: A map of role attribute keys to lists of role attribute values Here's an example: ```json { "instructions": [{ "kind": "replaceRoleAttributes", "value": { "testAttribute": [ "someNewValue", "someOtherNewValue" ], "projectRoleAttribute": [ "project1", "project2"] } }] } ``` #### updateDescription Updates the description of the team. ##### Parameters - `value`: The new description. Here's an example: ```json { "instructions": [{ "kind": "updateDescription", "value": "Updated team description" }] } ``` #### updateName Updates the name of the team. ##### Parameters - `value`: The new name. Here's an example: ```json { "instructions": [{ "kind": "updateName", "value": "Updated team name" }] } ``` #### updateRoleAttribute Updates a role attribute on the team. Any existing values for the given key will be replaced with the new values. Team members will have these role attribute values scoped for all custom roles granted to them. ##### Parameters - `key`: The role attribute key to update. - `values`: List of role attribute values for that key. Here's an example: ```json { "instructions": [ { "kind": "updateRoleAttribute", "key": "testAttribute", "values": ["someNewValue", "someOtherNewValue"] } ] } ``` </details> ### Expanding the teams response LaunchDarkly supports four fields for expanding the "Update team" response. By default, these fields are **not** included in the response. To expand the response, append the `expand` query parameter and add a comma-separated list with any of the following fields: * `members` includes the total count of members that belong to the team. * `roles` includes a paginated list of the custom roles that you have assigned to the team. * `projects` includes a paginated list of the projects that the team has any write access to. * `maintainers` includes a paginated list of the maintainers that you have assigned to the team. For example, `expand=members,roles` includes the `members` and `roles` fields in the response. */
+export const updateTeam: API.OperationMethod<
+  UpdateTeamRequest,
+  Team,
+  UpdateTeamError,
+  LaunchDarklyOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateTeamRequest,
+  output: Team,
+  errors: [BadRequest, NotFound, Conflict, UnknownLaunchDarklyError],
+  protocol: LaunchDarklyProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateTeamsError =
+  | BadRequest
+  | Forbidden
+  | Conflict
+  | LaunchDarklyOpError;
+/** Update teams Perform a partial update to multiple teams. Updating teams uses the semantic patch format. To make a semantic patch request, you must append `domain-model=launchdarkly.semanticpatch` to your `Content-Type` header. To learn more, read [Updates using semantic patch](https://launchdarkly.com/docs/api#updates-using-semantic-patch). ### Instructions Semantic patch requests support the following `kind` instructions for updating teams. <details> <summary>Click to expand instructions for <strong>updating teams</strong></summary> #### addMembersToTeams Add the members to teams. ##### Parameters - `memberIDs`: List of member IDs to add. - `teamKeys`: List of teams to update. Here's an example: ```json { "instructions": [{ "kind": "addMembersToTeams", "memberIDs": [ "1234a56b7c89d012345e678f" ], "teamKeys": [ "example-team-1", "example-team-2" ] }] } ``` #### addAllMembersToTeams Add all members to the team. Members that match any of the filters are **excluded** from the update. ##### Parameters - `teamKeys`: List of teams to update. - `filterLastSeen`: (Optional) A JSON object with one of the following formats: - `{"never": true}` - Members that have never been active, such as those who have not accepted their invitation to LaunchDarkly, or have not logged in after being provisioned via SCIM. - `{"noData": true}` - Members that have not been active since LaunchDarkly began recording last seen timestamps. - `{"before": 1608672063611}` - Members that have not been active since the provided value, which should be a timestamp in Unix epoch milliseconds. - `filterQuery`: (Optional) A string that matches against the members' emails and names. It is not case sensitive. - `filterRoles`: (Optional) A `|` separated list of roles and custom roles. For the purposes of this filtering, `Owner` counts as `Admin`. - `filterTeamKey`: (Optional) A string that matches against the key of the team the members belong to. It is not case sensitive. - `ignoredMemberIDs`: (Optional) A list of member IDs. Here's an example: ```json { "instructions": [{ "kind": "addAllMembersToTeams", "teamKeys": [ "example-team-1", "example-team-2" ], "filterLastSeen": { "never": true } }] } ``` </details> */
+export const updateTeams: API.OperationMethod<
+  UpdateTeamsRequest,
+  BulkEditTeamsRep,
+  UpdateTeamsError,
+  LaunchDarklyOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateTeamsRequest,
+  output: BulkEditTeamsRep,
+  errors: [BadRequest, Forbidden, Conflict, UnknownLaunchDarklyError],
+  protocol: LaunchDarklyProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateTokenError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | Conflict
+  | UnprocessableEntity
+  | LaunchDarklyOpError;
+/** Patch access token Update an access token's settings. Updating an access token uses a [JSON patch](https://datatracker.ietf.org/doc/html/rfc6902) representation of the desired changes. To learn more, read [Updates](https://launchdarkly.com/docs/api#updates). */
+export const updateToken: API.OperationMethod<
+  UpdateTokenRequest,
+  Token,
+  UpdateTokenError,
+  LaunchDarklyOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateTokenRequest,
+  output: Token,
+  errors: [
+    BadRequest,
+    Forbidden,
+    NotFound,
+    Conflict,
+    UnprocessableEntity,
+    UnknownLaunchDarklyError,
+  ],
+  protocol: LaunchDarklyProtocol,
+  retry: Retry.Retry,
+}));
+
 export type UpdateViewError =
   | BadRequest
   | Forbidden
@@ -35590,6 +35573,25 @@ export const updateView: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: UpdateViewRequest,
   output: View,
+  errors: [BadRequest, Forbidden, NotFound, UnknownLaunchDarklyError],
+  protocol: LaunchDarklyProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateWebhookError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | LaunchDarklyOpError;
+/** Update webhook Update a webhook's settings. Updating webhook settings uses a [JSON patch](https://datatracker.ietf.org/doc/html/rfc6902) representation of the desired changes. To learn more, read [Updates](https://launchdarkly.com/docs/api#updates). */
+export const updateWebhook: API.OperationMethod<
+  UpdateWebhookRequest,
+  Webhook,
+  UpdateWebhookError,
+  LaunchDarklyOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateWebhookRequest,
+  output: Webhook,
   errors: [BadRequest, Forbidden, NotFound, UnknownLaunchDarklyError],
   protocol: LaunchDarklyProtocol,
   retry: Retry.Retry,
