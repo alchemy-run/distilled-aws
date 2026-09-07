@@ -1871,6 +1871,36 @@ export const User = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "User" }) as any as S.Schema<User>;
 
+/** Array of user IDs to ban */
+export type BanUserRequestUserIdsList = Array<string>;
+export const BanUserRequestUserIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<BanUserRequestUserIdsList>;
+
+export interface BanUserRequest2 {
+  /** Array of user IDs to ban */
+  user_ids: BanUserRequestUserIdsList;
+}
+export const BanUserRequest2 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    user_ids: BanUserRequestUserIdsList,
+  }).pipe(T.Http({ method: "POST", uri: "/users/ban", code: 200 })),
+).annotate({
+  identifier: "BanUserRequest2",
+}) as any as S.Schema<BanUserRequest2>;
+
+export type BanUserResponseBodyList = Array<User>;
+export const BanUserResponseBodyList = /*@__PURE__*/ S.Array(
+  User,
+) as any as S.Schema<BanUserResponseBodyList>;
+
+export type BanUserResponse = BanUserResponseBodyList;
+export const BanUserResponse = /*@__PURE__*/ S.suspend(() =>
+  BanUserResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "BanUserResponse",
+}) as any as S.Schema<BanUserResponse>;
+
 export interface CancelCommerceSubscriptionItemRequest {
   /** The ID of the subscription item to cancel */
   subscription_item_id: string;
@@ -6936,6 +6966,27 @@ export const DeleteUserRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteUserRequest",
 }) as any as S.Schema<DeleteUserRequest>;
 
+export interface DeleteUserPasskeyRequest {
+  /** The ID of the user that owns the passkey identity */
+  user_id: string;
+  /** The ID of the passkey identity to be deleted */
+  passkey_identification_id: string;
+}
+export const DeleteUserPasskeyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    user_id: S.String.pipe(T.Label()),
+    passkey_identification_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/users/{user_id}/passkeys/{passkey_identification_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteUserPasskeyRequest",
+}) as any as S.Schema<DeleteUserPasskeyRequest>;
+
 export interface DeleteUserProfileImageRequest {
   /** The ID of the user to delete the profile image for */
   user_id: string;
@@ -6953,6 +7004,27 @@ export const DeleteUserProfileImageRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DeleteUserProfileImageRequest",
 }) as any as S.Schema<DeleteUserProfileImageRequest>;
+
+export interface DeleteUserWeb3WalletRequest {
+  /** The ID of the user that owns the web3 wallet */
+  user_id: string;
+  /** The ID of the web3 wallet identity to be deleted */
+  web3_wallet_identification_id: string;
+}
+export const DeleteUserWeb3WalletRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    user_id: S.String.pipe(T.Label()),
+    web3_wallet_identification_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/users/{user_id}/web3_wallets/{web3_wallet_identification_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteUserWeb3WalletRequest",
+}) as any as S.Schema<DeleteUserWeb3WalletRequest>;
 
 export interface DeleteWaitlistEntryRequest {
   /** The ID of the waitlist entry to delete */
@@ -8005,6 +8077,43 @@ export const InstanceProtect = /*@__PURE__*/ S.suspend(() =>
   identifier: "InstanceProtect",
 }) as any as S.Schema<InstanceProtect>;
 
+export interface GetInterstitialRequest {
+  /** Please use `frontend_api` instead */
+  frontendApi?: string;
+  /** The Frontend API key of your instance */
+  frontend_api?: string;
+  /** The publishable key of your instance */
+  publishable_key?: string;
+  /** The proxy URL of your instance */
+  proxy_url?: string;
+  /** The domain of your instance */
+  domain?: string;
+  /** The sign in URL of your instance */
+  sign_in_url?: string;
+  /** Whether to use the domain for the script URL */
+  use_domain_for_script?: boolean;
+}
+export const GetInterstitialRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    frontendApi: S.optional(S.String.pipe(T.Query())),
+    frontend_api: S.optional(S.String.pipe(T.Query())),
+    publishable_key: S.optional(S.String.pipe(T.Query())),
+    proxy_url: S.optional(S.String.pipe(T.Query())),
+    domain: S.optional(S.String.pipe(T.Query())),
+    sign_in_url: S.optional(S.String.pipe(T.Query())),
+    use_domain_for_script: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/public/interstitial", code: 200 })),
+).annotate({
+  identifier: "GetInterstitialRequest",
+}) as any as S.Schema<GetInterstitialRequest>;
+
+export interface GetInterstitialResponse {}
+export const GetInterstitialResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "GetInterstitialResponse",
+}) as any as S.Schema<GetInterstitialResponse>;
+
 export interface GetJWKSRequest {}
 export const GetJWKSRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(T.Http({ method: "GET", uri: "/jwks", code: 200 })),
@@ -8936,43 +9045,6 @@ export const GetPhoneNumberRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetPhoneNumberRequest",
 }) as any as S.Schema<GetPhoneNumberRequest>;
-
-export interface GetPublicInterstitialRequest {
-  /** Please use `frontend_api` instead */
-  frontendApi?: string;
-  /** The Frontend API key of your instance */
-  frontend_api?: string;
-  /** The publishable key of your instance */
-  publishable_key?: string;
-  /** The proxy URL of your instance */
-  proxy_url?: string;
-  /** The domain of your instance */
-  domain?: string;
-  /** The sign in URL of your instance */
-  sign_in_url?: string;
-  /** Whether to use the domain for the script URL */
-  use_domain_for_script?: boolean;
-}
-export const GetPublicInterstitialRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    frontendApi: S.optional(S.String.pipe(T.Query())),
-    frontend_api: S.optional(S.String.pipe(T.Query())),
-    publishable_key: S.optional(S.String.pipe(T.Query())),
-    proxy_url: S.optional(S.String.pipe(T.Query())),
-    domain: S.optional(S.String.pipe(T.Query())),
-    sign_in_url: S.optional(S.String.pipe(T.Query())),
-    use_domain_for_script: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/public/interstitial", code: 200 })),
-).annotate({
-  identifier: "GetPublicInterstitialRequest",
-}) as any as S.Schema<GetPublicInterstitialRequest>;
-
-export interface GetPublicInterstitialResponse {}
-export const GetPublicInterstitialResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "GetPublicInterstitialResponse",
-}) as any as S.Schema<GetPublicInterstitialResponse>;
 
 export interface GetRedirectURLRequest {
   /** The ID of the redirect URL */
@@ -12350,6 +12422,36 @@ export const UnbanUserRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "UnbanUserRequest",
 }) as any as S.Schema<UnbanUserRequest>;
 
+/** Array of user IDs to unban */
+export type UnbanUserRequestUserIdsList = Array<string>;
+export const UnbanUserRequestUserIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<UnbanUserRequestUserIdsList>;
+
+export interface UnbanUserRequest2 {
+  /** Array of user IDs to unban */
+  user_ids: UnbanUserRequestUserIdsList;
+}
+export const UnbanUserRequest2 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    user_ids: UnbanUserRequestUserIdsList,
+  }).pipe(T.Http({ method: "POST", uri: "/users/unban", code: 200 })),
+).annotate({
+  identifier: "UnbanUserRequest2",
+}) as any as S.Schema<UnbanUserRequest2>;
+
+export type UnbanUserResponseBodyList = Array<User>;
+export const UnbanUserResponseBodyList = /*@__PURE__*/ S.Array(
+  User,
+) as any as S.Schema<UnbanUserResponseBodyList>;
+
+export type UnbanUserResponse = UnbanUserResponseBodyList;
+export const UnbanUserResponse = /*@__PURE__*/ S.suspend(() =>
+  UnbanUserResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "UnbanUserResponse",
+}) as any as S.Schema<UnbanUserResponse>;
+
 export interface UnlockUserRequest {
   /** The ID of the user to unlock */
   user_id: string;
@@ -13740,57 +13842,6 @@ export const UploadOrganizationLogoResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UploadOrganizationLogoResponse",
 }) as any as S.Schema<UploadOrganizationLogoResponse>;
 
-export interface UserPasskeyDeleteRequest {
-  /** The ID of the user that owns the passkey identity */
-  user_id: string;
-  /** The ID of the passkey identity to be deleted */
-  passkey_identification_id: string;
-}
-export const UserPasskeyDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    user_id: S.String.pipe(T.Label()),
-    passkey_identification_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/users/{user_id}/passkeys/{passkey_identification_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "UserPasskeyDeleteRequest",
-}) as any as S.Schema<UserPasskeyDeleteRequest>;
-
-/** Array of user IDs to ban */
-export type UsersBanRequestUserIdsList = Array<string>;
-export const UsersBanRequestUserIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<UsersBanRequestUserIdsList>;
-
-export interface UsersBanRequest {
-  /** Array of user IDs to ban */
-  user_ids: UsersBanRequestUserIdsList;
-}
-export const UsersBanRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    user_ids: UsersBanRequestUserIdsList,
-  }).pipe(T.Http({ method: "POST", uri: "/users/ban", code: 200 })),
-).annotate({
-  identifier: "UsersBanRequest",
-}) as any as S.Schema<UsersBanRequest>;
-
-export type UsersBanResponseBodyList = Array<User>;
-export const UsersBanResponseBodyList = /*@__PURE__*/ S.Array(
-  User,
-) as any as S.Schema<UsersBanResponseBodyList>;
-
-export type UsersBanResponse = UsersBanResponseBodyList;
-export const UsersBanResponse = /*@__PURE__*/ S.suspend(() =>
-  UsersBanResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "UsersBanResponse",
-}) as any as S.Schema<UsersBanResponse>;
-
 export type UsersGetOrganizationInvitationsRequestStatus =
   | "pending"
   | "accepted"
@@ -13853,57 +13904,6 @@ export const UsersGetOrganizationMembershipsRequest = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "UsersGetOrganizationMembershipsRequest",
 }) as any as S.Schema<UsersGetOrganizationMembershipsRequest>;
-
-/** Array of user IDs to unban */
-export type UsersUnbanRequestUserIdsList = Array<string>;
-export const UsersUnbanRequestUserIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<UsersUnbanRequestUserIdsList>;
-
-export interface UsersUnbanRequest {
-  /** Array of user IDs to unban */
-  user_ids: UsersUnbanRequestUserIdsList;
-}
-export const UsersUnbanRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    user_ids: UsersUnbanRequestUserIdsList,
-  }).pipe(T.Http({ method: "POST", uri: "/users/unban", code: 200 })),
-).annotate({
-  identifier: "UsersUnbanRequest",
-}) as any as S.Schema<UsersUnbanRequest>;
-
-export type UsersUnbanResponseBodyList = Array<User>;
-export const UsersUnbanResponseBodyList = /*@__PURE__*/ S.Array(
-  User,
-) as any as S.Schema<UsersUnbanResponseBodyList>;
-
-export type UsersUnbanResponse = UsersUnbanResponseBodyList;
-export const UsersUnbanResponse = /*@__PURE__*/ S.suspend(() =>
-  UsersUnbanResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "UsersUnbanResponse",
-}) as any as S.Schema<UsersUnbanResponse>;
-
-export interface UserWeb3WalletDeleteRequest {
-  /** The ID of the user that owns the web3 wallet */
-  user_id: string;
-  /** The ID of the web3 wallet identity to be deleted */
-  web3_wallet_identification_id: string;
-}
-export const UserWeb3WalletDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    user_id: S.String.pipe(T.Label()),
-    web3_wallet_identification_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/users/{user_id}/web3_wallets/{web3_wallet_identification_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "UserWeb3WalletDeleteRequest",
-}) as any as S.Schema<UserWeb3WalletDeleteRequest>;
 
 export interface VerifyApiKeyRequest {
   secret: string | Redacted.Redacted<string>;
@@ -14451,6 +14451,21 @@ export const banUser: API.OperationMethod<
   input: BanUserRequest,
   output: User,
   errors: [UnknownClerkError],
+  protocol: ClerkProtocol,
+  retry: Retry.Retry,
+}));
+
+export type BanUser2Error = BadRequest | ClerkOpError;
+/** Ban multiple users Marks multiple users as banned, which means that all their sessions are revoked and they are not allowed to sign in again. */
+export const banUser2: API.OperationMethod<
+  BanUserRequest2,
+  BanUserResponse,
+  BanUser2Error,
+  ClerkOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BanUserRequest2,
+  output: BanUserResponse,
+  errors: [BadRequest, UnknownClerkError],
   protocol: ClerkProtocol,
   retry: Retry.Retry,
 }));
@@ -15806,6 +15821,21 @@ export const deleteUser: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type DeleteUserPasskeyError = Forbidden | NotFound | ClerkOpError;
+/** Delete a user passkey Delete the passkey identification for a given user and notify them through email. */
+export const deleteUserPasskey: API.OperationMethod<
+  DeleteUserPasskeyRequest,
+  DeletedObject,
+  DeleteUserPasskeyError,
+  ClerkOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteUserPasskeyRequest,
+  output: DeletedObject,
+  errors: [Forbidden, NotFound, UnknownClerkError],
+  protocol: ClerkProtocol,
+  retry: Retry.Retry,
+}));
+
 export type DeleteUserProfileImageError = NotFound | ClerkOpError;
 /** Delete user profile image Delete a user's profile image */
 export const deleteUserProfileImage: API.OperationMethod<
@@ -15817,6 +15847,25 @@ export const deleteUserProfileImage: API.OperationMethod<
   input: DeleteUserProfileImageRequest,
   output: User,
   errors: [NotFound, UnknownClerkError],
+  protocol: ClerkProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteUserWeb3WalletError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | ClerkOpError;
+/** Delete a user web3 wallet Delete the web3 wallet identification for a given user. */
+export const deleteUserWeb3Wallet: API.OperationMethod<
+  DeleteUserWeb3WalletRequest,
+  DeletedObject,
+  DeleteUserWeb3WalletError,
+  ClerkOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteUserWeb3WalletRequest,
+  output: DeletedObject,
+  errors: [BadRequest, Forbidden, NotFound, UnknownClerkError],
   protocol: ClerkProtocol,
   retry: Retry.Retry,
 }));
@@ -16201,6 +16250,21 @@ export const getInstanceProtect: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetInterstitialError = BadRequest | ClerkOpError;
+/** Returns the markup for the interstitial page The Clerk interstitial endpoint serves an html page that loads clerk.js in order to check the user's authentication state. It is used by Clerk SDKs when the user's authentication state cannot be immediately determined. */
+export const getInterstitial: API.OperationMethod<
+  GetInterstitialRequest,
+  GetInterstitialResponse,
+  GetInterstitialError,
+  ClerkOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetInterstitialRequest,
+  output: GetInterstitialResponse,
+  errors: [BadRequest, UnknownClerkError],
+  protocol: ClerkProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetJWKSError = ClerkOpError;
 /** Retrieve the JSON Web Key Set of the instance Retrieve the JSON Web Key Set of the instance */
 export const getJWKS: API.OperationMethod<
@@ -16460,21 +16524,6 @@ export const getPhoneNumber: API.OperationMethod<
   input: GetPhoneNumberRequest,
   output: PhoneNumber,
   errors: [BadRequest, Forbidden, NotFound, UnknownClerkError],
-  protocol: ClerkProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetPublicInterstitialError = BadRequest | ClerkOpError;
-/** Returns the markup for the interstitial page The Clerk interstitial endpoint serves an html page that loads clerk.js in order to check the user's authentication state. It is used by Clerk SDKs when the user's authentication state cannot be immediately determined. */
-export const getPublicInterstitial: API.OperationMethod<
-  GetPublicInterstitialRequest,
-  GetPublicInterstitialResponse,
-  GetPublicInterstitialError,
-  ClerkOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetPublicInterstitialRequest,
-  output: GetPublicInterstitialResponse,
-  errors: [BadRequest, UnknownClerkError],
   protocol: ClerkProtocol,
   retry: Retry.Retry,
 }));
@@ -17826,6 +17875,21 @@ export const unbanUser: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type UnbanUser2Error = BadRequest | ClerkOpError;
+/** Unban multiple users Removes the ban mark from multiple users. */
+export const unbanUser2: API.OperationMethod<
+  UnbanUserRequest2,
+  UnbanUserResponse,
+  UnbanUser2Error,
+  ClerkOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UnbanUserRequest2,
+  output: UnbanUserResponse,
+  errors: [BadRequest, UnknownClerkError],
+  protocol: ClerkProtocol,
+  retry: Retry.Retry,
+}));
+
 export type UnlockUserError = Forbidden | ClerkOpError;
 /** Unlock a user Removes the lock from the given user. */
 export const unlockUser: API.OperationMethod<
@@ -18475,36 +18539,6 @@ export const uploadOrganizationLogo: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UserPasskeyDeleteError = Forbidden | NotFound | ClerkOpError;
-/** Delete a user passkey Delete the passkey identification for a given user and notify them through email. */
-export const userPasskeyDelete: API.OperationMethod<
-  UserPasskeyDeleteRequest,
-  DeletedObject,
-  UserPasskeyDeleteError,
-  ClerkOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UserPasskeyDeleteRequest,
-  output: DeletedObject,
-  errors: [Forbidden, NotFound, UnknownClerkError],
-  protocol: ClerkProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UsersBanError = BadRequest | ClerkOpError;
-/** Ban multiple users Marks multiple users as banned, which means that all their sessions are revoked and they are not allowed to sign in again. */
-export const usersBan: API.OperationMethod<
-  UsersBanRequest,
-  UsersBanResponse,
-  UsersBanError,
-  ClerkOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UsersBanRequest,
-  output: UsersBanResponse,
-  errors: [BadRequest, UnknownClerkError],
-  protocol: ClerkProtocol,
-  retry: Retry.Retry,
-}));
-
 export type UsersGetOrganizationInvitationsError =
   | BadRequest
   | Forbidden
@@ -18535,40 +18569,6 @@ export const usersGetOrganizationMemberships: API.OperationMethod<
   input: UsersGetOrganizationMembershipsRequest,
   output: OrganizationMemberships,
   errors: [Forbidden, UnknownClerkError],
-  protocol: ClerkProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UsersUnbanError = BadRequest | ClerkOpError;
-/** Unban multiple users Removes the ban mark from multiple users. */
-export const usersUnban: API.OperationMethod<
-  UsersUnbanRequest,
-  UsersUnbanResponse,
-  UsersUnbanError,
-  ClerkOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UsersUnbanRequest,
-  output: UsersUnbanResponse,
-  errors: [BadRequest, UnknownClerkError],
-  protocol: ClerkProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UserWeb3WalletDeleteError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | ClerkOpError;
-/** Delete a user web3 wallet Delete the web3 wallet identification for a given user. */
-export const userWeb3WalletDelete: API.OperationMethod<
-  UserWeb3WalletDeleteRequest,
-  DeletedObject,
-  UserWeb3WalletDeleteError,
-  ClerkOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UserWeb3WalletDeleteRequest,
-  output: DeletedObject,
-  errors: [BadRequest, Forbidden, NotFound, UnknownClerkError],
   protocol: ClerkProtocol,
   retry: Retry.Retry,
 }));

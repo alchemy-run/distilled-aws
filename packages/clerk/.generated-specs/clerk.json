@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.clerk.api#GetPublicInterstitialRequest": {
+    "com.clerk.api#GetInterstitialRequest": {
       "type": "structure",
       "members": {
         "frontendApi": {
@@ -74,10 +75,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.clerk.api#GetPublicInterstitial": {
+    "com.clerk.api#GetInterstitial": {
       "type": "operation",
       "input": {
-        "target": "com.clerk.api#GetPublicInterstitialRequest"
+        "target": "com.clerk.api#GetInterstitialRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6817,7 +6818,7 @@
         "smithy.api#documentation": "Unban a user\n\nRemoves the ban mark from the given user."
       }
     },
-    "com.clerk.api#UsersBanRequestUserIdsList": {
+    "com.clerk.api#BanUserRequestUserIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -6826,11 +6827,11 @@
         "smithy.api#documentation": "Array of user IDs to ban"
       }
     },
-    "com.clerk.api#UsersBanRequest": {
+    "com.clerk.api#BanUserRequest2": {
       "type": "structure",
       "members": {
         "user_ids": {
-          "target": "com.clerk.api#UsersBanRequestUserIdsList",
+          "target": "com.clerk.api#BanUserRequestUserIdsList",
           "traits": {
             "smithy.api#documentation": "Array of user IDs to ban",
             "smithy.api#required": {}
@@ -6841,18 +6842,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.clerk.api#UsersBanResponseBodyList": {
+    "com.clerk.api#BanUserResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.clerk.api#User"
       },
       "traits": {}
     },
-    "com.clerk.api#UsersBanResponse": {
+    "com.clerk.api#BanUserResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.clerk.api#UsersBanResponseBodyList",
+          "target": "com.clerk.api#BanUserResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -6863,13 +6864,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.clerk.api#UsersBan": {
+    "com.clerk.api#BanUser2": {
       "type": "operation",
       "input": {
-        "target": "com.clerk.api#UsersBanRequest"
+        "target": "com.clerk.api#BanUserRequest2"
       },
       "output": {
-        "target": "com.clerk.api#UsersBanResponse"
+        "target": "com.clerk.api#BanUserResponse"
       },
       "errors": [
         {
@@ -6885,7 +6886,7 @@
         "smithy.api#documentation": "Ban multiple users\n\nMarks multiple users as banned, which means that all their sessions are revoked and they are not allowed to sign in again."
       }
     },
-    "com.clerk.api#UsersUnbanRequestUserIdsList": {
+    "com.clerk.api#UnbanUserRequestUserIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -6894,11 +6895,11 @@
         "smithy.api#documentation": "Array of user IDs to unban"
       }
     },
-    "com.clerk.api#UsersUnbanRequest": {
+    "com.clerk.api#UnbanUserRequest2": {
       "type": "structure",
       "members": {
         "user_ids": {
-          "target": "com.clerk.api#UsersUnbanRequestUserIdsList",
+          "target": "com.clerk.api#UnbanUserRequestUserIdsList",
           "traits": {
             "smithy.api#documentation": "Array of user IDs to unban",
             "smithy.api#required": {}
@@ -6909,18 +6910,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.clerk.api#UsersUnbanResponseBodyList": {
+    "com.clerk.api#UnbanUserResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.clerk.api#User"
       },
       "traits": {}
     },
-    "com.clerk.api#UsersUnbanResponse": {
+    "com.clerk.api#UnbanUserResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.clerk.api#UsersUnbanResponseBodyList",
+          "target": "com.clerk.api#UnbanUserResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -6931,13 +6932,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.clerk.api#UsersUnban": {
+    "com.clerk.api#UnbanUser2": {
       "type": "operation",
       "input": {
-        "target": "com.clerk.api#UsersUnbanRequest"
+        "target": "com.clerk.api#UnbanUserRequest2"
       },
       "output": {
-        "target": "com.clerk.api#UsersUnbanResponse"
+        "target": "com.clerk.api#UnbanUserResponse"
       },
       "errors": [
         {
@@ -10098,7 +10099,7 @@
         "smithy.api#documentation": "Disable all user's Backup codes\n\nDisable all of a user's backup codes."
       }
     },
-    "com.clerk.api#UserPasskeyDeleteRequest": {
+    "com.clerk.api#DeleteUserPasskeyRequest": {
       "type": "structure",
       "members": {
         "user_id": {
@@ -10122,10 +10123,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.clerk.api#UserPasskeyDelete": {
+    "com.clerk.api#DeleteUserPasskey": {
       "type": "operation",
       "input": {
-        "target": "com.clerk.api#UserPasskeyDeleteRequest"
+        "target": "com.clerk.api#DeleteUserPasskeyRequest"
       },
       "output": {
         "target": "com.clerk.api#DeletedObject"
@@ -10404,7 +10405,7 @@
         "smithy.api#documentation": "Revoke a user's trusted device\n\nRevokes an active trusted device enrolled by the user."
       }
     },
-    "com.clerk.api#UserWeb3WalletDeleteRequest": {
+    "com.clerk.api#DeleteUserWeb3WalletRequest": {
       "type": "structure",
       "members": {
         "user_id": {
@@ -10428,10 +10429,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.clerk.api#UserWeb3WalletDelete": {
+    "com.clerk.api#DeleteUserWeb3Wallet": {
       "type": "operation",
       "input": {
-        "target": "com.clerk.api#UserWeb3WalletDeleteRequest"
+        "target": "com.clerk.api#DeleteUserWeb3WalletRequest"
       },
       "output": {
         "target": "com.clerk.api#DeletedObject"
@@ -31630,7 +31631,7 @@
       "version": "2026-05-12",
       "operations": [
         {
-          "target": "com.clerk.api#GetPublicInterstitial"
+          "target": "com.clerk.api#GetInterstitial"
         },
         {
           "target": "com.clerk.api#GetJWKS"
@@ -31729,10 +31730,10 @@
           "target": "com.clerk.api#UnbanUser"
         },
         {
-          "target": "com.clerk.api#UsersBan"
+          "target": "com.clerk.api#BanUser2"
         },
         {
-          "target": "com.clerk.api#UsersUnban"
+          "target": "com.clerk.api#UnbanUser2"
         },
         {
           "target": "com.clerk.api#LockUser"
@@ -31786,7 +31787,7 @@
           "target": "com.clerk.api#DeleteBackupCode"
         },
         {
-          "target": "com.clerk.api#UserPasskeyDelete"
+          "target": "com.clerk.api#DeleteUserPasskey"
         },
         {
           "target": "com.clerk.api#ListUserTrustedDevices"
@@ -31795,7 +31796,7 @@
           "target": "com.clerk.api#RevokeUserTrustedDevice"
         },
         {
-          "target": "com.clerk.api#UserWeb3WalletDelete"
+          "target": "com.clerk.api#DeleteUserWeb3Wallet"
         },
         {
           "target": "com.clerk.api#DeleteTOTP"
