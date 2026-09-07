@@ -308,3 +308,8 @@
 	url = https://github.com/distilled-mirror/spec-mirror-render.git
 	ignore = dirty
 	shallow = true
+[submodule "packages/sentry/specs/spec-mirror-sentry"]
+	path = packages/sentry/specs/spec-mirror-sentry
+	url = https://github.com/distilled-mirror/spec-mirror-sentry.git
+	ignore = dirty
+	shallow = true
