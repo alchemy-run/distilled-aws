@@ -1,0 +1,251 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "appsmarket",
+    "version": "v2",
+    "title": "Google Workspace Marketplace API",
+    "baseUrl": "https://appsmarket.googleapis.com/",
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.googleworkspace.appsmarket_v2#CustomerLicense": {
+      "type": "structure",
+      "members": {
+        "customerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The domain name of the customer."
+          }
+        },
+        "state": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The customer's license status. One of: - `ACTIVE`: The customer has a valid license. - `UNLICENSED`: There is no license. Either this customer has never installed your application or has deleted it."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the customer license."
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of API resource. This is always `appsmarket#customerLicense`."
+          }
+        },
+        "applicationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the application corresponding to this license query."
+          }
+        },
+        "editions": {
+          "target": "com.googleworkspace.appsmarket_v2#EditionsList",
+          "traits": {
+            "smithy.api#documentation": "(Deprecated)"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.appsmarket_v2#EditionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.appsmarket_v2#Editions"
+      }
+    },
+    "com.googleworkspace.appsmarket_v2#Editions": {
+      "type": "structure",
+      "members": {
+        "editionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "(Deprecated)"
+          }
+        },
+        "seatCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "(Deprecated)"
+          }
+        },
+        "assignedSeats": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "(Deprecated)"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.appsmarket_v2#UserLicense": {
+      "type": "structure",
+      "members": {
+        "editionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "(Deprecated)"
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of API resource. This is always `appsmarket#userLicense`."
+          }
+        },
+        "state": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user's licensing status. One of: - `ACTIVE`: The user has a valid license and should be permitted to use the application. - `UNLICENSED`: The administrator of this user's domain never assigned a seat for the application to this user. - `EXPIRED`: The administrator assigned a seat to this user, but the license is expired."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The domain administrator has activated the application for this domain."
+          }
+        },
+        "customerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The domain name of the user."
+          }
+        },
+        "userId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email address of the user."
+          }
+        },
+        "applicationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the application corresponding to the license query."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the user license."
+          }
+        }
+      }
+    },
+    "com.googleworkspace.appsmarket_v2#GetCustomerLicenseRequest": {
+      "type": "structure",
+      "members": {
+        "applicationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the application.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "customerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the customer.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.appsmarket_v2#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.googleworkspace.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.googleworkspace.appsmarket_v2#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.googleworkspace.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.googleworkspace.appsmarket_v2#GetCustomerLicense": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.appsmarket_v2#GetCustomerLicenseRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.appsmarket_v2#CustomerLicense"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.appsmarket_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.appsmarket_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "appsmarket/v2/customerLicense/{applicationId}/{customerId}"
+        },
+        "smithy.api#documentation": "Gets the customer's licensing status to determine if they have access to a given app. For more information, see [Getting app installation and licensing details](https://developers.google.com/workspace/marketplace/example-calls-marketplace-api)."
+      }
+    },
+    "com.googleworkspace.appsmarket_v2#GetUserLicenseRequest": {
+      "type": "structure",
+      "members": {
+        "userId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the user.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "applicationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the application.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.appsmarket_v2#GetUserLicense": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.appsmarket_v2#GetUserLicenseRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.appsmarket_v2#UserLicense"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.appsmarket_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.appsmarket_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "appsmarket/v2/userLicense/{applicationId}/{userId}"
+        },
+        "smithy.api#documentation": "Gets the user's licensing status to determine if they have permission to use a given app. For more information, see [Getting app installation and licensing details](https://developers.google.com/workspace/marketplace/example-calls-marketplace-api)."
+      }
+    }
+  }
+}

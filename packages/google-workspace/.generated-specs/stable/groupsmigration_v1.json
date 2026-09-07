@@ -1,0 +1,127 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "groupsmigration",
+    "version": "v1",
+    "title": "Groups Migration API",
+    "baseUrl": "https://groupsmigration.googleapis.com/",
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.googleworkspace.groupsmigration_v1#Groups": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The kind of insert resource this is."
+          }
+        },
+        "responseCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The status of the insert request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "JSON response template for groups migration API."
+      }
+    },
+    "com.googleworkspace.groupsmigration_v1#InsertArchiveRequest": {
+      "type": "structure",
+      "members": {
+        "groupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The group ID",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.groupsmigration_v1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.googleworkspace.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.googleworkspace.groupsmigration_v1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.googleworkspace.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.googleworkspace.groupsmigration_v1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.googleworkspace.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.googleworkspace.groupsmigration_v1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.googleworkspace.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.googleworkspace.groupsmigration_v1#InsertArchive": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.groupsmigration_v1#InsertArchiveRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.groupsmigration_v1#Groups"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.groupsmigration_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.groupsmigration_v1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.groupsmigration_v1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.groupsmigration_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "groups/v1/groups/{groupId}/archive"
+        },
+        "smithy.api#documentation": "Inserts a new mail into the archive of the Google group."
+      }
+    }
+  }
+}

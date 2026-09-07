@@ -1,0 +1,1796 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "workspaceevents",
+    "version": "v1",
+    "title": "Google Workspace Events API",
+    "baseUrl": "https://workspaceevents.googleapis.com/",
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.googleworkspace.workspaceevents_v1#TaskStatusUpdateEvent": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.googleworkspace.workspaceevents_v1#TaskStatus",
+          "traits": {
+            "smithy.api#documentation": "The new status of the task."
+          }
+        },
+        "taskId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The id of the task that is changed"
+          }
+        },
+        "contextId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The id of the context that the task belongs to"
+          }
+        },
+        "metadata": {
+          "target": "com.googleworkspace.workspaceevents_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Optional metadata to associate with the task update."
+          }
+        },
+        "final": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this is the last status update expected for this task."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "TaskStatusUpdateEvent is a delta even on a task indicating that a task has changed."
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#TaskArtifactUpdateEvent": {
+      "type": "structure",
+      "members": {
+        "contextId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The id of the context that this task belongs too"
+          }
+        },
+        "metadata": {
+          "target": "com.googleworkspace.workspaceevents_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Optional metadata associated with the artifact update."
+          }
+        },
+        "lastChunk": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this represents the last part of an artifact"
+          }
+        },
+        "taskId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The id of the task for this artifact"
+          }
+        },
+        "append": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this should be appended to a prior one produced"
+          }
+        },
+        "artifact": {
+          "target": "com.googleworkspace.workspaceevents_v1#Artifact",
+          "traits": {
+            "smithy.api#documentation": "The artifact itself"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "TaskArtifactUpdateEvent represents a task delta where an artifact has been generated."
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#SendMessageRequest": {
+      "type": "structure",
+      "members": {
+        "configuration": {
+          "target": "com.googleworkspace.workspaceevents_v1#SendMessageConfiguration",
+          "traits": {
+            "smithy.api#documentation": "Configuration for the send request."
+          }
+        },
+        "metadata": {
+          "target": "com.googleworkspace.workspaceevents_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Optional metadata for the request."
+          }
+        },
+        "tenant": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release."
+          }
+        },
+        "message": {
+          "target": "com.googleworkspace.workspaceevents_v1#Message",
+          "traits": {
+            "smithy.api#documentation": "Required. The message to send to the agent."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "/////////// Request Messages ///////////"
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#Subscription": {
+      "type": "structure",
+      "members": {
+        "userAuthority": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The user who authorized the creation of the subscription. The user must be able to view the `target_resource`. For Google Workspace users, the `{user}` value is the [`user.id`](https://developers.google.com/workspace/admin/directory/reference/rest/v1/users#User.FIELDS.id) field from the Directory API. Format: `users/{user}`"
+          }
+        },
+        "reconciling": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. If `true`, the subscription is in the process of being updated."
+          }
+        },
+        "state": {
+          "target": "com.googleworkspace.workspaceevents_v1#SubscriptionStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The state of the subscription. Determines whether the subscription can receive events and deliver them to the notification endpoint."
+          }
+        },
+        "ttl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Input only. The time-to-live (TTL) or duration for the subscription. If unspecified or set to `0`, uses the maximum possible duration."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. This checksum is computed by the server based on the value of other fields, and might be sent on update requests to ensure the client has an up-to-date value before proceeding."
+          }
+        },
+        "serviceAccountAuthority": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The service account that was used to authorize the creation of the subscription. This service account must be owned by the same Google Cloud project where you created this subscription. Format: `projects/{project_id}/serviceAccounts/{service_account_id}`"
+          }
+        },
+        "payloadOptions": {
+          "target": "com.googleworkspace.workspaceevents_v1#PayloadOptions",
+          "traits": {
+            "smithy.api#documentation": "Optional. Options about what data to include in the event payload. Only supported for Google Chat and Google Drive events."
+          }
+        },
+        "authority": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The user who authorized the creation of the subscription. When a user authorizes the subscription, this field and the `user_authority` field have the same value and the format is: Format: `users/{user}` For Google Workspace users, the `{user}` value is the [`user.id`](https://developers.google.com/admin-sdk/directory/reference/rest/v1/users#User.FIELDS.ids) field from the Directory API. When a Chat app authorizes the subscription, only `service_account_authority` field populates and this field is empty."
+          }
+        },
+        "eventTypes": {
+          "target": "com.googleworkspace.workspaceevents_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Required. Unordered list. Input for creating a subscription. Otherwise, output only. One or more types of events to receive about the target resource. Formatted according to the CloudEvents specification. The supported event types depend on the target resource of your subscription. For details, see [Supported Google Workspace events](https://developers.google.com/workspace/events/guides#supported-events). By default, you also receive events about the [lifecycle of your subscription](https://developers.google.com/workspace/events/guides/events-lifecycle). You don't need to specify lifecycle events for this field. If you specify an event type that doesn't exist for the target resource, the request returns an HTTP `400 Bad Request` status code."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time when the subscription is created."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. Resource name of the subscription. Format: `subscriptions/{subscription}`"
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The last time that the subscription is updated."
+          }
+        },
+        "suspensionReason": {
+          "target": "com.googleworkspace.workspaceevents_v1#SubscriptionSuspensionReasonEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The error that suspended the subscription. To reactivate the subscription, resolve the error and call the `ReactivateSubscription` method."
+          }
+        },
+        "expireTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Non-empty default. The timestamp in UTC when the subscription expires. Always displayed on output, regardless of what was used on input."
+          }
+        },
+        "notificationEndpoint": {
+          "target": "com.googleworkspace.workspaceevents_v1#NotificationEndpoint",
+          "traits": {
+            "smithy.api#documentation": "Required. Immutable. The endpoint where the subscription delivers events, such as a Pub/Sub topic."
+          }
+        },
+        "targetResource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Immutable. The Google Workspace resource that's monitored for events, formatted as the [full resource name](https://google.aip.dev/122#full-resource-names). To learn about target resources and the events that they support, see [Supported Google Workspace events](https://developers.google.com/workspace/events#supported-events). A user can only authorize your app to create one subscription for a given target resource. If your app tries to create another subscription with the same user credentials, the request returns an `ALREADY_EXISTS` error."
+          }
+        },
+        "driveOptions": {
+          "target": "com.googleworkspace.workspaceevents_v1#DriveOptions",
+          "traits": {
+            "smithy.api#documentation": "Optional. Features that are supported only for subscriptions on Drive resources."
+          }
+        },
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. System-assigned unique identifier for the subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A subscription to receive events about a Google Workspace resource. To learn more about subscriptions, see the [Google Workspace Events API overview](https://developers.google.com/workspace/events)."
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#SubscriptionStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE"
+          }
+        },
+        "SUSPENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUSPENDED"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETED"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#SubscriptionSuspensionReasonEnum": {
+      "type": "enum",
+      "members": {
+        "ERROR_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR_TYPE_UNSPECIFIED"
+          }
+        },
+        "USER_SCOPE_REVOKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "USER_SCOPE_REVOKED"
+          }
+        },
+        "APP_SCOPE_REVOKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APP_SCOPE_REVOKED"
+          }
+        },
+        "RESOURCE_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESOURCE_DELETED"
+          }
+        },
+        "USER_AUTHORIZATION_FAILURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "USER_AUTHORIZATION_FAILURE"
+          }
+        },
+        "APP_AUTHORIZATION_FAILURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APP_AUTHORIZATION_FAILURE"
+          }
+        },
+        "ENDPOINT_PERMISSION_DENIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENDPOINT_PERMISSION_DENIED"
+          }
+        },
+        "ENDPOINT_NOT_FOUND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENDPOINT_NOT_FOUND"
+          }
+        },
+        "ENDPOINT_RESOURCE_EXHAUSTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENDPOINT_RESOURCE_EXHAUSTED"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OTHER"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#Operation": {
+      "type": "structure",
+      "members": {
+        "response": {
+          "target": "com.googleworkspace.workspaceevents_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+          }
+        },
+        "done": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+          }
+        },
+        "error": {
+          "target": "com.googleworkspace.workspaceevents_v1#Status",
+          "traits": {
+            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
+          }
+        },
+        "metadata": {
+          "target": "com.googleworkspace.workspaceevents_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#DriveOptions": {
+      "type": "structure",
+      "members": {
+        "includeDescendants": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Immutable. For subscriptions to Google Drive events, whether to receive events about Drive files that are children of the target folder or shared drive. This field must be `true` for subscriptions on shared drives. * If `false`, the subscription only receives events about changes to the folder or shared drive that's specified as the `targetResource`. * If `true`, the `mimeType` field of the `file` resource must be set to `application/vnd.google-apps.folder`. For details, see [Google Drive event types](https://developers.google.com/workspace/events/guides/events-drive#event-types)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Additional supported options for serving Drive events."
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#AuthenticationInfo": {
+      "type": "structure",
+      "members": {
+        "credentials": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional credentials"
+          }
+        },
+        "schemes": {
+          "target": "com.googleworkspace.workspaceevents_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Supported authentication schemes - e.g. Basic, Bearer, etc"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Defines authentication details, used for push notifications."
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#TaskPushNotificationConfig": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the config. Format: tasks/{task_id}/pushNotificationConfigs/{config_id}"
+          }
+        },
+        "pushNotificationConfig": {
+          "target": "com.googleworkspace.workspaceevents_v1#PushNotificationConfig",
+          "traits": {
+            "smithy.api#documentation": "The push notification configuration details."
+          }
+        }
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#ReactivateSubscriptionRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "The request message for SubscriptionsService.ReactivateSubscription."
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#TaskStatus": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "com.googleworkspace.workspaceevents_v1#Message",
+          "traits": {
+            "smithy.api#documentation": "A message associated with the status."
+          }
+        },
+        "timestamp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp when the status was recorded. Example: \"2023-10-27T10:00:00Z\""
+          }
+        },
+        "state": {
+          "target": "com.googleworkspace.workspaceevents_v1#TaskStatusStateEnum",
+          "traits": {
+            "smithy.api#documentation": "The current state of this task"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A container for the status of a task"
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#TaskStatusStateEnum": {
+      "type": "enum",
+      "members": {
+        "TASK_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TASK_STATE_UNSPECIFIED"
+          }
+        },
+        "TASK_STATE_SUBMITTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TASK_STATE_SUBMITTED"
+          }
+        },
+        "TASK_STATE_WORKING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TASK_STATE_WORKING"
+          }
+        },
+        "TASK_STATE_COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TASK_STATE_COMPLETED"
+          }
+        },
+        "TASK_STATE_FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TASK_STATE_FAILED"
+          }
+        },
+        "TASK_STATE_CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TASK_STATE_CANCELLED"
+          }
+        },
+        "TASK_STATE_INPUT_REQUIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TASK_STATE_INPUT_REQUIRED"
+          }
+        },
+        "TASK_STATE_REJECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TASK_STATE_REJECTED"
+          }
+        },
+        "TASK_STATE_AUTH_REQUIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TASK_STATE_AUTH_REQUIRED"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#CancelTaskRequest": {
+      "type": "structure",
+      "members": {
+        "tenant": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release."
+          }
+        }
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#FilePart": {
+      "type": "structure",
+      "members": {
+        "mimeType": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "fileWithBytes": {
+          "target": "smithy.api#String"
+        },
+        "fileWithUri": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "FilePart represents the different ways files can be provided. If files are small, directly feeding the bytes is supported via file_with_bytes. If the file is large, the agent should read the content as appropriate directly from the file_with_uri source."
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#SendMessageConfiguration": {
+      "type": "structure",
+      "members": {
+        "pushNotification": {
+          "target": "com.googleworkspace.workspaceevents_v1#PushNotificationConfig",
+          "traits": {
+            "smithy.api#documentation": "A configuration of a webhook that can be used to receive updates"
+          }
+        },
+        "blocking": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, the message will be blocking until the task is completed. If false, the message will be non-blocking and the task will be returned immediately. It is the caller's responsibility to check for any task updates."
+          }
+        },
+        "historyLength": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of messages to include in the history. if 0, the history will be unlimited."
+          }
+        },
+        "acceptedOutputModes": {
+          "target": "com.googleworkspace.workspaceevents_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The output modes that the agent is expected to respond with."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration of a send message request."
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#StreamResponse": {
+      "type": "structure",
+      "members": {
+        "task": {
+          "target": "com.googleworkspace.workspaceevents_v1#Task"
+        },
+        "artifactUpdate": {
+          "target": "com.googleworkspace.workspaceevents_v1#TaskArtifactUpdateEvent"
+        },
+        "message": {
+          "target": "com.googleworkspace.workspaceevents_v1#Message"
+        },
+        "statusUpdate": {
+          "target": "com.googleworkspace.workspaceevents_v1#TaskStatusUpdateEvent"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The stream response for a message. The stream should be one of the following sequences: If the response is a message, the stream should contain one, and only one, message and then close If the response is a task lifecycle, the first response should be a Task object followed by zero or more TaskStatusUpdateEvents and TaskArtifactUpdateEvents. The stream should complete when the Task if in an interrupted or terminal state. A stream that ends before these conditions are met are"
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#Artifact": {
+      "type": "structure",
+      "members": {
+        "metadata": {
+          "target": "com.googleworkspace.workspaceevents_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Optional metadata included with the artifact."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A human readable description of the artifact, optional."
+          }
+        },
+        "artifactId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier (e.g. UUID) for the artifact. It must be at least unique within a task."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A human readable name for the artifact."
+          }
+        },
+        "parts": {
+          "target": "com.googleworkspace.workspaceevents_v1#PartList",
+          "traits": {
+            "smithy.api#documentation": "The content of the artifact."
+          }
+        },
+        "extensions": {
+          "target": "com.googleworkspace.workspaceevents_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The URIs of extensions that are present or contributed to this Artifact."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Artifacts are the container for task completed results. These are similar to Messages but are intended to be the product of a task, as opposed to point-to-point communication."
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#PartList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.workspaceevents_v1#Part"
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#Part": {
+      "type": "structure",
+      "members": {
+        "text": {
+          "target": "smithy.api#String"
+        },
+        "data": {
+          "target": "com.googleworkspace.workspaceevents_v1#DataPart"
+        },
+        "metadata": {
+          "target": "com.googleworkspace.workspaceevents_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Optional metadata associated with this part."
+          }
+        },
+        "file": {
+          "target": "com.googleworkspace.workspaceevents_v1#FilePart"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Part represents a container for a section of communication content. Parts can be purely textual, some sort of file (image, video, etc) or a structured data blob (i.e. JSON)."
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#Task": {
+      "type": "structure",
+      "members": {
+        "metadata": {
+          "target": "com.googleworkspace.workspaceevents_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "protolint:enable REPEATED_FIELD_NAMES_PLURALIZED A key/value object to store custom metadata about a task."
+          }
+        },
+        "history": {
+          "target": "com.googleworkspace.workspaceevents_v1#MessageList",
+          "traits": {
+            "smithy.api#documentation": "protolint:disable REPEATED_FIELD_NAMES_PLURALIZED The history of interactions from a task."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier (e.g. UUID) for the task, generated by the server for a new task."
+          }
+        },
+        "status": {
+          "target": "com.googleworkspace.workspaceevents_v1#TaskStatus",
+          "traits": {
+            "smithy.api#documentation": "The current status of a Task, including state and a message."
+          }
+        },
+        "contextId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier (e.g. UUID) for the contextual collection of interactions (tasks and messages). Created by the A2A server."
+          }
+        },
+        "artifacts": {
+          "target": "com.googleworkspace.workspaceevents_v1#ArtifactList",
+          "traits": {
+            "smithy.api#documentation": "A set of output artifacts for a Task."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Task is the core unit of action for A2A. It has a current status and when results are created for the task they are stored in the artifact. If there are multiple turns for a task, these are stored in history."
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#MessageList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.workspaceevents_v1#Message"
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#ArtifactList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.workspaceevents_v1#Artifact"
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#PayloadOptions": {
+      "type": "structure",
+      "members": {
+        "includeResource": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Whether the event payload includes data about the resource that changed. For example, for an event where a Google Chat message was created, whether the payload contains data about the [`Message`](https://developers.google.com/chat/api/reference/rest/v1/spaces.messages) resource. If false, the event payload only includes the name of the changed resource."
+          }
+        },
+        "fieldMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. If `include_resource` is set to `true`, the list of fields to include in the event payload. Separate fields with a comma. For example, to include a Google Chat message's sender and create time, enter `message.sender,message.createTime`. If omitted, the payload includes all fields for the resource. If you specify a field that doesn't exist for the resource, the system ignores the field."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Options about what data to include in the event payload. Only supported for Google Chat and Google Drive events."
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#Status": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+          }
+        },
+        "details": {
+          "target": "com.googleworkspace.workspaceevents_v1#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#DocumentMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.workspaceevents_v1#DocumentMap"
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#Message": {
+      "type": "structure",
+      "members": {
+        "extensions": {
+          "target": "com.googleworkspace.workspaceevents_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The URIs of extensions that are present or contributed to this Message."
+          }
+        },
+        "metadata": {
+          "target": "com.googleworkspace.workspaceevents_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "protolint:enable REPEATED_FIELD_NAMES_PLURALIZED Any optional metadata to provide along with the message."
+          }
+        },
+        "role": {
+          "target": "com.googleworkspace.workspaceevents_v1#MessageRoleEnum",
+          "traits": {
+            "smithy.api#documentation": "A role for the message."
+          }
+        },
+        "messageId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier (e.g. UUID)of the message. This is required and created by the message creator."
+          }
+        },
+        "contextId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The context id of the message. This is optional and if set, the message will be associated with the given context."
+          }
+        },
+        "content": {
+          "target": "com.googleworkspace.workspaceevents_v1#PartList",
+          "traits": {
+            "smithy.api#documentation": "protolint:disable REPEATED_FIELD_NAMES_PLURALIZED Content is the container of the message content."
+          }
+        },
+        "taskId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The task id of the message. This is optional and if set, the message will be associated with the given task."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message is one unit of communication between client and server. It is associated with a context and optionally a task. Since the server is responsible for the context definition, it must always provide a context_id in its messages. The client can optionally provide the context_id if it knows the context to associate the message to. Similarly for task_id, except the server decides if a task is created and whether to include the task_id."
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#MessageRoleEnum": {
+      "type": "enum",
+      "members": {
+        "ROLE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ROLE_UNSPECIFIED"
+          }
+        },
+        "ROLE_USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ROLE_USER"
+          }
+        },
+        "ROLE_AGENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ROLE_AGENT"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#PushNotificationConfig": {
+      "type": "structure",
+      "members": {
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Url to send the notification too"
+          }
+        },
+        "authentication": {
+          "target": "com.googleworkspace.workspaceevents_v1#AuthenticationInfo",
+          "traits": {
+            "smithy.api#documentation": "Information about the authentication to sent with the notification"
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A unique identifier (e.g. UUID) for this push notification."
+          }
+        },
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token unique for this task/session"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration for setting up push notifications for task updates."
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#ListTaskPushNotificationConfigResponse": {
+      "type": "structure",
+      "members": {
+        "configs": {
+          "target": "com.googleworkspace.workspaceevents_v1#TaskPushNotificationConfigList",
+          "traits": {
+            "smithy.api#documentation": "The list of push notification configurations."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+          }
+        }
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#TaskPushNotificationConfigList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.workspaceevents_v1#TaskPushNotificationConfig"
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#DataPart": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.googleworkspace.workspaceevents_v1#DocumentMap"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "DataPart represents a structured blob. This is most commonly a JSON payload."
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#ListSubscriptionsResponse": {
+      "type": "structure",
+      "members": {
+        "subscriptions": {
+          "target": "com.googleworkspace.workspaceevents_v1#SubscriptionList",
+          "traits": {
+            "smithy.api#documentation": "List of subscriptions."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for SubscriptionsService.ListSubscriptions."
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#SubscriptionList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.workspaceevents_v1#Subscription"
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#NotificationEndpoint": {
+      "type": "structure",
+      "members": {
+        "pubsubTopic": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. The Pub/Sub topic that receives events for the subscription. Format: `projects/{project}/topics/{topic}` You must create the topic in the same Google Cloud project where you create this subscription. Note: The Google Workspace Events API uses [ordering keys](https://cloud.google.com/pubsub/docs/ordering) for the benefit of sequential events. If the Cloud Pub/Sub topic has a [message storage policy](https://cloud.google.com/pubsub/docs/resource-location-restriction#exceptions) configured to exclude the nearest Google Cloud region, publishing events with ordering keys will fail. When the topic receives events, the events are encoded as Pub/Sub messages. For details, see the [Google Cloud Pub/Sub Protocol Binding for CloudEvents](https://github.com/googleapis/google-cloudevents/blob/main/docs/spec/pubsub.md)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The endpoint where the subscription delivers events."
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#DeleteSubscriptionsRequest": {
+      "type": "structure",
+      "members": {
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Etag of the subscription. If present, it must match with the server's etag. Otherwise, request fails with the status `ABORTED`.",
+            "smithy.api#httpQuery": "etag"
+          }
+        },
+        "validateOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If set to `true`, validates and previews the request, but doesn't delete the subscription.",
+            "smithy.api#httpQuery": "validateOnly"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Resource name of the subscription to delete. Format: `subscriptions/{subscription}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "allowMissing": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If set to `true` and the subscription isn't found, the request succeeds but doesn't delete the subscription.",
+            "smithy.api#httpQuery": "allowMissing"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.googleworkspace.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.googleworkspace.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.googleworkspace.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.googleworkspace.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#DeleteSubscriptions": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.workspaceevents_v1#DeleteSubscriptionsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.workspaceevents_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.workspaceevents_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.workspaceevents_v1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.workspaceevents_v1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.workspaceevents_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a Google Workspace subscription. To learn how to use this method, see [Delete a Google Workspace subscription](https://developers.google.com/workspace/events/guides/delete-subscription)."
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#ListSubscriptionsRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A page token, received from a previous list subscriptions call. Provide this parameter to retrieve the subsequent page. When paginating, the filter value should match the call that provided the page token. Passing a different value might lead to unexpected results.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. A query filter. You can filter subscriptions by event type (`event_types`) and target resource (`target_resource`). You must specify at least one event type in your query. To filter for multiple event types, use the `OR` operator. To filter by both event type and target resource, use the `AND` operator and specify the full resource name, such as `//chat.googleapis.com/spaces/{space}`. For example, the following queries are valid: ``` event_types:\"google.workspace.chat.membership.v1.updated\" OR event_types:\"google.workspace.chat.message.v1.created\" event_types:\"google.workspace.chat.message.v1.created\" AND target_resource=\"//chat.googleapis.com/spaces/{space}\" ( event_types:\"google.workspace.chat.membership.v1.updated\" OR event_types:\"google.workspace.chat.message.v1.created\" ) AND target_resource=\"//chat.googleapis.com/spaces/{space}\" ``` The following query is available in [Developer Preview](https://developers.google.com/workspace/preview): ``` event_types:\"google.workspace.chat.message.v1.created\" AND target_resource=\"//admin.googleapis.com/customers/my_customer\" ``` The server rejects invalid queries with an `INVALID_ARGUMENT` error.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of subscriptions to return. The service might return fewer than this value. If unspecified or set to `0`, up to 50 subscriptions are returned. The maximum value is 100. If you specify a value more than 100, the system only returns 100 subscriptions.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#ListSubscriptions": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.workspaceevents_v1#ListSubscriptionsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.workspaceevents_v1#ListSubscriptionsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.workspaceevents_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.workspaceevents_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/subscriptions"
+        },
+        "smithy.api#documentation": "Lists Google Workspace subscriptions. To learn how to use this method, see [List Google Workspace subscriptions](https://developers.google.com/workspace/events/guides/list-subscriptions).",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#GetSubscriptionsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Resource name of the subscription. Format: `subscriptions/{subscription}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#GetSubscriptions": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.workspaceevents_v1#GetSubscriptionsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.workspaceevents_v1#Subscription"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.workspaceevents_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.workspaceevents_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets details about a Google Workspace subscription. To learn how to use this method, see [Get details about a Google Workspace subscription](https://developers.google.com/workspace/events/guides/get-subscription)."
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#CreateSubscriptionsRequest": {
+      "type": "structure",
+      "members": {
+        "validateOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If set to `true`, validates and previews the request, but doesn't create the subscription.",
+            "smithy.api#httpQuery": "validateOnly"
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.workspaceevents_v1#Subscription",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#CreateSubscriptions": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.workspaceevents_v1#CreateSubscriptionsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.workspaceevents_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.workspaceevents_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.workspaceevents_v1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.workspaceevents_v1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.workspaceevents_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/subscriptions"
+        },
+        "smithy.api#documentation": "Creates a Google Workspace subscription. To learn how to use this method, see [Create a Google Workspace subscription](https://developers.google.com/workspace/events/guides/create-subscription). For a subscription on a [Chat target resource](https://developers.google.com/workspace/events/guides/events-chat), you can create a subscription as: - A Chat app subscribing to space events where the app is a member by specifying an authorization scope that begins with `chat.app` and getting one-time administrator approval. To learn more, see [Authorize as a Chat app with administrator approval](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app). - [Developer Preview](https://developers.google.com/workspace/preview): A Chat app subscribing to all events in a Google Workspace organization by specifying an authorization scope that begins with `chat.app.all` and obtaining one-time administrator approval. To learn more, see [Subscribe to all Google Chat events in a Workspace organization ](https://developers.google.com/workspace/events/guides/create-subscription#customer-subscription). - A user by specifying an authorization scope that doesn't include `app` in its name. To learn more, see [Authorize as a Chat user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)."
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#PatchSubscriptionsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. Resource name of the subscription. Format: `subscriptions/{subscription}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The field to update. If omitted, updates any fields included in the request. You can update one of the following fields in a subscription: * `expire_time`: The timestamp when the subscription expires. * `ttl`: The time-to-live (TTL) or duration of the subscription. * `event_types`: The list of event types to receive about the target resource. When using the `*` wildcard (equivalent to `PUT`), omitted fields are set to empty values and rejected if they're invalid.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "validateOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If set to `true`, validates and previews the request, but doesn't update the subscription.",
+            "smithy.api#httpQuery": "validateOnly"
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.workspaceevents_v1#Subscription",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#PatchSubscriptions": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.workspaceevents_v1#PatchSubscriptionsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.workspaceevents_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.workspaceevents_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.workspaceevents_v1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.workspaceevents_v1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.workspaceevents_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Updates or renews a Google Workspace subscription. To learn how to use this method, see [Update or renew a Google Workspace subscription](https://developers.google.com/workspace/events/guides/update-subscription). For a subscription on a [Chat target resource](https://developers.google.com/workspace/events/guides/events-chat), you can update a subscription as: - A Chat app subscribing to space events where the app is a member by specifying an authorization scope that begins with `chat.app` and getting one-time administrator approval. To learn more, see [Authorize as a Chat app with administrator approval](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app). - [Developer Preview](https://developers.google.com/workspace/preview): A Chat app subscribing to all events in a Google Workspace organization by specifying an authorization scope that begins with `chat.app.all` and getting one-time administrator approval. To learn more, see [Subscribe to all Google Chat events in a Workspace organization ](https://developers.google.com/workspace/events/guides/create-subscription#customer-subscription). - A user by specifying an authorization scope that doesn't include `app` in its name. To learn more, see [Authorize as a Chat user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)."
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#ReactivateSubscriptionsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Resource name of the subscription. Format: `subscriptions/{subscription}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.workspaceevents_v1#ReactivateSubscriptionRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#ReactivateSubscriptions": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.workspaceevents_v1#ReactivateSubscriptionsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.workspaceevents_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.workspaceevents_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.workspaceevents_v1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.workspaceevents_v1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.workspaceevents_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:reactivate"
+        },
+        "smithy.api#documentation": "Reactivates a suspended Google Workspace subscription. This method resets your subscription's `State` field to `ACTIVE`. Before you use this method, you must fix the error that suspended the subscription. This method will ignore or reject any subscription that isn't currently in a suspended state. To learn how to use this method, see [Reactivate a Google Workspace subscription](https://developers.google.com/workspace/events/guides/reactivate-subscription). For a subscription on a [Chat target resource](https://developers.google.com/workspace/events/guides/events-chat), you can reactivate a subscription as: - A Chat app subscribing to space events where the app is a member by specifying an authorization scope that begins with `chat.app` and getting one-time administrator approval. To learn more, see [Authorize as a Chat app with administrator approval](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app). - [Developer Preview](https://developers.google.com/workspace/preview): A Chat app subscribing to all events in a Google Workspace organization by specifying an authorization scope that begins with `chat.app.all` and getting one-time administrator approval. To learn more, see [Subscribe to all Google Chat events in a Workspace organization ](https://developers.google.com/workspace/events/guides/create-subscription#customer-subscription). - A user by specifying an authorization scope that doesn't include `app` in its name. To learn more, see [Authorize as a Chat user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)."
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#GetOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#GetOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.workspaceevents_v1#GetOperationsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.workspaceevents_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.workspaceevents_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.workspaceevents_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#GetTasksRequest": {
+      "type": "structure",
+      "members": {
+        "historyLength": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of most recent messages from the task's history to retrieve.",
+            "smithy.api#httpQuery": "historyLength"
+          }
+        },
+        "tenant": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.",
+            "smithy.api#httpQuery": "tenant"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the task. Format: tasks/{task_id}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#GetTasks": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.workspaceevents_v1#GetTasksRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.workspaceevents_v1#Task"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.workspaceevents_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.workspaceevents_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Get the current state of a task from the agent."
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#SubscribeTasksRequest": {
+      "type": "structure",
+      "members": {
+        "tenant": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.",
+            "smithy.api#httpQuery": "tenant"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the task to subscribe to. Format: tasks/{task_id}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#SubscribeTasks": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.workspaceevents_v1#SubscribeTasksRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.workspaceevents_v1#StreamResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.workspaceevents_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.workspaceevents_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}:subscribe"
+        },
+        "smithy.api#documentation": "TaskSubscription is a streaming call that will return a stream of task update events. This attaches the stream to an existing in process task. If the task is complete the stream will return the completed task (like GetTask) and close the stream."
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#CancelTasksRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the task to cancel. Format: tasks/{task_id}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.workspaceevents_v1#CancelTaskRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#CancelTasks": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.workspaceevents_v1#CancelTasksRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.workspaceevents_v1#Task"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.workspaceevents_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.workspaceevents_v1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.workspaceevents_v1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.workspaceevents_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:cancel"
+        },
+        "smithy.api#documentation": "Cancel a task from the agent. If supported one should expect no more task updates for the task."
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#ListTasksPushNotificationConfigsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "For AIP-158 these fields are present. Usually not used/needed. The maximum number of configurations to return. If unspecified, all configs will be returned.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "tenant": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.",
+            "smithy.api#httpQuery": "tenant"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token received from a previous ListTaskPushNotificationConfigRequest call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTaskPushNotificationConfigRequest` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The parent task resource. Format: tasks/{task_id}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#ListTasksPushNotificationConfigs": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.workspaceevents_v1#ListTasksPushNotificationConfigsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.workspaceevents_v1#ListTaskPushNotificationConfigResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.workspaceevents_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.workspaceevents_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/pushNotificationConfigs"
+        },
+        "smithy.api#documentation": "Get a list of push notifications configured for a task.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#CreateTasksPushNotificationConfigsRequest": {
+      "type": "structure",
+      "members": {
+        "tenant": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.",
+            "smithy.api#httpQuery": "tenant"
+          }
+        },
+        "configId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The ID for the new config.",
+            "smithy.api#httpQuery": "configId"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent task resource for this config. Format: tasks/{task_id}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.workspaceevents_v1#TaskPushNotificationConfig",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#CreateTasksPushNotificationConfigs": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.workspaceevents_v1#CreateTasksPushNotificationConfigsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.workspaceevents_v1#TaskPushNotificationConfig"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.workspaceevents_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.workspaceevents_v1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.workspaceevents_v1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.workspaceevents_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}"
+        },
+        "smithy.api#documentation": "Set a push notification config for a task."
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#GetTasksPushNotificationConfigsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the config to retrieve. Format: tasks/{task_id}/pushNotificationConfigs/{config_id}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "tenant": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.",
+            "smithy.api#httpQuery": "tenant"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#GetTasksPushNotificationConfigs": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.workspaceevents_v1#GetTasksPushNotificationConfigsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.workspaceevents_v1#TaskPushNotificationConfig"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.workspaceevents_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.workspaceevents_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Get a push notification config for a task."
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#DeleteTasksPushNotificationConfigsRequest": {
+      "type": "structure",
+      "members": {
+        "tenant": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.",
+            "smithy.api#httpQuery": "tenant"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the config to delete. Format: tasks/{task_id}/pushNotificationConfigs/{config_id}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#DeleteTasksPushNotificationConfigs": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.workspaceevents_v1#DeleteTasksPushNotificationConfigsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.workspaceevents_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.workspaceevents_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.workspaceevents_v1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.workspaceevents_v1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.workspaceevents_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Delete a push notification config for a task."
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#StreamMessageRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.googleworkspace.workspaceevents_v1#SendMessageRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.workspaceevents_v1#StreamMessage": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.workspaceevents_v1#StreamMessageRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.workspaceevents_v1#StreamResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.workspaceevents_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.workspaceevents_v1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.workspaceevents_v1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.workspaceevents_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/message:stream"
+        },
+        "smithy.api#documentation": "SendStreamingMessage is a streaming call that will return a stream of task update events until the Task is in an interrupted or terminal state."
+      }
+    }
+  }
+}

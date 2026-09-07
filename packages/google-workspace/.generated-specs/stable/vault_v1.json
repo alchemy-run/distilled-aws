@@ -1,0 +1,4522 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "vault",
+    "version": "v1",
+    "title": "Google Vault API",
+    "baseUrl": "https://vault.googleapis.com/",
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.googleworkspace.vault_v1#RemoveMatterPermissionsRequest": {
+      "type": "structure",
+      "members": {
+        "accountId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account ID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Remove an account as a matter collaborator."
+      }
+    },
+    "com.googleworkspace.vault_v1#AddHeldAccountsResponse": {
+      "type": "structure",
+      "members": {
+        "responses": {
+          "target": "com.googleworkspace.vault_v1#AddHeldAccountResultList",
+          "traits": {
+            "smithy.api#documentation": "The list of responses, in the same order as the batch request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for batch create held accounts."
+      }
+    },
+    "com.googleworkspace.vault_v1#AddHeldAccountResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.vault_v1#AddHeldAccountResult"
+      }
+    },
+    "com.googleworkspace.vault_v1#HangoutsChatExportOptions": {
+      "type": "structure",
+      "members": {
+        "exportFormat": {
+          "target": "com.googleworkspace.vault_v1#HangoutsChatExportOptionsExportFormatEnum",
+          "traits": {
+            "smithy.api#documentation": "The file format for exported messages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Options for Chat exports."
+      }
+    },
+    "com.googleworkspace.vault_v1#HangoutsChatExportOptionsExportFormatEnum": {
+      "type": "enum",
+      "members": {
+        "EXPORT_FORMAT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPORT_FORMAT_UNSPECIFIED"
+          }
+        },
+        "MBOX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MBOX"
+          }
+        },
+        "PST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PST"
+          }
+        },
+        "ICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ICS"
+          }
+        },
+        "XML": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "XML"
+          }
+        },
+        "JSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JSON"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#AddHeldAccountResult": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.googleworkspace.vault_v1#Status",
+          "traits": {
+            "smithy.api#documentation": "Reports the request status. If it failed, returns an error message."
+          }
+        },
+        "account": {
+          "target": "com.googleworkspace.vault_v1#HeldAccount",
+          "traits": {
+            "smithy.api#documentation": "Returned when the account was successfully created."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The status of each account creation, and the **HeldAccount**, if successful."
+      }
+    },
+    "com.googleworkspace.vault_v1#ExportStats": {
+      "type": "structure",
+      "members": {
+        "totalArtifactCount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The number of messages or files to be exported."
+          }
+        },
+        "exportedArtifactCount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The number of messages or files already processed for export."
+          }
+        },
+        "sizeInBytes": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The size of export in bytes."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Progress information for an export."
+      }
+    },
+    "com.googleworkspace.vault_v1#SavedQuery": {
+      "type": "structure",
+      "members": {
+        "savedQueryId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A unique identifier for the saved query."
+          }
+        },
+        "matterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The matter ID of the matter the saved query is saved in. The server does not use this field during create and always uses matter ID in the URL."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the saved query."
+          }
+        },
+        "query": {
+          "target": "com.googleworkspace.vault_v1#Query",
+          "traits": {
+            "smithy.api#documentation": "The search parameters of the saved query."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The server-generated timestamp when the saved query was created."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The definition of a saved query. To work with Vault resources, the account must have the [required Vault privileges](https://support.google.com/vault/answer/2799699) and access to the matter. To access a matter, the account must have created the matter, have the matter shared with them, or have the **View All Matters** privilege."
+      }
+    },
+    "com.googleworkspace.vault_v1#ListHoldsResponse": {
+      "type": "structure",
+      "members": {
+        "holds": {
+          "target": "com.googleworkspace.vault_v1#HoldList",
+          "traits": {
+            "smithy.api#documentation": "The list of holds."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Page token to retrieve the next page of results in the list. If this is empty, then there are no more holds to list."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The holds for a matter."
+      }
+    },
+    "com.googleworkspace.vault_v1#HoldList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.vault_v1#Hold"
+      }
+    },
+    "com.googleworkspace.vault_v1#DriveDocumentInfo": {
+      "type": "structure",
+      "members": {
+        "documentIds": {
+          "target": "com.googleworkspace.vault_v1#DriveDocumentIds",
+          "traits": {
+            "smithy.api#documentation": "Specify Drive documents by document ID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Drive documents to search."
+      }
+    },
+    "com.googleworkspace.vault_v1#ExportOptions": {
+      "type": "structure",
+      "members": {
+        "hangoutsChatOptions": {
+          "target": "com.googleworkspace.vault_v1#HangoutsChatExportOptions",
+          "traits": {
+            "smithy.api#documentation": "Options for Chat exports."
+          }
+        },
+        "voiceOptions": {
+          "target": "com.googleworkspace.vault_v1#VoiceExportOptions",
+          "traits": {
+            "smithy.api#documentation": "Options for Voice exports."
+          }
+        },
+        "mailOptions": {
+          "target": "com.googleworkspace.vault_v1#MailExportOptions",
+          "traits": {
+            "smithy.api#documentation": "Options for Gmail exports."
+          }
+        },
+        "groupsOptions": {
+          "target": "com.googleworkspace.vault_v1#GroupsExportOptions",
+          "traits": {
+            "smithy.api#documentation": "Options for Groups exports."
+          }
+        },
+        "calendarOptions": {
+          "target": "com.googleworkspace.vault_v1#CalendarExportOptions",
+          "traits": {
+            "smithy.api#documentation": "Option available for Calendar export."
+          }
+        },
+        "geminiOptions": {
+          "target": "com.googleworkspace.vault_v1#GeminiExportOptions",
+          "traits": {
+            "smithy.api#documentation": "Option available for Gemini export."
+          }
+        },
+        "region": {
+          "target": "com.googleworkspace.vault_v1#ExportOptionsRegionEnum",
+          "traits": {
+            "smithy.api#documentation": "The requested data region for the export."
+          }
+        },
+        "driveOptions": {
+          "target": "com.googleworkspace.vault_v1#DriveExportOptions",
+          "traits": {
+            "smithy.api#documentation": "Options for Drive exports."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Additional options for exports"
+      }
+    },
+    "com.googleworkspace.vault_v1#ExportOptionsRegionEnum": {
+      "type": "enum",
+      "members": {
+        "EXPORT_REGION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPORT_REGION_UNSPECIFIED"
+          }
+        },
+        "ANY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ANY"
+          }
+        },
+        "US": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "US"
+          }
+        },
+        "EUROPE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EUROPE"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#Matter": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the matter."
+          }
+        },
+        "matterRegion": {
+          "target": "com.googleworkspace.vault_v1#MatterMatterRegionEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. The requested data region for the matter."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An optional description for the matter."
+          }
+        },
+        "state": {
+          "target": "com.googleworkspace.vault_v1#MatterStateEnum",
+          "traits": {
+            "smithy.api#documentation": "The state of the matter."
+          }
+        },
+        "matterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The matter ID, which is generated by the server. Leave blank when creating a matter."
+          }
+        },
+        "matterPermissions": {
+          "target": "com.googleworkspace.vault_v1#MatterPermissionList",
+          "traits": {
+            "smithy.api#documentation": "Lists the users and their permission for the matter. Currently there is no programmer defined limit on the number of permissions a matter can have."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a matter. To work with Vault resources, the account must have the [required Vault privileges] (https://support.google.com/vault/answer/2799699) and access to the matter. To access a matter, the account must have created the matter, have the matter shared with them, or have the **View All Matters** privilege."
+      }
+    },
+    "com.googleworkspace.vault_v1#MatterMatterRegionEnum": {
+      "type": "enum",
+      "members": {
+        "MATTER_REGION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MATTER_REGION_UNSPECIFIED"
+          }
+        },
+        "ANY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ANY"
+          }
+        },
+        "US": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "US"
+          }
+        },
+        "EUROPE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EUROPE"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#MatterStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "OPEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OPEN"
+          }
+        },
+        "CLOSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLOSED"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETED"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#MatterPermissionList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.vault_v1#MatterPermission"
+      }
+    },
+    "com.googleworkspace.vault_v1#MailExportOptions": {
+      "type": "structure",
+      "members": {
+        "exportFormat": {
+          "target": "com.googleworkspace.vault_v1#MailExportOptionsExportFormatEnum",
+          "traits": {
+            "smithy.api#documentation": "The file format for exported messages."
+          }
+        },
+        "showConfidentialModeContent": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "To export confidential mode content, set to **true**."
+          }
+        },
+        "useNewExport": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "To use the new export system, set to **true**."
+          }
+        },
+        "exportLinkedDriveFiles": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. To enable exporting linked Drive files, set to **true**."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Options for Gmail exports."
+      }
+    },
+    "com.googleworkspace.vault_v1#MailExportOptionsExportFormatEnum": {
+      "type": "enum",
+      "members": {
+        "EXPORT_FORMAT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPORT_FORMAT_UNSPECIFIED"
+          }
+        },
+        "MBOX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MBOX"
+          }
+        },
+        "PST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PST"
+          }
+        },
+        "ICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ICS"
+          }
+        },
+        "XML": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "XML"
+          }
+        },
+        "JSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JSON"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#DriveExportOptions": {
+      "type": "structure",
+      "members": {
+        "includeAccessInfo": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "To include access level information for users with [indirect access](https://support.google.com/vault/answer/6099459#metadata) to files, set to **true**."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Options for Drive exports."
+      }
+    },
+    "com.googleworkspace.vault_v1#CancelOperationRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "The request message for Operations.CancelOperation."
+      }
+    },
+    "com.googleworkspace.vault_v1#Export": {
+      "type": "structure",
+      "members": {
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time when the export was created."
+          }
+        },
+        "requester": {
+          "target": "com.googleworkspace.vault_v1#UserInfo",
+          "traits": {
+            "smithy.api#documentation": "Output only. The requester of the export."
+          }
+        },
+        "parentExportId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Identifies the parent export that spawned this child export. This is only set on child exports."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The generated export ID."
+          }
+        },
+        "query": {
+          "target": "com.googleworkspace.vault_v1#Query",
+          "traits": {
+            "smithy.api#documentation": "The query parameters used to create the export."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The export name. Don't use special characters (~!$'(),;@:/?) in the name, they can prevent you from downloading exports."
+          }
+        },
+        "stats": {
+          "target": "com.googleworkspace.vault_v1#ExportStats",
+          "traits": {
+            "smithy.api#documentation": "Output only. Details about the export progress and size."
+          }
+        },
+        "cloudStorageSink": {
+          "target": "com.googleworkspace.vault_v1#CloudStorageSink",
+          "traits": {
+            "smithy.api#documentation": "Output only. The sink for export files in Cloud Storage."
+          }
+        },
+        "matterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The matter ID."
+          }
+        },
+        "exportOptions": {
+          "target": "com.googleworkspace.vault_v1#ExportOptions",
+          "traits": {
+            "smithy.api#documentation": "Additional export options."
+          }
+        },
+        "status": {
+          "target": "com.googleworkspace.vault_v1#ExportStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The status of the export."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An export. To work with Vault resources, the account must have the [required Vault privileges](https://support.google.com/vault/answer/2799699) and access to the matter. To access a matter, the account must have created the matter, have the matter shared with them, or have the **View All Matters** privilege."
+      }
+    },
+    "com.googleworkspace.vault_v1#ExportStatusEnum": {
+      "type": "enum",
+      "members": {
+        "EXPORT_STATUS_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPORT_STATUS_UNSPECIFIED"
+          }
+        },
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMPLETED"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        },
+        "IN_PROGRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IN_PROGRESS"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#HeldVoiceQuery": {
+      "type": "structure",
+      "members": {
+        "coveredData": {
+          "target": "com.googleworkspace.vault_v1#HeldVoiceQueryCoveredDataItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "A list of data types covered by the hold. Should be non-empty. Order does not matter and duplicates are ignored."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Options for Voice holds."
+      }
+    },
+    "com.googleworkspace.vault_v1#HeldVoiceQueryCoveredDataItemEnum": {
+      "type": "enum",
+      "members": {
+        "COVERED_DATA_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COVERED_DATA_UNSPECIFIED"
+          }
+        },
+        "TEXT_MESSAGES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TEXT_MESSAGES"
+          }
+        },
+        "VOICEMAILS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VOICEMAILS"
+          }
+        },
+        "CALL_LOGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CALL_LOGS"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#HeldVoiceQueryCoveredDataItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.vault_v1#HeldVoiceQueryCoveredDataItemEnum"
+      }
+    },
+    "com.googleworkspace.vault_v1#UndeleteMatterRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Undelete a matter by ID."
+      }
+    },
+    "com.googleworkspace.vault_v1#CountArtifactsMetadata": {
+      "type": "structure",
+      "members": {
+        "matterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The matter ID of the associated matter."
+          }
+        },
+        "query": {
+          "target": "com.googleworkspace.vault_v1#Query",
+          "traits": {
+            "smithy.api#documentation": "The search query from the request."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "End time of count operation. Available when operation is done."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creation time of count operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Long running operation metadata for CountArtifacts."
+      }
+    },
+    "com.googleworkspace.vault_v1#HangoutsChatOptions": {
+      "type": "structure",
+      "members": {
+        "includeRooms": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "For searches by account or organizational unit, set to **true** to include rooms."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Additional options for Google Chat search"
+      }
+    },
+    "com.googleworkspace.vault_v1#GeminiOptions": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Additional options for Gemini search"
+      }
+    },
+    "com.googleworkspace.vault_v1#OrgUnitInfo": {
+      "type": "structure",
+      "members": {
+        "orgUnitId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the organizational unit to search, as provided by the [Admin SDK Directory API](https://developers.google.com/admin-sdk/directory/)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The organizational unit to search"
+      }
+    },
+    "com.googleworkspace.vault_v1#AccountCount": {
+      "type": "structure",
+      "members": {
+        "account": {
+          "target": "com.googleworkspace.vault_v1#UserInfo",
+          "traits": {
+            "smithy.api#documentation": "Account owner."
+          }
+        },
+        "count": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The number of results (messages or files) found for this account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The results count for each account."
+      }
+    },
+    "com.googleworkspace.vault_v1#GroupsExportOptions": {
+      "type": "structure",
+      "members": {
+        "exportFormat": {
+          "target": "com.googleworkspace.vault_v1#GroupsExportOptionsExportFormatEnum",
+          "traits": {
+            "smithy.api#documentation": "The file format for exported messages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Options for Groups exports."
+      }
+    },
+    "com.googleworkspace.vault_v1#GroupsExportOptionsExportFormatEnum": {
+      "type": "enum",
+      "members": {
+        "EXPORT_FORMAT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPORT_FORMAT_UNSPECIFIED"
+          }
+        },
+        "MBOX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MBOX"
+          }
+        },
+        "PST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PST"
+          }
+        },
+        "ICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ICS"
+          }
+        },
+        "XML": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "XML"
+          }
+        },
+        "JSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JSON"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#TeamDriveInfo": {
+      "type": "structure",
+      "members": {
+        "teamDriveIds": {
+          "target": "com.googleworkspace.vault_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "List of Team Drive IDs, as provided by the [Drive API](https://developers.google.com/drive)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Team Drives to search"
+      }
+    },
+    "com.googleworkspace.vault_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.googleworkspace.vault_v1#MatterPermission": {
+      "type": "structure",
+      "members": {
+        "accountId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account ID, as provided by the [Admin SDK](https://developers.google.com/admin-sdk/)."
+          }
+        },
+        "role": {
+          "target": "com.googleworkspace.vault_v1#MatterPermissionRoleEnum",
+          "traits": {
+            "smithy.api#documentation": "The user's role for the matter."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Users can be matter owners or collaborators. Each matter has only one owner. All others users who can access the matter are collaborators. When an account is purged, its corresponding MatterPermission resources cease to exist."
+      }
+    },
+    "com.googleworkspace.vault_v1#MatterPermissionRoleEnum": {
+      "type": "enum",
+      "members": {
+        "ROLE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ROLE_UNSPECIFIED"
+          }
+        },
+        "COLLABORATOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COLLABORATOR"
+          }
+        },
+        "OWNER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OWNER"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#ListExportsResponse": {
+      "type": "structure",
+      "members": {
+        "exports": {
+          "target": "com.googleworkspace.vault_v1#ExportList",
+          "traits": {
+            "smithy.api#documentation": "The list of exports."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Page token to retrieve the next page of results in the list."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The exports for a matter."
+      }
+    },
+    "com.googleworkspace.vault_v1#ExportList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.vault_v1#Export"
+      }
+    },
+    "com.googleworkspace.vault_v1#GroupsCountResult": {
+      "type": "structure",
+      "members": {
+        "accountCounts": {
+          "target": "com.googleworkspace.vault_v1#AccountCountList",
+          "traits": {
+            "smithy.api#documentation": "Subtotal count per matching account that have more than zero messages."
+          }
+        },
+        "nonQueryableAccounts": {
+          "target": "com.googleworkspace.vault_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "When **DataScope** is **HELD_DATA**, these accounts in the request are not queried because they are not on hold. For other data scope, this field is not set."
+          }
+        },
+        "matchingAccountsCount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Total number of accounts that can be queried and have more than zero messages."
+          }
+        },
+        "queriedAccountsCount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Total number of accounts involved in this count operation."
+          }
+        },
+        "accountCountErrors": {
+          "target": "com.googleworkspace.vault_v1#AccountCountErrorList",
+          "traits": {
+            "smithy.api#documentation": "Error occurred when querying these accounts."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Groups specific count metrics."
+      }
+    },
+    "com.googleworkspace.vault_v1#AccountCountList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.vault_v1#AccountCount"
+      }
+    },
+    "com.googleworkspace.vault_v1#AccountCountErrorList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.vault_v1#AccountCountError"
+      }
+    },
+    "com.googleworkspace.vault_v1#VoiceOptions": {
+      "type": "structure",
+      "members": {
+        "coveredData": {
+          "target": "com.googleworkspace.vault_v1#VoiceOptionsCoveredDataItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Datatypes to search"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Additional options for Voice search"
+      }
+    },
+    "com.googleworkspace.vault_v1#VoiceOptionsCoveredDataItemEnum": {
+      "type": "enum",
+      "members": {
+        "COVERED_DATA_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COVERED_DATA_UNSPECIFIED"
+          }
+        },
+        "TEXT_MESSAGES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TEXT_MESSAGES"
+          }
+        },
+        "VOICEMAILS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VOICEMAILS"
+          }
+        },
+        "CALL_LOGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CALL_LOGS"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#VoiceOptionsCoveredDataItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.vault_v1#VoiceOptionsCoveredDataItemEnum"
+      }
+    },
+    "com.googleworkspace.vault_v1#RemoveHeldAccountsRequest": {
+      "type": "structure",
+      "members": {
+        "accountIds": {
+          "target": "com.googleworkspace.vault_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The account IDs of the accounts to remove from the hold."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Remove a list of accounts from a hold."
+      }
+    },
+    "com.googleworkspace.vault_v1#CalendarExportOptions": {
+      "type": "structure",
+      "members": {
+        "exportFormat": {
+          "target": "com.googleworkspace.vault_v1#CalendarExportOptionsExportFormatEnum",
+          "traits": {
+            "smithy.api#documentation": "The file format for exported text messages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The options for Calendar exports."
+      }
+    },
+    "com.googleworkspace.vault_v1#CalendarExportOptionsExportFormatEnum": {
+      "type": "enum",
+      "members": {
+        "EXPORT_FORMAT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPORT_FORMAT_UNSPECIFIED"
+          }
+        },
+        "MBOX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MBOX"
+          }
+        },
+        "PST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PST"
+          }
+        },
+        "ICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ICS"
+          }
+        },
+        "XML": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "XML"
+          }
+        },
+        "JSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JSON"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#CountArtifactsResponse": {
+      "type": "structure",
+      "members": {
+        "groupsCountResult": {
+          "target": "com.googleworkspace.vault_v1#GroupsCountResult",
+          "traits": {
+            "smithy.api#documentation": "Count metrics for Groups."
+          }
+        },
+        "totalCount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Total count of messages."
+          }
+        },
+        "mailCountResult": {
+          "target": "com.googleworkspace.vault_v1#MailCountResult",
+          "traits": {
+            "smithy.api#documentation": "Count metrics for Gmail and classic Hangouts."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Definition of the response for method CountArtifacts."
+      }
+    },
+    "com.googleworkspace.vault_v1#HeldOrgUnit": {
+      "type": "structure",
+      "members": {
+        "holdTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the organizational unit was put on hold. This property is immutable."
+          }
+        },
+        "orgUnitId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The organizational unit's immutable ID as provided by the [Admin SDK](https://developers.google.com/admin-sdk/)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The organizational unit covered by a hold. This structure is immutable."
+      }
+    },
+    "com.googleworkspace.vault_v1#ListMattersResponse": {
+      "type": "structure",
+      "members": {
+        "matters": {
+          "target": "com.googleworkspace.vault_v1#MatterList",
+          "traits": {
+            "smithy.api#documentation": "List of matters."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Page token to retrieve the next page of results in the list."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provides the list of matters."
+      }
+    },
+    "com.googleworkspace.vault_v1#MatterList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.vault_v1#Matter"
+      }
+    },
+    "com.googleworkspace.vault_v1#AccountCountError": {
+      "type": "structure",
+      "members": {
+        "account": {
+          "target": "com.googleworkspace.vault_v1#UserInfo",
+          "traits": {
+            "smithy.api#documentation": "Account owner."
+          }
+        },
+        "errorType": {
+          "target": "com.googleworkspace.vault_v1#AccountCountErrorErrorTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Account query error."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An error that occurred when querying a specific account"
+      }
+    },
+    "com.googleworkspace.vault_v1#AccountCountErrorErrorTypeEnum": {
+      "type": "enum",
+      "members": {
+        "ERROR_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR_TYPE_UNSPECIFIED"
+          }
+        },
+        "WILDCARD_TOO_BROAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WILDCARD_TOO_BROAD"
+          }
+        },
+        "TOO_MANY_TERMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TOO_MANY_TERMS"
+          }
+        },
+        "LOCATION_UNAVAILABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCATION_UNAVAILABLE"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNKNOWN"
+          }
+        },
+        "DEADLINE_EXCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEADLINE_EXCEEDED"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#CloseMatterRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Close a matter by ID."
+      }
+    },
+    "com.googleworkspace.vault_v1#CountArtifactsRequest": {
+      "type": "structure",
+      "members": {
+        "query": {
+          "target": "com.googleworkspace.vault_v1#Query",
+          "traits": {
+            "smithy.api#documentation": "The search query."
+          }
+        },
+        "view": {
+          "target": "com.googleworkspace.vault_v1#CountArtifactsRequestViewEnum",
+          "traits": {
+            "smithy.api#documentation": "Sets the granularity of the count results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Count artifacts request."
+      }
+    },
+    "com.googleworkspace.vault_v1#CountArtifactsRequestViewEnum": {
+      "type": "enum",
+      "members": {
+        "COUNT_RESULT_VIEW_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COUNT_RESULT_VIEW_UNSPECIFIED"
+          }
+        },
+        "TOTAL_COUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TOTAL_COUNT"
+          }
+        },
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALL"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#HeldMailQuery": {
+      "type": "structure",
+      "members": {
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The end time for the query. Specify in GMT. The value is rounded to 12 AM on the specified date."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The start time for the query. Specify in GMT. The value is rounded to 12 AM on the specified date."
+          }
+        },
+        "terms": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The [search operators](https://support.google.com/vault/answer/2474474) used to refine the messages covered by the hold."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Query options for Gmail holds."
+      }
+    },
+    "com.googleworkspace.vault_v1#CalendarOptions": {
+      "type": "structure",
+      "members": {
+        "locationQuery": {
+          "target": "com.googleworkspace.vault_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Matches only those events whose location contains all of the words in the given set. If the string contains quoted phrases, this method only matches those events whose location contain the exact phrase. Entries in the set are considered in \"and\". Word splitting example: [\"New Zealand\"] vs [\"New\",\"Zealand\"] \"New Zealand\": matched by both \"New and better Zealand\": only matched by the later"
+          }
+        },
+        "minusWords": {
+          "target": "com.googleworkspace.vault_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Matches only those events that do not contain any of the words in the given set in title, description, location, or attendees. Entries in the set are considered in \"or\"."
+          }
+        },
+        "responseStatuses": {
+          "target": "com.googleworkspace.vault_v1#CalendarOptionsResponseStatusesItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Matches only events for which the custodian gave one of these responses. If the set is empty or contains ATTENDEE_RESPONSE_UNSPECIFIED there will be no filtering on responses."
+          }
+        },
+        "versionDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Search the current version of the Calendar event, but export the contents of the last version saved before 12:00 AM UTC on the specified date. Enter the date in UTC."
+          }
+        },
+        "peopleQuery": {
+          "target": "com.googleworkspace.vault_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Matches only those events whose attendees contain all of the words in the given set. Entries in the set are considered in \"and\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Additional options for Calendar search"
+      }
+    },
+    "com.googleworkspace.vault_v1#CalendarOptionsResponseStatusesItemEnum": {
+      "type": "enum",
+      "members": {
+        "ATTENDEE_RESPONSE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ATTENDEE_RESPONSE_UNSPECIFIED"
+          }
+        },
+        "ATTENDEE_RESPONSE_NEEDS_ACTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ATTENDEE_RESPONSE_NEEDS_ACTION"
+          }
+        },
+        "ATTENDEE_RESPONSE_ACCEPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ATTENDEE_RESPONSE_ACCEPTED"
+          }
+        },
+        "ATTENDEE_RESPONSE_DECLINED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ATTENDEE_RESPONSE_DECLINED"
+          }
+        },
+        "ATTENDEE_RESPONSE_TENTATIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ATTENDEE_RESPONSE_TENTATIVE"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#CalendarOptionsResponseStatusesItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.vault_v1#CalendarOptionsResponseStatusesItemEnum"
+      }
+    },
+    "com.googleworkspace.vault_v1#AccountInfo": {
+      "type": "structure",
+      "members": {
+        "emails": {
+          "target": "com.googleworkspace.vault_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "A set of accounts to search."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The accounts to search"
+      }
+    },
+    "com.googleworkspace.vault_v1#DriveOptions": {
+      "type": "structure",
+      "members": {
+        "clientSideEncryptedOption": {
+          "target": "com.googleworkspace.vault_v1#DriveOptionsClientSideEncryptedOptionEnum",
+          "traits": {
+            "smithy.api#documentation": "Set whether the results include only content encrypted with [Google Workspace Client-side encryption](https://support.google.com/a?p=cse_ov) content, only unencrypted content, or both. Defaults to both. Currently supported for Drive."
+          }
+        },
+        "includeSharedDrives": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to **true** to include shared drives."
+          }
+        },
+        "versionDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Search the current version of the Drive file, but export the contents of the last version saved before 12:00 AM UTC on the specified date. Enter the date in UTC."
+          }
+        },
+        "includeTeamDrives": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to true to include Team Drive."
+          }
+        },
+        "sharedDrivesOption": {
+          "target": "com.googleworkspace.vault_v1#DriveOptionsSharedDrivesOptionEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Options to include or exclude documents in shared drives. We recommend using this field over include_shared_drives. This field overrides include_shared_drives and include_team_drives when set."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Additional options for Drive search."
+      }
+    },
+    "com.googleworkspace.vault_v1#DriveOptionsClientSideEncryptedOptionEnum": {
+      "type": "enum",
+      "members": {
+        "CLIENT_SIDE_ENCRYPTED_OPTION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLIENT_SIDE_ENCRYPTED_OPTION_UNSPECIFIED"
+          }
+        },
+        "CLIENT_SIDE_ENCRYPTED_OPTION_ANY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLIENT_SIDE_ENCRYPTED_OPTION_ANY"
+          }
+        },
+        "CLIENT_SIDE_ENCRYPTED_OPTION_ENCRYPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLIENT_SIDE_ENCRYPTED_OPTION_ENCRYPTED"
+          }
+        },
+        "CLIENT_SIDE_ENCRYPTED_OPTION_UNENCRYPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLIENT_SIDE_ENCRYPTED_OPTION_UNENCRYPTED"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#DriveOptionsSharedDrivesOptionEnum": {
+      "type": "enum",
+      "members": {
+        "SHARED_DRIVES_OPTION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHARED_DRIVES_OPTION_UNSPECIFIED"
+          }
+        },
+        "NOT_INCLUDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_INCLUDED"
+          }
+        },
+        "INCLUDED_IF_ACCOUNT_IS_NOT_A_MEMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INCLUDED_IF_ACCOUNT_IS_NOT_A_MEMBER"
+          }
+        },
+        "INCLUDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INCLUDED"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#UserInfo": {
+      "type": "structure",
+      "members": {
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email address of the user."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The displayed name of the user."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "User's information."
+      }
+    },
+    "com.googleworkspace.vault_v1#SitesUrlInfo": {
+      "type": "structure",
+      "members": {
+        "urls": {
+          "target": "com.googleworkspace.vault_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "A list of published site URLs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The published site URLs of new Google Sites to search"
+      }
+    },
+    "com.googleworkspace.vault_v1#Query": {
+      "type": "structure",
+      "members": {
+        "searchMethod": {
+          "target": "com.googleworkspace.vault_v1#QuerySearchMethodEnum",
+          "traits": {
+            "smithy.api#documentation": "The search method to use."
+          }
+        },
+        "terms": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Service-specific [search operators](https://support.google.com/vault/answer/2474474) to filter search results."
+          }
+        },
+        "hangoutsChatOptions": {
+          "target": "com.googleworkspace.vault_v1#HangoutsChatOptions",
+          "traits": {
+            "smithy.api#documentation": "Set Chat search-specific options. (read-only)"
+          }
+        },
+        "mailOptions": {
+          "target": "com.googleworkspace.vault_v1#MailOptions",
+          "traits": {
+            "smithy.api#documentation": "Set Gmail search-specific options."
+          }
+        },
+        "orgUnitInfo": {
+          "target": "com.googleworkspace.vault_v1#OrgUnitInfo",
+          "traits": {
+            "smithy.api#documentation": "Required when **SearchMethod** is **ORG_UNIT**."
+          }
+        },
+        "corpus": {
+          "target": "com.googleworkspace.vault_v1#QueryCorpusEnum",
+          "traits": {
+            "smithy.api#documentation": "The Google Workspace service to search."
+          }
+        },
+        "calendarOptions": {
+          "target": "com.googleworkspace.vault_v1#CalendarOptions",
+          "traits": {
+            "smithy.api#documentation": "Set Calendar search-specific options."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The end time for the search query. Specify in GMT. The value is rounded to 12 AM on the specified date."
+          }
+        },
+        "voiceOptions": {
+          "target": "com.googleworkspace.vault_v1#VoiceOptions",
+          "traits": {
+            "smithy.api#documentation": "Set Voice search-specific options."
+          }
+        },
+        "driveOptions": {
+          "target": "com.googleworkspace.vault_v1#DriveOptions",
+          "traits": {
+            "smithy.api#documentation": "Set Drive search-specific options."
+          }
+        },
+        "teamDriveInfo": {
+          "target": "com.googleworkspace.vault_v1#TeamDriveInfo",
+          "traits": {
+            "smithy.api#documentation": "Required when **SearchMethod** is **TEAM_DRIVE**."
+          }
+        },
+        "hangoutsChatInfo": {
+          "target": "com.googleworkspace.vault_v1#HangoutsChatInfo",
+          "traits": {
+            "smithy.api#documentation": "Required when **SearchMethod** is **ROOM**. (read-only)"
+          }
+        },
+        "driveDocumentInfo": {
+          "target": "com.googleworkspace.vault_v1#DriveDocumentInfo",
+          "traits": {
+            "smithy.api#documentation": "Required when **SearchMethod** is **DRIVE_DOCUMENT**."
+          }
+        },
+        "accountInfo": {
+          "target": "com.googleworkspace.vault_v1#AccountInfo",
+          "traits": {
+            "smithy.api#documentation": "Required when **SearchMethod** is **ACCOUNT**."
+          }
+        },
+        "method": {
+          "target": "com.googleworkspace.vault_v1#QueryMethodEnum",
+          "traits": {
+            "smithy.api#documentation": "The entity to search. This field replaces **searchMethod** to support shared drives. When **searchMethod** is **TEAM_DRIVE**, the response of this field is **SHARED_DRIVE**."
+          }
+        },
+        "timeZone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time zone name. It should be an IANA TZ name, such as \"America/Los_Angeles\". For a list of time zone names, see [Time Zone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). For more information about how Vault uses time zones, see [the Vault help center](https://support.google.com/vault/answer/6092995#time)."
+          }
+        },
+        "geminiOptions": {
+          "target": "com.googleworkspace.vault_v1#GeminiOptions",
+          "traits": {
+            "smithy.api#documentation": "Set Gemini search-specific options."
+          }
+        },
+        "dataScope": {
+          "target": "com.googleworkspace.vault_v1#QueryDataScopeEnum",
+          "traits": {
+            "smithy.api#documentation": "The data source to search."
+          }
+        },
+        "sharedDriveInfo": {
+          "target": "com.googleworkspace.vault_v1#SharedDriveInfo",
+          "traits": {
+            "smithy.api#documentation": "Required when **SearchMethod** is **SHARED_DRIVE**."
+          }
+        },
+        "sitesUrlInfo": {
+          "target": "com.googleworkspace.vault_v1#SitesUrlInfo",
+          "traits": {
+            "smithy.api#documentation": "Required when **SearchMethod** is **SITES_URL**."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The start time for the search query. Specify in GMT. The value is rounded to 12 AM on the specified date."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The query definition used for search and export."
+      }
+    },
+    "com.googleworkspace.vault_v1#QuerySearchMethodEnum": {
+      "type": "enum",
+      "members": {
+        "SEARCH_METHOD_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEARCH_METHOD_UNSPECIFIED"
+          }
+        },
+        "ACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACCOUNT"
+          }
+        },
+        "ORG_UNIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ORG_UNIT"
+          }
+        },
+        "TEAM_DRIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TEAM_DRIVE"
+          }
+        },
+        "ENTIRE_ORG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENTIRE_ORG"
+          }
+        },
+        "ROOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ROOM"
+          }
+        },
+        "SITES_URL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SITES_URL"
+          }
+        },
+        "SHARED_DRIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHARED_DRIVE"
+          }
+        },
+        "DRIVE_DOCUMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DRIVE_DOCUMENT"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#QueryCorpusEnum": {
+      "type": "enum",
+      "members": {
+        "CORPUS_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CORPUS_TYPE_UNSPECIFIED"
+          }
+        },
+        "DRIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DRIVE"
+          }
+        },
+        "MAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MAIL"
+          }
+        },
+        "GROUPS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GROUPS"
+          }
+        },
+        "HANGOUTS_CHAT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HANGOUTS_CHAT"
+          }
+        },
+        "VOICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VOICE"
+          }
+        },
+        "CALENDAR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CALENDAR"
+          }
+        },
+        "GEMINI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GEMINI"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#QueryMethodEnum": {
+      "type": "enum",
+      "members": {
+        "SEARCH_METHOD_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEARCH_METHOD_UNSPECIFIED"
+          }
+        },
+        "ACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACCOUNT"
+          }
+        },
+        "ORG_UNIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ORG_UNIT"
+          }
+        },
+        "TEAM_DRIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TEAM_DRIVE"
+          }
+        },
+        "ENTIRE_ORG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENTIRE_ORG"
+          }
+        },
+        "ROOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ROOM"
+          }
+        },
+        "SITES_URL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SITES_URL"
+          }
+        },
+        "SHARED_DRIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHARED_DRIVE"
+          }
+        },
+        "DRIVE_DOCUMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DRIVE_DOCUMENT"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#QueryDataScopeEnum": {
+      "type": "enum",
+      "members": {
+        "DATA_SCOPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_SCOPE_UNSPECIFIED"
+          }
+        },
+        "ALL_DATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALL_DATA"
+          }
+        },
+        "HELD_DATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HELD_DATA"
+          }
+        },
+        "UNPROCESSED_DATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNPROCESSED_DATA"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#GeminiExportOptions": {
+      "type": "structure",
+      "members": {
+        "exportFormat": {
+          "target": "com.googleworkspace.vault_v1#GeminiExportOptionsExportFormatEnum",
+          "traits": {
+            "smithy.api#documentation": "The file format for exported messages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The options for Gemini exports."
+      }
+    },
+    "com.googleworkspace.vault_v1#GeminiExportOptionsExportFormatEnum": {
+      "type": "enum",
+      "members": {
+        "EXPORT_FORMAT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPORT_FORMAT_UNSPECIFIED"
+          }
+        },
+        "MBOX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MBOX"
+          }
+        },
+        "PST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PST"
+          }
+        },
+        "ICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ICS"
+          }
+        },
+        "XML": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "XML"
+          }
+        },
+        "JSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JSON"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#Hold": {
+      "type": "structure",
+      "members": {
+        "query": {
+          "target": "com.googleworkspace.vault_v1#CorpusQuery",
+          "traits": {
+            "smithy.api#documentation": "Service-specific options. If set, **CorpusQuery** must match **CorpusType**."
+          }
+        },
+        "accounts": {
+          "target": "com.googleworkspace.vault_v1#HeldAccountList",
+          "traits": {
+            "smithy.api#documentation": "If set, the hold applies to the specified accounts and **orgUnit** must be empty."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last time this hold was modified."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the hold."
+          }
+        },
+        "orgUnit": {
+          "target": "com.googleworkspace.vault_v1#HeldOrgUnit",
+          "traits": {
+            "smithy.api#documentation": "If set, the hold applies to all members of the organizational unit and **accounts** must be empty. This property is mutable. For Groups holds, set **accounts**."
+          }
+        },
+        "holdId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique immutable ID of the hold. Assigned during creation."
+          }
+        },
+        "corpus": {
+          "target": "com.googleworkspace.vault_v1#HoldCorpusEnum",
+          "traits": {
+            "smithy.api#documentation": "The service to be searched."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A hold. A hold prevents the specified Google Workspace service from purging data for specific accounts or all members of an organizational unit. To work with Vault resources, the account must have the [required Vault privileges] (https://support.google.com/vault/answer/2799699) and access to the matter. To access a matter, the account must have created the matter, have the matter shared with them, or have the **View All Matters** privilege."
+      }
+    },
+    "com.googleworkspace.vault_v1#HeldAccountList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.vault_v1#HeldAccount"
+      }
+    },
+    "com.googleworkspace.vault_v1#HoldCorpusEnum": {
+      "type": "enum",
+      "members": {
+        "CORPUS_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CORPUS_TYPE_UNSPECIFIED"
+          }
+        },
+        "DRIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DRIVE"
+          }
+        },
+        "MAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MAIL"
+          }
+        },
+        "GROUPS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GROUPS"
+          }
+        },
+        "HANGOUTS_CHAT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HANGOUTS_CHAT"
+          }
+        },
+        "VOICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VOICE"
+          }
+        },
+        "CALENDAR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CALENDAR"
+          }
+        },
+        "GEMINI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GEMINI"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#CloudStorageSink": {
+      "type": "structure",
+      "members": {
+        "files": {
+          "target": "com.googleworkspace.vault_v1#CloudStorageFileList",
+          "traits": {
+            "smithy.api#documentation": "Output only. The exported files in Cloud Storage."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Export sink for Cloud Storage files."
+      }
+    },
+    "com.googleworkspace.vault_v1#CloudStorageFileList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.vault_v1#CloudStorageFile"
+      }
+    },
+    "com.googleworkspace.vault_v1#ListHeldAccountsResponse": {
+      "type": "structure",
+      "members": {
+        "accounts": {
+          "target": "com.googleworkspace.vault_v1#HeldAccountList",
+          "traits": {
+            "smithy.api#documentation": "The held accounts on a hold."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Returns a list of the accounts covered by a hold."
+      }
+    },
+    "com.googleworkspace.vault_v1#DriveDocumentIds": {
+      "type": "structure",
+      "members": {
+        "ids": {
+          "target": "com.googleworkspace.vault_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Required. A list of Drive document IDs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specify Drive documents by document ID."
+      }
+    },
+    "com.googleworkspace.vault_v1#HeldDriveQuery": {
+      "type": "structure",
+      "members": {
+        "includeTeamDriveFiles": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "To include files in Team Drives in the hold, set to **true**."
+          }
+        },
+        "includeSharedDriveFiles": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "To include files in shared drives in the hold, set to **true**."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Options for Drive holds."
+      }
+    },
+    "com.googleworkspace.vault_v1#Operation": {
+      "type": "structure",
+      "members": {
+        "metadata": {
+          "target": "com.googleworkspace.vault_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
+          }
+        },
+        "done": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+          }
+        },
+        "error": {
+          "target": "com.googleworkspace.vault_v1#Status",
+          "traits": {
+            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
+          }
+        },
+        "response": {
+          "target": "com.googleworkspace.vault_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
+      }
+    },
+    "com.googleworkspace.vault_v1#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.googleworkspace.vault_v1#AddMatterPermissionsRequest": {
+      "type": "structure",
+      "members": {
+        "matterPermission": {
+          "target": "com.googleworkspace.vault_v1#MatterPermission",
+          "traits": {
+            "smithy.api#documentation": "The account and its role to add."
+          }
+        },
+        "sendEmails": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "To send a notification email to the added account, set to **true**. To not send a notification email, set to **false**."
+          }
+        },
+        "ccMe": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Only relevant if **sendEmails** is **true**. To CC the requestor in the email message, set to **true**. To not CC requestor, set to **false**."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Add an account with the permission specified. The role cannot be owner. If an account already has a role in the matter, the existing role is overwritten."
+      }
+    },
+    "com.googleworkspace.vault_v1#MailCountResult": {
+      "type": "structure",
+      "members": {
+        "accountCounts": {
+          "target": "com.googleworkspace.vault_v1#AccountCountList",
+          "traits": {
+            "smithy.api#documentation": "Subtotal count per matching account that have more than zero messages."
+          }
+        },
+        "matchingAccountsCount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Total number of accounts that can be queried and have more than zero messages."
+          }
+        },
+        "nonQueryableAccounts": {
+          "target": "com.googleworkspace.vault_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "When **DataScope** is **HELD_DATA** and when account emails are passed in explicitly, the list of accounts in the request that are not queried because they are not on hold in the matter. For other data scopes, this field is not set."
+          }
+        },
+        "accountCountErrors": {
+          "target": "com.googleworkspace.vault_v1#AccountCountErrorList",
+          "traits": {
+            "smithy.api#documentation": "Errors occurred when querying these accounts."
+          }
+        },
+        "queriedAccountsCount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Total number of accounts involved in this count operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Gmail and classic Hangouts-specific count metrics."
+      }
+    },
+    "com.googleworkspace.vault_v1#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.googleworkspace.vault_v1#HeldGeminiQuery": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Options for Gemini holds."
+      }
+    },
+    "com.googleworkspace.vault_v1#CloseMatterResponse": {
+      "type": "structure",
+      "members": {
+        "matter": {
+          "target": "com.googleworkspace.vault_v1#Matter",
+          "traits": {
+            "smithy.api#documentation": "The updated matter, with state **CLOSED**."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response to a CloseMatterRequest."
+      }
+    },
+    "com.googleworkspace.vault_v1#MailOptions": {
+      "type": "structure",
+      "members": {
+        "excludeDrafts": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to **true** to exclude drafts."
+          }
+        },
+        "clientSideEncryptedOption": {
+          "target": "com.googleworkspace.vault_v1#MailOptionsClientSideEncryptedOptionEnum",
+          "traits": {
+            "smithy.api#documentation": "Specifies whether the results should include encrypted content, unencrypted content, or both. Defaults to including both."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Additional options for Gmail search"
+      }
+    },
+    "com.googleworkspace.vault_v1#MailOptionsClientSideEncryptedOptionEnum": {
+      "type": "enum",
+      "members": {
+        "CLIENT_SIDE_ENCRYPTED_OPTION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLIENT_SIDE_ENCRYPTED_OPTION_UNSPECIFIED"
+          }
+        },
+        "CLIENT_SIDE_ENCRYPTED_OPTION_ANY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLIENT_SIDE_ENCRYPTED_OPTION_ANY"
+          }
+        },
+        "CLIENT_SIDE_ENCRYPTED_OPTION_ENCRYPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLIENT_SIDE_ENCRYPTED_OPTION_ENCRYPTED"
+          }
+        },
+        "CLIENT_SIDE_ENCRYPTED_OPTION_UNENCRYPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLIENT_SIDE_ENCRYPTED_OPTION_UNENCRYPTED"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#CloudStorageFile": {
+      "type": "structure",
+      "members": {
+        "objectName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the Cloud Storage object for the export file. You can use this value in the Cloud Storage [JSON API](https://cloud.google.com/storage/docs/json_api) or [XML API](https://cloud.google.com/storage/docs/xml-api)."
+          }
+        },
+        "md5Hash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The md5 hash of the file."
+          }
+        },
+        "bucketName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the Cloud Storage bucket for the export file. You can use this value in the Cloud Storage [JSON API](https://cloud.google.com/storage/docs/json_api) or [XML API](https://cloud.google.com/storage/docs/xml-api), but not to list the bucket contents. Instead, you can [get individual export files](https://cloud.google.com/storage/docs/json_api/v1/objects/get) by object name."
+          }
+        },
+        "size": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The export file size."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The export file in Cloud Storage"
+      }
+    },
+    "com.googleworkspace.vault_v1#HeldGroupsQuery": {
+      "type": "structure",
+      "members": {
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The start time for the query. Specify in GMT. The value is rounded to 12 AM on the specified date."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The end time for the query. Specify in GMT. The value is rounded to 12 AM on the specified date."
+          }
+        },
+        "terms": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The [search operators](https://support.google.com/vault/answer/2474474) used to refine the messages covered by the hold."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Query options for group holds."
+      }
+    },
+    "com.googleworkspace.vault_v1#HeldHangoutsChatQuery": {
+      "type": "structure",
+      "members": {
+        "includeRooms": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "To include messages in Chat spaces the user was a member of, set to **true**."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Options for Chat holds."
+      }
+    },
+    "com.googleworkspace.vault_v1#RemoveHeldAccountsResponse": {
+      "type": "structure",
+      "members": {
+        "statuses": {
+          "target": "com.googleworkspace.vault_v1#StatusList",
+          "traits": {
+            "smithy.api#documentation": "A list of statuses for the deleted accounts. Results have the same order as the request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for batch delete held accounts."
+      }
+    },
+    "com.googleworkspace.vault_v1#StatusList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.vault_v1#Status"
+      }
+    },
+    "com.googleworkspace.vault_v1#SharedDriveInfo": {
+      "type": "structure",
+      "members": {
+        "sharedDriveIds": {
+          "target": "com.googleworkspace.vault_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "A list of shared drive IDs, as provided by the [Drive API](https://developers.google.com/drive)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The shared drives to search"
+      }
+    },
+    "com.googleworkspace.vault_v1#ListOperationsResponse": {
+      "type": "structure",
+      "members": {
+        "unreachable": {
+          "target": "com.googleworkspace.vault_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations."
+          }
+        },
+        "operations": {
+          "target": "com.googleworkspace.vault_v1#OperationList",
+          "traits": {
+            "smithy.api#documentation": "A list of operations that matches the specified filter in the request."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Operations.ListOperations."
+      }
+    },
+    "com.googleworkspace.vault_v1#OperationList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.vault_v1#Operation"
+      }
+    },
+    "com.googleworkspace.vault_v1#VoiceExportOptions": {
+      "type": "structure",
+      "members": {
+        "exportFormat": {
+          "target": "com.googleworkspace.vault_v1#VoiceExportOptionsExportFormatEnum",
+          "traits": {
+            "smithy.api#documentation": "The file format for exported text messages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The options for Voice exports."
+      }
+    },
+    "com.googleworkspace.vault_v1#VoiceExportOptionsExportFormatEnum": {
+      "type": "enum",
+      "members": {
+        "EXPORT_FORMAT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPORT_FORMAT_UNSPECIFIED"
+          }
+        },
+        "MBOX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MBOX"
+          }
+        },
+        "PST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PST"
+          }
+        },
+        "ICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ICS"
+          }
+        },
+        "XML": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "XML"
+          }
+        },
+        "JSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JSON"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#HeldAccount": {
+      "type": "structure",
+      "members": {
+        "lastName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The last name of the account holder."
+          }
+        },
+        "accountId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account ID, as provided by the [Admin SDK](https://developers.google.com/admin-sdk/)."
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The primary email address of the account. If used as an input, this takes precedence over **accountId**."
+          }
+        },
+        "holdTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. When the account was put on hold."
+          }
+        },
+        "firstName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The first name of the account holder."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An account covered by a hold. This structure is immutable. It can be an individual account or a Google Group, depending on the service. To work with Vault resources, the account must have the [required Vault privileges] (https://support.google.com/vault/answer/2799699) and access to the matter. To access a matter, the account must have created the matter, have the matter shared with them, or have the **View All Matters** privilege."
+      }
+    },
+    "com.googleworkspace.vault_v1#HeldCalendarQuery": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Options for Calendar holds."
+      }
+    },
+    "com.googleworkspace.vault_v1#ListSavedQueriesResponse": {
+      "type": "structure",
+      "members": {
+        "savedQueries": {
+          "target": "com.googleworkspace.vault_v1#SavedQueryList",
+          "traits": {
+            "smithy.api#documentation": "List of saved queries."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Page token to retrieve the next page of results in the list. If this is empty, then there are no more saved queries to list."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Definition of the response for method ListSaveQuery."
+      }
+    },
+    "com.googleworkspace.vault_v1#SavedQueryList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.vault_v1#SavedQuery"
+      }
+    },
+    "com.googleworkspace.vault_v1#AddHeldAccountsRequest": {
+      "type": "structure",
+      "members": {
+        "accountIds": {
+          "target": "com.googleworkspace.vault_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "A comma-separated list of the account IDs of the accounts to add to the hold. Specify either **emails** or **account_ids**, but not both."
+          }
+        },
+        "emails": {
+          "target": "com.googleworkspace.vault_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "A comma-separated list of the emails of the accounts to add to the hold. Specify either **emails** or **account_ids**, but not both."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Add a list of accounts to a hold."
+      }
+    },
+    "com.googleworkspace.vault_v1#Status": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+          }
+        },
+        "details": {
+          "target": "com.googleworkspace.vault_v1#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+      }
+    },
+    "com.googleworkspace.vault_v1#DocumentMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.vault_v1#DocumentMap"
+      }
+    },
+    "com.googleworkspace.vault_v1#CorpusQuery": {
+      "type": "structure",
+      "members": {
+        "mailQuery": {
+          "target": "com.googleworkspace.vault_v1#HeldMailQuery",
+          "traits": {
+            "smithy.api#documentation": "Service-specific options for Gmail holds. If set, **CorpusType** must be **MAIL**."
+          }
+        },
+        "groupsQuery": {
+          "target": "com.googleworkspace.vault_v1#HeldGroupsQuery",
+          "traits": {
+            "smithy.api#documentation": "Service-specific options for Groups holds. If set, **CorpusType** must be **GROUPS**."
+          }
+        },
+        "voiceQuery": {
+          "target": "com.googleworkspace.vault_v1#HeldVoiceQuery",
+          "traits": {
+            "smithy.api#documentation": "Service-specific options for Voice holds. If set, **CorpusType** must be **VOICE**."
+          }
+        },
+        "hangoutsChatQuery": {
+          "target": "com.googleworkspace.vault_v1#HeldHangoutsChatQuery",
+          "traits": {
+            "smithy.api#documentation": "Service-specific options for Chat holds. If set, **CorpusType** must be **HANGOUTS_CHAT**."
+          }
+        },
+        "calendarQuery": {
+          "target": "com.googleworkspace.vault_v1#HeldCalendarQuery",
+          "traits": {
+            "smithy.api#documentation": "Service-specific options for Calendar holds. If set, **CorpusType** must be **CALENDAR**."
+          }
+        },
+        "geminiQuery": {
+          "target": "com.googleworkspace.vault_v1#HeldGeminiQuery",
+          "traits": {
+            "smithy.api#documentation": "Service-specific options for Gemini holds. If set, **CorpusType** must be **GEMINI**."
+          }
+        },
+        "driveQuery": {
+          "target": "com.googleworkspace.vault_v1#HeldDriveQuery",
+          "traits": {
+            "smithy.api#documentation": "Service-specific options for Drive holds. If set, **CorpusType** must be **DRIVE**."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Service-specific options for holds."
+      }
+    },
+    "com.googleworkspace.vault_v1#HangoutsChatInfo": {
+      "type": "structure",
+      "members": {
+        "roomId": {
+          "target": "com.googleworkspace.vault_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "A list of Chat spaces IDs, as provided by the [Chat API](https://developers.google.com/workspace/chat). There is a limit of exporting from 500 Chat spaces per request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Chat spaces to search"
+      }
+    },
+    "com.googleworkspace.vault_v1#ReopenMatterRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Reopen a matter by ID."
+      }
+    },
+    "com.googleworkspace.vault_v1#ReopenMatterResponse": {
+      "type": "structure",
+      "members": {
+        "matter": {
+          "target": "com.googleworkspace.vault_v1#Matter",
+          "traits": {
+            "smithy.api#documentation": "The updated matter, with state **OPEN**."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response to a ReopenMatterRequest."
+      }
+    },
+    "com.googleworkspace.vault_v1#DeleteOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be deleted.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.googleworkspace.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.googleworkspace.vault_v1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.googleworkspace.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.googleworkspace.vault_v1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.googleworkspace.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.googleworkspace.vault_v1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.googleworkspace.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.googleworkspace.vault_v1#DeleteOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.vault_v1#DeleteOperationsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.vault_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.vault_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`."
+      }
+    },
+    "com.googleworkspace.vault_v1#CancelOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be cancelled.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.vault_v1#CancelOperationRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#CancelOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.vault_v1#CancelOperationsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.vault_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.vault_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:cancel"
+        },
+        "smithy.api#documentation": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`."
+      }
+    },
+    "com.googleworkspace.vault_v1#ListOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list filter.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation's parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "returnPartialSuccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+            "smithy.api#httpQuery": "returnPartialSuccess"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The standard list page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#ListOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.vault_v1#ListOperationsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.vault_v1#ListOperationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.vault_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#GetOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#GetOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.vault_v1#GetOperationsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.vault_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.vault_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
+      }
+    },
+    "com.googleworkspace.vault_v1#ReopenMattersRequest": {
+      "type": "structure",
+      "members": {
+        "matterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The matter ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.vault_v1#ReopenMatterRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#ReopenMatters": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.vault_v1#ReopenMattersRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.vault_v1#ReopenMatterResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.vault_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/matters/{matterId}:reopen"
+        },
+        "smithy.api#documentation": "Reopens the specified matter. Returns the matter with updated state."
+      }
+    },
+    "com.googleworkspace.vault_v1#UndeleteMattersRequest": {
+      "type": "structure",
+      "members": {
+        "matterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The matter ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.vault_v1#UndeleteMatterRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#UndeleteMatters": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.vault_v1#UndeleteMattersRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.vault_v1#Matter"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.vault_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/matters/{matterId}:undelete"
+        },
+        "smithy.api#documentation": "Undeletes the specified matter. Returns the matter with updated state."
+      }
+    },
+    "com.googleworkspace.vault_v1#UpdateMattersRequest": {
+      "type": "structure",
+      "members": {
+        "matterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The matter ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.vault_v1#Matter",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#UpdateMatters": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.vault_v1#UpdateMattersRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.vault_v1#Matter"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.vault_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "v1/matters/{matterId}"
+        },
+        "smithy.api#documentation": "Updates the specified matter. This updates only the name and description of the matter, identified by matter ID. Changes to any other fields are ignored. Returns the default view of the matter."
+      }
+    },
+    "com.googleworkspace.vault_v1#CloseMattersRequest": {
+      "type": "structure",
+      "members": {
+        "matterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The matter ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.vault_v1#CloseMatterRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#CloseMatters": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.vault_v1#CloseMattersRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.vault_v1#CloseMatterResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.vault_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/matters/{matterId}:close"
+        },
+        "smithy.api#documentation": "Closes the specified matter. Returns the matter with updated state."
+      }
+    },
+    "com.googleworkspace.vault_v1#CountMattersRequest": {
+      "type": "structure",
+      "members": {
+        "matterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The matter ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.vault_v1#CountArtifactsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#CountMatters": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.vault_v1#CountMattersRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.vault_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.vault_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/matters/{matterId}:count"
+        },
+        "smithy.api#documentation": "Counts the accounts processed by the specified query."
+      }
+    },
+    "com.googleworkspace.vault_v1#RemovePermissionsMattersRequest": {
+      "type": "structure",
+      "members": {
+        "matterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The matter ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.vault_v1#RemoveMatterPermissionsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#RemovePermissionsMatters": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.vault_v1#RemovePermissionsMattersRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.vault_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.vault_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/matters/{matterId}:removePermissions"
+        },
+        "smithy.api#documentation": "Removes an account as a matter collaborator."
+      }
+    },
+    "com.googleworkspace.vault_v1#GetMattersViewEnum": {
+      "type": "enum",
+      "members": {
+        "VIEW_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIEW_UNSPECIFIED"
+          }
+        },
+        "BASIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BASIC"
+          }
+        },
+        "FULL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FULL"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#GetMattersRequest": {
+      "type": "structure",
+      "members": {
+        "matterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The matter ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "view": {
+          "target": "com.googleworkspace.vault_v1#GetMattersViewEnum",
+          "traits": {
+            "smithy.api#documentation": "Specifies how much information about the matter to return in the response.",
+            "smithy.api#httpQuery": "view"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#GetMatters": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.vault_v1#GetMattersRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.vault_v1#Matter"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.vault_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/matters/{matterId}"
+        },
+        "smithy.api#documentation": "Gets the specified matter."
+      }
+    },
+    "com.googleworkspace.vault_v1#ListMattersViewEnum": {
+      "type": "enum",
+      "members": {
+        "VIEW_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIEW_UNSPECIFIED"
+          }
+        },
+        "BASIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BASIC"
+          }
+        },
+        "FULL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FULL"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#ListMattersStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "OPEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OPEN"
+          }
+        },
+        "CLOSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLOSED"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETED"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#ListMattersRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of matters to return in the response. Default and maximum are 100.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The pagination token as returned in the response.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "view": {
+          "target": "com.googleworkspace.vault_v1#ListMattersViewEnum",
+          "traits": {
+            "smithy.api#documentation": "Specifies how much information about the matter to return in response.",
+            "smithy.api#httpQuery": "view"
+          }
+        },
+        "state": {
+          "target": "com.googleworkspace.vault_v1#ListMattersStateEnum",
+          "traits": {
+            "smithy.api#documentation": "If set, lists only matters with the specified state. The default lists matters of all states.",
+            "smithy.api#httpQuery": "state"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#ListMatters": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.vault_v1#ListMattersRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.vault_v1#ListMattersResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.vault_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/matters"
+        },
+        "smithy.api#documentation": "Lists matters the requestor has access to.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#CreateMattersRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.googleworkspace.vault_v1#Matter",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#CreateMatters": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.vault_v1#CreateMattersRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.vault_v1#Matter"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.vault_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/matters"
+        },
+        "smithy.api#documentation": "Creates a matter with the given name and description. The initial state is open, and the owner is the method caller. Returns the created matter with default view."
+      }
+    },
+    "com.googleworkspace.vault_v1#DeleteMattersRequest": {
+      "type": "structure",
+      "members": {
+        "matterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The matter ID",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#DeleteMatters": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.vault_v1#DeleteMattersRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.vault_v1#Matter"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.vault_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/matters/{matterId}"
+        },
+        "smithy.api#documentation": "Deletes the specified matter. Returns the matter with updated state."
+      }
+    },
+    "com.googleworkspace.vault_v1#AddPermissionsMattersRequest": {
+      "type": "structure",
+      "members": {
+        "matterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The matter ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.vault_v1#AddMatterPermissionsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#AddPermissionsMatters": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.vault_v1#AddPermissionsMattersRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.vault_v1#MatterPermission"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.vault_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/matters/{matterId}:addPermissions"
+        },
+        "smithy.api#documentation": "Adds an account as a matter collaborator."
+      }
+    },
+    "com.googleworkspace.vault_v1#CreateMattersSavedQueriesRequest": {
+      "type": "structure",
+      "members": {
+        "matterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the matter to create the saved query in.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.vault_v1#SavedQuery",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#CreateMattersSavedQueries": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.vault_v1#CreateMattersSavedQueriesRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.vault_v1#SavedQuery"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.vault_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/matters/{matterId}/savedQueries"
+        },
+        "smithy.api#documentation": "Creates a saved query."
+      }
+    },
+    "com.googleworkspace.vault_v1#DeleteMattersSavedQueriesRequest": {
+      "type": "structure",
+      "members": {
+        "matterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the matter to delete the saved query from.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "savedQueryId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the saved query to delete.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#DeleteMattersSavedQueries": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.vault_v1#DeleteMattersSavedQueriesRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.vault_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.vault_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/matters/{matterId}/savedQueries/{savedQueryId}"
+        },
+        "smithy.api#documentation": "Deletes the specified saved query."
+      }
+    },
+    "com.googleworkspace.vault_v1#GetMattersSavedQueriesRequest": {
+      "type": "structure",
+      "members": {
+        "savedQueryId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the saved query to retrieve.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "matterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the matter to get the saved query from.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#GetMattersSavedQueries": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.vault_v1#GetMattersSavedQueriesRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.vault_v1#SavedQuery"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.vault_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/matters/{matterId}/savedQueries/{savedQueryId}"
+        },
+        "smithy.api#documentation": "Retrieves the specified saved query."
+      }
+    },
+    "com.googleworkspace.vault_v1#ListMattersSavedQueriesRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of saved queries to return.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The pagination token as returned in the previous response. An empty token means start from the beginning.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "matterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the matter to get the saved queries for.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#ListMattersSavedQueries": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.vault_v1#ListMattersSavedQueriesRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.vault_v1#ListSavedQueriesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.vault_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/matters/{matterId}/savedQueries"
+        },
+        "smithy.api#documentation": "Lists the saved queries in a matter.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#CreateMattersHoldsRequest": {
+      "type": "structure",
+      "members": {
+        "matterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The matter ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.vault_v1#Hold",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#CreateMattersHolds": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.vault_v1#CreateMattersHoldsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.vault_v1#Hold"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.vault_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/matters/{matterId}/holds"
+        },
+        "smithy.api#documentation": "Creates a hold in the specified matter."
+      }
+    },
+    "com.googleworkspace.vault_v1#DeleteMattersHoldsRequest": {
+      "type": "structure",
+      "members": {
+        "matterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The matter ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "holdId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hold ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#DeleteMattersHolds": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.vault_v1#DeleteMattersHoldsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.vault_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.vault_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/matters/{matterId}/holds/{holdId}"
+        },
+        "smithy.api#documentation": "Removes the specified hold and releases the accounts or organizational unit covered by the hold. If the data is not preserved by another hold or retention rule, it might be purged."
+      }
+    },
+    "com.googleworkspace.vault_v1#UpdateMattersHoldsRequest": {
+      "type": "structure",
+      "members": {
+        "matterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The matter ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "holdId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the hold.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.vault_v1#Hold",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#UpdateMattersHolds": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.vault_v1#UpdateMattersHoldsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.vault_v1#Hold"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.vault_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "v1/matters/{matterId}/holds/{holdId}"
+        },
+        "smithy.api#documentation": "Updates the scope (organizational unit or accounts) and query parameters of a hold. You cannot add accounts to a hold that covers an organizational unit, nor can you add organizational units to a hold that covers individual accounts. If you try, the unsupported values are ignored."
+      }
+    },
+    "com.googleworkspace.vault_v1#AddHeldAccountsMattersHoldsRequest": {
+      "type": "structure",
+      "members": {
+        "holdId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hold ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "matterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The matter ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.vault_v1#AddHeldAccountsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#AddHeldAccountsMattersHolds": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.vault_v1#AddHeldAccountsMattersHoldsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.vault_v1#AddHeldAccountsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.vault_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/matters/{matterId}/holds/{holdId}:addHeldAccounts"
+        },
+        "smithy.api#documentation": "Adds accounts to a hold. Returns a list of accounts that have been successfully added. Accounts can be added only to an existing account-based hold."
+      }
+    },
+    "com.googleworkspace.vault_v1#RemoveHeldAccountsMattersHoldsRequest": {
+      "type": "structure",
+      "members": {
+        "holdId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hold ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "matterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The matter ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.vault_v1#RemoveHeldAccountsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#RemoveHeldAccountsMattersHolds": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.vault_v1#RemoveHeldAccountsMattersHoldsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.vault_v1#RemoveHeldAccountsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.vault_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/matters/{matterId}/holds/{holdId}:removeHeldAccounts"
+        },
+        "smithy.api#documentation": "Removes the specified accounts from a hold. Returns a list of statuses in the same order as the request."
+      }
+    },
+    "com.googleworkspace.vault_v1#GetMattersHoldsViewEnum": {
+      "type": "enum",
+      "members": {
+        "HOLD_VIEW_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HOLD_VIEW_UNSPECIFIED"
+          }
+        },
+        "BASIC_HOLD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BASIC_HOLD"
+          }
+        },
+        "FULL_HOLD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FULL_HOLD"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#GetMattersHoldsRequest": {
+      "type": "structure",
+      "members": {
+        "view": {
+          "target": "com.googleworkspace.vault_v1#GetMattersHoldsViewEnum",
+          "traits": {
+            "smithy.api#documentation": "The amount of detail to return for a hold.",
+            "smithy.api#httpQuery": "view"
+          }
+        },
+        "holdId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hold ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "matterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The matter ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#GetMattersHolds": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.vault_v1#GetMattersHoldsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.vault_v1#Hold"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.vault_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/matters/{matterId}/holds/{holdId}"
+        },
+        "smithy.api#documentation": "Gets the specified hold."
+      }
+    },
+    "com.googleworkspace.vault_v1#ListMattersHoldsViewEnum": {
+      "type": "enum",
+      "members": {
+        "HOLD_VIEW_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HOLD_VIEW_UNSPECIFIED"
+          }
+        },
+        "BASIC_HOLD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BASIC_HOLD"
+          }
+        },
+        "FULL_HOLD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FULL_HOLD"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#ListMattersHoldsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of holds to return in the response, between 0 and 100 inclusive. Leaving this empty, or as 0, is the same as **page_size** = 100.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The pagination token as returned in the response. An empty token means start from the beginning.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "view": {
+          "target": "com.googleworkspace.vault_v1#ListMattersHoldsViewEnum",
+          "traits": {
+            "smithy.api#documentation": "The amount of detail to return for a hold.",
+            "smithy.api#httpQuery": "view"
+          }
+        },
+        "matterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The matter ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#ListMattersHolds": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.vault_v1#ListMattersHoldsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.vault_v1#ListHoldsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.vault_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/matters/{matterId}/holds"
+        },
+        "smithy.api#documentation": "Lists the holds in a matter.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#CreateMattersHoldsAccountsRequest": {
+      "type": "structure",
+      "members": {
+        "holdId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hold ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "matterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The matter ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.vault_v1#HeldAccount",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#CreateMattersHoldsAccounts": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.vault_v1#CreateMattersHoldsAccountsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.vault_v1#HeldAccount"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.vault_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/matters/{matterId}/holds/{holdId}/accounts"
+        },
+        "smithy.api#documentation": "Adds an account to a hold. Accounts can be added only to a hold that does not have an organizational unit set. If you try to add an account to an organizational unit-based hold, an error is returned."
+      }
+    },
+    "com.googleworkspace.vault_v1#DeleteMattersHoldsAccountsRequest": {
+      "type": "structure",
+      "members": {
+        "matterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The matter ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "accountId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the account to remove from the hold.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "holdId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hold ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#DeleteMattersHoldsAccounts": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.vault_v1#DeleteMattersHoldsAccountsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.vault_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.vault_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/matters/{matterId}/holds/{holdId}/accounts/{accountId}"
+        },
+        "smithy.api#documentation": "Removes an account from a hold."
+      }
+    },
+    "com.googleworkspace.vault_v1#ListMattersHoldsAccountsRequest": {
+      "type": "structure",
+      "members": {
+        "holdId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hold ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "matterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The matter ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#ListMattersHoldsAccounts": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.vault_v1#ListMattersHoldsAccountsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.vault_v1#ListHeldAccountsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.vault_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/matters/{matterId}/holds/{holdId}/accounts"
+        },
+        "smithy.api#documentation": "Lists the accounts covered by a hold. This can list only individually-specified accounts covered by the hold. If the hold covers an organizational unit, use the [Admin SDK](https://developers.google.com/admin-sdk/). to list the members of the organizational unit on hold."
+      }
+    },
+    "com.googleworkspace.vault_v1#CreateMattersExportsRequest": {
+      "type": "structure",
+      "members": {
+        "matterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The matter ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.vault_v1#Export",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#CreateMattersExports": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.vault_v1#CreateMattersExportsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.vault_v1#Export"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.vault_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/matters/{matterId}/exports"
+        },
+        "smithy.api#documentation": "Creates an export."
+      }
+    },
+    "com.googleworkspace.vault_v1#DeleteMattersExportsRequest": {
+      "type": "structure",
+      "members": {
+        "exportId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The export ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "matterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The matter ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#DeleteMattersExports": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.vault_v1#DeleteMattersExportsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.vault_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.vault_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/matters/{matterId}/exports/{exportId}"
+        },
+        "smithy.api#documentation": "Deletes an export."
+      }
+    },
+    "com.googleworkspace.vault_v1#GetMattersExportsRequest": {
+      "type": "structure",
+      "members": {
+        "exportId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The export ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "matterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The matter ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#GetMattersExports": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.vault_v1#GetMattersExportsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.vault_v1#Export"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.vault_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/matters/{matterId}/exports/{exportId}"
+        },
+        "smithy.api#documentation": "Gets an export."
+      }
+    },
+    "com.googleworkspace.vault_v1#ListMattersExportsRequest": {
+      "type": "structure",
+      "members": {
+        "matterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The matter ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of exports to return in the response.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The pagination token as returned in the response.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.vault_v1#ListMattersExports": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.vault_v1#ListMattersExportsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.vault_v1#ListExportsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.vault_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.vault_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/matters/{matterId}/exports"
+        },
+        "smithy.api#documentation": "Lists details about the exports in the specified matter.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,715 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "gmailpostmastertools",
+    "version": "v1beta1",
+    "title": "Gmail Postmaster Tools API",
+    "baseUrl": "https://gmailpostmastertools.googleapis.com/",
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.googleworkspace.gmailpostmastertools_v1beta1#DeliveryError": {
+      "type": "structure",
+      "members": {
+        "errorClass": {
+          "target": "com.googleworkspace.gmailpostmastertools_v1beta1#DeliveryErrorErrorClassEnum",
+          "traits": {
+            "smithy.api#documentation": "The class of delivery error."
+          }
+        },
+        "errorRatio": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The ratio of messages where the error occurred vs all authenticated traffic."
+          }
+        },
+        "errorType": {
+          "target": "com.googleworkspace.gmailpostmastertools_v1beta1#DeliveryErrorErrorTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The type of delivery error."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metric on a particular delivery error type."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v1beta1#DeliveryErrorErrorClassEnum": {
+      "type": "enum",
+      "members": {
+        "DELIVERY_ERROR_CLASS_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELIVERY_ERROR_CLASS_UNSPECIFIED"
+          }
+        },
+        "PERMANENT_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PERMANENT_ERROR"
+          }
+        },
+        "TEMPORARY_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TEMPORARY_ERROR"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v1beta1#DeliveryErrorErrorTypeEnum": {
+      "type": "enum",
+      "members": {
+        "DELIVERY_ERROR_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELIVERY_ERROR_TYPE_UNSPECIFIED"
+          }
+        },
+        "RATE_LIMIT_EXCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RATE_LIMIT_EXCEEDED"
+          }
+        },
+        "SUSPECTED_SPAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUSPECTED_SPAM"
+          }
+        },
+        "CONTENT_SPAMMY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONTENT_SPAMMY"
+          }
+        },
+        "BAD_ATTACHMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BAD_ATTACHMENT"
+          }
+        },
+        "BAD_DMARC_POLICY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BAD_DMARC_POLICY"
+          }
+        },
+        "LOW_IP_REPUTATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOW_IP_REPUTATION"
+          }
+        },
+        "LOW_DOMAIN_REPUTATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOW_DOMAIN_REPUTATION"
+          }
+        },
+        "IP_IN_RBL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IP_IN_RBL"
+          }
+        },
+        "DOMAIN_IN_RBL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DOMAIN_IN_RBL"
+          }
+        },
+        "BAD_PTR_RECORD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BAD_PTR_RECORD"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v1beta1#Domain": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the Domain. Domain names have the form `domains/{domain_name}`, where domain_name is the fully qualified domain name (i.e., mymail.mydomain.com)."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp when the user registered this domain. Assigned by the server."
+          }
+        },
+        "permission": {
+          "target": "com.googleworkspace.gmailpostmastertools_v1beta1#DomainPermissionEnum",
+          "traits": {
+            "smithy.api#documentation": "User’s permission for this domain. Assigned by the server."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A registered domain resource in the Postmaster API."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v1beta1#DomainPermissionEnum": {
+      "type": "enum",
+      "members": {
+        "PERMISSION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PERMISSION_UNSPECIFIED"
+          }
+        },
+        "OWNER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OWNER"
+          }
+        },
+        "READER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READER"
+          }
+        },
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NONE"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v1beta1#ListDomainsResponse": {
+      "type": "structure",
+      "members": {
+        "domains": {
+          "target": "com.googleworkspace.gmailpostmastertools_v1beta1#DomainList",
+          "traits": {
+            "smithy.api#documentation": "The list of domains."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token to retrieve the next page of results, or empty if there are no more results in the list."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for ListDomains."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v1beta1#DomainList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.gmailpostmastertools_v1beta1#Domain"
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v1beta1#FeedbackLoop": {
+      "type": "structure",
+      "members": {
+        "spamRatio": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The ratio of user marked spam messages with the identifier vs the total number of inboxed messages with that identifier."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Feedback loop identifier that uniquely identifies individual campaigns."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "[Feedback loop](https://support.google.com/mail/answer/6254652) identifier information."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v1beta1#TrafficStats": {
+      "type": "structure",
+      "members": {
+        "dmarcSuccessRatio": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The ratio of mail that passed [DMARC](https://dmarc.org/) alignment checks vs all mail received from the domain that successfully authenticated with either of [SPF](http://www.openspf.org/) or [DKIM](http://www.dkim.org/)."
+          }
+        },
+        "userReportedSpamRatioLowerBound": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The lower bound of the confidence interval for the user reported spam ratio. If this field is set, then the value of userReportedSpamRatio is set to the midpoint of this interval and is thus inexact. However, the true ratio is guaranteed to be in between this lower bound and the corresponding upper bound 95% of the time. This metric only pertains to emails authenticated by [DKIM](http://www.dkim.org/)."
+          }
+        },
+        "inboundEncryptionRatio": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The ratio of incoming mail (to Gmail), that passed secure transport (TLS) vs all mail received from that domain. This metric only pertains to traffic that passed [SPF](http://www.openspf.org/) or [DKIM](http://www.dkim.org/)."
+          }
+        },
+        "ipReputations": {
+          "target": "com.googleworkspace.gmailpostmastertools_v1beta1#IpReputationList",
+          "traits": {
+            "smithy.api#documentation": "Reputation information pertaining to the IP addresses of the email servers for the domain. There is exactly one entry for each reputation category except REPUTATION_CATEGORY_UNSPECIFIED."
+          }
+        },
+        "userReportedSpamRatio": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The ratio of user-report spam vs. email that was sent to the inbox. This is potentially inexact -- users may want to refer to the description of the interval fields userReportedSpamRatioLowerBound and userReportedSpamRatioUpperBound for more explicit accuracy guarantees. This metric only pertains to emails authenticated by [DKIM](http://www.dkim.org/)."
+          }
+        },
+        "outboundEncryptionRatio": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The ratio of outgoing mail (from Gmail) that was accepted over secure transport (TLS)."
+          }
+        },
+        "spfSuccessRatio": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The ratio of mail that successfully authenticated with SPF vs. all mail that attempted to authenticate with [SPF](http://www.openspf.org/). Spoofed mail is excluded."
+          }
+        },
+        "userReportedSpamRatioUpperBound": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The upper bound of the confidence interval for the user reported spam ratio. If this field is set, then the value of userReportedSpamRatio is set to the midpoint of this interval and is thus inexact. However, the true ratio is guaranteed to be in between this upper bound and the corresponding lower bound 95% of the time. This metric only pertains to emails authenticated by [DKIM](http://www.dkim.org/)."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the traffic statistics. Traffic statistic names have the form `domains/{domain}/trafficStats/{date}`, where domain_name is the fully qualified domain name (i.e., mymail.mydomain.com) of the domain this traffic statistics pertains to and date is the date in yyyymmdd format that these statistics corresponds to. For example: domains/mymail.mydomain.com/trafficStats/20160807"
+          }
+        },
+        "dkimSuccessRatio": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The ratio of mail that successfully authenticated with DKIM vs. all mail that attempted to authenticate with [DKIM](http://www.dkim.org/). Spoofed mail is excluded."
+          }
+        },
+        "domainReputation": {
+          "target": "com.googleworkspace.gmailpostmastertools_v1beta1#TrafficStatsDomainReputationEnum",
+          "traits": {
+            "smithy.api#documentation": "Reputation of the domain."
+          }
+        },
+        "deliveryErrors": {
+          "target": "com.googleworkspace.gmailpostmastertools_v1beta1#DeliveryErrorList",
+          "traits": {
+            "smithy.api#documentation": "Delivery errors for the domain. This metric only pertains to traffic that passed [SPF](http://www.openspf.org/) or [DKIM](http://www.dkim.org/)."
+          }
+        },
+        "spammyFeedbackLoops": {
+          "target": "com.googleworkspace.gmailpostmastertools_v1beta1#FeedbackLoopList",
+          "traits": {
+            "smithy.api#documentation": "Spammy [Feedback loop identifiers] (https://support.google.com/mail/answer/6254652) with their individual spam rates. This metric only pertains to traffic that is authenticated by [DKIM](http://www.dkim.org/)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Email traffic statistics pertaining to a specific date."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v1beta1#IpReputationList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.gmailpostmastertools_v1beta1#IpReputation"
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v1beta1#TrafficStatsDomainReputationEnum": {
+      "type": "enum",
+      "members": {
+        "REPUTATION_CATEGORY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REPUTATION_CATEGORY_UNSPECIFIED"
+          }
+        },
+        "HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HIGH"
+          }
+        },
+        "MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEDIUM"
+          }
+        },
+        "LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOW"
+          }
+        },
+        "BAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BAD"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v1beta1#DeliveryErrorList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.gmailpostmastertools_v1beta1#DeliveryError"
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v1beta1#FeedbackLoopList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.gmailpostmastertools_v1beta1#FeedbackLoop"
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v1beta1#IpReputation": {
+      "type": "structure",
+      "members": {
+        "reputation": {
+          "target": "com.googleworkspace.gmailpostmastertools_v1beta1#IpReputationReputationEnum",
+          "traits": {
+            "smithy.api#documentation": "The reputation category this IP reputation represents."
+          }
+        },
+        "sampleIps": {
+          "target": "com.googleworkspace.gmailpostmastertools_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "A sample of IPs in this reputation category."
+          }
+        },
+        "ipCount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Total number of unique IPs in this reputation category. This metric only pertains to traffic that passed [SPF](http://www.openspf.org/) or [DKIM](http://www.dkim.org/)."
+          }
+        },
+        "numIps": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Total number of unique IPs in this reputation category. This metric only pertains to traffic that passed [SPF](http://www.openspf.org/) or [DKIM](http://www.dkim.org/). Deprecated to be complied with ApiLinter for Quantities. Use ip_count instead."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "IP Reputation information for a set of IPs in a specific reputation category."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v1beta1#IpReputationReputationEnum": {
+      "type": "enum",
+      "members": {
+        "REPUTATION_CATEGORY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REPUTATION_CATEGORY_UNSPECIFIED"
+          }
+        },
+        "HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HIGH"
+          }
+        },
+        "MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEDIUM"
+          }
+        },
+        "LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOW"
+          }
+        },
+        "BAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BAD"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v1beta1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v1beta1#ListTrafficStatsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token to retrieve the next page of results, or empty if there are no more results in the list."
+          }
+        },
+        "trafficStats": {
+          "target": "com.googleworkspace.gmailpostmastertools_v1beta1#TrafficStatsList",
+          "traits": {
+            "smithy.api#documentation": "The list of TrafficStats."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for ListTrafficStats."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v1beta1#TrafficStatsList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.gmailpostmastertools_v1beta1#TrafficStats"
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v1beta1#ListDomainsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Requested page size. Server may return fewer domains than requested. If unspecified, server will pick an appropriate default.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The next_page_token value returned from a previous List request, if any. This is the value of ListDomainsResponse.next_page_token returned from the previous call to `ListDomains` method.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v1beta1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.googleworkspace.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v1beta1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.googleworkspace.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v1beta1#ListDomains": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.gmailpostmastertools_v1beta1#ListDomainsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.gmailpostmastertools_v1beta1#ListDomainsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v1beta1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/domains"
+        },
+        "smithy.api#documentation": "Lists the domains that have been registered by the client. The order of domains in the response is unspecified and non-deterministic. Newly created domains will not necessarily be added to the end of this list.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v1beta1#GetDomainsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the domain. It should have the form `domains/{domain_name}`, where domain_name is the fully qualified domain name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v1beta1#GetDomains": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.gmailpostmastertools_v1beta1#GetDomainsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.gmailpostmastertools_v1beta1#Domain"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v1beta1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+name}"
+        },
+        "smithy.api#documentation": "Gets a specific domain registered by the client. Returns NOT_FOUND if the domain does not exist."
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v1beta1#ListDomainsTrafficStatsRequest": {
+      "type": "structure",
+      "members": {
+        "endDate.month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
+            "smithy.api#httpQuery": "endDate.month"
+          }
+        },
+        "endDate.day": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
+            "smithy.api#httpQuery": "endDate.day"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Requested page size. Server may return fewer TrafficStats than requested. If unspecified, server will pick an appropriate default.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the domain whose traffic statistics we'd like to list. It should have the form `domains/{domain_name}`, where domain_name is the fully qualified domain name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "startDate.month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
+            "smithy.api#httpQuery": "startDate.month"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The next_page_token value returned from a previous List request, if any. This is the value of ListTrafficStatsResponse.next_page_token returned from the previous call to `ListTrafficStats` method.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "startDate.day": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
+            "smithy.api#httpQuery": "startDate.day"
+          }
+        },
+        "startDate.year": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
+            "smithy.api#httpQuery": "startDate.year"
+          }
+        },
+        "endDate.year": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
+            "smithy.api#httpQuery": "endDate.year"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v1beta1#ListDomainsTrafficStats": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.gmailpostmastertools_v1beta1#ListDomainsTrafficStatsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.gmailpostmastertools_v1beta1#ListTrafficStatsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v1beta1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+parent}/trafficStats"
+        },
+        "smithy.api#documentation": "List traffic statistics for all available days. Returns PERMISSION_DENIED if user does not have permission to access TrafficStats for the domain.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v1beta1#GetDomainsTrafficStatsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the traffic statistics to get. E.g., domains/mymail.mydomain.com/trafficStats/20160807.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.gmailpostmastertools_v1beta1#GetDomainsTrafficStats": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.gmailpostmastertools_v1beta1#GetDomainsTrafficStatsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.gmailpostmastertools_v1beta1#TrafficStats"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v1beta1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.gmailpostmastertools_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+name}"
+        },
+        "smithy.api#documentation": "Get traffic statistics for a domain on a specific date. Returns PERMISSION_DENIED if user does not have permission to access TrafficStats for the domain."
+      }
+    }
+  }
+}

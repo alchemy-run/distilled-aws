@@ -1,0 +1,4319 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "drivelabels",
+    "version": "v2",
+    "title": "Drive Labels API",
+    "baseUrl": "https://drivelabels.googleapis.com/",
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestEnableSelectionChoiceRequest": {
+      "type": "structure",
+      "members": {
+        "fieldId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The selection field in which a choice will be enabled."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Choice to enable."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request to enable a choice."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelAppliedCapabilities": {
+      "type": "structure",
+      "members": {
+        "canRead": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the user can read applied metadata related to this label."
+          }
+        },
+        "canApply": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the user can apply this label to items."
+          }
+        },
+        "canRemove": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the user can remove this label from items."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The capabilities a user has on this label's applied metadata."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestCreateSelectionChoiceRequest": {
+      "type": "structure",
+      "members": {
+        "choice": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldSelectionOptionsChoice",
+          "traits": {
+            "smithy.api#documentation": "Required. The choice to create."
+          }
+        },
+        "fieldId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The selection field in which a choice will be created."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request to create a selection choice."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2BatchUpdateLabelPermissionsResponse": {
+      "type": "structure",
+      "members": {
+        "permissions": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelPermissionList",
+          "traits": {
+            "smithy.api#documentation": "Required. Permissions updated."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for updating one or more label permissions."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelPermissionList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelPermission"
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LongTextLimits": {
+      "type": "structure",
+      "members": {
+        "minLength": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Minimum length allowed for a long text field type."
+          }
+        },
+        "maxLength": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum length allowed for a long text field type."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Limits for long text field type."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestUpdateFieldPropertiesRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The field to update."
+          }
+        },
+        "properties": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldProperties",
+          "traits": {
+            "smithy.api#documentation": "Required. Basic field properties."
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The fields that should be updated. At least one field must be specified. The root `properties` is implied and should not be specified. A single `*` can be used as a short-hand for updating every field."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request to update field properties."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldIntegerOptions": {
+      "type": "structure",
+      "members": {
+        "maxValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The maximum valid value for the integer field."
+          }
+        },
+        "minValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The minimum valid value for the integer field."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Options for the Integer field type."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2EnableLabelRequest": {
+      "type": "structure",
+      "members": {
+        "writeControl": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2WriteControl",
+          "traits": {
+            "smithy.api#documentation": "Provides control over how write requests are executed. Defaults to unset, which means the last write wins."
+          }
+        },
+        "useAdminAccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access."
+          }
+        },
+        "languageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The BCP-47 language code to use for evaluating localized field labels. When not specified, values in the default configured language will be used."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request to enable a label."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldSchemaCapabilities": {
+      "type": "structure",
+      "members": {
+        "canDisable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the user can disable this field. The user must have permission and this field must not already be disabled."
+          }
+        },
+        "canEnable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the user can enable this field. The user must have permission and this field must be disabled."
+          }
+        },
+        "canDelete": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the user can delete this field. The user must have permission and the field must be deprecated."
+          }
+        },
+        "canUpdate": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the user can change this field."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The capabilities related to this field when editing the field."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelEnabledAppSettingsEnabledApp": {
+      "type": "structure",
+      "members": {
+        "app": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelEnabledAppSettingsEnabledAppAppEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. The name of the app."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An app where the label can be used."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelEnabledAppSettingsEnabledAppAppEnum": {
+      "type": "enum",
+      "members": {
+        "APP_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APP_UNSPECIFIED"
+          }
+        },
+        "DRIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DRIVE"
+          }
+        },
+        "GMAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GMAIL"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2UserCapabilities": {
+      "type": "structure",
+      "members": {
+        "canAccessLabelManager": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Whether the user is allowed access to the label manager."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Resource name for the user capabilities."
+          }
+        },
+        "canCreateSharedLabels": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Whether the user is allowed to create shared labels."
+          }
+        },
+        "canCreateAdminLabels": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Whether the user is allowed to create admin labels."
+          }
+        },
+        "canAdministrateLabels": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Whether the user is an administrator for the shared labels feature."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The capabilities of a user."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldUserOptions": {
+      "type": "structure",
+      "members": {
+        "listOptions": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldListOptions",
+          "traits": {
+            "smithy.api#documentation": "When specified, indicates that this field supports a list of values. Once the field is published, this cannot be changed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Options for the user field type."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseEnableFieldResponse": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Response following field enable."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2BatchUpdateLabelPermissionsRequest": {
+      "type": "structure",
+      "members": {
+        "requests": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2UpdateLabelPermissionRequestList",
+          "traits": {
+            "smithy.api#documentation": "Required. The request message specifying the resources to update."
+          }
+        },
+        "useAdminAccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access. If this is set, the `use_admin_access` field in the `UpdateLabelPermissionRequest` messages must either be empty or match this field."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Updates one or more label permissions."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2UpdateLabelPermissionRequestList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2UpdateLabelPermissionRequest"
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldListOptions": {
+      "type": "structure",
+      "members": {
+        "maxEntries": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of entries permitted."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Options for a multi-valued variant of an associated field type."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseDeleteFieldResponse": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Response following field delete."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestEnableFieldRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. ID of the field to enable."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request to enable the field."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestUpdateFieldTypeRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The field to update."
+          }
+        },
+        "dateOptions": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldDateOptions",
+          "traits": {
+            "smithy.api#documentation": "Update field to Date."
+          }
+        },
+        "textOptions": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldTextOptions",
+          "traits": {
+            "smithy.api#documentation": "Update field to Text."
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The fields that should be updated. At least one field must be specified. The root of `type_options` is implied and should not be specified. A single `*` can be used as a short-hand for updating every field."
+          }
+        },
+        "integerOptions": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldIntegerOptions",
+          "traits": {
+            "smithy.api#documentation": "Update field to Integer."
+          }
+        },
+        "selectionOptions": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldSelectionOptions",
+          "traits": {
+            "smithy.api#documentation": "Update field to Selection."
+          }
+        },
+        "userOptions": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldUserOptions",
+          "traits": {
+            "smithy.api#documentation": "Update field to User."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request to change the type of a field."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseDisableFieldResponse": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Response following field disable."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestDeleteFieldRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. ID of the field to delete."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request to delete the field."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2ListLabelsResponse": {
+      "type": "structure",
+      "members": {
+        "labels": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelList",
+          "traits": {
+            "smithy.api#documentation": "Labels."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The token of the next page in the response."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for listing labels."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2Label"
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2Field": {
+      "type": "structure",
+      "members": {
+        "displayHints": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldDisplayHints",
+          "traits": {
+            "smithy.api#documentation": "Output only. UI display hints for rendering a field."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time this field was created."
+          }
+        },
+        "queryKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The key to use when constructing Drive search queries to find files based on values defined for this field on files. For example, \"`{query_key}` > 2001-01-01\"."
+          }
+        },
+        "lifecycle": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2Lifecycle",
+          "traits": {
+            "smithy.api#documentation": "Output only. The lifecycle of this field."
+          }
+        },
+        "properties": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldProperties",
+          "traits": {
+            "smithy.api#documentation": "The basic properties of the field."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The key of a field, unique within a label or library. This value is autogenerated. Matches the regex: `([a-zA-Z0-9])+`."
+          }
+        },
+        "selectionOptions": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldSelectionOptions",
+          "traits": {
+            "smithy.api#documentation": "Selection field options."
+          }
+        },
+        "textOptions": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldTextOptions",
+          "traits": {
+            "smithy.api#documentation": "Text field options."
+          }
+        },
+        "disabler": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2UserInfo",
+          "traits": {
+            "smithy.api#documentation": "Output only. The user who disabled this field. This value has no meaning when the field is not disabled."
+          }
+        },
+        "schemaCapabilities": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldSchemaCapabilities",
+          "traits": {
+            "smithy.api#documentation": "Output only. The capabilities this user has when editing this field."
+          }
+        },
+        "creator": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2UserInfo",
+          "traits": {
+            "smithy.api#documentation": "Output only. The user who created this field."
+          }
+        },
+        "updater": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2UserInfo",
+          "traits": {
+            "smithy.api#documentation": "Output only. The user who modified this field."
+          }
+        },
+        "integerOptions": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldIntegerOptions",
+          "traits": {
+            "smithy.api#documentation": "Integer field options."
+          }
+        },
+        "lockStatus": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LockStatus",
+          "traits": {
+            "smithy.api#documentation": "Output only. The `LockStatus` of this field."
+          }
+        },
+        "disableTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time this field was disabled. This value has no meaning when the field is not disabled."
+          }
+        },
+        "userOptions": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldUserOptions",
+          "traits": {
+            "smithy.api#documentation": "User field options."
+          }
+        },
+        "dateOptions": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldDateOptions",
+          "traits": {
+            "smithy.api#documentation": "Date field options."
+          }
+        },
+        "appliedCapabilities": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldAppliedCapabilities",
+          "traits": {
+            "smithy.api#documentation": "Output only. The capabilities this user has on this field and its value when the label is applied on Drive items."
+          }
+        },
+        "publisher": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2UserInfo",
+          "traits": {
+            "smithy.api#documentation": "Output only. The user who published this field. This value has no meaning when the field is not published."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time this field was updated."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Defines a field that has a display name, data type, and other configuration options. This field defines the kind of metadata that may be set on a Drive item."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldDateOptions": {
+      "type": "structure",
+      "members": {
+        "maxValue": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleTypeDate",
+          "traits": {
+            "smithy.api#documentation": "Output only. Maximum valid value (year, month, day)."
+          }
+        },
+        "dateFormatType": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldDateOptionsDateFormatTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Localized date formatting option. Field values are rendered in this format according to their locale."
+          }
+        },
+        "dateFormat": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. ICU date format."
+          }
+        },
+        "minValue": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleTypeDate",
+          "traits": {
+            "smithy.api#documentation": "Output only. Minimum valid value (year, month, day)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Options for the date field type."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldDateOptionsDateFormatTypeEnum": {
+      "type": "enum",
+      "members": {
+        "DATE_FORMAT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATE_FORMAT_UNSPECIFIED"
+          }
+        },
+        "LONG_DATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LONG_DATE"
+          }
+        },
+        "SHORT_DATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHORT_DATE"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2BatchDeleteLabelPermissionsRequest": {
+      "type": "structure",
+      "members": {
+        "useAdminAccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access. If this is set, the `use_admin_access` field in the `DeleteLabelPermissionRequest` messages must either be empty or match this field."
+          }
+        },
+        "requests": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeleteLabelPermissionRequestList",
+          "traits": {
+            "smithy.api#documentation": "Required. The request message specifying the resources to update."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Deletes one or more label permissions."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeleteLabelPermissionRequestList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeleteLabelPermissionRequest"
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseDeleteSelectionChoiceResponse": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Response following choice delete."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2BadgeColors": {
+      "type": "structure",
+      "members": {
+        "soloColor": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleTypeColor",
+          "traits": {
+            "smithy.api#documentation": "Output only. Color that can be used for text without a background."
+          }
+        },
+        "backgroundColor": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleTypeColor",
+          "traits": {
+            "smithy.api#documentation": "Output only. Badge background that pairs with the foreground."
+          }
+        },
+        "foregroundColor": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleTypeColor",
+          "traits": {
+            "smithy.api#documentation": "Output only. Badge foreground that pairs with the background."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The color derived from BadgeConfig and changed to the closest recommended supported color."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldDisplayHints": {
+      "type": "structure",
+      "members": {
+        "shownInApply": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "This field should be shown in the apply menu when applying values to a Drive item."
+          }
+        },
+        "required": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the field should be shown as required in the UI."
+          }
+        },
+        "hiddenInSearch": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "This field should be hidden in the search menu when searching for Drive items."
+          }
+        },
+        "disabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the field should be shown in the UI as disabled."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "UI display hints for rendering a field."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2UpdateLabelPermissionRequest": {
+      "type": "structure",
+      "members": {
+        "labelPermission": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelPermission",
+          "traits": {
+            "smithy.api#documentation": "Required. The permission to create or update on the label."
+          }
+        },
+        "useAdminAccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access."
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent label resource name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Updates a label permission. Permissions affect the label resource as a whole, aren't revisioned, and don't require publishing."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseUpdateFieldPropertiesResponse": {
+      "type": "structure",
+      "members": {
+        "priority": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The priority of the updated field. The priority may change from what was specified to assure contiguous priorities between fields (1-n)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response following update to field properties."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldSelectionOptionsChoiceAppliedCapabilities": {
+      "type": "structure",
+      "members": {
+        "canRead": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the user can read related applied metadata on items."
+          }
+        },
+        "canSearch": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the user can use this choice in search queries."
+          }
+        },
+        "canSelect": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the user can select this choice on an item."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The capabilities related to this choice on applied metadata."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LockStatus": {
+      "type": "structure",
+      "members": {
+        "locked": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Indicates whether this label component is the (direct) target of a label lock. A label component can be implicitly locked even if it's not the direct target of a label lock, in which case this field is set to false."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains information about whether a label component should be considered locked."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelSchemaCapabilities": {
+      "type": "structure",
+      "members": {
+        "canUpdate": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the user can change this label."
+          }
+        },
+        "canDisable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the user can disable this label. The user must have permission and this label must not already be disabled."
+          }
+        },
+        "canEnable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the user can enable this label. The user must have permission and this label must be disabled."
+          }
+        },
+        "canDelete": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the user can delete this label. The user must have permission and the label must be disabled."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The capabilities related to this label when editing the label."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelEnabledAppSettings": {
+      "type": "structure",
+      "members": {
+        "enabledApps": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelEnabledAppSettingsEnabledAppList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The list of apps where the label can be used."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes the Google Workspace apps in which the label can be used."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelEnabledAppSettingsEnabledAppList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelEnabledAppSettingsEnabledApp"
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2Lifecycle": {
+      "type": "structure",
+      "members": {
+        "state": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LifecycleStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The state of the object associated with this lifecycle."
+          }
+        },
+        "hasUnpublishedChanges": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Whether the object associated with this lifecycle has unpublished changes."
+          }
+        },
+        "disabledPolicy": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LifecycleDisabledPolicy",
+          "traits": {
+            "smithy.api#documentation": "The policy that governs how to show a disabled label, field, or selection choice."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The lifecycle state of an object, such as label, field, or choice. For more information, see [Label lifecycle](https://developers.google.com/workspace/drive/labels/guides/label-lifecycle). The lifecycle enforces the following transitions: * `UNPUBLISHED_DRAFT` (starting state) * `UNPUBLISHED_DRAFT` -> `PUBLISHED` * `UNPUBLISHED_DRAFT` -> (Deleted) * `PUBLISHED` -> `DISABLED` * `DISABLED` -> `PUBLISHED` * `DISABLED` -> (Deleted) The published and disabled states have some distinct characteristics: * `Published`: Some kinds of changes might be made to an object in this state, in which case `has_unpublished_changes` will be true. Also, some kinds of changes aren't permitted. Generally, any change that would invalidate or cause new restrictions on existing metadata related to the label are rejected. * `Disabled`: When disabled, the configured `DisabledPolicy` takes effect."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LifecycleStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "UNPUBLISHED_DRAFT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNPUBLISHED_DRAFT"
+          }
+        },
+        "PUBLISHED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PUBLISHED"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISABLED"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETED"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseDisableSelectionChoiceResponse": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Response following choice disable."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseUpdateLabelPropertiesResponse": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Response following update to label properties."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2ListLabelPermissionsResponse": {
+      "type": "structure",
+      "members": {
+        "labelPermissions": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelPermissionList",
+          "traits": {
+            "smithy.api#documentation": "Label permissions."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The token of the next page in the response."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for listing the permissions on a label."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeleteLabelPermissionRequest": {
+      "type": "structure",
+      "members": {
+        "useAdminAccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Label permission resource name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Deletes a label permission. Permissions affect the label resource as a whole, aren't revisioned, and don't require publishing."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelAppliedLabelPolicy": {
+      "type": "structure",
+      "members": {
+        "copyMode": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelAppliedLabelPolicyCopyModeEnum",
+          "traits": {
+            "smithy.api#documentation": "Indicates how the applied label and field values should be copied when a Drive item is copied."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Behavior of this label when it's applied to Drive items."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelAppliedLabelPolicyCopyModeEnum": {
+      "type": "enum",
+      "members": {
+        "COPY_MODE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COPY_MODE_UNSPECIFIED"
+          }
+        },
+        "DO_NOT_COPY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DO_NOT_COPY"
+          }
+        },
+        "ALWAYS_COPY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALWAYS_COPY"
+          }
+        },
+        "COPY_APPLIABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COPY_APPLIABLE"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestDisableSelectionChoiceRequest": {
+      "type": "structure",
+      "members": {
+        "fieldId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The selection field in which a choice will be disabled."
+          }
+        },
+        "disabledPolicy": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LifecycleDisabledPolicy",
+          "traits": {
+            "smithy.api#documentation": "Required. The disabled policy to update."
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The fields that should be updated. At least one field must be specified. The root `disabled_policy` is implied and should not be specified. A single `*` can be used as a short-hand for updating every field."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Choice to disable."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request to disable a choice."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestUpdateLabelPropertiesRequest": {
+      "type": "structure",
+      "members": {
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The fields that should be updated. At least one field must be specified. The root `label_properties` is implied and should not be specified. A single `*` can be used as a short-hand for updating every field."
+          }
+        },
+        "properties": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelProperties",
+          "traits": {
+            "smithy.api#documentation": "Required. Label properties to update."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Updates basic properties of a label."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelResponse": {
+      "type": "structure",
+      "members": {
+        "updatedLabel": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2Label",
+          "traits": {
+            "smithy.api#documentation": "The label after updates were applied. This is only set if `include_label_in_response` is `true` and there were no errors."
+          }
+        },
+        "responses": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseResponseList",
+          "traits": {
+            "smithy.api#documentation": "The reply of the updates. This maps 1:1 with the updates, although responses to some requests may be empty."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for label update."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseResponseList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseResponse"
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseCreateSelectionChoiceResponse": {
+      "type": "structure",
+      "members": {
+        "fieldId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The server-generated ID of the field."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The server-generated ID of the created choice within the field."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response following selection choice create."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldSelectionOptionsChoice": {
+      "type": "structure",
+      "members": {
+        "disableTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time this choice was disabled. This value has no meaning when the choice is not disabled."
+          }
+        },
+        "lockStatus": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LockStatus",
+          "traits": {
+            "smithy.api#documentation": "Output only. The `LockStatus` of this choice."
+          }
+        },
+        "publishTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time this choice was published. This value has no meaning when the choice is not published."
+          }
+        },
+        "creator": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2UserInfo",
+          "traits": {
+            "smithy.api#documentation": "Output only. The user who created this choice."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique value of the choice. This ID is autogenerated. Matches the regex: `([a-zA-Z0-9_])+`."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time this choice was updated last."
+          }
+        },
+        "displayHints": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldSelectionOptionsChoiceDisplayHints",
+          "traits": {
+            "smithy.api#documentation": "Output only. UI display hints for rendering a choice."
+          }
+        },
+        "schemaCapabilities": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldSelectionOptionsChoiceSchemaCapabilities",
+          "traits": {
+            "smithy.api#documentation": "Output only. The capabilities related to this option when editing the option."
+          }
+        },
+        "publisher": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2UserInfo",
+          "traits": {
+            "smithy.api#documentation": "Output only. The user who published this choice. This value has no meaning when the choice is not published."
+          }
+        },
+        "appliedCapabilities": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldSelectionOptionsChoiceAppliedCapabilities",
+          "traits": {
+            "smithy.api#documentation": "Output only. The capabilities related to this choice on applied metadata."
+          }
+        },
+        "properties": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldSelectionOptionsChoiceProperties",
+          "traits": {
+            "smithy.api#documentation": "Basic properties of the choice."
+          }
+        },
+        "lifecycle": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2Lifecycle",
+          "traits": {
+            "smithy.api#documentation": "Output only. Lifecycle of the choice."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time this choice was created."
+          }
+        },
+        "disabler": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2UserInfo",
+          "traits": {
+            "smithy.api#documentation": "Output only. The user who disabled this choice. This value has no meaning when the option is not disabled."
+          }
+        },
+        "updater": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2UserInfo",
+          "traits": {
+            "smithy.api#documentation": "Output only. The user who updated this choice last."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Selection field choice."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleTypeColor": {
+      "type": "structure",
+      "members": {
+        "blue": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The amount of blue in the color as a value in the interval [0, 1]."
+          }
+        },
+        "red": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The amount of red in the color as a value in the interval [0, 1]."
+          }
+        },
+        "green": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The amount of green in the color as a value in the interval [0, 1]."
+          }
+        },
+        "alpha": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The fraction of this color that should be applied to the pixel. That is, the final pixel color is defined by the equation: `pixel color = alpha * (this color) + (1.0 - alpha) * (background color)` This means that a value of 1.0 corresponds to a solid color, whereas a value of 0.0 corresponds to a completely transparent color. This uses a wrapper message rather than a simple float scalar so that it is possible to distinguish between a default value and the value being unset. If omitted, this color object is rendered as a solid color (as if the alpha value had been explicitly given a value of 1.0)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a color in the RGBA color space. This representation is designed for simplicity of conversion to and from color representations in various languages over compactness. For example, the fields of this representation can be trivially provided to the constructor of `java.awt.Color` in Java; it can also be trivially provided to UIColor's `+colorWithRed:green:blue:alpha` method in iOS; and, with just a little work, it can be easily formatted into a CSS `rgba()` string in JavaScript. This reference page doesn't have information about the absolute color space that should be used to interpret the RGB value—for example, sRGB, Adobe RGB, DCI-P3, and BT.2020. By default, applications should assume the sRGB color space. When color equality needs to be decided, implementations, unless documented otherwise, treat two colors as equal if all their red, green, blue, and alpha values each differ by at most `1e-5`. Example (Java): import com.google.type.Color; // ... public static java.awt.Color fromProto(Color protocolor) { float alpha = protocolor.hasAlpha() ? protocolor.getAlpha().getValue() : 1.0; return new java.awt.Color( protocolor.getRed(), protocolor.getGreen(), protocolor.getBlue(), alpha); } public static Color toProto(java.awt.Color color) { float red = (float) color.getRed(); float green = (float) color.getGreen(); float blue = (float) color.getBlue(); float denominator = 255.0; Color.Builder resultBuilder = Color .newBuilder() .setRed(red / denominator) .setGreen(green / denominator) .setBlue(blue / denominator); int alpha = color.getAlpha(); if (alpha != 255) { result.setAlpha( FloatValue .newBuilder() .setValue(((float) alpha) / denominator) .build()); } return resultBuilder.build(); } // ... Example (iOS / Obj-C): // ... static UIColor* fromProto(Color* protocolor) { float red = [protocolor red]; float green = [protocolor green]; float blue = [protocolor blue]; FloatValue* alpha_wrapper = [protocolor alpha]; float alpha = 1.0; if (alpha_wrapper != nil) { alpha = [alpha_wrapper value]; } return [UIColor colorWithRed:red green:green blue:blue alpha:alpha]; } static Color* toProto(UIColor* color) { CGFloat red, green, blue, alpha; if (![color getRed:&red green:&green blue:&blue alpha:&alpha]) { return nil; } Color* result = [[Color alloc] init]; [result setRed:red]; [result setGreen:green]; [result setBlue:blue]; if (alpha <= 0.9999) { [result setAlpha:floatWrapperWithValue(alpha)]; } [result autorelease]; return result; } // ... Example (JavaScript): // ... var protoToCssColor = function(rgb_color) { var redFrac = rgb_color.red || 0.0; var greenFrac = rgb_color.green || 0.0; var blueFrac = rgb_color.blue || 0.0; var red = Math.floor(redFrac * 255); var green = Math.floor(greenFrac * 255); var blue = Math.floor(blueFrac * 255); if (!('alpha' in rgb_color)) { return rgbToCssColor(red, green, blue); } var alphaFrac = rgb_color.alpha.value || 0.0; var rgbParams = [red, green, blue].join(','); return ['rgba(', rgbParams, ',', alphaFrac, ')'].join(''); }; var rgbToCssColor = function(red, green, blue) { var rgbNumber = new Number((red << 16) | (green << 8) | blue); var hexString = rgbNumber.toString(16); var missingZeros = 6 - hexString.length; var resultBuilder = ['#']; for (var i = 0; i < missingZeros; i++) { resultBuilder.push('0'); } resultBuilder.push(hexString); return resultBuilder.join(''); }; // ..."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2Label": {
+      "type": "structure",
+      "members": {
+        "lifecycle": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2Lifecycle",
+          "traits": {
+            "smithy.api#documentation": "Output only. The lifecycle state of the label including whether it's published, deprecated, and has draft changes."
+          }
+        },
+        "appliedCapabilities": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelAppliedCapabilities",
+          "traits": {
+            "smithy.api#documentation": "Output only. The capabilities related to this label on applied metadata."
+          }
+        },
+        "labelType": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelLabelTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. The type of label."
+          }
+        },
+        "customer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The customer this label belongs to. For example: `customers/123abc789`."
+          }
+        },
+        "revisionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Revision ID of the label. Revision ID might be part of the label `name` depending on the request issued. A new revision is created whenever revisioned properties of a label are changed. Matches the regex: `([a-zA-Z0-9])+`."
+          }
+        },
+        "revisionCreator": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2UserInfo",
+          "traits": {
+            "smithy.api#documentation": "Output only. The user who created this label revision."
+          }
+        },
+        "properties": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelProperties",
+          "traits": {
+            "smithy.api#documentation": "Required. The basic properties of the label."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Resource name of the label. Will be in the form of either: `labels/{id}` or `labels/{id}@{revision_id}` depending on the request. See `id` and `revision_id` below."
+          }
+        },
+        "appliedLabelPolicy": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelAppliedLabelPolicy",
+          "traits": {
+            "smithy.api#documentation": "Output only. Behavior of this label when it's applied to Drive items."
+          }
+        },
+        "schemaCapabilities": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelSchemaCapabilities",
+          "traits": {
+            "smithy.api#documentation": "Output only. The capabilities the user has on this label."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time this label was created."
+          }
+        },
+        "revisionCreateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time this label revision was created."
+          }
+        },
+        "fields": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldList",
+          "traits": {
+            "smithy.api#documentation": "List of fields in descending priority order."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Globally unique identifier of this label. ID makes up part of the label `name`, but unlike `name`, ID is consistent between revisions. Matches the regex: `([a-zA-Z0-9])+`."
+          }
+        },
+        "creator": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2UserInfo",
+          "traits": {
+            "smithy.api#documentation": "Output only. The user who created this label."
+          }
+        },
+        "disableTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time this label was disabled. This value has no meaning when the label isn't disabled."
+          }
+        },
+        "disabler": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2UserInfo",
+          "traits": {
+            "smithy.api#documentation": "Output only. The user who disabled this label. This value has no meaning when the label isn't disabled."
+          }
+        },
+        "publisher": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2UserInfo",
+          "traits": {
+            "smithy.api#documentation": "Output only. The user who published this label. This value has no meaning when the label isn't published.>>"
+          }
+        },
+        "lockStatus": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LockStatus",
+          "traits": {
+            "smithy.api#documentation": "Output only. The `LockStatus` of this label."
+          }
+        },
+        "displayHints": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelDisplayHints",
+          "traits": {
+            "smithy.api#documentation": "Output only. UI display hints for rendering the label."
+          }
+        },
+        "enabledAppSettings": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelEnabledAppSettings",
+          "traits": {
+            "smithy.api#documentation": "Optional. The `EnabledAppSettings` for this Label."
+          }
+        },
+        "learnMoreUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Custom URL to present to users to allow them to learn more about this label and how it should be used."
+          }
+        },
+        "publishTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time this label was published. This value has no meaning when the label isn't published."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A label defines a taxonomy that can be applied to Drive items in order to organize and search across items. Labels can be simple strings, or can contain fields that describe additional metadata that can be further used to organize and search Drive items."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelLabelTypeEnum": {
+      "type": "enum",
+      "members": {
+        "LABEL_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LABEL_TYPE_UNSPECIFIED"
+          }
+        },
+        "SHARED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHARED"
+          }
+        },
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADMIN"
+          }
+        },
+        "GOOGLE_APP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GOOGLE_APP"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2Field"
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2UpdateLabelEnabledAppSettingsRequest": {
+      "type": "structure",
+      "members": {
+        "languageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The BCP-47 language code to use for evaluating localized field labels. When not specified, values in the default configured language will be used."
+          }
+        },
+        "useAdminAccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access."
+          }
+        },
+        "enabledAppSettings": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelEnabledAppSettings",
+          "traits": {
+            "smithy.api#documentation": "Required. The new `EnabledAppSettings` value for the label."
+          }
+        },
+        "view": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2UpdateLabelEnabledAppSettingsRequestViewEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. When specified, only certain fields belonging to the indicated view will be returned."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request to update the `EnabledAppSettings` of the given label. This change is not revisioned, doesn't require publishing, and takes effect immediately. \\"
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2UpdateLabelEnabledAppSettingsRequestViewEnum": {
+      "type": "enum",
+      "members": {
+        "LABEL_VIEW_BASIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LABEL_VIEW_BASIC"
+          }
+        },
+        "LABEL_VIEW_FULL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LABEL_VIEW_FULL"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseEnableSelectionChoiceResponse": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Response following choice enable."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2TextLimits": {
+      "type": "structure",
+      "members": {
+        "minLength": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Minimum length allowed for a text field type."
+          }
+        },
+        "maxLength": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum length allowed for a text field type."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Limits for text field type."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelLockCapabilities": {
+      "type": "structure",
+      "members": {
+        "canViewPolicy": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True if the user is authorized to view the policy."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A description of a user's capabilities on a label lock."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleProtobufEmpty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2UserInfo": {
+      "type": "structure",
+      "members": {
+        "person": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identifier for this user that can be used with the [People API](https://developers.google.com/people) to get more information. For example, `people/12345678`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about a user."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseUpdateFieldTypeResponse": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Response following update to field type."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleTypeDate": {
+      "type": "structure",
+      "members": {
+        "day": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant."
+          }
+        },
+        "year": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year."
+          }
+        },
+        "month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp"
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldLimits": {
+      "type": "structure",
+      "members": {
+        "selectionLimits": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2SelectionLimits",
+          "traits": {
+            "smithy.api#documentation": "Selection field limits."
+          }
+        },
+        "userLimits": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2UserLimits",
+          "traits": {
+            "smithy.api#documentation": "User field limits."
+          }
+        },
+        "integerLimits": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2IntegerLimits",
+          "traits": {
+            "smithy.api#documentation": "Integer field limits."
+          }
+        },
+        "maxIdLength": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum length for the id."
+          }
+        },
+        "maxDescriptionLength": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Limits for field description, also called help text."
+          }
+        },
+        "longTextLimits": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LongTextLimits",
+          "traits": {
+            "smithy.api#documentation": "Long text field limits."
+          }
+        },
+        "maxDisplayNameLength": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Limits for field title."
+          }
+        },
+        "textLimits": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2TextLimits",
+          "traits": {
+            "smithy.api#documentation": "The relevant limits for the specified Field.Type. Text field limits."
+          }
+        },
+        "dateLimits": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DateLimits",
+          "traits": {
+            "smithy.api#documentation": "Date field limits."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Field constants governing the structure of a field; such as, the maximum title length, minimum and maximum field values or length, etc."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestCreateFieldRequest": {
+      "type": "structure",
+      "members": {
+        "field": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2Field",
+          "traits": {
+            "smithy.api#documentation": "Required. Field to create."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request to create a field within a label."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2WriteControl": {
+      "type": "structure",
+      "members": {
+        "requiredRevisionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The revision ID of the label that the write request will be applied to. If this isn't the latest revision of the label, the request will not be processed and will return a 400 Bad Request error."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provides control over how write requests are executed. When not specified, the last write wins."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseUpdateSelectionChoicePropertiesResponse": {
+      "type": "structure",
+      "members": {
+        "priority": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The priority of the updated choice. The priority may change from what was specified to assure contiguous priorities between choices (1-n)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response following update to selection choice properties."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldSelectionOptionsChoiceSchemaCapabilities": {
+      "type": "structure",
+      "members": {
+        "canEnable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the user can enable this choice."
+          }
+        },
+        "canDelete": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the user can delete this choice."
+          }
+        },
+        "canDisable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the user can disable this choice."
+          }
+        },
+        "canUpdate": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the user can update this choice."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The capabilities related to this choice when editing the choice."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestUpdateSelectionChoicePropertiesRequest": {
+      "type": "structure",
+      "members": {
+        "fieldId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The selection field to update."
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The fields that should be updated. At least one field must be specified. The root `properties` is implied and should not be specified. A single `*` can be used as a short-hand for updating every field."
+          }
+        },
+        "properties": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldSelectionOptionsChoiceProperties",
+          "traits": {
+            "smithy.api#documentation": "Required. The choice properties to update."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The choice to update."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request to update a choice property."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2UserLimits": {
+      "type": "structure",
+      "members": {
+        "listLimits": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2ListLimits",
+          "traits": {
+            "smithy.api#documentation": "Limits for list-variant of a field type."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Limits for Field.Type.USER."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2SelectionLimits": {
+      "type": "structure",
+      "members": {
+        "listLimits": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2ListLimits",
+          "traits": {
+            "smithy.api#documentation": "Limits for list-variant of a field type."
+          }
+        },
+        "maxDeletedChoices": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of deleted choices."
+          }
+        },
+        "maxChoices": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of choices."
+          }
+        },
+        "maxIdLength": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum ID length for a selection option."
+          }
+        },
+        "maxDisplayNameLength": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum length for display name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Limits for selection field type."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelDisplayHints": {
+      "type": "structure",
+      "members": {
+        "shownInApply": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "This label should be shown in the apply menu when applying values to a Drive item."
+          }
+        },
+        "hiddenInSearch": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "This label should be hidden in the search menu when searching for Drive items."
+          }
+        },
+        "disabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the label should be shown in the UI as disabled."
+          }
+        },
+        "priority": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The order to display labels in a list."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The UI display hints for rendering the label."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2IntegerLimits": {
+      "type": "structure",
+      "members": {
+        "maxValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Maximum value for an integer field type."
+          }
+        },
+        "minValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Minimum value for an integer field type."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Limits for integer field type."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelLock": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Resource name of this label lock."
+          }
+        },
+        "capabilities": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelLockCapabilities",
+          "traits": {
+            "smithy.api#documentation": "Output only. The user's capabilities on this label lock."
+          }
+        },
+        "choiceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the selection field choice that should be locked. If present, `field_id` must also be present."
+          }
+        },
+        "fieldId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the field that should be locked. Empty if the whole label should be locked."
+          }
+        },
+        "deleteTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. A timestamp indicating when this label lock was scheduled for deletion. Present only if this label lock is in the `DELETING` state."
+          }
+        },
+        "state": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelLockStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. This label lock's state."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time this label lock was created."
+          }
+        },
+        "creator": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2UserInfo",
+          "traits": {
+            "smithy.api#documentation": "Output only. The user whose credentials were used to create the label lock. Not present if no user was responsible for creating the label lock."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A lock that can be applied to a label, field, or choice."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelLockStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETING"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldTextOptions": {
+      "type": "structure",
+      "members": {
+        "minLength": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Output only. The minimum valid length of values for the text field."
+          }
+        },
+        "maxLength": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Output only. The maximum valid length of values for the text field."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Options for the Text field type."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldSelectionOptionsChoiceDisplayHints": {
+      "type": "structure",
+      "members": {
+        "badgeColors": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2BadgeColors",
+          "traits": {
+            "smithy.api#documentation": "The colors to use for the badge. Changed to Google Material colors based on the chosen `properties.badge_config.color`."
+          }
+        },
+        "darkBadgeColors": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2BadgeColors",
+          "traits": {
+            "smithy.api#documentation": "The dark-mode color to use for the badge. Changed to Google Material colors based on the chosen `properties.badge_config.color`."
+          }
+        },
+        "badgePriority": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The priority of this badge. Used to compare and sort between multiple badges. A lower number means the badge should be shown first. When a badging configuration is not present, this will be 0. Otherwise, this will be set to `BadgeConfig.priority_override` or the default heuristic which prefers creation date of the label, and field and option priority."
+          }
+        },
+        "disabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the option should be shown in the UI as disabled."
+          }
+        },
+        "shownInApply": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "This option should be shown in the apply menu when applying values to a Drive item."
+          }
+        },
+        "hiddenInSearch": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "This option should be hidden in the search menu when searching for Drive items."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "UI display hints for rendering an option."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseResponse": {
+      "type": "structure",
+      "members": {
+        "deleteField": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseDeleteFieldResponse",
+          "traits": {
+            "smithy.api#documentation": "Deletes a field from the label."
+          }
+        },
+        "deleteSelectionChoice": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseDeleteSelectionChoiceResponse",
+          "traits": {
+            "smithy.api#documentation": "Deletes a choice from a selection field."
+          }
+        },
+        "disableField": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseDisableFieldResponse",
+          "traits": {
+            "smithy.api#documentation": "Disables field."
+          }
+        },
+        "updateSelectionChoiceProperties": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseUpdateSelectionChoicePropertiesResponse",
+          "traits": {
+            "smithy.api#documentation": "Updates a choice within a selection field."
+          }
+        },
+        "enableSelectionChoice": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseEnableSelectionChoiceResponse",
+          "traits": {
+            "smithy.api#documentation": "Enables a choice within a selection field."
+          }
+        },
+        "updateLabel": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseUpdateLabelPropertiesResponse",
+          "traits": {
+            "smithy.api#documentation": "Updates basic properties of a label."
+          }
+        },
+        "enableField": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseEnableFieldResponse",
+          "traits": {
+            "smithy.api#documentation": "Enables field."
+          }
+        },
+        "createField": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseCreateFieldResponse",
+          "traits": {
+            "smithy.api#documentation": "Creates a field."
+          }
+        },
+        "disableSelectionChoice": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseDisableSelectionChoiceResponse",
+          "traits": {
+            "smithy.api#documentation": "Disables a choice within a selection field."
+          }
+        },
+        "updateField": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseUpdateFieldPropertiesResponse",
+          "traits": {
+            "smithy.api#documentation": "Updates basic properties of a field."
+          }
+        },
+        "updateFieldType": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseUpdateFieldTypeResponse",
+          "traits": {
+            "smithy.api#documentation": "Updates field type and/or type options."
+          }
+        },
+        "createSelectionChoice": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseCreateSelectionChoiceResponse",
+          "traits": {
+            "smithy.api#documentation": "Creates a selection list option to add to a selection field."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A single response from an update."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LifecycleDisabledPolicy": {
+      "type": "structure",
+      "members": {
+        "showInApply": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to show this disabled object in the apply menu on Drive items. * When `true`, the object is generally shown in the UI as disabled and is unselectable. * When `false`, the object is generally hidden in the UI."
+          }
+        },
+        "hideInSearch": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to hide this disabled object in the search menu for Drive items. * When `false`, the object is generally shown in the UI as disabled but it appears in the search results when searching for Drive items. * When `true`, the object is generally hidden in the UI when searching for Drive items."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The policy that governs how to treat a disabled label, field, or selection choice in different contexts."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelPermission": {
+      "type": "structure",
+      "members": {
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the email address for a user or group principal. Not populated for audience principals. User and group permissions may only be inserted using an email address. On update requests, if email address is specified, no principal should be specified."
+          }
+        },
+        "group": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Group resource name."
+          }
+        },
+        "role": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelPermissionRoleEnum",
+          "traits": {
+            "smithy.api#documentation": "The role the principal should have."
+          }
+        },
+        "person": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Person resource name."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name of this permission."
+          }
+        },
+        "audience": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Audience to grant a role to. The magic value of `audiences/default` may be used to apply the role to the default audience in the context of the organization that owns the label."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The permission that applies to a principal (user, group, audience) on a label."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelPermissionRoleEnum": {
+      "type": "enum",
+      "members": {
+        "LABEL_ROLE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LABEL_ROLE_UNSPECIFIED"
+          }
+        },
+        "READER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READER"
+          }
+        },
+        "APPLIER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APPLIER"
+          }
+        },
+        "ORGANIZER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ORGANIZER"
+          }
+        },
+        "EDITOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EDITOR"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2ListLimits": {
+      "type": "structure",
+      "members": {
+        "maxEntries": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of values allowed for the field type."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Limits for list-variant of a field type."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DateLimits": {
+      "type": "structure",
+      "members": {
+        "minValue": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleTypeDate",
+          "traits": {
+            "smithy.api#documentation": "Minimum value for the date field type."
+          }
+        },
+        "maxValue": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleTypeDate",
+          "traits": {
+            "smithy.api#documentation": "Maximum value for the date field type."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Limits for date field type."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestDisableFieldRequest": {
+      "type": "structure",
+      "members": {
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The fields that should be updated. At least one field must be specified. The root `disabled_policy` is implied and should not be specified. A single `*` can be used as a short-hand for updating every field."
+          }
+        },
+        "disabledPolicy": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LifecycleDisabledPolicy",
+          "traits": {
+            "smithy.api#documentation": "Required. Field disabled policy."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Key of the field to disable."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request to disable the field."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestDeleteSelectionChoiceRequest": {
+      "type": "structure",
+      "members": {
+        "fieldId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The selection field from which a choice will be deleted."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Choice to delete."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request to delete a choice."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelProperties": {
+      "type": "structure",
+      "members": {
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Title of the label."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description of the label."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Basic properties of the label."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseCreateFieldResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The field of the created field. When left blank in a create request, a key will be autogenerated and can be identified here."
+          }
+        },
+        "priority": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The priority of the created field. The priority may change from what was specified to assure contiguous priorities between fields (1-n)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response following field create."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldProperties": {
+      "type": "structure",
+      "members": {
+        "insertBeforeField": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Input only. Insert or move this field before the indicated field. If empty, the field is placed at the end of the list."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The display text to show in the UI identifying this field."
+          }
+        },
+        "required": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the field should be marked as required."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The basic properties of the field."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldAppliedCapabilities": {
+      "type": "structure",
+      "members": {
+        "canWrite": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the user can set this field on Drive items."
+          }
+        },
+        "canRead": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the user can read related applied metadata on items."
+          }
+        },
+        "canSearch": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the user can search for Drive items referencing this field."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The capabilities related to this field on applied metadata."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2PublishLabelRequest": {
+      "type": "structure",
+      "members": {
+        "writeControl": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2WriteControl",
+          "traits": {
+            "smithy.api#documentation": "Provides control over how write requests are executed. Defaults to unset, which means the last write wins."
+          }
+        },
+        "languageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The BCP-47 language code to use for evaluating localized field labels. When not specified, values in the default configured language will be used."
+          }
+        },
+        "useAdminAccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request to publish a label."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldSelectionOptionsChoiceProperties": {
+      "type": "structure",
+      "members": {
+        "insertBeforeChoice": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Input only. Insert or move this choice before the indicated choice. If empty, the choice is placed at the end of the list."
+          }
+        },
+        "badgeConfig": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2BadgeConfig",
+          "traits": {
+            "smithy.api#documentation": "The badge configuration for this choice. When set, the label that owns this choice is considered a \"badged label\"."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The display text to show in the UI identifying this field."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description of this label."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Basic properties of the choice."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestRequest": {
+      "type": "structure",
+      "members": {
+        "updateLabel": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestUpdateLabelPropertiesRequest",
+          "traits": {
+            "smithy.api#documentation": "Updates the label properties."
+          }
+        },
+        "disableField": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestDisableFieldRequest",
+          "traits": {
+            "smithy.api#documentation": "Disables the field."
+          }
+        },
+        "enableSelectionChoice": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestEnableSelectionChoiceRequest",
+          "traits": {
+            "smithy.api#documentation": "Enable a choice within a selection field."
+          }
+        },
+        "deleteSelectionChoice": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestDeleteSelectionChoiceRequest",
+          "traits": {
+            "smithy.api#documentation": "Delete a choice within a selection field."
+          }
+        },
+        "disableSelectionChoice": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestDisableSelectionChoiceRequest",
+          "traits": {
+            "smithy.api#documentation": "Disable a choice within a selection field."
+          }
+        },
+        "deleteField": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestDeleteFieldRequest",
+          "traits": {
+            "smithy.api#documentation": "Deletes a field from the label."
+          }
+        },
+        "updateSelectionChoiceProperties": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestUpdateSelectionChoicePropertiesRequest",
+          "traits": {
+            "smithy.api#documentation": "Update a choice property within a selection field."
+          }
+        },
+        "updateField": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestUpdateFieldPropertiesRequest",
+          "traits": {
+            "smithy.api#documentation": "Updates basic properties of a field."
+          }
+        },
+        "createSelectionChoice": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestCreateSelectionChoiceRequest",
+          "traits": {
+            "smithy.api#documentation": "Create a choice within a selection field."
+          }
+        },
+        "enableField": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestEnableFieldRequest",
+          "traits": {
+            "smithy.api#documentation": "Enables the field."
+          }
+        },
+        "createField": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestCreateFieldRequest",
+          "traits": {
+            "smithy.api#documentation": "Creates a field."
+          }
+        },
+        "updateFieldType": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestUpdateFieldTypeRequest",
+          "traits": {
+            "smithy.api#documentation": "Update field type and/or type options."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A single kind of update to apply to a label."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelRequest": {
+      "type": "structure",
+      "members": {
+        "useAdminAccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access."
+          }
+        },
+        "requests": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestRequestList",
+          "traits": {
+            "smithy.api#documentation": "A list of updates to apply to the label. Requests will be applied in the order they are specified."
+          }
+        },
+        "view": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestViewEnum",
+          "traits": {
+            "smithy.api#documentation": "When specified, only certain fields belonging to the indicated view will be returned."
+          }
+        },
+        "languageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The BCP-47 language code to use for evaluating localized field labels when `include_label_in_response` is `true`."
+          }
+        },
+        "writeControl": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2WriteControl",
+          "traits": {
+            "smithy.api#documentation": "Provides control over how write requests are executed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The set of requests for updating aspects of a label. If any request isn't valid, no requests will be applied."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestRequestList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestRequest"
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestViewEnum": {
+      "type": "enum",
+      "members": {
+        "LABEL_VIEW_BASIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LABEL_VIEW_BASIC"
+          }
+        },
+        "LABEL_VIEW_FULL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LABEL_VIEW_FULL"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2BadgeConfig": {
+      "type": "structure",
+      "members": {
+        "priorityOverride": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Override the default global priority of this badge. When set to 0, the default priority heuristic is used."
+          }
+        },
+        "color": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleTypeColor",
+          "traits": {
+            "smithy.api#documentation": "The color of the badge. When not specified, no badge is rendered. The background, foreground, and solo (light and dark mode) colors set here are changed in the Drive UI into the closest recommended supported color."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Badge status of the label."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2ListLabelLocksResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The token of the next page in the response."
+          }
+        },
+        "labelLocks": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelLockList",
+          "traits": {
+            "smithy.api#documentation": "Label locks."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response to a `ListLabelLocksRequest`."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelLockList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelLock"
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelLimits": {
+      "type": "structure",
+      "members": {
+        "maxTitleLength": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of characters allowed for the title."
+          }
+        },
+        "maxDeletedFields": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of published fields that can be deleted."
+          }
+        },
+        "maxDraftRevisions": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of draft revisions that will be kept before deleting old drafts."
+          }
+        },
+        "fieldLimits": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldLimits",
+          "traits": {
+            "smithy.api#documentation": "The limits for fields."
+          }
+        },
+        "maxDescriptionLength": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of characters allowed for the description."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name."
+          }
+        },
+        "maxFields": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of fields allowed within the label."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Label constraints governing the structure of a label; such as, the maximum number of fields allowed and maximum length of the label title."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DisableLabelRequest": {
+      "type": "structure",
+      "members": {
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The fields that should be updated. At least one field must be specified. The root `disabled_policy` is implied and should not be specified. A single `*` can be used as a short-hand for updating every field."
+          }
+        },
+        "useAdminAccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access."
+          }
+        },
+        "writeControl": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2WriteControl",
+          "traits": {
+            "smithy.api#documentation": "Provides control over how write requests are executed. Defaults to unset, which means the last write wins."
+          }
+        },
+        "languageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The BCP-47 language code to use for evaluating localized field labels. When not specified, values in the default configured language will be used."
+          }
+        },
+        "disabledPolicy": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LifecycleDisabledPolicy",
+          "traits": {
+            "smithy.api#documentation": "Disabled policy to use."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request to deprecate a published label."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldSelectionOptions": {
+      "type": "structure",
+      "members": {
+        "listOptions": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldListOptions",
+          "traits": {
+            "smithy.api#documentation": "When specified, indicates this field supports a list of values. Once the field is published, this cannot be changed."
+          }
+        },
+        "choices": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldSelectionOptionsChoiceList",
+          "traits": {
+            "smithy.api#documentation": "The options available for this selection field. The list order is consistent, and modified with `insert_before_choice`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Options for the selection field type."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldSelectionOptionsChoiceList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2FieldSelectionOptionsChoice"
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2UpdateLabelCopyModeRequest": {
+      "type": "structure",
+      "members": {
+        "copyMode": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2UpdateLabelCopyModeRequestCopyModeEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. Indicates how the applied label and field values should be copied when a Drive item is copied."
+          }
+        },
+        "languageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The BCP-47 language code to use for evaluating localized field labels. When not specified, values in the default configured language will be used."
+          }
+        },
+        "useAdminAccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access."
+          }
+        },
+        "view": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2UpdateLabelCopyModeRequestViewEnum",
+          "traits": {
+            "smithy.api#documentation": "When specified, only certain fields belonging to the indicated view will be returned."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request to update the `CopyMode` of the given label. Changes to this policy aren't revisioned, don't require publishing, and take effect immediately. \\"
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2UpdateLabelCopyModeRequestCopyModeEnum": {
+      "type": "enum",
+      "members": {
+        "COPY_MODE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COPY_MODE_UNSPECIFIED"
+          }
+        },
+        "DO_NOT_COPY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DO_NOT_COPY"
+          }
+        },
+        "ALWAYS_COPY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALWAYS_COPY"
+          }
+        },
+        "COPY_APPLIABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COPY_APPLIABLE"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2UpdateLabelCopyModeRequestViewEnum": {
+      "type": "enum",
+      "members": {
+        "LABEL_VIEW_BASIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LABEL_VIEW_BASIC"
+          }
+        },
+        "LABEL_VIEW_FULL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LABEL_VIEW_FULL"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GetCapabilitiesUsersRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the user. Only \"users/me/capabilities\" is supported.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "customer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The customer to scope this request to. For example: `customers/abcd1234`. If unset, it will return settings within the current customer.",
+            "smithy.api#httpQuery": "customer"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.googleworkspace.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.googleworkspace.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GetCapabilitiesUsers": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.drivelabels_v2#GetCapabilitiesUsersRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2UserCapabilities"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.drivelabels_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Gets the user capabilities."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GetLabelLimitsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Label revision resource name must be: \"limits/label\".",
+            "smithy.api#httpQuery": "name"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GetLabelLimits": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.drivelabels_v2#GetLabelLimitsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelLimits"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.drivelabels_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/limits/label"
+        },
+        "smithy.api#documentation": "Get the constraints on the structure of a label; such as, the maximum number of fields allowed and maximum length of the label title."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GetLabelsViewEnum": {
+      "type": "enum",
+      "members": {
+        "LABEL_VIEW_BASIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LABEL_VIEW_BASIC"
+          }
+        },
+        "LABEL_VIEW_FULL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LABEL_VIEW_FULL"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GetLabelsRequest": {
+      "type": "structure",
+      "members": {
+        "useAdminAccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to `true` in order to use the user's admin credentials. The server verifies that the user is an admin for the label before allowing access.",
+            "smithy.api#httpQuery": "useAdminAccess"
+          }
+        },
+        "languageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The BCP-47 language code to use for evaluating localized field labels. When not specified, values in the default configured language are used.",
+            "smithy.api#httpQuery": "languageCode"
+          }
+        },
+        "view": {
+          "target": "com.googleworkspace.drivelabels_v2#GetLabelsViewEnum",
+          "traits": {
+            "smithy.api#documentation": "When specified, only certain fields belonging to the indicated view are returned.",
+            "smithy.api#httpQuery": "view"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Label resource name. May be any of: * `labels/{id}` (equivalent to labels/{id}@latest) * `labels/{id}@latest` * `labels/{id}@published` * `labels/{id}@{revision_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#GetLabels": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.drivelabels_v2#GetLabelsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2Label"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.drivelabels_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Get a label by its resource name. For more information, see [Search for labels](https://developers.google.com/workspace/drive/labels/guides/search-label). Resource name may be any of: * `labels/{id}` - See `labels/{id}@latest` * `labels/{id}@latest` - Gets the latest revision of the label. * `labels/{id}@published` - Gets the current published revision of the label. * `labels/{id}@{revision_id}` - Gets the label at the specified revision ID."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#ListLabelsMinimumRoleEnum": {
+      "type": "enum",
+      "members": {
+        "LABEL_ROLE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LABEL_ROLE_UNSPECIFIED"
+          }
+        },
+        "READER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READER"
+          }
+        },
+        "APPLIER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APPLIER"
+          }
+        },
+        "ORGANIZER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ORGANIZER"
+          }
+        },
+        "EDITOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EDITOR"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#ListLabelsViewEnum": {
+      "type": "enum",
+      "members": {
+        "LABEL_VIEW_BASIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LABEL_VIEW_BASIC"
+          }
+        },
+        "LABEL_VIEW_FULL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LABEL_VIEW_FULL"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#ListLabelsRequest": {
+      "type": "structure",
+      "members": {
+        "minimumRole": {
+          "target": "com.googleworkspace.drivelabels_v2#ListLabelsMinimumRoleEnum",
+          "traits": {
+            "smithy.api#documentation": "Specifies the level of access the user must have on the returned labels. The minimum role a user must have on a label. Defaults to `READER`.",
+            "smithy.api#httpQuery": "minimumRole"
+          }
+        },
+        "view": {
+          "target": "com.googleworkspace.drivelabels_v2#ListLabelsViewEnum",
+          "traits": {
+            "smithy.api#documentation": "When specified, only certain fields belonging to the indicated view are returned.",
+            "smithy.api#httpQuery": "view"
+          }
+        },
+        "languageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The BCP-47 language code to use for evaluating localized field labels. When not specified, values in the default configured language are used.",
+            "smithy.api#httpQuery": "languageCode"
+          }
+        },
+        "publishedOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to include only published labels in the results. * When `true`, only the current published label revisions are returned. Disabled labels are included. Returned label resource names reference the published revision (`labels/{id}/{revision_id}`). * When `false`, the current label revisions are returned, which might not be published. Returned label resource names don't reference a specific revision (`labels/{id}`).",
+            "smithy.api#httpQuery": "publishedOnly"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of labels to return per page. Default: 50. Max: 200.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The token of the page to return.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "customer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The customer to scope this list request to. For example: `customers/abcd1234`. If unset, will return all labels within the current customer.",
+            "smithy.api#httpQuery": "customer"
+          }
+        },
+        "useAdminAccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to `true` in order to use the user's admin credentials. This will return all labels within the customer.",
+            "smithy.api#httpQuery": "useAdminAccess"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#ListLabels": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.drivelabels_v2#ListLabelsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2ListLabelsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.drivelabels_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/labels"
+        },
+        "smithy.api#documentation": "List labels. For more information, see [Search for labels](https://developers.google.com/workspace/drive/labels/guides/search-label).",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#CreateLabelsRequest": {
+      "type": "structure",
+      "members": {
+        "useAdminAccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to `true` in order to use the user's admin privileges. The server will verify the user is an admin before allowing access.",
+            "smithy.api#httpQuery": "useAdminAccess"
+          }
+        },
+        "languageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The BCP-47 language code to use for evaluating localized field labels in response. When not specified, values in the default configured language will be used.",
+            "smithy.api#httpQuery": "languageCode"
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2Label",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.googleworkspace.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.googleworkspace.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#CreateLabels": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.drivelabels_v2#CreateLabelsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2Label"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.drivelabels_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/labels"
+        },
+        "smithy.api#documentation": "Creates a label. For more information, see [Create and publish a label](https://developers.google.com/workspace/drive/labels/guides/create-label)."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#EnableLabelsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Label resource name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2EnableLabelRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#EnableLabels": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.drivelabels_v2#EnableLabelsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2Label"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.drivelabels_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+name}:enable"
+        },
+        "smithy.api#documentation": "Enable a disabled label and restore it to its published state. For more information, see [Disable, enable, and delete a label](https://developers.google.com/workspace/drive/labels/guides/disable-delete-label). This will result in a new published revision based on the current disabled published revision. If there's an existing disabled draft revision, a new revision will be created based on that draft and will be enabled."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#DeleteLabelsRequest": {
+      "type": "structure",
+      "members": {
+        "useAdminAccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.",
+            "smithy.api#httpQuery": "useAdminAccess"
+          }
+        },
+        "writeControl.requiredRevisionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The revision ID of the label that the write request will be applied to. If this isn't the latest revision of the label, the request will not be processed and will return a 400 Bad Request error.",
+            "smithy.api#httpQuery": "writeControl.requiredRevisionId"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Label resource name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#DeleteLabels": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.drivelabels_v2#DeleteLabelsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.drivelabels_v2#GoogleProtobufEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.drivelabels_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Permanently deletes a label and related metadata on Drive items. For more information, see [Disable, enable, and delete a label](https://developers.google.com/workspace/drive/labels/guides/disable-delete-label). Once deleted, the label and related Drive item metadata will be deleted. Only draft labels and disabled labels may be deleted."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#DisableLabelsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Label resource name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DisableLabelRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#DisableLabels": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.drivelabels_v2#DisableLabelsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2Label"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.drivelabels_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+name}:disable"
+        },
+        "smithy.api#documentation": "Disable a published label. For more information, see [Disable, enable, and delete a label](https://developers.google.com/workspace/drive/labels/guides/disable-delete-label). Disabling a label will result in a new disabled published revision based on the current published revision. If there's a draft revision, a new disabled draft revision will be created based on the latest draft revision. Older draft revisions will be deleted. Once disabled, a label may be deleted with `DeleteLabel`."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#UpdateLabelEnabledAppSettingsLabelsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the label to update. The resource name of the label to update.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2UpdateLabelEnabledAppSettingsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#UpdateLabelEnabledAppSettingsLabels": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.drivelabels_v2#UpdateLabelEnabledAppSettingsLabelsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2Label"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.drivelabels_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+name}:updateLabelEnabledAppSettings"
+        },
+        "smithy.api#documentation": "Updates a label's `EnabledAppSettings`. Enabling a label in a Google Workspace app allows it to be used in that app. This change isn't revisioned, doesn't require publishing, and takes effect immediately."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#DeltaLabelsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the label to update.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#DeltaLabels": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.drivelabels_v2#DeltaLabelsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.drivelabels_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+name}:delta"
+        },
+        "smithy.api#documentation": "Updates a single label by applying a set of update requests resulting in a new draft revision. For more information, see [Update a label](https://developers.google.com/workspace/drive/labels/guides/update-label). The batch update is all-or-nothing: If any of the update requests are invalid, no changes are applied. The resulting draft revision must be published before the changes may be used with Drive items."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#UpdateLabelCopyModeLabelsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the label to update.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2UpdateLabelCopyModeRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#UpdateLabelCopyModeLabels": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.drivelabels_v2#UpdateLabelCopyModeLabelsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2Label"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.drivelabels_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+name}:updateLabelCopyMode"
+        },
+        "smithy.api#documentation": "Updates a label's `CopyMode`. Changes to this policy aren't revisioned, don't require publishing, and take effect immediately."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#UpdatePermissionsLabelsRequest": {
+      "type": "structure",
+      "members": {
+        "useAdminAccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.",
+            "smithy.api#httpQuery": "useAdminAccess"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent label resource name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelPermission",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#UpdatePermissionsLabels": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.drivelabels_v2#UpdatePermissionsLabelsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelPermission"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.drivelabels_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v2/{+parent}/permissions"
+        },
+        "smithy.api#documentation": "Updates a label's permissions. If a permission for the indicated principal doesn't exist, a label permission is created, otherwise the existing permission is updated. Permissions affect the label resource as a whole, aren't revisioned, and don't require publishing."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#PublishLabelsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Label resource name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2PublishLabelRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#PublishLabels": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.drivelabels_v2#PublishLabelsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2Label"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.drivelabels_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+name}:publish"
+        },
+        "smithy.api#documentation": "Publish all draft changes to the label. Once published, the label may not return to its draft state. For more information, see [Create and publish a label](https://developers.google.com/workspace/drive/labels/guides/create-label). Publishing a label will result in a new published revision. All previous draft revisions will be deleted. Previous published revisions will be kept but are subject to automated deletion as needed. For more information, see [Label lifecycle](https://developers.google.com/workspace/drive/labels/guides/label-lifecycle). Once published, some changes are no longer permitted. Generally, any change that would invalidate or cause new restrictions on existing metadata related to the label will be rejected. For example, the following changes to a label will be rejected after the label is published: * The label cannot be directly deleted. It must be disabled first, then deleted. * `Field.FieldType` cannot be changed. * Changes to field validation options cannot reject something that was previously accepted. * Reducing the maximum entries."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#ListLabelsLocksRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The token of the page to return.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Label on which locks are applied. Format: `labels/{label}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of locks to return per page. Default: 100. Max: 200.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#ListLabelsLocks": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.drivelabels_v2#ListLabelsLocksRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2ListLabelLocksResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.drivelabels_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+parent}/locks"
+        },
+        "smithy.api#documentation": "Lists the label locks on a label.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#UpdatePermissionsLabelsRevisionsRequest": {
+      "type": "structure",
+      "members": {
+        "useAdminAccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.",
+            "smithy.api#httpQuery": "useAdminAccess"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent label resource name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelPermission",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#UpdatePermissionsLabelsRevisions": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.drivelabels_v2#UpdatePermissionsLabelsRevisionsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelPermission"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.drivelabels_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v2/{+parent}/permissions"
+        },
+        "smithy.api#documentation": "Updates a label's permissions. If a permission for the indicated principal doesn't exist, a label permission is created, otherwise the existing permission is updated. Permissions affect the label resource as a whole, aren't revisioned, and don't require publishing."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#BatchDeleteLabelsRevisionsPermissionsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent label resource name shared by all permissions being deleted. Format: `labels/{label}`. If this is set, the parent field in the `UpdateLabelPermissionRequest` messages must either be empty or match this field.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2BatchDeleteLabelPermissionsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#BatchDeleteLabelsRevisionsPermissions": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.drivelabels_v2#BatchDeleteLabelsRevisionsPermissionsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.drivelabels_v2#GoogleProtobufEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.drivelabels_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+parent}/permissions:batchDelete"
+        },
+        "smithy.api#documentation": "Deletes label permissions. Permissions affect the label resource as a whole, aren't revisioned, and don't require publishing."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#CreateLabelsRevisionsPermissionsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent label resource name on the label permission is created. Format: `labels/{label}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "useAdminAccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.",
+            "smithy.api#httpQuery": "useAdminAccess"
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelPermission",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#CreateLabelsRevisionsPermissions": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.drivelabels_v2#CreateLabelsRevisionsPermissionsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelPermission"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.drivelabels_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+parent}/permissions"
+        },
+        "smithy.api#documentation": "Updates a label's permissions. If a permission for the indicated principal doesn't exist, a label permission is created, otherwise the existing permission is updated. Permissions affect the label resource as a whole, aren't revisioned, and don't require publishing."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#BatchUpdateLabelsRevisionsPermissionsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent label resource name shared by all permissions being updated. Format: `labels/{label}`. If this is set, the parent field in the `UpdateLabelPermissionRequest` messages must either be empty or match this field.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2BatchUpdateLabelPermissionsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#BatchUpdateLabelsRevisionsPermissions": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.drivelabels_v2#BatchUpdateLabelsRevisionsPermissionsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2BatchUpdateLabelPermissionsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.drivelabels_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+parent}/permissions:batchUpdate"
+        },
+        "smithy.api#documentation": "Updates label permissions. If a permission for the indicated principal doesn't exist, a label permission is created, otherwise the existing permission is updated. Permissions affect the label resource as a whole, aren't revisioned, and don't require publishing."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#ListLabelsRevisionsPermissionsRequest": {
+      "type": "structure",
+      "members": {
+        "useAdminAccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.",
+            "smithy.api#httpQuery": "useAdminAccess"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent label resource name on which label permissions are listed. Format: `labels/{label}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of permissions to return per page. Default: 50. Max: 200.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The token of the page to return.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#ListLabelsRevisionsPermissions": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.drivelabels_v2#ListLabelsRevisionsPermissionsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2ListLabelPermissionsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.drivelabels_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+parent}/permissions"
+        },
+        "smithy.api#documentation": "Lists a label's permissions.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#DeleteLabelsRevisionsPermissionsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Label permission resource name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "useAdminAccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.",
+            "smithy.api#httpQuery": "useAdminAccess"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#DeleteLabelsRevisionsPermissions": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.drivelabels_v2#DeleteLabelsRevisionsPermissionsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.drivelabels_v2#GoogleProtobufEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.drivelabels_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a label's permission. Permissions affect the label resource as a whole, aren't revisioned, and don't require publishing."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#ListLabelsRevisionsLocksRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The token of the page to return.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of locks to return per page. Default: 100. Max: 200.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Label on which locks are applied. Format: `labels/{label}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#ListLabelsRevisionsLocks": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.drivelabels_v2#ListLabelsRevisionsLocksRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2ListLabelLocksResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.drivelabels_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+parent}/locks"
+        },
+        "smithy.api#documentation": "Lists the label locks on a label.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#ListLabelsPermissionsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent label resource name on which label permissions are listed. Format: `labels/{label}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The token of the page to return.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of permissions to return per page. Default: 50. Max: 200.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "useAdminAccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.",
+            "smithy.api#httpQuery": "useAdminAccess"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#ListLabelsPermissions": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.drivelabels_v2#ListLabelsPermissionsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2ListLabelPermissionsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.drivelabels_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+parent}/permissions"
+        },
+        "smithy.api#documentation": "Lists a label's permissions.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#BatchUpdateLabelsPermissionsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent label resource name shared by all permissions being updated. Format: `labels/{label}`. If this is set, the parent field in the `UpdateLabelPermissionRequest` messages must either be empty or match this field.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2BatchUpdateLabelPermissionsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#BatchUpdateLabelsPermissions": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.drivelabels_v2#BatchUpdateLabelsPermissionsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2BatchUpdateLabelPermissionsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.drivelabels_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+parent}/permissions:batchUpdate"
+        },
+        "smithy.api#documentation": "Updates label permissions. If a permission for the indicated principal doesn't exist, a label permission is created, otherwise the existing permission is updated. Permissions affect the label resource as a whole, aren't revisioned, and don't require publishing."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#DeleteLabelsPermissionsRequest": {
+      "type": "structure",
+      "members": {
+        "useAdminAccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.",
+            "smithy.api#httpQuery": "useAdminAccess"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Label permission resource name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#DeleteLabelsPermissions": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.drivelabels_v2#DeleteLabelsPermissionsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.drivelabels_v2#GoogleProtobufEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.drivelabels_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a label's permission. Permissions affect the label resource as a whole, aren't revisioned, and don't require publishing."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#BatchDeleteLabelsPermissionsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent label resource name shared by all permissions being deleted. Format: `labels/{label}`. If this is set, the parent field in the `UpdateLabelPermissionRequest` messages must either be empty or match this field.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2BatchDeleteLabelPermissionsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#BatchDeleteLabelsPermissions": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.drivelabels_v2#BatchDeleteLabelsPermissionsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.drivelabels_v2#GoogleProtobufEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.drivelabels_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+parent}/permissions:batchDelete"
+        },
+        "smithy.api#documentation": "Deletes label permissions. Permissions affect the label resource as a whole, aren't revisioned, and don't require publishing."
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#CreateLabelsPermissionsRequest": {
+      "type": "structure",
+      "members": {
+        "useAdminAccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.",
+            "smithy.api#httpQuery": "useAdminAccess"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent label resource name on the label permission is created. Format: `labels/{label}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelPermission",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.drivelabels_v2#CreateLabelsPermissions": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.drivelabels_v2#CreateLabelsPermissionsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2LabelPermission"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.drivelabels_v2#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.drivelabels_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+parent}/permissions"
+        },
+        "smithy.api#documentation": "Updates a label's permissions. If a permission for the indicated principal doesn't exist, a label permission is created, otherwise the existing permission is updated. Permissions affect the label resource as a whole, aren't revisioned, and don't require publishing."
+      }
+    }
+  }
+}

@@ -73,6 +73,7 @@ export const SPEC_REPOS: readonly SpecRepo[] = [
   { package: "fly-io" },
   { package: "gcp" },
   { package: "github" },
+  { package: "google-workspace" },
   { package: "grafana" },
   { package: "growthbook" },
   { package: "gusto" },

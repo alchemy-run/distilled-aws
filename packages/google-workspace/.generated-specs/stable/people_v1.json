@@ -1,0 +1,4961 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "people",
+    "version": "v1",
+    "title": "People API",
+    "baseUrl": "https://people.googleapis.com/",
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.googleworkspace.people_v1#Photo": {
+      "type": "structure",
+      "members": {
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL of the photo. You can change the desired size by appending a query parameter `sz={size}` at the end of the url, where {size} is the size in pixels. Example: https://lh3.googleusercontent.com/-T_wVWLlmg7w/AAAAAAAAAAI/AAAAAAAABa8/00gzXvDBYqw/s100/photo.jpg?sz=50"
+          }
+        },
+        "metadata": {
+          "target": "com.googleworkspace.people_v1#FieldMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata about the photo."
+          }
+        },
+        "default": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True if the photo is a default photo; false if the photo is a user-provided photo."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A person's photo. A picture shown next to the person's name to help others recognize the person."
+      }
+    },
+    "com.googleworkspace.people_v1#ListConnectionsResponse": {
+      "type": "structure",
+      "members": {
+        "totalPeople": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "**DEPRECATED** (Please use totalItems) The total number of people in the list without pagination."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+          }
+        },
+        "nextSyncToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token, which can be sent as `sync_token` to retrieve changes since the last request. Request must set `request_sync_token` to return the sync token. When the response is paginated, only the last page will contain `nextSyncToken`."
+          }
+        },
+        "connections": {
+          "target": "com.googleworkspace.people_v1#PersonList",
+          "traits": {
+            "smithy.api#documentation": "The list of people that the requestor is connected to."
+          }
+        },
+        "totalItems": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The total number of items in the list without pagination."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response to a request for the authenticated user's connections."
+      }
+    },
+    "com.googleworkspace.people_v1#PersonList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#Person"
+      }
+    },
+    "com.googleworkspace.people_v1#ContactGroup": {
+      "type": "structure",
+      "members": {
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The [HTTP entity tag](https://en.wikipedia.org/wiki/HTTP_ETag) of the resource. Used for web cache validation."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The contact group name set by the group owner or a system provided name for system groups. For [`contactGroups.create`](/people/api/rest/v1/contactGroups/create) or [`contactGroups.update`](/people/api/rest/v1/contactGroups/update) the name must be unique to the users contact groups. Attempting to create a group with a duplicate name will return a HTTP 409 error."
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name for the contact group, assigned by the server. An ASCII string, in the form of `contactGroups/{contact_group_id}`."
+          }
+        },
+        "formattedName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The name translated and formatted in the viewer's account locale or the `Accept-Language` HTTP header locale for system groups names. Group names set by the owner are the same as name."
+          }
+        },
+        "memberResourceNames": {
+          "target": "com.googleworkspace.people_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Output only. The list of contact person resource names that are members of the contact group. The field is only populated for GET requests and will only return as many members as `maxMembers` in the get request."
+          }
+        },
+        "memberCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Output only. The total number of contacts in the group irrespective of max members in specified in the request."
+          }
+        },
+        "clientData": {
+          "target": "com.googleworkspace.people_v1#GroupClientDataList",
+          "traits": {
+            "smithy.api#documentation": "The group's client data."
+          }
+        },
+        "metadata": {
+          "target": "com.googleworkspace.people_v1#ContactGroupMetadata",
+          "traits": {
+            "smithy.api#documentation": "Output only. Metadata about the contact group."
+          }
+        },
+        "groupType": {
+          "target": "com.googleworkspace.people_v1#ContactGroupGroupTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The contact group type."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A contact group."
+      }
+    },
+    "com.googleworkspace.people_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.googleworkspace.people_v1#GroupClientDataList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#GroupClientData"
+      }
+    },
+    "com.googleworkspace.people_v1#ContactGroupGroupTypeEnum": {
+      "type": "enum",
+      "members": {
+        "GROUP_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GROUP_TYPE_UNSPECIFIED"
+          }
+        },
+        "USER_CONTACT_GROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "USER_CONTACT_GROUP"
+          }
+        },
+        "SYSTEM_CONTACT_GROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SYSTEM_CONTACT_GROUP"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#BatchDeleteContactsRequest": {
+      "type": "structure",
+      "members": {
+        "resourceNames": {
+          "target": "com.googleworkspace.people_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource names of the contact to delete. It's repeatable. Allows up to 500 resource names in a single request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A request to delete a batch of existing contacts."
+      }
+    },
+    "com.googleworkspace.people_v1#SearchResult": {
+      "type": "structure",
+      "members": {
+        "person": {
+          "target": "com.googleworkspace.people_v1#Person",
+          "traits": {
+            "smithy.api#documentation": "The matched Person."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A result of a search query."
+      }
+    },
+    "com.googleworkspace.people_v1#CalendarUrl": {
+      "type": "structure",
+      "members": {
+        "formattedType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The type of the calendar URL translated and formatted in the viewer's account locale or the `Accept-Language` HTTP header locale."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the calendar URL. The type can be custom or one of these predefined values: * `home` * `freeBusy` * `work`"
+          }
+        },
+        "metadata": {
+          "target": "com.googleworkspace.people_v1#FieldMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata about the calendar URL."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The calendar URL."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A person's calendar URL."
+      }
+    },
+    "com.googleworkspace.people_v1#Membership": {
+      "type": "structure",
+      "members": {
+        "domainMembership": {
+          "target": "com.googleworkspace.people_v1#DomainMembership",
+          "traits": {
+            "smithy.api#documentation": "Output only. The domain membership."
+          }
+        },
+        "metadata": {
+          "target": "com.googleworkspace.people_v1#FieldMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata about the membership."
+          }
+        },
+        "contactGroupMembership": {
+          "target": "com.googleworkspace.people_v1#ContactGroupMembership",
+          "traits": {
+            "smithy.api#documentation": "The contact group membership."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A person's membership in a group. Only contact group memberships can be modified."
+      }
+    },
+    "com.googleworkspace.people_v1#Residence": {
+      "type": "structure",
+      "members": {
+        "metadata": {
+          "target": "com.googleworkspace.people_v1#FieldMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata about the residence."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The address of the residence."
+          }
+        },
+        "current": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True if the residence is the person's current residence; false if the residence is a past residence."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "**DEPRECATED**: Please use `person.locations` instead. A person's past or current residence."
+      }
+    },
+    "com.googleworkspace.people_v1#Birthday": {
+      "type": "structure",
+      "members": {
+        "metadata": {
+          "target": "com.googleworkspace.people_v1#FieldMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata about the birthday."
+          }
+        },
+        "date": {
+          "target": "com.googleworkspace.people_v1#People_Date",
+          "traits": {
+            "smithy.api#documentation": "The structured date of the birthday."
+          }
+        },
+        "text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Prefer to use the `date` field if set. A free-form string representing the user's birthday. This value is not validated."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A person's birthday. At least one of the `date` and `text` fields are specified. The `date` and `text` fields typically represent the same date, but are not guaranteed to. Clients should always set the `date` field when mutating birthdays."
+      }
+    },
+    "com.googleworkspace.people_v1#SearchDirectoryPeopleResponse": {
+      "type": "structure",
+      "members": {
+        "totalSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The total number of items in the list without pagination."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+          }
+        },
+        "people": {
+          "target": "com.googleworkspace.people_v1#PersonList",
+          "traits": {
+            "smithy.api#documentation": "The list of people in the domain directory that match the query."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response to a request for people in the authenticated user's domain directory that match the specified query."
+      }
+    },
+    "com.googleworkspace.people_v1#UpdateContactGroupRequest": {
+      "type": "structure",
+      "members": {
+        "readGroupFields": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A field mask to restrict which fields on the group are returned. Defaults to `metadata`, `groupType`, and `name` if not set or set to empty. Valid fields are: * clientData * groupType * memberCount * metadata * name"
+          }
+        },
+        "updateGroupFields": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A field mask to restrict which fields on the group are updated. Multiple fields can be specified by separating them with commas. Defaults to `name` if not set or set to empty. Updated fields are replaced. Valid values are: * clientData * name"
+          }
+        },
+        "contactGroup": {
+          "target": "com.googleworkspace.people_v1#ContactGroup",
+          "traits": {
+            "smithy.api#documentation": "Required. The contact group to update."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A request to update an existing user contact group. All updated fields will be replaced."
+      }
+    },
+    "com.googleworkspace.people_v1#FileAs": {
+      "type": "structure",
+      "members": {
+        "metadata": {
+          "target": "com.googleworkspace.people_v1#FieldMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata about the file-as."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The file-as value"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The name that should be used to sort the person in a list."
+      }
+    },
+    "com.googleworkspace.people_v1#FieldMetadata": {
+      "type": "structure",
+      "members": {
+        "primary": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. True if the field is the primary field for all sources in the person. Each person will have at most one field with `primary` set to true."
+          }
+        },
+        "sourcePrimary": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True if the field is the primary field for the source. Each source must have at most one field with `source_primary` set to true."
+          }
+        },
+        "verified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. True if the field is verified; false if the field is unverified. A verified field is typically a name, email address, phone number, or website that has been confirmed to be owned by the person."
+          }
+        },
+        "source": {
+          "target": "com.googleworkspace.people_v1#Source",
+          "traits": {
+            "smithy.api#documentation": "The source of the field."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata about a field."
+      }
+    },
+    "com.googleworkspace.people_v1#Relation": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The person's relation to the other person. The type can be custom or one of these predefined values: * `spouse` * `child` * `mother` * `father` * `parent` * `brother` * `sister` * `friend` * `relative` * `domesticPartner` * `manager` * `assistant` * `referredBy` * `partner`"
+          }
+        },
+        "person": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the other person this relation refers to."
+          }
+        },
+        "formattedType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The type of the relation translated and formatted in the viewer's account locale or the locale specified in the Accept-Language HTTP header."
+          }
+        },
+        "metadata": {
+          "target": "com.googleworkspace.people_v1#FieldMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata about the relation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A person's relation to another person."
+      }
+    },
+    "com.googleworkspace.people_v1#Status": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+          }
+        },
+        "details": {
+          "target": "com.googleworkspace.people_v1#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+      }
+    },
+    "com.googleworkspace.people_v1#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.googleworkspace.people_v1#DocumentMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#DocumentMap"
+      }
+    },
+    "com.googleworkspace.people_v1#AgeRangeType": {
+      "type": "structure",
+      "members": {
+        "ageRange": {
+          "target": "com.googleworkspace.people_v1#AgeRangeTypeAgeRangeEnum",
+          "traits": {
+            "smithy.api#documentation": "The age range."
+          }
+        },
+        "metadata": {
+          "target": "com.googleworkspace.people_v1#FieldMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata about the age range."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A person's age range."
+      }
+    },
+    "com.googleworkspace.people_v1#AgeRangeTypeAgeRangeEnum": {
+      "type": "enum",
+      "members": {
+        "AGE_RANGE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AGE_RANGE_UNSPECIFIED"
+          }
+        },
+        "LESS_THAN_EIGHTEEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LESS_THAN_EIGHTEEN"
+          }
+        },
+        "EIGHTEEN_TO_TWENTY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EIGHTEEN_TO_TWENTY"
+          }
+        },
+        "TWENTY_ONE_OR_OLDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TWENTY_ONE_OR_OLDER"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#ContactGroupMetadata": {
+      "type": "structure",
+      "members": {
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the group was last updated."
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. True if the contact group resource has been deleted. Populated only for [`ListContactGroups`](/people/api/rest/v1/contactgroups/list) requests that include a sync token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The metadata about a contact group."
+      }
+    },
+    "com.googleworkspace.people_v1#MiscKeyword": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.googleworkspace.people_v1#MiscKeywordTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The miscellaneous keyword type."
+          }
+        },
+        "metadata": {
+          "target": "com.googleworkspace.people_v1#FieldMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata about the miscellaneous keyword."
+          }
+        },
+        "formattedType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The type of the miscellaneous keyword translated and formatted in the viewer's account locale or the `Accept-Language` HTTP header locale."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value of the miscellaneous keyword."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A person's miscellaneous keyword."
+      }
+    },
+    "com.googleworkspace.people_v1#MiscKeywordTypeEnum": {
+      "type": "enum",
+      "members": {
+        "TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYPE_UNSPECIFIED"
+          }
+        },
+        "OUTLOOK_BILLING_INFORMATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OUTLOOK_BILLING_INFORMATION"
+          }
+        },
+        "OUTLOOK_DIRECTORY_SERVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OUTLOOK_DIRECTORY_SERVER"
+          }
+        },
+        "OUTLOOK_KEYWORD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OUTLOOK_KEYWORD"
+          }
+        },
+        "OUTLOOK_MILEAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OUTLOOK_MILEAGE"
+          }
+        },
+        "OUTLOOK_PRIORITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OUTLOOK_PRIORITY"
+          }
+        },
+        "OUTLOOK_SENSITIVITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OUTLOOK_SENSITIVITY"
+          }
+        },
+        "OUTLOOK_SUBJECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OUTLOOK_SUBJECT"
+          }
+        },
+        "OUTLOOK_USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OUTLOOK_USER"
+          }
+        },
+        "HOME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HOME"
+          }
+        },
+        "WORK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WORK"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OTHER"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#PersonResponse": {
+      "type": "structure",
+      "members": {
+        "requestedResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The original requested resource name. May be different than the resource name on the returned person. The resource name can change when adding or removing fields that link a contact and profile such as a verified email, verified phone number, or a profile URL."
+          }
+        },
+        "status": {
+          "target": "com.googleworkspace.people_v1#Status",
+          "traits": {
+            "smithy.api#documentation": "The status of the response."
+          }
+        },
+        "person": {
+          "target": "com.googleworkspace.people_v1#Person",
+          "traits": {
+            "smithy.api#documentation": "The person."
+          }
+        },
+        "httpStatusCode": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "**DEPRECATED** (Please use status instead) [HTTP 1.1 status code] (http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response for a single person"
+      }
+    },
+    "com.googleworkspace.people_v1#GetPeopleResponse": {
+      "type": "structure",
+      "members": {
+        "responses": {
+          "target": "com.googleworkspace.people_v1#PersonResponseList",
+          "traits": {
+            "smithy.api#documentation": "The response for each requested resource name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response to a get request for a list of people by resource name."
+      }
+    },
+    "com.googleworkspace.people_v1#PersonResponseList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#PersonResponse"
+      }
+    },
+    "com.googleworkspace.people_v1#Person": {
+      "type": "structure",
+      "members": {
+        "biographies": {
+          "target": "com.googleworkspace.people_v1#BiographyList",
+          "traits": {
+            "smithy.api#documentation": "The person's biographies. This field is a singleton for contact sources."
+          }
+        },
+        "braggingRights": {
+          "target": "com.googleworkspace.people_v1#BraggingRightsList",
+          "traits": {
+            "smithy.api#documentation": "**DEPRECATED**: No data will be returned The person's bragging rights."
+          }
+        },
+        "photos": {
+          "target": "com.googleworkspace.people_v1#PhotoList",
+          "traits": {
+            "smithy.api#documentation": "Output only. The person's photos."
+          }
+        },
+        "skills": {
+          "target": "com.googleworkspace.people_v1#SkillList",
+          "traits": {
+            "smithy.api#documentation": "The person's skills."
+          }
+        },
+        "organizations": {
+          "target": "com.googleworkspace.people_v1#OrganizationList",
+          "traits": {
+            "smithy.api#documentation": "The person's past or current organizations."
+          }
+        },
+        "imClients": {
+          "target": "com.googleworkspace.people_v1#ImClientList",
+          "traits": {
+            "smithy.api#documentation": "The person's instant messaging clients."
+          }
+        },
+        "occupations": {
+          "target": "com.googleworkspace.people_v1#OccupationList",
+          "traits": {
+            "smithy.api#documentation": "The person's occupations."
+          }
+        },
+        "relations": {
+          "target": "com.googleworkspace.people_v1#RelationList",
+          "traits": {
+            "smithy.api#documentation": "The person's relations."
+          }
+        },
+        "residences": {
+          "target": "com.googleworkspace.people_v1#ResidenceList",
+          "traits": {
+            "smithy.api#documentation": "**DEPRECATED**: (Please use `person.locations` instead) The person's residences."
+          }
+        },
+        "metadata": {
+          "target": "com.googleworkspace.people_v1#PersonMetadata",
+          "traits": {
+            "smithy.api#documentation": "Output only. Metadata about the person."
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name for the person, assigned by the server. An ASCII string in the form of `people/{person_id}`."
+          }
+        },
+        "emailAddresses": {
+          "target": "com.googleworkspace.people_v1#EmailAddressList",
+          "traits": {
+            "smithy.api#documentation": "The person's email addresses. For `people.connections.list` and `otherContacts.list` the number of email addresses is limited to 100. If a Person has more email addresses the entire set can be obtained by calling GetPeople."
+          }
+        },
+        "userDefined": {
+          "target": "com.googleworkspace.people_v1#UserDefinedList",
+          "traits": {
+            "smithy.api#documentation": "The person's user defined data."
+          }
+        },
+        "nicknames": {
+          "target": "com.googleworkspace.people_v1#NicknameList",
+          "traits": {
+            "smithy.api#documentation": "The person's nicknames."
+          }
+        },
+        "coverPhotos": {
+          "target": "com.googleworkspace.people_v1#CoverPhotoList",
+          "traits": {
+            "smithy.api#documentation": "Output only. The person's cover photos."
+          }
+        },
+        "relationshipStatuses": {
+          "target": "com.googleworkspace.people_v1#RelationshipStatusList",
+          "traits": {
+            "smithy.api#documentation": "Output only. **DEPRECATED**: No data will be returned The person's relationship statuses."
+          }
+        },
+        "clientData": {
+          "target": "com.googleworkspace.people_v1#ClientDataList",
+          "traits": {
+            "smithy.api#documentation": "The person's client data."
+          }
+        },
+        "sipAddresses": {
+          "target": "com.googleworkspace.people_v1#SipAddressList",
+          "traits": {
+            "smithy.api#documentation": "The person's SIP addresses."
+          }
+        },
+        "interests": {
+          "target": "com.googleworkspace.people_v1#InterestList",
+          "traits": {
+            "smithy.api#documentation": "The person's interests."
+          }
+        },
+        "addresses": {
+          "target": "com.googleworkspace.people_v1#AddressList",
+          "traits": {
+            "smithy.api#documentation": "The person's street addresses."
+          }
+        },
+        "memberships": {
+          "target": "com.googleworkspace.people_v1#MembershipList",
+          "traits": {
+            "smithy.api#documentation": "The person's group memberships."
+          }
+        },
+        "miscKeywords": {
+          "target": "com.googleworkspace.people_v1#MiscKeywordList",
+          "traits": {
+            "smithy.api#documentation": "The person's miscellaneous keywords."
+          }
+        },
+        "locales": {
+          "target": "com.googleworkspace.people_v1#LocaleList",
+          "traits": {
+            "smithy.api#documentation": "The person's locale preferences."
+          }
+        },
+        "taglines": {
+          "target": "com.googleworkspace.people_v1#TaglineList",
+          "traits": {
+            "smithy.api#documentation": "Output only. **DEPRECATED**: No data will be returned The person's taglines."
+          }
+        },
+        "externalIds": {
+          "target": "com.googleworkspace.people_v1#ExternalIdList",
+          "traits": {
+            "smithy.api#documentation": "The person's external IDs."
+          }
+        },
+        "calendarUrls": {
+          "target": "com.googleworkspace.people_v1#CalendarUrlList",
+          "traits": {
+            "smithy.api#documentation": "The person's calendar URLs."
+          }
+        },
+        "genders": {
+          "target": "com.googleworkspace.people_v1#GenderList",
+          "traits": {
+            "smithy.api#documentation": "The person's genders. This field is a singleton for contact sources."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The [HTTP entity tag](https://en.wikipedia.org/wiki/HTTP_ETag) of the resource. Used for web cache validation."
+          }
+        },
+        "birthdays": {
+          "target": "com.googleworkspace.people_v1#BirthdayList",
+          "traits": {
+            "smithy.api#documentation": "The person's birthdays. This field is a singleton for contact sources."
+          }
+        },
+        "locations": {
+          "target": "com.googleworkspace.people_v1#LocationList",
+          "traits": {
+            "smithy.api#documentation": "The person's locations."
+          }
+        },
+        "relationshipInterests": {
+          "target": "com.googleworkspace.people_v1#RelationshipInterestList",
+          "traits": {
+            "smithy.api#documentation": "Output only. **DEPRECATED**: No data will be returned The person's relationship interests."
+          }
+        },
+        "ageRange": {
+          "target": "com.googleworkspace.people_v1#PersonAgeRangeEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. **DEPRECATED** (Please use `person.ageRanges` instead) The person's age range."
+          }
+        },
+        "ageRanges": {
+          "target": "com.googleworkspace.people_v1#AgeRangeTypeList",
+          "traits": {
+            "smithy.api#documentation": "Output only. The person's age ranges."
+          }
+        },
+        "urls": {
+          "target": "com.googleworkspace.people_v1#UrlList",
+          "traits": {
+            "smithy.api#documentation": "The person's associated URLs."
+          }
+        },
+        "phoneNumbers": {
+          "target": "com.googleworkspace.people_v1#PhoneNumberList",
+          "traits": {
+            "smithy.api#documentation": "The person's phone numbers. For `people.connections.list` and `otherContacts.list` the number of phone numbers is limited to 100. If a Person has more phone numbers the entire set can be obtained by calling GetPeople."
+          }
+        },
+        "events": {
+          "target": "com.googleworkspace.people_v1#EventList",
+          "traits": {
+            "smithy.api#documentation": "The person's events."
+          }
+        },
+        "names": {
+          "target": "com.googleworkspace.people_v1#NameList",
+          "traits": {
+            "smithy.api#documentation": "The person's names. This field is a singleton for contact sources."
+          }
+        },
+        "fileAses": {
+          "target": "com.googleworkspace.people_v1#FileAsList",
+          "traits": {
+            "smithy.api#documentation": "The person's file-ases."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about a person merged from various data sources such as the authenticated user's contacts and profile data. Most fields can have multiple items. The items in a field have no guaranteed order, but each non-empty field is guaranteed to have exactly one field with `metadata.primary` set to true."
+      }
+    },
+    "com.googleworkspace.people_v1#BiographyList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#Biography"
+      }
+    },
+    "com.googleworkspace.people_v1#BraggingRightsList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#BraggingRights"
+      }
+    },
+    "com.googleworkspace.people_v1#PhotoList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#Photo"
+      }
+    },
+    "com.googleworkspace.people_v1#SkillList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#Skill"
+      }
+    },
+    "com.googleworkspace.people_v1#OrganizationList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#Organization"
+      }
+    },
+    "com.googleworkspace.people_v1#ImClientList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#ImClient"
+      }
+    },
+    "com.googleworkspace.people_v1#OccupationList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#Occupation"
+      }
+    },
+    "com.googleworkspace.people_v1#RelationList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#Relation"
+      }
+    },
+    "com.googleworkspace.people_v1#ResidenceList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#Residence"
+      }
+    },
+    "com.googleworkspace.people_v1#EmailAddressList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#EmailAddress"
+      }
+    },
+    "com.googleworkspace.people_v1#UserDefinedList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#UserDefined"
+      }
+    },
+    "com.googleworkspace.people_v1#NicknameList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#Nickname"
+      }
+    },
+    "com.googleworkspace.people_v1#CoverPhotoList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#CoverPhoto"
+      }
+    },
+    "com.googleworkspace.people_v1#RelationshipStatusList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#RelationshipStatus"
+      }
+    },
+    "com.googleworkspace.people_v1#ClientDataList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#ClientData"
+      }
+    },
+    "com.googleworkspace.people_v1#SipAddressList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#SipAddress"
+      }
+    },
+    "com.googleworkspace.people_v1#InterestList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#Interest"
+      }
+    },
+    "com.googleworkspace.people_v1#AddressList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#Address"
+      }
+    },
+    "com.googleworkspace.people_v1#MembershipList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#Membership"
+      }
+    },
+    "com.googleworkspace.people_v1#MiscKeywordList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#MiscKeyword"
+      }
+    },
+    "com.googleworkspace.people_v1#LocaleList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#Locale"
+      }
+    },
+    "com.googleworkspace.people_v1#TaglineList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#Tagline"
+      }
+    },
+    "com.googleworkspace.people_v1#ExternalIdList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#ExternalId"
+      }
+    },
+    "com.googleworkspace.people_v1#CalendarUrlList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#CalendarUrl"
+      }
+    },
+    "com.googleworkspace.people_v1#GenderList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#Gender"
+      }
+    },
+    "com.googleworkspace.people_v1#BirthdayList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#Birthday"
+      }
+    },
+    "com.googleworkspace.people_v1#LocationList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#Location"
+      }
+    },
+    "com.googleworkspace.people_v1#RelationshipInterestList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#RelationshipInterest"
+      }
+    },
+    "com.googleworkspace.people_v1#PersonAgeRangeEnum": {
+      "type": "enum",
+      "members": {
+        "AGE_RANGE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AGE_RANGE_UNSPECIFIED"
+          }
+        },
+        "LESS_THAN_EIGHTEEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LESS_THAN_EIGHTEEN"
+          }
+        },
+        "EIGHTEEN_TO_TWENTY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EIGHTEEN_TO_TWENTY"
+          }
+        },
+        "TWENTY_ONE_OR_OLDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TWENTY_ONE_OR_OLDER"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#AgeRangeTypeList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#AgeRangeType"
+      }
+    },
+    "com.googleworkspace.people_v1#UrlList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#Url"
+      }
+    },
+    "com.googleworkspace.people_v1#PhoneNumberList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#PhoneNumber"
+      }
+    },
+    "com.googleworkspace.people_v1#EventList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#Event"
+      }
+    },
+    "com.googleworkspace.people_v1#NameList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#Name"
+      }
+    },
+    "com.googleworkspace.people_v1#FileAsList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#FileAs"
+      }
+    },
+    "com.googleworkspace.people_v1#Locale": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The well-formed [IETF BCP 47](https://tools.ietf.org/html/bcp47) language tag representing the locale."
+          }
+        },
+        "metadata": {
+          "target": "com.googleworkspace.people_v1#FieldMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata about the locale."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A person's locale preference."
+      }
+    },
+    "com.googleworkspace.people_v1#CreateContactGroupRequest": {
+      "type": "structure",
+      "members": {
+        "readGroupFields": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A field mask to restrict which fields on the group are returned. Defaults to `metadata`, `groupType`, and `name` if not set or set to empty. Valid fields are: * clientData * groupType * metadata * name"
+          }
+        },
+        "contactGroup": {
+          "target": "com.googleworkspace.people_v1#ContactGroup",
+          "traits": {
+            "smithy.api#documentation": "Required. The contact group to create."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A request to create a new contact group."
+      }
+    },
+    "com.googleworkspace.people_v1#Nickname": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The nickname."
+          }
+        },
+        "metadata": {
+          "target": "com.googleworkspace.people_v1#FieldMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata about the nickname."
+          }
+        },
+        "type": {
+          "target": "com.googleworkspace.people_v1#NicknameTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The type of the nickname."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A person's nickname."
+      }
+    },
+    "com.googleworkspace.people_v1#NicknameTypeEnum": {
+      "type": "enum",
+      "members": {
+        "DEFAULT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEFAULT"
+          }
+        },
+        "MAIDEN_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MAIDEN_NAME"
+          }
+        },
+        "INITIALS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INITIALS"
+          }
+        },
+        "GPLUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GPLUS"
+          }
+        },
+        "OTHER_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OTHER_NAME"
+          }
+        },
+        "ALTERNATE_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALTERNATE_NAME"
+          }
+        },
+        "SHORT_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHORT_NAME"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#Occupation": {
+      "type": "structure",
+      "members": {
+        "metadata": {
+          "target": "com.googleworkspace.people_v1#FieldMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata about the occupation."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The occupation; for example, `carpenter`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A person's occupation."
+      }
+    },
+    "com.googleworkspace.people_v1#BatchUpdateContactsResponse": {
+      "type": "structure",
+      "members": {
+        "updateResult": {
+          "target": "com.googleworkspace.people_v1#PersonResponseMap",
+          "traits": {
+            "smithy.api#documentation": "A map of resource names to the contacts that were updated, unless the request `read_mask` is empty."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "If not successful, returns BatchUpdateContactsErrorDetails, a list of errors corresponding to each contact. The response to a request to update a batch of contacts."
+      }
+    },
+    "com.googleworkspace.people_v1#PersonResponseMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.googleworkspace.people_v1#PersonResponse"
+      }
+    },
+    "com.googleworkspace.people_v1#CopyOtherContactToMyContactsGroupRequest": {
+      "type": "structure",
+      "members": {
+        "sources": {
+          "target": "com.googleworkspace.people_v1#CopyOtherContactToMyContactsGroupRequestSourcesItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Optional. A mask of what source types to return. Defaults to READ_SOURCE_TYPE_CONTACT and READ_SOURCE_TYPE_PROFILE if not set."
+          }
+        },
+        "copyMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. A field mask to restrict which fields are copied into the new contact. Valid values are: * emailAddresses * names * phoneNumbers"
+          }
+        },
+        "readMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A field mask to restrict which fields on the person are returned. Multiple fields can be specified by separating them with commas. Defaults to the copy mask with metadata and membership fields if not set. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A request to copy an \"Other contact\" to my contacts group."
+      }
+    },
+    "com.googleworkspace.people_v1#CopyOtherContactToMyContactsGroupRequestSourcesItemEnum": {
+      "type": "enum",
+      "members": {
+        "READ_SOURCE_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_UNSPECIFIED"
+          }
+        },
+        "READ_SOURCE_TYPE_PROFILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_PROFILE"
+          }
+        },
+        "READ_SOURCE_TYPE_CONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_CONTACT"
+          }
+        },
+        "READ_SOURCE_TYPE_DOMAIN_CONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_DOMAIN_CONTACT"
+          }
+        },
+        "READ_SOURCE_TYPE_OTHER_CONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_OTHER_CONTACT"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#CopyOtherContactToMyContactsGroupRequestSourcesItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#CopyOtherContactToMyContactsGroupRequestSourcesItemEnum"
+      }
+    },
+    "com.googleworkspace.people_v1#SearchResponse": {
+      "type": "structure",
+      "members": {
+        "results": {
+          "target": "com.googleworkspace.people_v1#SearchResultList",
+          "traits": {
+            "smithy.api#documentation": "The results of the request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response to a search request for the authenticated user, given a query."
+      }
+    },
+    "com.googleworkspace.people_v1#SearchResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#SearchResult"
+      }
+    },
+    "com.googleworkspace.people_v1#Address": {
+      "type": "structure",
+      "members": {
+        "extendedAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The extended address of the address; for example, the apartment number."
+          }
+        },
+        "region": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The region of the address; for example, the state or province."
+          }
+        },
+        "poBox": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The P.O. box of the address."
+          }
+        },
+        "formattedType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The type of the address translated and formatted in the viewer's account locale or the `Accept-Language` HTTP header locale."
+          }
+        },
+        "formattedValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unstructured value of the address. If this is not set by the user it will be automatically constructed from structured values."
+          }
+        },
+        "city": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The city of the address."
+          }
+        },
+        "country": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The country of the address."
+          }
+        },
+        "countryCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The [ISO 3166-1 alpha-2](http://www.iso.org/iso/country_codes.htm) country code of the address."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the address. The type can be custom or one of these predefined values: * `home` * `work` * `other`"
+          }
+        },
+        "streetAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The street address."
+          }
+        },
+        "postalCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The postal code of the address."
+          }
+        },
+        "metadata": {
+          "target": "com.googleworkspace.people_v1#FieldMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata about the address."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A person's physical address. May be a P.O. box or street address. All fields are optional."
+      }
+    },
+    "com.googleworkspace.people_v1#ContactToCreate": {
+      "type": "structure",
+      "members": {
+        "contactPerson": {
+          "target": "com.googleworkspace.people_v1#Person",
+          "traits": {
+            "smithy.api#documentation": "Required. The person data to populate a newly created source."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A wrapper that contains the person data to populate a newly created source."
+      }
+    },
+    "com.googleworkspace.people_v1#ModifyContactGroupMembersResponse": {
+      "type": "structure",
+      "members": {
+        "notFoundResourceNames": {
+          "target": "com.googleworkspace.people_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The contact people resource names that were not found."
+          }
+        },
+        "canNotRemoveLastContactGroupResourceNames": {
+          "target": "com.googleworkspace.people_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The contact people resource names that cannot be removed from their last contact group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response to a modify contact group members request."
+      }
+    },
+    "com.googleworkspace.people_v1#Gender": {
+      "type": "structure",
+      "members": {
+        "addressMeAs": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Free form text field for pronouns that should be used to address the person. Common values are: * `he`/`him` * `she`/`her` * `they`/`them`"
+          }
+        },
+        "metadata": {
+          "target": "com.googleworkspace.people_v1#FieldMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata about the gender."
+          }
+        },
+        "formattedValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The value of the gender translated and formatted in the viewer's account locale or the `Accept-Language` HTTP header locale. Unspecified or custom value are not localized."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The gender for the person. The gender can be custom or one of these predefined values: * `male` * `female` * `unspecified`"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A person's gender."
+      }
+    },
+    "com.googleworkspace.people_v1#ListDirectoryPeopleResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+          }
+        },
+        "nextSyncToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token, which can be sent as `sync_token` to retrieve changes since the last request. Request must set `request_sync_token` to return the sync token."
+          }
+        },
+        "people": {
+          "target": "com.googleworkspace.people_v1#PersonList",
+          "traits": {
+            "smithy.api#documentation": "The list of people in the domain directory."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response to a request for the authenticated user's domain directory."
+      }
+    },
+    "com.googleworkspace.people_v1#People_Date": {
+      "type": "structure",
+      "members": {
+        "day": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant."
+          }
+        },
+        "month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day."
+          }
+        },
+        "year": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp"
+      }
+    },
+    "com.googleworkspace.people_v1#PersonMetadata": {
+      "type": "structure",
+      "members": {
+        "linkedPeopleResourceNames": {
+          "target": "com.googleworkspace.people_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Resource names of people linked to this resource."
+          }
+        },
+        "sources": {
+          "target": "com.googleworkspace.people_v1#SourceList",
+          "traits": {
+            "smithy.api#documentation": "The sources of data for the person."
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. True if the person resource has been deleted. Populated only for `people.connections.list` and `otherContacts.list` sync requests."
+          }
+        },
+        "previousResourceNames": {
+          "target": "com.googleworkspace.people_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Any former resource names this person has had. Populated only for `people.connections.list` requests that include a sync token. The resource name may change when adding or removing fields that link a contact and profile such as a verified email, verified phone number, or profile URL."
+          }
+        },
+        "objectType": {
+          "target": "com.googleworkspace.people_v1#PersonMetadataObjectTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. **DEPRECATED** (Please use `person.metadata.sources.profileMetadata.objectType` instead) The type of the person object."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The metadata about a person."
+      }
+    },
+    "com.googleworkspace.people_v1#SourceList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#Source"
+      }
+    },
+    "com.googleworkspace.people_v1#PersonMetadataObjectTypeEnum": {
+      "type": "enum",
+      "members": {
+        "OBJECT_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OBJECT_TYPE_UNSPECIFIED"
+          }
+        },
+        "PERSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PERSON"
+          }
+        },
+        "PAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAGE"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#Organization": {
+      "type": "structure",
+      "members": {
+        "current": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True if the organization is the person's current organization; false if the organization is a past organization."
+          }
+        },
+        "jobDescription": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The person's job description at the organization."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the organization. The type can be custom or one of these predefined values: * `work` * `school`"
+          }
+        },
+        "phoneticName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The phonetic name of the organization."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The location of the organization office the person works at."
+          }
+        },
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The domain name associated with the organization; for example, `google.com`."
+          }
+        },
+        "costCenter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The person's cost center at the organization."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the organization."
+          }
+        },
+        "department": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The person's department at the organization."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The person's job title at the organization."
+          }
+        },
+        "metadata": {
+          "target": "com.googleworkspace.people_v1#FieldMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata about the organization."
+          }
+        },
+        "symbol": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The symbol associated with the organization; for example, a stock ticker symbol, abbreviation, or acronym."
+          }
+        },
+        "endDate": {
+          "target": "com.googleworkspace.people_v1#People_Date",
+          "traits": {
+            "smithy.api#documentation": "The end date when the person left the organization."
+          }
+        },
+        "formattedType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The type of the organization translated and formatted in the viewer's account locale or the `Accept-Language` HTTP header locale."
+          }
+        },
+        "fullTimeEquivalentMillipercent": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The person's full-time equivalent millipercent within the organization (100000 = 100%)."
+          }
+        },
+        "startDate": {
+          "target": "com.googleworkspace.people_v1#People_Date",
+          "traits": {
+            "smithy.api#documentation": "The start date when the person joined the organization."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A person's past or current organization. Overlapping date ranges are permitted."
+      }
+    },
+    "com.googleworkspace.people_v1#ListOtherContactsResponse": {
+      "type": "structure",
+      "members": {
+        "otherContacts": {
+          "target": "com.googleworkspace.people_v1#PersonList",
+          "traits": {
+            "smithy.api#documentation": "The list of \"Other contacts\" returned as Person resources. \"Other contacts\" support a limited subset of fields. See ListOtherContactsRequest.request_mask for more detailed information."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+          }
+        },
+        "nextSyncToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token, which can be sent as `sync_token` to retrieve changes since the last request. Request must set `request_sync_token` to return the sync token."
+          }
+        },
+        "totalSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The total number of other contacts in the list without pagination."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response to a request for the authenticated user's \"Other contacts\"."
+      }
+    },
+    "com.googleworkspace.people_v1#DeleteContactPhotoResponse": {
+      "type": "structure",
+      "members": {
+        "person": {
+          "target": "com.googleworkspace.people_v1#Person",
+          "traits": {
+            "smithy.api#documentation": "The updated person, if person_fields is set in the DeleteContactPhotoRequest; otherwise this will be unset."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response for deleting a contact's photo."
+      }
+    },
+    "com.googleworkspace.people_v1#Biography": {
+      "type": "structure",
+      "members": {
+        "metadata": {
+          "target": "com.googleworkspace.people_v1#FieldMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata about the biography."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The short biography."
+          }
+        },
+        "contentType": {
+          "target": "com.googleworkspace.people_v1#BiographyContentTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The content type of the biography."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A person's short biography."
+      }
+    },
+    "com.googleworkspace.people_v1#BiographyContentTypeEnum": {
+      "type": "enum",
+      "members": {
+        "CONTENT_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONTENT_TYPE_UNSPECIFIED"
+          }
+        },
+        "TEXT_PLAIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TEXT_PLAIN"
+          }
+        },
+        "TEXT_HTML": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TEXT_HTML"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#PhoneNumber": {
+      "type": "structure",
+      "members": {
+        "formattedType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The type of the phone number translated and formatted in the viewer's account locale or the `Accept-Language` HTTP header locale."
+          }
+        },
+        "metadata": {
+          "target": "com.googleworkspace.people_v1#FieldMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata about the phone number."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the phone number. The type can be custom or one of these predefined values: * `home` * `work` * `mobile` * `homeFax` * `workFax` * `otherFax` * `pager` * `workMobile` * `workPager` * `main` * `googleVoice` * `other`"
+          }
+        },
+        "canonicalForm": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The canonicalized [ITU-T E.164](https://law.resource.org/pub/us/cfr/ibr/004/itu-t.E.164.1.2008.pdf) form of the phone number."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The phone number."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A person's phone number."
+      }
+    },
+    "com.googleworkspace.people_v1#UpdateContactPhotoResponse": {
+      "type": "structure",
+      "members": {
+        "person": {
+          "target": "com.googleworkspace.people_v1#Person",
+          "traits": {
+            "smithy.api#documentation": "The updated person, if person_fields is set in the UpdateContactPhotoRequest; otherwise this will be unset."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response for updating a contact's photo."
+      }
+    },
+    "com.googleworkspace.people_v1#ListContactGroupsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The token that can be used to retrieve the next page of results."
+          }
+        },
+        "nextSyncToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The token that can be used to retrieve changes since the last request."
+          }
+        },
+        "totalItems": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The total number of items in the list without pagination."
+          }
+        },
+        "contactGroups": {
+          "target": "com.googleworkspace.people_v1#ContactGroupList",
+          "traits": {
+            "smithy.api#documentation": "The list of contact groups. Members of the contact groups are not populated."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response to a list contact groups request."
+      }
+    },
+    "com.googleworkspace.people_v1#ContactGroupList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#ContactGroup"
+      }
+    },
+    "com.googleworkspace.people_v1#Location": {
+      "type": "structure",
+      "members": {
+        "floorSection": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The floor section in `floor_name`."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the location. The type can be custom or one of these predefined values: * `desk` * `grewUp`"
+          }
+        },
+        "current": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the location is the current location."
+          }
+        },
+        "buildingId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The building identifier."
+          }
+        },
+        "floor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The floor name or number."
+          }
+        },
+        "deskCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The individual desk location."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The free-form value of the location."
+          }
+        },
+        "metadata": {
+          "target": "com.googleworkspace.people_v1#FieldMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata about the location."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A person's location."
+      }
+    },
+    "com.googleworkspace.people_v1#DomainMembership": {
+      "type": "structure",
+      "members": {
+        "inViewerDomain": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True if the person is in the viewer's Google Workspace domain."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A Google Workspace Domain membership."
+      }
+    },
+    "com.googleworkspace.people_v1#ExternalId": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value of the external ID."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the external ID. The type can be custom or one of these predefined values: * `account` * `customer` * `loginId` * `network` * `organization`"
+          }
+        },
+        "metadata": {
+          "target": "com.googleworkspace.people_v1#FieldMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata about the external ID."
+          }
+        },
+        "formattedType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The type of the event translated and formatted in the viewer's account locale or the `Accept-Language` HTTP header locale."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An identifier from an external entity related to the person."
+      }
+    },
+    "com.googleworkspace.people_v1#Skill": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The skill; for example, `underwater basket weaving`."
+          }
+        },
+        "metadata": {
+          "target": "com.googleworkspace.people_v1#FieldMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata about the skill."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A skill that the person has."
+      }
+    },
+    "com.googleworkspace.people_v1#UpdateContactPhotoRequest": {
+      "type": "structure",
+      "members": {
+        "sources": {
+          "target": "com.googleworkspace.people_v1#UpdateContactPhotoRequestSourcesItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Optional. A mask of what source types to return. Defaults to READ_SOURCE_TYPE_CONTACT and READ_SOURCE_TYPE_PROFILE if not set."
+          }
+        },
+        "photoBytes": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Raw photo bytes"
+          }
+        },
+        "personFields": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A field mask to restrict which fields on the person are returned. Multiple fields can be specified by separating them with commas. Defaults to empty if not set, which will skip the post mutate get. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A request to update an existing contact's photo. All requests must have a valid photo format: JPEG or PNG."
+      }
+    },
+    "com.googleworkspace.people_v1#UpdateContactPhotoRequestSourcesItemEnum": {
+      "type": "enum",
+      "members": {
+        "READ_SOURCE_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_UNSPECIFIED"
+          }
+        },
+        "READ_SOURCE_TYPE_PROFILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_PROFILE"
+          }
+        },
+        "READ_SOURCE_TYPE_CONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_CONTACT"
+          }
+        },
+        "READ_SOURCE_TYPE_DOMAIN_CONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_DOMAIN_CONTACT"
+          }
+        },
+        "READ_SOURCE_TYPE_OTHER_CONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_OTHER_CONTACT"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#UpdateContactPhotoRequestSourcesItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#UpdateContactPhotoRequestSourcesItemEnum"
+      }
+    },
+    "com.googleworkspace.people_v1#Interest": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The interest; for example, `stargazing`."
+          }
+        },
+        "metadata": {
+          "target": "com.googleworkspace.people_v1#FieldMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata about the interest."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "One of the person's interests."
+      }
+    },
+    "com.googleworkspace.people_v1#ContactGroupResponse": {
+      "type": "structure",
+      "members": {
+        "contactGroup": {
+          "target": "com.googleworkspace.people_v1#ContactGroup",
+          "traits": {
+            "smithy.api#documentation": "The contact group."
+          }
+        },
+        "requestedResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The original requested resource name."
+          }
+        },
+        "status": {
+          "target": "com.googleworkspace.people_v1#Status",
+          "traits": {
+            "smithy.api#documentation": "The status of the response."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response for a specific contact group."
+      }
+    },
+    "com.googleworkspace.people_v1#ImClient": {
+      "type": "structure",
+      "members": {
+        "metadata": {
+          "target": "com.googleworkspace.people_v1#FieldMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata about the IM client."
+          }
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user name used in the IM client."
+          }
+        },
+        "protocol": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The protocol of the IM client. The protocol can be custom or one of these predefined values: * `aim` * `msn` * `yahoo` * `skype` * `qq` * `googleTalk` * `icq` * `jabber` * `netMeeting`"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the IM client. The type can be custom or one of these predefined values: * `home` * `work` * `other`"
+          }
+        },
+        "formattedProtocol": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The protocol of the IM client formatted in the viewer's account locale or the `Accept-Language` HTTP header locale."
+          }
+        },
+        "formattedType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The type of the IM client translated and formatted in the viewer's account locale or the `Accept-Language` HTTP header locale."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A person's instant messaging client."
+      }
+    },
+    "com.googleworkspace.people_v1#RelationshipInterest": {
+      "type": "structure",
+      "members": {
+        "metadata": {
+          "target": "com.googleworkspace.people_v1#FieldMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata about the relationship interest."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The kind of relationship the person is looking for. The value can be custom or one of these predefined values: * `friend` * `date` * `relationship` * `networking`"
+          }
+        },
+        "formattedValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The value of the relationship interest translated and formatted in the viewer's account locale or the locale specified in the Accept-Language HTTP header."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "**DEPRECATED**: No data will be returned A person's relationship interest ."
+      }
+    },
+    "com.googleworkspace.people_v1#Source": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.googleworkspace.people_v1#SourceTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The source type."
+          }
+        },
+        "profileMetadata": {
+          "target": "com.googleworkspace.people_v1#ProfileMetadata",
+          "traits": {
+            "smithy.api#documentation": "Output only. **Only populated in `person.metadata.sources`.** Metadata about a source of type PROFILE."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. **Only populated in `person.metadata.sources`.** Last update timestamp of this source."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "**Only populated in `person.metadata.sources`.** The [HTTP entity tag](https://en.wikipedia.org/wiki/HTTP_ETag) of the source. Used for web cache validation."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier within the source type generated by the server."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The source of a field."
+      }
+    },
+    "com.googleworkspace.people_v1#SourceTypeEnum": {
+      "type": "enum",
+      "members": {
+        "SOURCE_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SOURCE_TYPE_UNSPECIFIED"
+          }
+        },
+        "ACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACCOUNT"
+          }
+        },
+        "PROFILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROFILE"
+          }
+        },
+        "DOMAIN_PROFILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DOMAIN_PROFILE"
+          }
+        },
+        "CONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONTACT"
+          }
+        },
+        "OTHER_CONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OTHER_CONTACT"
+          }
+        },
+        "DOMAIN_CONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DOMAIN_CONTACT"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#BraggingRights": {
+      "type": "structure",
+      "members": {
+        "metadata": {
+          "target": "com.googleworkspace.people_v1#FieldMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata about the bragging rights."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The bragging rights; for example, `climbed mount everest`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "**DEPRECATED**: No data will be returned A person's bragging rights."
+      }
+    },
+    "com.googleworkspace.people_v1#ContactGroupMembership": {
+      "type": "structure",
+      "members": {
+        "contactGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The contact group ID for the contact group membership."
+          }
+        },
+        "contactGroupResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name for the contact group, assigned by the server. An ASCII string, in the form of `contactGroups/{contact_group_id}`. Only contact_group_resource_name can be used for modifying memberships. Any contact group membership can be removed, but only user group or \"myContacts\" or \"starred\" system groups memberships can be added. A contact must always have at least one contact group membership."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A Google contact group membership."
+      }
+    },
+    "com.googleworkspace.people_v1#ModifyContactGroupMembersRequest": {
+      "type": "structure",
+      "members": {
+        "resourceNamesToAdd": {
+          "target": "com.googleworkspace.people_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The resource names of the contact people to add in the form of `people/{person_id}`. The total number of resource names in `resource_names_to_add` and `resource_names_to_remove` must be less than or equal to 1000."
+          }
+        },
+        "resourceNamesToRemove": {
+          "target": "com.googleworkspace.people_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The resource names of the contact people to remove in the form of `people/{person_id}`. The total number of resource names in `resource_names_to_add` and `resource_names_to_remove` must be less than or equal to 1000."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A request to modify an existing contact group's members. Contacts can be removed from any group but they can only be added to a user group or \"myContacts\" or \"starred\" system groups."
+      }
+    },
+    "com.googleworkspace.people_v1#Event": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the event. The type can be custom or one of these predefined values: * `anniversary` * `other`"
+          }
+        },
+        "metadata": {
+          "target": "com.googleworkspace.people_v1#FieldMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata about the event."
+          }
+        },
+        "formattedType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The type of the event translated and formatted in the viewer's account locale or the `Accept-Language` HTTP header locale."
+          }
+        },
+        "date": {
+          "target": "com.googleworkspace.people_v1#People_Date",
+          "traits": {
+            "smithy.api#documentation": "The date of the event."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An event related to the person."
+      }
+    },
+    "com.googleworkspace.people_v1#ClientData": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The client specified key of the client data."
+          }
+        },
+        "metadata": {
+          "target": "com.googleworkspace.people_v1#FieldMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata about the client data."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The client specified value of the client data."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Arbitrary client data that is populated by clients. Duplicate keys and values are allowed."
+      }
+    },
+    "com.googleworkspace.people_v1#SipAddress": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The SIP address in the [RFC 3261 19.1](https://tools.ietf.org/html/rfc3261#section-19.1) SIP URI format."
+          }
+        },
+        "metadata": {
+          "target": "com.googleworkspace.people_v1#FieldMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata about the SIP address."
+          }
+        },
+        "formattedType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The type of the SIP address translated and formatted in the viewer's account locale or the `Accept-Language` HTTP header locale."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the SIP address. The type can be custom or or one of these predefined values: * `home` * `work` * `mobile` * `other`"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A person's SIP address. Session Initial Protocol addresses are used for VoIP communications to make voice or video calls over the internet."
+      }
+    },
+    "com.googleworkspace.people_v1#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.googleworkspace.people_v1#Name": {
+      "type": "structure",
+      "members": {
+        "middleName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The middle name(s)."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The display name formatted according to the locale specified by the viewer's account or the `Accept-Language` HTTP header."
+          }
+        },
+        "phoneticMiddleName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The middle name(s) spelled as they sound."
+          }
+        },
+        "honorificPrefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The honorific prefixes, such as `Mrs.` or `Dr.`"
+          }
+        },
+        "phoneticHonorificSuffix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The honorific suffixes spelled as they sound."
+          }
+        },
+        "givenName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The given name."
+          }
+        },
+        "familyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The family name."
+          }
+        },
+        "displayNameLastFirst": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The display name with the last name first formatted according to the locale specified by the viewer's account or the `Accept-Language` HTTP header."
+          }
+        },
+        "phoneticFamilyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The family name spelled as it sounds."
+          }
+        },
+        "phoneticGivenName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The given name spelled as it sounds."
+          }
+        },
+        "honorificSuffix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The honorific suffixes, such as `Jr.`"
+          }
+        },
+        "phoneticHonorificPrefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The honorific prefixes spelled as they sound."
+          }
+        },
+        "metadata": {
+          "target": "com.googleworkspace.people_v1#FieldMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata about the name."
+          }
+        },
+        "phoneticFullName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The full name spelled as it sounds."
+          }
+        },
+        "unstructuredName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The free form name value."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A person's name. If the name is a mononym, the family name is empty."
+      }
+    },
+    "com.googleworkspace.people_v1#CoverPhoto": {
+      "type": "structure",
+      "members": {
+        "default": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True if the cover photo is the default cover photo; false if the cover photo is a user-provided cover photo."
+          }
+        },
+        "metadata": {
+          "target": "com.googleworkspace.people_v1#FieldMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata about the cover photo."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL of the cover photo."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A person's cover photo. A large image shown on the person's profile page that represents who they are or what they care about."
+      }
+    },
+    "com.googleworkspace.people_v1#ProfileMetadata": {
+      "type": "structure",
+      "members": {
+        "objectType": {
+          "target": "com.googleworkspace.people_v1#ProfileMetadataObjectTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The profile object type."
+          }
+        },
+        "userTypes": {
+          "target": "com.googleworkspace.people_v1#ProfileMetadataUserTypesItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Output only. The user types."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The metadata about a profile."
+      }
+    },
+    "com.googleworkspace.people_v1#ProfileMetadataObjectTypeEnum": {
+      "type": "enum",
+      "members": {
+        "OBJECT_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OBJECT_TYPE_UNSPECIFIED"
+          }
+        },
+        "PERSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PERSON"
+          }
+        },
+        "PAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAGE"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#ProfileMetadataUserTypesItemEnum": {
+      "type": "enum",
+      "members": {
+        "USER_TYPE_UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "USER_TYPE_UNKNOWN"
+          }
+        },
+        "GOOGLE_USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GOOGLE_USER"
+          }
+        },
+        "GPLUS_USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GPLUS_USER"
+          }
+        },
+        "GOOGLE_APPS_USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GOOGLE_APPS_USER"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#ProfileMetadataUserTypesItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#ProfileMetadataUserTypesItemEnum"
+      }
+    },
+    "com.googleworkspace.people_v1#UserDefined": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The end user specified key of the user defined data."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The end user specified value of the user defined data."
+          }
+        },
+        "metadata": {
+          "target": "com.googleworkspace.people_v1#FieldMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata about the user defined data."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Arbitrary user data that is populated by the end users."
+      }
+    },
+    "com.googleworkspace.people_v1#EmailAddress": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The display name of the email."
+          }
+        },
+        "metadata": {
+          "target": "com.googleworkspace.people_v1#FieldMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata about the email address."
+          }
+        },
+        "formattedType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The type of the email address translated and formatted in the viewer's account locale or the `Accept-Language` HTTP header locale."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email address."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the email address. The type can be custom or one of these predefined values: * `home` * `work` * `other`"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A person's email address."
+      }
+    },
+    "com.googleworkspace.people_v1#Tagline": {
+      "type": "structure",
+      "members": {
+        "metadata": {
+          "target": "com.googleworkspace.people_v1#FieldMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata about the tagline."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tagline."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "**DEPRECATED**: No data will be returned A brief one-line description of the person."
+      }
+    },
+    "com.googleworkspace.people_v1#Url": {
+      "type": "structure",
+      "members": {
+        "formattedType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The type of the URL translated and formatted in the viewer's account locale or the `Accept-Language` HTTP header locale."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the URL. The type can be custom or one of these predefined values: * `home` * `work` * `blog` * `profile` * `homePage` * `ftp` * `reservations` * `appInstallPage`: website for a Currents application. * `other`"
+          }
+        },
+        "metadata": {
+          "target": "com.googleworkspace.people_v1#FieldMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata about the URL."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A person's associated URLs."
+      }
+    },
+    "com.googleworkspace.people_v1#BatchCreateContactsRequest": {
+      "type": "structure",
+      "members": {
+        "sources": {
+          "target": "com.googleworkspace.people_v1#BatchCreateContactsRequestSourcesItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Optional. A mask of what source types to return in the post mutate read. Defaults to READ_SOURCE_TYPE_CONTACT and READ_SOURCE_TYPE_PROFILE if not set."
+          }
+        },
+        "contacts": {
+          "target": "com.googleworkspace.people_v1#ContactToCreateList",
+          "traits": {
+            "smithy.api#documentation": "Required. The contact to create. Allows up to 200 contacts in a single request."
+          }
+        },
+        "readMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. A field mask to restrict which fields on each person are returned in the response. Multiple fields can be specified by separating them with commas. If read mask is left empty, the post-mutate-get is skipped and no data will be returned in the response. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A request to create a batch of contacts."
+      }
+    },
+    "com.googleworkspace.people_v1#BatchCreateContactsRequestSourcesItemEnum": {
+      "type": "enum",
+      "members": {
+        "READ_SOURCE_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_UNSPECIFIED"
+          }
+        },
+        "READ_SOURCE_TYPE_PROFILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_PROFILE"
+          }
+        },
+        "READ_SOURCE_TYPE_CONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_CONTACT"
+          }
+        },
+        "READ_SOURCE_TYPE_DOMAIN_CONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_DOMAIN_CONTACT"
+          }
+        },
+        "READ_SOURCE_TYPE_OTHER_CONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_OTHER_CONTACT"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#BatchCreateContactsRequestSourcesItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#BatchCreateContactsRequestSourcesItemEnum"
+      }
+    },
+    "com.googleworkspace.people_v1#ContactToCreateList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#ContactToCreate"
+      }
+    },
+    "com.googleworkspace.people_v1#BatchUpdateContactsRequest": {
+      "type": "structure",
+      "members": {
+        "sources": {
+          "target": "com.googleworkspace.people_v1#BatchUpdateContactsRequestSourcesItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Optional. A mask of what source types to return. Defaults to READ_SOURCE_TYPE_CONTACT and READ_SOURCE_TYPE_PROFILE if not set."
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. A field mask to restrict which fields on the person are updated. Multiple fields can be specified by separating them with commas. All specified fields will be replaced, or cleared if left empty for each person. Valid values are: * addresses * biographies * birthdays * calendarUrls * clientData * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * relations * sipAddresses * urls * userDefined"
+          }
+        },
+        "contacts": {
+          "target": "com.googleworkspace.people_v1#PersonMap",
+          "traits": {
+            "smithy.api#documentation": "Required. A map of resource names to the person data to be updated. Allows up to 200 contacts in a single request."
+          }
+        },
+        "readMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. If read mask is left empty, the post-mutate-get is skipped and no data will be returned in the response. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A request to update a batch of contacts."
+      }
+    },
+    "com.googleworkspace.people_v1#BatchUpdateContactsRequestSourcesItemEnum": {
+      "type": "enum",
+      "members": {
+        "READ_SOURCE_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_UNSPECIFIED"
+          }
+        },
+        "READ_SOURCE_TYPE_PROFILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_PROFILE"
+          }
+        },
+        "READ_SOURCE_TYPE_CONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_CONTACT"
+          }
+        },
+        "READ_SOURCE_TYPE_DOMAIN_CONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_DOMAIN_CONTACT"
+          }
+        },
+        "READ_SOURCE_TYPE_OTHER_CONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_OTHER_CONTACT"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#BatchUpdateContactsRequestSourcesItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#BatchUpdateContactsRequestSourcesItemEnum"
+      }
+    },
+    "com.googleworkspace.people_v1#PersonMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.googleworkspace.people_v1#Person"
+      }
+    },
+    "com.googleworkspace.people_v1#BatchCreateContactsResponse": {
+      "type": "structure",
+      "members": {
+        "createdPeople": {
+          "target": "com.googleworkspace.people_v1#PersonResponseList",
+          "traits": {
+            "smithy.api#documentation": "The contacts that were created, unless the request `read_mask` is empty."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "If not successful, returns BatchCreateContactsErrorDetails which contains a list of errors for each invalid contact. The response to a request to create a batch of contacts."
+      }
+    },
+    "com.googleworkspace.people_v1#BatchGetContactGroupsResponse": {
+      "type": "structure",
+      "members": {
+        "responses": {
+          "target": "com.googleworkspace.people_v1#ContactGroupResponseList",
+          "traits": {
+            "smithy.api#documentation": "The list of responses for each requested contact group resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response to a batch get contact groups request."
+      }
+    },
+    "com.googleworkspace.people_v1#ContactGroupResponseList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#ContactGroupResponse"
+      }
+    },
+    "com.googleworkspace.people_v1#RelationshipStatus": {
+      "type": "structure",
+      "members": {
+        "formattedValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The value of the relationship status translated and formatted in the viewer's account locale or the `Accept-Language` HTTP header locale."
+          }
+        },
+        "metadata": {
+          "target": "com.googleworkspace.people_v1#FieldMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata about the relationship status."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The relationship status. The value can be custom or one of these predefined values: * `single` * `inARelationship` * `engaged` * `married` * `itsComplicated` * `openRelationship` * `widowed` * `inDomesticPartnership` * `inCivilUnion`"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "**DEPRECATED**: No data will be returned A person's relationship status."
+      }
+    },
+    "com.googleworkspace.people_v1#GroupClientData": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The client specified key of the client data."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The client specified value of the client data."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Arbitrary client data that is populated by clients. Duplicate keys and values are allowed."
+      }
+    },
+    "com.googleworkspace.people_v1#ListOtherContactsSourcesEnum": {
+      "type": "enum",
+      "members": {
+        "READ_SOURCE_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_UNSPECIFIED"
+          }
+        },
+        "READ_SOURCE_TYPE_PROFILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_PROFILE"
+          }
+        },
+        "READ_SOURCE_TYPE_CONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_CONTACT"
+          }
+        },
+        "READ_SOURCE_TYPE_DOMAIN_CONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_DOMAIN_CONTACT"
+          }
+        },
+        "READ_SOURCE_TYPE_OTHER_CONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_OTHER_CONTACT"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#ListOtherContactsSourcesEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#ListOtherContactsSourcesEnum"
+      }
+    },
+    "com.googleworkspace.people_v1#ListOtherContactsRequest": {
+      "type": "structure",
+      "members": {
+        "requestSyncToken": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Whether the response should return `next_sync_token` on the last page of results. It can be used to get incremental changes since the last request by setting it on the request `sync_token`. More details about sync behavior at `otherContacts.list`.",
+            "smithy.api#httpQuery": "requestSyncToken"
+          }
+        },
+        "sources": {
+          "target": "com.googleworkspace.people_v1#ListOtherContactsSourcesEnumList",
+          "traits": {
+            "smithy.api#documentation": "Optional. A mask of what source types to return. Defaults to READ_SOURCE_TYPE_CONTACT if not set. Possible values for this field are: * READ_SOURCE_TYPE_CONTACT * READ_SOURCE_TYPE_CONTACT,READ_SOURCE_TYPE_PROFILE Specifying READ_SOURCE_TYPE_PROFILE without specifying READ_SOURCE_TYPE_CONTACT is not permitted.",
+            "smithy.api#httpQuery": "sources"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The number of \"Other contacts\" to include in the response. Valid values are between 1 and 1000, inclusive. Defaults to 100 if not set or set to 0.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "syncToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A sync token, received from a previous response `next_sync_token` Provide this to retrieve only the resources changed since the last request. When syncing, all other parameters provided to `otherContacts.list` must match the first call that provided the sync token. More details about sync behavior at `otherContacts.list`.",
+            "smithy.api#httpQuery": "syncToken"
+          }
+        },
+        "readMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. What values are valid depend on what ReadSourceType is used. If READ_SOURCE_TYPE_CONTACT is used, valid values are: * emailAddresses * metadata * names * phoneNumbers * photos If READ_SOURCE_TYPE_PROFILE is used, valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined",
+            "smithy.api#httpQuery": "readMask"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A page token, received from a previous response `next_page_token`. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `otherContacts.list` must match the first call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.googleworkspace.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.googleworkspace.people_v1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.googleworkspace.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.googleworkspace.people_v1#ListOtherContacts": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.people_v1#ListOtherContactsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.people_v1#ListOtherContactsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.people_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/otherContacts"
+        },
+        "smithy.api#documentation": "List all \"Other contacts\", that is contacts that are not in a contact group. \"Other contacts\" are typically auto created contacts from interactions. Sync tokens expire 7 days after the full sync. A request with an expired sync token will get an error with an [google.rpc.ErrorInfo](https://cloud.google.com/apis/design/errors#error_info) with reason \"EXPIRED_SYNC_TOKEN\". In the case of such an error clients should make a full sync request without a `sync_token`. The first page of a full sync request has an additional quota. If the quota is exceeded, a 429 error will be returned. This quota is fixed and can not be increased. When the `sync_token` is specified, resources deleted since the last sync will be returned as a person with `PersonMetadata.deleted` set to true. When the `page_token` or `sync_token` is specified, all other request parameters must match the first call. Writes may have a propagation delay of several minutes for sync requests. Incremental syncs are not intended for read-after-write use cases. See example usage at [List the user's other contacts that have changed](/people/v1/other-contacts#list_the_users_other_contacts_that_have_changed).",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#CopyOtherContactToMyContactsGroupOtherContactsRequest": {
+      "type": "structure",
+      "members": {
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the \"Other contact\" to copy.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.people_v1#CopyOtherContactToMyContactsGroupRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.googleworkspace.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.googleworkspace.people_v1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.googleworkspace.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.googleworkspace.people_v1#CopyOtherContactToMyContactsGroupOtherContacts": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.people_v1#CopyOtherContactToMyContactsGroupOtherContactsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.people_v1#Person"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.people_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+resourceName}:copyOtherContactToMyContactsGroup"
+        },
+        "smithy.api#documentation": "Copies an \"Other contact\" to a new contact in the user's \"myContacts\" group Mutate requests for the same user should be sent sequentially to avoid increased latency and failures."
+      }
+    },
+    "com.googleworkspace.people_v1#SearchOtherContactsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The number of results to return. Defaults to 10 if field is not set, or set to 0. Values greater than 30 will be capped to 30.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "query": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The plain-text query for the request. The query is used to match prefix phrases of the fields on a person. For example, a person with name \"foo name\" matches queries such as \"f\", \"fo\", \"foo\", \"foo n\", \"nam\", etc., but not \"oo n\".",
+            "smithy.api#httpQuery": "query"
+          }
+        },
+        "readMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * emailAddresses * metadata * names * phoneNumbers",
+            "smithy.api#httpQuery": "readMask"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#SearchOtherContacts": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.people_v1#SearchOtherContactsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.people_v1#SearchResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.people_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/otherContacts:search"
+        },
+        "smithy.api#documentation": "Provides a list of contacts in the authenticated user's other contacts that matches the search query. The query matches on a contact's `names`, `emailAddresses`, and `phoneNumbers` fields that are from the OTHER_CONTACT source. **IMPORTANT**: Before searching, clients should send a warmup request with an empty query to update the cache. See https://developers.google.com/people/v1/other-contacts#search_the_users_other_contacts"
+      }
+    },
+    "com.googleworkspace.people_v1#CreateContactPeopleSourcesEnum": {
+      "type": "enum",
+      "members": {
+        "READ_SOURCE_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_UNSPECIFIED"
+          }
+        },
+        "READ_SOURCE_TYPE_PROFILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_PROFILE"
+          }
+        },
+        "READ_SOURCE_TYPE_CONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_CONTACT"
+          }
+        },
+        "READ_SOURCE_TYPE_DOMAIN_CONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_DOMAIN_CONTACT"
+          }
+        },
+        "READ_SOURCE_TYPE_OTHER_CONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_OTHER_CONTACT"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#CreateContactPeopleSourcesEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#CreateContactPeopleSourcesEnum"
+      }
+    },
+    "com.googleworkspace.people_v1#CreateContactPeopleRequest": {
+      "type": "structure",
+      "members": {
+        "personFields": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Defaults to all fields if not set. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined",
+            "smithy.api#httpQuery": "personFields"
+          }
+        },
+        "sources": {
+          "target": "com.googleworkspace.people_v1#CreateContactPeopleSourcesEnumList",
+          "traits": {
+            "smithy.api#documentation": "Optional. A mask of what source types to return. Defaults to READ_SOURCE_TYPE_CONTACT and READ_SOURCE_TYPE_PROFILE if not set.",
+            "smithy.api#httpQuery": "sources"
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.people_v1#Person",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#CreateContactPeople": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.people_v1#CreateContactPeopleRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.people_v1#Person"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.people_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/people:createContact"
+        },
+        "smithy.api#documentation": "Create a new contact and return the person resource for that contact. The request returns a 400 error if more than one field is specified on a field that is a singleton for contact sources: * biographies * birthdays * genders * names Mutate requests for the same user should be sent sequentially to avoid increased latency and failures."
+      }
+    },
+    "com.googleworkspace.people_v1#DeleteContactPeopleRequest": {
+      "type": "structure",
+      "members": {
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the contact to delete.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#DeleteContactPeople": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.people_v1#DeleteContactPeopleRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.people_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.people_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+resourceName}:deleteContact"
+        },
+        "smithy.api#documentation": "Delete a contact person. Any non-contact data will not be deleted. Mutate requests for the same user should be sent sequentially to avoid increased latency and failures."
+      }
+    },
+    "com.googleworkspace.people_v1#GetBatchGetPeopleSourcesEnum": {
+      "type": "enum",
+      "members": {
+        "READ_SOURCE_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_UNSPECIFIED"
+          }
+        },
+        "READ_SOURCE_TYPE_PROFILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_PROFILE"
+          }
+        },
+        "READ_SOURCE_TYPE_CONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_CONTACT"
+          }
+        },
+        "READ_SOURCE_TYPE_DOMAIN_CONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_DOMAIN_CONTACT"
+          }
+        },
+        "READ_SOURCE_TYPE_OTHER_CONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_OTHER_CONTACT"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#GetBatchGetPeopleSourcesEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#GetBatchGetPeopleSourcesEnum"
+      }
+    },
+    "com.googleworkspace.people_v1#GetBatchGetPeopleRequest": {
+      "type": "structure",
+      "members": {
+        "requestMask.includeField": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Comma-separated list of person fields to be included in the response. Each path should start with `person.`: for example, `person.names` or `person.photos`.",
+            "smithy.api#httpQuery": "requestMask.includeField"
+          }
+        },
+        "personFields": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined",
+            "smithy.api#httpQuery": "personFields"
+          }
+        },
+        "resourceNames": {
+          "target": "com.googleworkspace.people_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource names of the people to provide information about. It's repeatable. The URL query parameter should be resourceNames=<name1>&resourceNames=<name2>&... - To get information about the authenticated user, specify `people/me`. - To get information about a google account, specify `people/{account_id}`. - To get information about a contact, specify the resource name that identifies the contact as returned by `people.connections.list`. There is a maximum of 200 resource names.",
+            "smithy.api#httpQuery": "resourceNames"
+          }
+        },
+        "sources": {
+          "target": "com.googleworkspace.people_v1#GetBatchGetPeopleSourcesEnumList",
+          "traits": {
+            "smithy.api#documentation": "Optional. A mask of what source types to return. Defaults to READ_SOURCE_TYPE_CONTACT and READ_SOURCE_TYPE_PROFILE if not set.",
+            "smithy.api#httpQuery": "sources"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#GetBatchGetPeople": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.people_v1#GetBatchGetPeopleRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.people_v1#GetPeopleResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.people_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/people:batchGet"
+        },
+        "smithy.api#documentation": "Provides information about a list of specific people by specifying a list of requested resource names. Use `people/me` to indicate the authenticated user. The request returns a 400 error if 'personFields' is not specified."
+      }
+    },
+    "com.googleworkspace.people_v1#BatchCreateContactsPeopleRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.googleworkspace.people_v1#BatchCreateContactsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#BatchCreateContactsPeople": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.people_v1#BatchCreateContactsPeopleRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.people_v1#BatchCreateContactsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.people_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/people:batchCreateContacts"
+        },
+        "smithy.api#documentation": "Create a batch of new contacts and return the PersonResponses for the newly Mutate requests for the same user should be sent sequentially to avoid increased latency and failures."
+      }
+    },
+    "com.googleworkspace.people_v1#ListDirectoryPeoplePeopleSourcesEnum": {
+      "type": "enum",
+      "members": {
+        "DIRECTORY_SOURCE_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DIRECTORY_SOURCE_TYPE_UNSPECIFIED"
+          }
+        },
+        "DIRECTORY_SOURCE_TYPE_DOMAIN_CONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DIRECTORY_SOURCE_TYPE_DOMAIN_CONTACT"
+          }
+        },
+        "DIRECTORY_SOURCE_TYPE_DOMAIN_PROFILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DIRECTORY_SOURCE_TYPE_DOMAIN_PROFILE"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#ListDirectoryPeoplePeopleSourcesEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#ListDirectoryPeoplePeopleSourcesEnum"
+      }
+    },
+    "com.googleworkspace.people_v1#ListDirectoryPeoplePeopleMergeSourcesEnum": {
+      "type": "enum",
+      "members": {
+        "DIRECTORY_MERGE_SOURCE_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DIRECTORY_MERGE_SOURCE_TYPE_UNSPECIFIED"
+          }
+        },
+        "DIRECTORY_MERGE_SOURCE_TYPE_CONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DIRECTORY_MERGE_SOURCE_TYPE_CONTACT"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#ListDirectoryPeoplePeopleMergeSourcesEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#ListDirectoryPeoplePeopleMergeSourcesEnum"
+      }
+    },
+    "com.googleworkspace.people_v1#ListDirectoryPeoplePeopleRequest": {
+      "type": "structure",
+      "members": {
+        "sources": {
+          "target": "com.googleworkspace.people_v1#ListDirectoryPeoplePeopleSourcesEnumList",
+          "traits": {
+            "smithy.api#documentation": "Required. Directory sources to return.",
+            "smithy.api#httpQuery": "sources"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The number of people to include in the response. Valid values are between 1 and 1000, inclusive. Defaults to 100 if not set or set to 0.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A page token, received from a previous response `next_page_token`. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `people.listDirectoryPeople` must match the first call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "mergeSources": {
+          "target": "com.googleworkspace.people_v1#ListDirectoryPeoplePeopleMergeSourcesEnumList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Additional data to merge into the directory sources if they are connected through verified join keys such as email addresses or phone numbers.",
+            "smithy.api#httpQuery": "mergeSources"
+          }
+        },
+        "readMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined",
+            "smithy.api#httpQuery": "readMask"
+          }
+        },
+        "syncToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A sync token, received from a previous response `next_sync_token` Provide this to retrieve only the resources changed since the last request. When syncing, all other parameters provided to `people.listDirectoryPeople` must match the first call that provided the sync token. More details about sync behavior at `people.listDirectoryPeople`.",
+            "smithy.api#httpQuery": "syncToken"
+          }
+        },
+        "requestSyncToken": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Whether the response should return `next_sync_token`. It can be used to get incremental changes since the last request by setting it on the request `sync_token`. More details about sync behavior at `people.listDirectoryPeople`.",
+            "smithy.api#httpQuery": "requestSyncToken"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#ListDirectoryPeoplePeople": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.people_v1#ListDirectoryPeoplePeopleRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.people_v1#ListDirectoryPeopleResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.people_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/people:listDirectoryPeople"
+        },
+        "smithy.api#documentation": "Provides a list of domain profiles and domain contacts in the authenticated user's domain directory. When the `sync_token` is specified, resources deleted since the last sync will be returned as a person with `PersonMetadata.deleted` set to true. When the `page_token` or `sync_token` is specified, all other request parameters must match the first call. Writes may have a propagation delay of several minutes for sync requests. Incremental syncs are not intended for read-after-write use cases. See example usage at [List the directory people that have changed](/people/v1/directory#list_the_directory_people_that_have_changed).",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#DeleteContactPhotoPeopleSourcesEnum": {
+      "type": "enum",
+      "members": {
+        "READ_SOURCE_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_UNSPECIFIED"
+          }
+        },
+        "READ_SOURCE_TYPE_PROFILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_PROFILE"
+          }
+        },
+        "READ_SOURCE_TYPE_CONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_CONTACT"
+          }
+        },
+        "READ_SOURCE_TYPE_DOMAIN_CONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_DOMAIN_CONTACT"
+          }
+        },
+        "READ_SOURCE_TYPE_OTHER_CONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_OTHER_CONTACT"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#DeleteContactPhotoPeopleSourcesEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#DeleteContactPhotoPeopleSourcesEnum"
+      }
+    },
+    "com.googleworkspace.people_v1#DeleteContactPhotoPeopleRequest": {
+      "type": "structure",
+      "members": {
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the contact whose photo will be deleted.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "personFields": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A field mask to restrict which fields on the person are returned. Multiple fields can be specified by separating them with commas. Defaults to empty if not set, which will skip the post mutate get. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined",
+            "smithy.api#httpQuery": "personFields"
+          }
+        },
+        "sources": {
+          "target": "com.googleworkspace.people_v1#DeleteContactPhotoPeopleSourcesEnumList",
+          "traits": {
+            "smithy.api#documentation": "Optional. A mask of what source types to return. Defaults to READ_SOURCE_TYPE_CONTACT and READ_SOURCE_TYPE_PROFILE if not set.",
+            "smithy.api#httpQuery": "sources"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#DeleteContactPhotoPeople": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.people_v1#DeleteContactPhotoPeopleRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.people_v1#DeleteContactPhotoResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.people_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+resourceName}:deleteContactPhoto"
+        },
+        "smithy.api#documentation": "Delete a contact's photo. Mutate requests for the same user should be done sequentially to avoid // lock contention."
+      }
+    },
+    "com.googleworkspace.people_v1#SearchContactsPeopleSourcesEnum": {
+      "type": "enum",
+      "members": {
+        "READ_SOURCE_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_UNSPECIFIED"
+          }
+        },
+        "READ_SOURCE_TYPE_PROFILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_PROFILE"
+          }
+        },
+        "READ_SOURCE_TYPE_CONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_CONTACT"
+          }
+        },
+        "READ_SOURCE_TYPE_DOMAIN_CONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_DOMAIN_CONTACT"
+          }
+        },
+        "READ_SOURCE_TYPE_OTHER_CONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_OTHER_CONTACT"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#SearchContactsPeopleSourcesEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#SearchContactsPeopleSourcesEnum"
+      }
+    },
+    "com.googleworkspace.people_v1#SearchContactsPeopleRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The number of results to return. Defaults to 10 if field is not set, or set to 0. Values greater than 30 will be capped to 30.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "query": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The plain-text query for the request. The query is used to match prefix phrases of the fields on a person. For example, a person with name \"foo name\" matches queries such as \"f\", \"fo\", \"foo\", \"foo n\", \"nam\", etc., but not \"oo n\".",
+            "smithy.api#httpQuery": "query"
+          }
+        },
+        "sources": {
+          "target": "com.googleworkspace.people_v1#SearchContactsPeopleSourcesEnumList",
+          "traits": {
+            "smithy.api#documentation": "Optional. A mask of what source types to return. Defaults to READ_SOURCE_TYPE_CONTACT if not set.",
+            "smithy.api#httpQuery": "sources"
+          }
+        },
+        "readMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined",
+            "smithy.api#httpQuery": "readMask"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#SearchContactsPeople": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.people_v1#SearchContactsPeopleRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.people_v1#SearchResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.people_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/people:searchContacts"
+        },
+        "smithy.api#documentation": "Provides a list of contacts in the authenticated user's grouped contacts that matches the search query. The query matches on a contact's `names`, `nickNames`, `emailAddresses`, `phoneNumbers`, and `organizations` fields that are from the CONTACT source. **IMPORTANT**: Before searching, clients should send a warmup request with an empty query to update the cache. See https://developers.google.com/people/v1/contacts#search_the_users_contacts"
+      }
+    },
+    "com.googleworkspace.people_v1#UpdateContactPeopleSourcesEnum": {
+      "type": "enum",
+      "members": {
+        "READ_SOURCE_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_UNSPECIFIED"
+          }
+        },
+        "READ_SOURCE_TYPE_PROFILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_PROFILE"
+          }
+        },
+        "READ_SOURCE_TYPE_CONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_CONTACT"
+          }
+        },
+        "READ_SOURCE_TYPE_DOMAIN_CONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_DOMAIN_CONTACT"
+          }
+        },
+        "READ_SOURCE_TYPE_OTHER_CONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_OTHER_CONTACT"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#UpdateContactPeopleSourcesEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#UpdateContactPeopleSourcesEnum"
+      }
+    },
+    "com.googleworkspace.people_v1#UpdateContactPeopleRequest": {
+      "type": "structure",
+      "members": {
+        "updatePersonFields": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. A field mask to restrict which fields on the person are updated. Multiple fields can be specified by separating them with commas. All updated fields will be replaced. Valid values are: * addresses * biographies * birthdays * calendarUrls * clientData * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * relations * sipAddresses * urls * userDefined",
+            "smithy.api#httpQuery": "updatePersonFields"
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name for the person, assigned by the server. An ASCII string in the form of `people/{person_id}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "personFields": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Defaults to all fields if not set. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined",
+            "smithy.api#httpQuery": "personFields"
+          }
+        },
+        "sources": {
+          "target": "com.googleworkspace.people_v1#UpdateContactPeopleSourcesEnumList",
+          "traits": {
+            "smithy.api#documentation": "Optional. A mask of what source types to return. Defaults to READ_SOURCE_TYPE_CONTACT and READ_SOURCE_TYPE_PROFILE if not set.",
+            "smithy.api#httpQuery": "sources"
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.people_v1#Person",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#UpdateContactPeople": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.people_v1#UpdateContactPeopleRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.people_v1#Person"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.people_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+resourceName}:updateContact"
+        },
+        "smithy.api#documentation": "Update contact data for an existing contact person. Any non-contact data will not be modified. Any non-contact data in the person to update will be ignored. All fields specified in the `update_mask` will be replaced. The server returns a 400 error if `person.metadata.sources` is not specified for the contact to be updated or if there is no contact source. The server returns a 400 error with reason `\"failedPrecondition\"` if `person.metadata.sources.etag` is different than the contact's etag, which indicates the contact has changed since its data was read. Clients should get the latest person and merge their updates into the latest person. If making sequential updates to the same person, the etag from the `updateContact` response should be used to avoid failures. The server returns a 400 error if `memberships` are being updated and there are no contact group memberships specified on the person. The server returns a 400 error if more than one field is specified on a field that is a singleton for contact sources: * biographies * birthdays * genders * names Mutate requests for the same user should be sent sequentially to avoid increased latency and failures."
+      }
+    },
+    "com.googleworkspace.people_v1#BatchDeleteContactsPeopleRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.googleworkspace.people_v1#BatchDeleteContactsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#BatchDeleteContactsPeople": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.people_v1#BatchDeleteContactsPeopleRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.people_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.people_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/people:batchDeleteContacts"
+        },
+        "smithy.api#documentation": "Delete a batch of contacts. Any non-contact data will not be deleted. Mutate requests for the same user should be sent sequentially to avoid increased latency and failures."
+      }
+    },
+    "com.googleworkspace.people_v1#SearchDirectoryPeoplePeopleSourcesEnum": {
+      "type": "enum",
+      "members": {
+        "DIRECTORY_SOURCE_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DIRECTORY_SOURCE_TYPE_UNSPECIFIED"
+          }
+        },
+        "DIRECTORY_SOURCE_TYPE_DOMAIN_CONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DIRECTORY_SOURCE_TYPE_DOMAIN_CONTACT"
+          }
+        },
+        "DIRECTORY_SOURCE_TYPE_DOMAIN_PROFILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DIRECTORY_SOURCE_TYPE_DOMAIN_PROFILE"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#SearchDirectoryPeoplePeopleSourcesEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#SearchDirectoryPeoplePeopleSourcesEnum"
+      }
+    },
+    "com.googleworkspace.people_v1#SearchDirectoryPeoplePeopleMergeSourcesEnum": {
+      "type": "enum",
+      "members": {
+        "DIRECTORY_MERGE_SOURCE_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DIRECTORY_MERGE_SOURCE_TYPE_UNSPECIFIED"
+          }
+        },
+        "DIRECTORY_MERGE_SOURCE_TYPE_CONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DIRECTORY_MERGE_SOURCE_TYPE_CONTACT"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#SearchDirectoryPeoplePeopleMergeSourcesEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#SearchDirectoryPeoplePeopleMergeSourcesEnum"
+      }
+    },
+    "com.googleworkspace.people_v1#SearchDirectoryPeoplePeopleRequest": {
+      "type": "structure",
+      "members": {
+        "sources": {
+          "target": "com.googleworkspace.people_v1#SearchDirectoryPeoplePeopleSourcesEnumList",
+          "traits": {
+            "smithy.api#documentation": "Required. Directory sources to return.",
+            "smithy.api#httpQuery": "sources"
+          }
+        },
+        "mergeSources": {
+          "target": "com.googleworkspace.people_v1#SearchDirectoryPeoplePeopleMergeSourcesEnumList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Additional data to merge into the directory sources if they are connected through verified join keys such as email addresses or phone numbers.",
+            "smithy.api#httpQuery": "mergeSources"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The number of people to include in the response. Valid values are between 1 and 500, inclusive. Defaults to 100 if not set or set to 0.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "query": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Prefix query that matches fields in the person. Does NOT use the read_mask for determining what fields to match.",
+            "smithy.api#httpQuery": "query"
+          }
+        },
+        "readMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined",
+            "smithy.api#httpQuery": "readMask"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A page token, received from a previous response `next_page_token`. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `SearchDirectoryPeople` must match the first call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#SearchDirectoryPeoplePeople": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.people_v1#SearchDirectoryPeoplePeopleRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.people_v1#SearchDirectoryPeopleResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.people_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/people:searchDirectoryPeople"
+        },
+        "smithy.api#documentation": "Provides a list of domain profiles and domain contacts in the authenticated user's domain directory that match the search query.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#BatchUpdateContactsPeopleRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.googleworkspace.people_v1#BatchUpdateContactsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#BatchUpdateContactsPeople": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.people_v1#BatchUpdateContactsPeopleRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.people_v1#BatchUpdateContactsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.people_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/people:batchUpdateContacts"
+        },
+        "smithy.api#documentation": "Update a batch of contacts and return a map of resource names to PersonResponses for the updated contacts. Mutate requests for the same user should be sent sequentially to avoid increased latency and failures."
+      }
+    },
+    "com.googleworkspace.people_v1#GetPeopleSourcesEnum": {
+      "type": "enum",
+      "members": {
+        "READ_SOURCE_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_UNSPECIFIED"
+          }
+        },
+        "READ_SOURCE_TYPE_PROFILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_PROFILE"
+          }
+        },
+        "READ_SOURCE_TYPE_CONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_CONTACT"
+          }
+        },
+        "READ_SOURCE_TYPE_DOMAIN_CONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_DOMAIN_CONTACT"
+          }
+        },
+        "READ_SOURCE_TYPE_OTHER_CONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_OTHER_CONTACT"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#GetPeopleSourcesEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#GetPeopleSourcesEnum"
+      }
+    },
+    "com.googleworkspace.people_v1#GetPeopleRequest": {
+      "type": "structure",
+      "members": {
+        "sources": {
+          "target": "com.googleworkspace.people_v1#GetPeopleSourcesEnumList",
+          "traits": {
+            "smithy.api#documentation": "Optional. A mask of what source types to return. Defaults to READ_SOURCE_TYPE_PROFILE and READ_SOURCE_TYPE_CONTACT if not set.",
+            "smithy.api#httpQuery": "sources"
+          }
+        },
+        "requestMask.includeField": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Comma-separated list of person fields to be included in the response. Each path should start with `person.`: for example, `person.names` or `person.photos`.",
+            "smithy.api#httpQuery": "requestMask.includeField"
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the person to provide information about. - To get information about the authenticated user, specify `people/me`. - To get information about a google account, specify `people/{account_id}`. - To get information about a contact, specify the resource name that identifies the contact as returned by `people.connections.list`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "personFields": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. A field mask to restrict which fields on the person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined",
+            "smithy.api#httpQuery": "personFields"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#GetPeople": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.people_v1#GetPeopleRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.people_v1#Person"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.people_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+resourceName}"
+        },
+        "smithy.api#documentation": "Provides information about a person by specifying a resource name. Use `people/me` to indicate the authenticated user. The request returns a 400 error if 'personFields' is not specified."
+      }
+    },
+    "com.googleworkspace.people_v1#UpdateContactPhotoPeopleRequest": {
+      "type": "structure",
+      "members": {
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Person resource name",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.people_v1#UpdateContactPhotoRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#UpdateContactPhotoPeople": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.people_v1#UpdateContactPhotoPeopleRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.people_v1#UpdateContactPhotoResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.people_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+resourceName}:updateContactPhoto"
+        },
+        "smithy.api#documentation": "Update a contact's photo. Mutate requests for the same user should be sent sequentially to avoid increased latency and failures."
+      }
+    },
+    "com.googleworkspace.people_v1#ListPeopleConnectionsSourcesEnum": {
+      "type": "enum",
+      "members": {
+        "READ_SOURCE_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_UNSPECIFIED"
+          }
+        },
+        "READ_SOURCE_TYPE_PROFILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_PROFILE"
+          }
+        },
+        "READ_SOURCE_TYPE_CONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_CONTACT"
+          }
+        },
+        "READ_SOURCE_TYPE_DOMAIN_CONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_DOMAIN_CONTACT"
+          }
+        },
+        "READ_SOURCE_TYPE_OTHER_CONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_SOURCE_TYPE_OTHER_CONTACT"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#ListPeopleConnectionsSourcesEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.googleworkspace.people_v1#ListPeopleConnectionsSourcesEnum"
+      }
+    },
+    "com.googleworkspace.people_v1#ListPeopleConnectionsSortOrderEnum": {
+      "type": "enum",
+      "members": {
+        "LAST_MODIFIED_ASCENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LAST_MODIFIED_ASCENDING"
+          }
+        },
+        "LAST_MODIFIED_DESCENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LAST_MODIFIED_DESCENDING"
+          }
+        },
+        "FIRST_NAME_ASCENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FIRST_NAME_ASCENDING"
+          }
+        },
+        "LAST_NAME_ASCENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LAST_NAME_ASCENDING"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#ListPeopleConnectionsRequest": {
+      "type": "structure",
+      "members": {
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name to return connections for. Only `people/me` is valid.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The number of connections to include in the response. Valid values are between 1 and 1000, inclusive. Defaults to 100 if not set or set to 0.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "sources": {
+          "target": "com.googleworkspace.people_v1#ListPeopleConnectionsSourcesEnumList",
+          "traits": {
+            "smithy.api#documentation": "Optional. A mask of what source types to return. Defaults to READ_SOURCE_TYPE_CONTACT and READ_SOURCE_TYPE_PROFILE if not set.",
+            "smithy.api#httpQuery": "sources"
+          }
+        },
+        "personFields": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined",
+            "smithy.api#httpQuery": "personFields"
+          }
+        },
+        "syncToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A sync token, received from a previous response `next_sync_token` Provide this to retrieve only the resources changed since the last request. When syncing, all other parameters provided to `people.connections.list` must match the first call that provided the sync token. More details about sync behavior at `people.connections.list`.",
+            "smithy.api#httpQuery": "syncToken"
+          }
+        },
+        "sortOrder": {
+          "target": "com.googleworkspace.people_v1#ListPeopleConnectionsSortOrderEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. The order in which the connections should be sorted. Defaults to `LAST_MODIFIED_ASCENDING`.",
+            "smithy.api#httpQuery": "sortOrder"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A page token, received from a previous response `next_page_token`. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `people.connections.list` must match the first call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "requestSyncToken": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Whether the response should return `next_sync_token` on the last page of results. It can be used to get incremental changes since the last request by setting it on the request `sync_token`. More details about sync behavior at `people.connections.list`.",
+            "smithy.api#httpQuery": "requestSyncToken"
+          }
+        },
+        "requestMask.includeField": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Comma-separated list of person fields to be included in the response. Each path should start with `person.`: for example, `person.names` or `person.photos`.",
+            "smithy.api#httpQuery": "requestMask.includeField"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#ListPeopleConnections": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.people_v1#ListPeopleConnectionsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.people_v1#ListConnectionsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.people_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+resourceName}/connections"
+        },
+        "smithy.api#documentation": "Provides a list of the authenticated user's contacts. Sync tokens expire 7 days after the full sync. A request with an expired sync token will get an error with an [google.rpc.ErrorInfo](https://cloud.google.com/apis/design/errors#error_info) with reason \"EXPIRED_SYNC_TOKEN\". In the case of such an error clients should make a full sync request without a `sync_token`. The first page of a full sync request has an additional quota. If the quota is exceeded, a 429 error will be returned. This quota is fixed and can not be increased. When the `sync_token` is specified, resources deleted since the last sync will be returned as a person with `PersonMetadata.deleted` set to true. When the `page_token` or `sync_token` is specified, all other request parameters must match the first call. Writes may have a propagation delay of several minutes for sync requests. Incremental syncs are not intended for read-after-write use cases. See example usage at [List the user's contacts that have changed](/people/v1/contacts#list_the_users_contacts_that_have_changed).",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#ListContactGroupsRequest": {
+      "type": "structure",
+      "members": {
+        "groupFields": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A field mask to restrict which fields on the group are returned. Defaults to `metadata`, `groupType`, `memberCount`, and `name` if not set or set to empty. Valid fields are: * clientData * groupType * memberCount * metadata * name",
+            "smithy.api#httpQuery": "groupFields"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The next_page_token value returned from a previous call to [ListContactGroups](/people/api/rest/v1/contactgroups/list). Requests the next page of resources.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "syncToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A sync token, returned by a previous call to `contactgroups.list`. Only resources changed since the sync token was created will be returned.",
+            "smithy.api#httpQuery": "syncToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of resources to return. Valid values are between 1 and 1000, inclusive. Defaults to 30 if not set or set to 0.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#ListContactGroups": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.people_v1#ListContactGroupsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.people_v1#ListContactGroupsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.people_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/contactGroups"
+        },
+        "smithy.api#documentation": "List all contact groups owned by the authenticated user. Members of the contact groups are not populated.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#CreateContactGroupsRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.googleworkspace.people_v1#CreateContactGroupRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#CreateContactGroups": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.people_v1#CreateContactGroupsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.people_v1#ContactGroup"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.people_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/contactGroups"
+        },
+        "smithy.api#documentation": "Create a new contact group owned by the authenticated user. Created contact group names must be unique to the users contact groups. Attempting to create a group with a duplicate name will return a HTTP 409 error. Mutate requests for the same user should be sent sequentially to avoid increased latency and failures."
+      }
+    },
+    "com.googleworkspace.people_v1#UpdateContactGroupsRequest": {
+      "type": "structure",
+      "members": {
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name for the contact group, assigned by the server. An ASCII string, in the form of `contactGroups/{contact_group_id}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.people_v1#UpdateContactGroupRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#UpdateContactGroups": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.people_v1#UpdateContactGroupsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.people_v1#ContactGroup"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.people_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "v1/{+resourceName}"
+        },
+        "smithy.api#documentation": "Update the name of an existing contact group owned by the authenticated user. Updated contact group names must be unique to the users contact groups. Attempting to create a group with a duplicate name will return a HTTP 409 error. Mutate requests for the same user should be sent sequentially to avoid increased latency and failures."
+      }
+    },
+    "com.googleworkspace.people_v1#DeleteContactGroupsRequest": {
+      "type": "structure",
+      "members": {
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the contact group to delete.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "deleteContacts": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Set to true to also delete the contacts in the specified group.",
+            "smithy.api#httpQuery": "deleteContacts"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#DeleteContactGroups": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.people_v1#DeleteContactGroupsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.people_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.people_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+resourceName}"
+        },
+        "smithy.api#documentation": "Delete an existing contact group owned by the authenticated user by specifying a contact group resource name. Mutate requests for the same user should be sent sequentially to avoid increased latency and failures."
+      }
+    },
+    "com.googleworkspace.people_v1#BatchGetContactGroupsRequest": {
+      "type": "structure",
+      "members": {
+        "maxMembers": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Specifies the maximum number of members to return for each group. Defaults to 0 if not set, which will return zero members.",
+            "smithy.api#httpQuery": "maxMembers"
+          }
+        },
+        "groupFields": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A field mask to restrict which fields on the group are returned. Defaults to `metadata`, `groupType`, `memberCount`, and `name` if not set or set to empty. Valid fields are: * clientData * groupType * memberCount * metadata * name",
+            "smithy.api#httpQuery": "groupFields"
+          }
+        },
+        "resourceNames": {
+          "target": "com.googleworkspace.people_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource names of the contact groups to get. There is a maximum of 200 resource names.",
+            "smithy.api#httpQuery": "resourceNames"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#BatchGetContactGroups": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.people_v1#BatchGetContactGroupsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.people_v1#BatchGetContactGroupsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.people_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/contactGroups:batchGet"
+        },
+        "smithy.api#documentation": "Get a list of contact groups owned by the authenticated user by specifying a list of contact group resource names."
+      }
+    },
+    "com.googleworkspace.people_v1#GetContactGroupsRequest": {
+      "type": "structure",
+      "members": {
+        "maxMembers": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Specifies the maximum number of members to return. Defaults to 0 if not set, which will return zero members.",
+            "smithy.api#httpQuery": "maxMembers"
+          }
+        },
+        "groupFields": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A field mask to restrict which fields on the group are returned. Defaults to `metadata`, `groupType`, `memberCount`, and `name` if not set or set to empty. Valid fields are: * clientData * groupType * memberCount * metadata * name",
+            "smithy.api#httpQuery": "groupFields"
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the contact group to get.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#GetContactGroups": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.people_v1#GetContactGroupsRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.people_v1#ContactGroup"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.people_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+resourceName}"
+        },
+        "smithy.api#documentation": "Get a specific contact group owned by the authenticated user by specifying a contact group resource name."
+      }
+    },
+    "com.googleworkspace.people_v1#ModifyContactGroupsMembersRequest": {
+      "type": "structure",
+      "members": {
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the contact group to modify.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.googleworkspace.people_v1#ModifyContactGroupMembersRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.googleworkspace.people_v1#ModifyContactGroupsMembers": {
+      "type": "operation",
+      "input": {
+        "target": "com.googleworkspace.people_v1#ModifyContactGroupsMembersRequest"
+      },
+      "output": {
+        "target": "com.googleworkspace.people_v1#ModifyContactGroupMembersResponse"
+      },
+      "errors": [
+        {
+          "target": "com.googleworkspace.people_v1#NotFound"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#Forbidden"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#BadRequest"
+        },
+        {
+          "target": "com.googleworkspace.people_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+resourceName}/members:modify"
+        },
+        "smithy.api#documentation": "Modify the members of a contact group owned by the authenticated user. The only system contact groups that can have members added are `contactGroups/myContacts` and `contactGroups/starred`. Other system contact groups are deprecated and can only have contacts removed."
+      }
+    }
+  }
+}
