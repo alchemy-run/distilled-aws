@@ -13,99 +13,1076 @@ import * as Retry from "../retry.ts";
 
 export type { OvhOpError, OvhOpContext };
 
-export interface DeleteSmsServiceNameBatchesIdRequest {
+export interface CancelSmsBatchRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** Id */
   id: string;
 }
-export const DeleteSmsServiceNameBatchesIdRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const CancelSmsBatchRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/sms/{serviceName}/batches/{id}/cancel",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CancelSmsBatchRequest",
+}) as any as S.Schema<CancelSmsBatchRequest>;
+
+/** Batch error details */
+export interface SmsBatchError {
+  /** Error message */
+  message?: string;
+  /** Receiver that triggered the error */
+  receiver?: string;
+}
+export const SmsBatchError = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    message: S.optional(S.String),
+    receiver: S.optional(S.String),
+  }),
+).annotate({ identifier: "SmsBatchError" }) as any as S.Schema<SmsBatchError>;
+
+/** Details on error(s) on the batch, if any */
+export type SmsBatchErrorsList = Array<SmsBatchError>;
+export const SmsBatchErrorsList = /*@__PURE__*/ S.Array(
+  SmsBatchError,
+) as any as S.Schema<SmsBatchErrorsList>;
+
+/** SMS receivers list */
+export type SmsBatchReceiversList = Array<string>;
+export const SmsBatchReceiversList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SmsBatchReceiversList>;
+
+/** Batch statuses */
+export type SmsBatchStatusEnum =
+  | "CANCELED"
+  | "CANCELING"
+  | "COMPLETED"
+  | "FAILED"
+  | "INSERTED"
+  | "INSERTING"
+  | "PENDING"
+  | "TO_CANCEL";
+export const SmsBatchStatusEnum = /*@__PURE__*/ S.String;
+
+/** Batch of SMS to send */
+export interface SmsBatch {
+  /** SMS account ID */
+  accountID?: number;
+  /** Creation datetime */
+  createdAt?: string;
+  /** Details on error(s) on the batch, if any */
+  errors?: SmsBatchErrorsList;
+  /** The estimated cost of the batch in credits */
+  estimatedCredits?: number;
+  /** Datetime when the batch finished processing SMSs */
+  finishedAt?: string | null;
+  /** SMS sender */
+  from?: string | null;
+  /** Batch ID */
+  id?: string;
+  /** SMS message */
+  message?: string;
+  /** Batch name */
+  name?: string;
+  /** Number of processed records in this batch */
+  processedRecords?: number;
+  /** SMS receivers list */
+  receivers?: SmsBatchReceiversList | null;
+  /** Datetime when the SMSs of the batch are sent (based on deferred time if exists) */
+  sentAt?: string | null;
+  /** Slot ID */
+  slotID?: string | null;
+  /** Datetime when the batch started processing SMSs */
+  startedAt?: string | null;
+  /** Batch status */
+  status?: SmsBatchStatusEnum;
+  /** Total number of records in this batch */
+  totalRecords?: number;
+  /** Last update datetime */
+  updatedAt?: string;
+}
+export const SmsBatch = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountID: S.optional(S.Number),
+    createdAt: S.optional(S.String),
+    errors: S.optional(SmsBatchErrorsList),
+    estimatedCredits: S.optional(S.Number),
+    finishedAt: S.optional(S.NullOr(S.String)),
+    from: S.optional(S.NullOr(S.String)),
+    id: S.optional(S.String),
+    message: S.optional(S.String),
+    name: S.optional(S.String),
+    processedRecords: S.optional(S.Number),
+    receivers: S.optional(S.NullOr(SmsBatchReceiversList)),
+    sentAt: S.optional(S.NullOr(S.String)),
+    slotID: S.optional(S.NullOr(S.String)),
+    startedAt: S.optional(S.NullOr(S.String)),
+    status: S.optional(SmsBatchStatusEnum),
+    totalRecords: S.optional(S.Number),
+    updatedAt: S.optional(S.String),
+  }),
+).annotate({ identifier: "SmsBatch" }) as any as S.Schema<SmsBatch>;
+
+/** SMS classes */
+export type SmsBatchClassEnum = "FLASH" | "PHONE" | "SIM";
+export const SmsBatchClassEnum = /*@__PURE__*/ S.String;
+
+/** SMS receivers list. Either "to" or "slotID" must be passed */
+export type CreateSmsBatchRequestToList = Array<string>;
+export const CreateSmsBatchRequestToList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateSmsBatchRequestToList>;
+
+export interface CreateSmsBatchRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** Deprecated: SMS class */
+  class?: SmsBatchClassEnum | (string & {});
+  /** SMS deferred sending date */
+  deferred?: string;
+  /** SMS sender. Either "from" or "senderForResponse" must be passed */
+  from?: string;
+  /** SMS message */
+  message: string;
+  /** Batch name */
+  name?: string;
+  /** STOP clause not needed */
+  noStop?: boolean;
+  /** Ask to compute a sender that allows response. Either "from" or "senderForResponse" must be passed */
+  senderForResponse?: boolean;
+  /** SMS receivers slot ID. Either "to" or "slotID" must be passed */
+  slotID?: string;
+  /** SMS tag */
+  tag?: string;
+  /** SMS receivers list. Either "to" or "slotID" must be passed */
+  to?: CreateSmsBatchRequestToList;
+}
+export const CreateSmsBatchRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    class: S.optional(SmsBatchClassEnum),
+    deferred: S.optional(S.String),
+    from: S.optional(S.String),
+    message: S.String,
+    name: S.optional(S.String),
+    noStop: S.optional(S.Boolean),
+    senderForResponse: S.optional(S.Boolean),
+    slotID: S.optional(S.String),
+    tag: S.optional(S.String),
+    to: S.optional(CreateSmsBatchRequestToList),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/sms/{serviceName}/batches", code: 200 }),
+  ),
+).annotate({
+  identifier: "CreateSmsBatchRequest",
+}) as any as S.Schema<CreateSmsBatchRequest>;
+
+/** All existing types for a given sender */
+export type SmsTypeSenderEnum = "alpha" | "numeric" | "shortcode" | "virtual";
+export const SmsTypeSenderEnum = /*@__PURE__*/ S.String;
+
+export interface CreateSmsEstimateRequest {
+  /** The message to send */
+  message: string;
+  /** Do not display STOP clause in the message, this requires that this is not an advertising message */
+  noStopClause: boolean;
+  /** Sender type that will be used to send the message */
+  senderType: SmsTypeSenderEnum | (string & {});
+}
+export const CreateSmsEstimateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    message: S.String,
+    noStopClause: S.Boolean,
+    senderType: SmsTypeSenderEnum,
+  }).pipe(T.Http({ method: "POST", uri: "/sms/estimate", code: 200 })),
+).annotate({
+  identifier: "CreateSmsEstimateRequest",
+}) as any as S.Schema<CreateSmsEstimateRequest>;
+
+/** The SMS available characters class */
+export type SmsEncodingEnum = "7bits" | "unicode";
+export const SmsEncodingEnum = /*@__PURE__*/ S.String;
+
+/** A structure describing the encoding, length and number of SMS parts of a text message */
+export interface SmsJobEstimate {
+  /** The number of characters the message contains, including invisible escaped characters */
+  characters?: number;
+  /** The characters class that will be used to send the SMS, depending on characters in message */
+  charactersClass?: SmsEncodingEnum;
+  /** The number of characters every SMS part can contain, depending on characters class and quantity of parts */
+  maxCharactersPerPart?: number;
+  /** The quantity of SMS parts the message will be split in */
+  parts?: number;
+}
+export const SmsJobEstimate = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    characters: S.optional(S.Number),
+    charactersClass: S.optional(SmsEncodingEnum),
+    maxCharactersPerPart: S.optional(S.Number),
+    parts: S.optional(S.Number),
+  }),
+).annotate({ identifier: "SmsJobEstimate" }) as any as S.Schema<SmsJobEstimate>;
+
+/** The receivers */
+export type CreateSmsHlrRequestReceiversList = Array<string>;
+export const CreateSmsHlrRequestReceiversList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateSmsHlrRequestReceiversList>;
+
+export interface CreateSmsHlrRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** The receivers */
+  receivers?: CreateSmsHlrRequestReceiversList;
+  /** The receivers document url link in csv format */
+  receiversDocumentUrl?: string;
+}
+export const CreateSmsHlrRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    receivers: S.optional(CreateSmsHlrRequestReceiversList),
+    receiversDocumentUrl: S.optional(S.String),
+  }).pipe(T.Http({ method: "POST", uri: "/sms/{serviceName}/hlr", code: 200 })),
+).annotate({
+  identifier: "CreateSmsHlrRequest",
+}) as any as S.Schema<CreateSmsHlrRequest>;
+
+export type SmsSmsSendingReportIdsList = Array<number>;
+export const SmsSmsSendingReportIdsList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<SmsSmsSendingReportIdsList>;
+
+export type SmsSmsSendingReportInvalidReceiversList = Array<string>;
+export const SmsSmsSendingReportInvalidReceiversList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SmsSmsSendingReportInvalidReceiversList>;
+
+export type SmsSmsSendingReportValidReceiversList = Array<string>;
+export const SmsSmsSendingReportValidReceiversList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SmsSmsSendingReportValidReceiversList>;
+
+/** A structure describing all information about quota informations */
+export interface SmsSmsSendingReport {
+  ids?: SmsSmsSendingReportIdsList;
+  invalidReceivers?: SmsSmsSendingReportInvalidReceiversList;
+  tag?: string;
+  totalCreditsRemoved?: number;
+  validReceivers?: SmsSmsSendingReportValidReceiversList;
+}
+export const SmsSmsSendingReport = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ids: S.optional(SmsSmsSendingReportIdsList),
+    invalidReceivers: S.optional(SmsSmsSendingReportInvalidReceiversList),
+    tag: S.optional(S.String),
+    totalCreditsRemoved: S.optional(S.Number),
+    validReceivers: S.optional(SmsSmsSendingReportValidReceiversList),
+  }),
+).annotate({
+  identifier: "SmsSmsSendingReport",
+}) as any as S.Schema<SmsSmsSendingReport>;
+
+/** The charset format */
+export type SmsCharsetEnum = "UTF-8";
+export const SmsCharsetEnum = /*@__PURE__*/ S.String;
+
+/** Deprecated: The sms class of sms sending job */
+export type SmsClassEnum = "flash" | "phoneDisplay" | "sim" | "toolkit";
+export const SmsClassEnum = /*@__PURE__*/ S.String;
+
+/** The sms coding */
+export type SmsCodingEnum = "7bit" | "8bit";
+export const SmsCodingEnum = /*@__PURE__*/ S.String;
+
+/** The priority of an sms sending */
+export type SmsPriorityEnum = "high" | "low" | "medium" | "veryLow";
+export const SmsPriorityEnum = /*@__PURE__*/ S.String;
+
+/** The receivers list */
+export type CreateSmsJobRequestReceiversList = Array<string>;
+export const CreateSmsJobRequestReceiversList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateSmsJobRequestReceiversList>;
+
+export interface CreateSmsJobRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** The sms coding */
+  charset?: SmsCharsetEnum | (string & {});
+  /** Deprecated: The sms class */
+  class?: SmsClassEnum | (string & {});
+  /** Deprecated: the coding is deduced from the message and its charset */
+  coding?: SmsCodingEnum | (string & {});
+  /** The time -in minute(s)- to wait before sending the message */
+  differedPeriod?: number;
+  /** The sms message */
+  message: string;
+  /** Do not display STOP clause in the message, this requires that this is not an advertising message */
+  noStopClause?: boolean;
+  /** The priority of the message */
+  priority?: SmsPriorityEnum | (string & {});
+  /** The receivers list */
+  receivers?: CreateSmsJobRequestReceiversList;
+  /** The receivers document url link in csv format */
+  receiversDocumentUrl?: string;
+  /** The receivers document slot id */
+  receiversSlotId?: string;
+  /** The sender */
+  sender?: string;
+  /** Set the flag to send a special sms which can be reply by the receiver (smsResponse). */
+  senderForResponse?: boolean;
+  /** The identifier group tag */
+  tag?: string;
+  /** The maximum time -in minute(s)- before the message is dropped */
+  validityPeriod?: number;
+}
+export const CreateSmsJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    charset: S.optional(SmsCharsetEnum),
+    class: S.optional(SmsClassEnum),
+    coding: S.optional(SmsCodingEnum),
+    differedPeriod: S.optional(S.Number),
+    message: S.String,
+    noStopClause: S.optional(S.Boolean),
+    priority: S.optional(SmsPriorityEnum),
+    receivers: S.optional(CreateSmsJobRequestReceiversList),
+    receiversDocumentUrl: S.optional(S.String),
+    receiversSlotId: S.optional(S.String),
+    sender: S.optional(S.String),
+    senderForResponse: S.optional(S.Boolean),
+    tag: S.optional(S.String),
+    validityPeriod: S.optional(S.Number),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/sms/{serviceName}/jobs", code: 200 }),
+  ),
+).annotate({
+  identifier: "CreateSmsJobRequest",
+}) as any as S.Schema<CreateSmsJobRequest>;
+
+export interface CreateSmsPhonebookRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** Name of the wanted phonebook */
+  name: string;
+}
+export const CreateSmsPhonebookRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    name: S.String,
+  }).pipe(
+    T.Http({ method: "POST", uri: "/sms/{serviceName}/phonebooks", code: 200 }),
+  ),
+).annotate({
+  identifier: "CreateSmsPhonebookRequest",
+}) as any as S.Schema<CreateSmsPhonebookRequest>;
+
+export type CreateSmsPhonebookResponse = string;
+export const CreateSmsPhonebookResponse = /*@__PURE__*/ S.suspend(() =>
+  S.String.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "CreateSmsPhonebookResponse",
+}) as any as S.Schema<CreateSmsPhonebookResponse>;
+
+export interface CreateSmsPhonebookPhonebookContactRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** Identifier of the phonebook */
+  bookKey: string;
+  /** Group name of the phonebook */
+  group: string;
+  /** Home mobile phone number of the contact */
+  homeMobile?: string;
+  /** Home landline phone number of the contact */
+  homePhone?: string;
+  /** Name of the contact */
+  name: string;
+  /** Contact surname */
+  surname: string;
+  /** Mobile phone office number of the contact */
+  workMobile?: string;
+  /** Landline phone office number of the contact */
+  workPhone?: string;
+}
+export const CreateSmsPhonebookPhonebookContactRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
+      bookKey: S.String.pipe(T.Label()),
+      group: S.String,
+      homeMobile: S.optional(S.String),
+      homePhone: S.optional(S.String),
+      name: S.String,
+      surname: S.String,
+      workMobile: S.optional(S.String),
+      workPhone: S.optional(S.String),
     }).pipe(
       T.Http({
-        method: "DELETE",
-        uri: "/sms/{serviceName}/batches/{id}",
+        method: "POST",
+        uri: "/sms/{serviceName}/phonebooks/{bookKey}/phonebookContact",
         code: 200,
       }),
     ),
-).annotate({
-  identifier: "DeleteSmsServiceNameBatchesIdRequest",
-}) as any as S.Schema<DeleteSmsServiceNameBatchesIdRequest>;
+  ).annotate({
+    identifier: "CreateSmsPhonebookPhonebookContactRequest",
+  }) as any as S.Schema<CreateSmsPhonebookPhonebookContactRequest>;
 
-export interface DeleteSmsServiceNameBatchesIdResponse {}
-export const DeleteSmsServiceNameBatchesIdResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "DeleteSmsServiceNameBatchesIdResponse",
-}) as any as S.Schema<DeleteSmsServiceNameBatchesIdResponse>;
+export type CreateSmsPhonebookPhonebookContactResponse = number;
+export const CreateSmsPhonebookPhonebookContactResponse =
+  /*@__PURE__*/ S.suspend(() => S.Number.pipe(T.RawResponseRoot())).annotate({
+    identifier: "CreateSmsPhonebookPhonebookContactResponse",
+  }) as any as S.Schema<CreateSmsPhonebookPhonebookContactResponse>;
 
-export interface DeleteSmsServiceNameBlacklistsNumberRequest {
+export interface CreateSmsReceiverRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
-  /** The sms number blacklisted */
+  /** Download file from URL before sending to contacts (works only with csvUrl and not document ID) */
+  autoUpdate: boolean;
+  /** URL of the file you want to import */
+  csvUrl?: string;
+  /** Description name of the document */
+  description: string;
+  /** ID of the /me/document file you want to import */
+  documentId?: string;
+  /** Slot number id used to handle the document */
+  slotId: number;
+}
+export const CreateSmsReceiverRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    autoUpdate: S.Boolean,
+    csvUrl: S.optional(S.String),
+    description: S.String,
+    documentId: S.optional(S.String),
+    slotId: S.Number,
+  }).pipe(
+    T.Http({ method: "POST", uri: "/sms/{serviceName}/receivers", code: 200 }),
+  ),
+).annotate({
+  identifier: "CreateSmsReceiverRequest",
+}) as any as S.Schema<CreateSmsReceiverRequest>;
+
+/** Sms receivers preloaded */
+export interface SmsReceiver {
+  /** Download file from URL before sending to contacts (works only with csvUrl and not document ID) */
+  autoUpdate?: boolean;
+  /** Is the object compatible with autoUpdate */
+  canAutoUpdate?: boolean;
+  /** Creation date of the document */
+  datetime?: string;
+  /** Description name of the document */
+  description?: string;
+  /** Number of receiver records in the document */
+  records?: number;
+  /** Slot number id */
+  slotId?: number;
+}
+export const SmsReceiver = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    autoUpdate: S.optional(S.Boolean),
+    canAutoUpdate: S.optional(S.Boolean),
+    datetime: S.optional(S.String),
+    description: S.optional(S.String),
+    records: S.optional(S.Number),
+    slotId: S.optional(S.Number),
+  }),
+).annotate({ identifier: "SmsReceiver" }) as any as S.Schema<SmsReceiver>;
+
+export interface CreateSmsReceiverCleanRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** Slot number id */
+  slotId: number;
+  /** Limit checks to syntaxical validation */
+  freemium: boolean;
+  /** Only get action's price in credits without executing it */
+  priceOnly: boolean;
+}
+export const CreateSmsReceiverCleanRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    slotId: S.Number.pipe(T.Label()),
+    freemium: S.Boolean,
+    priceOnly: S.Boolean,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/sms/{serviceName}/receivers/{slotId}/clean",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateSmsReceiverCleanRequest",
+}) as any as S.Schema<CreateSmsReceiverCleanRequest>;
+
+/** A structure giving operation price and asynchronous task ID */
+export interface SmsReceiversAsynchronousCleanReport {
+  taskId?: number;
+  totalCreditsRemoved?: number;
+}
+export const SmsReceiversAsynchronousCleanReport = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    taskId: S.optional(S.Number),
+    totalCreditsRemoved: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "SmsReceiversAsynchronousCleanReport",
+}) as any as S.Schema<SmsReceiversAsynchronousCleanReport>;
+
+export interface CreateSmsSenderRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** Sender description */
+  description?: string;
+  /** Message seen by the moderator */
+  reason?: string;
+  /** The sender (alpha or phone number) */
+  sender: string;
+}
+export const CreateSmsSenderRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    description: S.optional(S.String),
+    reason: S.optional(S.String),
+    sender: S.String,
+  }).pipe(
+    T.Http({ method: "POST", uri: "/sms/{serviceName}/senders", code: 200 }),
+  ),
+).annotate({
+  identifier: "CreateSmsSenderRequest",
+}) as any as S.Schema<CreateSmsSenderRequest>;
+
+export type CreateSmsSenderResponse = string;
+export const CreateSmsSenderResponse = /*@__PURE__*/ S.suspend(() =>
+  S.String.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "CreateSmsSenderResponse",
+}) as any as S.Schema<CreateSmsSenderResponse>;
+
+export interface CreateSmsSenderDocumentRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** The sms sender */
+  sender: string;
+  /** Document description */
+  description?: string;
+  /** Document name */
+  name: string;
+}
+export const CreateSmsSenderDocumentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    sender: S.String.pipe(T.Label()),
+    description: S.optional(S.String),
+    name: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/sms/{serviceName}/senders/{sender}/documents",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateSmsSenderDocumentRequest",
+}) as any as S.Schema<CreateSmsSenderDocumentRequest>;
+
+/** SMS senders' document */
+export interface SmsSenderDocument {
+  /** Creation datetime */
+  createdAt?: string;
+  /** Document description */
+  description?: string | null;
+  /** Document ID */
+  documentID?: string;
+  /** URL to get document */
+  getUrl?: string;
+  /** Document name */
+  name?: string;
+  /** URL to upload document */
+  putUrl?: string | null;
+  /** Document size (in bytes) */
+  size?: number;
+}
+export const SmsSenderDocument = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdAt: S.optional(S.String),
+    description: S.optional(S.NullOr(S.String)),
+    documentID: S.optional(S.String),
+    getUrl: S.optional(S.String),
+    name: S.optional(S.String),
+    putUrl: S.optional(S.NullOr(S.String)),
+    size: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "SmsSenderDocument",
+}) as any as S.Schema<SmsSenderDocument>;
+
+export interface CreateSmsSmppPasswordRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+}
+export const CreateSmsSmppPasswordRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/sms/{serviceName}/smpp/password",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateSmsSmppPasswordRequest",
+}) as any as S.Schema<CreateSmsSmppPasswordRequest>;
+
+export interface CreateSmsSmppPasswordResponse {}
+export const CreateSmsSmppPasswordResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "CreateSmsSmppPasswordResponse",
+}) as any as S.Schema<CreateSmsSmppPasswordResponse>;
+
+/** All existing types for a given template */
+export type SmsTypeTemplateEnum =
+  | "alerting"
+  | "authentification"
+  | "transactional";
+export const SmsTypeTemplateEnum = /*@__PURE__*/ S.String;
+
+export interface CreateSmsTemplatesControlRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** Specify the kind of template */
+  activity: SmsTypeTemplateEnum | (string & {});
+  /** Template description */
+  description?: string;
+  /** Message pattern to be moderated. Use "#VALUE#" format for dynamic text area. */
+  message: string;
+  /** Name of the template */
+  name: string;
+  /** Message seen by the moderator */
+  reason?: string;
+}
+export const CreateSmsTemplatesControlRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    activity: SmsTypeTemplateEnum,
+    description: S.optional(S.String),
+    message: S.String,
+    name: S.String,
+    reason: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/sms/{serviceName}/templatesControl",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateSmsTemplatesControlRequest",
+}) as any as S.Schema<CreateSmsTemplatesControlRequest>;
+
+export interface CreateSmsTemplatesControlResponse {}
+export const CreateSmsTemplatesControlResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "CreateSmsTemplatesControlResponse",
+}) as any as S.Schema<CreateSmsTemplatesControlResponse>;
+
+export interface CreateSmsTemplatesControlRelaunchValidationRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** Name of the template */
+  name: string;
+  /** Template description */
+  description: string;
+  /** Message pattern to be moderated. Use "#VALUE#" format for dynamic text area */
+  message: string;
+}
+export const CreateSmsTemplatesControlRelaunchValidationRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Label()),
+      description: S.String,
+      message: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/sms/{serviceName}/templatesControl/{name}/relaunchValidation",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateSmsTemplatesControlRelaunchValidationRequest",
+  }) as any as S.Schema<CreateSmsTemplatesControlRelaunchValidationRequest>;
+
+export interface CreateSmsTemplatesControlRelaunchValidationResponse {}
+export const CreateSmsTemplatesControlRelaunchValidationResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "CreateSmsTemplatesControlRelaunchValidationResponse",
+  }) as any as S.Schema<CreateSmsTemplatesControlRelaunchValidationResponse>;
+
+export interface CreateSmsUserRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** The sms login */
+  login: string;
+  /** The sms password */
+  password: string | Redacted.Redacted<string>;
+}
+export const CreateSmsUserRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    login: S.String,
+    password: S.String.pipe(T.SensitiveValue({})),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/sms/{serviceName}/users", code: 200 }),
+  ),
+).annotate({
+  identifier: "CreateSmsUserRequest",
+}) as any as S.Schema<CreateSmsUserRequest>;
+
+export interface CreateSmsUserResponse {}
+export const CreateSmsUserResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "CreateSmsUserResponse",
+}) as any as S.Schema<CreateSmsUserResponse>;
+
+/** The receivers list */
+export type CreateSmsUserJobRequestReceiversList = Array<string>;
+export const CreateSmsUserJobRequestReceiversList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateSmsUserJobRequestReceiversList>;
+
+export interface CreateSmsUserJobRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** The sms user login */
+  login: string;
+  /** The sms coding */
+  charset?: SmsCharsetEnum | (string & {});
+  /** Deprecated: The sms class */
+  class?: SmsClassEnum | (string & {});
+  /** Deprecated: the coding is deduced from the message and its charset */
+  coding?: SmsCodingEnum | (string & {});
+  /** The time -in minute(s)- to wait before sending the message */
+  differedPeriod?: number;
+  /** The sms message */
+  message: string;
+  /** Do not display STOP clause in the message, this requires that this is not an advertising message */
+  noStopClause?: boolean;
+  /** The priority of the message */
+  priority?: SmsPriorityEnum | (string & {});
+  /** The receivers list */
+  receivers?: CreateSmsUserJobRequestReceiversList;
+  /** The receivers document url link in csv format */
+  receiversDocumentUrl?: string;
+  /** The receivers document slot id */
+  receiversSlotId?: string;
+  /** The sender */
+  sender?: string;
+  /** Set the flag to send a special sms which can be reply by the receiver (smsResponse). */
+  senderForResponse?: boolean;
+  /** The identifier group tag */
+  tag?: string;
+  /** The maximum time -in minute(s)- before the message is dropped */
+  validityPeriod?: number;
+}
+export const CreateSmsUserJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    login: S.String.pipe(T.Label()),
+    charset: S.optional(SmsCharsetEnum),
+    class: S.optional(SmsClassEnum),
+    coding: S.optional(SmsCodingEnum),
+    differedPeriod: S.optional(S.Number),
+    message: S.String,
+    noStopClause: S.optional(S.Boolean),
+    priority: S.optional(SmsPriorityEnum),
+    receivers: S.optional(CreateSmsUserJobRequestReceiversList),
+    receiversDocumentUrl: S.optional(S.String),
+    receiversSlotId: S.optional(S.String),
+    sender: S.optional(S.String),
+    senderForResponse: S.optional(S.Boolean),
+    tag: S.optional(S.String),
+    validityPeriod: S.optional(S.Number),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/sms/{serviceName}/users/{login}/jobs",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateSmsUserJobRequest",
+}) as any as S.Schema<CreateSmsUserJobRequest>;
+
+export interface CreateSmsUserReceiverRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** The sms user login */
+  login: string;
+  /** Download file from URL before sending to contacts (works only with csvUrl and not document ID) */
+  autoUpdate: boolean;
+  /** URL of the file you want to import */
+  csvUrl?: string;
+  /** Description name of the document */
+  description: string;
+  /** ID of the /me/document file you want to import */
+  documentId?: string;
+  /** Slot number id used to handle the document */
+  slotId: number;
+}
+export const CreateSmsUserReceiverRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    login: S.String.pipe(T.Label()),
+    autoUpdate: S.Boolean,
+    csvUrl: S.optional(S.String),
+    description: S.String,
+    documentId: S.optional(S.String),
+    slotId: S.Number,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/sms/{serviceName}/users/{login}/receivers",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateSmsUserReceiverRequest",
+}) as any as S.Schema<CreateSmsUserReceiverRequest>;
+
+export interface CreateSmsUserReceiverCleanRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** The sms user login */
+  login: string;
+  /** Slot number id */
+  slotId: number;
+  /** Limit checks to syntaxical validation */
+  freemium: boolean;
+  /** Only get action's price in credits without executing it */
+  priceOnly: boolean;
+}
+export const CreateSmsUserReceiverCleanRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    login: S.String.pipe(T.Label()),
+    slotId: S.Number.pipe(T.Label()),
+    freemium: S.Boolean,
+    priceOnly: S.Boolean,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/sms/{serviceName}/users/{login}/receivers/{slotId}/clean",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateSmsUserReceiverCleanRequest",
+}) as any as S.Schema<CreateSmsUserReceiverCleanRequest>;
+
+export interface CreateSmsVirtualNumberChatAccessRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** The virtual number */
   number: string;
 }
-export const DeleteSmsServiceNameBlacklistsNumberRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const CreateSmsVirtualNumberChatAccessRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       number: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
-        method: "DELETE",
-        uri: "/sms/{serviceName}/blacklists/{number}",
+        method: "POST",
+        uri: "/sms/{serviceName}/virtualNumbers/{number}/chatAccess",
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "DeleteSmsServiceNameBlacklistsNumberRequest",
-  }) as any as S.Schema<DeleteSmsServiceNameBlacklistsNumberRequest>;
+).annotate({
+  identifier: "CreateSmsVirtualNumberChatAccessRequest",
+}) as any as S.Schema<CreateSmsVirtualNumberChatAccessRequest>;
 
-export interface DeleteSmsServiceNameBlacklistsNumberResponse {}
-export const DeleteSmsServiceNameBlacklistsNumberResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteSmsServiceNameBlacklistsNumberResponse",
-  }) as any as S.Schema<DeleteSmsServiceNameBlacklistsNumberResponse>;
+/** The web access for your virtual number chat application */
+export interface SmsChatAccess {
+  /** The creation date of this access */
+  creationDate?: string;
+  id?: number;
+  /** The url of the web access */
+  url?: string;
+}
+export const SmsChatAccess = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    creationDate: S.optional(S.String),
+    id: S.optional(S.Number),
+    url: S.optional(S.String),
+  }),
+).annotate({ identifier: "SmsChatAccess" }) as any as S.Schema<SmsChatAccess>;
 
-export interface DeleteSmsServiceNameIncomingIdRequest {
+/** The receivers list */
+export type CreateSmsVirtualNumberJobRequestReceiversList = Array<string>;
+export const CreateSmsVirtualNumberJobRequestReceiversList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateSmsVirtualNumberJobRequestReceiversList>;
+
+export interface CreateSmsVirtualNumberJobRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** The virtual number */
+  number: string;
+  /** The sms coding */
+  charset?: SmsCharsetEnum | (string & {});
+  /** Deprecated: The sms class */
+  class?: SmsClassEnum | (string & {});
+  /** Deprecated: the coding is deduced from the message and its charset */
+  coding?: SmsCodingEnum | (string & {});
+  /** The time -in minute(s)- to wait before sending the message */
+  differedPeriod?: number;
+  /** The sms message */
+  message: string;
+  /** The priority of the message */
+  priority?: SmsPriorityEnum | (string & {});
+  /** The receivers list */
+  receivers?: CreateSmsVirtualNumberJobRequestReceiversList;
+  /** The receivers document url link in csv format */
+  receiversDocumentUrl?: string;
+  /** The receivers document slot id */
+  receiversSlotId?: string;
+  /** The identifier group tag */
+  tag?: string;
+  /** The maximum time -in minute(s)- before the message is dropped */
+  validityPeriod?: number;
+}
+export const CreateSmsVirtualNumberJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    number: S.String.pipe(T.Label()),
+    charset: S.optional(SmsCharsetEnum),
+    class: S.optional(SmsClassEnum),
+    coding: S.optional(SmsCodingEnum),
+    differedPeriod: S.optional(S.Number),
+    message: S.String,
+    priority: S.optional(SmsPriorityEnum),
+    receivers: S.optional(CreateSmsVirtualNumberJobRequestReceiversList),
+    receiversDocumentUrl: S.optional(S.String),
+    receiversSlotId: S.optional(S.String),
+    tag: S.optional(S.String),
+    validityPeriod: S.optional(S.Number),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/sms/{serviceName}/virtualNumbers/{number}/jobs",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateSmsVirtualNumberJobRequest",
+}) as any as S.Schema<CreateSmsVirtualNumberJobRequest>;
+
+export interface DeleteSmsBatchRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** Id */
+  id: string;
+}
+export const DeleteSmsBatchRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/sms/{serviceName}/batches/{id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteSmsBatchRequest",
+}) as any as S.Schema<DeleteSmsBatchRequest>;
+
+export interface DeleteSmsBatchResponse {}
+export const DeleteSmsBatchResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteSmsBatchResponse",
+}) as any as S.Schema<DeleteSmsBatchResponse>;
+
+export interface DeleteSmsBlacklistRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** The sms number blacklisted */
+  number: string;
+}
+export const DeleteSmsBlacklistRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    number: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/sms/{serviceName}/blacklists/{number}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteSmsBlacklistRequest",
+}) as any as S.Schema<DeleteSmsBlacklistRequest>;
+
+export interface DeleteSmsBlacklistResponse {}
+export const DeleteSmsBlacklistResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteSmsBlacklistResponse",
+}) as any as S.Schema<DeleteSmsBlacklistResponse>;
+
+export interface DeleteSmsIncomingRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** Id of the object */
   id: number;
 }
-export const DeleteSmsServiceNameIncomingIdRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/sms/{serviceName}/incoming/{id}",
-        code: 200,
-      }),
-    ),
+export const DeleteSmsIncomingRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/sms/{serviceName}/incoming/{id}",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "DeleteSmsServiceNameIncomingIdRequest",
-}) as any as S.Schema<DeleteSmsServiceNameIncomingIdRequest>;
+  identifier: "DeleteSmsIncomingRequest",
+}) as any as S.Schema<DeleteSmsIncomingRequest>;
 
-export interface DeleteSmsServiceNameIncomingIdResponse {}
-export const DeleteSmsServiceNameIncomingIdResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
+export interface DeleteSmsIncomingResponse {}
+export const DeleteSmsIncomingResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
 ).annotate({
-  identifier: "DeleteSmsServiceNameIncomingIdResponse",
-}) as any as S.Schema<DeleteSmsServiceNameIncomingIdResponse>;
+  identifier: "DeleteSmsIncomingResponse",
+}) as any as S.Schema<DeleteSmsIncomingResponse>;
 
-export interface DeleteSmsServiceNameJobsIdRequest {
+export interface DeleteSmsJobRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** Id of the object */
   id: number;
 }
-export const DeleteSmsServiceNameJobsIdRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteSmsJobRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     serviceName: S.String.pipe(T.Label()),
     id: S.Number.pipe(T.Label()),
@@ -117,74 +1094,73 @@ export const DeleteSmsServiceNameJobsIdRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteSmsServiceNameJobsIdRequest",
-}) as any as S.Schema<DeleteSmsServiceNameJobsIdRequest>;
+  identifier: "DeleteSmsJobRequest",
+}) as any as S.Schema<DeleteSmsJobRequest>;
 
-export interface DeleteSmsServiceNameJobsIdResponse {}
-export const DeleteSmsServiceNameJobsIdResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteSmsJobResponse {}
+export const DeleteSmsJobResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteSmsServiceNameJobsIdResponse",
-}) as any as S.Schema<DeleteSmsServiceNameJobsIdResponse>;
+  identifier: "DeleteSmsJobResponse",
+}) as any as S.Schema<DeleteSmsJobResponse>;
 
-export interface DeleteSmsServiceNameOutgoingIdRequest {
+export interface DeleteSmsOutgoingRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** Id */
   id: number;
 }
-export const DeleteSmsServiceNameOutgoingIdRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/sms/{serviceName}/outgoing/{id}",
-        code: 200,
-      }),
-    ),
+export const DeleteSmsOutgoingRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/sms/{serviceName}/outgoing/{id}",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "DeleteSmsServiceNameOutgoingIdRequest",
-}) as any as S.Schema<DeleteSmsServiceNameOutgoingIdRequest>;
+  identifier: "DeleteSmsOutgoingRequest",
+}) as any as S.Schema<DeleteSmsOutgoingRequest>;
 
-export interface DeleteSmsServiceNameOutgoingIdResponse {}
-export const DeleteSmsServiceNameOutgoingIdResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
+export interface DeleteSmsOutgoingResponse {}
+export const DeleteSmsOutgoingResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
 ).annotate({
-  identifier: "DeleteSmsServiceNameOutgoingIdResponse",
-}) as any as S.Schema<DeleteSmsServiceNameOutgoingIdResponse>;
+  identifier: "DeleteSmsOutgoingResponse",
+}) as any as S.Schema<DeleteSmsOutgoingResponse>;
 
-export interface DeleteSmsServiceNamePhonebooksBookKeyRequest {
+export interface DeleteSmsPhonebookRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** Identifier of the phonebook */
   bookKey: string;
 }
-export const DeleteSmsServiceNamePhonebooksBookKeyRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      bookKey: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/sms/{serviceName}/phonebooks/{bookKey}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "DeleteSmsServiceNamePhonebooksBookKeyRequest",
-  }) as any as S.Schema<DeleteSmsServiceNamePhonebooksBookKeyRequest>;
+export const DeleteSmsPhonebookRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    bookKey: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/sms/{serviceName}/phonebooks/{bookKey}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteSmsPhonebookRequest",
+}) as any as S.Schema<DeleteSmsPhonebookRequest>;
 
-export interface DeleteSmsServiceNamePhonebooksBookKeyResponse {}
-export const DeleteSmsServiceNamePhonebooksBookKeyResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteSmsServiceNamePhonebooksBookKeyResponse",
-  }) as any as S.Schema<DeleteSmsServiceNamePhonebooksBookKeyResponse>;
+export interface DeleteSmsPhonebookResponse {}
+export const DeleteSmsPhonebookResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteSmsPhonebookResponse",
+}) as any as S.Schema<DeleteSmsPhonebookResponse>;
 
-export interface DeleteSmsServiceNamePhonebooksBookKeyPhonebookContactIdRequest {
+export interface DeleteSmsPhonebookPhonebookContactRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** Identifier of the phonebook */
@@ -192,7 +1168,7 @@ export interface DeleteSmsServiceNamePhonebooksBookKeyPhonebookContactIdRequest 
   /** Contact identifier */
   id: number;
 }
-export const DeleteSmsServiceNamePhonebooksBookKeyPhonebookContactIdRequest =
+export const DeleteSmsPhonebookPhonebookContactRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
@@ -206,131 +1182,128 @@ export const DeleteSmsServiceNamePhonebooksBookKeyPhonebookContactIdRequest =
       }),
     ),
   ).annotate({
-    identifier:
-      "DeleteSmsServiceNamePhonebooksBookKeyPhonebookContactIdRequest",
-  }) as any as S.Schema<DeleteSmsServiceNamePhonebooksBookKeyPhonebookContactIdRequest>;
+    identifier: "DeleteSmsPhonebookPhonebookContactRequest",
+  }) as any as S.Schema<DeleteSmsPhonebookPhonebookContactRequest>;
 
-export interface DeleteSmsServiceNamePhonebooksBookKeyPhonebookContactIdResponse {}
-export const DeleteSmsServiceNamePhonebooksBookKeyPhonebookContactIdResponse =
+export interface DeleteSmsPhonebookPhonebookContactResponse {}
+export const DeleteSmsPhonebookPhonebookContactResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier:
-      "DeleteSmsServiceNamePhonebooksBookKeyPhonebookContactIdResponse",
-  }) as any as S.Schema<DeleteSmsServiceNamePhonebooksBookKeyPhonebookContactIdResponse>;
+    identifier: "DeleteSmsPhonebookPhonebookContactResponse",
+  }) as any as S.Schema<DeleteSmsPhonebookPhonebookContactResponse>;
 
-export interface DeleteSmsServiceNameReceiversSlotIdRequest {
+export interface DeleteSmsReceiverRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** Slot number id */
   slotId: number;
 }
-export const DeleteSmsServiceNameReceiversSlotIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      slotId: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/sms/{serviceName}/receivers/{slotId}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "DeleteSmsServiceNameReceiversSlotIdRequest",
-  }) as any as S.Schema<DeleteSmsServiceNameReceiversSlotIdRequest>;
+export const DeleteSmsReceiverRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    slotId: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/sms/{serviceName}/receivers/{slotId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteSmsReceiverRequest",
+}) as any as S.Schema<DeleteSmsReceiverRequest>;
 
-export interface DeleteSmsServiceNameReceiversSlotIdResponse {}
-export const DeleteSmsServiceNameReceiversSlotIdResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteSmsServiceNameReceiversSlotIdResponse",
-  }) as any as S.Schema<DeleteSmsServiceNameReceiversSlotIdResponse>;
+export interface DeleteSmsReceiverResponse {}
+export const DeleteSmsReceiverResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteSmsReceiverResponse",
+}) as any as S.Schema<DeleteSmsReceiverResponse>;
 
-export interface DeleteSmsServiceNameSendersSenderRequest {
+export interface DeleteSmsSenderRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** The sms sender */
   sender: string;
 }
-export const DeleteSmsServiceNameSendersSenderRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      sender: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/sms/{serviceName}/senders/{sender}",
-        code: 200,
-      }),
-    ),
+export const DeleteSmsSenderRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    sender: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/sms/{serviceName}/senders/{sender}",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "DeleteSmsServiceNameSendersSenderRequest",
-}) as any as S.Schema<DeleteSmsServiceNameSendersSenderRequest>;
+  identifier: "DeleteSmsSenderRequest",
+}) as any as S.Schema<DeleteSmsSenderRequest>;
 
-export interface DeleteSmsServiceNameSendersSenderResponse {}
-export const DeleteSmsServiceNameSendersSenderResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteSmsServiceNameSendersSenderResponse",
-  }) as any as S.Schema<DeleteSmsServiceNameSendersSenderResponse>;
+export interface DeleteSmsSenderResponse {}
+export const DeleteSmsSenderResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteSmsSenderResponse",
+}) as any as S.Schema<DeleteSmsSenderResponse>;
 
-export interface DeleteSmsServiceNameTemplatesControlNameRequest {
+export interface DeleteSmsTemplatesControlRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** Name of the template */
   name: string;
 }
-export const DeleteSmsServiceNameTemplatesControlNameRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      name: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/sms/{serviceName}/templatesControl/{name}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "DeleteSmsServiceNameTemplatesControlNameRequest",
-  }) as any as S.Schema<DeleteSmsServiceNameTemplatesControlNameRequest>;
-
-export interface DeleteSmsServiceNameTemplatesControlNameResponse {}
-export const DeleteSmsServiceNameTemplatesControlNameResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteSmsServiceNameTemplatesControlNameResponse",
-  }) as any as S.Schema<DeleteSmsServiceNameTemplatesControlNameResponse>;
-
-export interface DeleteSmsServiceNameUsersLoginRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** The sms user login */
-  login: string;
-}
-export const DeleteSmsServiceNameUsersLoginRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      login: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/sms/{serviceName}/users/{login}",
-        code: 200,
-      }),
-    ),
+export const DeleteSmsTemplatesControlRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/sms/{serviceName}/templatesControl/{name}",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "DeleteSmsServiceNameUsersLoginRequest",
-}) as any as S.Schema<DeleteSmsServiceNameUsersLoginRequest>;
+  identifier: "DeleteSmsTemplatesControlRequest",
+}) as any as S.Schema<DeleteSmsTemplatesControlRequest>;
 
-export interface DeleteSmsServiceNameUsersLoginResponse {}
-export const DeleteSmsServiceNameUsersLoginResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
+export interface DeleteSmsTemplatesControlResponse {}
+export const DeleteSmsTemplatesControlResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
 ).annotate({
-  identifier: "DeleteSmsServiceNameUsersLoginResponse",
-}) as any as S.Schema<DeleteSmsServiceNameUsersLoginResponse>;
+  identifier: "DeleteSmsTemplatesControlResponse",
+}) as any as S.Schema<DeleteSmsTemplatesControlResponse>;
 
-export interface DeleteSmsServiceNameUsersLoginIncomingIdRequest {
+export interface DeleteSmsUserRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** The sms user login */
+  login: string;
+}
+export const DeleteSmsUserRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    login: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/sms/{serviceName}/users/{login}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteSmsUserRequest",
+}) as any as S.Schema<DeleteSmsUserRequest>;
+
+export interface DeleteSmsUserResponse {}
+export const DeleteSmsUserResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteSmsUserResponse",
+}) as any as S.Schema<DeleteSmsUserResponse>;
+
+export interface DeleteSmsUserIncomingRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** The sms user login */
@@ -338,30 +1311,30 @@ export interface DeleteSmsServiceNameUsersLoginIncomingIdRequest {
   /** Id of the object */
   id: number;
 }
-export const DeleteSmsServiceNameUsersLoginIncomingIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      login: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/sms/{serviceName}/users/{login}/incoming/{id}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "DeleteSmsServiceNameUsersLoginIncomingIdRequest",
-  }) as any as S.Schema<DeleteSmsServiceNameUsersLoginIncomingIdRequest>;
+export const DeleteSmsUserIncomingRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    login: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/sms/{serviceName}/users/{login}/incoming/{id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteSmsUserIncomingRequest",
+}) as any as S.Schema<DeleteSmsUserIncomingRequest>;
 
-export interface DeleteSmsServiceNameUsersLoginIncomingIdResponse {}
-export const DeleteSmsServiceNameUsersLoginIncomingIdResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteSmsServiceNameUsersLoginIncomingIdResponse",
-  }) as any as S.Schema<DeleteSmsServiceNameUsersLoginIncomingIdResponse>;
+export interface DeleteSmsUserIncomingResponse {}
+export const DeleteSmsUserIncomingResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteSmsUserIncomingResponse",
+}) as any as S.Schema<DeleteSmsUserIncomingResponse>;
 
-export interface DeleteSmsServiceNameUsersLoginJobsIdRequest {
+export interface DeleteSmsUserJobRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** The sms user login */
@@ -369,30 +1342,30 @@ export interface DeleteSmsServiceNameUsersLoginJobsIdRequest {
   /** Id of the object */
   id: number;
 }
-export const DeleteSmsServiceNameUsersLoginJobsIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      login: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/sms/{serviceName}/users/{login}/jobs/{id}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "DeleteSmsServiceNameUsersLoginJobsIdRequest",
-  }) as any as S.Schema<DeleteSmsServiceNameUsersLoginJobsIdRequest>;
+export const DeleteSmsUserJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    login: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/sms/{serviceName}/users/{login}/jobs/{id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteSmsUserJobRequest",
+}) as any as S.Schema<DeleteSmsUserJobRequest>;
 
-export interface DeleteSmsServiceNameUsersLoginJobsIdResponse {}
-export const DeleteSmsServiceNameUsersLoginJobsIdResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteSmsServiceNameUsersLoginJobsIdResponse",
-  }) as any as S.Schema<DeleteSmsServiceNameUsersLoginJobsIdResponse>;
+export interface DeleteSmsUserJobResponse {}
+export const DeleteSmsUserJobResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteSmsUserJobResponse",
+}) as any as S.Schema<DeleteSmsUserJobResponse>;
 
-export interface DeleteSmsServiceNameUsersLoginOutgoingIdRequest {
+export interface DeleteSmsUserOutgoingRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** The sms user login */
@@ -400,30 +1373,30 @@ export interface DeleteSmsServiceNameUsersLoginOutgoingIdRequest {
   /** Id of the object */
   id: number;
 }
-export const DeleteSmsServiceNameUsersLoginOutgoingIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      login: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/sms/{serviceName}/users/{login}/outgoing/{id}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "DeleteSmsServiceNameUsersLoginOutgoingIdRequest",
-  }) as any as S.Schema<DeleteSmsServiceNameUsersLoginOutgoingIdRequest>;
+export const DeleteSmsUserOutgoingRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    login: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/sms/{serviceName}/users/{login}/outgoing/{id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteSmsUserOutgoingRequest",
+}) as any as S.Schema<DeleteSmsUserOutgoingRequest>;
 
-export interface DeleteSmsServiceNameUsersLoginOutgoingIdResponse {}
-export const DeleteSmsServiceNameUsersLoginOutgoingIdResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteSmsServiceNameUsersLoginOutgoingIdResponse",
-  }) as any as S.Schema<DeleteSmsServiceNameUsersLoginOutgoingIdResponse>;
+export interface DeleteSmsUserOutgoingResponse {}
+export const DeleteSmsUserOutgoingResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteSmsUserOutgoingResponse",
+}) as any as S.Schema<DeleteSmsUserOutgoingResponse>;
 
-export interface DeleteSmsServiceNameUsersLoginReceiversSlotIdRequest {
+export interface DeleteSmsUserReceiverRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** The sms user login */
@@ -431,37 +1404,37 @@ export interface DeleteSmsServiceNameUsersLoginReceiversSlotIdRequest {
   /** Slot number id */
   slotId: number;
 }
-export const DeleteSmsServiceNameUsersLoginReceiversSlotIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      login: S.String.pipe(T.Label()),
-      slotId: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/sms/{serviceName}/users/{login}/receivers/{slotId}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "DeleteSmsServiceNameUsersLoginReceiversSlotIdRequest",
-  }) as any as S.Schema<DeleteSmsServiceNameUsersLoginReceiversSlotIdRequest>;
+export const DeleteSmsUserReceiverRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    login: S.String.pipe(T.Label()),
+    slotId: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/sms/{serviceName}/users/{login}/receivers/{slotId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteSmsUserReceiverRequest",
+}) as any as S.Schema<DeleteSmsUserReceiverRequest>;
 
-export interface DeleteSmsServiceNameUsersLoginReceiversSlotIdResponse {}
-export const DeleteSmsServiceNameUsersLoginReceiversSlotIdResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteSmsServiceNameUsersLoginReceiversSlotIdResponse",
-  }) as any as S.Schema<DeleteSmsServiceNameUsersLoginReceiversSlotIdResponse>;
+export interface DeleteSmsUserReceiverResponse {}
+export const DeleteSmsUserReceiverResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteSmsUserReceiverResponse",
+}) as any as S.Schema<DeleteSmsUserReceiverResponse>;
 
-export interface DeleteSmsServiceNameVirtualNumbersNumberChatAccessRequest {
+export interface DeleteSmsVirtualNumberChatAccessRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** The virtual number */
   number: string;
 }
-export const DeleteSmsServiceNameVirtualNumbersNumberChatAccessRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const DeleteSmsVirtualNumberChatAccessRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       number: S.String.pipe(T.Label()),
@@ -472,17 +1445,18 @@ export const DeleteSmsServiceNameVirtualNumbersNumberChatAccessRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "DeleteSmsServiceNameVirtualNumbersNumberChatAccessRequest",
-  }) as any as S.Schema<DeleteSmsServiceNameVirtualNumbersNumberChatAccessRequest>;
+).annotate({
+  identifier: "DeleteSmsVirtualNumberChatAccessRequest",
+}) as any as S.Schema<DeleteSmsVirtualNumberChatAccessRequest>;
 
-export interface DeleteSmsServiceNameVirtualNumbersNumberChatAccessResponse {}
-export const DeleteSmsServiceNameVirtualNumbersNumberChatAccessResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteSmsServiceNameVirtualNumbersNumberChatAccessResponse",
-  }) as any as S.Schema<DeleteSmsServiceNameVirtualNumbersNumberChatAccessResponse>;
+export interface DeleteSmsVirtualNumberChatAccessResponse {}
+export const DeleteSmsVirtualNumberChatAccessResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteSmsVirtualNumberChatAccessResponse",
+}) as any as S.Schema<DeleteSmsVirtualNumberChatAccessResponse>;
 
-export interface DeleteSmsServiceNameVirtualNumbersNumberIncomingIdRequest {
+export interface DeleteSmsVirtualNumberIncomingRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** The virtual number */
@@ -490,8 +1464,8 @@ export interface DeleteSmsServiceNameVirtualNumbersNumberIncomingIdRequest {
   /** Id of the object */
   id: number;
 }
-export const DeleteSmsServiceNameVirtualNumbersNumberIncomingIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const DeleteSmsVirtualNumberIncomingRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       number: S.String.pipe(T.Label()),
@@ -503,17 +1477,18 @@ export const DeleteSmsServiceNameVirtualNumbersNumberIncomingIdRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "DeleteSmsServiceNameVirtualNumbersNumberIncomingIdRequest",
-  }) as any as S.Schema<DeleteSmsServiceNameVirtualNumbersNumberIncomingIdRequest>;
+).annotate({
+  identifier: "DeleteSmsVirtualNumberIncomingRequest",
+}) as any as S.Schema<DeleteSmsVirtualNumberIncomingRequest>;
 
-export interface DeleteSmsServiceNameVirtualNumbersNumberIncomingIdResponse {}
-export const DeleteSmsServiceNameVirtualNumbersNumberIncomingIdResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteSmsServiceNameVirtualNumbersNumberIncomingIdResponse",
-  }) as any as S.Schema<DeleteSmsServiceNameVirtualNumbersNumberIncomingIdResponse>;
+export interface DeleteSmsVirtualNumberIncomingResponse {}
+export const DeleteSmsVirtualNumberIncomingResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteSmsVirtualNumberIncomingResponse",
+}) as any as S.Schema<DeleteSmsVirtualNumberIncomingResponse>;
 
-export interface DeleteSmsServiceNameVirtualNumbersNumberJobsIdRequest {
+export interface DeleteSmsVirtualNumberJobRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** The virtual number */
@@ -521,30 +1496,30 @@ export interface DeleteSmsServiceNameVirtualNumbersNumberJobsIdRequest {
   /** Id of the object */
   id: number;
 }
-export const DeleteSmsServiceNameVirtualNumbersNumberJobsIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      number: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/sms/{serviceName}/virtualNumbers/{number}/jobs/{id}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "DeleteSmsServiceNameVirtualNumbersNumberJobsIdRequest",
-  }) as any as S.Schema<DeleteSmsServiceNameVirtualNumbersNumberJobsIdRequest>;
+export const DeleteSmsVirtualNumberJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    number: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/sms/{serviceName}/virtualNumbers/{number}/jobs/{id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteSmsVirtualNumberJobRequest",
+}) as any as S.Schema<DeleteSmsVirtualNumberJobRequest>;
 
-export interface DeleteSmsServiceNameVirtualNumbersNumberJobsIdResponse {}
-export const DeleteSmsServiceNameVirtualNumbersNumberJobsIdResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteSmsServiceNameVirtualNumbersNumberJobsIdResponse",
-  }) as any as S.Schema<DeleteSmsServiceNameVirtualNumbersNumberJobsIdResponse>;
+export interface DeleteSmsVirtualNumberJobResponse {}
+export const DeleteSmsVirtualNumberJobResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteSmsVirtualNumberJobResponse",
+}) as any as S.Schema<DeleteSmsVirtualNumberJobResponse>;
 
-export interface DeleteSmsServiceNameVirtualNumbersNumberOutgoingIdRequest {
+export interface DeleteSmsVirtualNumberOutgoingRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** The virtual number */
@@ -552,8 +1527,8 @@ export interface DeleteSmsServiceNameVirtualNumbersNumberOutgoingIdRequest {
   /** Id of the object */
   id: number;
 }
-export const DeleteSmsServiceNameVirtualNumbersNumberOutgoingIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const DeleteSmsVirtualNumberOutgoingRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       number: S.String.pipe(T.Label()),
@@ -565,56 +1540,795 @@ export const DeleteSmsServiceNameVirtualNumbersNumberOutgoingIdRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "DeleteSmsServiceNameVirtualNumbersNumberOutgoingIdRequest",
-  }) as any as S.Schema<DeleteSmsServiceNameVirtualNumbersNumberOutgoingIdRequest>;
-
-export interface DeleteSmsServiceNameVirtualNumbersNumberOutgoingIdResponse {}
-export const DeleteSmsServiceNameVirtualNumbersNumberOutgoingIdResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteSmsServiceNameVirtualNumbersNumberOutgoingIdResponse",
-  }) as any as S.Schema<DeleteSmsServiceNameVirtualNumbersNumberOutgoingIdResponse>;
-
-/** Resource tag filter */
-export interface IamResourceTagFilterInput {}
-export const IamResourceTagFilterInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
 ).annotate({
-  identifier: "IamResourceTagFilterInput",
-}) as any as S.Schema<IamResourceTagFilterInput>;
+  identifier: "DeleteSmsVirtualNumberOutgoingRequest",
+}) as any as S.Schema<DeleteSmsVirtualNumberOutgoingRequest>;
 
-export type GetSmsRequestIamTagsValueList = Array<IamResourceTagFilterInput>;
-export const GetSmsRequestIamTagsValueList = /*@__PURE__*/ S.Array(
-  IamResourceTagFilterInput,
-) as any as S.Schema<GetSmsRequestIamTagsValueList>;
-
-export type GetSmsRequestIamTagsMap = {
-  [key: string]: GetSmsRequestIamTagsValueList | undefined;
-};
-export const GetSmsRequestIamTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  GetSmsRequestIamTagsValueList,
-) as any as S.Schema<GetSmsRequestIamTagsMap>;
+export interface DeleteSmsVirtualNumberOutgoingResponse {}
+export const DeleteSmsVirtualNumberOutgoingResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteSmsVirtualNumberOutgoingResponse",
+}) as any as S.Schema<DeleteSmsVirtualNumberOutgoingResponse>;
 
 export interface GetSmsRequest {
-  /** Filter resources on IAM tags */
-  iamTags?: GetSmsRequestIamTagsMap;
+  /** The internal name of your SMS offer */
+  serviceName: string;
 }
 export const GetSmsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    iamTags: S.optional(GetSmsRequestIamTagsMap.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/sms", code: 200 })),
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/sms/{serviceName}", code: 200 })),
 ).annotate({ identifier: "GetSmsRequest" }) as any as S.Schema<GetSmsRequest>;
 
-export type GetSmsResponseBodyList = Array<string>;
-export const GetSmsResponseBodyList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<GetSmsResponseBodyList>;
+/** Pack quantity automatic recredit possibilities */
+export type SmsPackQuantityAutomaticRecreditEnum =
+  | 100
+  | 200
+  | 250
+  | 500
+  | 1000
+  | 5000
+  | 10000;
+export const SmsPackQuantityAutomaticRecreditEnum = /*@__PURE__*/ S.Number;
 
-export type GetSmsResponse = GetSmsResponseBodyList;
-export const GetSmsResponse = /*@__PURE__*/ S.suspend(() =>
-  GetSmsResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({ identifier: "GetSmsResponse" }) as any as S.Schema<GetSmsResponse>;
+/** In case of smpp the channel can not be "both" */
+export type SmsChannelEnum = "both" | "marketing" | "transactional";
+export const SmsChannelEnum = /*@__PURE__*/ S.String;
+
+/** Resource tags. Tags that were internally computed are prefixed with ovh: */
+export type IamResourceMetadataTagsMap = { [key: string]: string | undefined };
+export const IamResourceMetadataTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<IamResourceMetadataTagsMap>;
+
+/** IAM resource metadata embedded in services models */
+export interface IamResourceMetadata {
+  /** Resource display name */
+  displayName?: string | null;
+  /** Unique identifier of the resource */
+  id?: string;
+  /** Resource tags. Tags that were internally computed are prefixed with ovh: */
+  tags?: IamResourceMetadataTagsMap | null;
+  /** Unique resource name used in policies */
+  urn?: string;
+}
+export const IamResourceMetadata = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    displayName: S.optional(S.NullOr(S.String)),
+    id: S.optional(S.String),
+    tags: S.optional(S.NullOr(IamResourceMetadataTagsMap)),
+    urn: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "IamResourceMetadata",
+}) as any as S.Schema<IamResourceMetadata>;
+
+/** Response type */
+export type SmsResponseTypeEnum = "cgi" | "none" | "text";
+export const SmsResponseTypeEnum = /*@__PURE__*/ S.String;
+
+/** The tracking media response */
+export type SmsResponseTrackingMediaEnum = "email" | "sms" | "voice";
+export const SmsResponseTrackingMediaEnum = /*@__PURE__*/ S.String;
+
+/** The tracking media response */
+export interface SmsResponseTrackingOptions {
+  media?: SmsResponseTrackingMediaEnum | (string & {});
+  sender?: string;
+  target?: string;
+}
+export const SmsResponseTrackingOptions = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    media: S.optional(SmsResponseTrackingMediaEnum),
+    sender: S.optional(S.String),
+    target: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SmsResponseTrackingOptions",
+}) as any as S.Schema<SmsResponseTrackingOptions>;
+
+export type SmsResponseTrackingOptionsList = Array<SmsResponseTrackingOptions>;
+export const SmsResponseTrackingOptionsList = /*@__PURE__*/ S.Array(
+  SmsResponseTrackingOptions,
+) as any as S.Schema<SmsResponseTrackingOptionsList>;
+
+/** A structure describing how to manage an sms Response */
+export interface SmsResponse {
+  /** Default url callback used for a given response. */
+  cgiUrl?: string | null;
+  responseType?: SmsResponseTypeEnum | (string & {});
+  /** Automatic notification sent by text in case of customer reply. */
+  text?: string | null;
+  trackingDefaultSmsSender?: string | null;
+  trackingOptions?: SmsResponseTrackingOptionsList | null;
+}
+export const SmsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    cgiUrl: S.optional(S.NullOr(S.String)),
+    responseType: S.optional(SmsResponseTypeEnum),
+    text: S.optional(S.NullOr(S.String)),
+    trackingDefaultSmsSender: S.optional(S.NullOr(S.String)),
+    trackingOptions: S.optional(S.NullOr(SmsResponseTrackingOptionsList)),
+  }),
+).annotate({ identifier: "SmsResponse" }) as any as S.Schema<SmsResponse>;
+
+/** Account status */
+export type SmsStatusAccountEnum = "disable" | "enable";
+export const SmsStatusAccountEnum = /*@__PURE__*/ S.String;
+
+/** A structure describing all information about templates informations */
+export interface SmsTemplates {
+  customizedEmailMode?: boolean;
+  customizedSmsMode?: boolean;
+  emailBody?: string | null;
+  emailFrom?: string | null;
+  emailSubject?: string | null;
+  smsBody?: string | null;
+  time2chatAutomaticResponse?: string | null;
+}
+export const SmsTemplates = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    customizedEmailMode: S.optional(S.Boolean),
+    customizedSmsMode: S.optional(S.Boolean),
+    emailBody: S.optional(S.NullOr(S.String)),
+    emailFrom: S.optional(S.NullOr(S.String)),
+    emailSubject: S.optional(S.NullOr(S.String)),
+    smsBody: S.optional(S.NullOr(S.String)),
+    time2chatAutomaticResponse: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({ identifier: "SmsTemplates" }) as any as S.Schema<SmsTemplates>;
+
+/** SMS details */
+export interface SmsAccountWithIAM {
+  automaticRecreditAmount?: SmsPackQuantityAutomaticRecreditEnum | null;
+  /** URL called when state of a sent SMS changes */
+  callBack?: string | null;
+  /** For what purpose this account can be used for */
+  channel?: SmsChannelEnum;
+  /** Credit threshold after which an automatic recredit is launched */
+  creditThresholdForAutomaticRecredit?: number;
+  creditsHoldByQuota?: number;
+  creditsLeft?: number;
+  description?: string;
+  /** IAM resource metadata */
+  iam?: IamResourceMetadata | null;
+  name?: string;
+  /** Whether the account can be used for smpp or not */
+  smpp?: boolean;
+  smsResponse?: SmsResponse;
+  status?: SmsStatusAccountEnum;
+  /** URL called when a STOP is received after a receiver replied stop to a SMS */
+  stopCallBack?: string | null;
+  templates?: SmsTemplates;
+  userQuantityWithQuota?: number;
+}
+export const SmsAccountWithIAM = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    automaticRecreditAmount: S.optional(
+      S.NullOr(SmsPackQuantityAutomaticRecreditEnum),
+    ),
+    callBack: S.optional(S.NullOr(S.String)),
+    channel: S.optional(SmsChannelEnum),
+    creditThresholdForAutomaticRecredit: S.optional(S.Number),
+    creditsHoldByQuota: S.optional(S.Number),
+    creditsLeft: S.optional(S.Number),
+    description: S.optional(S.String),
+    iam: S.optional(S.NullOr(IamResourceMetadata)),
+    name: S.optional(S.String),
+    smpp: S.optional(S.Boolean),
+    smsResponse: S.optional(SmsResponse),
+    status: S.optional(SmsStatusAccountEnum),
+    stopCallBack: S.optional(S.NullOr(S.String)),
+    templates: S.optional(SmsTemplates),
+    userQuantityWithQuota: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "SmsAccountWithIAM",
+}) as any as S.Schema<SmsAccountWithIAM>;
+
+export interface GetSmsBatchRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** Id */
+  id: string;
+}
+export const GetSmsBatchRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/sms/{serviceName}/batches/{id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetSmsBatchRequest",
+}) as any as S.Schema<GetSmsBatchRequest>;
+
+export interface GetSmsBatchStatisticsRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** Id */
+  id: string;
+}
+export const GetSmsBatchStatisticsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/sms/{serviceName}/batches/{id}/statistics",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetSmsBatchStatisticsRequest",
+}) as any as S.Schema<GetSmsBatchStatisticsRequest>;
+
+/** Batch's statistics */
+export interface SmsBatchStatistics {
+  /** The cost of the batch in credits, computed during batch processing */
+  credits?: number;
+  /** Number of SMS that are delivered */
+  delivered?: number;
+  /** The estimated cost of the batch in credits, computed before batch processing */
+  estimatedCredits?: number;
+  /** Number of SMS in error */
+  failed?: number;
+  /** Batch ID */
+  id?: string;
+  /** Number of SMS that are in pending status */
+  pending?: number;
+  /** Number of SMS that are sent to the broker */
+  sent?: number;
+  /** Number of SMS that received a STOP by the receiver */
+  stoplisted?: number;
+}
+export const SmsBatchStatistics = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    credits: S.optional(S.Number),
+    delivered: S.optional(S.Number),
+    estimatedCredits: S.optional(S.Number),
+    failed: S.optional(S.Number),
+    id: S.optional(S.String),
+    pending: S.optional(S.Number),
+    sent: S.optional(S.Number),
+    stoplisted: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "SmsBatchStatistics",
+}) as any as S.Schema<SmsBatchStatistics>;
+
+export interface GetSmsBlacklistRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** The sms number blacklisted */
+  number: string;
+}
+export const GetSmsBlacklistRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    number: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/sms/{serviceName}/blacklists/{number}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetSmsBlacklistRequest",
+}) as any as S.Schema<GetSmsBlacklistRequest>;
+
+/** SMS blacklist */
+export interface SmsBlacklist {
+  /** ID of the batch responsible of the blacklist */
+  batchID?: string | null;
+  dateCreation?: string;
+  /** The sms number blacklisted */
+  number?: string;
+  /** ID of the outgoing SMS responsible of the blacklist */
+  smsOutgoingID?: number | null;
+}
+export const SmsBlacklist = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    batchID: S.optional(S.NullOr(S.String)),
+    dateCreation: S.optional(S.String),
+    number: S.optional(S.String),
+    smsOutgoingID: S.optional(S.NullOr(S.Number)),
+  }),
+).annotate({ identifier: "SmsBlacklist" }) as any as S.Schema<SmsBlacklist>;
+
+/** Way type */
+export type SmsDocumentWayTypeEnum = "incoming" | "outgoing";
+export const SmsDocumentWayTypeEnum = /*@__PURE__*/ S.String;
+
+export interface GetSmsDocumentRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** Filter SMSs with their batch ID (outgoing SMSs only) */
+  batchID?: string;
+  /** Filter the value of creationDatetime property (>=) */
+  creationDatetime_from?: string;
+  /** Filter the value of creationDatetime property (<=) */
+  creationDatetime_to?: string;
+  /** Select sms with a specific identifier group tag */
+  tag?: string;
+  /** specify outgoing or incoming sms */
+  wayType: SmsDocumentWayTypeEnum | (string & {});
+}
+export const GetSmsDocumentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    batchID: S.optional(S.String.pipe(T.Query())),
+    creationDatetime_from: S.optional(
+      S.String.pipe(T.Query("creationDatetime.from")),
+    ),
+    creationDatetime_to: S.optional(
+      S.String.pipe(T.Query("creationDatetime.to")),
+    ),
+    tag: S.optional(S.String.pipe(T.Query())),
+    wayType: SmsDocumentWayTypeEnum.pipe(T.Query()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/sms/{serviceName}/document", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetSmsDocumentRequest",
+}) as any as S.Schema<GetSmsDocumentRequest>;
+
+export type GetSmsDocumentResponse = string;
+export const GetSmsDocumentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.String.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "GetSmsDocumentResponse",
+}) as any as S.Schema<GetSmsDocumentResponse>;
+
+export interface GetSmsHlrRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** HLR id */
+  id: number;
+}
+export const GetSmsHlrRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/sms/{serviceName}/hlr/{id}", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetSmsHlrRequest",
+}) as any as S.Schema<GetSmsHlrRequest>;
+
+/** The sms coding */
+export type SmsHlrStatuses = "doing" | "done" | "error" | "todo";
+export const SmsHlrStatuses = /*@__PURE__*/ S.String;
+
+/** Home Location Register informations. Give informations about a given cellular phone. */
+export interface SmsHlrLookupNumber {
+  /** HLR creation datetime */
+  datetime?: string;
+  /** HLR id */
+  id?: number;
+  /** MSISDN */
+  msisdn?: string;
+  /** The {Mobile Country Code, Mobile Network Code} unique identifier */
+  operatorCode?: string;
+  /** Has the MSISDN been ported from its original network */
+  ported?: boolean;
+  /** Is the MSISDN currently reachable */
+  reachable?: boolean;
+  /** Is the MSISDN currently roaming outside its natinal network */
+  roaming?: boolean;
+  /** Status of the HLR request */
+  status?: SmsHlrStatuses;
+  /** Is the MSISDN valid */
+  valid?: boolean;
+}
+export const SmsHlrLookupNumber = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    datetime: S.optional(S.String),
+    id: S.optional(S.Number),
+    msisdn: S.optional(S.String),
+    operatorCode: S.optional(S.String),
+    ported: S.optional(S.Boolean),
+    reachable: S.optional(S.Boolean),
+    roaming: S.optional(S.Boolean),
+    status: S.optional(SmsHlrStatuses),
+    valid: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "SmsHlrLookupNumber",
+}) as any as S.Schema<SmsHlrLookupNumber>;
+
+export interface GetSmsHlrOperatorRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** HLR id */
+  id: number;
+}
+export const GetSmsHlrOperatorRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/sms/{serviceName}/hlr/{id}/operator",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetSmsHlrOperatorRequest",
+}) as any as S.Schema<GetSmsHlrOperatorRequest>;
+
+/** Sms operator informations */
+export interface SmsHlr {
+  /** The country */
+  country?: string;
+  /** The countryCode prefix number */
+  countryCode?: string;
+  /** The network name */
+  network?: string;
+  /** The operator name */
+  operator?: string;
+  /** The region */
+  region?: string;
+}
+export const SmsHlr = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    country: S.optional(S.String),
+    countryCode: S.optional(S.String),
+    network: S.optional(S.String),
+    operator: S.optional(S.String),
+    region: S.optional(S.String),
+  }),
+).annotate({ identifier: "SmsHlr" }) as any as S.Schema<SmsHlr>;
+
+export interface GetSmsIncomingRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** Id of the object */
+  id: number;
+}
+export const GetSmsIncomingRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/sms/{serviceName}/incoming/{id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetSmsIncomingRequest",
+}) as any as S.Schema<GetSmsIncomingRequest>;
+
+/** Sms history of sms incoming received */
+export interface SmsIncoming {
+  creationDatetime?: string;
+  credits?: number;
+  id?: number;
+  message?: string;
+  sender?: string;
+  tag?: string;
+}
+export const SmsIncoming = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    creationDatetime: S.optional(S.String),
+    credits: S.optional(S.Number),
+    id: S.optional(S.Number),
+    message: S.optional(S.String),
+    sender: S.optional(S.String),
+    tag: S.optional(S.String),
+  }),
+).annotate({ identifier: "SmsIncoming" }) as any as S.Schema<SmsIncoming>;
+
+export interface GetSmsJobRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** Id of the object */
+  id: number;
+}
+export const GetSmsJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/sms/{serviceName}/jobs/{id}", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetSmsJobRequest",
+}) as any as S.Schema<GetSmsJobRequest>;
+
+/** Sms job */
+export interface SmsJob {
+  creationDatetime?: string;
+  credits?: number;
+  deliveredAt?: string | null;
+  deliveryReceipt?: number;
+  differedDelivery?: number;
+  id?: number;
+  message?: string;
+  messageLength?: number;
+  numberOfSms?: number;
+  ptt?: number;
+  receiver?: string;
+  sender?: string;
+  sentAt?: string | null;
+}
+export const SmsJob = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    creationDatetime: S.optional(S.String),
+    credits: S.optional(S.Number),
+    deliveredAt: S.optional(S.NullOr(S.String)),
+    deliveryReceipt: S.optional(S.Number),
+    differedDelivery: S.optional(S.Number),
+    id: S.optional(S.Number),
+    message: S.optional(S.String),
+    messageLength: S.optional(S.Number),
+    numberOfSms: S.optional(S.Number),
+    ptt: S.optional(S.Number),
+    receiver: S.optional(S.String),
+    sender: S.optional(S.String),
+    sentAt: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({ identifier: "SmsJob" }) as any as S.Schema<SmsJob>;
+
+export interface GetSmsOutgoingRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** Id */
+  id: number;
+}
+export const GetSmsOutgoingRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/sms/{serviceName}/outgoing/{id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetSmsOutgoingRequest",
+}) as any as S.Schema<GetSmsOutgoingRequest>;
+
+/** Sent SMS */
+export interface SmsOutgoing {
+  /** ID of batch linked to the SMS */
+  batchID?: string | null;
+  /** Creation datetime */
+  creationDatetime?: string;
+  /** Spent credits */
+  credits?: number;
+  /** Delivering datetime */
+  deliveredAt?: string | null;
+  /** Delivery receipt from operator */
+  deliveryReceipt?: number;
+  /** Delay before SMS sending */
+  differedDelivery?: number;
+  /** Identifier */
+  id?: number;
+  /** SMS message */
+  message?: string;
+  /** SMPP messageID */
+  messageID?: string | null;
+  /** SMS message length */
+  messageLength?: number;
+  /** SMS message's number of parts */
+  numberOfSms?: number;
+  /** Code representing SMS state */
+  ptt?: number;
+  /** SMS receiver */
+  receiver?: string;
+  /** SMS sender */
+  sender?: string;
+  /** Sending datetime */
+  sentAt?: string | null;
+  /** Customer label to categorize SMSs */
+  tag?: string;
+  /** Tariff code applied on the sms */
+  tariffCode?: string;
+}
+export const SmsOutgoing = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    batchID: S.optional(S.NullOr(S.String)),
+    creationDatetime: S.optional(S.String),
+    credits: S.optional(S.Number),
+    deliveredAt: S.optional(S.NullOr(S.String)),
+    deliveryReceipt: S.optional(S.Number),
+    differedDelivery: S.optional(S.Number),
+    id: S.optional(S.Number),
+    message: S.optional(S.String),
+    messageID: S.optional(S.NullOr(S.String)),
+    messageLength: S.optional(S.Number),
+    numberOfSms: S.optional(S.Number),
+    ptt: S.optional(S.Number),
+    receiver: S.optional(S.String),
+    sender: S.optional(S.String),
+    sentAt: S.optional(S.NullOr(S.String)),
+    tag: S.optional(S.String),
+    tariffCode: S.optional(S.String),
+  }),
+).annotate({ identifier: "SmsOutgoing" }) as any as S.Schema<SmsOutgoing>;
+
+export interface GetSmsOutgoingHlrRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** Id of the object */
+  id: number;
+}
+export const GetSmsOutgoingHlrRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/sms/{serviceName}/outgoing/{id}/hlr",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetSmsOutgoingHlrRequest",
+}) as any as S.Schema<GetSmsOutgoingHlrRequest>;
+
+export interface GetSmsPhonebookRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** Identifier of the phonebook */
+  bookKey: string;
+}
+export const GetSmsPhonebookRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    bookKey: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/sms/{serviceName}/phonebooks/{bookKey}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetSmsPhonebookRequest",
+}) as any as S.Schema<GetSmsPhonebookRequest>;
+
+/** Phone book */
+export interface SmsPhonebook {
+  /** Identifier of the phonebook */
+  bookKey?: string;
+  /** Phonebook name */
+  name?: string;
+  /** Phone key identifier between the phone and phonebooks */
+  phoneKey?: string;
+}
+export const SmsPhonebook = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    bookKey: S.optional(S.String),
+    name: S.optional(S.String),
+    phoneKey: S.optional(S.String),
+  }),
+).annotate({ identifier: "SmsPhonebook" }) as any as S.Schema<SmsPhonebook>;
+
+/** Export file format */
+export type TelephonyContactsExportFormatsEnum = "csv";
+export const TelephonyContactsExportFormatsEnum = /*@__PURE__*/ S.String;
+
+export interface GetSmsPhonebookExportRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** Identifier of the phonebook */
+  bookKey: string;
+  /** Format of the file */
+  format: TelephonyContactsExportFormatsEnum | (string & {});
+}
+export const GetSmsPhonebookExportRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    bookKey: S.String.pipe(T.Label()),
+    format: TelephonyContactsExportFormatsEnum.pipe(T.Query()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/sms/{serviceName}/phonebooks/{bookKey}/export",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetSmsPhonebookExportRequest",
+}) as any as S.Schema<GetSmsPhonebookExportRequest>;
+
+/** File providing task status */
+export type TelephonyPcsFileStatusEnum = "doing" | "done" | "error" | "todo";
+export const TelephonyPcsFileStatusEnum = /*@__PURE__*/ S.String;
+
+/** Telephony API related file hosted */
+export interface TelephonyPcsFile {
+  filename?: string;
+  status?: TelephonyPcsFileStatusEnum;
+  url?: string;
+  urlExpirationDatetime?: string;
+}
+export const TelephonyPcsFile = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    filename: S.optional(S.String),
+    status: S.optional(TelephonyPcsFileStatusEnum),
+    url: S.optional(S.String),
+    urlExpirationDatetime: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "TelephonyPcsFile",
+}) as any as S.Schema<TelephonyPcsFile>;
+
+export interface GetSmsPhonebookPhonebookContactRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** Identifier of the phonebook */
+  bookKey: string;
+  /** Contact identifier */
+  id: number;
+}
+export const GetSmsPhonebookPhonebookContactRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      bookKey: S.String.pipe(T.Label()),
+      id: S.Number.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/sms/{serviceName}/phonebooks/{bookKey}/phonebookContact/{id}",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "GetSmsPhonebookPhonebookContactRequest",
+}) as any as S.Schema<GetSmsPhonebookPhonebookContactRequest>;
+
+/** Phone book contact */
+export interface SmsPhonebookContact {
+  /** Group name of the phonebook */
+  group?: string;
+  /** Home mobile phone number of the contact */
+  homeMobile?: string | null;
+  /** Home landline phone number of the contact */
+  homePhone?: string | null;
+  /** Contact identifier */
+  id?: number;
+  /** Contact name */
+  name?: string;
+  /** Contact surname */
+  surname?: string;
+  /** Mobile phone office number of the contact */
+  workMobile?: string | null;
+  /** Landline phone office number of the contact */
+  workPhone?: string | null;
+}
+export const SmsPhonebookContact = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    group: S.optional(S.String),
+    homeMobile: S.optional(S.NullOr(S.String)),
+    homePhone: S.optional(S.NullOr(S.String)),
+    id: S.optional(S.Number),
+    name: S.optional(S.String),
+    surname: S.optional(S.String),
+    workMobile: S.optional(S.NullOr(S.String)),
+    workPhone: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "SmsPhonebookContact",
+}) as any as S.Schema<SmsPhonebookContact>;
 
 export interface GetSmsPttsRequest {
   /** The premium transaction tracking code */
@@ -868,20 +2582,20 @@ export type SmsCountryEnum =
   | "zw";
 export const SmsCountryEnum = /*@__PURE__*/ S.String;
 
-export interface GetSmsRatesDestinationsRequest {
+export interface GetSmsRateDestinationsRequest {
   /** Country where you buy credits */
   billingCountry?: SmsBillingCountryEnum | (string & {});
   /** Country where you send SMS */
   country: SmsCountryEnum | (string & {});
 }
-export const GetSmsRatesDestinationsRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetSmsRateDestinationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     billingCountry: S.optional(SmsBillingCountryEnum.pipe(T.Query())),
     country: SmsCountryEnum.pipe(T.Query()),
   }).pipe(T.Http({ method: "GET", uri: "/sms/rates/destinations", code: 200 })),
 ).annotate({
-  identifier: "GetSmsRatesDestinationsRequest",
-}) as any as S.Schema<GetSmsRatesDestinationsRequest>;
+  identifier: "GetSmsRateDestinationsRequest",
+}) as any as S.Schema<GetSmsRateDestinationsRequest>;
 
 export type OrderCurrencyCodeEnum =
   | "AUD"
@@ -937,1623 +2651,75 @@ export const SmsDestinationRates = /*@__PURE__*/ S.suspend(() =>
   identifier: "SmsDestinationRates",
 }) as any as S.Schema<SmsDestinationRates>;
 
-export interface GetSmsRatesPacksRequest {
-  /** Country where you buy credits */
-  billingCountry?: SmsBillingCountryEnum | (string & {});
-  /** Country where you send SMS */
-  country: SmsCountryEnum | (string & {});
-}
-export const GetSmsRatesPacksRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    billingCountry: S.optional(SmsBillingCountryEnum.pipe(T.Query())),
-    country: SmsCountryEnum.pipe(T.Query()),
-  }).pipe(T.Http({ method: "GET", uri: "/sms/rates/packs", code: 200 })),
-).annotate({
-  identifier: "GetSmsRatesPacksRequest",
-}) as any as S.Schema<GetSmsRatesPacksRequest>;
-
-/** Details about a SMS pack */
-export interface SmsPackDetails {
-  /** Destination country code */
-  countryCode?: SmsCountryEnum;
-  /** Credits consumed by sending one SMS towards the given destination */
-  credit?: number;
-  /** Price of one credit, including pack's promotion */
-  creditPrice?: OrderPrice;
-  /** Maximum quantity (excluded) of credit to order to have this price */
-  creditQuantityMax?: number | null;
-  /** Minimum quantity (included) of credit to order to have this price */
-  creditQuantityMin?: number;
-  /** Price of one credit, during a promotional event */
-  discountCreditPrice?: OrderPrice | null;
-  /** Percentage applied as part of a promotional event */
-  discountPercentage?: number | null;
-  /** Price of one SMS, during a promotional event */
-  discountSmsPrice?: OrderPrice | null;
-  /** Price of one SMS sent towards the given destination, including pack's promotion */
-  smsPrice?: OrderPrice;
-  /** Maximum quantity (excluded) of SMS you can obtain with this pack */
-  smsQuantityMax?: number | null;
-  /** Minimum quantity (included) of SMS you can obtain with this pack */
-  smsQuantityMin?: number;
-}
-export const SmsPackDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    countryCode: S.optional(SmsCountryEnum),
-    credit: S.optional(S.Number),
-    creditPrice: S.optional(OrderPrice),
-    creditQuantityMax: S.optional(S.NullOr(S.Number)),
-    creditQuantityMin: S.optional(S.Number),
-    discountCreditPrice: S.optional(S.NullOr(OrderPrice)),
-    discountPercentage: S.optional(S.NullOr(S.Number)),
-    discountSmsPrice: S.optional(S.NullOr(OrderPrice)),
-    smsPrice: S.optional(OrderPrice),
-    smsQuantityMax: S.optional(S.NullOr(S.Number)),
-    smsQuantityMin: S.optional(S.Number),
-  }),
-).annotate({ identifier: "SmsPackDetails" }) as any as S.Schema<SmsPackDetails>;
-
-export type GetSmsRatesPacksResponseBodyList = Array<SmsPackDetails>;
-export const GetSmsRatesPacksResponseBodyList = /*@__PURE__*/ S.Array(
-  SmsPackDetails,
-) as any as S.Schema<GetSmsRatesPacksResponseBodyList>;
-
-export type GetSmsRatesPacksResponse = GetSmsRatesPacksResponseBodyList;
-export const GetSmsRatesPacksResponse = /*@__PURE__*/ S.suspend(() =>
-  GetSmsRatesPacksResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetSmsRatesPacksResponse",
-}) as any as S.Schema<GetSmsRatesPacksResponse>;
-
-export interface GetSmsServiceNameRequest {
+export interface GetSmsReceiverRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
+  /** Slot number id */
+  slotId: number;
 }
-export const GetSmsServiceNameRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetSmsReceiverRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     serviceName: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/sms/{serviceName}", code: 200 })),
-).annotate({
-  identifier: "GetSmsServiceNameRequest",
-}) as any as S.Schema<GetSmsServiceNameRequest>;
-
-/** Pack quantity automatic recredit possibilities */
-export type SmsPackQuantityAutomaticRecreditEnum =
-  | 100
-  | 200
-  | 250
-  | 500
-  | 1000
-  | 5000
-  | 10000;
-export const SmsPackQuantityAutomaticRecreditEnum = /*@__PURE__*/ S.Number;
-
-/** In case of smpp the channel can not be "both" */
-export type SmsChannelEnum = "both" | "marketing" | "transactional";
-export const SmsChannelEnum = /*@__PURE__*/ S.String;
-
-/** Resource tags. Tags that were internally computed are prefixed with ovh: */
-export type IamResourceMetadataTagsMap = { [key: string]: string | undefined };
-export const IamResourceMetadataTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<IamResourceMetadataTagsMap>;
-
-/** IAM resource metadata embedded in services models */
-export interface IamResourceMetadata {
-  /** Resource display name */
-  displayName?: string | null;
-  /** Unique identifier of the resource */
-  id?: string;
-  /** Resource tags. Tags that were internally computed are prefixed with ovh: */
-  tags?: IamResourceMetadataTagsMap | null;
-  /** Unique resource name used in policies */
-  urn?: string;
-}
-export const IamResourceMetadata = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    displayName: S.optional(S.NullOr(S.String)),
-    id: S.optional(S.String),
-    tags: S.optional(S.NullOr(IamResourceMetadataTagsMap)),
-    urn: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "IamResourceMetadata",
-}) as any as S.Schema<IamResourceMetadata>;
-
-/** Response type */
-export type SmsResponseTypeEnum = "cgi" | "none" | "text";
-export const SmsResponseTypeEnum = /*@__PURE__*/ S.String;
-
-/** The tracking media response */
-export type SmsResponseTrackingMediaEnum = "email" | "sms" | "voice";
-export const SmsResponseTrackingMediaEnum = /*@__PURE__*/ S.String;
-
-/** The tracking media response */
-export interface SmsResponseTrackingOptions {
-  media?: SmsResponseTrackingMediaEnum | (string & {});
-  sender?: string;
-  target?: string;
-}
-export const SmsResponseTrackingOptions = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    media: S.optional(SmsResponseTrackingMediaEnum),
-    sender: S.optional(S.String),
-    target: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SmsResponseTrackingOptions",
-}) as any as S.Schema<SmsResponseTrackingOptions>;
-
-export type SmsResponseTrackingOptionsList = Array<SmsResponseTrackingOptions>;
-export const SmsResponseTrackingOptionsList = /*@__PURE__*/ S.Array(
-  SmsResponseTrackingOptions,
-) as any as S.Schema<SmsResponseTrackingOptionsList>;
-
-/** A structure describing how to manage an sms Response */
-export interface SmsResponse {
-  /** Default url callback used for a given response. */
-  cgiUrl?: string | null;
-  responseType?: SmsResponseTypeEnum | (string & {});
-  /** Automatic notification sent by text in case of customer reply. */
-  text?: string | null;
-  trackingDefaultSmsSender?: string | null;
-  trackingOptions?: SmsResponseTrackingOptionsList | null;
-}
-export const SmsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    cgiUrl: S.optional(S.NullOr(S.String)),
-    responseType: S.optional(SmsResponseTypeEnum),
-    text: S.optional(S.NullOr(S.String)),
-    trackingDefaultSmsSender: S.optional(S.NullOr(S.String)),
-    trackingOptions: S.optional(S.NullOr(SmsResponseTrackingOptionsList)),
-  }),
-).annotate({ identifier: "SmsResponse" }) as any as S.Schema<SmsResponse>;
-
-/** Account status */
-export type SmsStatusAccountEnum = "disable" | "enable";
-export const SmsStatusAccountEnum = /*@__PURE__*/ S.String;
-
-/** A structure describing all information about templates informations */
-export interface SmsTemplates {
-  customizedEmailMode?: boolean;
-  customizedSmsMode?: boolean;
-  emailBody?: string | null;
-  emailFrom?: string | null;
-  emailSubject?: string | null;
-  smsBody?: string | null;
-  time2chatAutomaticResponse?: string | null;
-}
-export const SmsTemplates = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    customizedEmailMode: S.optional(S.Boolean),
-    customizedSmsMode: S.optional(S.Boolean),
-    emailBody: S.optional(S.NullOr(S.String)),
-    emailFrom: S.optional(S.NullOr(S.String)),
-    emailSubject: S.optional(S.NullOr(S.String)),
-    smsBody: S.optional(S.NullOr(S.String)),
-    time2chatAutomaticResponse: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({ identifier: "SmsTemplates" }) as any as S.Schema<SmsTemplates>;
-
-/** SMS details */
-export interface SmsAccountWithIAM {
-  automaticRecreditAmount?: SmsPackQuantityAutomaticRecreditEnum | null;
-  /** URL called when state of a sent SMS changes */
-  callBack?: string | null;
-  /** For what purpose this account can be used for */
-  channel?: SmsChannelEnum;
-  /** Credit threshold after which an automatic recredit is launched */
-  creditThresholdForAutomaticRecredit?: number;
-  creditsHoldByQuota?: number;
-  creditsLeft?: number;
-  description?: string;
-  /** IAM resource metadata */
-  iam?: IamResourceMetadata | null;
-  name?: string;
-  /** Whether the account can be used for smpp or not */
-  smpp?: boolean;
-  smsResponse?: SmsResponse;
-  status?: SmsStatusAccountEnum;
-  /** URL called when a STOP is received after a receiver replied stop to a SMS */
-  stopCallBack?: string | null;
-  templates?: SmsTemplates;
-  userQuantityWithQuota?: number;
-}
-export const SmsAccountWithIAM = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    automaticRecreditAmount: S.optional(
-      S.NullOr(SmsPackQuantityAutomaticRecreditEnum),
-    ),
-    callBack: S.optional(S.NullOr(S.String)),
-    channel: S.optional(SmsChannelEnum),
-    creditThresholdForAutomaticRecredit: S.optional(S.Number),
-    creditsHoldByQuota: S.optional(S.Number),
-    creditsLeft: S.optional(S.Number),
-    description: S.optional(S.String),
-    iam: S.optional(S.NullOr(IamResourceMetadata)),
-    name: S.optional(S.String),
-    smpp: S.optional(S.Boolean),
-    smsResponse: S.optional(SmsResponse),
-    status: S.optional(SmsStatusAccountEnum),
-    stopCallBack: S.optional(S.NullOr(S.String)),
-    templates: S.optional(SmsTemplates),
-    userQuantityWithQuota: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "SmsAccountWithIAM",
-}) as any as S.Schema<SmsAccountWithIAM>;
-
-export interface GetSmsServiceNameBatchesRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-}
-export const GetSmsServiceNameBatchesRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/sms/{serviceName}/batches", code: 200 }),
-  ),
-).annotate({
-  identifier: "GetSmsServiceNameBatchesRequest",
-}) as any as S.Schema<GetSmsServiceNameBatchesRequest>;
-
-/** Batch error details */
-export interface SmsBatchError {
-  /** Error message */
-  message?: string;
-  /** Receiver that triggered the error */
-  receiver?: string;
-}
-export const SmsBatchError = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    message: S.optional(S.String),
-    receiver: S.optional(S.String),
-  }),
-).annotate({ identifier: "SmsBatchError" }) as any as S.Schema<SmsBatchError>;
-
-/** Details on error(s) on the batch, if any */
-export type SmsBatchErrorsList = Array<SmsBatchError>;
-export const SmsBatchErrorsList = /*@__PURE__*/ S.Array(
-  SmsBatchError,
-) as any as S.Schema<SmsBatchErrorsList>;
-
-/** SMS receivers list */
-export type SmsBatchReceiversList = Array<string>;
-export const SmsBatchReceiversList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<SmsBatchReceiversList>;
-
-/** Batch statuses */
-export type SmsBatchStatusEnum =
-  | "CANCELED"
-  | "CANCELING"
-  | "COMPLETED"
-  | "FAILED"
-  | "INSERTED"
-  | "INSERTING"
-  | "PENDING"
-  | "TO_CANCEL";
-export const SmsBatchStatusEnum = /*@__PURE__*/ S.String;
-
-/** Batch of SMS to send */
-export interface SmsBatch {
-  /** SMS account ID */
-  accountID?: number;
-  /** Creation datetime */
-  createdAt?: string;
-  /** Details on error(s) on the batch, if any */
-  errors?: SmsBatchErrorsList;
-  /** The estimated cost of the batch in credits */
-  estimatedCredits?: number;
-  /** Datetime when the batch finished processing SMSs */
-  finishedAt?: string | null;
-  /** SMS sender */
-  from?: string | null;
-  /** Batch ID */
-  id?: string;
-  /** SMS message */
-  message?: string;
-  /** Batch name */
-  name?: string;
-  /** Number of processed records in this batch */
-  processedRecords?: number;
-  /** SMS receivers list */
-  receivers?: SmsBatchReceiversList | null;
-  /** Datetime when the SMSs of the batch are sent (based on deferred time if exists) */
-  sentAt?: string | null;
-  /** Slot ID */
-  slotID?: string | null;
-  /** Datetime when the batch started processing SMSs */
-  startedAt?: string | null;
-  /** Batch status */
-  status?: SmsBatchStatusEnum;
-  /** Total number of records in this batch */
-  totalRecords?: number;
-  /** Last update datetime */
-  updatedAt?: string;
-}
-export const SmsBatch = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountID: S.optional(S.Number),
-    createdAt: S.optional(S.String),
-    errors: S.optional(SmsBatchErrorsList),
-    estimatedCredits: S.optional(S.Number),
-    finishedAt: S.optional(S.NullOr(S.String)),
-    from: S.optional(S.NullOr(S.String)),
-    id: S.optional(S.String),
-    message: S.optional(S.String),
-    name: S.optional(S.String),
-    processedRecords: S.optional(S.Number),
-    receivers: S.optional(S.NullOr(SmsBatchReceiversList)),
-    sentAt: S.optional(S.NullOr(S.String)),
-    slotID: S.optional(S.NullOr(S.String)),
-    startedAt: S.optional(S.NullOr(S.String)),
-    status: S.optional(SmsBatchStatusEnum),
-    totalRecords: S.optional(S.Number),
-    updatedAt: S.optional(S.String),
-  }),
-).annotate({ identifier: "SmsBatch" }) as any as S.Schema<SmsBatch>;
-
-export type GetSmsServiceNameBatchesResponseBodyList = Array<SmsBatch>;
-export const GetSmsServiceNameBatchesResponseBodyList = /*@__PURE__*/ S.Array(
-  SmsBatch,
-) as any as S.Schema<GetSmsServiceNameBatchesResponseBodyList>;
-
-export type GetSmsServiceNameBatchesResponse =
-  GetSmsServiceNameBatchesResponseBodyList;
-export const GetSmsServiceNameBatchesResponse = /*@__PURE__*/ S.suspend(() =>
-  GetSmsServiceNameBatchesResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetSmsServiceNameBatchesResponse",
-}) as any as S.Schema<GetSmsServiceNameBatchesResponse>;
-
-export interface GetSmsServiceNameBatchesIdRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** Id */
-  id: string;
-}
-export const GetSmsServiceNameBatchesIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceName: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
+    slotId: S.Number.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/sms/{serviceName}/batches/{id}",
+      uri: "/sms/{serviceName}/receivers/{slotId}",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "GetSmsServiceNameBatchesIdRequest",
-}) as any as S.Schema<GetSmsServiceNameBatchesIdRequest>;
+  identifier: "GetSmsReceiverRequest",
+}) as any as S.Schema<GetSmsReceiverRequest>;
 
-export interface GetSmsServiceNameBatchesIdStatisticsRequest {
+export interface GetSmsReceiverCsvRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
-  /** Id */
-  id: string;
+  /** Slot number id */
+  slotId: number;
 }
-export const GetSmsServiceNameBatchesIdStatisticsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/sms/{serviceName}/batches/{id}/statistics",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetSmsServiceNameBatchesIdStatisticsRequest",
-  }) as any as S.Schema<GetSmsServiceNameBatchesIdStatisticsRequest>;
-
-/** Batch's statistics */
-export interface SmsBatchStatistics {
-  /** The cost of the batch in credits, computed during batch processing */
-  credits?: number;
-  /** Number of SMS that are delivered */
-  delivered?: number;
-  /** The estimated cost of the batch in credits, computed before batch processing */
-  estimatedCredits?: number;
-  /** Number of SMS in error */
-  failed?: number;
-  /** Batch ID */
-  id?: string;
-  /** Number of SMS that are in pending status */
-  pending?: number;
-  /** Number of SMS that are sent to the broker */
-  sent?: number;
-  /** Number of SMS that received a STOP by the receiver */
-  stoplisted?: number;
-}
-export const SmsBatchStatistics = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    credits: S.optional(S.Number),
-    delivered: S.optional(S.Number),
-    estimatedCredits: S.optional(S.Number),
-    failed: S.optional(S.Number),
-    id: S.optional(S.String),
-    pending: S.optional(S.Number),
-    sent: S.optional(S.Number),
-    stoplisted: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "SmsBatchStatistics",
-}) as any as S.Schema<SmsBatchStatistics>;
-
-export interface GetSmsServiceNameBlacklistsRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** Filter the value of batchID property (=) */
-  batchID?: string;
-  /** Filter the value of smsOutgoingID property (=) */
-  smsOutgoingID?: number;
-}
-export const GetSmsServiceNameBlacklistsRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetSmsReceiverCsvRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     serviceName: S.String.pipe(T.Label()),
-    batchID: S.optional(S.String.pipe(T.Query())),
-    smsOutgoingID: S.optional(S.Number.pipe(T.Query())),
+    slotId: S.Number.pipe(T.Label()),
   }).pipe(
-    T.Http({ method: "GET", uri: "/sms/{serviceName}/blacklists", code: 200 }),
+    T.Http({
+      method: "GET",
+      uri: "/sms/{serviceName}/receivers/{slotId}/csv",
+      code: 200,
+    }),
   ),
 ).annotate({
-  identifier: "GetSmsServiceNameBlacklistsRequest",
-}) as any as S.Schema<GetSmsServiceNameBlacklistsRequest>;
+  identifier: "GetSmsReceiverCsvRequest",
+}) as any as S.Schema<GetSmsReceiverCsvRequest>;
 
-export type GetSmsServiceNameBlacklistsResponseBodyList = Array<string>;
-export const GetSmsServiceNameBlacklistsResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetSmsServiceNameBlacklistsResponseBodyList>;
-
-export type GetSmsServiceNameBlacklistsResponse =
-  GetSmsServiceNameBlacklistsResponseBodyList;
-export const GetSmsServiceNameBlacklistsResponse = /*@__PURE__*/ S.suspend(() =>
-  GetSmsServiceNameBlacklistsResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetSmsServiceNameBlacklistsResponse",
-}) as any as S.Schema<GetSmsServiceNameBlacklistsResponse>;
-
-export interface GetSmsServiceNameBlacklistsNumberRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** The sms number blacklisted */
-  number: string;
-}
-export const GetSmsServiceNameBlacklistsNumberRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      number: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/sms/{serviceName}/blacklists/{number}",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "GetSmsServiceNameBlacklistsNumberRequest",
-}) as any as S.Schema<GetSmsServiceNameBlacklistsNumberRequest>;
-
-/** SMS blacklist */
-export interface SmsBlacklist {
-  /** ID of the batch responsible of the blacklist */
-  batchID?: string | null;
-  dateCreation?: string;
-  /** The sms number blacklisted */
-  number?: string;
-  /** ID of the outgoing SMS responsible of the blacklist */
-  smsOutgoingID?: number | null;
-}
-export const SmsBlacklist = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    batchID: S.optional(S.NullOr(S.String)),
-    dateCreation: S.optional(S.String),
-    number: S.optional(S.String),
-    smsOutgoingID: S.optional(S.NullOr(S.Number)),
-  }),
-).annotate({ identifier: "SmsBlacklist" }) as any as S.Schema<SmsBlacklist>;
-
-/** Way type */
-export type SmsDocumentWayTypeEnum = "incoming" | "outgoing";
-export const SmsDocumentWayTypeEnum = /*@__PURE__*/ S.String;
-
-export interface GetSmsServiceNameDocumentRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** Filter SMSs with their batch ID (outgoing SMSs only) */
-  batchID?: string;
-  /** Filter the value of creationDatetime property (>=) */
-  creationDatetime_from?: string;
-  /** Filter the value of creationDatetime property (<=) */
-  creationDatetime_to?: string;
-  /** Select sms with a specific identifier group tag */
-  tag?: string;
-  /** specify outgoing or incoming sms */
-  wayType: SmsDocumentWayTypeEnum | (string & {});
-}
-export const GetSmsServiceNameDocumentRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceName: S.String.pipe(T.Label()),
-    batchID: S.optional(S.String.pipe(T.Query())),
-    creationDatetime_from: S.optional(
-      S.String.pipe(T.Query("creationDatetime.from")),
-    ),
-    creationDatetime_to: S.optional(
-      S.String.pipe(T.Query("creationDatetime.to")),
-    ),
-    tag: S.optional(S.String.pipe(T.Query())),
-    wayType: SmsDocumentWayTypeEnum.pipe(T.Query()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/sms/{serviceName}/document", code: 200 }),
-  ),
-).annotate({
-  identifier: "GetSmsServiceNameDocumentRequest",
-}) as any as S.Schema<GetSmsServiceNameDocumentRequest>;
-
-export type GetSmsServiceNameDocumentResponse = string;
-export const GetSmsServiceNameDocumentResponse = /*@__PURE__*/ S.suspend(() =>
+export type GetSmsReceiverCsvResponse = string;
+export const GetSmsReceiverCsvResponse = /*@__PURE__*/ S.suspend(() =>
   S.String.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "GetSmsServiceNameDocumentResponse",
-}) as any as S.Schema<GetSmsServiceNameDocumentResponse>;
+  identifier: "GetSmsReceiverCsvResponse",
+}) as any as S.Schema<GetSmsReceiverCsvResponse>;
 
-export interface GetSmsServiceNameExceptionsRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** The receiver number to check */
-  receiver: string;
-}
-export const GetSmsServiceNameExceptionsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceName: S.String.pipe(T.Label()),
-    receiver: S.String.pipe(T.Query()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/sms/{serviceName}/exceptions", code: 200 }),
-  ),
-).annotate({
-  identifier: "GetSmsServiceNameExceptionsRequest",
-}) as any as S.Schema<GetSmsServiceNameExceptionsRequest>;
-
-/** The exception message */
-export type SmsExceptionMessagesList = Array<string>;
-export const SmsExceptionMessagesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<SmsExceptionMessagesList>;
-
-/** Restriction type used by the operator to filter sms. */
-export type SmsRestrictionCodeEnum =
-  | "ALPHA"
-  | "BAD_DLR"
-  | "BLOCKED"
-  | "CODING"
-  | "DLR"
-  | "FLASHONLY"
-  | "MSISDN";
-export const SmsRestrictionCodeEnum = /*@__PURE__*/ S.String;
-
-/** Sms reach list */
-export interface SmsException {
-  /** The abreviated country code. */
-  countrySuffixe?: string;
-  /** The exception message */
-  messages?: SmsExceptionMessagesList;
-  /** The list of operators impacted. */
-  operators?: string;
-  /** The type of routing restriction imposed by the operator */
-  restrictionCode?: SmsRestrictionCodeEnum;
-  /** The substitution sender used to bypass operator filter */
-  substitution?: string | null;
-}
-export const SmsException = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    countrySuffixe: S.optional(S.String),
-    messages: S.optional(SmsExceptionMessagesList),
-    operators: S.optional(S.String),
-    restrictionCode: S.optional(SmsRestrictionCodeEnum),
-    substitution: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({ identifier: "SmsException" }) as any as S.Schema<SmsException>;
-
-export type GetSmsServiceNameExceptionsResponseBodyList = Array<SmsException>;
-export const GetSmsServiceNameExceptionsResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    SmsException,
-  ) as any as S.Schema<GetSmsServiceNameExceptionsResponseBodyList>;
-
-export type GetSmsServiceNameExceptionsResponse =
-  GetSmsServiceNameExceptionsResponseBodyList;
-export const GetSmsServiceNameExceptionsResponse = /*@__PURE__*/ S.suspend(() =>
-  GetSmsServiceNameExceptionsResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetSmsServiceNameExceptionsResponse",
-}) as any as S.Schema<GetSmsServiceNameExceptionsResponse>;
-
-export interface GetSmsServiceNameHlrRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-}
-export const GetSmsServiceNameHlrRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceName: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/sms/{serviceName}/hlr", code: 200 })),
-).annotate({
-  identifier: "GetSmsServiceNameHlrRequest",
-}) as any as S.Schema<GetSmsServiceNameHlrRequest>;
-
-export type GetSmsServiceNameHlrResponseBodyList = Array<number>;
-export const GetSmsServiceNameHlrResponseBodyList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<GetSmsServiceNameHlrResponseBodyList>;
-
-export type GetSmsServiceNameHlrResponse = GetSmsServiceNameHlrResponseBodyList;
-export const GetSmsServiceNameHlrResponse = /*@__PURE__*/ S.suspend(() =>
-  GetSmsServiceNameHlrResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetSmsServiceNameHlrResponse",
-}) as any as S.Schema<GetSmsServiceNameHlrResponse>;
-
-export interface GetSmsServiceNameHlrIdRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** HLR id */
-  id: number;
-}
-export const GetSmsServiceNameHlrIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceName: S.String.pipe(T.Label()),
-    id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/sms/{serviceName}/hlr/{id}", code: 200 }),
-  ),
-).annotate({
-  identifier: "GetSmsServiceNameHlrIdRequest",
-}) as any as S.Schema<GetSmsServiceNameHlrIdRequest>;
-
-/** The sms coding */
-export type SmsHlrStatuses = "doing" | "done" | "error" | "todo";
-export const SmsHlrStatuses = /*@__PURE__*/ S.String;
-
-/** Home Location Register informations. Give informations about a given cellular phone. */
-export interface SmsHlrLookupNumber {
-  /** HLR creation datetime */
-  datetime?: string;
-  /** HLR id */
-  id?: number;
-  /** MSISDN */
-  msisdn?: string;
-  /** The {Mobile Country Code, Mobile Network Code} unique identifier */
-  operatorCode?: string;
-  /** Has the MSISDN been ported from its original network */
-  ported?: boolean;
-  /** Is the MSISDN currently reachable */
-  reachable?: boolean;
-  /** Is the MSISDN currently roaming outside its natinal network */
-  roaming?: boolean;
-  /** Status of the HLR request */
-  status?: SmsHlrStatuses;
-  /** Is the MSISDN valid */
-  valid?: boolean;
-}
-export const SmsHlrLookupNumber = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    datetime: S.optional(S.String),
-    id: S.optional(S.Number),
-    msisdn: S.optional(S.String),
-    operatorCode: S.optional(S.String),
-    ported: S.optional(S.Boolean),
-    reachable: S.optional(S.Boolean),
-    roaming: S.optional(S.Boolean),
-    status: S.optional(SmsHlrStatuses),
-    valid: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "SmsHlrLookupNumber",
-}) as any as S.Schema<SmsHlrLookupNumber>;
-
-export interface GetSmsServiceNameHlrIdOperatorRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** HLR id */
-  id: number;
-}
-export const GetSmsServiceNameHlrIdOperatorRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/sms/{serviceName}/hlr/{id}/operator",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "GetSmsServiceNameHlrIdOperatorRequest",
-}) as any as S.Schema<GetSmsServiceNameHlrIdOperatorRequest>;
-
-/** Sms operator informations */
-export interface SmsHlr {
-  /** The country */
-  country?: string;
-  /** The countryCode prefix number */
-  countryCode?: string;
-  /** The network name */
-  network?: string;
-  /** The operator name */
-  operator?: string;
-  /** The region */
-  region?: string;
-}
-export const SmsHlr = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    country: S.optional(S.String),
-    countryCode: S.optional(S.String),
-    network: S.optional(S.String),
-    operator: S.optional(S.String),
-    region: S.optional(S.String),
-  }),
-).annotate({ identifier: "SmsHlr" }) as any as S.Schema<SmsHlr>;
-
-export interface GetSmsServiceNameIncomingRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** Filter the value of creationDatetime property (>=) */
-  creationDatetime_from?: string;
-  /** Filter the value of creationDatetime property (<=) */
-  creationDatetime_to?: string;
-  /** Filter the value of sender property (=) */
-  sender?: string;
-  /** Filter the value of tag property (=) */
-  tag?: string;
-}
-export const GetSmsServiceNameIncomingRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceName: S.String.pipe(T.Label()),
-    creationDatetime_from: S.optional(
-      S.String.pipe(T.Query("creationDatetime.from")),
-    ),
-    creationDatetime_to: S.optional(
-      S.String.pipe(T.Query("creationDatetime.to")),
-    ),
-    sender: S.optional(S.String.pipe(T.Query())),
-    tag: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/sms/{serviceName}/incoming", code: 200 }),
-  ),
-).annotate({
-  identifier: "GetSmsServiceNameIncomingRequest",
-}) as any as S.Schema<GetSmsServiceNameIncomingRequest>;
-
-export type GetSmsServiceNameIncomingResponseBodyList = Array<number>;
-export const GetSmsServiceNameIncomingResponseBodyList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<GetSmsServiceNameIncomingResponseBodyList>;
-
-export type GetSmsServiceNameIncomingResponse =
-  GetSmsServiceNameIncomingResponseBodyList;
-export const GetSmsServiceNameIncomingResponse = /*@__PURE__*/ S.suspend(() =>
-  GetSmsServiceNameIncomingResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetSmsServiceNameIncomingResponse",
-}) as any as S.Schema<GetSmsServiceNameIncomingResponse>;
-
-export interface GetSmsServiceNameIncomingIdRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** Id of the object */
-  id: number;
-}
-export const GetSmsServiceNameIncomingIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceName: S.String.pipe(T.Label()),
-    id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/sms/{serviceName}/incoming/{id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "GetSmsServiceNameIncomingIdRequest",
-}) as any as S.Schema<GetSmsServiceNameIncomingIdRequest>;
-
-/** Sms history of sms incoming received */
-export interface SmsIncoming {
-  creationDatetime?: string;
-  credits?: number;
-  id?: number;
-  message?: string;
-  sender?: string;
-  tag?: string;
-}
-export const SmsIncoming = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    creationDatetime: S.optional(S.String),
-    credits: S.optional(S.Number),
-    id: S.optional(S.Number),
-    message: S.optional(S.String),
-    sender: S.optional(S.String),
-    tag: S.optional(S.String),
-  }),
-).annotate({ identifier: "SmsIncoming" }) as any as S.Schema<SmsIncoming>;
-
-export interface GetSmsServiceNameJobsRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-}
-export const GetSmsServiceNameJobsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceName: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/sms/{serviceName}/jobs", code: 200 })),
-).annotate({
-  identifier: "GetSmsServiceNameJobsRequest",
-}) as any as S.Schema<GetSmsServiceNameJobsRequest>;
-
-export type GetSmsServiceNameJobsResponseBodyList = Array<number>;
-export const GetSmsServiceNameJobsResponseBodyList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<GetSmsServiceNameJobsResponseBodyList>;
-
-export type GetSmsServiceNameJobsResponse =
-  GetSmsServiceNameJobsResponseBodyList;
-export const GetSmsServiceNameJobsResponse = /*@__PURE__*/ S.suspend(() =>
-  GetSmsServiceNameJobsResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetSmsServiceNameJobsResponse",
-}) as any as S.Schema<GetSmsServiceNameJobsResponse>;
-
-export interface GetSmsServiceNameJobsIdRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** Id of the object */
-  id: number;
-}
-export const GetSmsServiceNameJobsIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceName: S.String.pipe(T.Label()),
-    id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/sms/{serviceName}/jobs/{id}", code: 200 }),
-  ),
-).annotate({
-  identifier: "GetSmsServiceNameJobsIdRequest",
-}) as any as S.Schema<GetSmsServiceNameJobsIdRequest>;
-
-/** Sms job */
-export interface SmsJob {
-  creationDatetime?: string;
-  credits?: number;
-  deliveredAt?: string | null;
-  deliveryReceipt?: number;
-  differedDelivery?: number;
-  id?: number;
-  message?: string;
-  messageLength?: number;
-  numberOfSms?: number;
-  ptt?: number;
-  receiver?: string;
-  sender?: string;
-  sentAt?: string | null;
-}
-export const SmsJob = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    creationDatetime: S.optional(S.String),
-    credits: S.optional(S.Number),
-    deliveredAt: S.optional(S.NullOr(S.String)),
-    deliveryReceipt: S.optional(S.Number),
-    differedDelivery: S.optional(S.Number),
-    id: S.optional(S.Number),
-    message: S.optional(S.String),
-    messageLength: S.optional(S.Number),
-    numberOfSms: S.optional(S.Number),
-    ptt: S.optional(S.Number),
-    receiver: S.optional(S.String),
-    sender: S.optional(S.String),
-    sentAt: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({ identifier: "SmsJob" }) as any as S.Schema<SmsJob>;
-
-export interface GetSmsServiceNameOutgoingRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** Filter on batch id property (=) */
-  batchID?: string;
-  /** Filter on creationDatetime property (>=) */
-  creationDatetime_from?: string;
-  /** Filter on creationDatetime property (<=) */
-  creationDatetime_to?: string;
-  /** Filter on deliveryReceipt property (=) */
-  deliveryReceipt?: number;
-  /** Filter on differedDelivery property (=) */
-  differedDelivery?: number;
-  /** Filter on message id property (=) */
-  messageID?: string;
-  /** Filter on ptt property (=) */
-  ptt?: number;
-  /** Filter on receiver property (=) */
-  receiver?: string;
-  /** Filter on sender property (=) */
-  sender?: string;
-  /** Filter on tag property (=) */
-  tag?: string;
-}
-export const GetSmsServiceNameOutgoingRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceName: S.String.pipe(T.Label()),
-    batchID: S.optional(S.String.pipe(T.Query())),
-    creationDatetime_from: S.optional(
-      S.String.pipe(T.Query("creationDatetime.from")),
-    ),
-    creationDatetime_to: S.optional(
-      S.String.pipe(T.Query("creationDatetime.to")),
-    ),
-    deliveryReceipt: S.optional(S.Number.pipe(T.Query())),
-    differedDelivery: S.optional(S.Number.pipe(T.Query())),
-    messageID: S.optional(S.String.pipe(T.Query())),
-    ptt: S.optional(S.Number.pipe(T.Query())),
-    receiver: S.optional(S.String.pipe(T.Query())),
-    sender: S.optional(S.String.pipe(T.Query())),
-    tag: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/sms/{serviceName}/outgoing", code: 200 }),
-  ),
-).annotate({
-  identifier: "GetSmsServiceNameOutgoingRequest",
-}) as any as S.Schema<GetSmsServiceNameOutgoingRequest>;
-
-export type GetSmsServiceNameOutgoingResponseBodyList = Array<number>;
-export const GetSmsServiceNameOutgoingResponseBodyList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<GetSmsServiceNameOutgoingResponseBodyList>;
-
-export type GetSmsServiceNameOutgoingResponse =
-  GetSmsServiceNameOutgoingResponseBodyList;
-export const GetSmsServiceNameOutgoingResponse = /*@__PURE__*/ S.suspend(() =>
-  GetSmsServiceNameOutgoingResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetSmsServiceNameOutgoingResponse",
-}) as any as S.Schema<GetSmsServiceNameOutgoingResponse>;
-
-export interface GetSmsServiceNameOutgoingIdRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** Id */
-  id: number;
-}
-export const GetSmsServiceNameOutgoingIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceName: S.String.pipe(T.Label()),
-    id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/sms/{serviceName}/outgoing/{id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "GetSmsServiceNameOutgoingIdRequest",
-}) as any as S.Schema<GetSmsServiceNameOutgoingIdRequest>;
-
-/** Sent SMS */
-export interface SmsOutgoing {
-  /** ID of batch linked to the SMS */
-  batchID?: string | null;
-  /** Creation datetime */
-  creationDatetime?: string;
-  /** Spent credits */
-  credits?: number;
-  /** Delivering datetime */
-  deliveredAt?: string | null;
-  /** Delivery receipt from operator */
-  deliveryReceipt?: number;
-  /** Delay before SMS sending */
-  differedDelivery?: number;
-  /** Identifier */
-  id?: number;
-  /** SMS message */
-  message?: string;
-  /** SMPP messageID */
-  messageID?: string | null;
-  /** SMS message length */
-  messageLength?: number;
-  /** SMS message's number of parts */
-  numberOfSms?: number;
-  /** Code representing SMS state */
-  ptt?: number;
-  /** SMS receiver */
-  receiver?: string;
-  /** SMS sender */
-  sender?: string;
-  /** Sending datetime */
-  sentAt?: string | null;
-  /** Customer label to categorize SMSs */
-  tag?: string;
-  /** Tariff code applied on the sms */
-  tariffCode?: string;
-}
-export const SmsOutgoing = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    batchID: S.optional(S.NullOr(S.String)),
-    creationDatetime: S.optional(S.String),
-    credits: S.optional(S.Number),
-    deliveredAt: S.optional(S.NullOr(S.String)),
-    deliveryReceipt: S.optional(S.Number),
-    differedDelivery: S.optional(S.Number),
-    id: S.optional(S.Number),
-    message: S.optional(S.String),
-    messageID: S.optional(S.NullOr(S.String)),
-    messageLength: S.optional(S.Number),
-    numberOfSms: S.optional(S.Number),
-    ptt: S.optional(S.Number),
-    receiver: S.optional(S.String),
-    sender: S.optional(S.String),
-    sentAt: S.optional(S.NullOr(S.String)),
-    tag: S.optional(S.String),
-    tariffCode: S.optional(S.String),
-  }),
-).annotate({ identifier: "SmsOutgoing" }) as any as S.Schema<SmsOutgoing>;
-
-export interface GetSmsServiceNameOutgoingIdHlrRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** Id of the object */
-  id: number;
-}
-export const GetSmsServiceNameOutgoingIdHlrRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/sms/{serviceName}/outgoing/{id}/hlr",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "GetSmsServiceNameOutgoingIdHlrRequest",
-}) as any as S.Schema<GetSmsServiceNameOutgoingIdHlrRequest>;
-
-export interface GetSmsServiceNamePhonebooksRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-}
-export const GetSmsServiceNamePhonebooksRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/sms/{serviceName}/phonebooks", code: 200 }),
-  ),
-).annotate({
-  identifier: "GetSmsServiceNamePhonebooksRequest",
-}) as any as S.Schema<GetSmsServiceNamePhonebooksRequest>;
-
-export type GetSmsServiceNamePhonebooksResponseBodyList = Array<string>;
-export const GetSmsServiceNamePhonebooksResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetSmsServiceNamePhonebooksResponseBodyList>;
-
-export type GetSmsServiceNamePhonebooksResponse =
-  GetSmsServiceNamePhonebooksResponseBodyList;
-export const GetSmsServiceNamePhonebooksResponse = /*@__PURE__*/ S.suspend(() =>
-  GetSmsServiceNamePhonebooksResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetSmsServiceNamePhonebooksResponse",
-}) as any as S.Schema<GetSmsServiceNamePhonebooksResponse>;
-
-export interface GetSmsServiceNamePhonebooksBookKeyRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** Identifier of the phonebook */
-  bookKey: string;
-}
-export const GetSmsServiceNamePhonebooksBookKeyRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      bookKey: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/sms/{serviceName}/phonebooks/{bookKey}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetSmsServiceNamePhonebooksBookKeyRequest",
-  }) as any as S.Schema<GetSmsServiceNamePhonebooksBookKeyRequest>;
-
-/** Phone book */
-export interface SmsPhonebook {
-  /** Identifier of the phonebook */
-  bookKey?: string;
-  /** Phonebook name */
-  name?: string;
-  /** Phone key identifier between the phone and phonebooks */
-  phoneKey?: string;
-}
-export const SmsPhonebook = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    bookKey: S.optional(S.String),
-    name: S.optional(S.String),
-    phoneKey: S.optional(S.String),
-  }),
-).annotate({ identifier: "SmsPhonebook" }) as any as S.Schema<SmsPhonebook>;
-
-/** Export file format */
-export type TelephonyContactsExportFormatsEnum = "csv";
-export const TelephonyContactsExportFormatsEnum = /*@__PURE__*/ S.String;
-
-export interface GetSmsServiceNamePhonebooksBookKeyExportRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** Identifier of the phonebook */
-  bookKey: string;
-  /** Format of the file */
-  format: TelephonyContactsExportFormatsEnum | (string & {});
-}
-export const GetSmsServiceNamePhonebooksBookKeyExportRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      bookKey: S.String.pipe(T.Label()),
-      format: TelephonyContactsExportFormatsEnum.pipe(T.Query()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/sms/{serviceName}/phonebooks/{bookKey}/export",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetSmsServiceNamePhonebooksBookKeyExportRequest",
-  }) as any as S.Schema<GetSmsServiceNamePhonebooksBookKeyExportRequest>;
-
-/** File providing task status */
-export type TelephonyPcsFileStatusEnum = "doing" | "done" | "error" | "todo";
-export const TelephonyPcsFileStatusEnum = /*@__PURE__*/ S.String;
-
-/** Telephony API related file hosted */
-export interface TelephonyPcsFile {
-  filename?: string;
-  status?: TelephonyPcsFileStatusEnum;
-  url?: string;
-  urlExpirationDatetime?: string;
-}
-export const TelephonyPcsFile = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    filename: S.optional(S.String),
-    status: S.optional(TelephonyPcsFileStatusEnum),
-    url: S.optional(S.String),
-    urlExpirationDatetime: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "TelephonyPcsFile",
-}) as any as S.Schema<TelephonyPcsFile>;
-
-export interface GetSmsServiceNamePhonebooksBookKeyPhonebookContactRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** Identifier of the phonebook */
-  bookKey: string;
-}
-export const GetSmsServiceNamePhonebooksBookKeyPhonebookContactRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      bookKey: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/sms/{serviceName}/phonebooks/{bookKey}/phonebookContact",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetSmsServiceNamePhonebooksBookKeyPhonebookContactRequest",
-  }) as any as S.Schema<GetSmsServiceNamePhonebooksBookKeyPhonebookContactRequest>;
-
-export type GetSmsServiceNamePhonebooksBookKeyPhonebookContactResponseBodyList =
-  Array<number>;
-export const GetSmsServiceNamePhonebooksBookKeyPhonebookContactResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<GetSmsServiceNamePhonebooksBookKeyPhonebookContactResponseBodyList>;
-
-export type GetSmsServiceNamePhonebooksBookKeyPhonebookContactResponse =
-  GetSmsServiceNamePhonebooksBookKeyPhonebookContactResponseBodyList;
-export const GetSmsServiceNamePhonebooksBookKeyPhonebookContactResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetSmsServiceNamePhonebooksBookKeyPhonebookContactResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetSmsServiceNamePhonebooksBookKeyPhonebookContactResponse",
-  }) as any as S.Schema<GetSmsServiceNamePhonebooksBookKeyPhonebookContactResponse>;
-
-export interface GetSmsServiceNamePhonebooksBookKeyPhonebookContactIdRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** Identifier of the phonebook */
-  bookKey: string;
-  /** Contact identifier */
-  id: number;
-}
-export const GetSmsServiceNamePhonebooksBookKeyPhonebookContactIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      bookKey: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/sms/{serviceName}/phonebooks/{bookKey}/phonebookContact/{id}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetSmsServiceNamePhonebooksBookKeyPhonebookContactIdRequest",
-  }) as any as S.Schema<GetSmsServiceNamePhonebooksBookKeyPhonebookContactIdRequest>;
-
-/** Phone book contact */
-export interface SmsPhonebookContact {
-  /** Group name of the phonebook */
-  group?: string;
-  /** Home mobile phone number of the contact */
-  homeMobile?: string | null;
-  /** Home landline phone number of the contact */
-  homePhone?: string | null;
-  /** Contact identifier */
-  id?: number;
-  /** Contact name */
-  name?: string;
-  /** Contact surname */
-  surname?: string;
-  /** Mobile phone office number of the contact */
-  workMobile?: string | null;
-  /** Landline phone office number of the contact */
-  workPhone?: string | null;
-}
-export const SmsPhonebookContact = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    group: S.optional(S.String),
-    homeMobile: S.optional(S.NullOr(S.String)),
-    homePhone: S.optional(S.NullOr(S.String)),
-    id: S.optional(S.Number),
-    name: S.optional(S.String),
-    surname: S.optional(S.String),
-    workMobile: S.optional(S.NullOr(S.String)),
-    workPhone: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "SmsPhonebookContact",
-}) as any as S.Schema<SmsPhonebookContact>;
-
-export interface GetSmsServiceNameReceiversRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-}
-export const GetSmsServiceNameReceiversRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/sms/{serviceName}/receivers", code: 200 }),
-  ),
-).annotate({
-  identifier: "GetSmsServiceNameReceiversRequest",
-}) as any as S.Schema<GetSmsServiceNameReceiversRequest>;
-
-export type GetSmsServiceNameReceiversResponseBodyList = Array<number>;
-export const GetSmsServiceNameReceiversResponseBodyList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<GetSmsServiceNameReceiversResponseBodyList>;
-
-export type GetSmsServiceNameReceiversResponse =
-  GetSmsServiceNameReceiversResponseBodyList;
-export const GetSmsServiceNameReceiversResponse = /*@__PURE__*/ S.suspend(() =>
-  GetSmsServiceNameReceiversResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetSmsServiceNameReceiversResponse",
-}) as any as S.Schema<GetSmsServiceNameReceiversResponse>;
-
-export interface GetSmsServiceNameReceiversSlotIdRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** Slot number id */
-  slotId: number;
-}
-export const GetSmsServiceNameReceiversSlotIdRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      slotId: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/sms/{serviceName}/receivers/{slotId}",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "GetSmsServiceNameReceiversSlotIdRequest",
-}) as any as S.Schema<GetSmsServiceNameReceiversSlotIdRequest>;
-
-/** Sms receivers preloaded */
-export interface SmsReceiver {
-  /** Download file from URL before sending to contacts (works only with csvUrl and not document ID) */
-  autoUpdate?: boolean;
-  /** Is the object compatible with autoUpdate */
-  canAutoUpdate?: boolean;
-  /** Creation date of the document */
-  datetime?: string;
-  /** Description name of the document */
-  description?: string;
-  /** Number of receiver records in the document */
-  records?: number;
-  /** Slot number id */
-  slotId?: number;
-}
-export const SmsReceiver = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    autoUpdate: S.optional(S.Boolean),
-    canAutoUpdate: S.optional(S.Boolean),
-    datetime: S.optional(S.String),
-    description: S.optional(S.String),
-    records: S.optional(S.Number),
-    slotId: S.optional(S.Number),
-  }),
-).annotate({ identifier: "SmsReceiver" }) as any as S.Schema<SmsReceiver>;
-
-export interface GetSmsServiceNameReceiversSlotIdCsvRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** Slot number id */
-  slotId: number;
-}
-export const GetSmsServiceNameReceiversSlotIdCsvRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      slotId: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/sms/{serviceName}/receivers/{slotId}/csv",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetSmsServiceNameReceiversSlotIdCsvRequest",
-  }) as any as S.Schema<GetSmsServiceNameReceiversSlotIdCsvRequest>;
-
-export type GetSmsServiceNameReceiversSlotIdCsvResponse = string;
-export const GetSmsServiceNameReceiversSlotIdCsvResponse =
-  /*@__PURE__*/ S.suspend(() => S.String.pipe(T.RawResponseRoot())).annotate({
-    identifier: "GetSmsServiceNameReceiversSlotIdCsvResponse",
-  }) as any as S.Schema<GetSmsServiceNameReceiversSlotIdCsvResponse>;
-
-/** All country prices accessible from a reference */
-export type ReferenceCountryEnum =
-  | "all"
-  | "ca"
-  | "cz"
-  | "de"
-  | "en"
-  | "es"
-  | "fi"
-  | "fr"
-  | "gb"
-  | "ie"
-  | "it"
-  | "lt"
-  | "ma"
-  | "nl"
-  | "pl"
-  | "pp"
-  | "pt"
-  | "qc"
-  | "ru"
-  | "sk"
-  | "sn"
-  | "tn"
-  | "we";
-export const ReferenceCountryEnum = /*@__PURE__*/ S.String;
-
-/** Pack quantity levels */
-export type SmsPackQuantityEnum =
-  | 100
-  | 200
-  | 250
-  | 500
-  | 1000
-  | 2500
-  | 5000
-  | 10000
-  | 25000
-  | 50000
-  | 100000
-  | 1000000;
-export const SmsPackQuantityEnum = /*@__PURE__*/ S.Number;
-
-export interface GetSmsServiceNameSeeOffersRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** Filter to have the currency country prices */
-  countryCurrencyPrice: ReferenceCountryEnum | (string & {});
-  /** Filter to have the country destination */
-  countryDestination: SmsCountryEnum | (string & {});
-  /** Sms pack offer quantity */
-  quantity: SmsPackQuantityEnum | (number & {});
-}
-export const GetSmsServiceNameSeeOffersRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceName: S.String.pipe(T.Label()),
-    countryCurrencyPrice: ReferenceCountryEnum.pipe(T.Query()),
-    countryDestination: SmsCountryEnum.pipe(T.Query()),
-    quantity: SmsPackQuantityEnum.pipe(T.Query()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/sms/{serviceName}/seeOffers", code: 200 }),
-  ),
-).annotate({
-  identifier: "GetSmsServiceNameSeeOffersRequest",
-}) as any as S.Schema<GetSmsServiceNameSeeOffersRequest>;
-
-/** A structure describing all information about an sms pack offer */
-export interface SmsPackOffer {
-  countryDestination?: string;
-  giftPrice?: number | null;
-  giftQuantity?: number | null;
-  language?: string;
-  price?: number;
-  quantity?: number;
-  smsQuantity?: number;
-  totalPrice?: number | null;
-}
-export const SmsPackOffer = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    countryDestination: S.optional(S.String),
-    giftPrice: S.optional(S.NullOr(S.Number)),
-    giftQuantity: S.optional(S.NullOr(S.Number)),
-    language: S.optional(S.String),
-    price: S.optional(S.Number),
-    quantity: S.optional(S.Number),
-    smsQuantity: S.optional(S.Number),
-    totalPrice: S.optional(S.NullOr(S.Number)),
-  }),
-).annotate({ identifier: "SmsPackOffer" }) as any as S.Schema<SmsPackOffer>;
-
-export type GetSmsServiceNameSeeOffersResponseBodyList = Array<SmsPackOffer>;
-export const GetSmsServiceNameSeeOffersResponseBodyList = /*@__PURE__*/ S.Array(
-  SmsPackOffer,
-) as any as S.Schema<GetSmsServiceNameSeeOffersResponseBodyList>;
-
-export type GetSmsServiceNameSeeOffersResponse =
-  GetSmsServiceNameSeeOffersResponseBodyList;
-export const GetSmsServiceNameSeeOffersResponse = /*@__PURE__*/ S.suspend(() =>
-  GetSmsServiceNameSeeOffersResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetSmsServiceNameSeeOffersResponse",
-}) as any as S.Schema<GetSmsServiceNameSeeOffersResponse>;
-
-export interface GetSmsServiceNameSendersRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-}
-export const GetSmsServiceNameSendersRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/sms/{serviceName}/senders", code: 200 }),
-  ),
-).annotate({
-  identifier: "GetSmsServiceNameSendersRequest",
-}) as any as S.Schema<GetSmsServiceNameSendersRequest>;
-
-export type GetSmsServiceNameSendersResponseBodyList = Array<string>;
-export const GetSmsServiceNameSendersResponseBodyList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<GetSmsServiceNameSendersResponseBodyList>;
-
-export type GetSmsServiceNameSendersResponse =
-  GetSmsServiceNameSendersResponseBodyList;
-export const GetSmsServiceNameSendersResponse = /*@__PURE__*/ S.suspend(() =>
-  GetSmsServiceNameSendersResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetSmsServiceNameSendersResponse",
-}) as any as S.Schema<GetSmsServiceNameSendersResponse>;
-
-/** The referer of the available sender */
-export type SmsSenderRefererEnum = "domain" | "nichandle";
-export const SmsSenderRefererEnum = /*@__PURE__*/ S.String;
-
-export interface GetSmsServiceNameSendersAvailableForValidationRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** Information type */
-  referer?: SmsSenderRefererEnum | (string & {});
-}
-export const GetSmsServiceNameSendersAvailableForValidationRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      referer: S.optional(SmsSenderRefererEnum.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/sms/{serviceName}/sendersAvailableForValidation",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetSmsServiceNameSendersAvailableForValidationRequest",
-  }) as any as S.Schema<GetSmsServiceNameSendersAvailableForValidationRequest>;
-
-/** A structure describing all information about senders available */
-export interface SmsSenderAvailable {
-  referer?: SmsSenderRefererEnum;
-  sender?: string;
-}
-export const SmsSenderAvailable = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    referer: S.optional(SmsSenderRefererEnum),
-    sender: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SmsSenderAvailable",
-}) as any as S.Schema<SmsSenderAvailable>;
-
-export type GetSmsServiceNameSendersAvailableForValidationResponseBodyList =
-  Array<SmsSenderAvailable>;
-export const GetSmsServiceNameSendersAvailableForValidationResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    SmsSenderAvailable,
-  ) as any as S.Schema<GetSmsServiceNameSendersAvailableForValidationResponseBodyList>;
-
-export type GetSmsServiceNameSendersAvailableForValidationResponse =
-  GetSmsServiceNameSendersAvailableForValidationResponseBodyList;
-export const GetSmsServiceNameSendersAvailableForValidationResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetSmsServiceNameSendersAvailableForValidationResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetSmsServiceNameSendersAvailableForValidationResponse",
-  }) as any as S.Schema<GetSmsServiceNameSendersAvailableForValidationResponse>;
-
-export interface GetSmsServiceNameSendersSenderRequest {
+export interface GetSmsSenderRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** The sms sender */
   sender: string;
 }
-export const GetSmsServiceNameSendersSenderRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      sender: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/sms/{serviceName}/senders/{sender}",
-        code: 200,
-      }),
-    ),
+export const GetSmsSenderRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    sender: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/sms/{serviceName}/senders/{sender}",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "GetSmsServiceNameSendersSenderRequest",
-}) as any as S.Schema<GetSmsServiceNameSendersSenderRequest>;
+  identifier: "GetSmsSenderRequest",
+}) as any as S.Schema<GetSmsSenderRequest>;
 
 /** All tyoplogy of senders */
 export type SmsRefererSenderEnum =
@@ -2572,10 +2738,6 @@ export type SmsStatusSenderEnum =
   | "refused"
   | "waitingValidation";
 export const SmsStatusSenderEnum = /*@__PURE__*/ S.String;
-
-/** All existing types for a given sender */
-export type SmsTypeSenderEnum = "alpha" | "numeric" | "shortcode" | "virtual";
-export const SmsTypeSenderEnum = /*@__PURE__*/ S.String;
 
 /** SMS senders */
 export interface SmsSender {
@@ -2606,47 +2768,7 @@ export const SmsSender = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "SmsSender" }) as any as S.Schema<SmsSender>;
 
-export interface GetSmsServiceNameSendersSenderDocumentsRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** The sms sender */
-  sender: string;
-}
-export const GetSmsServiceNameSendersSenderDocumentsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      sender: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/sms/{serviceName}/senders/{sender}/documents",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetSmsServiceNameSendersSenderDocumentsRequest",
-  }) as any as S.Schema<GetSmsServiceNameSendersSenderDocumentsRequest>;
-
-export type GetSmsServiceNameSendersSenderDocumentsResponseBodyList =
-  Array<string>;
-export const GetSmsServiceNameSendersSenderDocumentsResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetSmsServiceNameSendersSenderDocumentsResponseBodyList>;
-
-export type GetSmsServiceNameSendersSenderDocumentsResponse =
-  GetSmsServiceNameSendersSenderDocumentsResponseBodyList;
-export const GetSmsServiceNameSendersSenderDocumentsResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetSmsServiceNameSendersSenderDocumentsResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetSmsServiceNameSendersSenderDocumentsResponse",
-  }) as any as S.Schema<GetSmsServiceNameSendersSenderDocumentsResponse>;
-
-export interface GetSmsServiceNameSendersSenderDocumentsDocumentIDRequest {
+export interface GetSmsSenderDocumentRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** The sms sender */
@@ -2654,72 +2776,39 @@ export interface GetSmsServiceNameSendersSenderDocumentsDocumentIDRequest {
   /** Document ID */
   documentID: string;
 }
-export const GetSmsServiceNameSendersSenderDocumentsDocumentIDRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      sender: S.String.pipe(T.Label()),
-      documentID: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/sms/{serviceName}/senders/{sender}/documents/{documentID}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetSmsServiceNameSendersSenderDocumentsDocumentIDRequest",
-  }) as any as S.Schema<GetSmsServiceNameSendersSenderDocumentsDocumentIDRequest>;
-
-/** SMS senders' document */
-export interface SmsSenderDocument {
-  /** Creation datetime */
-  createdAt?: string;
-  /** Document description */
-  description?: string | null;
-  /** Document ID */
-  documentID?: string;
-  /** URL to get document */
-  getUrl?: string;
-  /** Document name */
-  name?: string;
-  /** URL to upload document */
-  putUrl?: string | null;
-  /** Document size (in bytes) */
-  size?: number;
-}
-export const SmsSenderDocument = /*@__PURE__*/ S.suspend(() =>
+export const GetSmsSenderDocumentRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    createdAt: S.optional(S.String),
-    description: S.optional(S.NullOr(S.String)),
-    documentID: S.optional(S.String),
-    getUrl: S.optional(S.String),
-    name: S.optional(S.String),
-    putUrl: S.optional(S.NullOr(S.String)),
-    size: S.optional(S.Number),
-  }),
+    serviceName: S.String.pipe(T.Label()),
+    sender: S.String.pipe(T.Label()),
+    documentID: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/sms/{serviceName}/senders/{sender}/documents/{documentID}",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "SmsSenderDocument",
-}) as any as S.Schema<SmsSenderDocument>;
+  identifier: "GetSmsSenderDocumentRequest",
+}) as any as S.Schema<GetSmsSenderDocumentRequest>;
 
-export interface GetSmsServiceNameServiceInfosRequest {
+export interface GetSmsServiceInfosRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
 }
-export const GetSmsServiceNameServiceInfosRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/sms/{serviceName}/serviceInfos",
-        code: 200,
-      }),
-    ),
+export const GetSmsServiceInfosRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/sms/{serviceName}/serviceInfos",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "GetSmsServiceNameServiceInfosRequest",
-}) as any as S.Schema<GetSmsServiceNameServiceInfosRequest>;
+  identifier: "GetSmsServiceInfosRequest",
+}) as any as S.Schema<GetSmsServiceInfosRequest>;
 
 /** All the possible renew period of your service in month */
 export type ServicesServicePossibleRenewPeriodList = Array<number>;
@@ -2814,58 +2903,23 @@ export const ServicesService = /*@__PURE__*/ S.suspend(() =>
   identifier: "ServicesService",
 }) as any as S.Schema<ServicesService>;
 
-export interface GetSmsServiceNameSmppAllowedIPsRequest {
+export interface GetSmsSmppSettingsRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
 }
-export const GetSmsServiceNameSmppAllowedIPsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/sms/{serviceName}/smpp/allowedIPs",
-        code: 200,
-      }),
-    ),
+export const GetSmsSmppSettingsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/sms/{serviceName}/smpp/settings",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "GetSmsServiceNameSmppAllowedIPsRequest",
-}) as any as S.Schema<GetSmsServiceNameSmppAllowedIPsRequest>;
-
-export type GetSmsServiceNameSmppAllowedIPsResponseBodyList = Array<string>;
-export const GetSmsServiceNameSmppAllowedIPsResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetSmsServiceNameSmppAllowedIPsResponseBodyList>;
-
-export type GetSmsServiceNameSmppAllowedIPsResponse =
-  GetSmsServiceNameSmppAllowedIPsResponseBodyList;
-export const GetSmsServiceNameSmppAllowedIPsResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    GetSmsServiceNameSmppAllowedIPsResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetSmsServiceNameSmppAllowedIPsResponse",
-}) as any as S.Schema<GetSmsServiceNameSmppAllowedIPsResponse>;
-
-export interface GetSmsServiceNameSmppSettingsRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-}
-export const GetSmsServiceNameSmppSettingsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/sms/{serviceName}/smpp/settings",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "GetSmsServiceNameSmppSettingsRequest",
-}) as any as S.Schema<GetSmsServiceNameSmppSettingsRequest>;
+  identifier: "GetSmsSmppSettingsRequest",
+}) as any as S.Schema<GetSmsSmppSettingsRequest>;
 
 /** SMPP Settings Endpoints */
 export interface SmsSettingsEndpoints {
@@ -2922,49 +2976,12 @@ export const SmsSettings = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "SmsSettings" }) as any as S.Schema<SmsSettings>;
 
-/** Task status */
-export type TelephonyTaskStatusEnum =
-  | "doing"
-  | "done"
-  | "error"
-  | "pause"
-  | "todo";
-export const TelephonyTaskStatusEnum = /*@__PURE__*/ S.String;
-
-export interface GetSmsServiceNameTaskRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** Filter the value of status property (=) */
-  status?: TelephonyTaskStatusEnum | (string & {});
-}
-export const GetSmsServiceNameTaskRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceName: S.String.pipe(T.Label()),
-    status: S.optional(TelephonyTaskStatusEnum.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/sms/{serviceName}/task", code: 200 })),
-).annotate({
-  identifier: "GetSmsServiceNameTaskRequest",
-}) as any as S.Schema<GetSmsServiceNameTaskRequest>;
-
-export type GetSmsServiceNameTaskResponseBodyList = Array<number>;
-export const GetSmsServiceNameTaskResponseBodyList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<GetSmsServiceNameTaskResponseBodyList>;
-
-export type GetSmsServiceNameTaskResponse =
-  GetSmsServiceNameTaskResponseBodyList;
-export const GetSmsServiceNameTaskResponse = /*@__PURE__*/ S.suspend(() =>
-  GetSmsServiceNameTaskResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetSmsServiceNameTaskResponse",
-}) as any as S.Schema<GetSmsServiceNameTaskResponse>;
-
-export interface GetSmsServiceNameTaskTaskIdRequest {
+export interface GetSmsTaskRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   taskId: number;
 }
-export const GetSmsServiceNameTaskTaskIdRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetSmsTaskRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     serviceName: S.String.pipe(T.Label()),
     taskId: S.Number.pipe(T.Label()),
@@ -2976,12 +2993,21 @@ export const GetSmsServiceNameTaskTaskIdRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetSmsServiceNameTaskTaskIdRequest",
-}) as any as S.Schema<GetSmsServiceNameTaskTaskIdRequest>;
+  identifier: "GetSmsTaskRequest",
+}) as any as S.Schema<GetSmsTaskRequest>;
 
 /** The task function */
 export type SmsTodoGeneralPublicFunctionsEnum = "cleanSmsReceivers";
 export const SmsTodoGeneralPublicFunctionsEnum = /*@__PURE__*/ S.String;
+
+/** Task status */
+export type TelephonyTaskStatusEnum =
+  | "doing"
+  | "done"
+  | "error"
+  | "pause"
+  | "todo";
+export const TelephonyTaskStatusEnum = /*@__PURE__*/ S.String;
 
 /** The task step */
 export type SmsTodoGeneralPublicStepsEnum =
@@ -3009,68 +3035,26 @@ export const SmsTask = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "SmsTask" }) as any as S.Schema<SmsTask>;
 
-export interface GetSmsServiceNameTemplatesControlRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-}
-export const GetSmsServiceNameTemplatesControlRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/sms/{serviceName}/templatesControl",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "GetSmsServiceNameTemplatesControlRequest",
-}) as any as S.Schema<GetSmsServiceNameTemplatesControlRequest>;
-
-export type GetSmsServiceNameTemplatesControlResponseBodyList = Array<string>;
-export const GetSmsServiceNameTemplatesControlResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetSmsServiceNameTemplatesControlResponseBodyList>;
-
-export type GetSmsServiceNameTemplatesControlResponse =
-  GetSmsServiceNameTemplatesControlResponseBodyList;
-export const GetSmsServiceNameTemplatesControlResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetSmsServiceNameTemplatesControlResponseBodyList.pipe(T.RawResponseRoot()),
-  ).annotate({
-    identifier: "GetSmsServiceNameTemplatesControlResponse",
-  }) as any as S.Schema<GetSmsServiceNameTemplatesControlResponse>;
-
-export interface GetSmsServiceNameTemplatesControlNameRequest {
+export interface GetSmsTemplatesControlRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** Name of the template */
   name: string;
 }
-export const GetSmsServiceNameTemplatesControlNameRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      name: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/sms/{serviceName}/templatesControl/{name}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetSmsServiceNameTemplatesControlNameRequest",
-  }) as any as S.Schema<GetSmsServiceNameTemplatesControlNameRequest>;
-
-/** All existing types for a given template */
-export type SmsTypeTemplateEnum =
-  | "alerting"
-  | "authentification"
-  | "transactional";
-export const SmsTypeTemplateEnum = /*@__PURE__*/ S.String;
+export const GetSmsTemplatesControlRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/sms/{serviceName}/templatesControl/{name}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetSmsTemplatesControlRequest",
+}) as any as S.Schema<GetSmsTemplatesControlRequest>;
 
 /** Sms template for moderation (Needed to send in US country) */
 export interface SmsTemplateControl {
@@ -3103,40 +3087,13 @@ export const SmsTemplateControl = /*@__PURE__*/ S.suspend(() =>
   identifier: "SmsTemplateControl",
 }) as any as S.Schema<SmsTemplateControl>;
 
-export interface GetSmsServiceNameUsersRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-}
-export const GetSmsServiceNameUsersRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/sms/{serviceName}/users", code: 200 }),
-  ),
-).annotate({
-  identifier: "GetSmsServiceNameUsersRequest",
-}) as any as S.Schema<GetSmsServiceNameUsersRequest>;
-
-export type GetSmsServiceNameUsersResponseBodyList = Array<string>;
-export const GetSmsServiceNameUsersResponseBodyList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<GetSmsServiceNameUsersResponseBodyList>;
-
-export type GetSmsServiceNameUsersResponse =
-  GetSmsServiceNameUsersResponseBodyList;
-export const GetSmsServiceNameUsersResponse = /*@__PURE__*/ S.suspend(() =>
-  GetSmsServiceNameUsersResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetSmsServiceNameUsersResponse",
-}) as any as S.Schema<GetSmsServiceNameUsersResponse>;
-
-export interface GetSmsServiceNameUsersLoginRequest {
+export interface GetSmsUserRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** The sms user login */
   login: string;
 }
-export const GetSmsServiceNameUsersLoginRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetSmsUserRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     serviceName: S.String.pipe(T.Label()),
     login: S.String.pipe(T.Label()),
@@ -3148,8 +3105,8 @@ export const GetSmsServiceNameUsersLoginRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetSmsServiceNameUsersLoginRequest",
-}) as any as S.Schema<GetSmsServiceNameUsersLoginRequest>;
+  identifier: "GetSmsUserRequest",
+}) as any as S.Schema<GetSmsUserRequest>;
 
 /** The media support used to be contacted in case of alert */
 export type SmsSupportEnum = "both" | "mail" | "sms";
@@ -3219,7 +3176,7 @@ export const SmsUser = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "SmsUser" }) as any as S.Schema<SmsUser>;
 
-export interface GetSmsServiceNameUsersLoginDocumentRequest {
+export interface GetSmsUserDocumentRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** The sms user login */
@@ -3233,144 +3190,37 @@ export interface GetSmsServiceNameUsersLoginDocumentRequest {
   /** specify outgoing or incoming sms */
   wayType: SmsDocumentWayTypeEnum | (string & {});
 }
-export const GetSmsServiceNameUsersLoginDocumentRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      login: S.String.pipe(T.Label()),
-      creationDatetime_from: S.optional(
-        S.String.pipe(T.Query("creationDatetime.from")),
-      ),
-      creationDatetime_to: S.optional(
-        S.String.pipe(T.Query("creationDatetime.to")),
-      ),
-      tag: S.optional(S.String.pipe(T.Query())),
-      wayType: SmsDocumentWayTypeEnum.pipe(T.Query()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/sms/{serviceName}/users/{login}/document",
-        code: 200,
-      }),
+export const GetSmsUserDocumentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    login: S.String.pipe(T.Label()),
+    creationDatetime_from: S.optional(
+      S.String.pipe(T.Query("creationDatetime.from")),
     ),
-  ).annotate({
-    identifier: "GetSmsServiceNameUsersLoginDocumentRequest",
-  }) as any as S.Schema<GetSmsServiceNameUsersLoginDocumentRequest>;
-
-export type GetSmsServiceNameUsersLoginDocumentResponse = string;
-export const GetSmsServiceNameUsersLoginDocumentResponse =
-  /*@__PURE__*/ S.suspend(() => S.String.pipe(T.RawResponseRoot())).annotate({
-    identifier: "GetSmsServiceNameUsersLoginDocumentResponse",
-  }) as any as S.Schema<GetSmsServiceNameUsersLoginDocumentResponse>;
-
-export interface GetSmsServiceNameUsersLoginIncomingRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** The sms user login */
-  login: string;
-  /** Filter the value of sender property (=) */
-  sender?: string;
-  /** Filter the value of tag property (=) */
-  tag?: string;
-}
-export const GetSmsServiceNameUsersLoginIncomingRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      login: S.String.pipe(T.Label()),
-      sender: S.optional(S.String.pipe(T.Query())),
-      tag: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/sms/{serviceName}/users/{login}/incoming",
-        code: 200,
-      }),
+    creationDatetime_to: S.optional(
+      S.String.pipe(T.Query("creationDatetime.to")),
     ),
-  ).annotate({
-    identifier: "GetSmsServiceNameUsersLoginIncomingRequest",
-  }) as any as S.Schema<GetSmsServiceNameUsersLoginIncomingRequest>;
-
-export type GetSmsServiceNameUsersLoginIncomingResponseBodyList = Array<number>;
-export const GetSmsServiceNameUsersLoginIncomingResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<GetSmsServiceNameUsersLoginIncomingResponseBodyList>;
-
-export type GetSmsServiceNameUsersLoginIncomingResponse =
-  GetSmsServiceNameUsersLoginIncomingResponseBodyList;
-export const GetSmsServiceNameUsersLoginIncomingResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetSmsServiceNameUsersLoginIncomingResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetSmsServiceNameUsersLoginIncomingResponse",
-  }) as any as S.Schema<GetSmsServiceNameUsersLoginIncomingResponse>;
-
-export interface GetSmsServiceNameUsersLoginIncomingIdRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** The sms user login */
-  login: string;
-  /** Id of the object */
-  id: number;
-}
-export const GetSmsServiceNameUsersLoginIncomingIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      login: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/sms/{serviceName}/users/{login}/incoming/{id}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetSmsServiceNameUsersLoginIncomingIdRequest",
-  }) as any as S.Schema<GetSmsServiceNameUsersLoginIncomingIdRequest>;
-
-export interface GetSmsServiceNameUsersLoginJobsRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** The sms user login */
-  login: string;
-}
-export const GetSmsServiceNameUsersLoginJobsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      login: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/sms/{serviceName}/users/{login}/jobs",
-        code: 200,
-      }),
-    ),
+    tag: S.optional(S.String.pipe(T.Query())),
+    wayType: SmsDocumentWayTypeEnum.pipe(T.Query()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/sms/{serviceName}/users/{login}/document",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "GetSmsServiceNameUsersLoginJobsRequest",
-}) as any as S.Schema<GetSmsServiceNameUsersLoginJobsRequest>;
+  identifier: "GetSmsUserDocumentRequest",
+}) as any as S.Schema<GetSmsUserDocumentRequest>;
 
-export type GetSmsServiceNameUsersLoginJobsResponseBodyList = Array<number>;
-export const GetSmsServiceNameUsersLoginJobsResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<GetSmsServiceNameUsersLoginJobsResponseBodyList>;
-
-export type GetSmsServiceNameUsersLoginJobsResponse =
-  GetSmsServiceNameUsersLoginJobsResponseBodyList;
-export const GetSmsServiceNameUsersLoginJobsResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    GetSmsServiceNameUsersLoginJobsResponseBodyList.pipe(T.RawResponseRoot()),
+export type GetSmsUserDocumentResponse = string;
+export const GetSmsUserDocumentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.String.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "GetSmsServiceNameUsersLoginJobsResponse",
-}) as any as S.Schema<GetSmsServiceNameUsersLoginJobsResponse>;
+  identifier: "GetSmsUserDocumentResponse",
+}) as any as S.Schema<GetSmsUserDocumentResponse>;
 
-export interface GetSmsServiceNameUsersLoginJobsIdRequest {
+export interface GetSmsUserIncomingRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** The sms user login */
@@ -3378,81 +3228,23 @@ export interface GetSmsServiceNameUsersLoginJobsIdRequest {
   /** Id of the object */
   id: number;
 }
-export const GetSmsServiceNameUsersLoginJobsIdRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      login: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/sms/{serviceName}/users/{login}/jobs/{id}",
-        code: 200,
-      }),
-    ),
+export const GetSmsUserIncomingRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    login: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/sms/{serviceName}/users/{login}/incoming/{id}",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "GetSmsServiceNameUsersLoginJobsIdRequest",
-}) as any as S.Schema<GetSmsServiceNameUsersLoginJobsIdRequest>;
+  identifier: "GetSmsUserIncomingRequest",
+}) as any as S.Schema<GetSmsUserIncomingRequest>;
 
-export interface GetSmsServiceNameUsersLoginOutgoingRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** The sms user login */
-  login: string;
-  /** Filter the value of deliveryReceipt property (=) */
-  deliveryReceipt?: number;
-  /** Filter the value of differedDelivery property (=) */
-  differedDelivery?: number;
-  /** Filter the value of ptt property (=) */
-  ptt?: number;
-  /** Filter the value of receiver property (=) */
-  receiver?: string;
-  /** Filter the value of sender property (=) */
-  sender?: string;
-  /** Filter the value of tag property (=) */
-  tag?: string;
-}
-export const GetSmsServiceNameUsersLoginOutgoingRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      login: S.String.pipe(T.Label()),
-      deliveryReceipt: S.optional(S.Number.pipe(T.Query())),
-      differedDelivery: S.optional(S.Number.pipe(T.Query())),
-      ptt: S.optional(S.Number.pipe(T.Query())),
-      receiver: S.optional(S.String.pipe(T.Query())),
-      sender: S.optional(S.String.pipe(T.Query())),
-      tag: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/sms/{serviceName}/users/{login}/outgoing",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetSmsServiceNameUsersLoginOutgoingRequest",
-  }) as any as S.Schema<GetSmsServiceNameUsersLoginOutgoingRequest>;
-
-export type GetSmsServiceNameUsersLoginOutgoingResponseBodyList = Array<number>;
-export const GetSmsServiceNameUsersLoginOutgoingResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<GetSmsServiceNameUsersLoginOutgoingResponseBodyList>;
-
-export type GetSmsServiceNameUsersLoginOutgoingResponse =
-  GetSmsServiceNameUsersLoginOutgoingResponseBodyList;
-export const GetSmsServiceNameUsersLoginOutgoingResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetSmsServiceNameUsersLoginOutgoingResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetSmsServiceNameUsersLoginOutgoingResponse",
-  }) as any as S.Schema<GetSmsServiceNameUsersLoginOutgoingResponse>;
-
-export interface GetSmsServiceNameUsersLoginOutgoingIdRequest {
+export interface GetSmsUserJobRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** The sms user login */
@@ -3460,24 +3252,23 @@ export interface GetSmsServiceNameUsersLoginOutgoingIdRequest {
   /** Id of the object */
   id: number;
 }
-export const GetSmsServiceNameUsersLoginOutgoingIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      login: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/sms/{serviceName}/users/{login}/outgoing/{id}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetSmsServiceNameUsersLoginOutgoingIdRequest",
-  }) as any as S.Schema<GetSmsServiceNameUsersLoginOutgoingIdRequest>;
+export const GetSmsUserJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    login: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/sms/{serviceName}/users/{login}/jobs/{id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetSmsUserJobRequest",
+}) as any as S.Schema<GetSmsUserJobRequest>;
 
-export interface GetSmsServiceNameUsersLoginOutgoingIdHlrRequest {
+export interface GetSmsUserOutgoingRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** The sms user login */
@@ -3485,64 +3276,47 @@ export interface GetSmsServiceNameUsersLoginOutgoingIdHlrRequest {
   /** Id of the object */
   id: number;
 }
-export const GetSmsServiceNameUsersLoginOutgoingIdHlrRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      login: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/sms/{serviceName}/users/{login}/outgoing/{id}/hlr",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetSmsServiceNameUsersLoginOutgoingIdHlrRequest",
-  }) as any as S.Schema<GetSmsServiceNameUsersLoginOutgoingIdHlrRequest>;
+export const GetSmsUserOutgoingRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    login: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/sms/{serviceName}/users/{login}/outgoing/{id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetSmsUserOutgoingRequest",
+}) as any as S.Schema<GetSmsUserOutgoingRequest>;
 
-export interface GetSmsServiceNameUsersLoginReceiversRequest {
+export interface GetSmsUserOutgoingHlrRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** The sms user login */
   login: string;
+  /** Id of the object */
+  id: number;
 }
-export const GetSmsServiceNameUsersLoginReceiversRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      login: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/sms/{serviceName}/users/{login}/receivers",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetSmsServiceNameUsersLoginReceiversRequest",
-  }) as any as S.Schema<GetSmsServiceNameUsersLoginReceiversRequest>;
+export const GetSmsUserOutgoingHlrRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    login: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/sms/{serviceName}/users/{login}/outgoing/{id}/hlr",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetSmsUserOutgoingHlrRequest",
+}) as any as S.Schema<GetSmsUserOutgoingHlrRequest>;
 
-export type GetSmsServiceNameUsersLoginReceiversResponseBodyList =
-  Array<number>;
-export const GetSmsServiceNameUsersLoginReceiversResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<GetSmsServiceNameUsersLoginReceiversResponseBodyList>;
-
-export type GetSmsServiceNameUsersLoginReceiversResponse =
-  GetSmsServiceNameUsersLoginReceiversResponseBodyList;
-export const GetSmsServiceNameUsersLoginReceiversResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetSmsServiceNameUsersLoginReceiversResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetSmsServiceNameUsersLoginReceiversResponse",
-  }) as any as S.Schema<GetSmsServiceNameUsersLoginReceiversResponse>;
-
-export interface GetSmsServiceNameUsersLoginReceiversSlotIdRequest {
+export interface GetSmsUserReceiverRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** The sms user login */
@@ -3550,24 +3324,23 @@ export interface GetSmsServiceNameUsersLoginReceiversSlotIdRequest {
   /** Slot number id */
   slotId: number;
 }
-export const GetSmsServiceNameUsersLoginReceiversSlotIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      login: S.String.pipe(T.Label()),
-      slotId: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/sms/{serviceName}/users/{login}/receivers/{slotId}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetSmsServiceNameUsersLoginReceiversSlotIdRequest",
-  }) as any as S.Schema<GetSmsServiceNameUsersLoginReceiversSlotIdRequest>;
+export const GetSmsUserReceiverRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    login: S.String.pipe(T.Label()),
+    slotId: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/sms/{serviceName}/users/{login}/receivers/{slotId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetSmsUserReceiverRequest",
+}) as any as S.Schema<GetSmsUserReceiverRequest>;
 
-export interface GetSmsServiceNameUsersLoginReceiversSlotIdCsvRequest {
+export interface GetSmsUserReceiverCsvRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** The sms user login */
@@ -3575,84 +3348,42 @@ export interface GetSmsServiceNameUsersLoginReceiversSlotIdCsvRequest {
   /** Slot number id */
   slotId: number;
 }
-export const GetSmsServiceNameUsersLoginReceiversSlotIdCsvRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      login: S.String.pipe(T.Label()),
-      slotId: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/sms/{serviceName}/users/{login}/receivers/{slotId}/csv",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetSmsServiceNameUsersLoginReceiversSlotIdCsvRequest",
-  }) as any as S.Schema<GetSmsServiceNameUsersLoginReceiversSlotIdCsvRequest>;
-
-export type GetSmsServiceNameUsersLoginReceiversSlotIdCsvResponse = string;
-export const GetSmsServiceNameUsersLoginReceiversSlotIdCsvResponse =
-  /*@__PURE__*/ S.suspend(() => S.String.pipe(T.RawResponseRoot())).annotate({
-    identifier: "GetSmsServiceNameUsersLoginReceiversSlotIdCsvResponse",
-  }) as any as S.Schema<GetSmsServiceNameUsersLoginReceiversSlotIdCsvResponse>;
-
-export interface GetSmsServiceNameVirtualNumbersRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-}
-export const GetSmsServiceNameVirtualNumbersRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/sms/{serviceName}/virtualNumbers",
-        code: 200,
-      }),
-    ),
+export const GetSmsUserReceiverCsvRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    login: S.String.pipe(T.Label()),
+    slotId: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/sms/{serviceName}/users/{login}/receivers/{slotId}/csv",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "GetSmsServiceNameVirtualNumbersRequest",
-}) as any as S.Schema<GetSmsServiceNameVirtualNumbersRequest>;
+  identifier: "GetSmsUserReceiverCsvRequest",
+}) as any as S.Schema<GetSmsUserReceiverCsvRequest>;
 
-export type GetSmsServiceNameVirtualNumbersResponseBodyList = Array<string>;
-export const GetSmsServiceNameVirtualNumbersResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetSmsServiceNameVirtualNumbersResponseBodyList>;
-
-export type GetSmsServiceNameVirtualNumbersResponse =
-  GetSmsServiceNameVirtualNumbersResponseBodyList;
-export const GetSmsServiceNameVirtualNumbersResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    GetSmsServiceNameVirtualNumbersResponseBodyList.pipe(T.RawResponseRoot()),
+export type GetSmsUserReceiverCsvResponse = string;
+export const GetSmsUserReceiverCsvResponse = /*@__PURE__*/ S.suspend(() =>
+  S.String.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "GetSmsServiceNameVirtualNumbersResponse",
-}) as any as S.Schema<GetSmsServiceNameVirtualNumbersResponse>;
+  identifier: "GetSmsUserReceiverCsvResponse",
+}) as any as S.Schema<GetSmsUserReceiverCsvResponse>;
 
-export interface GetSmsServiceNameVirtualNumbersNumberRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** The virtual number */
+export interface GetSmsVirtualNumberRequest {
+  /** Your virtual number */
   number: string;
 }
-export const GetSmsServiceNameVirtualNumbersNumberRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      number: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/sms/{serviceName}/virtualNumbers/{number}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetSmsServiceNameVirtualNumbersNumberRequest",
-  }) as any as S.Schema<GetSmsServiceNameVirtualNumbersNumberRequest>;
+export const GetSmsVirtualNumberRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    number: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/sms/virtualNumbers/{number}", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetSmsVirtualNumberRequest",
+}) as any as S.Schema<GetSmsVirtualNumberRequest>;
 
 /** The ISO formated country code of the number */
 export type SmsVirtualNumberIsoCountryCodeEnum =
@@ -3663,6 +3394,47 @@ export type SmsVirtualNumberIsoCountryCodeEnum =
   | "fr"
   | "uk";
 export const SmsVirtualNumberIsoCountryCodeEnum = /*@__PURE__*/ S.String;
+
+/** Virtual numbers */
+export interface SmsVirtualNumberGenericServiceWithIAM {
+  /** The ISO formated country code of the number */
+  countryCode?: SmsVirtualNumberIsoCountryCodeEnum;
+  /** IAM resource metadata */
+  iam?: IamResourceMetadata | null;
+  /** The virtual number */
+  number?: string;
+}
+export const SmsVirtualNumberGenericServiceWithIAM = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      countryCode: S.optional(SmsVirtualNumberIsoCountryCodeEnum),
+      iam: S.optional(S.NullOr(IamResourceMetadata)),
+      number: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "SmsVirtualNumberGenericServiceWithIAM",
+}) as any as S.Schema<SmsVirtualNumberGenericServiceWithIAM>;
+
+export interface GetSmsVirtualNumberByNumberRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** The virtual number */
+  number: string;
+}
+export const GetSmsVirtualNumberByNumberRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    number: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/sms/{serviceName}/virtualNumbers/{number}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetSmsVirtualNumberByNumberRequest",
+}) as any as S.Schema<GetSmsVirtualNumberByNumberRequest>;
 
 /** Virtual numbers */
 export interface SmsVirtualNumber {
@@ -3680,14 +3452,14 @@ export const SmsVirtualNumber = /*@__PURE__*/ S.suspend(() =>
   identifier: "SmsVirtualNumber",
 }) as any as S.Schema<SmsVirtualNumber>;
 
-export interface GetSmsServiceNameVirtualNumbersNumberChatAccessRequest {
+export interface GetSmsVirtualNumberChatAccessRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** The virtual number */
   number: string;
 }
-export const GetSmsServiceNameVirtualNumbersNumberChatAccessRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetSmsVirtualNumberChatAccessRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       number: S.String.pipe(T.Label()),
@@ -3698,83 +3470,35 @@ export const GetSmsServiceNameVirtualNumbersNumberChatAccessRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "GetSmsServiceNameVirtualNumbersNumberChatAccessRequest",
-  }) as any as S.Schema<GetSmsServiceNameVirtualNumbersNumberChatAccessRequest>;
+).annotate({
+  identifier: "GetSmsVirtualNumberChatAccessRequest",
+}) as any as S.Schema<GetSmsVirtualNumberChatAccessRequest>;
 
-/** The web access for your virtual number chat application */
-export interface SmsChatAccess {
-  /** The creation date of this access */
-  creationDate?: string;
-  id?: number;
-  /** The url of the web access */
-  url?: string;
+export interface GetSmsVirtualNumberIncomingRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** The virtual number */
+  number: string;
+  /** Id of the object */
+  id: number;
 }
-export const SmsChatAccess = /*@__PURE__*/ S.suspend(() =>
+export const GetSmsVirtualNumberIncomingRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    creationDate: S.optional(S.String),
-    id: S.optional(S.Number),
-    url: S.optional(S.String),
-  }),
-).annotate({ identifier: "SmsChatAccess" }) as any as S.Schema<SmsChatAccess>;
+    serviceName: S.String.pipe(T.Label()),
+    number: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/sms/{serviceName}/virtualNumbers/{number}/incoming/{id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetSmsVirtualNumberIncomingRequest",
+}) as any as S.Schema<GetSmsVirtualNumberIncomingRequest>;
 
-export interface GetSmsServiceNameVirtualNumbersNumberIncomingRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** The virtual number */
-  number: string;
-  /** Filter the value of creationDatetime property (>=) */
-  creationDatetime_from?: string;
-  /** Filter the value of creationDatetime property (<=) */
-  creationDatetime_to?: string;
-  /** Filter the value of sender property (=) */
-  sender?: string;
-  /** Filter the value of tag property (=) */
-  tag?: string;
-}
-export const GetSmsServiceNameVirtualNumbersNumberIncomingRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      number: S.String.pipe(T.Label()),
-      creationDatetime_from: S.optional(
-        S.String.pipe(T.Query("creationDatetime.from")),
-      ),
-      creationDatetime_to: S.optional(
-        S.String.pipe(T.Query("creationDatetime.to")),
-      ),
-      sender: S.optional(S.String.pipe(T.Query())),
-      tag: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/sms/{serviceName}/virtualNumbers/{number}/incoming",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetSmsServiceNameVirtualNumbersNumberIncomingRequest",
-  }) as any as S.Schema<GetSmsServiceNameVirtualNumbersNumberIncomingRequest>;
-
-export type GetSmsServiceNameVirtualNumbersNumberIncomingResponseBodyList =
-  Array<number>;
-export const GetSmsServiceNameVirtualNumbersNumberIncomingResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<GetSmsServiceNameVirtualNumbersNumberIncomingResponseBodyList>;
-
-export type GetSmsServiceNameVirtualNumbersNumberIncomingResponse =
-  GetSmsServiceNameVirtualNumbersNumberIncomingResponseBodyList;
-export const GetSmsServiceNameVirtualNumbersNumberIncomingResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetSmsServiceNameVirtualNumbersNumberIncomingResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetSmsServiceNameVirtualNumbersNumberIncomingResponse",
-  }) as any as S.Schema<GetSmsServiceNameVirtualNumbersNumberIncomingResponse>;
-
-export interface GetSmsServiceNameVirtualNumbersNumberIncomingIdRequest {
+export interface GetSmsVirtualNumberJobRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** The virtual number */
@@ -3782,87 +3506,21 @@ export interface GetSmsServiceNameVirtualNumbersNumberIncomingIdRequest {
   /** Id of the object */
   id: number;
 }
-export const GetSmsServiceNameVirtualNumbersNumberIncomingIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      number: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/sms/{serviceName}/virtualNumbers/{number}/incoming/{id}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetSmsServiceNameVirtualNumbersNumberIncomingIdRequest",
-  }) as any as S.Schema<GetSmsServiceNameVirtualNumbersNumberIncomingIdRequest>;
-
-export interface GetSmsServiceNameVirtualNumbersNumberJobsRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** The virtual number */
-  number: string;
-}
-export const GetSmsServiceNameVirtualNumbersNumberJobsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      number: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/sms/{serviceName}/virtualNumbers/{number}/jobs",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetSmsServiceNameVirtualNumbersNumberJobsRequest",
-  }) as any as S.Schema<GetSmsServiceNameVirtualNumbersNumberJobsRequest>;
-
-export type GetSmsServiceNameVirtualNumbersNumberJobsResponseBodyList =
-  Array<number>;
-export const GetSmsServiceNameVirtualNumbersNumberJobsResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<GetSmsServiceNameVirtualNumbersNumberJobsResponseBodyList>;
-
-export type GetSmsServiceNameVirtualNumbersNumberJobsResponse =
-  GetSmsServiceNameVirtualNumbersNumberJobsResponseBodyList;
-export const GetSmsServiceNameVirtualNumbersNumberJobsResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetSmsServiceNameVirtualNumbersNumberJobsResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetSmsServiceNameVirtualNumbersNumberJobsResponse",
-  }) as any as S.Schema<GetSmsServiceNameVirtualNumbersNumberJobsResponse>;
-
-export interface GetSmsServiceNameVirtualNumbersNumberJobsIdRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** The virtual number */
-  number: string;
-  /** Id of the object */
-  id: number;
-}
-export const GetSmsServiceNameVirtualNumbersNumberJobsIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      number: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/sms/{serviceName}/virtualNumbers/{number}/jobs/{id}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetSmsServiceNameVirtualNumbersNumberJobsIdRequest",
-  }) as any as S.Schema<GetSmsServiceNameVirtualNumbersNumberJobsIdRequest>;
+export const GetSmsVirtualNumberJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    number: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/sms/{serviceName}/virtualNumbers/{number}/jobs/{id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetSmsVirtualNumberJobRequest",
+}) as any as S.Schema<GetSmsVirtualNumberJobRequest>;
 
 /** Sms job */
 export interface SmsVirtualNumberJob {
@@ -3894,75 +3552,7 @@ export const SmsVirtualNumberJob = /*@__PURE__*/ S.suspend(() =>
   identifier: "SmsVirtualNumberJob",
 }) as any as S.Schema<SmsVirtualNumberJob>;
 
-export interface GetSmsServiceNameVirtualNumbersNumberOutgoingRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** The virtual number */
-  number: string;
-  /** Filter the value of creationDatetime property (>=) */
-  creationDatetime_from?: string;
-  /** Filter the value of creationDatetime property (<=) */
-  creationDatetime_to?: string;
-  /** Filter the value of deliveryReceipt property (=) */
-  deliveryReceipt?: number;
-  /** Filter the value of differedDelivery property (=) */
-  differedDelivery?: number;
-  /** Filter the value of ptt property (=) */
-  ptt?: number;
-  /** Filter the value of receiver property (=) */
-  receiver?: string;
-  /** Filter the value of sender property (=) */
-  sender?: string;
-  /** Filter the value of tag property (=) */
-  tag?: string;
-}
-export const GetSmsServiceNameVirtualNumbersNumberOutgoingRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      number: S.String.pipe(T.Label()),
-      creationDatetime_from: S.optional(
-        S.String.pipe(T.Query("creationDatetime.from")),
-      ),
-      creationDatetime_to: S.optional(
-        S.String.pipe(T.Query("creationDatetime.to")),
-      ),
-      deliveryReceipt: S.optional(S.Number.pipe(T.Query())),
-      differedDelivery: S.optional(S.Number.pipe(T.Query())),
-      ptt: S.optional(S.Number.pipe(T.Query())),
-      receiver: S.optional(S.String.pipe(T.Query())),
-      sender: S.optional(S.String.pipe(T.Query())),
-      tag: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/sms/{serviceName}/virtualNumbers/{number}/outgoing",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetSmsServiceNameVirtualNumbersNumberOutgoingRequest",
-  }) as any as S.Schema<GetSmsServiceNameVirtualNumbersNumberOutgoingRequest>;
-
-export type GetSmsServiceNameVirtualNumbersNumberOutgoingResponseBodyList =
-  Array<number>;
-export const GetSmsServiceNameVirtualNumbersNumberOutgoingResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<GetSmsServiceNameVirtualNumbersNumberOutgoingResponseBodyList>;
-
-export type GetSmsServiceNameVirtualNumbersNumberOutgoingResponse =
-  GetSmsServiceNameVirtualNumbersNumberOutgoingResponseBodyList;
-export const GetSmsServiceNameVirtualNumbersNumberOutgoingResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetSmsServiceNameVirtualNumbersNumberOutgoingResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetSmsServiceNameVirtualNumbersNumberOutgoingResponse",
-  }) as any as S.Schema<GetSmsServiceNameVirtualNumbersNumberOutgoingResponse>;
-
-export interface GetSmsServiceNameVirtualNumbersNumberOutgoingIdRequest {
+export interface GetSmsVirtualNumberOutgoingRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** The virtual number */
@@ -3970,24 +3560,23 @@ export interface GetSmsServiceNameVirtualNumbersNumberOutgoingIdRequest {
   /** Id of the object */
   id: number;
 }
-export const GetSmsServiceNameVirtualNumbersNumberOutgoingIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      number: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/sms/{serviceName}/virtualNumbers/{number}/outgoing/{id}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetSmsServiceNameVirtualNumbersNumberOutgoingIdRequest",
-  }) as any as S.Schema<GetSmsServiceNameVirtualNumbersNumberOutgoingIdRequest>;
+export const GetSmsVirtualNumberOutgoingRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    number: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/sms/{serviceName}/virtualNumbers/{number}/outgoing/{id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetSmsVirtualNumberOutgoingRequest",
+}) as any as S.Schema<GetSmsVirtualNumberOutgoingRequest>;
 
-export interface GetSmsServiceNameVirtualNumbersNumberOutgoingIdHlrRequest {
+export interface GetSmsVirtualNumberOutgoingHlrRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** The virtual number */
@@ -3995,8 +3584,8 @@ export interface GetSmsServiceNameVirtualNumbersNumberOutgoingIdHlrRequest {
   /** Id of the object */
   id: number;
 }
-export const GetSmsServiceNameVirtualNumbersNumberOutgoingIdHlrRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetSmsVirtualNumberOutgoingHlrRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       number: S.String.pipe(T.Label()),
@@ -4008,89 +3597,16 @@ export const GetSmsServiceNameVirtualNumbersNumberOutgoingIdHlrRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "GetSmsServiceNameVirtualNumbersNumberOutgoingIdHlrRequest",
-  }) as any as S.Schema<GetSmsServiceNameVirtualNumbersNumberOutgoingIdHlrRequest>;
-
-export type GetSmsVirtualNumbersRequestIamTagsValueList =
-  Array<IamResourceTagFilterInput>;
-export const GetSmsVirtualNumbersRequestIamTagsValueList =
-  /*@__PURE__*/ S.Array(
-    IamResourceTagFilterInput,
-  ) as any as S.Schema<GetSmsVirtualNumbersRequestIamTagsValueList>;
-
-export type GetSmsVirtualNumbersRequestIamTagsMap = {
-  [key: string]: GetSmsVirtualNumbersRequestIamTagsValueList | undefined;
-};
-export const GetSmsVirtualNumbersRequestIamTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  GetSmsVirtualNumbersRequestIamTagsValueList,
-) as any as S.Schema<GetSmsVirtualNumbersRequestIamTagsMap>;
-
-export interface GetSmsVirtualNumbersRequest {
-  /** Filter resources on IAM tags */
-  iamTags?: GetSmsVirtualNumbersRequestIamTagsMap;
-}
-export const GetSmsVirtualNumbersRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    iamTags: S.optional(GetSmsVirtualNumbersRequestIamTagsMap.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/sms/virtualNumbers", code: 200 })),
 ).annotate({
-  identifier: "GetSmsVirtualNumbersRequest",
-}) as any as S.Schema<GetSmsVirtualNumbersRequest>;
+  identifier: "GetSmsVirtualNumberOutgoingHlrRequest",
+}) as any as S.Schema<GetSmsVirtualNumberOutgoingHlrRequest>;
 
-export type GetSmsVirtualNumbersResponseBodyList = Array<string>;
-export const GetSmsVirtualNumbersResponseBodyList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<GetSmsVirtualNumbersResponseBodyList>;
-
-export type GetSmsVirtualNumbersResponse = GetSmsVirtualNumbersResponseBodyList;
-export const GetSmsVirtualNumbersResponse = /*@__PURE__*/ S.suspend(() =>
-  GetSmsVirtualNumbersResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetSmsVirtualNumbersResponse",
-}) as any as S.Schema<GetSmsVirtualNumbersResponse>;
-
-export interface GetSmsVirtualNumbersNumberRequest {
+export interface GetSmsVirtualNumberServiceInfosRequest {
   /** Your virtual number */
   number: string;
 }
-export const GetSmsVirtualNumbersNumberRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    number: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/sms/virtualNumbers/{number}", code: 200 }),
-  ),
-).annotate({
-  identifier: "GetSmsVirtualNumbersNumberRequest",
-}) as any as S.Schema<GetSmsVirtualNumbersNumberRequest>;
-
-/** Virtual numbers */
-export interface SmsVirtualNumberGenericServiceWithIAM {
-  /** The ISO formated country code of the number */
-  countryCode?: SmsVirtualNumberIsoCountryCodeEnum;
-  /** IAM resource metadata */
-  iam?: IamResourceMetadata | null;
-  /** The virtual number */
-  number?: string;
-}
-export const SmsVirtualNumberGenericServiceWithIAM = /*@__PURE__*/ S.suspend(
+export const GetSmsVirtualNumberServiceInfosRequest = /*@__PURE__*/ S.suspend(
   () =>
-    S.Struct({
-      countryCode: S.optional(SmsVirtualNumberIsoCountryCodeEnum),
-      iam: S.optional(S.NullOr(IamResourceMetadata)),
-      number: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "SmsVirtualNumberGenericServiceWithIAM",
-}) as any as S.Schema<SmsVirtualNumberGenericServiceWithIAM>;
-
-export interface GetSmsVirtualNumbersNumberServiceInfosRequest {
-  /** Your virtual number */
-  number: string;
-}
-export const GetSmsVirtualNumbersNumberServiceInfosRequest =
-  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       number: S.String.pipe(T.Label()),
     }).pipe(
@@ -4100,290 +3616,11 @@ export const GetSmsVirtualNumbersNumberServiceInfosRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "GetSmsVirtualNumbersNumberServiceInfosRequest",
-  }) as any as S.Schema<GetSmsVirtualNumbersNumberServiceInfosRequest>;
-
-export interface PostSmsEstimateRequest {
-  /** The message to send */
-  message: string;
-  /** Do not display STOP clause in the message, this requires that this is not an advertising message */
-  noStopClause: boolean;
-  /** Sender type that will be used to send the message */
-  senderType: SmsTypeSenderEnum | (string & {});
-}
-export const PostSmsEstimateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    message: S.String,
-    noStopClause: S.Boolean,
-    senderType: SmsTypeSenderEnum,
-  }).pipe(T.Http({ method: "POST", uri: "/sms/estimate", code: 200 })),
 ).annotate({
-  identifier: "PostSmsEstimateRequest",
-}) as any as S.Schema<PostSmsEstimateRequest>;
+  identifier: "GetSmsVirtualNumberServiceInfosRequest",
+}) as any as S.Schema<GetSmsVirtualNumberServiceInfosRequest>;
 
-/** The SMS available characters class */
-export type SmsEncodingEnum = "7bits" | "unicode";
-export const SmsEncodingEnum = /*@__PURE__*/ S.String;
-
-/** A structure describing the encoding, length and number of SMS parts of a text message */
-export interface SmsJobEstimate {
-  /** The number of characters the message contains, including invisible escaped characters */
-  characters?: number;
-  /** The characters class that will be used to send the SMS, depending on characters in message */
-  charactersClass?: SmsEncodingEnum;
-  /** The number of characters every SMS part can contain, depending on characters class and quantity of parts */
-  maxCharactersPerPart?: number;
-  /** The quantity of SMS parts the message will be split in */
-  parts?: number;
-}
-export const SmsJobEstimate = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    characters: S.optional(S.Number),
-    charactersClass: S.optional(SmsEncodingEnum),
-    maxCharactersPerPart: S.optional(S.Number),
-    parts: S.optional(S.Number),
-  }),
-).annotate({ identifier: "SmsJobEstimate" }) as any as S.Schema<SmsJobEstimate>;
-
-/** SMS classes */
-export type SmsBatchClassEnum = "FLASH" | "PHONE" | "SIM";
-export const SmsBatchClassEnum = /*@__PURE__*/ S.String;
-
-/** SMS receivers list. Either "to" or "slotID" must be passed */
-export type PostSmsServiceNameBatchesRequestToList = Array<string>;
-export const PostSmsServiceNameBatchesRequestToList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PostSmsServiceNameBatchesRequestToList>;
-
-export interface PostSmsServiceNameBatchesRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** Deprecated: SMS class */
-  class?: SmsBatchClassEnum | (string & {});
-  /** SMS deferred sending date */
-  deferred?: string;
-  /** SMS sender. Either "from" or "senderForResponse" must be passed */
-  from?: string;
-  /** SMS message */
-  message: string;
-  /** Batch name */
-  name?: string;
-  /** STOP clause not needed */
-  noStop?: boolean;
-  /** Ask to compute a sender that allows response. Either "from" or "senderForResponse" must be passed */
-  senderForResponse?: boolean;
-  /** SMS receivers slot ID. Either "to" or "slotID" must be passed */
-  slotID?: string;
-  /** SMS tag */
-  tag?: string;
-  /** SMS receivers list. Either "to" or "slotID" must be passed */
-  to?: PostSmsServiceNameBatchesRequestToList;
-}
-export const PostSmsServiceNameBatchesRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceName: S.String.pipe(T.Label()),
-    class: S.optional(SmsBatchClassEnum),
-    deferred: S.optional(S.String),
-    from: S.optional(S.String),
-    message: S.String,
-    name: S.optional(S.String),
-    noStop: S.optional(S.Boolean),
-    senderForResponse: S.optional(S.Boolean),
-    slotID: S.optional(S.String),
-    tag: S.optional(S.String),
-    to: S.optional(PostSmsServiceNameBatchesRequestToList),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/sms/{serviceName}/batches", code: 200 }),
-  ),
-).annotate({
-  identifier: "PostSmsServiceNameBatchesRequest",
-}) as any as S.Schema<PostSmsServiceNameBatchesRequest>;
-
-export interface PostSmsServiceNameBatchesIdCancelRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** Id */
-  id: string;
-}
-export const PostSmsServiceNameBatchesIdCancelRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/sms/{serviceName}/batches/{id}/cancel",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "PostSmsServiceNameBatchesIdCancelRequest",
-}) as any as S.Schema<PostSmsServiceNameBatchesIdCancelRequest>;
-
-/** The receivers */
-export type PostSmsServiceNameHlrRequestReceiversList = Array<string>;
-export const PostSmsServiceNameHlrRequestReceiversList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PostSmsServiceNameHlrRequestReceiversList>;
-
-export interface PostSmsServiceNameHlrRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** The receivers */
-  receivers?: PostSmsServiceNameHlrRequestReceiversList;
-  /** The receivers document url link in csv format */
-  receiversDocumentUrl?: string;
-}
-export const PostSmsServiceNameHlrRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceName: S.String.pipe(T.Label()),
-    receivers: S.optional(PostSmsServiceNameHlrRequestReceiversList),
-    receiversDocumentUrl: S.optional(S.String),
-  }).pipe(T.Http({ method: "POST", uri: "/sms/{serviceName}/hlr", code: 200 })),
-).annotate({
-  identifier: "PostSmsServiceNameHlrRequest",
-}) as any as S.Schema<PostSmsServiceNameHlrRequest>;
-
-export type SmsSmsSendingReportIdsList = Array<number>;
-export const SmsSmsSendingReportIdsList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<SmsSmsSendingReportIdsList>;
-
-export type SmsSmsSendingReportInvalidReceiversList = Array<string>;
-export const SmsSmsSendingReportInvalidReceiversList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<SmsSmsSendingReportInvalidReceiversList>;
-
-export type SmsSmsSendingReportValidReceiversList = Array<string>;
-export const SmsSmsSendingReportValidReceiversList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<SmsSmsSendingReportValidReceiversList>;
-
-/** A structure describing all information about quota informations */
-export interface SmsSmsSendingReport {
-  ids?: SmsSmsSendingReportIdsList;
-  invalidReceivers?: SmsSmsSendingReportInvalidReceiversList;
-  tag?: string;
-  totalCreditsRemoved?: number;
-  validReceivers?: SmsSmsSendingReportValidReceiversList;
-}
-export const SmsSmsSendingReport = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ids: S.optional(SmsSmsSendingReportIdsList),
-    invalidReceivers: S.optional(SmsSmsSendingReportInvalidReceiversList),
-    tag: S.optional(S.String),
-    totalCreditsRemoved: S.optional(S.Number),
-    validReceivers: S.optional(SmsSmsSendingReportValidReceiversList),
-  }),
-).annotate({
-  identifier: "SmsSmsSendingReport",
-}) as any as S.Schema<SmsSmsSendingReport>;
-
-/** The charset format */
-export type SmsCharsetEnum = "UTF-8";
-export const SmsCharsetEnum = /*@__PURE__*/ S.String;
-
-/** Deprecated: The sms class of sms sending job */
-export type SmsClassEnum = "flash" | "phoneDisplay" | "sim" | "toolkit";
-export const SmsClassEnum = /*@__PURE__*/ S.String;
-
-/** The sms coding */
-export type SmsCodingEnum = "7bit" | "8bit";
-export const SmsCodingEnum = /*@__PURE__*/ S.String;
-
-/** The priority of an sms sending */
-export type SmsPriorityEnum = "high" | "low" | "medium" | "veryLow";
-export const SmsPriorityEnum = /*@__PURE__*/ S.String;
-
-/** The receivers list */
-export type PostSmsServiceNameJobsRequestReceiversList = Array<string>;
-export const PostSmsServiceNameJobsRequestReceiversList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PostSmsServiceNameJobsRequestReceiversList>;
-
-export interface PostSmsServiceNameJobsRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** The sms coding */
-  charset?: SmsCharsetEnum | (string & {});
-  /** Deprecated: The sms class */
-  class?: SmsClassEnum | (string & {});
-  /** Deprecated: the coding is deduced from the message and its charset */
-  coding?: SmsCodingEnum | (string & {});
-  /** The time -in minute(s)- to wait before sending the message */
-  differedPeriod?: number;
-  /** The sms message */
-  message: string;
-  /** Do not display STOP clause in the message, this requires that this is not an advertising message */
-  noStopClause?: boolean;
-  /** The priority of the message */
-  priority?: SmsPriorityEnum | (string & {});
-  /** The receivers list */
-  receivers?: PostSmsServiceNameJobsRequestReceiversList;
-  /** The receivers document url link in csv format */
-  receiversDocumentUrl?: string;
-  /** The receivers document slot id */
-  receiversSlotId?: string;
-  /** The sender */
-  sender?: string;
-  /** Set the flag to send a special sms which can be reply by the receiver (smsResponse). */
-  senderForResponse?: boolean;
-  /** The identifier group tag */
-  tag?: string;
-  /** The maximum time -in minute(s)- before the message is dropped */
-  validityPeriod?: number;
-}
-export const PostSmsServiceNameJobsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceName: S.String.pipe(T.Label()),
-    charset: S.optional(SmsCharsetEnum),
-    class: S.optional(SmsClassEnum),
-    coding: S.optional(SmsCodingEnum),
-    differedPeriod: S.optional(S.Number),
-    message: S.String,
-    noStopClause: S.optional(S.Boolean),
-    priority: S.optional(SmsPriorityEnum),
-    receivers: S.optional(PostSmsServiceNameJobsRequestReceiversList),
-    receiversDocumentUrl: S.optional(S.String),
-    receiversSlotId: S.optional(S.String),
-    sender: S.optional(S.String),
-    senderForResponse: S.optional(S.Boolean),
-    tag: S.optional(S.String),
-    validityPeriod: S.optional(S.Number),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/sms/{serviceName}/jobs", code: 200 }),
-  ),
-).annotate({
-  identifier: "PostSmsServiceNameJobsRequest",
-}) as any as S.Schema<PostSmsServiceNameJobsRequest>;
-
-export interface PostSmsServiceNamePhonebooksRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** Name of the wanted phonebook */
-  name: string;
-}
-export const PostSmsServiceNamePhonebooksRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceName: S.String.pipe(T.Label()),
-    name: S.String,
-  }).pipe(
-    T.Http({ method: "POST", uri: "/sms/{serviceName}/phonebooks", code: 200 }),
-  ),
-).annotate({
-  identifier: "PostSmsServiceNamePhonebooksRequest",
-}) as any as S.Schema<PostSmsServiceNamePhonebooksRequest>;
-
-export type PostSmsServiceNamePhonebooksResponse = string;
-export const PostSmsServiceNamePhonebooksResponse = /*@__PURE__*/ S.suspend(
-  () => S.String.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "PostSmsServiceNamePhonebooksResponse",
-}) as any as S.Schema<PostSmsServiceNamePhonebooksResponse>;
-
-export interface PostSmsServiceNamePhonebooksBookKeyImportRequest {
+export interface ImportSmsPhonebookRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** Identifier of the phonebook */
@@ -4391,22 +3628,21 @@ export interface PostSmsServiceNamePhonebooksBookKeyImportRequest {
   /** ID of the /me/document file you want to import */
   documentId: string;
 }
-export const PostSmsServiceNamePhonebooksBookKeyImportRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      bookKey: S.String.pipe(T.Label()),
-      documentId: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/sms/{serviceName}/phonebooks/{bookKey}/import",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostSmsServiceNamePhonebooksBookKeyImportRequest",
-  }) as any as S.Schema<PostSmsServiceNamePhonebooksBookKeyImportRequest>;
+export const ImportSmsPhonebookRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    bookKey: S.String.pipe(T.Label()),
+    documentId: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/sms/{serviceName}/phonebooks/{bookKey}/import",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ImportSmsPhonebookRequest",
+}) as any as S.Schema<ImportSmsPhonebookRequest>;
 
 /** Operation on a telephony service */
 export interface TelephonyTask {
@@ -4432,606 +3668,1194 @@ export const TelephonyTask = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "TelephonyTask" }) as any as S.Schema<TelephonyTask>;
 
-export interface PostSmsServiceNamePhonebooksBookKeyPhonebookContactRequest {
+/** Resource tag filter */
+export interface IamResourceTagFilterInput {}
+export const IamResourceTagFilterInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "IamResourceTagFilterInput",
+}) as any as S.Schema<IamResourceTagFilterInput>;
+
+export type ListSmsRequestIamTagsValueList = Array<IamResourceTagFilterInput>;
+export const ListSmsRequestIamTagsValueList = /*@__PURE__*/ S.Array(
+  IamResourceTagFilterInput,
+) as any as S.Schema<ListSmsRequestIamTagsValueList>;
+
+export type ListSmsRequestIamTagsMap = {
+  [key: string]: ListSmsRequestIamTagsValueList | undefined;
+};
+export const ListSmsRequestIamTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  ListSmsRequestIamTagsValueList,
+) as any as S.Schema<ListSmsRequestIamTagsMap>;
+
+export interface ListSmsRequest {
+  /** Filter resources on IAM tags */
+  iamTags?: ListSmsRequestIamTagsMap;
+}
+export const ListSmsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    iamTags: S.optional(ListSmsRequestIamTagsMap.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/sms", code: 200 })),
+).annotate({ identifier: "ListSmsRequest" }) as any as S.Schema<ListSmsRequest>;
+
+export type ListSmsResponseBodyList = Array<string>;
+export const ListSmsResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListSmsResponseBodyList>;
+
+export type ListSmsResponse = ListSmsResponseBodyList;
+export const ListSmsResponse = /*@__PURE__*/ S.suspend(() =>
+  ListSmsResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListSmsResponse",
+}) as any as S.Schema<ListSmsResponse>;
+
+export interface ListSmsBatchesRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+}
+export const ListSmsBatchesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/sms/{serviceName}/batches", code: 200 }),
+  ),
+).annotate({
+  identifier: "ListSmsBatchesRequest",
+}) as any as S.Schema<ListSmsBatchesRequest>;
+
+export type ListSmsBatchesResponseBodyList = Array<SmsBatch>;
+export const ListSmsBatchesResponseBodyList = /*@__PURE__*/ S.Array(
+  SmsBatch,
+) as any as S.Schema<ListSmsBatchesResponseBodyList>;
+
+export type ListSmsBatchesResponse = ListSmsBatchesResponseBodyList;
+export const ListSmsBatchesResponse = /*@__PURE__*/ S.suspend(() =>
+  ListSmsBatchesResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListSmsBatchesResponse",
+}) as any as S.Schema<ListSmsBatchesResponse>;
+
+export interface ListSmsBlacklistsRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** Filter the value of batchID property (=) */
+  batchID?: string;
+  /** Filter the value of smsOutgoingID property (=) */
+  smsOutgoingID?: number;
+}
+export const ListSmsBlacklistsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    batchID: S.optional(S.String.pipe(T.Query())),
+    smsOutgoingID: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/sms/{serviceName}/blacklists", code: 200 }),
+  ),
+).annotate({
+  identifier: "ListSmsBlacklistsRequest",
+}) as any as S.Schema<ListSmsBlacklistsRequest>;
+
+export type ListSmsBlacklistsResponseBodyList = Array<string>;
+export const ListSmsBlacklistsResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListSmsBlacklistsResponseBodyList>;
+
+export type ListSmsBlacklistsResponse = ListSmsBlacklistsResponseBodyList;
+export const ListSmsBlacklistsResponse = /*@__PURE__*/ S.suspend(() =>
+  ListSmsBlacklistsResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListSmsBlacklistsResponse",
+}) as any as S.Schema<ListSmsBlacklistsResponse>;
+
+export interface ListSmsExceptionsRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** The receiver number to check */
+  receiver: string;
+}
+export const ListSmsExceptionsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    receiver: S.String.pipe(T.Query()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/sms/{serviceName}/exceptions", code: 200 }),
+  ),
+).annotate({
+  identifier: "ListSmsExceptionsRequest",
+}) as any as S.Schema<ListSmsExceptionsRequest>;
+
+/** The exception message */
+export type SmsExceptionMessagesList = Array<string>;
+export const SmsExceptionMessagesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SmsExceptionMessagesList>;
+
+/** Restriction type used by the operator to filter sms. */
+export type SmsRestrictionCodeEnum =
+  | "ALPHA"
+  | "BAD_DLR"
+  | "BLOCKED"
+  | "CODING"
+  | "DLR"
+  | "FLASHONLY"
+  | "MSISDN";
+export const SmsRestrictionCodeEnum = /*@__PURE__*/ S.String;
+
+/** Sms reach list */
+export interface SmsException {
+  /** The abreviated country code. */
+  countrySuffixe?: string;
+  /** The exception message */
+  messages?: SmsExceptionMessagesList;
+  /** The list of operators impacted. */
+  operators?: string;
+  /** The type of routing restriction imposed by the operator */
+  restrictionCode?: SmsRestrictionCodeEnum;
+  /** The substitution sender used to bypass operator filter */
+  substitution?: string | null;
+}
+export const SmsException = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    countrySuffixe: S.optional(S.String),
+    messages: S.optional(SmsExceptionMessagesList),
+    operators: S.optional(S.String),
+    restrictionCode: S.optional(SmsRestrictionCodeEnum),
+    substitution: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({ identifier: "SmsException" }) as any as S.Schema<SmsException>;
+
+export type ListSmsExceptionsResponseBodyList = Array<SmsException>;
+export const ListSmsExceptionsResponseBodyList = /*@__PURE__*/ S.Array(
+  SmsException,
+) as any as S.Schema<ListSmsExceptionsResponseBodyList>;
+
+export type ListSmsExceptionsResponse = ListSmsExceptionsResponseBodyList;
+export const ListSmsExceptionsResponse = /*@__PURE__*/ S.suspend(() =>
+  ListSmsExceptionsResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListSmsExceptionsResponse",
+}) as any as S.Schema<ListSmsExceptionsResponse>;
+
+export interface ListSmsHlrRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+}
+export const ListSmsHlrRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/sms/{serviceName}/hlr", code: 200 })),
+).annotate({
+  identifier: "ListSmsHlrRequest",
+}) as any as S.Schema<ListSmsHlrRequest>;
+
+export type ListSmsHlrResponseBodyList = Array<number>;
+export const ListSmsHlrResponseBodyList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<ListSmsHlrResponseBodyList>;
+
+export type ListSmsHlrResponse = ListSmsHlrResponseBodyList;
+export const ListSmsHlrResponse = /*@__PURE__*/ S.suspend(() =>
+  ListSmsHlrResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListSmsHlrResponse",
+}) as any as S.Schema<ListSmsHlrResponse>;
+
+export interface ListSmsIncomingRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** Filter the value of creationDatetime property (>=) */
+  creationDatetime_from?: string;
+  /** Filter the value of creationDatetime property (<=) */
+  creationDatetime_to?: string;
+  /** Filter the value of sender property (=) */
+  sender?: string;
+  /** Filter the value of tag property (=) */
+  tag?: string;
+}
+export const ListSmsIncomingRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    creationDatetime_from: S.optional(
+      S.String.pipe(T.Query("creationDatetime.from")),
+    ),
+    creationDatetime_to: S.optional(
+      S.String.pipe(T.Query("creationDatetime.to")),
+    ),
+    sender: S.optional(S.String.pipe(T.Query())),
+    tag: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/sms/{serviceName}/incoming", code: 200 }),
+  ),
+).annotate({
+  identifier: "ListSmsIncomingRequest",
+}) as any as S.Schema<ListSmsIncomingRequest>;
+
+export type ListSmsIncomingResponseBodyList = Array<number>;
+export const ListSmsIncomingResponseBodyList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<ListSmsIncomingResponseBodyList>;
+
+export type ListSmsIncomingResponse = ListSmsIncomingResponseBodyList;
+export const ListSmsIncomingResponse = /*@__PURE__*/ S.suspend(() =>
+  ListSmsIncomingResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListSmsIncomingResponse",
+}) as any as S.Schema<ListSmsIncomingResponse>;
+
+export interface ListSmsJobsRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+}
+export const ListSmsJobsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/sms/{serviceName}/jobs", code: 200 })),
+).annotate({
+  identifier: "ListSmsJobsRequest",
+}) as any as S.Schema<ListSmsJobsRequest>;
+
+export type ListSmsJobsResponseBodyList = Array<number>;
+export const ListSmsJobsResponseBodyList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<ListSmsJobsResponseBodyList>;
+
+export type ListSmsJobsResponse = ListSmsJobsResponseBodyList;
+export const ListSmsJobsResponse = /*@__PURE__*/ S.suspend(() =>
+  ListSmsJobsResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListSmsJobsResponse",
+}) as any as S.Schema<ListSmsJobsResponse>;
+
+export interface ListSmsOutgoingRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** Filter on batch id property (=) */
+  batchID?: string;
+  /** Filter on creationDatetime property (>=) */
+  creationDatetime_from?: string;
+  /** Filter on creationDatetime property (<=) */
+  creationDatetime_to?: string;
+  /** Filter on deliveryReceipt property (=) */
+  deliveryReceipt?: number;
+  /** Filter on differedDelivery property (=) */
+  differedDelivery?: number;
+  /** Filter on message id property (=) */
+  messageID?: string;
+  /** Filter on ptt property (=) */
+  ptt?: number;
+  /** Filter on receiver property (=) */
+  receiver?: string;
+  /** Filter on sender property (=) */
+  sender?: string;
+  /** Filter on tag property (=) */
+  tag?: string;
+}
+export const ListSmsOutgoingRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    batchID: S.optional(S.String.pipe(T.Query())),
+    creationDatetime_from: S.optional(
+      S.String.pipe(T.Query("creationDatetime.from")),
+    ),
+    creationDatetime_to: S.optional(
+      S.String.pipe(T.Query("creationDatetime.to")),
+    ),
+    deliveryReceipt: S.optional(S.Number.pipe(T.Query())),
+    differedDelivery: S.optional(S.Number.pipe(T.Query())),
+    messageID: S.optional(S.String.pipe(T.Query())),
+    ptt: S.optional(S.Number.pipe(T.Query())),
+    receiver: S.optional(S.String.pipe(T.Query())),
+    sender: S.optional(S.String.pipe(T.Query())),
+    tag: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/sms/{serviceName}/outgoing", code: 200 }),
+  ),
+).annotate({
+  identifier: "ListSmsOutgoingRequest",
+}) as any as S.Schema<ListSmsOutgoingRequest>;
+
+export type ListSmsOutgoingResponseBodyList = Array<number>;
+export const ListSmsOutgoingResponseBodyList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<ListSmsOutgoingResponseBodyList>;
+
+export type ListSmsOutgoingResponse = ListSmsOutgoingResponseBodyList;
+export const ListSmsOutgoingResponse = /*@__PURE__*/ S.suspend(() =>
+  ListSmsOutgoingResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListSmsOutgoingResponse",
+}) as any as S.Schema<ListSmsOutgoingResponse>;
+
+export interface ListSmsPhonebookPhonebookContactRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** Identifier of the phonebook */
   bookKey: string;
-  /** Group name of the phonebook */
-  group: string;
-  /** Home mobile phone number of the contact */
-  homeMobile?: string;
-  /** Home landline phone number of the contact */
-  homePhone?: string;
-  /** Name of the contact */
-  name: string;
-  /** Contact surname */
-  surname: string;
-  /** Mobile phone office number of the contact */
-  workMobile?: string;
-  /** Landline phone office number of the contact */
-  workPhone?: string;
 }
-export const PostSmsServiceNamePhonebooksBookKeyPhonebookContactRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const ListSmsPhonebookPhonebookContactRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       bookKey: S.String.pipe(T.Label()),
-      group: S.String,
-      homeMobile: S.optional(S.String),
-      homePhone: S.optional(S.String),
-      name: S.String,
-      surname: S.String,
-      workMobile: S.optional(S.String),
-      workPhone: S.optional(S.String),
     }).pipe(
       T.Http({
-        method: "POST",
+        method: "GET",
         uri: "/sms/{serviceName}/phonebooks/{bookKey}/phonebookContact",
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "PostSmsServiceNamePhonebooksBookKeyPhonebookContactRequest",
-  }) as any as S.Schema<PostSmsServiceNamePhonebooksBookKeyPhonebookContactRequest>;
+).annotate({
+  identifier: "ListSmsPhonebookPhonebookContactRequest",
+}) as any as S.Schema<ListSmsPhonebookPhonebookContactRequest>;
 
-export type PostSmsServiceNamePhonebooksBookKeyPhonebookContactResponse =
-  number;
-export const PostSmsServiceNamePhonebooksBookKeyPhonebookContactResponse =
-  /*@__PURE__*/ S.suspend(() => S.Number.pipe(T.RawResponseRoot())).annotate({
-    identifier: "PostSmsServiceNamePhonebooksBookKeyPhonebookContactResponse",
-  }) as any as S.Schema<PostSmsServiceNamePhonebooksBookKeyPhonebookContactResponse>;
+export type ListSmsPhonebookPhonebookContactResponseBodyList = Array<number>;
+export const ListSmsPhonebookPhonebookContactResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.Number,
+  ) as any as S.Schema<ListSmsPhonebookPhonebookContactResponseBodyList>;
 
-export interface PostSmsServiceNameReceiversRequest {
+export type ListSmsPhonebookPhonebookContactResponse =
+  ListSmsPhonebookPhonebookContactResponseBodyList;
+export const ListSmsPhonebookPhonebookContactResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    ListSmsPhonebookPhonebookContactResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListSmsPhonebookPhonebookContactResponse",
+}) as any as S.Schema<ListSmsPhonebookPhonebookContactResponse>;
+
+export interface ListSmsPhonebooksRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
-  /** Download file from URL before sending to contacts (works only with csvUrl and not document ID) */
-  autoUpdate: boolean;
-  /** URL of the file you want to import */
-  csvUrl?: string;
-  /** Description name of the document */
-  description: string;
-  /** ID of the /me/document file you want to import */
-  documentId?: string;
-  /** Slot number id used to handle the document */
-  slotId: number;
 }
-export const PostSmsServiceNameReceiversRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListSmsPhonebooksRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     serviceName: S.String.pipe(T.Label()),
-    autoUpdate: S.Boolean,
-    csvUrl: S.optional(S.String),
-    description: S.String,
-    documentId: S.optional(S.String),
-    slotId: S.Number,
   }).pipe(
-    T.Http({ method: "POST", uri: "/sms/{serviceName}/receivers", code: 200 }),
+    T.Http({ method: "GET", uri: "/sms/{serviceName}/phonebooks", code: 200 }),
   ),
 ).annotate({
-  identifier: "PostSmsServiceNameReceiversRequest",
-}) as any as S.Schema<PostSmsServiceNameReceiversRequest>;
+  identifier: "ListSmsPhonebooksRequest",
+}) as any as S.Schema<ListSmsPhonebooksRequest>;
 
-export interface PostSmsServiceNameReceiversSlotIdCleanRequest {
+export type ListSmsPhonebooksResponseBodyList = Array<string>;
+export const ListSmsPhonebooksResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListSmsPhonebooksResponseBodyList>;
+
+export type ListSmsPhonebooksResponse = ListSmsPhonebooksResponseBodyList;
+export const ListSmsPhonebooksResponse = /*@__PURE__*/ S.suspend(() =>
+  ListSmsPhonebooksResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListSmsPhonebooksResponse",
+}) as any as S.Schema<ListSmsPhonebooksResponse>;
+
+export interface ListSmsRatePacksRequest {
+  /** Country where you buy credits */
+  billingCountry?: SmsBillingCountryEnum | (string & {});
+  /** Country where you send SMS */
+  country: SmsCountryEnum | (string & {});
+}
+export const ListSmsRatePacksRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    billingCountry: S.optional(SmsBillingCountryEnum.pipe(T.Query())),
+    country: SmsCountryEnum.pipe(T.Query()),
+  }).pipe(T.Http({ method: "GET", uri: "/sms/rates/packs", code: 200 })),
+).annotate({
+  identifier: "ListSmsRatePacksRequest",
+}) as any as S.Schema<ListSmsRatePacksRequest>;
+
+/** Details about a SMS pack */
+export interface SmsPackDetails {
+  /** Destination country code */
+  countryCode?: SmsCountryEnum;
+  /** Credits consumed by sending one SMS towards the given destination */
+  credit?: number;
+  /** Price of one credit, including pack's promotion */
+  creditPrice?: OrderPrice;
+  /** Maximum quantity (excluded) of credit to order to have this price */
+  creditQuantityMax?: number | null;
+  /** Minimum quantity (included) of credit to order to have this price */
+  creditQuantityMin?: number;
+  /** Price of one credit, during a promotional event */
+  discountCreditPrice?: OrderPrice | null;
+  /** Percentage applied as part of a promotional event */
+  discountPercentage?: number | null;
+  /** Price of one SMS, during a promotional event */
+  discountSmsPrice?: OrderPrice | null;
+  /** Price of one SMS sent towards the given destination, including pack's promotion */
+  smsPrice?: OrderPrice;
+  /** Maximum quantity (excluded) of SMS you can obtain with this pack */
+  smsQuantityMax?: number | null;
+  /** Minimum quantity (included) of SMS you can obtain with this pack */
+  smsQuantityMin?: number;
+}
+export const SmsPackDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    countryCode: S.optional(SmsCountryEnum),
+    credit: S.optional(S.Number),
+    creditPrice: S.optional(OrderPrice),
+    creditQuantityMax: S.optional(S.NullOr(S.Number)),
+    creditQuantityMin: S.optional(S.Number),
+    discountCreditPrice: S.optional(S.NullOr(OrderPrice)),
+    discountPercentage: S.optional(S.NullOr(S.Number)),
+    discountSmsPrice: S.optional(S.NullOr(OrderPrice)),
+    smsPrice: S.optional(OrderPrice),
+    smsQuantityMax: S.optional(S.NullOr(S.Number)),
+    smsQuantityMin: S.optional(S.Number),
+  }),
+).annotate({ identifier: "SmsPackDetails" }) as any as S.Schema<SmsPackDetails>;
+
+export type ListSmsRatePacksResponseBodyList = Array<SmsPackDetails>;
+export const ListSmsRatePacksResponseBodyList = /*@__PURE__*/ S.Array(
+  SmsPackDetails,
+) as any as S.Schema<ListSmsRatePacksResponseBodyList>;
+
+export type ListSmsRatePacksResponse = ListSmsRatePacksResponseBodyList;
+export const ListSmsRatePacksResponse = /*@__PURE__*/ S.suspend(() =>
+  ListSmsRatePacksResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListSmsRatePacksResponse",
+}) as any as S.Schema<ListSmsRatePacksResponse>;
+
+export interface ListSmsReceiversRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
-  /** Slot number id */
-  slotId: number;
-  /** Limit checks to syntaxical validation */
-  freemium: boolean;
-  /** Only get action's price in credits without executing it */
-  priceOnly: boolean;
 }
-export const PostSmsServiceNameReceiversSlotIdCleanRequest =
+export const ListSmsReceiversRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/sms/{serviceName}/receivers", code: 200 }),
+  ),
+).annotate({
+  identifier: "ListSmsReceiversRequest",
+}) as any as S.Schema<ListSmsReceiversRequest>;
+
+export type ListSmsReceiversResponseBodyList = Array<number>;
+export const ListSmsReceiversResponseBodyList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<ListSmsReceiversResponseBodyList>;
+
+export type ListSmsReceiversResponse = ListSmsReceiversResponseBodyList;
+export const ListSmsReceiversResponse = /*@__PURE__*/ S.suspend(() =>
+  ListSmsReceiversResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListSmsReceiversResponse",
+}) as any as S.Schema<ListSmsReceiversResponse>;
+
+/** All country prices accessible from a reference */
+export type ReferenceCountryEnum =
+  | "all"
+  | "ca"
+  | "cz"
+  | "de"
+  | "en"
+  | "es"
+  | "fi"
+  | "fr"
+  | "gb"
+  | "ie"
+  | "it"
+  | "lt"
+  | "ma"
+  | "nl"
+  | "pl"
+  | "pp"
+  | "pt"
+  | "qc"
+  | "ru"
+  | "sk"
+  | "sn"
+  | "tn"
+  | "we";
+export const ReferenceCountryEnum = /*@__PURE__*/ S.String;
+
+/** Pack quantity levels */
+export type SmsPackQuantityEnum =
+  | 100
+  | 200
+  | 250
+  | 500
+  | 1000
+  | 2500
+  | 5000
+  | 10000
+  | 25000
+  | 50000
+  | 100000
+  | 1000000;
+export const SmsPackQuantityEnum = /*@__PURE__*/ S.Number;
+
+export interface ListSmsSeeOffersRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** Filter to have the currency country prices */
+  countryCurrencyPrice: ReferenceCountryEnum | (string & {});
+  /** Filter to have the country destination */
+  countryDestination: SmsCountryEnum | (string & {});
+  /** Sms pack offer quantity */
+  quantity: SmsPackQuantityEnum | (number & {});
+}
+export const ListSmsSeeOffersRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    countryCurrencyPrice: ReferenceCountryEnum.pipe(T.Query()),
+    countryDestination: SmsCountryEnum.pipe(T.Query()),
+    quantity: SmsPackQuantityEnum.pipe(T.Query()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/sms/{serviceName}/seeOffers", code: 200 }),
+  ),
+).annotate({
+  identifier: "ListSmsSeeOffersRequest",
+}) as any as S.Schema<ListSmsSeeOffersRequest>;
+
+/** A structure describing all information about an sms pack offer */
+export interface SmsPackOffer {
+  countryDestination?: string;
+  giftPrice?: number | null;
+  giftQuantity?: number | null;
+  language?: string;
+  price?: number;
+  quantity?: number;
+  smsQuantity?: number;
+  totalPrice?: number | null;
+}
+export const SmsPackOffer = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    countryDestination: S.optional(S.String),
+    giftPrice: S.optional(S.NullOr(S.Number)),
+    giftQuantity: S.optional(S.NullOr(S.Number)),
+    language: S.optional(S.String),
+    price: S.optional(S.Number),
+    quantity: S.optional(S.Number),
+    smsQuantity: S.optional(S.Number),
+    totalPrice: S.optional(S.NullOr(S.Number)),
+  }),
+).annotate({ identifier: "SmsPackOffer" }) as any as S.Schema<SmsPackOffer>;
+
+export type ListSmsSeeOffersResponseBodyList = Array<SmsPackOffer>;
+export const ListSmsSeeOffersResponseBodyList = /*@__PURE__*/ S.Array(
+  SmsPackOffer,
+) as any as S.Schema<ListSmsSeeOffersResponseBodyList>;
+
+export type ListSmsSeeOffersResponse = ListSmsSeeOffersResponseBodyList;
+export const ListSmsSeeOffersResponse = /*@__PURE__*/ S.suspend(() =>
+  ListSmsSeeOffersResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListSmsSeeOffersResponse",
+}) as any as S.Schema<ListSmsSeeOffersResponse>;
+
+export interface ListSmsSenderDocumentsRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** The sms sender */
+  sender: string;
+}
+export const ListSmsSenderDocumentsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    sender: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/sms/{serviceName}/senders/{sender}/documents",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListSmsSenderDocumentsRequest",
+}) as any as S.Schema<ListSmsSenderDocumentsRequest>;
+
+export type ListSmsSenderDocumentsResponseBodyList = Array<string>;
+export const ListSmsSenderDocumentsResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListSmsSenderDocumentsResponseBodyList>;
+
+export type ListSmsSenderDocumentsResponse =
+  ListSmsSenderDocumentsResponseBodyList;
+export const ListSmsSenderDocumentsResponse = /*@__PURE__*/ S.suspend(() =>
+  ListSmsSenderDocumentsResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListSmsSenderDocumentsResponse",
+}) as any as S.Schema<ListSmsSenderDocumentsResponse>;
+
+export interface ListSmsSendersRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+}
+export const ListSmsSendersRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/sms/{serviceName}/senders", code: 200 }),
+  ),
+).annotate({
+  identifier: "ListSmsSendersRequest",
+}) as any as S.Schema<ListSmsSendersRequest>;
+
+export type ListSmsSendersResponseBodyList = Array<string>;
+export const ListSmsSendersResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListSmsSendersResponseBodyList>;
+
+export type ListSmsSendersResponse = ListSmsSendersResponseBodyList;
+export const ListSmsSendersResponse = /*@__PURE__*/ S.suspend(() =>
+  ListSmsSendersResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListSmsSendersResponse",
+}) as any as S.Schema<ListSmsSendersResponse>;
+
+/** The referer of the available sender */
+export type SmsSenderRefererEnum = "domain" | "nichandle";
+export const SmsSenderRefererEnum = /*@__PURE__*/ S.String;
+
+export interface ListSmsSendersAvailableForValidationRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** Information type */
+  referer?: SmsSenderRefererEnum | (string & {});
+}
+export const ListSmsSendersAvailableForValidationRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
-      slotId: S.Number.pipe(T.Label()),
-      freemium: S.Boolean,
-      priceOnly: S.Boolean,
+      referer: S.optional(SmsSenderRefererEnum.pipe(T.Query())),
     }).pipe(
       T.Http({
-        method: "POST",
-        uri: "/sms/{serviceName}/receivers/{slotId}/clean",
+        method: "GET",
+        uri: "/sms/{serviceName}/sendersAvailableForValidation",
         code: 200,
       }),
     ),
   ).annotate({
-    identifier: "PostSmsServiceNameReceiversSlotIdCleanRequest",
-  }) as any as S.Schema<PostSmsServiceNameReceiversSlotIdCleanRequest>;
+    identifier: "ListSmsSendersAvailableForValidationRequest",
+  }) as any as S.Schema<ListSmsSendersAvailableForValidationRequest>;
 
-/** A structure giving operation price and asynchronous task ID */
-export interface SmsReceiversAsynchronousCleanReport {
-  taskId?: number;
-  totalCreditsRemoved?: number;
+/** A structure describing all information about senders available */
+export interface SmsSenderAvailable {
+  referer?: SmsSenderRefererEnum;
+  sender?: string;
 }
-export const SmsReceiversAsynchronousCleanReport = /*@__PURE__*/ S.suspend(() =>
+export const SmsSenderAvailable = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    taskId: S.optional(S.Number),
-    totalCreditsRemoved: S.optional(S.Number),
+    referer: S.optional(SmsSenderRefererEnum),
+    sender: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "SmsReceiversAsynchronousCleanReport",
-}) as any as S.Schema<SmsReceiversAsynchronousCleanReport>;
+  identifier: "SmsSenderAvailable",
+}) as any as S.Schema<SmsSenderAvailable>;
 
-export interface PostSmsServiceNameSendersRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** Sender description */
-  description?: string;
-  /** Message seen by the moderator */
-  reason?: string;
-  /** The sender (alpha or phone number) */
-  sender: string;
-}
-export const PostSmsServiceNameSendersRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceName: S.String.pipe(T.Label()),
-    description: S.optional(S.String),
-    reason: S.optional(S.String),
-    sender: S.String,
-  }).pipe(
-    T.Http({ method: "POST", uri: "/sms/{serviceName}/senders", code: 200 }),
-  ),
-).annotate({
-  identifier: "PostSmsServiceNameSendersRequest",
-}) as any as S.Schema<PostSmsServiceNameSendersRequest>;
-
-export type PostSmsServiceNameSendersResponse = string;
-export const PostSmsServiceNameSendersResponse = /*@__PURE__*/ S.suspend(() =>
-  S.String.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "PostSmsServiceNameSendersResponse",
-}) as any as S.Schema<PostSmsServiceNameSendersResponse>;
-
-export interface PostSmsServiceNameSendersSenderDocumentsRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** The sms sender */
-  sender: string;
-  /** Document description */
-  description?: string;
-  /** Document name */
-  name: string;
-}
-export const PostSmsServiceNameSendersSenderDocumentsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      sender: S.String.pipe(T.Label()),
-      description: S.optional(S.String),
-      name: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/sms/{serviceName}/senders/{sender}/documents",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostSmsServiceNameSendersSenderDocumentsRequest",
-  }) as any as S.Schema<PostSmsServiceNameSendersSenderDocumentsRequest>;
-
-export interface PostSmsServiceNameSendersSenderValidateRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** The sms sender */
-  sender: string;
-  /** The validation code */
-  code: string;
-}
-export const PostSmsServiceNameSendersSenderValidateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      sender: S.String.pipe(T.Label()),
-      code: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/sms/{serviceName}/senders/{sender}/validate",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostSmsServiceNameSendersSenderValidateRequest",
-  }) as any as S.Schema<PostSmsServiceNameSendersSenderValidateRequest>;
-
-export interface PostSmsServiceNameSendersSenderValidateResponse {}
-export const PostSmsServiceNameSendersSenderValidateResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PostSmsServiceNameSendersSenderValidateResponse",
-  }) as any as S.Schema<PostSmsServiceNameSendersSenderValidateResponse>;
-
-export interface PostSmsServiceNameSmppPasswordRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-}
-export const PostSmsServiceNameSmppPasswordRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/sms/{serviceName}/smpp/password",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "PostSmsServiceNameSmppPasswordRequest",
-}) as any as S.Schema<PostSmsServiceNameSmppPasswordRequest>;
-
-export interface PostSmsServiceNameSmppPasswordResponse {}
-export const PostSmsServiceNameSmppPasswordResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "PostSmsServiceNameSmppPasswordResponse",
-}) as any as S.Schema<PostSmsServiceNameSmppPasswordResponse>;
-
-export interface PostSmsServiceNameTemplatesControlRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** Specify the kind of template */
-  activity: SmsTypeTemplateEnum | (string & {});
-  /** Template description */
-  description?: string;
-  /** Message pattern to be moderated. Use "#VALUE#" format for dynamic text area. */
-  message: string;
-  /** Name of the template */
-  name: string;
-  /** Message seen by the moderator */
-  reason?: string;
-}
-export const PostSmsServiceNameTemplatesControlRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      activity: SmsTypeTemplateEnum,
-      description: S.optional(S.String),
-      message: S.String,
-      name: S.String,
-      reason: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/sms/{serviceName}/templatesControl",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostSmsServiceNameTemplatesControlRequest",
-  }) as any as S.Schema<PostSmsServiceNameTemplatesControlRequest>;
-
-export interface PostSmsServiceNameTemplatesControlResponse {}
-export const PostSmsServiceNameTemplatesControlResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PostSmsServiceNameTemplatesControlResponse",
-  }) as any as S.Schema<PostSmsServiceNameTemplatesControlResponse>;
-
-export interface PostSmsServiceNameTemplatesControlNameRelaunchValidationRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** Name of the template */
-  name: string;
-  /** Template description */
-  description: string;
-  /** Message pattern to be moderated. Use "#VALUE#" format for dynamic text area */
-  message: string;
-}
-export const PostSmsServiceNameTemplatesControlNameRelaunchValidationRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      name: S.String.pipe(T.Label()),
-      description: S.String,
-      message: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/sms/{serviceName}/templatesControl/{name}/relaunchValidation",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "PostSmsServiceNameTemplatesControlNameRelaunchValidationRequest",
-  }) as any as S.Schema<PostSmsServiceNameTemplatesControlNameRelaunchValidationRequest>;
-
-export interface PostSmsServiceNameTemplatesControlNameRelaunchValidationResponse {}
-export const PostSmsServiceNameTemplatesControlNameRelaunchValidationResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier:
-      "PostSmsServiceNameTemplatesControlNameRelaunchValidationResponse",
-  }) as any as S.Schema<PostSmsServiceNameTemplatesControlNameRelaunchValidationResponse>;
-
-export interface PostSmsServiceNameTransferCreditsRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** Amount of credits to transfer. */
-  credits: number;
-  /** Sms account destination. */
-  smsAccountTarget: string;
-}
-export const PostSmsServiceNameTransferCreditsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      credits: S.Number,
-      smsAccountTarget: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/sms/{serviceName}/transferCredits",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "PostSmsServiceNameTransferCreditsRequest",
-}) as any as S.Schema<PostSmsServiceNameTransferCreditsRequest>;
-
-export interface PostSmsServiceNameTransferCreditsResponse {}
-export const PostSmsServiceNameTransferCreditsResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PostSmsServiceNameTransferCreditsResponse",
-  }) as any as S.Schema<PostSmsServiceNameTransferCreditsResponse>;
-
-export interface PostSmsServiceNameUsersRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** The sms login */
-  login: string;
-  /** The sms password */
-  password: string | Redacted.Redacted<string>;
-}
-export const PostSmsServiceNameUsersRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceName: S.String.pipe(T.Label()),
-    login: S.String,
-    password: S.String.pipe(T.SensitiveValue({})),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/sms/{serviceName}/users", code: 200 }),
-  ),
-).annotate({
-  identifier: "PostSmsServiceNameUsersRequest",
-}) as any as S.Schema<PostSmsServiceNameUsersRequest>;
-
-export interface PostSmsServiceNameUsersResponse {}
-export const PostSmsServiceNameUsersResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "PostSmsServiceNameUsersResponse",
-}) as any as S.Schema<PostSmsServiceNameUsersResponse>;
-
-/** The receivers list */
-export type PostSmsServiceNameUsersLoginJobsRequestReceiversList =
-  Array<string>;
-export const PostSmsServiceNameUsersLoginJobsRequestReceiversList =
+export type ListSmsSendersAvailableForValidationResponseBodyList =
+  Array<SmsSenderAvailable>;
+export const ListSmsSendersAvailableForValidationResponseBodyList =
   /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostSmsServiceNameUsersLoginJobsRequestReceiversList>;
+    SmsSenderAvailable,
+  ) as any as S.Schema<ListSmsSendersAvailableForValidationResponseBodyList>;
 
-export interface PostSmsServiceNameUsersLoginJobsRequest {
+export type ListSmsSendersAvailableForValidationResponse =
+  ListSmsSendersAvailableForValidationResponseBodyList;
+export const ListSmsSendersAvailableForValidationResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListSmsSendersAvailableForValidationResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListSmsSendersAvailableForValidationResponse",
+  }) as any as S.Schema<ListSmsSendersAvailableForValidationResponse>;
+
+export interface ListSmsSmppAllowedIPsRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+}
+export const ListSmsSmppAllowedIPsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/sms/{serviceName}/smpp/allowedIPs",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListSmsSmppAllowedIPsRequest",
+}) as any as S.Schema<ListSmsSmppAllowedIPsRequest>;
+
+export type ListSmsSmppAllowedIPsResponseBodyList = Array<string>;
+export const ListSmsSmppAllowedIPsResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListSmsSmppAllowedIPsResponseBodyList>;
+
+export type ListSmsSmppAllowedIPsResponse =
+  ListSmsSmppAllowedIPsResponseBodyList;
+export const ListSmsSmppAllowedIPsResponse = /*@__PURE__*/ S.suspend(() =>
+  ListSmsSmppAllowedIPsResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListSmsSmppAllowedIPsResponse",
+}) as any as S.Schema<ListSmsSmppAllowedIPsResponse>;
+
+export interface ListSmsTaskRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** Filter the value of status property (=) */
+  status?: TelephonyTaskStatusEnum | (string & {});
+}
+export const ListSmsTaskRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    status: S.optional(TelephonyTaskStatusEnum.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/sms/{serviceName}/task", code: 200 })),
+).annotate({
+  identifier: "ListSmsTaskRequest",
+}) as any as S.Schema<ListSmsTaskRequest>;
+
+export type ListSmsTaskResponseBodyList = Array<number>;
+export const ListSmsTaskResponseBodyList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<ListSmsTaskResponseBodyList>;
+
+export type ListSmsTaskResponse = ListSmsTaskResponseBodyList;
+export const ListSmsTaskResponse = /*@__PURE__*/ S.suspend(() =>
+  ListSmsTaskResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListSmsTaskResponse",
+}) as any as S.Schema<ListSmsTaskResponse>;
+
+export interface ListSmsTemplatesControlRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+}
+export const ListSmsTemplatesControlRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/sms/{serviceName}/templatesControl",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListSmsTemplatesControlRequest",
+}) as any as S.Schema<ListSmsTemplatesControlRequest>;
+
+export type ListSmsTemplatesControlResponseBodyList = Array<string>;
+export const ListSmsTemplatesControlResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListSmsTemplatesControlResponseBodyList>;
+
+export type ListSmsTemplatesControlResponse =
+  ListSmsTemplatesControlResponseBodyList;
+export const ListSmsTemplatesControlResponse = /*@__PURE__*/ S.suspend(() =>
+  ListSmsTemplatesControlResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListSmsTemplatesControlResponse",
+}) as any as S.Schema<ListSmsTemplatesControlResponse>;
+
+export interface ListSmsUserIncomingRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** The sms user login */
   login: string;
-  /** The sms coding */
-  charset?: SmsCharsetEnum | (string & {});
-  /** Deprecated: The sms class */
-  class?: SmsClassEnum | (string & {});
-  /** Deprecated: the coding is deduced from the message and its charset */
-  coding?: SmsCodingEnum | (string & {});
-  /** The time -in minute(s)- to wait before sending the message */
-  differedPeriod?: number;
-  /** The sms message */
-  message: string;
-  /** Do not display STOP clause in the message, this requires that this is not an advertising message */
-  noStopClause?: boolean;
-  /** The priority of the message */
-  priority?: SmsPriorityEnum | (string & {});
-  /** The receivers list */
-  receivers?: PostSmsServiceNameUsersLoginJobsRequestReceiversList;
-  /** The receivers document url link in csv format */
-  receiversDocumentUrl?: string;
-  /** The receivers document slot id */
-  receiversSlotId?: string;
-  /** The sender */
+  /** Filter the value of sender property (=) */
   sender?: string;
-  /** Set the flag to send a special sms which can be reply by the receiver (smsResponse). */
-  senderForResponse?: boolean;
-  /** The identifier group tag */
+  /** Filter the value of tag property (=) */
   tag?: string;
-  /** The maximum time -in minute(s)- before the message is dropped */
-  validityPeriod?: number;
 }
-export const PostSmsServiceNameUsersLoginJobsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      login: S.String.pipe(T.Label()),
-      charset: S.optional(SmsCharsetEnum),
-      class: S.optional(SmsClassEnum),
-      coding: S.optional(SmsCodingEnum),
-      differedPeriod: S.optional(S.Number),
-      message: S.String,
-      noStopClause: S.optional(S.Boolean),
-      priority: S.optional(SmsPriorityEnum),
-      receivers: S.optional(
-        PostSmsServiceNameUsersLoginJobsRequestReceiversList,
-      ),
-      receiversDocumentUrl: S.optional(S.String),
-      receiversSlotId: S.optional(S.String),
-      sender: S.optional(S.String),
-      senderForResponse: S.optional(S.Boolean),
-      tag: S.optional(S.String),
-      validityPeriod: S.optional(S.Number),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/sms/{serviceName}/users/{login}/jobs",
-        code: 200,
-      }),
-    ),
+export const ListSmsUserIncomingRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    login: S.String.pipe(T.Label()),
+    sender: S.optional(S.String.pipe(T.Query())),
+    tag: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/sms/{serviceName}/users/{login}/incoming",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "PostSmsServiceNameUsersLoginJobsRequest",
-}) as any as S.Schema<PostSmsServiceNameUsersLoginJobsRequest>;
+  identifier: "ListSmsUserIncomingRequest",
+}) as any as S.Schema<ListSmsUserIncomingRequest>;
 
-export interface PostSmsServiceNameUsersLoginReceiversRequest {
+export type ListSmsUserIncomingResponseBodyList = Array<number>;
+export const ListSmsUserIncomingResponseBodyList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<ListSmsUserIncomingResponseBodyList>;
+
+export type ListSmsUserIncomingResponse = ListSmsUserIncomingResponseBodyList;
+export const ListSmsUserIncomingResponse = /*@__PURE__*/ S.suspend(() =>
+  ListSmsUserIncomingResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListSmsUserIncomingResponse",
+}) as any as S.Schema<ListSmsUserIncomingResponse>;
+
+export interface ListSmsUserJobsRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** The sms user login */
   login: string;
-  /** Download file from URL before sending to contacts (works only with csvUrl and not document ID) */
-  autoUpdate: boolean;
-  /** URL of the file you want to import */
-  csvUrl?: string;
-  /** Description name of the document */
-  description: string;
-  /** ID of the /me/document file you want to import */
-  documentId?: string;
-  /** Slot number id used to handle the document */
-  slotId: number;
 }
-export const PostSmsServiceNameUsersLoginReceiversRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      login: S.String.pipe(T.Label()),
-      autoUpdate: S.Boolean,
-      csvUrl: S.optional(S.String),
-      description: S.String,
-      documentId: S.optional(S.String),
-      slotId: S.Number,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/sms/{serviceName}/users/{login}/receivers",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostSmsServiceNameUsersLoginReceiversRequest",
-  }) as any as S.Schema<PostSmsServiceNameUsersLoginReceiversRequest>;
+export const ListSmsUserJobsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    login: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/sms/{serviceName}/users/{login}/jobs",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListSmsUserJobsRequest",
+}) as any as S.Schema<ListSmsUserJobsRequest>;
 
-export interface PostSmsServiceNameUsersLoginReceiversSlotIdCleanRequest {
+export type ListSmsUserJobsResponseBodyList = Array<number>;
+export const ListSmsUserJobsResponseBodyList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<ListSmsUserJobsResponseBodyList>;
+
+export type ListSmsUserJobsResponse = ListSmsUserJobsResponseBodyList;
+export const ListSmsUserJobsResponse = /*@__PURE__*/ S.suspend(() =>
+  ListSmsUserJobsResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListSmsUserJobsResponse",
+}) as any as S.Schema<ListSmsUserJobsResponse>;
+
+export interface ListSmsUserOutgoingRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** The sms user login */
   login: string;
-  /** Slot number id */
-  slotId: number;
-  /** Limit checks to syntaxical validation */
-  freemium: boolean;
-  /** Only get action's price in credits without executing it */
-  priceOnly: boolean;
-}
-export const PostSmsServiceNameUsersLoginReceiversSlotIdCleanRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      login: S.String.pipe(T.Label()),
-      slotId: S.Number.pipe(T.Label()),
-      freemium: S.Boolean,
-      priceOnly: S.Boolean,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/sms/{serviceName}/users/{login}/receivers/{slotId}/clean",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostSmsServiceNameUsersLoginReceiversSlotIdCleanRequest",
-  }) as any as S.Schema<PostSmsServiceNameUsersLoginReceiversSlotIdCleanRequest>;
-
-export interface PostSmsServiceNameVirtualNumbersNumberChatAccessRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** The virtual number */
-  number: string;
-}
-export const PostSmsServiceNameVirtualNumbersNumberChatAccessRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      number: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/sms/{serviceName}/virtualNumbers/{number}/chatAccess",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostSmsServiceNameVirtualNumbersNumberChatAccessRequest",
-  }) as any as S.Schema<PostSmsServiceNameVirtualNumbersNumberChatAccessRequest>;
-
-/** The receivers list */
-export type PostSmsServiceNameVirtualNumbersNumberJobsRequestReceiversList =
-  Array<string>;
-export const PostSmsServiceNameVirtualNumbersNumberJobsRequestReceiversList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostSmsServiceNameVirtualNumbersNumberJobsRequestReceiversList>;
-
-export interface PostSmsServiceNameVirtualNumbersNumberJobsRequest {
-  /** The internal name of your SMS offer */
-  serviceName: string;
-  /** The virtual number */
-  number: string;
-  /** The sms coding */
-  charset?: SmsCharsetEnum | (string & {});
-  /** Deprecated: The sms class */
-  class?: SmsClassEnum | (string & {});
-  /** Deprecated: the coding is deduced from the message and its charset */
-  coding?: SmsCodingEnum | (string & {});
-  /** The time -in minute(s)- to wait before sending the message */
-  differedPeriod?: number;
-  /** The sms message */
-  message: string;
-  /** The priority of the message */
-  priority?: SmsPriorityEnum | (string & {});
-  /** The receivers list */
-  receivers?: PostSmsServiceNameVirtualNumbersNumberJobsRequestReceiversList;
-  /** The receivers document url link in csv format */
-  receiversDocumentUrl?: string;
-  /** The receivers document slot id */
-  receiversSlotId?: string;
-  /** The identifier group tag */
+  /** Filter the value of deliveryReceipt property (=) */
+  deliveryReceipt?: number;
+  /** Filter the value of differedDelivery property (=) */
+  differedDelivery?: number;
+  /** Filter the value of ptt property (=) */
+  ptt?: number;
+  /** Filter the value of receiver property (=) */
+  receiver?: string;
+  /** Filter the value of sender property (=) */
+  sender?: string;
+  /** Filter the value of tag property (=) */
   tag?: string;
-  /** The maximum time -in minute(s)- before the message is dropped */
-  validityPeriod?: number;
 }
-export const PostSmsServiceNameVirtualNumbersNumberJobsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      number: S.String.pipe(T.Label()),
-      charset: S.optional(SmsCharsetEnum),
-      class: S.optional(SmsClassEnum),
-      coding: S.optional(SmsCodingEnum),
-      differedPeriod: S.optional(S.Number),
-      message: S.String,
-      priority: S.optional(SmsPriorityEnum),
-      receivers: S.optional(
-        PostSmsServiceNameVirtualNumbersNumberJobsRequestReceiversList,
-      ),
-      receiversDocumentUrl: S.optional(S.String),
-      receiversSlotId: S.optional(S.String),
-      tag: S.optional(S.String),
-      validityPeriod: S.optional(S.Number),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/sms/{serviceName}/virtualNumbers/{number}/jobs",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostSmsServiceNameVirtualNumbersNumberJobsRequest",
-  }) as any as S.Schema<PostSmsServiceNameVirtualNumbersNumberJobsRequest>;
+export const ListSmsUserOutgoingRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    login: S.String.pipe(T.Label()),
+    deliveryReceipt: S.optional(S.Number.pipe(T.Query())),
+    differedDelivery: S.optional(S.Number.pipe(T.Query())),
+    ptt: S.optional(S.Number.pipe(T.Query())),
+    receiver: S.optional(S.String.pipe(T.Query())),
+    sender: S.optional(S.String.pipe(T.Query())),
+    tag: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/sms/{serviceName}/users/{login}/outgoing",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListSmsUserOutgoingRequest",
+}) as any as S.Schema<ListSmsUserOutgoingRequest>;
 
-export interface PutSmsServiceNameRequest {
+export type ListSmsUserOutgoingResponseBodyList = Array<number>;
+export const ListSmsUserOutgoingResponseBodyList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<ListSmsUserOutgoingResponseBodyList>;
+
+export type ListSmsUserOutgoingResponse = ListSmsUserOutgoingResponseBodyList;
+export const ListSmsUserOutgoingResponse = /*@__PURE__*/ S.suspend(() =>
+  ListSmsUserOutgoingResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListSmsUserOutgoingResponse",
+}) as any as S.Schema<ListSmsUserOutgoingResponse>;
+
+export interface ListSmsUserReceiversRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** The sms user login */
+  login: string;
+}
+export const ListSmsUserReceiversRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    login: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/sms/{serviceName}/users/{login}/receivers",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListSmsUserReceiversRequest",
+}) as any as S.Schema<ListSmsUserReceiversRequest>;
+
+export type ListSmsUserReceiversResponseBodyList = Array<number>;
+export const ListSmsUserReceiversResponseBodyList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<ListSmsUserReceiversResponseBodyList>;
+
+export type ListSmsUserReceiversResponse = ListSmsUserReceiversResponseBodyList;
+export const ListSmsUserReceiversResponse = /*@__PURE__*/ S.suspend(() =>
+  ListSmsUserReceiversResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListSmsUserReceiversResponse",
+}) as any as S.Schema<ListSmsUserReceiversResponse>;
+
+export interface ListSmsUsersRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+}
+export const ListSmsUsersRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/sms/{serviceName}/users", code: 200 }),
+  ),
+).annotate({
+  identifier: "ListSmsUsersRequest",
+}) as any as S.Schema<ListSmsUsersRequest>;
+
+export type ListSmsUsersResponseBodyList = Array<string>;
+export const ListSmsUsersResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListSmsUsersResponseBodyList>;
+
+export type ListSmsUsersResponse = ListSmsUsersResponseBodyList;
+export const ListSmsUsersResponse = /*@__PURE__*/ S.suspend(() =>
+  ListSmsUsersResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListSmsUsersResponse",
+}) as any as S.Schema<ListSmsUsersResponse>;
+
+export interface ListSmsVirtualNumberIncomingRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** The virtual number */
+  number: string;
+  /** Filter the value of creationDatetime property (>=) */
+  creationDatetime_from?: string;
+  /** Filter the value of creationDatetime property (<=) */
+  creationDatetime_to?: string;
+  /** Filter the value of sender property (=) */
+  sender?: string;
+  /** Filter the value of tag property (=) */
+  tag?: string;
+}
+export const ListSmsVirtualNumberIncomingRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    number: S.String.pipe(T.Label()),
+    creationDatetime_from: S.optional(
+      S.String.pipe(T.Query("creationDatetime.from")),
+    ),
+    creationDatetime_to: S.optional(
+      S.String.pipe(T.Query("creationDatetime.to")),
+    ),
+    sender: S.optional(S.String.pipe(T.Query())),
+    tag: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/sms/{serviceName}/virtualNumbers/{number}/incoming",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListSmsVirtualNumberIncomingRequest",
+}) as any as S.Schema<ListSmsVirtualNumberIncomingRequest>;
+
+export type ListSmsVirtualNumberIncomingResponseBodyList = Array<number>;
+export const ListSmsVirtualNumberIncomingResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.Number,
+  ) as any as S.Schema<ListSmsVirtualNumberIncomingResponseBodyList>;
+
+export type ListSmsVirtualNumberIncomingResponse =
+  ListSmsVirtualNumberIncomingResponseBodyList;
+export const ListSmsVirtualNumberIncomingResponse = /*@__PURE__*/ S.suspend(
+  () => ListSmsVirtualNumberIncomingResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListSmsVirtualNumberIncomingResponse",
+}) as any as S.Schema<ListSmsVirtualNumberIncomingResponse>;
+
+export interface ListSmsVirtualNumberJobsRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** The virtual number */
+  number: string;
+}
+export const ListSmsVirtualNumberJobsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    number: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/sms/{serviceName}/virtualNumbers/{number}/jobs",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListSmsVirtualNumberJobsRequest",
+}) as any as S.Schema<ListSmsVirtualNumberJobsRequest>;
+
+export type ListSmsVirtualNumberJobsResponseBodyList = Array<number>;
+export const ListSmsVirtualNumberJobsResponseBodyList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<ListSmsVirtualNumberJobsResponseBodyList>;
+
+export type ListSmsVirtualNumberJobsResponse =
+  ListSmsVirtualNumberJobsResponseBodyList;
+export const ListSmsVirtualNumberJobsResponse = /*@__PURE__*/ S.suspend(() =>
+  ListSmsVirtualNumberJobsResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListSmsVirtualNumberJobsResponse",
+}) as any as S.Schema<ListSmsVirtualNumberJobsResponse>;
+
+export interface ListSmsVirtualNumberOutgoingRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** The virtual number */
+  number: string;
+  /** Filter the value of creationDatetime property (>=) */
+  creationDatetime_from?: string;
+  /** Filter the value of creationDatetime property (<=) */
+  creationDatetime_to?: string;
+  /** Filter the value of deliveryReceipt property (=) */
+  deliveryReceipt?: number;
+  /** Filter the value of differedDelivery property (=) */
+  differedDelivery?: number;
+  /** Filter the value of ptt property (=) */
+  ptt?: number;
+  /** Filter the value of receiver property (=) */
+  receiver?: string;
+  /** Filter the value of sender property (=) */
+  sender?: string;
+  /** Filter the value of tag property (=) */
+  tag?: string;
+}
+export const ListSmsVirtualNumberOutgoingRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    number: S.String.pipe(T.Label()),
+    creationDatetime_from: S.optional(
+      S.String.pipe(T.Query("creationDatetime.from")),
+    ),
+    creationDatetime_to: S.optional(
+      S.String.pipe(T.Query("creationDatetime.to")),
+    ),
+    deliveryReceipt: S.optional(S.Number.pipe(T.Query())),
+    differedDelivery: S.optional(S.Number.pipe(T.Query())),
+    ptt: S.optional(S.Number.pipe(T.Query())),
+    receiver: S.optional(S.String.pipe(T.Query())),
+    sender: S.optional(S.String.pipe(T.Query())),
+    tag: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/sms/{serviceName}/virtualNumbers/{number}/outgoing",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListSmsVirtualNumberOutgoingRequest",
+}) as any as S.Schema<ListSmsVirtualNumberOutgoingRequest>;
+
+export type ListSmsVirtualNumberOutgoingResponseBodyList = Array<number>;
+export const ListSmsVirtualNumberOutgoingResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.Number,
+  ) as any as S.Schema<ListSmsVirtualNumberOutgoingResponseBodyList>;
+
+export type ListSmsVirtualNumberOutgoingResponse =
+  ListSmsVirtualNumberOutgoingResponseBodyList;
+export const ListSmsVirtualNumberOutgoingResponse = /*@__PURE__*/ S.suspend(
+  () => ListSmsVirtualNumberOutgoingResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListSmsVirtualNumberOutgoingResponse",
+}) as any as S.Schema<ListSmsVirtualNumberOutgoingResponse>;
+
+export type ListSmsVirtualNumbersRequestIamTagsValueList =
+  Array<IamResourceTagFilterInput>;
+export const ListSmsVirtualNumbersRequestIamTagsValueList =
+  /*@__PURE__*/ S.Array(
+    IamResourceTagFilterInput,
+  ) as any as S.Schema<ListSmsVirtualNumbersRequestIamTagsValueList>;
+
+export type ListSmsVirtualNumbersRequestIamTagsMap = {
+  [key: string]: ListSmsVirtualNumbersRequestIamTagsValueList | undefined;
+};
+export const ListSmsVirtualNumbersRequestIamTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  ListSmsVirtualNumbersRequestIamTagsValueList,
+) as any as S.Schema<ListSmsVirtualNumbersRequestIamTagsMap>;
+
+export interface ListSmsVirtualNumbersRequest {
+  /** Filter resources on IAM tags */
+  iamTags?: ListSmsVirtualNumbersRequestIamTagsMap;
+}
+export const ListSmsVirtualNumbersRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    iamTags: S.optional(ListSmsVirtualNumbersRequestIamTagsMap.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/sms/virtualNumbers", code: 200 })),
+).annotate({
+  identifier: "ListSmsVirtualNumbersRequest",
+}) as any as S.Schema<ListSmsVirtualNumbersRequest>;
+
+export type ListSmsVirtualNumbersResponseBodyList = Array<string>;
+export const ListSmsVirtualNumbersResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListSmsVirtualNumbersResponseBodyList>;
+
+export type ListSmsVirtualNumbersResponse =
+  ListSmsVirtualNumbersResponseBodyList;
+export const ListSmsVirtualNumbersResponse = /*@__PURE__*/ S.suspend(() =>
+  ListSmsVirtualNumbersResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListSmsVirtualNumbersResponse",
+}) as any as S.Schema<ListSmsVirtualNumbersResponse>;
+
+export interface ListSmsVirtualNumbersRequest2 {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+}
+export const ListSmsVirtualNumbersRequest2 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/sms/{serviceName}/virtualNumbers",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListSmsVirtualNumbersRequest2",
+}) as any as S.Schema<ListSmsVirtualNumbersRequest2>;
+
+export type ListSmsVirtualNumbersResponseBodyList2 = Array<string>;
+export const ListSmsVirtualNumbersResponseBodyList2 = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListSmsVirtualNumbersResponseBodyList2>;
+
+export type ListSmsVirtualNumbersResponse2 =
+  ListSmsVirtualNumbersResponseBodyList2;
+export const ListSmsVirtualNumbersResponse2 = /*@__PURE__*/ S.suspend(() =>
+  ListSmsVirtualNumbersResponseBodyList2.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListSmsVirtualNumbersResponse2",
+}) as any as S.Schema<ListSmsVirtualNumbersResponse2>;
+
+export interface PutSmsRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   automaticRecreditAmount?:
@@ -5048,7 +4872,7 @@ export interface PutSmsServiceNameRequest {
   stopCallBack?: string | null;
   templates?: SmsTemplates;
 }
-export const PutSmsServiceNameRequest = /*@__PURE__*/ S.suspend(() =>
+export const PutSmsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     serviceName: S.String.pipe(T.Label()),
     automaticRecreditAmount: S.optional(
@@ -5061,18 +4885,14 @@ export const PutSmsServiceNameRequest = /*@__PURE__*/ S.suspend(() =>
     stopCallBack: S.optional(S.NullOr(S.String)),
     templates: S.optional(SmsTemplates),
   }).pipe(T.Http({ method: "PUT", uri: "/sms/{serviceName}", code: 200 })),
-).annotate({
-  identifier: "PutSmsServiceNameRequest",
-}) as any as S.Schema<PutSmsServiceNameRequest>;
+).annotate({ identifier: "PutSmsRequest" }) as any as S.Schema<PutSmsRequest>;
 
-export interface PutSmsServiceNameResponse {}
-export const PutSmsServiceNameResponse = /*@__PURE__*/ S.suspend(() =>
+export interface PutSmsResponse {}
+export const PutSmsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
-).annotate({
-  identifier: "PutSmsServiceNameResponse",
-}) as any as S.Schema<PutSmsServiceNameResponse>;
+).annotate({ identifier: "PutSmsResponse" }) as any as S.Schema<PutSmsResponse>;
 
-export interface PutSmsServiceNameBatchesIdRequest {
+export interface PutSmsBatchRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** Id */
@@ -5080,7 +4900,7 @@ export interface PutSmsServiceNameBatchesIdRequest {
   /** Batch name */
   name: string;
 }
-export const PutSmsServiceNameBatchesIdRequest = /*@__PURE__*/ S.suspend(() =>
+export const PutSmsBatchRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     serviceName: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
@@ -5093,10 +4913,10 @@ export const PutSmsServiceNameBatchesIdRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "PutSmsServiceNameBatchesIdRequest",
-}) as any as S.Schema<PutSmsServiceNameBatchesIdRequest>;
+  identifier: "PutSmsBatchRequest",
+}) as any as S.Schema<PutSmsBatchRequest>;
 
-export interface PutSmsServiceNamePhonebooksBookKeyRequest {
+export interface PutSmsPhonebookRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** Identifier of the phonebook */
@@ -5104,30 +4924,30 @@ export interface PutSmsServiceNamePhonebooksBookKeyRequest {
   /** Phonebook name */
   name?: string;
 }
-export const PutSmsServiceNamePhonebooksBookKeyRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      bookKey: S.String.pipe(T.Label()),
-      name: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/sms/{serviceName}/phonebooks/{bookKey}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PutSmsServiceNamePhonebooksBookKeyRequest",
-  }) as any as S.Schema<PutSmsServiceNamePhonebooksBookKeyRequest>;
+export const PutSmsPhonebookRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    bookKey: S.String.pipe(T.Label()),
+    name: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/sms/{serviceName}/phonebooks/{bookKey}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "PutSmsPhonebookRequest",
+}) as any as S.Schema<PutSmsPhonebookRequest>;
 
-export interface PutSmsServiceNamePhonebooksBookKeyResponse {}
-export const PutSmsServiceNamePhonebooksBookKeyResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PutSmsServiceNamePhonebooksBookKeyResponse",
-  }) as any as S.Schema<PutSmsServiceNamePhonebooksBookKeyResponse>;
+export interface PutSmsPhonebookResponse {}
+export const PutSmsPhonebookResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "PutSmsPhonebookResponse",
+}) as any as S.Schema<PutSmsPhonebookResponse>;
 
-export interface PutSmsServiceNamePhonebooksBookKeyPhonebookContactIdRequest {
+export interface PutSmsPhonebookPhonebookContactRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** Identifier of the phonebook */
@@ -5149,8 +4969,8 @@ export interface PutSmsServiceNamePhonebooksBookKeyPhonebookContactIdRequest {
   /** Landline phone office number of the contact */
   workPhone?: string | null;
 }
-export const PutSmsServiceNamePhonebooksBookKeyPhonebookContactIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const PutSmsPhonebookPhonebookContactRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       bookKey: S.String.pipe(T.Label()),
@@ -5169,17 +4989,18 @@ export const PutSmsServiceNamePhonebooksBookKeyPhonebookContactIdRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "PutSmsServiceNamePhonebooksBookKeyPhonebookContactIdRequest",
-  }) as any as S.Schema<PutSmsServiceNamePhonebooksBookKeyPhonebookContactIdRequest>;
+).annotate({
+  identifier: "PutSmsPhonebookPhonebookContactRequest",
+}) as any as S.Schema<PutSmsPhonebookPhonebookContactRequest>;
 
-export interface PutSmsServiceNamePhonebooksBookKeyPhonebookContactIdResponse {}
-export const PutSmsServiceNamePhonebooksBookKeyPhonebookContactIdResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PutSmsServiceNamePhonebooksBookKeyPhonebookContactIdResponse",
-  }) as any as S.Schema<PutSmsServiceNamePhonebooksBookKeyPhonebookContactIdResponse>;
+export interface PutSmsPhonebookPhonebookContactResponse {}
+export const PutSmsPhonebookPhonebookContactResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "PutSmsPhonebookPhonebookContactResponse",
+}) as any as S.Schema<PutSmsPhonebookPhonebookContactResponse>;
 
-export interface PutSmsServiceNameReceiversSlotIdRequest {
+export interface PutSmsReceiverRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** Slot number id */
@@ -5189,32 +5010,31 @@ export interface PutSmsServiceNameReceiversSlotIdRequest {
   /** Description name of the document */
   description?: string;
 }
-export const PutSmsServiceNameReceiversSlotIdRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      slotId: S.Number.pipe(T.Label()),
-      autoUpdate: S.optional(S.Boolean),
-      description: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/sms/{serviceName}/receivers/{slotId}",
-        code: 200,
-      }),
-    ),
+export const PutSmsReceiverRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    slotId: S.Number.pipe(T.Label()),
+    autoUpdate: S.optional(S.Boolean),
+    description: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/sms/{serviceName}/receivers/{slotId}",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "PutSmsServiceNameReceiversSlotIdRequest",
-}) as any as S.Schema<PutSmsServiceNameReceiversSlotIdRequest>;
+  identifier: "PutSmsReceiverRequest",
+}) as any as S.Schema<PutSmsReceiverRequest>;
 
-export interface PutSmsServiceNameReceiversSlotIdResponse {}
-export const PutSmsServiceNameReceiversSlotIdResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
+export interface PutSmsReceiverResponse {}
+export const PutSmsReceiverResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
 ).annotate({
-  identifier: "PutSmsServiceNameReceiversSlotIdResponse",
-}) as any as S.Schema<PutSmsServiceNameReceiversSlotIdResponse>;
+  identifier: "PutSmsReceiverResponse",
+}) as any as S.Schema<PutSmsReceiverResponse>;
 
-export interface PutSmsServiceNameSendersSenderRequest {
+export interface PutSmsSenderRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** The sms sender */
@@ -5224,32 +5044,31 @@ export interface PutSmsServiceNameSendersSenderRequest {
   /** Sender status */
   status?: SmsStatusSenderEnum | (string & {});
 }
-export const PutSmsServiceNameSendersSenderRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      sender: S.String.pipe(T.Label()),
-      description: S.optional(S.String),
-      status: S.optional(SmsStatusSenderEnum),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/sms/{serviceName}/senders/{sender}",
-        code: 200,
-      }),
-    ),
+export const PutSmsSenderRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    sender: S.String.pipe(T.Label()),
+    description: S.optional(S.String),
+    status: S.optional(SmsStatusSenderEnum),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/sms/{serviceName}/senders/{sender}",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "PutSmsServiceNameSendersSenderRequest",
-}) as any as S.Schema<PutSmsServiceNameSendersSenderRequest>;
+  identifier: "PutSmsSenderRequest",
+}) as any as S.Schema<PutSmsSenderRequest>;
 
-export interface PutSmsServiceNameSendersSenderResponse {}
-export const PutSmsServiceNameSendersSenderResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
+export interface PutSmsSenderResponse {}
+export const PutSmsSenderResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
 ).annotate({
-  identifier: "PutSmsServiceNameSendersSenderResponse",
-}) as any as S.Schema<PutSmsServiceNameSendersSenderResponse>;
+  identifier: "PutSmsSenderResponse",
+}) as any as S.Schema<PutSmsSenderResponse>;
 
-export interface PutSmsServiceNameSendersSenderDocumentsDocumentIDRequest {
+export interface PutSmsSenderDocumentRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** The sms sender */
@@ -5261,112 +5080,106 @@ export interface PutSmsServiceNameSendersSenderDocumentsDocumentIDRequest {
   /** Document name */
   name?: string;
 }
-export const PutSmsServiceNameSendersSenderDocumentsDocumentIDRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      sender: S.String.pipe(T.Label()),
-      documentID: S.String.pipe(T.Label()),
-      description: S.optional(S.NullOr(S.String)),
-      name: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/sms/{serviceName}/senders/{sender}/documents/{documentID}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PutSmsServiceNameSendersSenderDocumentsDocumentIDRequest",
-  }) as any as S.Schema<PutSmsServiceNameSendersSenderDocumentsDocumentIDRequest>;
+export const PutSmsSenderDocumentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    sender: S.String.pipe(T.Label()),
+    documentID: S.String.pipe(T.Label()),
+    description: S.optional(S.NullOr(S.String)),
+    name: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/sms/{serviceName}/senders/{sender}/documents/{documentID}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "PutSmsSenderDocumentRequest",
+}) as any as S.Schema<PutSmsSenderDocumentRequest>;
 
-export interface PutSmsServiceNameSendersSenderDocumentsDocumentIDResponse {}
-export const PutSmsServiceNameSendersSenderDocumentsDocumentIDResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PutSmsServiceNameSendersSenderDocumentsDocumentIDResponse",
-  }) as any as S.Schema<PutSmsServiceNameSendersSenderDocumentsDocumentIDResponse>;
+export interface PutSmsSenderDocumentResponse {}
+export const PutSmsSenderDocumentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "PutSmsSenderDocumentResponse",
+}) as any as S.Schema<PutSmsSenderDocumentResponse>;
 
-export interface PutSmsServiceNameServiceInfosRequest {
+export interface PutSmsServiceInfosRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** Way of handling the renew */
   renew?: ServiceRenewType | null;
 }
-export const PutSmsServiceNameServiceInfosRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      renew: S.optional(S.NullOr(ServiceRenewType)),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/sms/{serviceName}/serviceInfos",
-        code: 200,
-      }),
-    ),
+export const PutSmsServiceInfosRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    renew: S.optional(S.NullOr(ServiceRenewType)),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/sms/{serviceName}/serviceInfos",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "PutSmsServiceNameServiceInfosRequest",
-}) as any as S.Schema<PutSmsServiceNameServiceInfosRequest>;
+  identifier: "PutSmsServiceInfosRequest",
+}) as any as S.Schema<PutSmsServiceInfosRequest>;
 
-export interface PutSmsServiceNameServiceInfosResponse {}
-export const PutSmsServiceNameServiceInfosResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
+export interface PutSmsServiceInfosResponse {}
+export const PutSmsServiceInfosResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
 ).annotate({
-  identifier: "PutSmsServiceNameServiceInfosResponse",
-}) as any as S.Schema<PutSmsServiceNameServiceInfosResponse>;
+  identifier: "PutSmsServiceInfosResponse",
+}) as any as S.Schema<PutSmsServiceInfosResponse>;
 
 /** Smpp allowed IPs action */
 export type SmsAllowedIPsActionEnum = "add" | "remove";
 export const SmsAllowedIPsActionEnum = /*@__PURE__*/ S.String;
 
 /** List of IPs to add or remove */
-export type PutSmsServiceNameSmppAllowedIPsRequestIpsList = Array<string>;
-export const PutSmsServiceNameSmppAllowedIPsRequestIpsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PutSmsServiceNameSmppAllowedIPsRequestIpsList>;
+export type PutSmsSmppAllowedIPsRequestIpsList = Array<string>;
+export const PutSmsSmppAllowedIPsRequestIpsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<PutSmsSmppAllowedIPsRequestIpsList>;
 
-export interface PutSmsServiceNameSmppAllowedIPsRequest {
+export interface PutSmsSmppAllowedIPsRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** Action to perform on the provided IPs */
   action: SmsAllowedIPsActionEnum | (string & {});
   /** List of IPs to add or remove */
-  ips: PutSmsServiceNameSmppAllowedIPsRequestIpsList;
+  ips: PutSmsSmppAllowedIPsRequestIpsList;
 }
-export const PutSmsServiceNameSmppAllowedIPsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      action: SmsAllowedIPsActionEnum,
-      ips: PutSmsServiceNameSmppAllowedIPsRequestIpsList,
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/sms/{serviceName}/smpp/allowedIPs",
-        code: 200,
-      }),
-    ),
+export const PutSmsSmppAllowedIPsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    action: SmsAllowedIPsActionEnum,
+    ips: PutSmsSmppAllowedIPsRequestIpsList,
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/sms/{serviceName}/smpp/allowedIPs",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "PutSmsServiceNameSmppAllowedIPsRequest",
-}) as any as S.Schema<PutSmsServiceNameSmppAllowedIPsRequest>;
+  identifier: "PutSmsSmppAllowedIPsRequest",
+}) as any as S.Schema<PutSmsSmppAllowedIPsRequest>;
 
-export type PutSmsServiceNameSmppAllowedIPsResponseBodyList = Array<string>;
-export const PutSmsServiceNameSmppAllowedIPsResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PutSmsServiceNameSmppAllowedIPsResponseBodyList>;
+export type PutSmsSmppAllowedIPsResponseBodyList = Array<string>;
+export const PutSmsSmppAllowedIPsResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<PutSmsSmppAllowedIPsResponseBodyList>;
 
-export type PutSmsServiceNameSmppAllowedIPsResponse =
-  PutSmsServiceNameSmppAllowedIPsResponseBodyList;
-export const PutSmsServiceNameSmppAllowedIPsResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    PutSmsServiceNameSmppAllowedIPsResponseBodyList.pipe(T.RawResponseRoot()),
+export type PutSmsSmppAllowedIPsResponse = PutSmsSmppAllowedIPsResponseBodyList;
+export const PutSmsSmppAllowedIPsResponse = /*@__PURE__*/ S.suspend(() =>
+  PutSmsSmppAllowedIPsResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "PutSmsServiceNameSmppAllowedIPsResponse",
-}) as any as S.Schema<PutSmsServiceNameSmppAllowedIPsResponse>;
+  identifier: "PutSmsSmppAllowedIPsResponse",
+}) as any as S.Schema<PutSmsSmppAllowedIPsResponse>;
 
-export interface PutSmsServiceNameTemplatesControlNameRequest {
+export interface PutSmsTemplatesControlRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** Name of the template */
@@ -5380,40 +5193,38 @@ export interface PutSmsServiceNameTemplatesControlNameRequest {
   /** Template status */
   status?: SmsStatusSenderEnum | (string & {});
 }
-export const PutSmsServiceNameTemplatesControlNameRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      name: S.String.pipe(T.Label()),
-      activity: S.optional(SmsTypeTemplateEnum),
-      description: S.optional(S.String),
-      message: S.optional(S.String),
-      status: S.optional(SmsStatusSenderEnum),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/sms/{serviceName}/templatesControl/{name}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PutSmsServiceNameTemplatesControlNameRequest",
-  }) as any as S.Schema<PutSmsServiceNameTemplatesControlNameRequest>;
+export const PutSmsTemplatesControlRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+    activity: S.optional(SmsTypeTemplateEnum),
+    description: S.optional(S.String),
+    message: S.optional(S.String),
+    status: S.optional(SmsStatusSenderEnum),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/sms/{serviceName}/templatesControl/{name}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "PutSmsTemplatesControlRequest",
+}) as any as S.Schema<PutSmsTemplatesControlRequest>;
 
-export interface PutSmsServiceNameTemplatesControlNameResponse {}
-export const PutSmsServiceNameTemplatesControlNameResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PutSmsServiceNameTemplatesControlNameResponse",
-  }) as any as S.Schema<PutSmsServiceNameTemplatesControlNameResponse>;
+export interface PutSmsTemplatesControlResponse {}
+export const PutSmsTemplatesControlResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "PutSmsTemplatesControlResponse",
+}) as any as S.Schema<PutSmsTemplatesControlResponse>;
 
-export type PutSmsServiceNameUsersLoginRequestIpRestrictionsList =
-  Array<string>;
-export const PutSmsServiceNameUsersLoginRequestIpRestrictionsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PutSmsServiceNameUsersLoginRequestIpRestrictionsList>;
+export type PutSmsUserRequestIpRestrictionsList = Array<string>;
+export const PutSmsUserRequestIpRestrictionsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<PutSmsUserRequestIpRestrictionsList>;
 
-export interface PutSmsServiceNameUsersLoginRequest {
+export interface PutSmsUserRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** The sms user login */
@@ -5421,21 +5232,19 @@ export interface PutSmsServiceNameUsersLoginRequest {
   alertThresholdInformations?: SmsAlertThreshold;
   /** URL called when state of a sent SMS changes */
   callBack?: string | null;
-  ipRestrictions?: PutSmsServiceNameUsersLoginRequestIpRestrictionsList;
+  ipRestrictions?: PutSmsUserRequestIpRestrictionsList;
   password?: string | Redacted.Redacted<string>;
   quotaInformations?: SmsQuota;
   /** URL called when a STOP is received after a receiver replied stop to a SMS */
   stopCallBack?: string | null;
 }
-export const PutSmsServiceNameUsersLoginRequest = /*@__PURE__*/ S.suspend(() =>
+export const PutSmsUserRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     serviceName: S.String.pipe(T.Label()),
     login: S.String.pipe(T.Label()),
     alertThresholdInformations: S.optional(SmsAlertThreshold),
     callBack: S.optional(S.NullOr(S.String)),
-    ipRestrictions: S.optional(
-      PutSmsServiceNameUsersLoginRequestIpRestrictionsList,
-    ),
+    ipRestrictions: S.optional(PutSmsUserRequestIpRestrictionsList),
     password: S.optional(S.String.pipe(T.SensitiveValue({}))),
     quotaInformations: S.optional(SmsQuota),
     stopCallBack: S.optional(S.NullOr(S.String)),
@@ -5447,17 +5256,17 @@ export const PutSmsServiceNameUsersLoginRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "PutSmsServiceNameUsersLoginRequest",
-}) as any as S.Schema<PutSmsServiceNameUsersLoginRequest>;
+  identifier: "PutSmsUserRequest",
+}) as any as S.Schema<PutSmsUserRequest>;
 
-export interface PutSmsServiceNameUsersLoginResponse {}
-export const PutSmsServiceNameUsersLoginResponse = /*@__PURE__*/ S.suspend(() =>
+export interface PutSmsUserResponse {}
+export const PutSmsUserResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "PutSmsServiceNameUsersLoginResponse",
-}) as any as S.Schema<PutSmsServiceNameUsersLoginResponse>;
+  identifier: "PutSmsUserResponse",
+}) as any as S.Schema<PutSmsUserResponse>;
 
-export interface PutSmsServiceNameUsersLoginReceiversSlotIdRequest {
+export interface PutSmsUserReceiverRequest {
   /** The internal name of your SMS offer */
   serviceName: string;
   /** The sms user login */
@@ -5469,39 +5278,39 @@ export interface PutSmsServiceNameUsersLoginReceiversSlotIdRequest {
   /** Description name of the document */
   description?: string;
 }
-export const PutSmsServiceNameUsersLoginReceiversSlotIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      login: S.String.pipe(T.Label()),
-      slotId: S.Number.pipe(T.Label()),
-      autoUpdate: S.optional(S.Boolean),
-      description: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/sms/{serviceName}/users/{login}/receivers/{slotId}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PutSmsServiceNameUsersLoginReceiversSlotIdRequest",
-  }) as any as S.Schema<PutSmsServiceNameUsersLoginReceiversSlotIdRequest>;
+export const PutSmsUserReceiverRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    login: S.String.pipe(T.Label()),
+    slotId: S.Number.pipe(T.Label()),
+    autoUpdate: S.optional(S.Boolean),
+    description: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/sms/{serviceName}/users/{login}/receivers/{slotId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "PutSmsUserReceiverRequest",
+}) as any as S.Schema<PutSmsUserReceiverRequest>;
 
-export interface PutSmsServiceNameUsersLoginReceiversSlotIdResponse {}
-export const PutSmsServiceNameUsersLoginReceiversSlotIdResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PutSmsServiceNameUsersLoginReceiversSlotIdResponse",
-  }) as any as S.Schema<PutSmsServiceNameUsersLoginReceiversSlotIdResponse>;
+export interface PutSmsUserReceiverResponse {}
+export const PutSmsUserReceiverResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "PutSmsUserReceiverResponse",
+}) as any as S.Schema<PutSmsUserReceiverResponse>;
 
-export interface PutSmsVirtualNumbersNumberServiceInfosRequest {
+export interface PutSmsVirtualNumberServiceInfosRequest {
   /** Your virtual number */
   number: string;
   /** Way of handling the renew */
   renew?: ServiceRenewType | null;
 }
-export const PutSmsVirtualNumbersNumberServiceInfosRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const PutSmsVirtualNumberServiceInfosRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       number: S.String.pipe(T.Label()),
       renew: S.optional(S.NullOr(ServiceRenewType)),
@@ -5512,315 +5321,869 @@ export const PutSmsVirtualNumbersNumberServiceInfosRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "PutSmsVirtualNumbersNumberServiceInfosRequest",
-  }) as any as S.Schema<PutSmsVirtualNumbersNumberServiceInfosRequest>;
+).annotate({
+  identifier: "PutSmsVirtualNumberServiceInfosRequest",
+}) as any as S.Schema<PutSmsVirtualNumberServiceInfosRequest>;
 
-export interface PutSmsVirtualNumbersNumberServiceInfosResponse {}
-export const PutSmsVirtualNumbersNumberServiceInfosResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PutSmsVirtualNumbersNumberServiceInfosResponse",
-  }) as any as S.Schema<PutSmsVirtualNumbersNumberServiceInfosResponse>;
+export interface PutSmsVirtualNumberServiceInfosResponse {}
+export const PutSmsVirtualNumberServiceInfosResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "PutSmsVirtualNumberServiceInfosResponse",
+}) as any as S.Schema<PutSmsVirtualNumberServiceInfosResponse>;
 
-export type DeleteSmsServiceNameBatchesIdError = OvhOpError;
+export interface TransferSmsCreditsRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** Amount of credits to transfer. */
+  credits: number;
+  /** Sms account destination. */
+  smsAccountTarget: string;
+}
+export const TransferSmsCreditsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    credits: S.Number,
+    smsAccountTarget: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/sms/{serviceName}/transferCredits",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "TransferSmsCreditsRequest",
+}) as any as S.Schema<TransferSmsCreditsRequest>;
+
+export interface TransferSmsCreditsResponse {}
+export const TransferSmsCreditsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "TransferSmsCreditsResponse",
+}) as any as S.Schema<TransferSmsCreditsResponse>;
+
+export interface ValidateSmsSenderRequest {
+  /** The internal name of your SMS offer */
+  serviceName: string;
+  /** The sms sender */
+  sender: string;
+  /** The validation code */
+  code: string;
+}
+export const ValidateSmsSenderRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    sender: S.String.pipe(T.Label()),
+    code: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/sms/{serviceName}/senders/{sender}/validate",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ValidateSmsSenderRequest",
+}) as any as S.Schema<ValidateSmsSenderRequest>;
+
+export interface ValidateSmsSenderResponse {}
+export const ValidateSmsSenderResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "ValidateSmsSenderResponse",
+}) as any as S.Schema<ValidateSmsSenderResponse>;
+
+export type CancelSmsBatchError = OvhOpError;
+/** Cancel a deferred batch (no SMS must have been sent) */
+export const cancelSmsBatch: API.OperationMethod<
+  CancelSmsBatchRequest,
+  SmsBatch,
+  CancelSmsBatchError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CancelSmsBatchRequest,
+  output: SmsBatch,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateSmsBatchError = OvhOpError;
+/** Create a batch */
+export const createSmsBatch: API.OperationMethod<
+  CreateSmsBatchRequest,
+  SmsBatch,
+  CreateSmsBatchError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateSmsBatchRequest,
+  output: SmsBatch,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateSmsEstimateError = OvhOpError;
+/** Get the encoding, length and number of SMS parts of a text message */
+export const createSmsEstimate: API.OperationMethod<
+  CreateSmsEstimateRequest,
+  SmsJobEstimate,
+  CreateSmsEstimateError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateSmsEstimateRequest,
+  output: SmsJobEstimate,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateSmsHlrError = OvhOpError;
+/** Add one or several sending hlr lookup request */
+export const createSmsHlr: API.OperationMethod<
+  CreateSmsHlrRequest,
+  SmsSmsSendingReport,
+  CreateSmsHlrError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateSmsHlrRequest,
+  output: SmsSmsSendingReport,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateSmsJobError = OvhOpError;
+/** Add one or several sending jobs */
+export const createSmsJob: API.OperationMethod<
+  CreateSmsJobRequest,
+  SmsSmsSendingReport,
+  CreateSmsJobError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateSmsJobRequest,
+  output: SmsSmsSendingReport,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateSmsPhonebookError = OvhOpError;
+/** Add a phonebook. Return the bookKey. */
+export const createSmsPhonebook: API.OperationMethod<
+  CreateSmsPhonebookRequest,
+  CreateSmsPhonebookResponse,
+  CreateSmsPhonebookError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateSmsPhonebookRequest,
+  output: CreateSmsPhonebookResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateSmsPhonebookPhonebookContactError = OvhOpError;
+/** Create a phonebook contact. Return identifier of the phonebook contact. */
+export const createSmsPhonebookPhonebookContact: API.OperationMethod<
+  CreateSmsPhonebookPhonebookContactRequest,
+  CreateSmsPhonebookPhonebookContactResponse,
+  CreateSmsPhonebookPhonebookContactError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateSmsPhonebookPhonebookContactRequest,
+  output: CreateSmsPhonebookPhonebookContactResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateSmsReceiverError = OvhOpError;
+/** Add a new document of csv receivers */
+export const createSmsReceiver: API.OperationMethod<
+  CreateSmsReceiverRequest,
+  SmsReceiver,
+  CreateSmsReceiverError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateSmsReceiverRequest,
+  output: SmsReceiver,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateSmsReceiverCleanError = OvhOpError;
+/** Clean the invalid and inactive receivers in the document by requesting HLR on each receiver Clean the invalid and inactive receivers in the document by requesting HLR on each receiver. A report is sent by e-mail at the end of the operation. */
+export const createSmsReceiverClean: API.OperationMethod<
+  CreateSmsReceiverCleanRequest,
+  SmsReceiversAsynchronousCleanReport,
+  CreateSmsReceiverCleanError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateSmsReceiverCleanRequest,
+  output: SmsReceiversAsynchronousCleanReport,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateSmsSenderError = OvhOpError;
+/** Create the sms sender given */
+export const createSmsSender: API.OperationMethod<
+  CreateSmsSenderRequest,
+  CreateSmsSenderResponse,
+  CreateSmsSenderError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateSmsSenderRequest,
+  output: CreateSmsSenderResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateSmsSenderDocumentError = OvhOpError;
+/** Create a new empty document */
+export const createSmsSenderDocument: API.OperationMethod<
+  CreateSmsSenderDocumentRequest,
+  SmsSenderDocument,
+  CreateSmsSenderDocumentError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateSmsSenderDocumentRequest,
+  output: SmsSenderDocument,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateSmsSmppPasswordError = OvhOpError;
+/** Renew SMPP password */
+export const createSmsSmppPassword: API.OperationMethod<
+  CreateSmsSmppPasswordRequest,
+  CreateSmsSmppPasswordResponse,
+  CreateSmsSmppPasswordError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateSmsSmppPasswordRequest,
+  output: CreateSmsSmppPasswordResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateSmsTemplatesControlError = OvhOpError;
+/** Create the sms template control given */
+export const createSmsTemplatesControl: API.OperationMethod<
+  CreateSmsTemplatesControlRequest,
+  CreateSmsTemplatesControlResponse,
+  CreateSmsTemplatesControlError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateSmsTemplatesControlRequest,
+  output: CreateSmsTemplatesControlResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateSmsTemplatesControlRelaunchValidationError = OvhOpError;
+/** Attempt a new validation after moderation refusal */
+export const createSmsTemplatesControlRelaunchValidation: API.OperationMethod<
+  CreateSmsTemplatesControlRelaunchValidationRequest,
+  CreateSmsTemplatesControlRelaunchValidationResponse,
+  CreateSmsTemplatesControlRelaunchValidationError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateSmsTemplatesControlRelaunchValidationRequest,
+  output: CreateSmsTemplatesControlRelaunchValidationResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateSmsUserError = OvhOpError;
+/** Create a new user for an sms account */
+export const createSmsUser: API.OperationMethod<
+  CreateSmsUserRequest,
+  CreateSmsUserResponse,
+  CreateSmsUserError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateSmsUserRequest,
+  output: CreateSmsUserResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateSmsUserJobError = OvhOpError;
+/** Add one or several sending jobs */
+export const createSmsUserJob: API.OperationMethod<
+  CreateSmsUserJobRequest,
+  SmsSmsSendingReport,
+  CreateSmsUserJobError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateSmsUserJobRequest,
+  output: SmsSmsSendingReport,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateSmsUserReceiverError = OvhOpError;
+/** Add a new document of csv receivers */
+export const createSmsUserReceiver: API.OperationMethod<
+  CreateSmsUserReceiverRequest,
+  SmsReceiver,
+  CreateSmsUserReceiverError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateSmsUserReceiverRequest,
+  output: SmsReceiver,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateSmsUserReceiverCleanError = OvhOpError;
+/** Clean the invalid and inactive receivers in the document by requesting HLR on each receiver Clean the invalid and inactive receivers in the document by requesting HLR on each receiver. A report is sent by e-mail at the end of the operation. */
+export const createSmsUserReceiverClean: API.OperationMethod<
+  CreateSmsUserReceiverCleanRequest,
+  SmsReceiversAsynchronousCleanReport,
+  CreateSmsUserReceiverCleanError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateSmsUserReceiverCleanRequest,
+  output: SmsReceiversAsynchronousCleanReport,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateSmsVirtualNumberChatAccessError = OvhOpError;
+/** Create a new web access for this ressource */
+export const createSmsVirtualNumberChatAccess: API.OperationMethod<
+  CreateSmsVirtualNumberChatAccessRequest,
+  SmsChatAccess,
+  CreateSmsVirtualNumberChatAccessError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateSmsVirtualNumberChatAccessRequest,
+  output: SmsChatAccess,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateSmsVirtualNumberJobError = OvhOpError;
+/** Add one or several sending jobs */
+export const createSmsVirtualNumberJob: API.OperationMethod<
+  CreateSmsVirtualNumberJobRequest,
+  SmsSmsSendingReport,
+  CreateSmsVirtualNumberJobError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateSmsVirtualNumberJobRequest,
+  output: SmsSmsSendingReport,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteSmsBatchError = OvhOpError;
 /** Remove a batch */
-export const deleteSmsServiceNameBatchesId: API.OperationMethod<
-  DeleteSmsServiceNameBatchesIdRequest,
-  DeleteSmsServiceNameBatchesIdResponse,
-  DeleteSmsServiceNameBatchesIdError,
+export const deleteSmsBatch: API.OperationMethod<
+  DeleteSmsBatchRequest,
+  DeleteSmsBatchResponse,
+  DeleteSmsBatchError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteSmsServiceNameBatchesIdRequest,
-  output: DeleteSmsServiceNameBatchesIdResponse,
+  input: DeleteSmsBatchRequest,
+  output: DeleteSmsBatchResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteSmsServiceNameBlacklistsNumberError = OvhOpError;
+export type DeleteSmsBlacklistError = OvhOpError;
 /** Delete the blacklisted sms number given */
-export const deleteSmsServiceNameBlacklistsNumber: API.OperationMethod<
-  DeleteSmsServiceNameBlacklistsNumberRequest,
-  DeleteSmsServiceNameBlacklistsNumberResponse,
-  DeleteSmsServiceNameBlacklistsNumberError,
+export const deleteSmsBlacklist: API.OperationMethod<
+  DeleteSmsBlacklistRequest,
+  DeleteSmsBlacklistResponse,
+  DeleteSmsBlacklistError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteSmsServiceNameBlacklistsNumberRequest,
-  output: DeleteSmsServiceNameBlacklistsNumberResponse,
+  input: DeleteSmsBlacklistRequest,
+  output: DeleteSmsBlacklistResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteSmsServiceNameIncomingIdError = OvhOpError;
+export type DeleteSmsIncomingError = OvhOpError;
 /** Delete the sms incoming history given */
-export const deleteSmsServiceNameIncomingId: API.OperationMethod<
-  DeleteSmsServiceNameIncomingIdRequest,
-  DeleteSmsServiceNameIncomingIdResponse,
-  DeleteSmsServiceNameIncomingIdError,
+export const deleteSmsIncoming: API.OperationMethod<
+  DeleteSmsIncomingRequest,
+  DeleteSmsIncomingResponse,
+  DeleteSmsIncomingError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteSmsServiceNameIncomingIdRequest,
-  output: DeleteSmsServiceNameIncomingIdResponse,
+  input: DeleteSmsIncomingRequest,
+  output: DeleteSmsIncomingResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteSmsServiceNameJobsIdError = OvhOpError;
+export type DeleteSmsJobError = OvhOpError;
 /** Delete the sms job given (stop sending) */
-export const deleteSmsServiceNameJobsId: API.OperationMethod<
-  DeleteSmsServiceNameJobsIdRequest,
-  DeleteSmsServiceNameJobsIdResponse,
-  DeleteSmsServiceNameJobsIdError,
+export const deleteSmsJob: API.OperationMethod<
+  DeleteSmsJobRequest,
+  DeleteSmsJobResponse,
+  DeleteSmsJobError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteSmsServiceNameJobsIdRequest,
-  output: DeleteSmsServiceNameJobsIdResponse,
+  input: DeleteSmsJobRequest,
+  output: DeleteSmsJobResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteSmsServiceNameOutgoingIdError = OvhOpError;
+export type DeleteSmsOutgoingError = OvhOpError;
 /** Delete outgoing SMS from history */
-export const deleteSmsServiceNameOutgoingId: API.OperationMethod<
-  DeleteSmsServiceNameOutgoingIdRequest,
-  DeleteSmsServiceNameOutgoingIdResponse,
-  DeleteSmsServiceNameOutgoingIdError,
+export const deleteSmsOutgoing: API.OperationMethod<
+  DeleteSmsOutgoingRequest,
+  DeleteSmsOutgoingResponse,
+  DeleteSmsOutgoingError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteSmsServiceNameOutgoingIdRequest,
-  output: DeleteSmsServiceNameOutgoingIdResponse,
+  input: DeleteSmsOutgoingRequest,
+  output: DeleteSmsOutgoingResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteSmsServiceNamePhonebooksBookKeyError = OvhOpError;
+export type DeleteSmsPhonebookError = OvhOpError;
 /** Delete a phonebook */
-export const deleteSmsServiceNamePhonebooksBookKey: API.OperationMethod<
-  DeleteSmsServiceNamePhonebooksBookKeyRequest,
-  DeleteSmsServiceNamePhonebooksBookKeyResponse,
-  DeleteSmsServiceNamePhonebooksBookKeyError,
+export const deleteSmsPhonebook: API.OperationMethod<
+  DeleteSmsPhonebookRequest,
+  DeleteSmsPhonebookResponse,
+  DeleteSmsPhonebookError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteSmsServiceNamePhonebooksBookKeyRequest,
-  output: DeleteSmsServiceNamePhonebooksBookKeyResponse,
+  input: DeleteSmsPhonebookRequest,
+  output: DeleteSmsPhonebookResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteSmsServiceNamePhonebooksBookKeyPhonebookContactIdError =
-  OvhOpError;
+export type DeleteSmsPhonebookPhonebookContactError = OvhOpError;
 /** Delete a phonebook contact */
-export const deleteSmsServiceNamePhonebooksBookKeyPhonebookContactId: API.OperationMethod<
-  DeleteSmsServiceNamePhonebooksBookKeyPhonebookContactIdRequest,
-  DeleteSmsServiceNamePhonebooksBookKeyPhonebookContactIdResponse,
-  DeleteSmsServiceNamePhonebooksBookKeyPhonebookContactIdError,
+export const deleteSmsPhonebookPhonebookContact: API.OperationMethod<
+  DeleteSmsPhonebookPhonebookContactRequest,
+  DeleteSmsPhonebookPhonebookContactResponse,
+  DeleteSmsPhonebookPhonebookContactError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteSmsServiceNamePhonebooksBookKeyPhonebookContactIdRequest,
-  output: DeleteSmsServiceNamePhonebooksBookKeyPhonebookContactIdResponse,
+  input: DeleteSmsPhonebookPhonebookContactRequest,
+  output: DeleteSmsPhonebookPhonebookContactResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteSmsServiceNameReceiversSlotIdError = OvhOpError;
+export type DeleteSmsReceiverError = OvhOpError;
 /** Delete the document from the slot */
-export const deleteSmsServiceNameReceiversSlotId: API.OperationMethod<
-  DeleteSmsServiceNameReceiversSlotIdRequest,
-  DeleteSmsServiceNameReceiversSlotIdResponse,
-  DeleteSmsServiceNameReceiversSlotIdError,
+export const deleteSmsReceiver: API.OperationMethod<
+  DeleteSmsReceiverRequest,
+  DeleteSmsReceiverResponse,
+  DeleteSmsReceiverError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteSmsServiceNameReceiversSlotIdRequest,
-  output: DeleteSmsServiceNameReceiversSlotIdResponse,
+  input: DeleteSmsReceiverRequest,
+  output: DeleteSmsReceiverResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteSmsServiceNameSendersSenderError = OvhOpError;
+export type DeleteSmsSenderError = OvhOpError;
 /** Delete the sms sender given */
-export const deleteSmsServiceNameSendersSender: API.OperationMethod<
-  DeleteSmsServiceNameSendersSenderRequest,
-  DeleteSmsServiceNameSendersSenderResponse,
-  DeleteSmsServiceNameSendersSenderError,
+export const deleteSmsSender: API.OperationMethod<
+  DeleteSmsSenderRequest,
+  DeleteSmsSenderResponse,
+  DeleteSmsSenderError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteSmsServiceNameSendersSenderRequest,
-  output: DeleteSmsServiceNameSendersSenderResponse,
+  input: DeleteSmsSenderRequest,
+  output: DeleteSmsSenderResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteSmsServiceNameTemplatesControlNameError = OvhOpError;
+export type DeleteSmsTemplatesControlError = OvhOpError;
 /** Delete the sms template control */
-export const deleteSmsServiceNameTemplatesControlName: API.OperationMethod<
-  DeleteSmsServiceNameTemplatesControlNameRequest,
-  DeleteSmsServiceNameTemplatesControlNameResponse,
-  DeleteSmsServiceNameTemplatesControlNameError,
+export const deleteSmsTemplatesControl: API.OperationMethod<
+  DeleteSmsTemplatesControlRequest,
+  DeleteSmsTemplatesControlResponse,
+  DeleteSmsTemplatesControlError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteSmsServiceNameTemplatesControlNameRequest,
-  output: DeleteSmsServiceNameTemplatesControlNameResponse,
+  input: DeleteSmsTemplatesControlRequest,
+  output: DeleteSmsTemplatesControlResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteSmsServiceNameUsersLoginError = OvhOpError;
+export type DeleteSmsUserError = OvhOpError;
 /** Delete the sms user given */
-export const deleteSmsServiceNameUsersLogin: API.OperationMethod<
-  DeleteSmsServiceNameUsersLoginRequest,
-  DeleteSmsServiceNameUsersLoginResponse,
-  DeleteSmsServiceNameUsersLoginError,
+export const deleteSmsUser: API.OperationMethod<
+  DeleteSmsUserRequest,
+  DeleteSmsUserResponse,
+  DeleteSmsUserError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteSmsServiceNameUsersLoginRequest,
-  output: DeleteSmsServiceNameUsersLoginResponse,
+  input: DeleteSmsUserRequest,
+  output: DeleteSmsUserResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteSmsServiceNameUsersLoginIncomingIdError = OvhOpError;
+export type DeleteSmsUserIncomingError = OvhOpError;
 /** Delete the sms incoming history given */
-export const deleteSmsServiceNameUsersLoginIncomingId: API.OperationMethod<
-  DeleteSmsServiceNameUsersLoginIncomingIdRequest,
-  DeleteSmsServiceNameUsersLoginIncomingIdResponse,
-  DeleteSmsServiceNameUsersLoginIncomingIdError,
+export const deleteSmsUserIncoming: API.OperationMethod<
+  DeleteSmsUserIncomingRequest,
+  DeleteSmsUserIncomingResponse,
+  DeleteSmsUserIncomingError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteSmsServiceNameUsersLoginIncomingIdRequest,
-  output: DeleteSmsServiceNameUsersLoginIncomingIdResponse,
+  input: DeleteSmsUserIncomingRequest,
+  output: DeleteSmsUserIncomingResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteSmsServiceNameUsersLoginJobsIdError = OvhOpError;
+export type DeleteSmsUserJobError = OvhOpError;
 /** Delete the sms job given (stop sending) */
-export const deleteSmsServiceNameUsersLoginJobsId: API.OperationMethod<
-  DeleteSmsServiceNameUsersLoginJobsIdRequest,
-  DeleteSmsServiceNameUsersLoginJobsIdResponse,
-  DeleteSmsServiceNameUsersLoginJobsIdError,
+export const deleteSmsUserJob: API.OperationMethod<
+  DeleteSmsUserJobRequest,
+  DeleteSmsUserJobResponse,
+  DeleteSmsUserJobError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteSmsServiceNameUsersLoginJobsIdRequest,
-  output: DeleteSmsServiceNameUsersLoginJobsIdResponse,
+  input: DeleteSmsUserJobRequest,
+  output: DeleteSmsUserJobResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteSmsServiceNameUsersLoginOutgoingIdError = OvhOpError;
+export type DeleteSmsUserOutgoingError = OvhOpError;
 /** Delete the sms outgoing history given */
-export const deleteSmsServiceNameUsersLoginOutgoingId: API.OperationMethod<
-  DeleteSmsServiceNameUsersLoginOutgoingIdRequest,
-  DeleteSmsServiceNameUsersLoginOutgoingIdResponse,
-  DeleteSmsServiceNameUsersLoginOutgoingIdError,
+export const deleteSmsUserOutgoing: API.OperationMethod<
+  DeleteSmsUserOutgoingRequest,
+  DeleteSmsUserOutgoingResponse,
+  DeleteSmsUserOutgoingError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteSmsServiceNameUsersLoginOutgoingIdRequest,
-  output: DeleteSmsServiceNameUsersLoginOutgoingIdResponse,
+  input: DeleteSmsUserOutgoingRequest,
+  output: DeleteSmsUserOutgoingResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteSmsServiceNameUsersLoginReceiversSlotIdError = OvhOpError;
+export type DeleteSmsUserReceiverError = OvhOpError;
 /** Delete the document from the slot */
-export const deleteSmsServiceNameUsersLoginReceiversSlotId: API.OperationMethod<
-  DeleteSmsServiceNameUsersLoginReceiversSlotIdRequest,
-  DeleteSmsServiceNameUsersLoginReceiversSlotIdResponse,
-  DeleteSmsServiceNameUsersLoginReceiversSlotIdError,
+export const deleteSmsUserReceiver: API.OperationMethod<
+  DeleteSmsUserReceiverRequest,
+  DeleteSmsUserReceiverResponse,
+  DeleteSmsUserReceiverError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteSmsServiceNameUsersLoginReceiversSlotIdRequest,
-  output: DeleteSmsServiceNameUsersLoginReceiversSlotIdResponse,
+  input: DeleteSmsUserReceiverRequest,
+  output: DeleteSmsUserReceiverResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteSmsServiceNameVirtualNumbersNumberChatAccessError =
-  OvhOpError;
+export type DeleteSmsVirtualNumberChatAccessError = OvhOpError;
 /** Delete the given web access */
-export const deleteSmsServiceNameVirtualNumbersNumberChatAccess: API.OperationMethod<
-  DeleteSmsServiceNameVirtualNumbersNumberChatAccessRequest,
-  DeleteSmsServiceNameVirtualNumbersNumberChatAccessResponse,
-  DeleteSmsServiceNameVirtualNumbersNumberChatAccessError,
+export const deleteSmsVirtualNumberChatAccess: API.OperationMethod<
+  DeleteSmsVirtualNumberChatAccessRequest,
+  DeleteSmsVirtualNumberChatAccessResponse,
+  DeleteSmsVirtualNumberChatAccessError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteSmsServiceNameVirtualNumbersNumberChatAccessRequest,
-  output: DeleteSmsServiceNameVirtualNumbersNumberChatAccessResponse,
+  input: DeleteSmsVirtualNumberChatAccessRequest,
+  output: DeleteSmsVirtualNumberChatAccessResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteSmsServiceNameVirtualNumbersNumberIncomingIdError =
-  OvhOpError;
+export type DeleteSmsVirtualNumberIncomingError = OvhOpError;
 /** Delete the sms incoming history given */
-export const deleteSmsServiceNameVirtualNumbersNumberIncomingId: API.OperationMethod<
-  DeleteSmsServiceNameVirtualNumbersNumberIncomingIdRequest,
-  DeleteSmsServiceNameVirtualNumbersNumberIncomingIdResponse,
-  DeleteSmsServiceNameVirtualNumbersNumberIncomingIdError,
+export const deleteSmsVirtualNumberIncoming: API.OperationMethod<
+  DeleteSmsVirtualNumberIncomingRequest,
+  DeleteSmsVirtualNumberIncomingResponse,
+  DeleteSmsVirtualNumberIncomingError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteSmsServiceNameVirtualNumbersNumberIncomingIdRequest,
-  output: DeleteSmsServiceNameVirtualNumbersNumberIncomingIdResponse,
+  input: DeleteSmsVirtualNumberIncomingRequest,
+  output: DeleteSmsVirtualNumberIncomingResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteSmsServiceNameVirtualNumbersNumberJobsIdError = OvhOpError;
+export type DeleteSmsVirtualNumberJobError = OvhOpError;
 /** Delete the sms job given (stop sending) */
-export const deleteSmsServiceNameVirtualNumbersNumberJobsId: API.OperationMethod<
-  DeleteSmsServiceNameVirtualNumbersNumberJobsIdRequest,
-  DeleteSmsServiceNameVirtualNumbersNumberJobsIdResponse,
-  DeleteSmsServiceNameVirtualNumbersNumberJobsIdError,
+export const deleteSmsVirtualNumberJob: API.OperationMethod<
+  DeleteSmsVirtualNumberJobRequest,
+  DeleteSmsVirtualNumberJobResponse,
+  DeleteSmsVirtualNumberJobError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteSmsServiceNameVirtualNumbersNumberJobsIdRequest,
-  output: DeleteSmsServiceNameVirtualNumbersNumberJobsIdResponse,
+  input: DeleteSmsVirtualNumberJobRequest,
+  output: DeleteSmsVirtualNumberJobResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteSmsServiceNameVirtualNumbersNumberOutgoingIdError =
-  OvhOpError;
+export type DeleteSmsVirtualNumberOutgoingError = OvhOpError;
 /** Delete the sms outgoing history given */
-export const deleteSmsServiceNameVirtualNumbersNumberOutgoingId: API.OperationMethod<
-  DeleteSmsServiceNameVirtualNumbersNumberOutgoingIdRequest,
-  DeleteSmsServiceNameVirtualNumbersNumberOutgoingIdResponse,
-  DeleteSmsServiceNameVirtualNumbersNumberOutgoingIdError,
+export const deleteSmsVirtualNumberOutgoing: API.OperationMethod<
+  DeleteSmsVirtualNumberOutgoingRequest,
+  DeleteSmsVirtualNumberOutgoingResponse,
+  DeleteSmsVirtualNumberOutgoingError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteSmsServiceNameVirtualNumbersNumberOutgoingIdRequest,
-  output: DeleteSmsServiceNameVirtualNumbersNumberOutgoingIdResponse,
+  input: DeleteSmsVirtualNumberOutgoingRequest,
+  output: DeleteSmsVirtualNumberOutgoingResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
 export type GetSmsError = OvhOpError;
-/** List available services */
+/** Get this object properties */
 export const getSms: API.OperationMethod<
   GetSmsRequest,
-  GetSmsResponse,
+  SmsAccountWithIAM,
   GetSmsError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: GetSmsRequest,
-  output: GetSmsResponse,
+  output: SmsAccountWithIAM,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSmsBatchError = OvhOpError;
+/** Get a batch */
+export const getSmsBatch: API.OperationMethod<
+  GetSmsBatchRequest,
+  SmsBatch,
+  GetSmsBatchError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSmsBatchRequest,
+  output: SmsBatch,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSmsBatchStatisticsError = OvhOpError;
+/** Batch's statistics */
+export const getSmsBatchStatistics: API.OperationMethod<
+  GetSmsBatchStatisticsRequest,
+  SmsBatchStatistics,
+  GetSmsBatchStatisticsError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSmsBatchStatisticsRequest,
+  output: SmsBatchStatistics,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSmsBlacklistError = OvhOpError;
+/** Get this object properties */
+export const getSmsBlacklist: API.OperationMethod<
+  GetSmsBlacklistRequest,
+  SmsBlacklist,
+  GetSmsBlacklistError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSmsBlacklistRequest,
+  output: SmsBlacklist,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSmsDocumentError = OvhOpError;
+/** Get the /me/document id generated */
+export const getSmsDocument: API.OperationMethod<
+  GetSmsDocumentRequest,
+  GetSmsDocumentResponse,
+  GetSmsDocumentError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSmsDocumentRequest,
+  output: GetSmsDocumentResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSmsHlrError = OvhOpError;
+/** Get this object properties */
+export const getSmsHlr: API.OperationMethod<
+  GetSmsHlrRequest,
+  SmsHlrLookupNumber,
+  GetSmsHlrError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSmsHlrRequest,
+  output: SmsHlrLookupNumber,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSmsHlrOperatorError = OvhOpError;
+/** Get this object properties */
+export const getSmsHlrOperator: API.OperationMethod<
+  GetSmsHlrOperatorRequest,
+  SmsHlr,
+  GetSmsHlrOperatorError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSmsHlrOperatorRequest,
+  output: SmsHlr,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSmsIncomingError = OvhOpError;
+/** Get this object properties */
+export const getSmsIncoming: API.OperationMethod<
+  GetSmsIncomingRequest,
+  SmsIncoming,
+  GetSmsIncomingError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSmsIncomingRequest,
+  output: SmsIncoming,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSmsJobError = OvhOpError;
+/** Get this object properties */
+export const getSmsJob: API.OperationMethod<
+  GetSmsJobRequest,
+  SmsJob,
+  GetSmsJobError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSmsJobRequest,
+  output: SmsJob,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSmsOutgoingError = OvhOpError;
+/** Get SMS details */
+export const getSmsOutgoing: API.OperationMethod<
+  GetSmsOutgoingRequest,
+  SmsOutgoing,
+  GetSmsOutgoingError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSmsOutgoingRequest,
+  output: SmsOutgoing,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSmsOutgoingHlrError = OvhOpError;
+/** Get this object properties */
+export const getSmsOutgoingHlr: API.OperationMethod<
+  GetSmsOutgoingHlrRequest,
+  SmsHlr,
+  GetSmsOutgoingHlrError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSmsOutgoingHlrRequest,
+  output: SmsHlr,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSmsPhonebookError = OvhOpError;
+/** Get this object properties */
+export const getSmsPhonebook: API.OperationMethod<
+  GetSmsPhonebookRequest,
+  SmsPhonebook,
+  GetSmsPhonebookError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSmsPhonebookRequest,
+  output: SmsPhonebook,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSmsPhonebookExportError = OvhOpError;
+/** Export the phonebook's contacts */
+export const getSmsPhonebookExport: API.OperationMethod<
+  GetSmsPhonebookExportRequest,
+  TelephonyPcsFile,
+  GetSmsPhonebookExportError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSmsPhonebookExportRequest,
+  output: TelephonyPcsFile,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSmsPhonebookPhonebookContactError = OvhOpError;
+/** Get this object properties */
+export const getSmsPhonebookPhonebookContact: API.OperationMethod<
+  GetSmsPhonebookPhonebookContactRequest,
+  SmsPhonebookContact,
+  GetSmsPhonebookPhonebookContactError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSmsPhonebookPhonebookContactRequest,
+  output: SmsPhonebookContact,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
@@ -5841,1552 +6204,1051 @@ export const getSmsPtts: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetSmsRatesDestinationsError = OvhOpError;
+export type GetSmsRateDestinationsError = OvhOpError;
 /** Get the prices and credits to send a SMS towards given country */
-export const getSmsRatesDestinations: API.OperationMethod<
-  GetSmsRatesDestinationsRequest,
+export const getSmsRateDestinations: API.OperationMethod<
+  GetSmsRateDestinationsRequest,
   SmsDestinationRates,
-  GetSmsRatesDestinationsError,
+  GetSmsRateDestinationsError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsRatesDestinationsRequest,
+  input: GetSmsRateDestinationsRequest,
   output: SmsDestinationRates,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetSmsRatesPacksError = OvhOpError;
-/** Get the prices and credits of all the SMS packs with informations about the destination country */
-export const getSmsRatesPacks: API.OperationMethod<
-  GetSmsRatesPacksRequest,
-  GetSmsRatesPacksResponse,
-  GetSmsRatesPacksError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsRatesPacksRequest,
-  output: GetSmsRatesPacksResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsServiceNameError = OvhOpError;
+export type GetSmsReceiverError = OvhOpError;
 /** Get this object properties */
-export const getSmsServiceName: API.OperationMethod<
-  GetSmsServiceNameRequest,
-  SmsAccountWithIAM,
-  GetSmsServiceNameError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameRequest,
-  output: SmsAccountWithIAM,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsServiceNameBatchesError = OvhOpError;
-/** Get batches list */
-export const getSmsServiceNameBatches: API.OperationMethod<
-  GetSmsServiceNameBatchesRequest,
-  GetSmsServiceNameBatchesResponse,
-  GetSmsServiceNameBatchesError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameBatchesRequest,
-  output: GetSmsServiceNameBatchesResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsServiceNameBatchesIdError = OvhOpError;
-/** Get a batch */
-export const getSmsServiceNameBatchesId: API.OperationMethod<
-  GetSmsServiceNameBatchesIdRequest,
-  SmsBatch,
-  GetSmsServiceNameBatchesIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameBatchesIdRequest,
-  output: SmsBatch,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsServiceNameBatchesIdStatisticsError = OvhOpError;
-/** Batch's statistics */
-export const getSmsServiceNameBatchesIdStatistics: API.OperationMethod<
-  GetSmsServiceNameBatchesIdStatisticsRequest,
-  SmsBatchStatistics,
-  GetSmsServiceNameBatchesIdStatisticsError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameBatchesIdStatisticsRequest,
-  output: SmsBatchStatistics,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsServiceNameBlacklistsError = OvhOpError;
-/** Numbers blacklisted associated to the sms account */
-export const getSmsServiceNameBlacklists: API.OperationMethod<
-  GetSmsServiceNameBlacklistsRequest,
-  GetSmsServiceNameBlacklistsResponse,
-  GetSmsServiceNameBlacklistsError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameBlacklistsRequest,
-  output: GetSmsServiceNameBlacklistsResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsServiceNameBlacklistsNumberError = OvhOpError;
-/** Get this object properties */
-export const getSmsServiceNameBlacklistsNumber: API.OperationMethod<
-  GetSmsServiceNameBlacklistsNumberRequest,
-  SmsBlacklist,
-  GetSmsServiceNameBlacklistsNumberError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameBlacklistsNumberRequest,
-  output: SmsBlacklist,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsServiceNameDocumentError = OvhOpError;
-/** Get the /me/document id generated */
-export const getSmsServiceNameDocument: API.OperationMethod<
-  GetSmsServiceNameDocumentRequest,
-  GetSmsServiceNameDocumentResponse,
-  GetSmsServiceNameDocumentError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameDocumentRequest,
-  output: GetSmsServiceNameDocumentResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsServiceNameExceptionsError = OvhOpError;
-/** Describe filter exceptions in sms sending from a specific receiver. */
-export const getSmsServiceNameExceptions: API.OperationMethod<
-  GetSmsServiceNameExceptionsRequest,
-  GetSmsServiceNameExceptionsResponse,
-  GetSmsServiceNameExceptionsError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameExceptionsRequest,
-  output: GetSmsServiceNameExceptionsResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsServiceNameHlrError = OvhOpError;
-/** Home Location Register informations. Give informations about a given cellular phone. */
-export const getSmsServiceNameHlr: API.OperationMethod<
-  GetSmsServiceNameHlrRequest,
-  GetSmsServiceNameHlrResponse,
-  GetSmsServiceNameHlrError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameHlrRequest,
-  output: GetSmsServiceNameHlrResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsServiceNameHlrIdError = OvhOpError;
-/** Get this object properties */
-export const getSmsServiceNameHlrId: API.OperationMethod<
-  GetSmsServiceNameHlrIdRequest,
-  SmsHlrLookupNumber,
-  GetSmsServiceNameHlrIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameHlrIdRequest,
-  output: SmsHlrLookupNumber,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsServiceNameHlrIdOperatorError = OvhOpError;
-/** Get this object properties */
-export const getSmsServiceNameHlrIdOperator: API.OperationMethod<
-  GetSmsServiceNameHlrIdOperatorRequest,
-  SmsHlr,
-  GetSmsServiceNameHlrIdOperatorError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameHlrIdOperatorRequest,
-  output: SmsHlr,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsServiceNameIncomingError = OvhOpError;
-/** Sms received associated to the sms account */
-export const getSmsServiceNameIncoming: API.OperationMethod<
-  GetSmsServiceNameIncomingRequest,
-  GetSmsServiceNameIncomingResponse,
-  GetSmsServiceNameIncomingError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameIncomingRequest,
-  output: GetSmsServiceNameIncomingResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsServiceNameIncomingIdError = OvhOpError;
-/** Get this object properties */
-export const getSmsServiceNameIncomingId: API.OperationMethod<
-  GetSmsServiceNameIncomingIdRequest,
-  SmsIncoming,
-  GetSmsServiceNameIncomingIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameIncomingIdRequest,
-  output: SmsIncoming,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsServiceNameJobsError = OvhOpError;
-/** Sms in pending associated to the sms account */
-export const getSmsServiceNameJobs: API.OperationMethod<
-  GetSmsServiceNameJobsRequest,
-  GetSmsServiceNameJobsResponse,
-  GetSmsServiceNameJobsError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameJobsRequest,
-  output: GetSmsServiceNameJobsResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsServiceNameJobsIdError = OvhOpError;
-/** Get this object properties */
-export const getSmsServiceNameJobsId: API.OperationMethod<
-  GetSmsServiceNameJobsIdRequest,
-  SmsJob,
-  GetSmsServiceNameJobsIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameJobsIdRequest,
-  output: SmsJob,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsServiceNameOutgoingError = OvhOpError;
-/** Get SMS list */
-export const getSmsServiceNameOutgoing: API.OperationMethod<
-  GetSmsServiceNameOutgoingRequest,
-  GetSmsServiceNameOutgoingResponse,
-  GetSmsServiceNameOutgoingError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameOutgoingRequest,
-  output: GetSmsServiceNameOutgoingResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsServiceNameOutgoingIdError = OvhOpError;
-/** Get SMS details */
-export const getSmsServiceNameOutgoingId: API.OperationMethod<
-  GetSmsServiceNameOutgoingIdRequest,
-  SmsOutgoing,
-  GetSmsServiceNameOutgoingIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameOutgoingIdRequest,
-  output: SmsOutgoing,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsServiceNameOutgoingIdHlrError = OvhOpError;
-/** Get this object properties */
-export const getSmsServiceNameOutgoingIdHlr: API.OperationMethod<
-  GetSmsServiceNameOutgoingIdHlrRequest,
-  SmsHlr,
-  GetSmsServiceNameOutgoingIdHlrError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameOutgoingIdHlrRequest,
-  output: SmsHlr,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsServiceNamePhonebooksError = OvhOpError;
-/** Return phonebooks associated to this account */
-export const getSmsServiceNamePhonebooks: API.OperationMethod<
-  GetSmsServiceNamePhonebooksRequest,
-  GetSmsServiceNamePhonebooksResponse,
-  GetSmsServiceNamePhonebooksError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNamePhonebooksRequest,
-  output: GetSmsServiceNamePhonebooksResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsServiceNamePhonebooksBookKeyError = OvhOpError;
-/** Get this object properties */
-export const getSmsServiceNamePhonebooksBookKey: API.OperationMethod<
-  GetSmsServiceNamePhonebooksBookKeyRequest,
-  SmsPhonebook,
-  GetSmsServiceNamePhonebooksBookKeyError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNamePhonebooksBookKeyRequest,
-  output: SmsPhonebook,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsServiceNamePhonebooksBookKeyExportError = OvhOpError;
-/** Export the phonebook's contacts */
-export const getSmsServiceNamePhonebooksBookKeyExport: API.OperationMethod<
-  GetSmsServiceNamePhonebooksBookKeyExportRequest,
-  TelephonyPcsFile,
-  GetSmsServiceNamePhonebooksBookKeyExportError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNamePhonebooksBookKeyExportRequest,
-  output: TelephonyPcsFile,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsServiceNamePhonebooksBookKeyPhonebookContactError =
-  OvhOpError;
-/** Phonebook contacts */
-export const getSmsServiceNamePhonebooksBookKeyPhonebookContact: API.OperationMethod<
-  GetSmsServiceNamePhonebooksBookKeyPhonebookContactRequest,
-  GetSmsServiceNamePhonebooksBookKeyPhonebookContactResponse,
-  GetSmsServiceNamePhonebooksBookKeyPhonebookContactError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNamePhonebooksBookKeyPhonebookContactRequest,
-  output: GetSmsServiceNamePhonebooksBookKeyPhonebookContactResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsServiceNamePhonebooksBookKeyPhonebookContactIdError =
-  OvhOpError;
-/** Get this object properties */
-export const getSmsServiceNamePhonebooksBookKeyPhonebookContactId: API.OperationMethod<
-  GetSmsServiceNamePhonebooksBookKeyPhonebookContactIdRequest,
-  SmsPhonebookContact,
-  GetSmsServiceNamePhonebooksBookKeyPhonebookContactIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNamePhonebooksBookKeyPhonebookContactIdRequest,
-  output: SmsPhonebookContact,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsServiceNameReceiversError = OvhOpError;
-/** Receivers preloaded from text or csv document file */
-export const getSmsServiceNameReceivers: API.OperationMethod<
-  GetSmsServiceNameReceiversRequest,
-  GetSmsServiceNameReceiversResponse,
-  GetSmsServiceNameReceiversError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameReceiversRequest,
-  output: GetSmsServiceNameReceiversResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsServiceNameReceiversSlotIdError = OvhOpError;
-/** Get this object properties */
-export const getSmsServiceNameReceiversSlotId: API.OperationMethod<
-  GetSmsServiceNameReceiversSlotIdRequest,
+export const getSmsReceiver: API.OperationMethod<
+  GetSmsReceiverRequest,
   SmsReceiver,
-  GetSmsServiceNameReceiversSlotIdError,
+  GetSmsReceiverError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameReceiversSlotIdRequest,
+  input: GetSmsReceiverRequest,
   output: SmsReceiver,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetSmsServiceNameReceiversSlotIdCsvError = OvhOpError;
+export type GetSmsReceiverCsvError = OvhOpError;
 /** Get the document data container */
-export const getSmsServiceNameReceiversSlotIdCsv: API.OperationMethod<
-  GetSmsServiceNameReceiversSlotIdCsvRequest,
-  GetSmsServiceNameReceiversSlotIdCsvResponse,
-  GetSmsServiceNameReceiversSlotIdCsvError,
+export const getSmsReceiverCsv: API.OperationMethod<
+  GetSmsReceiverCsvRequest,
+  GetSmsReceiverCsvResponse,
+  GetSmsReceiverCsvError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameReceiversSlotIdCsvRequest,
-  output: GetSmsServiceNameReceiversSlotIdCsvResponse,
+  input: GetSmsReceiverCsvRequest,
+  output: GetSmsReceiverCsvResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetSmsServiceNameSeeOffersError = OvhOpError;
-/** Describe SMS offers available. */
-export const getSmsServiceNameSeeOffers: API.OperationMethod<
-  GetSmsServiceNameSeeOffersRequest,
-  GetSmsServiceNameSeeOffersResponse,
-  GetSmsServiceNameSeeOffersError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameSeeOffersRequest,
-  output: GetSmsServiceNameSeeOffersResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsServiceNameSendersError = OvhOpError;
-/** Senders allowed associated to the sms account */
-export const getSmsServiceNameSenders: API.OperationMethod<
-  GetSmsServiceNameSendersRequest,
-  GetSmsServiceNameSendersResponse,
-  GetSmsServiceNameSendersError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameSendersRequest,
-  output: GetSmsServiceNameSendersResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsServiceNameSendersAvailableForValidationError = OvhOpError;
-/** The senders that are attached to your personal informations or OVH services and that can be automatically validated */
-export const getSmsServiceNameSendersAvailableForValidation: API.OperationMethod<
-  GetSmsServiceNameSendersAvailableForValidationRequest,
-  GetSmsServiceNameSendersAvailableForValidationResponse,
-  GetSmsServiceNameSendersAvailableForValidationError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameSendersAvailableForValidationRequest,
-  output: GetSmsServiceNameSendersAvailableForValidationResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsServiceNameSendersSenderError = OvhOpError;
+export type GetSmsSenderError = OvhOpError;
 /** Get this object properties */
-export const getSmsServiceNameSendersSender: API.OperationMethod<
-  GetSmsServiceNameSendersSenderRequest,
+export const getSmsSender: API.OperationMethod<
+  GetSmsSenderRequest,
   SmsSender,
-  GetSmsServiceNameSendersSenderError,
+  GetSmsSenderError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameSendersSenderRequest,
+  input: GetSmsSenderRequest,
   output: SmsSender,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetSmsServiceNameSendersSenderDocumentsError = OvhOpError;
-/** Documents linked to SMS sender for validation purpose */
-export const getSmsServiceNameSendersSenderDocuments: API.OperationMethod<
-  GetSmsServiceNameSendersSenderDocumentsRequest,
-  GetSmsServiceNameSendersSenderDocumentsResponse,
-  GetSmsServiceNameSendersSenderDocumentsError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameSendersSenderDocumentsRequest,
-  output: GetSmsServiceNameSendersSenderDocumentsResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsServiceNameSendersSenderDocumentsDocumentIDError = OvhOpError;
+export type GetSmsSenderDocumentError = OvhOpError;
 /** Get this object properties */
-export const getSmsServiceNameSendersSenderDocumentsDocumentID: API.OperationMethod<
-  GetSmsServiceNameSendersSenderDocumentsDocumentIDRequest,
+export const getSmsSenderDocument: API.OperationMethod<
+  GetSmsSenderDocumentRequest,
   SmsSenderDocument,
-  GetSmsServiceNameSendersSenderDocumentsDocumentIDError,
+  GetSmsSenderDocumentError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameSendersSenderDocumentsDocumentIDRequest,
+  input: GetSmsSenderDocumentRequest,
   output: SmsSenderDocument,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetSmsServiceNameServiceInfosError = OvhOpError;
+export type GetSmsServiceInfosError = OvhOpError;
 /** Get service information */
-export const getSmsServiceNameServiceInfos: API.OperationMethod<
-  GetSmsServiceNameServiceInfosRequest,
+export const getSmsServiceInfos: API.OperationMethod<
+  GetSmsServiceInfosRequest,
   ServicesService,
-  GetSmsServiceNameServiceInfosError,
+  GetSmsServiceInfosError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameServiceInfosRequest,
+  input: GetSmsServiceInfosRequest,
   output: ServicesService,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetSmsServiceNameSmppAllowedIPsError = OvhOpError;
-/** Get SMPP allowed IPs */
-export const getSmsServiceNameSmppAllowedIPs: API.OperationMethod<
-  GetSmsServiceNameSmppAllowedIPsRequest,
-  GetSmsServiceNameSmppAllowedIPsResponse,
-  GetSmsServiceNameSmppAllowedIPsError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameSmppAllowedIPsRequest,
-  output: GetSmsServiceNameSmppAllowedIPsResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsServiceNameSmppSettingsError = OvhOpError;
+export type GetSmsSmppSettingsError = OvhOpError;
 /** Get SMPP settings */
-export const getSmsServiceNameSmppSettings: API.OperationMethod<
-  GetSmsServiceNameSmppSettingsRequest,
+export const getSmsSmppSettings: API.OperationMethod<
+  GetSmsSmppSettingsRequest,
   SmsSettings,
-  GetSmsServiceNameSmppSettingsError,
+  GetSmsSmppSettingsError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameSmppSettingsRequest,
+  input: GetSmsSmppSettingsRequest,
   output: SmsSettings,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetSmsServiceNameTaskError = OvhOpError;
-/** Operations on a SMS service */
-export const getSmsServiceNameTask: API.OperationMethod<
-  GetSmsServiceNameTaskRequest,
-  GetSmsServiceNameTaskResponse,
-  GetSmsServiceNameTaskError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameTaskRequest,
-  output: GetSmsServiceNameTaskResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsServiceNameTaskTaskIdError = OvhOpError;
+export type GetSmsTaskError = OvhOpError;
 /** Get this object properties */
-export const getSmsServiceNameTaskTaskId: API.OperationMethod<
-  GetSmsServiceNameTaskTaskIdRequest,
+export const getSmsTask: API.OperationMethod<
+  GetSmsTaskRequest,
   SmsTask,
-  GetSmsServiceNameTaskTaskIdError,
+  GetSmsTaskError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameTaskTaskIdRequest,
+  input: GetSmsTaskRequest,
   output: SmsTask,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetSmsServiceNameTemplatesControlError = OvhOpError;
-/** Template pattern filled up for moderation (Needed to send in US country) */
-export const getSmsServiceNameTemplatesControl: API.OperationMethod<
-  GetSmsServiceNameTemplatesControlRequest,
-  GetSmsServiceNameTemplatesControlResponse,
-  GetSmsServiceNameTemplatesControlError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameTemplatesControlRequest,
-  output: GetSmsServiceNameTemplatesControlResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsServiceNameTemplatesControlNameError = OvhOpError;
+export type GetSmsTemplatesControlError = OvhOpError;
 /** Get this object properties */
-export const getSmsServiceNameTemplatesControlName: API.OperationMethod<
-  GetSmsServiceNameTemplatesControlNameRequest,
+export const getSmsTemplatesControl: API.OperationMethod<
+  GetSmsTemplatesControlRequest,
   SmsTemplateControl,
-  GetSmsServiceNameTemplatesControlNameError,
+  GetSmsTemplatesControlError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameTemplatesControlNameRequest,
+  input: GetSmsTemplatesControlRequest,
   output: SmsTemplateControl,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetSmsServiceNameUsersError = OvhOpError;
-/** Users associated to the sms account */
-export const getSmsServiceNameUsers: API.OperationMethod<
-  GetSmsServiceNameUsersRequest,
-  GetSmsServiceNameUsersResponse,
-  GetSmsServiceNameUsersError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameUsersRequest,
-  output: GetSmsServiceNameUsersResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsServiceNameUsersLoginError = OvhOpError;
+export type GetSmsUserError = OvhOpError;
 /** Get this object properties */
-export const getSmsServiceNameUsersLogin: API.OperationMethod<
-  GetSmsServiceNameUsersLoginRequest,
+export const getSmsUser: API.OperationMethod<
+  GetSmsUserRequest,
   SmsUser,
-  GetSmsServiceNameUsersLoginError,
+  GetSmsUserError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameUsersLoginRequest,
+  input: GetSmsUserRequest,
   output: SmsUser,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetSmsServiceNameUsersLoginDocumentError = OvhOpError;
+export type GetSmsUserDocumentError = OvhOpError;
 /** Get the /me/document id generated */
-export const getSmsServiceNameUsersLoginDocument: API.OperationMethod<
-  GetSmsServiceNameUsersLoginDocumentRequest,
-  GetSmsServiceNameUsersLoginDocumentResponse,
-  GetSmsServiceNameUsersLoginDocumentError,
+export const getSmsUserDocument: API.OperationMethod<
+  GetSmsUserDocumentRequest,
+  GetSmsUserDocumentResponse,
+  GetSmsUserDocumentError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameUsersLoginDocumentRequest,
-  output: GetSmsServiceNameUsersLoginDocumentResponse,
+  input: GetSmsUserDocumentRequest,
+  output: GetSmsUserDocumentResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetSmsServiceNameUsersLoginIncomingError = OvhOpError;
-/** Sms received associated to the sms user */
-export const getSmsServiceNameUsersLoginIncoming: API.OperationMethod<
-  GetSmsServiceNameUsersLoginIncomingRequest,
-  GetSmsServiceNameUsersLoginIncomingResponse,
-  GetSmsServiceNameUsersLoginIncomingError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameUsersLoginIncomingRequest,
-  output: GetSmsServiceNameUsersLoginIncomingResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsServiceNameUsersLoginIncomingIdError = OvhOpError;
+export type GetSmsUserIncomingError = OvhOpError;
 /** Get this object properties */
-export const getSmsServiceNameUsersLoginIncomingId: API.OperationMethod<
-  GetSmsServiceNameUsersLoginIncomingIdRequest,
+export const getSmsUserIncoming: API.OperationMethod<
+  GetSmsUserIncomingRequest,
   SmsIncoming,
-  GetSmsServiceNameUsersLoginIncomingIdError,
+  GetSmsUserIncomingError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameUsersLoginIncomingIdRequest,
+  input: GetSmsUserIncomingRequest,
   output: SmsIncoming,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetSmsServiceNameUsersLoginJobsError = OvhOpError;
-/** Sms in pending associated to the sms user */
-export const getSmsServiceNameUsersLoginJobs: API.OperationMethod<
-  GetSmsServiceNameUsersLoginJobsRequest,
-  GetSmsServiceNameUsersLoginJobsResponse,
-  GetSmsServiceNameUsersLoginJobsError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameUsersLoginJobsRequest,
-  output: GetSmsServiceNameUsersLoginJobsResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsServiceNameUsersLoginJobsIdError = OvhOpError;
+export type GetSmsUserJobError = OvhOpError;
 /** Get this object properties */
-export const getSmsServiceNameUsersLoginJobsId: API.OperationMethod<
-  GetSmsServiceNameUsersLoginJobsIdRequest,
+export const getSmsUserJob: API.OperationMethod<
+  GetSmsUserJobRequest,
   SmsJob,
-  GetSmsServiceNameUsersLoginJobsIdError,
+  GetSmsUserJobError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameUsersLoginJobsIdRequest,
+  input: GetSmsUserJobRequest,
   output: SmsJob,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetSmsServiceNameUsersLoginOutgoingError = OvhOpError;
-/** Sms sent associated to the sms user */
-export const getSmsServiceNameUsersLoginOutgoing: API.OperationMethod<
-  GetSmsServiceNameUsersLoginOutgoingRequest,
-  GetSmsServiceNameUsersLoginOutgoingResponse,
-  GetSmsServiceNameUsersLoginOutgoingError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameUsersLoginOutgoingRequest,
-  output: GetSmsServiceNameUsersLoginOutgoingResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsServiceNameUsersLoginOutgoingIdError = OvhOpError;
+export type GetSmsUserOutgoingError = OvhOpError;
 /** Get this object properties */
-export const getSmsServiceNameUsersLoginOutgoingId: API.OperationMethod<
-  GetSmsServiceNameUsersLoginOutgoingIdRequest,
+export const getSmsUserOutgoing: API.OperationMethod<
+  GetSmsUserOutgoingRequest,
   SmsOutgoing,
-  GetSmsServiceNameUsersLoginOutgoingIdError,
+  GetSmsUserOutgoingError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameUsersLoginOutgoingIdRequest,
+  input: GetSmsUserOutgoingRequest,
   output: SmsOutgoing,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetSmsServiceNameUsersLoginOutgoingIdHlrError = OvhOpError;
+export type GetSmsUserOutgoingHlrError = OvhOpError;
 /** Get this object properties */
-export const getSmsServiceNameUsersLoginOutgoingIdHlr: API.OperationMethod<
-  GetSmsServiceNameUsersLoginOutgoingIdHlrRequest,
+export const getSmsUserOutgoingHlr: API.OperationMethod<
+  GetSmsUserOutgoingHlrRequest,
   SmsHlr,
-  GetSmsServiceNameUsersLoginOutgoingIdHlrError,
+  GetSmsUserOutgoingHlrError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameUsersLoginOutgoingIdHlrRequest,
+  input: GetSmsUserOutgoingHlrRequest,
   output: SmsHlr,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetSmsServiceNameUsersLoginReceiversError = OvhOpError;
-/** Receivers preloaded from text or csv document file */
-export const getSmsServiceNameUsersLoginReceivers: API.OperationMethod<
-  GetSmsServiceNameUsersLoginReceiversRequest,
-  GetSmsServiceNameUsersLoginReceiversResponse,
-  GetSmsServiceNameUsersLoginReceiversError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameUsersLoginReceiversRequest,
-  output: GetSmsServiceNameUsersLoginReceiversResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsServiceNameUsersLoginReceiversSlotIdError = OvhOpError;
+export type GetSmsUserReceiverError = OvhOpError;
 /** Get this object properties */
-export const getSmsServiceNameUsersLoginReceiversSlotId: API.OperationMethod<
-  GetSmsServiceNameUsersLoginReceiversSlotIdRequest,
+export const getSmsUserReceiver: API.OperationMethod<
+  GetSmsUserReceiverRequest,
   SmsReceiver,
-  GetSmsServiceNameUsersLoginReceiversSlotIdError,
+  GetSmsUserReceiverError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameUsersLoginReceiversSlotIdRequest,
+  input: GetSmsUserReceiverRequest,
   output: SmsReceiver,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetSmsServiceNameUsersLoginReceiversSlotIdCsvError = OvhOpError;
+export type GetSmsUserReceiverCsvError = OvhOpError;
 /** Get the document data container */
-export const getSmsServiceNameUsersLoginReceiversSlotIdCsv: API.OperationMethod<
-  GetSmsServiceNameUsersLoginReceiversSlotIdCsvRequest,
-  GetSmsServiceNameUsersLoginReceiversSlotIdCsvResponse,
-  GetSmsServiceNameUsersLoginReceiversSlotIdCsvError,
+export const getSmsUserReceiverCsv: API.OperationMethod<
+  GetSmsUserReceiverCsvRequest,
+  GetSmsUserReceiverCsvResponse,
+  GetSmsUserReceiverCsvError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameUsersLoginReceiversSlotIdCsvRequest,
-  output: GetSmsServiceNameUsersLoginReceiversSlotIdCsvResponse,
+  input: GetSmsUserReceiverCsvRequest,
+  output: GetSmsUserReceiverCsvResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetSmsServiceNameVirtualNumbersError = OvhOpError;
-/** Virtual numbers associated to the sms account */
-export const getSmsServiceNameVirtualNumbers: API.OperationMethod<
-  GetSmsServiceNameVirtualNumbersRequest,
-  GetSmsServiceNameVirtualNumbersResponse,
-  GetSmsServiceNameVirtualNumbersError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameVirtualNumbersRequest,
-  output: GetSmsServiceNameVirtualNumbersResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsServiceNameVirtualNumbersNumberError = OvhOpError;
+export type GetSmsVirtualNumberError = OvhOpError;
 /** Get this object properties */
-export const getSmsServiceNameVirtualNumbersNumber: API.OperationMethod<
-  GetSmsServiceNameVirtualNumbersNumberRequest,
-  SmsVirtualNumber,
-  GetSmsServiceNameVirtualNumbersNumberError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameVirtualNumbersNumberRequest,
-  output: SmsVirtualNumber,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsServiceNameVirtualNumbersNumberChatAccessError = OvhOpError;
-/** Get this object properties */
-export const getSmsServiceNameVirtualNumbersNumberChatAccess: API.OperationMethod<
-  GetSmsServiceNameVirtualNumbersNumberChatAccessRequest,
-  SmsChatAccess,
-  GetSmsServiceNameVirtualNumbersNumberChatAccessError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameVirtualNumbersNumberChatAccessRequest,
-  output: SmsChatAccess,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsServiceNameVirtualNumbersNumberIncomingError = OvhOpError;
-/** Sms received associated to the sms account */
-export const getSmsServiceNameVirtualNumbersNumberIncoming: API.OperationMethod<
-  GetSmsServiceNameVirtualNumbersNumberIncomingRequest,
-  GetSmsServiceNameVirtualNumbersNumberIncomingResponse,
-  GetSmsServiceNameVirtualNumbersNumberIncomingError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameVirtualNumbersNumberIncomingRequest,
-  output: GetSmsServiceNameVirtualNumbersNumberIncomingResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsServiceNameVirtualNumbersNumberIncomingIdError = OvhOpError;
-/** Get this object properties */
-export const getSmsServiceNameVirtualNumbersNumberIncomingId: API.OperationMethod<
-  GetSmsServiceNameVirtualNumbersNumberIncomingIdRequest,
-  SmsIncoming,
-  GetSmsServiceNameVirtualNumbersNumberIncomingIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameVirtualNumbersNumberIncomingIdRequest,
-  output: SmsIncoming,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsServiceNameVirtualNumbersNumberJobsError = OvhOpError;
-/** Sms in pending associated to the sms account */
-export const getSmsServiceNameVirtualNumbersNumberJobs: API.OperationMethod<
-  GetSmsServiceNameVirtualNumbersNumberJobsRequest,
-  GetSmsServiceNameVirtualNumbersNumberJobsResponse,
-  GetSmsServiceNameVirtualNumbersNumberJobsError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameVirtualNumbersNumberJobsRequest,
-  output: GetSmsServiceNameVirtualNumbersNumberJobsResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsServiceNameVirtualNumbersNumberJobsIdError = OvhOpError;
-/** Get this object properties */
-export const getSmsServiceNameVirtualNumbersNumberJobsId: API.OperationMethod<
-  GetSmsServiceNameVirtualNumbersNumberJobsIdRequest,
-  SmsVirtualNumberJob,
-  GetSmsServiceNameVirtualNumbersNumberJobsIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameVirtualNumbersNumberJobsIdRequest,
-  output: SmsVirtualNumberJob,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsServiceNameVirtualNumbersNumberOutgoingError = OvhOpError;
-/** Sms sent associated to the sms account */
-export const getSmsServiceNameVirtualNumbersNumberOutgoing: API.OperationMethod<
-  GetSmsServiceNameVirtualNumbersNumberOutgoingRequest,
-  GetSmsServiceNameVirtualNumbersNumberOutgoingResponse,
-  GetSmsServiceNameVirtualNumbersNumberOutgoingError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameVirtualNumbersNumberOutgoingRequest,
-  output: GetSmsServiceNameVirtualNumbersNumberOutgoingResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsServiceNameVirtualNumbersNumberOutgoingIdError = OvhOpError;
-/** Get this object properties */
-export const getSmsServiceNameVirtualNumbersNumberOutgoingId: API.OperationMethod<
-  GetSmsServiceNameVirtualNumbersNumberOutgoingIdRequest,
-  SmsOutgoing,
-  GetSmsServiceNameVirtualNumbersNumberOutgoingIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameVirtualNumbersNumberOutgoingIdRequest,
-  output: SmsOutgoing,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsServiceNameVirtualNumbersNumberOutgoingIdHlrError =
-  OvhOpError;
-/** Get this object properties */
-export const getSmsServiceNameVirtualNumbersNumberOutgoingIdHlr: API.OperationMethod<
-  GetSmsServiceNameVirtualNumbersNumberOutgoingIdHlrRequest,
-  SmsHlr,
-  GetSmsServiceNameVirtualNumbersNumberOutgoingIdHlrError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsServiceNameVirtualNumbersNumberOutgoingIdHlrRequest,
-  output: SmsHlr,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsVirtualNumbersError = OvhOpError;
-/** Your virtual numbers */
-export const getSmsVirtualNumbers: API.OperationMethod<
-  GetSmsVirtualNumbersRequest,
-  GetSmsVirtualNumbersResponse,
-  GetSmsVirtualNumbersError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsVirtualNumbersRequest,
-  output: GetSmsVirtualNumbersResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetSmsVirtualNumbersNumberError = OvhOpError;
-/** Get this object properties */
-export const getSmsVirtualNumbersNumber: API.OperationMethod<
-  GetSmsVirtualNumbersNumberRequest,
+export const getSmsVirtualNumber: API.OperationMethod<
+  GetSmsVirtualNumberRequest,
   SmsVirtualNumberGenericServiceWithIAM,
-  GetSmsVirtualNumbersNumberError,
+  GetSmsVirtualNumberError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsVirtualNumbersNumberRequest,
+  input: GetSmsVirtualNumberRequest,
   output: SmsVirtualNumberGenericServiceWithIAM,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetSmsVirtualNumbersNumberServiceInfosError = OvhOpError;
-/** Get service information */
-export const getSmsVirtualNumbersNumberServiceInfos: API.OperationMethod<
-  GetSmsVirtualNumbersNumberServiceInfosRequest,
-  ServicesService,
-  GetSmsVirtualNumbersNumberServiceInfosError,
+export type GetSmsVirtualNumberByNumberError = OvhOpError;
+/** Get this object properties */
+export const getSmsVirtualNumberByNumber: API.OperationMethod<
+  GetSmsVirtualNumberByNumberRequest,
+  SmsVirtualNumber,
+  GetSmsVirtualNumberByNumberError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSmsVirtualNumbersNumberServiceInfosRequest,
-  output: ServicesService,
+  input: GetSmsVirtualNumberByNumberRequest,
+  output: SmsVirtualNumber,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostSmsEstimateError = OvhOpError;
-/** Get the encoding, length and number of SMS parts of a text message */
-export const postSmsEstimate: API.OperationMethod<
-  PostSmsEstimateRequest,
-  SmsJobEstimate,
-  PostSmsEstimateError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostSmsEstimateRequest,
-  output: SmsJobEstimate,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostSmsServiceNameBatchesError = OvhOpError;
-/** Create a batch */
-export const postSmsServiceNameBatches: API.OperationMethod<
-  PostSmsServiceNameBatchesRequest,
-  SmsBatch,
-  PostSmsServiceNameBatchesError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostSmsServiceNameBatchesRequest,
-  output: SmsBatch,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostSmsServiceNameBatchesIdCancelError = OvhOpError;
-/** Cancel a deferred batch (no SMS must have been sent) */
-export const postSmsServiceNameBatchesIdCancel: API.OperationMethod<
-  PostSmsServiceNameBatchesIdCancelRequest,
-  SmsBatch,
-  PostSmsServiceNameBatchesIdCancelError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostSmsServiceNameBatchesIdCancelRequest,
-  output: SmsBatch,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostSmsServiceNameHlrError = OvhOpError;
-/** Add one or several sending hlr lookup request */
-export const postSmsServiceNameHlr: API.OperationMethod<
-  PostSmsServiceNameHlrRequest,
-  SmsSmsSendingReport,
-  PostSmsServiceNameHlrError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostSmsServiceNameHlrRequest,
-  output: SmsSmsSendingReport,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostSmsServiceNameJobsError = OvhOpError;
-/** Add one or several sending jobs */
-export const postSmsServiceNameJobs: API.OperationMethod<
-  PostSmsServiceNameJobsRequest,
-  SmsSmsSendingReport,
-  PostSmsServiceNameJobsError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostSmsServiceNameJobsRequest,
-  output: SmsSmsSendingReport,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostSmsServiceNamePhonebooksError = OvhOpError;
-/** Add a phonebook. Return the bookKey. */
-export const postSmsServiceNamePhonebooks: API.OperationMethod<
-  PostSmsServiceNamePhonebooksRequest,
-  PostSmsServiceNamePhonebooksResponse,
-  PostSmsServiceNamePhonebooksError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostSmsServiceNamePhonebooksRequest,
-  output: PostSmsServiceNamePhonebooksResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostSmsServiceNamePhonebooksBookKeyImportError = OvhOpError;
-/** Import a contacts file. Supported formats are Excel (.xls and .xlsx) and CSV */
-export const postSmsServiceNamePhonebooksBookKeyImport: API.OperationMethod<
-  PostSmsServiceNamePhonebooksBookKeyImportRequest,
-  TelephonyTask,
-  PostSmsServiceNamePhonebooksBookKeyImportError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostSmsServiceNamePhonebooksBookKeyImportRequest,
-  output: TelephonyTask,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostSmsServiceNamePhonebooksBookKeyPhonebookContactError =
-  OvhOpError;
-/** Create a phonebook contact. Return identifier of the phonebook contact. */
-export const postSmsServiceNamePhonebooksBookKeyPhonebookContact: API.OperationMethod<
-  PostSmsServiceNamePhonebooksBookKeyPhonebookContactRequest,
-  PostSmsServiceNamePhonebooksBookKeyPhonebookContactResponse,
-  PostSmsServiceNamePhonebooksBookKeyPhonebookContactError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostSmsServiceNamePhonebooksBookKeyPhonebookContactRequest,
-  output: PostSmsServiceNamePhonebooksBookKeyPhonebookContactResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostSmsServiceNameReceiversError = OvhOpError;
-/** Add a new document of csv receivers */
-export const postSmsServiceNameReceivers: API.OperationMethod<
-  PostSmsServiceNameReceiversRequest,
-  SmsReceiver,
-  PostSmsServiceNameReceiversError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostSmsServiceNameReceiversRequest,
-  output: SmsReceiver,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostSmsServiceNameReceiversSlotIdCleanError = OvhOpError;
-/** Clean the invalid and inactive receivers in the document by requesting HLR on each receiver Clean the invalid and inactive receivers in the document by requesting HLR on each receiver. A report is sent by e-mail at the end of the operation. */
-export const postSmsServiceNameReceiversSlotIdClean: API.OperationMethod<
-  PostSmsServiceNameReceiversSlotIdCleanRequest,
-  SmsReceiversAsynchronousCleanReport,
-  PostSmsServiceNameReceiversSlotIdCleanError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostSmsServiceNameReceiversSlotIdCleanRequest,
-  output: SmsReceiversAsynchronousCleanReport,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostSmsServiceNameSendersError = OvhOpError;
-/** Create the sms sender given */
-export const postSmsServiceNameSenders: API.OperationMethod<
-  PostSmsServiceNameSendersRequest,
-  PostSmsServiceNameSendersResponse,
-  PostSmsServiceNameSendersError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostSmsServiceNameSendersRequest,
-  output: PostSmsServiceNameSendersResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostSmsServiceNameSendersSenderDocumentsError = OvhOpError;
-/** Create a new empty document */
-export const postSmsServiceNameSendersSenderDocuments: API.OperationMethod<
-  PostSmsServiceNameSendersSenderDocumentsRequest,
-  SmsSenderDocument,
-  PostSmsServiceNameSendersSenderDocumentsError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostSmsServiceNameSendersSenderDocumentsRequest,
-  output: SmsSenderDocument,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostSmsServiceNameSendersSenderValidateError = OvhOpError;
-/** Validate a given sender with an activation code. */
-export const postSmsServiceNameSendersSenderValidate: API.OperationMethod<
-  PostSmsServiceNameSendersSenderValidateRequest,
-  PostSmsServiceNameSendersSenderValidateResponse,
-  PostSmsServiceNameSendersSenderValidateError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostSmsServiceNameSendersSenderValidateRequest,
-  output: PostSmsServiceNameSendersSenderValidateResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostSmsServiceNameSmppPasswordError = OvhOpError;
-/** Renew SMPP password */
-export const postSmsServiceNameSmppPassword: API.OperationMethod<
-  PostSmsServiceNameSmppPasswordRequest,
-  PostSmsServiceNameSmppPasswordResponse,
-  PostSmsServiceNameSmppPasswordError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostSmsServiceNameSmppPasswordRequest,
-  output: PostSmsServiceNameSmppPasswordResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostSmsServiceNameTemplatesControlError = OvhOpError;
-/** Create the sms template control given */
-export const postSmsServiceNameTemplatesControl: API.OperationMethod<
-  PostSmsServiceNameTemplatesControlRequest,
-  PostSmsServiceNameTemplatesControlResponse,
-  PostSmsServiceNameTemplatesControlError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostSmsServiceNameTemplatesControlRequest,
-  output: PostSmsServiceNameTemplatesControlResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostSmsServiceNameTemplatesControlNameRelaunchValidationError =
-  OvhOpError;
-/** Attempt a new validation after moderation refusal */
-export const postSmsServiceNameTemplatesControlNameRelaunchValidation: API.OperationMethod<
-  PostSmsServiceNameTemplatesControlNameRelaunchValidationRequest,
-  PostSmsServiceNameTemplatesControlNameRelaunchValidationResponse,
-  PostSmsServiceNameTemplatesControlNameRelaunchValidationError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostSmsServiceNameTemplatesControlNameRelaunchValidationRequest,
-  output: PostSmsServiceNameTemplatesControlNameRelaunchValidationResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostSmsServiceNameTransferCreditsError = OvhOpError;
-/** Credit transfer between two sms accounts. */
-export const postSmsServiceNameTransferCredits: API.OperationMethod<
-  PostSmsServiceNameTransferCreditsRequest,
-  PostSmsServiceNameTransferCreditsResponse,
-  PostSmsServiceNameTransferCreditsError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostSmsServiceNameTransferCreditsRequest,
-  output: PostSmsServiceNameTransferCreditsResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostSmsServiceNameUsersError = OvhOpError;
-/** Create a new user for an sms account */
-export const postSmsServiceNameUsers: API.OperationMethod<
-  PostSmsServiceNameUsersRequest,
-  PostSmsServiceNameUsersResponse,
-  PostSmsServiceNameUsersError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostSmsServiceNameUsersRequest,
-  output: PostSmsServiceNameUsersResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostSmsServiceNameUsersLoginJobsError = OvhOpError;
-/** Add one or several sending jobs */
-export const postSmsServiceNameUsersLoginJobs: API.OperationMethod<
-  PostSmsServiceNameUsersLoginJobsRequest,
-  SmsSmsSendingReport,
-  PostSmsServiceNameUsersLoginJobsError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostSmsServiceNameUsersLoginJobsRequest,
-  output: SmsSmsSendingReport,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostSmsServiceNameUsersLoginReceiversError = OvhOpError;
-/** Add a new document of csv receivers */
-export const postSmsServiceNameUsersLoginReceivers: API.OperationMethod<
-  PostSmsServiceNameUsersLoginReceiversRequest,
-  SmsReceiver,
-  PostSmsServiceNameUsersLoginReceiversError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostSmsServiceNameUsersLoginReceiversRequest,
-  output: SmsReceiver,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostSmsServiceNameUsersLoginReceiversSlotIdCleanError = OvhOpError;
-/** Clean the invalid and inactive receivers in the document by requesting HLR on each receiver Clean the invalid and inactive receivers in the document by requesting HLR on each receiver. A report is sent by e-mail at the end of the operation. */
-export const postSmsServiceNameUsersLoginReceiversSlotIdClean: API.OperationMethod<
-  PostSmsServiceNameUsersLoginReceiversSlotIdCleanRequest,
-  SmsReceiversAsynchronousCleanReport,
-  PostSmsServiceNameUsersLoginReceiversSlotIdCleanError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostSmsServiceNameUsersLoginReceiversSlotIdCleanRequest,
-  output: SmsReceiversAsynchronousCleanReport,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostSmsServiceNameVirtualNumbersNumberChatAccessError = OvhOpError;
-/** Create a new web access for this ressource */
-export const postSmsServiceNameVirtualNumbersNumberChatAccess: API.OperationMethod<
-  PostSmsServiceNameVirtualNumbersNumberChatAccessRequest,
+export type GetSmsVirtualNumberChatAccessError = OvhOpError;
+/** Get this object properties */
+export const getSmsVirtualNumberChatAccess: API.OperationMethod<
+  GetSmsVirtualNumberChatAccessRequest,
   SmsChatAccess,
-  PostSmsServiceNameVirtualNumbersNumberChatAccessError,
+  GetSmsVirtualNumberChatAccessError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostSmsServiceNameVirtualNumbersNumberChatAccessRequest,
+  input: GetSmsVirtualNumberChatAccessRequest,
   output: SmsChatAccess,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostSmsServiceNameVirtualNumbersNumberJobsError = OvhOpError;
-/** Add one or several sending jobs */
-export const postSmsServiceNameVirtualNumbersNumberJobs: API.OperationMethod<
-  PostSmsServiceNameVirtualNumbersNumberJobsRequest,
-  SmsSmsSendingReport,
-  PostSmsServiceNameVirtualNumbersNumberJobsError,
+export type GetSmsVirtualNumberIncomingError = OvhOpError;
+/** Get this object properties */
+export const getSmsVirtualNumberIncoming: API.OperationMethod<
+  GetSmsVirtualNumberIncomingRequest,
+  SmsIncoming,
+  GetSmsVirtualNumberIncomingError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostSmsServiceNameVirtualNumbersNumberJobsRequest,
-  output: SmsSmsSendingReport,
+  input: GetSmsVirtualNumberIncomingRequest,
+  output: SmsIncoming,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutSmsServiceNameError = OvhOpError;
+export type GetSmsVirtualNumberJobError = OvhOpError;
+/** Get this object properties */
+export const getSmsVirtualNumberJob: API.OperationMethod<
+  GetSmsVirtualNumberJobRequest,
+  SmsVirtualNumberJob,
+  GetSmsVirtualNumberJobError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSmsVirtualNumberJobRequest,
+  output: SmsVirtualNumberJob,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSmsVirtualNumberOutgoingError = OvhOpError;
+/** Get this object properties */
+export const getSmsVirtualNumberOutgoing: API.OperationMethod<
+  GetSmsVirtualNumberOutgoingRequest,
+  SmsOutgoing,
+  GetSmsVirtualNumberOutgoingError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSmsVirtualNumberOutgoingRequest,
+  output: SmsOutgoing,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSmsVirtualNumberOutgoingHlrError = OvhOpError;
+/** Get this object properties */
+export const getSmsVirtualNumberOutgoingHlr: API.OperationMethod<
+  GetSmsVirtualNumberOutgoingHlrRequest,
+  SmsHlr,
+  GetSmsVirtualNumberOutgoingHlrError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSmsVirtualNumberOutgoingHlrRequest,
+  output: SmsHlr,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSmsVirtualNumberServiceInfosError = OvhOpError;
+/** Get service information */
+export const getSmsVirtualNumberServiceInfos: API.OperationMethod<
+  GetSmsVirtualNumberServiceInfosRequest,
+  ServicesService,
+  GetSmsVirtualNumberServiceInfosError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSmsVirtualNumberServiceInfosRequest,
+  output: ServicesService,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ImportSmsPhonebookError = OvhOpError;
+/** Import a contacts file. Supported formats are Excel (.xls and .xlsx) and CSV */
+export const importSmsPhonebook: API.OperationMethod<
+  ImportSmsPhonebookRequest,
+  TelephonyTask,
+  ImportSmsPhonebookError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ImportSmsPhonebookRequest,
+  output: TelephonyTask,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSmsError = OvhOpError;
+/** List available services */
+export const listSms: API.OperationMethod<
+  ListSmsRequest,
+  ListSmsResponse,
+  ListSmsError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSmsRequest,
+  output: ListSmsResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSmsBatchesError = OvhOpError;
+/** Get batches list */
+export const listSmsBatches: API.OperationMethod<
+  ListSmsBatchesRequest,
+  ListSmsBatchesResponse,
+  ListSmsBatchesError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSmsBatchesRequest,
+  output: ListSmsBatchesResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSmsBlacklistsError = OvhOpError;
+/** Numbers blacklisted associated to the sms account */
+export const listSmsBlacklists: API.OperationMethod<
+  ListSmsBlacklistsRequest,
+  ListSmsBlacklistsResponse,
+  ListSmsBlacklistsError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSmsBlacklistsRequest,
+  output: ListSmsBlacklistsResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSmsExceptionsError = OvhOpError;
+/** Describe filter exceptions in sms sending from a specific receiver. */
+export const listSmsExceptions: API.OperationMethod<
+  ListSmsExceptionsRequest,
+  ListSmsExceptionsResponse,
+  ListSmsExceptionsError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSmsExceptionsRequest,
+  output: ListSmsExceptionsResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSmsHlrError = OvhOpError;
+/** Home Location Register informations. Give informations about a given cellular phone. */
+export const listSmsHlr: API.OperationMethod<
+  ListSmsHlrRequest,
+  ListSmsHlrResponse,
+  ListSmsHlrError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSmsHlrRequest,
+  output: ListSmsHlrResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSmsIncomingError = OvhOpError;
+/** Sms received associated to the sms account */
+export const listSmsIncoming: API.OperationMethod<
+  ListSmsIncomingRequest,
+  ListSmsIncomingResponse,
+  ListSmsIncomingError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSmsIncomingRequest,
+  output: ListSmsIncomingResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSmsJobsError = OvhOpError;
+/** Sms in pending associated to the sms account */
+export const listSmsJobs: API.OperationMethod<
+  ListSmsJobsRequest,
+  ListSmsJobsResponse,
+  ListSmsJobsError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSmsJobsRequest,
+  output: ListSmsJobsResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSmsOutgoingError = OvhOpError;
+/** Get SMS list */
+export const listSmsOutgoing: API.OperationMethod<
+  ListSmsOutgoingRequest,
+  ListSmsOutgoingResponse,
+  ListSmsOutgoingError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSmsOutgoingRequest,
+  output: ListSmsOutgoingResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSmsPhonebookPhonebookContactError = OvhOpError;
+/** Phonebook contacts */
+export const listSmsPhonebookPhonebookContact: API.OperationMethod<
+  ListSmsPhonebookPhonebookContactRequest,
+  ListSmsPhonebookPhonebookContactResponse,
+  ListSmsPhonebookPhonebookContactError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSmsPhonebookPhonebookContactRequest,
+  output: ListSmsPhonebookPhonebookContactResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSmsPhonebooksError = OvhOpError;
+/** Return phonebooks associated to this account */
+export const listSmsPhonebooks: API.OperationMethod<
+  ListSmsPhonebooksRequest,
+  ListSmsPhonebooksResponse,
+  ListSmsPhonebooksError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSmsPhonebooksRequest,
+  output: ListSmsPhonebooksResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSmsRatePacksError = OvhOpError;
+/** Get the prices and credits of all the SMS packs with informations about the destination country */
+export const listSmsRatePacks: API.OperationMethod<
+  ListSmsRatePacksRequest,
+  ListSmsRatePacksResponse,
+  ListSmsRatePacksError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSmsRatePacksRequest,
+  output: ListSmsRatePacksResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSmsReceiversError = OvhOpError;
+/** Receivers preloaded from text or csv document file */
+export const listSmsReceivers: API.OperationMethod<
+  ListSmsReceiversRequest,
+  ListSmsReceiversResponse,
+  ListSmsReceiversError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSmsReceiversRequest,
+  output: ListSmsReceiversResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSmsSeeOffersError = OvhOpError;
+/** Describe SMS offers available. */
+export const listSmsSeeOffers: API.OperationMethod<
+  ListSmsSeeOffersRequest,
+  ListSmsSeeOffersResponse,
+  ListSmsSeeOffersError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSmsSeeOffersRequest,
+  output: ListSmsSeeOffersResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSmsSenderDocumentsError = OvhOpError;
+/** Documents linked to SMS sender for validation purpose */
+export const listSmsSenderDocuments: API.OperationMethod<
+  ListSmsSenderDocumentsRequest,
+  ListSmsSenderDocumentsResponse,
+  ListSmsSenderDocumentsError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSmsSenderDocumentsRequest,
+  output: ListSmsSenderDocumentsResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSmsSendersError = OvhOpError;
+/** Senders allowed associated to the sms account */
+export const listSmsSenders: API.OperationMethod<
+  ListSmsSendersRequest,
+  ListSmsSendersResponse,
+  ListSmsSendersError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSmsSendersRequest,
+  output: ListSmsSendersResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSmsSendersAvailableForValidationError = OvhOpError;
+/** The senders that are attached to your personal informations or OVH services and that can be automatically validated */
+export const listSmsSendersAvailableForValidation: API.OperationMethod<
+  ListSmsSendersAvailableForValidationRequest,
+  ListSmsSendersAvailableForValidationResponse,
+  ListSmsSendersAvailableForValidationError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSmsSendersAvailableForValidationRequest,
+  output: ListSmsSendersAvailableForValidationResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSmsSmppAllowedIPsError = OvhOpError;
+/** Get SMPP allowed IPs */
+export const listSmsSmppAllowedIPs: API.OperationMethod<
+  ListSmsSmppAllowedIPsRequest,
+  ListSmsSmppAllowedIPsResponse,
+  ListSmsSmppAllowedIPsError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSmsSmppAllowedIPsRequest,
+  output: ListSmsSmppAllowedIPsResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSmsTaskError = OvhOpError;
+/** Operations on a SMS service */
+export const listSmsTask: API.OperationMethod<
+  ListSmsTaskRequest,
+  ListSmsTaskResponse,
+  ListSmsTaskError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSmsTaskRequest,
+  output: ListSmsTaskResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSmsTemplatesControlError = OvhOpError;
+/** Template pattern filled up for moderation (Needed to send in US country) */
+export const listSmsTemplatesControl: API.OperationMethod<
+  ListSmsTemplatesControlRequest,
+  ListSmsTemplatesControlResponse,
+  ListSmsTemplatesControlError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSmsTemplatesControlRequest,
+  output: ListSmsTemplatesControlResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSmsUserIncomingError = OvhOpError;
+/** Sms received associated to the sms user */
+export const listSmsUserIncoming: API.OperationMethod<
+  ListSmsUserIncomingRequest,
+  ListSmsUserIncomingResponse,
+  ListSmsUserIncomingError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSmsUserIncomingRequest,
+  output: ListSmsUserIncomingResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSmsUserJobsError = OvhOpError;
+/** Sms in pending associated to the sms user */
+export const listSmsUserJobs: API.OperationMethod<
+  ListSmsUserJobsRequest,
+  ListSmsUserJobsResponse,
+  ListSmsUserJobsError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSmsUserJobsRequest,
+  output: ListSmsUserJobsResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSmsUserOutgoingError = OvhOpError;
+/** Sms sent associated to the sms user */
+export const listSmsUserOutgoing: API.OperationMethod<
+  ListSmsUserOutgoingRequest,
+  ListSmsUserOutgoingResponse,
+  ListSmsUserOutgoingError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSmsUserOutgoingRequest,
+  output: ListSmsUserOutgoingResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSmsUserReceiversError = OvhOpError;
+/** Receivers preloaded from text or csv document file */
+export const listSmsUserReceivers: API.OperationMethod<
+  ListSmsUserReceiversRequest,
+  ListSmsUserReceiversResponse,
+  ListSmsUserReceiversError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSmsUserReceiversRequest,
+  output: ListSmsUserReceiversResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSmsUsersError = OvhOpError;
+/** Users associated to the sms account */
+export const listSmsUsers: API.OperationMethod<
+  ListSmsUsersRequest,
+  ListSmsUsersResponse,
+  ListSmsUsersError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSmsUsersRequest,
+  output: ListSmsUsersResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSmsVirtualNumberIncomingError = OvhOpError;
+/** Sms received associated to the sms account */
+export const listSmsVirtualNumberIncoming: API.OperationMethod<
+  ListSmsVirtualNumberIncomingRequest,
+  ListSmsVirtualNumberIncomingResponse,
+  ListSmsVirtualNumberIncomingError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSmsVirtualNumberIncomingRequest,
+  output: ListSmsVirtualNumberIncomingResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSmsVirtualNumberJobsError = OvhOpError;
+/** Sms in pending associated to the sms account */
+export const listSmsVirtualNumberJobs: API.OperationMethod<
+  ListSmsVirtualNumberJobsRequest,
+  ListSmsVirtualNumberJobsResponse,
+  ListSmsVirtualNumberJobsError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSmsVirtualNumberJobsRequest,
+  output: ListSmsVirtualNumberJobsResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSmsVirtualNumberOutgoingError = OvhOpError;
+/** Sms sent associated to the sms account */
+export const listSmsVirtualNumberOutgoing: API.OperationMethod<
+  ListSmsVirtualNumberOutgoingRequest,
+  ListSmsVirtualNumberOutgoingResponse,
+  ListSmsVirtualNumberOutgoingError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSmsVirtualNumberOutgoingRequest,
+  output: ListSmsVirtualNumberOutgoingResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSmsVirtualNumbersError = OvhOpError;
+/** Your virtual numbers */
+export const listSmsVirtualNumbers: API.OperationMethod<
+  ListSmsVirtualNumbersRequest,
+  ListSmsVirtualNumbersResponse,
+  ListSmsVirtualNumbersError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSmsVirtualNumbersRequest,
+  output: ListSmsVirtualNumbersResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSmsVirtualNumbers2Error = OvhOpError;
+/** Virtual numbers associated to the sms account */
+export const listSmsVirtualNumbers2: API.OperationMethod<
+  ListSmsVirtualNumbersRequest2,
+  ListSmsVirtualNumbersResponse2,
+  ListSmsVirtualNumbers2Error,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSmsVirtualNumbersRequest2,
+  output: ListSmsVirtualNumbersResponse2,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutSmsError = OvhOpError;
 /** Alter this object properties */
-export const putSmsServiceName: API.OperationMethod<
-  PutSmsServiceNameRequest,
-  PutSmsServiceNameResponse,
-  PutSmsServiceNameError,
+export const putSms: API.OperationMethod<
+  PutSmsRequest,
+  PutSmsResponse,
+  PutSmsError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutSmsServiceNameRequest,
-  output: PutSmsServiceNameResponse,
+  input: PutSmsRequest,
+  output: PutSmsResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutSmsServiceNameBatchesIdError = OvhOpError;
+export type PutSmsBatchError = OvhOpError;
 /** Update a batch */
-export const putSmsServiceNameBatchesId: API.OperationMethod<
-  PutSmsServiceNameBatchesIdRequest,
+export const putSmsBatch: API.OperationMethod<
+  PutSmsBatchRequest,
   SmsBatch,
-  PutSmsServiceNameBatchesIdError,
+  PutSmsBatchError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutSmsServiceNameBatchesIdRequest,
+  input: PutSmsBatchRequest,
   output: SmsBatch,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutSmsServiceNamePhonebooksBookKeyError = OvhOpError;
+export type PutSmsPhonebookError = OvhOpError;
 /** Alter this object properties */
-export const putSmsServiceNamePhonebooksBookKey: API.OperationMethod<
-  PutSmsServiceNamePhonebooksBookKeyRequest,
-  PutSmsServiceNamePhonebooksBookKeyResponse,
-  PutSmsServiceNamePhonebooksBookKeyError,
+export const putSmsPhonebook: API.OperationMethod<
+  PutSmsPhonebookRequest,
+  PutSmsPhonebookResponse,
+  PutSmsPhonebookError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutSmsServiceNamePhonebooksBookKeyRequest,
-  output: PutSmsServiceNamePhonebooksBookKeyResponse,
+  input: PutSmsPhonebookRequest,
+  output: PutSmsPhonebookResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutSmsServiceNamePhonebooksBookKeyPhonebookContactIdError =
-  OvhOpError;
+export type PutSmsPhonebookPhonebookContactError = OvhOpError;
 /** Alter this object properties */
-export const putSmsServiceNamePhonebooksBookKeyPhonebookContactId: API.OperationMethod<
-  PutSmsServiceNamePhonebooksBookKeyPhonebookContactIdRequest,
-  PutSmsServiceNamePhonebooksBookKeyPhonebookContactIdResponse,
-  PutSmsServiceNamePhonebooksBookKeyPhonebookContactIdError,
+export const putSmsPhonebookPhonebookContact: API.OperationMethod<
+  PutSmsPhonebookPhonebookContactRequest,
+  PutSmsPhonebookPhonebookContactResponse,
+  PutSmsPhonebookPhonebookContactError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutSmsServiceNamePhonebooksBookKeyPhonebookContactIdRequest,
-  output: PutSmsServiceNamePhonebooksBookKeyPhonebookContactIdResponse,
+  input: PutSmsPhonebookPhonebookContactRequest,
+  output: PutSmsPhonebookPhonebookContactResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutSmsServiceNameReceiversSlotIdError = OvhOpError;
+export type PutSmsReceiverError = OvhOpError;
 /** Alter this object properties */
-export const putSmsServiceNameReceiversSlotId: API.OperationMethod<
-  PutSmsServiceNameReceiversSlotIdRequest,
-  PutSmsServiceNameReceiversSlotIdResponse,
-  PutSmsServiceNameReceiversSlotIdError,
+export const putSmsReceiver: API.OperationMethod<
+  PutSmsReceiverRequest,
+  PutSmsReceiverResponse,
+  PutSmsReceiverError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutSmsServiceNameReceiversSlotIdRequest,
-  output: PutSmsServiceNameReceiversSlotIdResponse,
+  input: PutSmsReceiverRequest,
+  output: PutSmsReceiverResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutSmsServiceNameSendersSenderError = OvhOpError;
+export type PutSmsSenderError = OvhOpError;
 /** Alter this object properties */
-export const putSmsServiceNameSendersSender: API.OperationMethod<
-  PutSmsServiceNameSendersSenderRequest,
-  PutSmsServiceNameSendersSenderResponse,
-  PutSmsServiceNameSendersSenderError,
+export const putSmsSender: API.OperationMethod<
+  PutSmsSenderRequest,
+  PutSmsSenderResponse,
+  PutSmsSenderError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutSmsServiceNameSendersSenderRequest,
-  output: PutSmsServiceNameSendersSenderResponse,
+  input: PutSmsSenderRequest,
+  output: PutSmsSenderResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutSmsServiceNameSendersSenderDocumentsDocumentIDError = OvhOpError;
+export type PutSmsSenderDocumentError = OvhOpError;
 /** Alter this object properties */
-export const putSmsServiceNameSendersSenderDocumentsDocumentID: API.OperationMethod<
-  PutSmsServiceNameSendersSenderDocumentsDocumentIDRequest,
-  PutSmsServiceNameSendersSenderDocumentsDocumentIDResponse,
-  PutSmsServiceNameSendersSenderDocumentsDocumentIDError,
+export const putSmsSenderDocument: API.OperationMethod<
+  PutSmsSenderDocumentRequest,
+  PutSmsSenderDocumentResponse,
+  PutSmsSenderDocumentError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutSmsServiceNameSendersSenderDocumentsDocumentIDRequest,
-  output: PutSmsServiceNameSendersSenderDocumentsDocumentIDResponse,
+  input: PutSmsSenderDocumentRequest,
+  output: PutSmsSenderDocumentResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutSmsServiceNameServiceInfosError = OvhOpError;
+export type PutSmsServiceInfosError = OvhOpError;
 /** Update service information */
-export const putSmsServiceNameServiceInfos: API.OperationMethod<
-  PutSmsServiceNameServiceInfosRequest,
-  PutSmsServiceNameServiceInfosResponse,
-  PutSmsServiceNameServiceInfosError,
+export const putSmsServiceInfos: API.OperationMethod<
+  PutSmsServiceInfosRequest,
+  PutSmsServiceInfosResponse,
+  PutSmsServiceInfosError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutSmsServiceNameServiceInfosRequest,
-  output: PutSmsServiceNameServiceInfosResponse,
+  input: PutSmsServiceInfosRequest,
+  output: PutSmsServiceInfosResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutSmsServiceNameSmppAllowedIPsError = OvhOpError;
+export type PutSmsSmppAllowedIPsError = OvhOpError;
 /** Add or remove allowed IPs */
-export const putSmsServiceNameSmppAllowedIPs: API.OperationMethod<
-  PutSmsServiceNameSmppAllowedIPsRequest,
-  PutSmsServiceNameSmppAllowedIPsResponse,
-  PutSmsServiceNameSmppAllowedIPsError,
+export const putSmsSmppAllowedIPs: API.OperationMethod<
+  PutSmsSmppAllowedIPsRequest,
+  PutSmsSmppAllowedIPsResponse,
+  PutSmsSmppAllowedIPsError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutSmsServiceNameSmppAllowedIPsRequest,
-  output: PutSmsServiceNameSmppAllowedIPsResponse,
+  input: PutSmsSmppAllowedIPsRequest,
+  output: PutSmsSmppAllowedIPsResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutSmsServiceNameTemplatesControlNameError = OvhOpError;
+export type PutSmsTemplatesControlError = OvhOpError;
 /** Alter this object properties */
-export const putSmsServiceNameTemplatesControlName: API.OperationMethod<
-  PutSmsServiceNameTemplatesControlNameRequest,
-  PutSmsServiceNameTemplatesControlNameResponse,
-  PutSmsServiceNameTemplatesControlNameError,
+export const putSmsTemplatesControl: API.OperationMethod<
+  PutSmsTemplatesControlRequest,
+  PutSmsTemplatesControlResponse,
+  PutSmsTemplatesControlError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutSmsServiceNameTemplatesControlNameRequest,
-  output: PutSmsServiceNameTemplatesControlNameResponse,
+  input: PutSmsTemplatesControlRequest,
+  output: PutSmsTemplatesControlResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutSmsServiceNameUsersLoginError = OvhOpError;
+export type PutSmsUserError = OvhOpError;
 /** Alter this object properties */
-export const putSmsServiceNameUsersLogin: API.OperationMethod<
-  PutSmsServiceNameUsersLoginRequest,
-  PutSmsServiceNameUsersLoginResponse,
-  PutSmsServiceNameUsersLoginError,
+export const putSmsUser: API.OperationMethod<
+  PutSmsUserRequest,
+  PutSmsUserResponse,
+  PutSmsUserError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutSmsServiceNameUsersLoginRequest,
-  output: PutSmsServiceNameUsersLoginResponse,
+  input: PutSmsUserRequest,
+  output: PutSmsUserResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutSmsServiceNameUsersLoginReceiversSlotIdError = OvhOpError;
+export type PutSmsUserReceiverError = OvhOpError;
 /** Alter this object properties */
-export const putSmsServiceNameUsersLoginReceiversSlotId: API.OperationMethod<
-  PutSmsServiceNameUsersLoginReceiversSlotIdRequest,
-  PutSmsServiceNameUsersLoginReceiversSlotIdResponse,
-  PutSmsServiceNameUsersLoginReceiversSlotIdError,
+export const putSmsUserReceiver: API.OperationMethod<
+  PutSmsUserReceiverRequest,
+  PutSmsUserReceiverResponse,
+  PutSmsUserReceiverError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutSmsServiceNameUsersLoginReceiversSlotIdRequest,
-  output: PutSmsServiceNameUsersLoginReceiversSlotIdResponse,
+  input: PutSmsUserReceiverRequest,
+  output: PutSmsUserReceiverResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutSmsVirtualNumbersNumberServiceInfosError = OvhOpError;
+export type PutSmsVirtualNumberServiceInfosError = OvhOpError;
 /** Update service information */
-export const putSmsVirtualNumbersNumberServiceInfos: API.OperationMethod<
-  PutSmsVirtualNumbersNumberServiceInfosRequest,
-  PutSmsVirtualNumbersNumberServiceInfosResponse,
-  PutSmsVirtualNumbersNumberServiceInfosError,
+export const putSmsVirtualNumberServiceInfos: API.OperationMethod<
+  PutSmsVirtualNumberServiceInfosRequest,
+  PutSmsVirtualNumberServiceInfosResponse,
+  PutSmsVirtualNumberServiceInfosError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutSmsVirtualNumbersNumberServiceInfosRequest,
-  output: PutSmsVirtualNumbersNumberServiceInfosResponse,
+  input: PutSmsVirtualNumberServiceInfosRequest,
+  output: PutSmsVirtualNumberServiceInfosResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type TransferSmsCreditsError = OvhOpError;
+/** Credit transfer between two sms accounts. */
+export const transferSmsCredits: API.OperationMethod<
+  TransferSmsCreditsRequest,
+  TransferSmsCreditsResponse,
+  TransferSmsCreditsError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: TransferSmsCreditsRequest,
+  output: TransferSmsCreditsResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ValidateSmsSenderError = OvhOpError;
+/** Validate a given sender with an activation code. */
+export const validateSmsSender: API.OperationMethod<
+  ValidateSmsSenderRequest,
+  ValidateSmsSenderResponse,
+  ValidateSmsSenderError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ValidateSmsSenderRequest,
+  output: ValidateSmsSenderResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,

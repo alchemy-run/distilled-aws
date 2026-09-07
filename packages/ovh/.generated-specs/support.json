@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.ovh.support#SupportTicketCategoryEnum": {
@@ -227,7 +228,7 @@
         "smithy.api#documentation": "Support ticket statuses"
       }
     },
-    "com.ovh.support#GetSupportTicketsRequest": {
+    "com.ovh.support#ListSupportTicketsRequest": {
       "type": "structure",
       "members": {
         "archived": {
@@ -326,18 +327,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.support#GetSupportTicketsResponseBodyList": {
+    "com.ovh.support#ListSupportTicketsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.support#GetSupportTicketsResponse": {
+    "com.ovh.support#ListSupportTicketsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.support#GetSupportTicketsResponseBodyList",
+          "target": "com.ovh.support#ListSupportTicketsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -348,13 +349,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.support#GetSupportTickets": {
+    "com.ovh.support#ListSupportTickets": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.support#GetSupportTicketsRequest"
+        "target": "com.ovh.support#ListSupportTicketsRequest"
       },
       "output": {
-        "target": "com.ovh.support#GetSupportTicketsResponse"
+        "target": "com.ovh.support#ListSupportTicketsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -479,7 +480,7 @@
         "smithy.api#documentation": "DEPRECATED - Ticket type (criticalIntervention requires VIP support level)"
       }
     },
-    "com.ovh.support#PostSupportTicketsCreateRequestWatchersList": {
+    "com.ovh.support#CreateSupportTicketRequestWatchersList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -488,7 +489,7 @@
         "smithy.api#documentation": "List of e-mail addresses to notify on ticket updates (max. 10)"
       }
     },
-    "com.ovh.support#PostSupportTicketsCreateRequest": {
+    "com.ovh.support#CreateSupportTicketRequest": {
       "type": "structure",
       "members": {
         "body": {
@@ -548,7 +549,7 @@
           }
         },
         "watchers": {
-          "target": "com.ovh.support#PostSupportTicketsCreateRequestWatchersList",
+          "target": "com.ovh.support#CreateSupportTicketRequestWatchersList",
           "traits": {
             "smithy.api#documentation": "List of e-mail addresses to notify on ticket updates (max. 10)"
           }
@@ -591,10 +592,10 @@
         "smithy.api#documentation": "Newly created support identifiers"
       }
     },
-    "com.ovh.support#PostSupportTicketsCreate": {
+    "com.ovh.support#CreateSupportTicket": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.support#PostSupportTicketsCreateRequest"
+        "target": "com.ovh.support#CreateSupportTicketRequest"
       },
       "output": {
         "target": "com.ovh.support#SupportNewMessageInfo"
@@ -608,7 +609,7 @@
         "smithy.api#documentation": "Create a new ticket"
       }
     },
-    "com.ovh.support#GetSupportTicketsTicketIdRequest": {
+    "com.ovh.support#GetSupportTicketRequest": {
       "type": "structure",
       "members": {
         "ticketId": {
@@ -739,10 +740,10 @@
         "smithy.api#documentation": "Message sender type"
       }
     },
-    "com.ovh.support#GetSupportTicketsTicketId": {
+    "com.ovh.support#GetSupportTicket": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.support#GetSupportTicketsTicketIdRequest"
+        "target": "com.ovh.support#GetSupportTicketRequest"
       },
       "output": {
         "target": "com.ovh.support#SupportTicket"
@@ -756,7 +757,7 @@
         "smithy.api#documentation": "Get ticket"
       }
     },
-    "com.ovh.support#GetSupportTicketsTicketIdCanBeScoredRequest": {
+    "com.ovh.support#GetSupportTicketCanBeScoredRequest": {
       "type": "structure",
       "members": {
         "ticketId": {
@@ -772,7 +773,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.support#GetSupportTicketsTicketIdCanBeScoredResponse": {
+    "com.ovh.support#GetSupportTicketCanBeScoredResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -787,13 +788,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.support#GetSupportTicketsTicketIdCanBeScored": {
+    "com.ovh.support#GetSupportTicketCanBeScored": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.support#GetSupportTicketsTicketIdCanBeScoredRequest"
+        "target": "com.ovh.support#GetSupportTicketCanBeScoredRequest"
       },
       "output": {
-        "target": "com.ovh.support#GetSupportTicketsTicketIdCanBeScoredResponse"
+        "target": "com.ovh.support#GetSupportTicketCanBeScoredResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -804,7 +805,7 @@
         "smithy.api#documentation": "Checks whether ticket can be scored"
       }
     },
-    "com.ovh.support#PostSupportTicketsTicketIdCloseRequest": {
+    "com.ovh.support#CreateSupportTicketCloseRequest": {
       "type": "structure",
       "members": {
         "ticketId": {
@@ -820,10 +821,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.support#PostSupportTicketsTicketIdClose": {
+    "com.ovh.support#CreateSupportTicketClose": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.support#PostSupportTicketsTicketIdCloseRequest"
+        "target": "com.ovh.support#CreateSupportTicketCloseRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -837,7 +838,7 @@
         "smithy.api#documentation": "Close ticket"
       }
     },
-    "com.ovh.support#GetSupportTicketsTicketIdMessagesRequest": {
+    "com.ovh.support#ListSupportTicketMessagesRequest": {
       "type": "structure",
       "members": {
         "ticketId": {
@@ -897,18 +898,18 @@
         "smithy.api#documentation": "Support ticket message"
       }
     },
-    "com.ovh.support#GetSupportTicketsTicketIdMessagesResponseBodyList": {
+    "com.ovh.support#ListSupportTicketMessagesResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.support#SupportMessage"
       },
       "traits": {}
     },
-    "com.ovh.support#GetSupportTicketsTicketIdMessagesResponse": {
+    "com.ovh.support#ListSupportTicketMessagesResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.support#GetSupportTicketsTicketIdMessagesResponseBodyList",
+          "target": "com.ovh.support#ListSupportTicketMessagesResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -919,13 +920,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.support#GetSupportTicketsTicketIdMessages": {
+    "com.ovh.support#ListSupportTicketMessages": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.support#GetSupportTicketsTicketIdMessagesRequest"
+        "target": "com.ovh.support#ListSupportTicketMessagesRequest"
       },
       "output": {
-        "target": "com.ovh.support#GetSupportTicketsTicketIdMessagesResponse"
+        "target": "com.ovh.support#ListSupportTicketMessagesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -936,7 +937,7 @@
         "smithy.api#documentation": "Get ticket messages"
       }
     },
-    "com.ovh.support#PostSupportTicketsTicketIdReopenRequest": {
+    "com.ovh.support#CreateSupportTicketReopenRequest": {
       "type": "structure",
       "members": {
         "ticketId": {
@@ -959,10 +960,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.support#PostSupportTicketsTicketIdReopen": {
+    "com.ovh.support#CreateSupportTicketReopen": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.support#PostSupportTicketsTicketIdReopenRequest"
+        "target": "com.ovh.support#CreateSupportTicketReopenRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -976,7 +977,7 @@
         "smithy.api#documentation": "Reopen a ticket"
       }
     },
-    "com.ovh.support#PostSupportTicketsTicketIdReplyRequest": {
+    "com.ovh.support#ReplySupportTicketRequest": {
       "type": "structure",
       "members": {
         "ticketId": {
@@ -999,10 +1000,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.support#PostSupportTicketsTicketIdReply": {
+    "com.ovh.support#ReplySupportTicket": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.support#PostSupportTicketsTicketIdReplyRequest"
+        "target": "com.ovh.support#ReplySupportTicketRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1016,7 +1017,7 @@
         "smithy.api#documentation": "Reply to ticket"
       }
     },
-    "com.ovh.support#PostSupportTicketsTicketIdScoreRequest": {
+    "com.ovh.support#CreateSupportTicketScoreRequest": {
       "type": "structure",
       "members": {
         "ticketId": {
@@ -1045,10 +1046,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.support#PostSupportTicketsTicketIdScore": {
+    "com.ovh.support#CreateSupportTicketScore": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.support#PostSupportTicketsTicketIdScoreRequest"
+        "target": "com.ovh.support#CreateSupportTicketScoreRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1067,31 +1068,31 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.ovh.support#GetSupportTickets"
+          "target": "com.ovh.support#ListSupportTickets"
         },
         {
-          "target": "com.ovh.support#PostSupportTicketsCreate"
+          "target": "com.ovh.support#CreateSupportTicket"
         },
         {
-          "target": "com.ovh.support#GetSupportTicketsTicketId"
+          "target": "com.ovh.support#GetSupportTicket"
         },
         {
-          "target": "com.ovh.support#GetSupportTicketsTicketIdCanBeScored"
+          "target": "com.ovh.support#GetSupportTicketCanBeScored"
         },
         {
-          "target": "com.ovh.support#PostSupportTicketsTicketIdClose"
+          "target": "com.ovh.support#CreateSupportTicketClose"
         },
         {
-          "target": "com.ovh.support#GetSupportTicketsTicketIdMessages"
+          "target": "com.ovh.support#ListSupportTicketMessages"
         },
         {
-          "target": "com.ovh.support#PostSupportTicketsTicketIdReopen"
+          "target": "com.ovh.support#CreateSupportTicketReopen"
         },
         {
-          "target": "com.ovh.support#PostSupportTicketsTicketIdReply"
+          "target": "com.ovh.support#ReplySupportTicket"
         },
         {
-          "target": "com.ovh.support#PostSupportTicketsTicketIdScore"
+          "target": "com.ovh.support#CreateSupportTicketScore"
         }
       ],
       "traits": {

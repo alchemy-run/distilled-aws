@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.ovh.storagenetapp#IamResourceTagFilterInput": {
@@ -24,28 +25,28 @@
         "smithy.api#documentation": "Resource tag filter"
       }
     },
-    "com.ovh.storagenetapp#GetStorageNetappRequestIamTagsValueList": {
+    "com.ovh.storagenetapp#ListStorageNetappRequestIamTagsValueList": {
       "type": "list",
       "member": {
         "target": "com.ovh.storagenetapp#IamResourceTagFilterInput"
       },
       "traits": {}
     },
-    "com.ovh.storagenetapp#GetStorageNetappRequestIamTagsMap": {
+    "com.ovh.storagenetapp#ListStorageNetappRequestIamTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "com.ovh.storagenetapp#GetStorageNetappRequestIamTagsValueList"
+        "target": "com.ovh.storagenetapp#ListStorageNetappRequestIamTagsValueList"
       },
       "traits": {}
     },
-    "com.ovh.storagenetapp#GetStorageNetappRequest": {
+    "com.ovh.storagenetapp#ListStorageNetappRequest": {
       "type": "structure",
       "members": {
         "iamTags": {
-          "target": "com.ovh.storagenetapp#GetStorageNetappRequestIamTagsMap",
+          "target": "com.ovh.storagenetapp#ListStorageNetappRequestIamTagsMap",
           "traits": {
             "smithy.api#httpQuery": "iamTags",
             "smithy.api#documentation": "Filter resources on IAM tags"
@@ -267,18 +268,18 @@
         "smithy.api#documentation": "Service status"
       }
     },
-    "com.ovh.storagenetapp#GetStorageNetappResponseBodyList": {
+    "com.ovh.storagenetapp#ListStorageNetappResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.storagenetapp#StorageNetAppServiceWithIAM"
       },
       "traits": {}
     },
-    "com.ovh.storagenetapp#GetStorageNetappResponse": {
+    "com.ovh.storagenetapp#ListStorageNetappResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.storagenetapp#GetStorageNetappResponseBodyList",
+          "target": "com.ovh.storagenetapp#ListStorageNetappResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -289,13 +290,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.storagenetapp#GetStorageNetapp": {
+    "com.ovh.storagenetapp#ListStorageNetapp": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.storagenetapp#GetStorageNetappRequest"
+        "target": "com.ovh.storagenetapp#ListStorageNetappRequest"
       },
       "output": {
-        "target": "com.ovh.storagenetapp#GetStorageNetappResponse"
+        "target": "com.ovh.storagenetapp#ListStorageNetappResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -306,7 +307,7 @@
         "smithy.api#documentation": "List available services"
       }
     },
-    "com.ovh.storagenetapp#GetStorageNetappServiceNameRequest": {
+    "com.ovh.storagenetapp#GetStorageNetappRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -322,10 +323,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.storagenetapp#GetStorageNetappServiceName": {
+    "com.ovh.storagenetapp#GetStorageNetapp": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameRequest"
+        "target": "com.ovh.storagenetapp#GetStorageNetappRequest"
       },
       "output": {
         "target": "com.ovh.storagenetapp#StorageNetAppServiceWithIAM"
@@ -339,7 +340,7 @@
         "smithy.api#documentation": "Get service details"
       }
     },
-    "com.ovh.storagenetapp#PutStorageNetappServiceNameRequest": {
+    "com.ovh.storagenetapp#PutStorageNetappRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -418,10 +419,10 @@
         "smithy.api#documentation": "A service"
       }
     },
-    "com.ovh.storagenetapp#PutStorageNetappServiceName": {
+    "com.ovh.storagenetapp#PutStorageNetapp": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.storagenetapp#PutStorageNetappServiceNameRequest"
+        "target": "com.ovh.storagenetapp#PutStorageNetappRequest"
       },
       "output": {
         "target": "com.ovh.storagenetapp#StorageNetAppService"
@@ -435,7 +436,7 @@
         "smithy.api#documentation": "Update service"
       }
     },
-    "com.ovh.storagenetapp#PostStorageNetappServiceNameChangeContactRequest": {
+    "com.ovh.storagenetapp#CreateStorageNetappChangeContactRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -469,18 +470,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.storagenetapp#PostStorageNetappServiceNameChangeContactResponseBodyList": {
+    "com.ovh.storagenetapp#CreateStorageNetappChangeContactResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.storagenetapp#PostStorageNetappServiceNameChangeContactResponse": {
+    "com.ovh.storagenetapp#CreateStorageNetappChangeContactResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameChangeContactResponseBodyList",
+          "target": "com.ovh.storagenetapp#CreateStorageNetappChangeContactResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -491,13 +492,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.storagenetapp#PostStorageNetappServiceNameChangeContact": {
+    "com.ovh.storagenetapp#CreateStorageNetappChangeContact": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameChangeContactRequest"
+        "target": "com.ovh.storagenetapp#CreateStorageNetappChangeContactRequest"
       },
       "output": {
-        "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameChangeContactResponse"
+        "target": "com.ovh.storagenetapp#CreateStorageNetappChangeContactResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -638,7 +639,7 @@
         "smithy.api#documentation": "All reasons you can provide for a service termination"
       }
     },
-    "com.ovh.storagenetapp#PostStorageNetappServiceNameConfirmTerminationRequest": {
+    "com.ovh.storagenetapp#ConfirmStorageNetappTerminationRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -679,7 +680,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.storagenetapp#PostStorageNetappServiceNameConfirmTerminationResponse": {
+    "com.ovh.storagenetapp#ConfirmStorageNetappTerminationResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -694,13 +695,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.storagenetapp#PostStorageNetappServiceNameConfirmTermination": {
+    "com.ovh.storagenetapp#ConfirmStorageNetappTermination": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameConfirmTerminationRequest"
+        "target": "com.ovh.storagenetapp#ConfirmStorageNetappTerminationRequest"
       },
       "output": {
-        "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameConfirmTerminationResponse"
+        "target": "com.ovh.storagenetapp#ConfirmStorageNetappTerminationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -711,7 +712,7 @@
         "smithy.api#documentation": "Confirm service termination"
       }
     },
-    "com.ovh.storagenetapp#GetStorageNetappServiceNameMetricsTokenRequest": {
+    "com.ovh.storagenetapp#GetStorageNetappMetricsTokenRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -753,10 +754,10 @@
         "smithy.api#documentation": "Metrics token"
       }
     },
-    "com.ovh.storagenetapp#GetStorageNetappServiceNameMetricsToken": {
+    "com.ovh.storagenetapp#GetStorageNetappMetricsToken": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameMetricsTokenRequest"
+        "target": "com.ovh.storagenetapp#GetStorageNetappMetricsTokenRequest"
       },
       "output": {
         "target": "com.ovh.storagenetapp#StorageMetricsToken"
@@ -770,7 +771,7 @@
         "smithy.api#documentation": "Get metrics token"
       }
     },
-    "com.ovh.storagenetapp#GetStorageNetappServiceNameNetworkRequest": {
+    "com.ovh.storagenetapp#ListStorageNetappNetworkRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -853,18 +854,18 @@
         "smithy.api#documentation": "Network status"
       }
     },
-    "com.ovh.storagenetapp#GetStorageNetappServiceNameNetworkResponseBodyList": {
+    "com.ovh.storagenetapp#ListStorageNetappNetworkResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.storagenetapp#StorageNetAppNetwork"
       },
       "traits": {}
     },
-    "com.ovh.storagenetapp#GetStorageNetappServiceNameNetworkResponse": {
+    "com.ovh.storagenetapp#ListStorageNetappNetworkResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameNetworkResponseBodyList",
+          "target": "com.ovh.storagenetapp#ListStorageNetappNetworkResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -875,13 +876,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.storagenetapp#GetStorageNetappServiceNameNetwork": {
+    "com.ovh.storagenetapp#ListStorageNetappNetwork": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameNetworkRequest"
+        "target": "com.ovh.storagenetapp#ListStorageNetappNetworkRequest"
       },
       "output": {
-        "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameNetworkResponse"
+        "target": "com.ovh.storagenetapp#ListStorageNetappNetworkResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -892,7 +893,7 @@
         "smithy.api#documentation": "List networks"
       }
     },
-    "com.ovh.storagenetapp#GetStorageNetappServiceNameNetworkNetworkIdRequest": {
+    "com.ovh.storagenetapp#GetStorageNetappNetworkRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -916,10 +917,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.storagenetapp#GetStorageNetappServiceNameNetworkNetworkId": {
+    "com.ovh.storagenetapp#GetStorageNetappNetwork": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameNetworkNetworkIdRequest"
+        "target": "com.ovh.storagenetapp#GetStorageNetappNetworkRequest"
       },
       "output": {
         "target": "com.ovh.storagenetapp#StorageNetAppNetwork"
@@ -933,7 +934,7 @@
         "smithy.api#documentation": "Get network details"
       }
     },
-    "com.ovh.storagenetapp#GetStorageNetappServiceNameServiceInfosRequest": {
+    "com.ovh.storagenetapp#GetStorageNetappServiceInfosRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1153,10 +1154,10 @@
         "smithy.api#documentation": "service.StateEnum"
       }
     },
-    "com.ovh.storagenetapp#GetStorageNetappServiceNameServiceInfos": {
+    "com.ovh.storagenetapp#GetStorageNetappServiceInfos": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameServiceInfosRequest"
+        "target": "com.ovh.storagenetapp#GetStorageNetappServiceInfosRequest"
       },
       "output": {
         "target": "com.ovh.storagenetapp#ServicesService"
@@ -1170,7 +1171,7 @@
         "smithy.api#documentation": "Get service information"
       }
     },
-    "com.ovh.storagenetapp#PutStorageNetappServiceNameServiceInfosRequest": {
+    "com.ovh.storagenetapp#PutStorageNetappServiceInfosRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1193,10 +1194,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.storagenetapp#PutStorageNetappServiceNameServiceInfos": {
+    "com.ovh.storagenetapp#PutStorageNetappServiceInfos": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.storagenetapp#PutStorageNetappServiceNameServiceInfosRequest"
+        "target": "com.ovh.storagenetapp#PutStorageNetappServiceInfosRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1210,7 +1211,7 @@
         "smithy.api#documentation": "Update service information"
       }
     },
-    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareRequest": {
+    "com.ovh.storagenetapp#ListStorageNetappShareRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1472,18 +1473,18 @@
         "smithy.api#documentation": "Share status"
       }
     },
-    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareResponseBodyList": {
+    "com.ovh.storagenetapp#ListStorageNetappShareResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.storagenetapp#StorageNetAppShare"
       },
       "traits": {}
     },
-    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareResponse": {
+    "com.ovh.storagenetapp#ListStorageNetappShareResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareResponseBodyList",
+          "target": "com.ovh.storagenetapp#ListStorageNetappShareResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1494,13 +1495,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.storagenetapp#GetStorageNetappServiceNameShare": {
+    "com.ovh.storagenetapp#ListStorageNetappShare": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareRequest"
+        "target": "com.ovh.storagenetapp#ListStorageNetappShareRequest"
       },
       "output": {
-        "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareResponse"
+        "target": "com.ovh.storagenetapp#ListStorageNetappShareResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1511,7 +1512,7 @@
         "smithy.api#documentation": "List available shares"
       }
     },
-    "com.ovh.storagenetapp#PostStorageNetappServiceNameShareRequest": {
+    "com.ovh.storagenetapp#ShareStorageNetappRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1571,10 +1572,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.storagenetapp#PostStorageNetappServiceNameShare": {
+    "com.ovh.storagenetapp#ShareStorageNetapp": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameShareRequest"
+        "target": "com.ovh.storagenetapp#ShareStorageNetappRequest"
       },
       "output": {
         "target": "com.ovh.storagenetapp#StorageNetAppShare"
@@ -1588,7 +1589,7 @@
         "smithy.api#documentation": "Create a share"
       }
     },
-    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdRequest": {
+    "com.ovh.storagenetapp#GetStorageNetappShareRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1612,10 +1613,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareId": {
+    "com.ovh.storagenetapp#GetStorageNetappShare": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdRequest"
+        "target": "com.ovh.storagenetapp#GetStorageNetappShareRequest"
       },
       "output": {
         "target": "com.ovh.storagenetapp#StorageNetAppShare"
@@ -1629,7 +1630,7 @@
         "smithy.api#documentation": "Get share details"
       }
     },
-    "com.ovh.storagenetapp#PutStorageNetappServiceNameShareShareIdRequest": {
+    "com.ovh.storagenetapp#PutStorageNetappShareRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1667,10 +1668,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.storagenetapp#PutStorageNetappServiceNameShareShareId": {
+    "com.ovh.storagenetapp#PutStorageNetappShare": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.storagenetapp#PutStorageNetappServiceNameShareShareIdRequest"
+        "target": "com.ovh.storagenetapp#PutStorageNetappShareRequest"
       },
       "output": {
         "target": "com.ovh.storagenetapp#StorageNetAppShare"
@@ -1684,7 +1685,7 @@
         "smithy.api#documentation": "Update a share"
       }
     },
-    "com.ovh.storagenetapp#DeleteStorageNetappServiceNameShareShareIdRequest": {
+    "com.ovh.storagenetapp#DeleteStorageNetappShareRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1708,10 +1709,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.storagenetapp#DeleteStorageNetappServiceNameShareShareId": {
+    "com.ovh.storagenetapp#DeleteStorageNetappShare": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.storagenetapp#DeleteStorageNetappServiceNameShareShareIdRequest"
+        "target": "com.ovh.storagenetapp#DeleteStorageNetappShareRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1725,7 +1726,7 @@
         "smithy.api#documentation": "Delete a share"
       }
     },
-    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAccessPathRequest": {
+    "com.ovh.storagenetapp#ListStorageNetappShareAccessPathRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1775,18 +1776,18 @@
         "smithy.api#documentation": "A share access path"
       }
     },
-    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAccessPathResponseBodyList": {
+    "com.ovh.storagenetapp#ListStorageNetappShareAccessPathResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.storagenetapp#StorageNetAppShareAccessPath"
       },
       "traits": {}
     },
-    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAccessPathResponse": {
+    "com.ovh.storagenetapp#ListStorageNetappShareAccessPathResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAccessPathResponseBodyList",
+          "target": "com.ovh.storagenetapp#ListStorageNetappShareAccessPathResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1797,13 +1798,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAccessPath": {
+    "com.ovh.storagenetapp#ListStorageNetappShareAccessPath": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAccessPathRequest"
+        "target": "com.ovh.storagenetapp#ListStorageNetappShareAccessPathRequest"
       },
       "output": {
-        "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAccessPathResponse"
+        "target": "com.ovh.storagenetapp#ListStorageNetappShareAccessPathResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1814,7 +1815,7 @@
         "smithy.api#documentation": "List available access paths"
       }
     },
-    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAccessPathAccessPathIdRequest": {
+    "com.ovh.storagenetapp#GetStorageNetappShareAccessPathRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1846,10 +1847,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAccessPathAccessPathId": {
+    "com.ovh.storagenetapp#GetStorageNetappShareAccessPath": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAccessPathAccessPathIdRequest"
+        "target": "com.ovh.storagenetapp#GetStorageNetappShareAccessPathRequest"
       },
       "output": {
         "target": "com.ovh.storagenetapp#StorageNetAppShareAccessPath"
@@ -1863,7 +1864,7 @@
         "smithy.api#documentation": "Get access path details"
       }
     },
-    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAclRequest": {
+    "com.ovh.storagenetapp#ListStorageNetappShareAclRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2016,18 +2017,18 @@
         "smithy.api#documentation": "ACL status"
       }
     },
-    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAclResponseBodyList": {
+    "com.ovh.storagenetapp#ListStorageNetappShareAclResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.storagenetapp#StorageNetAppShareACLRule"
       },
       "traits": {}
     },
-    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAclResponse": {
+    "com.ovh.storagenetapp#ListStorageNetappShareAclResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAclResponseBodyList",
+          "target": "com.ovh.storagenetapp#ListStorageNetappShareAclResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -2038,13 +2039,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAcl": {
+    "com.ovh.storagenetapp#ListStorageNetappShareAcl": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAclRequest"
+        "target": "com.ovh.storagenetapp#ListStorageNetappShareAclRequest"
       },
       "output": {
-        "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAclResponse"
+        "target": "com.ovh.storagenetapp#ListStorageNetappShareAclResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2055,7 +2056,7 @@
         "smithy.api#documentation": "List available ACLs"
       }
     },
-    "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdAclRequest": {
+    "com.ovh.storagenetapp#CreateStorageNetappShareAclRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2095,10 +2096,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdAcl": {
+    "com.ovh.storagenetapp#CreateStorageNetappShareAcl": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdAclRequest"
+        "target": "com.ovh.storagenetapp#CreateStorageNetappShareAclRequest"
       },
       "output": {
         "target": "com.ovh.storagenetapp#StorageNetAppShareACLRule"
@@ -2112,7 +2113,7 @@
         "smithy.api#documentation": "Create an ACL"
       }
     },
-    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAclAclRuleIdRequest": {
+    "com.ovh.storagenetapp#GetStorageNetappShareAclRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2144,10 +2145,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAclAclRuleId": {
+    "com.ovh.storagenetapp#GetStorageNetappShareAcl": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAclAclRuleIdRequest"
+        "target": "com.ovh.storagenetapp#GetStorageNetappShareAclRequest"
       },
       "output": {
         "target": "com.ovh.storagenetapp#StorageNetAppShareACLRule"
@@ -2161,7 +2162,7 @@
         "smithy.api#documentation": "Get ACL details"
       }
     },
-    "com.ovh.storagenetapp#DeleteStorageNetappServiceNameShareShareIdAclAclRuleIdRequest": {
+    "com.ovh.storagenetapp#DeleteStorageNetappShareAclRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2193,10 +2194,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.storagenetapp#DeleteStorageNetappServiceNameShareShareIdAclAclRuleId": {
+    "com.ovh.storagenetapp#DeleteStorageNetappShareAcl": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.storagenetapp#DeleteStorageNetappServiceNameShareShareIdAclAclRuleIdRequest"
+        "target": "com.ovh.storagenetapp#DeleteStorageNetappShareAclRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2210,7 +2211,7 @@
         "smithy.api#documentation": "Delete an ACL"
       }
     },
-    "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdExtendRequest": {
+    "com.ovh.storagenetapp#ExtendStorageNetappShareRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2242,10 +2243,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdExtend": {
+    "com.ovh.storagenetapp#ExtendStorageNetappShare": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdExtendRequest"
+        "target": "com.ovh.storagenetapp#ExtendStorageNetappShareRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2259,7 +2260,7 @@
         "smithy.api#documentation": "Extend share size"
       }
     },
-    "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdRevertRequest": {
+    "com.ovh.storagenetapp#CreateStorageNetappShareRevertRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2290,10 +2291,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdRevert": {
+    "com.ovh.storagenetapp#CreateStorageNetappShareRevert": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdRevertRequest"
+        "target": "com.ovh.storagenetapp#CreateStorageNetappShareRevertRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2307,7 +2308,7 @@
         "smithy.api#documentation": "Revert a share to it's latest snapshot"
       }
     },
-    "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdShrinkRequest": {
+    "com.ovh.storagenetapp#CreateStorageNetappShareShrinkRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2339,10 +2340,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdShrink": {
+    "com.ovh.storagenetapp#CreateStorageNetappShareShrink": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdShrinkRequest"
+        "target": "com.ovh.storagenetapp#CreateStorageNetappShareShrinkRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2356,7 +2357,7 @@
         "smithy.api#documentation": "Shrink share size"
       }
     },
-    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdSnapshotRequest": {
+    "com.ovh.storagenetapp#ListStorageNetappShareSnapshotRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2537,18 +2538,18 @@
         "smithy.api#documentation": "Snapshot type"
       }
     },
-    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdSnapshotResponseBodyList": {
+    "com.ovh.storagenetapp#ListStorageNetappShareSnapshotResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.storagenetapp#StorageNetAppShareSnapshot"
       },
       "traits": {}
     },
-    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdSnapshotResponse": {
+    "com.ovh.storagenetapp#ListStorageNetappShareSnapshotResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdSnapshotResponseBodyList",
+          "target": "com.ovh.storagenetapp#ListStorageNetappShareSnapshotResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -2559,13 +2560,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdSnapshot": {
+    "com.ovh.storagenetapp#ListStorageNetappShareSnapshot": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdSnapshotRequest"
+        "target": "com.ovh.storagenetapp#ListStorageNetappShareSnapshotRequest"
       },
       "output": {
-        "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdSnapshotResponse"
+        "target": "com.ovh.storagenetapp#ListStorageNetappShareSnapshotResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2576,7 +2577,7 @@
         "smithy.api#documentation": "List available snapshots"
       }
     },
-    "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdSnapshotRequest": {
+    "com.ovh.storagenetapp#CreateStorageNetappShareSnapshotRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2614,10 +2615,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdSnapshot": {
+    "com.ovh.storagenetapp#CreateStorageNetappShareSnapshot": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdSnapshotRequest"
+        "target": "com.ovh.storagenetapp#CreateStorageNetappShareSnapshotRequest"
       },
       "output": {
         "target": "com.ovh.storagenetapp#StorageNetAppShareSnapshot"
@@ -2631,7 +2632,7 @@
         "smithy.api#documentation": "Create a snapshot"
       }
     },
-    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdSnapshotSnapshotIdRequest": {
+    "com.ovh.storagenetapp#GetStorageNetappShareSnapshotRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2663,10 +2664,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdSnapshotSnapshotId": {
+    "com.ovh.storagenetapp#GetStorageNetappShareSnapshot": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdSnapshotSnapshotIdRequest"
+        "target": "com.ovh.storagenetapp#GetStorageNetappShareSnapshotRequest"
       },
       "output": {
         "target": "com.ovh.storagenetapp#StorageNetAppShareSnapshot"
@@ -2680,7 +2681,7 @@
         "smithy.api#documentation": "Get snapshot details"
       }
     },
-    "com.ovh.storagenetapp#PutStorageNetappServiceNameShareShareIdSnapshotSnapshotIdRequest": {
+    "com.ovh.storagenetapp#PutStorageNetappShareSnapshotRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2726,10 +2727,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.storagenetapp#PutStorageNetappServiceNameShareShareIdSnapshotSnapshotId": {
+    "com.ovh.storagenetapp#PutStorageNetappShareSnapshot": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.storagenetapp#PutStorageNetappServiceNameShareShareIdSnapshotSnapshotIdRequest"
+        "target": "com.ovh.storagenetapp#PutStorageNetappShareSnapshotRequest"
       },
       "output": {
         "target": "com.ovh.storagenetapp#StorageNetAppShareSnapshot"
@@ -2743,7 +2744,7 @@
         "smithy.api#documentation": "Update a snapshot"
       }
     },
-    "com.ovh.storagenetapp#DeleteStorageNetappServiceNameShareShareIdSnapshotSnapshotIdRequest": {
+    "com.ovh.storagenetapp#DeleteStorageNetappShareSnapshotRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2775,10 +2776,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.storagenetapp#DeleteStorageNetappServiceNameShareShareIdSnapshotSnapshotId": {
+    "com.ovh.storagenetapp#DeleteStorageNetappShareSnapshot": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.storagenetapp#DeleteStorageNetappServiceNameShareShareIdSnapshotSnapshotIdRequest"
+        "target": "com.ovh.storagenetapp#DeleteStorageNetappShareSnapshotRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2792,7 +2793,7 @@
         "smithy.api#documentation": "Delete a snapshot"
       }
     },
-    "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdSnapshotSnapshotIdHoldRequest": {
+    "com.ovh.storagenetapp#CreateStorageNetappShareSnapshotHoldRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2824,10 +2825,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdSnapshotSnapshotIdHold": {
+    "com.ovh.storagenetapp#CreateStorageNetappShareSnapshotHold": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdSnapshotSnapshotIdHoldRequest"
+        "target": "com.ovh.storagenetapp#CreateStorageNetappShareSnapshotHoldRequest"
       },
       "output": {
         "target": "com.ovh.storagenetapp#StorageNetAppShareSnapshot"
@@ -2841,7 +2842,7 @@
         "smithy.api#documentation": "Hold an automatic share snapshot"
       }
     },
-    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdSnapshotPolicyRequest": {
+    "com.ovh.storagenetapp#GetStorageNetappShareSnapshotPolicyRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2911,10 +2912,10 @@
         "smithy.api#documentation": "Association status between the share and the snapshot policy"
       }
     },
-    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdSnapshotPolicy": {
+    "com.ovh.storagenetapp#GetStorageNetappShareSnapshotPolicy": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdSnapshotPolicyRequest"
+        "target": "com.ovh.storagenetapp#GetStorageNetappShareSnapshotPolicyRequest"
       },
       "output": {
         "target": "com.ovh.storagenetapp#StorageNetAppShareSnapshotPolicy"
@@ -2928,7 +2929,7 @@
         "smithy.api#documentation": "Get snapshot policy used by a share"
       }
     },
-    "com.ovh.storagenetapp#PutStorageNetappServiceNameShareShareIdSnapshotPolicyRequest": {
+    "com.ovh.storagenetapp#PutStorageNetappShareSnapshotPolicyRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2959,10 +2960,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.storagenetapp#PutStorageNetappServiceNameShareShareIdSnapshotPolicy": {
+    "com.ovh.storagenetapp#PutStorageNetappShareSnapshotPolicy": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.storagenetapp#PutStorageNetappServiceNameShareShareIdSnapshotPolicyRequest"
+        "target": "com.ovh.storagenetapp#PutStorageNetappShareSnapshotPolicyRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2976,7 +2977,7 @@
         "smithy.api#documentation": "Update snapshot policy used by a share"
       }
     },
-    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdSnapshotReserveRequest": {
+    "com.ovh.storagenetapp#GetStorageNetappShareSnapshotReserveRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3046,10 +3047,10 @@
         "smithy.api#documentation": "Snapshot reserve properties status"
       }
     },
-    "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdSnapshotReserve": {
+    "com.ovh.storagenetapp#GetStorageNetappShareSnapshotReserve": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdSnapshotReserveRequest"
+        "target": "com.ovh.storagenetapp#GetStorageNetappShareSnapshotReserveRequest"
       },
       "output": {
         "target": "com.ovh.storagenetapp#StorageNetAppShareSnapshotReserve"
@@ -3063,7 +3064,7 @@
         "smithy.api#documentation": "Get snapshot reserve properties of a share"
       }
     },
-    "com.ovh.storagenetapp#PutStorageNetappServiceNameShareShareIdSnapshotReserveRequest": {
+    "com.ovh.storagenetapp#PutStorageNetappShareSnapshotReserveRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3094,10 +3095,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.storagenetapp#PutStorageNetappServiceNameShareShareIdSnapshotReserve": {
+    "com.ovh.storagenetapp#PutStorageNetappShareSnapshotReserve": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.storagenetapp#PutStorageNetappServiceNameShareShareIdSnapshotReserveRequest"
+        "target": "com.ovh.storagenetapp#PutStorageNetappShareSnapshotReserveRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3111,7 +3112,7 @@
         "smithy.api#documentation": "Update snapshot reserve properties of a share"
       }
     },
-    "com.ovh.storagenetapp#GetStorageNetappServiceNameSnapshotPolicyRequest": {
+    "com.ovh.storagenetapp#ListStorageNetappSnapshotPolicyRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3351,18 +3352,18 @@
         "smithy.api#documentation": "Snapshot policy status"
       }
     },
-    "com.ovh.storagenetapp#GetStorageNetappServiceNameSnapshotPolicyResponseBodyList": {
+    "com.ovh.storagenetapp#ListStorageNetappSnapshotPolicyResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.storagenetapp#StorageNetAppSnapshotPolicy"
       },
       "traits": {}
     },
-    "com.ovh.storagenetapp#GetStorageNetappServiceNameSnapshotPolicyResponse": {
+    "com.ovh.storagenetapp#ListStorageNetappSnapshotPolicyResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameSnapshotPolicyResponseBodyList",
+          "target": "com.ovh.storagenetapp#ListStorageNetappSnapshotPolicyResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -3373,13 +3374,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.storagenetapp#GetStorageNetappServiceNameSnapshotPolicy": {
+    "com.ovh.storagenetapp#ListStorageNetappSnapshotPolicy": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameSnapshotPolicyRequest"
+        "target": "com.ovh.storagenetapp#ListStorageNetappSnapshotPolicyRequest"
       },
       "output": {
-        "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameSnapshotPolicyResponse"
+        "target": "com.ovh.storagenetapp#ListStorageNetappSnapshotPolicyResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3390,7 +3391,7 @@
         "smithy.api#documentation": "Get a list of snapshot policies"
       }
     },
-    "com.ovh.storagenetapp#PostStorageNetappServiceNameSnapshotPolicyRequestRulesList": {
+    "com.ovh.storagenetapp#CreateStorageNetappSnapshotPolicyRequestRulesList": {
       "type": "list",
       "member": {
         "target": "com.ovh.storagenetapp#StorageNetAppSnapshotPolicyRule"
@@ -3399,7 +3400,7 @@
         "smithy.api#documentation": "Snapshot policy rules"
       }
     },
-    "com.ovh.storagenetapp#PostStorageNetappServiceNameSnapshotPolicyRequest": {
+    "com.ovh.storagenetapp#CreateStorageNetappSnapshotPolicyRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3425,7 +3426,7 @@
           }
         },
         "rules": {
-          "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameSnapshotPolicyRequestRulesList",
+          "target": "com.ovh.storagenetapp#CreateStorageNetappSnapshotPolicyRequestRulesList",
           "traits": {
             "smithy.api#documentation": "Snapshot policy rules",
             "smithy.api#required": {},
@@ -3437,10 +3438,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.storagenetapp#PostStorageNetappServiceNameSnapshotPolicy": {
+    "com.ovh.storagenetapp#CreateStorageNetappSnapshotPolicy": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameSnapshotPolicyRequest"
+        "target": "com.ovh.storagenetapp#CreateStorageNetappSnapshotPolicyRequest"
       },
       "output": {
         "target": "com.ovh.storagenetapp#StorageNetAppSnapshotPolicy"
@@ -3454,7 +3455,7 @@
         "smithy.api#documentation": "Create a snapshot policy"
       }
     },
-    "com.ovh.storagenetapp#GetStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdRequest": {
+    "com.ovh.storagenetapp#GetStorageNetappSnapshotPolicyRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3478,10 +3479,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.storagenetapp#GetStorageNetappServiceNameSnapshotPolicySnapshotPolicyId": {
+    "com.ovh.storagenetapp#GetStorageNetappSnapshotPolicy": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdRequest"
+        "target": "com.ovh.storagenetapp#GetStorageNetappSnapshotPolicyRequest"
       },
       "output": {
         "target": "com.ovh.storagenetapp#StorageNetAppSnapshotPolicy"
@@ -3495,7 +3496,7 @@
         "smithy.api#documentation": "Get snapshot policy details"
       }
     },
-    "com.ovh.storagenetapp#PutStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdRequest": {
+    "com.ovh.storagenetapp#PutStorageNetappSnapshotPolicyRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3533,10 +3534,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.storagenetapp#PutStorageNetappServiceNameSnapshotPolicySnapshotPolicyId": {
+    "com.ovh.storagenetapp#PutStorageNetappSnapshotPolicy": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.storagenetapp#PutStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdRequest"
+        "target": "com.ovh.storagenetapp#PutStorageNetappSnapshotPolicyRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3550,7 +3551,7 @@
         "smithy.api#documentation": "Update a snapshot policy"
       }
     },
-    "com.ovh.storagenetapp#DeleteStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdRequest": {
+    "com.ovh.storagenetapp#DeleteStorageNetappSnapshotPolicyRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3574,10 +3575,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.storagenetapp#DeleteStorageNetappServiceNameSnapshotPolicySnapshotPolicyId": {
+    "com.ovh.storagenetapp#DeleteStorageNetappSnapshotPolicy": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.storagenetapp#DeleteStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdRequest"
+        "target": "com.ovh.storagenetapp#DeleteStorageNetappSnapshotPolicyRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3591,7 +3592,7 @@
         "smithy.api#documentation": "Delete a snapshot policy"
       }
     },
-    "com.ovh.storagenetapp#PostStorageNetappServiceNameTerminateRequest": {
+    "com.ovh.storagenetapp#TerminateStorageNetappRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3607,7 +3608,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.storagenetapp#PostStorageNetappServiceNameTerminateResponse": {
+    "com.ovh.storagenetapp#TerminateStorageNetappResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -3622,13 +3623,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.storagenetapp#PostStorageNetappServiceNameTerminate": {
+    "com.ovh.storagenetapp#TerminateStorageNetapp": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameTerminateRequest"
+        "target": "com.ovh.storagenetapp#TerminateStorageNetappRequest"
       },
       "output": {
-        "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameTerminateResponse"
+        "target": "com.ovh.storagenetapp#TerminateStorageNetappResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3644,124 +3645,124 @@
       "version": "1.0",
       "operations": [
         {
+          "target": "com.ovh.storagenetapp#ListStorageNetapp"
+        },
+        {
           "target": "com.ovh.storagenetapp#GetStorageNetapp"
         },
         {
-          "target": "com.ovh.storagenetapp#GetStorageNetappServiceName"
+          "target": "com.ovh.storagenetapp#PutStorageNetapp"
         },
         {
-          "target": "com.ovh.storagenetapp#PutStorageNetappServiceName"
+          "target": "com.ovh.storagenetapp#CreateStorageNetappChangeContact"
         },
         {
-          "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameChangeContact"
+          "target": "com.ovh.storagenetapp#ConfirmStorageNetappTermination"
         },
         {
-          "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameConfirmTermination"
+          "target": "com.ovh.storagenetapp#GetStorageNetappMetricsToken"
         },
         {
-          "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameMetricsToken"
+          "target": "com.ovh.storagenetapp#ListStorageNetappNetwork"
         },
         {
-          "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameNetwork"
+          "target": "com.ovh.storagenetapp#GetStorageNetappNetwork"
         },
         {
-          "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameNetworkNetworkId"
+          "target": "com.ovh.storagenetapp#GetStorageNetappServiceInfos"
         },
         {
-          "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameServiceInfos"
+          "target": "com.ovh.storagenetapp#PutStorageNetappServiceInfos"
         },
         {
-          "target": "com.ovh.storagenetapp#PutStorageNetappServiceNameServiceInfos"
+          "target": "com.ovh.storagenetapp#ListStorageNetappShare"
         },
         {
-          "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShare"
+          "target": "com.ovh.storagenetapp#ShareStorageNetapp"
         },
         {
-          "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameShare"
+          "target": "com.ovh.storagenetapp#GetStorageNetappShare"
         },
         {
-          "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareId"
+          "target": "com.ovh.storagenetapp#PutStorageNetappShare"
         },
         {
-          "target": "com.ovh.storagenetapp#PutStorageNetappServiceNameShareShareId"
+          "target": "com.ovh.storagenetapp#DeleteStorageNetappShare"
         },
         {
-          "target": "com.ovh.storagenetapp#DeleteStorageNetappServiceNameShareShareId"
+          "target": "com.ovh.storagenetapp#ListStorageNetappShareAccessPath"
         },
         {
-          "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAccessPath"
+          "target": "com.ovh.storagenetapp#GetStorageNetappShareAccessPath"
         },
         {
-          "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAccessPathAccessPathId"
+          "target": "com.ovh.storagenetapp#ListStorageNetappShareAcl"
         },
         {
-          "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAcl"
+          "target": "com.ovh.storagenetapp#CreateStorageNetappShareAcl"
         },
         {
-          "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdAcl"
+          "target": "com.ovh.storagenetapp#GetStorageNetappShareAcl"
         },
         {
-          "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdAclAclRuleId"
+          "target": "com.ovh.storagenetapp#DeleteStorageNetappShareAcl"
         },
         {
-          "target": "com.ovh.storagenetapp#DeleteStorageNetappServiceNameShareShareIdAclAclRuleId"
+          "target": "com.ovh.storagenetapp#ExtendStorageNetappShare"
         },
         {
-          "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdExtend"
+          "target": "com.ovh.storagenetapp#CreateStorageNetappShareRevert"
         },
         {
-          "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdRevert"
+          "target": "com.ovh.storagenetapp#CreateStorageNetappShareShrink"
         },
         {
-          "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdShrink"
+          "target": "com.ovh.storagenetapp#ListStorageNetappShareSnapshot"
         },
         {
-          "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdSnapshot"
+          "target": "com.ovh.storagenetapp#CreateStorageNetappShareSnapshot"
         },
         {
-          "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdSnapshot"
+          "target": "com.ovh.storagenetapp#GetStorageNetappShareSnapshot"
         },
         {
-          "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdSnapshotSnapshotId"
+          "target": "com.ovh.storagenetapp#PutStorageNetappShareSnapshot"
         },
         {
-          "target": "com.ovh.storagenetapp#PutStorageNetappServiceNameShareShareIdSnapshotSnapshotId"
+          "target": "com.ovh.storagenetapp#DeleteStorageNetappShareSnapshot"
         },
         {
-          "target": "com.ovh.storagenetapp#DeleteStorageNetappServiceNameShareShareIdSnapshotSnapshotId"
+          "target": "com.ovh.storagenetapp#CreateStorageNetappShareSnapshotHold"
         },
         {
-          "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameShareShareIdSnapshotSnapshotIdHold"
+          "target": "com.ovh.storagenetapp#GetStorageNetappShareSnapshotPolicy"
         },
         {
-          "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdSnapshotPolicy"
+          "target": "com.ovh.storagenetapp#PutStorageNetappShareSnapshotPolicy"
         },
         {
-          "target": "com.ovh.storagenetapp#PutStorageNetappServiceNameShareShareIdSnapshotPolicy"
+          "target": "com.ovh.storagenetapp#GetStorageNetappShareSnapshotReserve"
         },
         {
-          "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameShareShareIdSnapshotReserve"
+          "target": "com.ovh.storagenetapp#PutStorageNetappShareSnapshotReserve"
         },
         {
-          "target": "com.ovh.storagenetapp#PutStorageNetappServiceNameShareShareIdSnapshotReserve"
+          "target": "com.ovh.storagenetapp#ListStorageNetappSnapshotPolicy"
         },
         {
-          "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameSnapshotPolicy"
+          "target": "com.ovh.storagenetapp#CreateStorageNetappSnapshotPolicy"
         },
         {
-          "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameSnapshotPolicy"
+          "target": "com.ovh.storagenetapp#GetStorageNetappSnapshotPolicy"
         },
         {
-          "target": "com.ovh.storagenetapp#GetStorageNetappServiceNameSnapshotPolicySnapshotPolicyId"
+          "target": "com.ovh.storagenetapp#PutStorageNetappSnapshotPolicy"
         },
         {
-          "target": "com.ovh.storagenetapp#PutStorageNetappServiceNameSnapshotPolicySnapshotPolicyId"
+          "target": "com.ovh.storagenetapp#DeleteStorageNetappSnapshotPolicy"
         },
         {
-          "target": "com.ovh.storagenetapp#DeleteStorageNetappServiceNameSnapshotPolicySnapshotPolicyId"
-        },
-        {
-          "target": "com.ovh.storagenetapp#PostStorageNetappServiceNameTerminate"
+          "target": "com.ovh.storagenetapp#TerminateStorageNetapp"
         }
       ],
       "traits": {

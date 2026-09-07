@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.ovh.dedicatednasha#IamResourceTagFilterInput": {
@@ -24,28 +25,28 @@
         "smithy.api#documentation": "Resource tag filter"
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaRequestIamTagsValueList": {
+    "com.ovh.dedicatednasha#ListDedicatedNashaRequestIamTagsValueList": {
       "type": "list",
       "member": {
         "target": "com.ovh.dedicatednasha#IamResourceTagFilterInput"
       },
       "traits": {}
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaRequestIamTagsMap": {
+    "com.ovh.dedicatednasha#ListDedicatedNashaRequestIamTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "com.ovh.dedicatednasha#GetDedicatedNashaRequestIamTagsValueList"
+        "target": "com.ovh.dedicatednasha#ListDedicatedNashaRequestIamTagsValueList"
       },
       "traits": {}
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaRequest": {
+    "com.ovh.dedicatednasha#ListDedicatedNashaRequest": {
       "type": "structure",
       "members": {
         "iamTags": {
-          "target": "com.ovh.dedicatednasha#GetDedicatedNashaRequestIamTagsMap",
+          "target": "com.ovh.dedicatednasha#ListDedicatedNashaRequestIamTagsMap",
           "traits": {
             "smithy.api#httpQuery": "iamTags",
             "smithy.api#documentation": "Filter resources on IAM tags"
@@ -56,18 +57,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaResponseBodyList": {
+    "com.ovh.dedicatednasha#ListDedicatedNashaResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaResponse": {
+    "com.ovh.dedicatednasha#ListDedicatedNashaResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.dedicatednasha#GetDedicatedNashaResponseBodyList",
+          "target": "com.ovh.dedicatednasha#ListDedicatedNashaResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -78,13 +79,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNasha": {
+    "com.ovh.dedicatednasha#ListDedicatedNasha": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatednasha#GetDedicatedNashaRequest"
+        "target": "com.ovh.dedicatednasha#ListDedicatedNashaRequest"
       },
       "output": {
-        "target": "com.ovh.dedicatednasha#GetDedicatedNashaResponse"
+        "target": "com.ovh.dedicatednasha#ListDedicatedNashaResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -95,7 +96,7 @@
         "smithy.api#documentation": "List available services"
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNameRequest": {
+    "com.ovh.dedicatednasha#GetDedicatedNashaRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -255,10 +256,10 @@
         "smithy.api#documentation": "Resource tags. Tags that were internally computed are prefixed with ovh:"
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceName": {
+    "com.ovh.dedicatednasha#GetDedicatedNasha": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNameRequest"
+        "target": "com.ovh.dedicatednasha#GetDedicatedNashaRequest"
       },
       "output": {
         "target": "com.ovh.dedicatednasha#DedicatedNashaStorageWithIAM"
@@ -272,7 +273,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.dedicatednasha#PutDedicatedNashaServiceNameRequest": {
+    "com.ovh.dedicatednasha#PutDedicatedNashaRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -301,10 +302,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatednasha#PutDedicatedNashaServiceName": {
+    "com.ovh.dedicatednasha#PutDedicatedNasha": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatednasha#PutDedicatedNashaServiceNameRequest"
+        "target": "com.ovh.dedicatednasha#PutDedicatedNashaRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -318,7 +319,7 @@
         "smithy.api#documentation": "Alter this object properties"
       }
     },
-    "com.ovh.dedicatednasha#PostDedicatedNashaServiceNameChangeContactRequest": {
+    "com.ovh.dedicatednasha#CreateDedicatedNashaChangeContactRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -352,18 +353,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatednasha#PostDedicatedNashaServiceNameChangeContactResponseBodyList": {
+    "com.ovh.dedicatednasha#CreateDedicatedNashaChangeContactResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.dedicatednasha#PostDedicatedNashaServiceNameChangeContactResponse": {
+    "com.ovh.dedicatednasha#CreateDedicatedNashaChangeContactResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.dedicatednasha#PostDedicatedNashaServiceNameChangeContactResponseBodyList",
+          "target": "com.ovh.dedicatednasha#CreateDedicatedNashaChangeContactResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -374,13 +375,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.dedicatednasha#PostDedicatedNashaServiceNameChangeContact": {
+    "com.ovh.dedicatednasha#CreateDedicatedNashaChangeContact": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatednasha#PostDedicatedNashaServiceNameChangeContactRequest"
+        "target": "com.ovh.dedicatednasha#CreateDedicatedNashaChangeContactRequest"
       },
       "output": {
-        "target": "com.ovh.dedicatednasha#PostDedicatedNashaServiceNameChangeContactResponse"
+        "target": "com.ovh.dedicatednasha#CreateDedicatedNashaChangeContactResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -521,7 +522,7 @@
         "smithy.api#documentation": "All reasons you can provide for a service termination"
       }
     },
-    "com.ovh.dedicatednasha#PostDedicatedNashaServiceNameConfirmTerminationRequest": {
+    "com.ovh.dedicatednasha#ConfirmDedicatedNashaTerminationRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -562,7 +563,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatednasha#PostDedicatedNashaServiceNameConfirmTerminationResponse": {
+    "com.ovh.dedicatednasha#ConfirmDedicatedNashaTerminationResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -577,13 +578,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.dedicatednasha#PostDedicatedNashaServiceNameConfirmTermination": {
+    "com.ovh.dedicatednasha#ConfirmDedicatedNashaTermination": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatednasha#PostDedicatedNashaServiceNameConfirmTerminationRequest"
+        "target": "com.ovh.dedicatednasha#ConfirmDedicatedNashaTerminationRequest"
       },
       "output": {
-        "target": "com.ovh.dedicatednasha#PostDedicatedNashaServiceNameConfirmTerminationResponse"
+        "target": "com.ovh.dedicatednasha#ConfirmDedicatedNashaTerminationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -594,7 +595,7 @@
         "smithy.api#documentation": "Confirm service termination"
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNameMetricsTokenRequest": {
+    "com.ovh.dedicatednasha#GetDedicatedNashaMetricsTokenRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -630,10 +631,10 @@
         "smithy.api#documentation": "A structure describing the metrics token result"
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNameMetricsToken": {
+    "com.ovh.dedicatednasha#GetDedicatedNashaMetricsToken": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNameMetricsTokenRequest"
+        "target": "com.ovh.dedicatednasha#GetDedicatedNashaMetricsTokenRequest"
       },
       "output": {
         "target": "com.ovh.dedicatednasha#DedicatedStorageMetricsTokenResult"
@@ -647,7 +648,7 @@
         "smithy.api#documentation": "Return a read token for manager mimir metrics"
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionRequest": {
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -663,18 +664,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionResponseBodyList": {
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionResponse": {
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionResponseBodyList",
+          "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -685,13 +686,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartition": {
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartition": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionRequest"
+        "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionRequest"
       },
       "output": {
-        "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionResponse"
+        "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -728,7 +729,7 @@
         "smithy.api#documentation": "Partition Protocol"
       }
     },
-    "com.ovh.dedicatednasha#PostDedicatedNashaServiceNamePartitionRequest": {
+    "com.ovh.dedicatednasha#CreateDedicatedNashaPartitionRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1023,10 +1024,10 @@
         "smithy.api#documentation": "different task status"
       }
     },
-    "com.ovh.dedicatednasha#PostDedicatedNashaServiceNamePartition": {
+    "com.ovh.dedicatednasha#CreateDedicatedNashaPartition": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatednasha#PostDedicatedNashaServiceNamePartitionRequest"
+        "target": "com.ovh.dedicatednasha#CreateDedicatedNashaPartitionRequest"
       },
       "output": {
         "target": "com.ovh.dedicatednasha#DedicatedNasTaskTask"
@@ -1040,7 +1041,7 @@
         "smithy.api#documentation": "Create a new partition"
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameRequest": {
+    "com.ovh.dedicatednasha#GetDedicatedNashaPartitionRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1111,10 +1112,10 @@
         "smithy.api#documentation": "Storage zpool partition"
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionName": {
+    "com.ovh.dedicatednasha#GetDedicatedNashaPartition": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameRequest"
+        "target": "com.ovh.dedicatednasha#GetDedicatedNashaPartitionRequest"
       },
       "output": {
         "target": "com.ovh.dedicatednasha#DedicatedNashaPartition"
@@ -1128,7 +1129,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.dedicatednasha#PutDedicatedNashaServiceNamePartitionPartitionNameRequest": {
+    "com.ovh.dedicatednasha#PutDedicatedNashaPartitionRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1165,10 +1166,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatednasha#PutDedicatedNashaServiceNamePartitionPartitionName": {
+    "com.ovh.dedicatednasha#PutDedicatedNashaPartition": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatednasha#PutDedicatedNashaServiceNamePartitionPartitionNameRequest"
+        "target": "com.ovh.dedicatednasha#PutDedicatedNashaPartitionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1182,7 +1183,7 @@
         "smithy.api#documentation": "Alter this object properties"
       }
     },
-    "com.ovh.dedicatednasha#DeleteDedicatedNashaServiceNamePartitionPartitionNameRequest": {
+    "com.ovh.dedicatednasha#DeleteDedicatedNashaPartitionRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1206,10 +1207,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatednasha#DeleteDedicatedNashaServiceNamePartitionPartitionName": {
+    "com.ovh.dedicatednasha#DeleteDedicatedNashaPartition": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatednasha#DeleteDedicatedNashaServiceNamePartitionPartitionNameRequest"
+        "target": "com.ovh.dedicatednasha#DeleteDedicatedNashaPartitionRequest"
       },
       "output": {
         "target": "com.ovh.dedicatednasha#DedicatedNasTaskTask"
@@ -1223,7 +1224,7 @@
         "smithy.api#documentation": "Delete this partition"
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameAccessRequest": {
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAccessRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1247,18 +1248,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameAccessResponseBodyList": {
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAccessResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameAccessResponse": {
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAccessResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameAccessResponseBodyList",
+          "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAccessResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1269,13 +1270,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameAccess": {
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAccess": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameAccessRequest"
+        "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAccessRequest"
       },
       "output": {
-        "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameAccessResponse"
+        "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAccessResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1306,7 +1307,7 @@
         "smithy.api#documentation": "Acl Type"
       }
     },
-    "com.ovh.dedicatednasha#PostDedicatedNashaServiceNamePartitionPartitionNameAccessRequest": {
+    "com.ovh.dedicatednasha#CreateDedicatedNashaPartitionAccessRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1349,10 +1350,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatednasha#PostDedicatedNashaServiceNamePartitionPartitionNameAccess": {
+    "com.ovh.dedicatednasha#CreateDedicatedNashaPartitionAccess": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatednasha#PostDedicatedNashaServiceNamePartitionPartitionNameAccessRequest"
+        "target": "com.ovh.dedicatednasha#CreateDedicatedNashaPartitionAccessRequest"
       },
       "output": {
         "target": "com.ovh.dedicatednasha#DedicatedNasTaskTask"
@@ -1366,7 +1367,7 @@
         "smithy.api#documentation": "Add a new ACL entry"
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameAccessIpRequest": {
+    "com.ovh.dedicatednasha#GetDedicatedNashaPartitionAccessRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1431,10 +1432,10 @@
         "smithy.api#documentation": "Define Acl for partition"
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameAccessIp": {
+    "com.ovh.dedicatednasha#GetDedicatedNashaPartitionAccess": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameAccessIpRequest"
+        "target": "com.ovh.dedicatednasha#GetDedicatedNashaPartitionAccessRequest"
       },
       "output": {
         "target": "com.ovh.dedicatednasha#DedicatedNashaAccess"
@@ -1448,7 +1449,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.dedicatednasha#DeleteDedicatedNashaServiceNamePartitionPartitionNameAccessIpRequest": {
+    "com.ovh.dedicatednasha#DeleteDedicatedNashaPartitionAccessRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1480,10 +1481,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatednasha#DeleteDedicatedNashaServiceNamePartitionPartitionNameAccessIp": {
+    "com.ovh.dedicatednasha#DeleteDedicatedNashaPartitionAccess": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatednasha#DeleteDedicatedNashaServiceNamePartitionPartitionNameAccessIpRequest"
+        "target": "com.ovh.dedicatednasha#DeleteDedicatedNashaPartitionAccessRequest"
       },
       "output": {
         "target": "com.ovh.dedicatednasha#DedicatedNasTaskTask"
@@ -1497,7 +1498,7 @@
         "smithy.api#documentation": "Delete an ACL entry"
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameAuthorizableBlocksRequest": {
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAuthorizableBlocksRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1521,18 +1522,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameAuthorizableBlocksResponseBodyList": {
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAuthorizableBlocksResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameAuthorizableBlocksResponse": {
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAuthorizableBlocksResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameAuthorizableBlocksResponseBodyList",
+          "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAuthorizableBlocksResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1543,13 +1544,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameAuthorizableBlocks": {
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAuthorizableBlocks": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameAuthorizableBlocksRequest"
+        "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAuthorizableBlocksRequest"
       },
       "output": {
-        "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameAuthorizableBlocksResponse"
+        "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAuthorizableBlocksResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1560,7 +1561,7 @@
         "smithy.api#documentation": "Get all RIPE/ARIN blocks that can be used in the ACL"
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameAuthorizableIpsRequest": {
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAuthorizableIpsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1584,18 +1585,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameAuthorizableIpsResponseBodyList": {
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAuthorizableIpsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameAuthorizableIpsResponse": {
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAuthorizableIpsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameAuthorizableIpsResponseBodyList",
+          "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAuthorizableIpsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1606,13 +1607,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameAuthorizableIps": {
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAuthorizableIps": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameAuthorizableIpsRequest"
+        "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAuthorizableIpsRequest"
       },
       "output": {
-        "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameAuthorizableIpsResponse"
+        "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAuthorizableIpsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1623,7 +1624,7 @@
         "smithy.api#documentation": "Get all IPs that can be used in the ACL"
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameCustomSnapshotRequest": {
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionCustomSnapshotRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1647,18 +1648,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameCustomSnapshotResponseBodyList": {
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionCustomSnapshotResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameCustomSnapshotResponse": {
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionCustomSnapshotResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameCustomSnapshotResponseBodyList",
+          "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionCustomSnapshotResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1669,13 +1670,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameCustomSnapshot": {
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionCustomSnapshot": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameCustomSnapshotRequest"
+        "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionCustomSnapshotRequest"
       },
       "output": {
-        "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameCustomSnapshotResponse"
+        "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionCustomSnapshotResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1686,7 +1687,7 @@
         "smithy.api#documentation": "Get custom snapshots for this partition"
       }
     },
-    "com.ovh.dedicatednasha#PostDedicatedNashaServiceNamePartitionPartitionNameCustomSnapshotRequest": {
+    "com.ovh.dedicatednasha#CreateDedicatedNashaPartitionCustomSnapshotRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1723,10 +1724,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatednasha#PostDedicatedNashaServiceNamePartitionPartitionNameCustomSnapshot": {
+    "com.ovh.dedicatednasha#CreateDedicatedNashaPartitionCustomSnapshot": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatednasha#PostDedicatedNashaServiceNamePartitionPartitionNameCustomSnapshotRequest"
+        "target": "com.ovh.dedicatednasha#CreateDedicatedNashaPartitionCustomSnapshotRequest"
       },
       "output": {
         "target": "com.ovh.dedicatednasha#DedicatedNasTaskTask"
@@ -1740,7 +1741,7 @@
         "smithy.api#documentation": "Create a new snapshot"
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameCustomSnapshotNameRequest": {
+    "com.ovh.dedicatednasha#GetDedicatedNashaPartitionCustomSnapshotRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1793,10 +1794,10 @@
         "smithy.api#documentation": "Custom Snapshot"
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameCustomSnapshotName": {
+    "com.ovh.dedicatednasha#GetDedicatedNashaPartitionCustomSnapshot": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameCustomSnapshotNameRequest"
+        "target": "com.ovh.dedicatednasha#GetDedicatedNashaPartitionCustomSnapshotRequest"
       },
       "output": {
         "target": "com.ovh.dedicatednasha#DedicatedNashaCustomSnap"
@@ -1810,7 +1811,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.dedicatednasha#DeleteDedicatedNashaServiceNamePartitionPartitionNameCustomSnapshotNameRequest": {
+    "com.ovh.dedicatednasha#DeleteDedicatedNashaPartitionCustomSnapshotRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1842,10 +1843,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatednasha#DeleteDedicatedNashaServiceNamePartitionPartitionNameCustomSnapshotName": {
+    "com.ovh.dedicatednasha#DeleteDedicatedNashaPartitionCustomSnapshot": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatednasha#DeleteDedicatedNashaServiceNamePartitionPartitionNameCustomSnapshotNameRequest"
+        "target": "com.ovh.dedicatednasha#DeleteDedicatedNashaPartitionCustomSnapshotRequest"
       },
       "output": {
         "target": "com.ovh.dedicatednasha#DedicatedNasTaskTask"
@@ -1859,7 +1860,7 @@
         "smithy.api#documentation": "Delete a given snapshot"
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameOptionsRequest": {
+    "com.ovh.dedicatednasha#GetDedicatedNashaPartitionOptionsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1954,10 +1955,10 @@
         "smithy.api#documentation": "The template enumeration available for your partition."
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameOptions": {
+    "com.ovh.dedicatednasha#GetDedicatedNashaPartitionOptions": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameOptionsRequest"
+        "target": "com.ovh.dedicatednasha#GetDedicatedNashaPartitionOptionsRequest"
       },
       "output": {
         "target": "com.ovh.dedicatednasha#DedicatedNashaOptions"
@@ -2067,7 +2068,7 @@
         "smithy.api#documentation": "Sync values"
       }
     },
-    "com.ovh.dedicatednasha#PostDedicatedNashaServiceNamePartitionPartitionNameOptionsRequest": {
+    "com.ovh.dedicatednasha#CreateDedicatedNashaPartitionOptionRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2115,10 +2116,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatednasha#PostDedicatedNashaServiceNamePartitionPartitionNameOptions": {
+    "com.ovh.dedicatednasha#CreateDedicatedNashaPartitionOption": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatednasha#PostDedicatedNashaServiceNamePartitionPartitionNameOptionsRequest"
+        "target": "com.ovh.dedicatednasha#CreateDedicatedNashaPartitionOptionRequest"
       },
       "output": {
         "target": "com.ovh.dedicatednasha#DedicatedNasTaskTask"
@@ -2132,7 +2133,7 @@
         "smithy.api#documentation": "Setup options"
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameQuotaRequest": {
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionQuotaRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2156,18 +2157,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameQuotaResponseBodyList": {
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionQuotaResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameQuotaResponse": {
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionQuotaResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameQuotaResponseBodyList",
+          "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionQuotaResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -2178,13 +2179,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameQuota": {
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionQuota": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameQuotaRequest"
+        "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionQuotaRequest"
       },
       "output": {
-        "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameQuotaResponse"
+        "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionQuotaResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2195,7 +2196,7 @@
         "smithy.api#documentation": "Get quota for this partition"
       }
     },
-    "com.ovh.dedicatednasha#PostDedicatedNashaServiceNamePartitionPartitionNameQuotaRequest": {
+    "com.ovh.dedicatednasha#CreateDedicatedNashaPartitionQuotaRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2233,10 +2234,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatednasha#PostDedicatedNashaServiceNamePartitionPartitionNameQuota": {
+    "com.ovh.dedicatednasha#CreateDedicatedNashaPartitionQuota": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatednasha#PostDedicatedNashaServiceNamePartitionPartitionNameQuotaRequest"
+        "target": "com.ovh.dedicatednasha#CreateDedicatedNashaPartitionQuotaRequest"
       },
       "output": {
         "target": "com.ovh.dedicatednasha#DedicatedNasTaskTask"
@@ -2250,7 +2251,7 @@
         "smithy.api#documentation": "Set a new quota"
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameQuotaUidRequest": {
+    "com.ovh.dedicatednasha#GetDedicatedNashaPartitionQuotaRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2302,10 +2303,10 @@
         "smithy.api#documentation": "Partition Quota"
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameQuotaUid": {
+    "com.ovh.dedicatednasha#GetDedicatedNashaPartitionQuota": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameQuotaUidRequest"
+        "target": "com.ovh.dedicatednasha#GetDedicatedNashaPartitionQuotaRequest"
       },
       "output": {
         "target": "com.ovh.dedicatednasha#DedicatedNashaQuota"
@@ -2319,7 +2320,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.dedicatednasha#DeleteDedicatedNashaServiceNamePartitionPartitionNameQuotaUidRequest": {
+    "com.ovh.dedicatednasha#DeleteDedicatedNashaPartitionQuotaRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2351,10 +2352,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatednasha#DeleteDedicatedNashaServiceNamePartitionPartitionNameQuotaUid": {
+    "com.ovh.dedicatednasha#DeleteDedicatedNashaPartitionQuota": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatednasha#DeleteDedicatedNashaServiceNamePartitionPartitionNameQuotaUidRequest"
+        "target": "com.ovh.dedicatednasha#DeleteDedicatedNashaPartitionQuotaRequest"
       },
       "output": {
         "target": "com.ovh.dedicatednasha#DedicatedNasTaskTask"
@@ -2368,7 +2369,7 @@
         "smithy.api#documentation": "Delete a given quota"
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameSnapshotRequest": {
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionSnapshotRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2436,18 +2437,18 @@
         "smithy.api#documentation": "Partition snapshot allowed "
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameSnapshotResponseBodyList": {
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionSnapshotResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.dedicatednasha#DedicatedStorageSnapshotEnum"
       },
       "traits": {}
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameSnapshotResponse": {
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionSnapshotResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameSnapshotResponseBodyList",
+          "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionSnapshotResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -2458,13 +2459,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameSnapshot": {
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionSnapshot": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameSnapshotRequest"
+        "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionSnapshotRequest"
       },
       "output": {
-        "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameSnapshotResponse"
+        "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionSnapshotResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2475,7 +2476,7 @@
         "smithy.api#documentation": "Get scheduled snapshot types for this partition"
       }
     },
-    "com.ovh.dedicatednasha#PostDedicatedNashaServiceNamePartitionPartitionNameSnapshotRequest": {
+    "com.ovh.dedicatednasha#CreateDedicatedNashaPartitionSnapshotRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2506,10 +2507,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatednasha#PostDedicatedNashaServiceNamePartitionPartitionNameSnapshot": {
+    "com.ovh.dedicatednasha#CreateDedicatedNashaPartitionSnapshot": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatednasha#PostDedicatedNashaServiceNamePartitionPartitionNameSnapshotRequest"
+        "target": "com.ovh.dedicatednasha#CreateDedicatedNashaPartitionSnapshotRequest"
       },
       "output": {
         "target": "com.ovh.dedicatednasha#DedicatedNasTaskTask"
@@ -2523,7 +2524,7 @@
         "smithy.api#documentation": "Schedule a new snapshot type"
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameSnapshotSnapshotTypeRequestSnapshotType": {
+    "com.ovh.dedicatednasha#GetDedicatedNashaPartitionSnapshotRequestSnapshotType": {
       "type": "enum",
       "members": {
         "DAY_1": {
@@ -2567,7 +2568,7 @@
         "smithy.api#documentation": "Partition snapshot allowed "
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameSnapshotSnapshotTypeRequest": {
+    "com.ovh.dedicatednasha#GetDedicatedNashaPartitionSnapshotRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2587,7 +2588,7 @@
           }
         },
         "snapshotType": {
-          "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameSnapshotSnapshotTypeRequestSnapshotType",
+          "target": "com.ovh.dedicatednasha#GetDedicatedNashaPartitionSnapshotRequestSnapshotType",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -2613,10 +2614,10 @@
         "smithy.api#documentation": "Partition Snapshot"
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameSnapshotSnapshotType": {
+    "com.ovh.dedicatednasha#GetDedicatedNashaPartitionSnapshot": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameSnapshotSnapshotTypeRequest"
+        "target": "com.ovh.dedicatednasha#GetDedicatedNashaPartitionSnapshotRequest"
       },
       "output": {
         "target": "com.ovh.dedicatednasha#DedicatedNashaSnapshot"
@@ -2630,7 +2631,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.dedicatednasha#DeleteDedicatedNashaServiceNamePartitionPartitionNameSnapshotSnapshotTypeRequestSnapshotType": {
+    "com.ovh.dedicatednasha#DeleteDedicatedNashaPartitionSnapshotRequestSnapshotType": {
       "type": "enum",
       "members": {
         "DAY_1": {
@@ -2674,7 +2675,7 @@
         "smithy.api#documentation": "Partition snapshot allowed "
       }
     },
-    "com.ovh.dedicatednasha#DeleteDedicatedNashaServiceNamePartitionPartitionNameSnapshotSnapshotTypeRequest": {
+    "com.ovh.dedicatednasha#DeleteDedicatedNashaPartitionSnapshotRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2694,7 +2695,7 @@
           }
         },
         "snapshotType": {
-          "target": "com.ovh.dedicatednasha#DeleteDedicatedNashaServiceNamePartitionPartitionNameSnapshotSnapshotTypeRequestSnapshotType",
+          "target": "com.ovh.dedicatednasha#DeleteDedicatedNashaPartitionSnapshotRequestSnapshotType",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -2706,10 +2707,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatednasha#DeleteDedicatedNashaServiceNamePartitionPartitionNameSnapshotSnapshotType": {
+    "com.ovh.dedicatednasha#DeleteDedicatedNashaPartitionSnapshot": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatednasha#DeleteDedicatedNashaServiceNamePartitionPartitionNameSnapshotSnapshotTypeRequest"
+        "target": "com.ovh.dedicatednasha#DeleteDedicatedNashaPartitionSnapshotRequest"
       },
       "output": {
         "target": "com.ovh.dedicatednasha#DedicatedNasTaskTask"
@@ -2723,7 +2724,7 @@
         "smithy.api#documentation": "Delete a given snapshot"
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameTemplateUsageRequest": {
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionTemplateUsageRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2767,18 +2768,18 @@
         "smithy.api#documentation": "A structure describing the template usage result"
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameTemplateUsageResponseBodyList": {
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionTemplateUsageResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.dedicatednasha#DedicatedStorageTemplateUsageOptionsDetails"
       },
       "traits": {}
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameTemplateUsageResponse": {
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionTemplateUsageResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameTemplateUsageResponseBodyList",
+          "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionTemplateUsageResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -2789,13 +2790,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameTemplateUsage": {
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionTemplateUsage": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameTemplateUsageRequest"
+        "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionTemplateUsageRequest"
       },
       "output": {
-        "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameTemplateUsageResponse"
+        "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionTemplateUsageResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2832,7 +2833,7 @@
         "smithy.api#documentation": "Available types for NAS partition usage"
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameUseRequest": {
+    "com.ovh.dedicatednasha#GetDedicatedNashaPartitionUseRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2878,10 +2879,10 @@
         "smithy.api#documentation": "A numeric value tagged with its unit"
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameUse": {
+    "com.ovh.dedicatednasha#GetDedicatedNashaPartitionUse": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameUseRequest"
+        "target": "com.ovh.dedicatednasha#GetDedicatedNashaPartitionUseRequest"
       },
       "output": {
         "target": "com.ovh.dedicatednasha#ComplexTypeUnitAndValueDouble"
@@ -2895,7 +2896,7 @@
         "smithy.api#documentation": "Return statistics about the partition"
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNameServiceInfosRequest": {
+    "com.ovh.dedicatednasha#GetDedicatedNashaServiceInfosRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3119,10 +3120,10 @@
       },
       "traits": {}
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNameServiceInfos": {
+    "com.ovh.dedicatednasha#GetDedicatedNashaServiceInfos": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNameServiceInfosRequest"
+        "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceInfosRequest"
       },
       "output": {
         "target": "com.ovh.dedicatednasha#ServicesService"
@@ -3136,7 +3137,7 @@
         "smithy.api#documentation": "Get service information"
       }
     },
-    "com.ovh.dedicatednasha#PutDedicatedNashaServiceNameServiceInfosRequest": {
+    "com.ovh.dedicatednasha#PutDedicatedNashaServiceInfosRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3159,10 +3160,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatednasha#PutDedicatedNashaServiceNameServiceInfos": {
+    "com.ovh.dedicatednasha#PutDedicatedNashaServiceInfos": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatednasha#PutDedicatedNashaServiceNameServiceInfosRequest"
+        "target": "com.ovh.dedicatednasha#PutDedicatedNashaServiceInfosRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3176,7 +3177,7 @@
         "smithy.api#documentation": "Update service information"
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNameTaskRequest": {
+    "com.ovh.dedicatednasha#ListDedicatedNashaTaskRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3206,18 +3207,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNameTaskResponseBodyList": {
+    "com.ovh.dedicatednasha#ListDedicatedNashaTaskResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNameTaskResponse": {
+    "com.ovh.dedicatednasha#ListDedicatedNashaTaskResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNameTaskResponseBodyList",
+          "target": "com.ovh.dedicatednasha#ListDedicatedNashaTaskResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -3228,13 +3229,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNameTask": {
+    "com.ovh.dedicatednasha#ListDedicatedNashaTask": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNameTaskRequest"
+        "target": "com.ovh.dedicatednasha#ListDedicatedNashaTaskRequest"
       },
       "output": {
-        "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNameTaskResponse"
+        "target": "com.ovh.dedicatednasha#ListDedicatedNashaTaskResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3245,7 +3246,7 @@
         "smithy.api#documentation": "View task list"
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNameTaskTaskIdRequest": {
+    "com.ovh.dedicatednasha#GetDedicatedNashaTaskRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3269,10 +3270,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNameTaskTaskId": {
+    "com.ovh.dedicatednasha#GetDedicatedNashaTask": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNameTaskTaskIdRequest"
+        "target": "com.ovh.dedicatednasha#GetDedicatedNashaTaskRequest"
       },
       "output": {
         "target": "com.ovh.dedicatednasha#DedicatedNasTaskTask"
@@ -3286,7 +3287,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.dedicatednasha#PostDedicatedNashaServiceNameTerminateRequest": {
+    "com.ovh.dedicatednasha#TerminateDedicatedNashaRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3302,7 +3303,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatednasha#PostDedicatedNashaServiceNameTerminateResponse": {
+    "com.ovh.dedicatednasha#TerminateDedicatedNashaResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -3317,13 +3318,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.dedicatednasha#PostDedicatedNashaServiceNameTerminate": {
+    "com.ovh.dedicatednasha#TerminateDedicatedNasha": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatednasha#PostDedicatedNashaServiceNameTerminateRequest"
+        "target": "com.ovh.dedicatednasha#TerminateDedicatedNashaRequest"
       },
       "output": {
-        "target": "com.ovh.dedicatednasha#PostDedicatedNashaServiceNameTerminateResponse"
+        "target": "com.ovh.dedicatednasha#TerminateDedicatedNashaResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3360,7 +3361,7 @@
         "smithy.api#documentation": "Available types for NAS usage"
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNameUseRequest": {
+    "com.ovh.dedicatednasha#GetDedicatedNashaUseRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3384,10 +3385,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatednasha#GetDedicatedNashaServiceNameUse": {
+    "com.ovh.dedicatednasha#GetDedicatedNashaUse": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNameUseRequest"
+        "target": "com.ovh.dedicatednasha#GetDedicatedNashaUseRequest"
       },
       "output": {
         "target": "com.ovh.dedicatednasha#ComplexTypeUnitAndValueDouble"
@@ -3406,121 +3407,121 @@
       "version": "1.0",
       "operations": [
         {
+          "target": "com.ovh.dedicatednasha#ListDedicatedNasha"
+        },
+        {
           "target": "com.ovh.dedicatednasha#GetDedicatedNasha"
         },
         {
-          "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceName"
+          "target": "com.ovh.dedicatednasha#PutDedicatedNasha"
         },
         {
-          "target": "com.ovh.dedicatednasha#PutDedicatedNashaServiceName"
+          "target": "com.ovh.dedicatednasha#CreateDedicatedNashaChangeContact"
         },
         {
-          "target": "com.ovh.dedicatednasha#PostDedicatedNashaServiceNameChangeContact"
+          "target": "com.ovh.dedicatednasha#ConfirmDedicatedNashaTermination"
         },
         {
-          "target": "com.ovh.dedicatednasha#PostDedicatedNashaServiceNameConfirmTermination"
+          "target": "com.ovh.dedicatednasha#GetDedicatedNashaMetricsToken"
         },
         {
-          "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNameMetricsToken"
+          "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartition"
         },
         {
-          "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartition"
+          "target": "com.ovh.dedicatednasha#CreateDedicatedNashaPartition"
         },
         {
-          "target": "com.ovh.dedicatednasha#PostDedicatedNashaServiceNamePartition"
+          "target": "com.ovh.dedicatednasha#GetDedicatedNashaPartition"
         },
         {
-          "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionName"
+          "target": "com.ovh.dedicatednasha#PutDedicatedNashaPartition"
         },
         {
-          "target": "com.ovh.dedicatednasha#PutDedicatedNashaServiceNamePartitionPartitionName"
+          "target": "com.ovh.dedicatednasha#DeleteDedicatedNashaPartition"
         },
         {
-          "target": "com.ovh.dedicatednasha#DeleteDedicatedNashaServiceNamePartitionPartitionName"
+          "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAccess"
         },
         {
-          "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameAccess"
+          "target": "com.ovh.dedicatednasha#CreateDedicatedNashaPartitionAccess"
         },
         {
-          "target": "com.ovh.dedicatednasha#PostDedicatedNashaServiceNamePartitionPartitionNameAccess"
+          "target": "com.ovh.dedicatednasha#GetDedicatedNashaPartitionAccess"
         },
         {
-          "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameAccessIp"
+          "target": "com.ovh.dedicatednasha#DeleteDedicatedNashaPartitionAccess"
         },
         {
-          "target": "com.ovh.dedicatednasha#DeleteDedicatedNashaServiceNamePartitionPartitionNameAccessIp"
+          "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAuthorizableBlocks"
         },
         {
-          "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameAuthorizableBlocks"
+          "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAuthorizableIps"
         },
         {
-          "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameAuthorizableIps"
+          "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionCustomSnapshot"
         },
         {
-          "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameCustomSnapshot"
+          "target": "com.ovh.dedicatednasha#CreateDedicatedNashaPartitionCustomSnapshot"
         },
         {
-          "target": "com.ovh.dedicatednasha#PostDedicatedNashaServiceNamePartitionPartitionNameCustomSnapshot"
+          "target": "com.ovh.dedicatednasha#GetDedicatedNashaPartitionCustomSnapshot"
         },
         {
-          "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameCustomSnapshotName"
+          "target": "com.ovh.dedicatednasha#DeleteDedicatedNashaPartitionCustomSnapshot"
         },
         {
-          "target": "com.ovh.dedicatednasha#DeleteDedicatedNashaServiceNamePartitionPartitionNameCustomSnapshotName"
+          "target": "com.ovh.dedicatednasha#GetDedicatedNashaPartitionOptions"
         },
         {
-          "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameOptions"
+          "target": "com.ovh.dedicatednasha#CreateDedicatedNashaPartitionOption"
         },
         {
-          "target": "com.ovh.dedicatednasha#PostDedicatedNashaServiceNamePartitionPartitionNameOptions"
+          "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionQuota"
         },
         {
-          "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameQuota"
+          "target": "com.ovh.dedicatednasha#CreateDedicatedNashaPartitionQuota"
         },
         {
-          "target": "com.ovh.dedicatednasha#PostDedicatedNashaServiceNamePartitionPartitionNameQuota"
+          "target": "com.ovh.dedicatednasha#GetDedicatedNashaPartitionQuota"
         },
         {
-          "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameQuotaUid"
+          "target": "com.ovh.dedicatednasha#DeleteDedicatedNashaPartitionQuota"
         },
         {
-          "target": "com.ovh.dedicatednasha#DeleteDedicatedNashaServiceNamePartitionPartitionNameQuotaUid"
+          "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionSnapshot"
         },
         {
-          "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameSnapshot"
+          "target": "com.ovh.dedicatednasha#CreateDedicatedNashaPartitionSnapshot"
         },
         {
-          "target": "com.ovh.dedicatednasha#PostDedicatedNashaServiceNamePartitionPartitionNameSnapshot"
+          "target": "com.ovh.dedicatednasha#GetDedicatedNashaPartitionSnapshot"
         },
         {
-          "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameSnapshotSnapshotType"
+          "target": "com.ovh.dedicatednasha#DeleteDedicatedNashaPartitionSnapshot"
         },
         {
-          "target": "com.ovh.dedicatednasha#DeleteDedicatedNashaServiceNamePartitionPartitionNameSnapshotSnapshotType"
+          "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionTemplateUsage"
         },
         {
-          "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameTemplateUsage"
+          "target": "com.ovh.dedicatednasha#GetDedicatedNashaPartitionUse"
         },
         {
-          "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNamePartitionPartitionNameUse"
+          "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceInfos"
         },
         {
-          "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNameServiceInfos"
+          "target": "com.ovh.dedicatednasha#PutDedicatedNashaServiceInfos"
         },
         {
-          "target": "com.ovh.dedicatednasha#PutDedicatedNashaServiceNameServiceInfos"
+          "target": "com.ovh.dedicatednasha#ListDedicatedNashaTask"
         },
         {
-          "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNameTask"
+          "target": "com.ovh.dedicatednasha#GetDedicatedNashaTask"
         },
         {
-          "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNameTaskTaskId"
+          "target": "com.ovh.dedicatednasha#TerminateDedicatedNasha"
         },
         {
-          "target": "com.ovh.dedicatednasha#PostDedicatedNashaServiceNameTerminate"
-        },
-        {
-          "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceNameUse"
+          "target": "com.ovh.dedicatednasha#GetDedicatedNashaUse"
         }
       ],
       "traits": {

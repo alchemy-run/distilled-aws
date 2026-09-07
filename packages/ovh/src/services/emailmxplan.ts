@@ -13,27 +13,30 @@ import * as Retry from "../retry.ts";
 
 export type { OvhOpError, OvhOpContext };
 
-export interface DeleteEmailMxplanServiceAccountEmailRequest {
+export interface CreateEmailMxplanAccountAliasRequest {
   /** The internal name of your mxplan organization */
   service: string;
   /** Default email for this mailbox */
   email: string;
+  /** Alias */
+  alias: string;
 }
-export const DeleteEmailMxplanServiceAccountEmailRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const CreateEmailMxplanAccountAliasRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       service: S.String.pipe(T.Label()),
       email: S.String.pipe(T.Label()),
+      alias: S.String,
     }).pipe(
       T.Http({
-        method: "DELETE",
-        uri: "/email/mxplan/{service}/account/{email}",
+        method: "POST",
+        uri: "/email/mxplan/{service}/account/{email}/alias",
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "DeleteEmailMxplanServiceAccountEmailRequest",
-  }) as any as S.Schema<DeleteEmailMxplanServiceAccountEmailRequest>;
+).annotate({
+  identifier: "CreateEmailMxplanAccountAliasRequest",
+}) as any as S.Schema<CreateEmailMxplanAccountAliasRequest>;
 
 /** function enumeration for task */
 export type EmailProTaskFunctionEnum =
@@ -120,7 +123,168 @@ export const EmailProTask = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "EmailProTask" }) as any as S.Schema<EmailProTask>;
 
-export interface DeleteEmailMxplanServiceAccountEmailAliasAliasRequest {
+export interface CreateEmailMxplanAccountChangePasswordRequest {
+  /** The internal name of your mxplan organization */
+  service: string;
+  /** Default email for this mailbox */
+  email: string;
+  /** new password */
+  password: string | Redacted.Redacted<string>;
+}
+export const CreateEmailMxplanAccountChangePasswordRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      service: S.String.pipe(T.Label()),
+      email: S.String.pipe(T.Label()),
+      password: S.String.pipe(T.SensitiveValue({})),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/email/mxplan/{service}/account/{email}/changePassword",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateEmailMxplanAccountChangePasswordRequest",
+  }) as any as S.Schema<CreateEmailMxplanAccountChangePasswordRequest>;
+
+export interface CreateEmailMxplanAccountDiagnosticRequest {
+  /** The internal name of your mxplan organization */
+  service: string;
+  /** Default email for this mailbox */
+  email: string;
+  /** Account password */
+  password: string | Redacted.Redacted<string>;
+}
+export const CreateEmailMxplanAccountDiagnosticRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      service: S.String.pipe(T.Label()),
+      email: S.String.pipe(T.Label()),
+      password: S.String.pipe(T.SensitiveValue({})),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/email/mxplan/{service}/account/{email}/diagnostic",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateEmailMxplanAccountDiagnosticRequest",
+  }) as any as S.Schema<CreateEmailMxplanAccountDiagnosticRequest>;
+
+export interface CreateEmailMxplanAccountFullAccessRequest {
+  /** The internal name of your mxplan organization */
+  service: string;
+  /** Default email for this mailbox */
+  email: string;
+  /** User to give full access */
+  allowedAccountId: number;
+}
+export const CreateEmailMxplanAccountFullAccessRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      service: S.String.pipe(T.Label()),
+      email: S.String.pipe(T.Label()),
+      allowedAccountId: S.Number,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/email/mxplan/{service}/account/{email}/fullAccess",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateEmailMxplanAccountFullAccessRequest",
+  }) as any as S.Schema<CreateEmailMxplanAccountFullAccessRequest>;
+
+export interface CreateEmailMxplanDomainDisclaimerRequest {
+  /** The internal name of your mxplan organization */
+  service: string;
+  /** Domain name */
+  domainName: string;
+  /** Signature, added at the bottom of your organization emails */
+  content: string;
+  /** Activate the disclaimer only for external emails */
+  outsideOnly?: boolean;
+}
+export const CreateEmailMxplanDomainDisclaimerRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      service: S.String.pipe(T.Label()),
+      domainName: S.String.pipe(T.Label()),
+      content: S.String,
+      outsideOnly: S.optional(S.Boolean),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/email/mxplan/{service}/domain/{domainName}/disclaimer",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateEmailMxplanDomainDisclaimerRequest",
+}) as any as S.Schema<CreateEmailMxplanDomainDisclaimerRequest>;
+
+export interface CreateEmailMxplanExternalContactRequest {
+  /** The internal name of your mxplan organization */
+  service: string;
+  /** Contact display name */
+  displayName?: string;
+  /** Contact email address */
+  externalEmailAddress: string;
+  /** Contact first name */
+  firstName?: string;
+  /** Hide the contact in Global Address List */
+  hiddenFromGAL?: boolean;
+  /** Contact initials */
+  initials?: string;
+  /** Contact last name */
+  lastName?: string;
+}
+export const CreateEmailMxplanExternalContactRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      service: S.String.pipe(T.Label()),
+      displayName: S.optional(S.String),
+      externalEmailAddress: S.String,
+      firstName: S.optional(S.String),
+      hiddenFromGAL: S.optional(S.Boolean),
+      initials: S.optional(S.String),
+      lastName: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/email/mxplan/{service}/externalContact",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateEmailMxplanExternalContactRequest",
+}) as any as S.Schema<CreateEmailMxplanExternalContactRequest>;
+
+export interface DeleteEmailMxplanAccountRequest {
+  /** The internal name of your mxplan organization */
+  service: string;
+  /** Default email for this mailbox */
+  email: string;
+}
+export const DeleteEmailMxplanAccountRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    service: S.String.pipe(T.Label()),
+    email: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/email/mxplan/{service}/account/{email}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteEmailMxplanAccountRequest",
+}) as any as S.Schema<DeleteEmailMxplanAccountRequest>;
+
+export interface DeleteEmailMxplanAccountAliasRequest {
   /** The internal name of your mxplan organization */
   service: string;
   /** Default email for this mailbox */
@@ -128,8 +292,8 @@ export interface DeleteEmailMxplanServiceAccountEmailAliasAliasRequest {
   /** Alias */
   alias: string;
 }
-export const DeleteEmailMxplanServiceAccountEmailAliasAliasRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const DeleteEmailMxplanAccountAliasRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       service: S.String.pipe(T.Label()),
       email: S.String.pipe(T.Label()),
@@ -141,11 +305,11 @@ export const DeleteEmailMxplanServiceAccountEmailAliasAliasRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "DeleteEmailMxplanServiceAccountEmailAliasAliasRequest",
-  }) as any as S.Schema<DeleteEmailMxplanServiceAccountEmailAliasAliasRequest>;
+).annotate({
+  identifier: "DeleteEmailMxplanAccountAliasRequest",
+}) as any as S.Schema<DeleteEmailMxplanAccountAliasRequest>;
 
-export interface DeleteEmailMxplanServiceAccountEmailFullAccessAllowedAccountIdRequest {
+export interface DeleteEmailMxplanAccountFullAccessRequest {
   /** The internal name of your mxplan organization */
   service: string;
   /** Default email for this mailbox */
@@ -153,7 +317,7 @@ export interface DeleteEmailMxplanServiceAccountEmailFullAccessAllowedAccountIdR
   /** Account id to give full access */
   allowedAccountId: number;
 }
-export const DeleteEmailMxplanServiceAccountEmailFullAccessAllowedAccountIdRequest =
+export const DeleteEmailMxplanAccountFullAccessRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       service: S.String.pipe(T.Label()),
@@ -167,11 +331,10 @@ export const DeleteEmailMxplanServiceAccountEmailFullAccessAllowedAccountIdReque
       }),
     ),
   ).annotate({
-    identifier:
-      "DeleteEmailMxplanServiceAccountEmailFullAccessAllowedAccountIdRequest",
-  }) as any as S.Schema<DeleteEmailMxplanServiceAccountEmailFullAccessAllowedAccountIdRequest>;
+    identifier: "DeleteEmailMxplanAccountFullAccessRequest",
+  }) as any as S.Schema<DeleteEmailMxplanAccountFullAccessRequest>;
 
-export interface DeleteEmailMxplanServiceAccountEmailSendAsAllowedAccountIdRequest {
+export interface DeleteEmailMxplanAccountSendAsRequest {
   /** The internal name of your mxplan organization */
   service: string;
   /** Default email for this mailbox */
@@ -179,8 +342,8 @@ export interface DeleteEmailMxplanServiceAccountEmailSendAsAllowedAccountIdReque
   /** Account id to give send as */
   allowedAccountId: number;
 }
-export const DeleteEmailMxplanServiceAccountEmailSendAsAllowedAccountIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const DeleteEmailMxplanAccountSendAsRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       service: S.String.pipe(T.Label()),
       email: S.String.pipe(T.Label()),
@@ -192,12 +355,11 @@ export const DeleteEmailMxplanServiceAccountEmailSendAsAllowedAccountIdRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier:
-      "DeleteEmailMxplanServiceAccountEmailSendAsAllowedAccountIdRequest",
-  }) as any as S.Schema<DeleteEmailMxplanServiceAccountEmailSendAsAllowedAccountIdRequest>;
+).annotate({
+  identifier: "DeleteEmailMxplanAccountSendAsRequest",
+}) as any as S.Schema<DeleteEmailMxplanAccountSendAsRequest>;
 
-export interface DeleteEmailMxplanServiceAccountEmailSendOnBehalfToAllowedAccountIdRequest {
+export interface DeleteEmailMxplanAccountSendOnBehalfToRequest {
   /** The internal name of your mxplan organization */
   service: string;
   /** Default email for this mailbox */
@@ -205,7 +367,7 @@ export interface DeleteEmailMxplanServiceAccountEmailSendOnBehalfToAllowedAccoun
   /** Account id to give send on behalf to */
   allowedAccountId: number;
 }
-export const DeleteEmailMxplanServiceAccountEmailSendOnBehalfToAllowedAccountIdRequest =
+export const DeleteEmailMxplanAccountSendOnBehalfToRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       service: S.String.pipe(T.Label()),
@@ -219,18 +381,17 @@ export const DeleteEmailMxplanServiceAccountEmailSendOnBehalfToAllowedAccountIdR
       }),
     ),
   ).annotate({
-    identifier:
-      "DeleteEmailMxplanServiceAccountEmailSendOnBehalfToAllowedAccountIdRequest",
-  }) as any as S.Schema<DeleteEmailMxplanServiceAccountEmailSendOnBehalfToAllowedAccountIdRequest>;
+    identifier: "DeleteEmailMxplanAccountSendOnBehalfToRequest",
+  }) as any as S.Schema<DeleteEmailMxplanAccountSendOnBehalfToRequest>;
 
-export interface DeleteEmailMxplanServiceDomainDomainNameDisclaimerRequest {
+export interface DeleteEmailMxplanDomainDisclaimerRequest {
   /** The internal name of your mxplan organization */
   service: string;
   /** Domain name */
   domainName: string;
 }
-export const DeleteEmailMxplanServiceDomainDomainNameDisclaimerRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const DeleteEmailMxplanDomainDisclaimerRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       service: S.String.pipe(T.Label()),
       domainName: S.String.pipe(T.Label()),
@@ -241,18 +402,18 @@ export const DeleteEmailMxplanServiceDomainDomainNameDisclaimerRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "DeleteEmailMxplanServiceDomainDomainNameDisclaimerRequest",
-  }) as any as S.Schema<DeleteEmailMxplanServiceDomainDomainNameDisclaimerRequest>;
+).annotate({
+  identifier: "DeleteEmailMxplanDomainDisclaimerRequest",
+}) as any as S.Schema<DeleteEmailMxplanDomainDisclaimerRequest>;
 
-export interface DeleteEmailMxplanServiceExternalContactExternalEmailAddressRequest {
+export interface DeleteEmailMxplanExternalContactRequest {
   /** The internal name of your mxplan organization */
   service: string;
   /** Contact email */
   externalEmailAddress: string;
 }
-export const DeleteEmailMxplanServiceExternalContactExternalEmailAddressRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const DeleteEmailMxplanExternalContactRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       service: S.String.pipe(T.Label()),
       externalEmailAddress: S.String.pipe(T.Label()),
@@ -263,68 +424,21 @@ export const DeleteEmailMxplanServiceExternalContactExternalEmailAddressRequest 
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier:
-      "DeleteEmailMxplanServiceExternalContactExternalEmailAddressRequest",
-  }) as any as S.Schema<DeleteEmailMxplanServiceExternalContactExternalEmailAddressRequest>;
-
-/** Resource tag filter */
-export interface IamResourceTagFilterInput {}
-export const IamResourceTagFilterInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
 ).annotate({
-  identifier: "IamResourceTagFilterInput",
-}) as any as S.Schema<IamResourceTagFilterInput>;
-
-export type GetEmailMxplanRequestIamTagsValueList =
-  Array<IamResourceTagFilterInput>;
-export const GetEmailMxplanRequestIamTagsValueList = /*@__PURE__*/ S.Array(
-  IamResourceTagFilterInput,
-) as any as S.Schema<GetEmailMxplanRequestIamTagsValueList>;
-
-export type GetEmailMxplanRequestIamTagsMap = {
-  [key: string]: GetEmailMxplanRequestIamTagsValueList | undefined;
-};
-export const GetEmailMxplanRequestIamTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  GetEmailMxplanRequestIamTagsValueList,
-) as any as S.Schema<GetEmailMxplanRequestIamTagsMap>;
+  identifier: "DeleteEmailMxplanExternalContactRequest",
+}) as any as S.Schema<DeleteEmailMxplanExternalContactRequest>;
 
 export interface GetEmailMxplanRequest {
-  /** Filter resources on IAM tags */
-  iamTags?: GetEmailMxplanRequestIamTagsMap;
-}
-export const GetEmailMxplanRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    iamTags: S.optional(GetEmailMxplanRequestIamTagsMap.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/email/mxplan", code: 200 })),
-).annotate({
-  identifier: "GetEmailMxplanRequest",
-}) as any as S.Schema<GetEmailMxplanRequest>;
-
-export type GetEmailMxplanResponseBodyList = Array<string>;
-export const GetEmailMxplanResponseBodyList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<GetEmailMxplanResponseBodyList>;
-
-export type GetEmailMxplanResponse = GetEmailMxplanResponseBodyList;
-export const GetEmailMxplanResponse = /*@__PURE__*/ S.suspend(() =>
-  GetEmailMxplanResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetEmailMxplanResponse",
-}) as any as S.Schema<GetEmailMxplanResponse>;
-
-export interface GetEmailMxplanServiceRequest {
   /** The internal name of your mxplan organization */
   service: string;
 }
-export const GetEmailMxplanServiceRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetEmailMxplanRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     service: S.String.pipe(T.Label()),
   }).pipe(T.Http({ method: "GET", uri: "/email/mxplan/{service}", code: 200 })),
 ).annotate({
-  identifier: "GetEmailMxplanServiceRequest",
-}) as any as S.Schema<GetEmailMxplanServiceRequest>;
+  identifier: "GetEmailMxplanRequest",
+}) as any as S.Schema<GetEmailMxplanRequest>;
 
 /** Resource tags. Tags that were internally computed are prefixed with ovh: */
 export type IamResourceMetadataTagsMap = { [key: string]: string | undefined };
@@ -471,65 +585,26 @@ export const EmailMxplanServiceWithIAM = /*@__PURE__*/ S.suspend(() =>
   identifier: "EmailMxplanServiceWithIAM",
 }) as any as S.Schema<EmailMxplanServiceWithIAM>;
 
-export interface GetEmailMxplanServiceAccountRequest {
-  /** The internal name of your mxplan organization */
-  service: string;
-  /** Filter the value of id property (like) */
-  id?: number;
-  /** Filter the value of primaryEmailAddress property (like) */
-  primaryEmailAddress?: string;
-}
-export const GetEmailMxplanServiceAccountRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    service: S.String.pipe(T.Label()),
-    id: S.optional(S.Number.pipe(T.Query())),
-    primaryEmailAddress: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/email/mxplan/{service}/account",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "GetEmailMxplanServiceAccountRequest",
-}) as any as S.Schema<GetEmailMxplanServiceAccountRequest>;
-
-export type GetEmailMxplanServiceAccountResponseBodyList = Array<string>;
-export const GetEmailMxplanServiceAccountResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetEmailMxplanServiceAccountResponseBodyList>;
-
-export type GetEmailMxplanServiceAccountResponse =
-  GetEmailMxplanServiceAccountResponseBodyList;
-export const GetEmailMxplanServiceAccountResponse = /*@__PURE__*/ S.suspend(
-  () => GetEmailMxplanServiceAccountResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetEmailMxplanServiceAccountResponse",
-}) as any as S.Schema<GetEmailMxplanServiceAccountResponse>;
-
-export interface GetEmailMxplanServiceAccountEmailRequest {
+export interface GetEmailMxplanAccountRequest {
   /** The internal name of your mxplan organization */
   service: string;
   /** Default email for this mailbox */
   email: string;
 }
-export const GetEmailMxplanServiceAccountEmailRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      service: S.String.pipe(T.Label()),
-      email: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/email/mxplan/{service}/account/{email}",
-        code: 200,
-      }),
-    ),
+export const GetEmailMxplanAccountRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    service: S.String.pipe(T.Label()),
+    email: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/email/mxplan/{service}/account/{email}",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "GetEmailMxplanServiceAccountEmailRequest",
-}) as any as S.Schema<GetEmailMxplanServiceAccountEmailRequest>;
+  identifier: "GetEmailMxplanAccountRequest",
+}) as any as S.Schema<GetEmailMxplanAccountRequest>;
 
 /** Mailing filter options availlable */
 export type EmailProMailingFilterEnum = "vaderetro";
@@ -653,47 +728,7 @@ export const EmailMxplanAccount = /*@__PURE__*/ S.suspend(() =>
   identifier: "EmailMxplanAccount",
 }) as any as S.Schema<EmailMxplanAccount>;
 
-export interface GetEmailMxplanServiceAccountEmailAliasRequest {
-  /** The internal name of your mxplan organization */
-  service: string;
-  /** Default email for this mailbox */
-  email: string;
-}
-export const GetEmailMxplanServiceAccountEmailAliasRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      service: S.String.pipe(T.Label()),
-      email: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/email/mxplan/{service}/account/{email}/alias",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetEmailMxplanServiceAccountEmailAliasRequest",
-  }) as any as S.Schema<GetEmailMxplanServiceAccountEmailAliasRequest>;
-
-export type GetEmailMxplanServiceAccountEmailAliasResponseBodyList =
-  Array<string>;
-export const GetEmailMxplanServiceAccountEmailAliasResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetEmailMxplanServiceAccountEmailAliasResponseBodyList>;
-
-export type GetEmailMxplanServiceAccountEmailAliasResponse =
-  GetEmailMxplanServiceAccountEmailAliasResponseBodyList;
-export const GetEmailMxplanServiceAccountEmailAliasResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetEmailMxplanServiceAccountEmailAliasResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetEmailMxplanServiceAccountEmailAliasResponse",
-  }) as any as S.Schema<GetEmailMxplanServiceAccountEmailAliasResponse>;
-
-export interface GetEmailMxplanServiceAccountEmailAliasAliasRequest {
+export interface GetEmailMxplanAccountAliasRequest {
   /** The internal name of your mxplan organization */
   service: string;
   /** Default email for this mailbox */
@@ -701,22 +736,21 @@ export interface GetEmailMxplanServiceAccountEmailAliasAliasRequest {
   /** Alias */
   alias: string;
 }
-export const GetEmailMxplanServiceAccountEmailAliasAliasRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      service: S.String.pipe(T.Label()),
-      email: S.String.pipe(T.Label()),
-      alias: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/email/mxplan/{service}/account/{email}/alias/{alias}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetEmailMxplanServiceAccountEmailAliasAliasRequest",
-  }) as any as S.Schema<GetEmailMxplanServiceAccountEmailAliasAliasRequest>;
+export const GetEmailMxplanAccountAliasRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    service: S.String.pipe(T.Label()),
+    email: S.String.pipe(T.Label()),
+    alias: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/email/mxplan/{service}/account/{email}/alias/{alias}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetEmailMxplanAccountAliasRequest",
+}) as any as S.Schema<GetEmailMxplanAccountAliasRequest>;
 
 /** Aliases on this mailbox */
 export interface EmailMxplanAccountAlias {
@@ -737,55 +771,14 @@ export const EmailMxplanAccountAlias = /*@__PURE__*/ S.suspend(() =>
   identifier: "EmailMxplanAccountAlias",
 }) as any as S.Schema<EmailMxplanAccountAlias>;
 
-export interface GetEmailMxplanServiceAccountEmailCapabilitiesRequest {
+export interface GetEmailMxplanAccountDiagnosticRequest {
   /** The internal name of your mxplan organization */
   service: string;
   /** Default email for this mailbox */
   email: string;
 }
-export const GetEmailMxplanServiceAccountEmailCapabilitiesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      service: S.String.pipe(T.Label()),
-      email: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/email/mxplan/{service}/account/{email}/capabilities",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetEmailMxplanServiceAccountEmailCapabilitiesRequest",
-  }) as any as S.Schema<GetEmailMxplanServiceAccountEmailCapabilitiesRequest>;
-
-/** List of allowed quotas (no constraint if null) */
-export type EmailMxplanAccountCapabilitiesQuotasList = Array<number>;
-export const EmailMxplanAccountCapabilitiesQuotasList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<EmailMxplanAccountCapabilitiesQuotasList>;
-
-/** Account capabilities */
-export interface EmailMxplanAccountCapabilities {
-  /** List of allowed quotas (no constraint if null) */
-  quotas?: EmailMxplanAccountCapabilitiesQuotasList | null;
-}
-export const EmailMxplanAccountCapabilities = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    quotas: S.optional(S.NullOr(EmailMxplanAccountCapabilitiesQuotasList)),
-  }),
-).annotate({
-  identifier: "EmailMxplanAccountCapabilities",
-}) as any as S.Schema<EmailMxplanAccountCapabilities>;
-
-export interface GetEmailMxplanServiceAccountEmailDiagnosticRequest {
-  /** The internal name of your mxplan organization */
-  service: string;
-  /** Default email for this mailbox */
-  email: string;
-}
-export const GetEmailMxplanServiceAccountEmailDiagnosticRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetEmailMxplanAccountDiagnosticRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       service: S.String.pipe(T.Label()),
       email: S.String.pipe(T.Label()),
@@ -796,9 +789,9 @@ export const GetEmailMxplanServiceAccountEmailDiagnosticRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "GetEmailMxplanServiceAccountEmailDiagnosticRequest",
-  }) as any as S.Schema<GetEmailMxplanServiceAccountEmailDiagnosticRequest>;
+).annotate({
+  identifier: "GetEmailMxplanAccountDiagnosticRequest",
+}) as any as S.Schema<GetEmailMxplanAccountDiagnosticRequest>;
 
 /** Account Diagnosis */
 export interface EmailMxplanAccountDiagnosis {
@@ -837,47 +830,7 @@ export const EmailMxplanAccountDiagnosis = /*@__PURE__*/ S.suspend(() =>
   identifier: "EmailMxplanAccountDiagnosis",
 }) as any as S.Schema<EmailMxplanAccountDiagnosis>;
 
-export interface GetEmailMxplanServiceAccountEmailFullAccessRequest {
-  /** The internal name of your mxplan organization */
-  service: string;
-  /** Default email for this mailbox */
-  email: string;
-}
-export const GetEmailMxplanServiceAccountEmailFullAccessRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      service: S.String.pipe(T.Label()),
-      email: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/email/mxplan/{service}/account/{email}/fullAccess",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetEmailMxplanServiceAccountEmailFullAccessRequest",
-  }) as any as S.Schema<GetEmailMxplanServiceAccountEmailFullAccessRequest>;
-
-export type GetEmailMxplanServiceAccountEmailFullAccessResponseBodyList =
-  Array<number>;
-export const GetEmailMxplanServiceAccountEmailFullAccessResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<GetEmailMxplanServiceAccountEmailFullAccessResponseBodyList>;
-
-export type GetEmailMxplanServiceAccountEmailFullAccessResponse =
-  GetEmailMxplanServiceAccountEmailFullAccessResponseBodyList;
-export const GetEmailMxplanServiceAccountEmailFullAccessResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetEmailMxplanServiceAccountEmailFullAccessResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetEmailMxplanServiceAccountEmailFullAccessResponse",
-  }) as any as S.Schema<GetEmailMxplanServiceAccountEmailFullAccessResponse>;
-
-export interface GetEmailMxplanServiceAccountEmailFullAccessAllowedAccountIdRequest {
+export interface GetEmailMxplanAccountFullAccessRequest {
   /** The internal name of your mxplan organization */
   service: string;
   /** Default email for this mailbox */
@@ -885,8 +838,8 @@ export interface GetEmailMxplanServiceAccountEmailFullAccessAllowedAccountIdRequ
   /** Account id to give full access */
   allowedAccountId: number;
 }
-export const GetEmailMxplanServiceAccountEmailFullAccessAllowedAccountIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetEmailMxplanAccountFullAccessRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       service: S.String.pipe(T.Label()),
       email: S.String.pipe(T.Label()),
@@ -898,10 +851,9 @@ export const GetEmailMxplanServiceAccountEmailFullAccessAllowedAccountIdRequest 
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier:
-      "GetEmailMxplanServiceAccountEmailFullAccessAllowedAccountIdRequest",
-  }) as any as S.Schema<GetEmailMxplanServiceAccountEmailFullAccessAllowedAccountIdRequest>;
+).annotate({
+  identifier: "GetEmailMxplanAccountFullAccessRequest",
+}) as any as S.Schema<GetEmailMxplanAccountFullAccessRequest>;
 
 /** Users having full access on this mailbox */
 export interface EmailMxplanAccountFullAccess {
@@ -922,47 +874,7 @@ export const EmailMxplanAccountFullAccess = /*@__PURE__*/ S.suspend(() =>
   identifier: "EmailMxplanAccountFullAccess",
 }) as any as S.Schema<EmailMxplanAccountFullAccess>;
 
-export interface GetEmailMxplanServiceAccountEmailSendAsRequest {
-  /** The internal name of your mxplan organization */
-  service: string;
-  /** Default email for this mailbox */
-  email: string;
-}
-export const GetEmailMxplanServiceAccountEmailSendAsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      service: S.String.pipe(T.Label()),
-      email: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/email/mxplan/{service}/account/{email}/sendAs",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetEmailMxplanServiceAccountEmailSendAsRequest",
-  }) as any as S.Schema<GetEmailMxplanServiceAccountEmailSendAsRequest>;
-
-export type GetEmailMxplanServiceAccountEmailSendAsResponseBodyList =
-  Array<number>;
-export const GetEmailMxplanServiceAccountEmailSendAsResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<GetEmailMxplanServiceAccountEmailSendAsResponseBodyList>;
-
-export type GetEmailMxplanServiceAccountEmailSendAsResponse =
-  GetEmailMxplanServiceAccountEmailSendAsResponseBodyList;
-export const GetEmailMxplanServiceAccountEmailSendAsResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetEmailMxplanServiceAccountEmailSendAsResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetEmailMxplanServiceAccountEmailSendAsResponse",
-  }) as any as S.Schema<GetEmailMxplanServiceAccountEmailSendAsResponse>;
-
-export interface GetEmailMxplanServiceAccountEmailSendAsAllowedAccountIdRequest {
+export interface GetEmailMxplanAccountSendAsRequest {
   /** The internal name of your mxplan organization */
   service: string;
   /** Default email for this mailbox */
@@ -970,23 +882,21 @@ export interface GetEmailMxplanServiceAccountEmailSendAsAllowedAccountIdRequest 
   /** Account id to give send as */
   allowedAccountId: number;
 }
-export const GetEmailMxplanServiceAccountEmailSendAsAllowedAccountIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      service: S.String.pipe(T.Label()),
-      email: S.String.pipe(T.Label()),
-      allowedAccountId: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/email/mxplan/{service}/account/{email}/sendAs/{allowedAccountId}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "GetEmailMxplanServiceAccountEmailSendAsAllowedAccountIdRequest",
-  }) as any as S.Schema<GetEmailMxplanServiceAccountEmailSendAsAllowedAccountIdRequest>;
+export const GetEmailMxplanAccountSendAsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    service: S.String.pipe(T.Label()),
+    email: S.String.pipe(T.Label()),
+    allowedAccountId: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/email/mxplan/{service}/account/{email}/sendAs/{allowedAccountId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetEmailMxplanAccountSendAsRequest",
+}) as any as S.Schema<GetEmailMxplanAccountSendAsRequest>;
 
 /** Users authorized to send mails from this mailbox */
 export interface EmailMxplanAccountSendAs {
@@ -1007,47 +917,7 @@ export const EmailMxplanAccountSendAs = /*@__PURE__*/ S.suspend(() =>
   identifier: "EmailMxplanAccountSendAs",
 }) as any as S.Schema<EmailMxplanAccountSendAs>;
 
-export interface GetEmailMxplanServiceAccountEmailSendOnBehalfToRequest {
-  /** The internal name of your mxplan organization */
-  service: string;
-  /** Default email for this mailbox */
-  email: string;
-}
-export const GetEmailMxplanServiceAccountEmailSendOnBehalfToRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      service: S.String.pipe(T.Label()),
-      email: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/email/mxplan/{service}/account/{email}/sendOnBehalfTo",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetEmailMxplanServiceAccountEmailSendOnBehalfToRequest",
-  }) as any as S.Schema<GetEmailMxplanServiceAccountEmailSendOnBehalfToRequest>;
-
-export type GetEmailMxplanServiceAccountEmailSendOnBehalfToResponseBodyList =
-  Array<number>;
-export const GetEmailMxplanServiceAccountEmailSendOnBehalfToResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<GetEmailMxplanServiceAccountEmailSendOnBehalfToResponseBodyList>;
-
-export type GetEmailMxplanServiceAccountEmailSendOnBehalfToResponse =
-  GetEmailMxplanServiceAccountEmailSendOnBehalfToResponseBodyList;
-export const GetEmailMxplanServiceAccountEmailSendOnBehalfToResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetEmailMxplanServiceAccountEmailSendOnBehalfToResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetEmailMxplanServiceAccountEmailSendOnBehalfToResponse",
-  }) as any as S.Schema<GetEmailMxplanServiceAccountEmailSendOnBehalfToResponse>;
-
-export interface GetEmailMxplanServiceAccountEmailSendOnBehalfToAllowedAccountIdRequest {
+export interface GetEmailMxplanAccountSendOnBehalfToRequest {
   /** The internal name of your mxplan organization */
   service: string;
   /** Default email for this mailbox */
@@ -1055,7 +925,7 @@ export interface GetEmailMxplanServiceAccountEmailSendOnBehalfToAllowedAccountId
   /** Account id to give send on behalf to */
   allowedAccountId: number;
 }
-export const GetEmailMxplanServiceAccountEmailSendOnBehalfToAllowedAccountIdRequest =
+export const GetEmailMxplanAccountSendOnBehalfToRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       service: S.String.pipe(T.Label()),
@@ -1069,9 +939,8 @@ export const GetEmailMxplanServiceAccountEmailSendOnBehalfToAllowedAccountIdRequ
       }),
     ),
   ).annotate({
-    identifier:
-      "GetEmailMxplanServiceAccountEmailSendOnBehalfToAllowedAccountIdRequest",
-  }) as any as S.Schema<GetEmailMxplanServiceAccountEmailSendOnBehalfToAllowedAccountIdRequest>;
+    identifier: "GetEmailMxplanAccountSendOnBehalfToRequest",
+  }) as any as S.Schema<GetEmailMxplanAccountSendOnBehalfToRequest>;
 
 /** Get users authorized to Send On Behalf To mails from this mailbox */
 export interface EmailMxplanAccountSendOnBehalfTo {
@@ -1092,47 +961,7 @@ export const EmailMxplanAccountSendOnBehalfTo = /*@__PURE__*/ S.suspend(() =>
   identifier: "EmailMxplanAccountSendOnBehalfTo",
 }) as any as S.Schema<EmailMxplanAccountSendOnBehalfTo>;
 
-export interface GetEmailMxplanServiceAccountEmailTaskRequest {
-  /** The internal name of your mxplan organization */
-  service: string;
-  /** Default email for this mailbox */
-  email: string;
-}
-export const GetEmailMxplanServiceAccountEmailTaskRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      service: S.String.pipe(T.Label()),
-      email: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/email/mxplan/{service}/account/{email}/task",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetEmailMxplanServiceAccountEmailTaskRequest",
-  }) as any as S.Schema<GetEmailMxplanServiceAccountEmailTaskRequest>;
-
-export type GetEmailMxplanServiceAccountEmailTaskResponseBodyList =
-  Array<number>;
-export const GetEmailMxplanServiceAccountEmailTaskResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<GetEmailMxplanServiceAccountEmailTaskResponseBodyList>;
-
-export type GetEmailMxplanServiceAccountEmailTaskResponse =
-  GetEmailMxplanServiceAccountEmailTaskResponseBodyList;
-export const GetEmailMxplanServiceAccountEmailTaskResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetEmailMxplanServiceAccountEmailTaskResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetEmailMxplanServiceAccountEmailTaskResponse",
-  }) as any as S.Schema<GetEmailMxplanServiceAccountEmailTaskResponse>;
-
-export interface GetEmailMxplanServiceAccountEmailTaskIdRequest {
+export interface GetEmailMxplanAccountTaskRequest {
   /** The internal name of your mxplan organization */
   service: string;
   /** Default email for this mailbox */
@@ -1140,75 +969,42 @@ export interface GetEmailMxplanServiceAccountEmailTaskIdRequest {
   /** Task id */
   id: number;
 }
-export const GetEmailMxplanServiceAccountEmailTaskIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      service: S.String.pipe(T.Label()),
-      email: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/email/mxplan/{service}/account/{email}/task/{id}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetEmailMxplanServiceAccountEmailTaskIdRequest",
-  }) as any as S.Schema<GetEmailMxplanServiceAccountEmailTaskIdRequest>;
-
-export interface GetEmailMxplanServiceDomainRequest {
-  /** The internal name of your mxplan organization */
-  service: string;
-  /** Filter the value of state property (=) */
-  state?: EmailProObjectStateEnum | (string & {});
-}
-export const GetEmailMxplanServiceDomainRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetEmailMxplanAccountTaskRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     service: S.String.pipe(T.Label()),
-    state: S.optional(EmailProObjectStateEnum.pipe(T.Query())),
+    email: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
   }).pipe(
-    T.Http({ method: "GET", uri: "/email/mxplan/{service}/domain", code: 200 }),
+    T.Http({
+      method: "GET",
+      uri: "/email/mxplan/{service}/account/{email}/task/{id}",
+      code: 200,
+    }),
   ),
 ).annotate({
-  identifier: "GetEmailMxplanServiceDomainRequest",
-}) as any as S.Schema<GetEmailMxplanServiceDomainRequest>;
+  identifier: "GetEmailMxplanAccountTaskRequest",
+}) as any as S.Schema<GetEmailMxplanAccountTaskRequest>;
 
-export type GetEmailMxplanServiceDomainResponseBodyList = Array<string>;
-export const GetEmailMxplanServiceDomainResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetEmailMxplanServiceDomainResponseBodyList>;
-
-export type GetEmailMxplanServiceDomainResponse =
-  GetEmailMxplanServiceDomainResponseBodyList;
-export const GetEmailMxplanServiceDomainResponse = /*@__PURE__*/ S.suspend(() =>
-  GetEmailMxplanServiceDomainResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetEmailMxplanServiceDomainResponse",
-}) as any as S.Schema<GetEmailMxplanServiceDomainResponse>;
-
-export interface GetEmailMxplanServiceDomainDomainNameRequest {
+export interface GetEmailMxplanDomainRequest {
   /** The internal name of your mxplan organization */
   service: string;
   /** Domain name */
   domainName: string;
 }
-export const GetEmailMxplanServiceDomainDomainNameRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      service: S.String.pipe(T.Label()),
-      domainName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/email/mxplan/{service}/domain/{domainName}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetEmailMxplanServiceDomainDomainNameRequest",
-  }) as any as S.Schema<GetEmailMxplanServiceDomainDomainNameRequest>;
+export const GetEmailMxplanDomainRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    service: S.String.pipe(T.Label()),
+    domainName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/email/mxplan/{service}/domain/{domainName}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetEmailMxplanDomainRequest",
+}) as any as S.Schema<GetEmailMxplanDomainRequest>;
 
 /** List of aliases for this domain */
 export type EmailMxplanDomainDomainAliasesList = Array<string>;
@@ -1290,14 +1086,14 @@ export const EmailMxplanDomain = /*@__PURE__*/ S.suspend(() =>
   identifier: "EmailMxplanDomain",
 }) as any as S.Schema<EmailMxplanDomain>;
 
-export interface GetEmailMxplanServiceDomainDomainNameDisclaimerRequest {
+export interface GetEmailMxplanDomainDisclaimerRequest {
   /** The internal name of your mxplan organization */
   service: string;
   /** Domain name */
   domainName: string;
 }
-export const GetEmailMxplanServiceDomainDomainNameDisclaimerRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetEmailMxplanDomainDisclaimerRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       service: S.String.pipe(T.Label()),
       domainName: S.String.pipe(T.Label()),
@@ -1308,9 +1104,9 @@ export const GetEmailMxplanServiceDomainDomainNameDisclaimerRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "GetEmailMxplanServiceDomainDomainNameDisclaimerRequest",
-  }) as any as S.Schema<GetEmailMxplanServiceDomainDomainNameDisclaimerRequest>;
+).annotate({
+  identifier: "GetEmailMxplanDomainDisclaimerRequest",
+}) as any as S.Schema<GetEmailMxplanDomainDisclaimerRequest>;
 
 /** disclaimer */
 export interface EmailProDisclaimer {
@@ -1337,137 +1133,14 @@ export const EmailProDisclaimer = /*@__PURE__*/ S.suspend(() =>
   identifier: "EmailProDisclaimer",
 }) as any as S.Schema<EmailProDisclaimer>;
 
-export interface GetEmailMxplanServiceDomainDomainNameDisclaimerAttributeRequest {
-  /** The internal name of your mxplan organization */
-  service: string;
-  /** Domain name */
-  domainName: string;
-}
-export const GetEmailMxplanServiceDomainDomainNameDisclaimerAttributeRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      service: S.String.pipe(T.Label()),
-      domainName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/email/mxplan/{service}/domain/{domainName}/disclaimerAttribute",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "GetEmailMxplanServiceDomainDomainNameDisclaimerAttributeRequest",
-  }) as any as S.Schema<GetEmailMxplanServiceDomainDomainNameDisclaimerAttributeRequest>;
-
-/** Disclaimer attributes list */
-export type EmailProDisclaimerAttributeEnum =
-  | "City"
-  | "Company"
-  | "Country"
-  | "Department"
-  | "DisplayName"
-  | "Email"
-  | "FaxNumber"
-  | "FirstName"
-  | "HomePhoneNumber"
-  | "Initials"
-  | "LastName"
-  | "Manager"
-  | "MobileNumber"
-  | "Notes"
-  | "Office"
-  | "OtherFaxNumber"
-  | "OtherHomePhoneNumber"
-  | "OtherPhoneNumber"
-  | "PagerNumber"
-  | "PhoneNumber"
-  | "State"
-  | "Street"
-  | "Title"
-  | "UserLogonName"
-  | "ZipCode";
-export const EmailProDisclaimerAttributeEnum = /*@__PURE__*/ S.String;
-
-export type GetEmailMxplanServiceDomainDomainNameDisclaimerAttributeResponseBodyList =
-  Array<EmailProDisclaimerAttributeEnum>;
-export const GetEmailMxplanServiceDomainDomainNameDisclaimerAttributeResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    EmailProDisclaimerAttributeEnum,
-  ) as any as S.Schema<GetEmailMxplanServiceDomainDomainNameDisclaimerAttributeResponseBodyList>;
-
-export type GetEmailMxplanServiceDomainDomainNameDisclaimerAttributeResponse =
-  GetEmailMxplanServiceDomainDomainNameDisclaimerAttributeResponseBodyList;
-export const GetEmailMxplanServiceDomainDomainNameDisclaimerAttributeResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetEmailMxplanServiceDomainDomainNameDisclaimerAttributeResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier:
-      "GetEmailMxplanServiceDomainDomainNameDisclaimerAttributeResponse",
-  }) as any as S.Schema<GetEmailMxplanServiceDomainDomainNameDisclaimerAttributeResponse>;
-
-export interface GetEmailMxplanServiceExternalContactRequest {
-  /** The internal name of your mxplan organization */
-  service: string;
-  /** Filter the value of displayName property (like) */
-  displayName?: string;
-  /** Filter the value of externalEmailAddress property (like) */
-  externalEmailAddress?: string;
-  /** Filter the value of firstName property (like) */
-  firstName?: string;
-  /** Filter the value of id property (like) */
-  id?: number;
-  /** Filter the value of lastName property (like) */
-  lastName?: string;
-}
-export const GetEmailMxplanServiceExternalContactRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      service: S.String.pipe(T.Label()),
-      displayName: S.optional(S.String.pipe(T.Query())),
-      externalEmailAddress: S.optional(S.String.pipe(T.Query())),
-      firstName: S.optional(S.String.pipe(T.Query())),
-      id: S.optional(S.Number.pipe(T.Query())),
-      lastName: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/email/mxplan/{service}/externalContact",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetEmailMxplanServiceExternalContactRequest",
-  }) as any as S.Schema<GetEmailMxplanServiceExternalContactRequest>;
-
-export type GetEmailMxplanServiceExternalContactResponseBodyList =
-  Array<string>;
-export const GetEmailMxplanServiceExternalContactResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetEmailMxplanServiceExternalContactResponseBodyList>;
-
-export type GetEmailMxplanServiceExternalContactResponse =
-  GetEmailMxplanServiceExternalContactResponseBodyList;
-export const GetEmailMxplanServiceExternalContactResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetEmailMxplanServiceExternalContactResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetEmailMxplanServiceExternalContactResponse",
-  }) as any as S.Schema<GetEmailMxplanServiceExternalContactResponse>;
-
-export interface GetEmailMxplanServiceExternalContactExternalEmailAddressRequest {
+export interface GetEmailMxplanExternalContactRequest {
   /** The internal name of your mxplan organization */
   service: string;
   /** Contact email */
   externalEmailAddress: string;
 }
-export const GetEmailMxplanServiceExternalContactExternalEmailAddressRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetEmailMxplanExternalContactRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       service: S.String.pipe(T.Label()),
       externalEmailAddress: S.String.pipe(T.Label()),
@@ -1478,10 +1151,9 @@ export const GetEmailMxplanServiceExternalContactExternalEmailAddressRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier:
-      "GetEmailMxplanServiceExternalContactExternalEmailAddressRequest",
-  }) as any as S.Schema<GetEmailMxplanServiceExternalContactExternalEmailAddressRequest>;
+).annotate({
+  identifier: "GetEmailMxplanExternalContactRequest",
+}) as any as S.Schema<GetEmailMxplanExternalContactRequest>;
 
 /** External contact for this mxplan service */
 export interface EmailMxplanExternalContact {
@@ -1523,19 +1195,19 @@ export const EmailMxplanExternalContact = /*@__PURE__*/ S.suspend(() =>
   identifier: "EmailMxplanExternalContact",
 }) as any as S.Schema<EmailMxplanExternalContact>;
 
-export interface GetEmailMxplanServiceServerRequest {
+export interface GetEmailMxplanServerRequest {
   /** The internal name of your mxplan organization */
   service: string;
 }
-export const GetEmailMxplanServiceServerRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetEmailMxplanServerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     service: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({ method: "GET", uri: "/email/mxplan/{service}/server", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetEmailMxplanServiceServerRequest",
-}) as any as S.Schema<GetEmailMxplanServiceServerRequest>;
+  identifier: "GetEmailMxplanServerRequest",
+}) as any as S.Schema<GetEmailMxplanServerRequest>;
 
 /** Server State */
 export type EmailProServerStateEnum =
@@ -1587,40 +1259,13 @@ export const EmailMxplanServer = /*@__PURE__*/ S.suspend(() =>
   identifier: "EmailMxplanServer",
 }) as any as S.Schema<EmailMxplanServer>;
 
-export interface GetEmailMxplanServiceTaskRequest {
-  /** The internal name of your mxplan organization */
-  service: string;
-}
-export const GetEmailMxplanServiceTaskRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    service: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/email/mxplan/{service}/task", code: 200 }),
-  ),
-).annotate({
-  identifier: "GetEmailMxplanServiceTaskRequest",
-}) as any as S.Schema<GetEmailMxplanServiceTaskRequest>;
-
-export type GetEmailMxplanServiceTaskResponseBodyList = Array<number>;
-export const GetEmailMxplanServiceTaskResponseBodyList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<GetEmailMxplanServiceTaskResponseBodyList>;
-
-export type GetEmailMxplanServiceTaskResponse =
-  GetEmailMxplanServiceTaskResponseBodyList;
-export const GetEmailMxplanServiceTaskResponse = /*@__PURE__*/ S.suspend(() =>
-  GetEmailMxplanServiceTaskResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetEmailMxplanServiceTaskResponse",
-}) as any as S.Schema<GetEmailMxplanServiceTaskResponse>;
-
-export interface GetEmailMxplanServiceTaskIdRequest {
+export interface GetEmailMxplanTaskRequest {
   /** The internal name of your mxplan organization */
   service: string;
   /** Task id */
   id: number;
 }
-export const GetEmailMxplanServiceTaskIdRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetEmailMxplanTaskRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     service: S.String.pipe(T.Label()),
     id: S.Number.pipe(T.Label()),
@@ -1632,250 +1277,489 @@ export const GetEmailMxplanServiceTaskIdRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetEmailMxplanServiceTaskIdRequest",
-}) as any as S.Schema<GetEmailMxplanServiceTaskIdRequest>;
+  identifier: "GetEmailMxplanTaskRequest",
+}) as any as S.Schema<GetEmailMxplanTaskRequest>;
 
-export interface PostEmailMxplanServiceAccountEmailAliasRequest {
+/** Resource tag filter */
+export interface IamResourceTagFilterInput {}
+export const IamResourceTagFilterInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "IamResourceTagFilterInput",
+}) as any as S.Schema<IamResourceTagFilterInput>;
+
+export type ListEmailMxplanRequestIamTagsValueList =
+  Array<IamResourceTagFilterInput>;
+export const ListEmailMxplanRequestIamTagsValueList = /*@__PURE__*/ S.Array(
+  IamResourceTagFilterInput,
+) as any as S.Schema<ListEmailMxplanRequestIamTagsValueList>;
+
+export type ListEmailMxplanRequestIamTagsMap = {
+  [key: string]: ListEmailMxplanRequestIamTagsValueList | undefined;
+};
+export const ListEmailMxplanRequestIamTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  ListEmailMxplanRequestIamTagsValueList,
+) as any as S.Schema<ListEmailMxplanRequestIamTagsMap>;
+
+export interface ListEmailMxplanRequest {
+  /** Filter resources on IAM tags */
+  iamTags?: ListEmailMxplanRequestIamTagsMap;
+}
+export const ListEmailMxplanRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    iamTags: S.optional(ListEmailMxplanRequestIamTagsMap.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/email/mxplan", code: 200 })),
+).annotate({
+  identifier: "ListEmailMxplanRequest",
+}) as any as S.Schema<ListEmailMxplanRequest>;
+
+export type ListEmailMxplanResponseBodyList = Array<string>;
+export const ListEmailMxplanResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListEmailMxplanResponseBodyList>;
+
+export type ListEmailMxplanResponse = ListEmailMxplanResponseBodyList;
+export const ListEmailMxplanResponse = /*@__PURE__*/ S.suspend(() =>
+  ListEmailMxplanResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListEmailMxplanResponse",
+}) as any as S.Schema<ListEmailMxplanResponse>;
+
+export interface ListEmailMxplanAccountRequest {
+  /** The internal name of your mxplan organization */
+  service: string;
+  /** Filter the value of id property (like) */
+  id?: number;
+  /** Filter the value of primaryEmailAddress property (like) */
+  primaryEmailAddress?: string;
+}
+export const ListEmailMxplanAccountRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    service: S.String.pipe(T.Label()),
+    id: S.optional(S.Number.pipe(T.Query())),
+    primaryEmailAddress: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/email/mxplan/{service}/account",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListEmailMxplanAccountRequest",
+}) as any as S.Schema<ListEmailMxplanAccountRequest>;
+
+export type ListEmailMxplanAccountResponseBodyList = Array<string>;
+export const ListEmailMxplanAccountResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListEmailMxplanAccountResponseBodyList>;
+
+export type ListEmailMxplanAccountResponse =
+  ListEmailMxplanAccountResponseBodyList;
+export const ListEmailMxplanAccountResponse = /*@__PURE__*/ S.suspend(() =>
+  ListEmailMxplanAccountResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListEmailMxplanAccountResponse",
+}) as any as S.Schema<ListEmailMxplanAccountResponse>;
+
+export interface ListEmailMxplanAccountAliasRequest {
   /** The internal name of your mxplan organization */
   service: string;
   /** Default email for this mailbox */
   email: string;
-  /** Alias */
-  alias: string;
 }
-export const PostEmailMxplanServiceAccountEmailAliasRequest =
+export const ListEmailMxplanAccountAliasRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    service: S.String.pipe(T.Label()),
+    email: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/email/mxplan/{service}/account/{email}/alias",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListEmailMxplanAccountAliasRequest",
+}) as any as S.Schema<ListEmailMxplanAccountAliasRequest>;
+
+export type ListEmailMxplanAccountAliasResponseBodyList = Array<string>;
+export const ListEmailMxplanAccountAliasResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListEmailMxplanAccountAliasResponseBodyList>;
+
+export type ListEmailMxplanAccountAliasResponse =
+  ListEmailMxplanAccountAliasResponseBodyList;
+export const ListEmailMxplanAccountAliasResponse = /*@__PURE__*/ S.suspend(() =>
+  ListEmailMxplanAccountAliasResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListEmailMxplanAccountAliasResponse",
+}) as any as S.Schema<ListEmailMxplanAccountAliasResponse>;
+
+export interface ListEmailMxplanAccountCapabilitiesRequest {
+  /** The internal name of your mxplan organization */
+  service: string;
+  /** Default email for this mailbox */
+  email: string;
+}
+export const ListEmailMxplanAccountCapabilitiesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       service: S.String.pipe(T.Label()),
       email: S.String.pipe(T.Label()),
-      alias: S.String,
     }).pipe(
       T.Http({
-        method: "POST",
-        uri: "/email/mxplan/{service}/account/{email}/alias",
+        method: "GET",
+        uri: "/email/mxplan/{service}/account/{email}/capabilities",
         code: 200,
       }),
     ),
   ).annotate({
-    identifier: "PostEmailMxplanServiceAccountEmailAliasRequest",
-  }) as any as S.Schema<PostEmailMxplanServiceAccountEmailAliasRequest>;
+    identifier: "ListEmailMxplanAccountCapabilitiesRequest",
+  }) as any as S.Schema<ListEmailMxplanAccountCapabilitiesRequest>;
 
-export interface PostEmailMxplanServiceAccountEmailChangePasswordRequest {
+/** List of allowed quotas (no constraint if null) */
+export type EmailMxplanAccountCapabilitiesQuotasList = Array<number>;
+export const EmailMxplanAccountCapabilitiesQuotasList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<EmailMxplanAccountCapabilitiesQuotasList>;
+
+/** Account capabilities */
+export interface EmailMxplanAccountCapabilities {
+  /** List of allowed quotas (no constraint if null) */
+  quotas?: EmailMxplanAccountCapabilitiesQuotasList | null;
+}
+export const EmailMxplanAccountCapabilities = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    quotas: S.optional(S.NullOr(EmailMxplanAccountCapabilitiesQuotasList)),
+  }),
+).annotate({
+  identifier: "EmailMxplanAccountCapabilities",
+}) as any as S.Schema<EmailMxplanAccountCapabilities>;
+
+export interface ListEmailMxplanAccountFullAccessRequest {
   /** The internal name of your mxplan organization */
   service: string;
   /** Default email for this mailbox */
   email: string;
-  /** new password */
-  password: string | Redacted.Redacted<string>;
 }
-export const PostEmailMxplanServiceAccountEmailChangePasswordRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const ListEmailMxplanAccountFullAccessRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       service: S.String.pipe(T.Label()),
       email: S.String.pipe(T.Label()),
-      password: S.String.pipe(T.SensitiveValue({})),
     }).pipe(
       T.Http({
-        method: "POST",
-        uri: "/email/mxplan/{service}/account/{email}/changePassword",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostEmailMxplanServiceAccountEmailChangePasswordRequest",
-  }) as any as S.Schema<PostEmailMxplanServiceAccountEmailChangePasswordRequest>;
-
-export interface PostEmailMxplanServiceAccountEmailDiagnosticRequest {
-  /** The internal name of your mxplan organization */
-  service: string;
-  /** Default email for this mailbox */
-  email: string;
-  /** Account password */
-  password: string | Redacted.Redacted<string>;
-}
-export const PostEmailMxplanServiceAccountEmailDiagnosticRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      service: S.String.pipe(T.Label()),
-      email: S.String.pipe(T.Label()),
-      password: S.String.pipe(T.SensitiveValue({})),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/email/mxplan/{service}/account/{email}/diagnostic",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostEmailMxplanServiceAccountEmailDiagnosticRequest",
-  }) as any as S.Schema<PostEmailMxplanServiceAccountEmailDiagnosticRequest>;
-
-export interface PostEmailMxplanServiceAccountEmailFullAccessRequest {
-  /** The internal name of your mxplan organization */
-  service: string;
-  /** Default email for this mailbox */
-  email: string;
-  /** User to give full access */
-  allowedAccountId: number;
-}
-export const PostEmailMxplanServiceAccountEmailFullAccessRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      service: S.String.pipe(T.Label()),
-      email: S.String.pipe(T.Label()),
-      allowedAccountId: S.Number,
-    }).pipe(
-      T.Http({
-        method: "POST",
+        method: "GET",
         uri: "/email/mxplan/{service}/account/{email}/fullAccess",
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "PostEmailMxplanServiceAccountEmailFullAccessRequest",
-  }) as any as S.Schema<PostEmailMxplanServiceAccountEmailFullAccessRequest>;
+).annotate({
+  identifier: "ListEmailMxplanAccountFullAccessRequest",
+}) as any as S.Schema<ListEmailMxplanAccountFullAccessRequest>;
 
-export interface PostEmailMxplanServiceAccountEmailSendAsRequest {
+export type ListEmailMxplanAccountFullAccessResponseBodyList = Array<number>;
+export const ListEmailMxplanAccountFullAccessResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.Number,
+  ) as any as S.Schema<ListEmailMxplanAccountFullAccessResponseBodyList>;
+
+export type ListEmailMxplanAccountFullAccessResponse =
+  ListEmailMxplanAccountFullAccessResponseBodyList;
+export const ListEmailMxplanAccountFullAccessResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    ListEmailMxplanAccountFullAccessResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListEmailMxplanAccountFullAccessResponse",
+}) as any as S.Schema<ListEmailMxplanAccountFullAccessResponse>;
+
+export interface ListEmailMxplanAccountSendAsRequest {
   /** The internal name of your mxplan organization */
   service: string;
   /** Default email for this mailbox */
   email: string;
-  /** Account id to allow to send mails from this mailbox */
-  allowAccountId: number;
 }
-export const PostEmailMxplanServiceAccountEmailSendAsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      service: S.String.pipe(T.Label()),
-      email: S.String.pipe(T.Label()),
-      allowAccountId: S.Number,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/email/mxplan/{service}/account/{email}/sendAs",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostEmailMxplanServiceAccountEmailSendAsRequest",
-  }) as any as S.Schema<PostEmailMxplanServiceAccountEmailSendAsRequest>;
+export const ListEmailMxplanAccountSendAsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    service: S.String.pipe(T.Label()),
+    email: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/email/mxplan/{service}/account/{email}/sendAs",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListEmailMxplanAccountSendAsRequest",
+}) as any as S.Schema<ListEmailMxplanAccountSendAsRequest>;
 
-export interface PostEmailMxplanServiceAccountEmailSendOnBehalfToRequest {
+export type ListEmailMxplanAccountSendAsResponseBodyList = Array<number>;
+export const ListEmailMxplanAccountSendAsResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.Number,
+  ) as any as S.Schema<ListEmailMxplanAccountSendAsResponseBodyList>;
+
+export type ListEmailMxplanAccountSendAsResponse =
+  ListEmailMxplanAccountSendAsResponseBodyList;
+export const ListEmailMxplanAccountSendAsResponse = /*@__PURE__*/ S.suspend(
+  () => ListEmailMxplanAccountSendAsResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListEmailMxplanAccountSendAsResponse",
+}) as any as S.Schema<ListEmailMxplanAccountSendAsResponse>;
+
+export interface ListEmailMxplanAccountSendOnBehalfToRequest {
   /** The internal name of your mxplan organization */
   service: string;
   /** Default email for this mailbox */
   email: string;
-  /** Account id to allow to send On Behalf To mails from this mailbox */
-  allowAccountId: number;
 }
-export const PostEmailMxplanServiceAccountEmailSendOnBehalfToRequest =
+export const ListEmailMxplanAccountSendOnBehalfToRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       service: S.String.pipe(T.Label()),
       email: S.String.pipe(T.Label()),
-      allowAccountId: S.Number,
     }).pipe(
       T.Http({
-        method: "POST",
+        method: "GET",
         uri: "/email/mxplan/{service}/account/{email}/sendOnBehalfTo",
         code: 200,
       }),
     ),
   ).annotate({
-    identifier: "PostEmailMxplanServiceAccountEmailSendOnBehalfToRequest",
-  }) as any as S.Schema<PostEmailMxplanServiceAccountEmailSendOnBehalfToRequest>;
+    identifier: "ListEmailMxplanAccountSendOnBehalfToRequest",
+  }) as any as S.Schema<ListEmailMxplanAccountSendOnBehalfToRequest>;
 
-export interface PostEmailMxplanServiceDomainDomainNameDisclaimerRequest {
+export type ListEmailMxplanAccountSendOnBehalfToResponseBodyList =
+  Array<number>;
+export const ListEmailMxplanAccountSendOnBehalfToResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.Number,
+  ) as any as S.Schema<ListEmailMxplanAccountSendOnBehalfToResponseBodyList>;
+
+export type ListEmailMxplanAccountSendOnBehalfToResponse =
+  ListEmailMxplanAccountSendOnBehalfToResponseBodyList;
+export const ListEmailMxplanAccountSendOnBehalfToResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListEmailMxplanAccountSendOnBehalfToResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListEmailMxplanAccountSendOnBehalfToResponse",
+  }) as any as S.Schema<ListEmailMxplanAccountSendOnBehalfToResponse>;
+
+export interface ListEmailMxplanAccountTaskRequest {
+  /** The internal name of your mxplan organization */
+  service: string;
+  /** Default email for this mailbox */
+  email: string;
+}
+export const ListEmailMxplanAccountTaskRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    service: S.String.pipe(T.Label()),
+    email: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/email/mxplan/{service}/account/{email}/task",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListEmailMxplanAccountTaskRequest",
+}) as any as S.Schema<ListEmailMxplanAccountTaskRequest>;
+
+export type ListEmailMxplanAccountTaskResponseBodyList = Array<number>;
+export const ListEmailMxplanAccountTaskResponseBodyList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<ListEmailMxplanAccountTaskResponseBodyList>;
+
+export type ListEmailMxplanAccountTaskResponse =
+  ListEmailMxplanAccountTaskResponseBodyList;
+export const ListEmailMxplanAccountTaskResponse = /*@__PURE__*/ S.suspend(() =>
+  ListEmailMxplanAccountTaskResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListEmailMxplanAccountTaskResponse",
+}) as any as S.Schema<ListEmailMxplanAccountTaskResponse>;
+
+export interface ListEmailMxplanDomainRequest {
+  /** The internal name of your mxplan organization */
+  service: string;
+  /** Filter the value of state property (=) */
+  state?: EmailProObjectStateEnum | (string & {});
+}
+export const ListEmailMxplanDomainRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    service: S.String.pipe(T.Label()),
+    state: S.optional(EmailProObjectStateEnum.pipe(T.Query())),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/email/mxplan/{service}/domain", code: 200 }),
+  ),
+).annotate({
+  identifier: "ListEmailMxplanDomainRequest",
+}) as any as S.Schema<ListEmailMxplanDomainRequest>;
+
+export type ListEmailMxplanDomainResponseBodyList = Array<string>;
+export const ListEmailMxplanDomainResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListEmailMxplanDomainResponseBodyList>;
+
+export type ListEmailMxplanDomainResponse =
+  ListEmailMxplanDomainResponseBodyList;
+export const ListEmailMxplanDomainResponse = /*@__PURE__*/ S.suspend(() =>
+  ListEmailMxplanDomainResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListEmailMxplanDomainResponse",
+}) as any as S.Schema<ListEmailMxplanDomainResponse>;
+
+export interface ListEmailMxplanDomainDisclaimerAttributeRequest {
   /** The internal name of your mxplan organization */
   service: string;
   /** Domain name */
   domainName: string;
-  /** Signature, added at the bottom of your organization emails */
-  content: string;
-  /** Activate the disclaimer only for external emails */
-  outsideOnly?: boolean;
 }
-export const PostEmailMxplanServiceDomainDomainNameDisclaimerRequest =
+export const ListEmailMxplanDomainDisclaimerAttributeRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       service: S.String.pipe(T.Label()),
       domainName: S.String.pipe(T.Label()),
-      content: S.String,
-      outsideOnly: S.optional(S.Boolean),
     }).pipe(
       T.Http({
-        method: "POST",
-        uri: "/email/mxplan/{service}/domain/{domainName}/disclaimer",
+        method: "GET",
+        uri: "/email/mxplan/{service}/domain/{domainName}/disclaimerAttribute",
         code: 200,
       }),
     ),
   ).annotate({
-    identifier: "PostEmailMxplanServiceDomainDomainNameDisclaimerRequest",
-  }) as any as S.Schema<PostEmailMxplanServiceDomainDomainNameDisclaimerRequest>;
+    identifier: "ListEmailMxplanDomainDisclaimerAttributeRequest",
+  }) as any as S.Schema<ListEmailMxplanDomainDisclaimerAttributeRequest>;
 
-export interface PostEmailMxplanServiceExternalContactRequest {
+/** Disclaimer attributes list */
+export type EmailProDisclaimerAttributeEnum =
+  | "City"
+  | "Company"
+  | "Country"
+  | "Department"
+  | "DisplayName"
+  | "Email"
+  | "FaxNumber"
+  | "FirstName"
+  | "HomePhoneNumber"
+  | "Initials"
+  | "LastName"
+  | "Manager"
+  | "MobileNumber"
+  | "Notes"
+  | "Office"
+  | "OtherFaxNumber"
+  | "OtherHomePhoneNumber"
+  | "OtherPhoneNumber"
+  | "PagerNumber"
+  | "PhoneNumber"
+  | "State"
+  | "Street"
+  | "Title"
+  | "UserLogonName"
+  | "ZipCode";
+export const EmailProDisclaimerAttributeEnum = /*@__PURE__*/ S.String;
+
+export type ListEmailMxplanDomainDisclaimerAttributeResponseBodyList =
+  Array<EmailProDisclaimerAttributeEnum>;
+export const ListEmailMxplanDomainDisclaimerAttributeResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    EmailProDisclaimerAttributeEnum,
+  ) as any as S.Schema<ListEmailMxplanDomainDisclaimerAttributeResponseBodyList>;
+
+export type ListEmailMxplanDomainDisclaimerAttributeResponse =
+  ListEmailMxplanDomainDisclaimerAttributeResponseBodyList;
+export const ListEmailMxplanDomainDisclaimerAttributeResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListEmailMxplanDomainDisclaimerAttributeResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListEmailMxplanDomainDisclaimerAttributeResponse",
+  }) as any as S.Schema<ListEmailMxplanDomainDisclaimerAttributeResponse>;
+
+export interface ListEmailMxplanExternalContactRequest {
   /** The internal name of your mxplan organization */
   service: string;
-  /** Contact display name */
+  /** Filter the value of displayName property (like) */
   displayName?: string;
-  /** Contact email address */
-  externalEmailAddress: string;
-  /** Contact first name */
+  /** Filter the value of externalEmailAddress property (like) */
+  externalEmailAddress?: string;
+  /** Filter the value of firstName property (like) */
   firstName?: string;
-  /** Hide the contact in Global Address List */
-  hiddenFromGAL?: boolean;
-  /** Contact initials */
-  initials?: string;
-  /** Contact last name */
+  /** Filter the value of id property (like) */
+  id?: number;
+  /** Filter the value of lastName property (like) */
   lastName?: string;
 }
-export const PostEmailMxplanServiceExternalContactRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const ListEmailMxplanExternalContactRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       service: S.String.pipe(T.Label()),
-      displayName: S.optional(S.String),
-      externalEmailAddress: S.String,
-      firstName: S.optional(S.String),
-      hiddenFromGAL: S.optional(S.Boolean),
-      initials: S.optional(S.String),
-      lastName: S.optional(S.String),
+      displayName: S.optional(S.String.pipe(T.Query())),
+      externalEmailAddress: S.optional(S.String.pipe(T.Query())),
+      firstName: S.optional(S.String.pipe(T.Query())),
+      id: S.optional(S.Number.pipe(T.Query())),
+      lastName: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
-        method: "POST",
+        method: "GET",
         uri: "/email/mxplan/{service}/externalContact",
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "PostEmailMxplanServiceExternalContactRequest",
-  }) as any as S.Schema<PostEmailMxplanServiceExternalContactRequest>;
+).annotate({
+  identifier: "ListEmailMxplanExternalContactRequest",
+}) as any as S.Schema<ListEmailMxplanExternalContactRequest>;
 
-export interface PostEmailMxplanServiceUpdateFlagsOnAllAccountsRequest {
+export type ListEmailMxplanExternalContactResponseBodyList = Array<string>;
+export const ListEmailMxplanExternalContactResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListEmailMxplanExternalContactResponseBodyList>;
+
+export type ListEmailMxplanExternalContactResponse =
+  ListEmailMxplanExternalContactResponseBodyList;
+export const ListEmailMxplanExternalContactResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    ListEmailMxplanExternalContactResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListEmailMxplanExternalContactResponse",
+}) as any as S.Schema<ListEmailMxplanExternalContactResponse>;
+
+export interface ListEmailMxplanTaskRequest {
   /** The internal name of your mxplan organization */
   service: string;
 }
-export const PostEmailMxplanServiceUpdateFlagsOnAllAccountsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      service: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/email/mxplan/{service}/updateFlagsOnAllAccounts",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostEmailMxplanServiceUpdateFlagsOnAllAccountsRequest",
-  }) as any as S.Schema<PostEmailMxplanServiceUpdateFlagsOnAllAccountsRequest>;
+export const ListEmailMxplanTaskRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    service: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/email/mxplan/{service}/task", code: 200 }),
+  ),
+).annotate({
+  identifier: "ListEmailMxplanTaskRequest",
+}) as any as S.Schema<ListEmailMxplanTaskRequest>;
 
-export interface PostEmailMxplanServiceUpdateFlagsOnAllAccountsResponse {}
-export const PostEmailMxplanServiceUpdateFlagsOnAllAccountsResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PostEmailMxplanServiceUpdateFlagsOnAllAccountsResponse",
-  }) as any as S.Schema<PostEmailMxplanServiceUpdateFlagsOnAllAccountsResponse>;
+export type ListEmailMxplanTaskResponseBodyList = Array<number>;
+export const ListEmailMxplanTaskResponseBodyList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<ListEmailMxplanTaskResponseBodyList>;
 
-export interface PutEmailMxplanServiceRequest {
+export type ListEmailMxplanTaskResponse = ListEmailMxplanTaskResponseBodyList;
+export const ListEmailMxplanTaskResponse = /*@__PURE__*/ S.suspend(() =>
+  ListEmailMxplanTaskResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListEmailMxplanTaskResponse",
+}) as any as S.Schema<ListEmailMxplanTaskResponse>;
+
+export interface PutEmailMxplanRequest {
   /** The internal name of your mxplan organization */
   service: string;
   /** enable policy for strong and secure passwords */
@@ -1901,7 +1785,7 @@ export interface PutEmailMxplanServiceRequest {
   /** Spam and Antivirus configuration */
   spamAndVirusConfiguration?: EmailProSpamAndVirusConfiguration;
 }
-export const PutEmailMxplanServiceRequest = /*@__PURE__*/ S.suspend(() =>
+export const PutEmailMxplanRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     service: S.String.pipe(T.Label()),
     complexityEnabled: S.optional(S.Boolean),
@@ -1917,26 +1801,26 @@ export const PutEmailMxplanServiceRequest = /*@__PURE__*/ S.suspend(() =>
     spamAndVirusConfiguration: S.optional(EmailProSpamAndVirusConfiguration),
   }).pipe(T.Http({ method: "PUT", uri: "/email/mxplan/{service}", code: 200 })),
 ).annotate({
-  identifier: "PutEmailMxplanServiceRequest",
-}) as any as S.Schema<PutEmailMxplanServiceRequest>;
+  identifier: "PutEmailMxplanRequest",
+}) as any as S.Schema<PutEmailMxplanRequest>;
 
-export interface PutEmailMxplanServiceResponse {}
-export const PutEmailMxplanServiceResponse = /*@__PURE__*/ S.suspend(() =>
+export interface PutEmailMxplanResponse {}
+export const PutEmailMxplanResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "PutEmailMxplanServiceResponse",
-}) as any as S.Schema<PutEmailMxplanServiceResponse>;
+  identifier: "PutEmailMxplanResponse",
+}) as any as S.Schema<PutEmailMxplanResponse>;
 
 /** Enable or disable anti-virus and anti-spam */
-export type PutEmailMxplanServiceAccountEmailRequestMailingFilterList = Array<
+export type PutEmailMxplanAccountRequestMailingFilterList = Array<
   EmailProMailingFilterEnum | (string & {})
 >;
-export const PutEmailMxplanServiceAccountEmailRequestMailingFilterList =
+export const PutEmailMxplanAccountRequestMailingFilterList =
   /*@__PURE__*/ S.Array(
     EmailProMailingFilterEnum,
-  ) as any as S.Schema<PutEmailMxplanServiceAccountEmailRequestMailingFilterList>;
+  ) as any as S.Schema<PutEmailMxplanAccountRequestMailingFilterList>;
 
-export interface PutEmailMxplanServiceAccountEmailRequest {
+export interface PutEmailMxplanAccountRequest {
   /** The internal name of your mxplan organization */
   service: string;
   /** Default email for this mailbox */
@@ -1958,7 +1842,7 @@ export interface PutEmailMxplanServiceAccountEmailRequest {
   /** Account login */
   login?: string;
   /** Enable or disable anti-virus and anti-spam */
-  mailingFilter?: PutEmailMxplanServiceAccountEmailRequestMailingFilterList | null;
+  mailingFilter?: PutEmailMxplanAccountRequestMailingFilterList | null;
   /** Account maximum size */
   quota?: number;
   /** change the renew period */
@@ -1966,43 +1850,43 @@ export interface PutEmailMxplanServiceAccountEmailRequest {
   /** Spam and Antivirus configuration */
   spamAndVirusConfiguration?: EmailProSpamAndVirusConfiguration;
 }
-export const PutEmailMxplanServiceAccountEmailRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      service: S.String.pipe(T.Label()),
-      email: S.String.pipe(T.Label()),
-      deleteAtExpiration: S.optional(S.NullOr(S.Boolean)),
-      displayName: S.optional(S.NullOr(S.String)),
-      domain: S.optional(S.String),
-      firstName: S.optional(S.NullOr(S.String)),
-      hiddenFromGAL: S.optional(S.Boolean),
-      initial: S.optional(S.NullOr(S.String)),
-      lastName: S.optional(S.NullOr(S.String)),
-      login: S.optional(S.String),
-      mailingFilter: S.optional(
-        S.NullOr(PutEmailMxplanServiceAccountEmailRequestMailingFilterList),
-      ),
-      quota: S.optional(S.Number),
-      renewPeriod: S.optional(S.NullOr(EmailProRenewPeriodEnum)),
-      spamAndVirusConfiguration: S.optional(EmailProSpamAndVirusConfiguration),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/email/mxplan/{service}/account/{email}",
-        code: 200,
-      }),
+export const PutEmailMxplanAccountRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    service: S.String.pipe(T.Label()),
+    email: S.String.pipe(T.Label()),
+    deleteAtExpiration: S.optional(S.NullOr(S.Boolean)),
+    displayName: S.optional(S.NullOr(S.String)),
+    domain: S.optional(S.String),
+    firstName: S.optional(S.NullOr(S.String)),
+    hiddenFromGAL: S.optional(S.Boolean),
+    initial: S.optional(S.NullOr(S.String)),
+    lastName: S.optional(S.NullOr(S.String)),
+    login: S.optional(S.String),
+    mailingFilter: S.optional(
+      S.NullOr(PutEmailMxplanAccountRequestMailingFilterList),
     ),
+    quota: S.optional(S.Number),
+    renewPeriod: S.optional(S.NullOr(EmailProRenewPeriodEnum)),
+    spamAndVirusConfiguration: S.optional(EmailProSpamAndVirusConfiguration),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/email/mxplan/{service}/account/{email}",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "PutEmailMxplanServiceAccountEmailRequest",
-}) as any as S.Schema<PutEmailMxplanServiceAccountEmailRequest>;
+  identifier: "PutEmailMxplanAccountRequest",
+}) as any as S.Schema<PutEmailMxplanAccountRequest>;
 
-export interface PutEmailMxplanServiceAccountEmailResponse {}
-export const PutEmailMxplanServiceAccountEmailResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PutEmailMxplanServiceAccountEmailResponse",
-  }) as any as S.Schema<PutEmailMxplanServiceAccountEmailResponse>;
+export interface PutEmailMxplanAccountResponse {}
+export const PutEmailMxplanAccountResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "PutEmailMxplanAccountResponse",
+}) as any as S.Schema<PutEmailMxplanAccountResponse>;
 
-export interface PutEmailMxplanServiceDomainDomainNameRequest {
+export interface PutEmailMxplanDomainRequest {
   /** The internal name of your mxplan organization */
   service: string;
   /** Domain name */
@@ -2012,31 +1896,31 @@ export interface PutEmailMxplanServiceDomainDomainNameRequest {
   /** Domain type */
   type?: EmailProDomainTypeEnum | (string & {});
 }
-export const PutEmailMxplanServiceDomainDomainNameRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      service: S.String.pipe(T.Label()),
-      domainName: S.String.pipe(T.Label()),
-      mxRelay: S.optional(S.NullOr(S.String)),
-      type: S.optional(EmailProDomainTypeEnum),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/email/mxplan/{service}/domain/{domainName}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PutEmailMxplanServiceDomainDomainNameRequest",
-  }) as any as S.Schema<PutEmailMxplanServiceDomainDomainNameRequest>;
+export const PutEmailMxplanDomainRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    service: S.String.pipe(T.Label()),
+    domainName: S.String.pipe(T.Label()),
+    mxRelay: S.optional(S.NullOr(S.String)),
+    type: S.optional(EmailProDomainTypeEnum),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/email/mxplan/{service}/domain/{domainName}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "PutEmailMxplanDomainRequest",
+}) as any as S.Schema<PutEmailMxplanDomainRequest>;
 
-export interface PutEmailMxplanServiceDomainDomainNameResponse {}
-export const PutEmailMxplanServiceDomainDomainNameResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PutEmailMxplanServiceDomainDomainNameResponse",
-  }) as any as S.Schema<PutEmailMxplanServiceDomainDomainNameResponse>;
+export interface PutEmailMxplanDomainResponse {}
+export const PutEmailMxplanDomainResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "PutEmailMxplanDomainResponse",
+}) as any as S.Schema<PutEmailMxplanDomainResponse>;
 
-export interface PutEmailMxplanServiceDomainDomainNameDisclaimerRequest {
+export interface PutEmailMxplanDomainDisclaimerRequest {
   /** The internal name of your mxplan organization */
   service: string;
   /** Domain name */
@@ -2046,8 +1930,8 @@ export interface PutEmailMxplanServiceDomainDomainNameDisclaimerRequest {
   /** Activate the disclaimer only for external emails */
   outsideOnly?: boolean;
 }
-export const PutEmailMxplanServiceDomainDomainNameDisclaimerRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const PutEmailMxplanDomainDisclaimerRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       service: S.String.pipe(T.Label()),
       domainName: S.String.pipe(T.Label()),
@@ -2060,17 +1944,18 @@ export const PutEmailMxplanServiceDomainDomainNameDisclaimerRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "PutEmailMxplanServiceDomainDomainNameDisclaimerRequest",
-  }) as any as S.Schema<PutEmailMxplanServiceDomainDomainNameDisclaimerRequest>;
+).annotate({
+  identifier: "PutEmailMxplanDomainDisclaimerRequest",
+}) as any as S.Schema<PutEmailMxplanDomainDisclaimerRequest>;
 
-export interface PutEmailMxplanServiceDomainDomainNameDisclaimerResponse {}
-export const PutEmailMxplanServiceDomainDomainNameDisclaimerResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PutEmailMxplanServiceDomainDomainNameDisclaimerResponse",
-  }) as any as S.Schema<PutEmailMxplanServiceDomainDomainNameDisclaimerResponse>;
+export interface PutEmailMxplanDomainDisclaimerResponse {}
+export const PutEmailMxplanDomainDisclaimerResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "PutEmailMxplanDomainDisclaimerResponse",
+}) as any as S.Schema<PutEmailMxplanDomainDisclaimerResponse>;
 
-export interface PutEmailMxplanServiceExternalContactExternalEmailAddressRequest {
+export interface PutEmailMxplanExternalContactRequest {
   /** The internal name of your mxplan organization */
   service: string;
   /** Contact email */
@@ -2086,8 +1971,8 @@ export interface PutEmailMxplanServiceExternalContactExternalEmailAddressRequest
   /** Contact last name */
   lastName?: string | null;
 }
-export const PutEmailMxplanServiceExternalContactExternalEmailAddressRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const PutEmailMxplanExternalContactRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       service: S.String.pipe(T.Label()),
       externalEmailAddress: S.String.pipe(T.Label()),
@@ -2103,123 +1988,280 @@ export const PutEmailMxplanServiceExternalContactExternalEmailAddressRequest =
         code: 200,
       }),
     ),
+).annotate({
+  identifier: "PutEmailMxplanExternalContactRequest",
+}) as any as S.Schema<PutEmailMxplanExternalContactRequest>;
+
+export interface PutEmailMxplanExternalContactResponse {}
+export const PutEmailMxplanExternalContactResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "PutEmailMxplanExternalContactResponse",
+}) as any as S.Schema<PutEmailMxplanExternalContactResponse>;
+
+export interface SendEmailMxplanAccountAsRequest {
+  /** The internal name of your mxplan organization */
+  service: string;
+  /** Default email for this mailbox */
+  email: string;
+  /** Account id to allow to send mails from this mailbox */
+  allowAccountId: number;
+}
+export const SendEmailMxplanAccountAsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    service: S.String.pipe(T.Label()),
+    email: S.String.pipe(T.Label()),
+    allowAccountId: S.Number,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/email/mxplan/{service}/account/{email}/sendAs",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "SendEmailMxplanAccountAsRequest",
+}) as any as S.Schema<SendEmailMxplanAccountAsRequest>;
+
+export interface SendEmailMxplanAccountOnBehalfToRequest {
+  /** The internal name of your mxplan organization */
+  service: string;
+  /** Default email for this mailbox */
+  email: string;
+  /** Account id to allow to send On Behalf To mails from this mailbox */
+  allowAccountId: number;
+}
+export const SendEmailMxplanAccountOnBehalfToRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      service: S.String.pipe(T.Label()),
+      email: S.String.pipe(T.Label()),
+      allowAccountId: S.Number,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/email/mxplan/{service}/account/{email}/sendOnBehalfTo",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "SendEmailMxplanAccountOnBehalfToRequest",
+}) as any as S.Schema<SendEmailMxplanAccountOnBehalfToRequest>;
+
+export interface UpdateEmailMxplanFlagsOnAllAccountsRequest {
+  /** The internal name of your mxplan organization */
+  service: string;
+}
+export const UpdateEmailMxplanFlagsOnAllAccountsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      service: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/email/mxplan/{service}/updateFlagsOnAllAccounts",
+        code: 200,
+      }),
+    ),
   ).annotate({
-    identifier:
-      "PutEmailMxplanServiceExternalContactExternalEmailAddressRequest",
-  }) as any as S.Schema<PutEmailMxplanServiceExternalContactExternalEmailAddressRequest>;
+    identifier: "UpdateEmailMxplanFlagsOnAllAccountsRequest",
+  }) as any as S.Schema<UpdateEmailMxplanFlagsOnAllAccountsRequest>;
 
-export interface PutEmailMxplanServiceExternalContactExternalEmailAddressResponse {}
-export const PutEmailMxplanServiceExternalContactExternalEmailAddressResponse =
+export interface UpdateEmailMxplanFlagsOnAllAccountsResponse {}
+export const UpdateEmailMxplanFlagsOnAllAccountsResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier:
-      "PutEmailMxplanServiceExternalContactExternalEmailAddressResponse",
-  }) as any as S.Schema<PutEmailMxplanServiceExternalContactExternalEmailAddressResponse>;
+    identifier: "UpdateEmailMxplanFlagsOnAllAccountsResponse",
+  }) as any as S.Schema<UpdateEmailMxplanFlagsOnAllAccountsResponse>;
 
-export type DeleteEmailMxplanServiceAccountEmailError = OvhOpError;
+export type CreateEmailMxplanAccountAliasError = OvhOpError;
+/** Create new alias */
+export const createEmailMxplanAccountAlias: API.OperationMethod<
+  CreateEmailMxplanAccountAliasRequest,
+  EmailProTask,
+  CreateEmailMxplanAccountAliasError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateEmailMxplanAccountAliasRequest,
+  output: EmailProTask,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateEmailMxplanAccountChangePasswordError = OvhOpError;
+/** Change mailbox password */
+export const createEmailMxplanAccountChangePassword: API.OperationMethod<
+  CreateEmailMxplanAccountChangePasswordRequest,
+  EmailProTask,
+  CreateEmailMxplanAccountChangePasswordError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateEmailMxplanAccountChangePasswordRequest,
+  output: EmailProTask,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateEmailMxplanAccountDiagnosticError = OvhOpError;
+/** Create new diagnosis request */
+export const createEmailMxplanAccountDiagnostic: API.OperationMethod<
+  CreateEmailMxplanAccountDiagnosticRequest,
+  EmailProTask,
+  CreateEmailMxplanAccountDiagnosticError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateEmailMxplanAccountDiagnosticRequest,
+  output: EmailProTask,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateEmailMxplanAccountFullAccessError = OvhOpError;
+/** Allow full access to a user */
+export const createEmailMxplanAccountFullAccess: API.OperationMethod<
+  CreateEmailMxplanAccountFullAccessRequest,
+  EmailProTask,
+  CreateEmailMxplanAccountFullAccessError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateEmailMxplanAccountFullAccessRequest,
+  output: EmailProTask,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateEmailMxplanDomainDisclaimerError = OvhOpError;
+/** Create organization disclaimer of each email */
+export const createEmailMxplanDomainDisclaimer: API.OperationMethod<
+  CreateEmailMxplanDomainDisclaimerRequest,
+  EmailProTask,
+  CreateEmailMxplanDomainDisclaimerError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateEmailMxplanDomainDisclaimerRequest,
+  output: EmailProTask,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateEmailMxplanExternalContactError = OvhOpError;
+/** create new external contact */
+export const createEmailMxplanExternalContact: API.OperationMethod<
+  CreateEmailMxplanExternalContactRequest,
+  EmailProTask,
+  CreateEmailMxplanExternalContactError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateEmailMxplanExternalContactRequest,
+  output: EmailProTask,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteEmailMxplanAccountError = OvhOpError;
 /** Delete existing mailbox in mxplan server */
-export const deleteEmailMxplanServiceAccountEmail: API.OperationMethod<
-  DeleteEmailMxplanServiceAccountEmailRequest,
+export const deleteEmailMxplanAccount: API.OperationMethod<
+  DeleteEmailMxplanAccountRequest,
   EmailProTask,
-  DeleteEmailMxplanServiceAccountEmailError,
+  DeleteEmailMxplanAccountError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteEmailMxplanServiceAccountEmailRequest,
+  input: DeleteEmailMxplanAccountRequest,
   output: EmailProTask,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteEmailMxplanServiceAccountEmailAliasAliasError = OvhOpError;
+export type DeleteEmailMxplanAccountAliasError = OvhOpError;
 /** Delete existing alias */
-export const deleteEmailMxplanServiceAccountEmailAliasAlias: API.OperationMethod<
-  DeleteEmailMxplanServiceAccountEmailAliasAliasRequest,
+export const deleteEmailMxplanAccountAlias: API.OperationMethod<
+  DeleteEmailMxplanAccountAliasRequest,
   EmailProTask,
-  DeleteEmailMxplanServiceAccountEmailAliasAliasError,
+  DeleteEmailMxplanAccountAliasError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteEmailMxplanServiceAccountEmailAliasAliasRequest,
+  input: DeleteEmailMxplanAccountAliasRequest,
   output: EmailProTask,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteEmailMxplanServiceAccountEmailFullAccessAllowedAccountIdError =
-  OvhOpError;
+export type DeleteEmailMxplanAccountFullAccessError = OvhOpError;
 /** Revoke full access */
-export const deleteEmailMxplanServiceAccountEmailFullAccessAllowedAccountId: API.OperationMethod<
-  DeleteEmailMxplanServiceAccountEmailFullAccessAllowedAccountIdRequest,
+export const deleteEmailMxplanAccountFullAccess: API.OperationMethod<
+  DeleteEmailMxplanAccountFullAccessRequest,
   EmailProTask,
-  DeleteEmailMxplanServiceAccountEmailFullAccessAllowedAccountIdError,
+  DeleteEmailMxplanAccountFullAccessError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteEmailMxplanServiceAccountEmailFullAccessAllowedAccountIdRequest,
+  input: DeleteEmailMxplanAccountFullAccessRequest,
   output: EmailProTask,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteEmailMxplanServiceAccountEmailSendAsAllowedAccountIdError =
-  OvhOpError;
+export type DeleteEmailMxplanAccountSendAsError = OvhOpError;
 /** Delete allowed user for sendAs */
-export const deleteEmailMxplanServiceAccountEmailSendAsAllowedAccountId: API.OperationMethod<
-  DeleteEmailMxplanServiceAccountEmailSendAsAllowedAccountIdRequest,
+export const deleteEmailMxplanAccountSendAs: API.OperationMethod<
+  DeleteEmailMxplanAccountSendAsRequest,
   EmailProTask,
-  DeleteEmailMxplanServiceAccountEmailSendAsAllowedAccountIdError,
+  DeleteEmailMxplanAccountSendAsError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteEmailMxplanServiceAccountEmailSendAsAllowedAccountIdRequest,
+  input: DeleteEmailMxplanAccountSendAsRequest,
   output: EmailProTask,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteEmailMxplanServiceAccountEmailSendOnBehalfToAllowedAccountIdError =
-  OvhOpError;
+export type DeleteEmailMxplanAccountSendOnBehalfToError = OvhOpError;
 /** Delete allowed user for SendOnBehalfTo */
-export const deleteEmailMxplanServiceAccountEmailSendOnBehalfToAllowedAccountId: API.OperationMethod<
-  DeleteEmailMxplanServiceAccountEmailSendOnBehalfToAllowedAccountIdRequest,
+export const deleteEmailMxplanAccountSendOnBehalfTo: API.OperationMethod<
+  DeleteEmailMxplanAccountSendOnBehalfToRequest,
   EmailProTask,
-  DeleteEmailMxplanServiceAccountEmailSendOnBehalfToAllowedAccountIdError,
+  DeleteEmailMxplanAccountSendOnBehalfToError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input:
-    DeleteEmailMxplanServiceAccountEmailSendOnBehalfToAllowedAccountIdRequest,
+  input: DeleteEmailMxplanAccountSendOnBehalfToRequest,
   output: EmailProTask,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteEmailMxplanServiceDomainDomainNameDisclaimerError =
-  OvhOpError;
+export type DeleteEmailMxplanDomainDisclaimerError = OvhOpError;
 /** Delete existing organization disclaimer */
-export const deleteEmailMxplanServiceDomainDomainNameDisclaimer: API.OperationMethod<
-  DeleteEmailMxplanServiceDomainDomainNameDisclaimerRequest,
+export const deleteEmailMxplanDomainDisclaimer: API.OperationMethod<
+  DeleteEmailMxplanDomainDisclaimerRequest,
   EmailProTask,
-  DeleteEmailMxplanServiceDomainDomainNameDisclaimerError,
+  DeleteEmailMxplanDomainDisclaimerError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteEmailMxplanServiceDomainDomainNameDisclaimerRequest,
+  input: DeleteEmailMxplanDomainDisclaimerRequest,
   output: EmailProTask,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteEmailMxplanServiceExternalContactExternalEmailAddressError =
-  OvhOpError;
+export type DeleteEmailMxplanExternalContactError = OvhOpError;
 /** delete external contact */
-export const deleteEmailMxplanServiceExternalContactExternalEmailAddress: API.OperationMethod<
-  DeleteEmailMxplanServiceExternalContactExternalEmailAddressRequest,
+export const deleteEmailMxplanExternalContact: API.OperationMethod<
+  DeleteEmailMxplanExternalContactRequest,
   EmailProTask,
-  DeleteEmailMxplanServiceExternalContactExternalEmailAddressError,
+  DeleteEmailMxplanExternalContactError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteEmailMxplanServiceExternalContactExternalEmailAddressRequest,
+  input: DeleteEmailMxplanExternalContactRequest,
   output: EmailProTask,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
@@ -2227,591 +2269,495 @@ export const deleteEmailMxplanServiceExternalContactExternalEmailAddress: API.Op
 }));
 
 export type GetEmailMxplanError = OvhOpError;
-/** List available services */
+/** Get this object properties */
 export const getEmailMxplan: API.OperationMethod<
   GetEmailMxplanRequest,
-  GetEmailMxplanResponse,
+  EmailMxplanServiceWithIAM,
   GetEmailMxplanError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: GetEmailMxplanRequest,
-  output: GetEmailMxplanResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetEmailMxplanServiceError = OvhOpError;
-/** Get this object properties */
-export const getEmailMxplanService: API.OperationMethod<
-  GetEmailMxplanServiceRequest,
-  EmailMxplanServiceWithIAM,
-  GetEmailMxplanServiceError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetEmailMxplanServiceRequest,
   output: EmailMxplanServiceWithIAM,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetEmailMxplanServiceAccountError = OvhOpError;
-/** Accounts associated to this mxplan service */
-export const getEmailMxplanServiceAccount: API.OperationMethod<
-  GetEmailMxplanServiceAccountRequest,
-  GetEmailMxplanServiceAccountResponse,
-  GetEmailMxplanServiceAccountError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetEmailMxplanServiceAccountRequest,
-  output: GetEmailMxplanServiceAccountResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetEmailMxplanServiceAccountEmailError = OvhOpError;
+export type GetEmailMxplanAccountError = OvhOpError;
 /** Get this object properties */
-export const getEmailMxplanServiceAccountEmail: API.OperationMethod<
-  GetEmailMxplanServiceAccountEmailRequest,
+export const getEmailMxplanAccount: API.OperationMethod<
+  GetEmailMxplanAccountRequest,
   EmailMxplanAccount,
-  GetEmailMxplanServiceAccountEmailError,
+  GetEmailMxplanAccountError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetEmailMxplanServiceAccountEmailRequest,
+  input: GetEmailMxplanAccountRequest,
   output: EmailMxplanAccount,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetEmailMxplanServiceAccountEmailAliasError = OvhOpError;
-/** Aliases associated to this mailbox */
-export const getEmailMxplanServiceAccountEmailAlias: API.OperationMethod<
-  GetEmailMxplanServiceAccountEmailAliasRequest,
-  GetEmailMxplanServiceAccountEmailAliasResponse,
-  GetEmailMxplanServiceAccountEmailAliasError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetEmailMxplanServiceAccountEmailAliasRequest,
-  output: GetEmailMxplanServiceAccountEmailAliasResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetEmailMxplanServiceAccountEmailAliasAliasError = OvhOpError;
+export type GetEmailMxplanAccountAliasError = OvhOpError;
 /** Get this object properties */
-export const getEmailMxplanServiceAccountEmailAliasAlias: API.OperationMethod<
-  GetEmailMxplanServiceAccountEmailAliasAliasRequest,
+export const getEmailMxplanAccountAlias: API.OperationMethod<
+  GetEmailMxplanAccountAliasRequest,
   EmailMxplanAccountAlias,
-  GetEmailMxplanServiceAccountEmailAliasAliasError,
+  GetEmailMxplanAccountAliasError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetEmailMxplanServiceAccountEmailAliasAliasRequest,
+  input: GetEmailMxplanAccountAliasRequest,
   output: EmailMxplanAccountAlias,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetEmailMxplanServiceAccountEmailCapabilitiesError = OvhOpError;
-/** Get available capabilities for this account */
-export const getEmailMxplanServiceAccountEmailCapabilities: API.OperationMethod<
-  GetEmailMxplanServiceAccountEmailCapabilitiesRequest,
-  EmailMxplanAccountCapabilities,
-  GetEmailMxplanServiceAccountEmailCapabilitiesError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetEmailMxplanServiceAccountEmailCapabilitiesRequest,
-  output: EmailMxplanAccountCapabilities,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetEmailMxplanServiceAccountEmailDiagnosticError = OvhOpError;
+export type GetEmailMxplanAccountDiagnosticError = OvhOpError;
 /** Get this object properties */
-export const getEmailMxplanServiceAccountEmailDiagnostic: API.OperationMethod<
-  GetEmailMxplanServiceAccountEmailDiagnosticRequest,
+export const getEmailMxplanAccountDiagnostic: API.OperationMethod<
+  GetEmailMxplanAccountDiagnosticRequest,
   EmailMxplanAccountDiagnosis,
-  GetEmailMxplanServiceAccountEmailDiagnosticError,
+  GetEmailMxplanAccountDiagnosticError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetEmailMxplanServiceAccountEmailDiagnosticRequest,
+  input: GetEmailMxplanAccountDiagnosticRequest,
   output: EmailMxplanAccountDiagnosis,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetEmailMxplanServiceAccountEmailFullAccessError = OvhOpError;
-/** Full access granted users for this mailbox */
-export const getEmailMxplanServiceAccountEmailFullAccess: API.OperationMethod<
-  GetEmailMxplanServiceAccountEmailFullAccessRequest,
-  GetEmailMxplanServiceAccountEmailFullAccessResponse,
-  GetEmailMxplanServiceAccountEmailFullAccessError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetEmailMxplanServiceAccountEmailFullAccessRequest,
-  output: GetEmailMxplanServiceAccountEmailFullAccessResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetEmailMxplanServiceAccountEmailFullAccessAllowedAccountIdError =
-  OvhOpError;
+export type GetEmailMxplanAccountFullAccessError = OvhOpError;
 /** Get this object properties */
-export const getEmailMxplanServiceAccountEmailFullAccessAllowedAccountId: API.OperationMethod<
-  GetEmailMxplanServiceAccountEmailFullAccessAllowedAccountIdRequest,
+export const getEmailMxplanAccountFullAccess: API.OperationMethod<
+  GetEmailMxplanAccountFullAccessRequest,
   EmailMxplanAccountFullAccess,
-  GetEmailMxplanServiceAccountEmailFullAccessAllowedAccountIdError,
+  GetEmailMxplanAccountFullAccessError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetEmailMxplanServiceAccountEmailFullAccessAllowedAccountIdRequest,
+  input: GetEmailMxplanAccountFullAccessRequest,
   output: EmailMxplanAccountFullAccess,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetEmailMxplanServiceAccountEmailSendAsError = OvhOpError;
-/** Send as granted users for this mailbox */
-export const getEmailMxplanServiceAccountEmailSendAs: API.OperationMethod<
-  GetEmailMxplanServiceAccountEmailSendAsRequest,
-  GetEmailMxplanServiceAccountEmailSendAsResponse,
-  GetEmailMxplanServiceAccountEmailSendAsError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetEmailMxplanServiceAccountEmailSendAsRequest,
-  output: GetEmailMxplanServiceAccountEmailSendAsResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetEmailMxplanServiceAccountEmailSendAsAllowedAccountIdError =
-  OvhOpError;
+export type GetEmailMxplanAccountSendAsError = OvhOpError;
 /** Get this object properties */
-export const getEmailMxplanServiceAccountEmailSendAsAllowedAccountId: API.OperationMethod<
-  GetEmailMxplanServiceAccountEmailSendAsAllowedAccountIdRequest,
+export const getEmailMxplanAccountSendAs: API.OperationMethod<
+  GetEmailMxplanAccountSendAsRequest,
   EmailMxplanAccountSendAs,
-  GetEmailMxplanServiceAccountEmailSendAsAllowedAccountIdError,
+  GetEmailMxplanAccountSendAsError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetEmailMxplanServiceAccountEmailSendAsAllowedAccountIdRequest,
+  input: GetEmailMxplanAccountSendAsRequest,
   output: EmailMxplanAccountSendAs,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetEmailMxplanServiceAccountEmailSendOnBehalfToError = OvhOpError;
-/** SendOnBehalfTo granted users for this mailbox */
-export const getEmailMxplanServiceAccountEmailSendOnBehalfTo: API.OperationMethod<
-  GetEmailMxplanServiceAccountEmailSendOnBehalfToRequest,
-  GetEmailMxplanServiceAccountEmailSendOnBehalfToResponse,
-  GetEmailMxplanServiceAccountEmailSendOnBehalfToError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetEmailMxplanServiceAccountEmailSendOnBehalfToRequest,
-  output: GetEmailMxplanServiceAccountEmailSendOnBehalfToResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetEmailMxplanServiceAccountEmailSendOnBehalfToAllowedAccountIdError =
-  OvhOpError;
+export type GetEmailMxplanAccountSendOnBehalfToError = OvhOpError;
 /** Get this object properties */
-export const getEmailMxplanServiceAccountEmailSendOnBehalfToAllowedAccountId: API.OperationMethod<
-  GetEmailMxplanServiceAccountEmailSendOnBehalfToAllowedAccountIdRequest,
+export const getEmailMxplanAccountSendOnBehalfTo: API.OperationMethod<
+  GetEmailMxplanAccountSendOnBehalfToRequest,
   EmailMxplanAccountSendOnBehalfTo,
-  GetEmailMxplanServiceAccountEmailSendOnBehalfToAllowedAccountIdError,
+  GetEmailMxplanAccountSendOnBehalfToError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetEmailMxplanServiceAccountEmailSendOnBehalfToAllowedAccountIdRequest,
+  input: GetEmailMxplanAccountSendOnBehalfToRequest,
   output: EmailMxplanAccountSendOnBehalfTo,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetEmailMxplanServiceAccountEmailTaskError = OvhOpError;
-/** Pending task for this mailbox */
-export const getEmailMxplanServiceAccountEmailTask: API.OperationMethod<
-  GetEmailMxplanServiceAccountEmailTaskRequest,
-  GetEmailMxplanServiceAccountEmailTaskResponse,
-  GetEmailMxplanServiceAccountEmailTaskError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetEmailMxplanServiceAccountEmailTaskRequest,
-  output: GetEmailMxplanServiceAccountEmailTaskResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetEmailMxplanServiceAccountEmailTaskIdError = OvhOpError;
+export type GetEmailMxplanAccountTaskError = OvhOpError;
 /** Get this object properties */
-export const getEmailMxplanServiceAccountEmailTaskId: API.OperationMethod<
-  GetEmailMxplanServiceAccountEmailTaskIdRequest,
+export const getEmailMxplanAccountTask: API.OperationMethod<
+  GetEmailMxplanAccountTaskRequest,
   EmailProTask,
-  GetEmailMxplanServiceAccountEmailTaskIdError,
+  GetEmailMxplanAccountTaskError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetEmailMxplanServiceAccountEmailTaskIdRequest,
+  input: GetEmailMxplanAccountTaskRequest,
   output: EmailProTask,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetEmailMxplanServiceDomainError = OvhOpError;
-/** Domains associated to this service */
-export const getEmailMxplanServiceDomain: API.OperationMethod<
-  GetEmailMxplanServiceDomainRequest,
-  GetEmailMxplanServiceDomainResponse,
-  GetEmailMxplanServiceDomainError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetEmailMxplanServiceDomainRequest,
-  output: GetEmailMxplanServiceDomainResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetEmailMxplanServiceDomainDomainNameError = OvhOpError;
+export type GetEmailMxplanDomainError = OvhOpError;
 /** Get this object properties */
-export const getEmailMxplanServiceDomainDomainName: API.OperationMethod<
-  GetEmailMxplanServiceDomainDomainNameRequest,
+export const getEmailMxplanDomain: API.OperationMethod<
+  GetEmailMxplanDomainRequest,
   EmailMxplanDomain,
-  GetEmailMxplanServiceDomainDomainNameError,
+  GetEmailMxplanDomainError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetEmailMxplanServiceDomainDomainNameRequest,
+  input: GetEmailMxplanDomainRequest,
   output: EmailMxplanDomain,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetEmailMxplanServiceDomainDomainNameDisclaimerError = OvhOpError;
+export type GetEmailMxplanDomainDisclaimerError = OvhOpError;
 /** Get this object properties */
-export const getEmailMxplanServiceDomainDomainNameDisclaimer: API.OperationMethod<
-  GetEmailMxplanServiceDomainDomainNameDisclaimerRequest,
+export const getEmailMxplanDomainDisclaimer: API.OperationMethod<
+  GetEmailMxplanDomainDisclaimerRequest,
   EmailProDisclaimer,
-  GetEmailMxplanServiceDomainDomainNameDisclaimerError,
+  GetEmailMxplanDomainDisclaimerError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetEmailMxplanServiceDomainDomainNameDisclaimerRequest,
+  input: GetEmailMxplanDomainDisclaimerRequest,
   output: EmailProDisclaimer,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetEmailMxplanServiceDomainDomainNameDisclaimerAttributeError =
-  OvhOpError;
-/** Get diclaimer attributes to substitute with Active Directory properties */
-export const getEmailMxplanServiceDomainDomainNameDisclaimerAttribute: API.OperationMethod<
-  GetEmailMxplanServiceDomainDomainNameDisclaimerAttributeRequest,
-  GetEmailMxplanServiceDomainDomainNameDisclaimerAttributeResponse,
-  GetEmailMxplanServiceDomainDomainNameDisclaimerAttributeError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetEmailMxplanServiceDomainDomainNameDisclaimerAttributeRequest,
-  output: GetEmailMxplanServiceDomainDomainNameDisclaimerAttributeResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetEmailMxplanServiceExternalContactError = OvhOpError;
-/** External contacts for this service */
-export const getEmailMxplanServiceExternalContact: API.OperationMethod<
-  GetEmailMxplanServiceExternalContactRequest,
-  GetEmailMxplanServiceExternalContactResponse,
-  GetEmailMxplanServiceExternalContactError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetEmailMxplanServiceExternalContactRequest,
-  output: GetEmailMxplanServiceExternalContactResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetEmailMxplanServiceExternalContactExternalEmailAddressError =
-  OvhOpError;
+export type GetEmailMxplanExternalContactError = OvhOpError;
 /** Get this object properties */
-export const getEmailMxplanServiceExternalContactExternalEmailAddress: API.OperationMethod<
-  GetEmailMxplanServiceExternalContactExternalEmailAddressRequest,
+export const getEmailMxplanExternalContact: API.OperationMethod<
+  GetEmailMxplanExternalContactRequest,
   EmailMxplanExternalContact,
-  GetEmailMxplanServiceExternalContactExternalEmailAddressError,
+  GetEmailMxplanExternalContactError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetEmailMxplanServiceExternalContactExternalEmailAddressRequest,
+  input: GetEmailMxplanExternalContactRequest,
   output: EmailMxplanExternalContact,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetEmailMxplanServiceServerError = OvhOpError;
+export type GetEmailMxplanServerError = OvhOpError;
 /** Get this object properties */
-export const getEmailMxplanServiceServer: API.OperationMethod<
-  GetEmailMxplanServiceServerRequest,
+export const getEmailMxplanServer: API.OperationMethod<
+  GetEmailMxplanServerRequest,
   EmailMxplanServer,
-  GetEmailMxplanServiceServerError,
+  GetEmailMxplanServerError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetEmailMxplanServiceServerRequest,
+  input: GetEmailMxplanServerRequest,
   output: EmailMxplanServer,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetEmailMxplanServiceTaskError = OvhOpError;
-/** Pending actions */
-export const getEmailMxplanServiceTask: API.OperationMethod<
-  GetEmailMxplanServiceTaskRequest,
-  GetEmailMxplanServiceTaskResponse,
-  GetEmailMxplanServiceTaskError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetEmailMxplanServiceTaskRequest,
-  output: GetEmailMxplanServiceTaskResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetEmailMxplanServiceTaskIdError = OvhOpError;
+export type GetEmailMxplanTaskError = OvhOpError;
 /** Get this object properties */
-export const getEmailMxplanServiceTaskId: API.OperationMethod<
-  GetEmailMxplanServiceTaskIdRequest,
+export const getEmailMxplanTask: API.OperationMethod<
+  GetEmailMxplanTaskRequest,
   EmailProTask,
-  GetEmailMxplanServiceTaskIdError,
+  GetEmailMxplanTaskError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetEmailMxplanServiceTaskIdRequest,
+  input: GetEmailMxplanTaskRequest,
   output: EmailProTask,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostEmailMxplanServiceAccountEmailAliasError = OvhOpError;
-/** Create new alias */
-export const postEmailMxplanServiceAccountEmailAlias: API.OperationMethod<
-  PostEmailMxplanServiceAccountEmailAliasRequest,
-  EmailProTask,
-  PostEmailMxplanServiceAccountEmailAliasError,
+export type ListEmailMxplanError = OvhOpError;
+/** List available services */
+export const listEmailMxplan: API.OperationMethod<
+  ListEmailMxplanRequest,
+  ListEmailMxplanResponse,
+  ListEmailMxplanError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostEmailMxplanServiceAccountEmailAliasRequest,
-  output: EmailProTask,
+  input: ListEmailMxplanRequest,
+  output: ListEmailMxplanResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostEmailMxplanServiceAccountEmailChangePasswordError = OvhOpError;
-/** Change mailbox password */
-export const postEmailMxplanServiceAccountEmailChangePassword: API.OperationMethod<
-  PostEmailMxplanServiceAccountEmailChangePasswordRequest,
-  EmailProTask,
-  PostEmailMxplanServiceAccountEmailChangePasswordError,
+export type ListEmailMxplanAccountError = OvhOpError;
+/** Accounts associated to this mxplan service */
+export const listEmailMxplanAccount: API.OperationMethod<
+  ListEmailMxplanAccountRequest,
+  ListEmailMxplanAccountResponse,
+  ListEmailMxplanAccountError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostEmailMxplanServiceAccountEmailChangePasswordRequest,
-  output: EmailProTask,
+  input: ListEmailMxplanAccountRequest,
+  output: ListEmailMxplanAccountResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostEmailMxplanServiceAccountEmailDiagnosticError = OvhOpError;
-/** Create new diagnosis request */
-export const postEmailMxplanServiceAccountEmailDiagnostic: API.OperationMethod<
-  PostEmailMxplanServiceAccountEmailDiagnosticRequest,
-  EmailProTask,
-  PostEmailMxplanServiceAccountEmailDiagnosticError,
+export type ListEmailMxplanAccountAliasError = OvhOpError;
+/** Aliases associated to this mailbox */
+export const listEmailMxplanAccountAlias: API.OperationMethod<
+  ListEmailMxplanAccountAliasRequest,
+  ListEmailMxplanAccountAliasResponse,
+  ListEmailMxplanAccountAliasError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostEmailMxplanServiceAccountEmailDiagnosticRequest,
-  output: EmailProTask,
+  input: ListEmailMxplanAccountAliasRequest,
+  output: ListEmailMxplanAccountAliasResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostEmailMxplanServiceAccountEmailFullAccessError = OvhOpError;
-/** Allow full access to a user */
-export const postEmailMxplanServiceAccountEmailFullAccess: API.OperationMethod<
-  PostEmailMxplanServiceAccountEmailFullAccessRequest,
-  EmailProTask,
-  PostEmailMxplanServiceAccountEmailFullAccessError,
+export type ListEmailMxplanAccountCapabilitiesError = OvhOpError;
+/** Get available capabilities for this account */
+export const listEmailMxplanAccountCapabilities: API.OperationMethod<
+  ListEmailMxplanAccountCapabilitiesRequest,
+  EmailMxplanAccountCapabilities,
+  ListEmailMxplanAccountCapabilitiesError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostEmailMxplanServiceAccountEmailFullAccessRequest,
-  output: EmailProTask,
+  input: ListEmailMxplanAccountCapabilitiesRequest,
+  output: EmailMxplanAccountCapabilities,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostEmailMxplanServiceAccountEmailSendAsError = OvhOpError;
+export type ListEmailMxplanAccountFullAccessError = OvhOpError;
+/** Full access granted users for this mailbox */
+export const listEmailMxplanAccountFullAccess: API.OperationMethod<
+  ListEmailMxplanAccountFullAccessRequest,
+  ListEmailMxplanAccountFullAccessResponse,
+  ListEmailMxplanAccountFullAccessError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListEmailMxplanAccountFullAccessRequest,
+  output: ListEmailMxplanAccountFullAccessResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListEmailMxplanAccountSendAsError = OvhOpError;
+/** Send as granted users for this mailbox */
+export const listEmailMxplanAccountSendAs: API.OperationMethod<
+  ListEmailMxplanAccountSendAsRequest,
+  ListEmailMxplanAccountSendAsResponse,
+  ListEmailMxplanAccountSendAsError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListEmailMxplanAccountSendAsRequest,
+  output: ListEmailMxplanAccountSendAsResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListEmailMxplanAccountSendOnBehalfToError = OvhOpError;
+/** SendOnBehalfTo granted users for this mailbox */
+export const listEmailMxplanAccountSendOnBehalfTo: API.OperationMethod<
+  ListEmailMxplanAccountSendOnBehalfToRequest,
+  ListEmailMxplanAccountSendOnBehalfToResponse,
+  ListEmailMxplanAccountSendOnBehalfToError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListEmailMxplanAccountSendOnBehalfToRequest,
+  output: ListEmailMxplanAccountSendOnBehalfToResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListEmailMxplanAccountTaskError = OvhOpError;
+/** Pending task for this mailbox */
+export const listEmailMxplanAccountTask: API.OperationMethod<
+  ListEmailMxplanAccountTaskRequest,
+  ListEmailMxplanAccountTaskResponse,
+  ListEmailMxplanAccountTaskError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListEmailMxplanAccountTaskRequest,
+  output: ListEmailMxplanAccountTaskResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListEmailMxplanDomainError = OvhOpError;
+/** Domains associated to this service */
+export const listEmailMxplanDomain: API.OperationMethod<
+  ListEmailMxplanDomainRequest,
+  ListEmailMxplanDomainResponse,
+  ListEmailMxplanDomainError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListEmailMxplanDomainRequest,
+  output: ListEmailMxplanDomainResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListEmailMxplanDomainDisclaimerAttributeError = OvhOpError;
+/** Get diclaimer attributes to substitute with Active Directory properties */
+export const listEmailMxplanDomainDisclaimerAttribute: API.OperationMethod<
+  ListEmailMxplanDomainDisclaimerAttributeRequest,
+  ListEmailMxplanDomainDisclaimerAttributeResponse,
+  ListEmailMxplanDomainDisclaimerAttributeError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListEmailMxplanDomainDisclaimerAttributeRequest,
+  output: ListEmailMxplanDomainDisclaimerAttributeResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListEmailMxplanExternalContactError = OvhOpError;
+/** External contacts for this service */
+export const listEmailMxplanExternalContact: API.OperationMethod<
+  ListEmailMxplanExternalContactRequest,
+  ListEmailMxplanExternalContactResponse,
+  ListEmailMxplanExternalContactError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListEmailMxplanExternalContactRequest,
+  output: ListEmailMxplanExternalContactResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListEmailMxplanTaskError = OvhOpError;
+/** Pending actions */
+export const listEmailMxplanTask: API.OperationMethod<
+  ListEmailMxplanTaskRequest,
+  ListEmailMxplanTaskResponse,
+  ListEmailMxplanTaskError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListEmailMxplanTaskRequest,
+  output: ListEmailMxplanTaskResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutEmailMxplanError = OvhOpError;
+/** Alter this object properties */
+export const putEmailMxplan: API.OperationMethod<
+  PutEmailMxplanRequest,
+  PutEmailMxplanResponse,
+  PutEmailMxplanError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutEmailMxplanRequest,
+  output: PutEmailMxplanResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutEmailMxplanAccountError = OvhOpError;
+/** Alter this object properties */
+export const putEmailMxplanAccount: API.OperationMethod<
+  PutEmailMxplanAccountRequest,
+  PutEmailMxplanAccountResponse,
+  PutEmailMxplanAccountError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutEmailMxplanAccountRequest,
+  output: PutEmailMxplanAccountResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutEmailMxplanDomainError = OvhOpError;
+/** Alter this object properties */
+export const putEmailMxplanDomain: API.OperationMethod<
+  PutEmailMxplanDomainRequest,
+  PutEmailMxplanDomainResponse,
+  PutEmailMxplanDomainError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutEmailMxplanDomainRequest,
+  output: PutEmailMxplanDomainResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutEmailMxplanDomainDisclaimerError = OvhOpError;
+/** Alter this object properties */
+export const putEmailMxplanDomainDisclaimer: API.OperationMethod<
+  PutEmailMxplanDomainDisclaimerRequest,
+  PutEmailMxplanDomainDisclaimerResponse,
+  PutEmailMxplanDomainDisclaimerError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutEmailMxplanDomainDisclaimerRequest,
+  output: PutEmailMxplanDomainDisclaimerResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutEmailMxplanExternalContactError = OvhOpError;
+/** Alter this object properties */
+export const putEmailMxplanExternalContact: API.OperationMethod<
+  PutEmailMxplanExternalContactRequest,
+  PutEmailMxplanExternalContactResponse,
+  PutEmailMxplanExternalContactError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutEmailMxplanExternalContactRequest,
+  output: PutEmailMxplanExternalContactResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type SendEmailMxplanAccountAsError = OvhOpError;
 /** Allow another user to send mails from this mailbox */
-export const postEmailMxplanServiceAccountEmailSendAs: API.OperationMethod<
-  PostEmailMxplanServiceAccountEmailSendAsRequest,
+export const sendEmailMxplanAccountAs: API.OperationMethod<
+  SendEmailMxplanAccountAsRequest,
   EmailProTask,
-  PostEmailMxplanServiceAccountEmailSendAsError,
+  SendEmailMxplanAccountAsError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostEmailMxplanServiceAccountEmailSendAsRequest,
+  input: SendEmailMxplanAccountAsRequest,
   output: EmailProTask,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostEmailMxplanServiceAccountEmailSendOnBehalfToError = OvhOpError;
+export type SendEmailMxplanAccountOnBehalfToError = OvhOpError;
 /** Allow another user to Send On Behalf To mails from this mailbox */
-export const postEmailMxplanServiceAccountEmailSendOnBehalfTo: API.OperationMethod<
-  PostEmailMxplanServiceAccountEmailSendOnBehalfToRequest,
+export const sendEmailMxplanAccountOnBehalfTo: API.OperationMethod<
+  SendEmailMxplanAccountOnBehalfToRequest,
   EmailProTask,
-  PostEmailMxplanServiceAccountEmailSendOnBehalfToError,
+  SendEmailMxplanAccountOnBehalfToError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostEmailMxplanServiceAccountEmailSendOnBehalfToRequest,
+  input: SendEmailMxplanAccountOnBehalfToRequest,
   output: EmailProTask,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostEmailMxplanServiceDomainDomainNameDisclaimerError = OvhOpError;
-/** Create organization disclaimer of each email */
-export const postEmailMxplanServiceDomainDomainNameDisclaimer: API.OperationMethod<
-  PostEmailMxplanServiceDomainDomainNameDisclaimerRequest,
-  EmailProTask,
-  PostEmailMxplanServiceDomainDomainNameDisclaimerError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostEmailMxplanServiceDomainDomainNameDisclaimerRequest,
-  output: EmailProTask,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostEmailMxplanServiceExternalContactError = OvhOpError;
-/** create new external contact */
-export const postEmailMxplanServiceExternalContact: API.OperationMethod<
-  PostEmailMxplanServiceExternalContactRequest,
-  EmailProTask,
-  PostEmailMxplanServiceExternalContactError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostEmailMxplanServiceExternalContactRequest,
-  output: EmailProTask,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostEmailMxplanServiceUpdateFlagsOnAllAccountsError = OvhOpError;
+export type UpdateEmailMxplanFlagsOnAllAccountsError = OvhOpError;
 /** Update spam and virus flags on all active accounts */
-export const postEmailMxplanServiceUpdateFlagsOnAllAccounts: API.OperationMethod<
-  PostEmailMxplanServiceUpdateFlagsOnAllAccountsRequest,
-  PostEmailMxplanServiceUpdateFlagsOnAllAccountsResponse,
-  PostEmailMxplanServiceUpdateFlagsOnAllAccountsError,
+export const updateEmailMxplanFlagsOnAllAccounts: API.OperationMethod<
+  UpdateEmailMxplanFlagsOnAllAccountsRequest,
+  UpdateEmailMxplanFlagsOnAllAccountsResponse,
+  UpdateEmailMxplanFlagsOnAllAccountsError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostEmailMxplanServiceUpdateFlagsOnAllAccountsRequest,
-  output: PostEmailMxplanServiceUpdateFlagsOnAllAccountsResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PutEmailMxplanServiceError = OvhOpError;
-/** Alter this object properties */
-export const putEmailMxplanService: API.OperationMethod<
-  PutEmailMxplanServiceRequest,
-  PutEmailMxplanServiceResponse,
-  PutEmailMxplanServiceError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PutEmailMxplanServiceRequest,
-  output: PutEmailMxplanServiceResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PutEmailMxplanServiceAccountEmailError = OvhOpError;
-/** Alter this object properties */
-export const putEmailMxplanServiceAccountEmail: API.OperationMethod<
-  PutEmailMxplanServiceAccountEmailRequest,
-  PutEmailMxplanServiceAccountEmailResponse,
-  PutEmailMxplanServiceAccountEmailError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PutEmailMxplanServiceAccountEmailRequest,
-  output: PutEmailMxplanServiceAccountEmailResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PutEmailMxplanServiceDomainDomainNameError = OvhOpError;
-/** Alter this object properties */
-export const putEmailMxplanServiceDomainDomainName: API.OperationMethod<
-  PutEmailMxplanServiceDomainDomainNameRequest,
-  PutEmailMxplanServiceDomainDomainNameResponse,
-  PutEmailMxplanServiceDomainDomainNameError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PutEmailMxplanServiceDomainDomainNameRequest,
-  output: PutEmailMxplanServiceDomainDomainNameResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PutEmailMxplanServiceDomainDomainNameDisclaimerError = OvhOpError;
-/** Alter this object properties */
-export const putEmailMxplanServiceDomainDomainNameDisclaimer: API.OperationMethod<
-  PutEmailMxplanServiceDomainDomainNameDisclaimerRequest,
-  PutEmailMxplanServiceDomainDomainNameDisclaimerResponse,
-  PutEmailMxplanServiceDomainDomainNameDisclaimerError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PutEmailMxplanServiceDomainDomainNameDisclaimerRequest,
-  output: PutEmailMxplanServiceDomainDomainNameDisclaimerResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PutEmailMxplanServiceExternalContactExternalEmailAddressError =
-  OvhOpError;
-/** Alter this object properties */
-export const putEmailMxplanServiceExternalContactExternalEmailAddress: API.OperationMethod<
-  PutEmailMxplanServiceExternalContactExternalEmailAddressRequest,
-  PutEmailMxplanServiceExternalContactExternalEmailAddressResponse,
-  PutEmailMxplanServiceExternalContactExternalEmailAddressError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PutEmailMxplanServiceExternalContactExternalEmailAddressRequest,
-  output: PutEmailMxplanServiceExternalContactExternalEmailAddressResponse,
+  input: UpdateEmailMxplanFlagsOnAllAccountsRequest,
+  output: UpdateEmailMxplanFlagsOnAllAccountsResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,

@@ -13,6 +13,98 @@ import * as Retry from "../retry.ts";
 
 export type { OvhOpError, OvhOpContext };
 
+/** Type of claim notice */
+export type DomainApproveTypeEnum = "accept" | "reject";
+export const DomainApproveTypeEnum = /*@__PURE__*/ S.String;
+
+export interface ApproveDomainOutgoingTransferRequest {
+  /** Service name */
+  serviceName: string;
+  /** Approve type for outgoing transfer */
+  approveType?: DomainApproveTypeEnum | (string & {});
+  /** Token given by email to validate identity */
+  ident?: string;
+}
+export const ApproveDomainOutgoingTransferRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      approveType: S.optional(DomainApproveTypeEnum),
+      ident: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/domain/{serviceName}/outgoingTransfer/approve",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ApproveDomainOutgoingTransferRequest",
+}) as any as S.Schema<ApproveDomainOutgoingTransferRequest>;
+
+export interface ApproveDomainOutgoingTransferResponse {}
+export const ApproveDomainOutgoingTransferResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "ApproveDomainOutgoingTransferResponse",
+}) as any as S.Schema<ApproveDomainOutgoingTransferResponse>;
+
+export interface CancelDomainTaskRequest {
+  /** Service name */
+  serviceName: string;
+  /** Id */
+  id: number;
+}
+export const CancelDomainTaskRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/domain/{serviceName}/task/{id}/cancel",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CancelDomainTaskRequest",
+}) as any as S.Schema<CancelDomainTaskRequest>;
+
+export interface CancelDomainTaskResponse {}
+export const CancelDomainTaskResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "CancelDomainTaskResponse",
+}) as any as S.Schema<CancelDomainTaskResponse>;
+
+export interface CancelDomainZoneTaskRequest {
+  /** Zone name */
+  zoneName: string;
+  /** Id */
+  id: number;
+}
+export const CancelDomainZoneTaskRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    zoneName: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/domain/zone/{zoneName}/task/{id}/cancel",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CancelDomainZoneTaskRequest",
+}) as any as S.Schema<CancelDomainZoneTaskRequest>;
+
+export interface CancelDomainZoneTaskResponse {}
+export const CancelDomainZoneTaskResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "CancelDomainZoneTaskResponse",
+}) as any as S.Schema<CancelDomainZoneTaskResponse>;
+
 export interface ChangePasswordDynDnsLoginRequest {
   /** Zone name */
   zoneName: string;
@@ -43,6 +135,10 @@ export const ChangePasswordDynDnsLoginResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ChangePasswordDynDnsLoginResponse",
 }) as any as S.Schema<ChangePasswordDynDnsLoginResponse>;
+
+/** An action to execute on a domain name */
+export type DomainActionEnum = "create" | "trade" | "transfer" | "update";
+export const DomainActionEnum = /*@__PURE__*/ S.String;
 
 /** Countries a nichandle can choose */
 export type NichandleCountryEnum =
@@ -302,6 +398,151 @@ export type NichandleCountryEnum =
   | "ZW";
 export const NichandleCountryEnum = /*@__PURE__*/ S.String;
 
+/** Languages a nichandle can choose */
+export type NichandleLanguageEnum =
+  | "cs_CZ"
+  | "de_DE"
+  | "en_AU"
+  | "en_CA"
+  | "en_GB"
+  | "en_IE"
+  | "en_US"
+  | "es_ES"
+  | "fi_FI"
+  | "fr_CA"
+  | "fr_FR"
+  | "fr_MA"
+  | "fr_SN"
+  | "fr_TN"
+  | "it_IT"
+  | "lt_LT"
+  | "nl_NL"
+  | "pl_PL"
+  | "pt_PT";
+export const NichandleLanguageEnum = /*@__PURE__*/ S.String;
+
+/** Legal forms a nichandle can be registered as */
+export type NichandleLegalFormEnum =
+  | "administration"
+  | "association"
+  | "corporation"
+  | "individual"
+  | "other"
+  | "personalcorporation";
+export const NichandleLegalFormEnum = /*@__PURE__*/ S.String;
+
+/** All phone type a person can choose */
+export type NichandlePhoneTypeEnum = "landline" | "mobile";
+export const NichandlePhoneTypeEnum = /*@__PURE__*/ S.String;
+
+/** All genders a person can choose */
+export type NichandleGenderEnum = "female" | "male";
+export const NichandleGenderEnum = /*@__PURE__*/ S.String;
+
+/** Details about your OVH identifier */
+export interface NichandleNichandleInput {
+  /** Address of nichandle */
+  address?: string | null;
+  /** Area of nichandle */
+  area?: string | null;
+  /** City of birth */
+  birthCity?: string | null;
+  /** Birth date */
+  birthDay?: string | null;
+  /** City of nichandle */
+  city?: string | null;
+  /** Company National Identification Number */
+  companyNationalIdentificationNumber?: string | null;
+  /** Complementary Address */
+  complementaryAddress?: string | null;
+  /** Corporation type */
+  corporationType?: string | null;
+  /** Customer country */
+  country?: NichandleCountryEnum | (string & {});
+  /** Display name shown instead of the organisation name. */
+  displayName?: string | null;
+  /** Fax number */
+  fax?: string | null;
+  /** First name */
+  firstname?: string | null;
+  /** Italian SDI */
+  italianSDI?: string | null;
+  /** Language */
+  language?: NichandleLanguageEnum | (string & {}) | null;
+  /** Customer legal form */
+  legalform?: NichandleLegalFormEnum | (string & {});
+  /** Customer name */
+  name?: string | null;
+  /** National Identification Number */
+  nationalIdentificationNumber?: string | null;
+  /** Name of organisation */
+  organisation?: string | null;
+  /** Phone number */
+  phone?: string | null;
+  phoneCountry?: NichandleCountryEnum | (string & {}) | null;
+  /** Type of phone(mobile, landline) */
+  phoneType?: NichandlePhoneTypeEnum | (string & {}) | null;
+  /** Customer purpose of purchase */
+  purposeOfPurchase?: string | null;
+  /** Gender */
+  sex?: NichandleGenderEnum | (string & {}) | null;
+  /** Spare email */
+  spareEmail?: string | null;
+  /** VAT number */
+  vat?: string | null;
+  /** Zipcode */
+  zip?: string | null;
+}
+export const NichandleNichandleInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    address: S.optional(S.NullOr(S.String)),
+    area: S.optional(S.NullOr(S.String)),
+    birthCity: S.optional(S.NullOr(S.String)),
+    birthDay: S.optional(S.NullOr(S.String)),
+    city: S.optional(S.NullOr(S.String)),
+    companyNationalIdentificationNumber: S.optional(S.NullOr(S.String)),
+    complementaryAddress: S.optional(S.NullOr(S.String)),
+    corporationType: S.optional(S.NullOr(S.String)),
+    country: S.optional(NichandleCountryEnum),
+    displayName: S.optional(S.NullOr(S.String)),
+    fax: S.optional(S.NullOr(S.String)),
+    firstname: S.optional(S.NullOr(S.String)),
+    italianSDI: S.optional(S.NullOr(S.String)),
+    language: S.optional(S.NullOr(NichandleLanguageEnum)),
+    legalform: S.optional(NichandleLegalFormEnum),
+    name: S.optional(S.NullOr(S.String)),
+    nationalIdentificationNumber: S.optional(S.NullOr(S.String)),
+    organisation: S.optional(S.NullOr(S.String)),
+    phone: S.optional(S.NullOr(S.String)),
+    phoneCountry: S.optional(S.NullOr(NichandleCountryEnum)),
+    phoneType: S.optional(S.NullOr(NichandlePhoneTypeEnum)),
+    purposeOfPurchase: S.optional(S.NullOr(S.String)),
+    sex: S.optional(S.NullOr(NichandleGenderEnum)),
+    spareEmail: S.optional(S.NullOr(S.String)),
+    vat: S.optional(S.NullOr(S.String)),
+    zip: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "NichandleNichandleInput",
+}) as any as S.Schema<NichandleNichandleInput>;
+
+/** The extra data contain additional rule data fields */
+export interface DomainConfigurationRulesRuleExtraData {
+  /** Whether you accept the domain specific conditions or not */
+  acceptCondition?: boolean | null;
+  /** The auth info code for the domain */
+  authInfo?: string | null;
+}
+export const DomainConfigurationRulesRuleExtraData = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      acceptCondition: S.optional(S.NullOr(S.Boolean)),
+      authInfo: S.optional(S.NullOr(S.String)),
+    }),
+).annotate({
+  identifier: "DomainConfigurationRulesRuleExtraData",
+}) as any as S.Schema<DomainConfigurationRulesRuleExtraData>;
+
 /** Missing description */
 export interface DomainContactAddress {
   /** City */
@@ -336,42 +577,244 @@ export const DomainContactAddress = /*@__PURE__*/ S.suspend(() =>
   identifier: "DomainContactAddress",
 }) as any as S.Schema<DomainContactAddress>;
 
-/** All genders a person can choose */
-export type NichandleGenderEnum = "female" | "male";
-export const NichandleGenderEnum = /*@__PURE__*/ S.String;
+/** A contact contains the personal data of a user */
+export interface DomainContactInput {
+  /** Country of lawyer accreditation */
+  accreditationCountry?: NichandleCountryEnum | (string & {}) | null;
+  /** Lawyer accreditation number */
+  accreditationId?: string | null;
+  /** Organism of lawyer accreditation */
+  accreditationOrganism?: string | null;
+  /** Year of lawyer accreditation */
+  accreditationYear?: number | null;
+  /** The address of the contact */
+  address?: DomainContactAddress | null;
+  /** City of birth */
+  birthCity?: string | null;
+  /** Birth Country */
+  birthCountry?: NichandleCountryEnum | (string & {}) | null;
+  /** Birth date */
+  birthDay?: string | null;
+  /** Birth Zipcode */
+  birthZip?: string | null;
+  /** Cellphone number */
+  cellPhone?: string | null;
+  /** Company National Identification Number */
+  companyNationalIdentificationNumber?: string | null;
+  /** Email address */
+  email?: string | null;
+  /** Enterprise identifier */
+  enterpriseId?: string | null;
+  /** Fax number */
+  fax?: string | null;
+  /** First name */
+  firstName?: string | null;
+  /** Gender */
+  gender?: NichandleGenderEnum | (string & {}) | null;
+  /** INSEE identifier */
+  insee?: string | null;
+  /** Language */
+  language?: NichandleLanguageEnum | (string & {}) | null;
+  /** Last name */
+  lastName?: string | null;
+  legalForm?: NichandleLegalFormEnum | (string & {}) | null;
+  /** category of legalForm */
+  legalFormCategory?: string | null;
+  /** National Identification Number */
+  nationalIdentificationNumber?: string | null;
+  /** Nationality */
+  nationality?: NichandleCountryEnum | (string & {}) | null;
+  /** To whom is the organisation accountable */
+  organisationAccountable?: string | null;
+  /** What is the source of funding */
+  organisationFunding?: string | null;
+  /** Explain the source of funding if organisationFunding is other */
+  organisationFundingOther?: string | null;
+  /** Name of organisation */
+  organisationName?: string | null;
+  /** Role of your organisation */
+  organisationRole?: string | null;
+  /** Explain the role of your organisation if organisationRole is other */
+  organisationRoleOther?: string | null;
+  /** Status of the staff */
+  organisationStaffStatus?: string | null;
+  /** Explain the status of the staff if organisationStaffStatus is other */
+  organisationStaffStatusOther?: string | null;
+  /** type of organisation */
+  organisationType?: string | null;
+  /** Explain the type of organisation if organisationType is other */
+  organisationTypeOther?: string | null;
+  /** Phone number */
+  phone?: string | null;
+  /** Type of registrant document */
+  registrantDocumentType?: string | null;
+  /** Explain the type of registrant document if registrantDocumentType is other */
+  registrantDocumentTypeOther?: string | null;
+  /** The role in the organisation */
+  roleInOrganisation?: string | null;
+  /** Trademark related to the contact */
+  trademarkId?: string | null;
+  /** VAT number */
+  vat?: string | null;
+  /** Website */
+  website?: string | null;
+}
+export const DomainContactInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accreditationCountry: S.optional(S.NullOr(NichandleCountryEnum)),
+    accreditationId: S.optional(S.NullOr(S.String)),
+    accreditationOrganism: S.optional(S.NullOr(S.String)),
+    accreditationYear: S.optional(S.NullOr(S.Number)),
+    address: S.optional(S.NullOr(DomainContactAddress)),
+    birthCity: S.optional(S.NullOr(S.String)),
+    birthCountry: S.optional(S.NullOr(NichandleCountryEnum)),
+    birthDay: S.optional(S.NullOr(S.String)),
+    birthZip: S.optional(S.NullOr(S.String)),
+    cellPhone: S.optional(S.NullOr(S.String)),
+    companyNationalIdentificationNumber: S.optional(S.NullOr(S.String)),
+    email: S.optional(S.NullOr(S.String)),
+    enterpriseId: S.optional(S.NullOr(S.String)),
+    fax: S.optional(S.NullOr(S.String)),
+    firstName: S.optional(S.NullOr(S.String)),
+    gender: S.optional(S.NullOr(NichandleGenderEnum)),
+    insee: S.optional(S.NullOr(S.String)),
+    language: S.optional(S.NullOr(NichandleLanguageEnum)),
+    lastName: S.optional(S.NullOr(S.String)),
+    legalForm: S.optional(S.NullOr(NichandleLegalFormEnum)),
+    legalFormCategory: S.optional(S.NullOr(S.String)),
+    nationalIdentificationNumber: S.optional(S.NullOr(S.String)),
+    nationality: S.optional(S.NullOr(NichandleCountryEnum)),
+    organisationAccountable: S.optional(S.NullOr(S.String)),
+    organisationFunding: S.optional(S.NullOr(S.String)),
+    organisationFundingOther: S.optional(S.NullOr(S.String)),
+    organisationName: S.optional(S.NullOr(S.String)),
+    organisationRole: S.optional(S.NullOr(S.String)),
+    organisationRoleOther: S.optional(S.NullOr(S.String)),
+    organisationStaffStatus: S.optional(S.NullOr(S.String)),
+    organisationStaffStatusOther: S.optional(S.NullOr(S.String)),
+    organisationType: S.optional(S.NullOr(S.String)),
+    organisationTypeOther: S.optional(S.NullOr(S.String)),
+    phone: S.optional(S.NullOr(S.String)),
+    registrantDocumentType: S.optional(S.NullOr(S.String)),
+    registrantDocumentTypeOther: S.optional(S.NullOr(S.String)),
+    roleInOrganisation: S.optional(S.NullOr(S.String)),
+    trademarkId: S.optional(S.NullOr(S.String)),
+    vat: S.optional(S.NullOr(S.String)),
+    website: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "DomainContactInput",
+}) as any as S.Schema<DomainContactInput>;
 
-/** Languages a nichandle can choose */
-export type NichandleLanguageEnum =
-  | "cs_CZ"
-  | "de_DE"
-  | "en_AU"
-  | "en_CA"
-  | "en_GB"
-  | "en_IE"
-  | "en_US"
-  | "es_ES"
-  | "fi_FI"
-  | "fr_CA"
-  | "fr_FR"
-  | "fr_MA"
-  | "fr_SN"
-  | "fr_TN"
-  | "it_IT"
-  | "lt_LT"
-  | "nl_NL"
-  | "pl_PL"
-  | "pt_PT";
-export const NichandleLanguageEnum = /*@__PURE__*/ S.String;
+export interface CheckDomainConfigurationRuleRequest {
+  /** Depending on the action, the applied rule will change (transfer vs create) */
+  action: DomainActionEnum | (string & {});
+  /** The domain to check the rule data for */
+  domain: string;
+  /** The admin contact data */
+  adminAccount?: NichandleNichandleInput | null;
+  /** The extra data of the rule */
+  extras?: DomainConfigurationRulesRuleExtraData | null;
+  /** The owner contact data */
+  owner?: DomainContactInput | null;
+  /** The tech contact data */
+  techAccount?: NichandleNichandleInput | null;
+}
+export const CheckDomainConfigurationRuleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    action: DomainActionEnum.pipe(T.Query()),
+    domain: S.String.pipe(T.Query()),
+    adminAccount: S.optional(S.NullOr(NichandleNichandleInput)),
+    extras: S.optional(S.NullOr(DomainConfigurationRulesRuleExtraData)),
+    owner: S.optional(S.NullOr(DomainContactInput)),
+    techAccount: S.optional(S.NullOr(NichandleNichandleInput)),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/domain/configurationRule/check",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CheckDomainConfigurationRuleRequest",
+}) as any as S.Schema<CheckDomainConfigurationRuleRequest>;
 
-/** Legal forms a nichandle can be registered as */
-export type NichandleLegalFormEnum =
-  | "administration"
-  | "association"
-  | "corporation"
-  | "individual"
-  | "other"
-  | "personalcorporation";
-export const NichandleLegalFormEnum = /*@__PURE__*/ S.String;
+export interface CheckDomainConfigurationRuleResponse {}
+export const CheckDomainConfigurationRuleResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "CheckDomainConfigurationRuleResponse",
+}) as any as S.Schema<CheckDomainConfigurationRuleResponse>;
+
+/** All future uses you can provide for a service termination */
+export type ServiceTerminationFutureUseEnum =
+  | "NOT_REPLACING_SERVICE"
+  | "OTHER"
+  | "SUBSCRIBE_AN_OTHER_SERVICE"
+  | "SUBSCRIBE_OTHER_KIND_OF_SERVICE_WITH_COMPETITOR"
+  | "SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR";
+export const ServiceTerminationFutureUseEnum = /*@__PURE__*/ S.String;
+
+/** All reasons you can provide for a service termination */
+export type ServiceTerminationReasonEnum =
+  | "FEATURES_DONT_SUIT_ME"
+  | "LACK_OF_PERFORMANCES"
+  | "MIGRATED_TO_ANOTHER_OVH_PRODUCT"
+  | "MIGRATED_TO_COMPETITOR"
+  | "NOT_ENOUGH_RECOGNITION"
+  | "NOT_NEEDED_ANYMORE"
+  | "NOT_RELIABLE"
+  | "NO_ANSWER"
+  | "OTHER"
+  | "PRODUCT_DIMENSION_DONT_SUIT_ME"
+  | "PRODUCT_TOOLS_DONT_SUIT_ME"
+  | "TOO_EXPENSIVE"
+  | "TOO_HARD_TO_USE"
+  | "UNSATIFIED_BY_CUSTOMER_SUPPORT";
+export const ServiceTerminationReasonEnum = /*@__PURE__*/ S.String;
+
+export interface ConfirmDomainZoneTerminationRequest {
+  /** Zone name */
+  zoneName: string;
+  /** Commentary about your termination request */
+  commentary?: string;
+  /** Commentary about your future use */
+  commentaryFutureUse?: string;
+  /** Commentary about your reason for termination request */
+  commentaryReason?: string;
+  /** All future uses you can provide for a service termination */
+  futureUse?: ServiceTerminationFutureUseEnum | (string & {});
+  /** All reasons you can provide for a service termination */
+  reason?: ServiceTerminationReasonEnum | (string & {});
+  /** The termination token sent by email to the admin contact */
+  token: string;
+}
+export const ConfirmDomainZoneTerminationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    zoneName: S.String.pipe(T.Label()),
+    commentary: S.optional(S.String),
+    commentaryFutureUse: S.optional(S.String),
+    commentaryReason: S.optional(S.String),
+    futureUse: S.optional(ServiceTerminationFutureUseEnum),
+    reason: S.optional(ServiceTerminationReasonEnum),
+    token: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/domain/zone/{zoneName}/confirmTermination",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ConfirmDomainZoneTerminationRequest",
+}) as any as S.Schema<ConfirmDomainZoneTerminationRequest>;
+
+export type ConfirmDomainZoneTerminationResponse = string;
+export const ConfirmDomainZoneTerminationResponse = /*@__PURE__*/ S.suspend(
+  () => S.String.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ConfirmDomainZoneTerminationResponse",
+}) as any as S.Schema<ConfirmDomainZoneTerminationResponse>;
 
 export interface CreateContactRequest {
   /** Country of lawyer accreditation */
@@ -631,6 +1074,730 @@ export const DomainContact = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "DomainContact" }) as any as S.Schema<DomainContact>;
 
+export interface CreateDomainChangeContactRequest {
+  /** Service name */
+  serviceName: string;
+  /** The contact to set as admin contact */
+  contactAdmin?: string;
+  /** The contact to set as billing contact */
+  contactBilling?: string;
+  /** The contact to set as tech contact */
+  contactTech?: string;
+}
+export const CreateDomainChangeContactRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    contactAdmin: S.optional(S.String),
+    contactBilling: S.optional(S.String),
+    contactTech: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/domain/{serviceName}/changeContact",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateDomainChangeContactRequest",
+}) as any as S.Schema<CreateDomainChangeContactRequest>;
+
+export type CreateDomainChangeContactResponseBodyList = Array<number>;
+export const CreateDomainChangeContactResponseBodyList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<CreateDomainChangeContactResponseBodyList>;
+
+export type CreateDomainChangeContactResponse =
+  CreateDomainChangeContactResponseBodyList;
+export const CreateDomainChangeContactResponse = /*@__PURE__*/ S.suspend(() =>
+  CreateDomainChangeContactResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "CreateDomainChangeContactResponse",
+}) as any as S.Schema<CreateDomainChangeContactResponse>;
+
+export interface CreateDomainDataSmdRequest {
+  /** SMD file content in base64 */
+  data: string;
+}
+export const CreateDomainDataSmdRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: S.String,
+  }).pipe(T.Http({ method: "POST", uri: "/domain/data/smd", code: 200 })),
+).annotate({
+  identifier: "CreateDomainDataSmdRequest",
+}) as any as S.Schema<CreateDomainDataSmdRequest>;
+
+/** Representation of a protected label */
+export interface DomainDataSmdSmdLabel {
+  /** Label that is protected */
+  label?: string;
+  /** Trademark associated to the protected label */
+  trademark?: string;
+}
+export const DomainDataSmdSmdLabel = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    label: S.optional(S.String),
+    trademark: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DomainDataSmdSmdLabel",
+}) as any as S.Schema<DomainDataSmdSmdLabel>;
+
+/** List of the labels that are protect with that SMD file */
+export type DomainDataSmdSmdProtectedLabelsList = Array<DomainDataSmdSmdLabel>;
+export const DomainDataSmdSmdProtectedLabelsList = /*@__PURE__*/ S.Array(
+  DomainDataSmdSmdLabel,
+) as any as S.Schema<DomainDataSmdSmdProtectedLabelsList>;
+
+/** Representation of a SMD file */
+export interface DomainDataSmdSmd {
+  /** SMD file content */
+  data?: string;
+  /** UUID of SMD file */
+  id?: string;
+  /** Date when information about SMD file aren't valid anymore */
+  notAfter?: string;
+  /** Date before when information about SMD file aren't valid yet */
+  notBefore?: string;
+  /** List of the labels that are protect with that SMD file */
+  protectedLabels?: DomainDataSmdSmdProtectedLabelsList;
+  /** TMCH Internal identifier */
+  smdId?: string;
+}
+export const DomainDataSmdSmd = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: S.optional(S.String),
+    id: S.optional(S.String),
+    notAfter: S.optional(S.String),
+    notBefore: S.optional(S.String),
+    protectedLabels: S.optional(DomainDataSmdSmdProtectedLabelsList),
+    smdId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DomainDataSmdSmd",
+}) as any as S.Schema<DomainDataSmdSmd>;
+
+/** DNSSEC Algorithm 3: DSA 5: RSASHA1 6: DSA-NSEC3-SHA1 7: RSASHA1-NSEC3-SHA1 8: RSASHA256 10: RSASHA512 12: ECC-GOST 13: ECDSAP256SHA256 14: ECDSAP384SHA384 15: ED25519 16: ED448 */
+export type DnssecKeyAlgorithmEnum =
+  | 3
+  | 5
+  | 6
+  | 7
+  | 8
+  | 10
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16;
+export const DnssecKeyAlgorithmEnum = /*@__PURE__*/ S.Number;
+
+/** DNSSEC Key Flag Type: 256=ZSK (Zone Signing Key), 257=KSK (Key Signing Key) */
+export type DnssecKeyFlagEnum = 256 | 257;
+export const DnssecKeyFlagEnum = /*@__PURE__*/ S.Number;
+
+/** Domain's DNSSEC Key */
+export interface DnssecKeyInput {
+  /** Algorithm number of the DNSSEC key */
+  algorithm?: DnssecKeyAlgorithmEnum | (number & {});
+  /** Flag of the DNSSEC key */
+  flags?: DnssecKeyFlagEnum | (number & {});
+  /** Public key */
+  publicKey?: string;
+  /** Tag of the DNSSEC key */
+  tag?: number;
+}
+export const DnssecKeyInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    algorithm: S.optional(DnssecKeyAlgorithmEnum),
+    flags: S.optional(DnssecKeyFlagEnum),
+    publicKey: S.optional(S.String),
+    tag: S.optional(S.Number),
+  }),
+).annotate({ identifier: "DnssecKeyInput" }) as any as S.Schema<DnssecKeyInput>;
+
+/** New Keys */
+export type CreateDomainDsRecordRequestKeysList = Array<DnssecKeyInput>;
+export const CreateDomainDsRecordRequestKeysList = /*@__PURE__*/ S.Array(
+  DnssecKeyInput,
+) as any as S.Schema<CreateDomainDsRecordRequestKeysList>;
+
+export interface CreateDomainDsRecordRequest {
+  /** Service name */
+  serviceName: string;
+  /** New Keys */
+  keys: CreateDomainDsRecordRequestKeysList;
+}
+export const CreateDomainDsRecordRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    keys: CreateDomainDsRecordRequestKeysList,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/domain/{serviceName}/dsRecord",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateDomainDsRecordRequest",
+}) as any as S.Schema<CreateDomainDsRecordRequest>;
+
+/** Operation status */
+export type DomainOperationStatusEnum =
+  | "cancelled"
+  | "doing"
+  | "done"
+  | "error"
+  | "problem"
+  | "todo";
+export const DomainOperationStatusEnum = /*@__PURE__*/ S.String;
+
+/** Operation type */
+export type DomainOperationTypeEnum = "alldom" | "domain";
+export const DomainOperationTypeEnum = /*@__PURE__*/ S.String;
+
+/** Tasks associated to domain */
+export interface DomainTask {
+  /** Can accelerate the task */
+  canAccelerate?: boolean;
+  /** Can cancel the task */
+  canCancel?: boolean;
+  /** Can relaunch the task */
+  canRelaunch?: boolean;
+  /** Comment about the task */
+  comment?: string | null;
+  /** Creation date of the task */
+  creationDate?: string;
+  /** Domain of the task */
+  domain?: string | null;
+  /** Done date of the task */
+  doneDate?: string | null;
+  /** Function of the task */
+  function?: string;
+  /** Id of the task */
+  id?: number;
+  /** Last update date of the task */
+  lastUpdate?: string;
+  /** Status of the task */
+  status?: DomainOperationStatusEnum;
+  /** Todo date of the task */
+  todoDate?: string;
+  /** type of the task */
+  type?: DomainOperationTypeEnum;
+}
+export const DomainTask = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    canAccelerate: S.optional(S.Boolean),
+    canCancel: S.optional(S.Boolean),
+    canRelaunch: S.optional(S.Boolean),
+    comment: S.optional(S.NullOr(S.String)),
+    creationDate: S.optional(S.String),
+    domain: S.optional(S.NullOr(S.String)),
+    doneDate: S.optional(S.NullOr(S.String)),
+    function: S.optional(S.String),
+    id: S.optional(S.Number),
+    lastUpdate: S.optional(S.String),
+    status: S.optional(DomainOperationStatusEnum),
+    todoDate: S.optional(S.String),
+    type: S.optional(DomainOperationTypeEnum),
+  }),
+).annotate({ identifier: "DomainTask" }) as any as S.Schema<DomainTask>;
+
+/** IP addresses of the glue record */
+export type CreateDomainGlueRecordRequestIpsList = Array<string>;
+export const CreateDomainGlueRecordRequestIpsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateDomainGlueRecordRequestIpsList>;
+
+export interface CreateDomainGlueRecordRequest {
+  /** Service name */
+  serviceName: string;
+  /** Host of the glue record */
+  host: string;
+  /** IP addresses of the glue record */
+  ips: CreateDomainGlueRecordRequestIpsList;
+}
+export const CreateDomainGlueRecordRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    host: S.String,
+    ips: CreateDomainGlueRecordRequestIpsList,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/domain/{serviceName}/glueRecord",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateDomainGlueRecordRequest",
+}) as any as S.Schema<CreateDomainGlueRecordRequest>;
+
+/** Name server input data */
+export interface DomainNameServerNameServerInput {
+  /** Host */
+  host?: string;
+  /** IP address */
+  ip?: string | null;
+}
+export const DomainNameServerNameServerInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    host: S.optional(S.String),
+    ip: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "DomainNameServerNameServerInput",
+}) as any as S.Schema<DomainNameServerNameServerInput>;
+
+/** Name servers to create */
+export type CreateDomainNameServerRequestNameServerList =
+  Array<DomainNameServerNameServerInput>;
+export const CreateDomainNameServerRequestNameServerList =
+  /*@__PURE__*/ S.Array(
+    DomainNameServerNameServerInput,
+  ) as any as S.Schema<CreateDomainNameServerRequestNameServerList>;
+
+export interface CreateDomainNameServerRequest {
+  /** Service name */
+  serviceName: string;
+  /** Name servers to create */
+  nameServer: CreateDomainNameServerRequestNameServerList;
+}
+export const CreateDomainNameServerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    nameServer: CreateDomainNameServerRequestNameServerList,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/domain/{serviceName}/nameServer",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateDomainNameServerRequest",
+}) as any as S.Schema<CreateDomainNameServerRequest>;
+
+/** Owner contact reference for a domain order: an OVH contact resource, not a NIC handle. */
+export interface DomainOrderContactOwner {
+  /** Numeric identifier of the OVH contact resource (e.g. obtained from /me/contact). Distinct from a NIC handle such as xxxxx-ovh. */
+  id?: number | null;
+}
+export const DomainOrderContactOwner = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.NullOr(S.Number)),
+  }),
+).annotate({
+  identifier: "DomainOrderContactOwner",
+}) as any as S.Schema<DomainOrderContactOwner>;
+
+/** Admin, tech and owner contacts for a domain order. admin and tech are OVH NIC handles (e.g. xxxxx-ovh); owner is an OVH contact resource referenced by its numeric id (see /me/contact), not a NIC handle. Billing is forced to the customer code by the server and is not exposed. */
+export interface DomainOrderContacts {
+  /** Administrative contact, given as an OVH NIC handle (e.g. xxxxx-ovh). Defaults to the calling customer's NIC if omitted. */
+  admin?: string | null;
+  /** Owner contact of the domain. Unlike admin/tech which are NIC handles, the owner is an OVH contact resource referenced by its numeric id. */
+  owner?: DomainOrderContactOwner | null;
+  /** Technical contact, given as an OVH NIC handle (e.g. xxxxx-ovh). Defaults to the admin contact if omitted. */
+  tech?: string | null;
+}
+export const DomainOrderContacts = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    admin: S.optional(S.NullOr(S.String)),
+    owner: S.optional(S.NullOr(DomainOrderContactOwner)),
+    tech: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "DomainOrderContacts",
+}) as any as S.Schema<DomainOrderContacts>;
+
+/** List of DNS servers (hostnames) to set on the domain. Optional: if omitted, OVHcloud's recommended DNS servers for the domain are used. */
+export type CreateDomainOrderRequestDnsList = Array<string>;
+export const CreateDomainOrderRequestDnsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateDomainOrderRequestDnsList>;
+
+/** Currency code */
+export type OrderCurrencyCodeEnum =
+  | "AUD"
+  | "CAD"
+  | "CZK"
+  | "EUR"
+  | "GBP"
+  | "INR"
+  | "LTL"
+  | "MAD"
+  | "N/A"
+  | "PLN"
+  | "SGD"
+  | "TND"
+  | "USD"
+  | "XOF"
+  | "points";
+export const OrderCurrencyCodeEnum = /*@__PURE__*/ S.String;
+
+/** Minimal price payload sent by the client to acknowledge the price seen, before placing the actual order */
+export interface DomainOrderPriceAcknowledge {
+  /** Currency code of the acknowledged price */
+  currencyCode: OrderCurrencyCodeEnum | (string & {});
+  /** The effective price acknowledged by the client */
+  value: number;
+}
+export const DomainOrderPriceAcknowledge = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    currencyCode: OrderCurrencyCodeEnum,
+    value: S.Number,
+  }),
+).annotate({
+  identifier: "DomainOrderPriceAcknowledge",
+}) as any as S.Schema<DomainOrderPriceAcknowledge>;
+
+/** Promotion codes to apply. Optional. */
+export type CreateDomainOrderRequestPromoCodesList = Array<string>;
+export const CreateDomainOrderRequestPromoCodesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateDomainOrderRequestPromoCodesList>;
+
+/** DNS zone options for a domain order */
+export interface DomainOrderZoneOptions {
+  /** Enable Anycast on the DNS zone. Applied only when a new zone is created (create=true and no existing zone); ignored otherwise. */
+  anycast?: boolean | null;
+  /** Whether to create the DNS zone along with the domain. Defaults to true if omitted. */
+  create?: boolean | null;
+  /** Enable DNSSEC on the DNS zone. Applied only when a new zone is created (create=true and no existing zone); ignored otherwise. */
+  dnssec?: boolean | null;
+}
+export const DomainOrderZoneOptions = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    anycast: S.optional(S.NullOr(S.Boolean)),
+    create: S.optional(S.NullOr(S.Boolean)),
+    dnssec: S.optional(S.NullOr(S.Boolean)),
+  }),
+).annotate({
+  identifier: "DomainOrderZoneOptions",
+}) as any as S.Schema<DomainOrderZoneOptions>;
+
+export interface CreateDomainOrderRequest {
+  /** If true, simulate the order and return the pricing without actually placing it. Default to false. */
+  dryRun?: boolean;
+  /** Admin, tech and owner contacts */
+  contacts?: DomainOrderContacts | null;
+  /** List of DNS servers (hostnames) to set on the domain. Optional: if omitted, OVHcloud's recommended DNS servers for the domain are used. */
+  dns?: CreateDomainOrderRequestDnsList | null;
+  /** Fully-qualified domain name to order, including the extension (e.g. example.com) */
+  domain: string;
+  /** Order duration in ISO-8601 format, whole years only (e.g. P1Y). Allowed values depend on the extension's registry configuration; an unsupported duration is rejected. Defaults to P1Y if omitted. */
+  duration?: string | null;
+  /** Price the customer acknowledged before placing the order. Required for aftermarket or premium domains, optional otherwise. Its value/currency must equal the retail price quoted for this domain (e.g. via a dryRun order); a mismatch rejects the order. */
+  priceAcknowledge?: DomainOrderPriceAcknowledge | null;
+  /** Promotion codes to apply. Optional. */
+  promoCodes?: CreateDomainOrderRequestPromoCodesList | null;
+  /** Acknowledgment that the customer waives the legal retractation period. Must be set to true to place the order. */
+  waiveRetractationPeriod?: boolean | null;
+  /** DNS zone options */
+  zone?: DomainOrderZoneOptions | null;
+}
+export const CreateDomainOrderRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    dryRun: S.optional(S.Boolean.pipe(T.Query())),
+    contacts: S.optional(S.NullOr(DomainOrderContacts)),
+    dns: S.optional(S.NullOr(CreateDomainOrderRequestDnsList)),
+    domain: S.String,
+    duration: S.optional(S.NullOr(S.String)),
+    priceAcknowledge: S.optional(S.NullOr(DomainOrderPriceAcknowledge)),
+    promoCodes: S.optional(S.NullOr(CreateDomainOrderRequestPromoCodesList)),
+    waiveRetractationPeriod: S.optional(S.NullOr(S.Boolean)),
+    zone: S.optional(S.NullOr(DomainOrderZoneOptions)),
+  }).pipe(T.Http({ method: "POST", uri: "/domain/order/create", code: 200 })),
+).annotate({
+  identifier: "CreateDomainOrderRequest",
+}) as any as S.Schema<CreateDomainOrderRequest>;
+
+/** A contract (terms) the customer subscribes to when placing a domain order */
+export interface DomainOrderContract {
+  /** Name of the contract (e.g. registration terms, general conditions of service) */
+  name?: string;
+  /** URL to the contract terms document (PDF) */
+  url?: string;
+}
+export const DomainOrderContract = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    url: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DomainOrderContract",
+}) as any as S.Schema<DomainOrderContract>;
+
+/** Legal contracts (terms, as PDFs) the customer subscribes to with this order */
+export type DomainOrderOrderResponseContractsList = Array<DomainOrderContract>;
+export const DomainOrderOrderResponseContractsList = /*@__PURE__*/ S.Array(
+  DomainOrderContract,
+) as any as S.Schema<DomainOrderOrderResponseContractsList>;
+
+/** DNS servers set on the domain */
+export type DomainOrderOrderResponseDnsList = Array<string>;
+export const DomainOrderOrderResponseDnsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<DomainOrderOrderResponseDnsList>;
+
+/** Price with its currency and textual representation as returned by domain/order */
+export interface DomainOrderPrice {
+  /** Currency code */
+  currencyCode?: OrderCurrencyCodeEnum;
+  /** Human-readable price with currency, e.g. "6.08 EUR" */
+  text?: string;
+  /** The effective price as a number, e.g. 6.08 */
+  value?: number;
+}
+export const DomainOrderPrice = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    currencyCode: S.optional(OrderCurrencyCodeEnum),
+    text: S.optional(S.String),
+    value: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "DomainOrderPrice",
+}) as any as S.Schema<DomainOrderPrice>;
+
+/** Pricing breakdown with and without tax */
+export interface DomainOrderPricing {
+  /** Price excluding tax before any promotion */
+  basePriceWithoutTax?: DomainOrderPrice;
+  /** Total reduction applied by promotions, as a positive amount (0 if none) */
+  discount?: DomainOrderPrice;
+  /** Final price including tax, after any reduction */
+  finalPriceWithTax?: DomainOrderPrice;
+  /** Final price excluding tax, after any reduction */
+  finalPriceWithoutTax?: DomainOrderPrice;
+  /** Tax amount on the final price */
+  tax?: DomainOrderPrice;
+}
+export const DomainOrderPricing = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    basePriceWithoutTax: S.optional(DomainOrderPrice),
+    discount: S.optional(DomainOrderPrice),
+    finalPriceWithTax: S.optional(DomainOrderPrice),
+    finalPriceWithoutTax: S.optional(DomainOrderPrice),
+    tax: S.optional(DomainOrderPrice),
+  }),
+).annotate({
+  identifier: "DomainOrderPricing",
+}) as any as S.Schema<DomainOrderPricing>;
+
+/** Response returned after placing a domain order */
+export interface DomainOrderOrderResponse {
+  /** Contacts attached to the order */
+  contacts?: DomainOrderContacts | null;
+  /** Legal contracts (terms, as PDFs) the customer subscribes to with this order */
+  contracts?: DomainOrderOrderResponseContractsList | null;
+  /** DNS servers set on the domain */
+  dns?: DomainOrderOrderResponseDnsList | null;
+  /** Ordered domain name */
+  domain?: string;
+  /** Order duration in ISO-8601 format, whole years only (e.g. P1Y) */
+  duration?: string;
+  /** Identifier of the created order, used with url to finalize and pay it */
+  orderId?: number | null;
+  /** Pricing breakdown of the order */
+  pricing?: DomainOrderPricing;
+  /** Payment/finalization URL where the customer completes and pays the order */
+  url?: string | null;
+  /** DNS zone options applied to the order */
+  zone?: DomainOrderZoneOptions | null;
+}
+export const DomainOrderOrderResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    contacts: S.optional(S.NullOr(DomainOrderContacts)),
+    contracts: S.optional(S.NullOr(DomainOrderOrderResponseContractsList)),
+    dns: S.optional(S.NullOr(DomainOrderOrderResponseDnsList)),
+    domain: S.optional(S.String),
+    duration: S.optional(S.String),
+    orderId: S.optional(S.NullOr(S.Number)),
+    pricing: S.optional(DomainOrderPricing),
+    url: S.optional(S.NullOr(S.String)),
+    zone: S.optional(S.NullOr(DomainOrderZoneOptions)),
+  }),
+).annotate({
+  identifier: "DomainOrderOrderResponse",
+}) as any as S.Schema<DomainOrderOrderResponse>;
+
+export interface CreateDomainTaskAccelerateRequest {
+  /** Service name */
+  serviceName: string;
+  /** Id */
+  id: number;
+}
+export const CreateDomainTaskAccelerateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/domain/{serviceName}/task/{id}/accelerate",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateDomainTaskAccelerateRequest",
+}) as any as S.Schema<CreateDomainTaskAccelerateRequest>;
+
+export interface CreateDomainTaskAccelerateResponse {}
+export const CreateDomainTaskAccelerateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "CreateDomainTaskAccelerateResponse",
+}) as any as S.Schema<CreateDomainTaskAccelerateResponse>;
+
+export interface CreateDomainTaskRelaunchRequest {
+  /** Service name */
+  serviceName: string;
+  /** Id */
+  id: number;
+}
+export const CreateDomainTaskRelaunchRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/domain/{serviceName}/task/{id}/relaunch",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateDomainTaskRelaunchRequest",
+}) as any as S.Schema<CreateDomainTaskRelaunchRequest>;
+
+export interface CreateDomainTaskRelaunchResponse {}
+export const CreateDomainTaskRelaunchResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "CreateDomainTaskRelaunchResponse",
+}) as any as S.Schema<CreateDomainTaskRelaunchResponse>;
+
+export interface CreateDomainUkOutgoingTransferRequest {
+  /** Service name */
+  serviceName: string;
+  /** Registrar tag */
+  tag: string;
+}
+export const CreateDomainUkOutgoingTransferRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      tag: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/domain/{serviceName}/ukOutgoingTransfer",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateDomainUkOutgoingTransferRequest",
+}) as any as S.Schema<CreateDomainUkOutgoingTransferRequest>;
+
+export interface CreateDomainZoneChangeContactRequest {
+  /** Zone name */
+  zoneName: string;
+  /** The contact to set as admin contact */
+  contactAdmin?: string;
+  /** The contact to set as billing contact */
+  contactBilling?: string;
+  /** The contact to set as tech contact */
+  contactTech?: string;
+}
+export const CreateDomainZoneChangeContactRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      zoneName: S.String.pipe(T.Label()),
+      contactAdmin: S.optional(S.String),
+      contactBilling: S.optional(S.String),
+      contactTech: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/domain/zone/{zoneName}/changeContact",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateDomainZoneChangeContactRequest",
+}) as any as S.Schema<CreateDomainZoneChangeContactRequest>;
+
+export type CreateDomainZoneChangeContactResponseBodyList = Array<number>;
+export const CreateDomainZoneChangeContactResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.Number,
+  ) as any as S.Schema<CreateDomainZoneChangeContactResponseBodyList>;
+
+export type CreateDomainZoneChangeContactResponse =
+  CreateDomainZoneChangeContactResponseBodyList;
+export const CreateDomainZoneChangeContactResponse = /*@__PURE__*/ S.suspend(
+  () => CreateDomainZoneChangeContactResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "CreateDomainZoneChangeContactResponse",
+}) as any as S.Schema<CreateDomainZoneChangeContactResponse>;
+
+export interface CreateDomainZoneTaskAccelerateRequest {
+  /** Zone name */
+  zoneName: string;
+  /** Id */
+  id: number;
+}
+export const CreateDomainZoneTaskAccelerateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      zoneName: S.String.pipe(T.Label()),
+      id: S.Number.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/domain/zone/{zoneName}/task/{id}/accelerate",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateDomainZoneTaskAccelerateRequest",
+}) as any as S.Schema<CreateDomainZoneTaskAccelerateRequest>;
+
+export interface CreateDomainZoneTaskAccelerateResponse {}
+export const CreateDomainZoneTaskAccelerateResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "CreateDomainZoneTaskAccelerateResponse",
+}) as any as S.Schema<CreateDomainZoneTaskAccelerateResponse>;
+
+export interface CreateDomainZoneTaskRelaunchRequest {
+  /** Zone name */
+  zoneName: string;
+  /** Id */
+  id: number;
+}
+export const CreateDomainZoneTaskRelaunchRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    zoneName: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/domain/zone/{zoneName}/task/{id}/relaunch",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateDomainZoneTaskRelaunchRequest",
+}) as any as S.Schema<CreateDomainZoneTaskRelaunchRequest>;
+
+export interface CreateDomainZoneTaskRelaunchResponse {}
+export const CreateDomainZoneTaskRelaunchResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "CreateDomainZoneTaskRelaunchResponse",
+}) as any as S.Schema<CreateDomainZoneTaskRelaunchResponse>;
+
 export interface CreateDynDnsLoginRequest {
   /** Zone name */
   zoneName: string;
@@ -881,164 +2048,100 @@ export const DomainZoneRedirection = /*@__PURE__*/ S.suspend(() =>
   identifier: "DomainZoneRedirection",
 }) as any as S.Schema<DomainZoneRedirection>;
 
-export interface DeleteDomainDataSmdSmdIdRequest {
+export interface DeleteDomainDataSmdRequest {
   /** Smd ID */
   smdId: string;
 }
-export const DeleteDomainDataSmdSmdIdRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteDomainDataSmdRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     smdId: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({ method: "DELETE", uri: "/domain/data/smd/{smdId}", code: 200 }),
   ),
 ).annotate({
-  identifier: "DeleteDomainDataSmdSmdIdRequest",
-}) as any as S.Schema<DeleteDomainDataSmdSmdIdRequest>;
+  identifier: "DeleteDomainDataSmdRequest",
+}) as any as S.Schema<DeleteDomainDataSmdRequest>;
 
-export interface DeleteDomainDataSmdSmdIdResponse {}
-export const DeleteDomainDataSmdSmdIdResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteDomainDataSmdResponse {}
+export const DeleteDomainDataSmdResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteDomainDataSmdSmdIdResponse",
-}) as any as S.Schema<DeleteDomainDataSmdSmdIdResponse>;
+  identifier: "DeleteDomainDataSmdResponse",
+}) as any as S.Schema<DeleteDomainDataSmdResponse>;
 
-export interface DeleteDomainServiceNameGlueRecordHostRequest {
+export interface DeleteDomainGlueRecordRequest {
   /** Service name */
   serviceName: string;
   /** Host */
   host: string;
 }
-export const DeleteDomainServiceNameGlueRecordHostRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      host: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/domain/{serviceName}/glueRecord/{host}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "DeleteDomainServiceNameGlueRecordHostRequest",
-  }) as any as S.Schema<DeleteDomainServiceNameGlueRecordHostRequest>;
-
-/** Operation status */
-export type DomainOperationStatusEnum =
-  | "cancelled"
-  | "doing"
-  | "done"
-  | "error"
-  | "problem"
-  | "todo";
-export const DomainOperationStatusEnum = /*@__PURE__*/ S.String;
-
-/** Operation type */
-export type DomainOperationTypeEnum = "alldom" | "domain";
-export const DomainOperationTypeEnum = /*@__PURE__*/ S.String;
-
-/** Tasks associated to domain */
-export interface DomainTask {
-  /** Can accelerate the task */
-  canAccelerate?: boolean;
-  /** Can cancel the task */
-  canCancel?: boolean;
-  /** Can relaunch the task */
-  canRelaunch?: boolean;
-  /** Comment about the task */
-  comment?: string | null;
-  /** Creation date of the task */
-  creationDate?: string;
-  /** Domain of the task */
-  domain?: string | null;
-  /** Done date of the task */
-  doneDate?: string | null;
-  /** Function of the task */
-  function?: string;
-  /** Id of the task */
-  id?: number;
-  /** Last update date of the task */
-  lastUpdate?: string;
-  /** Status of the task */
-  status?: DomainOperationStatusEnum;
-  /** Todo date of the task */
-  todoDate?: string;
-  /** type of the task */
-  type?: DomainOperationTypeEnum;
-}
-export const DomainTask = /*@__PURE__*/ S.suspend(() =>
+export const DeleteDomainGlueRecordRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    canAccelerate: S.optional(S.Boolean),
-    canCancel: S.optional(S.Boolean),
-    canRelaunch: S.optional(S.Boolean),
-    comment: S.optional(S.NullOr(S.String)),
-    creationDate: S.optional(S.String),
-    domain: S.optional(S.NullOr(S.String)),
-    doneDate: S.optional(S.NullOr(S.String)),
-    function: S.optional(S.String),
-    id: S.optional(S.Number),
-    lastUpdate: S.optional(S.String),
-    status: S.optional(DomainOperationStatusEnum),
-    todoDate: S.optional(S.String),
-    type: S.optional(DomainOperationTypeEnum),
-  }),
-).annotate({ identifier: "DomainTask" }) as any as S.Schema<DomainTask>;
+    serviceName: S.String.pipe(T.Label()),
+    host: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/domain/{serviceName}/glueRecord/{host}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteDomainGlueRecordRequest",
+}) as any as S.Schema<DeleteDomainGlueRecordRequest>;
 
-export interface DeleteDomainServiceNameNameServerIdRequest {
+export interface DeleteDomainNameServerRequest {
   /** Service name */
   serviceName: string;
   /** Id */
   id: number;
 }
-export const DeleteDomainServiceNameNameServerIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/domain/{serviceName}/nameServer/{id}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "DeleteDomainServiceNameNameServerIdRequest",
-  }) as any as S.Schema<DeleteDomainServiceNameNameServerIdRequest>;
+export const DeleteDomainNameServerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/domain/{serviceName}/nameServer/{id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteDomainNameServerRequest",
+}) as any as S.Schema<DeleteDomainNameServerRequest>;
 
 /** All options a domain can have */
-export type DeleteDomainServiceNameOptionOptionRequestOption = "dnsAnycast";
-export const DeleteDomainServiceNameOptionOptionRequestOption =
-  /*@__PURE__*/ S.String;
+export type DeleteDomainOptionRequestOption = "dnsAnycast";
+export const DeleteDomainOptionRequestOption = /*@__PURE__*/ S.String;
 
-export interface DeleteDomainServiceNameOptionOptionRequest {
+export interface DeleteDomainOptionRequest {
   /** Service name */
   serviceName: string;
   /** Option */
-  option: DeleteDomainServiceNameOptionOptionRequestOption | (string & {});
+  option: DeleteDomainOptionRequestOption | (string & {});
 }
-export const DeleteDomainServiceNameOptionOptionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      option: DeleteDomainServiceNameOptionOptionRequestOption.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/domain/{serviceName}/option/{option}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "DeleteDomainServiceNameOptionOptionRequest",
-  }) as any as S.Schema<DeleteDomainServiceNameOptionOptionRequest>;
+export const DeleteDomainOptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    option: DeleteDomainOptionRequestOption.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/domain/{serviceName}/option/{option}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteDomainOptionRequest",
+}) as any as S.Schema<DeleteDomainOptionRequest>;
 
-export interface DeleteDomainServiceNameOptionOptionResponse {}
-export const DeleteDomainServiceNameOptionOptionResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteDomainServiceNameOptionOptionResponse",
-  }) as any as S.Schema<DeleteDomainServiceNameOptionOptionResponse>;
+export interface DeleteDomainOptionResponse {}
+export const DeleteDomainOptionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteDomainOptionResponse",
+}) as any as S.Schema<DeleteDomainOptionResponse>;
 
 export interface DeleteDynHostLoginRequest {
   /** Zone name */
@@ -1786,9 +2889,89 @@ export const DomainDomainServiceWithIAM = /*@__PURE__*/ S.suspend(() =>
   identifier: "DomainDomainServiceWithIAM",
 }) as any as S.Schema<DomainDomainServiceWithIAM>;
 
-/** An action to execute on a domain name */
-export type DomainActionEnum = "create" | "trade" | "transfer" | "update";
-export const DomainActionEnum = /*@__PURE__*/ S.String;
+export interface GetDomainAuthInfoRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const GetDomainAuthInfoRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/domain/{serviceName}/authInfo", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetDomainAuthInfoRequest",
+}) as any as S.Schema<GetDomainAuthInfoRequest>;
+
+export type GetDomainAuthInfoResponse = string;
+export const GetDomainAuthInfoResponse = /*@__PURE__*/ S.suspend(() =>
+  S.String.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "GetDomainAuthInfoResponse",
+}) as any as S.Schema<GetDomainAuthInfoResponse>;
+
+export interface GetDomainConfigurationDataRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const GetDomainConfigurationDataRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/domain/{serviceName}/configurations/data",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetDomainConfigurationDataRequest",
+}) as any as S.Schema<GetDomainConfigurationDataRequest>;
+
+/** Possible purposes of the domain */
+export type DomainIsForEnum =
+  | "campaign_website"
+  | "educational_website"
+  | "emails"
+  | "information_website"
+  | "other_purpose"
+  | "redirect_page"
+  | "transactional_website";
+export const DomainIsForEnum = /*@__PURE__*/ S.String;
+
+/** Purposes of the domain */
+export type DomainConfigurationsCustomFieldsIsForList = Array<DomainIsForEnum>;
+export const DomainConfigurationsCustomFieldsIsForList = /*@__PURE__*/ S.Array(
+  DomainIsForEnum,
+) as any as S.Schema<DomainConfigurationsCustomFieldsIsForList>;
+
+/** Representation of the domain custom fields */
+export interface DomainConfigurationsCustomFields {
+  /** Domain name audience */
+  audience?: string | null;
+  /** Auth Info */
+  authInfo?: string | null;
+  /** Purposes of the domain */
+  isFor?: DomainConfigurationsCustomFieldsIsForList | null;
+  /** Domain name other purpose */
+  otherPurpose?: string | null;
+  /** Reason of the purchase of this domain */
+  reason?: string | null;
+  /** Represented company */
+  represent?: string | null;
+}
+export const DomainConfigurationsCustomFields = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    audience: S.optional(S.NullOr(S.String)),
+    authInfo: S.optional(S.NullOr(S.String)),
+    isFor: S.optional(S.NullOr(DomainConfigurationsCustomFieldsIsForList)),
+    otherPurpose: S.optional(S.NullOr(S.String)),
+    reason: S.optional(S.NullOr(S.String)),
+    represent: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "DomainConfigurationsCustomFields",
+}) as any as S.Schema<DomainConfigurationsCustomFields>;
 
 export interface GetDomainConfigurationRuleRequest {
   /** Depending on the action, the applied rule will change (transfer vs create) */
@@ -2243,292 +3426,90 @@ export const DomainDataClaimNoticeClaimNotice = /*@__PURE__*/ S.suspend(() =>
   identifier: "DomainDataClaimNoticeClaimNotice",
 }) as any as S.Schema<DomainDataClaimNoticeClaimNotice>;
 
-export interface GetDomainDataSmdRequest {}
-export const GetDomainDataSmdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({ method: "GET", uri: "/domain/data/smd", code: 200 }),
-  ),
-).annotate({
-  identifier: "GetDomainDataSmdRequest",
-}) as any as S.Schema<GetDomainDataSmdRequest>;
-
-/** Representation of a protected label */
-export interface DomainDataSmdSmdLabel {
-  /** Label that is protected */
-  label?: string;
-  /** Trademark associated to the protected label */
-  trademark?: string;
-}
-export const DomainDataSmdSmdLabel = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    label: S.optional(S.String),
-    trademark: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DomainDataSmdSmdLabel",
-}) as any as S.Schema<DomainDataSmdSmdLabel>;
-
-/** List of the labels that are protect with that SMD file */
-export type DomainDataSmdSmdProtectedLabelsList = Array<DomainDataSmdSmdLabel>;
-export const DomainDataSmdSmdProtectedLabelsList = /*@__PURE__*/ S.Array(
-  DomainDataSmdSmdLabel,
-) as any as S.Schema<DomainDataSmdSmdProtectedLabelsList>;
-
-/** Representation of a SMD file */
-export interface DomainDataSmdSmd {
-  /** SMD file content */
-  data?: string;
-  /** UUID of SMD file */
-  id?: string;
-  /** Date when information about SMD file aren't valid anymore */
-  notAfter?: string;
-  /** Date before when information about SMD file aren't valid yet */
-  notBefore?: string;
-  /** List of the labels that are protect with that SMD file */
-  protectedLabels?: DomainDataSmdSmdProtectedLabelsList;
-  /** TMCH Internal identifier */
-  smdId?: string;
-}
-export const DomainDataSmdSmd = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: S.optional(S.String),
-    id: S.optional(S.String),
-    notAfter: S.optional(S.String),
-    notBefore: S.optional(S.String),
-    protectedLabels: S.optional(DomainDataSmdSmdProtectedLabelsList),
-    smdId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DomainDataSmdSmd",
-}) as any as S.Schema<DomainDataSmdSmd>;
-
-export type GetDomainDataSmdResponseBodyList = Array<DomainDataSmdSmd>;
-export const GetDomainDataSmdResponseBodyList = /*@__PURE__*/ S.Array(
-  DomainDataSmdSmd,
-) as any as S.Schema<GetDomainDataSmdResponseBodyList>;
-
-export type GetDomainDataSmdResponse = GetDomainDataSmdResponseBodyList;
-export const GetDomainDataSmdResponse = /*@__PURE__*/ S.suspend(() =>
-  GetDomainDataSmdResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetDomainDataSmdResponse",
-}) as any as S.Schema<GetDomainDataSmdResponse>;
-
-export interface GetDomainDataSmdSmdIdRequest {
+export interface GetDomainDataSmdRequest {
   /** Smd ID */
   smdId: string;
 }
-export const GetDomainDataSmdSmdIdRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDomainDataSmdRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     smdId: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({ method: "GET", uri: "/domain/data/smd/{smdId}", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetDomainDataSmdSmdIdRequest",
-}) as any as S.Schema<GetDomainDataSmdSmdIdRequest>;
+  identifier: "GetDomainDataSmdRequest",
+}) as any as S.Schema<GetDomainDataSmdRequest>;
 
-/** Type used to change the order of extensions results */
-export type DomainExtensionsOrderByTypeEnum = "alphabetical" | "trending";
-export const DomainExtensionsOrderByTypeEnum = /*@__PURE__*/ S.String;
-
-/** OVH subsidiaries */
-export type NichandleOvhSubsidiaryEnum =
-  | "CZ"
-  | "DE"
-  | "ES"
-  | "EU"
-  | "FI"
-  | "FR"
-  | "GB"
-  | "IE"
-  | "IT"
-  | "LT"
-  | "MA"
-  | "NL"
-  | "PL"
-  | "PT"
-  | "SN"
-  | "TN";
-export const NichandleOvhSubsidiaryEnum = /*@__PURE__*/ S.String;
-
-export interface GetDomainExtensionsRequest {
-  /** Filter only extensions related to this list of geolocalization places (comma separated). Default to empty. */
-  geolocalizations?: string;
-  /** Order results by name (alphabetical) or trending importance (trending). Default to alphabetical. */
-  orderBy?: DomainExtensionsOrderByTypeEnum | (string & {});
-  /** OVHcloud subsidiary targeted. Useful only when orderBy is equal to trending. Default to FR. */
-  ovhSubsidiary?: NichandleOvhSubsidiaryEnum | (string & {});
-  /** Filter only extensions related to this list of thematics (comma separated). Default to empty. */
-  thematics?: string;
+export interface GetDomainDsRecordRequest {
+  /** Service name */
+  serviceName: string;
+  /** Id */
+  id: number;
 }
-export const GetDomainExtensionsRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDomainDsRecordRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    geolocalizations: S.optional(S.String.pipe(T.Query())),
-    orderBy: S.optional(DomainExtensionsOrderByTypeEnum.pipe(T.Query())),
-    ovhSubsidiary: S.optional(NichandleOvhSubsidiaryEnum.pipe(T.Query())),
-    thematics: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/domain/extensions", code: 200 })),
-).annotate({
-  identifier: "GetDomainExtensionsRequest",
-}) as any as S.Schema<GetDomainExtensionsRequest>;
-
-export type GetDomainExtensionsResponseBodyList = Array<string>;
-export const GetDomainExtensionsResponseBodyList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<GetDomainExtensionsResponseBodyList>;
-
-export type GetDomainExtensionsResponse = GetDomainExtensionsResponseBodyList;
-export const GetDomainExtensionsResponse = /*@__PURE__*/ S.suspend(() =>
-  GetDomainExtensionsResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetDomainExtensionsResponse",
-}) as any as S.Schema<GetDomainExtensionsResponse>;
-
-/** Type of extension category */
-export type DomainExtensionsCategoryTypeEnum = "geolocalization" | "thematic";
-export const DomainExtensionsCategoryTypeEnum = /*@__PURE__*/ S.String;
-
-export type GetDomainExtensionsByCategoryRequestCategoryTypeList = Array<
-  DomainExtensionsCategoryTypeEnum | (string & {})
->;
-export const GetDomainExtensionsByCategoryRequestCategoryTypeList =
-  /*@__PURE__*/ S.Array(
-    DomainExtensionsCategoryTypeEnum,
-  ) as any as S.Schema<GetDomainExtensionsByCategoryRequestCategoryTypeList>;
-
-export interface GetDomainExtensionsByCategoryRequest {
-  /** Filter by category types */
-  categoryType?: GetDomainExtensionsByCategoryRequestCategoryTypeList;
-}
-export const GetDomainExtensionsByCategoryRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      categoryType: S.optional(
-        GetDomainExtensionsByCategoryRequestCategoryTypeList.pipe(T.Query()),
-      ),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/domain/extensions/byCategory",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "GetDomainExtensionsByCategoryRequest",
-}) as any as S.Schema<GetDomainExtensionsByCategoryRequest>;
-
-/** List of extensions */
-export type DomainExtensionsCategoryNameWithExtensionsExtensionsList =
-  Array<string>;
-export const DomainExtensionsCategoryNameWithExtensionsExtensionsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<DomainExtensionsCategoryNameWithExtensionsExtensionsList>;
-
-/** Result of extensions by category request */
-export interface DomainExtensionsCategoryNameWithExtensions {
-  /** List of extensions */
-  extensions?: DomainExtensionsCategoryNameWithExtensionsExtensionsList;
-  /** Name of the category */
-  name?: string;
-}
-export const DomainExtensionsCategoryNameWithExtensions =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      extensions: S.optional(
-        DomainExtensionsCategoryNameWithExtensionsExtensionsList,
-      ),
-      name: S.optional(S.String),
+    serviceName: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/domain/{serviceName}/dsRecord/{id}",
+      code: 200,
     }),
-  ).annotate({
-    identifier: "DomainExtensionsCategoryNameWithExtensions",
-  }) as any as S.Schema<DomainExtensionsCategoryNameWithExtensions>;
+  ),
+).annotate({
+  identifier: "GetDomainDsRecordRequest",
+}) as any as S.Schema<GetDomainDsRecordRequest>;
 
-/** Geolocalizations groups extensions by geographical place, like 'europe' */
-export type DomainExtensionsExtensionsByCategoryGeolocalizationList =
-  Array<DomainExtensionsCategoryNameWithExtensions>;
-export const DomainExtensionsExtensionsByCategoryGeolocalizationList =
-  /*@__PURE__*/ S.Array(
-    DomainExtensionsCategoryNameWithExtensions,
-  ) as any as S.Schema<DomainExtensionsExtensionsByCategoryGeolocalizationList>;
+/** Generated: The key has been created, but has not yet been used for anything. Published: The DNSKEY record is published in the zone, but predecessors of the key may be held in caches. Ready: The new key data has been published for long enough to guarantee that any previous versions of the DNSKEY RRset have expired from caches. Active: The key has started to be used to sign RRsets. Retired: A successor key has become active and this key is no longer being used to generate RRSIGs. Removed: The key has been removed from the zone. Revoked: The key is published for a period with the "revoke" bit set as a way of notifying validating resolvers that have configured it as an trust anchor that it is about to be removed from the zone. */
+export type DnssecKeyStatusEnum =
+  | "active"
+  | "generated"
+  | "published"
+  | "removed"
+  | "retired"
+  | "revoked";
+export const DnssecKeyStatusEnum = /*@__PURE__*/ S.String;
 
-/** Thematics groups extensions by a thematic like 'gastronomy' for '.pizza' */
-export type DomainExtensionsExtensionsByCategoryThematicList =
-  Array<DomainExtensionsCategoryNameWithExtensions>;
-export const DomainExtensionsExtensionsByCategoryThematicList =
-  /*@__PURE__*/ S.Array(
-    DomainExtensionsCategoryNameWithExtensions,
-  ) as any as S.Schema<DomainExtensionsExtensionsByCategoryThematicList>;
-
-/** Result of extensions by category request */
-export interface DomainExtensionsExtensionsByCategory {
-  /** Geolocalizations groups extensions by geographical place, like 'europe' */
-  geolocalization?: DomainExtensionsExtensionsByCategoryGeolocalizationList | null;
-  /** Thematics groups extensions by a thematic like 'gastronomy' for '.pizza' */
-  thematic?: DomainExtensionsExtensionsByCategoryThematicList | null;
+/** Domain's DNSSEC Key */
+export interface DnssecKey {
+  /** Algorithm number of the DNSSEC key */
+  algorithm?: DnssecKeyAlgorithmEnum;
+  /** Flag of the DNSSEC key */
+  flags?: DnssecKeyFlagEnum;
+  /** ID of the DNSSEC key */
+  id?: number;
+  /** Public key */
+  publicKey?: string;
+  /** Key status of the DNSSEC key */
+  status?: DnssecKeyStatusEnum;
+  /** Tag of the DNSSEC key */
+  tag?: number;
 }
-export const DomainExtensionsExtensionsByCategory = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      geolocalization: S.optional(
-        S.NullOr(DomainExtensionsExtensionsByCategoryGeolocalizationList),
-      ),
-      thematic: S.optional(
-        S.NullOr(DomainExtensionsExtensionsByCategoryThematicList),
-      ),
-    }),
-).annotate({
-  identifier: "DomainExtensionsExtensionsByCategory",
-}) as any as S.Schema<DomainExtensionsExtensionsByCategory>;
+export const DnssecKey = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    algorithm: S.optional(DnssecKeyAlgorithmEnum),
+    flags: S.optional(DnssecKeyFlagEnum),
+    id: S.optional(S.Number),
+    publicKey: S.optional(S.String),
+    status: S.optional(DnssecKeyStatusEnum),
+    tag: S.optional(S.Number),
+  }),
+).annotate({ identifier: "DnssecKey" }) as any as S.Schema<DnssecKey>;
 
-export interface GetDomainExtensionsHighlightedRequest {
-  /** OVHcloud subsidiary targeted. Highlighted extensions are different from one subsidiary to another. Default to FR. */
-  ovhSubsidiary?: NichandleOvhSubsidiaryEnum | (string & {});
-}
-export const GetDomainExtensionsHighlightedRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      ovhSubsidiary: S.optional(NichandleOvhSubsidiaryEnum.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/domain/extensions/highlighted",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "GetDomainExtensionsHighlightedRequest",
-}) as any as S.Schema<GetDomainExtensionsHighlightedRequest>;
-
-export type GetDomainExtensionsHighlightedResponseBodyList = Array<string>;
-export const GetDomainExtensionsHighlightedResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetDomainExtensionsHighlightedResponseBodyList>;
-
-export type GetDomainExtensionsHighlightedResponse =
-  GetDomainExtensionsHighlightedResponseBodyList;
-export const GetDomainExtensionsHighlightedResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    GetDomainExtensionsHighlightedResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetDomainExtensionsHighlightedResponse",
-}) as any as S.Schema<GetDomainExtensionsHighlightedResponse>;
-
-export interface GetDomainExtensionsNameRequest {
+export interface GetDomainExtensionRequest {
   /** Name */
   name: string;
 }
-export const GetDomainExtensionsNameRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDomainExtensionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     name: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({ method: "GET", uri: "/domain/extensions/{name}", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetDomainExtensionsNameRequest",
-}) as any as S.Schema<GetDomainExtensionsNameRequest>;
+  identifier: "GetDomainExtensionRequest",
+}) as any as S.Schema<GetDomainExtensionRequest>;
 
 /** A domain name extension */
 export interface DomainExtensionsExtension {
@@ -2543,11 +3524,11 @@ export const DomainExtensionsExtension = /*@__PURE__*/ S.suspend(() =>
   identifier: "DomainExtensionsExtension",
 }) as any as S.Schema<DomainExtensionsExtension>;
 
-export interface GetDomainExtensionsNameRegistryConfigurationsRequest {
+export interface GetDomainExtensionRegistryConfigurationsRequest {
   /** Name */
   name: string;
 }
-export const GetDomainExtensionsNameRegistryConfigurationsRequest =
+export const GetDomainExtensionRegistryConfigurationsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       name: S.String.pipe(T.Label()),
@@ -2559,8 +3540,8 @@ export const GetDomainExtensionsNameRegistryConfigurationsRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetDomainExtensionsNameRegistryConfigurationsRequest",
-  }) as any as S.Schema<GetDomainExtensionsNameRegistryConfigurationsRequest>;
+    identifier: "GetDomainExtensionRegistryConfigurationsRequest",
+  }) as any as S.Schema<GetDomainExtensionRegistryConfigurationsRequest>;
 
 /** The registry configurations applied to the DNS of a domain name */
 export interface DomainExtensionsRegistryConfigurationsDNSRegistryConfiguration {
@@ -2822,62 +3803,234 @@ export const DomainExtensionsRegistryConfigurationsRegistryConfigurations =
     identifier: "DomainExtensionsRegistryConfigurationsRegistryConfigurations",
   }) as any as S.Schema<DomainExtensionsRegistryConfigurationsRegistryConfigurations>;
 
-export interface GetDomainExtensionsPricingAttributesRequest {
-  /** OVHcloud subsidiary targeted. Attributes may be different from one subsidiary to another. Default to FR. */
-  ovhSubsidiary?: NichandleOvhSubsidiaryEnum | (string & {});
+export interface GetDomainGlueRecordRequest {
+  /** Service name */
+  serviceName: string;
+  /** Host */
+  host: string;
 }
-export const GetDomainExtensionsPricingAttributesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      ovhSubsidiary: S.optional(NichandleOvhSubsidiaryEnum.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/domain/extensions/pricingAttributes",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetDomainExtensionsPricingAttributesRequest",
-  }) as any as S.Schema<GetDomainExtensionsPricingAttributesRequest>;
-
-/** Result of getting pricing attributes of an extension */
-export interface DomainExtensionsExtensionsPricingAttributes {
-  /** Parameter is true when the extension has been created recently and we want to highlight this fact */
-  brandNew?: boolean;
-  /** Extension name, like 'com' or 'co.uk' */
-  name?: string;
-  /** Parameter is true when the extension price has dropped recently and we want to highlight this fact */
-  priceDrop?: boolean;
-}
-export const DomainExtensionsExtensionsPricingAttributes =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      brandNew: S.optional(S.Boolean),
-      name: S.optional(S.String),
-      priceDrop: S.optional(S.Boolean),
+export const GetDomainGlueRecordRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    host: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/domain/{serviceName}/glueRecord/{host}",
+      code: 200,
     }),
-  ).annotate({
-    identifier: "DomainExtensionsExtensionsPricingAttributes",
-  }) as any as S.Schema<DomainExtensionsExtensionsPricingAttributes>;
+  ),
+).annotate({
+  identifier: "GetDomainGlueRecordRequest",
+}) as any as S.Schema<GetDomainGlueRecordRequest>;
 
-export type GetDomainExtensionsPricingAttributesResponseBodyList =
-  Array<DomainExtensionsExtensionsPricingAttributes>;
-export const GetDomainExtensionsPricingAttributesResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    DomainExtensionsExtensionsPricingAttributes,
-  ) as any as S.Schema<GetDomainExtensionsPricingAttributesResponseBodyList>;
+/** IP address */
+export type DomainGlueRecordGlueRecordIpsList = Array<string>;
+export const DomainGlueRecordGlueRecordIpsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<DomainGlueRecordGlueRecordIpsList>;
 
-export type GetDomainExtensionsPricingAttributesResponse =
-  GetDomainExtensionsPricingAttributesResponseBodyList;
-export const GetDomainExtensionsPricingAttributesResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetDomainExtensionsPricingAttributesResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetDomainExtensionsPricingAttributesResponse",
-  }) as any as S.Schema<GetDomainExtensionsPricingAttributesResponse>;
+/** Glue record */
+export interface DomainGlueRecordGlueRecord {
+  /** Host of the glue record */
+  host?: string;
+  /** IP address */
+  ips: DomainGlueRecordGlueRecordIpsList;
+}
+export const DomainGlueRecordGlueRecord = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    host: S.optional(S.String),
+    ips: DomainGlueRecordGlueRecordIpsList,
+  }),
+).annotate({
+  identifier: "DomainGlueRecordGlueRecord",
+}) as any as S.Schema<DomainGlueRecordGlueRecord>;
+
+export interface GetDomainNameServerRequest {
+  /** Service name */
+  serviceName: string;
+  /** Id */
+  id: number;
+}
+export const GetDomainNameServerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/domain/{serviceName}/nameServer/{id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetDomainNameServerRequest",
+}) as any as S.Schema<GetDomainNameServerRequest>;
+
+/** Full name server configuration */
+export interface DomainNameServerFullNameServer {
+  /** Host of the name server */
+  host?: string;
+  /** ID of the name server */
+  id?: number;
+  /** IP address of the name server */
+  ip?: string | null;
+  /** isUsed flag of the name server */
+  isUsed?: boolean;
+  /** toDelete flag of the name server */
+  toDelete?: boolean;
+}
+export const DomainNameServerFullNameServer = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    host: S.optional(S.String),
+    id: S.optional(S.Number),
+    ip: S.optional(S.NullOr(S.String)),
+    isUsed: S.optional(S.Boolean),
+    toDelete: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "DomainNameServerFullNameServer",
+}) as any as S.Schema<DomainNameServerFullNameServer>;
+
+export interface GetDomainNameServerStatusRequest {
+  /** Service name */
+  serviceName: string;
+  /** Id */
+  id: number;
+}
+export const GetDomainNameServerStatusRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/domain/{serviceName}/nameServer/{id}/status",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetDomainNameServerStatusRequest",
+}) as any as S.Schema<GetDomainNameServerStatusRequest>;
+
+/** DNS server state */
+export type DomainNameServerNameServerStateEnum = "ko" | "ok";
+export const DomainNameServerNameServerStateEnum = /*@__PURE__*/ S.String;
+
+/** DNS server status */
+export interface DomainNameServerNameServerStatus {
+  /** Whether or not the DNS server is working */
+  state?: DomainNameServerNameServerStateEnum;
+  /** Whether or not the DNS server is managed by OVHcloud */
+  type?: DomainNameServerNameServerTypeEnum;
+  /** Date from which the DNS server is used by the domain */
+  usedSince?: string | null;
+}
+export const DomainNameServerNameServerStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    state: S.optional(DomainNameServerNameServerStateEnum),
+    type: S.optional(DomainNameServerNameServerTypeEnum),
+    usedSince: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "DomainNameServerNameServerStatus",
+}) as any as S.Schema<DomainNameServerNameServerStatus>;
+
+/** All options a domain can have */
+export type GetDomainOptionRequestOption = "dnsAnycast";
+export const GetDomainOptionRequestOption = /*@__PURE__*/ S.String;
+
+export interface GetDomainOptionRequest {
+  /** Service name */
+  serviceName: string;
+  /** Option */
+  option: GetDomainOptionRequestOption | (string & {});
+}
+export const GetDomainOptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    option: GetDomainOptionRequestOption.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/domain/{serviceName}/option/{option}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetDomainOptionRequest",
+}) as any as S.Schema<GetDomainOptionRequest>;
+
+/** All options a domain can have */
+export type DomainDomainOptionEnum = "dnsAnycast";
+export const DomainDomainOptionEnum = /*@__PURE__*/ S.String;
+
+/** All states a domain Option can be in */
+export type DomainDomainOptionStateEnum = "released" | "subscribed";
+export const DomainDomainOptionStateEnum = /*@__PURE__*/ S.String;
+
+/** Information about the options of a domain */
+export interface DomainOption {
+  /** Expiration date of the option */
+  expirationDate?: string;
+  /** The option name */
+  option?: DomainDomainOptionEnum;
+  /** The state of the option */
+  state?: DomainDomainOptionStateEnum;
+}
+export const DomainOption = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    expirationDate: S.optional(S.String),
+    option: S.optional(DomainDomainOptionEnum),
+    state: S.optional(DomainDomainOptionStateEnum),
+  }),
+).annotate({ identifier: "DomainOption" }) as any as S.Schema<DomainOption>;
+
+export interface GetDomainOptionsRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const GetDomainOptionsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/domain/{serviceName}/options", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetDomainOptionsRequest",
+}) as any as S.Schema<GetDomainOptionsRequest>;
+
+/** Data of a domain option */
+export interface DomainServiceOption {
+  /** Service name of the option */
+  serviceName?: string;
+}
+export const DomainServiceOption = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DomainServiceOption",
+}) as any as S.Schema<DomainServiceOption>;
+
+/** Representation of the domain options */
+export interface DomainServiceOptions {
+  /** Hosting option */
+  hosting?: DomainServiceOption | null;
+  /** Offer option (Diamond, Platinum) */
+  offer?: DomainServiceOption | null;
+  /** DNS zone option */
+  zone?: DomainServiceOption | null;
+}
+export const DomainServiceOptions = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    hosting: S.optional(S.NullOr(DomainServiceOption)),
+    offer: S.optional(S.NullOr(DomainServiceOption)),
+    zone: S.optional(S.NullOr(DomainServiceOption)),
+  }),
+).annotate({
+  identifier: "DomainServiceOptions",
+}) as any as S.Schema<DomainServiceOptions>;
 
 /** Resource tag filter */
 export interface IamResourceTagFilterInput {}
@@ -2928,791 +4081,23 @@ export const GetDomainsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetDomainsResponse",
 }) as any as S.Schema<GetDomainsResponse>;
 
-export interface GetDomainServiceNameAuthInfoRequest {
+export interface GetDomainServiceInfosRequest {
   /** Service name */
   serviceName: string;
 }
-export const GetDomainServiceNameAuthInfoRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDomainServiceInfosRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     serviceName: S.String.pipe(T.Label()),
   }).pipe(
-    T.Http({ method: "GET", uri: "/domain/{serviceName}/authInfo", code: 200 }),
+    T.Http({
+      method: "GET",
+      uri: "/domain/{serviceName}/serviceInfos",
+      code: 200,
+    }),
   ),
 ).annotate({
-  identifier: "GetDomainServiceNameAuthInfoRequest",
-}) as any as S.Schema<GetDomainServiceNameAuthInfoRequest>;
-
-export type GetDomainServiceNameAuthInfoResponse = string;
-export const GetDomainServiceNameAuthInfoResponse = /*@__PURE__*/ S.suspend(
-  () => S.String.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetDomainServiceNameAuthInfoResponse",
-}) as any as S.Schema<GetDomainServiceNameAuthInfoResponse>;
-
-export interface GetDomainServiceNameConfigurationsDataRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const GetDomainServiceNameConfigurationsDataRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/domain/{serviceName}/configurations/data",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetDomainServiceNameConfigurationsDataRequest",
-  }) as any as S.Schema<GetDomainServiceNameConfigurationsDataRequest>;
-
-/** Possible purposes of the domain */
-export type DomainIsForEnum =
-  | "campaign_website"
-  | "educational_website"
-  | "emails"
-  | "information_website"
-  | "other_purpose"
-  | "redirect_page"
-  | "transactional_website";
-export const DomainIsForEnum = /*@__PURE__*/ S.String;
-
-/** Purposes of the domain */
-export type DomainConfigurationsCustomFieldsIsForList = Array<DomainIsForEnum>;
-export const DomainConfigurationsCustomFieldsIsForList = /*@__PURE__*/ S.Array(
-  DomainIsForEnum,
-) as any as S.Schema<DomainConfigurationsCustomFieldsIsForList>;
-
-/** Representation of the domain custom fields */
-export interface DomainConfigurationsCustomFields {
-  /** Domain name audience */
-  audience?: string | null;
-  /** Auth Info */
-  authInfo?: string | null;
-  /** Purposes of the domain */
-  isFor?: DomainConfigurationsCustomFieldsIsForList | null;
-  /** Domain name other purpose */
-  otherPurpose?: string | null;
-  /** Reason of the purchase of this domain */
-  reason?: string | null;
-  /** Represented company */
-  represent?: string | null;
-}
-export const DomainConfigurationsCustomFields = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    audience: S.optional(S.NullOr(S.String)),
-    authInfo: S.optional(S.NullOr(S.String)),
-    isFor: S.optional(S.NullOr(DomainConfigurationsCustomFieldsIsForList)),
-    otherPurpose: S.optional(S.NullOr(S.String)),
-    reason: S.optional(S.NullOr(S.String)),
-    represent: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "DomainConfigurationsCustomFields",
-}) as any as S.Schema<DomainConfigurationsCustomFields>;
-
-export interface GetDomainServiceNameConfigurationsObfuscatedEmailsRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const GetDomainServiceNameConfigurationsObfuscatedEmailsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/domain/{serviceName}/configurations/obfuscatedEmails",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetDomainServiceNameConfigurationsObfuscatedEmailsRequest",
-  }) as any as S.Schema<GetDomainServiceNameConfigurationsObfuscatedEmailsRequest>;
-
-/** The possible statuses of an email obfuscation */
-export type DomainConfigurationsObfuscationStatusEnum = "done" | "todo";
-export const DomainConfigurationsObfuscationStatusEnum = /*@__PURE__*/ S.String;
-
-/** The possible types of contacts associated to a domain name */
-export type DomainConfigurationsContactTypeEnum =
-  | "admin"
-  | "all"
-  | "billing"
-  | "owner"
-  | "tech";
-export const DomainConfigurationsContactTypeEnum = /*@__PURE__*/ S.String;
-
-/** Configuration of the email obfuscations for contacts related to a domain name */
-export interface DomainConfigurationsObfuscatedEmail {
-  /** Status of the email obfuscation */
-  status?: DomainConfigurationsObfuscationStatusEnum | null;
-  /** Type of the contact whose email is obfuscated by this configuration */
-  type?: DomainConfigurationsContactTypeEnum;
-  /** Obfuscated email address */
-  value?: string;
-}
-export const DomainConfigurationsObfuscatedEmail = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(S.NullOr(DomainConfigurationsObfuscationStatusEnum)),
-    type: S.optional(DomainConfigurationsContactTypeEnum),
-    value: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DomainConfigurationsObfuscatedEmail",
-}) as any as S.Schema<DomainConfigurationsObfuscatedEmail>;
-
-export type GetDomainServiceNameConfigurationsObfuscatedEmailsResponseBodyList =
-  Array<DomainConfigurationsObfuscatedEmail>;
-export const GetDomainServiceNameConfigurationsObfuscatedEmailsResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    DomainConfigurationsObfuscatedEmail,
-  ) as any as S.Schema<GetDomainServiceNameConfigurationsObfuscatedEmailsResponseBodyList>;
-
-export type GetDomainServiceNameConfigurationsObfuscatedEmailsResponse =
-  GetDomainServiceNameConfigurationsObfuscatedEmailsResponseBodyList;
-export const GetDomainServiceNameConfigurationsObfuscatedEmailsResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetDomainServiceNameConfigurationsObfuscatedEmailsResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetDomainServiceNameConfigurationsObfuscatedEmailsResponse",
-  }) as any as S.Schema<GetDomainServiceNameConfigurationsObfuscatedEmailsResponse>;
-
-export interface GetDomainServiceNameConfigurationsOptinRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const GetDomainServiceNameConfigurationsOptinRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/domain/{serviceName}/configurations/optin",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetDomainServiceNameConfigurationsOptinRequest",
-  }) as any as S.Schema<GetDomainServiceNameConfigurationsOptinRequest>;
-
-/** Whois optin fields */
-export type DomainOptinFieldsEnum =
-  | "address"
-  | "city"
-  | "country"
-  | "email"
-  | "fax"
-  | "name"
-  | "organisation"
-  | "phone"
-  | "province"
-  | "zip";
-export const DomainOptinFieldsEnum = /*@__PURE__*/ S.String;
-
-/** Fields to display publicly on the Whois */
-export type DomainConfigurationsOptinFieldsList = Array<
-  DomainOptinFieldsEnum | (string & {})
->;
-export const DomainConfigurationsOptinFieldsList = /*@__PURE__*/ S.Array(
-  DomainOptinFieldsEnum,
-) as any as S.Schema<DomainConfigurationsOptinFieldsList>;
-
-/** Configuration of the optin fields for contacts related to a domain name */
-export interface DomainConfigurationsOptin {
-  /** Fields to display publicly on the Whois */
-  fields?: DomainConfigurationsOptinFieldsList;
-  /** Type of the contact associated to the optin configuration */
-  type?: DomainConfigurationsContactTypeEnum | (string & {});
-}
-export const DomainConfigurationsOptin = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    fields: S.optional(DomainConfigurationsOptinFieldsList),
-    type: S.optional(DomainConfigurationsContactTypeEnum),
-  }),
-).annotate({
-  identifier: "DomainConfigurationsOptin",
-}) as any as S.Schema<DomainConfigurationsOptin>;
-
-export type GetDomainServiceNameConfigurationsOptinResponseBodyList =
-  Array<DomainConfigurationsOptin>;
-export const GetDomainServiceNameConfigurationsOptinResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    DomainConfigurationsOptin,
-  ) as any as S.Schema<GetDomainServiceNameConfigurationsOptinResponseBodyList>;
-
-export type GetDomainServiceNameConfigurationsOptinResponse =
-  GetDomainServiceNameConfigurationsOptinResponseBodyList;
-export const GetDomainServiceNameConfigurationsOptinResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetDomainServiceNameConfigurationsOptinResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetDomainServiceNameConfigurationsOptinResponse",
-  }) as any as S.Schema<GetDomainServiceNameConfigurationsOptinResponse>;
-
-/** DNSSEC Key Flag Type: 256=ZSK (Zone Signing Key), 257=KSK (Key Signing Key) */
-export type DnssecKeyFlagEnum = 256 | 257;
-export const DnssecKeyFlagEnum = /*@__PURE__*/ S.Number;
-
-/** Generated: The key has been created, but has not yet been used for anything. Published: The DNSKEY record is published in the zone, but predecessors of the key may be held in caches. Ready: The new key data has been published for long enough to guarantee that any previous versions of the DNSKEY RRset have expired from caches. Active: The key has started to be used to sign RRsets. Retired: A successor key has become active and this key is no longer being used to generate RRSIGs. Removed: The key has been removed from the zone. Revoked: The key is published for a period with the "revoke" bit set as a way of notifying validating resolvers that have configured it as an trust anchor that it is about to be removed from the zone. */
-export type DnssecKeyStatusEnum =
-  | "active"
-  | "generated"
-  | "published"
-  | "removed"
-  | "retired"
-  | "revoked";
-export const DnssecKeyStatusEnum = /*@__PURE__*/ S.String;
-
-export interface GetDomainServiceNameDsRecordRequest {
-  /** Service name */
-  serviceName: string;
-  /** Filter the value of flags property (=) */
-  flags?: DnssecKeyFlagEnum | (number & {});
-  /** Filter the value of status property (=) */
-  status?: DnssecKeyStatusEnum | (string & {});
-}
-export const GetDomainServiceNameDsRecordRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceName: S.String.pipe(T.Label()),
-    flags: S.optional(DnssecKeyFlagEnum.pipe(T.Query())),
-    status: S.optional(DnssecKeyStatusEnum.pipe(T.Query())),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/domain/{serviceName}/dsRecord", code: 200 }),
-  ),
-).annotate({
-  identifier: "GetDomainServiceNameDsRecordRequest",
-}) as any as S.Schema<GetDomainServiceNameDsRecordRequest>;
-
-export type GetDomainServiceNameDsRecordResponseBodyList = Array<number>;
-export const GetDomainServiceNameDsRecordResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<GetDomainServiceNameDsRecordResponseBodyList>;
-
-export type GetDomainServiceNameDsRecordResponse =
-  GetDomainServiceNameDsRecordResponseBodyList;
-export const GetDomainServiceNameDsRecordResponse = /*@__PURE__*/ S.suspend(
-  () => GetDomainServiceNameDsRecordResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetDomainServiceNameDsRecordResponse",
-}) as any as S.Schema<GetDomainServiceNameDsRecordResponse>;
-
-export interface GetDomainServiceNameDsRecordIdRequest {
-  /** Service name */
-  serviceName: string;
-  /** Id */
-  id: number;
-}
-export const GetDomainServiceNameDsRecordIdRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/domain/{serviceName}/dsRecord/{id}",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "GetDomainServiceNameDsRecordIdRequest",
-}) as any as S.Schema<GetDomainServiceNameDsRecordIdRequest>;
-
-/** DNSSEC Algorithm 3: DSA 5: RSASHA1 6: DSA-NSEC3-SHA1 7: RSASHA1-NSEC3-SHA1 8: RSASHA256 10: RSASHA512 12: ECC-GOST 13: ECDSAP256SHA256 14: ECDSAP384SHA384 15: ED25519 16: ED448 */
-export type DnssecKeyAlgorithmEnum =
-  | 3
-  | 5
-  | 6
-  | 7
-  | 8
-  | 10
-  | 12
-  | 13
-  | 14
-  | 15
-  | 16;
-export const DnssecKeyAlgorithmEnum = /*@__PURE__*/ S.Number;
-
-/** Domain's DNSSEC Key */
-export interface DnssecKey {
-  /** Algorithm number of the DNSSEC key */
-  algorithm?: DnssecKeyAlgorithmEnum;
-  /** Flag of the DNSSEC key */
-  flags?: DnssecKeyFlagEnum;
-  /** ID of the DNSSEC key */
-  id?: number;
-  /** Public key */
-  publicKey?: string;
-  /** Key status of the DNSSEC key */
-  status?: DnssecKeyStatusEnum;
-  /** Tag of the DNSSEC key */
-  tag?: number;
-}
-export const DnssecKey = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    algorithm: S.optional(DnssecKeyAlgorithmEnum),
-    flags: S.optional(DnssecKeyFlagEnum),
-    id: S.optional(S.Number),
-    publicKey: S.optional(S.String),
-    status: S.optional(DnssecKeyStatusEnum),
-    tag: S.optional(S.Number),
-  }),
-).annotate({ identifier: "DnssecKey" }) as any as S.Schema<DnssecKey>;
-
-export interface GetDomainServiceNameGlueRecordRequest {
-  /** Service name */
-  serviceName: string;
-  /** Filter the value of host property */
-  host?: string;
-}
-export const GetDomainServiceNameGlueRecordRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      host: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/domain/{serviceName}/glueRecord",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "GetDomainServiceNameGlueRecordRequest",
-}) as any as S.Schema<GetDomainServiceNameGlueRecordRequest>;
-
-export type GetDomainServiceNameGlueRecordResponseBodyList = Array<string>;
-export const GetDomainServiceNameGlueRecordResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetDomainServiceNameGlueRecordResponseBodyList>;
-
-export type GetDomainServiceNameGlueRecordResponse =
-  GetDomainServiceNameGlueRecordResponseBodyList;
-export const GetDomainServiceNameGlueRecordResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    GetDomainServiceNameGlueRecordResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetDomainServiceNameGlueRecordResponse",
-}) as any as S.Schema<GetDomainServiceNameGlueRecordResponse>;
-
-export interface GetDomainServiceNameGlueRecordHostRequest {
-  /** Service name */
-  serviceName: string;
-  /** Host */
-  host: string;
-}
-export const GetDomainServiceNameGlueRecordHostRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      host: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/domain/{serviceName}/glueRecord/{host}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetDomainServiceNameGlueRecordHostRequest",
-  }) as any as S.Schema<GetDomainServiceNameGlueRecordHostRequest>;
-
-/** IP address */
-export type DomainGlueRecordGlueRecordIpsList = Array<string>;
-export const DomainGlueRecordGlueRecordIpsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<DomainGlueRecordGlueRecordIpsList>;
-
-/** Glue record */
-export interface DomainGlueRecordGlueRecord {
-  /** Host of the glue record */
-  host?: string;
-  /** IP address */
-  ips: DomainGlueRecordGlueRecordIpsList;
-}
-export const DomainGlueRecordGlueRecord = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    host: S.optional(S.String),
-    ips: DomainGlueRecordGlueRecordIpsList,
-  }),
-).annotate({
-  identifier: "DomainGlueRecordGlueRecord",
-}) as any as S.Schema<DomainGlueRecordGlueRecord>;
-
-export interface GetDomainServiceNameNameServerRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const GetDomainServiceNameNameServerRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/domain/{serviceName}/nameServer",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "GetDomainServiceNameNameServerRequest",
-}) as any as S.Schema<GetDomainServiceNameNameServerRequest>;
-
-export type GetDomainServiceNameNameServerResponseBodyList = Array<number>;
-export const GetDomainServiceNameNameServerResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<GetDomainServiceNameNameServerResponseBodyList>;
-
-export type GetDomainServiceNameNameServerResponse =
-  GetDomainServiceNameNameServerResponseBodyList;
-export const GetDomainServiceNameNameServerResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    GetDomainServiceNameNameServerResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetDomainServiceNameNameServerResponse",
-}) as any as S.Schema<GetDomainServiceNameNameServerResponse>;
-
-export interface GetDomainServiceNameNameServerIdRequest {
-  /** Service name */
-  serviceName: string;
-  /** Id */
-  id: number;
-}
-export const GetDomainServiceNameNameServerIdRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/domain/{serviceName}/nameServer/{id}",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "GetDomainServiceNameNameServerIdRequest",
-}) as any as S.Schema<GetDomainServiceNameNameServerIdRequest>;
-
-/** Full name server configuration */
-export interface DomainNameServerFullNameServer {
-  /** Host of the name server */
-  host?: string;
-  /** ID of the name server */
-  id?: number;
-  /** IP address of the name server */
-  ip?: string | null;
-  /** isUsed flag of the name server */
-  isUsed?: boolean;
-  /** toDelete flag of the name server */
-  toDelete?: boolean;
-}
-export const DomainNameServerFullNameServer = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    host: S.optional(S.String),
-    id: S.optional(S.Number),
-    ip: S.optional(S.NullOr(S.String)),
-    isUsed: S.optional(S.Boolean),
-    toDelete: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "DomainNameServerFullNameServer",
-}) as any as S.Schema<DomainNameServerFullNameServer>;
-
-export interface GetDomainServiceNameNameServerIdStatusRequest {
-  /** Service name */
-  serviceName: string;
-  /** Id */
-  id: number;
-}
-export const GetDomainServiceNameNameServerIdStatusRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/domain/{serviceName}/nameServer/{id}/status",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetDomainServiceNameNameServerIdStatusRequest",
-  }) as any as S.Schema<GetDomainServiceNameNameServerIdStatusRequest>;
-
-/** DNS server state */
-export type DomainNameServerNameServerStateEnum = "ko" | "ok";
-export const DomainNameServerNameServerStateEnum = /*@__PURE__*/ S.String;
-
-/** DNS server status */
-export interface DomainNameServerNameServerStatus {
-  /** Whether or not the DNS server is working */
-  state?: DomainNameServerNameServerStateEnum;
-  /** Whether or not the DNS server is managed by OVHcloud */
-  type?: DomainNameServerNameServerTypeEnum;
-  /** Date from which the DNS server is used by the domain */
-  usedSince?: string | null;
-}
-export const DomainNameServerNameServerStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    state: S.optional(DomainNameServerNameServerStateEnum),
-    type: S.optional(DomainNameServerNameServerTypeEnum),
-    usedSince: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "DomainNameServerNameServerStatus",
-}) as any as S.Schema<DomainNameServerNameServerStatus>;
-
-export interface GetDomainServiceNameOptionRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const GetDomainServiceNameOptionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/domain/{serviceName}/option", code: 200 }),
-  ),
-).annotate({
-  identifier: "GetDomainServiceNameOptionRequest",
-}) as any as S.Schema<GetDomainServiceNameOptionRequest>;
-
-/** All options a domain can have */
-export type DomainDomainOptionEnum = "dnsAnycast";
-export const DomainDomainOptionEnum = /*@__PURE__*/ S.String;
-
-export type GetDomainServiceNameOptionResponseBodyList =
-  Array<DomainDomainOptionEnum>;
-export const GetDomainServiceNameOptionResponseBodyList = /*@__PURE__*/ S.Array(
-  DomainDomainOptionEnum,
-) as any as S.Schema<GetDomainServiceNameOptionResponseBodyList>;
-
-export type GetDomainServiceNameOptionResponse =
-  GetDomainServiceNameOptionResponseBodyList;
-export const GetDomainServiceNameOptionResponse = /*@__PURE__*/ S.suspend(() =>
-  GetDomainServiceNameOptionResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetDomainServiceNameOptionResponse",
-}) as any as S.Schema<GetDomainServiceNameOptionResponse>;
-
-/** All options a domain can have */
-export type GetDomainServiceNameOptionOptionRequestOption = "dnsAnycast";
-export const GetDomainServiceNameOptionOptionRequestOption =
-  /*@__PURE__*/ S.String;
-
-export interface GetDomainServiceNameOptionOptionRequest {
-  /** Service name */
-  serviceName: string;
-  /** Option */
-  option: GetDomainServiceNameOptionOptionRequestOption | (string & {});
-}
-export const GetDomainServiceNameOptionOptionRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      option: GetDomainServiceNameOptionOptionRequestOption.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/domain/{serviceName}/option/{option}",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "GetDomainServiceNameOptionOptionRequest",
-}) as any as S.Schema<GetDomainServiceNameOptionOptionRequest>;
-
-/** All states a domain Option can be in */
-export type DomainDomainOptionStateEnum = "released" | "subscribed";
-export const DomainDomainOptionStateEnum = /*@__PURE__*/ S.String;
-
-/** Information about the options of a domain */
-export interface DomainOption {
-  /** Expiration date of the option */
-  expirationDate?: string;
-  /** The option name */
-  option?: DomainDomainOptionEnum;
-  /** The state of the option */
-  state?: DomainDomainOptionStateEnum;
-}
-export const DomainOption = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    expirationDate: S.optional(S.String),
-    option: S.optional(DomainDomainOptionEnum),
-    state: S.optional(DomainDomainOptionStateEnum),
-  }),
-).annotate({ identifier: "DomainOption" }) as any as S.Schema<DomainOption>;
-
-export interface GetDomainServiceNameOptionsRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const GetDomainServiceNameOptionsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/domain/{serviceName}/options", code: 200 }),
-  ),
-).annotate({
-  identifier: "GetDomainServiceNameOptionsRequest",
-}) as any as S.Schema<GetDomainServiceNameOptionsRequest>;
-
-/** Data of a domain option */
-export interface DomainServiceOption {
-  /** Service name of the option */
-  serviceName?: string;
-}
-export const DomainServiceOption = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceName: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DomainServiceOption",
-}) as any as S.Schema<DomainServiceOption>;
-
-/** Representation of the domain options */
-export interface DomainServiceOptions {
-  /** Hosting option */
-  hosting?: DomainServiceOption | null;
-  /** Offer option (Diamond, Platinum) */
-  offer?: DomainServiceOption | null;
-  /** DNS zone option */
-  zone?: DomainServiceOption | null;
-}
-export const DomainServiceOptions = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    hosting: S.optional(S.NullOr(DomainServiceOption)),
-    offer: S.optional(S.NullOr(DomainServiceOption)),
-    zone: S.optional(S.NullOr(DomainServiceOption)),
-  }),
-).annotate({
-  identifier: "DomainServiceOptions",
-}) as any as S.Schema<DomainServiceOptions>;
-
-export interface GetDomainServiceNameRulesEmailsObfuscationRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const GetDomainServiceNameRulesEmailsObfuscationRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/domain/{serviceName}/rules/emailsObfuscation",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetDomainServiceNameRulesEmailsObfuscationRequest",
-  }) as any as S.Schema<GetDomainServiceNameRulesEmailsObfuscationRequest>;
-
-export type GetDomainServiceNameRulesEmailsObfuscationResponseBodyList =
-  Array<DomainConfigurationsContactTypeEnum>;
-export const GetDomainServiceNameRulesEmailsObfuscationResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    DomainConfigurationsContactTypeEnum,
-  ) as any as S.Schema<GetDomainServiceNameRulesEmailsObfuscationResponseBodyList>;
-
-export type GetDomainServiceNameRulesEmailsObfuscationResponse =
-  GetDomainServiceNameRulesEmailsObfuscationResponseBodyList;
-export const GetDomainServiceNameRulesEmailsObfuscationResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetDomainServiceNameRulesEmailsObfuscationResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetDomainServiceNameRulesEmailsObfuscationResponse",
-  }) as any as S.Schema<GetDomainServiceNameRulesEmailsObfuscationResponse>;
-
-export interface GetDomainServiceNameRulesOptinRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const GetDomainServiceNameRulesOptinRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/domain/{serviceName}/rules/optin",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "GetDomainServiceNameRulesOptinRequest",
-}) as any as S.Schema<GetDomainServiceNameRulesOptinRequest>;
-
-/** Fields to display publicly on the Whois */
-export type DomainRulesOptinFieldsList = Array<DomainOptinFieldsEnum>;
-export const DomainRulesOptinFieldsList = /*@__PURE__*/ S.Array(
-  DomainOptinFieldsEnum,
-) as any as S.Schema<DomainRulesOptinFieldsList>;
-
-/** Representation of the optin rule */
-export interface DomainRulesOptin {
-  /** Fields to display publicly on the Whois */
-  fields?: DomainRulesOptinFieldsList;
-  /** Type of the contact associated to the optin rule */
-  type?: DomainConfigurationsContactTypeEnum;
-}
-export const DomainRulesOptin = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    fields: S.optional(DomainRulesOptinFieldsList),
-    type: S.optional(DomainConfigurationsContactTypeEnum),
-  }),
-).annotate({
-  identifier: "DomainRulesOptin",
-}) as any as S.Schema<DomainRulesOptin>;
-
-export type GetDomainServiceNameRulesOptinResponseBodyList =
-  Array<DomainRulesOptin>;
-export const GetDomainServiceNameRulesOptinResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    DomainRulesOptin,
-  ) as any as S.Schema<GetDomainServiceNameRulesOptinResponseBodyList>;
-
-export type GetDomainServiceNameRulesOptinResponse =
-  GetDomainServiceNameRulesOptinResponseBodyList;
-export const GetDomainServiceNameRulesOptinResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    GetDomainServiceNameRulesOptinResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetDomainServiceNameRulesOptinResponse",
-}) as any as S.Schema<GetDomainServiceNameRulesOptinResponse>;
-
-export interface GetDomainServiceNameServiceInfosRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const GetDomainServiceNameServiceInfosRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/domain/{serviceName}/serviceInfos",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "GetDomainServiceNameServiceInfosRequest",
-}) as any as S.Schema<GetDomainServiceNameServiceInfosRequest>;
+  identifier: "GetDomainServiceInfosRequest",
+}) as any as S.Schema<GetDomainServiceInfosRequest>;
 
 /** All the possible renew period of your service in month */
 export type ServicesServicePossibleRenewPeriodList = Array<number>;
@@ -3807,49 +4192,13 @@ export const ServicesService = /*@__PURE__*/ S.suspend(() =>
   identifier: "ServicesService",
 }) as any as S.Schema<ServicesService>;
 
-export interface GetDomainServiceNameTaskRequest {
-  /** Service name */
-  serviceName: string;
-  /** Filter the value of function property (like) */
-  function?: string;
-  /** Filter the value of status property (=) */
-  status?: DomainOperationStatusEnum | (string & {});
-  /** Filter the value of type property (=) */
-  type?: DomainOperationTypeEnum | (string & {});
-}
-export const GetDomainServiceNameTaskRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceName: S.String.pipe(T.Label()),
-    function: S.optional(S.String.pipe(T.Query())),
-    status: S.optional(DomainOperationStatusEnum.pipe(T.Query())),
-    type: S.optional(DomainOperationTypeEnum.pipe(T.Query())),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/domain/{serviceName}/task", code: 200 }),
-  ),
-).annotate({
-  identifier: "GetDomainServiceNameTaskRequest",
-}) as any as S.Schema<GetDomainServiceNameTaskRequest>;
-
-export type GetDomainServiceNameTaskResponseBodyList = Array<number>;
-export const GetDomainServiceNameTaskResponseBodyList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<GetDomainServiceNameTaskResponseBodyList>;
-
-export type GetDomainServiceNameTaskResponse =
-  GetDomainServiceNameTaskResponseBodyList;
-export const GetDomainServiceNameTaskResponse = /*@__PURE__*/ S.suspend(() =>
-  GetDomainServiceNameTaskResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetDomainServiceNameTaskResponse",
-}) as any as S.Schema<GetDomainServiceNameTaskResponse>;
-
-export interface GetDomainServiceNameTaskIdRequest {
+export interface GetDomainTaskRequest {
   /** Service name */
   serviceName: string;
   /** Id */
   id: number;
 }
-export const GetDomainServiceNameTaskIdRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDomainTaskRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     serviceName: S.String.pipe(T.Label()),
     id: S.Number.pipe(T.Label()),
@@ -3861,78 +4210,26 @@ export const GetDomainServiceNameTaskIdRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetDomainServiceNameTaskIdRequest",
-}) as any as S.Schema<GetDomainServiceNameTaskIdRequest>;
+  identifier: "GetDomainTaskRequest",
+}) as any as S.Schema<GetDomainTaskRequest>;
 
-export interface GetDomainServiceNameUkRegistrarsRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const GetDomainServiceNameUkRegistrarsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/domain/{serviceName}/ukRegistrars",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "GetDomainServiceNameUkRegistrarsRequest",
-}) as any as S.Schema<GetDomainServiceNameUkRegistrarsRequest>;
-
-/** Representation of a UK Registrar (used for outgoing transfer) */
-export interface DomainUkRegistrar {
-  /** Registrar name */
-  name?: string;
-  /** Registrar tag */
-  tag: string;
-}
-export const DomainUkRegistrar = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    tag: S.String,
-  }),
-).annotate({
-  identifier: "DomainUkRegistrar",
-}) as any as S.Schema<DomainUkRegistrar>;
-
-export type GetDomainServiceNameUkRegistrarsResponseBodyList =
-  Array<DomainUkRegistrar>;
-export const GetDomainServiceNameUkRegistrarsResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    DomainUkRegistrar,
-  ) as any as S.Schema<GetDomainServiceNameUkRegistrarsResponseBodyList>;
-
-export type GetDomainServiceNameUkRegistrarsResponse =
-  GetDomainServiceNameUkRegistrarsResponseBodyList;
-export const GetDomainServiceNameUkRegistrarsResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    GetDomainServiceNameUkRegistrarsResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetDomainServiceNameUkRegistrarsResponse",
-}) as any as S.Schema<GetDomainServiceNameUkRegistrarsResponse>;
-
-export interface GetDomainZoneZoneNameCapabilitiesRequest {
+export interface GetDomainZoneCapabilitiesRequest {
   /** Zone name */
   zoneName: string;
 }
-export const GetDomainZoneZoneNameCapabilitiesRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      zoneName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/domain/zone/{zoneName}/capabilities",
-        code: 200,
-      }),
-    ),
+export const GetDomainZoneCapabilitiesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    zoneName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/domain/zone/{zoneName}/capabilities",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "GetDomainZoneZoneNameCapabilitiesRequest",
-}) as any as S.Schema<GetDomainZoneZoneNameCapabilitiesRequest>;
+  identifier: "GetDomainZoneCapabilitiesRequest",
+}) as any as S.Schema<GetDomainZoneCapabilitiesRequest>;
 
 /** DNS zone capabilities */
 export interface DomainZoneCapabilities {
@@ -3947,86 +4244,47 @@ export const DomainZoneCapabilities = /*@__PURE__*/ S.suspend(() =>
   identifier: "DomainZoneCapabilities",
 }) as any as S.Schema<DomainZoneCapabilities>;
 
-export interface GetDomainZoneZoneNameExportRequest {
+export interface GetDomainZoneExportRequest {
   /** Zone name */
   zoneName: string;
 }
-export const GetDomainZoneZoneNameExportRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDomainZoneExportRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     zoneName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({ method: "GET", uri: "/domain/zone/{zoneName}/export", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetDomainZoneZoneNameExportRequest",
-}) as any as S.Schema<GetDomainZoneZoneNameExportRequest>;
+  identifier: "GetDomainZoneExportRequest",
+}) as any as S.Schema<GetDomainZoneExportRequest>;
 
-export type GetDomainZoneZoneNameExportResponse = string;
-export const GetDomainZoneZoneNameExportResponse = /*@__PURE__*/ S.suspend(() =>
+export type GetDomainZoneExportResponse = string;
+export const GetDomainZoneExportResponse = /*@__PURE__*/ S.suspend(() =>
   S.String.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "GetDomainZoneZoneNameExportResponse",
-}) as any as S.Schema<GetDomainZoneZoneNameExportResponse>;
+  identifier: "GetDomainZoneExportResponse",
+}) as any as S.Schema<GetDomainZoneExportResponse>;
 
-export interface GetDomainZoneZoneNameHistoryRequest {
-  /** Zone name */
-  zoneName: string;
-  /** Filter using the value of creationDate property (>=) */
-  creationDate_from?: string;
-  /** Filter using the value of creationDate property (<=) */
-  creationDate_to?: string;
-}
-export const GetDomainZoneZoneNameHistoryRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    zoneName: S.String.pipe(T.Label()),
-    creationDate_from: S.optional(S.String.pipe(T.Query("creationDate.from"))),
-    creationDate_to: S.optional(S.String.pipe(T.Query("creationDate.to"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/domain/zone/{zoneName}/history",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "GetDomainZoneZoneNameHistoryRequest",
-}) as any as S.Schema<GetDomainZoneZoneNameHistoryRequest>;
-
-export type GetDomainZoneZoneNameHistoryResponseBodyList = Array<string>;
-export const GetDomainZoneZoneNameHistoryResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetDomainZoneZoneNameHistoryResponseBodyList>;
-
-export type GetDomainZoneZoneNameHistoryResponse =
-  GetDomainZoneZoneNameHistoryResponseBodyList;
-export const GetDomainZoneZoneNameHistoryResponse = /*@__PURE__*/ S.suspend(
-  () => GetDomainZoneZoneNameHistoryResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetDomainZoneZoneNameHistoryResponse",
-}) as any as S.Schema<GetDomainZoneZoneNameHistoryResponse>;
-
-export interface GetDomainZoneZoneNameHistoryCreationDateRequest {
+export interface GetDomainZoneHistoryRequest {
   /** Zone name */
   zoneName: string;
   /** Creation date */
   creationDate: string;
 }
-export const GetDomainZoneZoneNameHistoryCreationDateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      zoneName: S.String.pipe(T.Label()),
-      creationDate: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/domain/zone/{zoneName}/history/{creationDate}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetDomainZoneZoneNameHistoryCreationDateRequest",
-  }) as any as S.Schema<GetDomainZoneZoneNameHistoryCreationDateRequest>;
+export const GetDomainZoneHistoryRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    zoneName: S.String.pipe(T.Label()),
+    creationDate: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/domain/zone/{zoneName}/history/{creationDate}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetDomainZoneHistoryRequest",
+}) as any as S.Schema<GetDomainZoneHistoryRequest>;
 
 /** DNS zone history */
 export interface DomainZoneZoneRestorePoint {
@@ -4044,55 +4302,26 @@ export const DomainZoneZoneRestorePoint = /*@__PURE__*/ S.suspend(() =>
   identifier: "DomainZoneZoneRestorePoint",
 }) as any as S.Schema<DomainZoneZoneRestorePoint>;
 
-export interface GetDomainZoneZoneNameOptionRequest {
-  /** Zone name */
-  zoneName: string;
-}
-export const GetDomainZoneZoneNameOptionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    zoneName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/domain/zone/{zoneName}/option", code: 200 }),
-  ),
-).annotate({
-  identifier: "GetDomainZoneZoneNameOptionRequest",
-}) as any as S.Schema<GetDomainZoneZoneNameOptionRequest>;
-
-export type GetDomainZoneZoneNameOptionResponseBodyList = Array<string>;
-export const GetDomainZoneZoneNameOptionResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetDomainZoneZoneNameOptionResponseBodyList>;
-
-export type GetDomainZoneZoneNameOptionResponse =
-  GetDomainZoneZoneNameOptionResponseBodyList;
-export const GetDomainZoneZoneNameOptionResponse = /*@__PURE__*/ S.suspend(() =>
-  GetDomainZoneZoneNameOptionResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetDomainZoneZoneNameOptionResponse",
-}) as any as S.Schema<GetDomainZoneZoneNameOptionResponse>;
-
-export interface GetDomainZoneZoneNameOptionNameRequest {
+export interface GetDomainZoneOptionRequest {
   /** Zone name */
   zoneName: string;
   /** Name */
   name: string;
 }
-export const GetDomainZoneZoneNameOptionNameRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      zoneName: S.String.pipe(T.Label()),
-      name: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/domain/zone/{zoneName}/option/{name}",
-        code: 200,
-      }),
-    ),
+export const GetDomainZoneOptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    zoneName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/domain/zone/{zoneName}/option/{name}",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "GetDomainZoneZoneNameOptionNameRequest",
-}) as any as S.Schema<GetDomainZoneZoneNameOptionNameRequest>;
+  identifier: "GetDomainZoneOptionRequest",
+}) as any as S.Schema<GetDomainZoneOptionRequest>;
 
 /** DNS zone option */
 export interface DomainZoneOption {
@@ -4107,14 +4336,14 @@ export const DomainZoneOption = /*@__PURE__*/ S.suspend(() =>
   identifier: "DomainZoneOption",
 }) as any as S.Schema<DomainZoneOption>;
 
-export interface GetDomainZoneZoneNameOptionNameServiceInfosRequest {
+export interface GetDomainZoneOptionServiceInfosRequest {
   /** The internal name of your zone */
   zoneName: string;
   /** The option name */
   name: string;
 }
-export const GetDomainZoneZoneNameOptionNameServiceInfosRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetDomainZoneOptionServiceInfosRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       zoneName: S.String.pipe(T.Label()),
       name: S.String.pipe(T.Label()),
@@ -4125,42 +4354,41 @@ export const GetDomainZoneZoneNameOptionNameServiceInfosRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "GetDomainZoneZoneNameOptionNameServiceInfosRequest",
-  }) as any as S.Schema<GetDomainZoneZoneNameOptionNameServiceInfosRequest>;
-
-export interface GetDomainZoneZoneNameServiceInfosRequest {
-  /** Zone name */
-  zoneName: string;
-}
-export const GetDomainZoneZoneNameServiceInfosRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      zoneName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/domain/zone/{zoneName}/serviceInfos",
-        code: 200,
-      }),
-    ),
 ).annotate({
-  identifier: "GetDomainZoneZoneNameServiceInfosRequest",
-}) as any as S.Schema<GetDomainZoneZoneNameServiceInfosRequest>;
+  identifier: "GetDomainZoneOptionServiceInfosRequest",
+}) as any as S.Schema<GetDomainZoneOptionServiceInfosRequest>;
 
-export interface GetDomainZoneZoneNameSoaRequest {
+export interface GetDomainZoneServiceInfosRequest {
   /** Zone name */
   zoneName: string;
 }
-export const GetDomainZoneZoneNameSoaRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDomainZoneServiceInfosRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    zoneName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/domain/zone/{zoneName}/serviceInfos",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetDomainZoneServiceInfosRequest",
+}) as any as S.Schema<GetDomainZoneServiceInfosRequest>;
+
+export interface GetDomainZoneSoaRequest {
+  /** Zone name */
+  zoneName: string;
+}
+export const GetDomainZoneSoaRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     zoneName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({ method: "GET", uri: "/domain/zone/{zoneName}/soa", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetDomainZoneZoneNameSoaRequest",
-}) as any as S.Schema<GetDomainZoneZoneNameSoaRequest>;
+  identifier: "GetDomainZoneSoaRequest",
+}) as any as S.Schema<GetDomainZoneSoaRequest>;
 
 /** DNS zone SOA */
 export interface DomainZoneSoa {
@@ -4191,50 +4419,26 @@ export const DomainZoneSoa = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "DomainZoneSoa" }) as any as S.Schema<DomainZoneSoa>;
 
-export interface GetDomainZoneZoneNameStatusRequest {
+export interface GetDomainZoneTaskRequest {
   /** Zone name */
   zoneName: string;
+  /** Id */
+  id: number;
 }
-export const GetDomainZoneZoneNameStatusRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDomainZoneTaskRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     zoneName: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
   }).pipe(
-    T.Http({ method: "GET", uri: "/domain/zone/{zoneName}/status", code: 200 }),
+    T.Http({
+      method: "GET",
+      uri: "/domain/zone/{zoneName}/task/{id}",
+      code: 200,
+    }),
   ),
 ).annotate({
-  identifier: "GetDomainZoneZoneNameStatusRequest",
-}) as any as S.Schema<GetDomainZoneZoneNameStatusRequest>;
-
-/** Error list if any */
-export type DomainZoneStatusErrorsList = Array<string>;
-export const DomainZoneStatusErrorsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<DomainZoneStatusErrorsList>;
-
-/** Warning list if any */
-export type DomainZoneStatusWarningsList = Array<string>;
-export const DomainZoneStatusWarningsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<DomainZoneStatusWarningsList>;
-
-/** DNS zone status */
-export interface DomainZoneStatus {
-  /** Error list if any */
-  errors?: DomainZoneStatusErrorsList | null;
-  /** Whether the zone is deployed or not */
-  isDeployed?: boolean;
-  /** Warning list if any */
-  warnings?: DomainZoneStatusWarningsList | null;
-}
-export const DomainZoneStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    errors: S.optional(S.NullOr(DomainZoneStatusErrorsList)),
-    isDeployed: S.optional(S.Boolean),
-    warnings: S.optional(S.NullOr(DomainZoneStatusWarningsList)),
-  }),
-).annotate({
-  identifier: "DomainZoneStatus",
-}) as any as S.Schema<DomainZoneStatus>;
+  identifier: "GetDomainZoneTaskRequest",
+}) as any as S.Schema<GetDomainZoneTaskRequest>;
 
 /** All functions from a dns task */
 export type DomainTaskFunctionEnum =
@@ -4263,58 +4467,6 @@ export type DomainTaskStatusEnum =
   | "problem"
   | "todo";
 export const DomainTaskStatusEnum = /*@__PURE__*/ S.String;
-
-export interface GetDomainZoneZoneNameTaskRequest {
-  /** Zone name */
-  zoneName: string;
-  function?: DomainTaskFunctionEnum | (string & {});
-  status?: DomainTaskStatusEnum | (string & {});
-}
-export const GetDomainZoneZoneNameTaskRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    zoneName: S.String.pipe(T.Label()),
-    function: S.optional(DomainTaskFunctionEnum.pipe(T.Query())),
-    status: S.optional(DomainTaskStatusEnum.pipe(T.Query())),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/domain/zone/{zoneName}/task", code: 200 }),
-  ),
-).annotate({
-  identifier: "GetDomainZoneZoneNameTaskRequest",
-}) as any as S.Schema<GetDomainZoneZoneNameTaskRequest>;
-
-export type GetDomainZoneZoneNameTaskResponseBodyList = Array<number>;
-export const GetDomainZoneZoneNameTaskResponseBodyList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<GetDomainZoneZoneNameTaskResponseBodyList>;
-
-export type GetDomainZoneZoneNameTaskResponse =
-  GetDomainZoneZoneNameTaskResponseBodyList;
-export const GetDomainZoneZoneNameTaskResponse = /*@__PURE__*/ S.suspend(() =>
-  GetDomainZoneZoneNameTaskResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetDomainZoneZoneNameTaskResponse",
-}) as any as S.Schema<GetDomainZoneZoneNameTaskResponse>;
-
-export interface GetDomainZoneZoneNameTaskIdRequest {
-  /** Zone name */
-  zoneName: string;
-  /** Id */
-  id: number;
-}
-export const GetDomainZoneZoneNameTaskIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    zoneName: S.String.pipe(T.Label()),
-    id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/domain/zone/{zoneName}/task/{id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "GetDomainZoneZoneNameTaskIdRequest",
-}) as any as S.Schema<GetDomainZoneZoneNameTaskIdRequest>;
 
 /** DNS zone task */
 export interface DomainZoneTask {
@@ -4659,1101 +4811,13 @@ export const GetZonesResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetZonesResponse",
 }) as any as S.Schema<GetZonesResponse>;
 
-/** All phone type a person can choose */
-export type NichandlePhoneTypeEnum = "landline" | "mobile";
-export const NichandlePhoneTypeEnum = /*@__PURE__*/ S.String;
-
-/** Details about your OVH identifier */
-export interface NichandleNichandleInput {
-  /** Address of nichandle */
-  address?: string | null;
-  /** Area of nichandle */
-  area?: string | null;
-  /** City of birth */
-  birthCity?: string | null;
-  /** Birth date */
-  birthDay?: string | null;
-  /** City of nichandle */
-  city?: string | null;
-  /** Company National Identification Number */
-  companyNationalIdentificationNumber?: string | null;
-  /** Complementary Address */
-  complementaryAddress?: string | null;
-  /** Corporation type */
-  corporationType?: string | null;
-  /** Customer country */
-  country?: NichandleCountryEnum | (string & {});
-  /** Display name shown instead of the organisation name. */
-  displayName?: string | null;
-  /** Fax number */
-  fax?: string | null;
-  /** First name */
-  firstname?: string | null;
-  /** Italian SDI */
-  italianSDI?: string | null;
-  /** Language */
-  language?: NichandleLanguageEnum | (string & {}) | null;
-  /** Customer legal form */
-  legalform?: NichandleLegalFormEnum | (string & {});
-  /** Customer name */
-  name?: string | null;
-  /** National Identification Number */
-  nationalIdentificationNumber?: string | null;
-  /** Name of organisation */
-  organisation?: string | null;
-  /** Phone number */
-  phone?: string | null;
-  phoneCountry?: NichandleCountryEnum | (string & {}) | null;
-  /** Type of phone(mobile, landline) */
-  phoneType?: NichandlePhoneTypeEnum | (string & {}) | null;
-  /** Customer purpose of purchase */
-  purposeOfPurchase?: string | null;
-  /** Gender */
-  sex?: NichandleGenderEnum | (string & {}) | null;
-  /** Spare email */
-  spareEmail?: string | null;
-  /** VAT number */
-  vat?: string | null;
-  /** Zipcode */
-  zip?: string | null;
-}
-export const NichandleNichandleInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    address: S.optional(S.NullOr(S.String)),
-    area: S.optional(S.NullOr(S.String)),
-    birthCity: S.optional(S.NullOr(S.String)),
-    birthDay: S.optional(S.NullOr(S.String)),
-    city: S.optional(S.NullOr(S.String)),
-    companyNationalIdentificationNumber: S.optional(S.NullOr(S.String)),
-    complementaryAddress: S.optional(S.NullOr(S.String)),
-    corporationType: S.optional(S.NullOr(S.String)),
-    country: S.optional(NichandleCountryEnum),
-    displayName: S.optional(S.NullOr(S.String)),
-    fax: S.optional(S.NullOr(S.String)),
-    firstname: S.optional(S.NullOr(S.String)),
-    italianSDI: S.optional(S.NullOr(S.String)),
-    language: S.optional(S.NullOr(NichandleLanguageEnum)),
-    legalform: S.optional(NichandleLegalFormEnum),
-    name: S.optional(S.NullOr(S.String)),
-    nationalIdentificationNumber: S.optional(S.NullOr(S.String)),
-    organisation: S.optional(S.NullOr(S.String)),
-    phone: S.optional(S.NullOr(S.String)),
-    phoneCountry: S.optional(S.NullOr(NichandleCountryEnum)),
-    phoneType: S.optional(S.NullOr(NichandlePhoneTypeEnum)),
-    purposeOfPurchase: S.optional(S.NullOr(S.String)),
-    sex: S.optional(S.NullOr(NichandleGenderEnum)),
-    spareEmail: S.optional(S.NullOr(S.String)),
-    vat: S.optional(S.NullOr(S.String)),
-    zip: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "NichandleNichandleInput",
-}) as any as S.Schema<NichandleNichandleInput>;
-
-/** The extra data contain additional rule data fields */
-export interface DomainConfigurationRulesRuleExtraData {
-  /** Whether you accept the domain specific conditions or not */
-  acceptCondition?: boolean | null;
-  /** The auth info code for the domain */
-  authInfo?: string | null;
-}
-export const DomainConfigurationRulesRuleExtraData = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      acceptCondition: S.optional(S.NullOr(S.Boolean)),
-      authInfo: S.optional(S.NullOr(S.String)),
-    }),
-).annotate({
-  identifier: "DomainConfigurationRulesRuleExtraData",
-}) as any as S.Schema<DomainConfigurationRulesRuleExtraData>;
-
-/** A contact contains the personal data of a user */
-export interface DomainContactInput {
-  /** Country of lawyer accreditation */
-  accreditationCountry?: NichandleCountryEnum | (string & {}) | null;
-  /** Lawyer accreditation number */
-  accreditationId?: string | null;
-  /** Organism of lawyer accreditation */
-  accreditationOrganism?: string | null;
-  /** Year of lawyer accreditation */
-  accreditationYear?: number | null;
-  /** The address of the contact */
-  address?: DomainContactAddress | null;
-  /** City of birth */
-  birthCity?: string | null;
-  /** Birth Country */
-  birthCountry?: NichandleCountryEnum | (string & {}) | null;
-  /** Birth date */
-  birthDay?: string | null;
-  /** Birth Zipcode */
-  birthZip?: string | null;
-  /** Cellphone number */
-  cellPhone?: string | null;
-  /** Company National Identification Number */
-  companyNationalIdentificationNumber?: string | null;
-  /** Email address */
-  email?: string | null;
-  /** Enterprise identifier */
-  enterpriseId?: string | null;
-  /** Fax number */
-  fax?: string | null;
-  /** First name */
-  firstName?: string | null;
-  /** Gender */
-  gender?: NichandleGenderEnum | (string & {}) | null;
-  /** INSEE identifier */
-  insee?: string | null;
-  /** Language */
-  language?: NichandleLanguageEnum | (string & {}) | null;
-  /** Last name */
-  lastName?: string | null;
-  legalForm?: NichandleLegalFormEnum | (string & {}) | null;
-  /** category of legalForm */
-  legalFormCategory?: string | null;
-  /** National Identification Number */
-  nationalIdentificationNumber?: string | null;
-  /** Nationality */
-  nationality?: NichandleCountryEnum | (string & {}) | null;
-  /** To whom is the organisation accountable */
-  organisationAccountable?: string | null;
-  /** What is the source of funding */
-  organisationFunding?: string | null;
-  /** Explain the source of funding if organisationFunding is other */
-  organisationFundingOther?: string | null;
-  /** Name of organisation */
-  organisationName?: string | null;
-  /** Role of your organisation */
-  organisationRole?: string | null;
-  /** Explain the role of your organisation if organisationRole is other */
-  organisationRoleOther?: string | null;
-  /** Status of the staff */
-  organisationStaffStatus?: string | null;
-  /** Explain the status of the staff if organisationStaffStatus is other */
-  organisationStaffStatusOther?: string | null;
-  /** type of organisation */
-  organisationType?: string | null;
-  /** Explain the type of organisation if organisationType is other */
-  organisationTypeOther?: string | null;
-  /** Phone number */
-  phone?: string | null;
-  /** Type of registrant document */
-  registrantDocumentType?: string | null;
-  /** Explain the type of registrant document if registrantDocumentType is other */
-  registrantDocumentTypeOther?: string | null;
-  /** The role in the organisation */
-  roleInOrganisation?: string | null;
-  /** Trademark related to the contact */
-  trademarkId?: string | null;
-  /** VAT number */
-  vat?: string | null;
-  /** Website */
-  website?: string | null;
-}
-export const DomainContactInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accreditationCountry: S.optional(S.NullOr(NichandleCountryEnum)),
-    accreditationId: S.optional(S.NullOr(S.String)),
-    accreditationOrganism: S.optional(S.NullOr(S.String)),
-    accreditationYear: S.optional(S.NullOr(S.Number)),
-    address: S.optional(S.NullOr(DomainContactAddress)),
-    birthCity: S.optional(S.NullOr(S.String)),
-    birthCountry: S.optional(S.NullOr(NichandleCountryEnum)),
-    birthDay: S.optional(S.NullOr(S.String)),
-    birthZip: S.optional(S.NullOr(S.String)),
-    cellPhone: S.optional(S.NullOr(S.String)),
-    companyNationalIdentificationNumber: S.optional(S.NullOr(S.String)),
-    email: S.optional(S.NullOr(S.String)),
-    enterpriseId: S.optional(S.NullOr(S.String)),
-    fax: S.optional(S.NullOr(S.String)),
-    firstName: S.optional(S.NullOr(S.String)),
-    gender: S.optional(S.NullOr(NichandleGenderEnum)),
-    insee: S.optional(S.NullOr(S.String)),
-    language: S.optional(S.NullOr(NichandleLanguageEnum)),
-    lastName: S.optional(S.NullOr(S.String)),
-    legalForm: S.optional(S.NullOr(NichandleLegalFormEnum)),
-    legalFormCategory: S.optional(S.NullOr(S.String)),
-    nationalIdentificationNumber: S.optional(S.NullOr(S.String)),
-    nationality: S.optional(S.NullOr(NichandleCountryEnum)),
-    organisationAccountable: S.optional(S.NullOr(S.String)),
-    organisationFunding: S.optional(S.NullOr(S.String)),
-    organisationFundingOther: S.optional(S.NullOr(S.String)),
-    organisationName: S.optional(S.NullOr(S.String)),
-    organisationRole: S.optional(S.NullOr(S.String)),
-    organisationRoleOther: S.optional(S.NullOr(S.String)),
-    organisationStaffStatus: S.optional(S.NullOr(S.String)),
-    organisationStaffStatusOther: S.optional(S.NullOr(S.String)),
-    organisationType: S.optional(S.NullOr(S.String)),
-    organisationTypeOther: S.optional(S.NullOr(S.String)),
-    phone: S.optional(S.NullOr(S.String)),
-    registrantDocumentType: S.optional(S.NullOr(S.String)),
-    registrantDocumentTypeOther: S.optional(S.NullOr(S.String)),
-    roleInOrganisation: S.optional(S.NullOr(S.String)),
-    trademarkId: S.optional(S.NullOr(S.String)),
-    vat: S.optional(S.NullOr(S.String)),
-    website: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "DomainContactInput",
-}) as any as S.Schema<DomainContactInput>;
-
-export interface PostDomainConfigurationRuleCheckRequest {
-  /** Depending on the action, the applied rule will change (transfer vs create) */
-  action: DomainActionEnum | (string & {});
-  /** The domain to check the rule data for */
-  domain: string;
-  /** The admin contact data */
-  adminAccount?: NichandleNichandleInput | null;
-  /** The extra data of the rule */
-  extras?: DomainConfigurationRulesRuleExtraData | null;
-  /** The owner contact data */
-  owner?: DomainContactInput | null;
-  /** The tech contact data */
-  techAccount?: NichandleNichandleInput | null;
-}
-export const PostDomainConfigurationRuleCheckRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      action: DomainActionEnum.pipe(T.Query()),
-      domain: S.String.pipe(T.Query()),
-      adminAccount: S.optional(S.NullOr(NichandleNichandleInput)),
-      extras: S.optional(S.NullOr(DomainConfigurationRulesRuleExtraData)),
-      owner: S.optional(S.NullOr(DomainContactInput)),
-      techAccount: S.optional(S.NullOr(NichandleNichandleInput)),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/domain/configurationRule/check",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "PostDomainConfigurationRuleCheckRequest",
-}) as any as S.Schema<PostDomainConfigurationRuleCheckRequest>;
-
-export interface PostDomainConfigurationRuleCheckResponse {}
-export const PostDomainConfigurationRuleCheckResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "PostDomainConfigurationRuleCheckResponse",
-}) as any as S.Schema<PostDomainConfigurationRuleCheckResponse>;
-
-export interface PostDomainDataSmdRequest {
-  /** SMD file content in base64 */
-  data: string;
-}
-export const PostDomainDataSmdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: S.String,
-  }).pipe(T.Http({ method: "POST", uri: "/domain/data/smd", code: 200 })),
-).annotate({
-  identifier: "PostDomainDataSmdRequest",
-}) as any as S.Schema<PostDomainDataSmdRequest>;
-
-/** Owner contact reference for a domain order: an OVH contact resource, not a NIC handle. */
-export interface DomainOrderContactOwner {
-  /** Numeric identifier of the OVH contact resource (e.g. obtained from /me/contact). Distinct from a NIC handle such as xxxxx-ovh. */
-  id?: number | null;
-}
-export const DomainOrderContactOwner = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.NullOr(S.Number)),
-  }),
-).annotate({
-  identifier: "DomainOrderContactOwner",
-}) as any as S.Schema<DomainOrderContactOwner>;
-
-/** Admin, tech and owner contacts for a domain order. admin and tech are OVH NIC handles (e.g. xxxxx-ovh); owner is an OVH contact resource referenced by its numeric id (see /me/contact), not a NIC handle. Billing is forced to the customer code by the server and is not exposed. */
-export interface DomainOrderContacts {
-  /** Administrative contact, given as an OVH NIC handle (e.g. xxxxx-ovh). Defaults to the calling customer's NIC if omitted. */
-  admin?: string | null;
-  /** Owner contact of the domain. Unlike admin/tech which are NIC handles, the owner is an OVH contact resource referenced by its numeric id. */
-  owner?: DomainOrderContactOwner | null;
-  /** Technical contact, given as an OVH NIC handle (e.g. xxxxx-ovh). Defaults to the admin contact if omitted. */
-  tech?: string | null;
-}
-export const DomainOrderContacts = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    admin: S.optional(S.NullOr(S.String)),
-    owner: S.optional(S.NullOr(DomainOrderContactOwner)),
-    tech: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "DomainOrderContacts",
-}) as any as S.Schema<DomainOrderContacts>;
-
-/** List of DNS servers (hostnames) to set on the domain. Optional: if omitted, OVHcloud's recommended DNS servers for the domain are used. */
-export type PostDomainOrderCreateRequestDnsList = Array<string>;
-export const PostDomainOrderCreateRequestDnsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PostDomainOrderCreateRequestDnsList>;
-
-/** Currency code */
-export type OrderCurrencyCodeEnum =
-  | "AUD"
-  | "CAD"
-  | "CZK"
-  | "EUR"
-  | "GBP"
-  | "INR"
-  | "LTL"
-  | "MAD"
-  | "N/A"
-  | "PLN"
-  | "SGD"
-  | "TND"
-  | "USD"
-  | "XOF"
-  | "points";
-export const OrderCurrencyCodeEnum = /*@__PURE__*/ S.String;
-
-/** Minimal price payload sent by the client to acknowledge the price seen, before placing the actual order */
-export interface DomainOrderPriceAcknowledge {
-  /** Currency code of the acknowledged price */
-  currencyCode: OrderCurrencyCodeEnum | (string & {});
-  /** The effective price acknowledged by the client */
-  value: number;
-}
-export const DomainOrderPriceAcknowledge = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    currencyCode: OrderCurrencyCodeEnum,
-    value: S.Number,
-  }),
-).annotate({
-  identifier: "DomainOrderPriceAcknowledge",
-}) as any as S.Schema<DomainOrderPriceAcknowledge>;
-
-/** Promotion codes to apply. Optional. */
-export type PostDomainOrderCreateRequestPromoCodesList = Array<string>;
-export const PostDomainOrderCreateRequestPromoCodesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PostDomainOrderCreateRequestPromoCodesList>;
-
-/** DNS zone options for a domain order */
-export interface DomainOrderZoneOptions {
-  /** Enable Anycast on the DNS zone. Applied only when a new zone is created (create=true and no existing zone); ignored otherwise. */
-  anycast?: boolean | null;
-  /** Whether to create the DNS zone along with the domain. Defaults to true if omitted. */
-  create?: boolean | null;
-  /** Enable DNSSEC on the DNS zone. Applied only when a new zone is created (create=true and no existing zone); ignored otherwise. */
-  dnssec?: boolean | null;
-}
-export const DomainOrderZoneOptions = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    anycast: S.optional(S.NullOr(S.Boolean)),
-    create: S.optional(S.NullOr(S.Boolean)),
-    dnssec: S.optional(S.NullOr(S.Boolean)),
-  }),
-).annotate({
-  identifier: "DomainOrderZoneOptions",
-}) as any as S.Schema<DomainOrderZoneOptions>;
-
-export interface PostDomainOrderCreateRequest {
-  /** If true, simulate the order and return the pricing without actually placing it. Default to false. */
-  dryRun?: boolean;
-  /** Admin, tech and owner contacts */
-  contacts?: DomainOrderContacts | null;
-  /** List of DNS servers (hostnames) to set on the domain. Optional: if omitted, OVHcloud's recommended DNS servers for the domain are used. */
-  dns?: PostDomainOrderCreateRequestDnsList | null;
-  /** Fully-qualified domain name to order, including the extension (e.g. example.com) */
-  domain: string;
-  /** Order duration in ISO-8601 format, whole years only (e.g. P1Y). Allowed values depend on the extension's registry configuration; an unsupported duration is rejected. Defaults to P1Y if omitted. */
-  duration?: string | null;
-  /** Price the customer acknowledged before placing the order. Required for aftermarket or premium domains, optional otherwise. Its value/currency must equal the retail price quoted for this domain (e.g. via a dryRun order); a mismatch rejects the order. */
-  priceAcknowledge?: DomainOrderPriceAcknowledge | null;
-  /** Promotion codes to apply. Optional. */
-  promoCodes?: PostDomainOrderCreateRequestPromoCodesList | null;
-  /** Acknowledgment that the customer waives the legal retractation period. Must be set to true to place the order. */
-  waiveRetractationPeriod?: boolean | null;
-  /** DNS zone options */
-  zone?: DomainOrderZoneOptions | null;
-}
-export const PostDomainOrderCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    dryRun: S.optional(S.Boolean.pipe(T.Query())),
-    contacts: S.optional(S.NullOr(DomainOrderContacts)),
-    dns: S.optional(S.NullOr(PostDomainOrderCreateRequestDnsList)),
-    domain: S.String,
-    duration: S.optional(S.NullOr(S.String)),
-    priceAcknowledge: S.optional(S.NullOr(DomainOrderPriceAcknowledge)),
-    promoCodes: S.optional(
-      S.NullOr(PostDomainOrderCreateRequestPromoCodesList),
-    ),
-    waiveRetractationPeriod: S.optional(S.NullOr(S.Boolean)),
-    zone: S.optional(S.NullOr(DomainOrderZoneOptions)),
-  }).pipe(T.Http({ method: "POST", uri: "/domain/order/create", code: 200 })),
-).annotate({
-  identifier: "PostDomainOrderCreateRequest",
-}) as any as S.Schema<PostDomainOrderCreateRequest>;
-
-/** A contract (terms) the customer subscribes to when placing a domain order */
-export interface DomainOrderContract {
-  /** Name of the contract (e.g. registration terms, general conditions of service) */
-  name?: string;
-  /** URL to the contract terms document (PDF) */
-  url?: string;
-}
-export const DomainOrderContract = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    url: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DomainOrderContract",
-}) as any as S.Schema<DomainOrderContract>;
-
-/** Legal contracts (terms, as PDFs) the customer subscribes to with this order */
-export type DomainOrderOrderResponseContractsList = Array<DomainOrderContract>;
-export const DomainOrderOrderResponseContractsList = /*@__PURE__*/ S.Array(
-  DomainOrderContract,
-) as any as S.Schema<DomainOrderOrderResponseContractsList>;
-
-/** DNS servers set on the domain */
-export type DomainOrderOrderResponseDnsList = Array<string>;
-export const DomainOrderOrderResponseDnsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<DomainOrderOrderResponseDnsList>;
-
-/** Price with its currency and textual representation as returned by domain/order */
-export interface DomainOrderPrice {
-  /** Currency code */
-  currencyCode?: OrderCurrencyCodeEnum;
-  /** Human-readable price with currency, e.g. "6.08 EUR" */
-  text?: string;
-  /** The effective price as a number, e.g. 6.08 */
-  value?: number;
-}
-export const DomainOrderPrice = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    currencyCode: S.optional(OrderCurrencyCodeEnum),
-    text: S.optional(S.String),
-    value: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "DomainOrderPrice",
-}) as any as S.Schema<DomainOrderPrice>;
-
-/** Pricing breakdown with and without tax */
-export interface DomainOrderPricing {
-  /** Price excluding tax before any promotion */
-  basePriceWithoutTax?: DomainOrderPrice;
-  /** Total reduction applied by promotions, as a positive amount (0 if none) */
-  discount?: DomainOrderPrice;
-  /** Final price including tax, after any reduction */
-  finalPriceWithTax?: DomainOrderPrice;
-  /** Final price excluding tax, after any reduction */
-  finalPriceWithoutTax?: DomainOrderPrice;
-  /** Tax amount on the final price */
-  tax?: DomainOrderPrice;
-}
-export const DomainOrderPricing = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    basePriceWithoutTax: S.optional(DomainOrderPrice),
-    discount: S.optional(DomainOrderPrice),
-    finalPriceWithTax: S.optional(DomainOrderPrice),
-    finalPriceWithoutTax: S.optional(DomainOrderPrice),
-    tax: S.optional(DomainOrderPrice),
-  }),
-).annotate({
-  identifier: "DomainOrderPricing",
-}) as any as S.Schema<DomainOrderPricing>;
-
-/** Response returned after placing a domain order */
-export interface DomainOrderOrderResponse {
-  /** Contacts attached to the order */
-  contacts?: DomainOrderContacts | null;
-  /** Legal contracts (terms, as PDFs) the customer subscribes to with this order */
-  contracts?: DomainOrderOrderResponseContractsList | null;
-  /** DNS servers set on the domain */
-  dns?: DomainOrderOrderResponseDnsList | null;
-  /** Ordered domain name */
-  domain?: string;
-  /** Order duration in ISO-8601 format, whole years only (e.g. P1Y) */
-  duration?: string;
-  /** Identifier of the created order, used with url to finalize and pay it */
-  orderId?: number | null;
-  /** Pricing breakdown of the order */
-  pricing?: DomainOrderPricing;
-  /** Payment/finalization URL where the customer completes and pays the order */
-  url?: string | null;
-  /** DNS zone options applied to the order */
-  zone?: DomainOrderZoneOptions | null;
-}
-export const DomainOrderOrderResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    contacts: S.optional(S.NullOr(DomainOrderContacts)),
-    contracts: S.optional(S.NullOr(DomainOrderOrderResponseContractsList)),
-    dns: S.optional(S.NullOr(DomainOrderOrderResponseDnsList)),
-    domain: S.optional(S.String),
-    duration: S.optional(S.String),
-    orderId: S.optional(S.NullOr(S.Number)),
-    pricing: S.optional(DomainOrderPricing),
-    url: S.optional(S.NullOr(S.String)),
-    zone: S.optional(S.NullOr(DomainOrderZoneOptions)),
-  }),
-).annotate({
-  identifier: "DomainOrderOrderResponse",
-}) as any as S.Schema<DomainOrderOrderResponse>;
-
-export interface PostDomainServiceNameChangeContactRequest {
-  /** Service name */
-  serviceName: string;
-  /** The contact to set as admin contact */
-  contactAdmin?: string;
-  /** The contact to set as billing contact */
-  contactBilling?: string;
-  /** The contact to set as tech contact */
-  contactTech?: string;
-}
-export const PostDomainServiceNameChangeContactRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      contactAdmin: S.optional(S.String),
-      contactBilling: S.optional(S.String),
-      contactTech: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/domain/{serviceName}/changeContact",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostDomainServiceNameChangeContactRequest",
-  }) as any as S.Schema<PostDomainServiceNameChangeContactRequest>;
-
-export type PostDomainServiceNameChangeContactResponseBodyList = Array<number>;
-export const PostDomainServiceNameChangeContactResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<PostDomainServiceNameChangeContactResponseBodyList>;
-
-export type PostDomainServiceNameChangeContactResponse =
-  PostDomainServiceNameChangeContactResponseBodyList;
-export const PostDomainServiceNameChangeContactResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    PostDomainServiceNameChangeContactResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "PostDomainServiceNameChangeContactResponse",
-  }) as any as S.Schema<PostDomainServiceNameChangeContactResponse>;
-
-/** Type of the contacts to refresh email obfuscation for */
-export type PostDomainServiceNameConfigurationsObfuscatedEmailsRefreshRequestContactsList =
-  Array<DomainConfigurationsContactTypeEnum | (string & {})>;
-export const PostDomainServiceNameConfigurationsObfuscatedEmailsRefreshRequestContactsList =
-  /*@__PURE__*/ S.Array(
-    DomainConfigurationsContactTypeEnum,
-  ) as any as S.Schema<PostDomainServiceNameConfigurationsObfuscatedEmailsRefreshRequestContactsList>;
-
-export interface PostDomainServiceNameConfigurationsObfuscatedEmailsRefreshRequest {
-  /** Service name */
-  serviceName: string;
-  /** Type of the contacts to refresh email obfuscation for */
-  contacts: PostDomainServiceNameConfigurationsObfuscatedEmailsRefreshRequestContactsList;
-}
-export const PostDomainServiceNameConfigurationsObfuscatedEmailsRefreshRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      contacts:
-        PostDomainServiceNameConfigurationsObfuscatedEmailsRefreshRequestContactsList,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/domain/{serviceName}/configurations/obfuscatedEmails/refresh",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "PostDomainServiceNameConfigurationsObfuscatedEmailsRefreshRequest",
-  }) as any as S.Schema<PostDomainServiceNameConfigurationsObfuscatedEmailsRefreshRequest>;
-
-export interface PostDomainServiceNameConfigurationsObfuscatedEmailsRefreshResponse {}
-export const PostDomainServiceNameConfigurationsObfuscatedEmailsRefreshResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier:
-      "PostDomainServiceNameConfigurationsObfuscatedEmailsRefreshResponse",
-  }) as any as S.Schema<PostDomainServiceNameConfigurationsObfuscatedEmailsRefreshResponse>;
-
-/** Domain's DNSSEC Key */
-export interface DnssecKeyInput {
-  /** Algorithm number of the DNSSEC key */
-  algorithm?: DnssecKeyAlgorithmEnum | (number & {});
-  /** Flag of the DNSSEC key */
-  flags?: DnssecKeyFlagEnum | (number & {});
-  /** Public key */
-  publicKey?: string;
-  /** Tag of the DNSSEC key */
-  tag?: number;
-}
-export const DnssecKeyInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    algorithm: S.optional(DnssecKeyAlgorithmEnum),
-    flags: S.optional(DnssecKeyFlagEnum),
-    publicKey: S.optional(S.String),
-    tag: S.optional(S.Number),
-  }),
-).annotate({ identifier: "DnssecKeyInput" }) as any as S.Schema<DnssecKeyInput>;
-
-/** New Keys */
-export type PostDomainServiceNameDsRecordRequestKeysList =
-  Array<DnssecKeyInput>;
-export const PostDomainServiceNameDsRecordRequestKeysList =
-  /*@__PURE__*/ S.Array(
-    DnssecKeyInput,
-  ) as any as S.Schema<PostDomainServiceNameDsRecordRequestKeysList>;
-
-export interface PostDomainServiceNameDsRecordRequest {
-  /** Service name */
-  serviceName: string;
-  /** New Keys */
-  keys: PostDomainServiceNameDsRecordRequestKeysList;
-}
-export const PostDomainServiceNameDsRecordRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      keys: PostDomainServiceNameDsRecordRequestKeysList,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/domain/{serviceName}/dsRecord",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "PostDomainServiceNameDsRecordRequest",
-}) as any as S.Schema<PostDomainServiceNameDsRecordRequest>;
-
-/** IP addresses of the glue record */
-export type PostDomainServiceNameGlueRecordRequestIpsList = Array<string>;
-export const PostDomainServiceNameGlueRecordRequestIpsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostDomainServiceNameGlueRecordRequestIpsList>;
-
-export interface PostDomainServiceNameGlueRecordRequest {
-  /** Service name */
-  serviceName: string;
-  /** Host of the glue record */
-  host: string;
-  /** IP addresses of the glue record */
-  ips: PostDomainServiceNameGlueRecordRequestIpsList;
-}
-export const PostDomainServiceNameGlueRecordRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      host: S.String,
-      ips: PostDomainServiceNameGlueRecordRequestIpsList,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/domain/{serviceName}/glueRecord",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "PostDomainServiceNameGlueRecordRequest",
-}) as any as S.Schema<PostDomainServiceNameGlueRecordRequest>;
-
-/** IP address */
-export type PostDomainServiceNameGlueRecordHostUpdateRequestIpsList =
-  Array<string>;
-export const PostDomainServiceNameGlueRecordHostUpdateRequestIpsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostDomainServiceNameGlueRecordHostUpdateRequestIpsList>;
-
-export interface PostDomainServiceNameGlueRecordHostUpdateRequest {
-  /** Service name */
-  serviceName: string;
-  /** Host */
-  host: string;
-  /** IP address */
-  ips: PostDomainServiceNameGlueRecordHostUpdateRequestIpsList;
-}
-export const PostDomainServiceNameGlueRecordHostUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      host: S.String.pipe(T.Label()),
-      ips: PostDomainServiceNameGlueRecordHostUpdateRequestIpsList,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/domain/{serviceName}/glueRecord/{host}/update",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostDomainServiceNameGlueRecordHostUpdateRequest",
-  }) as any as S.Schema<PostDomainServiceNameGlueRecordHostUpdateRequest>;
-
-/** Name server input data */
-export interface DomainNameServerNameServerInput {
-  /** Host */
-  host?: string;
-  /** IP address */
-  ip?: string | null;
-}
-export const DomainNameServerNameServerInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    host: S.optional(S.String),
-    ip: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "DomainNameServerNameServerInput",
-}) as any as S.Schema<DomainNameServerNameServerInput>;
-
-/** Name servers to create */
-export type PostDomainServiceNameNameServerRequestNameServerList =
-  Array<DomainNameServerNameServerInput>;
-export const PostDomainServiceNameNameServerRequestNameServerList =
-  /*@__PURE__*/ S.Array(
-    DomainNameServerNameServerInput,
-  ) as any as S.Schema<PostDomainServiceNameNameServerRequestNameServerList>;
-
-export interface PostDomainServiceNameNameServerRequest {
-  /** Service name */
-  serviceName: string;
-  /** Name servers to create */
-  nameServer: PostDomainServiceNameNameServerRequestNameServerList;
-}
-export const PostDomainServiceNameNameServerRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      nameServer: PostDomainServiceNameNameServerRequestNameServerList,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/domain/{serviceName}/nameServer",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "PostDomainServiceNameNameServerRequest",
-}) as any as S.Schema<PostDomainServiceNameNameServerRequest>;
-
-/** Name servers to update */
-export type PostDomainServiceNameNameServersUpdateRequestNameServersList =
-  Array<DomainNameServerNameServerInput>;
-export const PostDomainServiceNameNameServersUpdateRequestNameServersList =
-  /*@__PURE__*/ S.Array(
-    DomainNameServerNameServerInput,
-  ) as any as S.Schema<PostDomainServiceNameNameServersUpdateRequestNameServersList>;
-
-export interface PostDomainServiceNameNameServersUpdateRequest {
-  /** Service name */
-  serviceName: string;
-  /** Name servers to update */
-  nameServers: PostDomainServiceNameNameServersUpdateRequestNameServersList;
-}
-export const PostDomainServiceNameNameServersUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      nameServers: PostDomainServiceNameNameServersUpdateRequestNameServersList,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/domain/{serviceName}/nameServers/update",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostDomainServiceNameNameServersUpdateRequest",
-  }) as any as S.Schema<PostDomainServiceNameNameServersUpdateRequest>;
-
-/** Type of claim notice */
-export type DomainApproveTypeEnum = "accept" | "reject";
-export const DomainApproveTypeEnum = /*@__PURE__*/ S.String;
-
-export interface PostDomainServiceNameOutgoingTransferApproveRequest {
-  /** Service name */
-  serviceName: string;
-  /** Approve type for outgoing transfer */
-  approveType?: DomainApproveTypeEnum | (string & {});
-  /** Token given by email to validate identity */
-  ident?: string;
-}
-export const PostDomainServiceNameOutgoingTransferApproveRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      approveType: S.optional(DomainApproveTypeEnum),
-      ident: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/domain/{serviceName}/outgoingTransfer/approve",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostDomainServiceNameOutgoingTransferApproveRequest",
-  }) as any as S.Schema<PostDomainServiceNameOutgoingTransferApproveRequest>;
-
-export interface PostDomainServiceNameOutgoingTransferApproveResponse {}
-export const PostDomainServiceNameOutgoingTransferApproveResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PostDomainServiceNameOutgoingTransferApproveResponse",
-  }) as any as S.Schema<PostDomainServiceNameOutgoingTransferApproveResponse>;
-
-export interface PostDomainServiceNameTaskIdAccelerateRequest {
-  /** Service name */
-  serviceName: string;
-  /** Id */
-  id: number;
-}
-export const PostDomainServiceNameTaskIdAccelerateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/domain/{serviceName}/task/{id}/accelerate",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostDomainServiceNameTaskIdAccelerateRequest",
-  }) as any as S.Schema<PostDomainServiceNameTaskIdAccelerateRequest>;
-
-export interface PostDomainServiceNameTaskIdAccelerateResponse {}
-export const PostDomainServiceNameTaskIdAccelerateResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PostDomainServiceNameTaskIdAccelerateResponse",
-  }) as any as S.Schema<PostDomainServiceNameTaskIdAccelerateResponse>;
-
-export interface PostDomainServiceNameTaskIdCancelRequest {
-  /** Service name */
-  serviceName: string;
-  /** Id */
-  id: number;
-}
-export const PostDomainServiceNameTaskIdCancelRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/domain/{serviceName}/task/{id}/cancel",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "PostDomainServiceNameTaskIdCancelRequest",
-}) as any as S.Schema<PostDomainServiceNameTaskIdCancelRequest>;
-
-export interface PostDomainServiceNameTaskIdCancelResponse {}
-export const PostDomainServiceNameTaskIdCancelResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PostDomainServiceNameTaskIdCancelResponse",
-  }) as any as S.Schema<PostDomainServiceNameTaskIdCancelResponse>;
-
-export interface PostDomainServiceNameTaskIdRelaunchRequest {
-  /** Service name */
-  serviceName: string;
-  /** Id */
-  id: number;
-}
-export const PostDomainServiceNameTaskIdRelaunchRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/domain/{serviceName}/task/{id}/relaunch",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostDomainServiceNameTaskIdRelaunchRequest",
-  }) as any as S.Schema<PostDomainServiceNameTaskIdRelaunchRequest>;
-
-export interface PostDomainServiceNameTaskIdRelaunchResponse {}
-export const PostDomainServiceNameTaskIdRelaunchResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PostDomainServiceNameTaskIdRelaunchResponse",
-  }) as any as S.Schema<PostDomainServiceNameTaskIdRelaunchResponse>;
-
-export interface PostDomainServiceNameUkOutgoingTransferRequest {
-  /** Service name */
-  serviceName: string;
-  /** Registrar tag */
-  tag: string;
-}
-export const PostDomainServiceNameUkOutgoingTransferRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      tag: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/domain/{serviceName}/ukOutgoingTransfer",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostDomainServiceNameUkOutgoingTransferRequest",
-  }) as any as S.Schema<PostDomainServiceNameUkOutgoingTransferRequest>;
-
-export interface PostDomainZoneZoneNameChangeContactRequest {
-  /** Zone name */
-  zoneName: string;
-  /** The contact to set as admin contact */
-  contactAdmin?: string;
-  /** The contact to set as billing contact */
-  contactBilling?: string;
-  /** The contact to set as tech contact */
-  contactTech?: string;
-}
-export const PostDomainZoneZoneNameChangeContactRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      zoneName: S.String.pipe(T.Label()),
-      contactAdmin: S.optional(S.String),
-      contactBilling: S.optional(S.String),
-      contactTech: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/domain/zone/{zoneName}/changeContact",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostDomainZoneZoneNameChangeContactRequest",
-  }) as any as S.Schema<PostDomainZoneZoneNameChangeContactRequest>;
-
-export type PostDomainZoneZoneNameChangeContactResponseBodyList = Array<number>;
-export const PostDomainZoneZoneNameChangeContactResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<PostDomainZoneZoneNameChangeContactResponseBodyList>;
-
-export type PostDomainZoneZoneNameChangeContactResponse =
-  PostDomainZoneZoneNameChangeContactResponseBodyList;
-export const PostDomainZoneZoneNameChangeContactResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    PostDomainZoneZoneNameChangeContactResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "PostDomainZoneZoneNameChangeContactResponse",
-  }) as any as S.Schema<PostDomainZoneZoneNameChangeContactResponse>;
-
-/** All future uses you can provide for a service termination */
-export type ServiceTerminationFutureUseEnum =
-  | "NOT_REPLACING_SERVICE"
-  | "OTHER"
-  | "SUBSCRIBE_AN_OTHER_SERVICE"
-  | "SUBSCRIBE_OTHER_KIND_OF_SERVICE_WITH_COMPETITOR"
-  | "SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR";
-export const ServiceTerminationFutureUseEnum = /*@__PURE__*/ S.String;
-
-/** All reasons you can provide for a service termination */
-export type ServiceTerminationReasonEnum =
-  | "FEATURES_DONT_SUIT_ME"
-  | "LACK_OF_PERFORMANCES"
-  | "MIGRATED_TO_ANOTHER_OVH_PRODUCT"
-  | "MIGRATED_TO_COMPETITOR"
-  | "NOT_ENOUGH_RECOGNITION"
-  | "NOT_NEEDED_ANYMORE"
-  | "NOT_RELIABLE"
-  | "NO_ANSWER"
-  | "OTHER"
-  | "PRODUCT_DIMENSION_DONT_SUIT_ME"
-  | "PRODUCT_TOOLS_DONT_SUIT_ME"
-  | "TOO_EXPENSIVE"
-  | "TOO_HARD_TO_USE"
-  | "UNSATIFIED_BY_CUSTOMER_SUPPORT";
-export const ServiceTerminationReasonEnum = /*@__PURE__*/ S.String;
-
-export interface PostDomainZoneZoneNameConfirmTerminationRequest {
-  /** Zone name */
-  zoneName: string;
-  /** Commentary about your termination request */
-  commentary?: string;
-  /** Commentary about your future use */
-  commentaryFutureUse?: string;
-  /** Commentary about your reason for termination request */
-  commentaryReason?: string;
-  /** All future uses you can provide for a service termination */
-  futureUse?: ServiceTerminationFutureUseEnum | (string & {});
-  /** All reasons you can provide for a service termination */
-  reason?: ServiceTerminationReasonEnum | (string & {});
-  /** The termination token sent by email to the admin contact */
-  token: string;
-}
-export const PostDomainZoneZoneNameConfirmTerminationRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      zoneName: S.String.pipe(T.Label()),
-      commentary: S.optional(S.String),
-      commentaryFutureUse: S.optional(S.String),
-      commentaryReason: S.optional(S.String),
-      futureUse: S.optional(ServiceTerminationFutureUseEnum),
-      reason: S.optional(ServiceTerminationReasonEnum),
-      token: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/domain/zone/{zoneName}/confirmTermination",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostDomainZoneZoneNameConfirmTerminationRequest",
-  }) as any as S.Schema<PostDomainZoneZoneNameConfirmTerminationRequest>;
-
-export type PostDomainZoneZoneNameConfirmTerminationResponse = string;
-export const PostDomainZoneZoneNameConfirmTerminationResponse =
-  /*@__PURE__*/ S.suspend(() => S.String.pipe(T.RawResponseRoot())).annotate({
-    identifier: "PostDomainZoneZoneNameConfirmTerminationResponse",
-  }) as any as S.Schema<PostDomainZoneZoneNameConfirmTerminationResponse>;
-
-export interface PostDomainZoneZoneNameHistoryCreationDateRestoreRequest {
-  /** Zone name */
-  zoneName: string;
-  /** Creation date */
-  creationDate: string;
-}
-export const PostDomainZoneZoneNameHistoryCreationDateRestoreRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      zoneName: S.String.pipe(T.Label()),
-      creationDate: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/domain/zone/{zoneName}/history/{creationDate}/restore",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostDomainZoneZoneNameHistoryCreationDateRestoreRequest",
-  }) as any as S.Schema<PostDomainZoneZoneNameHistoryCreationDateRestoreRequest>;
-
-export interface PostDomainZoneZoneNameImportRequest {
+export interface ImportDomainZoneRequest {
   /** Zone name */
   zoneName: string;
   /** Zone file that will be imported */
   zoneFile: string;
 }
-export const PostDomainZoneZoneNameImportRequest = /*@__PURE__*/ S.suspend(() =>
+export const ImportDomainZoneRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     zoneName: S.String.pipe(T.Label()),
     zoneFile: S.String,
@@ -5765,191 +4829,842 @@ export const PostDomainZoneZoneNameImportRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "PostDomainZoneZoneNameImportRequest",
-}) as any as S.Schema<PostDomainZoneZoneNameImportRequest>;
+  identifier: "ImportDomainZoneRequest",
+}) as any as S.Schema<ImportDomainZoneRequest>;
 
-/** Resource record name */
-export type DomainZoneResettableNamedResolutionFieldTypeEnum = "A" | "MX";
-export const DomainZoneResettableNamedResolutionFieldTypeEnum =
-  /*@__PURE__*/ S.String;
-
-/** Record associated to domain zone reset */
-export interface DomainZoneResetRecord {
-  /** Field type associated to domain zone reset */
-  fieldType?: DomainZoneResettableNamedResolutionFieldTypeEnum | (string & {});
-  /** Target associated to domain zone reset */
-  target?: string;
+export interface ListDomainConfigurationObfuscatedEmailsRequest {
+  /** Service name */
+  serviceName: string;
 }
-export const DomainZoneResetRecord = /*@__PURE__*/ S.suspend(() =>
+export const ListDomainConfigurationObfuscatedEmailsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/domain/{serviceName}/configurations/obfuscatedEmails",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ListDomainConfigurationObfuscatedEmailsRequest",
+  }) as any as S.Schema<ListDomainConfigurationObfuscatedEmailsRequest>;
+
+/** The possible statuses of an email obfuscation */
+export type DomainConfigurationsObfuscationStatusEnum = "done" | "todo";
+export const DomainConfigurationsObfuscationStatusEnum = /*@__PURE__*/ S.String;
+
+/** The possible types of contacts associated to a domain name */
+export type DomainConfigurationsContactTypeEnum =
+  | "admin"
+  | "all"
+  | "billing"
+  | "owner"
+  | "tech";
+export const DomainConfigurationsContactTypeEnum = /*@__PURE__*/ S.String;
+
+/** Configuration of the email obfuscations for contacts related to a domain name */
+export interface DomainConfigurationsObfuscatedEmail {
+  /** Status of the email obfuscation */
+  status?: DomainConfigurationsObfuscationStatusEnum | null;
+  /** Type of the contact whose email is obfuscated by this configuration */
+  type?: DomainConfigurationsContactTypeEnum;
+  /** Obfuscated email address */
+  value?: string;
+}
+export const DomainConfigurationsObfuscatedEmail = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    fieldType: S.optional(DomainZoneResettableNamedResolutionFieldTypeEnum),
-    target: S.optional(S.String),
+    status: S.optional(S.NullOr(DomainConfigurationsObfuscationStatusEnum)),
+    type: S.optional(DomainConfigurationsContactTypeEnum),
+    value: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "DomainZoneResetRecord",
-}) as any as S.Schema<DomainZoneResetRecord>;
+  identifier: "DomainConfigurationsObfuscatedEmail",
+}) as any as S.Schema<DomainConfigurationsObfuscatedEmail>;
 
-/** Records that will be set after reset */
-export type PostDomainZoneZoneNameResetRequestDnsRecordsList =
-  Array<DomainZoneResetRecord>;
-export const PostDomainZoneZoneNameResetRequestDnsRecordsList =
+export type ListDomainConfigurationObfuscatedEmailsResponseBodyList =
+  Array<DomainConfigurationsObfuscatedEmail>;
+export const ListDomainConfigurationObfuscatedEmailsResponseBodyList =
   /*@__PURE__*/ S.Array(
-    DomainZoneResetRecord,
-  ) as any as S.Schema<PostDomainZoneZoneNameResetRequestDnsRecordsList>;
+    DomainConfigurationsObfuscatedEmail,
+  ) as any as S.Schema<ListDomainConfigurationObfuscatedEmailsResponseBodyList>;
 
-export interface PostDomainZoneZoneNameResetRequest {
-  /** Zone name */
-  zoneName: string;
-  /** Records that will be set after reset */
-  DnsRecords?: PostDomainZoneZoneNameResetRequestDnsRecordsList;
-  /** Create only mandatory records */
-  minimized?: boolean;
+export type ListDomainConfigurationObfuscatedEmailsResponse =
+  ListDomainConfigurationObfuscatedEmailsResponseBodyList;
+export const ListDomainConfigurationObfuscatedEmailsResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListDomainConfigurationObfuscatedEmailsResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListDomainConfigurationObfuscatedEmailsResponse",
+  }) as any as S.Schema<ListDomainConfigurationObfuscatedEmailsResponse>;
+
+export interface ListDomainConfigurationOptinRequest {
+  /** Service name */
+  serviceName: string;
 }
-export const PostDomainZoneZoneNameResetRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListDomainConfigurationOptinRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    zoneName: S.String.pipe(T.Label()),
-    DnsRecords: S.optional(PostDomainZoneZoneNameResetRequestDnsRecordsList),
-    minimized: S.optional(S.Boolean),
+    serviceName: S.String.pipe(T.Label()),
   }).pipe(
-    T.Http({ method: "POST", uri: "/domain/zone/{zoneName}/reset", code: 200 }),
+    T.Http({
+      method: "GET",
+      uri: "/domain/{serviceName}/configurations/optin",
+      code: 200,
+    }),
   ),
 ).annotate({
-  identifier: "PostDomainZoneZoneNameResetRequest",
-}) as any as S.Schema<PostDomainZoneZoneNameResetRequest>;
+  identifier: "ListDomainConfigurationOptinRequest",
+}) as any as S.Schema<ListDomainConfigurationOptinRequest>;
 
-export interface PostDomainZoneZoneNameResetResponse {}
-export const PostDomainZoneZoneNameResetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
+/** Whois optin fields */
+export type DomainOptinFieldsEnum =
+  | "address"
+  | "city"
+  | "country"
+  | "email"
+  | "fax"
+  | "name"
+  | "organisation"
+  | "phone"
+  | "province"
+  | "zip";
+export const DomainOptinFieldsEnum = /*@__PURE__*/ S.String;
+
+/** Fields to display publicly on the Whois */
+export type DomainConfigurationsOptinFieldsList = Array<
+  DomainOptinFieldsEnum | (string & {})
+>;
+export const DomainConfigurationsOptinFieldsList = /*@__PURE__*/ S.Array(
+  DomainOptinFieldsEnum,
+) as any as S.Schema<DomainConfigurationsOptinFieldsList>;
+
+/** Configuration of the optin fields for contacts related to a domain name */
+export interface DomainConfigurationsOptin {
+  /** Fields to display publicly on the Whois */
+  fields?: DomainConfigurationsOptinFieldsList;
+  /** Type of the contact associated to the optin configuration */
+  type?: DomainConfigurationsContactTypeEnum | (string & {});
+}
+export const DomainConfigurationsOptin = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    fields: S.optional(DomainConfigurationsOptinFieldsList),
+    type: S.optional(DomainConfigurationsContactTypeEnum),
+  }),
 ).annotate({
-  identifier: "PostDomainZoneZoneNameResetResponse",
-}) as any as S.Schema<PostDomainZoneZoneNameResetResponse>;
+  identifier: "DomainConfigurationsOptin",
+}) as any as S.Schema<DomainConfigurationsOptin>;
 
-export interface PostDomainZoneZoneNameTaskIdAccelerateRequest {
-  /** Zone name */
-  zoneName: string;
-  /** Id */
-  id: number;
+export type ListDomainConfigurationOptinResponseBodyList =
+  Array<DomainConfigurationsOptin>;
+export const ListDomainConfigurationOptinResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    DomainConfigurationsOptin,
+  ) as any as S.Schema<ListDomainConfigurationOptinResponseBodyList>;
+
+export type ListDomainConfigurationOptinResponse =
+  ListDomainConfigurationOptinResponseBodyList;
+export const ListDomainConfigurationOptinResponse = /*@__PURE__*/ S.suspend(
+  () => ListDomainConfigurationOptinResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListDomainConfigurationOptinResponse",
+}) as any as S.Schema<ListDomainConfigurationOptinResponse>;
+
+export interface ListDomainDataSmdRequest {}
+export const ListDomainDataSmdRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({ method: "GET", uri: "/domain/data/smd", code: 200 }),
+  ),
+).annotate({
+  identifier: "ListDomainDataSmdRequest",
+}) as any as S.Schema<ListDomainDataSmdRequest>;
+
+export type ListDomainDataSmdResponseBodyList = Array<DomainDataSmdSmd>;
+export const ListDomainDataSmdResponseBodyList = /*@__PURE__*/ S.Array(
+  DomainDataSmdSmd,
+) as any as S.Schema<ListDomainDataSmdResponseBodyList>;
+
+export type ListDomainDataSmdResponse = ListDomainDataSmdResponseBodyList;
+export const ListDomainDataSmdResponse = /*@__PURE__*/ S.suspend(() =>
+  ListDomainDataSmdResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListDomainDataSmdResponse",
+}) as any as S.Schema<ListDomainDataSmdResponse>;
+
+export interface ListDomainDsRecordRequest {
+  /** Service name */
+  serviceName: string;
+  /** Filter the value of flags property (=) */
+  flags?: DnssecKeyFlagEnum | (number & {});
+  /** Filter the value of status property (=) */
+  status?: DnssecKeyStatusEnum | (string & {});
 }
-export const PostDomainZoneZoneNameTaskIdAccelerateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      zoneName: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/domain/zone/{zoneName}/task/{id}/accelerate",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostDomainZoneZoneNameTaskIdAccelerateRequest",
-  }) as any as S.Schema<PostDomainZoneZoneNameTaskIdAccelerateRequest>;
+export const ListDomainDsRecordRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    flags: S.optional(DnssecKeyFlagEnum.pipe(T.Query())),
+    status: S.optional(DnssecKeyStatusEnum.pipe(T.Query())),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/domain/{serviceName}/dsRecord", code: 200 }),
+  ),
+).annotate({
+  identifier: "ListDomainDsRecordRequest",
+}) as any as S.Schema<ListDomainDsRecordRequest>;
 
-export interface PostDomainZoneZoneNameTaskIdAccelerateResponse {}
-export const PostDomainZoneZoneNameTaskIdAccelerateResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PostDomainZoneZoneNameTaskIdAccelerateResponse",
-  }) as any as S.Schema<PostDomainZoneZoneNameTaskIdAccelerateResponse>;
+export type ListDomainDsRecordResponseBodyList = Array<number>;
+export const ListDomainDsRecordResponseBodyList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<ListDomainDsRecordResponseBodyList>;
 
-export interface PostDomainZoneZoneNameTaskIdCancelRequest {
-  /** Zone name */
-  zoneName: string;
-  /** Id */
-  id: number;
+export type ListDomainDsRecordResponse = ListDomainDsRecordResponseBodyList;
+export const ListDomainDsRecordResponse = /*@__PURE__*/ S.suspend(() =>
+  ListDomainDsRecordResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListDomainDsRecordResponse",
+}) as any as S.Schema<ListDomainDsRecordResponse>;
+
+/** Type of extension category */
+export type DomainExtensionsCategoryTypeEnum = "geolocalization" | "thematic";
+export const DomainExtensionsCategoryTypeEnum = /*@__PURE__*/ S.String;
+
+export type ListDomainExtensionByCategoryRequestCategoryTypeList = Array<
+  DomainExtensionsCategoryTypeEnum | (string & {})
+>;
+export const ListDomainExtensionByCategoryRequestCategoryTypeList =
+  /*@__PURE__*/ S.Array(
+    DomainExtensionsCategoryTypeEnum,
+  ) as any as S.Schema<ListDomainExtensionByCategoryRequestCategoryTypeList>;
+
+export interface ListDomainExtensionByCategoryRequest {
+  /** Filter by category types */
+  categoryType?: ListDomainExtensionByCategoryRequestCategoryTypeList;
 }
-export const PostDomainZoneZoneNameTaskIdCancelRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      zoneName: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/domain/zone/{zoneName}/task/{id}/cancel",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostDomainZoneZoneNameTaskIdCancelRequest",
-  }) as any as S.Schema<PostDomainZoneZoneNameTaskIdCancelRequest>;
-
-export interface PostDomainZoneZoneNameTaskIdCancelResponse {}
-export const PostDomainZoneZoneNameTaskIdCancelResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PostDomainZoneZoneNameTaskIdCancelResponse",
-  }) as any as S.Schema<PostDomainZoneZoneNameTaskIdCancelResponse>;
-
-export interface PostDomainZoneZoneNameTaskIdRelaunchRequest {
-  /** Zone name */
-  zoneName: string;
-  /** Id */
-  id: number;
-}
-export const PostDomainZoneZoneNameTaskIdRelaunchRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      zoneName: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/domain/zone/{zoneName}/task/{id}/relaunch",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostDomainZoneZoneNameTaskIdRelaunchRequest",
-  }) as any as S.Schema<PostDomainZoneZoneNameTaskIdRelaunchRequest>;
-
-export interface PostDomainZoneZoneNameTaskIdRelaunchResponse {}
-export const PostDomainZoneZoneNameTaskIdRelaunchResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PostDomainZoneZoneNameTaskIdRelaunchResponse",
-  }) as any as S.Schema<PostDomainZoneZoneNameTaskIdRelaunchResponse>;
-
-export interface PostDomainZoneZoneNameTerminateRequest {
-  /** Zone name */
-  zoneName: string;
-}
-export const PostDomainZoneZoneNameTerminateRequest = /*@__PURE__*/ S.suspend(
+export const ListDomainExtensionByCategoryRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      zoneName: S.String.pipe(T.Label()),
+      categoryType: S.optional(
+        ListDomainExtensionByCategoryRequestCategoryTypeList.pipe(T.Query()),
+      ),
     }).pipe(
       T.Http({
-        method: "POST",
-        uri: "/domain/zone/{zoneName}/terminate",
+        method: "GET",
+        uri: "/domain/extensions/byCategory",
         code: 200,
       }),
     ),
 ).annotate({
-  identifier: "PostDomainZoneZoneNameTerminateRequest",
-}) as any as S.Schema<PostDomainZoneZoneNameTerminateRequest>;
+  identifier: "ListDomainExtensionByCategoryRequest",
+}) as any as S.Schema<ListDomainExtensionByCategoryRequest>;
 
-export type PostDomainZoneZoneNameTerminateResponse = string;
-export const PostDomainZoneZoneNameTerminateResponse = /*@__PURE__*/ S.suspend(
-  () => S.String.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "PostDomainZoneZoneNameTerminateResponse",
-}) as any as S.Schema<PostDomainZoneZoneNameTerminateResponse>;
+/** List of extensions */
+export type DomainExtensionsCategoryNameWithExtensionsExtensionsList =
+  Array<string>;
+export const DomainExtensionsCategoryNameWithExtensionsExtensionsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<DomainExtensionsCategoryNameWithExtensionsExtensionsList>;
 
-export interface PutDomainDataSmdSmdIdRequest {
-  /** Smd ID */
-  smdId: string;
-  /** SMD file content in base64 */
-  data: string;
+/** Result of extensions by category request */
+export interface DomainExtensionsCategoryNameWithExtensions {
+  /** List of extensions */
+  extensions?: DomainExtensionsCategoryNameWithExtensionsExtensionsList;
+  /** Name of the category */
+  name?: string;
 }
-export const PutDomainDataSmdSmdIdRequest = /*@__PURE__*/ S.suspend(() =>
+export const DomainExtensionsCategoryNameWithExtensions =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      extensions: S.optional(
+        DomainExtensionsCategoryNameWithExtensionsExtensionsList,
+      ),
+      name: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "DomainExtensionsCategoryNameWithExtensions",
+  }) as any as S.Schema<DomainExtensionsCategoryNameWithExtensions>;
+
+/** Geolocalizations groups extensions by geographical place, like 'europe' */
+export type DomainExtensionsExtensionsByCategoryGeolocalizationList =
+  Array<DomainExtensionsCategoryNameWithExtensions>;
+export const DomainExtensionsExtensionsByCategoryGeolocalizationList =
+  /*@__PURE__*/ S.Array(
+    DomainExtensionsCategoryNameWithExtensions,
+  ) as any as S.Schema<DomainExtensionsExtensionsByCategoryGeolocalizationList>;
+
+/** Thematics groups extensions by a thematic like 'gastronomy' for '.pizza' */
+export type DomainExtensionsExtensionsByCategoryThematicList =
+  Array<DomainExtensionsCategoryNameWithExtensions>;
+export const DomainExtensionsExtensionsByCategoryThematicList =
+  /*@__PURE__*/ S.Array(
+    DomainExtensionsCategoryNameWithExtensions,
+  ) as any as S.Schema<DomainExtensionsExtensionsByCategoryThematicList>;
+
+/** Result of extensions by category request */
+export interface DomainExtensionsExtensionsByCategory {
+  /** Geolocalizations groups extensions by geographical place, like 'europe' */
+  geolocalization?: DomainExtensionsExtensionsByCategoryGeolocalizationList | null;
+  /** Thematics groups extensions by a thematic like 'gastronomy' for '.pizza' */
+  thematic?: DomainExtensionsExtensionsByCategoryThematicList | null;
+}
+export const DomainExtensionsExtensionsByCategory = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      geolocalization: S.optional(
+        S.NullOr(DomainExtensionsExtensionsByCategoryGeolocalizationList),
+      ),
+      thematic: S.optional(
+        S.NullOr(DomainExtensionsExtensionsByCategoryThematicList),
+      ),
+    }),
+).annotate({
+  identifier: "DomainExtensionsExtensionsByCategory",
+}) as any as S.Schema<DomainExtensionsExtensionsByCategory>;
+
+/** OVH subsidiaries */
+export type NichandleOvhSubsidiaryEnum =
+  | "CZ"
+  | "DE"
+  | "ES"
+  | "EU"
+  | "FI"
+  | "FR"
+  | "GB"
+  | "IE"
+  | "IT"
+  | "LT"
+  | "MA"
+  | "NL"
+  | "PL"
+  | "PT"
+  | "SN"
+  | "TN";
+export const NichandleOvhSubsidiaryEnum = /*@__PURE__*/ S.String;
+
+export interface ListDomainExtensionHighlightedRequest {
+  /** OVHcloud subsidiary targeted. Highlighted extensions are different from one subsidiary to another. Default to FR. */
+  ovhSubsidiary?: NichandleOvhSubsidiaryEnum | (string & {});
+}
+export const ListDomainExtensionHighlightedRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      ovhSubsidiary: S.optional(NichandleOvhSubsidiaryEnum.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/domain/extensions/highlighted",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ListDomainExtensionHighlightedRequest",
+}) as any as S.Schema<ListDomainExtensionHighlightedRequest>;
+
+export type ListDomainExtensionHighlightedResponseBodyList = Array<string>;
+export const ListDomainExtensionHighlightedResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListDomainExtensionHighlightedResponseBodyList>;
+
+export type ListDomainExtensionHighlightedResponse =
+  ListDomainExtensionHighlightedResponseBodyList;
+export const ListDomainExtensionHighlightedResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    ListDomainExtensionHighlightedResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListDomainExtensionHighlightedResponse",
+}) as any as S.Schema<ListDomainExtensionHighlightedResponse>;
+
+export interface ListDomainExtensionPricingAttributesRequest {
+  /** OVHcloud subsidiary targeted. Attributes may be different from one subsidiary to another. Default to FR. */
+  ovhSubsidiary?: NichandleOvhSubsidiaryEnum | (string & {});
+}
+export const ListDomainExtensionPricingAttributesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      ovhSubsidiary: S.optional(NichandleOvhSubsidiaryEnum.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/domain/extensions/pricingAttributes",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ListDomainExtensionPricingAttributesRequest",
+  }) as any as S.Schema<ListDomainExtensionPricingAttributesRequest>;
+
+/** Result of getting pricing attributes of an extension */
+export interface DomainExtensionsExtensionsPricingAttributes {
+  /** Parameter is true when the extension has been created recently and we want to highlight this fact */
+  brandNew?: boolean;
+  /** Extension name, like 'com' or 'co.uk' */
+  name?: string;
+  /** Parameter is true when the extension price has dropped recently and we want to highlight this fact */
+  priceDrop?: boolean;
+}
+export const DomainExtensionsExtensionsPricingAttributes =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      brandNew: S.optional(S.Boolean),
+      name: S.optional(S.String),
+      priceDrop: S.optional(S.Boolean),
+    }),
+  ).annotate({
+    identifier: "DomainExtensionsExtensionsPricingAttributes",
+  }) as any as S.Schema<DomainExtensionsExtensionsPricingAttributes>;
+
+export type ListDomainExtensionPricingAttributesResponseBodyList =
+  Array<DomainExtensionsExtensionsPricingAttributes>;
+export const ListDomainExtensionPricingAttributesResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    DomainExtensionsExtensionsPricingAttributes,
+  ) as any as S.Schema<ListDomainExtensionPricingAttributesResponseBodyList>;
+
+export type ListDomainExtensionPricingAttributesResponse =
+  ListDomainExtensionPricingAttributesResponseBodyList;
+export const ListDomainExtensionPricingAttributesResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListDomainExtensionPricingAttributesResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListDomainExtensionPricingAttributesResponse",
+  }) as any as S.Schema<ListDomainExtensionPricingAttributesResponse>;
+
+/** Type used to change the order of extensions results */
+export type DomainExtensionsOrderByTypeEnum = "alphabetical" | "trending";
+export const DomainExtensionsOrderByTypeEnum = /*@__PURE__*/ S.String;
+
+export interface ListDomainExtensionsRequest {
+  /** Filter only extensions related to this list of geolocalization places (comma separated). Default to empty. */
+  geolocalizations?: string;
+  /** Order results by name (alphabetical) or trending importance (trending). Default to alphabetical. */
+  orderBy?: DomainExtensionsOrderByTypeEnum | (string & {});
+  /** OVHcloud subsidiary targeted. Useful only when orderBy is equal to trending. Default to FR. */
+  ovhSubsidiary?: NichandleOvhSubsidiaryEnum | (string & {});
+  /** Filter only extensions related to this list of thematics (comma separated). Default to empty. */
+  thematics?: string;
+}
+export const ListDomainExtensionsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    smdId: S.String.pipe(T.Label()),
-    data: S.String,
+    geolocalizations: S.optional(S.String.pipe(T.Query())),
+    orderBy: S.optional(DomainExtensionsOrderByTypeEnum.pipe(T.Query())),
+    ovhSubsidiary: S.optional(NichandleOvhSubsidiaryEnum.pipe(T.Query())),
+    thematics: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/domain/extensions", code: 200 })),
+).annotate({
+  identifier: "ListDomainExtensionsRequest",
+}) as any as S.Schema<ListDomainExtensionsRequest>;
+
+export type ListDomainExtensionsResponseBodyList = Array<string>;
+export const ListDomainExtensionsResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListDomainExtensionsResponseBodyList>;
+
+export type ListDomainExtensionsResponse = ListDomainExtensionsResponseBodyList;
+export const ListDomainExtensionsResponse = /*@__PURE__*/ S.suspend(() =>
+  ListDomainExtensionsResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListDomainExtensionsResponse",
+}) as any as S.Schema<ListDomainExtensionsResponse>;
+
+export interface ListDomainGlueRecordRequest {
+  /** Service name */
+  serviceName: string;
+  /** Filter the value of host property */
+  host?: string;
+}
+export const ListDomainGlueRecordRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    host: S.optional(S.String.pipe(T.Query())),
   }).pipe(
-    T.Http({ method: "PUT", uri: "/domain/data/smd/{smdId}", code: 200 }),
+    T.Http({
+      method: "GET",
+      uri: "/domain/{serviceName}/glueRecord",
+      code: 200,
+    }),
   ),
 ).annotate({
-  identifier: "PutDomainDataSmdSmdIdRequest",
-}) as any as S.Schema<PutDomainDataSmdSmdIdRequest>;
+  identifier: "ListDomainGlueRecordRequest",
+}) as any as S.Schema<ListDomainGlueRecordRequest>;
+
+export type ListDomainGlueRecordResponseBodyList = Array<string>;
+export const ListDomainGlueRecordResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListDomainGlueRecordResponseBodyList>;
+
+export type ListDomainGlueRecordResponse = ListDomainGlueRecordResponseBodyList;
+export const ListDomainGlueRecordResponse = /*@__PURE__*/ S.suspend(() =>
+  ListDomainGlueRecordResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListDomainGlueRecordResponse",
+}) as any as S.Schema<ListDomainGlueRecordResponse>;
+
+export interface ListDomainNameServerRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const ListDomainNameServerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/domain/{serviceName}/nameServer",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListDomainNameServerRequest",
+}) as any as S.Schema<ListDomainNameServerRequest>;
+
+export type ListDomainNameServerResponseBodyList = Array<number>;
+export const ListDomainNameServerResponseBodyList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<ListDomainNameServerResponseBodyList>;
+
+export type ListDomainNameServerResponse = ListDomainNameServerResponseBodyList;
+export const ListDomainNameServerResponse = /*@__PURE__*/ S.suspend(() =>
+  ListDomainNameServerResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListDomainNameServerResponse",
+}) as any as S.Schema<ListDomainNameServerResponse>;
+
+export interface ListDomainOptionRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const ListDomainOptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/domain/{serviceName}/option", code: 200 }),
+  ),
+).annotate({
+  identifier: "ListDomainOptionRequest",
+}) as any as S.Schema<ListDomainOptionRequest>;
+
+export type ListDomainOptionResponseBodyList = Array<DomainDomainOptionEnum>;
+export const ListDomainOptionResponseBodyList = /*@__PURE__*/ S.Array(
+  DomainDomainOptionEnum,
+) as any as S.Schema<ListDomainOptionResponseBodyList>;
+
+export type ListDomainOptionResponse = ListDomainOptionResponseBodyList;
+export const ListDomainOptionResponse = /*@__PURE__*/ S.suspend(() =>
+  ListDomainOptionResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListDomainOptionResponse",
+}) as any as S.Schema<ListDomainOptionResponse>;
+
+export interface ListDomainRuleEmailsObfuscationRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const ListDomainRuleEmailsObfuscationRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/domain/{serviceName}/rules/emailsObfuscation",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ListDomainRuleEmailsObfuscationRequest",
+}) as any as S.Schema<ListDomainRuleEmailsObfuscationRequest>;
+
+export type ListDomainRuleEmailsObfuscationResponseBodyList =
+  Array<DomainConfigurationsContactTypeEnum>;
+export const ListDomainRuleEmailsObfuscationResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    DomainConfigurationsContactTypeEnum,
+  ) as any as S.Schema<ListDomainRuleEmailsObfuscationResponseBodyList>;
+
+export type ListDomainRuleEmailsObfuscationResponse =
+  ListDomainRuleEmailsObfuscationResponseBodyList;
+export const ListDomainRuleEmailsObfuscationResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    ListDomainRuleEmailsObfuscationResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListDomainRuleEmailsObfuscationResponse",
+}) as any as S.Schema<ListDomainRuleEmailsObfuscationResponse>;
+
+export interface ListDomainRuleOptinRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const ListDomainRuleOptinRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/domain/{serviceName}/rules/optin",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListDomainRuleOptinRequest",
+}) as any as S.Schema<ListDomainRuleOptinRequest>;
+
+/** Fields to display publicly on the Whois */
+export type DomainRulesOptinFieldsList = Array<DomainOptinFieldsEnum>;
+export const DomainRulesOptinFieldsList = /*@__PURE__*/ S.Array(
+  DomainOptinFieldsEnum,
+) as any as S.Schema<DomainRulesOptinFieldsList>;
+
+/** Representation of the optin rule */
+export interface DomainRulesOptin {
+  /** Fields to display publicly on the Whois */
+  fields?: DomainRulesOptinFieldsList;
+  /** Type of the contact associated to the optin rule */
+  type?: DomainConfigurationsContactTypeEnum;
+}
+export const DomainRulesOptin = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    fields: S.optional(DomainRulesOptinFieldsList),
+    type: S.optional(DomainConfigurationsContactTypeEnum),
+  }),
+).annotate({
+  identifier: "DomainRulesOptin",
+}) as any as S.Schema<DomainRulesOptin>;
+
+export type ListDomainRuleOptinResponseBodyList = Array<DomainRulesOptin>;
+export const ListDomainRuleOptinResponseBodyList = /*@__PURE__*/ S.Array(
+  DomainRulesOptin,
+) as any as S.Schema<ListDomainRuleOptinResponseBodyList>;
+
+export type ListDomainRuleOptinResponse = ListDomainRuleOptinResponseBodyList;
+export const ListDomainRuleOptinResponse = /*@__PURE__*/ S.suspend(() =>
+  ListDomainRuleOptinResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListDomainRuleOptinResponse",
+}) as any as S.Schema<ListDomainRuleOptinResponse>;
+
+export interface ListDomainTaskRequest {
+  /** Service name */
+  serviceName: string;
+  /** Filter the value of function property (like) */
+  function?: string;
+  /** Filter the value of status property (=) */
+  status?: DomainOperationStatusEnum | (string & {});
+  /** Filter the value of type property (=) */
+  type?: DomainOperationTypeEnum | (string & {});
+}
+export const ListDomainTaskRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    function: S.optional(S.String.pipe(T.Query())),
+    status: S.optional(DomainOperationStatusEnum.pipe(T.Query())),
+    type: S.optional(DomainOperationTypeEnum.pipe(T.Query())),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/domain/{serviceName}/task", code: 200 }),
+  ),
+).annotate({
+  identifier: "ListDomainTaskRequest",
+}) as any as S.Schema<ListDomainTaskRequest>;
+
+export type ListDomainTaskResponseBodyList = Array<number>;
+export const ListDomainTaskResponseBodyList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<ListDomainTaskResponseBodyList>;
+
+export type ListDomainTaskResponse = ListDomainTaskResponseBodyList;
+export const ListDomainTaskResponse = /*@__PURE__*/ S.suspend(() =>
+  ListDomainTaskResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListDomainTaskResponse",
+}) as any as S.Schema<ListDomainTaskResponse>;
+
+export interface ListDomainUkRegistrarsRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const ListDomainUkRegistrarsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/domain/{serviceName}/ukRegistrars",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListDomainUkRegistrarsRequest",
+}) as any as S.Schema<ListDomainUkRegistrarsRequest>;
+
+/** Representation of a UK Registrar (used for outgoing transfer) */
+export interface DomainUkRegistrar {
+  /** Registrar name */
+  name?: string;
+  /** Registrar tag */
+  tag: string;
+}
+export const DomainUkRegistrar = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    tag: S.String,
+  }),
+).annotate({
+  identifier: "DomainUkRegistrar",
+}) as any as S.Schema<DomainUkRegistrar>;
+
+export type ListDomainUkRegistrarsResponseBodyList = Array<DomainUkRegistrar>;
+export const ListDomainUkRegistrarsResponseBodyList = /*@__PURE__*/ S.Array(
+  DomainUkRegistrar,
+) as any as S.Schema<ListDomainUkRegistrarsResponseBodyList>;
+
+export type ListDomainUkRegistrarsResponse =
+  ListDomainUkRegistrarsResponseBodyList;
+export const ListDomainUkRegistrarsResponse = /*@__PURE__*/ S.suspend(() =>
+  ListDomainUkRegistrarsResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListDomainUkRegistrarsResponse",
+}) as any as S.Schema<ListDomainUkRegistrarsResponse>;
+
+export interface ListDomainZoneHistoryRequest {
+  /** Zone name */
+  zoneName: string;
+  /** Filter using the value of creationDate property (>=) */
+  creationDate_from?: string;
+  /** Filter using the value of creationDate property (<=) */
+  creationDate_to?: string;
+}
+export const ListDomainZoneHistoryRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    zoneName: S.String.pipe(T.Label()),
+    creationDate_from: S.optional(S.String.pipe(T.Query("creationDate.from"))),
+    creationDate_to: S.optional(S.String.pipe(T.Query("creationDate.to"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/domain/zone/{zoneName}/history",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListDomainZoneHistoryRequest",
+}) as any as S.Schema<ListDomainZoneHistoryRequest>;
+
+export type ListDomainZoneHistoryResponseBodyList = Array<string>;
+export const ListDomainZoneHistoryResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListDomainZoneHistoryResponseBodyList>;
+
+export type ListDomainZoneHistoryResponse =
+  ListDomainZoneHistoryResponseBodyList;
+export const ListDomainZoneHistoryResponse = /*@__PURE__*/ S.suspend(() =>
+  ListDomainZoneHistoryResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListDomainZoneHistoryResponse",
+}) as any as S.Schema<ListDomainZoneHistoryResponse>;
+
+export interface ListDomainZoneOptionRequest {
+  /** Zone name */
+  zoneName: string;
+}
+export const ListDomainZoneOptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    zoneName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/domain/zone/{zoneName}/option", code: 200 }),
+  ),
+).annotate({
+  identifier: "ListDomainZoneOptionRequest",
+}) as any as S.Schema<ListDomainZoneOptionRequest>;
+
+export type ListDomainZoneOptionResponseBodyList = Array<string>;
+export const ListDomainZoneOptionResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListDomainZoneOptionResponseBodyList>;
+
+export type ListDomainZoneOptionResponse = ListDomainZoneOptionResponseBodyList;
+export const ListDomainZoneOptionResponse = /*@__PURE__*/ S.suspend(() =>
+  ListDomainZoneOptionResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListDomainZoneOptionResponse",
+}) as any as S.Schema<ListDomainZoneOptionResponse>;
+
+export interface ListDomainZoneStatusRequest {
+  /** Zone name */
+  zoneName: string;
+}
+export const ListDomainZoneStatusRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    zoneName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/domain/zone/{zoneName}/status", code: 200 }),
+  ),
+).annotate({
+  identifier: "ListDomainZoneStatusRequest",
+}) as any as S.Schema<ListDomainZoneStatusRequest>;
+
+/** Error list if any */
+export type DomainZoneStatusErrorsList = Array<string>;
+export const DomainZoneStatusErrorsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<DomainZoneStatusErrorsList>;
+
+/** Warning list if any */
+export type DomainZoneStatusWarningsList = Array<string>;
+export const DomainZoneStatusWarningsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<DomainZoneStatusWarningsList>;
+
+/** DNS zone status */
+export interface DomainZoneStatus {
+  /** Error list if any */
+  errors?: DomainZoneStatusErrorsList | null;
+  /** Whether the zone is deployed or not */
+  isDeployed?: boolean;
+  /** Warning list if any */
+  warnings?: DomainZoneStatusWarningsList | null;
+}
+export const DomainZoneStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    errors: S.optional(S.NullOr(DomainZoneStatusErrorsList)),
+    isDeployed: S.optional(S.Boolean),
+    warnings: S.optional(S.NullOr(DomainZoneStatusWarningsList)),
+  }),
+).annotate({
+  identifier: "DomainZoneStatus",
+}) as any as S.Schema<DomainZoneStatus>;
+
+export interface ListDomainZoneTaskRequest {
+  /** Zone name */
+  zoneName: string;
+  function?: DomainTaskFunctionEnum | (string & {});
+  status?: DomainTaskStatusEnum | (string & {});
+}
+export const ListDomainZoneTaskRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    zoneName: S.String.pipe(T.Label()),
+    function: S.optional(DomainTaskFunctionEnum.pipe(T.Query())),
+    status: S.optional(DomainTaskStatusEnum.pipe(T.Query())),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/domain/zone/{zoneName}/task", code: 200 }),
+  ),
+).annotate({
+  identifier: "ListDomainZoneTaskRequest",
+}) as any as S.Schema<ListDomainZoneTaskRequest>;
+
+export type ListDomainZoneTaskResponseBodyList = Array<number>;
+export const ListDomainZoneTaskResponseBodyList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<ListDomainZoneTaskResponseBodyList>;
+
+export type ListDomainZoneTaskResponse = ListDomainZoneTaskResponseBodyList;
+export const ListDomainZoneTaskResponse = /*@__PURE__*/ S.suspend(() =>
+  ListDomainZoneTaskResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListDomainZoneTaskResponse",
+}) as any as S.Schema<ListDomainZoneTaskResponse>;
 
 /** Purposes of the domain */
 export type DomainConfigurationsCustomFieldsInputIsForList = Array<
@@ -5988,48 +5703,47 @@ export const DomainConfigurationsCustomFieldsInput = /*@__PURE__*/ S.suspend(
   identifier: "DomainConfigurationsCustomFieldsInput",
 }) as any as S.Schema<DomainConfigurationsCustomFieldsInput>;
 
-export interface PutDomainServiceNameConfigurationsDataRequest {
+export interface PutDomainConfigurationDataRequest {
   /** Service name */
   serviceName: string;
   /** New domain custom fields */
   customFields?: DomainConfigurationsCustomFieldsInput;
 }
-export const PutDomainServiceNameConfigurationsDataRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      customFields: S.optional(DomainConfigurationsCustomFieldsInput),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/domain/{serviceName}/configurations/data",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PutDomainServiceNameConfigurationsDataRequest",
-  }) as any as S.Schema<PutDomainServiceNameConfigurationsDataRequest>;
+export const PutDomainConfigurationDataRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    customFields: S.optional(DomainConfigurationsCustomFieldsInput),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/domain/{serviceName}/configurations/data",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "PutDomainConfigurationDataRequest",
+}) as any as S.Schema<PutDomainConfigurationDataRequest>;
 
 /** Type of the contacts to request email obfuscation for */
-export type PutDomainServiceNameConfigurationsObfuscatedEmailsRequestContactsList =
-  Array<DomainConfigurationsContactTypeEnum | (string & {})>;
-export const PutDomainServiceNameConfigurationsObfuscatedEmailsRequestContactsList =
+export type PutDomainConfigurationObfuscatedEmailsRequestContactsList = Array<
+  DomainConfigurationsContactTypeEnum | (string & {})
+>;
+export const PutDomainConfigurationObfuscatedEmailsRequestContactsList =
   /*@__PURE__*/ S.Array(
     DomainConfigurationsContactTypeEnum,
-  ) as any as S.Schema<PutDomainServiceNameConfigurationsObfuscatedEmailsRequestContactsList>;
+  ) as any as S.Schema<PutDomainConfigurationObfuscatedEmailsRequestContactsList>;
 
-export interface PutDomainServiceNameConfigurationsObfuscatedEmailsRequest {
+export interface PutDomainConfigurationObfuscatedEmailsRequest {
   /** Service name */
   serviceName: string;
   /** Type of the contacts to request email obfuscation for */
-  contacts: PutDomainServiceNameConfigurationsObfuscatedEmailsRequestContactsList;
+  contacts: PutDomainConfigurationObfuscatedEmailsRequestContactsList;
 }
-export const PutDomainServiceNameConfigurationsObfuscatedEmailsRequest =
+export const PutDomainConfigurationObfuscatedEmailsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
-      contacts:
-        PutDomainServiceNameConfigurationsObfuscatedEmailsRequestContactsList,
+      contacts: PutDomainConfigurationObfuscatedEmailsRequestContactsList,
     }).pipe(
       T.Http({
         method: "PUT",
@@ -6038,107 +5752,117 @@ export const PutDomainServiceNameConfigurationsObfuscatedEmailsRequest =
       }),
     ),
   ).annotate({
-    identifier: "PutDomainServiceNameConfigurationsObfuscatedEmailsRequest",
-  }) as any as S.Schema<PutDomainServiceNameConfigurationsObfuscatedEmailsRequest>;
+    identifier: "PutDomainConfigurationObfuscatedEmailsRequest",
+  }) as any as S.Schema<PutDomainConfigurationObfuscatedEmailsRequest>;
 
-export type PutDomainServiceNameConfigurationsObfuscatedEmailsResponseBodyList =
+export type PutDomainConfigurationObfuscatedEmailsResponseBodyList =
   Array<DomainConfigurationsObfuscatedEmail>;
-export const PutDomainServiceNameConfigurationsObfuscatedEmailsResponseBodyList =
+export const PutDomainConfigurationObfuscatedEmailsResponseBodyList =
   /*@__PURE__*/ S.Array(
     DomainConfigurationsObfuscatedEmail,
-  ) as any as S.Schema<PutDomainServiceNameConfigurationsObfuscatedEmailsResponseBodyList>;
+  ) as any as S.Schema<PutDomainConfigurationObfuscatedEmailsResponseBodyList>;
 
-export type PutDomainServiceNameConfigurationsObfuscatedEmailsResponse =
-  PutDomainServiceNameConfigurationsObfuscatedEmailsResponseBodyList;
-export const PutDomainServiceNameConfigurationsObfuscatedEmailsResponse =
+export type PutDomainConfigurationObfuscatedEmailsResponse =
+  PutDomainConfigurationObfuscatedEmailsResponseBodyList;
+export const PutDomainConfigurationObfuscatedEmailsResponse =
   /*@__PURE__*/ S.suspend(() =>
-    PutDomainServiceNameConfigurationsObfuscatedEmailsResponseBodyList.pipe(
+    PutDomainConfigurationObfuscatedEmailsResponseBodyList.pipe(
       T.RawResponseRoot(),
     ),
   ).annotate({
-    identifier: "PutDomainServiceNameConfigurationsObfuscatedEmailsResponse",
-  }) as any as S.Schema<PutDomainServiceNameConfigurationsObfuscatedEmailsResponse>;
+    identifier: "PutDomainConfigurationObfuscatedEmailsResponse",
+  }) as any as S.Schema<PutDomainConfigurationObfuscatedEmailsResponse>;
 
 /** New optin configuration */
-export type PutDomainServiceNameConfigurationsOptinRequestOptinList =
+export type PutDomainConfigurationOptinRequestOptinList =
   Array<DomainConfigurationsOptin>;
-export const PutDomainServiceNameConfigurationsOptinRequestOptinList =
+export const PutDomainConfigurationOptinRequestOptinList =
   /*@__PURE__*/ S.Array(
     DomainConfigurationsOptin,
-  ) as any as S.Schema<PutDomainServiceNameConfigurationsOptinRequestOptinList>;
+  ) as any as S.Schema<PutDomainConfigurationOptinRequestOptinList>;
 
-export interface PutDomainServiceNameConfigurationsOptinRequest {
+export interface PutDomainConfigurationOptinRequest {
   /** Service name */
   serviceName: string;
   /** New optin configuration */
-  optin?: PutDomainServiceNameConfigurationsOptinRequestOptinList;
+  optin?: PutDomainConfigurationOptinRequestOptinList;
 }
-export const PutDomainServiceNameConfigurationsOptinRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      optin: S.optional(
-        PutDomainServiceNameConfigurationsOptinRequestOptinList,
-      ),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/domain/{serviceName}/configurations/optin",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PutDomainServiceNameConfigurationsOptinRequest",
-  }) as any as S.Schema<PutDomainServiceNameConfigurationsOptinRequest>;
+export const PutDomainConfigurationOptinRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    optin: S.optional(PutDomainConfigurationOptinRequestOptinList),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/domain/{serviceName}/configurations/optin",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "PutDomainConfigurationOptinRequest",
+}) as any as S.Schema<PutDomainConfigurationOptinRequest>;
 
-export type PutDomainServiceNameConfigurationsOptinResponseBodyList =
+export type PutDomainConfigurationOptinResponseBodyList =
   Array<DomainConfigurationsOptin>;
-export const PutDomainServiceNameConfigurationsOptinResponseBodyList =
+export const PutDomainConfigurationOptinResponseBodyList =
   /*@__PURE__*/ S.Array(
     DomainConfigurationsOptin,
-  ) as any as S.Schema<PutDomainServiceNameConfigurationsOptinResponseBodyList>;
+  ) as any as S.Schema<PutDomainConfigurationOptinResponseBodyList>;
 
-export type PutDomainServiceNameConfigurationsOptinResponse =
-  PutDomainServiceNameConfigurationsOptinResponseBodyList;
-export const PutDomainServiceNameConfigurationsOptinResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    PutDomainServiceNameConfigurationsOptinResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "PutDomainServiceNameConfigurationsOptinResponse",
-  }) as any as S.Schema<PutDomainServiceNameConfigurationsOptinResponse>;
+export type PutDomainConfigurationOptinResponse =
+  PutDomainConfigurationOptinResponseBodyList;
+export const PutDomainConfigurationOptinResponse = /*@__PURE__*/ S.suspend(() =>
+  PutDomainConfigurationOptinResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "PutDomainConfigurationOptinResponse",
+}) as any as S.Schema<PutDomainConfigurationOptinResponse>;
 
-export interface PutDomainServiceNameServiceInfosRequest {
+export interface PutDomainDataSmdRequest {
+  /** Smd ID */
+  smdId: string;
+  /** SMD file content in base64 */
+  data: string;
+}
+export const PutDomainDataSmdRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    smdId: S.String.pipe(T.Label()),
+    data: S.String,
+  }).pipe(
+    T.Http({ method: "PUT", uri: "/domain/data/smd/{smdId}", code: 200 }),
+  ),
+).annotate({
+  identifier: "PutDomainDataSmdRequest",
+}) as any as S.Schema<PutDomainDataSmdRequest>;
+
+export interface PutDomainServiceInfosRequest {
   /** Service name */
   serviceName: string;
   /** Way of handling the renew */
   renew?: ServiceRenewType | null;
 }
-export const PutDomainServiceNameServiceInfosRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      renew: S.optional(S.NullOr(ServiceRenewType)),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/domain/{serviceName}/serviceInfos",
-        code: 200,
-      }),
-    ),
+export const PutDomainServiceInfosRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    renew: S.optional(S.NullOr(ServiceRenewType)),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/domain/{serviceName}/serviceInfos",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "PutDomainServiceNameServiceInfosRequest",
-}) as any as S.Schema<PutDomainServiceNameServiceInfosRequest>;
+  identifier: "PutDomainServiceInfosRequest",
+}) as any as S.Schema<PutDomainServiceInfosRequest>;
 
-export interface PutDomainServiceNameServiceInfosResponse {}
-export const PutDomainServiceNameServiceInfosResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
+export interface PutDomainServiceInfosResponse {}
+export const PutDomainServiceInfosResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
 ).annotate({
-  identifier: "PutDomainServiceNameServiceInfosResponse",
-}) as any as S.Schema<PutDomainServiceNameServiceInfosResponse>;
+  identifier: "PutDomainServiceInfosResponse",
+}) as any as S.Schema<PutDomainServiceInfosResponse>;
 
-export interface PutDomainZoneZoneNameOptionNameServiceInfosRequest {
+export interface PutDomainZoneOptionServiceInfosRequest {
   /** The internal name of your zone */
   zoneName: string;
   /** The option name */
@@ -6146,8 +5870,8 @@ export interface PutDomainZoneZoneNameOptionNameServiceInfosRequest {
   /** Renew type */
   renew: ServiceRenewType;
 }
-export const PutDomainZoneZoneNameOptionNameServiceInfosRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const PutDomainZoneOptionServiceInfosRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       zoneName: S.String.pipe(T.Label()),
       name: S.String.pipe(T.Label()),
@@ -6159,45 +5883,46 @@ export const PutDomainZoneZoneNameOptionNameServiceInfosRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "PutDomainZoneZoneNameOptionNameServiceInfosRequest",
-  }) as any as S.Schema<PutDomainZoneZoneNameOptionNameServiceInfosRequest>;
+).annotate({
+  identifier: "PutDomainZoneOptionServiceInfosRequest",
+}) as any as S.Schema<PutDomainZoneOptionServiceInfosRequest>;
 
-export interface PutDomainZoneZoneNameOptionNameServiceInfosResponse {}
-export const PutDomainZoneZoneNameOptionNameServiceInfosResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PutDomainZoneZoneNameOptionNameServiceInfosResponse",
-  }) as any as S.Schema<PutDomainZoneZoneNameOptionNameServiceInfosResponse>;
+export interface PutDomainZoneOptionServiceInfosResponse {}
+export const PutDomainZoneOptionServiceInfosResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "PutDomainZoneOptionServiceInfosResponse",
+}) as any as S.Schema<PutDomainZoneOptionServiceInfosResponse>;
 
-export interface PutDomainZoneZoneNameServiceInfosRequest {
+export interface PutDomainZoneServiceInfosRequest {
   /** Zone name */
   zoneName: string;
   /** Way of handling the renew */
   renew?: ServiceRenewType | null;
 }
-export const PutDomainZoneZoneNameServiceInfosRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      zoneName: S.String.pipe(T.Label()),
-      renew: S.optional(S.NullOr(ServiceRenewType)),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/domain/zone/{zoneName}/serviceInfos",
-        code: 200,
-      }),
-    ),
+export const PutDomainZoneServiceInfosRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    zoneName: S.String.pipe(T.Label()),
+    renew: S.optional(S.NullOr(ServiceRenewType)),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/domain/zone/{zoneName}/serviceInfos",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "PutDomainZoneZoneNameServiceInfosRequest",
-}) as any as S.Schema<PutDomainZoneZoneNameServiceInfosRequest>;
+  identifier: "PutDomainZoneServiceInfosRequest",
+}) as any as S.Schema<PutDomainZoneServiceInfosRequest>;
 
-export interface PutDomainZoneZoneNameServiceInfosResponse {}
-export const PutDomainZoneZoneNameServiceInfosResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PutDomainZoneZoneNameServiceInfosResponse",
-  }) as any as S.Schema<PutDomainZoneZoneNameServiceInfosResponse>;
+export interface PutDomainZoneServiceInfosResponse {}
+export const PutDomainZoneServiceInfosResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "PutDomainZoneServiceInfosResponse",
+}) as any as S.Schema<PutDomainZoneServiceInfosResponse>;
 
-export interface PutDomainZoneZoneNameSoaRequest {
+export interface PutDomainZoneSoaRequest {
   /** Zone name */
   zoneName: string;
   /** Email address of the DNS Administrator */
@@ -6215,7 +5940,7 @@ export interface PutDomainZoneZoneNameSoaRequest {
   /** Time To Live in seconds */
   ttl?: number;
 }
-export const PutDomainZoneZoneNameSoaRequest = /*@__PURE__*/ S.suspend(() =>
+export const PutDomainZoneSoaRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     zoneName: S.String.pipe(T.Label()),
     email: S.optional(S.String),
@@ -6229,15 +5954,51 @@ export const PutDomainZoneZoneNameSoaRequest = /*@__PURE__*/ S.suspend(() =>
     T.Http({ method: "PUT", uri: "/domain/zone/{zoneName}/soa", code: 200 }),
   ),
 ).annotate({
-  identifier: "PutDomainZoneZoneNameSoaRequest",
-}) as any as S.Schema<PutDomainZoneZoneNameSoaRequest>;
+  identifier: "PutDomainZoneSoaRequest",
+}) as any as S.Schema<PutDomainZoneSoaRequest>;
 
-export interface PutDomainZoneZoneNameSoaResponse {}
-export const PutDomainZoneZoneNameSoaResponse = /*@__PURE__*/ S.suspend(() =>
+export interface PutDomainZoneSoaResponse {}
+export const PutDomainZoneSoaResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "PutDomainZoneZoneNameSoaResponse",
-}) as any as S.Schema<PutDomainZoneZoneNameSoaResponse>;
+  identifier: "PutDomainZoneSoaResponse",
+}) as any as S.Schema<PutDomainZoneSoaResponse>;
+
+/** Type of the contacts to refresh email obfuscation for */
+export type RefreshDomainConfigurationsObfuscatedEmailRequestContactsList =
+  Array<DomainConfigurationsContactTypeEnum | (string & {})>;
+export const RefreshDomainConfigurationsObfuscatedEmailRequestContactsList =
+  /*@__PURE__*/ S.Array(
+    DomainConfigurationsContactTypeEnum,
+  ) as any as S.Schema<RefreshDomainConfigurationsObfuscatedEmailRequestContactsList>;
+
+export interface RefreshDomainConfigurationsObfuscatedEmailRequest {
+  /** Service name */
+  serviceName: string;
+  /** Type of the contacts to refresh email obfuscation for */
+  contacts: RefreshDomainConfigurationsObfuscatedEmailRequestContactsList;
+}
+export const RefreshDomainConfigurationsObfuscatedEmailRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      contacts: RefreshDomainConfigurationsObfuscatedEmailRequestContactsList,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/domain/{serviceName}/configurations/obfuscatedEmails/refresh",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "RefreshDomainConfigurationsObfuscatedEmailRequest",
+  }) as any as S.Schema<RefreshDomainConfigurationsObfuscatedEmailRequest>;
+
+export interface RefreshDomainConfigurationsObfuscatedEmailResponse {}
+export const RefreshDomainConfigurationsObfuscatedEmailResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "RefreshDomainConfigurationsObfuscatedEmailResponse",
+  }) as any as S.Schema<RefreshDomainConfigurationsObfuscatedEmailResponse>;
 
 export interface RefreshZoneRequest {
   /** Zone name */
@@ -6263,6 +6024,106 @@ export const RefreshZoneResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "RefreshZoneResponse",
 }) as any as S.Schema<RefreshZoneResponse>;
+
+/** Resource record name */
+export type DomainZoneResettableNamedResolutionFieldTypeEnum = "A" | "MX";
+export const DomainZoneResettableNamedResolutionFieldTypeEnum =
+  /*@__PURE__*/ S.String;
+
+/** Record associated to domain zone reset */
+export interface DomainZoneResetRecord {
+  /** Field type associated to domain zone reset */
+  fieldType?: DomainZoneResettableNamedResolutionFieldTypeEnum | (string & {});
+  /** Target associated to domain zone reset */
+  target?: string;
+}
+export const DomainZoneResetRecord = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    fieldType: S.optional(DomainZoneResettableNamedResolutionFieldTypeEnum),
+    target: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DomainZoneResetRecord",
+}) as any as S.Schema<DomainZoneResetRecord>;
+
+/** Records that will be set after reset */
+export type ResetDomainZoneRequestDnsRecordsList = Array<DomainZoneResetRecord>;
+export const ResetDomainZoneRequestDnsRecordsList = /*@__PURE__*/ S.Array(
+  DomainZoneResetRecord,
+) as any as S.Schema<ResetDomainZoneRequestDnsRecordsList>;
+
+export interface ResetDomainZoneRequest {
+  /** Zone name */
+  zoneName: string;
+  /** Records that will be set after reset */
+  DnsRecords?: ResetDomainZoneRequestDnsRecordsList;
+  /** Create only mandatory records */
+  minimized?: boolean;
+}
+export const ResetDomainZoneRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    zoneName: S.String.pipe(T.Label()),
+    DnsRecords: S.optional(ResetDomainZoneRequestDnsRecordsList),
+    minimized: S.optional(S.Boolean),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/domain/zone/{zoneName}/reset", code: 200 }),
+  ),
+).annotate({
+  identifier: "ResetDomainZoneRequest",
+}) as any as S.Schema<ResetDomainZoneRequest>;
+
+export interface ResetDomainZoneResponse {}
+export const ResetDomainZoneResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "ResetDomainZoneResponse",
+}) as any as S.Schema<ResetDomainZoneResponse>;
+
+export interface RestoreDomainZoneHistoryRequest {
+  /** Zone name */
+  zoneName: string;
+  /** Creation date */
+  creationDate: string;
+}
+export const RestoreDomainZoneHistoryRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    zoneName: S.String.pipe(T.Label()),
+    creationDate: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/domain/zone/{zoneName}/history/{creationDate}/restore",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "RestoreDomainZoneHistoryRequest",
+}) as any as S.Schema<RestoreDomainZoneHistoryRequest>;
+
+export interface TerminateDomainZoneRequest {
+  /** Zone name */
+  zoneName: string;
+}
+export const TerminateDomainZoneRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    zoneName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/domain/zone/{zoneName}/terminate",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "TerminateDomainZoneRequest",
+}) as any as S.Schema<TerminateDomainZoneRequest>;
+
+export type TerminateDomainZoneResponse = string;
+export const TerminateDomainZoneResponse = /*@__PURE__*/ S.suspend(() =>
+  S.String.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "TerminateDomainZoneResponse",
+}) as any as S.Schema<TerminateDomainZoneResponse>;
 
 export interface UpdateContactRequest {
   /** Contact ID */
@@ -6397,6 +6258,110 @@ export const UpdateContactRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateContactRequest",
 }) as any as S.Schema<UpdateContactRequest>;
 
+/** IP address */
+export type UpdateDomainGlueRecordRequestIpsList = Array<string>;
+export const UpdateDomainGlueRecordRequestIpsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<UpdateDomainGlueRecordRequestIpsList>;
+
+export interface UpdateDomainGlueRecordRequest {
+  /** Service name */
+  serviceName: string;
+  /** Host */
+  host: string;
+  /** IP address */
+  ips: UpdateDomainGlueRecordRequestIpsList;
+}
+export const UpdateDomainGlueRecordRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    host: S.String.pipe(T.Label()),
+    ips: UpdateDomainGlueRecordRequestIpsList,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/domain/{serviceName}/glueRecord/{host}/update",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateDomainGlueRecordRequest",
+}) as any as S.Schema<UpdateDomainGlueRecordRequest>;
+
+/** Name servers to update */
+export type UpdateDomainNameServerRequestNameServersList =
+  Array<DomainNameServerNameServerInput>;
+export const UpdateDomainNameServerRequestNameServersList =
+  /*@__PURE__*/ S.Array(
+    DomainNameServerNameServerInput,
+  ) as any as S.Schema<UpdateDomainNameServerRequestNameServersList>;
+
+export interface UpdateDomainNameServerRequest {
+  /** Service name */
+  serviceName: string;
+  /** Name servers to update */
+  nameServers: UpdateDomainNameServerRequestNameServersList;
+}
+export const UpdateDomainNameServerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    nameServers: UpdateDomainNameServerRequestNameServersList,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/domain/{serviceName}/nameServers/update",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateDomainNameServerRequest",
+}) as any as S.Schema<UpdateDomainNameServerRequest>;
+
+export type ApproveDomainOutgoingTransferError = OvhOpError;
+/** Approve Outgoing Transfer for a domain */
+export const approveDomainOutgoingTransfer: API.OperationMethod<
+  ApproveDomainOutgoingTransferRequest,
+  ApproveDomainOutgoingTransferResponse,
+  ApproveDomainOutgoingTransferError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ApproveDomainOutgoingTransferRequest,
+  output: ApproveDomainOutgoingTransferResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CancelDomainTaskError = OvhOpError;
+/** Cancel the task */
+export const cancelDomainTask: API.OperationMethod<
+  CancelDomainTaskRequest,
+  CancelDomainTaskResponse,
+  CancelDomainTaskError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CancelDomainTaskRequest,
+  output: CancelDomainTaskResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CancelDomainZoneTaskError = OvhOpError;
+/** Cancel a zone task */
+export const cancelDomainZoneTask: API.OperationMethod<
+  CancelDomainZoneTaskRequest,
+  CancelDomainZoneTaskResponse,
+  CancelDomainZoneTaskError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CancelDomainZoneTaskRequest,
+  output: CancelDomainZoneTaskResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ChangePasswordDynDnsLoginError = OvhOpError;
 /** Change password of the DynHost login */
 export const changePasswordDynDnsLogin: API.OperationMethod<
@@ -6412,6 +6377,36 @@ export const changePasswordDynDnsLogin: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type CheckDomainConfigurationRuleError = OvhOpError;
+/** Validate a rule data for a specified domain */
+export const checkDomainConfigurationRule: API.OperationMethod<
+  CheckDomainConfigurationRuleRequest,
+  CheckDomainConfigurationRuleResponse,
+  CheckDomainConfigurationRuleError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CheckDomainConfigurationRuleRequest,
+  output: CheckDomainConfigurationRuleResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ConfirmDomainZoneTerminationError = OvhOpError;
+/** Confirm service termination */
+export const confirmDomainZoneTermination: API.OperationMethod<
+  ConfirmDomainZoneTerminationRequest,
+  ConfirmDomainZoneTerminationResponse,
+  ConfirmDomainZoneTerminationError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ConfirmDomainZoneTerminationRequest,
+  output: ConfirmDomainZoneTerminationResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
 export type CreateContactError = OvhOpError;
 /** Create a contact */
 export const createContact: API.OperationMethod<
@@ -6422,6 +6417,186 @@ export const createContact: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: CreateContactRequest,
   output: DomainContact,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateDomainChangeContactError = OvhOpError;
+/** Launch a contact change procedure */
+export const createDomainChangeContact: API.OperationMethod<
+  CreateDomainChangeContactRequest,
+  CreateDomainChangeContactResponse,
+  CreateDomainChangeContactError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateDomainChangeContactRequest,
+  output: CreateDomainChangeContactResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateDomainDataSmdError = OvhOpError;
+/** Create a SMD file */
+export const createDomainDataSmd: API.OperationMethod<
+  CreateDomainDataSmdRequest,
+  DomainDataSmdSmd,
+  CreateDomainDataSmdError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateDomainDataSmdRequest,
+  output: DomainDataSmdSmd,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateDomainDsRecordError = OvhOpError;
+/** Update DS records */
+export const createDomainDsRecord: API.OperationMethod<
+  CreateDomainDsRecordRequest,
+  DomainTask,
+  CreateDomainDsRecordError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateDomainDsRecordRequest,
+  output: DomainTask,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateDomainGlueRecordError = OvhOpError;
+/** Create a glue record */
+export const createDomainGlueRecord: API.OperationMethod<
+  CreateDomainGlueRecordRequest,
+  DomainTask,
+  CreateDomainGlueRecordError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateDomainGlueRecordRequest,
+  output: DomainTask,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateDomainNameServerError = OvhOpError;
+/** Add new name server */
+export const createDomainNameServer: API.OperationMethod<
+  CreateDomainNameServerRequest,
+  DomainTask,
+  CreateDomainNameServerError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateDomainNameServerRequest,
+  output: DomainTask,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateDomainOrderError = OvhOpError;
+/** Order a new domain name */
+export const createDomainOrder: API.OperationMethod<
+  CreateDomainOrderRequest,
+  DomainOrderOrderResponse,
+  CreateDomainOrderError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateDomainOrderRequest,
+  output: DomainOrderOrderResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateDomainTaskAccelerateError = OvhOpError;
+/** Accelerate the task */
+export const createDomainTaskAccelerate: API.OperationMethod<
+  CreateDomainTaskAccelerateRequest,
+  CreateDomainTaskAccelerateResponse,
+  CreateDomainTaskAccelerateError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateDomainTaskAccelerateRequest,
+  output: CreateDomainTaskAccelerateResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateDomainTaskRelaunchError = OvhOpError;
+/** Relaunch the task */
+export const createDomainTaskRelaunch: API.OperationMethod<
+  CreateDomainTaskRelaunchRequest,
+  CreateDomainTaskRelaunchResponse,
+  CreateDomainTaskRelaunchError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateDomainTaskRelaunchRequest,
+  output: CreateDomainTaskRelaunchResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateDomainUkOutgoingTransferError = OvhOpError;
+/** Schedule an outgoing transfer task for this domain (.uk only) */
+export const createDomainUkOutgoingTransfer: API.OperationMethod<
+  CreateDomainUkOutgoingTransferRequest,
+  DomainTask,
+  CreateDomainUkOutgoingTransferError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateDomainUkOutgoingTransferRequest,
+  output: DomainTask,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateDomainZoneChangeContactError = OvhOpError;
+/** Launch a contact change procedure */
+export const createDomainZoneChangeContact: API.OperationMethod<
+  CreateDomainZoneChangeContactRequest,
+  CreateDomainZoneChangeContactResponse,
+  CreateDomainZoneChangeContactError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateDomainZoneChangeContactRequest,
+  output: CreateDomainZoneChangeContactResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateDomainZoneTaskAccelerateError = OvhOpError;
+/** Accelerate a zone task */
+export const createDomainZoneTaskAccelerate: API.OperationMethod<
+  CreateDomainZoneTaskAccelerateRequest,
+  CreateDomainZoneTaskAccelerateResponse,
+  CreateDomainZoneTaskAccelerateError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateDomainZoneTaskAccelerateRequest,
+  output: CreateDomainZoneTaskAccelerateResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateDomainZoneTaskRelaunchError = OvhOpError;
+/** Restart a zone task */
+export const createDomainZoneTaskRelaunch: API.OperationMethod<
+  CreateDomainZoneTaskRelaunchRequest,
+  CreateDomainZoneTaskRelaunchResponse,
+  CreateDomainZoneTaskRelaunchError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateDomainZoneTaskRelaunchRequest,
+  output: CreateDomainZoneTaskRelaunchResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
@@ -6487,61 +6662,61 @@ export const createRedirection: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteDomainDataSmdSmdIdError = OvhOpError;
+export type DeleteDomainDataSmdError = OvhOpError;
 /** Delete a SMD file */
-export const deleteDomainDataSmdSmdId: API.OperationMethod<
-  DeleteDomainDataSmdSmdIdRequest,
-  DeleteDomainDataSmdSmdIdResponse,
-  DeleteDomainDataSmdSmdIdError,
+export const deleteDomainDataSmd: API.OperationMethod<
+  DeleteDomainDataSmdRequest,
+  DeleteDomainDataSmdResponse,
+  DeleteDomainDataSmdError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteDomainDataSmdSmdIdRequest,
-  output: DeleteDomainDataSmdSmdIdResponse,
+  input: DeleteDomainDataSmdRequest,
+  output: DeleteDomainDataSmdResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteDomainServiceNameGlueRecordHostError = OvhOpError;
+export type DeleteDomainGlueRecordError = OvhOpError;
 /** Delete the glue record */
-export const deleteDomainServiceNameGlueRecordHost: API.OperationMethod<
-  DeleteDomainServiceNameGlueRecordHostRequest,
+export const deleteDomainGlueRecord: API.OperationMethod<
+  DeleteDomainGlueRecordRequest,
   DomainTask,
-  DeleteDomainServiceNameGlueRecordHostError,
+  DeleteDomainGlueRecordError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteDomainServiceNameGlueRecordHostRequest,
+  input: DeleteDomainGlueRecordRequest,
   output: DomainTask,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteDomainServiceNameNameServerIdError = OvhOpError;
+export type DeleteDomainNameServerError = OvhOpError;
 /** Delete a name server */
-export const deleteDomainServiceNameNameServerId: API.OperationMethod<
-  DeleteDomainServiceNameNameServerIdRequest,
+export const deleteDomainNameServer: API.OperationMethod<
+  DeleteDomainNameServerRequest,
   DomainTask,
-  DeleteDomainServiceNameNameServerIdError,
+  DeleteDomainNameServerError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteDomainServiceNameNameServerIdRequest,
+  input: DeleteDomainNameServerRequest,
   output: DomainTask,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteDomainServiceNameOptionOptionError = OvhOpError;
+export type DeleteDomainOptionError = OvhOpError;
 /** Remove a given option */
-export const deleteDomainServiceNameOptionOption: API.OperationMethod<
-  DeleteDomainServiceNameOptionOptionRequest,
-  DeleteDomainServiceNameOptionOptionResponse,
-  DeleteDomainServiceNameOptionOptionError,
+export const deleteDomainOption: API.OperationMethod<
+  DeleteDomainOptionRequest,
+  DeleteDomainOptionResponse,
+  DeleteDomainOptionError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteDomainServiceNameOptionOptionRequest,
-  output: DeleteDomainServiceNameOptionOptionResponse,
+  input: DeleteDomainOptionRequest,
+  output: DeleteDomainOptionResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
@@ -6772,6 +6947,36 @@ export const getDomain: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetDomainAuthInfoError = OvhOpError;
+/** Return authInfo code if the domain is unlocked */
+export const getDomainAuthInfo: API.OperationMethod<
+  GetDomainAuthInfoRequest,
+  GetDomainAuthInfoResponse,
+  GetDomainAuthInfoError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDomainAuthInfoRequest,
+  output: GetDomainAuthInfoResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDomainConfigurationDataError = OvhOpError;
+/** Get extra data configurations for a domain */
+export const getDomainConfigurationData: API.OperationMethod<
+  GetDomainConfigurationDataRequest,
+  DomainConfigurationsCustomFields,
+  GetDomainConfigurationDataError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDomainConfigurationDataRequest,
+  output: DomainConfigurationsCustomFields,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetDomainConfigurationRuleError = OvhOpError;
 /** Get configuration rule applied for a domain in a given action */
 export const getDomainConfigurationRule: API.OperationMethod<
@@ -6803,120 +7008,135 @@ export const getDomainDataClaimNotice: API.OperationMethod<
 }));
 
 export type GetDomainDataSmdError = OvhOpError;
-/** List all SMD files */
+/** Get details about a SMD file */
 export const getDomainDataSmd: API.OperationMethod<
   GetDomainDataSmdRequest,
-  GetDomainDataSmdResponse,
+  DomainDataSmdSmd,
   GetDomainDataSmdError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: GetDomainDataSmdRequest,
-  output: GetDomainDataSmdResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDomainDataSmdSmdIdError = OvhOpError;
-/** Get details about a SMD file */
-export const getDomainDataSmdSmdId: API.OperationMethod<
-  GetDomainDataSmdSmdIdRequest,
-  DomainDataSmdSmd,
-  GetDomainDataSmdSmdIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDomainDataSmdSmdIdRequest,
   output: DomainDataSmdSmd,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetDomainExtensionsError = OvhOpError;
-/** List all extensions */
-export const getDomainExtensions: API.OperationMethod<
-  GetDomainExtensionsRequest,
-  GetDomainExtensionsResponse,
-  GetDomainExtensionsError,
+export type GetDomainDsRecordError = OvhOpError;
+/** Get details on this DS Record */
+export const getDomainDsRecord: API.OperationMethod<
+  GetDomainDsRecordRequest,
+  DnssecKey,
+  GetDomainDsRecordError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetDomainExtensionsRequest,
-  output: GetDomainExtensionsResponse,
+  input: GetDomainDsRecordRequest,
+  output: DnssecKey,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetDomainExtensionsByCategoryError = OvhOpError;
-/** List extensions, grouped by category types (like 'thematic', 'geolocalization') and category names (like 'europe') */
-export const getDomainExtensionsByCategory: API.OperationMethod<
-  GetDomainExtensionsByCategoryRequest,
-  DomainExtensionsExtensionsByCategory,
-  GetDomainExtensionsByCategoryError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDomainExtensionsByCategoryRequest,
-  output: DomainExtensionsExtensionsByCategory,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDomainExtensionsHighlightedError = OvhOpError;
-/** List highlighted extensions, ordered by decreased importance */
-export const getDomainExtensionsHighlighted: API.OperationMethod<
-  GetDomainExtensionsHighlightedRequest,
-  GetDomainExtensionsHighlightedResponse,
-  GetDomainExtensionsHighlightedError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDomainExtensionsHighlightedRequest,
-  output: GetDomainExtensionsHighlightedResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDomainExtensionsNameError = OvhOpError;
+export type GetDomainExtensionError = OvhOpError;
 /** Get an extension */
-export const getDomainExtensionsName: API.OperationMethod<
-  GetDomainExtensionsNameRequest,
+export const getDomainExtension: API.OperationMethod<
+  GetDomainExtensionRequest,
   DomainExtensionsExtension,
-  GetDomainExtensionsNameError,
+  GetDomainExtensionError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetDomainExtensionsNameRequest,
+  input: GetDomainExtensionRequest,
   output: DomainExtensionsExtension,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetDomainExtensionsNameRegistryConfigurationsError = OvhOpError;
+export type GetDomainExtensionRegistryConfigurationsError = OvhOpError;
 /** Retrieve registry configuration for an extension */
-export const getDomainExtensionsNameRegistryConfigurations: API.OperationMethod<
-  GetDomainExtensionsNameRegistryConfigurationsRequest,
+export const getDomainExtensionRegistryConfigurations: API.OperationMethod<
+  GetDomainExtensionRegistryConfigurationsRequest,
   DomainExtensionsRegistryConfigurationsRegistryConfigurations,
-  GetDomainExtensionsNameRegistryConfigurationsError,
+  GetDomainExtensionRegistryConfigurationsError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetDomainExtensionsNameRegistryConfigurationsRequest,
+  input: GetDomainExtensionRegistryConfigurationsRequest,
   output: DomainExtensionsRegistryConfigurationsRegistryConfigurations,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetDomainExtensionsPricingAttributesError = OvhOpError;
-/** List extensions with their pricing attributes List extensions with their pricing attributes. It especially documents whether an extension has been implemented recently or whether the price has dropped. */
-export const getDomainExtensionsPricingAttributes: API.OperationMethod<
-  GetDomainExtensionsPricingAttributesRequest,
-  GetDomainExtensionsPricingAttributesResponse,
-  GetDomainExtensionsPricingAttributesError,
+export type GetDomainGlueRecordError = OvhOpError;
+/** Get this glue record */
+export const getDomainGlueRecord: API.OperationMethod<
+  GetDomainGlueRecordRequest,
+  DomainGlueRecordGlueRecord,
+  GetDomainGlueRecordError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetDomainExtensionsPricingAttributesRequest,
-  output: GetDomainExtensionsPricingAttributesResponse,
+  input: GetDomainGlueRecordRequest,
+  output: DomainGlueRecordGlueRecord,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDomainNameServerError = OvhOpError;
+/** Get this name server configuration */
+export const getDomainNameServer: API.OperationMethod<
+  GetDomainNameServerRequest,
+  DomainNameServerFullNameServer,
+  GetDomainNameServerError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDomainNameServerRequest,
+  output: DomainNameServerFullNameServer,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDomainNameServerStatusError = OvhOpError;
+/** Get name server status */
+export const getDomainNameServerStatus: API.OperationMethod<
+  GetDomainNameServerStatusRequest,
+  DomainNameServerNameServerStatus,
+  GetDomainNameServerStatusError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDomainNameServerStatusRequest,
+  output: DomainNameServerNameServerStatus,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDomainOptionError = OvhOpError;
+/** Get details on this domain option */
+export const getDomainOption: API.OperationMethod<
+  GetDomainOptionRequest,
+  DomainOption,
+  GetDomainOptionError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDomainOptionRequest,
+  output: DomainOption,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDomainOptionsError = OvhOpError;
+/** Retrieve data about the options associated to a domain */
+export const getDomainOptions: API.OperationMethod<
+  GetDomainOptionsRequest,
+  DomainServiceOptions,
+  GetDomainOptionsError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDomainOptionsRequest,
+  output: DomainServiceOptions,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
@@ -6937,481 +7157,150 @@ export const getDomains: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetDomainServiceNameAuthInfoError = OvhOpError;
-/** Return authInfo code if the domain is unlocked */
-export const getDomainServiceNameAuthInfo: API.OperationMethod<
-  GetDomainServiceNameAuthInfoRequest,
-  GetDomainServiceNameAuthInfoResponse,
-  GetDomainServiceNameAuthInfoError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDomainServiceNameAuthInfoRequest,
-  output: GetDomainServiceNameAuthInfoResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDomainServiceNameConfigurationsDataError = OvhOpError;
-/** Get extra data configurations for a domain */
-export const getDomainServiceNameConfigurationsData: API.OperationMethod<
-  GetDomainServiceNameConfigurationsDataRequest,
-  DomainConfigurationsCustomFields,
-  GetDomainServiceNameConfigurationsDataError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDomainServiceNameConfigurationsDataRequest,
-  output: DomainConfigurationsCustomFields,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDomainServiceNameConfigurationsObfuscatedEmailsError =
-  OvhOpError;
-/** Retrieve obfuscated emails configuration */
-export const getDomainServiceNameConfigurationsObfuscatedEmails: API.OperationMethod<
-  GetDomainServiceNameConfigurationsObfuscatedEmailsRequest,
-  GetDomainServiceNameConfigurationsObfuscatedEmailsResponse,
-  GetDomainServiceNameConfigurationsObfuscatedEmailsError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDomainServiceNameConfigurationsObfuscatedEmailsRequest,
-  output: GetDomainServiceNameConfigurationsObfuscatedEmailsResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDomainServiceNameConfigurationsOptinError = OvhOpError;
-/** Retrieve optin configuration */
-export const getDomainServiceNameConfigurationsOptin: API.OperationMethod<
-  GetDomainServiceNameConfigurationsOptinRequest,
-  GetDomainServiceNameConfigurationsOptinResponse,
-  GetDomainServiceNameConfigurationsOptinError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDomainServiceNameConfigurationsOptinRequest,
-  output: GetDomainServiceNameConfigurationsOptinResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDomainServiceNameDsRecordError = OvhOpError;
-/** List of domain's DS Records */
-export const getDomainServiceNameDsRecord: API.OperationMethod<
-  GetDomainServiceNameDsRecordRequest,
-  GetDomainServiceNameDsRecordResponse,
-  GetDomainServiceNameDsRecordError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDomainServiceNameDsRecordRequest,
-  output: GetDomainServiceNameDsRecordResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDomainServiceNameDsRecordIdError = OvhOpError;
-/** Get details on this DS Record */
-export const getDomainServiceNameDsRecordId: API.OperationMethod<
-  GetDomainServiceNameDsRecordIdRequest,
-  DnssecKey,
-  GetDomainServiceNameDsRecordIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDomainServiceNameDsRecordIdRequest,
-  output: DnssecKey,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDomainServiceNameGlueRecordError = OvhOpError;
-/** List of glue records */
-export const getDomainServiceNameGlueRecord: API.OperationMethod<
-  GetDomainServiceNameGlueRecordRequest,
-  GetDomainServiceNameGlueRecordResponse,
-  GetDomainServiceNameGlueRecordError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDomainServiceNameGlueRecordRequest,
-  output: GetDomainServiceNameGlueRecordResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDomainServiceNameGlueRecordHostError = OvhOpError;
-/** Get this glue record */
-export const getDomainServiceNameGlueRecordHost: API.OperationMethod<
-  GetDomainServiceNameGlueRecordHostRequest,
-  DomainGlueRecordGlueRecord,
-  GetDomainServiceNameGlueRecordHostError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDomainServiceNameGlueRecordHostRequest,
-  output: DomainGlueRecordGlueRecord,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDomainServiceNameNameServerError = OvhOpError;
-/** List of current name servers */
-export const getDomainServiceNameNameServer: API.OperationMethod<
-  GetDomainServiceNameNameServerRequest,
-  GetDomainServiceNameNameServerResponse,
-  GetDomainServiceNameNameServerError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDomainServiceNameNameServerRequest,
-  output: GetDomainServiceNameNameServerResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDomainServiceNameNameServerIdError = OvhOpError;
-/** Get this name server configuration */
-export const getDomainServiceNameNameServerId: API.OperationMethod<
-  GetDomainServiceNameNameServerIdRequest,
-  DomainNameServerFullNameServer,
-  GetDomainServiceNameNameServerIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDomainServiceNameNameServerIdRequest,
-  output: DomainNameServerFullNameServer,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDomainServiceNameNameServerIdStatusError = OvhOpError;
-/** Get name server status */
-export const getDomainServiceNameNameServerIdStatus: API.OperationMethod<
-  GetDomainServiceNameNameServerIdStatusRequest,
-  DomainNameServerNameServerStatus,
-  GetDomainServiceNameNameServerIdStatusError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDomainServiceNameNameServerIdStatusRequest,
-  output: DomainNameServerNameServerStatus,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDomainServiceNameOptionError = OvhOpError;
-/** List domain options */
-export const getDomainServiceNameOption: API.OperationMethod<
-  GetDomainServiceNameOptionRequest,
-  GetDomainServiceNameOptionResponse,
-  GetDomainServiceNameOptionError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDomainServiceNameOptionRequest,
-  output: GetDomainServiceNameOptionResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDomainServiceNameOptionOptionError = OvhOpError;
-/** Get details on this domain option */
-export const getDomainServiceNameOptionOption: API.OperationMethod<
-  GetDomainServiceNameOptionOptionRequest,
-  DomainOption,
-  GetDomainServiceNameOptionOptionError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDomainServiceNameOptionOptionRequest,
-  output: DomainOption,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDomainServiceNameOptionsError = OvhOpError;
-/** Retrieve data about the options associated to a domain */
-export const getDomainServiceNameOptions: API.OperationMethod<
-  GetDomainServiceNameOptionsRequest,
-  DomainServiceOptions,
-  GetDomainServiceNameOptionsError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDomainServiceNameOptionsRequest,
-  output: DomainServiceOptions,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDomainServiceNameRulesEmailsObfuscationError = OvhOpError;
-/** Retrieve emails obfuscation rule */
-export const getDomainServiceNameRulesEmailsObfuscation: API.OperationMethod<
-  GetDomainServiceNameRulesEmailsObfuscationRequest,
-  GetDomainServiceNameRulesEmailsObfuscationResponse,
-  GetDomainServiceNameRulesEmailsObfuscationError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDomainServiceNameRulesEmailsObfuscationRequest,
-  output: GetDomainServiceNameRulesEmailsObfuscationResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDomainServiceNameRulesOptinError = OvhOpError;
-/** Retrieve optin rule */
-export const getDomainServiceNameRulesOptin: API.OperationMethod<
-  GetDomainServiceNameRulesOptinRequest,
-  GetDomainServiceNameRulesOptinResponse,
-  GetDomainServiceNameRulesOptinError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDomainServiceNameRulesOptinRequest,
-  output: GetDomainServiceNameRulesOptinResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDomainServiceNameServiceInfosError = OvhOpError;
+export type GetDomainServiceInfosError = OvhOpError;
 /** Get service information */
-export const getDomainServiceNameServiceInfos: API.OperationMethod<
-  GetDomainServiceNameServiceInfosRequest,
+export const getDomainServiceInfos: API.OperationMethod<
+  GetDomainServiceInfosRequest,
   ServicesService,
-  GetDomainServiceNameServiceInfosError,
+  GetDomainServiceInfosError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetDomainServiceNameServiceInfosRequest,
+  input: GetDomainServiceInfosRequest,
   output: ServicesService,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetDomainServiceNameTaskError = OvhOpError;
-/** List all domain tasks */
-export const getDomainServiceNameTask: API.OperationMethod<
-  GetDomainServiceNameTaskRequest,
-  GetDomainServiceNameTaskResponse,
-  GetDomainServiceNameTaskError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDomainServiceNameTaskRequest,
-  output: GetDomainServiceNameTaskResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDomainServiceNameTaskIdError = OvhOpError;
+export type GetDomainTaskError = OvhOpError;
 /** Get details about a domain task */
-export const getDomainServiceNameTaskId: API.OperationMethod<
-  GetDomainServiceNameTaskIdRequest,
+export const getDomainTask: API.OperationMethod<
+  GetDomainTaskRequest,
   DomainTask,
-  GetDomainServiceNameTaskIdError,
+  GetDomainTaskError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetDomainServiceNameTaskIdRequest,
+  input: GetDomainTaskRequest,
   output: DomainTask,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetDomainServiceNameUkRegistrarsError = OvhOpError;
-/** Return the list of all .uk registrars */
-export const getDomainServiceNameUkRegistrars: API.OperationMethod<
-  GetDomainServiceNameUkRegistrarsRequest,
-  GetDomainServiceNameUkRegistrarsResponse,
-  GetDomainServiceNameUkRegistrarsError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDomainServiceNameUkRegistrarsRequest,
-  output: GetDomainServiceNameUkRegistrarsResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDomainZoneZoneNameCapabilitiesError = OvhOpError;
+export type GetDomainZoneCapabilitiesError = OvhOpError;
 /** Get zone capabilities */
-export const getDomainZoneZoneNameCapabilities: API.OperationMethod<
-  GetDomainZoneZoneNameCapabilitiesRequest,
+export const getDomainZoneCapabilities: API.OperationMethod<
+  GetDomainZoneCapabilitiesRequest,
   DomainZoneCapabilities,
-  GetDomainZoneZoneNameCapabilitiesError,
+  GetDomainZoneCapabilitiesError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetDomainZoneZoneNameCapabilitiesRequest,
+  input: GetDomainZoneCapabilitiesRequest,
   output: DomainZoneCapabilities,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetDomainZoneZoneNameExportError = OvhOpError;
+export type GetDomainZoneExportError = OvhOpError;
 /** Export DNS zone */
-export const getDomainZoneZoneNameExport: API.OperationMethod<
-  GetDomainZoneZoneNameExportRequest,
-  GetDomainZoneZoneNameExportResponse,
-  GetDomainZoneZoneNameExportError,
+export const getDomainZoneExport: API.OperationMethod<
+  GetDomainZoneExportRequest,
+  GetDomainZoneExportResponse,
+  GetDomainZoneExportError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetDomainZoneZoneNameExportRequest,
-  output: GetDomainZoneZoneNameExportResponse,
+  input: GetDomainZoneExportRequest,
+  output: GetDomainZoneExportResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetDomainZoneZoneNameHistoryError = OvhOpError;
-/** List zone histories */
-export const getDomainZoneZoneNameHistory: API.OperationMethod<
-  GetDomainZoneZoneNameHistoryRequest,
-  GetDomainZoneZoneNameHistoryResponse,
-  GetDomainZoneZoneNameHistoryError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDomainZoneZoneNameHistoryRequest,
-  output: GetDomainZoneZoneNameHistoryResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDomainZoneZoneNameHistoryCreationDateError = OvhOpError;
+export type GetDomainZoneHistoryError = OvhOpError;
 /** Get a zone history */
-export const getDomainZoneZoneNameHistoryCreationDate: API.OperationMethod<
-  GetDomainZoneZoneNameHistoryCreationDateRequest,
+export const getDomainZoneHistory: API.OperationMethod<
+  GetDomainZoneHistoryRequest,
   DomainZoneZoneRestorePoint,
-  GetDomainZoneZoneNameHistoryCreationDateError,
+  GetDomainZoneHistoryError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetDomainZoneZoneNameHistoryCreationDateRequest,
+  input: GetDomainZoneHistoryRequest,
   output: DomainZoneZoneRestorePoint,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetDomainZoneZoneNameOptionError = OvhOpError;
-/** List zone options */
-export const getDomainZoneZoneNameOption: API.OperationMethod<
-  GetDomainZoneZoneNameOptionRequest,
-  GetDomainZoneZoneNameOptionResponse,
-  GetDomainZoneZoneNameOptionError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDomainZoneZoneNameOptionRequest,
-  output: GetDomainZoneZoneNameOptionResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDomainZoneZoneNameOptionNameError = OvhOpError;
+export type GetDomainZoneOptionError = OvhOpError;
 /** Get zone option */
-export const getDomainZoneZoneNameOptionName: API.OperationMethod<
-  GetDomainZoneZoneNameOptionNameRequest,
+export const getDomainZoneOption: API.OperationMethod<
+  GetDomainZoneOptionRequest,
   DomainZoneOption,
-  GetDomainZoneZoneNameOptionNameError,
+  GetDomainZoneOptionError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetDomainZoneZoneNameOptionNameRequest,
+  input: GetDomainZoneOptionRequest,
   output: DomainZoneOption,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetDomainZoneZoneNameOptionNameServiceInfosError = OvhOpError;
+export type GetDomainZoneOptionServiceInfosError = OvhOpError;
 /** Get this object properties */
-export const getDomainZoneZoneNameOptionNameServiceInfos: API.OperationMethod<
-  GetDomainZoneZoneNameOptionNameServiceInfosRequest,
+export const getDomainZoneOptionServiceInfos: API.OperationMethod<
+  GetDomainZoneOptionServiceInfosRequest,
   ServicesService,
-  GetDomainZoneZoneNameOptionNameServiceInfosError,
+  GetDomainZoneOptionServiceInfosError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetDomainZoneZoneNameOptionNameServiceInfosRequest,
+  input: GetDomainZoneOptionServiceInfosRequest,
   output: ServicesService,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetDomainZoneZoneNameServiceInfosError = OvhOpError;
+export type GetDomainZoneServiceInfosError = OvhOpError;
 /** Get service information */
-export const getDomainZoneZoneNameServiceInfos: API.OperationMethod<
-  GetDomainZoneZoneNameServiceInfosRequest,
+export const getDomainZoneServiceInfos: API.OperationMethod<
+  GetDomainZoneServiceInfosRequest,
   ServicesService,
-  GetDomainZoneZoneNameServiceInfosError,
+  GetDomainZoneServiceInfosError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetDomainZoneZoneNameServiceInfosRequest,
+  input: GetDomainZoneServiceInfosRequest,
   output: ServicesService,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetDomainZoneZoneNameSoaError = OvhOpError;
+export type GetDomainZoneSoaError = OvhOpError;
 /** Get zone SOA */
-export const getDomainZoneZoneNameSoa: API.OperationMethod<
-  GetDomainZoneZoneNameSoaRequest,
+export const getDomainZoneSoa: API.OperationMethod<
+  GetDomainZoneSoaRequest,
   DomainZoneSoa,
-  GetDomainZoneZoneNameSoaError,
+  GetDomainZoneSoaError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetDomainZoneZoneNameSoaRequest,
+  input: GetDomainZoneSoaRequest,
   output: DomainZoneSoa,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetDomainZoneZoneNameStatusError = OvhOpError;
-/** Get zone status */
-export const getDomainZoneZoneNameStatus: API.OperationMethod<
-  GetDomainZoneZoneNameStatusRequest,
-  DomainZoneStatus,
-  GetDomainZoneZoneNameStatusError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDomainZoneZoneNameStatusRequest,
-  output: DomainZoneStatus,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDomainZoneZoneNameTaskError = OvhOpError;
-/** List zone tasks */
-export const getDomainZoneZoneNameTask: API.OperationMethod<
-  GetDomainZoneZoneNameTaskRequest,
-  GetDomainZoneZoneNameTaskResponse,
-  GetDomainZoneZoneNameTaskError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDomainZoneZoneNameTaskRequest,
-  output: GetDomainZoneZoneNameTaskResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDomainZoneZoneNameTaskIdError = OvhOpError;
+export type GetDomainZoneTaskError = OvhOpError;
 /** Get a zone task */
-export const getDomainZoneZoneNameTaskId: API.OperationMethod<
-  GetDomainZoneZoneNameTaskIdRequest,
+export const getDomainZoneTask: API.OperationMethod<
+  GetDomainZoneTaskRequest,
   DomainZoneTask,
-  GetDomainZoneZoneNameTaskIdError,
+  GetDomainZoneTaskError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetDomainZoneZoneNameTaskIdRequest,
+  input: GetDomainZoneTaskRequest,
   output: DomainZoneTask,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
@@ -7568,483 +7457,436 @@ export const getZones: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PostDomainConfigurationRuleCheckError = OvhOpError;
-/** Validate a rule data for a specified domain */
-export const postDomainConfigurationRuleCheck: API.OperationMethod<
-  PostDomainConfigurationRuleCheckRequest,
-  PostDomainConfigurationRuleCheckResponse,
-  PostDomainConfigurationRuleCheckError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostDomainConfigurationRuleCheckRequest,
-  output: PostDomainConfigurationRuleCheckResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostDomainDataSmdError = OvhOpError;
-/** Create a SMD file */
-export const postDomainDataSmd: API.OperationMethod<
-  PostDomainDataSmdRequest,
-  DomainDataSmdSmd,
-  PostDomainDataSmdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostDomainDataSmdRequest,
-  output: DomainDataSmdSmd,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostDomainOrderCreateError = OvhOpError;
-/** Order a new domain name */
-export const postDomainOrderCreate: API.OperationMethod<
-  PostDomainOrderCreateRequest,
-  DomainOrderOrderResponse,
-  PostDomainOrderCreateError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostDomainOrderCreateRequest,
-  output: DomainOrderOrderResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostDomainServiceNameChangeContactError = OvhOpError;
-/** Launch a contact change procedure */
-export const postDomainServiceNameChangeContact: API.OperationMethod<
-  PostDomainServiceNameChangeContactRequest,
-  PostDomainServiceNameChangeContactResponse,
-  PostDomainServiceNameChangeContactError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostDomainServiceNameChangeContactRequest,
-  output: PostDomainServiceNameChangeContactResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostDomainServiceNameConfigurationsObfuscatedEmailsRefreshError =
-  OvhOpError;
-/** Refresh an obfuscated emails configuration with new values */
-export const postDomainServiceNameConfigurationsObfuscatedEmailsRefresh: API.OperationMethod<
-  PostDomainServiceNameConfigurationsObfuscatedEmailsRefreshRequest,
-  PostDomainServiceNameConfigurationsObfuscatedEmailsRefreshResponse,
-  PostDomainServiceNameConfigurationsObfuscatedEmailsRefreshError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostDomainServiceNameConfigurationsObfuscatedEmailsRefreshRequest,
-  output: PostDomainServiceNameConfigurationsObfuscatedEmailsRefreshResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostDomainServiceNameDsRecordError = OvhOpError;
-/** Update DS records */
-export const postDomainServiceNameDsRecord: API.OperationMethod<
-  PostDomainServiceNameDsRecordRequest,
-  DomainTask,
-  PostDomainServiceNameDsRecordError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostDomainServiceNameDsRecordRequest,
-  output: DomainTask,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostDomainServiceNameGlueRecordError = OvhOpError;
-/** Create a glue record */
-export const postDomainServiceNameGlueRecord: API.OperationMethod<
-  PostDomainServiceNameGlueRecordRequest,
-  DomainTask,
-  PostDomainServiceNameGlueRecordError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostDomainServiceNameGlueRecordRequest,
-  output: DomainTask,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostDomainServiceNameGlueRecordHostUpdateError = OvhOpError;
-/** Update the glue record */
-export const postDomainServiceNameGlueRecordHostUpdate: API.OperationMethod<
-  PostDomainServiceNameGlueRecordHostUpdateRequest,
-  DomainTask,
-  PostDomainServiceNameGlueRecordHostUpdateError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostDomainServiceNameGlueRecordHostUpdateRequest,
-  output: DomainTask,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostDomainServiceNameNameServerError = OvhOpError;
-/** Add new name server */
-export const postDomainServiceNameNameServer: API.OperationMethod<
-  PostDomainServiceNameNameServerRequest,
-  DomainTask,
-  PostDomainServiceNameNameServerError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostDomainServiceNameNameServerRequest,
-  output: DomainTask,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostDomainServiceNameNameServersUpdateError = OvhOpError;
-/** Update DNS servers */
-export const postDomainServiceNameNameServersUpdate: API.OperationMethod<
-  PostDomainServiceNameNameServersUpdateRequest,
-  DomainTask,
-  PostDomainServiceNameNameServersUpdateError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostDomainServiceNameNameServersUpdateRequest,
-  output: DomainTask,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostDomainServiceNameOutgoingTransferApproveError = OvhOpError;
-/** Approve Outgoing Transfer for a domain */
-export const postDomainServiceNameOutgoingTransferApprove: API.OperationMethod<
-  PostDomainServiceNameOutgoingTransferApproveRequest,
-  PostDomainServiceNameOutgoingTransferApproveResponse,
-  PostDomainServiceNameOutgoingTransferApproveError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostDomainServiceNameOutgoingTransferApproveRequest,
-  output: PostDomainServiceNameOutgoingTransferApproveResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostDomainServiceNameTaskIdAccelerateError = OvhOpError;
-/** Accelerate the task */
-export const postDomainServiceNameTaskIdAccelerate: API.OperationMethod<
-  PostDomainServiceNameTaskIdAccelerateRequest,
-  PostDomainServiceNameTaskIdAccelerateResponse,
-  PostDomainServiceNameTaskIdAccelerateError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostDomainServiceNameTaskIdAccelerateRequest,
-  output: PostDomainServiceNameTaskIdAccelerateResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostDomainServiceNameTaskIdCancelError = OvhOpError;
-/** Cancel the task */
-export const postDomainServiceNameTaskIdCancel: API.OperationMethod<
-  PostDomainServiceNameTaskIdCancelRequest,
-  PostDomainServiceNameTaskIdCancelResponse,
-  PostDomainServiceNameTaskIdCancelError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostDomainServiceNameTaskIdCancelRequest,
-  output: PostDomainServiceNameTaskIdCancelResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostDomainServiceNameTaskIdRelaunchError = OvhOpError;
-/** Relaunch the task */
-export const postDomainServiceNameTaskIdRelaunch: API.OperationMethod<
-  PostDomainServiceNameTaskIdRelaunchRequest,
-  PostDomainServiceNameTaskIdRelaunchResponse,
-  PostDomainServiceNameTaskIdRelaunchError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostDomainServiceNameTaskIdRelaunchRequest,
-  output: PostDomainServiceNameTaskIdRelaunchResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostDomainServiceNameUkOutgoingTransferError = OvhOpError;
-/** Schedule an outgoing transfer task for this domain (.uk only) */
-export const postDomainServiceNameUkOutgoingTransfer: API.OperationMethod<
-  PostDomainServiceNameUkOutgoingTransferRequest,
-  DomainTask,
-  PostDomainServiceNameUkOutgoingTransferError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostDomainServiceNameUkOutgoingTransferRequest,
-  output: DomainTask,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostDomainZoneZoneNameChangeContactError = OvhOpError;
-/** Launch a contact change procedure */
-export const postDomainZoneZoneNameChangeContact: API.OperationMethod<
-  PostDomainZoneZoneNameChangeContactRequest,
-  PostDomainZoneZoneNameChangeContactResponse,
-  PostDomainZoneZoneNameChangeContactError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostDomainZoneZoneNameChangeContactRequest,
-  output: PostDomainZoneZoneNameChangeContactResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostDomainZoneZoneNameConfirmTerminationError = OvhOpError;
-/** Confirm service termination */
-export const postDomainZoneZoneNameConfirmTermination: API.OperationMethod<
-  PostDomainZoneZoneNameConfirmTerminationRequest,
-  PostDomainZoneZoneNameConfirmTerminationResponse,
-  PostDomainZoneZoneNameConfirmTerminationError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostDomainZoneZoneNameConfirmTerminationRequest,
-  output: PostDomainZoneZoneNameConfirmTerminationResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostDomainZoneZoneNameHistoryCreationDateRestoreError = OvhOpError;
-/** Restore a backup point */
-export const postDomainZoneZoneNameHistoryCreationDateRestore: API.OperationMethod<
-  PostDomainZoneZoneNameHistoryCreationDateRestoreRequest,
-  DomainZoneTask,
-  PostDomainZoneZoneNameHistoryCreationDateRestoreError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostDomainZoneZoneNameHistoryCreationDateRestoreRequest,
-  output: DomainZoneTask,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostDomainZoneZoneNameImportError = OvhOpError;
+export type ImportDomainZoneError = OvhOpError;
 /** Import a DNS zone from a zone file */
-export const postDomainZoneZoneNameImport: API.OperationMethod<
-  PostDomainZoneZoneNameImportRequest,
+export const importDomainZone: API.OperationMethod<
+  ImportDomainZoneRequest,
   DomainZoneTask,
-  PostDomainZoneZoneNameImportError,
+  ImportDomainZoneError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostDomainZoneZoneNameImportRequest,
+  input: ImportDomainZoneRequest,
   output: DomainZoneTask,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostDomainZoneZoneNameResetError = OvhOpError;
-/** Reset a DNS zone */
-export const postDomainZoneZoneNameReset: API.OperationMethod<
-  PostDomainZoneZoneNameResetRequest,
-  PostDomainZoneZoneNameResetResponse,
-  PostDomainZoneZoneNameResetError,
+export type ListDomainConfigurationObfuscatedEmailsError = OvhOpError;
+/** Retrieve obfuscated emails configuration */
+export const listDomainConfigurationObfuscatedEmails: API.OperationMethod<
+  ListDomainConfigurationObfuscatedEmailsRequest,
+  ListDomainConfigurationObfuscatedEmailsResponse,
+  ListDomainConfigurationObfuscatedEmailsError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostDomainZoneZoneNameResetRequest,
-  output: PostDomainZoneZoneNameResetResponse,
+  input: ListDomainConfigurationObfuscatedEmailsRequest,
+  output: ListDomainConfigurationObfuscatedEmailsResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostDomainZoneZoneNameTaskIdAccelerateError = OvhOpError;
-/** Accelerate a zone task */
-export const postDomainZoneZoneNameTaskIdAccelerate: API.OperationMethod<
-  PostDomainZoneZoneNameTaskIdAccelerateRequest,
-  PostDomainZoneZoneNameTaskIdAccelerateResponse,
-  PostDomainZoneZoneNameTaskIdAccelerateError,
+export type ListDomainConfigurationOptinError = OvhOpError;
+/** Retrieve optin configuration */
+export const listDomainConfigurationOptin: API.OperationMethod<
+  ListDomainConfigurationOptinRequest,
+  ListDomainConfigurationOptinResponse,
+  ListDomainConfigurationOptinError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostDomainZoneZoneNameTaskIdAccelerateRequest,
-  output: PostDomainZoneZoneNameTaskIdAccelerateResponse,
+  input: ListDomainConfigurationOptinRequest,
+  output: ListDomainConfigurationOptinResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostDomainZoneZoneNameTaskIdCancelError = OvhOpError;
-/** Cancel a zone task */
-export const postDomainZoneZoneNameTaskIdCancel: API.OperationMethod<
-  PostDomainZoneZoneNameTaskIdCancelRequest,
-  PostDomainZoneZoneNameTaskIdCancelResponse,
-  PostDomainZoneZoneNameTaskIdCancelError,
+export type ListDomainDataSmdError = OvhOpError;
+/** List all SMD files */
+export const listDomainDataSmd: API.OperationMethod<
+  ListDomainDataSmdRequest,
+  ListDomainDataSmdResponse,
+  ListDomainDataSmdError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostDomainZoneZoneNameTaskIdCancelRequest,
-  output: PostDomainZoneZoneNameTaskIdCancelResponse,
+  input: ListDomainDataSmdRequest,
+  output: ListDomainDataSmdResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostDomainZoneZoneNameTaskIdRelaunchError = OvhOpError;
-/** Restart a zone task */
-export const postDomainZoneZoneNameTaskIdRelaunch: API.OperationMethod<
-  PostDomainZoneZoneNameTaskIdRelaunchRequest,
-  PostDomainZoneZoneNameTaskIdRelaunchResponse,
-  PostDomainZoneZoneNameTaskIdRelaunchError,
+export type ListDomainDsRecordError = OvhOpError;
+/** List of domain's DS Records */
+export const listDomainDsRecord: API.OperationMethod<
+  ListDomainDsRecordRequest,
+  ListDomainDsRecordResponse,
+  ListDomainDsRecordError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostDomainZoneZoneNameTaskIdRelaunchRequest,
-  output: PostDomainZoneZoneNameTaskIdRelaunchResponse,
+  input: ListDomainDsRecordRequest,
+  output: ListDomainDsRecordResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostDomainZoneZoneNameTerminateError = OvhOpError;
-/** Ask for the termination of your service */
-export const postDomainZoneZoneNameTerminate: API.OperationMethod<
-  PostDomainZoneZoneNameTerminateRequest,
-  PostDomainZoneZoneNameTerminateResponse,
-  PostDomainZoneZoneNameTerminateError,
+export type ListDomainExtensionByCategoryError = OvhOpError;
+/** List extensions, grouped by category types (like 'thematic', 'geolocalization') and category names (like 'europe') */
+export const listDomainExtensionByCategory: API.OperationMethod<
+  ListDomainExtensionByCategoryRequest,
+  DomainExtensionsExtensionsByCategory,
+  ListDomainExtensionByCategoryError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostDomainZoneZoneNameTerminateRequest,
-  output: PostDomainZoneZoneNameTerminateResponse,
+  input: ListDomainExtensionByCategoryRequest,
+  output: DomainExtensionsExtensionsByCategory,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutDomainDataSmdSmdIdError = OvhOpError;
-/** Update a SMD file */
-export const putDomainDataSmdSmdId: API.OperationMethod<
-  PutDomainDataSmdSmdIdRequest,
-  DomainDataSmdSmd,
-  PutDomainDataSmdSmdIdError,
+export type ListDomainExtensionHighlightedError = OvhOpError;
+/** List highlighted extensions, ordered by decreased importance */
+export const listDomainExtensionHighlighted: API.OperationMethod<
+  ListDomainExtensionHighlightedRequest,
+  ListDomainExtensionHighlightedResponse,
+  ListDomainExtensionHighlightedError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutDomainDataSmdSmdIdRequest,
-  output: DomainDataSmdSmd,
+  input: ListDomainExtensionHighlightedRequest,
+  output: ListDomainExtensionHighlightedResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutDomainServiceNameConfigurationsDataError = OvhOpError;
+export type ListDomainExtensionPricingAttributesError = OvhOpError;
+/** List extensions with their pricing attributes List extensions with their pricing attributes. It especially documents whether an extension has been implemented recently or whether the price has dropped. */
+export const listDomainExtensionPricingAttributes: API.OperationMethod<
+  ListDomainExtensionPricingAttributesRequest,
+  ListDomainExtensionPricingAttributesResponse,
+  ListDomainExtensionPricingAttributesError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDomainExtensionPricingAttributesRequest,
+  output: ListDomainExtensionPricingAttributesResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDomainExtensionsError = OvhOpError;
+/** List all extensions */
+export const listDomainExtensions: API.OperationMethod<
+  ListDomainExtensionsRequest,
+  ListDomainExtensionsResponse,
+  ListDomainExtensionsError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDomainExtensionsRequest,
+  output: ListDomainExtensionsResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDomainGlueRecordError = OvhOpError;
+/** List of glue records */
+export const listDomainGlueRecord: API.OperationMethod<
+  ListDomainGlueRecordRequest,
+  ListDomainGlueRecordResponse,
+  ListDomainGlueRecordError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDomainGlueRecordRequest,
+  output: ListDomainGlueRecordResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDomainNameServerError = OvhOpError;
+/** List of current name servers */
+export const listDomainNameServer: API.OperationMethod<
+  ListDomainNameServerRequest,
+  ListDomainNameServerResponse,
+  ListDomainNameServerError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDomainNameServerRequest,
+  output: ListDomainNameServerResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDomainOptionError = OvhOpError;
+/** List domain options */
+export const listDomainOption: API.OperationMethod<
+  ListDomainOptionRequest,
+  ListDomainOptionResponse,
+  ListDomainOptionError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDomainOptionRequest,
+  output: ListDomainOptionResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDomainRuleEmailsObfuscationError = OvhOpError;
+/** Retrieve emails obfuscation rule */
+export const listDomainRuleEmailsObfuscation: API.OperationMethod<
+  ListDomainRuleEmailsObfuscationRequest,
+  ListDomainRuleEmailsObfuscationResponse,
+  ListDomainRuleEmailsObfuscationError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDomainRuleEmailsObfuscationRequest,
+  output: ListDomainRuleEmailsObfuscationResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDomainRuleOptinError = OvhOpError;
+/** Retrieve optin rule */
+export const listDomainRuleOptin: API.OperationMethod<
+  ListDomainRuleOptinRequest,
+  ListDomainRuleOptinResponse,
+  ListDomainRuleOptinError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDomainRuleOptinRequest,
+  output: ListDomainRuleOptinResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDomainTaskError = OvhOpError;
+/** List all domain tasks */
+export const listDomainTask: API.OperationMethod<
+  ListDomainTaskRequest,
+  ListDomainTaskResponse,
+  ListDomainTaskError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDomainTaskRequest,
+  output: ListDomainTaskResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDomainUkRegistrarsError = OvhOpError;
+/** Return the list of all .uk registrars */
+export const listDomainUkRegistrars: API.OperationMethod<
+  ListDomainUkRegistrarsRequest,
+  ListDomainUkRegistrarsResponse,
+  ListDomainUkRegistrarsError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDomainUkRegistrarsRequest,
+  output: ListDomainUkRegistrarsResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDomainZoneHistoryError = OvhOpError;
+/** List zone histories */
+export const listDomainZoneHistory: API.OperationMethod<
+  ListDomainZoneHistoryRequest,
+  ListDomainZoneHistoryResponse,
+  ListDomainZoneHistoryError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDomainZoneHistoryRequest,
+  output: ListDomainZoneHistoryResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDomainZoneOptionError = OvhOpError;
+/** List zone options */
+export const listDomainZoneOption: API.OperationMethod<
+  ListDomainZoneOptionRequest,
+  ListDomainZoneOptionResponse,
+  ListDomainZoneOptionError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDomainZoneOptionRequest,
+  output: ListDomainZoneOptionResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDomainZoneStatusError = OvhOpError;
+/** Get zone status */
+export const listDomainZoneStatus: API.OperationMethod<
+  ListDomainZoneStatusRequest,
+  DomainZoneStatus,
+  ListDomainZoneStatusError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDomainZoneStatusRequest,
+  output: DomainZoneStatus,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDomainZoneTaskError = OvhOpError;
+/** List zone tasks */
+export const listDomainZoneTask: API.OperationMethod<
+  ListDomainZoneTaskRequest,
+  ListDomainZoneTaskResponse,
+  ListDomainZoneTaskError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDomainZoneTaskRequest,
+  output: ListDomainZoneTaskResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutDomainConfigurationDataError = OvhOpError;
 /** Save extra data configurations for a domain */
-export const putDomainServiceNameConfigurationsData: API.OperationMethod<
-  PutDomainServiceNameConfigurationsDataRequest,
+export const putDomainConfigurationData: API.OperationMethod<
+  PutDomainConfigurationDataRequest,
   DomainConfigurationsCustomFields,
-  PutDomainServiceNameConfigurationsDataError,
+  PutDomainConfigurationDataError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutDomainServiceNameConfigurationsDataRequest,
+  input: PutDomainConfigurationDataRequest,
   output: DomainConfigurationsCustomFields,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutDomainServiceNameConfigurationsObfuscatedEmailsError =
-  OvhOpError;
+export type PutDomainConfigurationObfuscatedEmailsError = OvhOpError;
 /** Save a new obfuscated emails configuration */
-export const putDomainServiceNameConfigurationsObfuscatedEmails: API.OperationMethod<
-  PutDomainServiceNameConfigurationsObfuscatedEmailsRequest,
-  PutDomainServiceNameConfigurationsObfuscatedEmailsResponse,
-  PutDomainServiceNameConfigurationsObfuscatedEmailsError,
+export const putDomainConfigurationObfuscatedEmails: API.OperationMethod<
+  PutDomainConfigurationObfuscatedEmailsRequest,
+  PutDomainConfigurationObfuscatedEmailsResponse,
+  PutDomainConfigurationObfuscatedEmailsError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutDomainServiceNameConfigurationsObfuscatedEmailsRequest,
-  output: PutDomainServiceNameConfigurationsObfuscatedEmailsResponse,
+  input: PutDomainConfigurationObfuscatedEmailsRequest,
+  output: PutDomainConfigurationObfuscatedEmailsResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutDomainServiceNameConfigurationsOptinError = OvhOpError;
+export type PutDomainConfigurationOptinError = OvhOpError;
 /** Save a new optin configuration */
-export const putDomainServiceNameConfigurationsOptin: API.OperationMethod<
-  PutDomainServiceNameConfigurationsOptinRequest,
-  PutDomainServiceNameConfigurationsOptinResponse,
-  PutDomainServiceNameConfigurationsOptinError,
+export const putDomainConfigurationOptin: API.OperationMethod<
+  PutDomainConfigurationOptinRequest,
+  PutDomainConfigurationOptinResponse,
+  PutDomainConfigurationOptinError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutDomainServiceNameConfigurationsOptinRequest,
-  output: PutDomainServiceNameConfigurationsOptinResponse,
+  input: PutDomainConfigurationOptinRequest,
+  output: PutDomainConfigurationOptinResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutDomainServiceNameServiceInfosError = OvhOpError;
+export type PutDomainDataSmdError = OvhOpError;
+/** Update a SMD file */
+export const putDomainDataSmd: API.OperationMethod<
+  PutDomainDataSmdRequest,
+  DomainDataSmdSmd,
+  PutDomainDataSmdError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutDomainDataSmdRequest,
+  output: DomainDataSmdSmd,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutDomainServiceInfosError = OvhOpError;
 /** Update service information */
-export const putDomainServiceNameServiceInfos: API.OperationMethod<
-  PutDomainServiceNameServiceInfosRequest,
-  PutDomainServiceNameServiceInfosResponse,
-  PutDomainServiceNameServiceInfosError,
+export const putDomainServiceInfos: API.OperationMethod<
+  PutDomainServiceInfosRequest,
+  PutDomainServiceInfosResponse,
+  PutDomainServiceInfosError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutDomainServiceNameServiceInfosRequest,
-  output: PutDomainServiceNameServiceInfosResponse,
+  input: PutDomainServiceInfosRequest,
+  output: PutDomainServiceInfosResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutDomainZoneZoneNameOptionNameServiceInfosError = OvhOpError;
+export type PutDomainZoneOptionServiceInfosError = OvhOpError;
 /** Alter this object properties */
-export const putDomainZoneZoneNameOptionNameServiceInfos: API.OperationMethod<
-  PutDomainZoneZoneNameOptionNameServiceInfosRequest,
-  PutDomainZoneZoneNameOptionNameServiceInfosResponse,
-  PutDomainZoneZoneNameOptionNameServiceInfosError,
+export const putDomainZoneOptionServiceInfos: API.OperationMethod<
+  PutDomainZoneOptionServiceInfosRequest,
+  PutDomainZoneOptionServiceInfosResponse,
+  PutDomainZoneOptionServiceInfosError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutDomainZoneZoneNameOptionNameServiceInfosRequest,
-  output: PutDomainZoneZoneNameOptionNameServiceInfosResponse,
+  input: PutDomainZoneOptionServiceInfosRequest,
+  output: PutDomainZoneOptionServiceInfosResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutDomainZoneZoneNameServiceInfosError = OvhOpError;
+export type PutDomainZoneServiceInfosError = OvhOpError;
 /** Update service information */
-export const putDomainZoneZoneNameServiceInfos: API.OperationMethod<
-  PutDomainZoneZoneNameServiceInfosRequest,
-  PutDomainZoneZoneNameServiceInfosResponse,
-  PutDomainZoneZoneNameServiceInfosError,
+export const putDomainZoneServiceInfos: API.OperationMethod<
+  PutDomainZoneServiceInfosRequest,
+  PutDomainZoneServiceInfosResponse,
+  PutDomainZoneServiceInfosError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutDomainZoneZoneNameServiceInfosRequest,
-  output: PutDomainZoneZoneNameServiceInfosResponse,
+  input: PutDomainZoneServiceInfosRequest,
+  output: PutDomainZoneServiceInfosResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutDomainZoneZoneNameSoaError = OvhOpError;
+export type PutDomainZoneSoaError = OvhOpError;
 /** Update zone SOA */
-export const putDomainZoneZoneNameSoa: API.OperationMethod<
-  PutDomainZoneZoneNameSoaRequest,
-  PutDomainZoneZoneNameSoaResponse,
-  PutDomainZoneZoneNameSoaError,
+export const putDomainZoneSoa: API.OperationMethod<
+  PutDomainZoneSoaRequest,
+  PutDomainZoneSoaResponse,
+  PutDomainZoneSoaError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutDomainZoneZoneNameSoaRequest,
-  output: PutDomainZoneZoneNameSoaResponse,
+  input: PutDomainZoneSoaRequest,
+  output: PutDomainZoneSoaResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RefreshDomainConfigurationsObfuscatedEmailError = OvhOpError;
+/** Refresh an obfuscated emails configuration with new values */
+export const refreshDomainConfigurationsObfuscatedEmail: API.OperationMethod<
+  RefreshDomainConfigurationsObfuscatedEmailRequest,
+  RefreshDomainConfigurationsObfuscatedEmailResponse,
+  RefreshDomainConfigurationsObfuscatedEmailError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RefreshDomainConfigurationsObfuscatedEmailRequest,
+  output: RefreshDomainConfigurationsObfuscatedEmailResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
@@ -8065,6 +7907,51 @@ export const refreshZone: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ResetDomainZoneError = OvhOpError;
+/** Reset a DNS zone */
+export const resetDomainZone: API.OperationMethod<
+  ResetDomainZoneRequest,
+  ResetDomainZoneResponse,
+  ResetDomainZoneError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ResetDomainZoneRequest,
+  output: ResetDomainZoneResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RestoreDomainZoneHistoryError = OvhOpError;
+/** Restore a backup point */
+export const restoreDomainZoneHistory: API.OperationMethod<
+  RestoreDomainZoneHistoryRequest,
+  DomainZoneTask,
+  RestoreDomainZoneHistoryError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RestoreDomainZoneHistoryRequest,
+  output: DomainZoneTask,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type TerminateDomainZoneError = OvhOpError;
+/** Ask for the termination of your service */
+export const terminateDomainZone: API.OperationMethod<
+  TerminateDomainZoneRequest,
+  TerminateDomainZoneResponse,
+  TerminateDomainZoneError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: TerminateDomainZoneRequest,
+  output: TerminateDomainZoneResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
 export type UpdateContactError = OvhOpError;
 /** Update a contact */
 export const updateContact: API.OperationMethod<
@@ -8075,6 +7962,36 @@ export const updateContact: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: UpdateContactRequest,
   output: DomainContact,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateDomainGlueRecordError = OvhOpError;
+/** Update the glue record */
+export const updateDomainGlueRecord: API.OperationMethod<
+  UpdateDomainGlueRecordRequest,
+  DomainTask,
+  UpdateDomainGlueRecordError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateDomainGlueRecordRequest,
+  output: DomainTask,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateDomainNameServerError = OvhOpError;
+/** Update DNS servers */
+export const updateDomainNameServer: API.OperationMethod<
+  UpdateDomainNameServerRequest,
+  DomainTask,
+  UpdateDomainNameServerError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateDomainNameServerRequest,
+  output: DomainTask,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,

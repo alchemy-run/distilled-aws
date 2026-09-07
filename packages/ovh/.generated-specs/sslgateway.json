@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.ovh.sslgateway#IamResourceTagFilterInput": {
@@ -24,28 +25,28 @@
         "smithy.api#documentation": "Resource tag filter"
       }
     },
-    "com.ovh.sslgateway#GetSslGatewayRequestIamTagsValueList": {
+    "com.ovh.sslgateway#ListSslGatewayRequestIamTagsValueList": {
       "type": "list",
       "member": {
         "target": "com.ovh.sslgateway#IamResourceTagFilterInput"
       },
       "traits": {}
     },
-    "com.ovh.sslgateway#GetSslGatewayRequestIamTagsMap": {
+    "com.ovh.sslgateway#ListSslGatewayRequestIamTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "com.ovh.sslgateway#GetSslGatewayRequestIamTagsValueList"
+        "target": "com.ovh.sslgateway#ListSslGatewayRequestIamTagsValueList"
       },
       "traits": {}
     },
-    "com.ovh.sslgateway#GetSslGatewayRequest": {
+    "com.ovh.sslgateway#ListSslGatewayRequest": {
       "type": "structure",
       "members": {
         "iamTags": {
-          "target": "com.ovh.sslgateway#GetSslGatewayRequestIamTagsMap",
+          "target": "com.ovh.sslgateway#ListSslGatewayRequestIamTagsMap",
           "traits": {
             "smithy.api#httpQuery": "iamTags",
             "smithy.api#documentation": "Filter resources on IAM tags"
@@ -56,18 +57,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sslgateway#GetSslGatewayResponseBodyList": {
+    "com.ovh.sslgateway#ListSslGatewayResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.sslgateway#GetSslGatewayResponse": {
+    "com.ovh.sslgateway#ListSslGatewayResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.sslgateway#GetSslGatewayResponseBodyList",
+          "target": "com.ovh.sslgateway#ListSslGatewayResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -78,13 +79,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sslgateway#GetSslGateway": {
+    "com.ovh.sslgateway#ListSslGateway": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sslgateway#GetSslGatewayRequest"
+        "target": "com.ovh.sslgateway#ListSslGatewayRequest"
       },
       "output": {
-        "target": "com.ovh.sslgateway#GetSslGatewayResponse"
+        "target": "com.ovh.sslgateway#ListSslGatewayResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -95,18 +96,18 @@
         "smithy.api#documentation": "List of your SSL Gateways"
       }
     },
-    "com.ovh.sslgateway#GetSslGatewayAvailableZonesResponseBodyList": {
+    "com.ovh.sslgateway#ListSslGatewayAvailableZonesResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.sslgateway#GetSslGatewayAvailableZonesResponse": {
+    "com.ovh.sslgateway#ListSslGatewayAvailableZonesResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.sslgateway#GetSslGatewayAvailableZonesResponseBodyList",
+          "target": "com.ovh.sslgateway#ListSslGatewayAvailableZonesResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -117,13 +118,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sslgateway#GetSslGatewayAvailableZones": {
+    "com.ovh.sslgateway#ListSslGatewayAvailableZones": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.ovh.sslgateway#GetSslGatewayAvailableZonesResponse"
+        "target": "com.ovh.sslgateway#ListSslGatewayAvailableZonesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -134,7 +135,7 @@
         "smithy.api#documentation": "List of zone available for an SSL Gateway"
       }
     },
-    "com.ovh.sslgateway#GetSslGatewayEligibilityRequest": {
+    "com.ovh.sslgateway#ListSslGatewayEligibilityRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -200,10 +201,10 @@
         "smithy.api#documentation": "Eligible IP(s) for this domain"
       }
     },
-    "com.ovh.sslgateway#GetSslGatewayEligibility": {
+    "com.ovh.sslgateway#ListSslGatewayEligibility": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sslgateway#GetSslGatewayEligibilityRequest"
+        "target": "com.ovh.sslgateway#ListSslGatewayEligibilityRequest"
       },
       "output": {
         "target": "com.ovh.sslgateway#SslGatewayEligibilityStatus"
@@ -217,7 +218,7 @@
         "smithy.api#documentation": "Check domain eligibility. Return list of eligible IP(s) for this domain."
       }
     },
-    "com.ovh.sslgateway#GetSslGatewayServiceNameRequest": {
+    "com.ovh.sslgateway#GetSslGatewayRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -516,10 +517,10 @@
         "smithy.api#documentation": "Zones of your SSL Gateway"
       }
     },
-    "com.ovh.sslgateway#GetSslGatewayServiceName": {
+    "com.ovh.sslgateway#GetSslGateway": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sslgateway#GetSslGatewayServiceNameRequest"
+        "target": "com.ovh.sslgateway#GetSslGatewayRequest"
       },
       "output": {
         "target": "com.ovh.sslgateway#SslGatewaySslGatewayWithIAM"
@@ -533,7 +534,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.sslgateway#PutSslGatewayServiceNameRequestAllowedSourceList": {
+    "com.ovh.sslgateway#PutSslGatewayRequestAllowedSourceList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -542,7 +543,7 @@
         "smithy.api#documentation": "Restrict SSL Gateway access to these ip block. No restriction if null"
       }
     },
-    "com.ovh.sslgateway#PutSslGatewayServiceNameRequest": {
+    "com.ovh.sslgateway#PutSslGatewayRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -554,7 +555,7 @@
           }
         },
         "allowedSource": {
-          "target": "com.ovh.sslgateway#PutSslGatewayServiceNameRequestAllowedSourceList",
+          "target": "com.ovh.sslgateway#PutSslGatewayRequestAllowedSourceList",
           "traits": {
             "smithy.api#documentation": "Restrict SSL Gateway access to these ip block. No restriction if null",
             "com.distilled.openapi#nullable": {}
@@ -604,10 +605,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sslgateway#PutSslGatewayServiceName": {
+    "com.ovh.sslgateway#PutSslGateway": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sslgateway#PutSslGatewayServiceNameRequest"
+        "target": "com.ovh.sslgateway#PutSslGatewayRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -621,7 +622,7 @@
         "smithy.api#documentation": "Alter this object properties"
       }
     },
-    "com.ovh.sslgateway#PostSslGatewayServiceNameChangeContactRequest": {
+    "com.ovh.sslgateway#CreateSslGatewayChangeContactRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -655,18 +656,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sslgateway#PostSslGatewayServiceNameChangeContactResponseBodyList": {
+    "com.ovh.sslgateway#CreateSslGatewayChangeContactResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.sslgateway#PostSslGatewayServiceNameChangeContactResponse": {
+    "com.ovh.sslgateway#CreateSslGatewayChangeContactResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.sslgateway#PostSslGatewayServiceNameChangeContactResponseBodyList",
+          "target": "com.ovh.sslgateway#CreateSslGatewayChangeContactResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -677,13 +678,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sslgateway#PostSslGatewayServiceNameChangeContact": {
+    "com.ovh.sslgateway#CreateSslGatewayChangeContact": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sslgateway#PostSslGatewayServiceNameChangeContactRequest"
+        "target": "com.ovh.sslgateway#CreateSslGatewayChangeContactRequest"
       },
       "output": {
-        "target": "com.ovh.sslgateway#PostSslGatewayServiceNameChangeContactResponse"
+        "target": "com.ovh.sslgateway#CreateSslGatewayChangeContactResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -824,7 +825,7 @@
         "smithy.api#documentation": "All reasons you can provide for a service termination"
       }
     },
-    "com.ovh.sslgateway#PostSslGatewayServiceNameConfirmTerminationRequest": {
+    "com.ovh.sslgateway#ConfirmSslGatewayTerminationRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -865,7 +866,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sslgateway#PostSslGatewayServiceNameConfirmTerminationResponse": {
+    "com.ovh.sslgateway#ConfirmSslGatewayTerminationResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -880,13 +881,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sslgateway#PostSslGatewayServiceNameConfirmTermination": {
+    "com.ovh.sslgateway#ConfirmSslGatewayTermination": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sslgateway#PostSslGatewayServiceNameConfirmTerminationRequest"
+        "target": "com.ovh.sslgateway#ConfirmSslGatewayTerminationRequest"
       },
       "output": {
-        "target": "com.ovh.sslgateway#PostSslGatewayServiceNameConfirmTerminationResponse"
+        "target": "com.ovh.sslgateway#ConfirmSslGatewayTerminationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -897,7 +898,7 @@
         "smithy.api#documentation": "Confirm service termination"
       }
     },
-    "com.ovh.sslgateway#GetSslGatewayServiceNameDomainRequest": {
+    "com.ovh.sslgateway#ListSslGatewayDomainRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -913,18 +914,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sslgateway#GetSslGatewayServiceNameDomainResponseBodyList": {
+    "com.ovh.sslgateway#ListSslGatewayDomainResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.sslgateway#GetSslGatewayServiceNameDomainResponse": {
+    "com.ovh.sslgateway#ListSslGatewayDomainResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.sslgateway#GetSslGatewayServiceNameDomainResponseBodyList",
+          "target": "com.ovh.sslgateway#ListSslGatewayDomainResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -935,13 +936,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sslgateway#GetSslGatewayServiceNameDomain": {
+    "com.ovh.sslgateway#ListSslGatewayDomain": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sslgateway#GetSslGatewayServiceNameDomainRequest"
+        "target": "com.ovh.sslgateway#ListSslGatewayDomainRequest"
       },
       "output": {
-        "target": "com.ovh.sslgateway#GetSslGatewayServiceNameDomainResponse"
+        "target": "com.ovh.sslgateway#ListSslGatewayDomainResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -952,7 +953,7 @@
         "smithy.api#documentation": "Domains attached to your SSL Gateway"
       }
     },
-    "com.ovh.sslgateway#PostSslGatewayServiceNameDomainRequest": {
+    "com.ovh.sslgateway#CreateSslGatewayDomainRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1045,10 +1046,10 @@
         "smithy.api#documentation": "Possible values for SSL Gateway domain state"
       }
     },
-    "com.ovh.sslgateway#PostSslGatewayServiceNameDomain": {
+    "com.ovh.sslgateway#CreateSslGatewayDomain": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sslgateway#PostSslGatewayServiceNameDomainRequest"
+        "target": "com.ovh.sslgateway#CreateSslGatewayDomainRequest"
       },
       "output": {
         "target": "com.ovh.sslgateway#SslGatewayDomain"
@@ -1062,7 +1063,7 @@
         "smithy.api#documentation": "Attach a new domain to your SSL Gateway"
       }
     },
-    "com.ovh.sslgateway#GetSslGatewayServiceNameDomainIdRequest": {
+    "com.ovh.sslgateway#GetSslGatewayDomainRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1086,10 +1087,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sslgateway#GetSslGatewayServiceNameDomainId": {
+    "com.ovh.sslgateway#GetSslGatewayDomain": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sslgateway#GetSslGatewayServiceNameDomainIdRequest"
+        "target": "com.ovh.sslgateway#GetSslGatewayDomainRequest"
       },
       "output": {
         "target": "com.ovh.sslgateway#SslGatewayDomain"
@@ -1103,7 +1104,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.sslgateway#DeleteSslGatewayServiceNameDomainIdRequest": {
+    "com.ovh.sslgateway#DeleteSslGatewayDomainRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1127,10 +1128,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sslgateway#DeleteSslGatewayServiceNameDomainId": {
+    "com.ovh.sslgateway#DeleteSslGatewayDomain": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sslgateway#DeleteSslGatewayServiceNameDomainIdRequest"
+        "target": "com.ovh.sslgateway#DeleteSslGatewayDomainRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1144,7 +1145,7 @@
         "smithy.api#documentation": "Detach a domain from your SSL Gateway"
       }
     },
-    "com.ovh.sslgateway#GetSslGatewayServiceNameNatIpRequest": {
+    "com.ovh.sslgateway#ListSslGatewayNatIpRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1181,18 +1182,18 @@
       },
       "traits": {}
     },
-    "com.ovh.sslgateway#GetSslGatewayServiceNameNatIpResponseBodyList": {
+    "com.ovh.sslgateway#ListSslGatewayNatIpResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.sslgateway#SslGatewayNatIps"
       },
       "traits": {}
     },
-    "com.ovh.sslgateway#GetSslGatewayServiceNameNatIpResponse": {
+    "com.ovh.sslgateway#ListSslGatewayNatIpResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.sslgateway#GetSslGatewayServiceNameNatIpResponseBodyList",
+          "target": "com.ovh.sslgateway#ListSslGatewayNatIpResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1203,13 +1204,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sslgateway#GetSslGatewayServiceNameNatIp": {
+    "com.ovh.sslgateway#ListSslGatewayNatIp": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sslgateway#GetSslGatewayServiceNameNatIpRequest"
+        "target": "com.ovh.sslgateway#ListSslGatewayNatIpRequest"
       },
       "output": {
-        "target": "com.ovh.sslgateway#GetSslGatewayServiceNameNatIpResponse"
+        "target": "com.ovh.sslgateway#ListSslGatewayNatIpResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1220,7 +1221,7 @@
         "smithy.api#documentation": "Ip subnet used by OVH to nat requests to your SSL Gateway backends."
       }
     },
-    "com.ovh.sslgateway#PostSslGatewayServiceNameRenewCertificateRequest": {
+    "com.ovh.sslgateway#RenewSslGatewayCertificateRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1242,18 +1243,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sslgateway#PostSslGatewayServiceNameRenewCertificateResponseBodyList": {
+    "com.ovh.sslgateway#RenewSslGatewayCertificateResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.sslgateway#PostSslGatewayServiceNameRenewCertificateResponse": {
+    "com.ovh.sslgateway#RenewSslGatewayCertificateResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.sslgateway#PostSslGatewayServiceNameRenewCertificateResponseBodyList",
+          "target": "com.ovh.sslgateway#RenewSslGatewayCertificateResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1264,13 +1265,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sslgateway#PostSslGatewayServiceNameRenewCertificate": {
+    "com.ovh.sslgateway#RenewSslGatewayCertificate": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sslgateway#PostSslGatewayServiceNameRenewCertificateRequest"
+        "target": "com.ovh.sslgateway#RenewSslGatewayCertificateRequest"
       },
       "output": {
-        "target": "com.ovh.sslgateway#PostSslGatewayServiceNameRenewCertificateResponse"
+        "target": "com.ovh.sslgateway#RenewSslGatewayCertificateResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1281,7 +1282,7 @@
         "smithy.api#documentation": "Renew your SSL certificates"
       }
     },
-    "com.ovh.sslgateway#GetSslGatewayServiceNameServerRequest": {
+    "com.ovh.sslgateway#ListSslGatewayServerRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1297,18 +1298,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sslgateway#GetSslGatewayServiceNameServerResponseBodyList": {
+    "com.ovh.sslgateway#ListSslGatewayServerResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.sslgateway#GetSslGatewayServiceNameServerResponse": {
+    "com.ovh.sslgateway#ListSslGatewayServerResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.sslgateway#GetSslGatewayServiceNameServerResponseBodyList",
+          "target": "com.ovh.sslgateway#ListSslGatewayServerResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1319,13 +1320,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sslgateway#GetSslGatewayServiceNameServer": {
+    "com.ovh.sslgateway#ListSslGatewayServer": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sslgateway#GetSslGatewayServiceNameServerRequest"
+        "target": "com.ovh.sslgateway#ListSslGatewayServerRequest"
       },
       "output": {
-        "target": "com.ovh.sslgateway#GetSslGatewayServiceNameServerResponse"
+        "target": "com.ovh.sslgateway#ListSslGatewayServerResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1336,7 +1337,7 @@
         "smithy.api#documentation": "Servers attached to your SSL Gateway"
       }
     },
-    "com.ovh.sslgateway#PostSslGatewayServiceNameServerRequest": {
+    "com.ovh.sslgateway#CreateSslGatewayServerRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1442,10 +1443,10 @@
         "smithy.api#documentation": "Possible values for SSL Gateway server state"
       }
     },
-    "com.ovh.sslgateway#PostSslGatewayServiceNameServer": {
+    "com.ovh.sslgateway#CreateSslGatewayServer": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sslgateway#PostSslGatewayServiceNameServerRequest"
+        "target": "com.ovh.sslgateway#CreateSslGatewayServerRequest"
       },
       "output": {
         "target": "com.ovh.sslgateway#SslGatewayServer"
@@ -1459,7 +1460,7 @@
         "smithy.api#documentation": "Add a new server to your SSL Gateway"
       }
     },
-    "com.ovh.sslgateway#GetSslGatewayServiceNameServerIdRequest": {
+    "com.ovh.sslgateway#GetSslGatewayServerRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1483,10 +1484,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sslgateway#GetSslGatewayServiceNameServerId": {
+    "com.ovh.sslgateway#GetSslGatewayServer": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sslgateway#GetSslGatewayServiceNameServerIdRequest"
+        "target": "com.ovh.sslgateway#GetSslGatewayServerRequest"
       },
       "output": {
         "target": "com.ovh.sslgateway#SslGatewayServer"
@@ -1500,7 +1501,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.sslgateway#PutSslGatewayServiceNameServerIdRequest": {
+    "com.ovh.sslgateway#PutSslGatewayServerRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1536,10 +1537,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sslgateway#PutSslGatewayServiceNameServerId": {
+    "com.ovh.sslgateway#PutSslGatewayServer": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sslgateway#PutSslGatewayServiceNameServerIdRequest"
+        "target": "com.ovh.sslgateway#PutSslGatewayServerRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1553,7 +1554,7 @@
         "smithy.api#documentation": "Alter this object properties"
       }
     },
-    "com.ovh.sslgateway#DeleteSslGatewayServiceNameServerIdRequest": {
+    "com.ovh.sslgateway#DeleteSslGatewayServerRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1577,10 +1578,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sslgateway#DeleteSslGatewayServiceNameServerId": {
+    "com.ovh.sslgateway#DeleteSslGatewayServer": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sslgateway#DeleteSslGatewayServiceNameServerIdRequest"
+        "target": "com.ovh.sslgateway#DeleteSslGatewayServerRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1594,7 +1595,7 @@
         "smithy.api#documentation": "Remove a server"
       }
     },
-    "com.ovh.sslgateway#GetSslGatewayServiceNameServiceInfosRequest": {
+    "com.ovh.sslgateway#GetSslGatewayServiceInfosRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1818,10 +1819,10 @@
       },
       "traits": {}
     },
-    "com.ovh.sslgateway#GetSslGatewayServiceNameServiceInfos": {
+    "com.ovh.sslgateway#GetSslGatewayServiceInfos": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sslgateway#GetSslGatewayServiceNameServiceInfosRequest"
+        "target": "com.ovh.sslgateway#GetSslGatewayServiceInfosRequest"
       },
       "output": {
         "target": "com.ovh.sslgateway#ServicesService"
@@ -1835,7 +1836,7 @@
         "smithy.api#documentation": "Get service information"
       }
     },
-    "com.ovh.sslgateway#PutSslGatewayServiceNameServiceInfosRequest": {
+    "com.ovh.sslgateway#PutSslGatewayServiceInfosRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1858,10 +1859,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sslgateway#PutSslGatewayServiceNameServiceInfos": {
+    "com.ovh.sslgateway#PutSslGatewayServiceInfos": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sslgateway#PutSslGatewayServiceNameServiceInfosRequest"
+        "target": "com.ovh.sslgateway#PutSslGatewayServiceInfosRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1875,7 +1876,7 @@
         "smithy.api#documentation": "Update service information"
       }
     },
-    "com.ovh.sslgateway#GetSslGatewayServiceNameTaskRequest": {
+    "com.ovh.sslgateway#ListSslGatewayTaskRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1891,18 +1892,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sslgateway#GetSslGatewayServiceNameTaskResponseBodyList": {
+    "com.ovh.sslgateway#ListSslGatewayTaskResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.sslgateway#GetSslGatewayServiceNameTaskResponse": {
+    "com.ovh.sslgateway#ListSslGatewayTaskResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.sslgateway#GetSslGatewayServiceNameTaskResponseBodyList",
+          "target": "com.ovh.sslgateway#ListSslGatewayTaskResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1913,13 +1914,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sslgateway#GetSslGatewayServiceNameTask": {
+    "com.ovh.sslgateway#ListSslGatewayTask": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sslgateway#GetSslGatewayServiceNameTaskRequest"
+        "target": "com.ovh.sslgateway#ListSslGatewayTaskRequest"
       },
       "output": {
-        "target": "com.ovh.sslgateway#GetSslGatewayServiceNameTaskResponse"
+        "target": "com.ovh.sslgateway#ListSslGatewayTaskResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1930,7 +1931,7 @@
         "smithy.api#documentation": "Task for this SSL Gateway"
       }
     },
-    "com.ovh.sslgateway#GetSslGatewayServiceNameTaskIdRequest": {
+    "com.ovh.sslgateway#GetSslGatewayTaskRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2116,10 +2117,10 @@
         "smithy.api#documentation": "Possible task status"
       }
     },
-    "com.ovh.sslgateway#GetSslGatewayServiceNameTaskId": {
+    "com.ovh.sslgateway#GetSslGatewayTask": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sslgateway#GetSslGatewayServiceNameTaskIdRequest"
+        "target": "com.ovh.sslgateway#GetSslGatewayTaskRequest"
       },
       "output": {
         "target": "com.ovh.sslgateway#SslGatewayTask"
@@ -2133,7 +2134,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.sslgateway#PostSslGatewayServiceNameTerminateRequest": {
+    "com.ovh.sslgateway#TerminateSslGatewayRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2149,7 +2150,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sslgateway#PostSslGatewayServiceNameTerminateResponse": {
+    "com.ovh.sslgateway#TerminateSslGatewayResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -2164,13 +2165,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sslgateway#PostSslGatewayServiceNameTerminate": {
+    "com.ovh.sslgateway#TerminateSslGateway": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sslgateway#PostSslGatewayServiceNameTerminateRequest"
+        "target": "com.ovh.sslgateway#TerminateSslGatewayRequest"
       },
       "output": {
-        "target": "com.ovh.sslgateway#PostSslGatewayServiceNameTerminateResponse"
+        "target": "com.ovh.sslgateway#TerminateSslGatewayResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2186,73 +2187,73 @@
       "version": "1.0",
       "operations": [
         {
+          "target": "com.ovh.sslgateway#ListSslGateway"
+        },
+        {
+          "target": "com.ovh.sslgateway#ListSslGatewayAvailableZones"
+        },
+        {
+          "target": "com.ovh.sslgateway#ListSslGatewayEligibility"
+        },
+        {
           "target": "com.ovh.sslgateway#GetSslGateway"
         },
         {
-          "target": "com.ovh.sslgateway#GetSslGatewayAvailableZones"
+          "target": "com.ovh.sslgateway#PutSslGateway"
         },
         {
-          "target": "com.ovh.sslgateway#GetSslGatewayEligibility"
+          "target": "com.ovh.sslgateway#CreateSslGatewayChangeContact"
         },
         {
-          "target": "com.ovh.sslgateway#GetSslGatewayServiceName"
+          "target": "com.ovh.sslgateway#ConfirmSslGatewayTermination"
         },
         {
-          "target": "com.ovh.sslgateway#PutSslGatewayServiceName"
+          "target": "com.ovh.sslgateway#ListSslGatewayDomain"
         },
         {
-          "target": "com.ovh.sslgateway#PostSslGatewayServiceNameChangeContact"
+          "target": "com.ovh.sslgateway#CreateSslGatewayDomain"
         },
         {
-          "target": "com.ovh.sslgateway#PostSslGatewayServiceNameConfirmTermination"
+          "target": "com.ovh.sslgateway#GetSslGatewayDomain"
         },
         {
-          "target": "com.ovh.sslgateway#GetSslGatewayServiceNameDomain"
+          "target": "com.ovh.sslgateway#DeleteSslGatewayDomain"
         },
         {
-          "target": "com.ovh.sslgateway#PostSslGatewayServiceNameDomain"
+          "target": "com.ovh.sslgateway#ListSslGatewayNatIp"
         },
         {
-          "target": "com.ovh.sslgateway#GetSslGatewayServiceNameDomainId"
+          "target": "com.ovh.sslgateway#RenewSslGatewayCertificate"
         },
         {
-          "target": "com.ovh.sslgateway#DeleteSslGatewayServiceNameDomainId"
+          "target": "com.ovh.sslgateway#ListSslGatewayServer"
         },
         {
-          "target": "com.ovh.sslgateway#GetSslGatewayServiceNameNatIp"
+          "target": "com.ovh.sslgateway#CreateSslGatewayServer"
         },
         {
-          "target": "com.ovh.sslgateway#PostSslGatewayServiceNameRenewCertificate"
+          "target": "com.ovh.sslgateway#GetSslGatewayServer"
         },
         {
-          "target": "com.ovh.sslgateway#GetSslGatewayServiceNameServer"
+          "target": "com.ovh.sslgateway#PutSslGatewayServer"
         },
         {
-          "target": "com.ovh.sslgateway#PostSslGatewayServiceNameServer"
+          "target": "com.ovh.sslgateway#DeleteSslGatewayServer"
         },
         {
-          "target": "com.ovh.sslgateway#GetSslGatewayServiceNameServerId"
+          "target": "com.ovh.sslgateway#GetSslGatewayServiceInfos"
         },
         {
-          "target": "com.ovh.sslgateway#PutSslGatewayServiceNameServerId"
+          "target": "com.ovh.sslgateway#PutSslGatewayServiceInfos"
         },
         {
-          "target": "com.ovh.sslgateway#DeleteSslGatewayServiceNameServerId"
+          "target": "com.ovh.sslgateway#ListSslGatewayTask"
         },
         {
-          "target": "com.ovh.sslgateway#GetSslGatewayServiceNameServiceInfos"
+          "target": "com.ovh.sslgateway#GetSslGatewayTask"
         },
         {
-          "target": "com.ovh.sslgateway#PutSslGatewayServiceNameServiceInfos"
-        },
-        {
-          "target": "com.ovh.sslgateway#GetSslGatewayServiceNameTask"
-        },
-        {
-          "target": "com.ovh.sslgateway#GetSslGatewayServiceNameTaskId"
-        },
-        {
-          "target": "com.ovh.sslgateway#PostSslGatewayServiceNameTerminate"
+          "target": "com.ovh.sslgateway#TerminateSslGateway"
         }
       ],
       "traits": {

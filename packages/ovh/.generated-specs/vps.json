@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.ovh.vps#IamResourceTagFilterInput": {
@@ -24,28 +25,28 @@
         "smithy.api#documentation": "Resource tag filter"
       }
     },
-    "com.ovh.vps#GetVpsRequestIamTagsValueList": {
+    "com.ovh.vps#ListVpsRequestIamTagsValueList": {
       "type": "list",
       "member": {
         "target": "com.ovh.vps#IamResourceTagFilterInput"
       },
       "traits": {}
     },
-    "com.ovh.vps#GetVpsRequestIamTagsMap": {
+    "com.ovh.vps#ListVpsRequestIamTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "com.ovh.vps#GetVpsRequestIamTagsValueList"
+        "target": "com.ovh.vps#ListVpsRequestIamTagsValueList"
       },
       "traits": {}
     },
-    "com.ovh.vps#GetVpsRequest": {
+    "com.ovh.vps#ListVpsRequest": {
       "type": "structure",
       "members": {
         "iamTags": {
-          "target": "com.ovh.vps#GetVpsRequestIamTagsMap",
+          "target": "com.ovh.vps#ListVpsRequestIamTagsMap",
           "traits": {
             "smithy.api#httpQuery": "iamTags",
             "smithy.api#documentation": "Filter resources on IAM tags"
@@ -56,18 +57,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#GetVpsResponseBodyList": {
+    "com.ovh.vps#ListVpsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.vps#GetVpsResponse": {
+    "com.ovh.vps#ListVpsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.vps#GetVpsResponseBodyList",
+          "target": "com.ovh.vps#ListVpsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -78,13 +79,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.vps#GetVps": {
+    "com.ovh.vps#ListVps": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsRequest"
+        "target": "com.ovh.vps#ListVpsRequest"
       },
       "output": {
-        "target": "com.ovh.vps#GetVpsResponse"
+        "target": "com.ovh.vps#ListVpsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1627,7 +1628,7 @@
         "smithy.api#documentation": "Countries a nichandle can choose"
       }
     },
-    "com.ovh.vps#GetVpsDatacenterRequest": {
+    "com.ovh.vps#ListVpsDatacenterRequest": {
       "type": "structure",
       "members": {
         "country": {
@@ -1642,18 +1643,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#GetVpsDatacenterResponseBodyList": {
+    "com.ovh.vps#ListVpsDatacenterResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.vps#GetVpsDatacenterResponse": {
+    "com.ovh.vps#ListVpsDatacenterResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.vps#GetVpsDatacenterResponseBodyList",
+          "target": "com.ovh.vps#ListVpsDatacenterResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1664,13 +1665,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.vps#GetVpsDatacenter": {
+    "com.ovh.vps#ListVpsDatacenter": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsDatacenterRequest"
+        "target": "com.ovh.vps#ListVpsDatacenterRequest"
       },
       "output": {
-        "target": "com.ovh.vps#GetVpsDatacenterResponse"
+        "target": "com.ovh.vps#ListVpsDatacenterResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1785,7 +1786,7 @@
         "smithy.api#documentation": "OVH subsidiaries"
       }
     },
-    "com.ovh.vps#GetVpsOrderRuleDatacenterRequest": {
+    "com.ovh.vps#ListVpsOrderRuleDatacenterRequest": {
       "type": "structure",
       "members": {
         "os": {
@@ -1868,10 +1869,10 @@
       },
       "traits": {}
     },
-    "com.ovh.vps#GetVpsOrderRuleDatacenter": {
+    "com.ovh.vps#ListVpsOrderRuleDatacenter": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsOrderRuleDatacenterRequest"
+        "target": "com.ovh.vps#ListVpsOrderRuleDatacenterRequest"
       },
       "output": {
         "target": "com.ovh.vps#VpsOrderRuleDatacenters"
@@ -1885,7 +1886,7 @@
         "smithy.api#documentation": "List datacenters with priority and stock status"
       }
     },
-    "com.ovh.vps#GetVpsOrderRuleOsChoicesRequest": {
+    "com.ovh.vps#ListVpsOrderRuleOsChoicesRequest": {
       "type": "structure",
       "members": {
         "datacenter": {
@@ -1967,10 +1968,10 @@
       },
       "traits": {}
     },
-    "com.ovh.vps#GetVpsOrderRuleOsChoices": {
+    "com.ovh.vps#ListVpsOrderRuleOsChoices": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsOrderRuleOsChoicesRequest"
+        "target": "com.ovh.vps#ListVpsOrderRuleOsChoicesRequest"
       },
       "output": {
         "target": "com.ovh.vps#VpsOrderRuleOSChoices"
@@ -1984,7 +1985,7 @@
         "smithy.api#documentation": "List OS choices with status"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameRequest": {
+    "com.ovh.vps#GetVpsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2471,10 +2472,10 @@
         "smithy.api#documentation": "Enum values for zone type"
       }
     },
-    "com.ovh.vps#GetVpsServiceName": {
+    "com.ovh.vps#GetVps": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsServiceNameRequest"
+        "target": "com.ovh.vps#GetVpsRequest"
       },
       "output": {
         "target": "com.ovh.vps#VpsVPSWithIAM"
@@ -2488,7 +2489,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.vps#PutVpsServiceNameRequest": {
+    "com.ovh.vps#PutVpsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2530,10 +2531,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#PutVpsServiceName": {
+    "com.ovh.vps#PutVps": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#PutVpsServiceNameRequest"
+        "target": "com.ovh.vps#PutVpsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2547,7 +2548,7 @@
         "smithy.api#documentation": "Alter this object properties"
       }
     },
-    "com.ovh.vps#PostVpsServiceNameAbortSnapshotRequest": {
+    "com.ovh.vps#AbortVpsSnapshotRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2563,10 +2564,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#PostVpsServiceNameAbortSnapshot": {
+    "com.ovh.vps#AbortVpsSnapshot": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#PostVpsServiceNameAbortSnapshotRequest"
+        "target": "com.ovh.vps#AbortVpsSnapshotRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2580,7 +2581,7 @@
         "smithy.api#documentation": "Abort ongoing snapshot or autobackup"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameAutomatedBackupRequest": {
+    "com.ovh.vps#GetVpsAutomatedBackupRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2637,10 +2638,10 @@
         "smithy.api#documentation": "Available AutomatedBackup states"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameAutomatedBackup": {
+    "com.ovh.vps#GetVpsAutomatedBackup": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsServiceNameAutomatedBackupRequest"
+        "target": "com.ovh.vps#GetVpsAutomatedBackupRequest"
       },
       "output": {
         "target": "com.ovh.vps#VpsAutomatedBackup"
@@ -2654,7 +2655,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameAutomatedBackupAttachedBackupRequest": {
+    "com.ovh.vps#ListVpsAutomatedBackupAttachedBackupRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2716,18 +2717,18 @@
         "smithy.api#documentation": "A structure describing a backup's access informations"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameAutomatedBackupAttachedBackupResponseBodyList": {
+    "com.ovh.vps#ListVpsAutomatedBackupAttachedBackupResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.vps#VpsAutomatedBackupAttached"
       },
       "traits": {}
     },
-    "com.ovh.vps#GetVpsServiceNameAutomatedBackupAttachedBackupResponse": {
+    "com.ovh.vps#ListVpsAutomatedBackupAttachedBackupResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.vps#GetVpsServiceNameAutomatedBackupAttachedBackupResponseBodyList",
+          "target": "com.ovh.vps#ListVpsAutomatedBackupAttachedBackupResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -2738,13 +2739,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.vps#GetVpsServiceNameAutomatedBackupAttachedBackup": {
+    "com.ovh.vps#ListVpsAutomatedBackupAttachedBackup": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsServiceNameAutomatedBackupAttachedBackupRequest"
+        "target": "com.ovh.vps#ListVpsAutomatedBackupAttachedBackupRequest"
       },
       "output": {
-        "target": "com.ovh.vps#GetVpsServiceNameAutomatedBackupAttachedBackupResponse"
+        "target": "com.ovh.vps#ListVpsAutomatedBackupAttachedBackupResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2755,7 +2756,7 @@
         "smithy.api#documentation": "Backup attached to your VPS"
       }
     },
-    "com.ovh.vps#PostVpsServiceNameAutomatedBackupDetachBackupRequest": {
+    "com.ovh.vps#DetachVpsAutomatedBackupBackupRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3009,10 +3010,10 @@
         "smithy.api#documentation": "All type a VPS task can be"
       }
     },
-    "com.ovh.vps#PostVpsServiceNameAutomatedBackupDetachBackup": {
+    "com.ovh.vps#DetachVpsAutomatedBackupBackup": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#PostVpsServiceNameAutomatedBackupDetachBackupRequest"
+        "target": "com.ovh.vps#DetachVpsAutomatedBackupBackupRequest"
       },
       "output": {
         "target": "com.ovh.vps#VpsTask"
@@ -3026,7 +3027,7 @@
         "smithy.api#documentation": "Create a VPS.Task that will umount a restored backup on your VPS"
       }
     },
-    "com.ovh.vps#PostVpsServiceNameAutomatedBackupRescheduleRequest": {
+    "com.ovh.vps#CreateVpsAutomatedBackupRescheduleRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3049,10 +3050,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#PostVpsServiceNameAutomatedBackupReschedule": {
+    "com.ovh.vps#CreateVpsAutomatedBackupReschedule": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#PostVpsServiceNameAutomatedBackupRescheduleRequest"
+        "target": "com.ovh.vps#CreateVpsAutomatedBackupRescheduleRequest"
       },
       "output": {
         "target": "com.ovh.vps#VpsTask"
@@ -3086,7 +3087,7 @@
         "smithy.api#documentation": "Available restore types"
       }
     },
-    "com.ovh.vps#PostVpsServiceNameAutomatedBackupRestoreRequest": {
+    "com.ovh.vps#RestoreVpsAutomatedBackupRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3122,10 +3123,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#PostVpsServiceNameAutomatedBackupRestore": {
+    "com.ovh.vps#RestoreVpsAutomatedBackup": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#PostVpsServiceNameAutomatedBackupRestoreRequest"
+        "target": "com.ovh.vps#RestoreVpsAutomatedBackupRequest"
       },
       "output": {
         "target": "com.ovh.vps#VpsTask"
@@ -3165,7 +3166,7 @@
         "smithy.api#documentation": "Available restore state"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameAutomatedBackupRestorePointsRequest": {
+    "com.ovh.vps#ListVpsAutomatedBackupRestorePointsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3189,18 +3190,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#GetVpsServiceNameAutomatedBackupRestorePointsResponseBodyList": {
+    "com.ovh.vps#ListVpsAutomatedBackupRestorePointsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.vps#GetVpsServiceNameAutomatedBackupRestorePointsResponse": {
+    "com.ovh.vps#ListVpsAutomatedBackupRestorePointsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.vps#GetVpsServiceNameAutomatedBackupRestorePointsResponseBodyList",
+          "target": "com.ovh.vps#ListVpsAutomatedBackupRestorePointsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -3211,13 +3212,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.vps#GetVpsServiceNameAutomatedBackupRestorePoints": {
+    "com.ovh.vps#ListVpsAutomatedBackupRestorePoints": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsServiceNameAutomatedBackupRestorePointsRequest"
+        "target": "com.ovh.vps#ListVpsAutomatedBackupRestorePointsRequest"
       },
       "output": {
-        "target": "com.ovh.vps#GetVpsServiceNameAutomatedBackupRestorePointsResponse"
+        "target": "com.ovh.vps#ListVpsAutomatedBackupRestorePointsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3228,7 +3229,7 @@
         "smithy.api#documentation": "Get available Restore Points"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameAvailableUpgradeRequest": {
+    "com.ovh.vps#ListVpsAvailableUpgradeRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3244,18 +3245,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#GetVpsServiceNameAvailableUpgradeResponseBodyList": {
+    "com.ovh.vps#ListVpsAvailableUpgradeResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.vps#VpsModel"
       },
       "traits": {}
     },
-    "com.ovh.vps#GetVpsServiceNameAvailableUpgradeResponse": {
+    "com.ovh.vps#ListVpsAvailableUpgradeResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.vps#GetVpsServiceNameAvailableUpgradeResponseBodyList",
+          "target": "com.ovh.vps#ListVpsAvailableUpgradeResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -3266,13 +3267,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.vps#GetVpsServiceNameAvailableUpgrade": {
+    "com.ovh.vps#ListVpsAvailableUpgrade": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsServiceNameAvailableUpgradeRequest"
+        "target": "com.ovh.vps#ListVpsAvailableUpgradeRequest"
       },
       "output": {
-        "target": "com.ovh.vps#GetVpsServiceNameAvailableUpgradeResponse"
+        "target": "com.ovh.vps#ListVpsAvailableUpgradeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3283,7 +3284,7 @@
         "smithy.api#documentation": "Return all models the virtual server can be upgraded to"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameBackupftpRequest": {
+    "com.ovh.vps#GetVpsBackupftpRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3354,10 +3355,10 @@
         "smithy.api#documentation": "complexType.UnitAndValue_long"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameBackupftp": {
+    "com.ovh.vps#GetVpsBackupftp": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsServiceNameBackupftpRequest"
+        "target": "com.ovh.vps#GetVpsBackupftpRequest"
       },
       "output": {
         "target": "com.ovh.vps#VpsBackupFtp"
@@ -3371,7 +3372,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameBackupftpAccessRequest": {
+    "com.ovh.vps#ListVpsBackupftpAccessRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3387,18 +3388,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#GetVpsServiceNameBackupftpAccessResponseBodyList": {
+    "com.ovh.vps#ListVpsBackupftpAccessResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.vps#GetVpsServiceNameBackupftpAccessResponse": {
+    "com.ovh.vps#ListVpsBackupftpAccessResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.vps#GetVpsServiceNameBackupftpAccessResponseBodyList",
+          "target": "com.ovh.vps#ListVpsBackupftpAccessResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -3409,13 +3410,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.vps#GetVpsServiceNameBackupftpAccess": {
+    "com.ovh.vps#ListVpsBackupftpAccess": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsServiceNameBackupftpAccessRequest"
+        "target": "com.ovh.vps#ListVpsBackupftpAccessRequest"
       },
       "output": {
-        "target": "com.ovh.vps#GetVpsServiceNameBackupftpAccessResponse"
+        "target": "com.ovh.vps#ListVpsBackupftpAccessResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3426,7 +3427,7 @@
         "smithy.api#documentation": "List of IP blocks (and protocols to allow on these blocks) authorized on your backup FTP"
       }
     },
-    "com.ovh.vps#PostVpsServiceNameBackupftpAccessRequest": {
+    "com.ovh.vps#CreateVpsBackupftpAccessRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3886,10 +3887,10 @@
         "smithy.api#documentation": "Task result tags output"
       }
     },
-    "com.ovh.vps#PostVpsServiceNameBackupftpAccess": {
+    "com.ovh.vps#CreateVpsBackupftpAccess": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#PostVpsServiceNameBackupftpAccessRequest"
+        "target": "com.ovh.vps#CreateVpsBackupftpAccessRequest"
       },
       "output": {
         "target": "com.ovh.vps#DedicatedServerTask"
@@ -3903,7 +3904,7 @@
         "smithy.api#documentation": "Create a new Backup FTP ACL"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameBackupftpAccessIpBlockRequest": {
+    "com.ovh.vps#GetVpsBackupftpAccessRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3971,10 +3972,10 @@
         "smithy.api#documentation": "Backup Ftp ACL for this server and Backup Ftp"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameBackupftpAccessIpBlock": {
+    "com.ovh.vps#GetVpsBackupftpAccess": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsServiceNameBackupftpAccessIpBlockRequest"
+        "target": "com.ovh.vps#GetVpsBackupftpAccessRequest"
       },
       "output": {
         "target": "com.ovh.vps#DedicatedServerBackupFtpAcl"
@@ -3988,7 +3989,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.vps#PutVpsServiceNameBackupftpAccessIpBlockRequest": {
+    "com.ovh.vps#PutVpsBackupftpAccessRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4030,10 +4031,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#PutVpsServiceNameBackupftpAccessIpBlock": {
+    "com.ovh.vps#PutVpsBackupftpAccess": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#PutVpsServiceNameBackupftpAccessIpBlockRequest"
+        "target": "com.ovh.vps#PutVpsBackupftpAccessRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4047,7 +4048,7 @@
         "smithy.api#documentation": "Alter this object properties"
       }
     },
-    "com.ovh.vps#DeleteVpsServiceNameBackupftpAccessIpBlockRequest": {
+    "com.ovh.vps#DeleteVpsBackupftpAccessRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4071,10 +4072,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#DeleteVpsServiceNameBackupftpAccessIpBlock": {
+    "com.ovh.vps#DeleteVpsBackupftpAccess": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#DeleteVpsServiceNameBackupftpAccessIpBlockRequest"
+        "target": "com.ovh.vps#DeleteVpsBackupftpAccessRequest"
       },
       "output": {
         "target": "com.ovh.vps#DedicatedServerTask"
@@ -4088,7 +4089,7 @@
         "smithy.api#documentation": "Revoke this ACL"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameBackupftpAuthorizableBlocksRequest": {
+    "com.ovh.vps#ListVpsBackupftpAuthorizableBlocksRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4104,18 +4105,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#GetVpsServiceNameBackupftpAuthorizableBlocksResponseBodyList": {
+    "com.ovh.vps#ListVpsBackupftpAuthorizableBlocksResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.vps#GetVpsServiceNameBackupftpAuthorizableBlocksResponse": {
+    "com.ovh.vps#ListVpsBackupftpAuthorizableBlocksResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.vps#GetVpsServiceNameBackupftpAuthorizableBlocksResponseBodyList",
+          "target": "com.ovh.vps#ListVpsBackupftpAuthorizableBlocksResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -4126,13 +4127,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.vps#GetVpsServiceNameBackupftpAuthorizableBlocks": {
+    "com.ovh.vps#ListVpsBackupftpAuthorizableBlocks": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsServiceNameBackupftpAuthorizableBlocksRequest"
+        "target": "com.ovh.vps#ListVpsBackupftpAuthorizableBlocksRequest"
       },
       "output": {
-        "target": "com.ovh.vps#GetVpsServiceNameBackupftpAuthorizableBlocksResponse"
+        "target": "com.ovh.vps#ListVpsBackupftpAuthorizableBlocksResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4143,7 +4144,7 @@
         "smithy.api#documentation": "Get all IP blocks that can be used in the ACL"
       }
     },
-    "com.ovh.vps#PostVpsServiceNameBackupftpPasswordRequest": {
+    "com.ovh.vps#CreateVpsBackupftpPasswordRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4159,10 +4160,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#PostVpsServiceNameBackupftpPassword": {
+    "com.ovh.vps#CreateVpsBackupftpPassword": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#PostVpsServiceNameBackupftpPasswordRequest"
+        "target": "com.ovh.vps#CreateVpsBackupftpPasswordRequest"
       },
       "output": {
         "target": "com.ovh.vps#DedicatedServerTask"
@@ -4176,7 +4177,7 @@
         "smithy.api#documentation": "Change your Backup FTP password"
       }
     },
-    "com.ovh.vps#PostVpsServiceNameChangeContactRequest": {
+    "com.ovh.vps#CreateVpsChangeContactRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4210,18 +4211,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#PostVpsServiceNameChangeContactResponseBodyList": {
+    "com.ovh.vps#CreateVpsChangeContactResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.vps#PostVpsServiceNameChangeContactResponse": {
+    "com.ovh.vps#CreateVpsChangeContactResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.vps#PostVpsServiceNameChangeContactResponseBodyList",
+          "target": "com.ovh.vps#CreateVpsChangeContactResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -4232,13 +4233,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.vps#PostVpsServiceNameChangeContact": {
+    "com.ovh.vps#CreateVpsChangeContact": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#PostVpsServiceNameChangeContactRequest"
+        "target": "com.ovh.vps#CreateVpsChangeContactRequest"
       },
       "output": {
-        "target": "com.ovh.vps#PostVpsServiceNameChangeContactResponse"
+        "target": "com.ovh.vps#CreateVpsChangeContactResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4379,7 +4380,7 @@
         "smithy.api#documentation": "All reasons you can provide for a service termination"
       }
     },
-    "com.ovh.vps#PostVpsServiceNameConfirmTerminationRequest": {
+    "com.ovh.vps#ConfirmVpsTerminationRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4420,7 +4421,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#PostVpsServiceNameConfirmTerminationResponse": {
+    "com.ovh.vps#ConfirmVpsTerminationResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -4435,13 +4436,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.vps#PostVpsServiceNameConfirmTermination": {
+    "com.ovh.vps#ConfirmVpsTermination": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#PostVpsServiceNameConfirmTerminationRequest"
+        "target": "com.ovh.vps#ConfirmVpsTerminationRequest"
       },
       "output": {
-        "target": "com.ovh.vps#PostVpsServiceNameConfirmTerminationResponse"
+        "target": "com.ovh.vps#ConfirmVpsTerminationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4452,7 +4453,7 @@
         "smithy.api#documentation": "Confirm service termination"
       }
     },
-    "com.ovh.vps#PostVpsServiceNameCreateSnapshotRequest": {
+    "com.ovh.vps#CreateVpsSnapshotRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4474,10 +4475,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#PostVpsServiceNameCreateSnapshot": {
+    "com.ovh.vps#CreateVpsSnapshot": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#PostVpsServiceNameCreateSnapshotRequest"
+        "target": "com.ovh.vps#CreateVpsSnapshotRequest"
       },
       "output": {
         "target": "com.ovh.vps#VpsTask"
@@ -4491,7 +4492,7 @@
         "smithy.api#documentation": "Create a snapshot of the Virtual Server if the snapshot option is enabled and if there is no existing snapshot"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameDatacenterRequest": {
+    "com.ovh.vps#GetVpsDatacenterRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6101,10 +6102,10 @@
         "smithy.api#documentation": "ISO country codes"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameDatacenter": {
+    "com.ovh.vps#GetVpsDatacenter": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsServiceNameDatacenterRequest"
+        "target": "com.ovh.vps#GetVpsDatacenterRequest"
       },
       "output": {
         "target": "com.ovh.vps#VpsDatacenter"
@@ -6118,7 +6119,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameDisksRequest": {
+    "com.ovh.vps#ListVpsDisksRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6134,18 +6135,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#GetVpsServiceNameDisksResponseBodyList": {
+    "com.ovh.vps#ListVpsDisksResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.vps#GetVpsServiceNameDisksResponse": {
+    "com.ovh.vps#ListVpsDisksResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.vps#GetVpsServiceNameDisksResponseBodyList",
+          "target": "com.ovh.vps#ListVpsDisksResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -6156,13 +6157,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.vps#GetVpsServiceNameDisks": {
+    "com.ovh.vps#ListVpsDisks": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsServiceNameDisksRequest"
+        "target": "com.ovh.vps#ListVpsDisksRequest"
       },
       "output": {
-        "target": "com.ovh.vps#GetVpsServiceNameDisksResponse"
+        "target": "com.ovh.vps#ListVpsDisksResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6173,7 +6174,7 @@
         "smithy.api#documentation": "Disks associated to this virtual server"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameDisksIdRequest": {
+    "com.ovh.vps#GetVpsDiskRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6287,10 +6288,10 @@
         "smithy.api#documentation": "Possible type a disk can be in"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameDisksId": {
+    "com.ovh.vps#GetVpsDisk": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsServiceNameDisksIdRequest"
+        "target": "com.ovh.vps#GetVpsDiskRequest"
       },
       "output": {
         "target": "com.ovh.vps#VpsDisk"
@@ -6304,7 +6305,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.vps#PutVpsServiceNameDisksIdRequest": {
+    "com.ovh.vps#PutVpsDiskRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6342,10 +6343,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#PutVpsServiceNameDisksId": {
+    "com.ovh.vps#PutVpsDisk": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#PutVpsServiceNameDisksIdRequest"
+        "target": "com.ovh.vps#PutVpsDiskRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6417,7 +6418,7 @@
         "smithy.api#documentation": "Available types for the Disk monitoring and use"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameDisksIdMonitoringRequest": {
+    "com.ovh.vps#ListVpsDiskMonitoringRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6495,10 +6496,10 @@
       },
       "traits": {}
     },
-    "com.ovh.vps#GetVpsServiceNameDisksIdMonitoring": {
+    "com.ovh.vps#ListVpsDiskMonitoring": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsServiceNameDisksIdMonitoringRequest"
+        "target": "com.ovh.vps#ListVpsDiskMonitoringRequest"
       },
       "output": {
         "target": "com.ovh.vps#ComplexTypeUnitAndValuesVpsVpsTimestampValue"
@@ -6512,7 +6513,7 @@
         "smithy.api#documentation": "Return many statistics about the disk for a given period"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameDisksIdUseRequest": {
+    "com.ovh.vps#GetVpsDiskUseRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6558,10 +6559,10 @@
         "smithy.api#documentation": "complexType.UnitAndValue_double"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameDisksIdUse": {
+    "com.ovh.vps#GetVpsDiskUse": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsServiceNameDisksIdUseRequest"
+        "target": "com.ovh.vps#GetVpsDiskUseRequest"
       },
       "output": {
         "target": "com.ovh.vps#ComplexTypeUnitAndValueDouble"
@@ -6575,7 +6576,7 @@
         "smithy.api#documentation": "Return many statistics about the disk at that time"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameDistributionRequest": {
+    "com.ovh.vps#GetVpsDistributionRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6644,10 +6645,10 @@
         "smithy.api#documentation": "Bitness of a VPS template"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameDistribution": {
+    "com.ovh.vps#GetVpsDistribution": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsServiceNameDistributionRequest"
+        "target": "com.ovh.vps#GetVpsDistributionRequest"
       },
       "output": {
         "target": "com.ovh.vps#VpsTemplate"
@@ -6661,7 +6662,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameDistributionSoftwareRequest": {
+    "com.ovh.vps#ListVpsDistributionSoftwareRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6677,18 +6678,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#GetVpsServiceNameDistributionSoftwareResponseBodyList": {
+    "com.ovh.vps#ListVpsDistributionSoftwareResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.vps#GetVpsServiceNameDistributionSoftwareResponse": {
+    "com.ovh.vps#ListVpsDistributionSoftwareResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.vps#GetVpsServiceNameDistributionSoftwareResponseBodyList",
+          "target": "com.ovh.vps#ListVpsDistributionSoftwareResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -6699,13 +6700,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.vps#GetVpsServiceNameDistributionSoftware": {
+    "com.ovh.vps#ListVpsDistributionSoftware": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsServiceNameDistributionSoftwareRequest"
+        "target": "com.ovh.vps#ListVpsDistributionSoftwareRequest"
       },
       "output": {
-        "target": "com.ovh.vps#GetVpsServiceNameDistributionSoftwareResponse"
+        "target": "com.ovh.vps#ListVpsDistributionSoftwareResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6716,7 +6717,7 @@
         "smithy.api#documentation": "List available softwares for this template Id"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameDistributionSoftwareSoftwareIdRequest": {
+    "com.ovh.vps#GetVpsDistributionSoftwareRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6812,10 +6813,10 @@
         "smithy.api#documentation": "Available Type for a vps Software"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameDistributionSoftwareSoftwareId": {
+    "com.ovh.vps#GetVpsDistributionSoftware": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsServiceNameDistributionSoftwareSoftwareIdRequest"
+        "target": "com.ovh.vps#GetVpsDistributionSoftwareRequest"
       },
       "output": {
         "target": "com.ovh.vps#VpsSoftware"
@@ -6829,7 +6830,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.vps#PostVpsServiceNameGetConsoleUrlRequest": {
+    "com.ovh.vps#GetVpsConsoleUrlRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6845,7 +6846,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#PostVpsServiceNameGetConsoleUrlResponse": {
+    "com.ovh.vps#GetVpsConsoleUrlResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -6860,13 +6861,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.vps#PostVpsServiceNameGetConsoleUrl": {
+    "com.ovh.vps#GetVpsConsoleUrl": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#PostVpsServiceNameGetConsoleUrlRequest"
+        "target": "com.ovh.vps#GetVpsConsoleUrlRequest"
       },
       "output": {
-        "target": "com.ovh.vps#PostVpsServiceNameGetConsoleUrlResponse"
+        "target": "com.ovh.vps#GetVpsConsoleUrlResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6877,7 +6878,7 @@
         "smithy.api#documentation": "Return the VPS console URL"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameImagesAvailableRequest": {
+    "com.ovh.vps#ListVpsImageAvailableRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6893,18 +6894,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#GetVpsServiceNameImagesAvailableResponseBodyList": {
+    "com.ovh.vps#ListVpsImageAvailableResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.vps#GetVpsServiceNameImagesAvailableResponse": {
+    "com.ovh.vps#ListVpsImageAvailableResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.vps#GetVpsServiceNameImagesAvailableResponseBodyList",
+          "target": "com.ovh.vps#ListVpsImageAvailableResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -6915,13 +6916,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.vps#GetVpsServiceNameImagesAvailable": {
+    "com.ovh.vps#ListVpsImageAvailable": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsServiceNameImagesAvailableRequest"
+        "target": "com.ovh.vps#ListVpsImageAvailableRequest"
       },
       "output": {
-        "target": "com.ovh.vps#GetVpsServiceNameImagesAvailableResponse"
+        "target": "com.ovh.vps#ListVpsImageAvailableResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6932,7 +6933,7 @@
         "smithy.api#documentation": "Images available for this virtual server"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameImagesAvailableIdRequest": {
+    "com.ovh.vps#GetVpsImageAvailableRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6970,10 +6971,10 @@
         "smithy.api#documentation": "Installation image for a VPS"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameImagesAvailableId": {
+    "com.ovh.vps#GetVpsImageAvailable": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsServiceNameImagesAvailableIdRequest"
+        "target": "com.ovh.vps#GetVpsImageAvailableRequest"
       },
       "output": {
         "target": "com.ovh.vps#VpsImage"
@@ -6987,7 +6988,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameImagesCurrentRequest": {
+    "com.ovh.vps#GetVpsImageCurrentRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7003,10 +7004,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#GetVpsServiceNameImagesCurrent": {
+    "com.ovh.vps#GetVpsImageCurrent": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsServiceNameImagesCurrentRequest"
+        "target": "com.ovh.vps#GetVpsImageCurrentRequest"
       },
       "output": {
         "target": "com.ovh.vps#VpsImage"
@@ -7020,7 +7021,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameIpCountryAvailableRequest": {
+    "com.ovh.vps#ListVpsIpCountryAvailableRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7158,18 +7159,18 @@
         "smithy.api#documentation": "Geolocation of the IP Address"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameIpCountryAvailableResponseBodyList": {
+    "com.ovh.vps#ListVpsIpCountryAvailableResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.vps#VpsIpGeolocationEnum"
       },
       "traits": {}
     },
-    "com.ovh.vps#GetVpsServiceNameIpCountryAvailableResponse": {
+    "com.ovh.vps#ListVpsIpCountryAvailableResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.vps#GetVpsServiceNameIpCountryAvailableResponseBodyList",
+          "target": "com.ovh.vps#ListVpsIpCountryAvailableResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -7180,13 +7181,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.vps#GetVpsServiceNameIpCountryAvailable": {
+    "com.ovh.vps#ListVpsIpCountryAvailable": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsServiceNameIpCountryAvailableRequest"
+        "target": "com.ovh.vps#ListVpsIpCountryAvailableRequest"
       },
       "output": {
-        "target": "com.ovh.vps#GetVpsServiceNameIpCountryAvailableResponse"
+        "target": "com.ovh.vps#ListVpsIpCountryAvailableResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7197,7 +7198,7 @@
         "smithy.api#documentation": "Get the countries you can select for your IPs geolocation"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameIpsRequest": {
+    "com.ovh.vps#ListVpsIpsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7213,18 +7214,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#GetVpsServiceNameIpsResponseBodyList": {
+    "com.ovh.vps#ListVpsIpsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.vps#GetVpsServiceNameIpsResponse": {
+    "com.ovh.vps#ListVpsIpsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.vps#GetVpsServiceNameIpsResponseBodyList",
+          "target": "com.ovh.vps#ListVpsIpsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -7235,13 +7236,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.vps#GetVpsServiceNameIps": {
+    "com.ovh.vps#ListVpsIps": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsServiceNameIpsRequest"
+        "target": "com.ovh.vps#ListVpsIpsRequest"
       },
       "output": {
-        "target": "com.ovh.vps#GetVpsServiceNameIpsResponse"
+        "target": "com.ovh.vps#ListVpsIpsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7252,7 +7253,7 @@
         "smithy.api#documentation": "Ips associated to this virtual server"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameIpsIpAddressRequest": {
+    "com.ovh.vps#GetVpsIpsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7357,10 +7358,10 @@
         "smithy.api#documentation": "Ip versions"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameIpsIpAddress": {
+    "com.ovh.vps#GetVpsIps": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsServiceNameIpsIpAddressRequest"
+        "target": "com.ovh.vps#GetVpsIpsRequest"
       },
       "output": {
         "target": "com.ovh.vps#VpsIp"
@@ -7374,7 +7375,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.vps#PutVpsServiceNameIpsIpAddressRequest": {
+    "com.ovh.vps#PutVpsIpsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7404,10 +7405,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#PutVpsServiceNameIpsIpAddress": {
+    "com.ovh.vps#PutVpsIps": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#PutVpsServiceNameIpsIpAddressRequest"
+        "target": "com.ovh.vps#PutVpsIpsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7421,7 +7422,7 @@
         "smithy.api#documentation": "Alter this object properties"
       }
     },
-    "com.ovh.vps#DeleteVpsServiceNameIpsIpAddressRequest": {
+    "com.ovh.vps#DeleteVpsIpsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7445,10 +7446,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#DeleteVpsServiceNameIpsIpAddress": {
+    "com.ovh.vps#DeleteVpsIps": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#DeleteVpsServiceNameIpsIpAddressRequest"
+        "target": "com.ovh.vps#DeleteVpsIpsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7462,7 +7463,7 @@
         "smithy.api#documentation": "Release a given Ip (Additional Ip)"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameMigration2018Request": {
+    "com.ovh.vps#ListVpsMigration2018Request": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7722,10 +7723,10 @@
         "smithy.api#documentation": "All status a migration task can be in"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameMigration2018": {
+    "com.ovh.vps#ListVpsMigration2018": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsServiceNameMigration2018Request"
+        "target": "com.ovh.vps#ListVpsMigration2018Request"
       },
       "output": {
         "target": "com.ovh.vps#VpsMigrationVPS2018to2020"
@@ -7739,7 +7740,7 @@
         "smithy.api#documentation": "Get information on a possible migration of a VPS 2016/2018 to VPS 2020"
       }
     },
-    "com.ovh.vps#PostVpsServiceNameMigration2018Request": {
+    "com.ovh.vps#CreateVpsMigration2018Request": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7762,10 +7763,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#PostVpsServiceNameMigration2018": {
+    "com.ovh.vps#CreateVpsMigration2018": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#PostVpsServiceNameMigration2018Request"
+        "target": "com.ovh.vps#CreateVpsMigration2018Request"
       },
       "output": {
         "target": "com.ovh.vps#VpsTask"
@@ -7779,7 +7780,7 @@
         "smithy.api#documentation": "Schedule the migration of a VPS 2016/2018 to VPS 2020"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameModelsRequest": {
+    "com.ovh.vps#ListVpsModelsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7795,18 +7796,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#GetVpsServiceNameModelsResponseBodyList": {
+    "com.ovh.vps#ListVpsModelsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.vps#VpsModel"
       },
       "traits": {}
     },
-    "com.ovh.vps#GetVpsServiceNameModelsResponse": {
+    "com.ovh.vps#ListVpsModelsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.vps#GetVpsServiceNameModelsResponseBodyList",
+          "target": "com.ovh.vps#ListVpsModelsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -7817,13 +7818,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.vps#GetVpsServiceNameModels": {
+    "com.ovh.vps#ListVpsModels": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsServiceNameModelsRequest"
+        "target": "com.ovh.vps#ListVpsModelsRequest"
       },
       "output": {
-        "target": "com.ovh.vps#GetVpsServiceNameModelsResponse"
+        "target": "com.ovh.vps#ListVpsModelsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7854,7 +7855,7 @@
         "smithy.api#documentation": "All supported VNC protocols by VPS"
       }
     },
-    "com.ovh.vps#PostVpsServiceNameOpenConsoleAccessRequest": {
+    "com.ovh.vps#CreateVpsOpenConsoleAccessRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7896,10 +7897,10 @@
         "smithy.api#documentation": "A VNC connection informations"
       }
     },
-    "com.ovh.vps#PostVpsServiceNameOpenConsoleAccess": {
+    "com.ovh.vps#CreateVpsOpenConsoleAccess": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#PostVpsServiceNameOpenConsoleAccessRequest"
+        "target": "com.ovh.vps#CreateVpsOpenConsoleAccessRequest"
       },
       "output": {
         "target": "com.ovh.vps#VpsVnc"
@@ -7913,7 +7914,7 @@
         "smithy.api#documentation": "Return the necessary informations to open a VNC connection to your VPS"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameOptionRequest": {
+    "com.ovh.vps#ListVpsOptionRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7929,18 +7930,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#GetVpsServiceNameOptionResponseBodyList": {
+    "com.ovh.vps#ListVpsOptionResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.vps#VpsVpsOptionEnum"
       },
       "traits": {}
     },
-    "com.ovh.vps#GetVpsServiceNameOptionResponse": {
+    "com.ovh.vps#ListVpsOptionResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.vps#GetVpsServiceNameOptionResponseBodyList",
+          "target": "com.ovh.vps#ListVpsOptionResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -7951,13 +7952,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.vps#GetVpsServiceNameOption": {
+    "com.ovh.vps#ListVpsOption": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsServiceNameOptionRequest"
+        "target": "com.ovh.vps#ListVpsOptionRequest"
       },
       "output": {
-        "target": "com.ovh.vps#GetVpsServiceNameOptionResponse"
+        "target": "com.ovh.vps#ListVpsOptionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7968,7 +7969,7 @@
         "smithy.api#documentation": "List of VPS options"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameOptionOptionRequestOption": {
+    "com.ovh.vps#GetVpsOptionRequestOption": {
       "type": "enum",
       "members": {
         "ADDITIONALDISK": {
@@ -8024,7 +8025,7 @@
         "smithy.api#documentation": "All options a VPS can have"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameOptionOptionRequest": {
+    "com.ovh.vps#GetVpsOptionRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8036,7 +8037,7 @@
           }
         },
         "option": {
-          "target": "com.ovh.vps#GetVpsServiceNameOptionOptionRequestOption",
+          "target": "com.ovh.vps#GetVpsOptionRequestOption",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -8088,10 +8089,10 @@
         "smithy.api#documentation": "All states a VPS Option can be in"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameOptionOption": {
+    "com.ovh.vps#GetVpsOption": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsServiceNameOptionOptionRequest"
+        "target": "com.ovh.vps#GetVpsOptionRequest"
       },
       "output": {
         "target": "com.ovh.vps#VpsOption"
@@ -8105,7 +8106,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.vps#PostVpsServiceNameRebootRequest": {
+    "com.ovh.vps#RebootVpsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8121,10 +8122,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#PostVpsServiceNameReboot": {
+    "com.ovh.vps#RebootVps": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#PostVpsServiceNameRebootRequest"
+        "target": "com.ovh.vps#RebootVpsRequest"
       },
       "output": {
         "target": "com.ovh.vps#VpsTask"
@@ -8138,7 +8139,7 @@
         "smithy.api#documentation": "Request a reboot of the machine"
       }
     },
-    "com.ovh.vps#PostVpsServiceNameRebuildRequest": {
+    "com.ovh.vps#RebuildVpsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8185,10 +8186,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#PostVpsServiceNameRebuild": {
+    "com.ovh.vps#RebuildVps": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#PostVpsServiceNameRebuildRequest"
+        "target": "com.ovh.vps#RebuildVpsRequest"
       },
       "output": {
         "target": "com.ovh.vps#VpsTask"
@@ -8202,7 +8203,7 @@
         "smithy.api#documentation": "Reinstall the virtual server"
       }
     },
-    "com.ovh.vps#PostVpsServiceNameReinstallRequestSoftwareIdList": {
+    "com.ovh.vps#CreateVpsReinstallRequestSoftwareIdList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
@@ -8211,7 +8212,7 @@
         "smithy.api#documentation": "Id of the vps.Software type fetched in /template/{id}/software"
       }
     },
-    "com.ovh.vps#PostVpsServiceNameReinstallRequestSshKeyList": {
+    "com.ovh.vps#CreateVpsReinstallRequestSshKeyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -8220,7 +8221,7 @@
         "smithy.api#documentation": "SSH key names to pre-install on your VPS (name from /me/sshKey)"
       }
     },
-    "com.ovh.vps#PostVpsServiceNameReinstallRequest": {
+    "com.ovh.vps#CreateVpsReinstallRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8250,13 +8251,13 @@
           }
         },
         "softwareId": {
-          "target": "com.ovh.vps#PostVpsServiceNameReinstallRequestSoftwareIdList",
+          "target": "com.ovh.vps#CreateVpsReinstallRequestSoftwareIdList",
           "traits": {
             "smithy.api#documentation": "Id of the vps.Software type fetched in /template/{id}/software"
           }
         },
         "sshKey": {
-          "target": "com.ovh.vps#PostVpsServiceNameReinstallRequestSshKeyList",
+          "target": "com.ovh.vps#CreateVpsReinstallRequestSshKeyList",
           "traits": {
             "smithy.api#documentation": "SSH key names to pre-install on your VPS (name from /me/sshKey)"
           }
@@ -8273,10 +8274,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#PostVpsServiceNameReinstall": {
+    "com.ovh.vps#CreateVpsReinstall": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#PostVpsServiceNameReinstallRequest"
+        "target": "com.ovh.vps#CreateVpsReinstallRequest"
       },
       "output": {
         "target": "com.ovh.vps#VpsTask"
@@ -8290,7 +8291,7 @@
         "smithy.api#documentation": "Reinstall the virtual server"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameSecondaryDnsDomainsRequest": {
+    "com.ovh.vps#ListVpsSecondaryDnsDomainsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8306,18 +8307,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#GetVpsServiceNameSecondaryDnsDomainsResponseBodyList": {
+    "com.ovh.vps#ListVpsSecondaryDnsDomainsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.vps#GetVpsServiceNameSecondaryDnsDomainsResponse": {
+    "com.ovh.vps#ListVpsSecondaryDnsDomainsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.vps#GetVpsServiceNameSecondaryDnsDomainsResponseBodyList",
+          "target": "com.ovh.vps#ListVpsSecondaryDnsDomainsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -8328,13 +8329,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.vps#GetVpsServiceNameSecondaryDnsDomains": {
+    "com.ovh.vps#ListVpsSecondaryDnsDomains": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsServiceNameSecondaryDnsDomainsRequest"
+        "target": "com.ovh.vps#ListVpsSecondaryDnsDomainsRequest"
       },
       "output": {
-        "target": "com.ovh.vps#GetVpsServiceNameSecondaryDnsDomainsResponse"
+        "target": "com.ovh.vps#ListVpsSecondaryDnsDomainsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8345,7 +8346,7 @@
         "smithy.api#documentation": "List of secondary dns domain name"
       }
     },
-    "com.ovh.vps#PostVpsServiceNameSecondaryDnsDomainsRequest": {
+    "com.ovh.vps#CreateVpsSecondaryDnsDomainRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8374,10 +8375,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#PostVpsServiceNameSecondaryDnsDomains": {
+    "com.ovh.vps#CreateVpsSecondaryDnsDomain": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#PostVpsServiceNameSecondaryDnsDomainsRequest"
+        "target": "com.ovh.vps#CreateVpsSecondaryDnsDomainRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8391,7 +8392,7 @@
         "smithy.api#documentation": "add a domain on secondary dns"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameSecondaryDnsDomainsDomainRequest": {
+    "com.ovh.vps#GetVpsSecondaryDnsDomainRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8444,10 +8445,10 @@
         "smithy.api#documentation": "Secondary dns infos"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameSecondaryDnsDomainsDomain": {
+    "com.ovh.vps#GetVpsSecondaryDnsDomain": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsServiceNameSecondaryDnsDomainsDomainRequest"
+        "target": "com.ovh.vps#GetVpsSecondaryDnsDomainRequest"
       },
       "output": {
         "target": "com.ovh.vps#SecondaryDnsSecondaryDNS"
@@ -8461,7 +8462,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.vps#PutVpsServiceNameSecondaryDnsDomainsDomainRequest": {
+    "com.ovh.vps#PutVpsSecondaryDnsDomainRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8491,10 +8492,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#PutVpsServiceNameSecondaryDnsDomainsDomain": {
+    "com.ovh.vps#PutVpsSecondaryDnsDomain": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#PutVpsServiceNameSecondaryDnsDomainsDomainRequest"
+        "target": "com.ovh.vps#PutVpsSecondaryDnsDomainRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8508,7 +8509,7 @@
         "smithy.api#documentation": "Alter this object properties"
       }
     },
-    "com.ovh.vps#DeleteVpsServiceNameSecondaryDnsDomainsDomainRequest": {
+    "com.ovh.vps#DeleteVpsSecondaryDnsDomainRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8532,10 +8533,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#DeleteVpsServiceNameSecondaryDnsDomainsDomain": {
+    "com.ovh.vps#DeleteVpsSecondaryDnsDomain": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#DeleteVpsServiceNameSecondaryDnsDomainsDomainRequest"
+        "target": "com.ovh.vps#DeleteVpsSecondaryDnsDomainRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8549,7 +8550,7 @@
         "smithy.api#documentation": "remove this domain"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameSecondaryDnsDomainsDomainDnsServerRequest": {
+    "com.ovh.vps#GetVpsSecondaryDnsDomainDnsServerRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8599,10 +8600,10 @@
         "smithy.api#documentation": "A structure describing informations about available nameserver for secondary dns "
       }
     },
-    "com.ovh.vps#GetVpsServiceNameSecondaryDnsDomainsDomainDnsServer": {
+    "com.ovh.vps#GetVpsSecondaryDnsDomainDnsServer": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsServiceNameSecondaryDnsDomainsDomainDnsServerRequest"
+        "target": "com.ovh.vps#GetVpsSecondaryDnsDomainDnsServerRequest"
       },
       "output": {
         "target": "com.ovh.vps#SecondaryDnsSecondaryDNSNameServer"
@@ -8616,7 +8617,7 @@
         "smithy.api#documentation": "domain name server informations"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameSecondaryDnsNameServerAvailableRequest": {
+    "com.ovh.vps#GetVpsSecondaryDnsNameServerAvailableRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8632,10 +8633,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#GetVpsServiceNameSecondaryDnsNameServerAvailable": {
+    "com.ovh.vps#GetVpsSecondaryDnsNameServerAvailable": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsServiceNameSecondaryDnsNameServerAvailableRequest"
+        "target": "com.ovh.vps#GetVpsSecondaryDnsNameServerAvailableRequest"
       },
       "output": {
         "target": "com.ovh.vps#SecondaryDnsSecondaryDNSNameServer"
@@ -8649,7 +8650,7 @@
         "smithy.api#documentation": "Secondary nameServer available for your Server"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameServiceInfosRequest": {
+    "com.ovh.vps#GetVpsServiceInfosRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8869,10 +8870,10 @@
         "smithy.api#documentation": "service.StateEnum"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameServiceInfos": {
+    "com.ovh.vps#GetVpsServiceInfos": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsServiceNameServiceInfosRequest"
+        "target": "com.ovh.vps#GetVpsServiceInfosRequest"
       },
       "output": {
         "target": "com.ovh.vps#ServicesService"
@@ -8886,7 +8887,7 @@
         "smithy.api#documentation": "Get service information"
       }
     },
-    "com.ovh.vps#PutVpsServiceNameServiceInfosRequest": {
+    "com.ovh.vps#PutVpsServiceInfosRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8909,10 +8910,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#PutVpsServiceNameServiceInfos": {
+    "com.ovh.vps#PutVpsServiceInfos": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#PutVpsServiceNameServiceInfosRequest"
+        "target": "com.ovh.vps#PutVpsServiceInfosRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8926,7 +8927,7 @@
         "smithy.api#documentation": "Update service information"
       }
     },
-    "com.ovh.vps#PostVpsServiceNameSetPasswordRequest": {
+    "com.ovh.vps#SetVpsPasswordRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8942,10 +8943,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#PostVpsServiceNameSetPassword": {
+    "com.ovh.vps#SetVpsPassword": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#PostVpsServiceNameSetPasswordRequest"
+        "target": "com.ovh.vps#SetVpsPasswordRequest"
       },
       "output": {
         "target": "com.ovh.vps#VpsTask"
@@ -8959,7 +8960,7 @@
         "smithy.api#documentation": "Start the process in order to set the root password of the virtual machine"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameSnapshotRequest": {
+    "com.ovh.vps#GetVpsSnapshotRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8998,10 +8999,10 @@
         "smithy.api#documentation": "Information about the snapshot of a VPS Virtual Machine"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameSnapshot": {
+    "com.ovh.vps#GetVpsSnapshot": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsServiceNameSnapshotRequest"
+        "target": "com.ovh.vps#GetVpsSnapshotRequest"
       },
       "output": {
         "target": "com.ovh.vps#VpsSnapshot"
@@ -9015,7 +9016,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.vps#PutVpsServiceNameSnapshotRequest": {
+    "com.ovh.vps#PutVpsSnapshotRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9034,10 +9035,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#PutVpsServiceNameSnapshot": {
+    "com.ovh.vps#PutVpsSnapshot": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#PutVpsServiceNameSnapshotRequest"
+        "target": "com.ovh.vps#PutVpsSnapshotRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9051,7 +9052,7 @@
         "smithy.api#documentation": "Alter this object properties"
       }
     },
-    "com.ovh.vps#DeleteVpsServiceNameSnapshotRequest": {
+    "com.ovh.vps#DeleteVpsSnapshotRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9067,10 +9068,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#DeleteVpsServiceNameSnapshot": {
+    "com.ovh.vps#DeleteVpsSnapshot": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#DeleteVpsServiceNameSnapshotRequest"
+        "target": "com.ovh.vps#DeleteVpsSnapshotRequest"
       },
       "output": {
         "target": "com.ovh.vps#VpsTask"
@@ -9084,7 +9085,7 @@
         "smithy.api#documentation": "Creates a vps.Task that will delete the Snapshot"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameSnapshotDownloadRequest": {
+    "com.ovh.vps#GetVpsSnapshotDownloadRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9120,10 +9121,10 @@
         "smithy.api#documentation": "URL to download the VPS snapshot"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameSnapshotDownload": {
+    "com.ovh.vps#GetVpsSnapshotDownload": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsServiceNameSnapshotDownloadRequest"
+        "target": "com.ovh.vps#GetVpsSnapshotDownloadRequest"
       },
       "output": {
         "target": "com.ovh.vps#VpsDownloadSnapshotURL"
@@ -9137,7 +9138,7 @@
         "smithy.api#documentation": "Download the snapshot"
       }
     },
-    "com.ovh.vps#PostVpsServiceNameSnapshotRevertRequest": {
+    "com.ovh.vps#CreateVpsSnapshotRevertRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9153,10 +9154,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#PostVpsServiceNameSnapshotRevert": {
+    "com.ovh.vps#CreateVpsSnapshotRevert": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#PostVpsServiceNameSnapshotRevertRequest"
+        "target": "com.ovh.vps#CreateVpsSnapshotRevertRequest"
       },
       "output": {
         "target": "com.ovh.vps#VpsTask"
@@ -9170,7 +9171,7 @@
         "smithy.api#documentation": "Revert the Virtual Server to this snapshot"
       }
     },
-    "com.ovh.vps#PostVpsServiceNameStartRequest": {
+    "com.ovh.vps#StartVpsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9186,10 +9187,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#PostVpsServiceNameStart": {
+    "com.ovh.vps#StartVps": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#PostVpsServiceNameStartRequest"
+        "target": "com.ovh.vps#StartVpsRequest"
       },
       "output": {
         "target": "com.ovh.vps#VpsTask"
@@ -9203,7 +9204,7 @@
         "smithy.api#documentation": "Request the machine to start"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameStatusRequest": {
+    "com.ovh.vps#GetVpsStatusRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9306,10 +9307,10 @@
         "smithy.api#documentation": "Possible states of a service (ping, port)"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameStatus": {
+    "com.ovh.vps#GetVpsStatus": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsServiceNameStatusRequest"
+        "target": "com.ovh.vps#GetVpsStatusRequest"
       },
       "output": {
         "target": "com.ovh.vps#VpsIpServiceStatus"
@@ -9323,7 +9324,7 @@
         "smithy.api#documentation": "Give the status of the services of the main IP"
       }
     },
-    "com.ovh.vps#PostVpsServiceNameStopRequest": {
+    "com.ovh.vps#StopVpsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9339,10 +9340,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#PostVpsServiceNameStop": {
+    "com.ovh.vps#StopVps": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#PostVpsServiceNameStopRequest"
+        "target": "com.ovh.vps#StopVpsRequest"
       },
       "output": {
         "target": "com.ovh.vps#VpsTask"
@@ -9356,7 +9357,7 @@
         "smithy.api#documentation": "Request the machine to stop"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameTasksRequest": {
+    "com.ovh.vps#ListVpsTasksRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9386,18 +9387,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#GetVpsServiceNameTasksResponseBodyList": {
+    "com.ovh.vps#ListVpsTasksResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.vps#GetVpsServiceNameTasksResponse": {
+    "com.ovh.vps#ListVpsTasksResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.vps#GetVpsServiceNameTasksResponseBodyList",
+          "target": "com.ovh.vps#ListVpsTasksResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -9408,13 +9409,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.vps#GetVpsServiceNameTasks": {
+    "com.ovh.vps#ListVpsTasks": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsServiceNameTasksRequest"
+        "target": "com.ovh.vps#ListVpsTasksRequest"
       },
       "output": {
-        "target": "com.ovh.vps#GetVpsServiceNameTasksResponse"
+        "target": "com.ovh.vps#ListVpsTasksResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9425,7 +9426,7 @@
         "smithy.api#documentation": "Tasks associated to this virtual server"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameTasksIdRequest": {
+    "com.ovh.vps#GetVpsTaskRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9449,10 +9450,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#GetVpsServiceNameTasksId": {
+    "com.ovh.vps#GetVpsTask": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsServiceNameTasksIdRequest"
+        "target": "com.ovh.vps#GetVpsTaskRequest"
       },
       "output": {
         "target": "com.ovh.vps#VpsTask"
@@ -9466,7 +9467,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameTemplatesRequest": {
+    "com.ovh.vps#ListVpsTemplatesRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9482,18 +9483,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#GetVpsServiceNameTemplatesResponseBodyList": {
+    "com.ovh.vps#ListVpsTemplatesResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.vps#GetVpsServiceNameTemplatesResponse": {
+    "com.ovh.vps#ListVpsTemplatesResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.vps#GetVpsServiceNameTemplatesResponseBodyList",
+          "target": "com.ovh.vps#ListVpsTemplatesResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -9504,13 +9505,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.vps#GetVpsServiceNameTemplates": {
+    "com.ovh.vps#ListVpsTemplates": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsServiceNameTemplatesRequest"
+        "target": "com.ovh.vps#ListVpsTemplatesRequest"
       },
       "output": {
-        "target": "com.ovh.vps#GetVpsServiceNameTemplatesResponse"
+        "target": "com.ovh.vps#ListVpsTemplatesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9521,7 +9522,7 @@
         "smithy.api#documentation": "Templates available for this virtual server"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameTemplatesIdRequest": {
+    "com.ovh.vps#GetVpsTemplateRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9545,10 +9546,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#GetVpsServiceNameTemplatesId": {
+    "com.ovh.vps#GetVpsTemplate": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsServiceNameTemplatesIdRequest"
+        "target": "com.ovh.vps#GetVpsTemplateRequest"
       },
       "output": {
         "target": "com.ovh.vps#VpsTemplate"
@@ -9562,7 +9563,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameTemplatesIdSoftwareRequest": {
+    "com.ovh.vps#ListVpsTemplateSoftwareRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9586,18 +9587,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#GetVpsServiceNameTemplatesIdSoftwareResponseBodyList": {
+    "com.ovh.vps#ListVpsTemplateSoftwareResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.vps#GetVpsServiceNameTemplatesIdSoftwareResponse": {
+    "com.ovh.vps#ListVpsTemplateSoftwareResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.vps#GetVpsServiceNameTemplatesIdSoftwareResponseBodyList",
+          "target": "com.ovh.vps#ListVpsTemplateSoftwareResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -9608,13 +9609,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.vps#GetVpsServiceNameTemplatesIdSoftware": {
+    "com.ovh.vps#ListVpsTemplateSoftware": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsServiceNameTemplatesIdSoftwareRequest"
+        "target": "com.ovh.vps#ListVpsTemplateSoftwareRequest"
       },
       "output": {
-        "target": "com.ovh.vps#GetVpsServiceNameTemplatesIdSoftwareResponse"
+        "target": "com.ovh.vps#ListVpsTemplateSoftwareResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9625,7 +9626,7 @@
         "smithy.api#documentation": "List available softwares for this template Id"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameTemplatesIdSoftwareSoftwareIdRequest": {
+    "com.ovh.vps#GetVpsTemplateSoftwareRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9657,10 +9658,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#GetVpsServiceNameTemplatesIdSoftwareSoftwareId": {
+    "com.ovh.vps#GetVpsTemplateSoftware": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsServiceNameTemplatesIdSoftwareSoftwareIdRequest"
+        "target": "com.ovh.vps#GetVpsTemplateSoftwareRequest"
       },
       "output": {
         "target": "com.ovh.vps#VpsSoftware"
@@ -9674,7 +9675,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.vps#PostVpsServiceNameTerminateRequest": {
+    "com.ovh.vps#TerminateVpsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9690,7 +9691,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#PostVpsServiceNameTerminateResponse": {
+    "com.ovh.vps#TerminateVpsResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -9705,13 +9706,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.vps#PostVpsServiceNameTerminate": {
+    "com.ovh.vps#TerminateVps": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#PostVpsServiceNameTerminateRequest"
+        "target": "com.ovh.vps#TerminateVpsRequest"
       },
       "output": {
-        "target": "com.ovh.vps#PostVpsServiceNameTerminateResponse"
+        "target": "com.ovh.vps#TerminateVpsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9722,7 +9723,7 @@
         "smithy.api#documentation": "Ask for the termination of your service"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameVeeamRequest": {
+    "com.ovh.vps#GetVpsVeeamRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9752,10 +9753,10 @@
         "smithy.api#documentation": "Informations about a VPS Veeam backups"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameVeeam": {
+    "com.ovh.vps#GetVpsVeeam": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsServiceNameVeeamRequest"
+        "target": "com.ovh.vps#GetVpsVeeamRequest"
       },
       "output": {
         "target": "com.ovh.vps#VpsVeeam"
@@ -9769,7 +9770,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameVeeamRestorePointsRequest": {
+    "com.ovh.vps#ListVpsVeeamRestorePointsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9792,18 +9793,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#GetVpsServiceNameVeeamRestorePointsResponseBodyList": {
+    "com.ovh.vps#ListVpsVeeamRestorePointsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.vps#GetVpsServiceNameVeeamRestorePointsResponse": {
+    "com.ovh.vps#ListVpsVeeamRestorePointsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.vps#GetVpsServiceNameVeeamRestorePointsResponseBodyList",
+          "target": "com.ovh.vps#ListVpsVeeamRestorePointsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -9814,13 +9815,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.vps#GetVpsServiceNameVeeamRestorePoints": {
+    "com.ovh.vps#ListVpsVeeamRestorePoints": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsServiceNameVeeamRestorePointsRequest"
+        "target": "com.ovh.vps#ListVpsVeeamRestorePointsRequest"
       },
       "output": {
-        "target": "com.ovh.vps#GetVpsServiceNameVeeamRestorePointsResponse"
+        "target": "com.ovh.vps#ListVpsVeeamRestorePointsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9831,7 +9832,7 @@
         "smithy.api#documentation": "Veeam restore points for the VPS"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameVeeamRestorePointsIdRequest": {
+    "com.ovh.vps#GetVpsVeeamRestorePointRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9875,10 +9876,10 @@
         "smithy.api#documentation": "Informations about a VPS Veeam restore points"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameVeeamRestorePointsId": {
+    "com.ovh.vps#GetVpsVeeamRestorePoint": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsServiceNameVeeamRestorePointsIdRequest"
+        "target": "com.ovh.vps#GetVpsVeeamRestorePointRequest"
       },
       "output": {
         "target": "com.ovh.vps#VpsVeeamRestorePoint"
@@ -9912,7 +9913,7 @@
         "smithy.api#documentation": "A structure describing a Veeam backup's export options"
       }
     },
-    "com.ovh.vps#PostVpsServiceNameVeeamRestorePointsIdRestoreRequest": {
+    "com.ovh.vps#RestoreVpsVeeamRestorePointRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9955,10 +9956,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#PostVpsServiceNameVeeamRestorePointsIdRestore": {
+    "com.ovh.vps#RestoreVpsVeeamRestorePoint": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#PostVpsServiceNameVeeamRestorePointsIdRestoreRequest"
+        "target": "com.ovh.vps#RestoreVpsVeeamRestorePointRequest"
       },
       "output": {
         "target": "com.ovh.vps#VpsTask"
@@ -9972,7 +9973,7 @@
         "smithy.api#documentation": "Creates a VPS.Task that will restore the given restorePoint"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameVeeamRestoredBackupRequest": {
+    "com.ovh.vps#GetVpsVeeamRestoredBackupRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -10066,10 +10067,10 @@
         "smithy.api#documentation": "A structure describing a Veeam restored backup's state"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameVeeamRestoredBackup": {
+    "com.ovh.vps#GetVpsVeeamRestoredBackup": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsServiceNameVeeamRestoredBackupRequest"
+        "target": "com.ovh.vps#GetVpsVeeamRestoredBackupRequest"
       },
       "output": {
         "target": "com.ovh.vps#VpsVeeamRestoredBackup"
@@ -10083,7 +10084,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.vps#DeleteVpsServiceNameVeeamRestoredBackupRequest": {
+    "com.ovh.vps#DeleteVpsVeeamRestoredBackupRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -10099,10 +10100,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vps#DeleteVpsServiceNameVeeamRestoredBackup": {
+    "com.ovh.vps#DeleteVpsVeeamRestoredBackup": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#DeleteVpsServiceNameVeeamRestoredBackupRequest"
+        "target": "com.ovh.vps#DeleteVpsVeeamRestoredBackupRequest"
       },
       "output": {
         "target": "com.ovh.vps#VpsTask"
@@ -10116,7 +10117,7 @@
         "smithy.api#documentation": "Creates a VPS.Task that will unmount the backup"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameVersionRequest": {
+    "com.ovh.vps#GetVpsVersionRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -10143,10 +10144,10 @@
         "smithy.api#documentation": "VPS billing version"
       }
     },
-    "com.ovh.vps#GetVpsServiceNameVersion": {
+    "com.ovh.vps#GetVpsVersion": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vps#GetVpsServiceNameVersionRequest"
+        "target": "com.ovh.vps#GetVpsVersionRequest"
       },
       "output": {
         "target": "com.ovh.vps#VpsVpsBillingVersion"
@@ -10165,256 +10166,256 @@
       "version": "1.0",
       "operations": [
         {
+          "target": "com.ovh.vps#ListVps"
+        },
+        {
+          "target": "com.ovh.vps#ListVpsDatacenter"
+        },
+        {
+          "target": "com.ovh.vps#ListVpsOrderRuleDatacenter"
+        },
+        {
+          "target": "com.ovh.vps#ListVpsOrderRuleOsChoices"
+        },
+        {
           "target": "com.ovh.vps#GetVps"
+        },
+        {
+          "target": "com.ovh.vps#PutVps"
+        },
+        {
+          "target": "com.ovh.vps#AbortVpsSnapshot"
+        },
+        {
+          "target": "com.ovh.vps#GetVpsAutomatedBackup"
+        },
+        {
+          "target": "com.ovh.vps#ListVpsAutomatedBackupAttachedBackup"
+        },
+        {
+          "target": "com.ovh.vps#DetachVpsAutomatedBackupBackup"
+        },
+        {
+          "target": "com.ovh.vps#CreateVpsAutomatedBackupReschedule"
+        },
+        {
+          "target": "com.ovh.vps#RestoreVpsAutomatedBackup"
+        },
+        {
+          "target": "com.ovh.vps#ListVpsAutomatedBackupRestorePoints"
+        },
+        {
+          "target": "com.ovh.vps#ListVpsAvailableUpgrade"
+        },
+        {
+          "target": "com.ovh.vps#GetVpsBackupftp"
+        },
+        {
+          "target": "com.ovh.vps#ListVpsBackupftpAccess"
+        },
+        {
+          "target": "com.ovh.vps#CreateVpsBackupftpAccess"
+        },
+        {
+          "target": "com.ovh.vps#GetVpsBackupftpAccess"
+        },
+        {
+          "target": "com.ovh.vps#PutVpsBackupftpAccess"
+        },
+        {
+          "target": "com.ovh.vps#DeleteVpsBackupftpAccess"
+        },
+        {
+          "target": "com.ovh.vps#ListVpsBackupftpAuthorizableBlocks"
+        },
+        {
+          "target": "com.ovh.vps#CreateVpsBackupftpPassword"
+        },
+        {
+          "target": "com.ovh.vps#CreateVpsChangeContact"
+        },
+        {
+          "target": "com.ovh.vps#ConfirmVpsTermination"
+        },
+        {
+          "target": "com.ovh.vps#CreateVpsSnapshot"
         },
         {
           "target": "com.ovh.vps#GetVpsDatacenter"
         },
         {
-          "target": "com.ovh.vps#GetVpsOrderRuleDatacenter"
+          "target": "com.ovh.vps#ListVpsDisks"
         },
         {
-          "target": "com.ovh.vps#GetVpsOrderRuleOsChoices"
+          "target": "com.ovh.vps#GetVpsDisk"
         },
         {
-          "target": "com.ovh.vps#GetVpsServiceName"
+          "target": "com.ovh.vps#PutVpsDisk"
         },
         {
-          "target": "com.ovh.vps#PutVpsServiceName"
+          "target": "com.ovh.vps#ListVpsDiskMonitoring"
         },
         {
-          "target": "com.ovh.vps#PostVpsServiceNameAbortSnapshot"
+          "target": "com.ovh.vps#GetVpsDiskUse"
         },
         {
-          "target": "com.ovh.vps#GetVpsServiceNameAutomatedBackup"
+          "target": "com.ovh.vps#GetVpsDistribution"
         },
         {
-          "target": "com.ovh.vps#GetVpsServiceNameAutomatedBackupAttachedBackup"
+          "target": "com.ovh.vps#ListVpsDistributionSoftware"
         },
         {
-          "target": "com.ovh.vps#PostVpsServiceNameAutomatedBackupDetachBackup"
+          "target": "com.ovh.vps#GetVpsDistributionSoftware"
         },
         {
-          "target": "com.ovh.vps#PostVpsServiceNameAutomatedBackupReschedule"
+          "target": "com.ovh.vps#GetVpsConsoleUrl"
         },
         {
-          "target": "com.ovh.vps#PostVpsServiceNameAutomatedBackupRestore"
+          "target": "com.ovh.vps#ListVpsImageAvailable"
         },
         {
-          "target": "com.ovh.vps#GetVpsServiceNameAutomatedBackupRestorePoints"
+          "target": "com.ovh.vps#GetVpsImageAvailable"
         },
         {
-          "target": "com.ovh.vps#GetVpsServiceNameAvailableUpgrade"
+          "target": "com.ovh.vps#GetVpsImageCurrent"
         },
         {
-          "target": "com.ovh.vps#GetVpsServiceNameBackupftp"
+          "target": "com.ovh.vps#ListVpsIpCountryAvailable"
         },
         {
-          "target": "com.ovh.vps#GetVpsServiceNameBackupftpAccess"
+          "target": "com.ovh.vps#ListVpsIps"
         },
         {
-          "target": "com.ovh.vps#PostVpsServiceNameBackupftpAccess"
+          "target": "com.ovh.vps#GetVpsIps"
         },
         {
-          "target": "com.ovh.vps#GetVpsServiceNameBackupftpAccessIpBlock"
+          "target": "com.ovh.vps#PutVpsIps"
         },
         {
-          "target": "com.ovh.vps#PutVpsServiceNameBackupftpAccessIpBlock"
+          "target": "com.ovh.vps#DeleteVpsIps"
         },
         {
-          "target": "com.ovh.vps#DeleteVpsServiceNameBackupftpAccessIpBlock"
+          "target": "com.ovh.vps#ListVpsMigration2018"
         },
         {
-          "target": "com.ovh.vps#GetVpsServiceNameBackupftpAuthorizableBlocks"
+          "target": "com.ovh.vps#CreateVpsMigration2018"
         },
         {
-          "target": "com.ovh.vps#PostVpsServiceNameBackupftpPassword"
+          "target": "com.ovh.vps#ListVpsModels"
         },
         {
-          "target": "com.ovh.vps#PostVpsServiceNameChangeContact"
+          "target": "com.ovh.vps#CreateVpsOpenConsoleAccess"
         },
         {
-          "target": "com.ovh.vps#PostVpsServiceNameConfirmTermination"
+          "target": "com.ovh.vps#ListVpsOption"
         },
         {
-          "target": "com.ovh.vps#PostVpsServiceNameCreateSnapshot"
+          "target": "com.ovh.vps#GetVpsOption"
         },
         {
-          "target": "com.ovh.vps#GetVpsServiceNameDatacenter"
+          "target": "com.ovh.vps#RebootVps"
         },
         {
-          "target": "com.ovh.vps#GetVpsServiceNameDisks"
+          "target": "com.ovh.vps#RebuildVps"
         },
         {
-          "target": "com.ovh.vps#GetVpsServiceNameDisksId"
+          "target": "com.ovh.vps#CreateVpsReinstall"
         },
         {
-          "target": "com.ovh.vps#PutVpsServiceNameDisksId"
+          "target": "com.ovh.vps#ListVpsSecondaryDnsDomains"
         },
         {
-          "target": "com.ovh.vps#GetVpsServiceNameDisksIdMonitoring"
+          "target": "com.ovh.vps#CreateVpsSecondaryDnsDomain"
         },
         {
-          "target": "com.ovh.vps#GetVpsServiceNameDisksIdUse"
+          "target": "com.ovh.vps#GetVpsSecondaryDnsDomain"
         },
         {
-          "target": "com.ovh.vps#GetVpsServiceNameDistribution"
+          "target": "com.ovh.vps#PutVpsSecondaryDnsDomain"
         },
         {
-          "target": "com.ovh.vps#GetVpsServiceNameDistributionSoftware"
+          "target": "com.ovh.vps#DeleteVpsSecondaryDnsDomain"
         },
         {
-          "target": "com.ovh.vps#GetVpsServiceNameDistributionSoftwareSoftwareId"
+          "target": "com.ovh.vps#GetVpsSecondaryDnsDomainDnsServer"
         },
         {
-          "target": "com.ovh.vps#PostVpsServiceNameGetConsoleUrl"
+          "target": "com.ovh.vps#GetVpsSecondaryDnsNameServerAvailable"
         },
         {
-          "target": "com.ovh.vps#GetVpsServiceNameImagesAvailable"
+          "target": "com.ovh.vps#GetVpsServiceInfos"
         },
         {
-          "target": "com.ovh.vps#GetVpsServiceNameImagesAvailableId"
+          "target": "com.ovh.vps#PutVpsServiceInfos"
         },
         {
-          "target": "com.ovh.vps#GetVpsServiceNameImagesCurrent"
+          "target": "com.ovh.vps#SetVpsPassword"
         },
         {
-          "target": "com.ovh.vps#GetVpsServiceNameIpCountryAvailable"
+          "target": "com.ovh.vps#GetVpsSnapshot"
         },
         {
-          "target": "com.ovh.vps#GetVpsServiceNameIps"
+          "target": "com.ovh.vps#PutVpsSnapshot"
         },
         {
-          "target": "com.ovh.vps#GetVpsServiceNameIpsIpAddress"
+          "target": "com.ovh.vps#DeleteVpsSnapshot"
         },
         {
-          "target": "com.ovh.vps#PutVpsServiceNameIpsIpAddress"
+          "target": "com.ovh.vps#GetVpsSnapshotDownload"
         },
         {
-          "target": "com.ovh.vps#DeleteVpsServiceNameIpsIpAddress"
+          "target": "com.ovh.vps#CreateVpsSnapshotRevert"
         },
         {
-          "target": "com.ovh.vps#GetVpsServiceNameMigration2018"
+          "target": "com.ovh.vps#StartVps"
         },
         {
-          "target": "com.ovh.vps#PostVpsServiceNameMigration2018"
+          "target": "com.ovh.vps#GetVpsStatus"
         },
         {
-          "target": "com.ovh.vps#GetVpsServiceNameModels"
+          "target": "com.ovh.vps#StopVps"
         },
         {
-          "target": "com.ovh.vps#PostVpsServiceNameOpenConsoleAccess"
+          "target": "com.ovh.vps#ListVpsTasks"
         },
         {
-          "target": "com.ovh.vps#GetVpsServiceNameOption"
+          "target": "com.ovh.vps#GetVpsTask"
         },
         {
-          "target": "com.ovh.vps#GetVpsServiceNameOptionOption"
+          "target": "com.ovh.vps#ListVpsTemplates"
         },
         {
-          "target": "com.ovh.vps#PostVpsServiceNameReboot"
+          "target": "com.ovh.vps#GetVpsTemplate"
         },
         {
-          "target": "com.ovh.vps#PostVpsServiceNameRebuild"
+          "target": "com.ovh.vps#ListVpsTemplateSoftware"
         },
         {
-          "target": "com.ovh.vps#PostVpsServiceNameReinstall"
+          "target": "com.ovh.vps#GetVpsTemplateSoftware"
         },
         {
-          "target": "com.ovh.vps#GetVpsServiceNameSecondaryDnsDomains"
+          "target": "com.ovh.vps#TerminateVps"
         },
         {
-          "target": "com.ovh.vps#PostVpsServiceNameSecondaryDnsDomains"
+          "target": "com.ovh.vps#GetVpsVeeam"
         },
         {
-          "target": "com.ovh.vps#GetVpsServiceNameSecondaryDnsDomainsDomain"
+          "target": "com.ovh.vps#ListVpsVeeamRestorePoints"
         },
         {
-          "target": "com.ovh.vps#PutVpsServiceNameSecondaryDnsDomainsDomain"
+          "target": "com.ovh.vps#GetVpsVeeamRestorePoint"
         },
         {
-          "target": "com.ovh.vps#DeleteVpsServiceNameSecondaryDnsDomainsDomain"
+          "target": "com.ovh.vps#RestoreVpsVeeamRestorePoint"
         },
         {
-          "target": "com.ovh.vps#GetVpsServiceNameSecondaryDnsDomainsDomainDnsServer"
+          "target": "com.ovh.vps#GetVpsVeeamRestoredBackup"
         },
         {
-          "target": "com.ovh.vps#GetVpsServiceNameSecondaryDnsNameServerAvailable"
+          "target": "com.ovh.vps#DeleteVpsVeeamRestoredBackup"
         },
         {
-          "target": "com.ovh.vps#GetVpsServiceNameServiceInfos"
-        },
-        {
-          "target": "com.ovh.vps#PutVpsServiceNameServiceInfos"
-        },
-        {
-          "target": "com.ovh.vps#PostVpsServiceNameSetPassword"
-        },
-        {
-          "target": "com.ovh.vps#GetVpsServiceNameSnapshot"
-        },
-        {
-          "target": "com.ovh.vps#PutVpsServiceNameSnapshot"
-        },
-        {
-          "target": "com.ovh.vps#DeleteVpsServiceNameSnapshot"
-        },
-        {
-          "target": "com.ovh.vps#GetVpsServiceNameSnapshotDownload"
-        },
-        {
-          "target": "com.ovh.vps#PostVpsServiceNameSnapshotRevert"
-        },
-        {
-          "target": "com.ovh.vps#PostVpsServiceNameStart"
-        },
-        {
-          "target": "com.ovh.vps#GetVpsServiceNameStatus"
-        },
-        {
-          "target": "com.ovh.vps#PostVpsServiceNameStop"
-        },
-        {
-          "target": "com.ovh.vps#GetVpsServiceNameTasks"
-        },
-        {
-          "target": "com.ovh.vps#GetVpsServiceNameTasksId"
-        },
-        {
-          "target": "com.ovh.vps#GetVpsServiceNameTemplates"
-        },
-        {
-          "target": "com.ovh.vps#GetVpsServiceNameTemplatesId"
-        },
-        {
-          "target": "com.ovh.vps#GetVpsServiceNameTemplatesIdSoftware"
-        },
-        {
-          "target": "com.ovh.vps#GetVpsServiceNameTemplatesIdSoftwareSoftwareId"
-        },
-        {
-          "target": "com.ovh.vps#PostVpsServiceNameTerminate"
-        },
-        {
-          "target": "com.ovh.vps#GetVpsServiceNameVeeam"
-        },
-        {
-          "target": "com.ovh.vps#GetVpsServiceNameVeeamRestorePoints"
-        },
-        {
-          "target": "com.ovh.vps#GetVpsServiceNameVeeamRestorePointsId"
-        },
-        {
-          "target": "com.ovh.vps#PostVpsServiceNameVeeamRestorePointsIdRestore"
-        },
-        {
-          "target": "com.ovh.vps#GetVpsServiceNameVeeamRestoredBackup"
-        },
-        {
-          "target": "com.ovh.vps#DeleteVpsServiceNameVeeamRestoredBackup"
-        },
-        {
-          "target": "com.ovh.vps#GetVpsServiceNameVersion"
+          "target": "com.ovh.vps#GetVpsVersion"
         }
       ],
       "traits": {

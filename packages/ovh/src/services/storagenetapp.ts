@@ -12,67 +12,329 @@ import * as Retry from "../retry.ts";
 
 export type { OvhOpError, OvhOpContext };
 
-export interface DeleteStorageNetappServiceNameShareShareIdRequest {
+/** All future uses you can provide for a service termination */
+export type ServiceTerminationFutureUseEnum =
+  | "NOT_REPLACING_SERVICE"
+  | "OTHER"
+  | "SUBSCRIBE_AN_OTHER_SERVICE"
+  | "SUBSCRIBE_OTHER_KIND_OF_SERVICE_WITH_COMPETITOR"
+  | "SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR";
+export const ServiceTerminationFutureUseEnum = /*@__PURE__*/ S.String;
+
+/** All reasons you can provide for a service termination */
+export type ServiceTerminationReasonEnum =
+  | "FEATURES_DONT_SUIT_ME"
+  | "LACK_OF_PERFORMANCES"
+  | "MIGRATED_TO_ANOTHER_OVH_PRODUCT"
+  | "MIGRATED_TO_COMPETITOR"
+  | "NOT_ENOUGH_RECOGNITION"
+  | "NOT_NEEDED_ANYMORE"
+  | "NOT_RELIABLE"
+  | "NO_ANSWER"
+  | "OTHER"
+  | "PRODUCT_DIMENSION_DONT_SUIT_ME"
+  | "PRODUCT_TOOLS_DONT_SUIT_ME"
+  | "TOO_EXPENSIVE"
+  | "TOO_HARD_TO_USE"
+  | "UNSATIFIED_BY_CUSTOMER_SUPPORT";
+export const ServiceTerminationReasonEnum = /*@__PURE__*/ S.String;
+
+export interface ConfirmStorageNetappTerminationRequest {
+  /** Service name */
+  serviceName: string;
+  /** Commentary about your termination request */
+  commentary?: string;
+  /** All future uses you can provide for a service termination */
+  futureUse?: ServiceTerminationFutureUseEnum | (string & {});
+  /** All reasons you can provide for a service termination */
+  reason?: ServiceTerminationReasonEnum | (string & {});
+  /** The termination token sent by email to the admin contact */
+  token: string;
+}
+export const ConfirmStorageNetappTerminationRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      commentary: S.optional(S.String),
+      futureUse: S.optional(ServiceTerminationFutureUseEnum),
+      reason: S.optional(ServiceTerminationReasonEnum),
+      token: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/storage/netapp/{serviceName}/confirmTermination",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ConfirmStorageNetappTerminationRequest",
+}) as any as S.Schema<ConfirmStorageNetappTerminationRequest>;
+
+export type ConfirmStorageNetappTerminationResponse = string;
+export const ConfirmStorageNetappTerminationResponse = /*@__PURE__*/ S.suspend(
+  () => S.String.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ConfirmStorageNetappTerminationResponse",
+}) as any as S.Schema<ConfirmStorageNetappTerminationResponse>;
+
+export interface CreateStorageNetappChangeContactRequest {
+  /** Service name */
+  serviceName: string;
+  /** The contact to set as admin contact */
+  contactAdmin?: string;
+  /** The contact to set as billing contact */
+  contactBilling?: string;
+  /** The contact to set as tech contact */
+  contactTech?: string;
+}
+export const CreateStorageNetappChangeContactRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      contactAdmin: S.optional(S.String),
+      contactBilling: S.optional(S.String),
+      contactTech: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/storage/netapp/{serviceName}/changeContact",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateStorageNetappChangeContactRequest",
+}) as any as S.Schema<CreateStorageNetappChangeContactRequest>;
+
+export type CreateStorageNetappChangeContactResponseBodyList = Array<number>;
+export const CreateStorageNetappChangeContactResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.Number,
+  ) as any as S.Schema<CreateStorageNetappChangeContactResponseBodyList>;
+
+export type CreateStorageNetappChangeContactResponse =
+  CreateStorageNetappChangeContactResponseBodyList;
+export const CreateStorageNetappChangeContactResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    CreateStorageNetappChangeContactResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "CreateStorageNetappChangeContactResponse",
+}) as any as S.Schema<CreateStorageNetappChangeContactResponse>;
+
+/** ACL permission */
+export type StorageNetAppShareACLPermissionEnum = "ro" | "rw";
+export const StorageNetAppShareACLPermissionEnum = /*@__PURE__*/ S.String;
+
+export interface CreateStorageNetappShareAclRequest {
   /** Service name */
   serviceName: string;
   /** Share ID */
   shareId: string;
+  /** Rule access level */
+  accessLevel: StorageNetAppShareACLPermissionEnum | (string & {}) | null;
+  /** Rule destination */
+  accessTo: string | null;
 }
-export const DeleteStorageNetappServiceNameShareShareIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      shareId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/storage/netapp/{serviceName}/share/{shareId}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "DeleteStorageNetappServiceNameShareShareIdRequest",
-  }) as any as S.Schema<DeleteStorageNetappServiceNameShareShareIdRequest>;
+export const CreateStorageNetappShareAclRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    shareId: S.String.pipe(T.Label()),
+    accessLevel: S.NullOr(StorageNetAppShareACLPermissionEnum),
+    accessTo: S.NullOr(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/storage/netapp/{serviceName}/share/{shareId}/acl",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateStorageNetappShareAclRequest",
+}) as any as S.Schema<CreateStorageNetappShareAclRequest>;
 
-export interface DeleteStorageNetappServiceNameShareShareIdResponse {}
-export const DeleteStorageNetappServiceNameShareShareIdResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteStorageNetappServiceNameShareShareIdResponse",
-  }) as any as S.Schema<DeleteStorageNetappServiceNameShareShareIdResponse>;
+/** ACL type */
+export type StorageNetAppShareACLTypeEnum = "ip";
+export const StorageNetAppShareACLTypeEnum = /*@__PURE__*/ S.String;
 
-export interface DeleteStorageNetappServiceNameShareShareIdAclAclRuleIdRequest {
+/** ACL status */
+export type StorageNetAppShareACLStatusEnum =
+  | "active"
+  | "applying"
+  | "denying"
+  | "error"
+  | "queued_to_apply"
+  | "queued_to_deny";
+export const StorageNetAppShareACLStatusEnum = /*@__PURE__*/ S.String;
+
+/** A share ACL rule */
+export interface StorageNetAppShareACLRule {
+  /** Rule access level */
+  accessLevel: StorageNetAppShareACLPermissionEnum | null;
+  /** Rule destination */
+  accessTo: string | null;
+  /** Rule access type */
+  accessType?: StorageNetAppShareACLTypeEnum | null;
+  /** Rule creation date */
+  createdAt?: string | null;
+  /** Rule ID */
+  id?: string;
+  /** Rule status */
+  status?: StorageNetAppShareACLStatusEnum | null;
+}
+export const StorageNetAppShareACLRule = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accessLevel: S.NullOr(StorageNetAppShareACLPermissionEnum),
+    accessTo: S.NullOr(S.String),
+    accessType: S.optional(S.NullOr(StorageNetAppShareACLTypeEnum)),
+    createdAt: S.optional(S.NullOr(S.String)),
+    id: S.optional(S.String),
+    status: S.optional(S.NullOr(StorageNetAppShareACLStatusEnum)),
+  }),
+).annotate({
+  identifier: "StorageNetAppShareACLRule",
+}) as any as S.Schema<StorageNetAppShareACLRule>;
+
+export interface CreateStorageNetappShareRevertRequest {
   /** Service name */
   serviceName: string;
   /** Share ID */
   shareId: string;
-  /** Acl rule ID */
-  aclRuleId: string;
+  /** Latest share snapshot */
+  snapshotID: string;
 }
-export const DeleteStorageNetappServiceNameShareShareIdAclAclRuleIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const CreateStorageNetappShareRevertRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       shareId: S.String.pipe(T.Label()),
-      aclRuleId: S.String.pipe(T.Label()),
+      snapshotID: S.String,
     }).pipe(
       T.Http({
-        method: "DELETE",
-        uri: "/storage/netapp/{serviceName}/share/{shareId}/acl/{aclRuleId}",
+        method: "POST",
+        uri: "/storage/netapp/{serviceName}/share/{shareId}/revert",
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "DeleteStorageNetappServiceNameShareShareIdAclAclRuleIdRequest",
-  }) as any as S.Schema<DeleteStorageNetappServiceNameShareShareIdAclAclRuleIdRequest>;
+).annotate({
+  identifier: "CreateStorageNetappShareRevertRequest",
+}) as any as S.Schema<CreateStorageNetappShareRevertRequest>;
 
-export interface DeleteStorageNetappServiceNameShareShareIdAclAclRuleIdResponse {}
-export const DeleteStorageNetappServiceNameShareShareIdAclAclRuleIdResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier:
-      "DeleteStorageNetappServiceNameShareShareIdAclAclRuleIdResponse",
-  }) as any as S.Schema<DeleteStorageNetappServiceNameShareShareIdAclAclRuleIdResponse>;
+export interface CreateStorageNetappShareRevertResponse {}
+export const CreateStorageNetappShareRevertResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "CreateStorageNetappShareRevertResponse",
+}) as any as S.Schema<CreateStorageNetappShareRevertResponse>;
 
-export interface DeleteStorageNetappServiceNameShareShareIdSnapshotSnapshotIdRequest {
+export interface CreateStorageNetappShareShrinkRequest {
+  /** Service name */
+  serviceName: string;
+  /** Share ID */
+  shareId: string;
+  /** Share size in Gigabytes */
+  size: number | null;
+}
+export const CreateStorageNetappShareShrinkRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      shareId: S.String.pipe(T.Label()),
+      size: S.NullOr(S.Number),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/storage/netapp/{serviceName}/share/{shareId}/shrink",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateStorageNetappShareShrinkRequest",
+}) as any as S.Schema<CreateStorageNetappShareShrinkRequest>;
+
+export interface CreateStorageNetappShareShrinkResponse {}
+export const CreateStorageNetappShareShrinkResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "CreateStorageNetappShareShrinkResponse",
+}) as any as S.Schema<CreateStorageNetappShareShrinkResponse>;
+
+export interface CreateStorageNetappShareSnapshotRequest {
+  /** Service name */
+  serviceName: string;
+  /** Share ID */
+  shareId: string;
+  /** Snapshot description */
+  description?: string | null;
+  /** Snapshot name */
+  name?: string | null;
+}
+export const CreateStorageNetappShareSnapshotRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      shareId: S.String.pipe(T.Label()),
+      description: S.optional(S.NullOr(S.String)),
+      name: S.optional(S.NullOr(S.String)),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/storage/netapp/{serviceName}/share/{shareId}/snapshot",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateStorageNetappShareSnapshotRequest",
+}) as any as S.Schema<CreateStorageNetappShareSnapshotRequest>;
+
+/** Snapshot status */
+export type StorageNetAppSnapshotStatusEnum =
+  | "available"
+  | "creating"
+  | "deleting"
+  | "error"
+  | "error_deleting"
+  | "manage_error"
+  | "manage_starting"
+  | "restoring"
+  | "unmanage_error"
+  | "unmanage_starting";
+export const StorageNetAppSnapshotStatusEnum = /*@__PURE__*/ S.String;
+
+/** Snapshot type */
+export type StorageNetAppSnapshotTypeEnum = "automatic" | "manual" | "system";
+export const StorageNetAppSnapshotTypeEnum = /*@__PURE__*/ S.String;
+
+/** A share snapshot */
+export interface StorageNetAppShareSnapshot {
+  /** Snapshot creation date */
+  createdAt?: string | null;
+  /** Snapshot description */
+  description?: string | null;
+  /** Snapshot ID */
+  id?: string;
+  /** Snapshot name */
+  name?: string | null;
+  /** Snapshot path */
+  path?: string | null;
+  /** Snapshot status */
+  status?: StorageNetAppSnapshotStatusEnum | null;
+  /** Snapshot type */
+  type?: StorageNetAppSnapshotTypeEnum | null;
+}
+export const StorageNetAppShareSnapshot = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdAt: S.optional(S.NullOr(S.String)),
+    description: S.optional(S.NullOr(S.String)),
+    id: S.optional(S.String),
+    name: S.optional(S.NullOr(S.String)),
+    path: S.optional(S.NullOr(S.String)),
+    status: S.optional(S.NullOr(StorageNetAppSnapshotStatusEnum)),
+    type: S.optional(S.NullOr(StorageNetAppSnapshotTypeEnum)),
+  }),
+).annotate({
+  identifier: "StorageNetAppShareSnapshot",
+}) as any as S.Schema<StorageNetAppShareSnapshot>;
+
+export interface CreateStorageNetappShareSnapshotHoldRequest {
   /** Service name */
   serviceName: string;
   /** Share ID */
@@ -80,8 +342,256 @@ export interface DeleteStorageNetappServiceNameShareShareIdSnapshotSnapshotIdReq
   /** Snapshot ID */
   snapshotId: string;
 }
-export const DeleteStorageNetappServiceNameShareShareIdSnapshotSnapshotIdRequest =
+export const CreateStorageNetappShareSnapshotHoldRequest =
   /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      shareId: S.String.pipe(T.Label()),
+      snapshotId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/storage/netapp/{serviceName}/share/{shareId}/snapshot/{snapshotId}/hold",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateStorageNetappShareSnapshotHoldRequest",
+  }) as any as S.Schema<CreateStorageNetappShareSnapshotHoldRequest>;
+
+/** The days of the month the schedule runs (1 through 31). Empty for all. */
+export type StorageNetAppSnapshotPolicyScheduleDaysList = Array<number>;
+export const StorageNetAppSnapshotPolicyScheduleDaysList =
+  /*@__PURE__*/ S.Array(
+    S.Number,
+  ) as any as S.Schema<StorageNetAppSnapshotPolicyScheduleDaysList>;
+
+/** The hours of the day the schedule runs (0 through 23). Empty for all. */
+export type StorageNetAppSnapshotPolicyScheduleHoursList = Array<number>;
+export const StorageNetAppSnapshotPolicyScheduleHoursList =
+  /*@__PURE__*/ S.Array(
+    S.Number,
+  ) as any as S.Schema<StorageNetAppSnapshotPolicyScheduleHoursList>;
+
+/** The minutes the schedule runs (0 through 59). Required to have at least one value. */
+export type StorageNetAppSnapshotPolicyScheduleMinutesList = Array<number>;
+export const StorageNetAppSnapshotPolicyScheduleMinutesList =
+  /*@__PURE__*/ S.Array(
+    S.Number,
+  ) as any as S.Schema<StorageNetAppSnapshotPolicyScheduleMinutesList>;
+
+/** The months of the year the schedule runs (1 through 12). Empty for all. */
+export type StorageNetAppSnapshotPolicyScheduleMonthsList = Array<number>;
+export const StorageNetAppSnapshotPolicyScheduleMonthsList =
+  /*@__PURE__*/ S.Array(
+    S.Number,
+  ) as any as S.Schema<StorageNetAppSnapshotPolicyScheduleMonthsList>;
+
+/** The days of the week the schedule runs (0 through 6, where 0 is Sunday and 6 is Saturday). Empty for all. */
+export type StorageNetAppSnapshotPolicyScheduleWeekdaysList = Array<number>;
+export const StorageNetAppSnapshotPolicyScheduleWeekdaysList =
+  /*@__PURE__*/ S.Array(
+    S.Number,
+  ) as any as S.Schema<StorageNetAppSnapshotPolicyScheduleWeekdaysList>;
+
+/** A snapshot policy schedule */
+export interface StorageNetAppSnapshotPolicySchedule {
+  /** The days of the month the schedule runs (1 through 31). Empty for all. */
+  days?: StorageNetAppSnapshotPolicyScheduleDaysList | null;
+  /** The hours of the day the schedule runs (0 through 23). Empty for all. */
+  hours?: StorageNetAppSnapshotPolicyScheduleHoursList | null;
+  /** The minutes the schedule runs (0 through 59). Required to have at least one value. */
+  minutes: StorageNetAppSnapshotPolicyScheduleMinutesList;
+  /** The months of the year the schedule runs (1 through 12). Empty for all. */
+  months?: StorageNetAppSnapshotPolicyScheduleMonthsList | null;
+  /** The days of the week the schedule runs (0 through 6, where 0 is Sunday and 6 is Saturday). Empty for all. */
+  weekdays?: StorageNetAppSnapshotPolicyScheduleWeekdaysList | null;
+}
+export const StorageNetAppSnapshotPolicySchedule = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    days: S.optional(S.NullOr(StorageNetAppSnapshotPolicyScheduleDaysList)),
+    hours: S.optional(S.NullOr(StorageNetAppSnapshotPolicyScheduleHoursList)),
+    minutes: StorageNetAppSnapshotPolicyScheduleMinutesList,
+    months: S.optional(S.NullOr(StorageNetAppSnapshotPolicyScheduleMonthsList)),
+    weekdays: S.optional(
+      S.NullOr(StorageNetAppSnapshotPolicyScheduleWeekdaysList),
+    ),
+  }),
+).annotate({
+  identifier: "StorageNetAppSnapshotPolicySchedule",
+}) as any as S.Schema<StorageNetAppSnapshotPolicySchedule>;
+
+/** A snapshot policy rule */
+export interface StorageNetAppSnapshotPolicyRule {
+  /** Number of snapshot copies to keep */
+  copies: number | null;
+  /** Prefix to use for snapshots */
+  prefix: string | null;
+  /** Snapshot policy schedule */
+  schedule: StorageNetAppSnapshotPolicySchedule | null;
+}
+export const StorageNetAppSnapshotPolicyRule = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    copies: S.NullOr(S.Number),
+    prefix: S.NullOr(S.String),
+    schedule: S.NullOr(StorageNetAppSnapshotPolicySchedule),
+  }),
+).annotate({
+  identifier: "StorageNetAppSnapshotPolicyRule",
+}) as any as S.Schema<StorageNetAppSnapshotPolicyRule>;
+
+/** Snapshot policy rules */
+export type CreateStorageNetappSnapshotPolicyRequestRulesList =
+  Array<StorageNetAppSnapshotPolicyRule>;
+export const CreateStorageNetappSnapshotPolicyRequestRulesList =
+  /*@__PURE__*/ S.Array(
+    StorageNetAppSnapshotPolicyRule,
+  ) as any as S.Schema<CreateStorageNetappSnapshotPolicyRequestRulesList>;
+
+export interface CreateStorageNetappSnapshotPolicyRequest {
+  /** Service name */
+  serviceName: string;
+  /** Snapshot policy description */
+  description?: string | null;
+  /** Snapshot policy name */
+  name?: string | null;
+  /** Snapshot policy rules */
+  rules: CreateStorageNetappSnapshotPolicyRequestRulesList | null;
+}
+export const CreateStorageNetappSnapshotPolicyRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      description: S.optional(S.NullOr(S.String)),
+      name: S.optional(S.NullOr(S.String)),
+      rules: S.NullOr(CreateStorageNetappSnapshotPolicyRequestRulesList),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/storage/netapp/{serviceName}/snapshotPolicy",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateStorageNetappSnapshotPolicyRequest",
+}) as any as S.Schema<CreateStorageNetappSnapshotPolicyRequest>;
+
+/** Snapshot policy rules */
+export type StorageNetAppSnapshotPolicyRulesList =
+  Array<StorageNetAppSnapshotPolicyRule>;
+export const StorageNetAppSnapshotPolicyRulesList = /*@__PURE__*/ S.Array(
+  StorageNetAppSnapshotPolicyRule,
+) as any as S.Schema<StorageNetAppSnapshotPolicyRulesList>;
+
+/** Snapshot policy status */
+export type StorageNetAppSnapshotPolicyStatusEnum =
+  | "available"
+  | "creating"
+  | "deleting"
+  | "error"
+  | "updating";
+export const StorageNetAppSnapshotPolicyStatusEnum = /*@__PURE__*/ S.String;
+
+/** A snapshot policy */
+export interface StorageNetAppSnapshotPolicy {
+  /** Snapshot policy creation date */
+  createdAt?: string | null;
+  /** Snapshot policy description */
+  description?: string | null;
+  /** Snapshot policy ID */
+  id?: string;
+  /** Is this the default snapshot policy? */
+  isDefault?: boolean | null;
+  /** Snapshot policy name */
+  name?: string | null;
+  /** Snapshot policy rules */
+  rules: StorageNetAppSnapshotPolicyRulesList | null;
+  /** Snapshot policy status */
+  status?: StorageNetAppSnapshotPolicyStatusEnum | null;
+}
+export const StorageNetAppSnapshotPolicy = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdAt: S.optional(S.NullOr(S.String)),
+    description: S.optional(S.NullOr(S.String)),
+    id: S.optional(S.String),
+    isDefault: S.optional(S.NullOr(S.Boolean)),
+    name: S.optional(S.NullOr(S.String)),
+    rules: S.NullOr(StorageNetAppSnapshotPolicyRulesList),
+    status: S.optional(S.NullOr(StorageNetAppSnapshotPolicyStatusEnum)),
+  }),
+).annotate({
+  identifier: "StorageNetAppSnapshotPolicy",
+}) as any as S.Schema<StorageNetAppSnapshotPolicy>;
+
+export interface DeleteStorageNetappShareRequest {
+  /** Service name */
+  serviceName: string;
+  /** Share ID */
+  shareId: string;
+}
+export const DeleteStorageNetappShareRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    shareId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/storage/netapp/{serviceName}/share/{shareId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteStorageNetappShareRequest",
+}) as any as S.Schema<DeleteStorageNetappShareRequest>;
+
+export interface DeleteStorageNetappShareResponse {}
+export const DeleteStorageNetappShareResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteStorageNetappShareResponse",
+}) as any as S.Schema<DeleteStorageNetappShareResponse>;
+
+export interface DeleteStorageNetappShareAclRequest {
+  /** Service name */
+  serviceName: string;
+  /** Share ID */
+  shareId: string;
+  /** Acl rule ID */
+  aclRuleId: string;
+}
+export const DeleteStorageNetappShareAclRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    shareId: S.String.pipe(T.Label()),
+    aclRuleId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/storage/netapp/{serviceName}/share/{shareId}/acl/{aclRuleId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteStorageNetappShareAclRequest",
+}) as any as S.Schema<DeleteStorageNetappShareAclRequest>;
+
+export interface DeleteStorageNetappShareAclResponse {}
+export const DeleteStorageNetappShareAclResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteStorageNetappShareAclResponse",
+}) as any as S.Schema<DeleteStorageNetappShareAclResponse>;
+
+export interface DeleteStorageNetappShareSnapshotRequest {
+  /** Service name */
+  serviceName: string;
+  /** Share ID */
+  shareId: string;
+  /** Snapshot ID */
+  snapshotId: string;
+}
+export const DeleteStorageNetappShareSnapshotRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       shareId: S.String.pipe(T.Label()),
@@ -93,26 +603,25 @@ export const DeleteStorageNetappServiceNameShareShareIdSnapshotSnapshotIdRequest
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier:
-      "DeleteStorageNetappServiceNameShareShareIdSnapshotSnapshotIdRequest",
-  }) as any as S.Schema<DeleteStorageNetappServiceNameShareShareIdSnapshotSnapshotIdRequest>;
+).annotate({
+  identifier: "DeleteStorageNetappShareSnapshotRequest",
+}) as any as S.Schema<DeleteStorageNetappShareSnapshotRequest>;
 
-export interface DeleteStorageNetappServiceNameShareShareIdSnapshotSnapshotIdResponse {}
-export const DeleteStorageNetappServiceNameShareShareIdSnapshotSnapshotIdResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier:
-      "DeleteStorageNetappServiceNameShareShareIdSnapshotSnapshotIdResponse",
-  }) as any as S.Schema<DeleteStorageNetappServiceNameShareShareIdSnapshotSnapshotIdResponse>;
+export interface DeleteStorageNetappShareSnapshotResponse {}
+export const DeleteStorageNetappShareSnapshotResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteStorageNetappShareSnapshotResponse",
+}) as any as S.Schema<DeleteStorageNetappShareSnapshotResponse>;
 
-export interface DeleteStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdRequest {
+export interface DeleteStorageNetappSnapshotPolicyRequest {
   /** Service name */
   serviceName: string;
   /** Snapshot policy ID */
   snapshotPolicyId: string;
 }
-export const DeleteStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const DeleteStorageNetappSnapshotPolicyRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       snapshotPolicyId: S.String.pipe(T.Label()),
@@ -123,48 +632,57 @@ export const DeleteStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdRequest
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier:
-      "DeleteStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdRequest",
-  }) as any as S.Schema<DeleteStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdRequest>;
+).annotate({
+  identifier: "DeleteStorageNetappSnapshotPolicyRequest",
+}) as any as S.Schema<DeleteStorageNetappSnapshotPolicyRequest>;
 
-export interface DeleteStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdResponse {}
-export const DeleteStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdResponse =
+export interface DeleteStorageNetappSnapshotPolicyResponse {}
+export const DeleteStorageNetappSnapshotPolicyResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier:
-      "DeleteStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdResponse",
-  }) as any as S.Schema<DeleteStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdResponse>;
+    identifier: "DeleteStorageNetappSnapshotPolicyResponse",
+  }) as any as S.Schema<DeleteStorageNetappSnapshotPolicyResponse>;
 
-/** Resource tag filter */
-export interface IamResourceTagFilterInput {}
-export const IamResourceTagFilterInput = /*@__PURE__*/ S.suspend(() =>
+export interface ExtendStorageNetappShareRequest {
+  /** Service name */
+  serviceName: string;
+  /** Share ID */
+  shareId: string;
+  /** Share size in Gigabytes */
+  size: number | null;
+}
+export const ExtendStorageNetappShareRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    shareId: S.String.pipe(T.Label()),
+    size: S.NullOr(S.Number),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/storage/netapp/{serviceName}/share/{shareId}/extend",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ExtendStorageNetappShareRequest",
+}) as any as S.Schema<ExtendStorageNetappShareRequest>;
+
+export interface ExtendStorageNetappShareResponse {}
+export const ExtendStorageNetappShareResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "IamResourceTagFilterInput",
-}) as any as S.Schema<IamResourceTagFilterInput>;
-
-export type GetStorageNetappRequestIamTagsValueList =
-  Array<IamResourceTagFilterInput>;
-export const GetStorageNetappRequestIamTagsValueList = /*@__PURE__*/ S.Array(
-  IamResourceTagFilterInput,
-) as any as S.Schema<GetStorageNetappRequestIamTagsValueList>;
-
-export type GetStorageNetappRequestIamTagsMap = {
-  [key: string]: GetStorageNetappRequestIamTagsValueList | undefined;
-};
-export const GetStorageNetappRequestIamTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  GetStorageNetappRequestIamTagsValueList,
-) as any as S.Schema<GetStorageNetappRequestIamTagsMap>;
+  identifier: "ExtendStorageNetappShareResponse",
+}) as any as S.Schema<ExtendStorageNetappShareResponse>;
 
 export interface GetStorageNetappRequest {
-  /** Filter resources on IAM tags */
-  iamTags?: GetStorageNetappRequestIamTagsMap;
+  /** Service name */
+  serviceName: string;
 }
 export const GetStorageNetappRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    iamTags: S.optional(GetStorageNetappRequestIamTagsMap.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/storage/netapp", code: 200 })),
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/storage/netapp/{serviceName}", code: 200 }),
+  ),
 ).annotate({
   identifier: "GetStorageNetappRequest",
 }) as any as S.Schema<GetStorageNetappRequest>;
@@ -259,51 +777,23 @@ export const StorageNetAppServiceWithIAM = /*@__PURE__*/ S.suspend(() =>
   identifier: "StorageNetAppServiceWithIAM",
 }) as any as S.Schema<StorageNetAppServiceWithIAM>;
 
-export type GetStorageNetappResponseBodyList =
-  Array<StorageNetAppServiceWithIAM>;
-export const GetStorageNetappResponseBodyList = /*@__PURE__*/ S.Array(
-  StorageNetAppServiceWithIAM,
-) as any as S.Schema<GetStorageNetappResponseBodyList>;
-
-export type GetStorageNetappResponse = GetStorageNetappResponseBodyList;
-export const GetStorageNetappResponse = /*@__PURE__*/ S.suspend(() =>
-  GetStorageNetappResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetStorageNetappResponse",
-}) as any as S.Schema<GetStorageNetappResponse>;
-
-export interface GetStorageNetappServiceNameRequest {
+export interface GetStorageNetappMetricsTokenRequest {
   /** Service name */
   serviceName: string;
 }
-export const GetStorageNetappServiceNameRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetStorageNetappMetricsTokenRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     serviceName: S.String.pipe(T.Label()),
   }).pipe(
-    T.Http({ method: "GET", uri: "/storage/netapp/{serviceName}", code: 200 }),
+    T.Http({
+      method: "GET",
+      uri: "/storage/netapp/{serviceName}/metricsToken",
+      code: 200,
+    }),
   ),
 ).annotate({
-  identifier: "GetStorageNetappServiceNameRequest",
-}) as any as S.Schema<GetStorageNetappServiceNameRequest>;
-
-export interface GetStorageNetappServiceNameMetricsTokenRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const GetStorageNetappServiceNameMetricsTokenRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/storage/netapp/{serviceName}/metricsToken",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetStorageNetappServiceNameMetricsTokenRequest",
-  }) as any as S.Schema<GetStorageNetappServiceNameMetricsTokenRequest>;
+  identifier: "GetStorageNetappMetricsTokenRequest",
+}) as any as S.Schema<GetStorageNetappMetricsTokenRequest>;
 
 /** Metrics token */
 export interface StorageMetricsToken {
@@ -324,27 +814,26 @@ export const StorageMetricsToken = /*@__PURE__*/ S.suspend(() =>
   identifier: "StorageMetricsToken",
 }) as any as S.Schema<StorageMetricsToken>;
 
-export interface GetStorageNetappServiceNameNetworkRequest {
+export interface GetStorageNetappNetworkRequest {
   /** Service name */
   serviceName: string;
-  /** Get detailed information about each network */
-  detail?: boolean;
+  /** Network ID */
+  networkId: string;
 }
-export const GetStorageNetappServiceNameNetworkRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      detail: S.optional(S.Boolean.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/storage/netapp/{serviceName}/network",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetStorageNetappServiceNameNetworkRequest",
-  }) as any as S.Schema<GetStorageNetappServiceNameNetworkRequest>;
+export const GetStorageNetappNetworkRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    networkId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/storage/netapp/{serviceName}/network/{networkId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetStorageNetappNetworkRequest",
+}) as any as S.Schema<GetStorageNetappNetworkRequest>;
 
 /** Network status */
 export type StorageNetAppNetworkStatusEnum =
@@ -373,64 +862,23 @@ export const StorageNetAppNetwork = /*@__PURE__*/ S.suspend(() =>
   identifier: "StorageNetAppNetwork",
 }) as any as S.Schema<StorageNetAppNetwork>;
 
-export type GetStorageNetappServiceNameNetworkResponseBodyList =
-  Array<StorageNetAppNetwork>;
-export const GetStorageNetappServiceNameNetworkResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    StorageNetAppNetwork,
-  ) as any as S.Schema<GetStorageNetappServiceNameNetworkResponseBodyList>;
-
-export type GetStorageNetappServiceNameNetworkResponse =
-  GetStorageNetappServiceNameNetworkResponseBodyList;
-export const GetStorageNetappServiceNameNetworkResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetStorageNetappServiceNameNetworkResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetStorageNetappServiceNameNetworkResponse",
-  }) as any as S.Schema<GetStorageNetappServiceNameNetworkResponse>;
-
-export interface GetStorageNetappServiceNameNetworkNetworkIdRequest {
-  /** Service name */
-  serviceName: string;
-  /** Network ID */
-  networkId: string;
-}
-export const GetStorageNetappServiceNameNetworkNetworkIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      networkId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/storage/netapp/{serviceName}/network/{networkId}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetStorageNetappServiceNameNetworkNetworkIdRequest",
-  }) as any as S.Schema<GetStorageNetappServiceNameNetworkNetworkIdRequest>;
-
-export interface GetStorageNetappServiceNameServiceInfosRequest {
+export interface GetStorageNetappServiceInfosRequest {
   /** Service name */
   serviceName: string;
 }
-export const GetStorageNetappServiceNameServiceInfosRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/storage/netapp/{serviceName}/serviceInfos",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetStorageNetappServiceNameServiceInfosRequest",
-  }) as any as S.Schema<GetStorageNetappServiceNameServiceInfosRequest>;
+export const GetStorageNetappServiceInfosRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/storage/netapp/{serviceName}/serviceInfos",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetStorageNetappServiceInfosRequest",
+}) as any as S.Schema<GetStorageNetappServiceInfosRequest>;
 
 /** All the possible renew period of your service in month */
 export type ServicesServicePossibleRenewPeriodList = Array<number>;
@@ -525,30 +973,26 @@ export const ServicesService = /*@__PURE__*/ S.suspend(() =>
   identifier: "ServicesService",
 }) as any as S.Schema<ServicesService>;
 
-export interface GetStorageNetappServiceNameShareRequest {
+export interface GetStorageNetappShareRequest {
   /** Service name */
   serviceName: string;
-  /** Get detailed information about each share */
-  detail?: boolean;
-  /** If specified, returns only shares with given mount point name */
-  mountPointName?: string;
+  /** Share ID */
+  shareId: string;
 }
-export const GetStorageNetappServiceNameShareRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      detail: S.optional(S.Boolean.pipe(T.Query())),
-      mountPointName: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/storage/netapp/{serviceName}/share",
-        code: 200,
-      }),
-    ),
+export const GetStorageNetappShareRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    shareId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/storage/netapp/{serviceName}/share/{shareId}",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "GetStorageNetappServiceNameShareRequest",
-}) as any as S.Schema<GetStorageNetappServiceNameShareRequest>;
+  identifier: "GetStorageNetappShareRequest",
+}) as any as S.Schema<GetStorageNetappShareRequest>;
 
 /** Storage protocol */
 export type StorageProtocolEnum = "NFS";
@@ -618,65 +1062,30 @@ export const StorageNetAppShare = /*@__PURE__*/ S.suspend(() =>
   identifier: "StorageNetAppShare",
 }) as any as S.Schema<StorageNetAppShare>;
 
-export type GetStorageNetappServiceNameShareResponseBodyList =
-  Array<StorageNetAppShare>;
-export const GetStorageNetappServiceNameShareResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    StorageNetAppShare,
-  ) as any as S.Schema<GetStorageNetappServiceNameShareResponseBodyList>;
-
-export type GetStorageNetappServiceNameShareResponse =
-  GetStorageNetappServiceNameShareResponseBodyList;
-export const GetStorageNetappServiceNameShareResponse = /*@__PURE__*/ S.suspend(
+export interface GetStorageNetappShareAccessPathRequest {
+  /** Service name */
+  serviceName: string;
+  /** Share ID */
+  shareId: string;
+  /** Access path ID */
+  accessPathId: string;
+}
+export const GetStorageNetappShareAccessPathRequest = /*@__PURE__*/ S.suspend(
   () =>
-    GetStorageNetappServiceNameShareResponseBodyList.pipe(T.RawResponseRoot()),
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      shareId: S.String.pipe(T.Label()),
+      accessPathId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/storage/netapp/{serviceName}/share/{shareId}/accessPath/{accessPathId}",
+        code: 200,
+      }),
+    ),
 ).annotate({
-  identifier: "GetStorageNetappServiceNameShareResponse",
-}) as any as S.Schema<GetStorageNetappServiceNameShareResponse>;
-
-export interface GetStorageNetappServiceNameShareShareIdRequest {
-  /** Service name */
-  serviceName: string;
-  /** Share ID */
-  shareId: string;
-}
-export const GetStorageNetappServiceNameShareShareIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      shareId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/storage/netapp/{serviceName}/share/{shareId}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetStorageNetappServiceNameShareShareIdRequest",
-  }) as any as S.Schema<GetStorageNetappServiceNameShareShareIdRequest>;
-
-export interface GetStorageNetappServiceNameShareShareIdAccessPathRequest {
-  /** Service name */
-  serviceName: string;
-  /** Share ID */
-  shareId: string;
-}
-export const GetStorageNetappServiceNameShareShareIdAccessPathRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      shareId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/storage/netapp/{serviceName}/share/{shareId}/accessPath",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetStorageNetappServiceNameShareShareIdAccessPathRequest",
-  }) as any as S.Schema<GetStorageNetappServiceNameShareShareIdAccessPathRequest>;
+  identifier: "GetStorageNetappShareAccessPathRequest",
+}) as any as S.Schema<GetStorageNetappShareAccessPathRequest>;
 
 /** A share access path */
 export interface StorageNetAppShareAccessPath {
@@ -697,137 +1106,7 @@ export const StorageNetAppShareAccessPath = /*@__PURE__*/ S.suspend(() =>
   identifier: "StorageNetAppShareAccessPath",
 }) as any as S.Schema<StorageNetAppShareAccessPath>;
 
-export type GetStorageNetappServiceNameShareShareIdAccessPathResponseBodyList =
-  Array<StorageNetAppShareAccessPath>;
-export const GetStorageNetappServiceNameShareShareIdAccessPathResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    StorageNetAppShareAccessPath,
-  ) as any as S.Schema<GetStorageNetappServiceNameShareShareIdAccessPathResponseBodyList>;
-
-export type GetStorageNetappServiceNameShareShareIdAccessPathResponse =
-  GetStorageNetappServiceNameShareShareIdAccessPathResponseBodyList;
-export const GetStorageNetappServiceNameShareShareIdAccessPathResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetStorageNetappServiceNameShareShareIdAccessPathResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetStorageNetappServiceNameShareShareIdAccessPathResponse",
-  }) as any as S.Schema<GetStorageNetappServiceNameShareShareIdAccessPathResponse>;
-
-export interface GetStorageNetappServiceNameShareShareIdAccessPathAccessPathIdRequest {
-  /** Service name */
-  serviceName: string;
-  /** Share ID */
-  shareId: string;
-  /** Access path ID */
-  accessPathId: string;
-}
-export const GetStorageNetappServiceNameShareShareIdAccessPathAccessPathIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      shareId: S.String.pipe(T.Label()),
-      accessPathId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/storage/netapp/{serviceName}/share/{shareId}/accessPath/{accessPathId}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "GetStorageNetappServiceNameShareShareIdAccessPathAccessPathIdRequest",
-  }) as any as S.Schema<GetStorageNetappServiceNameShareShareIdAccessPathAccessPathIdRequest>;
-
-export interface GetStorageNetappServiceNameShareShareIdAclRequest {
-  /** Service name */
-  serviceName: string;
-  /** Share ID */
-  shareId: string;
-}
-export const GetStorageNetappServiceNameShareShareIdAclRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      shareId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/storage/netapp/{serviceName}/share/{shareId}/acl",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetStorageNetappServiceNameShareShareIdAclRequest",
-  }) as any as S.Schema<GetStorageNetappServiceNameShareShareIdAclRequest>;
-
-/** ACL permission */
-export type StorageNetAppShareACLPermissionEnum = "ro" | "rw";
-export const StorageNetAppShareACLPermissionEnum = /*@__PURE__*/ S.String;
-
-/** ACL type */
-export type StorageNetAppShareACLTypeEnum = "ip";
-export const StorageNetAppShareACLTypeEnum = /*@__PURE__*/ S.String;
-
-/** ACL status */
-export type StorageNetAppShareACLStatusEnum =
-  | "active"
-  | "applying"
-  | "denying"
-  | "error"
-  | "queued_to_apply"
-  | "queued_to_deny";
-export const StorageNetAppShareACLStatusEnum = /*@__PURE__*/ S.String;
-
-/** A share ACL rule */
-export interface StorageNetAppShareACLRule {
-  /** Rule access level */
-  accessLevel: StorageNetAppShareACLPermissionEnum | null;
-  /** Rule destination */
-  accessTo: string | null;
-  /** Rule access type */
-  accessType?: StorageNetAppShareACLTypeEnum | null;
-  /** Rule creation date */
-  createdAt?: string | null;
-  /** Rule ID */
-  id?: string;
-  /** Rule status */
-  status?: StorageNetAppShareACLStatusEnum | null;
-}
-export const StorageNetAppShareACLRule = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accessLevel: S.NullOr(StorageNetAppShareACLPermissionEnum),
-    accessTo: S.NullOr(S.String),
-    accessType: S.optional(S.NullOr(StorageNetAppShareACLTypeEnum)),
-    createdAt: S.optional(S.NullOr(S.String)),
-    id: S.optional(S.String),
-    status: S.optional(S.NullOr(StorageNetAppShareACLStatusEnum)),
-  }),
-).annotate({
-  identifier: "StorageNetAppShareACLRule",
-}) as any as S.Schema<StorageNetAppShareACLRule>;
-
-export type GetStorageNetappServiceNameShareShareIdAclResponseBodyList =
-  Array<StorageNetAppShareACLRule>;
-export const GetStorageNetappServiceNameShareShareIdAclResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    StorageNetAppShareACLRule,
-  ) as any as S.Schema<GetStorageNetappServiceNameShareShareIdAclResponseBodyList>;
-
-export type GetStorageNetappServiceNameShareShareIdAclResponse =
-  GetStorageNetappServiceNameShareShareIdAclResponseBodyList;
-export const GetStorageNetappServiceNameShareShareIdAclResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetStorageNetappServiceNameShareShareIdAclResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetStorageNetappServiceNameShareShareIdAclResponse",
-  }) as any as S.Schema<GetStorageNetappServiceNameShareShareIdAclResponse>;
-
-export interface GetStorageNetappServiceNameShareShareIdAclAclRuleIdRequest {
+export interface GetStorageNetappShareAclRequest {
   /** Service name */
   serviceName: string;
   /** Share ID */
@@ -835,122 +1114,54 @@ export interface GetStorageNetappServiceNameShareShareIdAclAclRuleIdRequest {
   /** Acl rule ID */
   aclRuleId: string;
 }
-export const GetStorageNetappServiceNameShareShareIdAclAclRuleIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      shareId: S.String.pipe(T.Label()),
-      aclRuleId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/storage/netapp/{serviceName}/share/{shareId}/acl/{aclRuleId}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetStorageNetappServiceNameShareShareIdAclAclRuleIdRequest",
-  }) as any as S.Schema<GetStorageNetappServiceNameShareShareIdAclAclRuleIdRequest>;
-
-export interface GetStorageNetappServiceNameShareShareIdSnapshotRequest {
-  /** Service name */
-  serviceName: string;
-  /** Share ID */
-  shareId: string;
-  /** Get detailed information about each snapshot */
-  detail?: boolean;
-}
-export const GetStorageNetappServiceNameShareShareIdSnapshotRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      shareId: S.String.pipe(T.Label()),
-      detail: S.optional(S.Boolean.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/storage/netapp/{serviceName}/share/{shareId}/snapshot",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetStorageNetappServiceNameShareShareIdSnapshotRequest",
-  }) as any as S.Schema<GetStorageNetappServiceNameShareShareIdSnapshotRequest>;
-
-/** Snapshot status */
-export type StorageNetAppSnapshotStatusEnum =
-  | "available"
-  | "creating"
-  | "deleting"
-  | "error"
-  | "error_deleting"
-  | "manage_error"
-  | "manage_starting"
-  | "restoring"
-  | "unmanage_error"
-  | "unmanage_starting";
-export const StorageNetAppSnapshotStatusEnum = /*@__PURE__*/ S.String;
-
-/** Snapshot type */
-export type StorageNetAppSnapshotTypeEnum = "automatic" | "manual" | "system";
-export const StorageNetAppSnapshotTypeEnum = /*@__PURE__*/ S.String;
-
-/** A share snapshot */
-export interface StorageNetAppShareSnapshot {
-  /** Snapshot creation date */
-  createdAt?: string | null;
-  /** Snapshot description */
-  description?: string | null;
-  /** Snapshot ID */
-  id?: string;
-  /** Snapshot name */
-  name?: string | null;
-  /** Snapshot path */
-  path?: string | null;
-  /** Snapshot status */
-  status?: StorageNetAppSnapshotStatusEnum | null;
-  /** Snapshot type */
-  type?: StorageNetAppSnapshotTypeEnum | null;
-}
-export const StorageNetAppShareSnapshot = /*@__PURE__*/ S.suspend(() =>
+export const GetStorageNetappShareAclRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    createdAt: S.optional(S.NullOr(S.String)),
-    description: S.optional(S.NullOr(S.String)),
-    id: S.optional(S.String),
-    name: S.optional(S.NullOr(S.String)),
-    path: S.optional(S.NullOr(S.String)),
-    status: S.optional(S.NullOr(StorageNetAppSnapshotStatusEnum)),
-    type: S.optional(S.NullOr(StorageNetAppSnapshotTypeEnum)),
-  }),
+    serviceName: S.String.pipe(T.Label()),
+    shareId: S.String.pipe(T.Label()),
+    aclRuleId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/storage/netapp/{serviceName}/share/{shareId}/acl/{aclRuleId}",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "StorageNetAppShareSnapshot",
-}) as any as S.Schema<StorageNetAppShareSnapshot>;
+  identifier: "GetStorageNetappShareAclRequest",
+}) as any as S.Schema<GetStorageNetappShareAclRequest>;
 
-export type GetStorageNetappServiceNameShareShareIdSnapshotResponseBodyList =
-  Array<StorageNetAppShareSnapshot>;
-export const GetStorageNetappServiceNameShareShareIdSnapshotResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    StorageNetAppShareSnapshot,
-  ) as any as S.Schema<GetStorageNetappServiceNameShareShareIdSnapshotResponseBodyList>;
-
-export type GetStorageNetappServiceNameShareShareIdSnapshotResponse =
-  GetStorageNetappServiceNameShareShareIdSnapshotResponseBodyList;
-export const GetStorageNetappServiceNameShareShareIdSnapshotResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetStorageNetappServiceNameShareShareIdSnapshotResponseBodyList.pipe(
-      T.RawResponseRoot(),
+export interface GetStorageNetappShareSnapshotRequest {
+  /** Service name */
+  serviceName: string;
+  /** Share ID */
+  shareId: string;
+  /** Snapshot ID */
+  snapshotId: string;
+}
+export const GetStorageNetappShareSnapshotRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      shareId: S.String.pipe(T.Label()),
+      snapshotId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/storage/netapp/{serviceName}/share/{shareId}/snapshot/{snapshotId}",
+        code: 200,
+      }),
     ),
-  ).annotate({
-    identifier: "GetStorageNetappServiceNameShareShareIdSnapshotResponse",
-  }) as any as S.Schema<GetStorageNetappServiceNameShareShareIdSnapshotResponse>;
+).annotate({
+  identifier: "GetStorageNetappShareSnapshotRequest",
+}) as any as S.Schema<GetStorageNetappShareSnapshotRequest>;
 
-export interface GetStorageNetappServiceNameShareShareIdSnapshotPolicyRequest {
+export interface GetStorageNetappShareSnapshotPolicyRequest {
   /** Service name */
   serviceName: string;
   /** Share ID */
   shareId: string;
 }
-export const GetStorageNetappServiceNameShareShareIdSnapshotPolicyRequest =
+export const GetStorageNetappShareSnapshotPolicyRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
@@ -963,8 +1174,8 @@ export const GetStorageNetappServiceNameShareShareIdSnapshotPolicyRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetStorageNetappServiceNameShareShareIdSnapshotPolicyRequest",
-  }) as any as S.Schema<GetStorageNetappServiceNameShareShareIdSnapshotPolicyRequest>;
+    identifier: "GetStorageNetappShareSnapshotPolicyRequest",
+  }) as any as S.Schema<GetStorageNetappShareSnapshotPolicyRequest>;
 
 /** Association status between the share and the snapshot policy */
 export type StorageNetAppShareSnapshotPolicyStatusEnum =
@@ -990,13 +1201,13 @@ export const StorageNetAppShareSnapshotPolicy = /*@__PURE__*/ S.suspend(() =>
   identifier: "StorageNetAppShareSnapshotPolicy",
 }) as any as S.Schema<StorageNetAppShareSnapshotPolicy>;
 
-export interface GetStorageNetappServiceNameShareShareIdSnapshotReserveRequest {
+export interface GetStorageNetappShareSnapshotReserveRequest {
   /** Service name */
   serviceName: string;
   /** Share ID */
   shareId: string;
 }
-export const GetStorageNetappServiceNameShareShareIdSnapshotReserveRequest =
+export const GetStorageNetappShareSnapshotReserveRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
@@ -1009,8 +1220,8 @@ export const GetStorageNetappServiceNameShareShareIdSnapshotReserveRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetStorageNetappServiceNameShareShareIdSnapshotReserveRequest",
-  }) as any as S.Schema<GetStorageNetappServiceNameShareShareIdSnapshotReserveRequest>;
+    identifier: "GetStorageNetappShareSnapshotReserveRequest",
+  }) as any as S.Schema<GetStorageNetappShareSnapshotReserveRequest>;
 
 /** Snapshot reserve properties status */
 export type StorageNetAppShareSnapshotReserveStatusEnum =
@@ -1036,205 +1247,14 @@ export const StorageNetAppShareSnapshotReserve = /*@__PURE__*/ S.suspend(() =>
   identifier: "StorageNetAppShareSnapshotReserve",
 }) as any as S.Schema<StorageNetAppShareSnapshotReserve>;
 
-export interface GetStorageNetappServiceNameShareShareIdSnapshotSnapshotIdRequest {
-  /** Service name */
-  serviceName: string;
-  /** Share ID */
-  shareId: string;
-  /** Snapshot ID */
-  snapshotId: string;
-}
-export const GetStorageNetappServiceNameShareShareIdSnapshotSnapshotIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      shareId: S.String.pipe(T.Label()),
-      snapshotId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/storage/netapp/{serviceName}/share/{shareId}/snapshot/{snapshotId}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "GetStorageNetappServiceNameShareShareIdSnapshotSnapshotIdRequest",
-  }) as any as S.Schema<GetStorageNetappServiceNameShareShareIdSnapshotSnapshotIdRequest>;
-
-export interface GetStorageNetappServiceNameSnapshotPolicyRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const GetStorageNetappServiceNameSnapshotPolicyRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/storage/netapp/{serviceName}/snapshotPolicy",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetStorageNetappServiceNameSnapshotPolicyRequest",
-  }) as any as S.Schema<GetStorageNetappServiceNameSnapshotPolicyRequest>;
-
-/** The days of the month the schedule runs (1 through 31). Empty for all. */
-export type StorageNetAppSnapshotPolicyScheduleDaysList = Array<number>;
-export const StorageNetAppSnapshotPolicyScheduleDaysList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<StorageNetAppSnapshotPolicyScheduleDaysList>;
-
-/** The hours of the day the schedule runs (0 through 23). Empty for all. */
-export type StorageNetAppSnapshotPolicyScheduleHoursList = Array<number>;
-export const StorageNetAppSnapshotPolicyScheduleHoursList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<StorageNetAppSnapshotPolicyScheduleHoursList>;
-
-/** The minutes the schedule runs (0 through 59). Required to have at least one value. */
-export type StorageNetAppSnapshotPolicyScheduleMinutesList = Array<number>;
-export const StorageNetAppSnapshotPolicyScheduleMinutesList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<StorageNetAppSnapshotPolicyScheduleMinutesList>;
-
-/** The months of the year the schedule runs (1 through 12). Empty for all. */
-export type StorageNetAppSnapshotPolicyScheduleMonthsList = Array<number>;
-export const StorageNetAppSnapshotPolicyScheduleMonthsList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<StorageNetAppSnapshotPolicyScheduleMonthsList>;
-
-/** The days of the week the schedule runs (0 through 6, where 0 is Sunday and 6 is Saturday). Empty for all. */
-export type StorageNetAppSnapshotPolicyScheduleWeekdaysList = Array<number>;
-export const StorageNetAppSnapshotPolicyScheduleWeekdaysList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<StorageNetAppSnapshotPolicyScheduleWeekdaysList>;
-
-/** A snapshot policy schedule */
-export interface StorageNetAppSnapshotPolicySchedule {
-  /** The days of the month the schedule runs (1 through 31). Empty for all. */
-  days?: StorageNetAppSnapshotPolicyScheduleDaysList | null;
-  /** The hours of the day the schedule runs (0 through 23). Empty for all. */
-  hours?: StorageNetAppSnapshotPolicyScheduleHoursList | null;
-  /** The minutes the schedule runs (0 through 59). Required to have at least one value. */
-  minutes: StorageNetAppSnapshotPolicyScheduleMinutesList;
-  /** The months of the year the schedule runs (1 through 12). Empty for all. */
-  months?: StorageNetAppSnapshotPolicyScheduleMonthsList | null;
-  /** The days of the week the schedule runs (0 through 6, where 0 is Sunday and 6 is Saturday). Empty for all. */
-  weekdays?: StorageNetAppSnapshotPolicyScheduleWeekdaysList | null;
-}
-export const StorageNetAppSnapshotPolicySchedule = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    days: S.optional(S.NullOr(StorageNetAppSnapshotPolicyScheduleDaysList)),
-    hours: S.optional(S.NullOr(StorageNetAppSnapshotPolicyScheduleHoursList)),
-    minutes: StorageNetAppSnapshotPolicyScheduleMinutesList,
-    months: S.optional(S.NullOr(StorageNetAppSnapshotPolicyScheduleMonthsList)),
-    weekdays: S.optional(
-      S.NullOr(StorageNetAppSnapshotPolicyScheduleWeekdaysList),
-    ),
-  }),
-).annotate({
-  identifier: "StorageNetAppSnapshotPolicySchedule",
-}) as any as S.Schema<StorageNetAppSnapshotPolicySchedule>;
-
-/** A snapshot policy rule */
-export interface StorageNetAppSnapshotPolicyRule {
-  /** Number of snapshot copies to keep */
-  copies: number | null;
-  /** Prefix to use for snapshots */
-  prefix: string | null;
-  /** Snapshot policy schedule */
-  schedule: StorageNetAppSnapshotPolicySchedule | null;
-}
-export const StorageNetAppSnapshotPolicyRule = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    copies: S.NullOr(S.Number),
-    prefix: S.NullOr(S.String),
-    schedule: S.NullOr(StorageNetAppSnapshotPolicySchedule),
-  }),
-).annotate({
-  identifier: "StorageNetAppSnapshotPolicyRule",
-}) as any as S.Schema<StorageNetAppSnapshotPolicyRule>;
-
-/** Snapshot policy rules */
-export type StorageNetAppSnapshotPolicyRulesList =
-  Array<StorageNetAppSnapshotPolicyRule>;
-export const StorageNetAppSnapshotPolicyRulesList = /*@__PURE__*/ S.Array(
-  StorageNetAppSnapshotPolicyRule,
-) as any as S.Schema<StorageNetAppSnapshotPolicyRulesList>;
-
-/** Snapshot policy status */
-export type StorageNetAppSnapshotPolicyStatusEnum =
-  | "available"
-  | "creating"
-  | "deleting"
-  | "error"
-  | "updating";
-export const StorageNetAppSnapshotPolicyStatusEnum = /*@__PURE__*/ S.String;
-
-/** A snapshot policy */
-export interface StorageNetAppSnapshotPolicy {
-  /** Snapshot policy creation date */
-  createdAt?: string | null;
-  /** Snapshot policy description */
-  description?: string | null;
-  /** Snapshot policy ID */
-  id?: string;
-  /** Is this the default snapshot policy? */
-  isDefault?: boolean | null;
-  /** Snapshot policy name */
-  name?: string | null;
-  /** Snapshot policy rules */
-  rules: StorageNetAppSnapshotPolicyRulesList | null;
-  /** Snapshot policy status */
-  status?: StorageNetAppSnapshotPolicyStatusEnum | null;
-}
-export const StorageNetAppSnapshotPolicy = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdAt: S.optional(S.NullOr(S.String)),
-    description: S.optional(S.NullOr(S.String)),
-    id: S.optional(S.String),
-    isDefault: S.optional(S.NullOr(S.Boolean)),
-    name: S.optional(S.NullOr(S.String)),
-    rules: S.NullOr(StorageNetAppSnapshotPolicyRulesList),
-    status: S.optional(S.NullOr(StorageNetAppSnapshotPolicyStatusEnum)),
-  }),
-).annotate({
-  identifier: "StorageNetAppSnapshotPolicy",
-}) as any as S.Schema<StorageNetAppSnapshotPolicy>;
-
-export type GetStorageNetappServiceNameSnapshotPolicyResponseBodyList =
-  Array<StorageNetAppSnapshotPolicy>;
-export const GetStorageNetappServiceNameSnapshotPolicyResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    StorageNetAppSnapshotPolicy,
-  ) as any as S.Schema<GetStorageNetappServiceNameSnapshotPolicyResponseBodyList>;
-
-export type GetStorageNetappServiceNameSnapshotPolicyResponse =
-  GetStorageNetappServiceNameSnapshotPolicyResponseBodyList;
-export const GetStorageNetappServiceNameSnapshotPolicyResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetStorageNetappServiceNameSnapshotPolicyResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetStorageNetappServiceNameSnapshotPolicyResponse",
-  }) as any as S.Schema<GetStorageNetappServiceNameSnapshotPolicyResponse>;
-
-export interface GetStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdRequest {
+export interface GetStorageNetappSnapshotPolicyRequest {
   /** Service name */
   serviceName: string;
   /** Snapshot policy ID */
   snapshotPolicyId: string;
 }
-export const GetStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetStorageNetappSnapshotPolicyRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       snapshotPolicyId: S.String.pipe(T.Label()),
@@ -1245,403 +1265,285 @@ export const GetStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier:
-      "GetStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdRequest",
-  }) as any as S.Schema<GetStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdRequest>;
+).annotate({
+  identifier: "GetStorageNetappSnapshotPolicyRequest",
+}) as any as S.Schema<GetStorageNetappSnapshotPolicyRequest>;
 
-export interface PostStorageNetappServiceNameChangeContactRequest {
+/** Resource tag filter */
+export interface IamResourceTagFilterInput {}
+export const IamResourceTagFilterInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "IamResourceTagFilterInput",
+}) as any as S.Schema<IamResourceTagFilterInput>;
+
+export type ListStorageNetappRequestIamTagsValueList =
+  Array<IamResourceTagFilterInput>;
+export const ListStorageNetappRequestIamTagsValueList = /*@__PURE__*/ S.Array(
+  IamResourceTagFilterInput,
+) as any as S.Schema<ListStorageNetappRequestIamTagsValueList>;
+
+export type ListStorageNetappRequestIamTagsMap = {
+  [key: string]: ListStorageNetappRequestIamTagsValueList | undefined;
+};
+export const ListStorageNetappRequestIamTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  ListStorageNetappRequestIamTagsValueList,
+) as any as S.Schema<ListStorageNetappRequestIamTagsMap>;
+
+export interface ListStorageNetappRequest {
+  /** Filter resources on IAM tags */
+  iamTags?: ListStorageNetappRequestIamTagsMap;
+}
+export const ListStorageNetappRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    iamTags: S.optional(ListStorageNetappRequestIamTagsMap.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/storage/netapp", code: 200 })),
+).annotate({
+  identifier: "ListStorageNetappRequest",
+}) as any as S.Schema<ListStorageNetappRequest>;
+
+export type ListStorageNetappResponseBodyList =
+  Array<StorageNetAppServiceWithIAM>;
+export const ListStorageNetappResponseBodyList = /*@__PURE__*/ S.Array(
+  StorageNetAppServiceWithIAM,
+) as any as S.Schema<ListStorageNetappResponseBodyList>;
+
+export type ListStorageNetappResponse = ListStorageNetappResponseBodyList;
+export const ListStorageNetappResponse = /*@__PURE__*/ S.suspend(() =>
+  ListStorageNetappResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListStorageNetappResponse",
+}) as any as S.Schema<ListStorageNetappResponse>;
+
+export interface ListStorageNetappNetworkRequest {
   /** Service name */
   serviceName: string;
-  /** The contact to set as admin contact */
-  contactAdmin?: string;
-  /** The contact to set as billing contact */
-  contactBilling?: string;
-  /** The contact to set as tech contact */
-  contactTech?: string;
+  /** Get detailed information about each network */
+  detail?: boolean;
 }
-export const PostStorageNetappServiceNameChangeContactRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      contactAdmin: S.optional(S.String),
-      contactBilling: S.optional(S.String),
-      contactTech: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/storage/netapp/{serviceName}/changeContact",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostStorageNetappServiceNameChangeContactRequest",
-  }) as any as S.Schema<PostStorageNetappServiceNameChangeContactRequest>;
+export const ListStorageNetappNetworkRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    detail: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/storage/netapp/{serviceName}/network",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListStorageNetappNetworkRequest",
+}) as any as S.Schema<ListStorageNetappNetworkRequest>;
 
-export type PostStorageNetappServiceNameChangeContactResponseBodyList =
-  Array<number>;
-export const PostStorageNetappServiceNameChangeContactResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<PostStorageNetappServiceNameChangeContactResponseBodyList>;
+export type ListStorageNetappNetworkResponseBodyList =
+  Array<StorageNetAppNetwork>;
+export const ListStorageNetappNetworkResponseBodyList = /*@__PURE__*/ S.Array(
+  StorageNetAppNetwork,
+) as any as S.Schema<ListStorageNetappNetworkResponseBodyList>;
 
-export type PostStorageNetappServiceNameChangeContactResponse =
-  PostStorageNetappServiceNameChangeContactResponseBodyList;
-export const PostStorageNetappServiceNameChangeContactResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    PostStorageNetappServiceNameChangeContactResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "PostStorageNetappServiceNameChangeContactResponse",
-  }) as any as S.Schema<PostStorageNetappServiceNameChangeContactResponse>;
+export type ListStorageNetappNetworkResponse =
+  ListStorageNetappNetworkResponseBodyList;
+export const ListStorageNetappNetworkResponse = /*@__PURE__*/ S.suspend(() =>
+  ListStorageNetappNetworkResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListStorageNetappNetworkResponse",
+}) as any as S.Schema<ListStorageNetappNetworkResponse>;
 
-/** All future uses you can provide for a service termination */
-export type ServiceTerminationFutureUseEnum =
-  | "NOT_REPLACING_SERVICE"
-  | "OTHER"
-  | "SUBSCRIBE_AN_OTHER_SERVICE"
-  | "SUBSCRIBE_OTHER_KIND_OF_SERVICE_WITH_COMPETITOR"
-  | "SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR";
-export const ServiceTerminationFutureUseEnum = /*@__PURE__*/ S.String;
-
-/** All reasons you can provide for a service termination */
-export type ServiceTerminationReasonEnum =
-  | "FEATURES_DONT_SUIT_ME"
-  | "LACK_OF_PERFORMANCES"
-  | "MIGRATED_TO_ANOTHER_OVH_PRODUCT"
-  | "MIGRATED_TO_COMPETITOR"
-  | "NOT_ENOUGH_RECOGNITION"
-  | "NOT_NEEDED_ANYMORE"
-  | "NOT_RELIABLE"
-  | "NO_ANSWER"
-  | "OTHER"
-  | "PRODUCT_DIMENSION_DONT_SUIT_ME"
-  | "PRODUCT_TOOLS_DONT_SUIT_ME"
-  | "TOO_EXPENSIVE"
-  | "TOO_HARD_TO_USE"
-  | "UNSATIFIED_BY_CUSTOMER_SUPPORT";
-export const ServiceTerminationReasonEnum = /*@__PURE__*/ S.String;
-
-export interface PostStorageNetappServiceNameConfirmTerminationRequest {
+export interface ListStorageNetappShareRequest {
   /** Service name */
   serviceName: string;
-  /** Commentary about your termination request */
-  commentary?: string;
-  /** All future uses you can provide for a service termination */
-  futureUse?: ServiceTerminationFutureUseEnum | (string & {});
-  /** All reasons you can provide for a service termination */
-  reason?: ServiceTerminationReasonEnum | (string & {});
-  /** The termination token sent by email to the admin contact */
-  token: string;
+  /** Get detailed information about each share */
+  detail?: boolean;
+  /** If specified, returns only shares with given mount point name */
+  mountPointName?: string;
 }
-export const PostStorageNetappServiceNameConfirmTerminationRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      commentary: S.optional(S.String),
-      futureUse: S.optional(ServiceTerminationFutureUseEnum),
-      reason: S.optional(ServiceTerminationReasonEnum),
-      token: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/storage/netapp/{serviceName}/confirmTermination",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostStorageNetappServiceNameConfirmTerminationRequest",
-  }) as any as S.Schema<PostStorageNetappServiceNameConfirmTerminationRequest>;
+export const ListStorageNetappShareRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    detail: S.optional(S.Boolean.pipe(T.Query())),
+    mountPointName: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/storage/netapp/{serviceName}/share",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListStorageNetappShareRequest",
+}) as any as S.Schema<ListStorageNetappShareRequest>;
 
-export type PostStorageNetappServiceNameConfirmTerminationResponse = string;
-export const PostStorageNetappServiceNameConfirmTerminationResponse =
-  /*@__PURE__*/ S.suspend(() => S.String.pipe(T.RawResponseRoot())).annotate({
-    identifier: "PostStorageNetappServiceNameConfirmTerminationResponse",
-  }) as any as S.Schema<PostStorageNetappServiceNameConfirmTerminationResponse>;
+export type ListStorageNetappShareResponseBodyList = Array<StorageNetAppShare>;
+export const ListStorageNetappShareResponseBodyList = /*@__PURE__*/ S.Array(
+  StorageNetAppShare,
+) as any as S.Schema<ListStorageNetappShareResponseBodyList>;
 
-export interface PostStorageNetappServiceNameShareRequest {
+export type ListStorageNetappShareResponse =
+  ListStorageNetappShareResponseBodyList;
+export const ListStorageNetappShareResponse = /*@__PURE__*/ S.suspend(() =>
+  ListStorageNetappShareResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListStorageNetappShareResponse",
+}) as any as S.Schema<ListStorageNetappShareResponse>;
+
+export interface ListStorageNetappShareAccessPathRequest {
   /** Service name */
   serviceName: string;
-  /** Share description */
-  description?: string | null;
-  /** User-defined name used to generate human readable access path for the share */
-  mountPointName?: string | null;
-  /** Share name */
-  name?: string | null;
-  /** Share protocol */
-  protocol: StorageProtocolEnum | (string & {}) | null;
-  /** Share size in Gigabytes */
-  size: number | null;
-  /** Snapshot ID used to create the share */
-  snapshotID?: string | null;
+  /** Share ID */
+  shareId: string;
 }
-export const PostStorageNetappServiceNameShareRequest = /*@__PURE__*/ S.suspend(
+export const ListStorageNetappShareAccessPathRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
-      description: S.optional(S.NullOr(S.String)),
-      mountPointName: S.optional(S.NullOr(S.String)),
-      name: S.optional(S.NullOr(S.String)),
-      protocol: S.NullOr(StorageProtocolEnum),
-      size: S.NullOr(S.Number),
-      snapshotID: S.optional(S.NullOr(S.String)),
+      shareId: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
-        method: "POST",
-        uri: "/storage/netapp/{serviceName}/share",
+        method: "GET",
+        uri: "/storage/netapp/{serviceName}/share/{shareId}/accessPath",
         code: 200,
       }),
     ),
 ).annotate({
-  identifier: "PostStorageNetappServiceNameShareRequest",
-}) as any as S.Schema<PostStorageNetappServiceNameShareRequest>;
+  identifier: "ListStorageNetappShareAccessPathRequest",
+}) as any as S.Schema<ListStorageNetappShareAccessPathRequest>;
 
-export interface PostStorageNetappServiceNameShareShareIdAclRequest {
+export type ListStorageNetappShareAccessPathResponseBodyList =
+  Array<StorageNetAppShareAccessPath>;
+export const ListStorageNetappShareAccessPathResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    StorageNetAppShareAccessPath,
+  ) as any as S.Schema<ListStorageNetappShareAccessPathResponseBodyList>;
+
+export type ListStorageNetappShareAccessPathResponse =
+  ListStorageNetappShareAccessPathResponseBodyList;
+export const ListStorageNetappShareAccessPathResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    ListStorageNetappShareAccessPathResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListStorageNetappShareAccessPathResponse",
+}) as any as S.Schema<ListStorageNetappShareAccessPathResponse>;
+
+export interface ListStorageNetappShareAclRequest {
   /** Service name */
   serviceName: string;
   /** Share ID */
   shareId: string;
-  /** Rule access level */
-  accessLevel: StorageNetAppShareACLPermissionEnum | (string & {}) | null;
-  /** Rule destination */
-  accessTo: string | null;
 }
-export const PostStorageNetappServiceNameShareShareIdAclRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      shareId: S.String.pipe(T.Label()),
-      accessLevel: S.NullOr(StorageNetAppShareACLPermissionEnum),
-      accessTo: S.NullOr(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/storage/netapp/{serviceName}/share/{shareId}/acl",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostStorageNetappServiceNameShareShareIdAclRequest",
-  }) as any as S.Schema<PostStorageNetappServiceNameShareShareIdAclRequest>;
+export const ListStorageNetappShareAclRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    shareId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/storage/netapp/{serviceName}/share/{shareId}/acl",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListStorageNetappShareAclRequest",
+}) as any as S.Schema<ListStorageNetappShareAclRequest>;
 
-export interface PostStorageNetappServiceNameShareShareIdExtendRequest {
+export type ListStorageNetappShareAclResponseBodyList =
+  Array<StorageNetAppShareACLRule>;
+export const ListStorageNetappShareAclResponseBodyList = /*@__PURE__*/ S.Array(
+  StorageNetAppShareACLRule,
+) as any as S.Schema<ListStorageNetappShareAclResponseBodyList>;
+
+export type ListStorageNetappShareAclResponse =
+  ListStorageNetappShareAclResponseBodyList;
+export const ListStorageNetappShareAclResponse = /*@__PURE__*/ S.suspend(() =>
+  ListStorageNetappShareAclResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListStorageNetappShareAclResponse",
+}) as any as S.Schema<ListStorageNetappShareAclResponse>;
+
+export interface ListStorageNetappShareSnapshotRequest {
   /** Service name */
   serviceName: string;
   /** Share ID */
   shareId: string;
-  /** Share size in Gigabytes */
-  size: number | null;
+  /** Get detailed information about each snapshot */
+  detail?: boolean;
 }
-export const PostStorageNetappServiceNameShareShareIdExtendRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const ListStorageNetappShareSnapshotRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       shareId: S.String.pipe(T.Label()),
-      size: S.NullOr(S.Number),
+      detail: S.optional(S.Boolean.pipe(T.Query())),
     }).pipe(
       T.Http({
-        method: "POST",
-        uri: "/storage/netapp/{serviceName}/share/{shareId}/extend",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostStorageNetappServiceNameShareShareIdExtendRequest",
-  }) as any as S.Schema<PostStorageNetappServiceNameShareShareIdExtendRequest>;
-
-export interface PostStorageNetappServiceNameShareShareIdExtendResponse {}
-export const PostStorageNetappServiceNameShareShareIdExtendResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PostStorageNetappServiceNameShareShareIdExtendResponse",
-  }) as any as S.Schema<PostStorageNetappServiceNameShareShareIdExtendResponse>;
-
-export interface PostStorageNetappServiceNameShareShareIdRevertRequest {
-  /** Service name */
-  serviceName: string;
-  /** Share ID */
-  shareId: string;
-  /** Latest share snapshot */
-  snapshotID: string;
-}
-export const PostStorageNetappServiceNameShareShareIdRevertRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      shareId: S.String.pipe(T.Label()),
-      snapshotID: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/storage/netapp/{serviceName}/share/{shareId}/revert",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostStorageNetappServiceNameShareShareIdRevertRequest",
-  }) as any as S.Schema<PostStorageNetappServiceNameShareShareIdRevertRequest>;
-
-export interface PostStorageNetappServiceNameShareShareIdRevertResponse {}
-export const PostStorageNetappServiceNameShareShareIdRevertResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PostStorageNetappServiceNameShareShareIdRevertResponse",
-  }) as any as S.Schema<PostStorageNetappServiceNameShareShareIdRevertResponse>;
-
-export interface PostStorageNetappServiceNameShareShareIdShrinkRequest {
-  /** Service name */
-  serviceName: string;
-  /** Share ID */
-  shareId: string;
-  /** Share size in Gigabytes */
-  size: number | null;
-}
-export const PostStorageNetappServiceNameShareShareIdShrinkRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      shareId: S.String.pipe(T.Label()),
-      size: S.NullOr(S.Number),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/storage/netapp/{serviceName}/share/{shareId}/shrink",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostStorageNetappServiceNameShareShareIdShrinkRequest",
-  }) as any as S.Schema<PostStorageNetappServiceNameShareShareIdShrinkRequest>;
-
-export interface PostStorageNetappServiceNameShareShareIdShrinkResponse {}
-export const PostStorageNetappServiceNameShareShareIdShrinkResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PostStorageNetappServiceNameShareShareIdShrinkResponse",
-  }) as any as S.Schema<PostStorageNetappServiceNameShareShareIdShrinkResponse>;
-
-export interface PostStorageNetappServiceNameShareShareIdSnapshotRequest {
-  /** Service name */
-  serviceName: string;
-  /** Share ID */
-  shareId: string;
-  /** Snapshot description */
-  description?: string | null;
-  /** Snapshot name */
-  name?: string | null;
-}
-export const PostStorageNetappServiceNameShareShareIdSnapshotRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      shareId: S.String.pipe(T.Label()),
-      description: S.optional(S.NullOr(S.String)),
-      name: S.optional(S.NullOr(S.String)),
-    }).pipe(
-      T.Http({
-        method: "POST",
+        method: "GET",
         uri: "/storage/netapp/{serviceName}/share/{shareId}/snapshot",
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "PostStorageNetappServiceNameShareShareIdSnapshotRequest",
-  }) as any as S.Schema<PostStorageNetappServiceNameShareShareIdSnapshotRequest>;
+).annotate({
+  identifier: "ListStorageNetappShareSnapshotRequest",
+}) as any as S.Schema<ListStorageNetappShareSnapshotRequest>;
 
-export interface PostStorageNetappServiceNameShareShareIdSnapshotSnapshotIdHoldRequest {
-  /** Service name */
-  serviceName: string;
-  /** Share ID */
-  shareId: string;
-  /** Snapshot ID */
-  snapshotId: string;
-}
-export const PostStorageNetappServiceNameShareShareIdSnapshotSnapshotIdHoldRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      shareId: S.String.pipe(T.Label()),
-      snapshotId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/storage/netapp/{serviceName}/share/{shareId}/snapshot/{snapshotId}/hold",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "PostStorageNetappServiceNameShareShareIdSnapshotSnapshotIdHoldRequest",
-  }) as any as S.Schema<PostStorageNetappServiceNameShareShareIdSnapshotSnapshotIdHoldRequest>;
-
-/** Snapshot policy rules */
-export type PostStorageNetappServiceNameSnapshotPolicyRequestRulesList =
-  Array<StorageNetAppSnapshotPolicyRule>;
-export const PostStorageNetappServiceNameSnapshotPolicyRequestRulesList =
+export type ListStorageNetappShareSnapshotResponseBodyList =
+  Array<StorageNetAppShareSnapshot>;
+export const ListStorageNetappShareSnapshotResponseBodyList =
   /*@__PURE__*/ S.Array(
-    StorageNetAppSnapshotPolicyRule,
-  ) as any as S.Schema<PostStorageNetappServiceNameSnapshotPolicyRequestRulesList>;
+    StorageNetAppShareSnapshot,
+  ) as any as S.Schema<ListStorageNetappShareSnapshotResponseBodyList>;
 
-export interface PostStorageNetappServiceNameSnapshotPolicyRequest {
+export type ListStorageNetappShareSnapshotResponse =
+  ListStorageNetappShareSnapshotResponseBodyList;
+export const ListStorageNetappShareSnapshotResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    ListStorageNetappShareSnapshotResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListStorageNetappShareSnapshotResponse",
+}) as any as S.Schema<ListStorageNetappShareSnapshotResponse>;
+
+export interface ListStorageNetappSnapshotPolicyRequest {
   /** Service name */
   serviceName: string;
-  /** Snapshot policy description */
-  description?: string | null;
-  /** Snapshot policy name */
-  name?: string | null;
-  /** Snapshot policy rules */
-  rules: PostStorageNetappServiceNameSnapshotPolicyRequestRulesList | null;
 }
-export const PostStorageNetappServiceNameSnapshotPolicyRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const ListStorageNetappSnapshotPolicyRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
-      description: S.optional(S.NullOr(S.String)),
-      name: S.optional(S.NullOr(S.String)),
-      rules: S.NullOr(
-        PostStorageNetappServiceNameSnapshotPolicyRequestRulesList,
-      ),
     }).pipe(
       T.Http({
-        method: "POST",
+        method: "GET",
         uri: "/storage/netapp/{serviceName}/snapshotPolicy",
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "PostStorageNetappServiceNameSnapshotPolicyRequest",
-  }) as any as S.Schema<PostStorageNetappServiceNameSnapshotPolicyRequest>;
+).annotate({
+  identifier: "ListStorageNetappSnapshotPolicyRequest",
+}) as any as S.Schema<ListStorageNetappSnapshotPolicyRequest>;
 
-export interface PostStorageNetappServiceNameTerminateRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const PostStorageNetappServiceNameTerminateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/storage/netapp/{serviceName}/terminate",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostStorageNetappServiceNameTerminateRequest",
-  }) as any as S.Schema<PostStorageNetappServiceNameTerminateRequest>;
+export type ListStorageNetappSnapshotPolicyResponseBodyList =
+  Array<StorageNetAppSnapshotPolicy>;
+export const ListStorageNetappSnapshotPolicyResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    StorageNetAppSnapshotPolicy,
+  ) as any as S.Schema<ListStorageNetappSnapshotPolicyResponseBodyList>;
 
-export type PostStorageNetappServiceNameTerminateResponse = string;
-export const PostStorageNetappServiceNameTerminateResponse =
-  /*@__PURE__*/ S.suspend(() => S.String.pipe(T.RawResponseRoot())).annotate({
-    identifier: "PostStorageNetappServiceNameTerminateResponse",
-  }) as any as S.Schema<PostStorageNetappServiceNameTerminateResponse>;
+export type ListStorageNetappSnapshotPolicyResponse =
+  ListStorageNetappSnapshotPolicyResponseBodyList;
+export const ListStorageNetappSnapshotPolicyResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    ListStorageNetappSnapshotPolicyResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListStorageNetappSnapshotPolicyResponse",
+}) as any as S.Schema<ListStorageNetappSnapshotPolicyResponse>;
 
-export interface PutStorageNetappServiceNameRequest {
+export interface PutStorageNetappRequest {
   /** Service name */
   serviceName: string;
   /** New service name */
   name: string;
 }
-export const PutStorageNetappServiceNameRequest = /*@__PURE__*/ S.suspend(() =>
+export const PutStorageNetappRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     serviceName: S.String.pipe(T.Label()),
     name: S.String,
@@ -1649,8 +1551,8 @@ export const PutStorageNetappServiceNameRequest = /*@__PURE__*/ S.suspend(() =>
     T.Http({ method: "PUT", uri: "/storage/netapp/{serviceName}", code: 200 }),
   ),
 ).annotate({
-  identifier: "PutStorageNetappServiceNameRequest",
-}) as any as S.Schema<PutStorageNetappServiceNameRequest>;
+  identifier: "PutStorageNetappRequest",
+}) as any as S.Schema<PutStorageNetappRequest>;
 
 /** A service */
 export interface StorageNetAppService {
@@ -1686,35 +1588,35 @@ export const StorageNetAppService = /*@__PURE__*/ S.suspend(() =>
   identifier: "StorageNetAppService",
 }) as any as S.Schema<StorageNetAppService>;
 
-export interface PutStorageNetappServiceNameServiceInfosRequest {
+export interface PutStorageNetappServiceInfosRequest {
   /** Service name */
   serviceName: string;
   /** Way of handling the renew */
   renew?: ServiceRenewType | null;
 }
-export const PutStorageNetappServiceNameServiceInfosRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      renew: S.optional(S.NullOr(ServiceRenewType)),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/storage/netapp/{serviceName}/serviceInfos",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PutStorageNetappServiceNameServiceInfosRequest",
-  }) as any as S.Schema<PutStorageNetappServiceNameServiceInfosRequest>;
+export const PutStorageNetappServiceInfosRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    renew: S.optional(S.NullOr(ServiceRenewType)),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/storage/netapp/{serviceName}/serviceInfos",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "PutStorageNetappServiceInfosRequest",
+}) as any as S.Schema<PutStorageNetappServiceInfosRequest>;
 
-export interface PutStorageNetappServiceNameServiceInfosResponse {}
-export const PutStorageNetappServiceNameServiceInfosResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PutStorageNetappServiceNameServiceInfosResponse",
-  }) as any as S.Schema<PutStorageNetappServiceNameServiceInfosResponse>;
+export interface PutStorageNetappServiceInfosResponse {}
+export const PutStorageNetappServiceInfosResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "PutStorageNetappServiceInfosResponse",
+}) as any as S.Schema<PutStorageNetappServiceInfosResponse>;
 
-export interface PutStorageNetappServiceNameShareShareIdRequest {
+export interface PutStorageNetappShareRequest {
   /** Service name */
   serviceName: string;
   /** Share ID */
@@ -1724,88 +1626,24 @@ export interface PutStorageNetappServiceNameShareShareIdRequest {
   /** New share name */
   name?: string | null;
 }
-export const PutStorageNetappServiceNameShareShareIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      shareId: S.String.pipe(T.Label()),
-      description: S.optional(S.NullOr(S.String)),
-      name: S.optional(S.NullOr(S.String)),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/storage/netapp/{serviceName}/share/{shareId}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PutStorageNetappServiceNameShareShareIdRequest",
-  }) as any as S.Schema<PutStorageNetappServiceNameShareShareIdRequest>;
+export const PutStorageNetappShareRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    shareId: S.String.pipe(T.Label()),
+    description: S.optional(S.NullOr(S.String)),
+    name: S.optional(S.NullOr(S.String)),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/storage/netapp/{serviceName}/share/{shareId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "PutStorageNetappShareRequest",
+}) as any as S.Schema<PutStorageNetappShareRequest>;
 
-export interface PutStorageNetappServiceNameShareShareIdSnapshotPolicyRequest {
-  /** Service name */
-  serviceName: string;
-  /** Share ID */
-  shareId: string;
-  /** Snapshot policy ID */
-  snapshotPolicyID: string;
-}
-export const PutStorageNetappServiceNameShareShareIdSnapshotPolicyRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      shareId: S.String.pipe(T.Label()),
-      snapshotPolicyID: S.String,
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/storage/netapp/{serviceName}/share/{shareId}/snapshotPolicy",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PutStorageNetappServiceNameShareShareIdSnapshotPolicyRequest",
-  }) as any as S.Schema<PutStorageNetappServiceNameShareShareIdSnapshotPolicyRequest>;
-
-export interface PutStorageNetappServiceNameShareShareIdSnapshotPolicyResponse {}
-export const PutStorageNetappServiceNameShareShareIdSnapshotPolicyResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PutStorageNetappServiceNameShareShareIdSnapshotPolicyResponse",
-  }) as any as S.Schema<PutStorageNetappServiceNameShareShareIdSnapshotPolicyResponse>;
-
-export interface PutStorageNetappServiceNameShareShareIdSnapshotReserveRequest {
-  /** Service name */
-  serviceName: string;
-  /** Share ID */
-  shareId: string;
-  /** Share space percentage reserved for snapshots */
-  percent: number;
-}
-export const PutStorageNetappServiceNameShareShareIdSnapshotReserveRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      shareId: S.String.pipe(T.Label()),
-      percent: S.Number,
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/storage/netapp/{serviceName}/share/{shareId}/snapshotReserve",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PutStorageNetappServiceNameShareShareIdSnapshotReserveRequest",
-  }) as any as S.Schema<PutStorageNetappServiceNameShareShareIdSnapshotReserveRequest>;
-
-export interface PutStorageNetappServiceNameShareShareIdSnapshotReserveResponse {}
-export const PutStorageNetappServiceNameShareShareIdSnapshotReserveResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier:
-      "PutStorageNetappServiceNameShareShareIdSnapshotReserveResponse",
-  }) as any as S.Schema<PutStorageNetappServiceNameShareShareIdSnapshotReserveResponse>;
-
-export interface PutStorageNetappServiceNameShareShareIdSnapshotSnapshotIdRequest {
+export interface PutStorageNetappShareSnapshotRequest {
   /** Service name */
   serviceName: string;
   /** Share ID */
@@ -1817,8 +1655,8 @@ export interface PutStorageNetappServiceNameShareShareIdSnapshotSnapshotIdReques
   /** New snapshot name */
   name?: string | null;
 }
-export const PutStorageNetappServiceNameShareShareIdSnapshotSnapshotIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const PutStorageNetappShareSnapshotRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       shareId: S.String.pipe(T.Label()),
@@ -1832,12 +1670,73 @@ export const PutStorageNetappServiceNameShareShareIdSnapshotSnapshotIdRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier:
-      "PutStorageNetappServiceNameShareShareIdSnapshotSnapshotIdRequest",
-  }) as any as S.Schema<PutStorageNetappServiceNameShareShareIdSnapshotSnapshotIdRequest>;
+).annotate({
+  identifier: "PutStorageNetappShareSnapshotRequest",
+}) as any as S.Schema<PutStorageNetappShareSnapshotRequest>;
 
-export interface PutStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdRequest {
+export interface PutStorageNetappShareSnapshotPolicyRequest {
+  /** Service name */
+  serviceName: string;
+  /** Share ID */
+  shareId: string;
+  /** Snapshot policy ID */
+  snapshotPolicyID: string;
+}
+export const PutStorageNetappShareSnapshotPolicyRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      shareId: S.String.pipe(T.Label()),
+      snapshotPolicyID: S.String,
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/storage/netapp/{serviceName}/share/{shareId}/snapshotPolicy",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "PutStorageNetappShareSnapshotPolicyRequest",
+  }) as any as S.Schema<PutStorageNetappShareSnapshotPolicyRequest>;
+
+export interface PutStorageNetappShareSnapshotPolicyResponse {}
+export const PutStorageNetappShareSnapshotPolicyResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "PutStorageNetappShareSnapshotPolicyResponse",
+  }) as any as S.Schema<PutStorageNetappShareSnapshotPolicyResponse>;
+
+export interface PutStorageNetappShareSnapshotReserveRequest {
+  /** Service name */
+  serviceName: string;
+  /** Share ID */
+  shareId: string;
+  /** Share space percentage reserved for snapshots */
+  percent: number;
+}
+export const PutStorageNetappShareSnapshotReserveRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      shareId: S.String.pipe(T.Label()),
+      percent: S.Number,
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/storage/netapp/{serviceName}/share/{shareId}/snapshotReserve",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "PutStorageNetappShareSnapshotReserveRequest",
+  }) as any as S.Schema<PutStorageNetappShareSnapshotReserveRequest>;
+
+export interface PutStorageNetappShareSnapshotReserveResponse {}
+export const PutStorageNetappShareSnapshotReserveResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "PutStorageNetappShareSnapshotReserveResponse",
+  }) as any as S.Schema<PutStorageNetappShareSnapshotReserveResponse>;
+
+export interface PutStorageNetappSnapshotPolicyRequest {
   /** Service name */
   serviceName: string;
   /** Snapshot policy ID */
@@ -1847,8 +1746,8 @@ export interface PutStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdReques
   /** New snapshot policy name */
   name?: string | null;
 }
-export const PutStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const PutStorageNetappSnapshotPolicyRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       snapshotPolicyId: S.String.pipe(T.Label()),
@@ -1861,627 +1760,673 @@ export const PutStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier:
-      "PutStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdRequest",
-  }) as any as S.Schema<PutStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdRequest>;
+).annotate({
+  identifier: "PutStorageNetappSnapshotPolicyRequest",
+}) as any as S.Schema<PutStorageNetappSnapshotPolicyRequest>;
 
-export interface PutStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdResponse {}
-export const PutStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier:
-      "PutStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdResponse",
-  }) as any as S.Schema<PutStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdResponse>;
+export interface PutStorageNetappSnapshotPolicyResponse {}
+export const PutStorageNetappSnapshotPolicyResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "PutStorageNetappSnapshotPolicyResponse",
+}) as any as S.Schema<PutStorageNetappSnapshotPolicyResponse>;
 
-export type DeleteStorageNetappServiceNameShareShareIdError = OvhOpError;
+export interface ShareStorageNetappRequest {
+  /** Service name */
+  serviceName: string;
+  /** Share description */
+  description?: string | null;
+  /** User-defined name used to generate human readable access path for the share */
+  mountPointName?: string | null;
+  /** Share name */
+  name?: string | null;
+  /** Share protocol */
+  protocol: StorageProtocolEnum | (string & {}) | null;
+  /** Share size in Gigabytes */
+  size: number | null;
+  /** Snapshot ID used to create the share */
+  snapshotID?: string | null;
+}
+export const ShareStorageNetappRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    description: S.optional(S.NullOr(S.String)),
+    mountPointName: S.optional(S.NullOr(S.String)),
+    name: S.optional(S.NullOr(S.String)),
+    protocol: S.NullOr(StorageProtocolEnum),
+    size: S.NullOr(S.Number),
+    snapshotID: S.optional(S.NullOr(S.String)),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/storage/netapp/{serviceName}/share",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ShareStorageNetappRequest",
+}) as any as S.Schema<ShareStorageNetappRequest>;
+
+export interface TerminateStorageNetappRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const TerminateStorageNetappRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/storage/netapp/{serviceName}/terminate",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "TerminateStorageNetappRequest",
+}) as any as S.Schema<TerminateStorageNetappRequest>;
+
+export type TerminateStorageNetappResponse = string;
+export const TerminateStorageNetappResponse = /*@__PURE__*/ S.suspend(() =>
+  S.String.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "TerminateStorageNetappResponse",
+}) as any as S.Schema<TerminateStorageNetappResponse>;
+
+export type ConfirmStorageNetappTerminationError = OvhOpError;
+/** Confirm service termination */
+export const confirmStorageNetappTermination: API.OperationMethod<
+  ConfirmStorageNetappTerminationRequest,
+  ConfirmStorageNetappTerminationResponse,
+  ConfirmStorageNetappTerminationError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ConfirmStorageNetappTerminationRequest,
+  output: ConfirmStorageNetappTerminationResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateStorageNetappChangeContactError = OvhOpError;
+/** Launch a contact change procedure */
+export const createStorageNetappChangeContact: API.OperationMethod<
+  CreateStorageNetappChangeContactRequest,
+  CreateStorageNetappChangeContactResponse,
+  CreateStorageNetappChangeContactError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateStorageNetappChangeContactRequest,
+  output: CreateStorageNetappChangeContactResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateStorageNetappShareAclError = OvhOpError;
+/** Create an ACL */
+export const createStorageNetappShareAcl: API.OperationMethod<
+  CreateStorageNetappShareAclRequest,
+  StorageNetAppShareACLRule,
+  CreateStorageNetappShareAclError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateStorageNetappShareAclRequest,
+  output: StorageNetAppShareACLRule,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateStorageNetappShareRevertError = OvhOpError;
+/** Revert a share to it's latest snapshot */
+export const createStorageNetappShareRevert: API.OperationMethod<
+  CreateStorageNetappShareRevertRequest,
+  CreateStorageNetappShareRevertResponse,
+  CreateStorageNetappShareRevertError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateStorageNetappShareRevertRequest,
+  output: CreateStorageNetappShareRevertResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateStorageNetappShareShrinkError = OvhOpError;
+/** Shrink share size */
+export const createStorageNetappShareShrink: API.OperationMethod<
+  CreateStorageNetappShareShrinkRequest,
+  CreateStorageNetappShareShrinkResponse,
+  CreateStorageNetappShareShrinkError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateStorageNetappShareShrinkRequest,
+  output: CreateStorageNetappShareShrinkResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateStorageNetappShareSnapshotError = OvhOpError;
+/** Create a snapshot */
+export const createStorageNetappShareSnapshot: API.OperationMethod<
+  CreateStorageNetappShareSnapshotRequest,
+  StorageNetAppShareSnapshot,
+  CreateStorageNetappShareSnapshotError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateStorageNetappShareSnapshotRequest,
+  output: StorageNetAppShareSnapshot,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateStorageNetappShareSnapshotHoldError = OvhOpError;
+/** Hold an automatic share snapshot */
+export const createStorageNetappShareSnapshotHold: API.OperationMethod<
+  CreateStorageNetappShareSnapshotHoldRequest,
+  StorageNetAppShareSnapshot,
+  CreateStorageNetappShareSnapshotHoldError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateStorageNetappShareSnapshotHoldRequest,
+  output: StorageNetAppShareSnapshot,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateStorageNetappSnapshotPolicyError = OvhOpError;
+/** Create a snapshot policy */
+export const createStorageNetappSnapshotPolicy: API.OperationMethod<
+  CreateStorageNetappSnapshotPolicyRequest,
+  StorageNetAppSnapshotPolicy,
+  CreateStorageNetappSnapshotPolicyError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateStorageNetappSnapshotPolicyRequest,
+  output: StorageNetAppSnapshotPolicy,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteStorageNetappShareError = OvhOpError;
 /** Delete a share */
-export const deleteStorageNetappServiceNameShareShareId: API.OperationMethod<
-  DeleteStorageNetappServiceNameShareShareIdRequest,
-  DeleteStorageNetappServiceNameShareShareIdResponse,
-  DeleteStorageNetappServiceNameShareShareIdError,
+export const deleteStorageNetappShare: API.OperationMethod<
+  DeleteStorageNetappShareRequest,
+  DeleteStorageNetappShareResponse,
+  DeleteStorageNetappShareError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteStorageNetappServiceNameShareShareIdRequest,
-  output: DeleteStorageNetappServiceNameShareShareIdResponse,
+  input: DeleteStorageNetappShareRequest,
+  output: DeleteStorageNetappShareResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteStorageNetappServiceNameShareShareIdAclAclRuleIdError =
-  OvhOpError;
+export type DeleteStorageNetappShareAclError = OvhOpError;
 /** Delete an ACL */
-export const deleteStorageNetappServiceNameShareShareIdAclAclRuleId: API.OperationMethod<
-  DeleteStorageNetappServiceNameShareShareIdAclAclRuleIdRequest,
-  DeleteStorageNetappServiceNameShareShareIdAclAclRuleIdResponse,
-  DeleteStorageNetappServiceNameShareShareIdAclAclRuleIdError,
+export const deleteStorageNetappShareAcl: API.OperationMethod<
+  DeleteStorageNetappShareAclRequest,
+  DeleteStorageNetappShareAclResponse,
+  DeleteStorageNetappShareAclError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteStorageNetappServiceNameShareShareIdAclAclRuleIdRequest,
-  output: DeleteStorageNetappServiceNameShareShareIdAclAclRuleIdResponse,
+  input: DeleteStorageNetappShareAclRequest,
+  output: DeleteStorageNetappShareAclResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteStorageNetappServiceNameShareShareIdSnapshotSnapshotIdError =
-  OvhOpError;
+export type DeleteStorageNetappShareSnapshotError = OvhOpError;
 /** Delete a snapshot */
-export const deleteStorageNetappServiceNameShareShareIdSnapshotSnapshotId: API.OperationMethod<
-  DeleteStorageNetappServiceNameShareShareIdSnapshotSnapshotIdRequest,
-  DeleteStorageNetappServiceNameShareShareIdSnapshotSnapshotIdResponse,
-  DeleteStorageNetappServiceNameShareShareIdSnapshotSnapshotIdError,
+export const deleteStorageNetappShareSnapshot: API.OperationMethod<
+  DeleteStorageNetappShareSnapshotRequest,
+  DeleteStorageNetappShareSnapshotResponse,
+  DeleteStorageNetappShareSnapshotError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteStorageNetappServiceNameShareShareIdSnapshotSnapshotIdRequest,
-  output: DeleteStorageNetappServiceNameShareShareIdSnapshotSnapshotIdResponse,
+  input: DeleteStorageNetappShareSnapshotRequest,
+  output: DeleteStorageNetappShareSnapshotResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdError =
-  OvhOpError;
+export type DeleteStorageNetappSnapshotPolicyError = OvhOpError;
 /** Delete a snapshot policy */
-export const deleteStorageNetappServiceNameSnapshotPolicySnapshotPolicyId: API.OperationMethod<
-  DeleteStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdRequest,
-  DeleteStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdResponse,
-  DeleteStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdError,
+export const deleteStorageNetappSnapshotPolicy: API.OperationMethod<
+  DeleteStorageNetappSnapshotPolicyRequest,
+  DeleteStorageNetappSnapshotPolicyResponse,
+  DeleteStorageNetappSnapshotPolicyError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdRequest,
-  output: DeleteStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdResponse,
+  input: DeleteStorageNetappSnapshotPolicyRequest,
+  output: DeleteStorageNetappSnapshotPolicyResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ExtendStorageNetappShareError = OvhOpError;
+/** Extend share size */
+export const extendStorageNetappShare: API.OperationMethod<
+  ExtendStorageNetappShareRequest,
+  ExtendStorageNetappShareResponse,
+  ExtendStorageNetappShareError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExtendStorageNetappShareRequest,
+  output: ExtendStorageNetappShareResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
 export type GetStorageNetappError = OvhOpError;
-/** List available services */
+/** Get service details */
 export const getStorageNetapp: API.OperationMethod<
   GetStorageNetappRequest,
-  GetStorageNetappResponse,
+  StorageNetAppServiceWithIAM,
   GetStorageNetappError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: GetStorageNetappRequest,
-  output: GetStorageNetappResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetStorageNetappServiceNameError = OvhOpError;
-/** Get service details */
-export const getStorageNetappServiceName: API.OperationMethod<
-  GetStorageNetappServiceNameRequest,
-  StorageNetAppServiceWithIAM,
-  GetStorageNetappServiceNameError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetStorageNetappServiceNameRequest,
   output: StorageNetAppServiceWithIAM,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetStorageNetappServiceNameMetricsTokenError = OvhOpError;
+export type GetStorageNetappMetricsTokenError = OvhOpError;
 /** Get metrics token */
-export const getStorageNetappServiceNameMetricsToken: API.OperationMethod<
-  GetStorageNetappServiceNameMetricsTokenRequest,
+export const getStorageNetappMetricsToken: API.OperationMethod<
+  GetStorageNetappMetricsTokenRequest,
   StorageMetricsToken,
-  GetStorageNetappServiceNameMetricsTokenError,
+  GetStorageNetappMetricsTokenError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetStorageNetappServiceNameMetricsTokenRequest,
+  input: GetStorageNetappMetricsTokenRequest,
   output: StorageMetricsToken,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetStorageNetappServiceNameNetworkError = OvhOpError;
-/** List networks */
-export const getStorageNetappServiceNameNetwork: API.OperationMethod<
-  GetStorageNetappServiceNameNetworkRequest,
-  GetStorageNetappServiceNameNetworkResponse,
-  GetStorageNetappServiceNameNetworkError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetStorageNetappServiceNameNetworkRequest,
-  output: GetStorageNetappServiceNameNetworkResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetStorageNetappServiceNameNetworkNetworkIdError = OvhOpError;
+export type GetStorageNetappNetworkError = OvhOpError;
 /** Get network details */
-export const getStorageNetappServiceNameNetworkNetworkId: API.OperationMethod<
-  GetStorageNetappServiceNameNetworkNetworkIdRequest,
+export const getStorageNetappNetwork: API.OperationMethod<
+  GetStorageNetappNetworkRequest,
   StorageNetAppNetwork,
-  GetStorageNetappServiceNameNetworkNetworkIdError,
+  GetStorageNetappNetworkError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetStorageNetappServiceNameNetworkNetworkIdRequest,
+  input: GetStorageNetappNetworkRequest,
   output: StorageNetAppNetwork,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetStorageNetappServiceNameServiceInfosError = OvhOpError;
+export type GetStorageNetappServiceInfosError = OvhOpError;
 /** Get service information */
-export const getStorageNetappServiceNameServiceInfos: API.OperationMethod<
-  GetStorageNetappServiceNameServiceInfosRequest,
+export const getStorageNetappServiceInfos: API.OperationMethod<
+  GetStorageNetappServiceInfosRequest,
   ServicesService,
-  GetStorageNetappServiceNameServiceInfosError,
+  GetStorageNetappServiceInfosError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetStorageNetappServiceNameServiceInfosRequest,
+  input: GetStorageNetappServiceInfosRequest,
   output: ServicesService,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetStorageNetappServiceNameShareError = OvhOpError;
-/** List available shares */
-export const getStorageNetappServiceNameShare: API.OperationMethod<
-  GetStorageNetappServiceNameShareRequest,
-  GetStorageNetappServiceNameShareResponse,
-  GetStorageNetappServiceNameShareError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetStorageNetappServiceNameShareRequest,
-  output: GetStorageNetappServiceNameShareResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetStorageNetappServiceNameShareShareIdError = OvhOpError;
+export type GetStorageNetappShareError = OvhOpError;
 /** Get share details */
-export const getStorageNetappServiceNameShareShareId: API.OperationMethod<
-  GetStorageNetappServiceNameShareShareIdRequest,
+export const getStorageNetappShare: API.OperationMethod<
+  GetStorageNetappShareRequest,
   StorageNetAppShare,
-  GetStorageNetappServiceNameShareShareIdError,
+  GetStorageNetappShareError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetStorageNetappServiceNameShareShareIdRequest,
+  input: GetStorageNetappShareRequest,
   output: StorageNetAppShare,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetStorageNetappServiceNameShareShareIdAccessPathError = OvhOpError;
-/** List available access paths */
-export const getStorageNetappServiceNameShareShareIdAccessPath: API.OperationMethod<
-  GetStorageNetappServiceNameShareShareIdAccessPathRequest,
-  GetStorageNetappServiceNameShareShareIdAccessPathResponse,
-  GetStorageNetappServiceNameShareShareIdAccessPathError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetStorageNetappServiceNameShareShareIdAccessPathRequest,
-  output: GetStorageNetappServiceNameShareShareIdAccessPathResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetStorageNetappServiceNameShareShareIdAccessPathAccessPathIdError =
-  OvhOpError;
+export type GetStorageNetappShareAccessPathError = OvhOpError;
 /** Get access path details */
-export const getStorageNetappServiceNameShareShareIdAccessPathAccessPathId: API.OperationMethod<
-  GetStorageNetappServiceNameShareShareIdAccessPathAccessPathIdRequest,
+export const getStorageNetappShareAccessPath: API.OperationMethod<
+  GetStorageNetappShareAccessPathRequest,
   StorageNetAppShareAccessPath,
-  GetStorageNetappServiceNameShareShareIdAccessPathAccessPathIdError,
+  GetStorageNetappShareAccessPathError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetStorageNetappServiceNameShareShareIdAccessPathAccessPathIdRequest,
+  input: GetStorageNetappShareAccessPathRequest,
   output: StorageNetAppShareAccessPath,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetStorageNetappServiceNameShareShareIdAclError = OvhOpError;
-/** List available ACLs */
-export const getStorageNetappServiceNameShareShareIdAcl: API.OperationMethod<
-  GetStorageNetappServiceNameShareShareIdAclRequest,
-  GetStorageNetappServiceNameShareShareIdAclResponse,
-  GetStorageNetappServiceNameShareShareIdAclError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetStorageNetappServiceNameShareShareIdAclRequest,
-  output: GetStorageNetappServiceNameShareShareIdAclResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetStorageNetappServiceNameShareShareIdAclAclRuleIdError =
-  OvhOpError;
+export type GetStorageNetappShareAclError = OvhOpError;
 /** Get ACL details */
-export const getStorageNetappServiceNameShareShareIdAclAclRuleId: API.OperationMethod<
-  GetStorageNetappServiceNameShareShareIdAclAclRuleIdRequest,
+export const getStorageNetappShareAcl: API.OperationMethod<
+  GetStorageNetappShareAclRequest,
   StorageNetAppShareACLRule,
-  GetStorageNetappServiceNameShareShareIdAclAclRuleIdError,
+  GetStorageNetappShareAclError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetStorageNetappServiceNameShareShareIdAclAclRuleIdRequest,
+  input: GetStorageNetappShareAclRequest,
   output: StorageNetAppShareACLRule,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetStorageNetappServiceNameShareShareIdSnapshotError = OvhOpError;
-/** List available snapshots */
-export const getStorageNetappServiceNameShareShareIdSnapshot: API.OperationMethod<
-  GetStorageNetappServiceNameShareShareIdSnapshotRequest,
-  GetStorageNetappServiceNameShareShareIdSnapshotResponse,
-  GetStorageNetappServiceNameShareShareIdSnapshotError,
+export type GetStorageNetappShareSnapshotError = OvhOpError;
+/** Get snapshot details */
+export const getStorageNetappShareSnapshot: API.OperationMethod<
+  GetStorageNetappShareSnapshotRequest,
+  StorageNetAppShareSnapshot,
+  GetStorageNetappShareSnapshotError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetStorageNetappServiceNameShareShareIdSnapshotRequest,
-  output: GetStorageNetappServiceNameShareShareIdSnapshotResponse,
+  input: GetStorageNetappShareSnapshotRequest,
+  output: StorageNetAppShareSnapshot,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetStorageNetappServiceNameShareShareIdSnapshotPolicyError =
-  OvhOpError;
+export type GetStorageNetappShareSnapshotPolicyError = OvhOpError;
 /** Get snapshot policy used by a share */
-export const getStorageNetappServiceNameShareShareIdSnapshotPolicy: API.OperationMethod<
-  GetStorageNetappServiceNameShareShareIdSnapshotPolicyRequest,
+export const getStorageNetappShareSnapshotPolicy: API.OperationMethod<
+  GetStorageNetappShareSnapshotPolicyRequest,
   StorageNetAppShareSnapshotPolicy,
-  GetStorageNetappServiceNameShareShareIdSnapshotPolicyError,
+  GetStorageNetappShareSnapshotPolicyError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetStorageNetappServiceNameShareShareIdSnapshotPolicyRequest,
+  input: GetStorageNetappShareSnapshotPolicyRequest,
   output: StorageNetAppShareSnapshotPolicy,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetStorageNetappServiceNameShareShareIdSnapshotReserveError =
-  OvhOpError;
+export type GetStorageNetappShareSnapshotReserveError = OvhOpError;
 /** Get snapshot reserve properties of a share */
-export const getStorageNetappServiceNameShareShareIdSnapshotReserve: API.OperationMethod<
-  GetStorageNetappServiceNameShareShareIdSnapshotReserveRequest,
+export const getStorageNetappShareSnapshotReserve: API.OperationMethod<
+  GetStorageNetappShareSnapshotReserveRequest,
   StorageNetAppShareSnapshotReserve,
-  GetStorageNetappServiceNameShareShareIdSnapshotReserveError,
+  GetStorageNetappShareSnapshotReserveError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetStorageNetappServiceNameShareShareIdSnapshotReserveRequest,
+  input: GetStorageNetappShareSnapshotReserveRequest,
   output: StorageNetAppShareSnapshotReserve,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetStorageNetappServiceNameShareShareIdSnapshotSnapshotIdError =
-  OvhOpError;
-/** Get snapshot details */
-export const getStorageNetappServiceNameShareShareIdSnapshotSnapshotId: API.OperationMethod<
-  GetStorageNetappServiceNameShareShareIdSnapshotSnapshotIdRequest,
-  StorageNetAppShareSnapshot,
-  GetStorageNetappServiceNameShareShareIdSnapshotSnapshotIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetStorageNetappServiceNameShareShareIdSnapshotSnapshotIdRequest,
-  output: StorageNetAppShareSnapshot,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetStorageNetappServiceNameSnapshotPolicyError = OvhOpError;
-/** Get a list of snapshot policies */
-export const getStorageNetappServiceNameSnapshotPolicy: API.OperationMethod<
-  GetStorageNetappServiceNameSnapshotPolicyRequest,
-  GetStorageNetappServiceNameSnapshotPolicyResponse,
-  GetStorageNetappServiceNameSnapshotPolicyError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetStorageNetappServiceNameSnapshotPolicyRequest,
-  output: GetStorageNetappServiceNameSnapshotPolicyResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdError =
-  OvhOpError;
+export type GetStorageNetappSnapshotPolicyError = OvhOpError;
 /** Get snapshot policy details */
-export const getStorageNetappServiceNameSnapshotPolicySnapshotPolicyId: API.OperationMethod<
-  GetStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdRequest,
+export const getStorageNetappSnapshotPolicy: API.OperationMethod<
+  GetStorageNetappSnapshotPolicyRequest,
   StorageNetAppSnapshotPolicy,
-  GetStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdError,
+  GetStorageNetappSnapshotPolicyError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdRequest,
+  input: GetStorageNetappSnapshotPolicyRequest,
   output: StorageNetAppSnapshotPolicy,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostStorageNetappServiceNameChangeContactError = OvhOpError;
-/** Launch a contact change procedure */
-export const postStorageNetappServiceNameChangeContact: API.OperationMethod<
-  PostStorageNetappServiceNameChangeContactRequest,
-  PostStorageNetappServiceNameChangeContactResponse,
-  PostStorageNetappServiceNameChangeContactError,
+export type ListStorageNetappError = OvhOpError;
+/** List available services */
+export const listStorageNetapp: API.OperationMethod<
+  ListStorageNetappRequest,
+  ListStorageNetappResponse,
+  ListStorageNetappError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostStorageNetappServiceNameChangeContactRequest,
-  output: PostStorageNetappServiceNameChangeContactResponse,
+  input: ListStorageNetappRequest,
+  output: ListStorageNetappResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostStorageNetappServiceNameConfirmTerminationError = OvhOpError;
-/** Confirm service termination */
-export const postStorageNetappServiceNameConfirmTermination: API.OperationMethod<
-  PostStorageNetappServiceNameConfirmTerminationRequest,
-  PostStorageNetappServiceNameConfirmTerminationResponse,
-  PostStorageNetappServiceNameConfirmTerminationError,
+export type ListStorageNetappNetworkError = OvhOpError;
+/** List networks */
+export const listStorageNetappNetwork: API.OperationMethod<
+  ListStorageNetappNetworkRequest,
+  ListStorageNetappNetworkResponse,
+  ListStorageNetappNetworkError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostStorageNetappServiceNameConfirmTerminationRequest,
-  output: PostStorageNetappServiceNameConfirmTerminationResponse,
+  input: ListStorageNetappNetworkRequest,
+  output: ListStorageNetappNetworkResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostStorageNetappServiceNameShareError = OvhOpError;
-/** Create a share */
-export const postStorageNetappServiceNameShare: API.OperationMethod<
-  PostStorageNetappServiceNameShareRequest,
-  StorageNetAppShare,
-  PostStorageNetappServiceNameShareError,
+export type ListStorageNetappShareError = OvhOpError;
+/** List available shares */
+export const listStorageNetappShare: API.OperationMethod<
+  ListStorageNetappShareRequest,
+  ListStorageNetappShareResponse,
+  ListStorageNetappShareError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostStorageNetappServiceNameShareRequest,
-  output: StorageNetAppShare,
+  input: ListStorageNetappShareRequest,
+  output: ListStorageNetappShareResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostStorageNetappServiceNameShareShareIdAclError = OvhOpError;
-/** Create an ACL */
-export const postStorageNetappServiceNameShareShareIdAcl: API.OperationMethod<
-  PostStorageNetappServiceNameShareShareIdAclRequest,
-  StorageNetAppShareACLRule,
-  PostStorageNetappServiceNameShareShareIdAclError,
+export type ListStorageNetappShareAccessPathError = OvhOpError;
+/** List available access paths */
+export const listStorageNetappShareAccessPath: API.OperationMethod<
+  ListStorageNetappShareAccessPathRequest,
+  ListStorageNetappShareAccessPathResponse,
+  ListStorageNetappShareAccessPathError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostStorageNetappServiceNameShareShareIdAclRequest,
-  output: StorageNetAppShareACLRule,
+  input: ListStorageNetappShareAccessPathRequest,
+  output: ListStorageNetappShareAccessPathResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostStorageNetappServiceNameShareShareIdExtendError = OvhOpError;
-/** Extend share size */
-export const postStorageNetappServiceNameShareShareIdExtend: API.OperationMethod<
-  PostStorageNetappServiceNameShareShareIdExtendRequest,
-  PostStorageNetappServiceNameShareShareIdExtendResponse,
-  PostStorageNetappServiceNameShareShareIdExtendError,
+export type ListStorageNetappShareAclError = OvhOpError;
+/** List available ACLs */
+export const listStorageNetappShareAcl: API.OperationMethod<
+  ListStorageNetappShareAclRequest,
+  ListStorageNetappShareAclResponse,
+  ListStorageNetappShareAclError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostStorageNetappServiceNameShareShareIdExtendRequest,
-  output: PostStorageNetappServiceNameShareShareIdExtendResponse,
+  input: ListStorageNetappShareAclRequest,
+  output: ListStorageNetappShareAclResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostStorageNetappServiceNameShareShareIdRevertError = OvhOpError;
-/** Revert a share to it's latest snapshot */
-export const postStorageNetappServiceNameShareShareIdRevert: API.OperationMethod<
-  PostStorageNetappServiceNameShareShareIdRevertRequest,
-  PostStorageNetappServiceNameShareShareIdRevertResponse,
-  PostStorageNetappServiceNameShareShareIdRevertError,
+export type ListStorageNetappShareSnapshotError = OvhOpError;
+/** List available snapshots */
+export const listStorageNetappShareSnapshot: API.OperationMethod<
+  ListStorageNetappShareSnapshotRequest,
+  ListStorageNetappShareSnapshotResponse,
+  ListStorageNetappShareSnapshotError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostStorageNetappServiceNameShareShareIdRevertRequest,
-  output: PostStorageNetappServiceNameShareShareIdRevertResponse,
+  input: ListStorageNetappShareSnapshotRequest,
+  output: ListStorageNetappShareSnapshotResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostStorageNetappServiceNameShareShareIdShrinkError = OvhOpError;
-/** Shrink share size */
-export const postStorageNetappServiceNameShareShareIdShrink: API.OperationMethod<
-  PostStorageNetappServiceNameShareShareIdShrinkRequest,
-  PostStorageNetappServiceNameShareShareIdShrinkResponse,
-  PostStorageNetappServiceNameShareShareIdShrinkError,
+export type ListStorageNetappSnapshotPolicyError = OvhOpError;
+/** Get a list of snapshot policies */
+export const listStorageNetappSnapshotPolicy: API.OperationMethod<
+  ListStorageNetappSnapshotPolicyRequest,
+  ListStorageNetappSnapshotPolicyResponse,
+  ListStorageNetappSnapshotPolicyError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostStorageNetappServiceNameShareShareIdShrinkRequest,
-  output: PostStorageNetappServiceNameShareShareIdShrinkResponse,
+  input: ListStorageNetappSnapshotPolicyRequest,
+  output: ListStorageNetappSnapshotPolicyResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostStorageNetappServiceNameShareShareIdSnapshotError = OvhOpError;
-/** Create a snapshot */
-export const postStorageNetappServiceNameShareShareIdSnapshot: API.OperationMethod<
-  PostStorageNetappServiceNameShareShareIdSnapshotRequest,
-  StorageNetAppShareSnapshot,
-  PostStorageNetappServiceNameShareShareIdSnapshotError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostStorageNetappServiceNameShareShareIdSnapshotRequest,
-  output: StorageNetAppShareSnapshot,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostStorageNetappServiceNameShareShareIdSnapshotSnapshotIdHoldError =
-  OvhOpError;
-/** Hold an automatic share snapshot */
-export const postStorageNetappServiceNameShareShareIdSnapshotSnapshotIdHold: API.OperationMethod<
-  PostStorageNetappServiceNameShareShareIdSnapshotSnapshotIdHoldRequest,
-  StorageNetAppShareSnapshot,
-  PostStorageNetappServiceNameShareShareIdSnapshotSnapshotIdHoldError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostStorageNetappServiceNameShareShareIdSnapshotSnapshotIdHoldRequest,
-  output: StorageNetAppShareSnapshot,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostStorageNetappServiceNameSnapshotPolicyError = OvhOpError;
-/** Create a snapshot policy */
-export const postStorageNetappServiceNameSnapshotPolicy: API.OperationMethod<
-  PostStorageNetappServiceNameSnapshotPolicyRequest,
-  StorageNetAppSnapshotPolicy,
-  PostStorageNetappServiceNameSnapshotPolicyError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostStorageNetappServiceNameSnapshotPolicyRequest,
-  output: StorageNetAppSnapshotPolicy,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostStorageNetappServiceNameTerminateError = OvhOpError;
-/** Ask for the termination of your service */
-export const postStorageNetappServiceNameTerminate: API.OperationMethod<
-  PostStorageNetappServiceNameTerminateRequest,
-  PostStorageNetappServiceNameTerminateResponse,
-  PostStorageNetappServiceNameTerminateError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostStorageNetappServiceNameTerminateRequest,
-  output: PostStorageNetappServiceNameTerminateResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PutStorageNetappServiceNameError = OvhOpError;
+export type PutStorageNetappError = OvhOpError;
 /** Update service */
-export const putStorageNetappServiceName: API.OperationMethod<
-  PutStorageNetappServiceNameRequest,
+export const putStorageNetapp: API.OperationMethod<
+  PutStorageNetappRequest,
   StorageNetAppService,
-  PutStorageNetappServiceNameError,
+  PutStorageNetappError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutStorageNetappServiceNameRequest,
+  input: PutStorageNetappRequest,
   output: StorageNetAppService,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutStorageNetappServiceNameServiceInfosError = OvhOpError;
+export type PutStorageNetappServiceInfosError = OvhOpError;
 /** Update service information */
-export const putStorageNetappServiceNameServiceInfos: API.OperationMethod<
-  PutStorageNetappServiceNameServiceInfosRequest,
-  PutStorageNetappServiceNameServiceInfosResponse,
-  PutStorageNetappServiceNameServiceInfosError,
+export const putStorageNetappServiceInfos: API.OperationMethod<
+  PutStorageNetappServiceInfosRequest,
+  PutStorageNetappServiceInfosResponse,
+  PutStorageNetappServiceInfosError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutStorageNetappServiceNameServiceInfosRequest,
-  output: PutStorageNetappServiceNameServiceInfosResponse,
+  input: PutStorageNetappServiceInfosRequest,
+  output: PutStorageNetappServiceInfosResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutStorageNetappServiceNameShareShareIdError = OvhOpError;
+export type PutStorageNetappShareError = OvhOpError;
 /** Update a share */
-export const putStorageNetappServiceNameShareShareId: API.OperationMethod<
-  PutStorageNetappServiceNameShareShareIdRequest,
+export const putStorageNetappShare: API.OperationMethod<
+  PutStorageNetappShareRequest,
   StorageNetAppShare,
-  PutStorageNetappServiceNameShareShareIdError,
+  PutStorageNetappShareError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutStorageNetappServiceNameShareShareIdRequest,
+  input: PutStorageNetappShareRequest,
   output: StorageNetAppShare,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutStorageNetappServiceNameShareShareIdSnapshotPolicyError =
-  OvhOpError;
-/** Update snapshot policy used by a share */
-export const putStorageNetappServiceNameShareShareIdSnapshotPolicy: API.OperationMethod<
-  PutStorageNetappServiceNameShareShareIdSnapshotPolicyRequest,
-  PutStorageNetappServiceNameShareShareIdSnapshotPolicyResponse,
-  PutStorageNetappServiceNameShareShareIdSnapshotPolicyError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PutStorageNetappServiceNameShareShareIdSnapshotPolicyRequest,
-  output: PutStorageNetappServiceNameShareShareIdSnapshotPolicyResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PutStorageNetappServiceNameShareShareIdSnapshotReserveError =
-  OvhOpError;
-/** Update snapshot reserve properties of a share */
-export const putStorageNetappServiceNameShareShareIdSnapshotReserve: API.OperationMethod<
-  PutStorageNetappServiceNameShareShareIdSnapshotReserveRequest,
-  PutStorageNetappServiceNameShareShareIdSnapshotReserveResponse,
-  PutStorageNetappServiceNameShareShareIdSnapshotReserveError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PutStorageNetappServiceNameShareShareIdSnapshotReserveRequest,
-  output: PutStorageNetappServiceNameShareShareIdSnapshotReserveResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PutStorageNetappServiceNameShareShareIdSnapshotSnapshotIdError =
-  OvhOpError;
+export type PutStorageNetappShareSnapshotError = OvhOpError;
 /** Update a snapshot */
-export const putStorageNetappServiceNameShareShareIdSnapshotSnapshotId: API.OperationMethod<
-  PutStorageNetappServiceNameShareShareIdSnapshotSnapshotIdRequest,
+export const putStorageNetappShareSnapshot: API.OperationMethod<
+  PutStorageNetappShareSnapshotRequest,
   StorageNetAppShareSnapshot,
-  PutStorageNetappServiceNameShareShareIdSnapshotSnapshotIdError,
+  PutStorageNetappShareSnapshotError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutStorageNetappServiceNameShareShareIdSnapshotSnapshotIdRequest,
+  input: PutStorageNetappShareSnapshotRequest,
   output: StorageNetAppShareSnapshot,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdError =
-  OvhOpError;
-/** Update a snapshot policy */
-export const putStorageNetappServiceNameSnapshotPolicySnapshotPolicyId: API.OperationMethod<
-  PutStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdRequest,
-  PutStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdResponse,
-  PutStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdError,
+export type PutStorageNetappShareSnapshotPolicyError = OvhOpError;
+/** Update snapshot policy used by a share */
+export const putStorageNetappShareSnapshotPolicy: API.OperationMethod<
+  PutStorageNetappShareSnapshotPolicyRequest,
+  PutStorageNetappShareSnapshotPolicyResponse,
+  PutStorageNetappShareSnapshotPolicyError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdRequest,
-  output: PutStorageNetappServiceNameSnapshotPolicySnapshotPolicyIdResponse,
+  input: PutStorageNetappShareSnapshotPolicyRequest,
+  output: PutStorageNetappShareSnapshotPolicyResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutStorageNetappShareSnapshotReserveError = OvhOpError;
+/** Update snapshot reserve properties of a share */
+export const putStorageNetappShareSnapshotReserve: API.OperationMethod<
+  PutStorageNetappShareSnapshotReserveRequest,
+  PutStorageNetappShareSnapshotReserveResponse,
+  PutStorageNetappShareSnapshotReserveError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutStorageNetappShareSnapshotReserveRequest,
+  output: PutStorageNetappShareSnapshotReserveResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutStorageNetappSnapshotPolicyError = OvhOpError;
+/** Update a snapshot policy */
+export const putStorageNetappSnapshotPolicy: API.OperationMethod<
+  PutStorageNetappSnapshotPolicyRequest,
+  PutStorageNetappSnapshotPolicyResponse,
+  PutStorageNetappSnapshotPolicyError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutStorageNetappSnapshotPolicyRequest,
+  output: PutStorageNetappSnapshotPolicyResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ShareStorageNetappError = OvhOpError;
+/** Create a share */
+export const shareStorageNetapp: API.OperationMethod<
+  ShareStorageNetappRequest,
+  StorageNetAppShare,
+  ShareStorageNetappError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ShareStorageNetappRequest,
+  output: StorageNetAppShare,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type TerminateStorageNetappError = OvhOpError;
+/** Ask for the termination of your service */
+export const terminateStorageNetapp: API.OperationMethod<
+  TerminateStorageNetappRequest,
+  TerminateStorageNetappResponse,
+  TerminateStorageNetappError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: TerminateStorageNetappRequest,
+  output: TerminateStorageNetappResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,

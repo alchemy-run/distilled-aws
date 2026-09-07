@@ -12,27 +12,152 @@ import * as Retry from "../retry.ts";
 
 export type { OvhOpError, OvhOpContext };
 
-export interface DeleteOvhCloudConnectServiceNameConfigPopPopIdRequest {
+/** All future uses you can provide for a service termination */
+export type ServiceTerminationFutureUseEnum =
+  | "NOT_REPLACING_SERVICE"
+  | "OTHER"
+  | "SUBSCRIBE_AN_OTHER_SERVICE"
+  | "SUBSCRIBE_OTHER_KIND_OF_SERVICE_WITH_COMPETITOR"
+  | "SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR";
+export const ServiceTerminationFutureUseEnum = /*@__PURE__*/ S.String;
+
+/** All reasons you can provide for a service termination */
+export type ServiceTerminationReasonEnum =
+  | "FEATURES_DONT_SUIT_ME"
+  | "LACK_OF_PERFORMANCES"
+  | "MIGRATED_TO_ANOTHER_OVH_PRODUCT"
+  | "MIGRATED_TO_COMPETITOR"
+  | "NOT_ENOUGH_RECOGNITION"
+  | "NOT_NEEDED_ANYMORE"
+  | "NOT_RELIABLE"
+  | "NO_ANSWER"
+  | "OTHER"
+  | "PRODUCT_DIMENSION_DONT_SUIT_ME"
+  | "PRODUCT_TOOLS_DONT_SUIT_ME"
+  | "TOO_EXPENSIVE"
+  | "TOO_HARD_TO_USE"
+  | "UNSATIFIED_BY_CUSTOMER_SUPPORT";
+export const ServiceTerminationReasonEnum = /*@__PURE__*/ S.String;
+
+export interface ConfirmOvhCloudConnectTerminationRequest {
   /** Service name */
   serviceName: string;
-  /** Pop ID */
-  popId: number;
+  /** Commentary about your termination request */
+  commentary?: string;
+  /** All future uses you can provide for a service termination */
+  futureUse?: ServiceTerminationFutureUseEnum | (string & {});
+  /** All reasons you can provide for a service termination */
+  reason?: ServiceTerminationReasonEnum | (string & {});
+  /** The termination token sent by email to the admin contact */
+  token: string;
 }
-export const DeleteOvhCloudConnectServiceNameConfigPopPopIdRequest =
+export const ConfirmOvhCloudConnectTerminationRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      commentary: S.optional(S.String),
+      futureUse: S.optional(ServiceTerminationFutureUseEnum),
+      reason: S.optional(ServiceTerminationReasonEnum),
+      token: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/ovhCloudConnect/{serviceName}/confirmTermination",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ConfirmOvhCloudConnectTerminationRequest",
+}) as any as S.Schema<ConfirmOvhCloudConnectTerminationRequest>;
+
+export type ConfirmOvhCloudConnectTerminationResponse = string;
+export const ConfirmOvhCloudConnectTerminationResponse =
+  /*@__PURE__*/ S.suspend(() => S.String.pipe(T.RawResponseRoot())).annotate({
+    identifier: "ConfirmOvhCloudConnectTerminationResponse",
+  }) as any as S.Schema<ConfirmOvhCloudConnectTerminationResponse>;
+
+export interface CreateOvhCloudConnectChangeContactRequest {
+  /** Service name */
+  serviceName: string;
+  /** The contact to set as admin contact */
+  contactAdmin?: string;
+  /** The contact to set as billing contact */
+  contactBilling?: string;
+  /** The contact to set as tech contact */
+  contactTech?: string;
+}
+export const CreateOvhCloudConnectChangeContactRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
-      popId: S.Number.pipe(T.Label()),
+      contactAdmin: S.optional(S.String),
+      contactBilling: S.optional(S.String),
+      contactTech: S.optional(S.String),
     }).pipe(
       T.Http({
-        method: "DELETE",
-        uri: "/ovhCloudConnect/{serviceName}/config/pop/{popId}",
+        method: "POST",
+        uri: "/ovhCloudConnect/{serviceName}/changeContact",
         code: 200,
       }),
     ),
   ).annotate({
-    identifier: "DeleteOvhCloudConnectServiceNameConfigPopPopIdRequest",
-  }) as any as S.Schema<DeleteOvhCloudConnectServiceNameConfigPopPopIdRequest>;
+    identifier: "CreateOvhCloudConnectChangeContactRequest",
+  }) as any as S.Schema<CreateOvhCloudConnectChangeContactRequest>;
+
+export type CreateOvhCloudConnectChangeContactResponseBodyList = Array<number>;
+export const CreateOvhCloudConnectChangeContactResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.Number,
+  ) as any as S.Schema<CreateOvhCloudConnectChangeContactResponseBodyList>;
+
+export type CreateOvhCloudConnectChangeContactResponse =
+  CreateOvhCloudConnectChangeContactResponseBodyList;
+export const CreateOvhCloudConnectChangeContactResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    CreateOvhCloudConnectChangeContactResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "CreateOvhCloudConnectChangeContactResponse",
+  }) as any as S.Schema<CreateOvhCloudConnectChangeContactResponse>;
+
+/** Enum values for Pop Configuration Type */
+export type OvhcloudconnectPopConfigTypeEnum = "l2" | "l3";
+export const OvhcloudconnectPopConfigTypeEnum = /*@__PURE__*/ S.String;
+
+export interface CreateOvhCloudConnectConfigPopRequest {
+  /** Service name */
+  serviceName: string;
+  /** Customer Private AS */
+  customerBgpArea?: number | null;
+  /** ID of the interface */
+  interfaceId: number;
+  /** OVH Private AS */
+  ovhBgpArea?: number | null;
+  /** Subnet should be a /30, first IP for OVH, second IP for customer */
+  subnet?: string | null;
+  /** Type of the pop configuration */
+  type: OvhcloudconnectPopConfigTypeEnum | (string & {});
+}
+export const CreateOvhCloudConnectConfigPopRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      customerBgpArea: S.optional(S.NullOr(S.Number)),
+      interfaceId: S.Number,
+      ovhBgpArea: S.optional(S.NullOr(S.Number)),
+      subnet: S.optional(S.NullOr(S.String)),
+      type: OvhcloudconnectPopConfigTypeEnum,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/ovhCloudConnect/{serviceName}/config/pop",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateOvhCloudConnectConfigPopRequest",
+}) as any as S.Schema<CreateOvhCloudConnectConfigPopRequest>;
 
 /** Enum values for Task function */
 export type OvhcloudconnectTaskFunctionEnum =
@@ -80,83 +205,255 @@ export const OvhcloudconnectTask = /*@__PURE__*/ S.suspend(() =>
   identifier: "OvhcloudconnectTask",
 }) as any as S.Schema<OvhcloudconnectTask>;
 
-export interface DeleteOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdRequest {
+export interface CreateOvhCloudConnectConfigPopDatacenterRequest {
+  /** Service name */
+  serviceName: string;
+  /** Pop ID */
+  popId: number;
+  /** ID of the datacenter linked */
+  datacenterId: number;
+  /** OVH Private AS */
+  ovhBgpArea?: number | null;
+  /** Subnet should be a /28 min */
+  subnet?: string | null;
+}
+export const CreateOvhCloudConnectConfigPopDatacenterRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      popId: S.Number.pipe(T.Label()),
+      datacenterId: S.Number,
+      ovhBgpArea: S.optional(S.NullOr(S.Number)),
+      subnet: S.optional(S.NullOr(S.String)),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/ovhCloudConnect/{serviceName}/config/pop/{popId}/datacenter",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateOvhCloudConnectConfigPopDatacenterRequest",
+  }) as any as S.Schema<CreateOvhCloudConnectConfigPopDatacenterRequest>;
+
+/** Enum values for Datacenter Extra Configuration Type */
+export type OvhcloudconnectDatacenterExtraConfigTypeEnum = "bgp" | "network";
+export const OvhcloudconnectDatacenterExtraConfigTypeEnum =
+  /*@__PURE__*/ S.String;
+
+export interface CreateOvhCloudConnectConfigPopDatacenterExtraRequest {
   /** Service name */
   serviceName: string;
   /** Pop ID */
   popId: number;
   /** Datacenter ID */
   datacenterId: number;
+  /** BGP AS number */
+  bgpNeighborArea?: number | null;
+  /** Router IP for BGP */
+  bgpNeighborIp?: string | null;
+  /** Static route next hop */
+  nextHop?: string | null;
+  /** Static route ip */
+  subnet?: string | null;
+  /** Type of the configuration */
+  type: OvhcloudconnectDatacenterExtraConfigTypeEnum | (string & {});
 }
-export const DeleteOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdRequest =
+export const CreateOvhCloudConnectConfigPopDatacenterExtraRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       popId: S.Number.pipe(T.Label()),
       datacenterId: S.Number.pipe(T.Label()),
+      bgpNeighborArea: S.optional(S.NullOr(S.Number)),
+      bgpNeighborIp: S.optional(S.NullOr(S.String)),
+      nextHop: S.optional(S.NullOr(S.String)),
+      subnet: S.optional(S.NullOr(S.String)),
+      type: OvhcloudconnectDatacenterExtraConfigTypeEnum,
     }).pipe(
       T.Http({
-        method: "DELETE",
-        uri: "/ovhCloudConnect/{serviceName}/config/pop/{popId}/datacenter/{datacenterId}",
+        method: "POST",
+        uri: "/ovhCloudConnect/{serviceName}/config/pop/{popId}/datacenter/{datacenterId}/extra",
         code: 200,
       }),
     ),
   ).annotate({
-    identifier:
-      "DeleteOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdRequest",
-  }) as any as S.Schema<DeleteOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdRequest>;
+    identifier: "CreateOvhCloudConnectConfigPopDatacenterExtraRequest",
+  }) as any as S.Schema<CreateOvhCloudConnectConfigPopDatacenterExtraRequest>;
 
-export interface DeleteOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraExtraIdRequest {
+/** Enum values for Diagnostic function */
+export type OvhcloudconnectDiagnosticFunctionEnum =
+  | "diagMacs"
+  | "diagPeering"
+  | "diagPeeringExtra"
+  | "diagRoutes";
+export const OvhcloudconnectDiagnosticFunctionEnum = /*@__PURE__*/ S.String;
+
+/** Enum values for Diagnostic type */
+export type OvhcloudconnectDiagnosticTypeEnum =
+  | "advertised-routes"
+  | "default"
+  | "routes";
+export const OvhcloudconnectDiagnosticTypeEnum = /*@__PURE__*/ S.String;
+
+export interface CreateOvhCloudConnectDiagnosticRequest {
   /** Service name */
   serviceName: string;
-  /** Pop ID */
-  popId: number;
-  /** Datacenter ID */
-  datacenterId: number;
-  /** Extra ID */
-  extraId: number;
+  /** ID of the Datacenter configuration */
+  dcConfigId?: number;
+  /** Name of the diagnostic */
+  diagnosticName: OvhcloudconnectDiagnosticFunctionEnum | (string & {});
+  /** Type of the diagnostic */
+  diagnosticType?: OvhcloudconnectDiagnosticTypeEnum | (string & {});
+  /** ID of the extra configuration */
+  extraConfigId?: number;
+  /** ID of the Pop Configuration */
+  popConfigId: number;
 }
-export const DeleteOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraExtraIdRequest =
+export const CreateOvhCloudConnectDiagnosticRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      dcConfigId: S.optional(S.Number),
+      diagnosticName: OvhcloudconnectDiagnosticFunctionEnum,
+      diagnosticType: S.optional(OvhcloudconnectDiagnosticTypeEnum),
+      extraConfigId: S.optional(S.Number),
+      popConfigId: S.Number,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/ovhCloudConnect/{serviceName}/diagnostic",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateOvhCloudConnectDiagnosticRequest",
+}) as any as S.Schema<CreateOvhCloudConnectDiagnosticRequest>;
+
+/** OVHcloud Connect Diagnostic Result */
+export interface OvhcloudconnectDiagnosticResult {
+  /** As-path for routes */
+  aspath?: string | null;
+  /** Command sent to equipment */
+  cmd?: string | null;
+  /** Local prefix used for routes */
+  localprefix?: number | null;
+  /** Mac address */
+  mac?: string | null;
+  /** BGP Med (Metric) */
+  med?: number | null;
+  /** Output of command sent to equipment */
+  output?: string | null;
+  /** Prefix for routes */
+  prefix?: string | null;
+  /** eVPN router mac */
+  routermac?: string | null;
+  /** Local date when route/mac was declared */
+  timestamp?: string | null;
+}
+export const OvhcloudconnectDiagnosticResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    aspath: S.optional(S.NullOr(S.String)),
+    cmd: S.optional(S.NullOr(S.String)),
+    localprefix: S.optional(S.NullOr(S.Number)),
+    mac: S.optional(S.NullOr(S.String)),
+    med: S.optional(S.NullOr(S.Number)),
+    output: S.optional(S.NullOr(S.String)),
+    prefix: S.optional(S.NullOr(S.String)),
+    routermac: S.optional(S.NullOr(S.String)),
+    timestamp: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "OvhcloudconnectDiagnosticResult",
+}) as any as S.Schema<OvhcloudconnectDiagnosticResult>;
+
+/** Diagnostic result */
+export type OvhcloudconnectDiagnosticResultList =
+  Array<OvhcloudconnectDiagnosticResult>;
+export const OvhcloudconnectDiagnosticResultList = /*@__PURE__*/ S.Array(
+  OvhcloudconnectDiagnosticResult,
+) as any as S.Schema<OvhcloudconnectDiagnosticResultList>;
+
+/** OVHcloud Connect Diagnostic */
+export interface OvhcloudconnectDiagnostic {
+  /** Date of the diagnostic */
+  date?: string | null;
+  /** Description of the diagnostic */
+  description?: string | null;
+  /** Diagnostic function */
+  function?: OvhcloudconnectDiagnosticFunctionEnum;
+  /** Diagnostic id */
+  id?: number;
+  /** Diagnostic result */
+  result?: OvhcloudconnectDiagnosticResultList | null;
+  /** Source where the diagnostic was run */
+  source?: string | null;
+  /** Diagnostic status */
+  status?: OvhcloudconnectTaskStatusEnum;
+}
+export const OvhcloudconnectDiagnostic = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    date: S.optional(S.NullOr(S.String)),
+    description: S.optional(S.NullOr(S.String)),
+    function: S.optional(OvhcloudconnectDiagnosticFunctionEnum),
+    id: S.optional(S.Number),
+    result: S.optional(S.NullOr(OvhcloudconnectDiagnosticResultList)),
+    source: S.optional(S.NullOr(S.String)),
+    status: S.optional(OvhcloudconnectTaskStatusEnum),
+  }),
+).annotate({
+  identifier: "OvhcloudconnectDiagnostic",
+}) as any as S.Schema<OvhcloudconnectDiagnostic>;
+
+export interface CreateOvhCloudConnectLoaRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const CreateOvhCloudConnectLoaRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/ovhCloudConnect/{serviceName}/loa",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateOvhCloudConnectLoaRequest",
+}) as any as S.Schema<CreateOvhCloudConnectLoaRequest>;
+
+export type CreateOvhCloudConnectLoaResponse = string;
+export const CreateOvhCloudConnectLoaResponse = /*@__PURE__*/ S.suspend(() =>
+  S.String.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "CreateOvhCloudConnectLoaResponse",
+}) as any as S.Schema<CreateOvhCloudConnectLoaResponse>;
+
+export interface CreateOvhCloudConnectLogSubscriptionRequest {
+  /** Service name */
+  serviceName: string;
+  /** Log kind name to subscribe to */
+  kind: string;
+  /** Customer log stream ID */
+  streamId: string;
+}
+export const CreateOvhCloudConnectLogSubscriptionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
-      popId: S.Number.pipe(T.Label()),
-      datacenterId: S.Number.pipe(T.Label()),
-      extraId: S.Number.pipe(T.Label()),
+      kind: S.String,
+      streamId: S.String,
     }).pipe(
       T.Http({
-        method: "DELETE",
-        uri: "/ovhCloudConnect/{serviceName}/config/pop/{popId}/datacenter/{datacenterId}/extra/{extraId}",
+        method: "POST",
+        uri: "/ovhCloudConnect/{serviceName}/log/subscription",
         code: 200,
       }),
     ),
   ).annotate({
-    identifier:
-      "DeleteOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraExtraIdRequest",
-  }) as any as S.Schema<DeleteOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraExtraIdRequest>;
-
-export interface DeleteOvhCloudConnectServiceNameLogSubscriptionSubscriptionIdRequest {
-  /** Service name */
-  serviceName: string;
-  /** Subscription ID */
-  subscriptionId: string;
-}
-export const DeleteOvhCloudConnectServiceNameLogSubscriptionSubscriptionIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      subscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/ovhCloudConnect/{serviceName}/log/subscription/{subscriptionId}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "DeleteOvhCloudConnectServiceNameLogSubscriptionSubscriptionIdRequest",
-  }) as any as S.Schema<DeleteOvhCloudConnectServiceNameLogSubscriptionSubscriptionIdRequest>;
+    identifier: "CreateOvhCloudConnectLogSubscriptionRequest",
+  }) as any as S.Schema<CreateOvhCloudConnectLogSubscriptionRequest>;
 
 /** Asynchronous operation after subscribing or unsubscribing to a resource logs */
 export interface DbaasLogsLogSubscriptionResponse {
@@ -174,12 +471,185 @@ export const DbaasLogsLogSubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DbaasLogsLogSubscriptionResponse",
 }) as any as S.Schema<DbaasLogsLogSubscriptionResponse>;
 
-export interface DeleteOvhCloudConnectServiceNameMonitoringRequest {
+export interface CreateOvhCloudConnectLogUrlRequest {
+  /** Service name */
+  serviceName: string;
+  /** Log kind name */
+  kind: string;
+}
+export const CreateOvhCloudConnectLogUrlRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    kind: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/ovhCloudConnect/{serviceName}/log/url",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateOvhCloudConnectLogUrlRequest",
+}) as any as S.Schema<CreateOvhCloudConnectLogUrlRequest>;
+
+/** Temporary url information */
+export interface DbaasLogsTemporaryLogsLink {
+  /** Temporary url expiration date */
+  expirationDate?: string;
+  /** Temporary url */
+  url?: string;
+}
+export const DbaasLogsTemporaryLogsLink = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    expirationDate: S.optional(S.String),
+    url: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DbaasLogsTemporaryLogsLink",
+}) as any as S.Schema<DbaasLogsTemporaryLogsLink>;
+
+/** List of subscriptions alerts. */
+export type CreateOvhCloudConnectMonitoringRequestSubscriptionsList =
+  Array<string>;
+export const CreateOvhCloudConnectMonitoringRequestSubscriptionsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateOvhCloudConnectMonitoringRequestSubscriptionsList>;
+
+export interface CreateOvhCloudConnectMonitoringRequest {
+  /** Service name */
+  serviceName: string;
+  /** List of subscriptions alerts. */
+  subscriptions?: CreateOvhCloudConnectMonitoringRequestSubscriptionsList;
+}
+export const CreateOvhCloudConnectMonitoringRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      subscriptions: S.optional(
+        CreateOvhCloudConnectMonitoringRequestSubscriptionsList,
+      ),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/ovhCloudConnect/{serviceName}/monitoring",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateOvhCloudConnectMonitoringRequest",
+}) as any as S.Schema<CreateOvhCloudConnectMonitoringRequest>;
+
+export interface CreateOvhCloudConnectMonitoringResponse {}
+export const CreateOvhCloudConnectMonitoringResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "CreateOvhCloudConnectMonitoringResponse",
+}) as any as S.Schema<CreateOvhCloudConnectMonitoringResponse>;
+
+export interface DeleteOvhCloudConnectConfigPopRequest {
+  /** Service name */
+  serviceName: string;
+  /** Pop ID */
+  popId: number;
+}
+export const DeleteOvhCloudConnectConfigPopRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      popId: S.Number.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/ovhCloudConnect/{serviceName}/config/pop/{popId}",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "DeleteOvhCloudConnectConfigPopRequest",
+}) as any as S.Schema<DeleteOvhCloudConnectConfigPopRequest>;
+
+export interface DeleteOvhCloudConnectConfigPopDatacenterRequest {
+  /** Service name */
+  serviceName: string;
+  /** Pop ID */
+  popId: number;
+  /** Datacenter ID */
+  datacenterId: number;
+}
+export const DeleteOvhCloudConnectConfigPopDatacenterRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      popId: S.Number.pipe(T.Label()),
+      datacenterId: S.Number.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/ovhCloudConnect/{serviceName}/config/pop/{popId}/datacenter/{datacenterId}",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "DeleteOvhCloudConnectConfigPopDatacenterRequest",
+  }) as any as S.Schema<DeleteOvhCloudConnectConfigPopDatacenterRequest>;
+
+export interface DeleteOvhCloudConnectConfigPopDatacenterExtraRequest {
+  /** Service name */
+  serviceName: string;
+  /** Pop ID */
+  popId: number;
+  /** Datacenter ID */
+  datacenterId: number;
+  /** Extra ID */
+  extraId: number;
+}
+export const DeleteOvhCloudConnectConfigPopDatacenterExtraRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      popId: S.Number.pipe(T.Label()),
+      datacenterId: S.Number.pipe(T.Label()),
+      extraId: S.Number.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/ovhCloudConnect/{serviceName}/config/pop/{popId}/datacenter/{datacenterId}/extra/{extraId}",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "DeleteOvhCloudConnectConfigPopDatacenterExtraRequest",
+  }) as any as S.Schema<DeleteOvhCloudConnectConfigPopDatacenterExtraRequest>;
+
+export interface DeleteOvhCloudConnectLogSubscriptionRequest {
+  /** Service name */
+  serviceName: string;
+  /** Subscription ID */
+  subscriptionId: string;
+}
+export const DeleteOvhCloudConnectLogSubscriptionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      subscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/ovhCloudConnect/{serviceName}/log/subscription/{subscriptionId}",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "DeleteOvhCloudConnectLogSubscriptionRequest",
+  }) as any as S.Schema<DeleteOvhCloudConnectLogSubscriptionRequest>;
+
+export interface DeleteOvhCloudConnectMonitoringRequest {
   /** Service name */
   serviceName: string;
 }
-export const DeleteOvhCloudConnectServiceNameMonitoringRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const DeleteOvhCloudConnectMonitoringRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
     }).pipe(
@@ -189,80 +659,30 @@ export const DeleteOvhCloudConnectServiceNameMonitoringRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "DeleteOvhCloudConnectServiceNameMonitoringRequest",
-  }) as any as S.Schema<DeleteOvhCloudConnectServiceNameMonitoringRequest>;
-
-export interface DeleteOvhCloudConnectServiceNameMonitoringResponse {}
-export const DeleteOvhCloudConnectServiceNameMonitoringResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteOvhCloudConnectServiceNameMonitoringResponse",
-  }) as any as S.Schema<DeleteOvhCloudConnectServiceNameMonitoringResponse>;
-
-/** Resource tag filter */
-export interface IamResourceTagFilterInput {}
-export const IamResourceTagFilterInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
 ).annotate({
-  identifier: "IamResourceTagFilterInput",
-}) as any as S.Schema<IamResourceTagFilterInput>;
+  identifier: "DeleteOvhCloudConnectMonitoringRequest",
+}) as any as S.Schema<DeleteOvhCloudConnectMonitoringRequest>;
 
-export type GetOvhCloudConnectRequestIamTagsValueList =
-  Array<IamResourceTagFilterInput>;
-export const GetOvhCloudConnectRequestIamTagsValueList = /*@__PURE__*/ S.Array(
-  IamResourceTagFilterInput,
-) as any as S.Schema<GetOvhCloudConnectRequestIamTagsValueList>;
-
-export type GetOvhCloudConnectRequestIamTagsMap = {
-  [key: string]: GetOvhCloudConnectRequestIamTagsValueList | undefined;
-};
-export const GetOvhCloudConnectRequestIamTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  GetOvhCloudConnectRequestIamTagsValueList,
-) as any as S.Schema<GetOvhCloudConnectRequestIamTagsMap>;
+export interface DeleteOvhCloudConnectMonitoringResponse {}
+export const DeleteOvhCloudConnectMonitoringResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteOvhCloudConnectMonitoringResponse",
+}) as any as S.Schema<DeleteOvhCloudConnectMonitoringResponse>;
 
 export interface GetOvhCloudConnectRequest {
-  /** Filter resources on IAM tags */
-  iamTags?: GetOvhCloudConnectRequestIamTagsMap;
-}
-export const GetOvhCloudConnectRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    iamTags: S.optional(GetOvhCloudConnectRequestIamTagsMap.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/ovhCloudConnect", code: 200 })),
-).annotate({
-  identifier: "GetOvhCloudConnectRequest",
-}) as any as S.Schema<GetOvhCloudConnectRequest>;
-
-export type GetOvhCloudConnectResponseBodyList = Array<string>;
-export const GetOvhCloudConnectResponseBodyList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<GetOvhCloudConnectResponseBodyList>;
-
-export type GetOvhCloudConnectResponse = GetOvhCloudConnectResponseBodyList;
-export const GetOvhCloudConnectResponse = /*@__PURE__*/ S.suspend(() =>
-  GetOvhCloudConnectResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetOvhCloudConnectResponse",
-}) as any as S.Schema<GetOvhCloudConnectResponse>;
-
-export interface GetOvhCloudConnectServiceNameRequest {
   /** Service name */
   serviceName: string;
 }
-export const GetOvhCloudConnectServiceNameRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/ovhCloudConnect/{serviceName}",
-        code: 200,
-      }),
-    ),
+export const GetOvhCloudConnectRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/ovhCloudConnect/{serviceName}", code: 200 }),
+  ),
 ).annotate({
-  identifier: "GetOvhCloudConnectServiceNameRequest",
-}) as any as S.Schema<GetOvhCloudConnectServiceNameRequest>;
+  identifier: "GetOvhCloudConnectRequest",
+}) as any as S.Schema<GetOvhCloudConnectRequest>;
 
 /** Enum values for bandwidth */
 export type OvhcloudconnectServiceBandwidthEnum =
@@ -379,72 +799,30 @@ export const OvhcloudconnectServiceWithIAM = /*@__PURE__*/ S.suspend(() =>
   identifier: "OvhcloudconnectServiceWithIAM",
 }) as any as S.Schema<OvhcloudconnectServiceWithIAM>;
 
-export interface GetOvhCloudConnectServiceNameConfigPopRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const GetOvhCloudConnectServiceNameConfigPopRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/ovhCloudConnect/{serviceName}/config/pop",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetOvhCloudConnectServiceNameConfigPopRequest",
-  }) as any as S.Schema<GetOvhCloudConnectServiceNameConfigPopRequest>;
-
-export type GetOvhCloudConnectServiceNameConfigPopResponseBodyList =
-  Array<number>;
-export const GetOvhCloudConnectServiceNameConfigPopResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<GetOvhCloudConnectServiceNameConfigPopResponseBodyList>;
-
-export type GetOvhCloudConnectServiceNameConfigPopResponse =
-  GetOvhCloudConnectServiceNameConfigPopResponseBodyList;
-export const GetOvhCloudConnectServiceNameConfigPopResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetOvhCloudConnectServiceNameConfigPopResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetOvhCloudConnectServiceNameConfigPopResponse",
-  }) as any as S.Schema<GetOvhCloudConnectServiceNameConfigPopResponse>;
-
-export interface GetOvhCloudConnectServiceNameConfigPopPopIdRequest {
+export interface GetOvhCloudConnectConfigPopRequest {
   /** Service name */
   serviceName: string;
   /** Pop ID */
   popId: number;
 }
-export const GetOvhCloudConnectServiceNameConfigPopPopIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      popId: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/ovhCloudConnect/{serviceName}/config/pop/{popId}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetOvhCloudConnectServiceNameConfigPopPopIdRequest",
-  }) as any as S.Schema<GetOvhCloudConnectServiceNameConfigPopPopIdRequest>;
+export const GetOvhCloudConnectConfigPopRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    popId: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/ovhCloudConnect/{serviceName}/config/pop/{popId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetOvhCloudConnectConfigPopRequest",
+}) as any as S.Schema<GetOvhCloudConnectConfigPopRequest>;
 
 /** Enum values for Pop Configuration Status */
 export type OvhcloudconnectPopConfigStatusEnum = "active" | "init" | "toDelete";
 export const OvhcloudconnectPopConfigStatusEnum = /*@__PURE__*/ S.String;
-
-/** Enum values for Pop Configuration Type */
-export type OvhcloudconnectPopConfigTypeEnum = "l2" | "l3";
-export const OvhcloudconnectPopConfigTypeEnum = /*@__PURE__*/ S.String;
 
 /** OVHcloud Connect Service Pop Configuration */
 export interface OvhcloudconnectPopConfig {
@@ -477,47 +855,7 @@ export const OvhcloudconnectPopConfig = /*@__PURE__*/ S.suspend(() =>
   identifier: "OvhcloudconnectPopConfig",
 }) as any as S.Schema<OvhcloudconnectPopConfig>;
 
-export interface GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterRequest {
-  /** Service name */
-  serviceName: string;
-  /** Pop ID */
-  popId: number;
-}
-export const GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      popId: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/ovhCloudConnect/{serviceName}/config/pop/{popId}/datacenter",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterRequest",
-  }) as any as S.Schema<GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterRequest>;
-
-export type GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterResponseBodyList =
-  Array<number>;
-export const GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterResponseBodyList>;
-
-export type GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterResponse =
-  GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterResponseBodyList;
-export const GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterResponse",
-  }) as any as S.Schema<GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterResponse>;
-
-export interface GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdRequest {
+export interface GetOvhCloudConnectConfigPopDatacenterRequest {
   /** Service name */
   serviceName: string;
   /** Pop ID */
@@ -525,7 +863,7 @@ export interface GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenter
   /** Datacenter ID */
   datacenterId: number;
 }
-export const GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdRequest =
+export const GetOvhCloudConnectConfigPopDatacenterRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
@@ -539,9 +877,8 @@ export const GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdRe
       }),
     ),
   ).annotate({
-    identifier:
-      "GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdRequest",
-  }) as any as S.Schema<GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdRequest>;
+    identifier: "GetOvhCloudConnectConfigPopDatacenterRequest",
+  }) as any as S.Schema<GetOvhCloudConnectConfigPopDatacenterRequest>;
 
 /** OVHcloud Connect Service Datacenter Configuration */
 export interface OvhcloudconnectDatacenterConfig {
@@ -568,52 +905,7 @@ export const OvhcloudconnectDatacenterConfig = /*@__PURE__*/ S.suspend(() =>
   identifier: "OvhcloudconnectDatacenterConfig",
 }) as any as S.Schema<OvhcloudconnectDatacenterConfig>;
 
-export interface GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraRequest {
-  /** Service name */
-  serviceName: string;
-  /** Pop ID */
-  popId: number;
-  /** Datacenter ID */
-  datacenterId: number;
-}
-export const GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      popId: S.Number.pipe(T.Label()),
-      datacenterId: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/ovhCloudConnect/{serviceName}/config/pop/{popId}/datacenter/{datacenterId}/extra",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraRequest",
-  }) as any as S.Schema<GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraRequest>;
-
-export type GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraResponseBodyList =
-  Array<number>;
-export const GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraResponseBodyList>;
-
-export type GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraResponse =
-  GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraResponseBodyList;
-export const GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier:
-      "GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraResponse",
-  }) as any as S.Schema<GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraResponse>;
-
-export interface GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraExtraIdRequest {
+export interface GetOvhCloudConnectConfigPopDatacenterExtraRequest {
   /** Service name */
   serviceName: string;
   /** Pop ID */
@@ -623,7 +915,7 @@ export interface GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenter
   /** Extra ID */
   extraId: number;
 }
-export const GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraExtraIdRequest =
+export const GetOvhCloudConnectConfigPopDatacenterExtraRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
@@ -638,14 +930,8 @@ export const GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdEx
       }),
     ),
   ).annotate({
-    identifier:
-      "GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraExtraIdRequest",
-  }) as any as S.Schema<GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraExtraIdRequest>;
-
-/** Enum values for Datacenter Extra Configuration Type */
-export type OvhcloudconnectDatacenterExtraConfigTypeEnum = "bgp" | "network";
-export const OvhcloudconnectDatacenterExtraConfigTypeEnum =
-  /*@__PURE__*/ S.String;
+    identifier: "GetOvhCloudConnectConfigPopDatacenterExtraRequest",
+  }) as any as S.Schema<GetOvhCloudConnectConfigPopDatacenterExtraRequest>;
 
 /** OVHcloud Connect Service Datacenter Extra Configuration */
 export interface OvhcloudconnectDatacenterExtraConfig {
@@ -679,112 +965,14 @@ export const OvhcloudconnectDatacenterExtraConfig = /*@__PURE__*/ S.suspend(
   identifier: "OvhcloudconnectDatacenterExtraConfig",
 }) as any as S.Schema<OvhcloudconnectDatacenterExtraConfig>;
 
-/** Enum values for the period of the statistics */
-export type OvhcloudconnectInterfaceMetricsPeriodEnum =
-  | "daily"
-  | "hourly"
-  | "weekly";
-export const OvhcloudconnectInterfaceMetricsPeriodEnum = /*@__PURE__*/ S.String;
-
-/** Enum values for the type of the statistics */
-export type OvhcloudconnectPopConfigMetricsTypeEnum =
-  | "prefix:accepted"
-  | "prefix:limit";
-export const OvhcloudconnectPopConfigMetricsTypeEnum = /*@__PURE__*/ S.String;
-
-export interface GetOvhCloudConnectServiceNameConfigPopPopIdStatisticsRequest {
-  /** Service name */
-  serviceName: string;
-  /** Pop ID */
-  popId: number;
-  /** The period the statistics are fetched for */
-  period: OvhcloudconnectInterfaceMetricsPeriodEnum | (string & {});
-  /** The type of statistic to be fetched */
-  type: OvhcloudconnectPopConfigMetricsTypeEnum | (string & {});
-}
-export const GetOvhCloudConnectServiceNameConfigPopPopIdStatisticsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      popId: S.Number.pipe(T.Label()),
-      period: OvhcloudconnectInterfaceMetricsPeriodEnum.pipe(T.Query()),
-      type: OvhcloudconnectPopConfigMetricsTypeEnum.pipe(T.Query()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/ovhCloudConnect/{serviceName}/config/pop/{popId}/statistics",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetOvhCloudConnectServiceNameConfigPopPopIdStatisticsRequest",
-  }) as any as S.Schema<GetOvhCloudConnectServiceNameConfigPopPopIdStatisticsRequest>;
-
-/** Enum values for the unit of the statistics */
-export type OvhcloudconnectInterfaceMetricsUnitEnum =
-  | "bytes/s"
-  | "dbm"
-  | "error/s"
-  | "prefix_accepted"
-  | "prefix_limit";
-export const OvhcloudconnectInterfaceMetricsUnitEnum = /*@__PURE__*/ S.String;
-
-/** OVHcloud Connect Metrics value */
-export interface OvhcloudconnectMetricsValue {
-  /** Unit in which the value is expressed */
-  unit?: OvhcloudconnectInterfaceMetricsUnitEnum;
-  value?: number;
-}
-export const OvhcloudconnectMetricsValue = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    unit: S.optional(OvhcloudconnectInterfaceMetricsUnitEnum),
-    value: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "OvhcloudconnectMetricsValue",
-}) as any as S.Schema<OvhcloudconnectMetricsValue>;
-
-/** OVHcloud Connect Metrics */
-export interface OvhcloudconnectMetrics {
-  /** timestamp corresponding to the value */
-  timestamp?: number;
-  value?: OvhcloudconnectMetricsValue;
-}
-export const OvhcloudconnectMetrics = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    timestamp: S.optional(S.Number),
-    value: S.optional(OvhcloudconnectMetricsValue),
-  }),
-).annotate({
-  identifier: "OvhcloudconnectMetrics",
-}) as any as S.Schema<OvhcloudconnectMetrics>;
-
-export type GetOvhCloudConnectServiceNameConfigPopPopIdStatisticsResponseBodyList =
-  Array<OvhcloudconnectMetrics>;
-export const GetOvhCloudConnectServiceNameConfigPopPopIdStatisticsResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    OvhcloudconnectMetrics,
-  ) as any as S.Schema<GetOvhCloudConnectServiceNameConfigPopPopIdStatisticsResponseBodyList>;
-
-export type GetOvhCloudConnectServiceNameConfigPopPopIdStatisticsResponse =
-  GetOvhCloudConnectServiceNameConfigPopPopIdStatisticsResponseBodyList;
-export const GetOvhCloudConnectServiceNameConfigPopPopIdStatisticsResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetOvhCloudConnectServiceNameConfigPopPopIdStatisticsResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetOvhCloudConnectServiceNameConfigPopPopIdStatisticsResponse",
-  }) as any as S.Schema<GetOvhCloudConnectServiceNameConfigPopPopIdStatisticsResponse>;
-
-export interface GetOvhCloudConnectServiceNameConfigPopPopIdStatusRequest {
+export interface GetOvhCloudConnectConfigPopStatusRequest {
   /** Service name */
   serviceName: string;
   /** Pop ID */
   popId: number;
 }
-export const GetOvhCloudConnectServiceNameConfigPopPopIdStatusRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetOvhCloudConnectConfigPopStatusRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       popId: S.Number.pipe(T.Label()),
@@ -795,9 +983,9 @@ export const GetOvhCloudConnectServiceNameConfigPopPopIdStatusRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "GetOvhCloudConnectServiceNameConfigPopPopIdStatusRequest",
-  }) as any as S.Schema<GetOvhCloudConnectServiceNameConfigPopPopIdStatusRequest>;
+).annotate({
+  identifier: "GetOvhCloudConnectConfigPopStatusRequest",
+}) as any as S.Schema<GetOvhCloudConnectConfigPopStatusRequest>;
 
 /** Enum values for status */
 export type OvhcloudconnectStatusStatusEnum = "down" | "up";
@@ -831,64 +1019,26 @@ export const OvhcloudconnectPopConfStatus = /*@__PURE__*/ S.suspend(() =>
   identifier: "OvhcloudconnectPopConfStatus",
 }) as any as S.Schema<OvhcloudconnectPopConfStatus>;
 
-export interface GetOvhCloudConnectServiceNameDatacenterRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const GetOvhCloudConnectServiceNameDatacenterRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/ovhCloudConnect/{serviceName}/datacenter",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetOvhCloudConnectServiceNameDatacenterRequest",
-  }) as any as S.Schema<GetOvhCloudConnectServiceNameDatacenterRequest>;
-
-export type GetOvhCloudConnectServiceNameDatacenterResponseBodyList =
-  Array<number>;
-export const GetOvhCloudConnectServiceNameDatacenterResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<GetOvhCloudConnectServiceNameDatacenterResponseBodyList>;
-
-export type GetOvhCloudConnectServiceNameDatacenterResponse =
-  GetOvhCloudConnectServiceNameDatacenterResponseBodyList;
-export const GetOvhCloudConnectServiceNameDatacenterResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetOvhCloudConnectServiceNameDatacenterResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetOvhCloudConnectServiceNameDatacenterResponse",
-  }) as any as S.Schema<GetOvhCloudConnectServiceNameDatacenterResponse>;
-
-export interface GetOvhCloudConnectServiceNameDatacenterIdRequest {
+export interface GetOvhCloudConnectDatacenterRequest {
   /** Service name */
   serviceName: string;
   /** Id */
   id: number;
 }
-export const GetOvhCloudConnectServiceNameDatacenterIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/ovhCloudConnect/{serviceName}/datacenter/{id}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetOvhCloudConnectServiceNameDatacenterIdRequest",
-  }) as any as S.Schema<GetOvhCloudConnectServiceNameDatacenterIdRequest>;
+export const GetOvhCloudConnectDatacenterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/ovhCloudConnect/{serviceName}/datacenter/{id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetOvhCloudConnectDatacenterRequest",
+}) as any as S.Schema<GetOvhCloudConnectDatacenterRequest>;
 
 /** RegionEnum */
 export type CommonRegionEnum =
@@ -960,206 +1110,47 @@ export const OvhcloudconnectDatacenter = /*@__PURE__*/ S.suspend(() =>
   identifier: "OvhcloudconnectDatacenter",
 }) as any as S.Schema<OvhcloudconnectDatacenter>;
 
-export interface GetOvhCloudConnectServiceNameDiagnosticRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const GetOvhCloudConnectServiceNameDiagnosticRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/ovhCloudConnect/{serviceName}/diagnostic",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetOvhCloudConnectServiceNameDiagnosticRequest",
-  }) as any as S.Schema<GetOvhCloudConnectServiceNameDiagnosticRequest>;
-
-export type GetOvhCloudConnectServiceNameDiagnosticResponseBodyList =
-  Array<number>;
-export const GetOvhCloudConnectServiceNameDiagnosticResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<GetOvhCloudConnectServiceNameDiagnosticResponseBodyList>;
-
-export type GetOvhCloudConnectServiceNameDiagnosticResponse =
-  GetOvhCloudConnectServiceNameDiagnosticResponseBodyList;
-export const GetOvhCloudConnectServiceNameDiagnosticResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetOvhCloudConnectServiceNameDiagnosticResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetOvhCloudConnectServiceNameDiagnosticResponse",
-  }) as any as S.Schema<GetOvhCloudConnectServiceNameDiagnosticResponse>;
-
-export interface GetOvhCloudConnectServiceNameDiagnosticIdRequest {
+export interface GetOvhCloudConnectDiagnosticRequest {
   /** Service name */
   serviceName: string;
   /** Id */
   id: number;
 }
-export const GetOvhCloudConnectServiceNameDiagnosticIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/ovhCloudConnect/{serviceName}/diagnostic/{id}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetOvhCloudConnectServiceNameDiagnosticIdRequest",
-  }) as any as S.Schema<GetOvhCloudConnectServiceNameDiagnosticIdRequest>;
-
-/** Enum values for Diagnostic function */
-export type OvhcloudconnectDiagnosticFunctionEnum =
-  | "diagMacs"
-  | "diagPeering"
-  | "diagPeeringExtra"
-  | "diagRoutes";
-export const OvhcloudconnectDiagnosticFunctionEnum = /*@__PURE__*/ S.String;
-
-/** OVHcloud Connect Diagnostic Result */
-export interface OvhcloudconnectDiagnosticResult {
-  /** As-path for routes */
-  aspath?: string | null;
-  /** Command sent to equipment */
-  cmd?: string | null;
-  /** Local prefix used for routes */
-  localprefix?: number | null;
-  /** Mac address */
-  mac?: string | null;
-  /** BGP Med (Metric) */
-  med?: number | null;
-  /** Output of command sent to equipment */
-  output?: string | null;
-  /** Prefix for routes */
-  prefix?: string | null;
-  /** eVPN router mac */
-  routermac?: string | null;
-  /** Local date when route/mac was declared */
-  timestamp?: string | null;
-}
-export const OvhcloudconnectDiagnosticResult = /*@__PURE__*/ S.suspend(() =>
+export const GetOvhCloudConnectDiagnosticRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    aspath: S.optional(S.NullOr(S.String)),
-    cmd: S.optional(S.NullOr(S.String)),
-    localprefix: S.optional(S.NullOr(S.Number)),
-    mac: S.optional(S.NullOr(S.String)),
-    med: S.optional(S.NullOr(S.Number)),
-    output: S.optional(S.NullOr(S.String)),
-    prefix: S.optional(S.NullOr(S.String)),
-    routermac: S.optional(S.NullOr(S.String)),
-    timestamp: S.optional(S.NullOr(S.String)),
-  }),
+    serviceName: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/ovhCloudConnect/{serviceName}/diagnostic/{id}",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "OvhcloudconnectDiagnosticResult",
-}) as any as S.Schema<OvhcloudconnectDiagnosticResult>;
+  identifier: "GetOvhCloudConnectDiagnosticRequest",
+}) as any as S.Schema<GetOvhCloudConnectDiagnosticRequest>;
 
-/** Diagnostic result */
-export type OvhcloudconnectDiagnosticResultList =
-  Array<OvhcloudconnectDiagnosticResult>;
-export const OvhcloudconnectDiagnosticResultList = /*@__PURE__*/ S.Array(
-  OvhcloudconnectDiagnosticResult,
-) as any as S.Schema<OvhcloudconnectDiagnosticResultList>;
-
-/** OVHcloud Connect Diagnostic */
-export interface OvhcloudconnectDiagnostic {
-  /** Date of the diagnostic */
-  date?: string | null;
-  /** Description of the diagnostic */
-  description?: string | null;
-  /** Diagnostic function */
-  function?: OvhcloudconnectDiagnosticFunctionEnum;
-  /** Diagnostic id */
-  id?: number;
-  /** Diagnostic result */
-  result?: OvhcloudconnectDiagnosticResultList | null;
-  /** Source where the diagnostic was run */
-  source?: string | null;
-  /** Diagnostic status */
-  status?: OvhcloudconnectTaskStatusEnum;
-}
-export const OvhcloudconnectDiagnostic = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    date: S.optional(S.NullOr(S.String)),
-    description: S.optional(S.NullOr(S.String)),
-    function: S.optional(OvhcloudconnectDiagnosticFunctionEnum),
-    id: S.optional(S.Number),
-    result: S.optional(S.NullOr(OvhcloudconnectDiagnosticResultList)),
-    source: S.optional(S.NullOr(S.String)),
-    status: S.optional(OvhcloudconnectTaskStatusEnum),
-  }),
-).annotate({
-  identifier: "OvhcloudconnectDiagnostic",
-}) as any as S.Schema<OvhcloudconnectDiagnostic>;
-
-export interface GetOvhCloudConnectServiceNameIncidentRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const GetOvhCloudConnectServiceNameIncidentRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/ovhCloudConnect/{serviceName}/incident",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetOvhCloudConnectServiceNameIncidentRequest",
-  }) as any as S.Schema<GetOvhCloudConnectServiceNameIncidentRequest>;
-
-export type GetOvhCloudConnectServiceNameIncidentResponseBodyList =
-  Array<number>;
-export const GetOvhCloudConnectServiceNameIncidentResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<GetOvhCloudConnectServiceNameIncidentResponseBodyList>;
-
-export type GetOvhCloudConnectServiceNameIncidentResponse =
-  GetOvhCloudConnectServiceNameIncidentResponseBodyList;
-export const GetOvhCloudConnectServiceNameIncidentResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetOvhCloudConnectServiceNameIncidentResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetOvhCloudConnectServiceNameIncidentResponse",
-  }) as any as S.Schema<GetOvhCloudConnectServiceNameIncidentResponse>;
-
-export interface GetOvhCloudConnectServiceNameIncidentIdRequest {
+export interface GetOvhCloudConnectIncidentRequest {
   /** Service name */
   serviceName: string;
   /** Id */
   id: number;
 }
-export const GetOvhCloudConnectServiceNameIncidentIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/ovhCloudConnect/{serviceName}/incident/{id}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetOvhCloudConnectServiceNameIncidentIdRequest",
-  }) as any as S.Schema<GetOvhCloudConnectServiceNameIncidentIdRequest>;
+export const GetOvhCloudConnectIncidentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/ovhCloudConnect/{serviceName}/incident/{id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetOvhCloudConnectIncidentRequest",
+}) as any as S.Schema<GetOvhCloudConnectIncidentRequest>;
 
 /** Enum values for incident type status */
 export type OvhcloudconnectIncidentTypeEnum = "incident" | "maintenance";
@@ -1187,64 +1178,26 @@ export const OvhcloudconnectIncident = /*@__PURE__*/ S.suspend(() =>
   identifier: "OvhcloudconnectIncident",
 }) as any as S.Schema<OvhcloudconnectIncident>;
 
-export interface GetOvhCloudConnectServiceNameInterfaceRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const GetOvhCloudConnectServiceNameInterfaceRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/ovhCloudConnect/{serviceName}/interface",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetOvhCloudConnectServiceNameInterfaceRequest",
-  }) as any as S.Schema<GetOvhCloudConnectServiceNameInterfaceRequest>;
-
-export type GetOvhCloudConnectServiceNameInterfaceResponseBodyList =
-  Array<number>;
-export const GetOvhCloudConnectServiceNameInterfaceResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<GetOvhCloudConnectServiceNameInterfaceResponseBodyList>;
-
-export type GetOvhCloudConnectServiceNameInterfaceResponse =
-  GetOvhCloudConnectServiceNameInterfaceResponseBodyList;
-export const GetOvhCloudConnectServiceNameInterfaceResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetOvhCloudConnectServiceNameInterfaceResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetOvhCloudConnectServiceNameInterfaceResponse",
-  }) as any as S.Schema<GetOvhCloudConnectServiceNameInterfaceResponse>;
-
-export interface GetOvhCloudConnectServiceNameInterfaceIdRequest {
+export interface GetOvhCloudConnectInterfaceRequest {
   /** Service name */
   serviceName: string;
   /** Id */
   id: number;
 }
-export const GetOvhCloudConnectServiceNameInterfaceIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/ovhCloudConnect/{serviceName}/interface/{id}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetOvhCloudConnectServiceNameInterfaceIdRequest",
-  }) as any as S.Schema<GetOvhCloudConnectServiceNameInterfaceIdRequest>;
+export const GetOvhCloudConnectInterfaceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/ovhCloudConnect/{serviceName}/interface/{id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetOvhCloudConnectInterfaceRequest",
+}) as any as S.Schema<GetOvhCloudConnectInterfaceRequest>;
 
 /** Enum values for the light status */
 export type OvhcloudconnectInterfaceLightStatusEnum = "down" | "unknown" | "up";
@@ -1313,70 +1266,14 @@ export const OvhcloudconnectInterface = /*@__PURE__*/ S.suspend(() =>
   identifier: "OvhcloudconnectInterface",
 }) as any as S.Schema<OvhcloudconnectInterface>;
 
-/** Enum values for the type of the statistics */
-export type OvhcloudconnectInterfaceMetricsTypeEnum =
-  | "error:download"
-  | "error:upload"
-  | "light:in"
-  | "light:out"
-  | "traffic:download"
-  | "traffic:upload";
-export const OvhcloudconnectInterfaceMetricsTypeEnum = /*@__PURE__*/ S.String;
-
-export interface GetOvhCloudConnectServiceNameInterfaceIdStatisticsRequest {
-  /** Service name */
-  serviceName: string;
-  /** Id */
-  id: number;
-  /** The period the statistics are fetched for */
-  period: OvhcloudconnectInterfaceMetricsPeriodEnum | (string & {});
-  /** The type of statistic to be fetched */
-  type: OvhcloudconnectInterfaceMetricsTypeEnum | (string & {});
-}
-export const GetOvhCloudConnectServiceNameInterfaceIdStatisticsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-      period: OvhcloudconnectInterfaceMetricsPeriodEnum.pipe(T.Query()),
-      type: OvhcloudconnectInterfaceMetricsTypeEnum.pipe(T.Query()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/ovhCloudConnect/{serviceName}/interface/{id}/statistics",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetOvhCloudConnectServiceNameInterfaceIdStatisticsRequest",
-  }) as any as S.Schema<GetOvhCloudConnectServiceNameInterfaceIdStatisticsRequest>;
-
-export type GetOvhCloudConnectServiceNameInterfaceIdStatisticsResponseBodyList =
-  Array<OvhcloudconnectMetrics>;
-export const GetOvhCloudConnectServiceNameInterfaceIdStatisticsResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    OvhcloudconnectMetrics,
-  ) as any as S.Schema<GetOvhCloudConnectServiceNameInterfaceIdStatisticsResponseBodyList>;
-
-export type GetOvhCloudConnectServiceNameInterfaceIdStatisticsResponse =
-  GetOvhCloudConnectServiceNameInterfaceIdStatisticsResponseBodyList;
-export const GetOvhCloudConnectServiceNameInterfaceIdStatisticsResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetOvhCloudConnectServiceNameInterfaceIdStatisticsResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetOvhCloudConnectServiceNameInterfaceIdStatisticsResponse",
-  }) as any as S.Schema<GetOvhCloudConnectServiceNameInterfaceIdStatisticsResponse>;
-
-export interface GetOvhCloudConnectServiceNameInterfaceIdStatusRequest {
+export interface GetOvhCloudConnectInterfaceStatusRequest {
   /** Service name */
   serviceName: string;
   /** Id */
   id: number;
 }
-export const GetOvhCloudConnectServiceNameInterfaceIdStatusRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetOvhCloudConnectInterfaceStatusRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       id: S.Number.pipe(T.Label()),
@@ -1387,9 +1284,9 @@ export const GetOvhCloudConnectServiceNameInterfaceIdStatusRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "GetOvhCloudConnectServiceNameInterfaceIdStatusRequest",
-  }) as any as S.Schema<GetOvhCloudConnectServiceNameInterfaceIdStatusRequest>;
+).annotate({
+  identifier: "GetOvhCloudConnectInterfaceStatusRequest",
+}) as any as S.Schema<GetOvhCloudConnectInterfaceStatusRequest>;
 
 /** OVHcloud Connect Interface status */
 export interface OvhcloudconnectInterfaceStatus {
@@ -1416,64 +1313,26 @@ export const OvhcloudconnectInterfaceStatus = /*@__PURE__*/ S.suspend(() =>
   identifier: "OvhcloudconnectInterfaceStatus",
 }) as any as S.Schema<OvhcloudconnectInterfaceStatus>;
 
-export interface GetOvhCloudConnectServiceNameLogKindRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const GetOvhCloudConnectServiceNameLogKindRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/ovhCloudConnect/{serviceName}/log/kind",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetOvhCloudConnectServiceNameLogKindRequest",
-  }) as any as S.Schema<GetOvhCloudConnectServiceNameLogKindRequest>;
-
-export type GetOvhCloudConnectServiceNameLogKindResponseBodyList =
-  Array<string>;
-export const GetOvhCloudConnectServiceNameLogKindResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetOvhCloudConnectServiceNameLogKindResponseBodyList>;
-
-export type GetOvhCloudConnectServiceNameLogKindResponse =
-  GetOvhCloudConnectServiceNameLogKindResponseBodyList;
-export const GetOvhCloudConnectServiceNameLogKindResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetOvhCloudConnectServiceNameLogKindResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetOvhCloudConnectServiceNameLogKindResponse",
-  }) as any as S.Schema<GetOvhCloudConnectServiceNameLogKindResponse>;
-
-export interface GetOvhCloudConnectServiceNameLogKindNameRequest {
+export interface GetOvhCloudConnectLogKindRequest {
   /** Service name */
   serviceName: string;
   /** Name */
   name: string;
 }
-export const GetOvhCloudConnectServiceNameLogKindNameRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      name: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/ovhCloudConnect/{serviceName}/log/kind/{name}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetOvhCloudConnectServiceNameLogKindNameRequest",
-  }) as any as S.Schema<GetOvhCloudConnectServiceNameLogKindNameRequest>;
+export const GetOvhCloudConnectLogKindRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/ovhCloudConnect/{serviceName}/log/kind/{name}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetOvhCloudConnectLogKindRequest",
+}) as any as S.Schema<GetOvhCloudConnectLogKindRequest>;
 
 /** List of additional log fields managed in this log kind */
 export type DbaasLogsLogKindAdditionalReturnedFieldsList = Array<string>;
@@ -1512,54 +1371,14 @@ export const DbaasLogsLogKind = /*@__PURE__*/ S.suspend(() =>
   identifier: "DbaasLogsLogKind",
 }) as any as S.Schema<DbaasLogsLogKind>;
 
-export interface GetOvhCloudConnectServiceNameLogSubscriptionRequest {
-  /** Service name */
-  serviceName: string;
-  /** Filter on a specific kind (e.g., audit) */
-  kind?: string;
-}
-export const GetOvhCloudConnectServiceNameLogSubscriptionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      kind: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/ovhCloudConnect/{serviceName}/log/subscription",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetOvhCloudConnectServiceNameLogSubscriptionRequest",
-  }) as any as S.Schema<GetOvhCloudConnectServiceNameLogSubscriptionRequest>;
-
-export type GetOvhCloudConnectServiceNameLogSubscriptionResponseBodyList =
-  Array<string>;
-export const GetOvhCloudConnectServiceNameLogSubscriptionResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetOvhCloudConnectServiceNameLogSubscriptionResponseBodyList>;
-
-export type GetOvhCloudConnectServiceNameLogSubscriptionResponse =
-  GetOvhCloudConnectServiceNameLogSubscriptionResponseBodyList;
-export const GetOvhCloudConnectServiceNameLogSubscriptionResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetOvhCloudConnectServiceNameLogSubscriptionResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetOvhCloudConnectServiceNameLogSubscriptionResponse",
-  }) as any as S.Schema<GetOvhCloudConnectServiceNameLogSubscriptionResponse>;
-
-export interface GetOvhCloudConnectServiceNameLogSubscriptionSubscriptionIdRequest {
+export interface GetOvhCloudConnectLogSubscriptionRequest {
   /** Service name */
   serviceName: string;
   /** Subscription ID */
   subscriptionId: string;
 }
-export const GetOvhCloudConnectServiceNameLogSubscriptionSubscriptionIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetOvhCloudConnectLogSubscriptionRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       subscriptionId: S.String.pipe(T.Label()),
@@ -1570,10 +1389,9 @@ export const GetOvhCloudConnectServiceNameLogSubscriptionSubscriptionIdRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier:
-      "GetOvhCloudConnectServiceNameLogSubscriptionSubscriptionIdRequest",
-  }) as any as S.Schema<GetOvhCloudConnectServiceNameLogSubscriptionSubscriptionIdRequest>;
+).annotate({
+  identifier: "GetOvhCloudConnectLogSubscriptionRequest",
+}) as any as S.Schema<GetOvhCloudConnectLogSubscriptionRequest>;
 
 /** Log subscription resource */
 export interface DbaasLogsLogSubscriptionResource {
@@ -1622,71 +1440,12 @@ export const DbaasLogsLogSubscription = /*@__PURE__*/ S.suspend(() =>
   identifier: "DbaasLogsLogSubscription",
 }) as any as S.Schema<DbaasLogsLogSubscription>;
 
-export interface GetOvhCloudConnectServiceNameMonitoringRequest {
+export interface GetOvhCloudConnectServiceInfosRequest {
   /** Service name */
   serviceName: string;
 }
-export const GetOvhCloudConnectServiceNameMonitoringRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/ovhCloudConnect/{serviceName}/monitoring",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetOvhCloudConnectServiceNameMonitoringRequest",
-  }) as any as S.Schema<GetOvhCloudConnectServiceNameMonitoringRequest>;
-
-/** OVHcloud Connect Monitoring */
-export interface OvhcloudconnectMonitoring {
-  /** Whether alert is activated */
-  activated?: boolean;
-  /** Description of the monitoring alert */
-  description?: string;
-  /** Name of the monitoring alert */
-  name?: string;
-  /** Type of the monitoring alert */
-  type?: string;
-}
-export const OvhcloudconnectMonitoring = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    activated: S.optional(S.Boolean),
-    description: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OvhcloudconnectMonitoring",
-}) as any as S.Schema<OvhcloudconnectMonitoring>;
-
-export type GetOvhCloudConnectServiceNameMonitoringResponseBodyList =
-  Array<OvhcloudconnectMonitoring>;
-export const GetOvhCloudConnectServiceNameMonitoringResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    OvhcloudconnectMonitoring,
-  ) as any as S.Schema<GetOvhCloudConnectServiceNameMonitoringResponseBodyList>;
-
-export type GetOvhCloudConnectServiceNameMonitoringResponse =
-  GetOvhCloudConnectServiceNameMonitoringResponseBodyList;
-export const GetOvhCloudConnectServiceNameMonitoringResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetOvhCloudConnectServiceNameMonitoringResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetOvhCloudConnectServiceNameMonitoringResponse",
-  }) as any as S.Schema<GetOvhCloudConnectServiceNameMonitoringResponse>;
-
-export interface GetOvhCloudConnectServiceNameServiceInfosRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const GetOvhCloudConnectServiceNameServiceInfosRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetOvhCloudConnectServiceInfosRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
     }).pipe(
@@ -1696,9 +1455,9 @@ export const GetOvhCloudConnectServiceNameServiceInfosRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "GetOvhCloudConnectServiceNameServiceInfosRequest",
-  }) as any as S.Schema<GetOvhCloudConnectServiceNameServiceInfosRequest>;
+).annotate({
+  identifier: "GetOvhCloudConnectServiceInfosRequest",
+}) as any as S.Schema<GetOvhCloudConnectServiceInfosRequest>;
 
 /** All the possible renew period of your service in month */
 export type ServicesServicePossibleRenewPeriodList = Array<number>;
@@ -1793,64 +1552,26 @@ export const ServicesService = /*@__PURE__*/ S.suspend(() =>
   identifier: "ServicesService",
 }) as any as S.Schema<ServicesService>;
 
-export interface GetOvhCloudConnectServiceNameServiceKeyRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const GetOvhCloudConnectServiceNameServiceKeyRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/ovhCloudConnect/{serviceName}/serviceKey",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetOvhCloudConnectServiceNameServiceKeyRequest",
-  }) as any as S.Schema<GetOvhCloudConnectServiceNameServiceKeyRequest>;
-
-export type GetOvhCloudConnectServiceNameServiceKeyResponseBodyList =
-  Array<number>;
-export const GetOvhCloudConnectServiceNameServiceKeyResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<GetOvhCloudConnectServiceNameServiceKeyResponseBodyList>;
-
-export type GetOvhCloudConnectServiceNameServiceKeyResponse =
-  GetOvhCloudConnectServiceNameServiceKeyResponseBodyList;
-export const GetOvhCloudConnectServiceNameServiceKeyResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetOvhCloudConnectServiceNameServiceKeyResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetOvhCloudConnectServiceNameServiceKeyResponse",
-  }) as any as S.Schema<GetOvhCloudConnectServiceNameServiceKeyResponse>;
-
-export interface GetOvhCloudConnectServiceNameServiceKeyServiceKeyIdRequest {
+export interface GetOvhCloudConnectServiceKeyRequest {
   /** Service name */
   serviceName: string;
   /** Service key ID */
   serviceKeyId: number;
 }
-export const GetOvhCloudConnectServiceNameServiceKeyServiceKeyIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      serviceKeyId: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/ovhCloudConnect/{serviceName}/serviceKey/{serviceKeyId}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetOvhCloudConnectServiceNameServiceKeyServiceKeyIdRequest",
-  }) as any as S.Schema<GetOvhCloudConnectServiceNameServiceKeyServiceKeyIdRequest>;
+export const GetOvhCloudConnectServiceKeyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    serviceKeyId: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/ovhCloudConnect/{serviceName}/serviceKey/{serviceKeyId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetOvhCloudConnectServiceKeyRequest",
+}) as any as S.Schema<GetOvhCloudConnectServiceKeyRequest>;
 
 /** Enum values for service key status */
 export type OvhcloudconnectKeyStatusEnum =
@@ -1883,496 +1604,743 @@ export const OvhcloudconnectKey = /*@__PURE__*/ S.suspend(() =>
   identifier: "OvhcloudconnectKey",
 }) as any as S.Schema<OvhcloudconnectKey>;
 
-export interface GetOvhCloudConnectServiceNameTaskRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const GetOvhCloudConnectServiceNameTaskRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/ovhCloudConnect/{serviceName}/task",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "GetOvhCloudConnectServiceNameTaskRequest",
-}) as any as S.Schema<GetOvhCloudConnectServiceNameTaskRequest>;
-
-export type GetOvhCloudConnectServiceNameTaskResponseBodyList = Array<number>;
-export const GetOvhCloudConnectServiceNameTaskResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<GetOvhCloudConnectServiceNameTaskResponseBodyList>;
-
-export type GetOvhCloudConnectServiceNameTaskResponse =
-  GetOvhCloudConnectServiceNameTaskResponseBodyList;
-export const GetOvhCloudConnectServiceNameTaskResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetOvhCloudConnectServiceNameTaskResponseBodyList.pipe(T.RawResponseRoot()),
-  ).annotate({
-    identifier: "GetOvhCloudConnectServiceNameTaskResponse",
-  }) as any as S.Schema<GetOvhCloudConnectServiceNameTaskResponse>;
-
-export interface GetOvhCloudConnectServiceNameTaskIdRequest {
+export interface GetOvhCloudConnectTaskRequest {
   /** Service name */
   serviceName: string;
   /** Id */
   id: number;
 }
-export const GetOvhCloudConnectServiceNameTaskIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/ovhCloudConnect/{serviceName}/task/{id}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetOvhCloudConnectServiceNameTaskIdRequest",
-  }) as any as S.Schema<GetOvhCloudConnectServiceNameTaskIdRequest>;
+export const GetOvhCloudConnectTaskRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/ovhCloudConnect/{serviceName}/task/{id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetOvhCloudConnectTaskRequest",
+}) as any as S.Schema<GetOvhCloudConnectTaskRequest>;
 
-export interface PostOvhCloudConnectServiceNameChangeContactRequest {
+/** Resource tag filter */
+export interface IamResourceTagFilterInput {}
+export const IamResourceTagFilterInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "IamResourceTagFilterInput",
+}) as any as S.Schema<IamResourceTagFilterInput>;
+
+export type ListOvhCloudConnectRequestIamTagsValueList =
+  Array<IamResourceTagFilterInput>;
+export const ListOvhCloudConnectRequestIamTagsValueList = /*@__PURE__*/ S.Array(
+  IamResourceTagFilterInput,
+) as any as S.Schema<ListOvhCloudConnectRequestIamTagsValueList>;
+
+export type ListOvhCloudConnectRequestIamTagsMap = {
+  [key: string]: ListOvhCloudConnectRequestIamTagsValueList | undefined;
+};
+export const ListOvhCloudConnectRequestIamTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  ListOvhCloudConnectRequestIamTagsValueList,
+) as any as S.Schema<ListOvhCloudConnectRequestIamTagsMap>;
+
+export interface ListOvhCloudConnectRequest {
+  /** Filter resources on IAM tags */
+  iamTags?: ListOvhCloudConnectRequestIamTagsMap;
+}
+export const ListOvhCloudConnectRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    iamTags: S.optional(ListOvhCloudConnectRequestIamTagsMap.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/ovhCloudConnect", code: 200 })),
+).annotate({
+  identifier: "ListOvhCloudConnectRequest",
+}) as any as S.Schema<ListOvhCloudConnectRequest>;
+
+export type ListOvhCloudConnectResponseBodyList = Array<string>;
+export const ListOvhCloudConnectResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListOvhCloudConnectResponseBodyList>;
+
+export type ListOvhCloudConnectResponse = ListOvhCloudConnectResponseBodyList;
+export const ListOvhCloudConnectResponse = /*@__PURE__*/ S.suspend(() =>
+  ListOvhCloudConnectResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListOvhCloudConnectResponse",
+}) as any as S.Schema<ListOvhCloudConnectResponse>;
+
+export interface ListOvhCloudConnectConfigPopRequest {
   /** Service name */
   serviceName: string;
-  /** The contact to set as admin contact */
-  contactAdmin?: string;
-  /** The contact to set as billing contact */
-  contactBilling?: string;
-  /** The contact to set as tech contact */
-  contactTech?: string;
 }
-export const PostOvhCloudConnectServiceNameChangeContactRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      contactAdmin: S.optional(S.String),
-      contactBilling: S.optional(S.String),
-      contactTech: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/ovhCloudConnect/{serviceName}/changeContact",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostOvhCloudConnectServiceNameChangeContactRequest",
-  }) as any as S.Schema<PostOvhCloudConnectServiceNameChangeContactRequest>;
+export const ListOvhCloudConnectConfigPopRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/ovhCloudConnect/{serviceName}/config/pop",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListOvhCloudConnectConfigPopRequest",
+}) as any as S.Schema<ListOvhCloudConnectConfigPopRequest>;
 
-export type PostOvhCloudConnectServiceNameChangeContactResponseBodyList =
-  Array<number>;
-export const PostOvhCloudConnectServiceNameChangeContactResponseBodyList =
+export type ListOvhCloudConnectConfigPopResponseBodyList = Array<number>;
+export const ListOvhCloudConnectConfigPopResponseBodyList =
   /*@__PURE__*/ S.Array(
     S.Number,
-  ) as any as S.Schema<PostOvhCloudConnectServiceNameChangeContactResponseBodyList>;
+  ) as any as S.Schema<ListOvhCloudConnectConfigPopResponseBodyList>;
 
-export type PostOvhCloudConnectServiceNameChangeContactResponse =
-  PostOvhCloudConnectServiceNameChangeContactResponseBodyList;
-export const PostOvhCloudConnectServiceNameChangeContactResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    PostOvhCloudConnectServiceNameChangeContactResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "PostOvhCloudConnectServiceNameChangeContactResponse",
-  }) as any as S.Schema<PostOvhCloudConnectServiceNameChangeContactResponse>;
+export type ListOvhCloudConnectConfigPopResponse =
+  ListOvhCloudConnectConfigPopResponseBodyList;
+export const ListOvhCloudConnectConfigPopResponse = /*@__PURE__*/ S.suspend(
+  () => ListOvhCloudConnectConfigPopResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListOvhCloudConnectConfigPopResponse",
+}) as any as S.Schema<ListOvhCloudConnectConfigPopResponse>;
 
-export interface PostOvhCloudConnectServiceNameConfigPopRequest {
-  /** Service name */
-  serviceName: string;
-  /** Customer Private AS */
-  customerBgpArea?: number | null;
-  /** ID of the interface */
-  interfaceId: number;
-  /** OVH Private AS */
-  ovhBgpArea?: number | null;
-  /** Subnet should be a /30, first IP for OVH, second IP for customer */
-  subnet?: string | null;
-  /** Type of the pop configuration */
-  type: OvhcloudconnectPopConfigTypeEnum | (string & {});
-}
-export const PostOvhCloudConnectServiceNameConfigPopRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      customerBgpArea: S.optional(S.NullOr(S.Number)),
-      interfaceId: S.Number,
-      ovhBgpArea: S.optional(S.NullOr(S.Number)),
-      subnet: S.optional(S.NullOr(S.String)),
-      type: OvhcloudconnectPopConfigTypeEnum,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/ovhCloudConnect/{serviceName}/config/pop",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostOvhCloudConnectServiceNameConfigPopRequest",
-  }) as any as S.Schema<PostOvhCloudConnectServiceNameConfigPopRequest>;
-
-export interface PostOvhCloudConnectServiceNameConfigPopPopIdDatacenterRequest {
+export interface ListOvhCloudConnectConfigPopDatacenterRequest {
   /** Service name */
   serviceName: string;
   /** Pop ID */
   popId: number;
-  /** ID of the datacenter linked */
-  datacenterId: number;
-  /** OVH Private AS */
-  ovhBgpArea?: number | null;
-  /** Subnet should be a /28 min */
-  subnet?: string | null;
 }
-export const PostOvhCloudConnectServiceNameConfigPopPopIdDatacenterRequest =
+export const ListOvhCloudConnectConfigPopDatacenterRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       popId: S.Number.pipe(T.Label()),
-      datacenterId: S.Number,
-      ovhBgpArea: S.optional(S.NullOr(S.Number)),
-      subnet: S.optional(S.NullOr(S.String)),
     }).pipe(
       T.Http({
-        method: "POST",
+        method: "GET",
         uri: "/ovhCloudConnect/{serviceName}/config/pop/{popId}/datacenter",
         code: 200,
       }),
     ),
   ).annotate({
-    identifier: "PostOvhCloudConnectServiceNameConfigPopPopIdDatacenterRequest",
-  }) as any as S.Schema<PostOvhCloudConnectServiceNameConfigPopPopIdDatacenterRequest>;
+    identifier: "ListOvhCloudConnectConfigPopDatacenterRequest",
+  }) as any as S.Schema<ListOvhCloudConnectConfigPopDatacenterRequest>;
 
-export interface PostOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraRequest {
+export type ListOvhCloudConnectConfigPopDatacenterResponseBodyList =
+  Array<number>;
+export const ListOvhCloudConnectConfigPopDatacenterResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.Number,
+  ) as any as S.Schema<ListOvhCloudConnectConfigPopDatacenterResponseBodyList>;
+
+export type ListOvhCloudConnectConfigPopDatacenterResponse =
+  ListOvhCloudConnectConfigPopDatacenterResponseBodyList;
+export const ListOvhCloudConnectConfigPopDatacenterResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListOvhCloudConnectConfigPopDatacenterResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListOvhCloudConnectConfigPopDatacenterResponse",
+  }) as any as S.Schema<ListOvhCloudConnectConfigPopDatacenterResponse>;
+
+export interface ListOvhCloudConnectConfigPopDatacenterExtraRequest {
   /** Service name */
   serviceName: string;
   /** Pop ID */
   popId: number;
   /** Datacenter ID */
   datacenterId: number;
-  /** BGP AS number */
-  bgpNeighborArea?: number | null;
-  /** Router IP for BGP */
-  bgpNeighborIp?: string | null;
-  /** Static route next hop */
-  nextHop?: string | null;
-  /** Static route ip */
-  subnet?: string | null;
-  /** Type of the configuration */
-  type: OvhcloudconnectDatacenterExtraConfigTypeEnum | (string & {});
 }
-export const PostOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraRequest =
+export const ListOvhCloudConnectConfigPopDatacenterExtraRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       popId: S.Number.pipe(T.Label()),
       datacenterId: S.Number.pipe(T.Label()),
-      bgpNeighborArea: S.optional(S.NullOr(S.Number)),
-      bgpNeighborIp: S.optional(S.NullOr(S.String)),
-      nextHop: S.optional(S.NullOr(S.String)),
-      subnet: S.optional(S.NullOr(S.String)),
-      type: OvhcloudconnectDatacenterExtraConfigTypeEnum,
     }).pipe(
       T.Http({
-        method: "POST",
+        method: "GET",
         uri: "/ovhCloudConnect/{serviceName}/config/pop/{popId}/datacenter/{datacenterId}/extra",
         code: 200,
       }),
     ),
   ).annotate({
-    identifier:
-      "PostOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraRequest",
-  }) as any as S.Schema<PostOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraRequest>;
+    identifier: "ListOvhCloudConnectConfigPopDatacenterExtraRequest",
+  }) as any as S.Schema<ListOvhCloudConnectConfigPopDatacenterExtraRequest>;
 
-/** All future uses you can provide for a service termination */
-export type ServiceTerminationFutureUseEnum =
-  | "NOT_REPLACING_SERVICE"
-  | "OTHER"
-  | "SUBSCRIBE_AN_OTHER_SERVICE"
-  | "SUBSCRIBE_OTHER_KIND_OF_SERVICE_WITH_COMPETITOR"
-  | "SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR";
-export const ServiceTerminationFutureUseEnum = /*@__PURE__*/ S.String;
+export type ListOvhCloudConnectConfigPopDatacenterExtraResponseBodyList =
+  Array<number>;
+export const ListOvhCloudConnectConfigPopDatacenterExtraResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.Number,
+  ) as any as S.Schema<ListOvhCloudConnectConfigPopDatacenterExtraResponseBodyList>;
 
-/** All reasons you can provide for a service termination */
-export type ServiceTerminationReasonEnum =
-  | "FEATURES_DONT_SUIT_ME"
-  | "LACK_OF_PERFORMANCES"
-  | "MIGRATED_TO_ANOTHER_OVH_PRODUCT"
-  | "MIGRATED_TO_COMPETITOR"
-  | "NOT_ENOUGH_RECOGNITION"
-  | "NOT_NEEDED_ANYMORE"
-  | "NOT_RELIABLE"
-  | "NO_ANSWER"
-  | "OTHER"
-  | "PRODUCT_DIMENSION_DONT_SUIT_ME"
-  | "PRODUCT_TOOLS_DONT_SUIT_ME"
-  | "TOO_EXPENSIVE"
-  | "TOO_HARD_TO_USE"
-  | "UNSATIFIED_BY_CUSTOMER_SUPPORT";
-export const ServiceTerminationReasonEnum = /*@__PURE__*/ S.String;
+export type ListOvhCloudConnectConfigPopDatacenterExtraResponse =
+  ListOvhCloudConnectConfigPopDatacenterExtraResponseBodyList;
+export const ListOvhCloudConnectConfigPopDatacenterExtraResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListOvhCloudConnectConfigPopDatacenterExtraResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListOvhCloudConnectConfigPopDatacenterExtraResponse",
+  }) as any as S.Schema<ListOvhCloudConnectConfigPopDatacenterExtraResponse>;
 
-export interface PostOvhCloudConnectServiceNameConfirmTerminationRequest {
+/** Enum values for the period of the statistics */
+export type OvhcloudconnectInterfaceMetricsPeriodEnum =
+  | "daily"
+  | "hourly"
+  | "weekly";
+export const OvhcloudconnectInterfaceMetricsPeriodEnum = /*@__PURE__*/ S.String;
+
+/** Enum values for the type of the statistics */
+export type OvhcloudconnectPopConfigMetricsTypeEnum =
+  | "prefix:accepted"
+  | "prefix:limit";
+export const OvhcloudconnectPopConfigMetricsTypeEnum = /*@__PURE__*/ S.String;
+
+export interface ListOvhCloudConnectConfigPopStatisticsRequest {
   /** Service name */
   serviceName: string;
-  /** Commentary about your termination request */
-  commentary?: string;
-  /** All future uses you can provide for a service termination */
-  futureUse?: ServiceTerminationFutureUseEnum | (string & {});
-  /** All reasons you can provide for a service termination */
-  reason?: ServiceTerminationReasonEnum | (string & {});
-  /** The termination token sent by email to the admin contact */
-  token: string;
+  /** Pop ID */
+  popId: number;
+  /** The period the statistics are fetched for */
+  period: OvhcloudconnectInterfaceMetricsPeriodEnum | (string & {});
+  /** The type of statistic to be fetched */
+  type: OvhcloudconnectPopConfigMetricsTypeEnum | (string & {});
 }
-export const PostOvhCloudConnectServiceNameConfirmTerminationRequest =
+export const ListOvhCloudConnectConfigPopStatisticsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
-      commentary: S.optional(S.String),
-      futureUse: S.optional(ServiceTerminationFutureUseEnum),
-      reason: S.optional(ServiceTerminationReasonEnum),
-      token: S.String,
+      popId: S.Number.pipe(T.Label()),
+      period: OvhcloudconnectInterfaceMetricsPeriodEnum.pipe(T.Query()),
+      type: OvhcloudconnectPopConfigMetricsTypeEnum.pipe(T.Query()),
     }).pipe(
       T.Http({
-        method: "POST",
-        uri: "/ovhCloudConnect/{serviceName}/confirmTermination",
+        method: "GET",
+        uri: "/ovhCloudConnect/{serviceName}/config/pop/{popId}/statistics",
         code: 200,
       }),
     ),
   ).annotate({
-    identifier: "PostOvhCloudConnectServiceNameConfirmTerminationRequest",
-  }) as any as S.Schema<PostOvhCloudConnectServiceNameConfirmTerminationRequest>;
+    identifier: "ListOvhCloudConnectConfigPopStatisticsRequest",
+  }) as any as S.Schema<ListOvhCloudConnectConfigPopStatisticsRequest>;
 
-export type PostOvhCloudConnectServiceNameConfirmTerminationResponse = string;
-export const PostOvhCloudConnectServiceNameConfirmTerminationResponse =
-  /*@__PURE__*/ S.suspend(() => S.String.pipe(T.RawResponseRoot())).annotate({
-    identifier: "PostOvhCloudConnectServiceNameConfirmTerminationResponse",
-  }) as any as S.Schema<PostOvhCloudConnectServiceNameConfirmTerminationResponse>;
+/** Enum values for the unit of the statistics */
+export type OvhcloudconnectInterfaceMetricsUnitEnum =
+  | "bytes/s"
+  | "dbm"
+  | "error/s"
+  | "prefix_accepted"
+  | "prefix_limit";
+export const OvhcloudconnectInterfaceMetricsUnitEnum = /*@__PURE__*/ S.String;
 
-/** Enum values for Diagnostic type */
-export type OvhcloudconnectDiagnosticTypeEnum =
-  | "advertised-routes"
-  | "default"
-  | "routes";
-export const OvhcloudconnectDiagnosticTypeEnum = /*@__PURE__*/ S.String;
-
-export interface PostOvhCloudConnectServiceNameDiagnosticRequest {
-  /** Service name */
-  serviceName: string;
-  /** ID of the Datacenter configuration */
-  dcConfigId?: number;
-  /** Name of the diagnostic */
-  diagnosticName: OvhcloudconnectDiagnosticFunctionEnum | (string & {});
-  /** Type of the diagnostic */
-  diagnosticType?: OvhcloudconnectDiagnosticTypeEnum | (string & {});
-  /** ID of the extra configuration */
-  extraConfigId?: number;
-  /** ID of the Pop Configuration */
-  popConfigId: number;
+/** OVHcloud Connect Metrics value */
+export interface OvhcloudconnectMetricsValue {
+  /** Unit in which the value is expressed */
+  unit?: OvhcloudconnectInterfaceMetricsUnitEnum;
+  value?: number;
 }
-export const PostOvhCloudConnectServiceNameDiagnosticRequest =
+export const OvhcloudconnectMetricsValue = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    unit: S.optional(OvhcloudconnectInterfaceMetricsUnitEnum),
+    value: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "OvhcloudconnectMetricsValue",
+}) as any as S.Schema<OvhcloudconnectMetricsValue>;
+
+/** OVHcloud Connect Metrics */
+export interface OvhcloudconnectMetrics {
+  /** timestamp corresponding to the value */
+  timestamp?: number;
+  value?: OvhcloudconnectMetricsValue;
+}
+export const OvhcloudconnectMetrics = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    timestamp: S.optional(S.Number),
+    value: S.optional(OvhcloudconnectMetricsValue),
+  }),
+).annotate({
+  identifier: "OvhcloudconnectMetrics",
+}) as any as S.Schema<OvhcloudconnectMetrics>;
+
+export type ListOvhCloudConnectConfigPopStatisticsResponseBodyList =
+  Array<OvhcloudconnectMetrics>;
+export const ListOvhCloudConnectConfigPopStatisticsResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    OvhcloudconnectMetrics,
+  ) as any as S.Schema<ListOvhCloudConnectConfigPopStatisticsResponseBodyList>;
+
+export type ListOvhCloudConnectConfigPopStatisticsResponse =
+  ListOvhCloudConnectConfigPopStatisticsResponseBodyList;
+export const ListOvhCloudConnectConfigPopStatisticsResponse =
   /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      dcConfigId: S.optional(S.Number),
-      diagnosticName: OvhcloudconnectDiagnosticFunctionEnum,
-      diagnosticType: S.optional(OvhcloudconnectDiagnosticTypeEnum),
-      extraConfigId: S.optional(S.Number),
-      popConfigId: S.Number,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/ovhCloudConnect/{serviceName}/diagnostic",
-        code: 200,
-      }),
+    ListOvhCloudConnectConfigPopStatisticsResponseBodyList.pipe(
+      T.RawResponseRoot(),
     ),
   ).annotate({
-    identifier: "PostOvhCloudConnectServiceNameDiagnosticRequest",
-  }) as any as S.Schema<PostOvhCloudConnectServiceNameDiagnosticRequest>;
+    identifier: "ListOvhCloudConnectConfigPopStatisticsResponse",
+  }) as any as S.Schema<ListOvhCloudConnectConfigPopStatisticsResponse>;
 
-export interface PostOvhCloudConnectServiceNameInterfaceIdLockRequest {
-  /** Service name */
-  serviceName: string;
-  /** Id */
-  id: number;
-}
-export const PostOvhCloudConnectServiceNameInterfaceIdLockRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/ovhCloudConnect/{serviceName}/interface/{id}/lock",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostOvhCloudConnectServiceNameInterfaceIdLockRequest",
-  }) as any as S.Schema<PostOvhCloudConnectServiceNameInterfaceIdLockRequest>;
-
-export interface PostOvhCloudConnectServiceNameInterfaceIdUnlockRequest {
-  /** Service name */
-  serviceName: string;
-  /** Id */
-  id: number;
-}
-export const PostOvhCloudConnectServiceNameInterfaceIdUnlockRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/ovhCloudConnect/{serviceName}/interface/{id}/unlock",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostOvhCloudConnectServiceNameInterfaceIdUnlockRequest",
-  }) as any as S.Schema<PostOvhCloudConnectServiceNameInterfaceIdUnlockRequest>;
-
-export interface PostOvhCloudConnectServiceNameLoaRequest {
+export interface ListOvhCloudConnectDatacenterRequest {
   /** Service name */
   serviceName: string;
 }
-export const PostOvhCloudConnectServiceNameLoaRequest = /*@__PURE__*/ S.suspend(
+export const ListOvhCloudConnectDatacenterRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
-        method: "POST",
-        uri: "/ovhCloudConnect/{serviceName}/loa",
+        method: "GET",
+        uri: "/ovhCloudConnect/{serviceName}/datacenter",
         code: 200,
       }),
     ),
 ).annotate({
-  identifier: "PostOvhCloudConnectServiceNameLoaRequest",
-}) as any as S.Schema<PostOvhCloudConnectServiceNameLoaRequest>;
+  identifier: "ListOvhCloudConnectDatacenterRequest",
+}) as any as S.Schema<ListOvhCloudConnectDatacenterRequest>;
 
-export type PostOvhCloudConnectServiceNameLoaResponse = string;
-export const PostOvhCloudConnectServiceNameLoaResponse =
-  /*@__PURE__*/ S.suspend(() => S.String.pipe(T.RawResponseRoot())).annotate({
-    identifier: "PostOvhCloudConnectServiceNameLoaResponse",
-  }) as any as S.Schema<PostOvhCloudConnectServiceNameLoaResponse>;
+export type ListOvhCloudConnectDatacenterResponseBodyList = Array<number>;
+export const ListOvhCloudConnectDatacenterResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.Number,
+  ) as any as S.Schema<ListOvhCloudConnectDatacenterResponseBodyList>;
 
-export interface PostOvhCloudConnectServiceNameLogSubscriptionRequest {
+export type ListOvhCloudConnectDatacenterResponse =
+  ListOvhCloudConnectDatacenterResponseBodyList;
+export const ListOvhCloudConnectDatacenterResponse = /*@__PURE__*/ S.suspend(
+  () => ListOvhCloudConnectDatacenterResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListOvhCloudConnectDatacenterResponse",
+}) as any as S.Schema<ListOvhCloudConnectDatacenterResponse>;
+
+export interface ListOvhCloudConnectDiagnosticRequest {
   /** Service name */
   serviceName: string;
-  /** Log kind name to subscribe to */
-  kind: string;
-  /** Customer log stream ID */
-  streamId: string;
 }
-export const PostOvhCloudConnectServiceNameLogSubscriptionRequest =
+export const ListOvhCloudConnectDiagnosticRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/ovhCloudConnect/{serviceName}/diagnostic",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ListOvhCloudConnectDiagnosticRequest",
+}) as any as S.Schema<ListOvhCloudConnectDiagnosticRequest>;
+
+export type ListOvhCloudConnectDiagnosticResponseBodyList = Array<number>;
+export const ListOvhCloudConnectDiagnosticResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.Number,
+  ) as any as S.Schema<ListOvhCloudConnectDiagnosticResponseBodyList>;
+
+export type ListOvhCloudConnectDiagnosticResponse =
+  ListOvhCloudConnectDiagnosticResponseBodyList;
+export const ListOvhCloudConnectDiagnosticResponse = /*@__PURE__*/ S.suspend(
+  () => ListOvhCloudConnectDiagnosticResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListOvhCloudConnectDiagnosticResponse",
+}) as any as S.Schema<ListOvhCloudConnectDiagnosticResponse>;
+
+export interface ListOvhCloudConnectIncidentRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const ListOvhCloudConnectIncidentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/ovhCloudConnect/{serviceName}/incident",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListOvhCloudConnectIncidentRequest",
+}) as any as S.Schema<ListOvhCloudConnectIncidentRequest>;
+
+export type ListOvhCloudConnectIncidentResponseBodyList = Array<number>;
+export const ListOvhCloudConnectIncidentResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.Number,
+  ) as any as S.Schema<ListOvhCloudConnectIncidentResponseBodyList>;
+
+export type ListOvhCloudConnectIncidentResponse =
+  ListOvhCloudConnectIncidentResponseBodyList;
+export const ListOvhCloudConnectIncidentResponse = /*@__PURE__*/ S.suspend(() =>
+  ListOvhCloudConnectIncidentResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListOvhCloudConnectIncidentResponse",
+}) as any as S.Schema<ListOvhCloudConnectIncidentResponse>;
+
+export interface ListOvhCloudConnectInterfaceRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const ListOvhCloudConnectInterfaceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/ovhCloudConnect/{serviceName}/interface",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListOvhCloudConnectInterfaceRequest",
+}) as any as S.Schema<ListOvhCloudConnectInterfaceRequest>;
+
+export type ListOvhCloudConnectInterfaceResponseBodyList = Array<number>;
+export const ListOvhCloudConnectInterfaceResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.Number,
+  ) as any as S.Schema<ListOvhCloudConnectInterfaceResponseBodyList>;
+
+export type ListOvhCloudConnectInterfaceResponse =
+  ListOvhCloudConnectInterfaceResponseBodyList;
+export const ListOvhCloudConnectInterfaceResponse = /*@__PURE__*/ S.suspend(
+  () => ListOvhCloudConnectInterfaceResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListOvhCloudConnectInterfaceResponse",
+}) as any as S.Schema<ListOvhCloudConnectInterfaceResponse>;
+
+/** Enum values for the type of the statistics */
+export type OvhcloudconnectInterfaceMetricsTypeEnum =
+  | "error:download"
+  | "error:upload"
+  | "light:in"
+  | "light:out"
+  | "traffic:download"
+  | "traffic:upload";
+export const OvhcloudconnectInterfaceMetricsTypeEnum = /*@__PURE__*/ S.String;
+
+export interface ListOvhCloudConnectInterfaceStatisticsRequest {
+  /** Service name */
+  serviceName: string;
+  /** Id */
+  id: number;
+  /** The period the statistics are fetched for */
+  period: OvhcloudconnectInterfaceMetricsPeriodEnum | (string & {});
+  /** The type of statistic to be fetched */
+  type: OvhcloudconnectInterfaceMetricsTypeEnum | (string & {});
+}
+export const ListOvhCloudConnectInterfaceStatisticsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
-      kind: S.String,
-      streamId: S.String,
+      id: S.Number.pipe(T.Label()),
+      period: OvhcloudconnectInterfaceMetricsPeriodEnum.pipe(T.Query()),
+      type: OvhcloudconnectInterfaceMetricsTypeEnum.pipe(T.Query()),
     }).pipe(
       T.Http({
-        method: "POST",
+        method: "GET",
+        uri: "/ovhCloudConnect/{serviceName}/interface/{id}/statistics",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ListOvhCloudConnectInterfaceStatisticsRequest",
+  }) as any as S.Schema<ListOvhCloudConnectInterfaceStatisticsRequest>;
+
+export type ListOvhCloudConnectInterfaceStatisticsResponseBodyList =
+  Array<OvhcloudconnectMetrics>;
+export const ListOvhCloudConnectInterfaceStatisticsResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    OvhcloudconnectMetrics,
+  ) as any as S.Schema<ListOvhCloudConnectInterfaceStatisticsResponseBodyList>;
+
+export type ListOvhCloudConnectInterfaceStatisticsResponse =
+  ListOvhCloudConnectInterfaceStatisticsResponseBodyList;
+export const ListOvhCloudConnectInterfaceStatisticsResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListOvhCloudConnectInterfaceStatisticsResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListOvhCloudConnectInterfaceStatisticsResponse",
+  }) as any as S.Schema<ListOvhCloudConnectInterfaceStatisticsResponse>;
+
+export interface ListOvhCloudConnectLogKindRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const ListOvhCloudConnectLogKindRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/ovhCloudConnect/{serviceName}/log/kind",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListOvhCloudConnectLogKindRequest",
+}) as any as S.Schema<ListOvhCloudConnectLogKindRequest>;
+
+export type ListOvhCloudConnectLogKindResponseBodyList = Array<string>;
+export const ListOvhCloudConnectLogKindResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListOvhCloudConnectLogKindResponseBodyList>;
+
+export type ListOvhCloudConnectLogKindResponse =
+  ListOvhCloudConnectLogKindResponseBodyList;
+export const ListOvhCloudConnectLogKindResponse = /*@__PURE__*/ S.suspend(() =>
+  ListOvhCloudConnectLogKindResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListOvhCloudConnectLogKindResponse",
+}) as any as S.Schema<ListOvhCloudConnectLogKindResponse>;
+
+export interface ListOvhCloudConnectLogSubscriptionRequest {
+  /** Service name */
+  serviceName: string;
+  /** Filter on a specific kind (e.g., audit) */
+  kind?: string;
+}
+export const ListOvhCloudConnectLogSubscriptionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      kind: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
         uri: "/ovhCloudConnect/{serviceName}/log/subscription",
         code: 200,
       }),
     ),
   ).annotate({
-    identifier: "PostOvhCloudConnectServiceNameLogSubscriptionRequest",
-  }) as any as S.Schema<PostOvhCloudConnectServiceNameLogSubscriptionRequest>;
+    identifier: "ListOvhCloudConnectLogSubscriptionRequest",
+  }) as any as S.Schema<ListOvhCloudConnectLogSubscriptionRequest>;
 
-export interface PostOvhCloudConnectServiceNameLogUrlRequest {
-  /** Service name */
-  serviceName: string;
-  /** Log kind name */
-  kind: string;
-}
-export const PostOvhCloudConnectServiceNameLogUrlRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      kind: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/ovhCloudConnect/{serviceName}/log/url",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostOvhCloudConnectServiceNameLogUrlRequest",
-  }) as any as S.Schema<PostOvhCloudConnectServiceNameLogUrlRequest>;
-
-/** Temporary url information */
-export interface DbaasLogsTemporaryLogsLink {
-  /** Temporary url expiration date */
-  expirationDate?: string;
-  /** Temporary url */
-  url?: string;
-}
-export const DbaasLogsTemporaryLogsLink = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    expirationDate: S.optional(S.String),
-    url: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DbaasLogsTemporaryLogsLink",
-}) as any as S.Schema<DbaasLogsTemporaryLogsLink>;
-
-/** List of subscriptions alerts. */
-export type PostOvhCloudConnectServiceNameMonitoringRequestSubscriptionsList =
-  Array<string>;
-export const PostOvhCloudConnectServiceNameMonitoringRequestSubscriptionsList =
+export type ListOvhCloudConnectLogSubscriptionResponseBodyList = Array<string>;
+export const ListOvhCloudConnectLogSubscriptionResponseBodyList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<PostOvhCloudConnectServiceNameMonitoringRequestSubscriptionsList>;
+  ) as any as S.Schema<ListOvhCloudConnectLogSubscriptionResponseBodyList>;
 
-export interface PostOvhCloudConnectServiceNameMonitoringRequest {
+export type ListOvhCloudConnectLogSubscriptionResponse =
+  ListOvhCloudConnectLogSubscriptionResponseBodyList;
+export const ListOvhCloudConnectLogSubscriptionResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListOvhCloudConnectLogSubscriptionResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListOvhCloudConnectLogSubscriptionResponse",
+  }) as any as S.Schema<ListOvhCloudConnectLogSubscriptionResponse>;
+
+export interface ListOvhCloudConnectMonitoringRequest {
   /** Service name */
   serviceName: string;
-  /** List of subscriptions alerts. */
-  subscriptions?: PostOvhCloudConnectServiceNameMonitoringRequestSubscriptionsList;
 }
-export const PostOvhCloudConnectServiceNameMonitoringRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const ListOvhCloudConnectMonitoringRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
-      subscriptions: S.optional(
-        PostOvhCloudConnectServiceNameMonitoringRequestSubscriptionsList,
-      ),
     }).pipe(
       T.Http({
-        method: "POST",
+        method: "GET",
         uri: "/ovhCloudConnect/{serviceName}/monitoring",
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "PostOvhCloudConnectServiceNameMonitoringRequest",
-  }) as any as S.Schema<PostOvhCloudConnectServiceNameMonitoringRequest>;
+).annotate({
+  identifier: "ListOvhCloudConnectMonitoringRequest",
+}) as any as S.Schema<ListOvhCloudConnectMonitoringRequest>;
 
-export interface PostOvhCloudConnectServiceNameMonitoringResponse {}
-export const PostOvhCloudConnectServiceNameMonitoringResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PostOvhCloudConnectServiceNameMonitoringResponse",
-  }) as any as S.Schema<PostOvhCloudConnectServiceNameMonitoringResponse>;
+/** OVHcloud Connect Monitoring */
+export interface OvhcloudconnectMonitoring {
+  /** Whether alert is activated */
+  activated?: boolean;
+  /** Description of the monitoring alert */
+  description?: string;
+  /** Name of the monitoring alert */
+  name?: string;
+  /** Type of the monitoring alert */
+  type?: string;
+}
+export const OvhcloudconnectMonitoring = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    activated: S.optional(S.Boolean),
+    description: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OvhcloudconnectMonitoring",
+}) as any as S.Schema<OvhcloudconnectMonitoring>;
 
-export interface PostOvhCloudConnectServiceNameServiceKeyServiceKeyIdRegenerateRequest {
+export type ListOvhCloudConnectMonitoringResponseBodyList =
+  Array<OvhcloudconnectMonitoring>;
+export const ListOvhCloudConnectMonitoringResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    OvhcloudconnectMonitoring,
+  ) as any as S.Schema<ListOvhCloudConnectMonitoringResponseBodyList>;
+
+export type ListOvhCloudConnectMonitoringResponse =
+  ListOvhCloudConnectMonitoringResponseBodyList;
+export const ListOvhCloudConnectMonitoringResponse = /*@__PURE__*/ S.suspend(
+  () => ListOvhCloudConnectMonitoringResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListOvhCloudConnectMonitoringResponse",
+}) as any as S.Schema<ListOvhCloudConnectMonitoringResponse>;
+
+export interface ListOvhCloudConnectServiceKeyRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const ListOvhCloudConnectServiceKeyRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/ovhCloudConnect/{serviceName}/serviceKey",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ListOvhCloudConnectServiceKeyRequest",
+}) as any as S.Schema<ListOvhCloudConnectServiceKeyRequest>;
+
+export type ListOvhCloudConnectServiceKeyResponseBodyList = Array<number>;
+export const ListOvhCloudConnectServiceKeyResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.Number,
+  ) as any as S.Schema<ListOvhCloudConnectServiceKeyResponseBodyList>;
+
+export type ListOvhCloudConnectServiceKeyResponse =
+  ListOvhCloudConnectServiceKeyResponseBodyList;
+export const ListOvhCloudConnectServiceKeyResponse = /*@__PURE__*/ S.suspend(
+  () => ListOvhCloudConnectServiceKeyResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListOvhCloudConnectServiceKeyResponse",
+}) as any as S.Schema<ListOvhCloudConnectServiceKeyResponse>;
+
+export interface ListOvhCloudConnectTaskRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const ListOvhCloudConnectTaskRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/ovhCloudConnect/{serviceName}/task",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListOvhCloudConnectTaskRequest",
+}) as any as S.Schema<ListOvhCloudConnectTaskRequest>;
+
+export type ListOvhCloudConnectTaskResponseBodyList = Array<number>;
+export const ListOvhCloudConnectTaskResponseBodyList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<ListOvhCloudConnectTaskResponseBodyList>;
+
+export type ListOvhCloudConnectTaskResponse =
+  ListOvhCloudConnectTaskResponseBodyList;
+export const ListOvhCloudConnectTaskResponse = /*@__PURE__*/ S.suspend(() =>
+  ListOvhCloudConnectTaskResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListOvhCloudConnectTaskResponse",
+}) as any as S.Schema<ListOvhCloudConnectTaskResponse>;
+
+export interface LockOvhCloudConnectInterfaceRequest {
+  /** Service name */
+  serviceName: string;
+  /** Id */
+  id: number;
+}
+export const LockOvhCloudConnectInterfaceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/ovhCloudConnect/{serviceName}/interface/{id}/lock",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "LockOvhCloudConnectInterfaceRequest",
+}) as any as S.Schema<LockOvhCloudConnectInterfaceRequest>;
+
+export interface PutOvhCloudConnectRequest {
+  /** Service name */
+  serviceName: string;
+  /** New description for your service */
+  description?: string | null;
+}
+export const PutOvhCloudConnectRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    description: S.optional(S.NullOr(S.String)),
+  }).pipe(
+    T.Http({ method: "PUT", uri: "/ovhCloudConnect/{serviceName}", code: 200 }),
+  ),
+).annotate({
+  identifier: "PutOvhCloudConnectRequest",
+}) as any as S.Schema<PutOvhCloudConnectRequest>;
+
+export interface PutOvhCloudConnectResponse {}
+export const PutOvhCloudConnectResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "PutOvhCloudConnectResponse",
+}) as any as S.Schema<PutOvhCloudConnectResponse>;
+
+export interface PutOvhCloudConnectServiceInfosRequest {
+  /** Service name */
+  serviceName: string;
+  /** Way of handling the renew */
+  renew?: ServiceRenewType | null;
+}
+export const PutOvhCloudConnectServiceInfosRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      renew: S.optional(S.NullOr(ServiceRenewType)),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/ovhCloudConnect/{serviceName}/serviceInfos",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "PutOvhCloudConnectServiceInfosRequest",
+}) as any as S.Schema<PutOvhCloudConnectServiceInfosRequest>;
+
+export interface PutOvhCloudConnectServiceInfosResponse {}
+export const PutOvhCloudConnectServiceInfosResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "PutOvhCloudConnectServiceInfosResponse",
+}) as any as S.Schema<PutOvhCloudConnectServiceInfosResponse>;
+
+export interface RegenerateOvhCloudConnectServiceKeyRequest {
   /** Service name */
   serviceName: string;
   /** Service key ID */
   serviceKeyId: number;
 }
-export const PostOvhCloudConnectServiceNameServiceKeyServiceKeyIdRegenerateRequest =
+export const RegenerateOvhCloudConnectServiceKeyRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
@@ -2385,11 +2353,10 @@ export const PostOvhCloudConnectServiceNameServiceKeyServiceKeyIdRegenerateReque
       }),
     ),
   ).annotate({
-    identifier:
-      "PostOvhCloudConnectServiceNameServiceKeyServiceKeyIdRegenerateRequest",
-  }) as any as S.Schema<PostOvhCloudConnectServiceNameServiceKeyServiceKeyIdRegenerateRequest>;
+    identifier: "RegenerateOvhCloudConnectServiceKeyRequest",
+  }) as any as S.Schema<RegenerateOvhCloudConnectServiceKeyRequest>;
 
-export interface PostOvhCloudConnectServiceNameServiceKeyServiceKeyIdSendRequest {
+export interface SendOvhCloudConnectServiceKeyRequest {
   /** Service name */
   serviceName: string;
   /** Service key ID */
@@ -2397,8 +2364,8 @@ export interface PostOvhCloudConnectServiceNameServiceKeyServiceKeyIdSendRequest
   /** Email address to send the key */
   email: string;
 }
-export const PostOvhCloudConnectServiceNameServiceKeyServiceKeyIdSendRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const SendOvhCloudConnectServiceKeyRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       serviceKeyId: S.Number.pipe(T.Label()),
@@ -2410,10 +2377,9 @@ export const PostOvhCloudConnectServiceNameServiceKeyServiceKeyIdSendRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier:
-      "PostOvhCloudConnectServiceNameServiceKeyServiceKeyIdSendRequest",
-  }) as any as S.Schema<PostOvhCloudConnectServiceNameServiceKeyServiceKeyIdSendRequest>;
+).annotate({
+  identifier: "SendOvhCloudConnectServiceKeyRequest",
+}) as any as S.Schema<SendOvhCloudConnectServiceKeyRequest>;
 
 /** Enum values for messageCode */
 export type OvhcloudconnectMessageCodeEnum = "mailSent";
@@ -2432,885 +2398,828 @@ export const OvhcloudconnectSendKeyAnswer = /*@__PURE__*/ S.suspend(() =>
   identifier: "OvhcloudconnectSendKeyAnswer",
 }) as any as S.Schema<OvhcloudconnectSendKeyAnswer>;
 
-export interface PostOvhCloudConnectServiceNameTerminateRequest {
+export interface TerminateOvhCloudConnectRequest {
   /** Service name */
   serviceName: string;
 }
-export const PostOvhCloudConnectServiceNameTerminateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/ovhCloudConnect/{serviceName}/terminate",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostOvhCloudConnectServiceNameTerminateRequest",
-  }) as any as S.Schema<PostOvhCloudConnectServiceNameTerminateRequest>;
+export const TerminateOvhCloudConnectRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/ovhCloudConnect/{serviceName}/terminate",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "TerminateOvhCloudConnectRequest",
+}) as any as S.Schema<TerminateOvhCloudConnectRequest>;
 
-export type PostOvhCloudConnectServiceNameTerminateResponse = string;
-export const PostOvhCloudConnectServiceNameTerminateResponse =
-  /*@__PURE__*/ S.suspend(() => S.String.pipe(T.RawResponseRoot())).annotate({
-    identifier: "PostOvhCloudConnectServiceNameTerminateResponse",
-  }) as any as S.Schema<PostOvhCloudConnectServiceNameTerminateResponse>;
+export type TerminateOvhCloudConnectResponse = string;
+export const TerminateOvhCloudConnectResponse = /*@__PURE__*/ S.suspend(() =>
+  S.String.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "TerminateOvhCloudConnectResponse",
+}) as any as S.Schema<TerminateOvhCloudConnectResponse>;
 
-export interface PutOvhCloudConnectServiceNameRequest {
+export interface UnlockOvhCloudConnectInterfaceRequest {
   /** Service name */
   serviceName: string;
-  /** New description for your service */
-  description?: string | null;
+  /** Id */
+  id: number;
 }
-export const PutOvhCloudConnectServiceNameRequest = /*@__PURE__*/ S.suspend(
+export const UnlockOvhCloudConnectInterfaceRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
-      description: S.optional(S.NullOr(S.String)),
+      id: S.Number.pipe(T.Label()),
     }).pipe(
       T.Http({
-        method: "PUT",
-        uri: "/ovhCloudConnect/{serviceName}",
+        method: "POST",
+        uri: "/ovhCloudConnect/{serviceName}/interface/{id}/unlock",
         code: 200,
       }),
     ),
 ).annotate({
-  identifier: "PutOvhCloudConnectServiceNameRequest",
-}) as any as S.Schema<PutOvhCloudConnectServiceNameRequest>;
+  identifier: "UnlockOvhCloudConnectInterfaceRequest",
+}) as any as S.Schema<UnlockOvhCloudConnectInterfaceRequest>;
 
-export interface PutOvhCloudConnectServiceNameResponse {}
-export const PutOvhCloudConnectServiceNameResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "PutOvhCloudConnectServiceNameResponse",
-}) as any as S.Schema<PutOvhCloudConnectServiceNameResponse>;
-
-export interface PutOvhCloudConnectServiceNameServiceInfosRequest {
-  /** Service name */
-  serviceName: string;
-  /** Way of handling the renew */
-  renew?: ServiceRenewType | null;
-}
-export const PutOvhCloudConnectServiceNameServiceInfosRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      renew: S.optional(S.NullOr(ServiceRenewType)),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/ovhCloudConnect/{serviceName}/serviceInfos",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PutOvhCloudConnectServiceNameServiceInfosRequest",
-  }) as any as S.Schema<PutOvhCloudConnectServiceNameServiceInfosRequest>;
-
-export interface PutOvhCloudConnectServiceNameServiceInfosResponse {}
-export const PutOvhCloudConnectServiceNameServiceInfosResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PutOvhCloudConnectServiceNameServiceInfosResponse",
-  }) as any as S.Schema<PutOvhCloudConnectServiceNameServiceInfosResponse>;
-
-export type DeleteOvhCloudConnectServiceNameConfigPopPopIdError = OvhOpError;
-/** Delete a Pop Configuration */
-export const deleteOvhCloudConnectServiceNameConfigPopPopId: API.OperationMethod<
-  DeleteOvhCloudConnectServiceNameConfigPopPopIdRequest,
-  OvhcloudconnectTask,
-  DeleteOvhCloudConnectServiceNameConfigPopPopIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteOvhCloudConnectServiceNameConfigPopPopIdRequest,
-  output: OvhcloudconnectTask,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdError =
-  OvhOpError;
-/** Delete a Datacenter Configuration */
-export const deleteOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterId: API.OperationMethod<
-  DeleteOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdRequest,
-  OvhcloudconnectTask,
-  DeleteOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    DeleteOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdRequest,
-  output: OvhcloudconnectTask,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraExtraIdError =
-  OvhOpError;
-/** Delete a Datacenter Extra Configuration */
-export const deleteOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraExtraId: API.OperationMethod<
-  DeleteOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraExtraIdRequest,
-  OvhcloudconnectTask,
-  DeleteOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraExtraIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    DeleteOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraExtraIdRequest,
-  output: OvhcloudconnectTask,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteOvhCloudConnectServiceNameLogSubscriptionSubscriptionIdError =
-  OvhOpError;
-/** Delete a subscription */
-export const deleteOvhCloudConnectServiceNameLogSubscriptionSubscriptionId: API.OperationMethod<
-  DeleteOvhCloudConnectServiceNameLogSubscriptionSubscriptionIdRequest,
-  DbaasLogsLogSubscriptionResponse,
-  DeleteOvhCloudConnectServiceNameLogSubscriptionSubscriptionIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteOvhCloudConnectServiceNameLogSubscriptionSubscriptionIdRequest,
-  output: DbaasLogsLogSubscriptionResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteOvhCloudConnectServiceNameMonitoringError = OvhOpError;
-/** Delete monitoring */
-export const deleteOvhCloudConnectServiceNameMonitoring: API.OperationMethod<
-  DeleteOvhCloudConnectServiceNameMonitoringRequest,
-  DeleteOvhCloudConnectServiceNameMonitoringResponse,
-  DeleteOvhCloudConnectServiceNameMonitoringError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteOvhCloudConnectServiceNameMonitoringRequest,
-  output: DeleteOvhCloudConnectServiceNameMonitoringResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetOvhCloudConnectError = OvhOpError;
-/** List available services */
-export const getOvhCloudConnect: API.OperationMethod<
-  GetOvhCloudConnectRequest,
-  GetOvhCloudConnectResponse,
-  GetOvhCloudConnectError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetOvhCloudConnectRequest,
-  output: GetOvhCloudConnectResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetOvhCloudConnectServiceNameError = OvhOpError;
-/** Get service */
-export const getOvhCloudConnectServiceName: API.OperationMethod<
-  GetOvhCloudConnectServiceNameRequest,
-  OvhcloudconnectServiceWithIAM,
-  GetOvhCloudConnectServiceNameError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetOvhCloudConnectServiceNameRequest,
-  output: OvhcloudconnectServiceWithIAM,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetOvhCloudConnectServiceNameConfigPopError = OvhOpError;
-/** Get Pop Configuration linked to of a OVHcloud Connect Service */
-export const getOvhCloudConnectServiceNameConfigPop: API.OperationMethod<
-  GetOvhCloudConnectServiceNameConfigPopRequest,
-  GetOvhCloudConnectServiceNameConfigPopResponse,
-  GetOvhCloudConnectServiceNameConfigPopError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetOvhCloudConnectServiceNameConfigPopRequest,
-  output: GetOvhCloudConnectServiceNameConfigPopResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetOvhCloudConnectServiceNameConfigPopPopIdError = OvhOpError;
-/** Get Pop Configuration of a OVHcloud Connect Service */
-export const getOvhCloudConnectServiceNameConfigPopPopId: API.OperationMethod<
-  GetOvhCloudConnectServiceNameConfigPopPopIdRequest,
-  OvhcloudconnectPopConfig,
-  GetOvhCloudConnectServiceNameConfigPopPopIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetOvhCloudConnectServiceNameConfigPopPopIdRequest,
-  output: OvhcloudconnectPopConfig,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterError =
-  OvhOpError;
-/** Get Datacenter Configuration linked to of a OVHcloud Connect Service */
-export const getOvhCloudConnectServiceNameConfigPopPopIdDatacenter: API.OperationMethod<
-  GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterRequest,
-  GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterResponse,
-  GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterRequest,
-  output: GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdError =
-  OvhOpError;
-/** Get Datacenter Configuration of a OVHcloud Connect Service */
-export const getOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterId: API.OperationMethod<
-  GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdRequest,
-  OvhcloudconnectDatacenterConfig,
-  GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdRequest,
-  output: OvhcloudconnectDatacenterConfig,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraError =
-  OvhOpError;
-/** Get Datacenter Extra Configuration linked to of a OVHcloud Connect Service */
-export const getOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtra: API.OperationMethod<
-  GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraRequest,
-  GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraResponse,
-  GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraRequest,
-  output:
-    GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraExtraIdError =
-  OvhOpError;
-/** Get Datacenter Extra Configuration of a OVHcloud Connect Service */
-export const getOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraExtraId: API.OperationMethod<
-  GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraExtraIdRequest,
-  OvhcloudconnectDatacenterExtraConfig,
-  GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraExtraIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    GetOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraExtraIdRequest,
-  output: OvhcloudconnectDatacenterExtraConfig,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetOvhCloudConnectServiceNameConfigPopPopIdStatisticsError =
-  OvhOpError;
-/** Statistics related to a POP */
-export const getOvhCloudConnectServiceNameConfigPopPopIdStatistics: API.OperationMethod<
-  GetOvhCloudConnectServiceNameConfigPopPopIdStatisticsRequest,
-  GetOvhCloudConnectServiceNameConfigPopPopIdStatisticsResponse,
-  GetOvhCloudConnectServiceNameConfigPopPopIdStatisticsError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetOvhCloudConnectServiceNameConfigPopPopIdStatisticsRequest,
-  output: GetOvhCloudConnectServiceNameConfigPopPopIdStatisticsResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetOvhCloudConnectServiceNameConfigPopPopIdStatusError = OvhOpError;
-/** Current status of the L3 Pop config. */
-export const getOvhCloudConnectServiceNameConfigPopPopIdStatus: API.OperationMethod<
-  GetOvhCloudConnectServiceNameConfigPopPopIdStatusRequest,
-  OvhcloudconnectPopConfStatus,
-  GetOvhCloudConnectServiceNameConfigPopPopIdStatusError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetOvhCloudConnectServiceNameConfigPopPopIdStatusRequest,
-  output: OvhcloudconnectPopConfStatus,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetOvhCloudConnectServiceNameDatacenterError = OvhOpError;
-/** List available Datacenter */
-export const getOvhCloudConnectServiceNameDatacenter: API.OperationMethod<
-  GetOvhCloudConnectServiceNameDatacenterRequest,
-  GetOvhCloudConnectServiceNameDatacenterResponse,
-  GetOvhCloudConnectServiceNameDatacenterError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetOvhCloudConnectServiceNameDatacenterRequest,
-  output: GetOvhCloudConnectServiceNameDatacenterResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetOvhCloudConnectServiceNameDatacenterIdError = OvhOpError;
-/** Get Datacenter */
-export const getOvhCloudConnectServiceNameDatacenterId: API.OperationMethod<
-  GetOvhCloudConnectServiceNameDatacenterIdRequest,
-  OvhcloudconnectDatacenter,
-  GetOvhCloudConnectServiceNameDatacenterIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetOvhCloudConnectServiceNameDatacenterIdRequest,
-  output: OvhcloudconnectDatacenter,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetOvhCloudConnectServiceNameDiagnosticError = OvhOpError;
-/** Get Diagnostics linked to a OVHcloud Connect Service */
-export const getOvhCloudConnectServiceNameDiagnostic: API.OperationMethod<
-  GetOvhCloudConnectServiceNameDiagnosticRequest,
-  GetOvhCloudConnectServiceNameDiagnosticResponse,
-  GetOvhCloudConnectServiceNameDiagnosticError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetOvhCloudConnectServiceNameDiagnosticRequest,
-  output: GetOvhCloudConnectServiceNameDiagnosticResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetOvhCloudConnectServiceNameDiagnosticIdError = OvhOpError;
-/** Get Diagnostic linked to a OVHcloud Connect Service */
-export const getOvhCloudConnectServiceNameDiagnosticId: API.OperationMethod<
-  GetOvhCloudConnectServiceNameDiagnosticIdRequest,
-  OvhcloudconnectDiagnostic,
-  GetOvhCloudConnectServiceNameDiagnosticIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetOvhCloudConnectServiceNameDiagnosticIdRequest,
-  output: OvhcloudconnectDiagnostic,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetOvhCloudConnectServiceNameIncidentError = OvhOpError;
-/** List incidents linked to the Service */
-export const getOvhCloudConnectServiceNameIncident: API.OperationMethod<
-  GetOvhCloudConnectServiceNameIncidentRequest,
-  GetOvhCloudConnectServiceNameIncidentResponse,
-  GetOvhCloudConnectServiceNameIncidentError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetOvhCloudConnectServiceNameIncidentRequest,
-  output: GetOvhCloudConnectServiceNameIncidentResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetOvhCloudConnectServiceNameIncidentIdError = OvhOpError;
-/** Get the incident information */
-export const getOvhCloudConnectServiceNameIncidentId: API.OperationMethod<
-  GetOvhCloudConnectServiceNameIncidentIdRequest,
-  OvhcloudconnectIncident,
-  GetOvhCloudConnectServiceNameIncidentIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetOvhCloudConnectServiceNameIncidentIdRequest,
-  output: OvhcloudconnectIncident,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetOvhCloudConnectServiceNameInterfaceError = OvhOpError;
-/** List interfaces linked to the Service */
-export const getOvhCloudConnectServiceNameInterface: API.OperationMethod<
-  GetOvhCloudConnectServiceNameInterfaceRequest,
-  GetOvhCloudConnectServiceNameInterfaceResponse,
-  GetOvhCloudConnectServiceNameInterfaceError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetOvhCloudConnectServiceNameInterfaceRequest,
-  output: GetOvhCloudConnectServiceNameInterfaceResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetOvhCloudConnectServiceNameInterfaceIdError = OvhOpError;
-/** Get the Interface information */
-export const getOvhCloudConnectServiceNameInterfaceId: API.OperationMethod<
-  GetOvhCloudConnectServiceNameInterfaceIdRequest,
-  OvhcloudconnectInterface,
-  GetOvhCloudConnectServiceNameInterfaceIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetOvhCloudConnectServiceNameInterfaceIdRequest,
-  output: OvhcloudconnectInterface,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetOvhCloudConnectServiceNameInterfaceIdStatisticsError =
-  OvhOpError;
-/** Statistics for an OCC interface for a given type */
-export const getOvhCloudConnectServiceNameInterfaceIdStatistics: API.OperationMethod<
-  GetOvhCloudConnectServiceNameInterfaceIdStatisticsRequest,
-  GetOvhCloudConnectServiceNameInterfaceIdStatisticsResponse,
-  GetOvhCloudConnectServiceNameInterfaceIdStatisticsError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetOvhCloudConnectServiceNameInterfaceIdStatisticsRequest,
-  output: GetOvhCloudConnectServiceNameInterfaceIdStatisticsResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetOvhCloudConnectServiceNameInterfaceIdStatusError = OvhOpError;
-/** Current status of the interface. */
-export const getOvhCloudConnectServiceNameInterfaceIdStatus: API.OperationMethod<
-  GetOvhCloudConnectServiceNameInterfaceIdStatusRequest,
-  OvhcloudconnectInterfaceStatus,
-  GetOvhCloudConnectServiceNameInterfaceIdStatusError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetOvhCloudConnectServiceNameInterfaceIdStatusRequest,
-  output: OvhcloudconnectInterfaceStatus,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetOvhCloudConnectServiceNameLogKindError = OvhOpError;
-/** List available log kinds */
-export const getOvhCloudConnectServiceNameLogKind: API.OperationMethod<
-  GetOvhCloudConnectServiceNameLogKindRequest,
-  GetOvhCloudConnectServiceNameLogKindResponse,
-  GetOvhCloudConnectServiceNameLogKindError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetOvhCloudConnectServiceNameLogKindRequest,
-  output: GetOvhCloudConnectServiceNameLogKindResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetOvhCloudConnectServiceNameLogKindNameError = OvhOpError;
-/** Get a log kind */
-export const getOvhCloudConnectServiceNameLogKindName: API.OperationMethod<
-  GetOvhCloudConnectServiceNameLogKindNameRequest,
-  DbaasLogsLogKind,
-  GetOvhCloudConnectServiceNameLogKindNameError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetOvhCloudConnectServiceNameLogKindNameRequest,
-  output: DbaasLogsLogKind,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetOvhCloudConnectServiceNameLogSubscriptionError = OvhOpError;
-/** List subscription IDs for a cluster */
-export const getOvhCloudConnectServiceNameLogSubscription: API.OperationMethod<
-  GetOvhCloudConnectServiceNameLogSubscriptionRequest,
-  GetOvhCloudConnectServiceNameLogSubscriptionResponse,
-  GetOvhCloudConnectServiceNameLogSubscriptionError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetOvhCloudConnectServiceNameLogSubscriptionRequest,
-  output: GetOvhCloudConnectServiceNameLogSubscriptionResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetOvhCloudConnectServiceNameLogSubscriptionSubscriptionIdError =
-  OvhOpError;
-/** Get subscription details */
-export const getOvhCloudConnectServiceNameLogSubscriptionSubscriptionId: API.OperationMethod<
-  GetOvhCloudConnectServiceNameLogSubscriptionSubscriptionIdRequest,
-  DbaasLogsLogSubscription,
-  GetOvhCloudConnectServiceNameLogSubscriptionSubscriptionIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetOvhCloudConnectServiceNameLogSubscriptionSubscriptionIdRequest,
-  output: DbaasLogsLogSubscription,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetOvhCloudConnectServiceNameMonitoringError = OvhOpError;
-/** List monitoring alerts */
-export const getOvhCloudConnectServiceNameMonitoring: API.OperationMethod<
-  GetOvhCloudConnectServiceNameMonitoringRequest,
-  GetOvhCloudConnectServiceNameMonitoringResponse,
-  GetOvhCloudConnectServiceNameMonitoringError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetOvhCloudConnectServiceNameMonitoringRequest,
-  output: GetOvhCloudConnectServiceNameMonitoringResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetOvhCloudConnectServiceNameServiceInfosError = OvhOpError;
-/** Get service information */
-export const getOvhCloudConnectServiceNameServiceInfos: API.OperationMethod<
-  GetOvhCloudConnectServiceNameServiceInfosRequest,
-  ServicesService,
-  GetOvhCloudConnectServiceNameServiceInfosError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetOvhCloudConnectServiceNameServiceInfosRequest,
-  output: ServicesService,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetOvhCloudConnectServiceNameServiceKeyError = OvhOpError;
-/** Get Keys linked to a OVHcloud Connect Service */
-export const getOvhCloudConnectServiceNameServiceKey: API.OperationMethod<
-  GetOvhCloudConnectServiceNameServiceKeyRequest,
-  GetOvhCloudConnectServiceNameServiceKeyResponse,
-  GetOvhCloudConnectServiceNameServiceKeyError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetOvhCloudConnectServiceNameServiceKeyRequest,
-  output: GetOvhCloudConnectServiceNameServiceKeyResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetOvhCloudConnectServiceNameServiceKeyServiceKeyIdError =
-  OvhOpError;
-/** Get Key linked to a OVHcloud Connect Service */
-export const getOvhCloudConnectServiceNameServiceKeyServiceKeyId: API.OperationMethod<
-  GetOvhCloudConnectServiceNameServiceKeyServiceKeyIdRequest,
-  OvhcloudconnectKey,
-  GetOvhCloudConnectServiceNameServiceKeyServiceKeyIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetOvhCloudConnectServiceNameServiceKeyServiceKeyIdRequest,
-  output: OvhcloudconnectKey,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetOvhCloudConnectServiceNameTaskError = OvhOpError;
-/** Get Task linked to a OVHcloud Connect Service */
-export const getOvhCloudConnectServiceNameTask: API.OperationMethod<
-  GetOvhCloudConnectServiceNameTaskRequest,
-  GetOvhCloudConnectServiceNameTaskResponse,
-  GetOvhCloudConnectServiceNameTaskError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetOvhCloudConnectServiceNameTaskRequest,
-  output: GetOvhCloudConnectServiceNameTaskResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetOvhCloudConnectServiceNameTaskIdError = OvhOpError;
-/** Get Tasks linked to a OVHcloud Connect Service */
-export const getOvhCloudConnectServiceNameTaskId: API.OperationMethod<
-  GetOvhCloudConnectServiceNameTaskIdRequest,
-  OvhcloudconnectTask,
-  GetOvhCloudConnectServiceNameTaskIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetOvhCloudConnectServiceNameTaskIdRequest,
-  output: OvhcloudconnectTask,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostOvhCloudConnectServiceNameChangeContactError = OvhOpError;
-/** Launch a contact change procedure */
-export const postOvhCloudConnectServiceNameChangeContact: API.OperationMethod<
-  PostOvhCloudConnectServiceNameChangeContactRequest,
-  PostOvhCloudConnectServiceNameChangeContactResponse,
-  PostOvhCloudConnectServiceNameChangeContactError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostOvhCloudConnectServiceNameChangeContactRequest,
-  output: PostOvhCloudConnectServiceNameChangeContactResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostOvhCloudConnectServiceNameConfigPopError = OvhOpError;
-/** Create a Pop Configuration */
-export const postOvhCloudConnectServiceNameConfigPop: API.OperationMethod<
-  PostOvhCloudConnectServiceNameConfigPopRequest,
-  OvhcloudconnectTask,
-  PostOvhCloudConnectServiceNameConfigPopError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostOvhCloudConnectServiceNameConfigPopRequest,
-  output: OvhcloudconnectTask,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostOvhCloudConnectServiceNameConfigPopPopIdDatacenterError =
-  OvhOpError;
-/** Create a Datacenter Configuration */
-export const postOvhCloudConnectServiceNameConfigPopPopIdDatacenter: API.OperationMethod<
-  PostOvhCloudConnectServiceNameConfigPopPopIdDatacenterRequest,
-  OvhcloudconnectTask,
-  PostOvhCloudConnectServiceNameConfigPopPopIdDatacenterError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostOvhCloudConnectServiceNameConfigPopPopIdDatacenterRequest,
-  output: OvhcloudconnectTask,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraError =
-  OvhOpError;
-/** Create a Datacenter Extra Configuration */
-export const postOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtra: API.OperationMethod<
-  PostOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraRequest,
-  OvhcloudconnectTask,
-  PostOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    PostOvhCloudConnectServiceNameConfigPopPopIdDatacenterDatacenterIdExtraRequest,
-  output: OvhcloudconnectTask,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostOvhCloudConnectServiceNameConfirmTerminationError = OvhOpError;
+export type ConfirmOvhCloudConnectTerminationError = OvhOpError;
 /** Confirm service termination */
-export const postOvhCloudConnectServiceNameConfirmTermination: API.OperationMethod<
-  PostOvhCloudConnectServiceNameConfirmTerminationRequest,
-  PostOvhCloudConnectServiceNameConfirmTerminationResponse,
-  PostOvhCloudConnectServiceNameConfirmTerminationError,
+export const confirmOvhCloudConnectTermination: API.OperationMethod<
+  ConfirmOvhCloudConnectTerminationRequest,
+  ConfirmOvhCloudConnectTerminationResponse,
+  ConfirmOvhCloudConnectTerminationError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostOvhCloudConnectServiceNameConfirmTerminationRequest,
-  output: PostOvhCloudConnectServiceNameConfirmTerminationResponse,
+  input: ConfirmOvhCloudConnectTerminationRequest,
+  output: ConfirmOvhCloudConnectTerminationResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostOvhCloudConnectServiceNameDiagnosticError = OvhOpError;
-/** Create a Diagnostic linked to a OVHcloud Connect Service */
-export const postOvhCloudConnectServiceNameDiagnostic: API.OperationMethod<
-  PostOvhCloudConnectServiceNameDiagnosticRequest,
-  OvhcloudconnectDiagnostic,
-  PostOvhCloudConnectServiceNameDiagnosticError,
+export type CreateOvhCloudConnectChangeContactError = OvhOpError;
+/** Launch a contact change procedure */
+export const createOvhCloudConnectChangeContact: API.OperationMethod<
+  CreateOvhCloudConnectChangeContactRequest,
+  CreateOvhCloudConnectChangeContactResponse,
+  CreateOvhCloudConnectChangeContactError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostOvhCloudConnectServiceNameDiagnosticRequest,
+  input: CreateOvhCloudConnectChangeContactRequest,
+  output: CreateOvhCloudConnectChangeContactResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateOvhCloudConnectConfigPopError = OvhOpError;
+/** Create a Pop Configuration */
+export const createOvhCloudConnectConfigPop: API.OperationMethod<
+  CreateOvhCloudConnectConfigPopRequest,
+  OvhcloudconnectTask,
+  CreateOvhCloudConnectConfigPopError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateOvhCloudConnectConfigPopRequest,
+  output: OvhcloudconnectTask,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateOvhCloudConnectConfigPopDatacenterError = OvhOpError;
+/** Create a Datacenter Configuration */
+export const createOvhCloudConnectConfigPopDatacenter: API.OperationMethod<
+  CreateOvhCloudConnectConfigPopDatacenterRequest,
+  OvhcloudconnectTask,
+  CreateOvhCloudConnectConfigPopDatacenterError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateOvhCloudConnectConfigPopDatacenterRequest,
+  output: OvhcloudconnectTask,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateOvhCloudConnectConfigPopDatacenterExtraError = OvhOpError;
+/** Create a Datacenter Extra Configuration */
+export const createOvhCloudConnectConfigPopDatacenterExtra: API.OperationMethod<
+  CreateOvhCloudConnectConfigPopDatacenterExtraRequest,
+  OvhcloudconnectTask,
+  CreateOvhCloudConnectConfigPopDatacenterExtraError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateOvhCloudConnectConfigPopDatacenterExtraRequest,
+  output: OvhcloudconnectTask,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateOvhCloudConnectDiagnosticError = OvhOpError;
+/** Create a Diagnostic linked to a OVHcloud Connect Service */
+export const createOvhCloudConnectDiagnostic: API.OperationMethod<
+  CreateOvhCloudConnectDiagnosticRequest,
+  OvhcloudconnectDiagnostic,
+  CreateOvhCloudConnectDiagnosticError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateOvhCloudConnectDiagnosticRequest,
   output: OvhcloudconnectDiagnostic,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostOvhCloudConnectServiceNameInterfaceIdLockError = OvhOpError;
-/** Lock the port */
-export const postOvhCloudConnectServiceNameInterfaceIdLock: API.OperationMethod<
-  PostOvhCloudConnectServiceNameInterfaceIdLockRequest,
-  OvhcloudconnectTask,
-  PostOvhCloudConnectServiceNameInterfaceIdLockError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostOvhCloudConnectServiceNameInterfaceIdLockRequest,
-  output: OvhcloudconnectTask,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostOvhCloudConnectServiceNameInterfaceIdUnlockError = OvhOpError;
-/** Unlock the port */
-export const postOvhCloudConnectServiceNameInterfaceIdUnlock: API.OperationMethod<
-  PostOvhCloudConnectServiceNameInterfaceIdUnlockRequest,
-  OvhcloudconnectTask,
-  PostOvhCloudConnectServiceNameInterfaceIdUnlockError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostOvhCloudConnectServiceNameInterfaceIdUnlockRequest,
-  output: OvhcloudconnectTask,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostOvhCloudConnectServiceNameLoaError = OvhOpError;
+export type CreateOvhCloudConnectLoaError = OvhOpError;
 /** Generate a loa for a service */
-export const postOvhCloudConnectServiceNameLoa: API.OperationMethod<
-  PostOvhCloudConnectServiceNameLoaRequest,
-  PostOvhCloudConnectServiceNameLoaResponse,
-  PostOvhCloudConnectServiceNameLoaError,
+export const createOvhCloudConnectLoa: API.OperationMethod<
+  CreateOvhCloudConnectLoaRequest,
+  CreateOvhCloudConnectLoaResponse,
+  CreateOvhCloudConnectLoaError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostOvhCloudConnectServiceNameLoaRequest,
-  output: PostOvhCloudConnectServiceNameLoaResponse,
+  input: CreateOvhCloudConnectLoaRequest,
+  output: CreateOvhCloudConnectLoaResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostOvhCloudConnectServiceNameLogSubscriptionError = OvhOpError;
+export type CreateOvhCloudConnectLogSubscriptionError = OvhOpError;
 /** Create a subscription from logs to a pre-existing LDP stream */
-export const postOvhCloudConnectServiceNameLogSubscription: API.OperationMethod<
-  PostOvhCloudConnectServiceNameLogSubscriptionRequest,
+export const createOvhCloudConnectLogSubscription: API.OperationMethod<
+  CreateOvhCloudConnectLogSubscriptionRequest,
   DbaasLogsLogSubscriptionResponse,
-  PostOvhCloudConnectServiceNameLogSubscriptionError,
+  CreateOvhCloudConnectLogSubscriptionError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostOvhCloudConnectServiceNameLogSubscriptionRequest,
+  input: CreateOvhCloudConnectLogSubscriptionRequest,
   output: DbaasLogsLogSubscriptionResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostOvhCloudConnectServiceNameLogUrlError = OvhOpError;
+export type CreateOvhCloudConnectLogUrlError = OvhOpError;
 /** Generate a temporary URL to retrieve logs */
-export const postOvhCloudConnectServiceNameLogUrl: API.OperationMethod<
-  PostOvhCloudConnectServiceNameLogUrlRequest,
+export const createOvhCloudConnectLogUrl: API.OperationMethod<
+  CreateOvhCloudConnectLogUrlRequest,
   DbaasLogsTemporaryLogsLink,
-  PostOvhCloudConnectServiceNameLogUrlError,
+  CreateOvhCloudConnectLogUrlError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostOvhCloudConnectServiceNameLogUrlRequest,
+  input: CreateOvhCloudConnectLogUrlRequest,
   output: DbaasLogsTemporaryLogsLink,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostOvhCloudConnectServiceNameMonitoringError = OvhOpError;
+export type CreateOvhCloudConnectMonitoringError = OvhOpError;
 /** Monitor the Service */
-export const postOvhCloudConnectServiceNameMonitoring: API.OperationMethod<
-  PostOvhCloudConnectServiceNameMonitoringRequest,
-  PostOvhCloudConnectServiceNameMonitoringResponse,
-  PostOvhCloudConnectServiceNameMonitoringError,
+export const createOvhCloudConnectMonitoring: API.OperationMethod<
+  CreateOvhCloudConnectMonitoringRequest,
+  CreateOvhCloudConnectMonitoringResponse,
+  CreateOvhCloudConnectMonitoringError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostOvhCloudConnectServiceNameMonitoringRequest,
-  output: PostOvhCloudConnectServiceNameMonitoringResponse,
+  input: CreateOvhCloudConnectMonitoringRequest,
+  output: CreateOvhCloudConnectMonitoringResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostOvhCloudConnectServiceNameServiceKeyServiceKeyIdRegenerateError =
-  OvhOpError;
-/** Regenerate Service Key linked to a OVHcloud Connect Service */
-export const postOvhCloudConnectServiceNameServiceKeyServiceKeyIdRegenerate: API.OperationMethod<
-  PostOvhCloudConnectServiceNameServiceKeyServiceKeyIdRegenerateRequest,
-  OvhcloudconnectKey,
-  PostOvhCloudConnectServiceNameServiceKeyServiceKeyIdRegenerateError,
+export type DeleteOvhCloudConnectConfigPopError = OvhOpError;
+/** Delete a Pop Configuration */
+export const deleteOvhCloudConnectConfigPop: API.OperationMethod<
+  DeleteOvhCloudConnectConfigPopRequest,
+  OvhcloudconnectTask,
+  DeleteOvhCloudConnectConfigPopError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostOvhCloudConnectServiceNameServiceKeyServiceKeyIdRegenerateRequest,
+  input: DeleteOvhCloudConnectConfigPopRequest,
+  output: OvhcloudconnectTask,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteOvhCloudConnectConfigPopDatacenterError = OvhOpError;
+/** Delete a Datacenter Configuration */
+export const deleteOvhCloudConnectConfigPopDatacenter: API.OperationMethod<
+  DeleteOvhCloudConnectConfigPopDatacenterRequest,
+  OvhcloudconnectTask,
+  DeleteOvhCloudConnectConfigPopDatacenterError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteOvhCloudConnectConfigPopDatacenterRequest,
+  output: OvhcloudconnectTask,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteOvhCloudConnectConfigPopDatacenterExtraError = OvhOpError;
+/** Delete a Datacenter Extra Configuration */
+export const deleteOvhCloudConnectConfigPopDatacenterExtra: API.OperationMethod<
+  DeleteOvhCloudConnectConfigPopDatacenterExtraRequest,
+  OvhcloudconnectTask,
+  DeleteOvhCloudConnectConfigPopDatacenterExtraError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteOvhCloudConnectConfigPopDatacenterExtraRequest,
+  output: OvhcloudconnectTask,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteOvhCloudConnectLogSubscriptionError = OvhOpError;
+/** Delete a subscription */
+export const deleteOvhCloudConnectLogSubscription: API.OperationMethod<
+  DeleteOvhCloudConnectLogSubscriptionRequest,
+  DbaasLogsLogSubscriptionResponse,
+  DeleteOvhCloudConnectLogSubscriptionError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteOvhCloudConnectLogSubscriptionRequest,
+  output: DbaasLogsLogSubscriptionResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteOvhCloudConnectMonitoringError = OvhOpError;
+/** Delete monitoring */
+export const deleteOvhCloudConnectMonitoring: API.OperationMethod<
+  DeleteOvhCloudConnectMonitoringRequest,
+  DeleteOvhCloudConnectMonitoringResponse,
+  DeleteOvhCloudConnectMonitoringError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteOvhCloudConnectMonitoringRequest,
+  output: DeleteOvhCloudConnectMonitoringResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetOvhCloudConnectError = OvhOpError;
+/** Get service */
+export const getOvhCloudConnect: API.OperationMethod<
+  GetOvhCloudConnectRequest,
+  OvhcloudconnectServiceWithIAM,
+  GetOvhCloudConnectError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetOvhCloudConnectRequest,
+  output: OvhcloudconnectServiceWithIAM,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetOvhCloudConnectConfigPopError = OvhOpError;
+/** Get Pop Configuration of a OVHcloud Connect Service */
+export const getOvhCloudConnectConfigPop: API.OperationMethod<
+  GetOvhCloudConnectConfigPopRequest,
+  OvhcloudconnectPopConfig,
+  GetOvhCloudConnectConfigPopError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetOvhCloudConnectConfigPopRequest,
+  output: OvhcloudconnectPopConfig,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetOvhCloudConnectConfigPopDatacenterError = OvhOpError;
+/** Get Datacenter Configuration of a OVHcloud Connect Service */
+export const getOvhCloudConnectConfigPopDatacenter: API.OperationMethod<
+  GetOvhCloudConnectConfigPopDatacenterRequest,
+  OvhcloudconnectDatacenterConfig,
+  GetOvhCloudConnectConfigPopDatacenterError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetOvhCloudConnectConfigPopDatacenterRequest,
+  output: OvhcloudconnectDatacenterConfig,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetOvhCloudConnectConfigPopDatacenterExtraError = OvhOpError;
+/** Get Datacenter Extra Configuration of a OVHcloud Connect Service */
+export const getOvhCloudConnectConfigPopDatacenterExtra: API.OperationMethod<
+  GetOvhCloudConnectConfigPopDatacenterExtraRequest,
+  OvhcloudconnectDatacenterExtraConfig,
+  GetOvhCloudConnectConfigPopDatacenterExtraError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetOvhCloudConnectConfigPopDatacenterExtraRequest,
+  output: OvhcloudconnectDatacenterExtraConfig,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetOvhCloudConnectConfigPopStatusError = OvhOpError;
+/** Current status of the L3 Pop config. */
+export const getOvhCloudConnectConfigPopStatus: API.OperationMethod<
+  GetOvhCloudConnectConfigPopStatusRequest,
+  OvhcloudconnectPopConfStatus,
+  GetOvhCloudConnectConfigPopStatusError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetOvhCloudConnectConfigPopStatusRequest,
+  output: OvhcloudconnectPopConfStatus,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetOvhCloudConnectDatacenterError = OvhOpError;
+/** Get Datacenter */
+export const getOvhCloudConnectDatacenter: API.OperationMethod<
+  GetOvhCloudConnectDatacenterRequest,
+  OvhcloudconnectDatacenter,
+  GetOvhCloudConnectDatacenterError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetOvhCloudConnectDatacenterRequest,
+  output: OvhcloudconnectDatacenter,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetOvhCloudConnectDiagnosticError = OvhOpError;
+/** Get Diagnostic linked to a OVHcloud Connect Service */
+export const getOvhCloudConnectDiagnostic: API.OperationMethod<
+  GetOvhCloudConnectDiagnosticRequest,
+  OvhcloudconnectDiagnostic,
+  GetOvhCloudConnectDiagnosticError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetOvhCloudConnectDiagnosticRequest,
+  output: OvhcloudconnectDiagnostic,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetOvhCloudConnectIncidentError = OvhOpError;
+/** Get the incident information */
+export const getOvhCloudConnectIncident: API.OperationMethod<
+  GetOvhCloudConnectIncidentRequest,
+  OvhcloudconnectIncident,
+  GetOvhCloudConnectIncidentError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetOvhCloudConnectIncidentRequest,
+  output: OvhcloudconnectIncident,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetOvhCloudConnectInterfaceError = OvhOpError;
+/** Get the Interface information */
+export const getOvhCloudConnectInterface: API.OperationMethod<
+  GetOvhCloudConnectInterfaceRequest,
+  OvhcloudconnectInterface,
+  GetOvhCloudConnectInterfaceError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetOvhCloudConnectInterfaceRequest,
+  output: OvhcloudconnectInterface,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetOvhCloudConnectInterfaceStatusError = OvhOpError;
+/** Current status of the interface. */
+export const getOvhCloudConnectInterfaceStatus: API.OperationMethod<
+  GetOvhCloudConnectInterfaceStatusRequest,
+  OvhcloudconnectInterfaceStatus,
+  GetOvhCloudConnectInterfaceStatusError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetOvhCloudConnectInterfaceStatusRequest,
+  output: OvhcloudconnectInterfaceStatus,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetOvhCloudConnectLogKindError = OvhOpError;
+/** Get a log kind */
+export const getOvhCloudConnectLogKind: API.OperationMethod<
+  GetOvhCloudConnectLogKindRequest,
+  DbaasLogsLogKind,
+  GetOvhCloudConnectLogKindError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetOvhCloudConnectLogKindRequest,
+  output: DbaasLogsLogKind,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetOvhCloudConnectLogSubscriptionError = OvhOpError;
+/** Get subscription details */
+export const getOvhCloudConnectLogSubscription: API.OperationMethod<
+  GetOvhCloudConnectLogSubscriptionRequest,
+  DbaasLogsLogSubscription,
+  GetOvhCloudConnectLogSubscriptionError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetOvhCloudConnectLogSubscriptionRequest,
+  output: DbaasLogsLogSubscription,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetOvhCloudConnectServiceInfosError = OvhOpError;
+/** Get service information */
+export const getOvhCloudConnectServiceInfos: API.OperationMethod<
+  GetOvhCloudConnectServiceInfosRequest,
+  ServicesService,
+  GetOvhCloudConnectServiceInfosError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetOvhCloudConnectServiceInfosRequest,
+  output: ServicesService,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetOvhCloudConnectServiceKeyError = OvhOpError;
+/** Get Key linked to a OVHcloud Connect Service */
+export const getOvhCloudConnectServiceKey: API.OperationMethod<
+  GetOvhCloudConnectServiceKeyRequest,
+  OvhcloudconnectKey,
+  GetOvhCloudConnectServiceKeyError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetOvhCloudConnectServiceKeyRequest,
   output: OvhcloudconnectKey,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostOvhCloudConnectServiceNameServiceKeyServiceKeyIdSendError =
-  OvhOpError;
-/** Send key value to customer */
-export const postOvhCloudConnectServiceNameServiceKeyServiceKeyIdSend: API.OperationMethod<
-  PostOvhCloudConnectServiceNameServiceKeyServiceKeyIdSendRequest,
-  OvhcloudconnectSendKeyAnswer,
-  PostOvhCloudConnectServiceNameServiceKeyServiceKeyIdSendError,
+export type GetOvhCloudConnectTaskError = OvhOpError;
+/** Get Tasks linked to a OVHcloud Connect Service */
+export const getOvhCloudConnectTask: API.OperationMethod<
+  GetOvhCloudConnectTaskRequest,
+  OvhcloudconnectTask,
+  GetOvhCloudConnectTaskError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostOvhCloudConnectServiceNameServiceKeyServiceKeyIdSendRequest,
+  input: GetOvhCloudConnectTaskRequest,
+  output: OvhcloudconnectTask,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOvhCloudConnectError = OvhOpError;
+/** List available services */
+export const listOvhCloudConnect: API.OperationMethod<
+  ListOvhCloudConnectRequest,
+  ListOvhCloudConnectResponse,
+  ListOvhCloudConnectError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOvhCloudConnectRequest,
+  output: ListOvhCloudConnectResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOvhCloudConnectConfigPopError = OvhOpError;
+/** Get Pop Configuration linked to of a OVHcloud Connect Service */
+export const listOvhCloudConnectConfigPop: API.OperationMethod<
+  ListOvhCloudConnectConfigPopRequest,
+  ListOvhCloudConnectConfigPopResponse,
+  ListOvhCloudConnectConfigPopError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOvhCloudConnectConfigPopRequest,
+  output: ListOvhCloudConnectConfigPopResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOvhCloudConnectConfigPopDatacenterError = OvhOpError;
+/** Get Datacenter Configuration linked to of a OVHcloud Connect Service */
+export const listOvhCloudConnectConfigPopDatacenter: API.OperationMethod<
+  ListOvhCloudConnectConfigPopDatacenterRequest,
+  ListOvhCloudConnectConfigPopDatacenterResponse,
+  ListOvhCloudConnectConfigPopDatacenterError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOvhCloudConnectConfigPopDatacenterRequest,
+  output: ListOvhCloudConnectConfigPopDatacenterResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOvhCloudConnectConfigPopDatacenterExtraError = OvhOpError;
+/** Get Datacenter Extra Configuration linked to of a OVHcloud Connect Service */
+export const listOvhCloudConnectConfigPopDatacenterExtra: API.OperationMethod<
+  ListOvhCloudConnectConfigPopDatacenterExtraRequest,
+  ListOvhCloudConnectConfigPopDatacenterExtraResponse,
+  ListOvhCloudConnectConfigPopDatacenterExtraError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOvhCloudConnectConfigPopDatacenterExtraRequest,
+  output: ListOvhCloudConnectConfigPopDatacenterExtraResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOvhCloudConnectConfigPopStatisticsError = OvhOpError;
+/** Statistics related to a POP */
+export const listOvhCloudConnectConfigPopStatistics: API.OperationMethod<
+  ListOvhCloudConnectConfigPopStatisticsRequest,
+  ListOvhCloudConnectConfigPopStatisticsResponse,
+  ListOvhCloudConnectConfigPopStatisticsError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOvhCloudConnectConfigPopStatisticsRequest,
+  output: ListOvhCloudConnectConfigPopStatisticsResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOvhCloudConnectDatacenterError = OvhOpError;
+/** List available Datacenter */
+export const listOvhCloudConnectDatacenter: API.OperationMethod<
+  ListOvhCloudConnectDatacenterRequest,
+  ListOvhCloudConnectDatacenterResponse,
+  ListOvhCloudConnectDatacenterError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOvhCloudConnectDatacenterRequest,
+  output: ListOvhCloudConnectDatacenterResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOvhCloudConnectDiagnosticError = OvhOpError;
+/** Get Diagnostics linked to a OVHcloud Connect Service */
+export const listOvhCloudConnectDiagnostic: API.OperationMethod<
+  ListOvhCloudConnectDiagnosticRequest,
+  ListOvhCloudConnectDiagnosticResponse,
+  ListOvhCloudConnectDiagnosticError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOvhCloudConnectDiagnosticRequest,
+  output: ListOvhCloudConnectDiagnosticResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOvhCloudConnectIncidentError = OvhOpError;
+/** List incidents linked to the Service */
+export const listOvhCloudConnectIncident: API.OperationMethod<
+  ListOvhCloudConnectIncidentRequest,
+  ListOvhCloudConnectIncidentResponse,
+  ListOvhCloudConnectIncidentError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOvhCloudConnectIncidentRequest,
+  output: ListOvhCloudConnectIncidentResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOvhCloudConnectInterfaceError = OvhOpError;
+/** List interfaces linked to the Service */
+export const listOvhCloudConnectInterface: API.OperationMethod<
+  ListOvhCloudConnectInterfaceRequest,
+  ListOvhCloudConnectInterfaceResponse,
+  ListOvhCloudConnectInterfaceError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOvhCloudConnectInterfaceRequest,
+  output: ListOvhCloudConnectInterfaceResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOvhCloudConnectInterfaceStatisticsError = OvhOpError;
+/** Statistics for an OCC interface for a given type */
+export const listOvhCloudConnectInterfaceStatistics: API.OperationMethod<
+  ListOvhCloudConnectInterfaceStatisticsRequest,
+  ListOvhCloudConnectInterfaceStatisticsResponse,
+  ListOvhCloudConnectInterfaceStatisticsError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOvhCloudConnectInterfaceStatisticsRequest,
+  output: ListOvhCloudConnectInterfaceStatisticsResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOvhCloudConnectLogKindError = OvhOpError;
+/** List available log kinds */
+export const listOvhCloudConnectLogKind: API.OperationMethod<
+  ListOvhCloudConnectLogKindRequest,
+  ListOvhCloudConnectLogKindResponse,
+  ListOvhCloudConnectLogKindError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOvhCloudConnectLogKindRequest,
+  output: ListOvhCloudConnectLogKindResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOvhCloudConnectLogSubscriptionError = OvhOpError;
+/** List subscription IDs for a cluster */
+export const listOvhCloudConnectLogSubscription: API.OperationMethod<
+  ListOvhCloudConnectLogSubscriptionRequest,
+  ListOvhCloudConnectLogSubscriptionResponse,
+  ListOvhCloudConnectLogSubscriptionError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOvhCloudConnectLogSubscriptionRequest,
+  output: ListOvhCloudConnectLogSubscriptionResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOvhCloudConnectMonitoringError = OvhOpError;
+/** List monitoring alerts */
+export const listOvhCloudConnectMonitoring: API.OperationMethod<
+  ListOvhCloudConnectMonitoringRequest,
+  ListOvhCloudConnectMonitoringResponse,
+  ListOvhCloudConnectMonitoringError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOvhCloudConnectMonitoringRequest,
+  output: ListOvhCloudConnectMonitoringResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOvhCloudConnectServiceKeyError = OvhOpError;
+/** Get Keys linked to a OVHcloud Connect Service */
+export const listOvhCloudConnectServiceKey: API.OperationMethod<
+  ListOvhCloudConnectServiceKeyRequest,
+  ListOvhCloudConnectServiceKeyResponse,
+  ListOvhCloudConnectServiceKeyError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOvhCloudConnectServiceKeyRequest,
+  output: ListOvhCloudConnectServiceKeyResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOvhCloudConnectTaskError = OvhOpError;
+/** Get Task linked to a OVHcloud Connect Service */
+export const listOvhCloudConnectTask: API.OperationMethod<
+  ListOvhCloudConnectTaskRequest,
+  ListOvhCloudConnectTaskResponse,
+  ListOvhCloudConnectTaskError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOvhCloudConnectTaskRequest,
+  output: ListOvhCloudConnectTaskResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type LockOvhCloudConnectInterfaceError = OvhOpError;
+/** Lock the port */
+export const lockOvhCloudConnectInterface: API.OperationMethod<
+  LockOvhCloudConnectInterfaceRequest,
+  OvhcloudconnectTask,
+  LockOvhCloudConnectInterfaceError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: LockOvhCloudConnectInterfaceRequest,
+  output: OvhcloudconnectTask,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutOvhCloudConnectError = OvhOpError;
+/** Modify service */
+export const putOvhCloudConnect: API.OperationMethod<
+  PutOvhCloudConnectRequest,
+  PutOvhCloudConnectResponse,
+  PutOvhCloudConnectError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutOvhCloudConnectRequest,
+  output: PutOvhCloudConnectResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutOvhCloudConnectServiceInfosError = OvhOpError;
+/** Update service information */
+export const putOvhCloudConnectServiceInfos: API.OperationMethod<
+  PutOvhCloudConnectServiceInfosRequest,
+  PutOvhCloudConnectServiceInfosResponse,
+  PutOvhCloudConnectServiceInfosError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutOvhCloudConnectServiceInfosRequest,
+  output: PutOvhCloudConnectServiceInfosResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RegenerateOvhCloudConnectServiceKeyError = OvhOpError;
+/** Regenerate Service Key linked to a OVHcloud Connect Service */
+export const regenerateOvhCloudConnectServiceKey: API.OperationMethod<
+  RegenerateOvhCloudConnectServiceKeyRequest,
+  OvhcloudconnectKey,
+  RegenerateOvhCloudConnectServiceKeyError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RegenerateOvhCloudConnectServiceKeyRequest,
+  output: OvhcloudconnectKey,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type SendOvhCloudConnectServiceKeyError = OvhOpError;
+/** Send key value to customer */
+export const sendOvhCloudConnectServiceKey: API.OperationMethod<
+  SendOvhCloudConnectServiceKeyRequest,
+  OvhcloudconnectSendKeyAnswer,
+  SendOvhCloudConnectServiceKeyError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SendOvhCloudConnectServiceKeyRequest,
   output: OvhcloudconnectSendKeyAnswer,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostOvhCloudConnectServiceNameTerminateError = OvhOpError;
+export type TerminateOvhCloudConnectError = OvhOpError;
 /** Ask for the termination of your service */
-export const postOvhCloudConnectServiceNameTerminate: API.OperationMethod<
-  PostOvhCloudConnectServiceNameTerminateRequest,
-  PostOvhCloudConnectServiceNameTerminateResponse,
-  PostOvhCloudConnectServiceNameTerminateError,
+export const terminateOvhCloudConnect: API.OperationMethod<
+  TerminateOvhCloudConnectRequest,
+  TerminateOvhCloudConnectResponse,
+  TerminateOvhCloudConnectError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostOvhCloudConnectServiceNameTerminateRequest,
-  output: PostOvhCloudConnectServiceNameTerminateResponse,
+  input: TerminateOvhCloudConnectRequest,
+  output: TerminateOvhCloudConnectResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutOvhCloudConnectServiceNameError = OvhOpError;
-/** Modify service */
-export const putOvhCloudConnectServiceName: API.OperationMethod<
-  PutOvhCloudConnectServiceNameRequest,
-  PutOvhCloudConnectServiceNameResponse,
-  PutOvhCloudConnectServiceNameError,
+export type UnlockOvhCloudConnectInterfaceError = OvhOpError;
+/** Unlock the port */
+export const unlockOvhCloudConnectInterface: API.OperationMethod<
+  UnlockOvhCloudConnectInterfaceRequest,
+  OvhcloudconnectTask,
+  UnlockOvhCloudConnectInterfaceError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutOvhCloudConnectServiceNameRequest,
-  output: PutOvhCloudConnectServiceNameResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PutOvhCloudConnectServiceNameServiceInfosError = OvhOpError;
-/** Update service information */
-export const putOvhCloudConnectServiceNameServiceInfos: API.OperationMethod<
-  PutOvhCloudConnectServiceNameServiceInfosRequest,
-  PutOvhCloudConnectServiceNameServiceInfosResponse,
-  PutOvhCloudConnectServiceNameServiceInfosError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PutOvhCloudConnectServiceNameServiceInfosRequest,
-  output: PutOvhCloudConnectServiceNameServiceInfosResponse,
+  input: UnlockOvhCloudConnectInterfaceRequest,
+  output: OvhcloudconnectTask,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,

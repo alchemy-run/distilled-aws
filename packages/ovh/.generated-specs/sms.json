@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.ovh.sms#IamResourceTagFilterInput": {
@@ -24,28 +25,28 @@
         "smithy.api#documentation": "Resource tag filter"
       }
     },
-    "com.ovh.sms#GetSmsRequestIamTagsValueList": {
+    "com.ovh.sms#ListSmsRequestIamTagsValueList": {
       "type": "list",
       "member": {
         "target": "com.ovh.sms#IamResourceTagFilterInput"
       },
       "traits": {}
     },
-    "com.ovh.sms#GetSmsRequestIamTagsMap": {
+    "com.ovh.sms#ListSmsRequestIamTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "com.ovh.sms#GetSmsRequestIamTagsValueList"
+        "target": "com.ovh.sms#ListSmsRequestIamTagsValueList"
       },
       "traits": {}
     },
-    "com.ovh.sms#GetSmsRequest": {
+    "com.ovh.sms#ListSmsRequest": {
       "type": "structure",
       "members": {
         "iamTags": {
-          "target": "com.ovh.sms#GetSmsRequestIamTagsMap",
+          "target": "com.ovh.sms#ListSmsRequestIamTagsMap",
           "traits": {
             "smithy.api#httpQuery": "iamTags",
             "smithy.api#documentation": "Filter resources on IAM tags"
@@ -56,18 +57,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#GetSmsResponseBodyList": {
+    "com.ovh.sms#ListSmsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.sms#GetSmsResponse": {
+    "com.ovh.sms#ListSmsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.sms#GetSmsResponseBodyList",
+          "target": "com.ovh.sms#ListSmsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -78,13 +79,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sms#GetSms": {
+    "com.ovh.sms#ListSms": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsRequest"
+        "target": "com.ovh.sms#ListSmsRequest"
       },
       "output": {
-        "target": "com.ovh.sms#GetSmsResponse"
+        "target": "com.ovh.sms#ListSmsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -127,7 +128,7 @@
         "smithy.api#documentation": "All existing types for a given sender"
       }
     },
-    "com.ovh.sms#PostSmsEstimateRequest": {
+    "com.ovh.sms#CreateSmsEstimateRequest": {
       "type": "structure",
       "members": {
         "message": {
@@ -208,10 +209,10 @@
         "smithy.api#documentation": "The SMS available characters class"
       }
     },
-    "com.ovh.sms#PostSmsEstimate": {
+    "com.ovh.sms#CreateSmsEstimate": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#PostSmsEstimateRequest"
+        "target": "com.ovh.sms#CreateSmsEstimateRequest"
       },
       "output": {
         "target": "com.ovh.sms#SmsJobEstimate"
@@ -1610,7 +1611,7 @@
         "smithy.api#documentation": "All country suffixes accessible for sms services and \"all\" available"
       }
     },
-    "com.ovh.sms#GetSmsRatesDestinationsRequest": {
+    "com.ovh.sms#GetSmsRateDestinationsRequest": {
       "type": "structure",
       "members": {
         "billingCountry": {
@@ -1778,10 +1779,10 @@
       },
       "traits": {}
     },
-    "com.ovh.sms#GetSmsRatesDestinations": {
+    "com.ovh.sms#GetSmsRateDestinations": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsRatesDestinationsRequest"
+        "target": "com.ovh.sms#GetSmsRateDestinationsRequest"
       },
       "output": {
         "target": "com.ovh.sms#SmsDestinationRates"
@@ -1795,7 +1796,7 @@
         "smithy.api#documentation": "Get the prices and credits to send a SMS towards given country"
       }
     },
-    "com.ovh.sms#GetSmsRatesPacksRequest": {
+    "com.ovh.sms#ListSmsRatePacksRequest": {
       "type": "structure",
       "members": {
         "billingCountry": {
@@ -1897,18 +1898,18 @@
         "smithy.api#documentation": "Details about a SMS pack"
       }
     },
-    "com.ovh.sms#GetSmsRatesPacksResponseBodyList": {
+    "com.ovh.sms#ListSmsRatePacksResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.sms#SmsPackDetails"
       },
       "traits": {}
     },
-    "com.ovh.sms#GetSmsRatesPacksResponse": {
+    "com.ovh.sms#ListSmsRatePacksResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.sms#GetSmsRatesPacksResponseBodyList",
+          "target": "com.ovh.sms#ListSmsRatePacksResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1919,13 +1920,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sms#GetSmsRatesPacks": {
+    "com.ovh.sms#ListSmsRatePacks": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsRatesPacksRequest"
+        "target": "com.ovh.sms#ListSmsRatePacksRequest"
       },
       "output": {
-        "target": "com.ovh.sms#GetSmsRatesPacksResponse"
+        "target": "com.ovh.sms#ListSmsRatePacksResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1936,28 +1937,28 @@
         "smithy.api#documentation": "Get the prices and credits of all the SMS packs with informations about the destination country"
       }
     },
-    "com.ovh.sms#GetSmsVirtualNumbersRequestIamTagsValueList": {
+    "com.ovh.sms#ListSmsVirtualNumbersRequestIamTagsValueList": {
       "type": "list",
       "member": {
         "target": "com.ovh.sms#IamResourceTagFilterInput"
       },
       "traits": {}
     },
-    "com.ovh.sms#GetSmsVirtualNumbersRequestIamTagsMap": {
+    "com.ovh.sms#ListSmsVirtualNumbersRequestIamTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "com.ovh.sms#GetSmsVirtualNumbersRequestIamTagsValueList"
+        "target": "com.ovh.sms#ListSmsVirtualNumbersRequestIamTagsValueList"
       },
       "traits": {}
     },
-    "com.ovh.sms#GetSmsVirtualNumbersRequest": {
+    "com.ovh.sms#ListSmsVirtualNumbersRequest": {
       "type": "structure",
       "members": {
         "iamTags": {
-          "target": "com.ovh.sms#GetSmsVirtualNumbersRequestIamTagsMap",
+          "target": "com.ovh.sms#ListSmsVirtualNumbersRequestIamTagsMap",
           "traits": {
             "smithy.api#httpQuery": "iamTags",
             "smithy.api#documentation": "Filter resources on IAM tags"
@@ -1968,18 +1969,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#GetSmsVirtualNumbersResponseBodyList": {
+    "com.ovh.sms#ListSmsVirtualNumbersResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.sms#GetSmsVirtualNumbersResponse": {
+    "com.ovh.sms#ListSmsVirtualNumbersResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.sms#GetSmsVirtualNumbersResponseBodyList",
+          "target": "com.ovh.sms#ListSmsVirtualNumbersResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1990,13 +1991,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sms#GetSmsVirtualNumbers": {
+    "com.ovh.sms#ListSmsVirtualNumbers": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsVirtualNumbersRequest"
+        "target": "com.ovh.sms#ListSmsVirtualNumbersRequest"
       },
       "output": {
-        "target": "com.ovh.sms#GetSmsVirtualNumbersResponse"
+        "target": "com.ovh.sms#ListSmsVirtualNumbersResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2007,7 +2008,7 @@
         "smithy.api#documentation": "Your virtual numbers"
       }
     },
-    "com.ovh.sms#GetSmsVirtualNumbersNumberRequest": {
+    "com.ovh.sms#GetSmsVirtualNumberRequest": {
       "type": "structure",
       "members": {
         "number": {
@@ -2140,10 +2141,10 @@
         "smithy.api#documentation": "Resource tags. Tags that were internally computed are prefixed with ovh:"
       }
     },
-    "com.ovh.sms#GetSmsVirtualNumbersNumber": {
+    "com.ovh.sms#GetSmsVirtualNumber": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsVirtualNumbersNumberRequest"
+        "target": "com.ovh.sms#GetSmsVirtualNumberRequest"
       },
       "output": {
         "target": "com.ovh.sms#SmsVirtualNumberGenericServiceWithIAM"
@@ -2157,7 +2158,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.sms#GetSmsVirtualNumbersNumberServiceInfosRequest": {
+    "com.ovh.sms#GetSmsVirtualNumberServiceInfosRequest": {
       "type": "structure",
       "members": {
         "number": {
@@ -2381,10 +2382,10 @@
       },
       "traits": {}
     },
-    "com.ovh.sms#GetSmsVirtualNumbersNumberServiceInfos": {
+    "com.ovh.sms#GetSmsVirtualNumberServiceInfos": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsVirtualNumbersNumberServiceInfosRequest"
+        "target": "com.ovh.sms#GetSmsVirtualNumberServiceInfosRequest"
       },
       "output": {
         "target": "com.ovh.sms#ServicesService"
@@ -2398,7 +2399,7 @@
         "smithy.api#documentation": "Get service information"
       }
     },
-    "com.ovh.sms#PutSmsVirtualNumbersNumberServiceInfosRequest": {
+    "com.ovh.sms#PutSmsVirtualNumberServiceInfosRequest": {
       "type": "structure",
       "members": {
         "number": {
@@ -2421,10 +2422,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#PutSmsVirtualNumbersNumberServiceInfos": {
+    "com.ovh.sms#PutSmsVirtualNumberServiceInfos": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#PutSmsVirtualNumbersNumberServiceInfosRequest"
+        "target": "com.ovh.sms#PutSmsVirtualNumberServiceInfosRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2438,7 +2439,7 @@
         "smithy.api#documentation": "Update service information"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameRequest": {
+    "com.ovh.sms#GetSmsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2784,10 +2785,10 @@
         "smithy.api#documentation": "A structure describing all information about templates informations"
       }
     },
-    "com.ovh.sms#GetSmsServiceName": {
+    "com.ovh.sms#GetSms": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameRequest"
+        "target": "com.ovh.sms#GetSmsRequest"
       },
       "output": {
         "target": "com.ovh.sms#SmsAccountWithIAM"
@@ -2801,7 +2802,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.sms#PutSmsServiceNameRequest": {
+    "com.ovh.sms#PutSmsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2852,10 +2853,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#PutSmsServiceName": {
+    "com.ovh.sms#PutSms": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#PutSmsServiceNameRequest"
+        "target": "com.ovh.sms#PutSmsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2869,7 +2870,7 @@
         "smithy.api#documentation": "Alter this object properties"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameBatchesRequest": {
+    "com.ovh.sms#ListSmsBatchesRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3095,18 +3096,18 @@
         "smithy.api#documentation": "Batch statuses"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameBatchesResponseBodyList": {
+    "com.ovh.sms#ListSmsBatchesResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.sms#SmsBatch"
       },
       "traits": {}
     },
-    "com.ovh.sms#GetSmsServiceNameBatchesResponse": {
+    "com.ovh.sms#ListSmsBatchesResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.sms#GetSmsServiceNameBatchesResponseBodyList",
+          "target": "com.ovh.sms#ListSmsBatchesResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -3117,13 +3118,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameBatches": {
+    "com.ovh.sms#ListSmsBatches": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameBatchesRequest"
+        "target": "com.ovh.sms#ListSmsBatchesRequest"
       },
       "output": {
-        "target": "com.ovh.sms#GetSmsServiceNameBatchesResponse"
+        "target": "com.ovh.sms#ListSmsBatchesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3160,7 +3161,7 @@
         "smithy.api#documentation": "SMS classes"
       }
     },
-    "com.ovh.sms#PostSmsServiceNameBatchesRequestToList": {
+    "com.ovh.sms#CreateSmsBatchRequestToList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -3169,7 +3170,7 @@
         "smithy.api#documentation": "SMS receivers list. Either \"to\" or \"slotID\" must be passed"
       }
     },
-    "com.ovh.sms#PostSmsServiceNameBatchesRequest": {
+    "com.ovh.sms#CreateSmsBatchRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3236,7 +3237,7 @@
           }
         },
         "to": {
-          "target": "com.ovh.sms#PostSmsServiceNameBatchesRequestToList",
+          "target": "com.ovh.sms#CreateSmsBatchRequestToList",
           "traits": {
             "smithy.api#documentation": "SMS receivers list. Either \"to\" or \"slotID\" must be passed"
           }
@@ -3246,10 +3247,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#PostSmsServiceNameBatches": {
+    "com.ovh.sms#CreateSmsBatch": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#PostSmsServiceNameBatchesRequest"
+        "target": "com.ovh.sms#CreateSmsBatchRequest"
       },
       "output": {
         "target": "com.ovh.sms#SmsBatch"
@@ -3263,7 +3264,7 @@
         "smithy.api#documentation": "Create a batch"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameBatchesIdRequest": {
+    "com.ovh.sms#GetSmsBatchRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3287,10 +3288,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameBatchesId": {
+    "com.ovh.sms#GetSmsBatch": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameBatchesIdRequest"
+        "target": "com.ovh.sms#GetSmsBatchRequest"
       },
       "output": {
         "target": "com.ovh.sms#SmsBatch"
@@ -3304,7 +3305,7 @@
         "smithy.api#documentation": "Get a batch"
       }
     },
-    "com.ovh.sms#PutSmsServiceNameBatchesIdRequest": {
+    "com.ovh.sms#PutSmsBatchRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3335,10 +3336,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#PutSmsServiceNameBatchesId": {
+    "com.ovh.sms#PutSmsBatch": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#PutSmsServiceNameBatchesIdRequest"
+        "target": "com.ovh.sms#PutSmsBatchRequest"
       },
       "output": {
         "target": "com.ovh.sms#SmsBatch"
@@ -3352,7 +3353,7 @@
         "smithy.api#documentation": "Update a batch"
       }
     },
-    "com.ovh.sms#DeleteSmsServiceNameBatchesIdRequest": {
+    "com.ovh.sms#DeleteSmsBatchRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3376,10 +3377,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#DeleteSmsServiceNameBatchesId": {
+    "com.ovh.sms#DeleteSmsBatch": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#DeleteSmsServiceNameBatchesIdRequest"
+        "target": "com.ovh.sms#DeleteSmsBatchRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3393,7 +3394,7 @@
         "smithy.api#documentation": "Remove a batch"
       }
     },
-    "com.ovh.sms#PostSmsServiceNameBatchesIdCancelRequest": {
+    "com.ovh.sms#CancelSmsBatchRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3417,10 +3418,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#PostSmsServiceNameBatchesIdCancel": {
+    "com.ovh.sms#CancelSmsBatch": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#PostSmsServiceNameBatchesIdCancelRequest"
+        "target": "com.ovh.sms#CancelSmsBatchRequest"
       },
       "output": {
         "target": "com.ovh.sms#SmsBatch"
@@ -3434,7 +3435,7 @@
         "smithy.api#documentation": "Cancel a deferred batch (no SMS must have been sent)"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameBatchesIdStatisticsRequest": {
+    "com.ovh.sms#GetSmsBatchStatisticsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3514,10 +3515,10 @@
         "smithy.api#documentation": "Batch's statistics"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameBatchesIdStatistics": {
+    "com.ovh.sms#GetSmsBatchStatistics": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameBatchesIdStatisticsRequest"
+        "target": "com.ovh.sms#GetSmsBatchStatisticsRequest"
       },
       "output": {
         "target": "com.ovh.sms#SmsBatchStatistics"
@@ -3531,7 +3532,7 @@
         "smithy.api#documentation": "Batch's statistics"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameBlacklistsRequest": {
+    "com.ovh.sms#ListSmsBlacklistsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3561,18 +3562,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameBlacklistsResponseBodyList": {
+    "com.ovh.sms#ListSmsBlacklistsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.sms#GetSmsServiceNameBlacklistsResponse": {
+    "com.ovh.sms#ListSmsBlacklistsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.sms#GetSmsServiceNameBlacklistsResponseBodyList",
+          "target": "com.ovh.sms#ListSmsBlacklistsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -3583,13 +3584,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameBlacklists": {
+    "com.ovh.sms#ListSmsBlacklists": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameBlacklistsRequest"
+        "target": "com.ovh.sms#ListSmsBlacklistsRequest"
       },
       "output": {
-        "target": "com.ovh.sms#GetSmsServiceNameBlacklistsResponse"
+        "target": "com.ovh.sms#ListSmsBlacklistsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3600,7 +3601,7 @@
         "smithy.api#documentation": "Numbers blacklisted associated to the sms account"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameBlacklistsNumberRequest": {
+    "com.ovh.sms#GetSmsBlacklistRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3655,10 +3656,10 @@
         "smithy.api#documentation": "SMS blacklist"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameBlacklistsNumber": {
+    "com.ovh.sms#GetSmsBlacklist": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameBlacklistsNumberRequest"
+        "target": "com.ovh.sms#GetSmsBlacklistRequest"
       },
       "output": {
         "target": "com.ovh.sms#SmsBlacklist"
@@ -3672,7 +3673,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.sms#DeleteSmsServiceNameBlacklistsNumberRequest": {
+    "com.ovh.sms#DeleteSmsBlacklistRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3696,10 +3697,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#DeleteSmsServiceNameBlacklistsNumber": {
+    "com.ovh.sms#DeleteSmsBlacklist": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#DeleteSmsServiceNameBlacklistsNumberRequest"
+        "target": "com.ovh.sms#DeleteSmsBlacklistRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3733,7 +3734,7 @@
         "smithy.api#documentation": "Way type"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameDocumentRequest": {
+    "com.ovh.sms#GetSmsDocumentRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3785,7 +3786,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameDocumentResponse": {
+    "com.ovh.sms#GetSmsDocumentResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -3800,13 +3801,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameDocument": {
+    "com.ovh.sms#GetSmsDocument": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameDocumentRequest"
+        "target": "com.ovh.sms#GetSmsDocumentRequest"
       },
       "output": {
-        "target": "com.ovh.sms#GetSmsServiceNameDocumentResponse"
+        "target": "com.ovh.sms#GetSmsDocumentResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3817,7 +3818,7 @@
         "smithy.api#documentation": "Get the /me/document id generated"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameExceptionsRequest": {
+    "com.ovh.sms#ListSmsExceptionsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3939,18 +3940,18 @@
         "smithy.api#documentation": "Restriction type used by the operator to filter sms."
       }
     },
-    "com.ovh.sms#GetSmsServiceNameExceptionsResponseBodyList": {
+    "com.ovh.sms#ListSmsExceptionsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.sms#SmsException"
       },
       "traits": {}
     },
-    "com.ovh.sms#GetSmsServiceNameExceptionsResponse": {
+    "com.ovh.sms#ListSmsExceptionsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.sms#GetSmsServiceNameExceptionsResponseBodyList",
+          "target": "com.ovh.sms#ListSmsExceptionsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -3961,13 +3962,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameExceptions": {
+    "com.ovh.sms#ListSmsExceptions": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameExceptionsRequest"
+        "target": "com.ovh.sms#ListSmsExceptionsRequest"
       },
       "output": {
-        "target": "com.ovh.sms#GetSmsServiceNameExceptionsResponse"
+        "target": "com.ovh.sms#ListSmsExceptionsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3978,7 +3979,7 @@
         "smithy.api#documentation": "Describe filter exceptions in sms sending from a specific receiver."
       }
     },
-    "com.ovh.sms#GetSmsServiceNameHlrRequest": {
+    "com.ovh.sms#ListSmsHlrRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3994,18 +3995,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameHlrResponseBodyList": {
+    "com.ovh.sms#ListSmsHlrResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.sms#GetSmsServiceNameHlrResponse": {
+    "com.ovh.sms#ListSmsHlrResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.sms#GetSmsServiceNameHlrResponseBodyList",
+          "target": "com.ovh.sms#ListSmsHlrResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -4016,13 +4017,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameHlr": {
+    "com.ovh.sms#ListSmsHlr": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameHlrRequest"
+        "target": "com.ovh.sms#ListSmsHlrRequest"
       },
       "output": {
-        "target": "com.ovh.sms#GetSmsServiceNameHlrResponse"
+        "target": "com.ovh.sms#ListSmsHlrResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4033,7 +4034,7 @@
         "smithy.api#documentation": "Home Location Register informations. Give informations about a given cellular phone."
       }
     },
-    "com.ovh.sms#PostSmsServiceNameHlrRequestReceiversList": {
+    "com.ovh.sms#CreateSmsHlrRequestReceiversList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -4042,7 +4043,7 @@
         "smithy.api#documentation": "The receivers"
       }
     },
-    "com.ovh.sms#PostSmsServiceNameHlrRequest": {
+    "com.ovh.sms#CreateSmsHlrRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4054,7 +4055,7 @@
           }
         },
         "receivers": {
-          "target": "com.ovh.sms#PostSmsServiceNameHlrRequestReceiversList",
+          "target": "com.ovh.sms#CreateSmsHlrRequestReceiversList",
           "traits": {
             "smithy.api#documentation": "The receivers"
           }
@@ -4114,10 +4115,10 @@
       },
       "traits": {}
     },
-    "com.ovh.sms#PostSmsServiceNameHlr": {
+    "com.ovh.sms#CreateSmsHlr": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#PostSmsServiceNameHlrRequest"
+        "target": "com.ovh.sms#CreateSmsHlrRequest"
       },
       "output": {
         "target": "com.ovh.sms#SmsSmsSendingReport"
@@ -4131,7 +4132,7 @@
         "smithy.api#documentation": "Add one or several sending hlr lookup request"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameHlrIdRequest": {
+    "com.ovh.sms#GetSmsHlrRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4249,10 +4250,10 @@
         "smithy.api#documentation": "The sms coding"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameHlrId": {
+    "com.ovh.sms#GetSmsHlr": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameHlrIdRequest"
+        "target": "com.ovh.sms#GetSmsHlrRequest"
       },
       "output": {
         "target": "com.ovh.sms#SmsHlrLookupNumber"
@@ -4266,7 +4267,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameHlrIdOperatorRequest": {
+    "com.ovh.sms#GetSmsHlrOperatorRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4328,10 +4329,10 @@
         "smithy.api#documentation": "Sms operator informations"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameHlrIdOperator": {
+    "com.ovh.sms#GetSmsHlrOperator": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameHlrIdOperatorRequest"
+        "target": "com.ovh.sms#GetSmsHlrOperatorRequest"
       },
       "output": {
         "target": "com.ovh.sms#SmsHlr"
@@ -4345,7 +4346,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameIncomingRequest": {
+    "com.ovh.sms#ListSmsIncomingRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4389,18 +4390,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameIncomingResponseBodyList": {
+    "com.ovh.sms#ListSmsIncomingResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.sms#GetSmsServiceNameIncomingResponse": {
+    "com.ovh.sms#ListSmsIncomingResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.sms#GetSmsServiceNameIncomingResponseBodyList",
+          "target": "com.ovh.sms#ListSmsIncomingResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -4411,13 +4412,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameIncoming": {
+    "com.ovh.sms#ListSmsIncoming": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameIncomingRequest"
+        "target": "com.ovh.sms#ListSmsIncomingRequest"
       },
       "output": {
-        "target": "com.ovh.sms#GetSmsServiceNameIncomingResponse"
+        "target": "com.ovh.sms#ListSmsIncomingResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4428,7 +4429,7 @@
         "smithy.api#documentation": "Sms received associated to the sms account"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameIncomingIdRequest": {
+    "com.ovh.sms#GetSmsIncomingRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4478,10 +4479,10 @@
         "smithy.api#documentation": "Sms history of sms incoming received"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameIncomingId": {
+    "com.ovh.sms#GetSmsIncoming": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameIncomingIdRequest"
+        "target": "com.ovh.sms#GetSmsIncomingRequest"
       },
       "output": {
         "target": "com.ovh.sms#SmsIncoming"
@@ -4495,7 +4496,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.sms#DeleteSmsServiceNameIncomingIdRequest": {
+    "com.ovh.sms#DeleteSmsIncomingRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4519,10 +4520,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#DeleteSmsServiceNameIncomingId": {
+    "com.ovh.sms#DeleteSmsIncoming": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#DeleteSmsServiceNameIncomingIdRequest"
+        "target": "com.ovh.sms#DeleteSmsIncomingRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4536,7 +4537,7 @@
         "smithy.api#documentation": "Delete the sms incoming history given"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameJobsRequest": {
+    "com.ovh.sms#ListSmsJobsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4552,18 +4553,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameJobsResponseBodyList": {
+    "com.ovh.sms#ListSmsJobsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.sms#GetSmsServiceNameJobsResponse": {
+    "com.ovh.sms#ListSmsJobsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.sms#GetSmsServiceNameJobsResponseBodyList",
+          "target": "com.ovh.sms#ListSmsJobsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -4574,13 +4575,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameJobs": {
+    "com.ovh.sms#ListSmsJobs": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameJobsRequest"
+        "target": "com.ovh.sms#ListSmsJobsRequest"
       },
       "output": {
-        "target": "com.ovh.sms#GetSmsServiceNameJobsResponse"
+        "target": "com.ovh.sms#ListSmsJobsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4689,7 +4690,7 @@
         "smithy.api#documentation": "The priority of an sms sending"
       }
     },
-    "com.ovh.sms#PostSmsServiceNameJobsRequestReceiversList": {
+    "com.ovh.sms#CreateSmsJobRequestReceiversList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -4698,7 +4699,7 @@
         "smithy.api#documentation": "The receivers list"
       }
     },
-    "com.ovh.sms#PostSmsServiceNameJobsRequest": {
+    "com.ovh.sms#CreateSmsJobRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4753,7 +4754,7 @@
           }
         },
         "receivers": {
-          "target": "com.ovh.sms#PostSmsServiceNameJobsRequestReceiversList",
+          "target": "com.ovh.sms#CreateSmsJobRequestReceiversList",
           "traits": {
             "smithy.api#documentation": "The receivers list"
           }
@@ -4799,10 +4800,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#PostSmsServiceNameJobs": {
+    "com.ovh.sms#CreateSmsJob": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#PostSmsServiceNameJobsRequest"
+        "target": "com.ovh.sms#CreateSmsJobRequest"
       },
       "output": {
         "target": "com.ovh.sms#SmsSmsSendingReport"
@@ -4816,7 +4817,7 @@
         "smithy.api#documentation": "Add one or several sending jobs"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameJobsIdRequest": {
+    "com.ovh.sms#GetSmsJobRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4893,10 +4894,10 @@
         "smithy.api#documentation": "Sms job"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameJobsId": {
+    "com.ovh.sms#GetSmsJob": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameJobsIdRequest"
+        "target": "com.ovh.sms#GetSmsJobRequest"
       },
       "output": {
         "target": "com.ovh.sms#SmsJob"
@@ -4910,7 +4911,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.sms#DeleteSmsServiceNameJobsIdRequest": {
+    "com.ovh.sms#DeleteSmsJobRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4934,10 +4935,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#DeleteSmsServiceNameJobsId": {
+    "com.ovh.sms#DeleteSmsJob": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#DeleteSmsServiceNameJobsIdRequest"
+        "target": "com.ovh.sms#DeleteSmsJobRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4951,7 +4952,7 @@
         "smithy.api#documentation": "Delete the sms job given (stop sending)"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameOutgoingRequest": {
+    "com.ovh.sms#ListSmsOutgoingRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -5037,18 +5038,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameOutgoingResponseBodyList": {
+    "com.ovh.sms#ListSmsOutgoingResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.sms#GetSmsServiceNameOutgoingResponse": {
+    "com.ovh.sms#ListSmsOutgoingResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.sms#GetSmsServiceNameOutgoingResponseBodyList",
+          "target": "com.ovh.sms#ListSmsOutgoingResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -5059,13 +5060,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameOutgoing": {
+    "com.ovh.sms#ListSmsOutgoing": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameOutgoingRequest"
+        "target": "com.ovh.sms#ListSmsOutgoingRequest"
       },
       "output": {
-        "target": "com.ovh.sms#GetSmsServiceNameOutgoingResponse"
+        "target": "com.ovh.sms#ListSmsOutgoingResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5076,7 +5077,7 @@
         "smithy.api#documentation": "Get SMS list"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameOutgoingIdRequest": {
+    "com.ovh.sms#GetSmsOutgoingRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -5214,10 +5215,10 @@
         "smithy.api#documentation": "Sent SMS"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameOutgoingId": {
+    "com.ovh.sms#GetSmsOutgoing": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameOutgoingIdRequest"
+        "target": "com.ovh.sms#GetSmsOutgoingRequest"
       },
       "output": {
         "target": "com.ovh.sms#SmsOutgoing"
@@ -5231,7 +5232,7 @@
         "smithy.api#documentation": "Get SMS details"
       }
     },
-    "com.ovh.sms#DeleteSmsServiceNameOutgoingIdRequest": {
+    "com.ovh.sms#DeleteSmsOutgoingRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -5255,10 +5256,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#DeleteSmsServiceNameOutgoingId": {
+    "com.ovh.sms#DeleteSmsOutgoing": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#DeleteSmsServiceNameOutgoingIdRequest"
+        "target": "com.ovh.sms#DeleteSmsOutgoingRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5272,7 +5273,7 @@
         "smithy.api#documentation": "Delete outgoing SMS from history"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameOutgoingIdHlrRequest": {
+    "com.ovh.sms#GetSmsOutgoingHlrRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -5296,10 +5297,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameOutgoingIdHlr": {
+    "com.ovh.sms#GetSmsOutgoingHlr": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameOutgoingIdHlrRequest"
+        "target": "com.ovh.sms#GetSmsOutgoingHlrRequest"
       },
       "output": {
         "target": "com.ovh.sms#SmsHlr"
@@ -5313,7 +5314,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.sms#GetSmsServiceNamePhonebooksRequest": {
+    "com.ovh.sms#ListSmsPhonebooksRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -5329,18 +5330,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNamePhonebooksResponseBodyList": {
+    "com.ovh.sms#ListSmsPhonebooksResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.sms#GetSmsServiceNamePhonebooksResponse": {
+    "com.ovh.sms#ListSmsPhonebooksResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.sms#GetSmsServiceNamePhonebooksResponseBodyList",
+          "target": "com.ovh.sms#ListSmsPhonebooksResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -5351,13 +5352,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNamePhonebooks": {
+    "com.ovh.sms#ListSmsPhonebooks": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNamePhonebooksRequest"
+        "target": "com.ovh.sms#ListSmsPhonebooksRequest"
       },
       "output": {
-        "target": "com.ovh.sms#GetSmsServiceNamePhonebooksResponse"
+        "target": "com.ovh.sms#ListSmsPhonebooksResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5368,7 +5369,7 @@
         "smithy.api#documentation": "Return phonebooks associated to this account"
       }
     },
-    "com.ovh.sms#PostSmsServiceNamePhonebooksRequest": {
+    "com.ovh.sms#CreateSmsPhonebookRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -5391,7 +5392,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#PostSmsServiceNamePhonebooksResponse": {
+    "com.ovh.sms#CreateSmsPhonebookResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -5406,13 +5407,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sms#PostSmsServiceNamePhonebooks": {
+    "com.ovh.sms#CreateSmsPhonebook": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#PostSmsServiceNamePhonebooksRequest"
+        "target": "com.ovh.sms#CreateSmsPhonebookRequest"
       },
       "output": {
-        "target": "com.ovh.sms#PostSmsServiceNamePhonebooksResponse"
+        "target": "com.ovh.sms#CreateSmsPhonebookResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5423,7 +5424,7 @@
         "smithy.api#documentation": "Add a phonebook. Return the bookKey."
       }
     },
-    "com.ovh.sms#GetSmsServiceNamePhonebooksBookKeyRequest": {
+    "com.ovh.sms#GetSmsPhonebookRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -5473,10 +5474,10 @@
         "smithy.api#documentation": "Phone book"
       }
     },
-    "com.ovh.sms#GetSmsServiceNamePhonebooksBookKey": {
+    "com.ovh.sms#GetSmsPhonebook": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNamePhonebooksBookKeyRequest"
+        "target": "com.ovh.sms#GetSmsPhonebookRequest"
       },
       "output": {
         "target": "com.ovh.sms#SmsPhonebook"
@@ -5490,7 +5491,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.sms#PutSmsServiceNamePhonebooksBookKeyRequest": {
+    "com.ovh.sms#PutSmsPhonebookRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -5520,10 +5521,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#PutSmsServiceNamePhonebooksBookKey": {
+    "com.ovh.sms#PutSmsPhonebook": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#PutSmsServiceNamePhonebooksBookKeyRequest"
+        "target": "com.ovh.sms#PutSmsPhonebookRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5537,7 +5538,7 @@
         "smithy.api#documentation": "Alter this object properties"
       }
     },
-    "com.ovh.sms#DeleteSmsServiceNamePhonebooksBookKeyRequest": {
+    "com.ovh.sms#DeleteSmsPhonebookRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -5561,10 +5562,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#DeleteSmsServiceNamePhonebooksBookKey": {
+    "com.ovh.sms#DeleteSmsPhonebook": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#DeleteSmsServiceNamePhonebooksBookKeyRequest"
+        "target": "com.ovh.sms#DeleteSmsPhonebookRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5592,7 +5593,7 @@
         "smithy.api#documentation": "Export file format"
       }
     },
-    "com.ovh.sms#GetSmsServiceNamePhonebooksBookKeyExportRequest": {
+    "com.ovh.sms#GetSmsPhonebookExportRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -5676,10 +5677,10 @@
         "smithy.api#documentation": "File providing task status"
       }
     },
-    "com.ovh.sms#GetSmsServiceNamePhonebooksBookKeyExport": {
+    "com.ovh.sms#GetSmsPhonebookExport": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNamePhonebooksBookKeyExportRequest"
+        "target": "com.ovh.sms#GetSmsPhonebookExportRequest"
       },
       "output": {
         "target": "com.ovh.sms#TelephonyPcsFile"
@@ -5693,7 +5694,7 @@
         "smithy.api#documentation": "Export the phonebook's contacts"
       }
     },
-    "com.ovh.sms#PostSmsServiceNamePhonebooksBookKeyImportRequest": {
+    "com.ovh.sms#ImportSmsPhonebookRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -5802,10 +5803,10 @@
         "smithy.api#documentation": "Task status"
       }
     },
-    "com.ovh.sms#PostSmsServiceNamePhonebooksBookKeyImport": {
+    "com.ovh.sms#ImportSmsPhonebook": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#PostSmsServiceNamePhonebooksBookKeyImportRequest"
+        "target": "com.ovh.sms#ImportSmsPhonebookRequest"
       },
       "output": {
         "target": "com.ovh.sms#TelephonyTask"
@@ -5819,7 +5820,7 @@
         "smithy.api#documentation": "Import a contacts file. Supported formats are Excel (.xls and .xlsx) and CSV"
       }
     },
-    "com.ovh.sms#GetSmsServiceNamePhonebooksBookKeyPhonebookContactRequest": {
+    "com.ovh.sms#ListSmsPhonebookPhonebookContactRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -5843,18 +5844,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNamePhonebooksBookKeyPhonebookContactResponseBodyList": {
+    "com.ovh.sms#ListSmsPhonebookPhonebookContactResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.sms#GetSmsServiceNamePhonebooksBookKeyPhonebookContactResponse": {
+    "com.ovh.sms#ListSmsPhonebookPhonebookContactResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.sms#GetSmsServiceNamePhonebooksBookKeyPhonebookContactResponseBodyList",
+          "target": "com.ovh.sms#ListSmsPhonebookPhonebookContactResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -5865,13 +5866,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNamePhonebooksBookKeyPhonebookContact": {
+    "com.ovh.sms#ListSmsPhonebookPhonebookContact": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNamePhonebooksBookKeyPhonebookContactRequest"
+        "target": "com.ovh.sms#ListSmsPhonebookPhonebookContactRequest"
       },
       "output": {
-        "target": "com.ovh.sms#GetSmsServiceNamePhonebooksBookKeyPhonebookContactResponse"
+        "target": "com.ovh.sms#ListSmsPhonebookPhonebookContactResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5882,7 +5883,7 @@
         "smithy.api#documentation": "Phonebook contacts"
       }
     },
-    "com.ovh.sms#PostSmsServiceNamePhonebooksBookKeyPhonebookContactRequest": {
+    "com.ovh.sms#CreateSmsPhonebookPhonebookContactRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -5951,7 +5952,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#PostSmsServiceNamePhonebooksBookKeyPhonebookContactResponse": {
+    "com.ovh.sms#CreateSmsPhonebookPhonebookContactResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -5966,13 +5967,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sms#PostSmsServiceNamePhonebooksBookKeyPhonebookContact": {
+    "com.ovh.sms#CreateSmsPhonebookPhonebookContact": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#PostSmsServiceNamePhonebooksBookKeyPhonebookContactRequest"
+        "target": "com.ovh.sms#CreateSmsPhonebookPhonebookContactRequest"
       },
       "output": {
-        "target": "com.ovh.sms#PostSmsServiceNamePhonebooksBookKeyPhonebookContactResponse"
+        "target": "com.ovh.sms#CreateSmsPhonebookPhonebookContactResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5983,7 +5984,7 @@
         "smithy.api#documentation": "Create a phonebook contact. Return identifier of the phonebook contact."
       }
     },
-    "com.ovh.sms#GetSmsServiceNamePhonebooksBookKeyPhonebookContactIdRequest": {
+    "com.ovh.sms#GetSmsPhonebookPhonebookContactRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6075,10 +6076,10 @@
         "smithy.api#documentation": "Phone book contact"
       }
     },
-    "com.ovh.sms#GetSmsServiceNamePhonebooksBookKeyPhonebookContactId": {
+    "com.ovh.sms#GetSmsPhonebookPhonebookContact": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNamePhonebooksBookKeyPhonebookContactIdRequest"
+        "target": "com.ovh.sms#GetSmsPhonebookPhonebookContactRequest"
       },
       "output": {
         "target": "com.ovh.sms#SmsPhonebookContact"
@@ -6092,7 +6093,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.sms#PutSmsServiceNamePhonebooksBookKeyPhonebookContactIdRequest": {
+    "com.ovh.sms#PutSmsPhonebookPhonebookContactRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6170,10 +6171,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#PutSmsServiceNamePhonebooksBookKeyPhonebookContactId": {
+    "com.ovh.sms#PutSmsPhonebookPhonebookContact": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#PutSmsServiceNamePhonebooksBookKeyPhonebookContactIdRequest"
+        "target": "com.ovh.sms#PutSmsPhonebookPhonebookContactRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6187,7 +6188,7 @@
         "smithy.api#documentation": "Alter this object properties"
       }
     },
-    "com.ovh.sms#DeleteSmsServiceNamePhonebooksBookKeyPhonebookContactIdRequest": {
+    "com.ovh.sms#DeleteSmsPhonebookPhonebookContactRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6219,10 +6220,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#DeleteSmsServiceNamePhonebooksBookKeyPhonebookContactId": {
+    "com.ovh.sms#DeleteSmsPhonebookPhonebookContact": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#DeleteSmsServiceNamePhonebooksBookKeyPhonebookContactIdRequest"
+        "target": "com.ovh.sms#DeleteSmsPhonebookPhonebookContactRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6236,7 +6237,7 @@
         "smithy.api#documentation": "Delete a phonebook contact"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameReceiversRequest": {
+    "com.ovh.sms#ListSmsReceiversRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6252,18 +6253,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameReceiversResponseBodyList": {
+    "com.ovh.sms#ListSmsReceiversResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.sms#GetSmsServiceNameReceiversResponse": {
+    "com.ovh.sms#ListSmsReceiversResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.sms#GetSmsServiceNameReceiversResponseBodyList",
+          "target": "com.ovh.sms#ListSmsReceiversResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -6274,13 +6275,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameReceivers": {
+    "com.ovh.sms#ListSmsReceivers": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameReceiversRequest"
+        "target": "com.ovh.sms#ListSmsReceiversRequest"
       },
       "output": {
-        "target": "com.ovh.sms#GetSmsServiceNameReceiversResponse"
+        "target": "com.ovh.sms#ListSmsReceiversResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6291,7 +6292,7 @@
         "smithy.api#documentation": "Receivers preloaded from text or csv document file"
       }
     },
-    "com.ovh.sms#PostSmsServiceNameReceiversRequest": {
+    "com.ovh.sms#CreateSmsReceiverRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6384,10 +6385,10 @@
         "smithy.api#documentation": "Sms receivers preloaded"
       }
     },
-    "com.ovh.sms#PostSmsServiceNameReceivers": {
+    "com.ovh.sms#CreateSmsReceiver": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#PostSmsServiceNameReceiversRequest"
+        "target": "com.ovh.sms#CreateSmsReceiverRequest"
       },
       "output": {
         "target": "com.ovh.sms#SmsReceiver"
@@ -6401,7 +6402,7 @@
         "smithy.api#documentation": "Add a new document of csv receivers"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameReceiversSlotIdRequest": {
+    "com.ovh.sms#GetSmsReceiverRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6425,10 +6426,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameReceiversSlotId": {
+    "com.ovh.sms#GetSmsReceiver": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameReceiversSlotIdRequest"
+        "target": "com.ovh.sms#GetSmsReceiverRequest"
       },
       "output": {
         "target": "com.ovh.sms#SmsReceiver"
@@ -6442,7 +6443,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.sms#PutSmsServiceNameReceiversSlotIdRequest": {
+    "com.ovh.sms#PutSmsReceiverRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6478,10 +6479,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#PutSmsServiceNameReceiversSlotId": {
+    "com.ovh.sms#PutSmsReceiver": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#PutSmsServiceNameReceiversSlotIdRequest"
+        "target": "com.ovh.sms#PutSmsReceiverRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6495,7 +6496,7 @@
         "smithy.api#documentation": "Alter this object properties"
       }
     },
-    "com.ovh.sms#DeleteSmsServiceNameReceiversSlotIdRequest": {
+    "com.ovh.sms#DeleteSmsReceiverRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6519,10 +6520,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#DeleteSmsServiceNameReceiversSlotId": {
+    "com.ovh.sms#DeleteSmsReceiver": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#DeleteSmsServiceNameReceiversSlotIdRequest"
+        "target": "com.ovh.sms#DeleteSmsReceiverRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6536,7 +6537,7 @@
         "smithy.api#documentation": "Delete the document from the slot"
       }
     },
-    "com.ovh.sms#PostSmsServiceNameReceiversSlotIdCleanRequest": {
+    "com.ovh.sms#CreateSmsReceiverCleanRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6588,10 +6589,10 @@
         "smithy.api#documentation": "A structure giving operation price and asynchronous task ID"
       }
     },
-    "com.ovh.sms#PostSmsServiceNameReceiversSlotIdClean": {
+    "com.ovh.sms#CreateSmsReceiverClean": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#PostSmsServiceNameReceiversSlotIdCleanRequest"
+        "target": "com.ovh.sms#CreateSmsReceiverCleanRequest"
       },
       "output": {
         "target": "com.ovh.sms#SmsReceiversAsynchronousCleanReport"
@@ -6605,7 +6606,7 @@
         "smithy.api#documentation": "Clean the invalid and inactive receivers in the document by requesting HLR on each receiver\n\nClean the invalid and inactive receivers in the document by requesting HLR on each receiver. A report is sent by e-mail at the end of the operation."
       }
     },
-    "com.ovh.sms#GetSmsServiceNameReceiversSlotIdCsvRequest": {
+    "com.ovh.sms#GetSmsReceiverCsvRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6629,7 +6630,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameReceiversSlotIdCsvResponse": {
+    "com.ovh.sms#GetSmsReceiverCsvResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -6644,13 +6645,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameReceiversSlotIdCsv": {
+    "com.ovh.sms#GetSmsReceiverCsv": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameReceiversSlotIdCsvRequest"
+        "target": "com.ovh.sms#GetSmsReceiverCsvRequest"
       },
       "output": {
-        "target": "com.ovh.sms#GetSmsServiceNameReceiversSlotIdCsvResponse"
+        "target": "com.ovh.sms#GetSmsReceiverCsvResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6887,7 +6888,7 @@
         "smithy.api#documentation": "Pack quantity levels"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameSeeOffersRequest": {
+    "com.ovh.sms#ListSmsSeeOffersRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6968,18 +6969,18 @@
         "smithy.api#documentation": "A structure describing all information about an sms pack offer"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameSeeOffersResponseBodyList": {
+    "com.ovh.sms#ListSmsSeeOffersResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.sms#SmsPackOffer"
       },
       "traits": {}
     },
-    "com.ovh.sms#GetSmsServiceNameSeeOffersResponse": {
+    "com.ovh.sms#ListSmsSeeOffersResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.sms#GetSmsServiceNameSeeOffersResponseBodyList",
+          "target": "com.ovh.sms#ListSmsSeeOffersResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -6990,13 +6991,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameSeeOffers": {
+    "com.ovh.sms#ListSmsSeeOffers": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameSeeOffersRequest"
+        "target": "com.ovh.sms#ListSmsSeeOffersRequest"
       },
       "output": {
-        "target": "com.ovh.sms#GetSmsServiceNameSeeOffersResponse"
+        "target": "com.ovh.sms#ListSmsSeeOffersResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7007,7 +7008,7 @@
         "smithy.api#documentation": "Describe SMS offers available."
       }
     },
-    "com.ovh.sms#GetSmsServiceNameSendersRequest": {
+    "com.ovh.sms#ListSmsSendersRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7023,18 +7024,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameSendersResponseBodyList": {
+    "com.ovh.sms#ListSmsSendersResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.sms#GetSmsServiceNameSendersResponse": {
+    "com.ovh.sms#ListSmsSendersResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.sms#GetSmsServiceNameSendersResponseBodyList",
+          "target": "com.ovh.sms#ListSmsSendersResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -7045,13 +7046,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameSenders": {
+    "com.ovh.sms#ListSmsSenders": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameSendersRequest"
+        "target": "com.ovh.sms#ListSmsSendersRequest"
       },
       "output": {
-        "target": "com.ovh.sms#GetSmsServiceNameSendersResponse"
+        "target": "com.ovh.sms#ListSmsSendersResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7062,7 +7063,7 @@
         "smithy.api#documentation": "Senders allowed associated to the sms account"
       }
     },
-    "com.ovh.sms#PostSmsServiceNameSendersRequest": {
+    "com.ovh.sms#CreateSmsSenderRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7097,7 +7098,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#PostSmsServiceNameSendersResponse": {
+    "com.ovh.sms#CreateSmsSenderResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -7112,13 +7113,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sms#PostSmsServiceNameSenders": {
+    "com.ovh.sms#CreateSmsSender": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#PostSmsServiceNameSendersRequest"
+        "target": "com.ovh.sms#CreateSmsSenderRequest"
       },
       "output": {
-        "target": "com.ovh.sms#PostSmsServiceNameSendersResponse"
+        "target": "com.ovh.sms#CreateSmsSenderResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7129,7 +7130,7 @@
         "smithy.api#documentation": "Create the sms sender given"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameSendersSenderRequest": {
+    "com.ovh.sms#GetSmsSenderRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7282,10 +7283,10 @@
         "smithy.api#documentation": "All existing status for a given referer"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameSendersSender": {
+    "com.ovh.sms#GetSmsSender": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameSendersSenderRequest"
+        "target": "com.ovh.sms#GetSmsSenderRequest"
       },
       "output": {
         "target": "com.ovh.sms#SmsSender"
@@ -7299,7 +7300,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.sms#PutSmsServiceNameSendersSenderRequest": {
+    "com.ovh.sms#PutSmsSenderRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7335,10 +7336,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#PutSmsServiceNameSendersSender": {
+    "com.ovh.sms#PutSmsSender": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#PutSmsServiceNameSendersSenderRequest"
+        "target": "com.ovh.sms#PutSmsSenderRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7352,7 +7353,7 @@
         "smithy.api#documentation": "Alter this object properties"
       }
     },
-    "com.ovh.sms#DeleteSmsServiceNameSendersSenderRequest": {
+    "com.ovh.sms#DeleteSmsSenderRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7376,10 +7377,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#DeleteSmsServiceNameSendersSender": {
+    "com.ovh.sms#DeleteSmsSender": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#DeleteSmsServiceNameSendersSenderRequest"
+        "target": "com.ovh.sms#DeleteSmsSenderRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7393,7 +7394,7 @@
         "smithy.api#documentation": "Delete the sms sender given"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameSendersSenderDocumentsRequest": {
+    "com.ovh.sms#ListSmsSenderDocumentsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7417,18 +7418,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameSendersSenderDocumentsResponseBodyList": {
+    "com.ovh.sms#ListSmsSenderDocumentsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.sms#GetSmsServiceNameSendersSenderDocumentsResponse": {
+    "com.ovh.sms#ListSmsSenderDocumentsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.sms#GetSmsServiceNameSendersSenderDocumentsResponseBodyList",
+          "target": "com.ovh.sms#ListSmsSenderDocumentsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -7439,13 +7440,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameSendersSenderDocuments": {
+    "com.ovh.sms#ListSmsSenderDocuments": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameSendersSenderDocumentsRequest"
+        "target": "com.ovh.sms#ListSmsSenderDocumentsRequest"
       },
       "output": {
-        "target": "com.ovh.sms#GetSmsServiceNameSendersSenderDocumentsResponse"
+        "target": "com.ovh.sms#ListSmsSenderDocumentsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7456,7 +7457,7 @@
         "smithy.api#documentation": "Documents linked to SMS sender for validation purpose"
       }
     },
-    "com.ovh.sms#PostSmsServiceNameSendersSenderDocumentsRequest": {
+    "com.ovh.sms#CreateSmsSenderDocumentRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7545,10 +7546,10 @@
         "smithy.api#documentation": "SMS senders' document"
       }
     },
-    "com.ovh.sms#PostSmsServiceNameSendersSenderDocuments": {
+    "com.ovh.sms#CreateSmsSenderDocument": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#PostSmsServiceNameSendersSenderDocumentsRequest"
+        "target": "com.ovh.sms#CreateSmsSenderDocumentRequest"
       },
       "output": {
         "target": "com.ovh.sms#SmsSenderDocument"
@@ -7562,7 +7563,7 @@
         "smithy.api#documentation": "Create a new empty document"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameSendersSenderDocumentsDocumentIDRequest": {
+    "com.ovh.sms#GetSmsSenderDocumentRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7594,10 +7595,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameSendersSenderDocumentsDocumentID": {
+    "com.ovh.sms#GetSmsSenderDocument": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameSendersSenderDocumentsDocumentIDRequest"
+        "target": "com.ovh.sms#GetSmsSenderDocumentRequest"
       },
       "output": {
         "target": "com.ovh.sms#SmsSenderDocument"
@@ -7611,7 +7612,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.sms#PutSmsServiceNameSendersSenderDocumentsDocumentIDRequest": {
+    "com.ovh.sms#PutSmsSenderDocumentRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7656,10 +7657,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#PutSmsServiceNameSendersSenderDocumentsDocumentID": {
+    "com.ovh.sms#PutSmsSenderDocument": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#PutSmsServiceNameSendersSenderDocumentsDocumentIDRequest"
+        "target": "com.ovh.sms#PutSmsSenderDocumentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7673,7 +7674,7 @@
         "smithy.api#documentation": "Alter this object properties"
       }
     },
-    "com.ovh.sms#PostSmsServiceNameSendersSenderValidateRequest": {
+    "com.ovh.sms#ValidateSmsSenderRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7704,10 +7705,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#PostSmsServiceNameSendersSenderValidate": {
+    "com.ovh.sms#ValidateSmsSender": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#PostSmsServiceNameSendersSenderValidateRequest"
+        "target": "com.ovh.sms#ValidateSmsSenderRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7741,7 +7742,7 @@
         "smithy.api#documentation": "The referer of the available sender"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameSendersAvailableForValidationRequest": {
+    "com.ovh.sms#ListSmsSendersAvailableForValidationRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7778,18 +7779,18 @@
         "smithy.api#documentation": "A structure describing all information about senders available"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameSendersAvailableForValidationResponseBodyList": {
+    "com.ovh.sms#ListSmsSendersAvailableForValidationResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.sms#SmsSenderAvailable"
       },
       "traits": {}
     },
-    "com.ovh.sms#GetSmsServiceNameSendersAvailableForValidationResponse": {
+    "com.ovh.sms#ListSmsSendersAvailableForValidationResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.sms#GetSmsServiceNameSendersAvailableForValidationResponseBodyList",
+          "target": "com.ovh.sms#ListSmsSendersAvailableForValidationResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -7800,13 +7801,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameSendersAvailableForValidation": {
+    "com.ovh.sms#ListSmsSendersAvailableForValidation": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameSendersAvailableForValidationRequest"
+        "target": "com.ovh.sms#ListSmsSendersAvailableForValidationRequest"
       },
       "output": {
-        "target": "com.ovh.sms#GetSmsServiceNameSendersAvailableForValidationResponse"
+        "target": "com.ovh.sms#ListSmsSendersAvailableForValidationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7817,7 +7818,7 @@
         "smithy.api#documentation": "The senders that are attached to your personal informations or OVH services and that can be automatically validated"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameServiceInfosRequest": {
+    "com.ovh.sms#GetSmsServiceInfosRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7833,10 +7834,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameServiceInfos": {
+    "com.ovh.sms#GetSmsServiceInfos": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameServiceInfosRequest"
+        "target": "com.ovh.sms#GetSmsServiceInfosRequest"
       },
       "output": {
         "target": "com.ovh.sms#ServicesService"
@@ -7850,7 +7851,7 @@
         "smithy.api#documentation": "Get service information"
       }
     },
-    "com.ovh.sms#PutSmsServiceNameServiceInfosRequest": {
+    "com.ovh.sms#PutSmsServiceInfosRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7873,10 +7874,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#PutSmsServiceNameServiceInfos": {
+    "com.ovh.sms#PutSmsServiceInfos": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#PutSmsServiceNameServiceInfosRequest"
+        "target": "com.ovh.sms#PutSmsServiceInfosRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7890,7 +7891,7 @@
         "smithy.api#documentation": "Update service information"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameSmppAllowedIPsRequest": {
+    "com.ovh.sms#ListSmsSmppAllowedIPsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7906,18 +7907,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameSmppAllowedIPsResponseBodyList": {
+    "com.ovh.sms#ListSmsSmppAllowedIPsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.sms#GetSmsServiceNameSmppAllowedIPsResponse": {
+    "com.ovh.sms#ListSmsSmppAllowedIPsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.sms#GetSmsServiceNameSmppAllowedIPsResponseBodyList",
+          "target": "com.ovh.sms#ListSmsSmppAllowedIPsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -7928,13 +7929,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameSmppAllowedIPs": {
+    "com.ovh.sms#ListSmsSmppAllowedIPs": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameSmppAllowedIPsRequest"
+        "target": "com.ovh.sms#ListSmsSmppAllowedIPsRequest"
       },
       "output": {
-        "target": "com.ovh.sms#GetSmsServiceNameSmppAllowedIPsResponse"
+        "target": "com.ovh.sms#ListSmsSmppAllowedIPsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7965,7 +7966,7 @@
         "smithy.api#documentation": "Smpp allowed IPs action"
       }
     },
-    "com.ovh.sms#PutSmsServiceNameSmppAllowedIPsRequestIpsList": {
+    "com.ovh.sms#PutSmsSmppAllowedIPsRequestIpsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -7974,7 +7975,7 @@
         "smithy.api#documentation": "List of IPs to add or remove"
       }
     },
-    "com.ovh.sms#PutSmsServiceNameSmppAllowedIPsRequest": {
+    "com.ovh.sms#PutSmsSmppAllowedIPsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7993,7 +7994,7 @@
           }
         },
         "ips": {
-          "target": "com.ovh.sms#PutSmsServiceNameSmppAllowedIPsRequestIpsList",
+          "target": "com.ovh.sms#PutSmsSmppAllowedIPsRequestIpsList",
           "traits": {
             "smithy.api#documentation": "List of IPs to add or remove",
             "smithy.api#required": {}
@@ -8004,18 +8005,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#PutSmsServiceNameSmppAllowedIPsResponseBodyList": {
+    "com.ovh.sms#PutSmsSmppAllowedIPsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.sms#PutSmsServiceNameSmppAllowedIPsResponse": {
+    "com.ovh.sms#PutSmsSmppAllowedIPsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.sms#PutSmsServiceNameSmppAllowedIPsResponseBodyList",
+          "target": "com.ovh.sms#PutSmsSmppAllowedIPsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -8026,13 +8027,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sms#PutSmsServiceNameSmppAllowedIPs": {
+    "com.ovh.sms#PutSmsSmppAllowedIPs": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#PutSmsServiceNameSmppAllowedIPsRequest"
+        "target": "com.ovh.sms#PutSmsSmppAllowedIPsRequest"
       },
       "output": {
-        "target": "com.ovh.sms#PutSmsServiceNameSmppAllowedIPsResponse"
+        "target": "com.ovh.sms#PutSmsSmppAllowedIPsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8043,7 +8044,7 @@
         "smithy.api#documentation": "Add or remove allowed IPs"
       }
     },
-    "com.ovh.sms#PostSmsServiceNameSmppPasswordRequest": {
+    "com.ovh.sms#CreateSmsSmppPasswordRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8059,10 +8060,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#PostSmsServiceNameSmppPassword": {
+    "com.ovh.sms#CreateSmsSmppPassword": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#PostSmsServiceNameSmppPasswordRequest"
+        "target": "com.ovh.sms#CreateSmsSmppPasswordRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8076,7 +8077,7 @@
         "smithy.api#documentation": "Renew SMPP password"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameSmppSettingsRequest": {
+    "com.ovh.sms#GetSmsSmppSettingsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8203,10 +8204,10 @@
         "smithy.api#documentation": "Smpp Settings Statuses"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameSmppSettings": {
+    "com.ovh.sms#GetSmsSmppSettings": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameSmppSettingsRequest"
+        "target": "com.ovh.sms#GetSmsSmppSettingsRequest"
       },
       "output": {
         "target": "com.ovh.sms#SmsSettings"
@@ -8220,7 +8221,7 @@
         "smithy.api#documentation": "Get SMPP settings"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameTaskRequest": {
+    "com.ovh.sms#ListSmsTaskRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8243,18 +8244,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameTaskResponseBodyList": {
+    "com.ovh.sms#ListSmsTaskResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.sms#GetSmsServiceNameTaskResponse": {
+    "com.ovh.sms#ListSmsTaskResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.sms#GetSmsServiceNameTaskResponseBodyList",
+          "target": "com.ovh.sms#ListSmsTaskResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -8265,13 +8266,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameTask": {
+    "com.ovh.sms#ListSmsTask": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameTaskRequest"
+        "target": "com.ovh.sms#ListSmsTaskRequest"
       },
       "output": {
-        "target": "com.ovh.sms#GetSmsServiceNameTaskResponse"
+        "target": "com.ovh.sms#ListSmsTaskResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8282,7 +8283,7 @@
         "smithy.api#documentation": "Operations on a SMS service"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameTaskTaskIdRequest": {
+    "com.ovh.sms#GetSmsTaskRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8383,10 +8384,10 @@
         "smithy.api#documentation": "The task step"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameTaskTaskId": {
+    "com.ovh.sms#GetSmsTask": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameTaskTaskIdRequest"
+        "target": "com.ovh.sms#GetSmsTaskRequest"
       },
       "output": {
         "target": "com.ovh.sms#SmsTask"
@@ -8400,7 +8401,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameTemplatesControlRequest": {
+    "com.ovh.sms#ListSmsTemplatesControlRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8416,18 +8417,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameTemplatesControlResponseBodyList": {
+    "com.ovh.sms#ListSmsTemplatesControlResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.sms#GetSmsServiceNameTemplatesControlResponse": {
+    "com.ovh.sms#ListSmsTemplatesControlResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.sms#GetSmsServiceNameTemplatesControlResponseBodyList",
+          "target": "com.ovh.sms#ListSmsTemplatesControlResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -8438,13 +8439,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameTemplatesControl": {
+    "com.ovh.sms#ListSmsTemplatesControl": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameTemplatesControlRequest"
+        "target": "com.ovh.sms#ListSmsTemplatesControlRequest"
       },
       "output": {
-        "target": "com.ovh.sms#GetSmsServiceNameTemplatesControlResponse"
+        "target": "com.ovh.sms#ListSmsTemplatesControlResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8481,7 +8482,7 @@
         "smithy.api#documentation": "All existing types for a given template"
       }
     },
-    "com.ovh.sms#PostSmsServiceNameTemplatesControlRequest": {
+    "com.ovh.sms#CreateSmsTemplatesControlRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8530,10 +8531,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#PostSmsServiceNameTemplatesControl": {
+    "com.ovh.sms#CreateSmsTemplatesControl": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#PostSmsServiceNameTemplatesControlRequest"
+        "target": "com.ovh.sms#CreateSmsTemplatesControlRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8547,7 +8548,7 @@
         "smithy.api#documentation": "Create the sms template control given"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameTemplatesControlNameRequest": {
+    "com.ovh.sms#GetSmsTemplatesControlRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8621,10 +8622,10 @@
         "smithy.api#documentation": "Sms template for moderation (Needed to send in US country)"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameTemplatesControlName": {
+    "com.ovh.sms#GetSmsTemplatesControl": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameTemplatesControlNameRequest"
+        "target": "com.ovh.sms#GetSmsTemplatesControlRequest"
       },
       "output": {
         "target": "com.ovh.sms#SmsTemplateControl"
@@ -8638,7 +8639,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.sms#PutSmsServiceNameTemplatesControlNameRequest": {
+    "com.ovh.sms#PutSmsTemplatesControlRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8686,10 +8687,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#PutSmsServiceNameTemplatesControlName": {
+    "com.ovh.sms#PutSmsTemplatesControl": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#PutSmsServiceNameTemplatesControlNameRequest"
+        "target": "com.ovh.sms#PutSmsTemplatesControlRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8703,7 +8704,7 @@
         "smithy.api#documentation": "Alter this object properties"
       }
     },
-    "com.ovh.sms#DeleteSmsServiceNameTemplatesControlNameRequest": {
+    "com.ovh.sms#DeleteSmsTemplatesControlRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8727,10 +8728,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#DeleteSmsServiceNameTemplatesControlName": {
+    "com.ovh.sms#DeleteSmsTemplatesControl": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#DeleteSmsServiceNameTemplatesControlNameRequest"
+        "target": "com.ovh.sms#DeleteSmsTemplatesControlRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8744,7 +8745,7 @@
         "smithy.api#documentation": "Delete the sms template control"
       }
     },
-    "com.ovh.sms#PostSmsServiceNameTemplatesControlNameRelaunchValidationRequest": {
+    "com.ovh.sms#CreateSmsTemplatesControlRelaunchValidationRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8782,10 +8783,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#PostSmsServiceNameTemplatesControlNameRelaunchValidation": {
+    "com.ovh.sms#CreateSmsTemplatesControlRelaunchValidation": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#PostSmsServiceNameTemplatesControlNameRelaunchValidationRequest"
+        "target": "com.ovh.sms#CreateSmsTemplatesControlRelaunchValidationRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8799,7 +8800,7 @@
         "smithy.api#documentation": "Attempt a new validation after moderation refusal"
       }
     },
-    "com.ovh.sms#PostSmsServiceNameTransferCreditsRequest": {
+    "com.ovh.sms#TransferSmsCreditsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8829,10 +8830,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#PostSmsServiceNameTransferCredits": {
+    "com.ovh.sms#TransferSmsCredits": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#PostSmsServiceNameTransferCreditsRequest"
+        "target": "com.ovh.sms#TransferSmsCreditsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8846,7 +8847,7 @@
         "smithy.api#documentation": "Credit transfer between two sms accounts."
       }
     },
-    "com.ovh.sms#GetSmsServiceNameUsersRequest": {
+    "com.ovh.sms#ListSmsUsersRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8862,18 +8863,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameUsersResponseBodyList": {
+    "com.ovh.sms#ListSmsUsersResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.sms#GetSmsServiceNameUsersResponse": {
+    "com.ovh.sms#ListSmsUsersResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.sms#GetSmsServiceNameUsersResponseBodyList",
+          "target": "com.ovh.sms#ListSmsUsersResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -8884,13 +8885,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameUsers": {
+    "com.ovh.sms#ListSmsUsers": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameUsersRequest"
+        "target": "com.ovh.sms#ListSmsUsersRequest"
       },
       "output": {
-        "target": "com.ovh.sms#GetSmsServiceNameUsersResponse"
+        "target": "com.ovh.sms#ListSmsUsersResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8901,7 +8902,7 @@
         "smithy.api#documentation": "Users associated to the sms account"
       }
     },
-    "com.ovh.sms#PostSmsServiceNameUsersRequest": {
+    "com.ovh.sms#CreateSmsUserRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8932,10 +8933,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#PostSmsServiceNameUsers": {
+    "com.ovh.sms#CreateSmsUser": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#PostSmsServiceNameUsersRequest"
+        "target": "com.ovh.sms#CreateSmsUserRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8949,7 +8950,7 @@
         "smithy.api#documentation": "Create a new user for an sms account"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameUsersLoginRequest": {
+    "com.ovh.sms#GetSmsUserRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9103,10 +9104,10 @@
         "smithy.api#documentation": "Current quota status"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameUsersLogin": {
+    "com.ovh.sms#GetSmsUser": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameUsersLoginRequest"
+        "target": "com.ovh.sms#GetSmsUserRequest"
       },
       "output": {
         "target": "com.ovh.sms#SmsUser"
@@ -9120,14 +9121,14 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.sms#PutSmsServiceNameUsersLoginRequestIpRestrictionsList": {
+    "com.ovh.sms#PutSmsUserRequestIpRestrictionsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.sms#PutSmsServiceNameUsersLoginRequest": {
+    "com.ovh.sms#PutSmsUserRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9157,7 +9158,7 @@
           }
         },
         "ipRestrictions": {
-          "target": "com.ovh.sms#PutSmsServiceNameUsersLoginRequestIpRestrictionsList"
+          "target": "com.ovh.sms#PutSmsUserRequestIpRestrictionsList"
         },
         "password": {
           "target": "smithy.api#String",
@@ -9180,10 +9181,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#PutSmsServiceNameUsersLogin": {
+    "com.ovh.sms#PutSmsUser": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#PutSmsServiceNameUsersLoginRequest"
+        "target": "com.ovh.sms#PutSmsUserRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9197,7 +9198,7 @@
         "smithy.api#documentation": "Alter this object properties"
       }
     },
-    "com.ovh.sms#DeleteSmsServiceNameUsersLoginRequest": {
+    "com.ovh.sms#DeleteSmsUserRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9221,10 +9222,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#DeleteSmsServiceNameUsersLogin": {
+    "com.ovh.sms#DeleteSmsUser": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#DeleteSmsServiceNameUsersLoginRequest"
+        "target": "com.ovh.sms#DeleteSmsUserRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9238,7 +9239,7 @@
         "smithy.api#documentation": "Delete the sms user given"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameUsersLoginDocumentRequest": {
+    "com.ovh.sms#GetSmsUserDocumentRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9291,7 +9292,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameUsersLoginDocumentResponse": {
+    "com.ovh.sms#GetSmsUserDocumentResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -9306,13 +9307,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameUsersLoginDocument": {
+    "com.ovh.sms#GetSmsUserDocument": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameUsersLoginDocumentRequest"
+        "target": "com.ovh.sms#GetSmsUserDocumentRequest"
       },
       "output": {
-        "target": "com.ovh.sms#GetSmsServiceNameUsersLoginDocumentResponse"
+        "target": "com.ovh.sms#GetSmsUserDocumentResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9323,7 +9324,7 @@
         "smithy.api#documentation": "Get the /me/document id generated"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameUsersLoginIncomingRequest": {
+    "com.ovh.sms#ListSmsUserIncomingRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9361,18 +9362,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameUsersLoginIncomingResponseBodyList": {
+    "com.ovh.sms#ListSmsUserIncomingResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.sms#GetSmsServiceNameUsersLoginIncomingResponse": {
+    "com.ovh.sms#ListSmsUserIncomingResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.sms#GetSmsServiceNameUsersLoginIncomingResponseBodyList",
+          "target": "com.ovh.sms#ListSmsUserIncomingResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -9383,13 +9384,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameUsersLoginIncoming": {
+    "com.ovh.sms#ListSmsUserIncoming": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameUsersLoginIncomingRequest"
+        "target": "com.ovh.sms#ListSmsUserIncomingRequest"
       },
       "output": {
-        "target": "com.ovh.sms#GetSmsServiceNameUsersLoginIncomingResponse"
+        "target": "com.ovh.sms#ListSmsUserIncomingResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9400,7 +9401,7 @@
         "smithy.api#documentation": "Sms received associated to the sms user"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameUsersLoginIncomingIdRequest": {
+    "com.ovh.sms#GetSmsUserIncomingRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9432,10 +9433,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameUsersLoginIncomingId": {
+    "com.ovh.sms#GetSmsUserIncoming": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameUsersLoginIncomingIdRequest"
+        "target": "com.ovh.sms#GetSmsUserIncomingRequest"
       },
       "output": {
         "target": "com.ovh.sms#SmsIncoming"
@@ -9449,7 +9450,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.sms#DeleteSmsServiceNameUsersLoginIncomingIdRequest": {
+    "com.ovh.sms#DeleteSmsUserIncomingRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9481,10 +9482,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#DeleteSmsServiceNameUsersLoginIncomingId": {
+    "com.ovh.sms#DeleteSmsUserIncoming": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#DeleteSmsServiceNameUsersLoginIncomingIdRequest"
+        "target": "com.ovh.sms#DeleteSmsUserIncomingRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9498,7 +9499,7 @@
         "smithy.api#documentation": "Delete the sms incoming history given"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameUsersLoginJobsRequest": {
+    "com.ovh.sms#ListSmsUserJobsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9522,18 +9523,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameUsersLoginJobsResponseBodyList": {
+    "com.ovh.sms#ListSmsUserJobsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.sms#GetSmsServiceNameUsersLoginJobsResponse": {
+    "com.ovh.sms#ListSmsUserJobsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.sms#GetSmsServiceNameUsersLoginJobsResponseBodyList",
+          "target": "com.ovh.sms#ListSmsUserJobsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -9544,13 +9545,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameUsersLoginJobs": {
+    "com.ovh.sms#ListSmsUserJobs": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameUsersLoginJobsRequest"
+        "target": "com.ovh.sms#ListSmsUserJobsRequest"
       },
       "output": {
-        "target": "com.ovh.sms#GetSmsServiceNameUsersLoginJobsResponse"
+        "target": "com.ovh.sms#ListSmsUserJobsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9561,7 +9562,7 @@
         "smithy.api#documentation": "Sms in pending associated to the sms user"
       }
     },
-    "com.ovh.sms#PostSmsServiceNameUsersLoginJobsRequestReceiversList": {
+    "com.ovh.sms#CreateSmsUserJobRequestReceiversList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -9570,7 +9571,7 @@
         "smithy.api#documentation": "The receivers list"
       }
     },
-    "com.ovh.sms#PostSmsServiceNameUsersLoginJobsRequest": {
+    "com.ovh.sms#CreateSmsUserJobRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9633,7 +9634,7 @@
           }
         },
         "receivers": {
-          "target": "com.ovh.sms#PostSmsServiceNameUsersLoginJobsRequestReceiversList",
+          "target": "com.ovh.sms#CreateSmsUserJobRequestReceiversList",
           "traits": {
             "smithy.api#documentation": "The receivers list"
           }
@@ -9679,10 +9680,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#PostSmsServiceNameUsersLoginJobs": {
+    "com.ovh.sms#CreateSmsUserJob": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#PostSmsServiceNameUsersLoginJobsRequest"
+        "target": "com.ovh.sms#CreateSmsUserJobRequest"
       },
       "output": {
         "target": "com.ovh.sms#SmsSmsSendingReport"
@@ -9696,7 +9697,7 @@
         "smithy.api#documentation": "Add one or several sending jobs"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameUsersLoginJobsIdRequest": {
+    "com.ovh.sms#GetSmsUserJobRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9728,10 +9729,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameUsersLoginJobsId": {
+    "com.ovh.sms#GetSmsUserJob": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameUsersLoginJobsIdRequest"
+        "target": "com.ovh.sms#GetSmsUserJobRequest"
       },
       "output": {
         "target": "com.ovh.sms#SmsJob"
@@ -9745,7 +9746,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.sms#DeleteSmsServiceNameUsersLoginJobsIdRequest": {
+    "com.ovh.sms#DeleteSmsUserJobRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9777,10 +9778,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#DeleteSmsServiceNameUsersLoginJobsId": {
+    "com.ovh.sms#DeleteSmsUserJob": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#DeleteSmsServiceNameUsersLoginJobsIdRequest"
+        "target": "com.ovh.sms#DeleteSmsUserJobRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9794,7 +9795,7 @@
         "smithy.api#documentation": "Delete the sms job given (stop sending)"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameUsersLoginOutgoingRequest": {
+    "com.ovh.sms#ListSmsUserOutgoingRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9860,18 +9861,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameUsersLoginOutgoingResponseBodyList": {
+    "com.ovh.sms#ListSmsUserOutgoingResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.sms#GetSmsServiceNameUsersLoginOutgoingResponse": {
+    "com.ovh.sms#ListSmsUserOutgoingResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.sms#GetSmsServiceNameUsersLoginOutgoingResponseBodyList",
+          "target": "com.ovh.sms#ListSmsUserOutgoingResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -9882,13 +9883,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameUsersLoginOutgoing": {
+    "com.ovh.sms#ListSmsUserOutgoing": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameUsersLoginOutgoingRequest"
+        "target": "com.ovh.sms#ListSmsUserOutgoingRequest"
       },
       "output": {
-        "target": "com.ovh.sms#GetSmsServiceNameUsersLoginOutgoingResponse"
+        "target": "com.ovh.sms#ListSmsUserOutgoingResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9899,7 +9900,7 @@
         "smithy.api#documentation": "Sms sent associated to the sms user"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameUsersLoginOutgoingIdRequest": {
+    "com.ovh.sms#GetSmsUserOutgoingRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9931,10 +9932,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameUsersLoginOutgoingId": {
+    "com.ovh.sms#GetSmsUserOutgoing": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameUsersLoginOutgoingIdRequest"
+        "target": "com.ovh.sms#GetSmsUserOutgoingRequest"
       },
       "output": {
         "target": "com.ovh.sms#SmsOutgoing"
@@ -9948,7 +9949,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.sms#DeleteSmsServiceNameUsersLoginOutgoingIdRequest": {
+    "com.ovh.sms#DeleteSmsUserOutgoingRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9980,10 +9981,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#DeleteSmsServiceNameUsersLoginOutgoingId": {
+    "com.ovh.sms#DeleteSmsUserOutgoing": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#DeleteSmsServiceNameUsersLoginOutgoingIdRequest"
+        "target": "com.ovh.sms#DeleteSmsUserOutgoingRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9997,7 +9998,7 @@
         "smithy.api#documentation": "Delete the sms outgoing history given"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameUsersLoginOutgoingIdHlrRequest": {
+    "com.ovh.sms#GetSmsUserOutgoingHlrRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -10029,10 +10030,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameUsersLoginOutgoingIdHlr": {
+    "com.ovh.sms#GetSmsUserOutgoingHlr": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameUsersLoginOutgoingIdHlrRequest"
+        "target": "com.ovh.sms#GetSmsUserOutgoingHlrRequest"
       },
       "output": {
         "target": "com.ovh.sms#SmsHlr"
@@ -10046,7 +10047,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameUsersLoginReceiversRequest": {
+    "com.ovh.sms#ListSmsUserReceiversRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -10070,18 +10071,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameUsersLoginReceiversResponseBodyList": {
+    "com.ovh.sms#ListSmsUserReceiversResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.sms#GetSmsServiceNameUsersLoginReceiversResponse": {
+    "com.ovh.sms#ListSmsUserReceiversResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.sms#GetSmsServiceNameUsersLoginReceiversResponseBodyList",
+          "target": "com.ovh.sms#ListSmsUserReceiversResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -10092,13 +10093,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameUsersLoginReceivers": {
+    "com.ovh.sms#ListSmsUserReceivers": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameUsersLoginReceiversRequest"
+        "target": "com.ovh.sms#ListSmsUserReceiversRequest"
       },
       "output": {
-        "target": "com.ovh.sms#GetSmsServiceNameUsersLoginReceiversResponse"
+        "target": "com.ovh.sms#ListSmsUserReceiversResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10109,7 +10110,7 @@
         "smithy.api#documentation": "Receivers preloaded from text or csv document file"
       }
     },
-    "com.ovh.sms#PostSmsServiceNameUsersLoginReceiversRequest": {
+    "com.ovh.sms#CreateSmsUserReceiverRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -10166,10 +10167,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#PostSmsServiceNameUsersLoginReceivers": {
+    "com.ovh.sms#CreateSmsUserReceiver": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#PostSmsServiceNameUsersLoginReceiversRequest"
+        "target": "com.ovh.sms#CreateSmsUserReceiverRequest"
       },
       "output": {
         "target": "com.ovh.sms#SmsReceiver"
@@ -10183,7 +10184,7 @@
         "smithy.api#documentation": "Add a new document of csv receivers"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameUsersLoginReceiversSlotIdRequest": {
+    "com.ovh.sms#GetSmsUserReceiverRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -10215,10 +10216,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameUsersLoginReceiversSlotId": {
+    "com.ovh.sms#GetSmsUserReceiver": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameUsersLoginReceiversSlotIdRequest"
+        "target": "com.ovh.sms#GetSmsUserReceiverRequest"
       },
       "output": {
         "target": "com.ovh.sms#SmsReceiver"
@@ -10232,7 +10233,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.sms#PutSmsServiceNameUsersLoginReceiversSlotIdRequest": {
+    "com.ovh.sms#PutSmsUserReceiverRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -10276,10 +10277,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#PutSmsServiceNameUsersLoginReceiversSlotId": {
+    "com.ovh.sms#PutSmsUserReceiver": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#PutSmsServiceNameUsersLoginReceiversSlotIdRequest"
+        "target": "com.ovh.sms#PutSmsUserReceiverRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -10293,7 +10294,7 @@
         "smithy.api#documentation": "Alter this object properties"
       }
     },
-    "com.ovh.sms#DeleteSmsServiceNameUsersLoginReceiversSlotIdRequest": {
+    "com.ovh.sms#DeleteSmsUserReceiverRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -10325,10 +10326,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#DeleteSmsServiceNameUsersLoginReceiversSlotId": {
+    "com.ovh.sms#DeleteSmsUserReceiver": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#DeleteSmsServiceNameUsersLoginReceiversSlotIdRequest"
+        "target": "com.ovh.sms#DeleteSmsUserReceiverRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -10342,7 +10343,7 @@
         "smithy.api#documentation": "Delete the document from the slot"
       }
     },
-    "com.ovh.sms#PostSmsServiceNameUsersLoginReceiversSlotIdCleanRequest": {
+    "com.ovh.sms#CreateSmsUserReceiverCleanRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -10388,10 +10389,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#PostSmsServiceNameUsersLoginReceiversSlotIdClean": {
+    "com.ovh.sms#CreateSmsUserReceiverClean": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#PostSmsServiceNameUsersLoginReceiversSlotIdCleanRequest"
+        "target": "com.ovh.sms#CreateSmsUserReceiverCleanRequest"
       },
       "output": {
         "target": "com.ovh.sms#SmsReceiversAsynchronousCleanReport"
@@ -10405,7 +10406,7 @@
         "smithy.api#documentation": "Clean the invalid and inactive receivers in the document by requesting HLR on each receiver\n\nClean the invalid and inactive receivers in the document by requesting HLR on each receiver. A report is sent by e-mail at the end of the operation."
       }
     },
-    "com.ovh.sms#GetSmsServiceNameUsersLoginReceiversSlotIdCsvRequest": {
+    "com.ovh.sms#GetSmsUserReceiverCsvRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -10437,7 +10438,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameUsersLoginReceiversSlotIdCsvResponse": {
+    "com.ovh.sms#GetSmsUserReceiverCsvResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -10452,13 +10453,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameUsersLoginReceiversSlotIdCsv": {
+    "com.ovh.sms#GetSmsUserReceiverCsv": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameUsersLoginReceiversSlotIdCsvRequest"
+        "target": "com.ovh.sms#GetSmsUserReceiverCsvRequest"
       },
       "output": {
-        "target": "com.ovh.sms#GetSmsServiceNameUsersLoginReceiversSlotIdCsvResponse"
+        "target": "com.ovh.sms#GetSmsUserReceiverCsvResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10469,7 +10470,7 @@
         "smithy.api#documentation": "Get the document data container"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameVirtualNumbersRequest": {
+    "com.ovh.sms#ListSmsVirtualNumbersRequest2": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -10485,18 +10486,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameVirtualNumbersResponseBodyList": {
+    "com.ovh.sms#ListSmsVirtualNumbersResponseBodyList2": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.sms#GetSmsServiceNameVirtualNumbersResponse": {
+    "com.ovh.sms#ListSmsVirtualNumbersResponse2": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.sms#GetSmsServiceNameVirtualNumbersResponseBodyList",
+          "target": "com.ovh.sms#ListSmsVirtualNumbersResponseBodyList2",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -10507,13 +10508,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameVirtualNumbers": {
+    "com.ovh.sms#ListSmsVirtualNumbers2": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameVirtualNumbersRequest"
+        "target": "com.ovh.sms#ListSmsVirtualNumbersRequest2"
       },
       "output": {
-        "target": "com.ovh.sms#GetSmsServiceNameVirtualNumbersResponse"
+        "target": "com.ovh.sms#ListSmsVirtualNumbersResponse2"
       },
       "traits": {
         "smithy.api#http": {
@@ -10524,7 +10525,7 @@
         "smithy.api#documentation": "Virtual numbers associated to the sms account"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumberRequest": {
+    "com.ovh.sms#GetSmsVirtualNumberByNumberRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -10568,10 +10569,10 @@
         "smithy.api#documentation": "Virtual numbers"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumber": {
+    "com.ovh.sms#GetSmsVirtualNumberByNumber": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumberRequest"
+        "target": "com.ovh.sms#GetSmsVirtualNumberByNumberRequest"
       },
       "output": {
         "target": "com.ovh.sms#SmsVirtualNumber"
@@ -10585,7 +10586,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumberChatAccessRequest": {
+    "com.ovh.sms#GetSmsVirtualNumberChatAccessRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -10632,10 +10633,10 @@
         "smithy.api#documentation": "The web access for your virtual number chat application"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumberChatAccess": {
+    "com.ovh.sms#GetSmsVirtualNumberChatAccess": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumberChatAccessRequest"
+        "target": "com.ovh.sms#GetSmsVirtualNumberChatAccessRequest"
       },
       "output": {
         "target": "com.ovh.sms#SmsChatAccess"
@@ -10649,7 +10650,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.sms#PostSmsServiceNameVirtualNumbersNumberChatAccessRequest": {
+    "com.ovh.sms#CreateSmsVirtualNumberChatAccessRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -10673,10 +10674,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#PostSmsServiceNameVirtualNumbersNumberChatAccess": {
+    "com.ovh.sms#CreateSmsVirtualNumberChatAccess": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#PostSmsServiceNameVirtualNumbersNumberChatAccessRequest"
+        "target": "com.ovh.sms#CreateSmsVirtualNumberChatAccessRequest"
       },
       "output": {
         "target": "com.ovh.sms#SmsChatAccess"
@@ -10690,7 +10691,7 @@
         "smithy.api#documentation": "Create a new web access for this ressource"
       }
     },
-    "com.ovh.sms#DeleteSmsServiceNameVirtualNumbersNumberChatAccessRequest": {
+    "com.ovh.sms#DeleteSmsVirtualNumberChatAccessRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -10714,10 +10715,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#DeleteSmsServiceNameVirtualNumbersNumberChatAccess": {
+    "com.ovh.sms#DeleteSmsVirtualNumberChatAccess": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#DeleteSmsServiceNameVirtualNumbersNumberChatAccessRequest"
+        "target": "com.ovh.sms#DeleteSmsVirtualNumberChatAccessRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -10731,7 +10732,7 @@
         "smithy.api#documentation": "Delete the given web access"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumberIncomingRequest": {
+    "com.ovh.sms#ListSmsVirtualNumberIncomingRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -10783,18 +10784,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumberIncomingResponseBodyList": {
+    "com.ovh.sms#ListSmsVirtualNumberIncomingResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumberIncomingResponse": {
+    "com.ovh.sms#ListSmsVirtualNumberIncomingResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumberIncomingResponseBodyList",
+          "target": "com.ovh.sms#ListSmsVirtualNumberIncomingResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -10805,13 +10806,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumberIncoming": {
+    "com.ovh.sms#ListSmsVirtualNumberIncoming": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumberIncomingRequest"
+        "target": "com.ovh.sms#ListSmsVirtualNumberIncomingRequest"
       },
       "output": {
-        "target": "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumberIncomingResponse"
+        "target": "com.ovh.sms#ListSmsVirtualNumberIncomingResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10822,7 +10823,7 @@
         "smithy.api#documentation": "Sms received associated to the sms account"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumberIncomingIdRequest": {
+    "com.ovh.sms#GetSmsVirtualNumberIncomingRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -10854,10 +10855,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumberIncomingId": {
+    "com.ovh.sms#GetSmsVirtualNumberIncoming": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumberIncomingIdRequest"
+        "target": "com.ovh.sms#GetSmsVirtualNumberIncomingRequest"
       },
       "output": {
         "target": "com.ovh.sms#SmsIncoming"
@@ -10871,7 +10872,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.sms#DeleteSmsServiceNameVirtualNumbersNumberIncomingIdRequest": {
+    "com.ovh.sms#DeleteSmsVirtualNumberIncomingRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -10903,10 +10904,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#DeleteSmsServiceNameVirtualNumbersNumberIncomingId": {
+    "com.ovh.sms#DeleteSmsVirtualNumberIncoming": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#DeleteSmsServiceNameVirtualNumbersNumberIncomingIdRequest"
+        "target": "com.ovh.sms#DeleteSmsVirtualNumberIncomingRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -10920,7 +10921,7 @@
         "smithy.api#documentation": "Delete the sms incoming history given"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumberJobsRequest": {
+    "com.ovh.sms#ListSmsVirtualNumberJobsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -10944,18 +10945,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumberJobsResponseBodyList": {
+    "com.ovh.sms#ListSmsVirtualNumberJobsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumberJobsResponse": {
+    "com.ovh.sms#ListSmsVirtualNumberJobsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumberJobsResponseBodyList",
+          "target": "com.ovh.sms#ListSmsVirtualNumberJobsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -10966,13 +10967,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumberJobs": {
+    "com.ovh.sms#ListSmsVirtualNumberJobs": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumberJobsRequest"
+        "target": "com.ovh.sms#ListSmsVirtualNumberJobsRequest"
       },
       "output": {
-        "target": "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumberJobsResponse"
+        "target": "com.ovh.sms#ListSmsVirtualNumberJobsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10983,7 +10984,7 @@
         "smithy.api#documentation": "Sms in pending associated to the sms account"
       }
     },
-    "com.ovh.sms#PostSmsServiceNameVirtualNumbersNumberJobsRequestReceiversList": {
+    "com.ovh.sms#CreateSmsVirtualNumberJobRequestReceiversList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -10992,7 +10993,7 @@
         "smithy.api#documentation": "The receivers list"
       }
     },
-    "com.ovh.sms#PostSmsServiceNameVirtualNumbersNumberJobsRequest": {
+    "com.ovh.sms#CreateSmsVirtualNumberJobRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -11049,7 +11050,7 @@
           }
         },
         "receivers": {
-          "target": "com.ovh.sms#PostSmsServiceNameVirtualNumbersNumberJobsRequestReceiversList",
+          "target": "com.ovh.sms#CreateSmsVirtualNumberJobRequestReceiversList",
           "traits": {
             "smithy.api#documentation": "The receivers list"
           }
@@ -11083,10 +11084,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#PostSmsServiceNameVirtualNumbersNumberJobs": {
+    "com.ovh.sms#CreateSmsVirtualNumberJob": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#PostSmsServiceNameVirtualNumbersNumberJobsRequest"
+        "target": "com.ovh.sms#CreateSmsVirtualNumberJobRequest"
       },
       "output": {
         "target": "com.ovh.sms#SmsSmsSendingReport"
@@ -11100,7 +11101,7 @@
         "smithy.api#documentation": "Add one or several sending jobs"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumberJobsIdRequest": {
+    "com.ovh.sms#GetSmsVirtualNumberJobRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -11170,10 +11171,10 @@
         "smithy.api#documentation": "Sms job"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumberJobsId": {
+    "com.ovh.sms#GetSmsVirtualNumberJob": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumberJobsIdRequest"
+        "target": "com.ovh.sms#GetSmsVirtualNumberJobRequest"
       },
       "output": {
         "target": "com.ovh.sms#SmsVirtualNumberJob"
@@ -11187,7 +11188,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.sms#DeleteSmsServiceNameVirtualNumbersNumberJobsIdRequest": {
+    "com.ovh.sms#DeleteSmsVirtualNumberJobRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -11219,10 +11220,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#DeleteSmsServiceNameVirtualNumbersNumberJobsId": {
+    "com.ovh.sms#DeleteSmsVirtualNumberJob": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#DeleteSmsServiceNameVirtualNumbersNumberJobsIdRequest"
+        "target": "com.ovh.sms#DeleteSmsVirtualNumberJobRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -11236,7 +11237,7 @@
         "smithy.api#documentation": "Delete the sms job given (stop sending)"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumberOutgoingRequest": {
+    "com.ovh.sms#ListSmsVirtualNumberOutgoingRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -11316,18 +11317,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumberOutgoingResponseBodyList": {
+    "com.ovh.sms#ListSmsVirtualNumberOutgoingResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumberOutgoingResponse": {
+    "com.ovh.sms#ListSmsVirtualNumberOutgoingResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumberOutgoingResponseBodyList",
+          "target": "com.ovh.sms#ListSmsVirtualNumberOutgoingResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -11338,13 +11339,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumberOutgoing": {
+    "com.ovh.sms#ListSmsVirtualNumberOutgoing": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumberOutgoingRequest"
+        "target": "com.ovh.sms#ListSmsVirtualNumberOutgoingRequest"
       },
       "output": {
-        "target": "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumberOutgoingResponse"
+        "target": "com.ovh.sms#ListSmsVirtualNumberOutgoingResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11355,7 +11356,7 @@
         "smithy.api#documentation": "Sms sent associated to the sms account"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumberOutgoingIdRequest": {
+    "com.ovh.sms#GetSmsVirtualNumberOutgoingRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -11387,10 +11388,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumberOutgoingId": {
+    "com.ovh.sms#GetSmsVirtualNumberOutgoing": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumberOutgoingIdRequest"
+        "target": "com.ovh.sms#GetSmsVirtualNumberOutgoingRequest"
       },
       "output": {
         "target": "com.ovh.sms#SmsOutgoing"
@@ -11404,7 +11405,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.sms#DeleteSmsServiceNameVirtualNumbersNumberOutgoingIdRequest": {
+    "com.ovh.sms#DeleteSmsVirtualNumberOutgoingRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -11436,10 +11437,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#DeleteSmsServiceNameVirtualNumbersNumberOutgoingId": {
+    "com.ovh.sms#DeleteSmsVirtualNumberOutgoing": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#DeleteSmsServiceNameVirtualNumbersNumberOutgoingIdRequest"
+        "target": "com.ovh.sms#DeleteSmsVirtualNumberOutgoingRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -11453,7 +11454,7 @@
         "smithy.api#documentation": "Delete the sms outgoing history given"
       }
     },
-    "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumberOutgoingIdHlrRequest": {
+    "com.ovh.sms#GetSmsVirtualNumberOutgoingHlrRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -11485,10 +11486,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumberOutgoingIdHlr": {
+    "com.ovh.sms#GetSmsVirtualNumberOutgoingHlr": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumberOutgoingIdHlrRequest"
+        "target": "com.ovh.sms#GetSmsVirtualNumberOutgoingHlrRequest"
       },
       "output": {
         "target": "com.ovh.sms#SmsHlr"
@@ -11507,376 +11508,376 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.ovh.sms#GetSms"
+          "target": "com.ovh.sms#ListSms"
         },
         {
-          "target": "com.ovh.sms#PostSmsEstimate"
+          "target": "com.ovh.sms#CreateSmsEstimate"
         },
         {
           "target": "com.ovh.sms#GetSmsPtts"
         },
         {
-          "target": "com.ovh.sms#GetSmsRatesDestinations"
+          "target": "com.ovh.sms#GetSmsRateDestinations"
         },
         {
-          "target": "com.ovh.sms#GetSmsRatesPacks"
+          "target": "com.ovh.sms#ListSmsRatePacks"
         },
         {
-          "target": "com.ovh.sms#GetSmsVirtualNumbers"
+          "target": "com.ovh.sms#ListSmsVirtualNumbers"
         },
         {
-          "target": "com.ovh.sms#GetSmsVirtualNumbersNumber"
+          "target": "com.ovh.sms#GetSmsVirtualNumber"
         },
         {
-          "target": "com.ovh.sms#GetSmsVirtualNumbersNumberServiceInfos"
+          "target": "com.ovh.sms#GetSmsVirtualNumberServiceInfos"
         },
         {
-          "target": "com.ovh.sms#PutSmsVirtualNumbersNumberServiceInfos"
+          "target": "com.ovh.sms#PutSmsVirtualNumberServiceInfos"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceName"
+          "target": "com.ovh.sms#GetSms"
         },
         {
-          "target": "com.ovh.sms#PutSmsServiceName"
+          "target": "com.ovh.sms#PutSms"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameBatches"
+          "target": "com.ovh.sms#ListSmsBatches"
         },
         {
-          "target": "com.ovh.sms#PostSmsServiceNameBatches"
+          "target": "com.ovh.sms#CreateSmsBatch"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameBatchesId"
+          "target": "com.ovh.sms#GetSmsBatch"
         },
         {
-          "target": "com.ovh.sms#PutSmsServiceNameBatchesId"
+          "target": "com.ovh.sms#PutSmsBatch"
         },
         {
-          "target": "com.ovh.sms#DeleteSmsServiceNameBatchesId"
+          "target": "com.ovh.sms#DeleteSmsBatch"
         },
         {
-          "target": "com.ovh.sms#PostSmsServiceNameBatchesIdCancel"
+          "target": "com.ovh.sms#CancelSmsBatch"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameBatchesIdStatistics"
+          "target": "com.ovh.sms#GetSmsBatchStatistics"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameBlacklists"
+          "target": "com.ovh.sms#ListSmsBlacklists"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameBlacklistsNumber"
+          "target": "com.ovh.sms#GetSmsBlacklist"
         },
         {
-          "target": "com.ovh.sms#DeleteSmsServiceNameBlacklistsNumber"
+          "target": "com.ovh.sms#DeleteSmsBlacklist"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameDocument"
+          "target": "com.ovh.sms#GetSmsDocument"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameExceptions"
+          "target": "com.ovh.sms#ListSmsExceptions"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameHlr"
+          "target": "com.ovh.sms#ListSmsHlr"
         },
         {
-          "target": "com.ovh.sms#PostSmsServiceNameHlr"
+          "target": "com.ovh.sms#CreateSmsHlr"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameHlrId"
+          "target": "com.ovh.sms#GetSmsHlr"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameHlrIdOperator"
+          "target": "com.ovh.sms#GetSmsHlrOperator"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameIncoming"
+          "target": "com.ovh.sms#ListSmsIncoming"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameIncomingId"
+          "target": "com.ovh.sms#GetSmsIncoming"
         },
         {
-          "target": "com.ovh.sms#DeleteSmsServiceNameIncomingId"
+          "target": "com.ovh.sms#DeleteSmsIncoming"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameJobs"
+          "target": "com.ovh.sms#ListSmsJobs"
         },
         {
-          "target": "com.ovh.sms#PostSmsServiceNameJobs"
+          "target": "com.ovh.sms#CreateSmsJob"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameJobsId"
+          "target": "com.ovh.sms#GetSmsJob"
         },
         {
-          "target": "com.ovh.sms#DeleteSmsServiceNameJobsId"
+          "target": "com.ovh.sms#DeleteSmsJob"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameOutgoing"
+          "target": "com.ovh.sms#ListSmsOutgoing"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameOutgoingId"
+          "target": "com.ovh.sms#GetSmsOutgoing"
         },
         {
-          "target": "com.ovh.sms#DeleteSmsServiceNameOutgoingId"
+          "target": "com.ovh.sms#DeleteSmsOutgoing"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameOutgoingIdHlr"
+          "target": "com.ovh.sms#GetSmsOutgoingHlr"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNamePhonebooks"
+          "target": "com.ovh.sms#ListSmsPhonebooks"
         },
         {
-          "target": "com.ovh.sms#PostSmsServiceNamePhonebooks"
+          "target": "com.ovh.sms#CreateSmsPhonebook"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNamePhonebooksBookKey"
+          "target": "com.ovh.sms#GetSmsPhonebook"
         },
         {
-          "target": "com.ovh.sms#PutSmsServiceNamePhonebooksBookKey"
+          "target": "com.ovh.sms#PutSmsPhonebook"
         },
         {
-          "target": "com.ovh.sms#DeleteSmsServiceNamePhonebooksBookKey"
+          "target": "com.ovh.sms#DeleteSmsPhonebook"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNamePhonebooksBookKeyExport"
+          "target": "com.ovh.sms#GetSmsPhonebookExport"
         },
         {
-          "target": "com.ovh.sms#PostSmsServiceNamePhonebooksBookKeyImport"
+          "target": "com.ovh.sms#ImportSmsPhonebook"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNamePhonebooksBookKeyPhonebookContact"
+          "target": "com.ovh.sms#ListSmsPhonebookPhonebookContact"
         },
         {
-          "target": "com.ovh.sms#PostSmsServiceNamePhonebooksBookKeyPhonebookContact"
+          "target": "com.ovh.sms#CreateSmsPhonebookPhonebookContact"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNamePhonebooksBookKeyPhonebookContactId"
+          "target": "com.ovh.sms#GetSmsPhonebookPhonebookContact"
         },
         {
-          "target": "com.ovh.sms#PutSmsServiceNamePhonebooksBookKeyPhonebookContactId"
+          "target": "com.ovh.sms#PutSmsPhonebookPhonebookContact"
         },
         {
-          "target": "com.ovh.sms#DeleteSmsServiceNamePhonebooksBookKeyPhonebookContactId"
+          "target": "com.ovh.sms#DeleteSmsPhonebookPhonebookContact"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameReceivers"
+          "target": "com.ovh.sms#ListSmsReceivers"
         },
         {
-          "target": "com.ovh.sms#PostSmsServiceNameReceivers"
+          "target": "com.ovh.sms#CreateSmsReceiver"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameReceiversSlotId"
+          "target": "com.ovh.sms#GetSmsReceiver"
         },
         {
-          "target": "com.ovh.sms#PutSmsServiceNameReceiversSlotId"
+          "target": "com.ovh.sms#PutSmsReceiver"
         },
         {
-          "target": "com.ovh.sms#DeleteSmsServiceNameReceiversSlotId"
+          "target": "com.ovh.sms#DeleteSmsReceiver"
         },
         {
-          "target": "com.ovh.sms#PostSmsServiceNameReceiversSlotIdClean"
+          "target": "com.ovh.sms#CreateSmsReceiverClean"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameReceiversSlotIdCsv"
+          "target": "com.ovh.sms#GetSmsReceiverCsv"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameSeeOffers"
+          "target": "com.ovh.sms#ListSmsSeeOffers"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameSenders"
+          "target": "com.ovh.sms#ListSmsSenders"
         },
         {
-          "target": "com.ovh.sms#PostSmsServiceNameSenders"
+          "target": "com.ovh.sms#CreateSmsSender"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameSendersSender"
+          "target": "com.ovh.sms#GetSmsSender"
         },
         {
-          "target": "com.ovh.sms#PutSmsServiceNameSendersSender"
+          "target": "com.ovh.sms#PutSmsSender"
         },
         {
-          "target": "com.ovh.sms#DeleteSmsServiceNameSendersSender"
+          "target": "com.ovh.sms#DeleteSmsSender"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameSendersSenderDocuments"
+          "target": "com.ovh.sms#ListSmsSenderDocuments"
         },
         {
-          "target": "com.ovh.sms#PostSmsServiceNameSendersSenderDocuments"
+          "target": "com.ovh.sms#CreateSmsSenderDocument"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameSendersSenderDocumentsDocumentID"
+          "target": "com.ovh.sms#GetSmsSenderDocument"
         },
         {
-          "target": "com.ovh.sms#PutSmsServiceNameSendersSenderDocumentsDocumentID"
+          "target": "com.ovh.sms#PutSmsSenderDocument"
         },
         {
-          "target": "com.ovh.sms#PostSmsServiceNameSendersSenderValidate"
+          "target": "com.ovh.sms#ValidateSmsSender"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameSendersAvailableForValidation"
+          "target": "com.ovh.sms#ListSmsSendersAvailableForValidation"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameServiceInfos"
+          "target": "com.ovh.sms#GetSmsServiceInfos"
         },
         {
-          "target": "com.ovh.sms#PutSmsServiceNameServiceInfos"
+          "target": "com.ovh.sms#PutSmsServiceInfos"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameSmppAllowedIPs"
+          "target": "com.ovh.sms#ListSmsSmppAllowedIPs"
         },
         {
-          "target": "com.ovh.sms#PutSmsServiceNameSmppAllowedIPs"
+          "target": "com.ovh.sms#PutSmsSmppAllowedIPs"
         },
         {
-          "target": "com.ovh.sms#PostSmsServiceNameSmppPassword"
+          "target": "com.ovh.sms#CreateSmsSmppPassword"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameSmppSettings"
+          "target": "com.ovh.sms#GetSmsSmppSettings"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameTask"
+          "target": "com.ovh.sms#ListSmsTask"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameTaskTaskId"
+          "target": "com.ovh.sms#GetSmsTask"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameTemplatesControl"
+          "target": "com.ovh.sms#ListSmsTemplatesControl"
         },
         {
-          "target": "com.ovh.sms#PostSmsServiceNameTemplatesControl"
+          "target": "com.ovh.sms#CreateSmsTemplatesControl"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameTemplatesControlName"
+          "target": "com.ovh.sms#GetSmsTemplatesControl"
         },
         {
-          "target": "com.ovh.sms#PutSmsServiceNameTemplatesControlName"
+          "target": "com.ovh.sms#PutSmsTemplatesControl"
         },
         {
-          "target": "com.ovh.sms#DeleteSmsServiceNameTemplatesControlName"
+          "target": "com.ovh.sms#DeleteSmsTemplatesControl"
         },
         {
-          "target": "com.ovh.sms#PostSmsServiceNameTemplatesControlNameRelaunchValidation"
+          "target": "com.ovh.sms#CreateSmsTemplatesControlRelaunchValidation"
         },
         {
-          "target": "com.ovh.sms#PostSmsServiceNameTransferCredits"
+          "target": "com.ovh.sms#TransferSmsCredits"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameUsers"
+          "target": "com.ovh.sms#ListSmsUsers"
         },
         {
-          "target": "com.ovh.sms#PostSmsServiceNameUsers"
+          "target": "com.ovh.sms#CreateSmsUser"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameUsersLogin"
+          "target": "com.ovh.sms#GetSmsUser"
         },
         {
-          "target": "com.ovh.sms#PutSmsServiceNameUsersLogin"
+          "target": "com.ovh.sms#PutSmsUser"
         },
         {
-          "target": "com.ovh.sms#DeleteSmsServiceNameUsersLogin"
+          "target": "com.ovh.sms#DeleteSmsUser"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameUsersLoginDocument"
+          "target": "com.ovh.sms#GetSmsUserDocument"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameUsersLoginIncoming"
+          "target": "com.ovh.sms#ListSmsUserIncoming"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameUsersLoginIncomingId"
+          "target": "com.ovh.sms#GetSmsUserIncoming"
         },
         {
-          "target": "com.ovh.sms#DeleteSmsServiceNameUsersLoginIncomingId"
+          "target": "com.ovh.sms#DeleteSmsUserIncoming"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameUsersLoginJobs"
+          "target": "com.ovh.sms#ListSmsUserJobs"
         },
         {
-          "target": "com.ovh.sms#PostSmsServiceNameUsersLoginJobs"
+          "target": "com.ovh.sms#CreateSmsUserJob"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameUsersLoginJobsId"
+          "target": "com.ovh.sms#GetSmsUserJob"
         },
         {
-          "target": "com.ovh.sms#DeleteSmsServiceNameUsersLoginJobsId"
+          "target": "com.ovh.sms#DeleteSmsUserJob"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameUsersLoginOutgoing"
+          "target": "com.ovh.sms#ListSmsUserOutgoing"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameUsersLoginOutgoingId"
+          "target": "com.ovh.sms#GetSmsUserOutgoing"
         },
         {
-          "target": "com.ovh.sms#DeleteSmsServiceNameUsersLoginOutgoingId"
+          "target": "com.ovh.sms#DeleteSmsUserOutgoing"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameUsersLoginOutgoingIdHlr"
+          "target": "com.ovh.sms#GetSmsUserOutgoingHlr"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameUsersLoginReceivers"
+          "target": "com.ovh.sms#ListSmsUserReceivers"
         },
         {
-          "target": "com.ovh.sms#PostSmsServiceNameUsersLoginReceivers"
+          "target": "com.ovh.sms#CreateSmsUserReceiver"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameUsersLoginReceiversSlotId"
+          "target": "com.ovh.sms#GetSmsUserReceiver"
         },
         {
-          "target": "com.ovh.sms#PutSmsServiceNameUsersLoginReceiversSlotId"
+          "target": "com.ovh.sms#PutSmsUserReceiver"
         },
         {
-          "target": "com.ovh.sms#DeleteSmsServiceNameUsersLoginReceiversSlotId"
+          "target": "com.ovh.sms#DeleteSmsUserReceiver"
         },
         {
-          "target": "com.ovh.sms#PostSmsServiceNameUsersLoginReceiversSlotIdClean"
+          "target": "com.ovh.sms#CreateSmsUserReceiverClean"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameUsersLoginReceiversSlotIdCsv"
+          "target": "com.ovh.sms#GetSmsUserReceiverCsv"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameVirtualNumbers"
+          "target": "com.ovh.sms#ListSmsVirtualNumbers2"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumber"
+          "target": "com.ovh.sms#GetSmsVirtualNumberByNumber"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumberChatAccess"
+          "target": "com.ovh.sms#GetSmsVirtualNumberChatAccess"
         },
         {
-          "target": "com.ovh.sms#PostSmsServiceNameVirtualNumbersNumberChatAccess"
+          "target": "com.ovh.sms#CreateSmsVirtualNumberChatAccess"
         },
         {
-          "target": "com.ovh.sms#DeleteSmsServiceNameVirtualNumbersNumberChatAccess"
+          "target": "com.ovh.sms#DeleteSmsVirtualNumberChatAccess"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumberIncoming"
+          "target": "com.ovh.sms#ListSmsVirtualNumberIncoming"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumberIncomingId"
+          "target": "com.ovh.sms#GetSmsVirtualNumberIncoming"
         },
         {
-          "target": "com.ovh.sms#DeleteSmsServiceNameVirtualNumbersNumberIncomingId"
+          "target": "com.ovh.sms#DeleteSmsVirtualNumberIncoming"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumberJobs"
+          "target": "com.ovh.sms#ListSmsVirtualNumberJobs"
         },
         {
-          "target": "com.ovh.sms#PostSmsServiceNameVirtualNumbersNumberJobs"
+          "target": "com.ovh.sms#CreateSmsVirtualNumberJob"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumberJobsId"
+          "target": "com.ovh.sms#GetSmsVirtualNumberJob"
         },
         {
-          "target": "com.ovh.sms#DeleteSmsServiceNameVirtualNumbersNumberJobsId"
+          "target": "com.ovh.sms#DeleteSmsVirtualNumberJob"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumberOutgoing"
+          "target": "com.ovh.sms#ListSmsVirtualNumberOutgoing"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumberOutgoingId"
+          "target": "com.ovh.sms#GetSmsVirtualNumberOutgoing"
         },
         {
-          "target": "com.ovh.sms#DeleteSmsServiceNameVirtualNumbersNumberOutgoingId"
+          "target": "com.ovh.sms#DeleteSmsVirtualNumberOutgoing"
         },
         {
-          "target": "com.ovh.sms#GetSmsServiceNameVirtualNumbersNumberOutgoingIdHlr"
+          "target": "com.ovh.sms#GetSmsVirtualNumberOutgoingHlr"
         }
       ],
       "traits": {

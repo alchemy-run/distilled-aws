@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.ovh.vrack#IamResourceTagFilterInput": {
@@ -24,28 +25,28 @@
         "smithy.api#documentation": "Resource tag filter"
       }
     },
-    "com.ovh.vrack#GetVrackRequestIamTagsValueList": {
+    "com.ovh.vrack#ListVrackRequestIamTagsValueList": {
       "type": "list",
       "member": {
         "target": "com.ovh.vrack#IamResourceTagFilterInput"
       },
       "traits": {}
     },
-    "com.ovh.vrack#GetVrackRequestIamTagsMap": {
+    "com.ovh.vrack#ListVrackRequestIamTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "com.ovh.vrack#GetVrackRequestIamTagsValueList"
+        "target": "com.ovh.vrack#ListVrackRequestIamTagsValueList"
       },
       "traits": {}
     },
-    "com.ovh.vrack#GetVrackRequest": {
+    "com.ovh.vrack#ListVrackRequest": {
       "type": "structure",
       "members": {
         "iamTags": {
-          "target": "com.ovh.vrack#GetVrackRequestIamTagsMap",
+          "target": "com.ovh.vrack#ListVrackRequestIamTagsMap",
           "traits": {
             "smithy.api#httpQuery": "iamTags",
             "smithy.api#documentation": "Filter resources on IAM tags"
@@ -56,18 +57,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#GetVrackResponseBodyList": {
+    "com.ovh.vrack#ListVrackResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.vrack#GetVrackResponse": {
+    "com.ovh.vrack#ListVrackResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.vrack#GetVrackResponseBodyList",
+          "target": "com.ovh.vrack#ListVrackResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -78,13 +79,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.vrack#GetVrack": {
+    "com.ovh.vrack#ListVrack": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#GetVrackRequest"
+        "target": "com.ovh.vrack#ListVrackRequest"
       },
       "output": {
-        "target": "com.ovh.vrack#GetVrackResponse"
+        "target": "com.ovh.vrack#ListVrackResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -95,7 +96,7 @@
         "smithy.api#documentation": "List available services"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameRequest": {
+    "com.ovh.vrack#GetVrackRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -190,10 +191,10 @@
         "smithy.api#documentation": "Resource tags. Tags that were internally computed are prefixed with ovh:"
       }
     },
-    "com.ovh.vrack#GetVrackServiceName": {
+    "com.ovh.vrack#GetVrack": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#GetVrackServiceNameRequest"
+        "target": "com.ovh.vrack#GetVrackRequest"
       },
       "output": {
         "target": "com.ovh.vrack#VrackVrackWithIAM"
@@ -207,7 +208,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.vrack#PutVrackServiceNameRequest": {
+    "com.ovh.vrack#PutVrackRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -235,10 +236,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#PutVrackServiceName": {
+    "com.ovh.vrack#PutVrack": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#PutVrackServiceNameRequest"
+        "target": "com.ovh.vrack#PutVrackRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -338,7 +339,7 @@
         "smithy.api#documentation": "Possible values for vrack allowed service"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameAllowedServicesRequest": {
+    "com.ovh.vrack#ListVrackAllowedServicesRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -603,10 +604,10 @@
         "smithy.api#documentation": "List of the vrackServices allowed to be connected to vrack"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameAllowedServices": {
+    "com.ovh.vrack#ListVrackAllowedServices": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#GetVrackServiceNameAllowedServicesRequest"
+        "target": "com.ovh.vrack#ListVrackAllowedServicesRequest"
       },
       "output": {
         "target": "com.ovh.vrack#VrackAllowedServices"
@@ -620,7 +621,7 @@
         "smithy.api#documentation": "List all services allowed in this vrack"
       }
     },
-    "com.ovh.vrack#PostVrackServiceNameChangeContactRequest": {
+    "com.ovh.vrack#CreateVrackChangeContactRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -654,18 +655,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#PostVrackServiceNameChangeContactResponseBodyList": {
+    "com.ovh.vrack#CreateVrackChangeContactResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.vrack#PostVrackServiceNameChangeContactResponse": {
+    "com.ovh.vrack#CreateVrackChangeContactResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.vrack#PostVrackServiceNameChangeContactResponseBodyList",
+          "target": "com.ovh.vrack#CreateVrackChangeContactResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -676,13 +677,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.vrack#PostVrackServiceNameChangeContact": {
+    "com.ovh.vrack#CreateVrackChangeContact": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#PostVrackServiceNameChangeContactRequest"
+        "target": "com.ovh.vrack#CreateVrackChangeContactRequest"
       },
       "output": {
-        "target": "com.ovh.vrack#PostVrackServiceNameChangeContactResponse"
+        "target": "com.ovh.vrack#CreateVrackChangeContactResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -693,7 +694,7 @@
         "smithy.api#documentation": "Launch a contact change procedure"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameCloudProjectRequest": {
+    "com.ovh.vrack#ListVrackCloudProjectRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -709,18 +710,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameCloudProjectResponseBodyList": {
+    "com.ovh.vrack#ListVrackCloudProjectResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.vrack#GetVrackServiceNameCloudProjectResponse": {
+    "com.ovh.vrack#ListVrackCloudProjectResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.vrack#GetVrackServiceNameCloudProjectResponseBodyList",
+          "target": "com.ovh.vrack#ListVrackCloudProjectResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -731,13 +732,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameCloudProject": {
+    "com.ovh.vrack#ListVrackCloudProject": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#GetVrackServiceNameCloudProjectRequest"
+        "target": "com.ovh.vrack#ListVrackCloudProjectRequest"
       },
       "output": {
-        "target": "com.ovh.vrack#GetVrackServiceNameCloudProjectResponse"
+        "target": "com.ovh.vrack#ListVrackCloudProjectResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -748,7 +749,7 @@
         "smithy.api#documentation": "vrack for publicCloud project"
       }
     },
-    "com.ovh.vrack#PostVrackServiceNameCloudProjectRequest": {
+    "com.ovh.vrack#CreateVrackCloudProjectRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -859,10 +860,10 @@
         "smithy.api#documentation": "All states a vRack Task can be in"
       }
     },
-    "com.ovh.vrack#PostVrackServiceNameCloudProject": {
+    "com.ovh.vrack#CreateVrackCloudProject": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#PostVrackServiceNameCloudProjectRequest"
+        "target": "com.ovh.vrack#CreateVrackCloudProjectRequest"
       },
       "output": {
         "target": "com.ovh.vrack#VrackTask"
@@ -876,7 +877,7 @@
         "smithy.api#documentation": "add a publicCloud project to this vrack"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameCloudProjectProjectRequest": {
+    "com.ovh.vrack#GetVrackCloudProjectRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -920,10 +921,10 @@
         "smithy.api#documentation": "PublicCloud project in vrack"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameCloudProjectProject": {
+    "com.ovh.vrack#GetVrackCloudProject": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#GetVrackServiceNameCloudProjectProjectRequest"
+        "target": "com.ovh.vrack#GetVrackCloudProjectRequest"
       },
       "output": {
         "target": "com.ovh.vrack#VrackCloudProject"
@@ -937,7 +938,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.vrack#DeleteVrackServiceNameCloudProjectProjectRequest": {
+    "com.ovh.vrack#DeleteVrackCloudProjectRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -961,10 +962,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#DeleteVrackServiceNameCloudProjectProject": {
+    "com.ovh.vrack#DeleteVrackCloudProject": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#DeleteVrackServiceNameCloudProjectProjectRequest"
+        "target": "com.ovh.vrack#DeleteVrackCloudProjectRequest"
       },
       "output": {
         "target": "com.ovh.vrack#VrackTask"
@@ -1108,7 +1109,7 @@
         "smithy.api#documentation": "All reasons you can provide for a service termination"
       }
     },
-    "com.ovh.vrack#PostVrackServiceNameConfirmTerminationRequest": {
+    "com.ovh.vrack#ConfirmVrackTerminationRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1149,7 +1150,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#PostVrackServiceNameConfirmTerminationResponse": {
+    "com.ovh.vrack#ConfirmVrackTerminationResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -1164,13 +1165,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.vrack#PostVrackServiceNameConfirmTermination": {
+    "com.ovh.vrack#ConfirmVrackTermination": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#PostVrackServiceNameConfirmTerminationRequest"
+        "target": "com.ovh.vrack#ConfirmVrackTerminationRequest"
       },
       "output": {
-        "target": "com.ovh.vrack#PostVrackServiceNameConfirmTerminationResponse"
+        "target": "com.ovh.vrack#ConfirmVrackTerminationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1181,7 +1182,7 @@
         "smithy.api#documentation": "Confirm service termination"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameDedicatedCloudRequest": {
+    "com.ovh.vrack#ListVrackDedicatedCloudRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1197,18 +1198,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameDedicatedCloudResponseBodyList": {
+    "com.ovh.vrack#ListVrackDedicatedCloudResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.vrack#GetVrackServiceNameDedicatedCloudResponse": {
+    "com.ovh.vrack#ListVrackDedicatedCloudResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.vrack#GetVrackServiceNameDedicatedCloudResponseBodyList",
+          "target": "com.ovh.vrack#ListVrackDedicatedCloudResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1219,13 +1220,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameDedicatedCloud": {
+    "com.ovh.vrack#ListVrackDedicatedCloud": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#GetVrackServiceNameDedicatedCloudRequest"
+        "target": "com.ovh.vrack#ListVrackDedicatedCloudRequest"
       },
       "output": {
-        "target": "com.ovh.vrack#GetVrackServiceNameDedicatedCloudResponse"
+        "target": "com.ovh.vrack#ListVrackDedicatedCloudResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1236,7 +1237,7 @@
         "smithy.api#documentation": "vrack dedicated cloud (VmNetwork)"
       }
     },
-    "com.ovh.vrack#PostVrackServiceNameDedicatedCloudRequest": {
+    "com.ovh.vrack#CreateVrackDedicatedCloudRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1258,10 +1259,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#PostVrackServiceNameDedicatedCloud": {
+    "com.ovh.vrack#CreateVrackDedicatedCloud": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#PostVrackServiceNameDedicatedCloudRequest"
+        "target": "com.ovh.vrack#CreateVrackDedicatedCloudRequest"
       },
       "output": {
         "target": "com.ovh.vrack#VrackTask"
@@ -1275,7 +1276,7 @@
         "smithy.api#documentation": "Add VMware on OVHcloud to vRack"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameDedicatedCloudDedicatedCloudRequest": {
+    "com.ovh.vrack#GetVrackDedicatedCloudRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1326,10 +1327,10 @@
         "smithy.api#documentation": "VMware on OVHcloud vRack link"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameDedicatedCloudDedicatedCloud": {
+    "com.ovh.vrack#GetVrackDedicatedCloud": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#GetVrackServiceNameDedicatedCloudDedicatedCloudRequest"
+        "target": "com.ovh.vrack#GetVrackDedicatedCloudRequest"
       },
       "output": {
         "target": "com.ovh.vrack#VrackDedicatedCloud"
@@ -1343,7 +1344,7 @@
         "smithy.api#documentation": "Get vRack"
       }
     },
-    "com.ovh.vrack#DeleteVrackServiceNameDedicatedCloudDedicatedCloudRequest": {
+    "com.ovh.vrack#DeleteVrackDedicatedCloudRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1367,10 +1368,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#DeleteVrackServiceNameDedicatedCloudDedicatedCloud": {
+    "com.ovh.vrack#DeleteVrackDedicatedCloud": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#DeleteVrackServiceNameDedicatedCloudDedicatedCloudRequest"
+        "target": "com.ovh.vrack#DeleteVrackDedicatedCloudRequest"
       },
       "output": {
         "target": "com.ovh.vrack#VrackTask"
@@ -1384,7 +1385,7 @@
         "smithy.api#documentation": "Remove VMware on OVHcloud from vRack"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameDedicatedCloudDatacenterRequest": {
+    "com.ovh.vrack#ListVrackDedicatedCloudDatacenterRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1400,18 +1401,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameDedicatedCloudDatacenterResponseBodyList": {
+    "com.ovh.vrack#ListVrackDedicatedCloudDatacenterResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.vrack#GetVrackServiceNameDedicatedCloudDatacenterResponse": {
+    "com.ovh.vrack#ListVrackDedicatedCloudDatacenterResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.vrack#GetVrackServiceNameDedicatedCloudDatacenterResponseBodyList",
+          "target": "com.ovh.vrack#ListVrackDedicatedCloudDatacenterResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1422,13 +1423,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameDedicatedCloudDatacenter": {
+    "com.ovh.vrack#ListVrackDedicatedCloudDatacenter": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#GetVrackServiceNameDedicatedCloudDatacenterRequest"
+        "target": "com.ovh.vrack#ListVrackDedicatedCloudDatacenterRequest"
       },
       "output": {
-        "target": "com.ovh.vrack#GetVrackServiceNameDedicatedCloudDatacenterResponse"
+        "target": "com.ovh.vrack#ListVrackDedicatedCloudDatacenterResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1439,7 +1440,7 @@
         "smithy.api#documentation": "vrack dedicated cloud datacenter"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameDedicatedCloudDatacenterDatacenterRequest": {
+    "com.ovh.vrack#GetVrackDedicatedCloudDatacenterRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1489,10 +1490,10 @@
         "smithy.api#documentation": "vrack datacenter interface"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameDedicatedCloudDatacenterDatacenter": {
+    "com.ovh.vrack#GetVrackDedicatedCloudDatacenter": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#GetVrackServiceNameDedicatedCloudDatacenterDatacenterRequest"
+        "target": "com.ovh.vrack#GetVrackDedicatedCloudDatacenterRequest"
       },
       "output": {
         "target": "com.ovh.vrack#VrackPccDatacenter"
@@ -1506,7 +1507,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameDedicatedCloudDatacenterDatacenterAllowedVrackRequest": {
+    "com.ovh.vrack#ListVrackDedicatedCloudDatacenterAllowedVrackRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1530,18 +1531,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameDedicatedCloudDatacenterDatacenterAllowedVrackResponseBodyList": {
+    "com.ovh.vrack#ListVrackDedicatedCloudDatacenterAllowedVrackResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.vrack#GetVrackServiceNameDedicatedCloudDatacenterDatacenterAllowedVrackResponse": {
+    "com.ovh.vrack#ListVrackDedicatedCloudDatacenterAllowedVrackResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.vrack#GetVrackServiceNameDedicatedCloudDatacenterDatacenterAllowedVrackResponseBodyList",
+          "target": "com.ovh.vrack#ListVrackDedicatedCloudDatacenterAllowedVrackResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1552,13 +1553,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameDedicatedCloudDatacenterDatacenterAllowedVrack": {
+    "com.ovh.vrack#ListVrackDedicatedCloudDatacenterAllowedVrack": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#GetVrackServiceNameDedicatedCloudDatacenterDatacenterAllowedVrackRequest"
+        "target": "com.ovh.vrack#ListVrackDedicatedCloudDatacenterAllowedVrackRequest"
       },
       "output": {
-        "target": "com.ovh.vrack#GetVrackServiceNameDedicatedCloudDatacenterDatacenterAllowedVrackResponse"
+        "target": "com.ovh.vrack#ListVrackDedicatedCloudDatacenterAllowedVrackResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1569,7 +1570,7 @@
         "smithy.api#documentation": "Vracks allowed for your dedicatedCloud datacenter"
       }
     },
-    "com.ovh.vrack#PostVrackServiceNameDedicatedCloudDatacenterDatacenterMoveRequest": {
+    "com.ovh.vrack#MoveVrackDedicatedCloudDatacenterRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1600,10 +1601,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#PostVrackServiceNameDedicatedCloudDatacenterDatacenterMove": {
+    "com.ovh.vrack#MoveVrackDedicatedCloudDatacenter": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#PostVrackServiceNameDedicatedCloudDatacenterDatacenterMoveRequest"
+        "target": "com.ovh.vrack#MoveVrackDedicatedCloudDatacenterRequest"
       },
       "output": {
         "target": "com.ovh.vrack#VrackTask"
@@ -1617,7 +1618,7 @@
         "smithy.api#documentation": "Move your dedicatedCloud datacenter from a Vrack to another"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameDedicatedConnectRequest": {
+    "com.ovh.vrack#ListVrackDedicatedConnectRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1633,18 +1634,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameDedicatedConnectResponseBodyList": {
+    "com.ovh.vrack#ListVrackDedicatedConnectResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.vrack#GetVrackServiceNameDedicatedConnectResponse": {
+    "com.ovh.vrack#ListVrackDedicatedConnectResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.vrack#GetVrackServiceNameDedicatedConnectResponseBodyList",
+          "target": "com.ovh.vrack#ListVrackDedicatedConnectResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1655,13 +1656,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameDedicatedConnect": {
+    "com.ovh.vrack#ListVrackDedicatedConnect": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#GetVrackServiceNameDedicatedConnectRequest"
+        "target": "com.ovh.vrack#ListVrackDedicatedConnectRequest"
       },
       "output": {
-        "target": "com.ovh.vrack#GetVrackServiceNameDedicatedConnectResponse"
+        "target": "com.ovh.vrack#ListVrackDedicatedConnectResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1672,7 +1673,7 @@
         "smithy.api#documentation": "vrack dedicated connect"
       }
     },
-    "com.ovh.vrack#PostVrackServiceNameDedicatedConnectRequest": {
+    "com.ovh.vrack#CreateVrackDedicatedConnectRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1709,10 +1710,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#PostVrackServiceNameDedicatedConnect": {
+    "com.ovh.vrack#CreateVrackDedicatedConnect": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#PostVrackServiceNameDedicatedConnectRequest"
+        "target": "com.ovh.vrack#CreateVrackDedicatedConnectRequest"
       },
       "output": {
         "target": "com.ovh.vrack#VrackTask"
@@ -1726,7 +1727,7 @@
         "smithy.api#documentation": "add a dedicatedConnect link to this vrack"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameDedicatedConnectNameRequest": {
+    "com.ovh.vrack#GetVrackDedicatedConnectRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1764,10 +1765,10 @@
         "smithy.api#documentation": "vrack dedicated connect interface"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameDedicatedConnectName": {
+    "com.ovh.vrack#GetVrackDedicatedConnect": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#GetVrackServiceNameDedicatedConnectNameRequest"
+        "target": "com.ovh.vrack#GetVrackDedicatedConnectRequest"
       },
       "output": {
         "target": "com.ovh.vrack#VrackDedicatedConnect"
@@ -1781,7 +1782,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.vrack#PutVrackServiceNameDedicatedConnectNameRequest": {
+    "com.ovh.vrack#PutVrackDedicatedConnectRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1805,10 +1806,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#PutVrackServiceNameDedicatedConnectName": {
+    "com.ovh.vrack#PutVrackDedicatedConnect": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#PutVrackServiceNameDedicatedConnectNameRequest"
+        "target": "com.ovh.vrack#PutVrackDedicatedConnectRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1822,7 +1823,7 @@
         "smithy.api#documentation": "Alter this object properties"
       }
     },
-    "com.ovh.vrack#DeleteVrackServiceNameDedicatedConnectNameRequest": {
+    "com.ovh.vrack#DeleteVrackDedicatedConnectRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1846,10 +1847,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#DeleteVrackServiceNameDedicatedConnectName": {
+    "com.ovh.vrack#DeleteVrackDedicatedConnect": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#DeleteVrackServiceNameDedicatedConnectNameRequest"
+        "target": "com.ovh.vrack#DeleteVrackDedicatedConnectRequest"
       },
       "output": {
         "target": "com.ovh.vrack#VrackTask"
@@ -1863,7 +1864,7 @@
         "smithy.api#documentation": "remove this a dedicatedConnect link from this vrack"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameDedicatedServerRequest": {
+    "com.ovh.vrack#ListVrackDedicatedServerRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1879,18 +1880,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameDedicatedServerResponseBodyList": {
+    "com.ovh.vrack#ListVrackDedicatedServerResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.vrack#GetVrackServiceNameDedicatedServerResponse": {
+    "com.ovh.vrack#ListVrackDedicatedServerResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.vrack#GetVrackServiceNameDedicatedServerResponseBodyList",
+          "target": "com.ovh.vrack#ListVrackDedicatedServerResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1901,13 +1902,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameDedicatedServer": {
+    "com.ovh.vrack#ListVrackDedicatedServer": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#GetVrackServiceNameDedicatedServerRequest"
+        "target": "com.ovh.vrack#ListVrackDedicatedServerRequest"
       },
       "output": {
-        "target": "com.ovh.vrack#GetVrackServiceNameDedicatedServerResponse"
+        "target": "com.ovh.vrack#ListVrackDedicatedServerResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1918,7 +1919,7 @@
         "smithy.api#documentation": "vrack for dedicated server"
       }
     },
-    "com.ovh.vrack#PostVrackServiceNameDedicatedServerRequest": {
+    "com.ovh.vrack#CreateVrackDedicatedServerRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1941,10 +1942,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#PostVrackServiceNameDedicatedServer": {
+    "com.ovh.vrack#CreateVrackDedicatedServer": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#PostVrackServiceNameDedicatedServerRequest"
+        "target": "com.ovh.vrack#CreateVrackDedicatedServerRequest"
       },
       "output": {
         "target": "com.ovh.vrack#VrackTask"
@@ -1958,7 +1959,7 @@
         "smithy.api#documentation": "add a dedicated server to this vrack (LEGACY)"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameDedicatedServerDedicatedServerRequest": {
+    "com.ovh.vrack#GetVrackDedicatedServerRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2002,10 +2003,10 @@
         "smithy.api#documentation": "vrack dedicated server interfaces (LEGACY)"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameDedicatedServerDedicatedServer": {
+    "com.ovh.vrack#GetVrackDedicatedServer": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#GetVrackServiceNameDedicatedServerDedicatedServerRequest"
+        "target": "com.ovh.vrack#GetVrackDedicatedServerRequest"
       },
       "output": {
         "target": "com.ovh.vrack#VrackDedicatedServer"
@@ -2019,7 +2020,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.vrack#DeleteVrackServiceNameDedicatedServerDedicatedServerRequest": {
+    "com.ovh.vrack#DeleteVrackDedicatedServerRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2043,10 +2044,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#DeleteVrackServiceNameDedicatedServerDedicatedServer": {
+    "com.ovh.vrack#DeleteVrackDedicatedServer": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#DeleteVrackServiceNameDedicatedServerDedicatedServerRequest"
+        "target": "com.ovh.vrack#DeleteVrackDedicatedServerRequest"
       },
       "output": {
         "target": "com.ovh.vrack#VrackTask"
@@ -2060,7 +2061,7 @@
         "smithy.api#documentation": "remove this server from this vrack (LEGACY)"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameDedicatedServerInterfaceRequest": {
+    "com.ovh.vrack#ListVrackDedicatedServerInterfaceRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2076,18 +2077,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameDedicatedServerInterfaceResponseBodyList": {
+    "com.ovh.vrack#ListVrackDedicatedServerInterfaceResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.vrack#GetVrackServiceNameDedicatedServerInterfaceResponse": {
+    "com.ovh.vrack#ListVrackDedicatedServerInterfaceResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.vrack#GetVrackServiceNameDedicatedServerInterfaceResponseBodyList",
+          "target": "com.ovh.vrack#ListVrackDedicatedServerInterfaceResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -2098,13 +2099,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameDedicatedServerInterface": {
+    "com.ovh.vrack#ListVrackDedicatedServerInterface": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#GetVrackServiceNameDedicatedServerInterfaceRequest"
+        "target": "com.ovh.vrack#ListVrackDedicatedServerInterfaceRequest"
       },
       "output": {
-        "target": "com.ovh.vrack#GetVrackServiceNameDedicatedServerInterfaceResponse"
+        "target": "com.ovh.vrack#ListVrackDedicatedServerInterfaceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2115,7 +2116,7 @@
         "smithy.api#documentation": "vrack for dedicated server interface"
       }
     },
-    "com.ovh.vrack#PostVrackServiceNameDedicatedServerInterfaceRequest": {
+    "com.ovh.vrack#CreateVrackDedicatedServerInterfaceRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2138,10 +2139,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#PostVrackServiceNameDedicatedServerInterface": {
+    "com.ovh.vrack#CreateVrackDedicatedServerInterface": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#PostVrackServiceNameDedicatedServerInterfaceRequest"
+        "target": "com.ovh.vrack#CreateVrackDedicatedServerInterfaceRequest"
       },
       "output": {
         "target": "com.ovh.vrack#VrackTask"
@@ -2155,7 +2156,7 @@
         "smithy.api#documentation": "add a dedicated server interface to this vrack"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameDedicatedServerInterfaceDedicatedServerInterfaceRequest": {
+    "com.ovh.vrack#GetVrackDedicatedServerInterfaceRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2199,10 +2200,10 @@
         "smithy.api#documentation": "vrack dedicated server interfaces"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameDedicatedServerInterfaceDedicatedServerInterface": {
+    "com.ovh.vrack#GetVrackDedicatedServerInterface": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#GetVrackServiceNameDedicatedServerInterfaceDedicatedServerInterfaceRequest"
+        "target": "com.ovh.vrack#GetVrackDedicatedServerInterfaceRequest"
       },
       "output": {
         "target": "com.ovh.vrack#VrackDedicatedServerInterface"
@@ -2216,7 +2217,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.vrack#DeleteVrackServiceNameDedicatedServerInterfaceDedicatedServerInterfaceRequest": {
+    "com.ovh.vrack#DeleteVrackDedicatedServerInterfaceRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2240,10 +2241,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#DeleteVrackServiceNameDedicatedServerInterfaceDedicatedServerInterface": {
+    "com.ovh.vrack#DeleteVrackDedicatedServerInterface": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#DeleteVrackServiceNameDedicatedServerInterfaceDedicatedServerInterfaceRequest"
+        "target": "com.ovh.vrack#DeleteVrackDedicatedServerInterfaceRequest"
       },
       "output": {
         "target": "com.ovh.vrack#VrackTask"
@@ -2257,7 +2258,7 @@
         "smithy.api#documentation": "remove this server interface from this vrack"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameDedicatedServerInterfaceDetailsRequest": {
+    "com.ovh.vrack#ListVrackDedicatedServerInterfaceDetailsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2273,18 +2274,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameDedicatedServerInterfaceDetailsResponseBodyList": {
+    "com.ovh.vrack#ListVrackDedicatedServerInterfaceDetailsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.vrack#VrackAllowedDedicatedServerInterfaces"
       },
       "traits": {}
     },
-    "com.ovh.vrack#GetVrackServiceNameDedicatedServerInterfaceDetailsResponse": {
+    "com.ovh.vrack#ListVrackDedicatedServerInterfaceDetailsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.vrack#GetVrackServiceNameDedicatedServerInterfaceDetailsResponseBodyList",
+          "target": "com.ovh.vrack#ListVrackDedicatedServerInterfaceDetailsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -2295,13 +2296,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameDedicatedServerInterfaceDetails": {
+    "com.ovh.vrack#ListVrackDedicatedServerInterfaceDetails": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#GetVrackServiceNameDedicatedServerInterfaceDetailsRequest"
+        "target": "com.ovh.vrack#ListVrackDedicatedServerInterfaceDetailsRequest"
       },
       "output": {
-        "target": "com.ovh.vrack#GetVrackServiceNameDedicatedServerInterfaceDetailsResponse"
+        "target": "com.ovh.vrack#ListVrackDedicatedServerInterfaceDetailsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2312,7 +2313,7 @@
         "smithy.api#documentation": "Details for all dedicated server interfaces in this vrack"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameEligibleServicesRequest": {
+    "com.ovh.vrack#ListVrackEligibleServicesRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2611,10 +2612,10 @@
         "smithy.api#documentation": "List of the vrackServices allowed to be connected to this vRack"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameEligibleServices": {
+    "com.ovh.vrack#ListVrackEligibleServices": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#GetVrackServiceNameEligibleServicesRequest"
+        "target": "com.ovh.vrack#ListVrackEligibleServicesRequest"
       },
       "output": {
         "target": "com.ovh.vrack#VrackEligibleServicesResponse"
@@ -2628,7 +2629,7 @@
         "smithy.api#documentation": "List all eligible services for this vRack asynchronously\n\nThis route allows asynchronous service eligibility requests. It means the route can be called several times until all the eligible services are returned.\n\nWhile the `status` is set to `pending` the results are partial.\n\nOnce the `status` is set to `done`, all the eligible services have been found.\n\nIn the eventuality of errors getting specific service types, the errors will be listed in the `errors` field."
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameIpRequest": {
+    "com.ovh.vrack#ListVrackIpRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2644,18 +2645,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameIpResponseBodyList": {
+    "com.ovh.vrack#ListVrackIpResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.vrack#GetVrackServiceNameIpResponse": {
+    "com.ovh.vrack#ListVrackIpResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.vrack#GetVrackServiceNameIpResponseBodyList",
+          "target": "com.ovh.vrack#ListVrackIpResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -2666,13 +2667,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameIp": {
+    "com.ovh.vrack#ListVrackIp": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#GetVrackServiceNameIpRequest"
+        "target": "com.ovh.vrack#ListVrackIpRequest"
       },
       "output": {
-        "target": "com.ovh.vrack#GetVrackServiceNameIpResponse"
+        "target": "com.ovh.vrack#ListVrackIpResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2683,7 +2684,7 @@
         "smithy.api#documentation": "vrack for IP blocks"
       }
     },
-    "com.ovh.vrack#PostVrackServiceNameIpRequest": {
+    "com.ovh.vrack#CreateVrackIpRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2712,10 +2713,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#PostVrackServiceNameIp": {
+    "com.ovh.vrack#CreateVrackIp": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#PostVrackServiceNameIpRequest"
+        "target": "com.ovh.vrack#CreateVrackIpRequest"
       },
       "output": {
         "target": "com.ovh.vrack#VrackTask"
@@ -2729,7 +2730,7 @@
         "smithy.api#documentation": "add an IP block to this vrack"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameIpIpRequest": {
+    "com.ovh.vrack#GetVrackIpRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2880,10 +2881,10 @@
         "smithy.api#documentation": "Possible values for vrack zone"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameIpIp": {
+    "com.ovh.vrack#GetVrackIp": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#GetVrackServiceNameIpIpRequest"
+        "target": "com.ovh.vrack#GetVrackIpRequest"
       },
       "output": {
         "target": "com.ovh.vrack#VrackIp"
@@ -2897,7 +2898,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.vrack#DeleteVrackServiceNameIpIpRequest": {
+    "com.ovh.vrack#DeleteVrackIpRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2921,10 +2922,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#DeleteVrackServiceNameIpIp": {
+    "com.ovh.vrack#DeleteVrackIp": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#DeleteVrackServiceNameIpIpRequest"
+        "target": "com.ovh.vrack#DeleteVrackIpRequest"
       },
       "output": {
         "target": "com.ovh.vrack#VrackTask"
@@ -2938,7 +2939,7 @@
         "smithy.api#documentation": "remove this IP block from this vrack"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameIpLoadbalancingRequest": {
+    "com.ovh.vrack#ListVrackIpLoadbalancingRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2954,18 +2955,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameIpLoadbalancingResponseBodyList": {
+    "com.ovh.vrack#ListVrackIpLoadbalancingResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.vrack#GetVrackServiceNameIpLoadbalancingResponse": {
+    "com.ovh.vrack#ListVrackIpLoadbalancingResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.vrack#GetVrackServiceNameIpLoadbalancingResponseBodyList",
+          "target": "com.ovh.vrack#ListVrackIpLoadbalancingResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -2976,13 +2977,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameIpLoadbalancing": {
+    "com.ovh.vrack#ListVrackIpLoadbalancing": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#GetVrackServiceNameIpLoadbalancingRequest"
+        "target": "com.ovh.vrack#ListVrackIpLoadbalancingRequest"
       },
       "output": {
-        "target": "com.ovh.vrack#GetVrackServiceNameIpLoadbalancingResponse"
+        "target": "com.ovh.vrack#ListVrackIpLoadbalancingResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2993,7 +2994,7 @@
         "smithy.api#documentation": "vrack for ipLoadbalancing"
       }
     },
-    "com.ovh.vrack#PostVrackServiceNameIpLoadbalancingRequest": {
+    "com.ovh.vrack#CreateVrackIpLoadbalancingRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3016,10 +3017,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#PostVrackServiceNameIpLoadbalancing": {
+    "com.ovh.vrack#CreateVrackIpLoadbalancing": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#PostVrackServiceNameIpLoadbalancingRequest"
+        "target": "com.ovh.vrack#CreateVrackIpLoadbalancingRequest"
       },
       "output": {
         "target": "com.ovh.vrack#VrackTask"
@@ -3033,7 +3034,7 @@
         "smithy.api#documentation": "add an ipLoadbalancing to this vrack"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameIpLoadbalancingIpLoadbalancingRequest": {
+    "com.ovh.vrack#GetVrackIpLoadbalancingRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3077,10 +3078,10 @@
         "smithy.api#documentation": "ipLoadbalancing in vrack"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameIpLoadbalancingIpLoadbalancing": {
+    "com.ovh.vrack#GetVrackIpLoadbalancing": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#GetVrackServiceNameIpLoadbalancingIpLoadbalancingRequest"
+        "target": "com.ovh.vrack#GetVrackIpLoadbalancingRequest"
       },
       "output": {
         "target": "com.ovh.vrack#VrackIplb"
@@ -3094,7 +3095,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.vrack#DeleteVrackServiceNameIpLoadbalancingIpLoadbalancingRequest": {
+    "com.ovh.vrack#DeleteVrackIpLoadbalancingRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3118,10 +3119,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#DeleteVrackServiceNameIpLoadbalancingIpLoadbalancing": {
+    "com.ovh.vrack#DeleteVrackIpLoadbalancing": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#DeleteVrackServiceNameIpLoadbalancingIpLoadbalancingRequest"
+        "target": "com.ovh.vrack#DeleteVrackIpLoadbalancingRequest"
       },
       "output": {
         "target": "com.ovh.vrack#VrackTask"
@@ -3135,7 +3136,7 @@
         "smithy.api#documentation": "remove this ipLoadbalancing from this vrack"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameIpv6Request": {
+    "com.ovh.vrack#ListVrackIpv6Request": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3151,18 +3152,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameIpv6ResponseBodyList": {
+    "com.ovh.vrack#ListVrackIpv6ResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.vrack#GetVrackServiceNameIpv6Response": {
+    "com.ovh.vrack#ListVrackIpv6Response": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.vrack#GetVrackServiceNameIpv6ResponseBodyList",
+          "target": "com.ovh.vrack#ListVrackIpv6ResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -3173,13 +3174,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameIpv6": {
+    "com.ovh.vrack#ListVrackIpv6": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#GetVrackServiceNameIpv6Request"
+        "target": "com.ovh.vrack#ListVrackIpv6Request"
       },
       "output": {
-        "target": "com.ovh.vrack#GetVrackServiceNameIpv6Response"
+        "target": "com.ovh.vrack#ListVrackIpv6Response"
       },
       "traits": {
         "smithy.api#http": {
@@ -3190,7 +3191,7 @@
         "smithy.api#documentation": "vrack for IP v6 blocks"
       }
     },
-    "com.ovh.vrack#PostVrackServiceNameIpv6Request": {
+    "com.ovh.vrack#CreateVrackIpv6Request": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3213,10 +3214,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#PostVrackServiceNameIpv6": {
+    "com.ovh.vrack#CreateVrackIpv6": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#PostVrackServiceNameIpv6Request"
+        "target": "com.ovh.vrack#CreateVrackIpv6Request"
       },
       "output": {
         "target": "com.ovh.vrack#VrackTask"
@@ -3230,7 +3231,7 @@
         "smithy.api#documentation": "add an IP v6 block to this vrack"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameIpv6Ipv6Request": {
+    "com.ovh.vrack#GetVrackIpv6Request": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3275,10 +3276,10 @@
         "smithy.api#documentation": "IP v6 block in vrack"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameIpv6Ipv6": {
+    "com.ovh.vrack#GetVrackIpv6": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#GetVrackServiceNameIpv6Ipv6Request"
+        "target": "com.ovh.vrack#GetVrackIpv6Request"
       },
       "output": {
         "target": "com.ovh.vrack#VrackIpv6"
@@ -3292,7 +3293,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.vrack#DeleteVrackServiceNameIpv6Ipv6Request": {
+    "com.ovh.vrack#DeleteVrackIpv6Request": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3316,10 +3317,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#DeleteVrackServiceNameIpv6Ipv6": {
+    "com.ovh.vrack#DeleteVrackIpv6": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#DeleteVrackServiceNameIpv6Ipv6Request"
+        "target": "com.ovh.vrack#DeleteVrackIpv6Request"
       },
       "output": {
         "target": "com.ovh.vrack#VrackTask"
@@ -3333,7 +3334,7 @@
         "smithy.api#documentation": "remove this IP v6 block from this vrack"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameIpv6Ipv6BridgedSubrangeRequest": {
+    "com.ovh.vrack#ListVrackIpv6BridgedSubrangeRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3357,18 +3358,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameIpv6Ipv6BridgedSubrangeResponseBodyList": {
+    "com.ovh.vrack#ListVrackIpv6BridgedSubrangeResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.vrack#GetVrackServiceNameIpv6Ipv6BridgedSubrangeResponse": {
+    "com.ovh.vrack#ListVrackIpv6BridgedSubrangeResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.vrack#GetVrackServiceNameIpv6Ipv6BridgedSubrangeResponseBodyList",
+          "target": "com.ovh.vrack#ListVrackIpv6BridgedSubrangeResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -3379,13 +3380,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameIpv6Ipv6BridgedSubrange": {
+    "com.ovh.vrack#ListVrackIpv6BridgedSubrange": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#GetVrackServiceNameIpv6Ipv6BridgedSubrangeRequest"
+        "target": "com.ovh.vrack#ListVrackIpv6BridgedSubrangeRequest"
       },
       "output": {
-        "target": "com.ovh.vrack#GetVrackServiceNameIpv6Ipv6BridgedSubrangeResponse"
+        "target": "com.ovh.vrack#ListVrackIpv6BridgedSubrangeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3396,7 +3397,7 @@
         "smithy.api#documentation": "subrange bridged into your vrack"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameIpv6Ipv6BridgedSubrangeBridgedSubrangeRequest": {
+    "com.ovh.vrack#GetVrackIpv6BridgedSubrangeRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3474,10 +3475,10 @@
         "smithy.api#documentation": "Possible values for slaac"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameIpv6Ipv6BridgedSubrangeBridgedSubrange": {
+    "com.ovh.vrack#GetVrackIpv6BridgedSubrange": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#GetVrackServiceNameIpv6Ipv6BridgedSubrangeBridgedSubrangeRequest"
+        "target": "com.ovh.vrack#GetVrackIpv6BridgedSubrangeRequest"
       },
       "output": {
         "target": "com.ovh.vrack#VrackBridgedSubrange"
@@ -3491,7 +3492,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.vrack#PutVrackServiceNameIpv6Ipv6BridgedSubrangeBridgedSubrangeRequest": {
+    "com.ovh.vrack#PutVrackIpv6BridgedSubrangeRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3529,10 +3530,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#PutVrackServiceNameIpv6Ipv6BridgedSubrangeBridgedSubrange": {
+    "com.ovh.vrack#PutVrackIpv6BridgedSubrange": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#PutVrackServiceNameIpv6Ipv6BridgedSubrangeBridgedSubrangeRequest"
+        "target": "com.ovh.vrack#PutVrackIpv6BridgedSubrangeRequest"
       },
       "output": {
         "target": "com.ovh.vrack#VrackTask"
@@ -3546,7 +3547,7 @@
         "smithy.api#documentation": "Update Slaac status"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameIpv6Ipv6RoutedSubrangeRequest": {
+    "com.ovh.vrack#ListVrackIpv6RoutedSubrangeRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3570,18 +3571,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameIpv6Ipv6RoutedSubrangeResponseBodyList": {
+    "com.ovh.vrack#ListVrackIpv6RoutedSubrangeResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.vrack#GetVrackServiceNameIpv6Ipv6RoutedSubrangeResponse": {
+    "com.ovh.vrack#ListVrackIpv6RoutedSubrangeResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.vrack#GetVrackServiceNameIpv6Ipv6RoutedSubrangeResponseBodyList",
+          "target": "com.ovh.vrack#ListVrackIpv6RoutedSubrangeResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -3592,13 +3593,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameIpv6Ipv6RoutedSubrange": {
+    "com.ovh.vrack#ListVrackIpv6RoutedSubrange": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#GetVrackServiceNameIpv6Ipv6RoutedSubrangeRequest"
+        "target": "com.ovh.vrack#ListVrackIpv6RoutedSubrangeRequest"
       },
       "output": {
-        "target": "com.ovh.vrack#GetVrackServiceNameIpv6Ipv6RoutedSubrangeResponse"
+        "target": "com.ovh.vrack#ListVrackIpv6RoutedSubrangeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3609,7 +3610,7 @@
         "smithy.api#documentation": "subrange routed into your vrack"
       }
     },
-    "com.ovh.vrack#PostVrackServiceNameIpv6Ipv6RoutedSubrangeRequest": {
+    "com.ovh.vrack#CreateVrackIpv6RoutedSubrangeRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3647,10 +3648,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#PostVrackServiceNameIpv6Ipv6RoutedSubrange": {
+    "com.ovh.vrack#CreateVrackIpv6RoutedSubrange": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#PostVrackServiceNameIpv6Ipv6RoutedSubrangeRequest"
+        "target": "com.ovh.vrack#CreateVrackIpv6RoutedSubrangeRequest"
       },
       "output": {
         "target": "com.ovh.vrack#VrackTask"
@@ -3664,7 +3665,7 @@
         "smithy.api#documentation": "route a subrange of your IP v6 block into your vrack"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameIpv6Ipv6RoutedSubrangeRoutedSubrangeRequest": {
+    "com.ovh.vrack#GetVrackIpv6RoutedSubrangeRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3716,10 +3717,10 @@
         "smithy.api#documentation": "Routed subranges within your IP v6 block"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameIpv6Ipv6RoutedSubrangeRoutedSubrange": {
+    "com.ovh.vrack#GetVrackIpv6RoutedSubrange": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#GetVrackServiceNameIpv6Ipv6RoutedSubrangeRoutedSubrangeRequest"
+        "target": "com.ovh.vrack#GetVrackIpv6RoutedSubrangeRequest"
       },
       "output": {
         "target": "com.ovh.vrack#VrackRoutedSubrange"
@@ -3733,7 +3734,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.vrack#DeleteVrackServiceNameIpv6Ipv6RoutedSubrangeRoutedSubrangeRequest": {
+    "com.ovh.vrack#DeleteVrackIpv6RoutedSubrangeRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3765,10 +3766,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#DeleteVrackServiceNameIpv6Ipv6RoutedSubrangeRoutedSubrange": {
+    "com.ovh.vrack#DeleteVrackIpv6RoutedSubrange": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#DeleteVrackServiceNameIpv6Ipv6RoutedSubrangeRoutedSubrangeRequest"
+        "target": "com.ovh.vrack#DeleteVrackIpv6RoutedSubrangeRequest"
       },
       "output": {
         "target": "com.ovh.vrack#VrackTask"
@@ -3782,7 +3783,7 @@
         "smithy.api#documentation": "unroute subrange from your vrack"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameLegacyVrackRequest": {
+    "com.ovh.vrack#ListVrackLegacyVrackRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3798,18 +3799,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameLegacyVrackResponseBodyList": {
+    "com.ovh.vrack#ListVrackLegacyVrackResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.vrack#GetVrackServiceNameLegacyVrackResponse": {
+    "com.ovh.vrack#ListVrackLegacyVrackResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.vrack#GetVrackServiceNameLegacyVrackResponseBodyList",
+          "target": "com.ovh.vrack#ListVrackLegacyVrackResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -3820,13 +3821,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameLegacyVrack": {
+    "com.ovh.vrack#ListVrackLegacyVrack": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#GetVrackServiceNameLegacyVrackRequest"
+        "target": "com.ovh.vrack#ListVrackLegacyVrackRequest"
       },
       "output": {
-        "target": "com.ovh.vrack#GetVrackServiceNameLegacyVrackResponse"
+        "target": "com.ovh.vrack#ListVrackLegacyVrackResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3837,7 +3838,7 @@
         "smithy.api#documentation": "vrack for legacy vrack"
       }
     },
-    "com.ovh.vrack#PostVrackServiceNameLegacyVrackRequest": {
+    "com.ovh.vrack#CreateVrackLegacyVrackRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3859,10 +3860,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#PostVrackServiceNameLegacyVrack": {
+    "com.ovh.vrack#CreateVrackLegacyVrack": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#PostVrackServiceNameLegacyVrackRequest"
+        "target": "com.ovh.vrack#CreateVrackLegacyVrackRequest"
       },
       "output": {
         "target": "com.ovh.vrack#VrackTask"
@@ -3876,7 +3877,7 @@
         "smithy.api#documentation": "add a legacy vrack (vrackXXXX) to this vrack (pn-XXXX)"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameLegacyVrackLegacyVrackRequest": {
+    "com.ovh.vrack#GetVrackLegacyVrackRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3920,10 +3921,10 @@
         "smithy.api#documentation": "interface between legacy vrack (vrackXXXX) and vrack (pn-XXXX)"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameLegacyVrackLegacyVrack": {
+    "com.ovh.vrack#GetVrackLegacyVrack": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#GetVrackServiceNameLegacyVrackLegacyVrackRequest"
+        "target": "com.ovh.vrack#GetVrackLegacyVrackRequest"
       },
       "output": {
         "target": "com.ovh.vrack#VrackLegacyVrack"
@@ -3937,7 +3938,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.vrack#DeleteVrackServiceNameLegacyVrackLegacyVrackRequest": {
+    "com.ovh.vrack#DeleteVrackLegacyVrackRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3961,10 +3962,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#DeleteVrackServiceNameLegacyVrackLegacyVrack": {
+    "com.ovh.vrack#DeleteVrackLegacyVrack": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#DeleteVrackServiceNameLegacyVrackLegacyVrackRequest"
+        "target": "com.ovh.vrack#DeleteVrackLegacyVrackRequest"
       },
       "output": {
         "target": "com.ovh.vrack#VrackTask"
@@ -3978,7 +3979,7 @@
         "smithy.api#documentation": "remove this legacy vrack (vrackXXXX) from this vrack (pn-XXXX)"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameOvhCloudConnectRequest": {
+    "com.ovh.vrack#ListVrackOvhCloudConnectRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3994,18 +3995,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameOvhCloudConnectResponseBodyList": {
+    "com.ovh.vrack#ListVrackOvhCloudConnectResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.vrack#GetVrackServiceNameOvhCloudConnectResponse": {
+    "com.ovh.vrack#ListVrackOvhCloudConnectResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.vrack#GetVrackServiceNameOvhCloudConnectResponseBodyList",
+          "target": "com.ovh.vrack#ListVrackOvhCloudConnectResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -4016,13 +4017,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameOvhCloudConnect": {
+    "com.ovh.vrack#ListVrackOvhCloudConnect": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#GetVrackServiceNameOvhCloudConnectRequest"
+        "target": "com.ovh.vrack#ListVrackOvhCloudConnectRequest"
       },
       "output": {
-        "target": "com.ovh.vrack#GetVrackServiceNameOvhCloudConnectResponse"
+        "target": "com.ovh.vrack#ListVrackOvhCloudConnectResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4033,7 +4034,7 @@
         "smithy.api#documentation": "vrack for ovhCloudConnect"
       }
     },
-    "com.ovh.vrack#PostVrackServiceNameOvhCloudConnectRequest": {
+    "com.ovh.vrack#CreateVrackOvhCloudConnectRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4056,10 +4057,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#PostVrackServiceNameOvhCloudConnect": {
+    "com.ovh.vrack#CreateVrackOvhCloudConnect": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#PostVrackServiceNameOvhCloudConnectRequest"
+        "target": "com.ovh.vrack#CreateVrackOvhCloudConnectRequest"
       },
       "output": {
         "target": "com.ovh.vrack#VrackTask"
@@ -4073,7 +4074,7 @@
         "smithy.api#documentation": "Add an ovhCloudConnect to the vrack"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameOvhCloudConnectOvhCloudConnectRequest": {
+    "com.ovh.vrack#GetVrackOvhCloudConnectRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4117,10 +4118,10 @@
         "smithy.api#documentation": "ovhCloudConnect in vrack"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameOvhCloudConnectOvhCloudConnect": {
+    "com.ovh.vrack#GetVrackOvhCloudConnect": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#GetVrackServiceNameOvhCloudConnectOvhCloudConnectRequest"
+        "target": "com.ovh.vrack#GetVrackOvhCloudConnectRequest"
       },
       "output": {
         "target": "com.ovh.vrack#VrackOvhCloudConnect"
@@ -4134,7 +4135,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.vrack#DeleteVrackServiceNameOvhCloudConnectOvhCloudConnectRequest": {
+    "com.ovh.vrack#DeleteVrackOvhCloudConnectRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4158,10 +4159,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#DeleteVrackServiceNameOvhCloudConnectOvhCloudConnect": {
+    "com.ovh.vrack#DeleteVrackOvhCloudConnect": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#DeleteVrackServiceNameOvhCloudConnectOvhCloudConnectRequest"
+        "target": "com.ovh.vrack#DeleteVrackOvhCloudConnectRequest"
       },
       "output": {
         "target": "com.ovh.vrack#VrackTask"
@@ -4175,7 +4176,7 @@
         "smithy.api#documentation": "Remove the ovhCloudConnect from the vrack"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNamePublicRoutingOptionRequest": {
+    "com.ovh.vrack#GetVrackPublicRoutingOptionRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4206,10 +4207,10 @@
         "smithy.api#documentation": "A structure describing the public routing option"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNamePublicRoutingOption": {
+    "com.ovh.vrack#GetVrackPublicRoutingOption": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#GetVrackServiceNamePublicRoutingOptionRequest"
+        "target": "com.ovh.vrack#GetVrackPublicRoutingOptionRequest"
       },
       "output": {
         "target": "com.ovh.vrack#VrackPublicRoutingOption"
@@ -4223,7 +4224,7 @@
         "smithy.api#documentation": "Information on public routing option"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameServiceInfosRequest": {
+    "com.ovh.vrack#GetVrackServiceInfosRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4310,10 +4311,10 @@
       },
       "traits": {}
     },
-    "com.ovh.vrack#GetVrackServiceNameServiceInfos": {
+    "com.ovh.vrack#GetVrackServiceInfos": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#GetVrackServiceNameServiceInfosRequest"
+        "target": "com.ovh.vrack#GetVrackServiceInfosRequest"
       },
       "output": {
         "target": "com.ovh.vrack#ServicesNonExpiringService"
@@ -4327,7 +4328,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameTaskRequest": {
+    "com.ovh.vrack#ListVrackTaskRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4343,18 +4344,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameTaskResponseBodyList": {
+    "com.ovh.vrack#ListVrackTaskResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.vrack#GetVrackServiceNameTaskResponse": {
+    "com.ovh.vrack#ListVrackTaskResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.vrack#GetVrackServiceNameTaskResponseBodyList",
+          "target": "com.ovh.vrack#ListVrackTaskResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -4365,13 +4366,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameTask": {
+    "com.ovh.vrack#ListVrackTask": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#GetVrackServiceNameTaskRequest"
+        "target": "com.ovh.vrack#ListVrackTaskRequest"
       },
       "output": {
-        "target": "com.ovh.vrack#GetVrackServiceNameTaskResponse"
+        "target": "com.ovh.vrack#ListVrackTaskResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4382,7 +4383,7 @@
         "smithy.api#documentation": "vrack tasks"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameTaskTaskIdRequest": {
+    "com.ovh.vrack#GetVrackTaskRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4405,10 +4406,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameTaskTaskId": {
+    "com.ovh.vrack#GetVrackTask": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#GetVrackServiceNameTaskTaskIdRequest"
+        "target": "com.ovh.vrack#GetVrackTaskRequest"
       },
       "output": {
         "target": "com.ovh.vrack#VrackTask"
@@ -4422,7 +4423,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.vrack#PostVrackServiceNameTerminateRequest": {
+    "com.ovh.vrack#TerminateVrackRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4438,7 +4439,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#PostVrackServiceNameTerminateResponse": {
+    "com.ovh.vrack#TerminateVrackResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -4453,13 +4454,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.vrack#PostVrackServiceNameTerminate": {
+    "com.ovh.vrack#TerminateVrack": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#PostVrackServiceNameTerminateRequest"
+        "target": "com.ovh.vrack#TerminateVrackRequest"
       },
       "output": {
-        "target": "com.ovh.vrack#PostVrackServiceNameTerminateResponse"
+        "target": "com.ovh.vrack#TerminateVrackResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4470,7 +4471,7 @@
         "smithy.api#documentation": "Ask for the termination of your service\n\nAsk for the termination of your service. Admin contact of this service will receive a termination token by email in order to confirm its termination with /confirmTermination endpoint."
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameVmwareCloudDirectorVirtualDataCenterRequest": {
+    "com.ovh.vrack#ListVrackVmwareCloudDirectorVirtualDataCenterRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4486,18 +4487,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameVmwareCloudDirectorVirtualDataCenterResponseBodyList": {
+    "com.ovh.vrack#ListVrackVmwareCloudDirectorVirtualDataCenterResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.vrack#GetVrackServiceNameVmwareCloudDirectorVirtualDataCenterResponse": {
+    "com.ovh.vrack#ListVrackVmwareCloudDirectorVirtualDataCenterResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.vrack#GetVrackServiceNameVmwareCloudDirectorVirtualDataCenterResponseBodyList",
+          "target": "com.ovh.vrack#ListVrackVmwareCloudDirectorVirtualDataCenterResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -4508,13 +4509,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameVmwareCloudDirectorVirtualDataCenter": {
+    "com.ovh.vrack#ListVrackVmwareCloudDirectorVirtualDataCenter": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#GetVrackServiceNameVmwareCloudDirectorVirtualDataCenterRequest"
+        "target": "com.ovh.vrack#ListVrackVmwareCloudDirectorVirtualDataCenterRequest"
       },
       "output": {
-        "target": "com.ovh.vrack#GetVrackServiceNameVmwareCloudDirectorVirtualDataCenterResponse"
+        "target": "com.ovh.vrack#ListVrackVmwareCloudDirectorVirtualDataCenterResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4525,7 +4526,7 @@
         "smithy.api#documentation": "vrack for vmwareCloudDirectorVirtualDataCenter"
       }
     },
-    "com.ovh.vrack#PostVrackServiceNameVmwareCloudDirectorVirtualDataCenterRequest": {
+    "com.ovh.vrack#CreateVrackVmwareCloudDirectorVirtualDataCenterRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4548,10 +4549,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#PostVrackServiceNameVmwareCloudDirectorVirtualDataCenter": {
+    "com.ovh.vrack#CreateVrackVmwareCloudDirectorVirtualDataCenter": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#PostVrackServiceNameVmwareCloudDirectorVirtualDataCenterRequest"
+        "target": "com.ovh.vrack#CreateVrackVmwareCloudDirectorVirtualDataCenterRequest"
       },
       "output": {
         "target": "com.ovh.vrack#VrackTask"
@@ -4565,7 +4566,7 @@
         "smithy.api#documentation": "Add a vmwareCloudDirectorVirtualDataCenter to the vrack"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameVmwareCloudDirectorVirtualDataCenterVmwareCloudDirectorVirtualDataCenterRequest": {
+    "com.ovh.vrack#GetVrackVmwareCloudDirectorVirtualDataCenterRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4609,10 +4610,10 @@
         "smithy.api#documentation": "vmwareCloudDirector virtualDataCenter in vrack"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameVmwareCloudDirectorVirtualDataCenterVmwareCloudDirectorVirtualDataCenter": {
+    "com.ovh.vrack#GetVrackVmwareCloudDirectorVirtualDataCenter": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#GetVrackServiceNameVmwareCloudDirectorVirtualDataCenterVmwareCloudDirectorVirtualDataCenterRequest"
+        "target": "com.ovh.vrack#GetVrackVmwareCloudDirectorVirtualDataCenterRequest"
       },
       "output": {
         "target": "com.ovh.vrack#VrackVmwareCloudDirectorVirtualDataCenter"
@@ -4626,7 +4627,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.vrack#DeleteVrackServiceNameVmwareCloudDirectorVirtualDataCenterVmwareCloudDirectorVirtualDataCenterRequest": {
+    "com.ovh.vrack#DeleteVrackVmwareCloudDirectorVirtualDataCenterRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4650,10 +4651,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#DeleteVrackServiceNameVmwareCloudDirectorVirtualDataCenterVmwareCloudDirectorVirtualDataCenter": {
+    "com.ovh.vrack#DeleteVrackVmwareCloudDirectorVirtualDataCenter": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#DeleteVrackServiceNameVmwareCloudDirectorVirtualDataCenterVmwareCloudDirectorVirtualDataCenterRequest"
+        "target": "com.ovh.vrack#DeleteVrackVmwareCloudDirectorVirtualDataCenterRequest"
       },
       "output": {
         "target": "com.ovh.vrack#VrackTask"
@@ -4667,7 +4668,7 @@
         "smithy.api#documentation": "Remove the vmwareCloudDirectorVirtualDataCenter from the vrack"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameVrackServicesRequest": {
+    "com.ovh.vrack#ListVrackVrackServicesRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4683,18 +4684,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameVrackServicesResponseBodyList": {
+    "com.ovh.vrack#ListVrackVrackServicesResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.vrack#GetVrackServiceNameVrackServicesResponse": {
+    "com.ovh.vrack#ListVrackVrackServicesResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.vrack#GetVrackServiceNameVrackServicesResponseBodyList",
+          "target": "com.ovh.vrack#ListVrackVrackServicesResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -4705,13 +4706,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameVrackServices": {
+    "com.ovh.vrack#ListVrackVrackServices": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#GetVrackServiceNameVrackServicesRequest"
+        "target": "com.ovh.vrack#ListVrackVrackServicesRequest"
       },
       "output": {
-        "target": "com.ovh.vrack#GetVrackServiceNameVrackServicesResponse"
+        "target": "com.ovh.vrack#ListVrackVrackServicesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4722,7 +4723,7 @@
         "smithy.api#documentation": "vrack for vrackServices"
       }
     },
-    "com.ovh.vrack#PostVrackServiceNameVrackServicesRequest": {
+    "com.ovh.vrack#CreateVrackVrackServiceRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4745,10 +4746,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#PostVrackServiceNameVrackServices": {
+    "com.ovh.vrack#CreateVrackVrackService": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#PostVrackServiceNameVrackServicesRequest"
+        "target": "com.ovh.vrack#CreateVrackVrackServiceRequest"
       },
       "output": {
         "target": "com.ovh.vrack#VrackTask"
@@ -4762,7 +4763,7 @@
         "smithy.api#documentation": "Add a vrackServices to the vrack"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameVrackServicesVrackServicesRequest": {
+    "com.ovh.vrack#GetVrackVrackServiceRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4806,10 +4807,10 @@
         "smithy.api#documentation": "vrackServices in vrack"
       }
     },
-    "com.ovh.vrack#GetVrackServiceNameVrackServicesVrackServices": {
+    "com.ovh.vrack#GetVrackVrackService": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#GetVrackServiceNameVrackServicesVrackServicesRequest"
+        "target": "com.ovh.vrack#GetVrackVrackServiceRequest"
       },
       "output": {
         "target": "com.ovh.vrack#VrackVrackServices"
@@ -4823,7 +4824,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.vrack#DeleteVrackServiceNameVrackServicesVrackServicesRequest": {
+    "com.ovh.vrack#DeleteVrackVrackServiceRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4847,10 +4848,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.vrack#DeleteVrackServiceNameVrackServicesVrackServices": {
+    "com.ovh.vrack#DeleteVrackVrackService": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.vrack#DeleteVrackServiceNameVrackServicesVrackServicesRequest"
+        "target": "com.ovh.vrack#DeleteVrackVrackServiceRequest"
       },
       "output": {
         "target": "com.ovh.vrack#VrackTask"
@@ -4869,223 +4870,223 @@
       "version": "1.0",
       "operations": [
         {
+          "target": "com.ovh.vrack#ListVrack"
+        },
+        {
           "target": "com.ovh.vrack#GetVrack"
         },
         {
-          "target": "com.ovh.vrack#GetVrackServiceName"
+          "target": "com.ovh.vrack#PutVrack"
         },
         {
-          "target": "com.ovh.vrack#PutVrackServiceName"
+          "target": "com.ovh.vrack#ListVrackAllowedServices"
         },
         {
-          "target": "com.ovh.vrack#GetVrackServiceNameAllowedServices"
+          "target": "com.ovh.vrack#CreateVrackChangeContact"
         },
         {
-          "target": "com.ovh.vrack#PostVrackServiceNameChangeContact"
+          "target": "com.ovh.vrack#ListVrackCloudProject"
         },
         {
-          "target": "com.ovh.vrack#GetVrackServiceNameCloudProject"
+          "target": "com.ovh.vrack#CreateVrackCloudProject"
         },
         {
-          "target": "com.ovh.vrack#PostVrackServiceNameCloudProject"
+          "target": "com.ovh.vrack#GetVrackCloudProject"
         },
         {
-          "target": "com.ovh.vrack#GetVrackServiceNameCloudProjectProject"
+          "target": "com.ovh.vrack#DeleteVrackCloudProject"
         },
         {
-          "target": "com.ovh.vrack#DeleteVrackServiceNameCloudProjectProject"
+          "target": "com.ovh.vrack#ConfirmVrackTermination"
         },
         {
-          "target": "com.ovh.vrack#PostVrackServiceNameConfirmTermination"
+          "target": "com.ovh.vrack#ListVrackDedicatedCloud"
         },
         {
-          "target": "com.ovh.vrack#GetVrackServiceNameDedicatedCloud"
+          "target": "com.ovh.vrack#CreateVrackDedicatedCloud"
         },
         {
-          "target": "com.ovh.vrack#PostVrackServiceNameDedicatedCloud"
+          "target": "com.ovh.vrack#GetVrackDedicatedCloud"
         },
         {
-          "target": "com.ovh.vrack#GetVrackServiceNameDedicatedCloudDedicatedCloud"
+          "target": "com.ovh.vrack#DeleteVrackDedicatedCloud"
         },
         {
-          "target": "com.ovh.vrack#DeleteVrackServiceNameDedicatedCloudDedicatedCloud"
+          "target": "com.ovh.vrack#ListVrackDedicatedCloudDatacenter"
         },
         {
-          "target": "com.ovh.vrack#GetVrackServiceNameDedicatedCloudDatacenter"
+          "target": "com.ovh.vrack#GetVrackDedicatedCloudDatacenter"
         },
         {
-          "target": "com.ovh.vrack#GetVrackServiceNameDedicatedCloudDatacenterDatacenter"
+          "target": "com.ovh.vrack#ListVrackDedicatedCloudDatacenterAllowedVrack"
         },
         {
-          "target": "com.ovh.vrack#GetVrackServiceNameDedicatedCloudDatacenterDatacenterAllowedVrack"
+          "target": "com.ovh.vrack#MoveVrackDedicatedCloudDatacenter"
         },
         {
-          "target": "com.ovh.vrack#PostVrackServiceNameDedicatedCloudDatacenterDatacenterMove"
+          "target": "com.ovh.vrack#ListVrackDedicatedConnect"
         },
         {
-          "target": "com.ovh.vrack#GetVrackServiceNameDedicatedConnect"
+          "target": "com.ovh.vrack#CreateVrackDedicatedConnect"
         },
         {
-          "target": "com.ovh.vrack#PostVrackServiceNameDedicatedConnect"
+          "target": "com.ovh.vrack#GetVrackDedicatedConnect"
         },
         {
-          "target": "com.ovh.vrack#GetVrackServiceNameDedicatedConnectName"
+          "target": "com.ovh.vrack#PutVrackDedicatedConnect"
         },
         {
-          "target": "com.ovh.vrack#PutVrackServiceNameDedicatedConnectName"
+          "target": "com.ovh.vrack#DeleteVrackDedicatedConnect"
         },
         {
-          "target": "com.ovh.vrack#DeleteVrackServiceNameDedicatedConnectName"
+          "target": "com.ovh.vrack#ListVrackDedicatedServer"
         },
         {
-          "target": "com.ovh.vrack#GetVrackServiceNameDedicatedServer"
+          "target": "com.ovh.vrack#CreateVrackDedicatedServer"
         },
         {
-          "target": "com.ovh.vrack#PostVrackServiceNameDedicatedServer"
+          "target": "com.ovh.vrack#GetVrackDedicatedServer"
         },
         {
-          "target": "com.ovh.vrack#GetVrackServiceNameDedicatedServerDedicatedServer"
+          "target": "com.ovh.vrack#DeleteVrackDedicatedServer"
         },
         {
-          "target": "com.ovh.vrack#DeleteVrackServiceNameDedicatedServerDedicatedServer"
+          "target": "com.ovh.vrack#ListVrackDedicatedServerInterface"
         },
         {
-          "target": "com.ovh.vrack#GetVrackServiceNameDedicatedServerInterface"
+          "target": "com.ovh.vrack#CreateVrackDedicatedServerInterface"
         },
         {
-          "target": "com.ovh.vrack#PostVrackServiceNameDedicatedServerInterface"
+          "target": "com.ovh.vrack#GetVrackDedicatedServerInterface"
         },
         {
-          "target": "com.ovh.vrack#GetVrackServiceNameDedicatedServerInterfaceDedicatedServerInterface"
+          "target": "com.ovh.vrack#DeleteVrackDedicatedServerInterface"
         },
         {
-          "target": "com.ovh.vrack#DeleteVrackServiceNameDedicatedServerInterfaceDedicatedServerInterface"
+          "target": "com.ovh.vrack#ListVrackDedicatedServerInterfaceDetails"
         },
         {
-          "target": "com.ovh.vrack#GetVrackServiceNameDedicatedServerInterfaceDetails"
+          "target": "com.ovh.vrack#ListVrackEligibleServices"
         },
         {
-          "target": "com.ovh.vrack#GetVrackServiceNameEligibleServices"
+          "target": "com.ovh.vrack#ListVrackIp"
         },
         {
-          "target": "com.ovh.vrack#GetVrackServiceNameIp"
+          "target": "com.ovh.vrack#CreateVrackIp"
         },
         {
-          "target": "com.ovh.vrack#PostVrackServiceNameIp"
+          "target": "com.ovh.vrack#GetVrackIp"
         },
         {
-          "target": "com.ovh.vrack#GetVrackServiceNameIpIp"
+          "target": "com.ovh.vrack#DeleteVrackIp"
         },
         {
-          "target": "com.ovh.vrack#DeleteVrackServiceNameIpIp"
+          "target": "com.ovh.vrack#ListVrackIpLoadbalancing"
         },
         {
-          "target": "com.ovh.vrack#GetVrackServiceNameIpLoadbalancing"
+          "target": "com.ovh.vrack#CreateVrackIpLoadbalancing"
         },
         {
-          "target": "com.ovh.vrack#PostVrackServiceNameIpLoadbalancing"
+          "target": "com.ovh.vrack#GetVrackIpLoadbalancing"
         },
         {
-          "target": "com.ovh.vrack#GetVrackServiceNameIpLoadbalancingIpLoadbalancing"
+          "target": "com.ovh.vrack#DeleteVrackIpLoadbalancing"
         },
         {
-          "target": "com.ovh.vrack#DeleteVrackServiceNameIpLoadbalancingIpLoadbalancing"
+          "target": "com.ovh.vrack#ListVrackIpv6"
         },
         {
-          "target": "com.ovh.vrack#GetVrackServiceNameIpv6"
+          "target": "com.ovh.vrack#CreateVrackIpv6"
         },
         {
-          "target": "com.ovh.vrack#PostVrackServiceNameIpv6"
+          "target": "com.ovh.vrack#GetVrackIpv6"
         },
         {
-          "target": "com.ovh.vrack#GetVrackServiceNameIpv6Ipv6"
+          "target": "com.ovh.vrack#DeleteVrackIpv6"
         },
         {
-          "target": "com.ovh.vrack#DeleteVrackServiceNameIpv6Ipv6"
+          "target": "com.ovh.vrack#ListVrackIpv6BridgedSubrange"
         },
         {
-          "target": "com.ovh.vrack#GetVrackServiceNameIpv6Ipv6BridgedSubrange"
+          "target": "com.ovh.vrack#GetVrackIpv6BridgedSubrange"
         },
         {
-          "target": "com.ovh.vrack#GetVrackServiceNameIpv6Ipv6BridgedSubrangeBridgedSubrange"
+          "target": "com.ovh.vrack#PutVrackIpv6BridgedSubrange"
         },
         {
-          "target": "com.ovh.vrack#PutVrackServiceNameIpv6Ipv6BridgedSubrangeBridgedSubrange"
+          "target": "com.ovh.vrack#ListVrackIpv6RoutedSubrange"
         },
         {
-          "target": "com.ovh.vrack#GetVrackServiceNameIpv6Ipv6RoutedSubrange"
+          "target": "com.ovh.vrack#CreateVrackIpv6RoutedSubrange"
         },
         {
-          "target": "com.ovh.vrack#PostVrackServiceNameIpv6Ipv6RoutedSubrange"
+          "target": "com.ovh.vrack#GetVrackIpv6RoutedSubrange"
         },
         {
-          "target": "com.ovh.vrack#GetVrackServiceNameIpv6Ipv6RoutedSubrangeRoutedSubrange"
+          "target": "com.ovh.vrack#DeleteVrackIpv6RoutedSubrange"
         },
         {
-          "target": "com.ovh.vrack#DeleteVrackServiceNameIpv6Ipv6RoutedSubrangeRoutedSubrange"
+          "target": "com.ovh.vrack#ListVrackLegacyVrack"
         },
         {
-          "target": "com.ovh.vrack#GetVrackServiceNameLegacyVrack"
+          "target": "com.ovh.vrack#CreateVrackLegacyVrack"
         },
         {
-          "target": "com.ovh.vrack#PostVrackServiceNameLegacyVrack"
+          "target": "com.ovh.vrack#GetVrackLegacyVrack"
         },
         {
-          "target": "com.ovh.vrack#GetVrackServiceNameLegacyVrackLegacyVrack"
+          "target": "com.ovh.vrack#DeleteVrackLegacyVrack"
         },
         {
-          "target": "com.ovh.vrack#DeleteVrackServiceNameLegacyVrackLegacyVrack"
+          "target": "com.ovh.vrack#ListVrackOvhCloudConnect"
         },
         {
-          "target": "com.ovh.vrack#GetVrackServiceNameOvhCloudConnect"
+          "target": "com.ovh.vrack#CreateVrackOvhCloudConnect"
         },
         {
-          "target": "com.ovh.vrack#PostVrackServiceNameOvhCloudConnect"
+          "target": "com.ovh.vrack#GetVrackOvhCloudConnect"
         },
         {
-          "target": "com.ovh.vrack#GetVrackServiceNameOvhCloudConnectOvhCloudConnect"
+          "target": "com.ovh.vrack#DeleteVrackOvhCloudConnect"
         },
         {
-          "target": "com.ovh.vrack#DeleteVrackServiceNameOvhCloudConnectOvhCloudConnect"
+          "target": "com.ovh.vrack#GetVrackPublicRoutingOption"
         },
         {
-          "target": "com.ovh.vrack#GetVrackServiceNamePublicRoutingOption"
+          "target": "com.ovh.vrack#GetVrackServiceInfos"
         },
         {
-          "target": "com.ovh.vrack#GetVrackServiceNameServiceInfos"
+          "target": "com.ovh.vrack#ListVrackTask"
         },
         {
-          "target": "com.ovh.vrack#GetVrackServiceNameTask"
+          "target": "com.ovh.vrack#GetVrackTask"
         },
         {
-          "target": "com.ovh.vrack#GetVrackServiceNameTaskTaskId"
+          "target": "com.ovh.vrack#TerminateVrack"
         },
         {
-          "target": "com.ovh.vrack#PostVrackServiceNameTerminate"
+          "target": "com.ovh.vrack#ListVrackVmwareCloudDirectorVirtualDataCenter"
         },
         {
-          "target": "com.ovh.vrack#GetVrackServiceNameVmwareCloudDirectorVirtualDataCenter"
+          "target": "com.ovh.vrack#CreateVrackVmwareCloudDirectorVirtualDataCenter"
         },
         {
-          "target": "com.ovh.vrack#PostVrackServiceNameVmwareCloudDirectorVirtualDataCenter"
+          "target": "com.ovh.vrack#GetVrackVmwareCloudDirectorVirtualDataCenter"
         },
         {
-          "target": "com.ovh.vrack#GetVrackServiceNameVmwareCloudDirectorVirtualDataCenterVmwareCloudDirectorVirtualDataCenter"
+          "target": "com.ovh.vrack#DeleteVrackVmwareCloudDirectorVirtualDataCenter"
         },
         {
-          "target": "com.ovh.vrack#DeleteVrackServiceNameVmwareCloudDirectorVirtualDataCenterVmwareCloudDirectorVirtualDataCenter"
+          "target": "com.ovh.vrack#ListVrackVrackServices"
         },
         {
-          "target": "com.ovh.vrack#GetVrackServiceNameVrackServices"
+          "target": "com.ovh.vrack#CreateVrackVrackService"
         },
         {
-          "target": "com.ovh.vrack#PostVrackServiceNameVrackServices"
+          "target": "com.ovh.vrack#GetVrackVrackService"
         },
         {
-          "target": "com.ovh.vrack#GetVrackServiceNameVrackServicesVrackServices"
-        },
-        {
-          "target": "com.ovh.vrack#DeleteVrackServiceNameVrackServicesVrackServices"
+          "target": "com.ovh.vrack#DeleteVrackVrackService"
         }
       ],
       "traits": {

@@ -12,51 +12,44 @@ import * as Retry from "../retry.ts";
 
 export type { OvhOpError, OvhOpContext };
 
-/** Resource tag filter */
-export interface IamResourceTagFilterInput {}
-export const IamResourceTagFilterInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "IamResourceTagFilterInput",
-}) as any as S.Schema<IamResourceTagFilterInput>;
+export interface CreateVmwareCloudDirectorOrganizationPasswordRequest {
+  /** Organization ID */
+  organizationId: string;
+}
+export const CreateVmwareCloudDirectorOrganizationPasswordRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      organizationId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/vmwareCloudDirector/organization/{organizationId}/password",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateVmwareCloudDirectorOrganizationPasswordRequest",
+  }) as any as S.Schema<CreateVmwareCloudDirectorOrganizationPasswordRequest>;
 
-export type GetVmwareCloudDirectorBackupRequestIamTagsValueList =
-  Array<IamResourceTagFilterInput>;
-export const GetVmwareCloudDirectorBackupRequestIamTagsValueList =
-  /*@__PURE__*/ S.Array(
-    IamResourceTagFilterInput,
-  ) as any as S.Schema<GetVmwareCloudDirectorBackupRequestIamTagsValueList>;
-
-export type GetVmwareCloudDirectorBackupRequestIamTagsMap = {
-  [key: string]:
-    | GetVmwareCloudDirectorBackupRequestIamTagsValueList
-    | undefined;
-};
-export const GetVmwareCloudDirectorBackupRequestIamTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    GetVmwareCloudDirectorBackupRequestIamTagsValueList,
-  ) as any as S.Schema<GetVmwareCloudDirectorBackupRequestIamTagsMap>;
+export interface CreateVmwareCloudDirectorOrganizationPasswordResponse {}
+export const CreateVmwareCloudDirectorOrganizationPasswordResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "CreateVmwareCloudDirectorOrganizationPasswordResponse",
+  }) as any as S.Schema<CreateVmwareCloudDirectorOrganizationPasswordResponse>;
 
 export interface GetVmwareCloudDirectorBackupRequest {
-  /** Filter resources on IAM tags */
-  iamTags?: GetVmwareCloudDirectorBackupRequestIamTagsMap;
-  /** Pagination cursor */
-  xPaginationCursor?: string;
-  /** Pagination size */
-  xPaginationSize?: number;
+  /** Backup ID */
+  backupId: string;
 }
 export const GetVmwareCloudDirectorBackupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    iamTags: S.optional(
-      GetVmwareCloudDirectorBackupRequestIamTagsMap.pipe(T.Query()),
-    ),
-    xPaginationCursor: S.optional(
-      S.String.pipe(T.Header("X-Pagination-Cursor")),
-    ),
-    xPaginationSize: S.optional(S.Number.pipe(T.Header("X-Pagination-Size"))),
+    backupId: S.String.pipe(T.Label()),
   }).pipe(
-    T.Http({ method: "GET", uri: "/vmwareCloudDirector/backup", code: 200 }),
+    T.Http({
+      method: "GET",
+      uri: "/vmwareCloudDirector/backup/{backupId}",
+      code: 200,
+    }),
   ),
 ).annotate({
   identifier: "GetVmwareCloudDirectorBackupRequest",
@@ -304,142 +297,27 @@ export const VmwareCloudDirectorBackupBackupDetailsWithIAM =
     identifier: "VmwareCloudDirectorBackupBackupDetailsWithIAM",
   }) as any as S.Schema<VmwareCloudDirectorBackupBackupDetailsWithIAM>;
 
-export type GetVmwareCloudDirectorBackupResponseBodyList =
-  Array<VmwareCloudDirectorBackupBackupDetailsWithIAM>;
-export const GetVmwareCloudDirectorBackupResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    VmwareCloudDirectorBackupBackupDetailsWithIAM,
-  ) as any as S.Schema<GetVmwareCloudDirectorBackupResponseBodyList>;
-
-export type GetVmwareCloudDirectorBackupResponse =
-  GetVmwareCloudDirectorBackupResponseBodyList;
-export const GetVmwareCloudDirectorBackupResponse = /*@__PURE__*/ S.suspend(
-  () => GetVmwareCloudDirectorBackupResponseBodyList.pipe(T.RawResponseRoot()),
+export interface GetVmwareCloudDirectorBackupTaskRequest {
+  /** Backup ID */
+  backupId: string;
+  /** Task ID */
+  taskId: string;
+}
+export const GetVmwareCloudDirectorBackupTaskRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      backupId: S.String.pipe(T.Label()),
+      taskId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/vmwareCloudDirector/backup/{backupId}/task/{taskId}",
+        code: 200,
+      }),
+    ),
 ).annotate({
-  identifier: "GetVmwareCloudDirectorBackupResponse",
-}) as any as S.Schema<GetVmwareCloudDirectorBackupResponse>;
-
-export interface GetVmwareCloudDirectorBackupBackupIdRequest {
-  /** Backup ID */
-  backupId: string;
-}
-export const GetVmwareCloudDirectorBackupBackupIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      backupId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/vmwareCloudDirector/backup/{backupId}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetVmwareCloudDirectorBackupBackupIdRequest",
-  }) as any as S.Schema<GetVmwareCloudDirectorBackupBackupIdRequest>;
-
-export interface GetVmwareCloudDirectorBackupBackupIdEventRequest {
-  /** Backup ID */
-  backupId: string;
-  /** Pagination cursor */
-  xPaginationCursor?: string;
-  /** Pagination size */
-  xPaginationSize?: number;
-}
-export const GetVmwareCloudDirectorBackupBackupIdEventRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      backupId: S.String.pipe(T.Label()),
-      xPaginationCursor: S.optional(
-        S.String.pipe(T.Header("X-Pagination-Cursor")),
-      ),
-      xPaginationSize: S.optional(S.Number.pipe(T.Header("X-Pagination-Size"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/vmwareCloudDirector/backup/{backupId}/event",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetVmwareCloudDirectorBackupBackupIdEventRequest",
-  }) as any as S.Schema<GetVmwareCloudDirectorBackupBackupIdEventRequest>;
-
-/** List all defined values for an event type field */
-export type CommonEventTypeEnum =
-  | "TARGET_SPEC_UPDATE"
-  | "TASK_ERROR"
-  | "TASK_START"
-  | "TASK_SUCCESS";
-export const CommonEventTypeEnum = /*@__PURE__*/ S.String;
-
-/** Represents an event for an async envelope */
-export interface CommonEvent {
-  /** Creation date of the event */
-  createdAt?: string;
-  /** Nature of the event */
-  kind?: string;
-  /** Link to the event related resource */
-  link?: string | null;
-  /** Description of what happened on the event */
-  message?: string;
-  /** Type of the event */
-  type?: CommonEventTypeEnum;
-}
-export const CommonEvent = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdAt: S.optional(S.String),
-    kind: S.optional(S.String),
-    link: S.optional(S.NullOr(S.String)),
-    message: S.optional(S.String),
-    type: S.optional(CommonEventTypeEnum),
-  }),
-).annotate({ identifier: "CommonEvent" }) as any as S.Schema<CommonEvent>;
-
-export type GetVmwareCloudDirectorBackupBackupIdEventResponseBodyList =
-  Array<CommonEvent>;
-export const GetVmwareCloudDirectorBackupBackupIdEventResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    CommonEvent,
-  ) as any as S.Schema<GetVmwareCloudDirectorBackupBackupIdEventResponseBodyList>;
-
-export type GetVmwareCloudDirectorBackupBackupIdEventResponse =
-  GetVmwareCloudDirectorBackupBackupIdEventResponseBodyList;
-export const GetVmwareCloudDirectorBackupBackupIdEventResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetVmwareCloudDirectorBackupBackupIdEventResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetVmwareCloudDirectorBackupBackupIdEventResponse",
-  }) as any as S.Schema<GetVmwareCloudDirectorBackupBackupIdEventResponse>;
-
-export interface GetVmwareCloudDirectorBackupBackupIdTaskRequest {
-  /** Backup ID */
-  backupId: string;
-  /** Pagination cursor */
-  xPaginationCursor?: string;
-  /** Pagination size */
-  xPaginationSize?: number;
-}
-export const GetVmwareCloudDirectorBackupBackupIdTaskRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      backupId: S.String.pipe(T.Label()),
-      xPaginationCursor: S.optional(
-        S.String.pipe(T.Header("X-Pagination-Cursor")),
-      ),
-      xPaginationSize: S.optional(S.Number.pipe(T.Header("X-Pagination-Size"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/vmwareCloudDirector/backup/{backupId}/task",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetVmwareCloudDirectorBackupBackupIdTaskRequest",
-  }) as any as S.Schema<GetVmwareCloudDirectorBackupBackupIdTaskRequest>;
+  identifier: "GetVmwareCloudDirectorBackupTaskRequest",
+}) as any as S.Schema<GetVmwareCloudDirectorBackupTaskRequest>;
 
 /** Errors that occured on the task */
 export interface CommonTaskError {
@@ -532,86 +410,18 @@ export const CommonTask = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "CommonTask" }) as any as S.Schema<CommonTask>;
 
-export type GetVmwareCloudDirectorBackupBackupIdTaskResponseBodyList =
-  Array<CommonTask>;
-export const GetVmwareCloudDirectorBackupBackupIdTaskResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    CommonTask,
-  ) as any as S.Schema<GetVmwareCloudDirectorBackupBackupIdTaskResponseBodyList>;
-
-export type GetVmwareCloudDirectorBackupBackupIdTaskResponse =
-  GetVmwareCloudDirectorBackupBackupIdTaskResponseBodyList;
-export const GetVmwareCloudDirectorBackupBackupIdTaskResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetVmwareCloudDirectorBackupBackupIdTaskResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetVmwareCloudDirectorBackupBackupIdTaskResponse",
-  }) as any as S.Schema<GetVmwareCloudDirectorBackupBackupIdTaskResponse>;
-
-export interface GetVmwareCloudDirectorBackupBackupIdTaskTaskIdRequest {
-  /** Backup ID */
-  backupId: string;
-  /** Task ID */
-  taskId: string;
-}
-export const GetVmwareCloudDirectorBackupBackupIdTaskTaskIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      backupId: S.String.pipe(T.Label()),
-      taskId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/vmwareCloudDirector/backup/{backupId}/task/{taskId}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetVmwareCloudDirectorBackupBackupIdTaskTaskIdRequest",
-  }) as any as S.Schema<GetVmwareCloudDirectorBackupBackupIdTaskTaskIdRequest>;
-
-export type GetVmwareCloudDirectorOrganizationRequestIamTagsValueList =
-  Array<IamResourceTagFilterInput>;
-export const GetVmwareCloudDirectorOrganizationRequestIamTagsValueList =
-  /*@__PURE__*/ S.Array(
-    IamResourceTagFilterInput,
-  ) as any as S.Schema<GetVmwareCloudDirectorOrganizationRequestIamTagsValueList>;
-
-export type GetVmwareCloudDirectorOrganizationRequestIamTagsMap = {
-  [key: string]:
-    | GetVmwareCloudDirectorOrganizationRequestIamTagsValueList
-    | undefined;
-};
-export const GetVmwareCloudDirectorOrganizationRequestIamTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    GetVmwareCloudDirectorOrganizationRequestIamTagsValueList,
-  ) as any as S.Schema<GetVmwareCloudDirectorOrganizationRequestIamTagsMap>;
-
 export interface GetVmwareCloudDirectorOrganizationRequest {
-  /** Filter resources on IAM tags */
-  iamTags?: GetVmwareCloudDirectorOrganizationRequestIamTagsMap;
-  /** Pagination cursor */
-  xPaginationCursor?: string;
-  /** Pagination size */
-  xPaginationSize?: number;
+  /** Organization ID */
+  organizationId: string;
 }
 export const GetVmwareCloudDirectorOrganizationRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      iamTags: S.optional(
-        GetVmwareCloudDirectorOrganizationRequestIamTagsMap.pipe(T.Query()),
-      ),
-      xPaginationCursor: S.optional(
-        S.String.pipe(T.Header("X-Pagination-Cursor")),
-      ),
-      xPaginationSize: S.optional(S.Number.pipe(T.Header("X-Pagination-Size"))),
+      organizationId: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
-        uri: "/vmwareCloudDirector/organization",
+        uri: "/vmwareCloudDirector/organization/{organizationId}",
         code: 200,
       }),
     ),
@@ -724,140 +534,13 @@ export const VmwareCloudDirectorOrganizationWithIAM = /*@__PURE__*/ S.suspend(
   identifier: "VmwareCloudDirectorOrganizationWithIAM",
 }) as any as S.Schema<VmwareCloudDirectorOrganizationWithIAM>;
 
-export type GetVmwareCloudDirectorOrganizationResponseBodyList =
-  Array<VmwareCloudDirectorOrganizationWithIAM>;
-export const GetVmwareCloudDirectorOrganizationResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    VmwareCloudDirectorOrganizationWithIAM,
-  ) as any as S.Schema<GetVmwareCloudDirectorOrganizationResponseBodyList>;
-
-export type GetVmwareCloudDirectorOrganizationResponse =
-  GetVmwareCloudDirectorOrganizationResponseBodyList;
-export const GetVmwareCloudDirectorOrganizationResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetVmwareCloudDirectorOrganizationResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetVmwareCloudDirectorOrganizationResponse",
-  }) as any as S.Schema<GetVmwareCloudDirectorOrganizationResponse>;
-
-export interface GetVmwareCloudDirectorOrganizationOrganizationIdRequest {
-  /** Organization ID */
-  organizationId: string;
-}
-export const GetVmwareCloudDirectorOrganizationOrganizationIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      organizationId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/vmwareCloudDirector/organization/{organizationId}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetVmwareCloudDirectorOrganizationOrganizationIdRequest",
-  }) as any as S.Schema<GetVmwareCloudDirectorOrganizationOrganizationIdRequest>;
-
-export interface GetVmwareCloudDirectorOrganizationOrganizationIdEventRequest {
-  /** Organization ID */
-  organizationId: string;
-  /** Pagination cursor */
-  xPaginationCursor?: string;
-  /** Pagination size */
-  xPaginationSize?: number;
-}
-export const GetVmwareCloudDirectorOrganizationOrganizationIdEventRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      organizationId: S.String.pipe(T.Label()),
-      xPaginationCursor: S.optional(
-        S.String.pipe(T.Header("X-Pagination-Cursor")),
-      ),
-      xPaginationSize: S.optional(S.Number.pipe(T.Header("X-Pagination-Size"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/vmwareCloudDirector/organization/{organizationId}/event",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetVmwareCloudDirectorOrganizationOrganizationIdEventRequest",
-  }) as any as S.Schema<GetVmwareCloudDirectorOrganizationOrganizationIdEventRequest>;
-
-export type GetVmwareCloudDirectorOrganizationOrganizationIdEventResponseBodyList =
-  Array<CommonEvent>;
-export const GetVmwareCloudDirectorOrganizationOrganizationIdEventResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    CommonEvent,
-  ) as any as S.Schema<GetVmwareCloudDirectorOrganizationOrganizationIdEventResponseBodyList>;
-
-export type GetVmwareCloudDirectorOrganizationOrganizationIdEventResponse =
-  GetVmwareCloudDirectorOrganizationOrganizationIdEventResponseBodyList;
-export const GetVmwareCloudDirectorOrganizationOrganizationIdEventResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetVmwareCloudDirectorOrganizationOrganizationIdEventResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetVmwareCloudDirectorOrganizationOrganizationIdEventResponse",
-  }) as any as S.Schema<GetVmwareCloudDirectorOrganizationOrganizationIdEventResponse>;
-
-export interface GetVmwareCloudDirectorOrganizationOrganizationIdTaskRequest {
-  /** Organization ID */
-  organizationId: string;
-  /** Pagination cursor */
-  xPaginationCursor?: string;
-  /** Pagination size */
-  xPaginationSize?: number;
-}
-export const GetVmwareCloudDirectorOrganizationOrganizationIdTaskRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      organizationId: S.String.pipe(T.Label()),
-      xPaginationCursor: S.optional(
-        S.String.pipe(T.Header("X-Pagination-Cursor")),
-      ),
-      xPaginationSize: S.optional(S.Number.pipe(T.Header("X-Pagination-Size"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/vmwareCloudDirector/organization/{organizationId}/task",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetVmwareCloudDirectorOrganizationOrganizationIdTaskRequest",
-  }) as any as S.Schema<GetVmwareCloudDirectorOrganizationOrganizationIdTaskRequest>;
-
-export type GetVmwareCloudDirectorOrganizationOrganizationIdTaskResponseBodyList =
-  Array<CommonTask>;
-export const GetVmwareCloudDirectorOrganizationOrganizationIdTaskResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    CommonTask,
-  ) as any as S.Schema<GetVmwareCloudDirectorOrganizationOrganizationIdTaskResponseBodyList>;
-
-export type GetVmwareCloudDirectorOrganizationOrganizationIdTaskResponse =
-  GetVmwareCloudDirectorOrganizationOrganizationIdTaskResponseBodyList;
-export const GetVmwareCloudDirectorOrganizationOrganizationIdTaskResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetVmwareCloudDirectorOrganizationOrganizationIdTaskResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetVmwareCloudDirectorOrganizationOrganizationIdTaskResponse",
-  }) as any as S.Schema<GetVmwareCloudDirectorOrganizationOrganizationIdTaskResponse>;
-
-export interface GetVmwareCloudDirectorOrganizationOrganizationIdTaskTaskIdRequest {
+export interface GetVmwareCloudDirectorOrganizationTaskRequest {
   /** Organization ID */
   organizationId: string;
   /** Task ID */
   taskId: string;
 }
-export const GetVmwareCloudDirectorOrganizationOrganizationIdTaskTaskIdRequest =
+export const GetVmwareCloudDirectorOrganizationTaskRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       organizationId: S.String.pipe(T.Label()),
@@ -870,63 +553,30 @@ export const GetVmwareCloudDirectorOrganizationOrganizationIdTaskTaskIdRequest =
       }),
     ),
   ).annotate({
-    identifier:
-      "GetVmwareCloudDirectorOrganizationOrganizationIdTaskTaskIdRequest",
-  }) as any as S.Schema<GetVmwareCloudDirectorOrganizationOrganizationIdTaskTaskIdRequest>;
+    identifier: "GetVmwareCloudDirectorOrganizationTaskRequest",
+  }) as any as S.Schema<GetVmwareCloudDirectorOrganizationTaskRequest>;
 
-export type GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterRequestIamTagsValueList =
-  Array<IamResourceTagFilterInput>;
-export const GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterRequestIamTagsValueList =
-  /*@__PURE__*/ S.Array(
-    IamResourceTagFilterInput,
-  ) as any as S.Schema<GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterRequestIamTagsValueList>;
-
-export type GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterRequestIamTagsMap =
-  {
-    [key: string]:
-      | GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterRequestIamTagsValueList
-      | undefined;
-  };
-export const GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterRequestIamTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterRequestIamTagsValueList,
-  ) as any as S.Schema<GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterRequestIamTagsMap>;
-
-export interface GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterRequest {
+export interface GetVmwareCloudDirectorOrganizationVirtualDataCenterRequest {
   /** Organization ID */
   organizationId: string;
-  /** Filter resources on IAM tags */
-  iamTags?: GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterRequestIamTagsMap;
-  /** Pagination cursor */
-  xPaginationCursor?: string;
-  /** Pagination size */
-  xPaginationSize?: number;
+  /** Virtual data center ID */
+  virtualDataCenterId: string;
 }
-export const GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterRequest =
+export const GetVmwareCloudDirectorOrganizationVirtualDataCenterRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       organizationId: S.String.pipe(T.Label()),
-      iamTags: S.optional(
-        GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterRequestIamTagsMap.pipe(
-          T.Query(),
-        ),
-      ),
-      xPaginationCursor: S.optional(
-        S.String.pipe(T.Header("X-Pagination-Cursor")),
-      ),
-      xPaginationSize: S.optional(S.Number.pipe(T.Header("X-Pagination-Size"))),
+      virtualDataCenterId: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
-        uri: "/vmwareCloudDirector/organization/{organizationId}/virtualDataCenter",
+        uri: "/vmwareCloudDirector/organization/{organizationId}/virtualDataCenter/{virtualDataCenterId}",
         code: 200,
       }),
     ),
   ).annotate({
-    identifier:
-      "GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterRequest",
-  }) as any as S.Schema<GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterRequest>;
+    identifier: "GetVmwareCloudDirectorOrganizationVirtualDataCenterRequest",
+  }) as any as S.Schema<GetVmwareCloudDirectorOrganizationVirtualDataCenterRequest>;
 
 /** The commercial range of your VMware Cloud Director project */
 export type VmwareCloudDirectorCommercialRangeEnum =
@@ -1031,78 +681,31 @@ export const VmwareCloudDirectorVirtualDataCenterWithIAM =
     identifier: "VmwareCloudDirectorVirtualDataCenterWithIAM",
   }) as any as S.Schema<VmwareCloudDirectorVirtualDataCenterWithIAM>;
 
-export type GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterResponseBodyList =
-  Array<VmwareCloudDirectorVirtualDataCenterWithIAM>;
-export const GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    VmwareCloudDirectorVirtualDataCenterWithIAM,
-  ) as any as S.Schema<GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterResponseBodyList>;
-
-export type GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterResponse =
-  GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterResponseBodyList;
-export const GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier:
-      "GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterResponse",
-  }) as any as S.Schema<GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterResponse>;
-
-export interface GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdRequest {
+export interface GetVmwareCloudDirectorOrganizationVirtualDataCenterComputeRequest {
   /** Organization ID */
   organizationId: string;
   /** Virtual data center ID */
   virtualDataCenterId: string;
+  /** Compute ID */
+  computeId: string;
 }
-export const GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdRequest =
+export const GetVmwareCloudDirectorOrganizationVirtualDataCenterComputeRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       organizationId: S.String.pipe(T.Label()),
       virtualDataCenterId: S.String.pipe(T.Label()),
+      computeId: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
-        uri: "/vmwareCloudDirector/organization/{organizationId}/virtualDataCenter/{virtualDataCenterId}",
+        uri: "/vmwareCloudDirector/organization/{organizationId}/virtualDataCenter/{virtualDataCenterId}/compute/{computeId}",
         code: 200,
       }),
     ),
   ).annotate({
     identifier:
-      "GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdRequest",
-  }) as any as S.Schema<GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdRequest>;
-
-export interface GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdComputeRequest {
-  /** Organization ID */
-  organizationId: string;
-  /** Virtual data center ID */
-  virtualDataCenterId: string;
-  /** Pagination cursor */
-  xPaginationCursor?: string;
-  /** Pagination size */
-  xPaginationSize?: number;
-}
-export const GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdComputeRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      organizationId: S.String.pipe(T.Label()),
-      virtualDataCenterId: S.String.pipe(T.Label()),
-      xPaginationCursor: S.optional(
-        S.String.pipe(T.Header("X-Pagination-Cursor")),
-      ),
-      xPaginationSize: S.optional(S.Number.pipe(T.Header("X-Pagination-Size"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/vmwareCloudDirector/organization/{organizationId}/virtualDataCenter/{virtualDataCenterId}/compute",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdComputeRequest",
-  }) as any as S.Schema<GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdComputeRequest>;
+      "GetVmwareCloudDirectorOrganizationVirtualDataCenterComputeRequest",
+  }) as any as S.Schema<GetVmwareCloudDirectorOrganizationVirtualDataCenterComputeRequest>;
 
 /** Current status of organization Virtual DataCenter compute resource */
 export interface VmwareCloudDirectorComputeCurrentState {
@@ -1162,58 +765,584 @@ export const VmwareCloudDirectorCompute = /*@__PURE__*/ S.suspend(() =>
   identifier: "VmwareCloudDirectorCompute",
 }) as any as S.Schema<VmwareCloudDirectorCompute>;
 
-export type GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdComputeResponseBodyList =
-  Array<VmwareCloudDirectorCompute>;
-export const GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdComputeResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    VmwareCloudDirectorCompute,
-  ) as any as S.Schema<GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdComputeResponseBodyList>;
-
-export type GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdComputeResponse =
-  GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdComputeResponseBodyList;
-export const GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdComputeResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdComputeResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier:
-      "GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdComputeResponse",
-  }) as any as S.Schema<GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdComputeResponse>;
-
-export interface GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdComputeComputeIdRequest {
+export interface GetVmwareCloudDirectorOrganizationVirtualDataCenterStorageRequest {
   /** Organization ID */
   organizationId: string;
   /** Virtual data center ID */
   virtualDataCenterId: string;
-  /** Compute ID */
-  computeId: string;
+  /** Storage ID */
+  storageId: string;
 }
-export const GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdComputeComputeIdRequest =
+export const GetVmwareCloudDirectorOrganizationVirtualDataCenterStorageRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       organizationId: S.String.pipe(T.Label()),
       virtualDataCenterId: S.String.pipe(T.Label()),
-      computeId: S.String.pipe(T.Label()),
+      storageId: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
-        uri: "/vmwareCloudDirector/organization/{organizationId}/virtualDataCenter/{virtualDataCenterId}/compute/{computeId}",
+        uri: "/vmwareCloudDirector/organization/{organizationId}/virtualDataCenter/{virtualDataCenterId}/storage/{storageId}",
         code: 200,
       }),
     ),
   ).annotate({
     identifier:
-      "GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdComputeComputeIdRequest",
-  }) as any as S.Schema<GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdComputeComputeIdRequest>;
+      "GetVmwareCloudDirectorOrganizationVirtualDataCenterStorageRequest",
+  }) as any as S.Schema<GetVmwareCloudDirectorOrganizationVirtualDataCenterStorageRequest>;
 
-export interface GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdOrderableResourceRequest {
+/** Current status of organization Virtual DataCenter storage resource */
+export interface VmwareCloudDirectorStorageCurrentState {
+  /** Billing type of your organization Virtual DataCenter storage resource */
+  billingType?: VmwareCloudDirectorBillingTypeEnum;
+  /** Capacity available (GB) for the given resource in your organization Virtual DataCenter storage resource */
+  capacity?: number;
+  /** Name of your organization Virtual DataCenter storage resource */
+  name?: string;
+  /** Profile of your organization Virtual DataCenter storage resource */
+  profile?: string;
+  /** Type of your organization Virtual DataCenter storage resource */
+  type?: string;
+}
+export const VmwareCloudDirectorStorageCurrentState = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      billingType: S.optional(VmwareCloudDirectorBillingTypeEnum),
+      capacity: S.optional(S.Number),
+      name: S.optional(S.String),
+      profile: S.optional(S.String),
+      type: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "VmwareCloudDirectorStorageCurrentState",
+}) as any as S.Schema<VmwareCloudDirectorStorageCurrentState>;
+
+/** Asynchronous operations ongoing on the organization Virtual DataCenter storage resource */
+export type VmwareCloudDirectorStorageCurrentTasksList =
+  Array<CommonCurrentTask>;
+export const VmwareCloudDirectorStorageCurrentTasksList = /*@__PURE__*/ S.Array(
+  CommonCurrentTask,
+) as any as S.Schema<VmwareCloudDirectorStorageCurrentTasksList>;
+
+/** Organization Virtual DataCenter storage resource */
+export interface VmwareCloudDirectorStorage {
+  currentState?: VmwareCloudDirectorStorageCurrentState;
+  /** Asynchronous operations ongoing on the organization Virtual DataCenter storage resource */
+  currentTasks?: VmwareCloudDirectorStorageCurrentTasksList | null;
+  /** Unique identifier */
+  id?: string;
+  /** Reflects the readiness of the organization Virtual DataCenter storage resource. A new target specification request will be accepted only in `READY` status */
+  resourceStatus?: CommonResourceStatusEnum;
+  updatedAt?: string;
+}
+export const VmwareCloudDirectorStorage = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    currentState: S.optional(VmwareCloudDirectorStorageCurrentState),
+    currentTasks: S.optional(
+      S.NullOr(VmwareCloudDirectorStorageCurrentTasksList),
+    ),
+    id: S.optional(S.String),
+    resourceStatus: S.optional(CommonResourceStatusEnum),
+    updatedAt: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "VmwareCloudDirectorStorage",
+}) as any as S.Schema<VmwareCloudDirectorStorage>;
+
+export interface GetVmwareCloudDirectorOrganizationVirtualDataCenterTaskRequest {
+  /** Organization ID */
+  organizationId: string;
+  /** Virtual data center ID */
+  virtualDataCenterId: string;
+  /** Task ID */
+  taskId: string;
+}
+export const GetVmwareCloudDirectorOrganizationVirtualDataCenterTaskRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      organizationId: S.String.pipe(T.Label()),
+      virtualDataCenterId: S.String.pipe(T.Label()),
+      taskId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/vmwareCloudDirector/organization/{organizationId}/virtualDataCenter/{virtualDataCenterId}/task/{taskId}",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier:
+      "GetVmwareCloudDirectorOrganizationVirtualDataCenterTaskRequest",
+  }) as any as S.Schema<GetVmwareCloudDirectorOrganizationVirtualDataCenterTaskRequest>;
+
+/** Resource tag filter */
+export interface IamResourceTagFilterInput {}
+export const IamResourceTagFilterInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "IamResourceTagFilterInput",
+}) as any as S.Schema<IamResourceTagFilterInput>;
+
+export type ListVmwareCloudDirectorBackupRequestIamTagsValueList =
+  Array<IamResourceTagFilterInput>;
+export const ListVmwareCloudDirectorBackupRequestIamTagsValueList =
+  /*@__PURE__*/ S.Array(
+    IamResourceTagFilterInput,
+  ) as any as S.Schema<ListVmwareCloudDirectorBackupRequestIamTagsValueList>;
+
+export type ListVmwareCloudDirectorBackupRequestIamTagsMap = {
+  [key: string]:
+    | ListVmwareCloudDirectorBackupRequestIamTagsValueList
+    | undefined;
+};
+export const ListVmwareCloudDirectorBackupRequestIamTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    ListVmwareCloudDirectorBackupRequestIamTagsValueList,
+  ) as any as S.Schema<ListVmwareCloudDirectorBackupRequestIamTagsMap>;
+
+export interface ListVmwareCloudDirectorBackupRequest {
+  /** Filter resources on IAM tags */
+  iamTags?: ListVmwareCloudDirectorBackupRequestIamTagsMap;
+  /** Pagination cursor */
+  xPaginationCursor?: string;
+  /** Pagination size */
+  xPaginationSize?: number;
+}
+export const ListVmwareCloudDirectorBackupRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      iamTags: S.optional(
+        ListVmwareCloudDirectorBackupRequestIamTagsMap.pipe(T.Query()),
+      ),
+      xPaginationCursor: S.optional(
+        S.String.pipe(T.Header("X-Pagination-Cursor")),
+      ),
+      xPaginationSize: S.optional(S.Number.pipe(T.Header("X-Pagination-Size"))),
+    }).pipe(
+      T.Http({ method: "GET", uri: "/vmwareCloudDirector/backup", code: 200 }),
+    ),
+).annotate({
+  identifier: "ListVmwareCloudDirectorBackupRequest",
+}) as any as S.Schema<ListVmwareCloudDirectorBackupRequest>;
+
+export type ListVmwareCloudDirectorBackupResponseBodyList =
+  Array<VmwareCloudDirectorBackupBackupDetailsWithIAM>;
+export const ListVmwareCloudDirectorBackupResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    VmwareCloudDirectorBackupBackupDetailsWithIAM,
+  ) as any as S.Schema<ListVmwareCloudDirectorBackupResponseBodyList>;
+
+export type ListVmwareCloudDirectorBackupResponse =
+  ListVmwareCloudDirectorBackupResponseBodyList;
+export const ListVmwareCloudDirectorBackupResponse = /*@__PURE__*/ S.suspend(
+  () => ListVmwareCloudDirectorBackupResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListVmwareCloudDirectorBackupResponse",
+}) as any as S.Schema<ListVmwareCloudDirectorBackupResponse>;
+
+export interface ListVmwareCloudDirectorBackupEventRequest {
+  /** Backup ID */
+  backupId: string;
+  /** Pagination cursor */
+  xPaginationCursor?: string;
+  /** Pagination size */
+  xPaginationSize?: number;
+}
+export const ListVmwareCloudDirectorBackupEventRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      backupId: S.String.pipe(T.Label()),
+      xPaginationCursor: S.optional(
+        S.String.pipe(T.Header("X-Pagination-Cursor")),
+      ),
+      xPaginationSize: S.optional(S.Number.pipe(T.Header("X-Pagination-Size"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/vmwareCloudDirector/backup/{backupId}/event",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ListVmwareCloudDirectorBackupEventRequest",
+  }) as any as S.Schema<ListVmwareCloudDirectorBackupEventRequest>;
+
+/** List all defined values for an event type field */
+export type CommonEventTypeEnum =
+  | "TARGET_SPEC_UPDATE"
+  | "TASK_ERROR"
+  | "TASK_START"
+  | "TASK_SUCCESS";
+export const CommonEventTypeEnum = /*@__PURE__*/ S.String;
+
+/** Represents an event for an async envelope */
+export interface CommonEvent {
+  /** Creation date of the event */
+  createdAt?: string;
+  /** Nature of the event */
+  kind?: string;
+  /** Link to the event related resource */
+  link?: string | null;
+  /** Description of what happened on the event */
+  message?: string;
+  /** Type of the event */
+  type?: CommonEventTypeEnum;
+}
+export const CommonEvent = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdAt: S.optional(S.String),
+    kind: S.optional(S.String),
+    link: S.optional(S.NullOr(S.String)),
+    message: S.optional(S.String),
+    type: S.optional(CommonEventTypeEnum),
+  }),
+).annotate({ identifier: "CommonEvent" }) as any as S.Schema<CommonEvent>;
+
+export type ListVmwareCloudDirectorBackupEventResponseBodyList =
+  Array<CommonEvent>;
+export const ListVmwareCloudDirectorBackupEventResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    CommonEvent,
+  ) as any as S.Schema<ListVmwareCloudDirectorBackupEventResponseBodyList>;
+
+export type ListVmwareCloudDirectorBackupEventResponse =
+  ListVmwareCloudDirectorBackupEventResponseBodyList;
+export const ListVmwareCloudDirectorBackupEventResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListVmwareCloudDirectorBackupEventResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListVmwareCloudDirectorBackupEventResponse",
+  }) as any as S.Schema<ListVmwareCloudDirectorBackupEventResponse>;
+
+export interface ListVmwareCloudDirectorBackupTaskRequest {
+  /** Backup ID */
+  backupId: string;
+  /** Pagination cursor */
+  xPaginationCursor?: string;
+  /** Pagination size */
+  xPaginationSize?: number;
+}
+export const ListVmwareCloudDirectorBackupTaskRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      backupId: S.String.pipe(T.Label()),
+      xPaginationCursor: S.optional(
+        S.String.pipe(T.Header("X-Pagination-Cursor")),
+      ),
+      xPaginationSize: S.optional(S.Number.pipe(T.Header("X-Pagination-Size"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/vmwareCloudDirector/backup/{backupId}/task",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ListVmwareCloudDirectorBackupTaskRequest",
+}) as any as S.Schema<ListVmwareCloudDirectorBackupTaskRequest>;
+
+export type ListVmwareCloudDirectorBackupTaskResponseBodyList =
+  Array<CommonTask>;
+export const ListVmwareCloudDirectorBackupTaskResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    CommonTask,
+  ) as any as S.Schema<ListVmwareCloudDirectorBackupTaskResponseBodyList>;
+
+export type ListVmwareCloudDirectorBackupTaskResponse =
+  ListVmwareCloudDirectorBackupTaskResponseBodyList;
+export const ListVmwareCloudDirectorBackupTaskResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListVmwareCloudDirectorBackupTaskResponseBodyList.pipe(T.RawResponseRoot()),
+  ).annotate({
+    identifier: "ListVmwareCloudDirectorBackupTaskResponse",
+  }) as any as S.Schema<ListVmwareCloudDirectorBackupTaskResponse>;
+
+export type ListVmwareCloudDirectorOrganizationRequestIamTagsValueList =
+  Array<IamResourceTagFilterInput>;
+export const ListVmwareCloudDirectorOrganizationRequestIamTagsValueList =
+  /*@__PURE__*/ S.Array(
+    IamResourceTagFilterInput,
+  ) as any as S.Schema<ListVmwareCloudDirectorOrganizationRequestIamTagsValueList>;
+
+export type ListVmwareCloudDirectorOrganizationRequestIamTagsMap = {
+  [key: string]:
+    | ListVmwareCloudDirectorOrganizationRequestIamTagsValueList
+    | undefined;
+};
+export const ListVmwareCloudDirectorOrganizationRequestIamTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    ListVmwareCloudDirectorOrganizationRequestIamTagsValueList,
+  ) as any as S.Schema<ListVmwareCloudDirectorOrganizationRequestIamTagsMap>;
+
+export interface ListVmwareCloudDirectorOrganizationRequest {
+  /** Filter resources on IAM tags */
+  iamTags?: ListVmwareCloudDirectorOrganizationRequestIamTagsMap;
+  /** Pagination cursor */
+  xPaginationCursor?: string;
+  /** Pagination size */
+  xPaginationSize?: number;
+}
+export const ListVmwareCloudDirectorOrganizationRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      iamTags: S.optional(
+        ListVmwareCloudDirectorOrganizationRequestIamTagsMap.pipe(T.Query()),
+      ),
+      xPaginationCursor: S.optional(
+        S.String.pipe(T.Header("X-Pagination-Cursor")),
+      ),
+      xPaginationSize: S.optional(S.Number.pipe(T.Header("X-Pagination-Size"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/vmwareCloudDirector/organization",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ListVmwareCloudDirectorOrganizationRequest",
+  }) as any as S.Schema<ListVmwareCloudDirectorOrganizationRequest>;
+
+export type ListVmwareCloudDirectorOrganizationResponseBodyList =
+  Array<VmwareCloudDirectorOrganizationWithIAM>;
+export const ListVmwareCloudDirectorOrganizationResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    VmwareCloudDirectorOrganizationWithIAM,
+  ) as any as S.Schema<ListVmwareCloudDirectorOrganizationResponseBodyList>;
+
+export type ListVmwareCloudDirectorOrganizationResponse =
+  ListVmwareCloudDirectorOrganizationResponseBodyList;
+export const ListVmwareCloudDirectorOrganizationResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListVmwareCloudDirectorOrganizationResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListVmwareCloudDirectorOrganizationResponse",
+  }) as any as S.Schema<ListVmwareCloudDirectorOrganizationResponse>;
+
+export interface ListVmwareCloudDirectorOrganizationEventRequest {
+  /** Organization ID */
+  organizationId: string;
+  /** Pagination cursor */
+  xPaginationCursor?: string;
+  /** Pagination size */
+  xPaginationSize?: number;
+}
+export const ListVmwareCloudDirectorOrganizationEventRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      organizationId: S.String.pipe(T.Label()),
+      xPaginationCursor: S.optional(
+        S.String.pipe(T.Header("X-Pagination-Cursor")),
+      ),
+      xPaginationSize: S.optional(S.Number.pipe(T.Header("X-Pagination-Size"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/vmwareCloudDirector/organization/{organizationId}/event",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ListVmwareCloudDirectorOrganizationEventRequest",
+  }) as any as S.Schema<ListVmwareCloudDirectorOrganizationEventRequest>;
+
+export type ListVmwareCloudDirectorOrganizationEventResponseBodyList =
+  Array<CommonEvent>;
+export const ListVmwareCloudDirectorOrganizationEventResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    CommonEvent,
+  ) as any as S.Schema<ListVmwareCloudDirectorOrganizationEventResponseBodyList>;
+
+export type ListVmwareCloudDirectorOrganizationEventResponse =
+  ListVmwareCloudDirectorOrganizationEventResponseBodyList;
+export const ListVmwareCloudDirectorOrganizationEventResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListVmwareCloudDirectorOrganizationEventResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListVmwareCloudDirectorOrganizationEventResponse",
+  }) as any as S.Schema<ListVmwareCloudDirectorOrganizationEventResponse>;
+
+export interface ListVmwareCloudDirectorOrganizationTaskRequest {
+  /** Organization ID */
+  organizationId: string;
+  /** Pagination cursor */
+  xPaginationCursor?: string;
+  /** Pagination size */
+  xPaginationSize?: number;
+}
+export const ListVmwareCloudDirectorOrganizationTaskRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      organizationId: S.String.pipe(T.Label()),
+      xPaginationCursor: S.optional(
+        S.String.pipe(T.Header("X-Pagination-Cursor")),
+      ),
+      xPaginationSize: S.optional(S.Number.pipe(T.Header("X-Pagination-Size"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/vmwareCloudDirector/organization/{organizationId}/task",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ListVmwareCloudDirectorOrganizationTaskRequest",
+  }) as any as S.Schema<ListVmwareCloudDirectorOrganizationTaskRequest>;
+
+export type ListVmwareCloudDirectorOrganizationTaskResponseBodyList =
+  Array<CommonTask>;
+export const ListVmwareCloudDirectorOrganizationTaskResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    CommonTask,
+  ) as any as S.Schema<ListVmwareCloudDirectorOrganizationTaskResponseBodyList>;
+
+export type ListVmwareCloudDirectorOrganizationTaskResponse =
+  ListVmwareCloudDirectorOrganizationTaskResponseBodyList;
+export const ListVmwareCloudDirectorOrganizationTaskResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListVmwareCloudDirectorOrganizationTaskResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListVmwareCloudDirectorOrganizationTaskResponse",
+  }) as any as S.Schema<ListVmwareCloudDirectorOrganizationTaskResponse>;
+
+export type ListVmwareCloudDirectorOrganizationVirtualDataCenterRequestIamTagsValueList =
+  Array<IamResourceTagFilterInput>;
+export const ListVmwareCloudDirectorOrganizationVirtualDataCenterRequestIamTagsValueList =
+  /*@__PURE__*/ S.Array(
+    IamResourceTagFilterInput,
+  ) as any as S.Schema<ListVmwareCloudDirectorOrganizationVirtualDataCenterRequestIamTagsValueList>;
+
+export type ListVmwareCloudDirectorOrganizationVirtualDataCenterRequestIamTagsMap =
+  {
+    [key: string]:
+      | ListVmwareCloudDirectorOrganizationVirtualDataCenterRequestIamTagsValueList
+      | undefined;
+  };
+export const ListVmwareCloudDirectorOrganizationVirtualDataCenterRequestIamTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    ListVmwareCloudDirectorOrganizationVirtualDataCenterRequestIamTagsValueList,
+  ) as any as S.Schema<ListVmwareCloudDirectorOrganizationVirtualDataCenterRequestIamTagsMap>;
+
+export interface ListVmwareCloudDirectorOrganizationVirtualDataCenterRequest {
+  /** Organization ID */
+  organizationId: string;
+  /** Filter resources on IAM tags */
+  iamTags?: ListVmwareCloudDirectorOrganizationVirtualDataCenterRequestIamTagsMap;
+  /** Pagination cursor */
+  xPaginationCursor?: string;
+  /** Pagination size */
+  xPaginationSize?: number;
+}
+export const ListVmwareCloudDirectorOrganizationVirtualDataCenterRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      organizationId: S.String.pipe(T.Label()),
+      iamTags: S.optional(
+        ListVmwareCloudDirectorOrganizationVirtualDataCenterRequestIamTagsMap.pipe(
+          T.Query(),
+        ),
+      ),
+      xPaginationCursor: S.optional(
+        S.String.pipe(T.Header("X-Pagination-Cursor")),
+      ),
+      xPaginationSize: S.optional(S.Number.pipe(T.Header("X-Pagination-Size"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/vmwareCloudDirector/organization/{organizationId}/virtualDataCenter",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ListVmwareCloudDirectorOrganizationVirtualDataCenterRequest",
+  }) as any as S.Schema<ListVmwareCloudDirectorOrganizationVirtualDataCenterRequest>;
+
+export type ListVmwareCloudDirectorOrganizationVirtualDataCenterResponseBodyList =
+  Array<VmwareCloudDirectorVirtualDataCenterWithIAM>;
+export const ListVmwareCloudDirectorOrganizationVirtualDataCenterResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    VmwareCloudDirectorVirtualDataCenterWithIAM,
+  ) as any as S.Schema<ListVmwareCloudDirectorOrganizationVirtualDataCenterResponseBodyList>;
+
+export type ListVmwareCloudDirectorOrganizationVirtualDataCenterResponse =
+  ListVmwareCloudDirectorOrganizationVirtualDataCenterResponseBodyList;
+export const ListVmwareCloudDirectorOrganizationVirtualDataCenterResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListVmwareCloudDirectorOrganizationVirtualDataCenterResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListVmwareCloudDirectorOrganizationVirtualDataCenterResponse",
+  }) as any as S.Schema<ListVmwareCloudDirectorOrganizationVirtualDataCenterResponse>;
+
+export interface ListVmwareCloudDirectorOrganizationVirtualDataCenterComputeRequest {
+  /** Organization ID */
+  organizationId: string;
+  /** Virtual data center ID */
+  virtualDataCenterId: string;
+  /** Pagination cursor */
+  xPaginationCursor?: string;
+  /** Pagination size */
+  xPaginationSize?: number;
+}
+export const ListVmwareCloudDirectorOrganizationVirtualDataCenterComputeRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      organizationId: S.String.pipe(T.Label()),
+      virtualDataCenterId: S.String.pipe(T.Label()),
+      xPaginationCursor: S.optional(
+        S.String.pipe(T.Header("X-Pagination-Cursor")),
+      ),
+      xPaginationSize: S.optional(S.Number.pipe(T.Header("X-Pagination-Size"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/vmwareCloudDirector/organization/{organizationId}/virtualDataCenter/{virtualDataCenterId}/compute",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier:
+      "ListVmwareCloudDirectorOrganizationVirtualDataCenterComputeRequest",
+  }) as any as S.Schema<ListVmwareCloudDirectorOrganizationVirtualDataCenterComputeRequest>;
+
+export type ListVmwareCloudDirectorOrganizationVirtualDataCenterComputeResponseBodyList =
+  Array<VmwareCloudDirectorCompute>;
+export const ListVmwareCloudDirectorOrganizationVirtualDataCenterComputeResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    VmwareCloudDirectorCompute,
+  ) as any as S.Schema<ListVmwareCloudDirectorOrganizationVirtualDataCenterComputeResponseBodyList>;
+
+export type ListVmwareCloudDirectorOrganizationVirtualDataCenterComputeResponse =
+  ListVmwareCloudDirectorOrganizationVirtualDataCenterComputeResponseBodyList;
+export const ListVmwareCloudDirectorOrganizationVirtualDataCenterComputeResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListVmwareCloudDirectorOrganizationVirtualDataCenterComputeResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier:
+      "ListVmwareCloudDirectorOrganizationVirtualDataCenterComputeResponse",
+  }) as any as S.Schema<ListVmwareCloudDirectorOrganizationVirtualDataCenterComputeResponse>;
+
+export interface ListVmwareCloudDirectorOrganizationVirtualDataCenterOrderableResourceRequest {
   /** Organization ID */
   organizationId: string;
   /** Virtual data center ID */
   virtualDataCenterId: string;
 }
-export const GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdOrderableResourceRequest =
+export const ListVmwareCloudDirectorOrganizationVirtualDataCenterOrderableResourceRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       organizationId: S.String.pipe(T.Label()),
@@ -1227,8 +1356,8 @@ export const GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVi
     ),
   ).annotate({
     identifier:
-      "GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdOrderableResourceRequest",
-  }) as any as S.Schema<GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdOrderableResourceRequest>;
+      "ListVmwareCloudDirectorOrganizationVirtualDataCenterOrderableResourceRequest",
+  }) as any as S.Schema<ListVmwareCloudDirectorOrganizationVirtualDataCenterOrderableResourceRequest>;
 
 /** Possible Virtual Host */
 export interface VmwareCloudDirectorOrderableResourceCompute {
@@ -1315,7 +1444,7 @@ export const VmwareCloudDirectorOrderableResource = /*@__PURE__*/ S.suspend(
   identifier: "VmwareCloudDirectorOrderableResource",
 }) as any as S.Schema<VmwareCloudDirectorOrderableResource>;
 
-export interface GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdStorageRequest {
+export interface ListVmwareCloudDirectorOrganizationVirtualDataCenterStorageRequest {
   /** Organization ID */
   organizationId: string;
   /** Virtual data center ID */
@@ -1325,7 +1454,7 @@ export interface GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCent
   /** Pagination size */
   xPaginationSize?: number;
 }
-export const GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdStorageRequest =
+export const ListVmwareCloudDirectorOrganizationVirtualDataCenterStorageRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       organizationId: S.String.pipe(T.Label()),
@@ -1343,113 +1472,29 @@ export const GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVi
     ),
   ).annotate({
     identifier:
-      "GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdStorageRequest",
-  }) as any as S.Schema<GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdStorageRequest>;
+      "ListVmwareCloudDirectorOrganizationVirtualDataCenterStorageRequest",
+  }) as any as S.Schema<ListVmwareCloudDirectorOrganizationVirtualDataCenterStorageRequest>;
 
-/** Current status of organization Virtual DataCenter storage resource */
-export interface VmwareCloudDirectorStorageCurrentState {
-  /** Billing type of your organization Virtual DataCenter storage resource */
-  billingType?: VmwareCloudDirectorBillingTypeEnum;
-  /** Capacity available (GB) for the given resource in your organization Virtual DataCenter storage resource */
-  capacity?: number;
-  /** Name of your organization Virtual DataCenter storage resource */
-  name?: string;
-  /** Profile of your organization Virtual DataCenter storage resource */
-  profile?: string;
-  /** Type of your organization Virtual DataCenter storage resource */
-  type?: string;
-}
-export const VmwareCloudDirectorStorageCurrentState = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      billingType: S.optional(VmwareCloudDirectorBillingTypeEnum),
-      capacity: S.optional(S.Number),
-      name: S.optional(S.String),
-      profile: S.optional(S.String),
-      type: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "VmwareCloudDirectorStorageCurrentState",
-}) as any as S.Schema<VmwareCloudDirectorStorageCurrentState>;
-
-/** Asynchronous operations ongoing on the organization Virtual DataCenter storage resource */
-export type VmwareCloudDirectorStorageCurrentTasksList =
-  Array<CommonCurrentTask>;
-export const VmwareCloudDirectorStorageCurrentTasksList = /*@__PURE__*/ S.Array(
-  CommonCurrentTask,
-) as any as S.Schema<VmwareCloudDirectorStorageCurrentTasksList>;
-
-/** Organization Virtual DataCenter storage resource */
-export interface VmwareCloudDirectorStorage {
-  currentState?: VmwareCloudDirectorStorageCurrentState;
-  /** Asynchronous operations ongoing on the organization Virtual DataCenter storage resource */
-  currentTasks?: VmwareCloudDirectorStorageCurrentTasksList | null;
-  /** Unique identifier */
-  id?: string;
-  /** Reflects the readiness of the organization Virtual DataCenter storage resource. A new target specification request will be accepted only in `READY` status */
-  resourceStatus?: CommonResourceStatusEnum;
-  updatedAt?: string;
-}
-export const VmwareCloudDirectorStorage = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    currentState: S.optional(VmwareCloudDirectorStorageCurrentState),
-    currentTasks: S.optional(
-      S.NullOr(VmwareCloudDirectorStorageCurrentTasksList),
-    ),
-    id: S.optional(S.String),
-    resourceStatus: S.optional(CommonResourceStatusEnum),
-    updatedAt: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "VmwareCloudDirectorStorage",
-}) as any as S.Schema<VmwareCloudDirectorStorage>;
-
-export type GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdStorageResponseBodyList =
+export type ListVmwareCloudDirectorOrganizationVirtualDataCenterStorageResponseBodyList =
   Array<VmwareCloudDirectorStorage>;
-export const GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdStorageResponseBodyList =
+export const ListVmwareCloudDirectorOrganizationVirtualDataCenterStorageResponseBodyList =
   /*@__PURE__*/ S.Array(
     VmwareCloudDirectorStorage,
-  ) as any as S.Schema<GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdStorageResponseBodyList>;
+  ) as any as S.Schema<ListVmwareCloudDirectorOrganizationVirtualDataCenterStorageResponseBodyList>;
 
-export type GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdStorageResponse =
-  GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdStorageResponseBodyList;
-export const GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdStorageResponse =
+export type ListVmwareCloudDirectorOrganizationVirtualDataCenterStorageResponse =
+  ListVmwareCloudDirectorOrganizationVirtualDataCenterStorageResponseBodyList;
+export const ListVmwareCloudDirectorOrganizationVirtualDataCenterStorageResponse =
   /*@__PURE__*/ S.suspend(() =>
-    GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdStorageResponseBodyList.pipe(
+    ListVmwareCloudDirectorOrganizationVirtualDataCenterStorageResponseBodyList.pipe(
       T.RawResponseRoot(),
     ),
   ).annotate({
     identifier:
-      "GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdStorageResponse",
-  }) as any as S.Schema<GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdStorageResponse>;
+      "ListVmwareCloudDirectorOrganizationVirtualDataCenterStorageResponse",
+  }) as any as S.Schema<ListVmwareCloudDirectorOrganizationVirtualDataCenterStorageResponse>;
 
-export interface GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdStorageStorageIdRequest {
-  /** Organization ID */
-  organizationId: string;
-  /** Virtual data center ID */
-  virtualDataCenterId: string;
-  /** Storage ID */
-  storageId: string;
-}
-export const GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdStorageStorageIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      organizationId: S.String.pipe(T.Label()),
-      virtualDataCenterId: S.String.pipe(T.Label()),
-      storageId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/vmwareCloudDirector/organization/{organizationId}/virtualDataCenter/{virtualDataCenterId}/storage/{storageId}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdStorageStorageIdRequest",
-  }) as any as S.Schema<GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdStorageStorageIdRequest>;
-
-export interface GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdTaskRequest {
+export interface ListVmwareCloudDirectorOrganizationVirtualDataCenterTaskRequest {
   /** Organization ID */
   organizationId: string;
   /** Virtual data center ID */
@@ -1459,7 +1504,7 @@ export interface GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCent
   /** Pagination size */
   xPaginationSize?: number;
 }
-export const GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdTaskRequest =
+export const ListVmwareCloudDirectorOrganizationVirtualDataCenterTaskRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       organizationId: S.String.pipe(T.Label()),
@@ -1477,61 +1522,35 @@ export const GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVi
     ),
   ).annotate({
     identifier:
-      "GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdTaskRequest",
-  }) as any as S.Schema<GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdTaskRequest>;
+      "ListVmwareCloudDirectorOrganizationVirtualDataCenterTaskRequest",
+  }) as any as S.Schema<ListVmwareCloudDirectorOrganizationVirtualDataCenterTaskRequest>;
 
-export type GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdTaskResponseBodyList =
+export type ListVmwareCloudDirectorOrganizationVirtualDataCenterTaskResponseBodyList =
   Array<CommonTask>;
-export const GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdTaskResponseBodyList =
+export const ListVmwareCloudDirectorOrganizationVirtualDataCenterTaskResponseBodyList =
   /*@__PURE__*/ S.Array(
     CommonTask,
-  ) as any as S.Schema<GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdTaskResponseBodyList>;
+  ) as any as S.Schema<ListVmwareCloudDirectorOrganizationVirtualDataCenterTaskResponseBodyList>;
 
-export type GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdTaskResponse =
-  GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdTaskResponseBodyList;
-export const GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdTaskResponse =
+export type ListVmwareCloudDirectorOrganizationVirtualDataCenterTaskResponse =
+  ListVmwareCloudDirectorOrganizationVirtualDataCenterTaskResponseBodyList;
+export const ListVmwareCloudDirectorOrganizationVirtualDataCenterTaskResponse =
   /*@__PURE__*/ S.suspend(() =>
-    GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdTaskResponseBodyList.pipe(
+    ListVmwareCloudDirectorOrganizationVirtualDataCenterTaskResponseBodyList.pipe(
       T.RawResponseRoot(),
     ),
   ).annotate({
     identifier:
-      "GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdTaskResponse",
-  }) as any as S.Schema<GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdTaskResponse>;
+      "ListVmwareCloudDirectorOrganizationVirtualDataCenterTaskResponse",
+  }) as any as S.Schema<ListVmwareCloudDirectorOrganizationVirtualDataCenterTaskResponse>;
 
-export interface GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdTaskTaskIdRequest {
-  /** Organization ID */
-  organizationId: string;
-  /** Virtual data center ID */
-  virtualDataCenterId: string;
-  /** Task ID */
-  taskId: string;
-}
-export const GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdTaskTaskIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      organizationId: S.String.pipe(T.Label()),
-      virtualDataCenterId: S.String.pipe(T.Label()),
-      taskId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/vmwareCloudDirector/organization/{organizationId}/virtualDataCenter/{virtualDataCenterId}/task/{taskId}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdTaskTaskIdRequest",
-  }) as any as S.Schema<GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdTaskTaskIdRequest>;
-
-export interface GetVmwareCloudDirectorReferenceRegionRequest {
+export interface ListVmwareCloudDirectorReferenceRegionRequest {
   /** Pagination cursor */
   xPaginationCursor?: string;
   /** Pagination size */
   xPaginationSize?: number;
 }
-export const GetVmwareCloudDirectorReferenceRegionRequest =
+export const ListVmwareCloudDirectorReferenceRegionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       xPaginationCursor: S.optional(
@@ -1546,8 +1565,8 @@ export const GetVmwareCloudDirectorReferenceRegionRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetVmwareCloudDirectorReferenceRegionRequest",
-  }) as any as S.Schema<GetVmwareCloudDirectorReferenceRegionRequest>;
+    identifier: "ListVmwareCloudDirectorReferenceRegionRequest",
+  }) as any as S.Schema<ListVmwareCloudDirectorReferenceRegionRequest>;
 
 /** The region of your VMware Cloud Director project */
 export type VmwareCloudDirectorRegionLocationEnum =
@@ -1581,72 +1600,44 @@ export const VmwareCloudDirectorRegion = /*@__PURE__*/ S.suspend(() =>
   identifier: "VmwareCloudDirectorRegion",
 }) as any as S.Schema<VmwareCloudDirectorRegion>;
 
-export type GetVmwareCloudDirectorReferenceRegionResponseBodyList =
+export type ListVmwareCloudDirectorReferenceRegionResponseBodyList =
   Array<VmwareCloudDirectorRegion>;
-export const GetVmwareCloudDirectorReferenceRegionResponseBodyList =
+export const ListVmwareCloudDirectorReferenceRegionResponseBodyList =
   /*@__PURE__*/ S.Array(
     VmwareCloudDirectorRegion,
-  ) as any as S.Schema<GetVmwareCloudDirectorReferenceRegionResponseBodyList>;
+  ) as any as S.Schema<ListVmwareCloudDirectorReferenceRegionResponseBodyList>;
 
-export type GetVmwareCloudDirectorReferenceRegionResponse =
-  GetVmwareCloudDirectorReferenceRegionResponseBodyList;
-export const GetVmwareCloudDirectorReferenceRegionResponse =
+export type ListVmwareCloudDirectorReferenceRegionResponse =
+  ListVmwareCloudDirectorReferenceRegionResponseBodyList;
+export const ListVmwareCloudDirectorReferenceRegionResponse =
   /*@__PURE__*/ S.suspend(() =>
-    GetVmwareCloudDirectorReferenceRegionResponseBodyList.pipe(
+    ListVmwareCloudDirectorReferenceRegionResponseBodyList.pipe(
       T.RawResponseRoot(),
     ),
   ).annotate({
-    identifier: "GetVmwareCloudDirectorReferenceRegionResponse",
-  }) as any as S.Schema<GetVmwareCloudDirectorReferenceRegionResponse>;
+    identifier: "ListVmwareCloudDirectorReferenceRegionResponse",
+  }) as any as S.Schema<ListVmwareCloudDirectorReferenceRegionResponse>;
 
-export interface PostVmwareCloudDirectorOrganizationOrganizationIdPasswordRequest {
-  /** Organization ID */
-  organizationId: string;
-}
-export const PostVmwareCloudDirectorOrganizationOrganizationIdPasswordRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      organizationId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/vmwareCloudDirector/organization/{organizationId}/password",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "PostVmwareCloudDirectorOrganizationOrganizationIdPasswordRequest",
-  }) as any as S.Schema<PostVmwareCloudDirectorOrganizationOrganizationIdPasswordRequest>;
-
-export interface PostVmwareCloudDirectorOrganizationOrganizationIdPasswordResponse {}
-export const PostVmwareCloudDirectorOrganizationOrganizationIdPasswordResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier:
-      "PostVmwareCloudDirectorOrganizationOrganizationIdPasswordResponse",
-  }) as any as S.Schema<PostVmwareCloudDirectorOrganizationOrganizationIdPasswordResponse>;
-
-export interface PutVmwareCloudDirectorBackupBackupIdRequest {
+export interface PutVmwareCloudDirectorBackupRequest {
   /** Backup ID */
   backupId: string;
   /** New target specification for the VMware Cloud Director organization backup service and offers */
   targetSpec: VmwareCloudDirectorBackupTargetSpec;
 }
-export const PutVmwareCloudDirectorBackupBackupIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      backupId: S.String.pipe(T.Label()),
-      targetSpec: VmwareCloudDirectorBackupTargetSpec,
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/vmwareCloudDirector/backup/{backupId}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PutVmwareCloudDirectorBackupBackupIdRequest",
-  }) as any as S.Schema<PutVmwareCloudDirectorBackupBackupIdRequest>;
+export const PutVmwareCloudDirectorBackupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    backupId: S.String.pipe(T.Label()),
+    targetSpec: VmwareCloudDirectorBackupTargetSpec,
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/vmwareCloudDirector/backup/{backupId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "PutVmwareCloudDirectorBackupRequest",
+}) as any as S.Schema<PutVmwareCloudDirectorBackupRequest>;
 
 /** Asynchronous operations ongoing on the VMware Cloud Director organization backup service */
 export type VmwareCloudDirectorBackupBackupDetailsCurrentTasksList =
@@ -1688,13 +1679,13 @@ export const VmwareCloudDirectorBackupBackupDetails = /*@__PURE__*/ S.suspend(
   identifier: "VmwareCloudDirectorBackupBackupDetails",
 }) as any as S.Schema<VmwareCloudDirectorBackupBackupDetails>;
 
-export interface PutVmwareCloudDirectorOrganizationOrganizationIdRequest {
+export interface PutVmwareCloudDirectorOrganizationRequest {
   /** Organization ID */
   organizationId: string;
   /** New target specification for the VMware Cloud Director organization */
   targetSpec: VmwareCloudDirectorOrganizationTargetSpec;
 }
-export const PutVmwareCloudDirectorOrganizationOrganizationIdRequest =
+export const PutVmwareCloudDirectorOrganizationRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       organizationId: S.String.pipe(T.Label()),
@@ -1707,8 +1698,8 @@ export const PutVmwareCloudDirectorOrganizationOrganizationIdRequest =
       }),
     ),
   ).annotate({
-    identifier: "PutVmwareCloudDirectorOrganizationOrganizationIdRequest",
-  }) as any as S.Schema<PutVmwareCloudDirectorOrganizationOrganizationIdRequest>;
+    identifier: "PutVmwareCloudDirectorOrganizationRequest",
+  }) as any as S.Schema<PutVmwareCloudDirectorOrganizationRequest>;
 
 /** Asynchronous operations ongoing on the VMware Cloud Director organization */
 export type VmwareCloudDirectorOrganizationCurrentTasksList =
@@ -1745,7 +1736,7 @@ export const VmwareCloudDirectorOrganization = /*@__PURE__*/ S.suspend(() =>
   identifier: "VmwareCloudDirectorOrganization",
 }) as any as S.Schema<VmwareCloudDirectorOrganization>;
 
-export interface PutVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdRequest {
+export interface PutVmwareCloudDirectorOrganizationVirtualDataCenterRequest {
   /** Organization ID */
   organizationId: string;
   /** Virtual data center ID */
@@ -1753,7 +1744,7 @@ export interface PutVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCent
   /** New target specification for the organization Virtual DataCenter */
   targetSpec: VmwareCloudDirectorVirtualDataCenterTargetSpec;
 }
-export const PutVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdRequest =
+export const PutVmwareCloudDirectorOrganizationVirtualDataCenterRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       organizationId: S.String.pipe(T.Label()),
@@ -1767,9 +1758,8 @@ export const PutVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVi
       }),
     ),
   ).annotate({
-    identifier:
-      "PutVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdRequest",
-  }) as any as S.Schema<PutVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdRequest>;
+    identifier: "PutVmwareCloudDirectorOrganizationVirtualDataCenterRequest",
+  }) as any as S.Schema<PutVmwareCloudDirectorOrganizationVirtualDataCenterRequest>;
 
 /** Asynchronous operations ongoing on the organization Virtual DataCenter */
 export type VmwareCloudDirectorVirtualDataCenterCurrentTasksList =
@@ -1809,75 +1799,45 @@ export const VmwareCloudDirectorVirtualDataCenter = /*@__PURE__*/ S.suspend(
   identifier: "VmwareCloudDirectorVirtualDataCenter",
 }) as any as S.Schema<VmwareCloudDirectorVirtualDataCenter>;
 
-export type GetVmwareCloudDirectorBackupError = OvhOpError;
-/** List VMware Cloud Director Backup services */
-export const getVmwareCloudDirectorBackup: API.OperationMethod<
-  GetVmwareCloudDirectorBackupRequest,
-  GetVmwareCloudDirectorBackupResponse,
-  GetVmwareCloudDirectorBackupError,
+export type CreateVmwareCloudDirectorOrganizationPasswordError = OvhOpError;
+/** Reset the VMware Cloud Director organization administrator password */
+export const createVmwareCloudDirectorOrganizationPassword: API.OperationMethod<
+  CreateVmwareCloudDirectorOrganizationPasswordRequest,
+  CreateVmwareCloudDirectorOrganizationPasswordResponse,
+  CreateVmwareCloudDirectorOrganizationPasswordError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetVmwareCloudDirectorBackupRequest,
-  output: GetVmwareCloudDirectorBackupResponse,
+  input: CreateVmwareCloudDirectorOrganizationPasswordRequest,
+  output: CreateVmwareCloudDirectorOrganizationPasswordResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetVmwareCloudDirectorBackupBackupIdError = OvhOpError;
+export type GetVmwareCloudDirectorBackupError = OvhOpError;
 /** Get VMware Cloud Director Backup service */
-export const getVmwareCloudDirectorBackupBackupId: API.OperationMethod<
-  GetVmwareCloudDirectorBackupBackupIdRequest,
+export const getVmwareCloudDirectorBackup: API.OperationMethod<
+  GetVmwareCloudDirectorBackupRequest,
   VmwareCloudDirectorBackupBackupDetailsWithIAM,
-  GetVmwareCloudDirectorBackupBackupIdError,
+  GetVmwareCloudDirectorBackupError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetVmwareCloudDirectorBackupBackupIdRequest,
+  input: GetVmwareCloudDirectorBackupRequest,
   output: VmwareCloudDirectorBackupBackupDetailsWithIAM,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetVmwareCloudDirectorBackupBackupIdEventError = OvhOpError;
-/** List VMware Cloud Director Backup task */
-export const getVmwareCloudDirectorBackupBackupIdEvent: API.OperationMethod<
-  GetVmwareCloudDirectorBackupBackupIdEventRequest,
-  GetVmwareCloudDirectorBackupBackupIdEventResponse,
-  GetVmwareCloudDirectorBackupBackupIdEventError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetVmwareCloudDirectorBackupBackupIdEventRequest,
-  output: GetVmwareCloudDirectorBackupBackupIdEventResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetVmwareCloudDirectorBackupBackupIdTaskError = OvhOpError;
-/** List all asynchronous operations related to the VMware Cloud Director backup service */
-export const getVmwareCloudDirectorBackupBackupIdTask: API.OperationMethod<
-  GetVmwareCloudDirectorBackupBackupIdTaskRequest,
-  GetVmwareCloudDirectorBackupBackupIdTaskResponse,
-  GetVmwareCloudDirectorBackupBackupIdTaskError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetVmwareCloudDirectorBackupBackupIdTaskRequest,
-  output: GetVmwareCloudDirectorBackupBackupIdTaskResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetVmwareCloudDirectorBackupBackupIdTaskTaskIdError = OvhOpError;
+export type GetVmwareCloudDirectorBackupTaskError = OvhOpError;
 /** Get a specific task related to the VMware Cloud Director backup service */
-export const getVmwareCloudDirectorBackupBackupIdTaskTaskId: API.OperationMethod<
-  GetVmwareCloudDirectorBackupBackupIdTaskTaskIdRequest,
+export const getVmwareCloudDirectorBackupTask: API.OperationMethod<
+  GetVmwareCloudDirectorBackupTaskRequest,
   CommonTask,
-  GetVmwareCloudDirectorBackupBackupIdTaskTaskIdError,
+  GetVmwareCloudDirectorBackupTaskError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetVmwareCloudDirectorBackupBackupIdTaskTaskIdRequest,
+  input: GetVmwareCloudDirectorBackupTaskRequest,
   output: CommonTask,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
@@ -1885,312 +1845,325 @@ export const getVmwareCloudDirectorBackupBackupIdTaskTaskId: API.OperationMethod
 }));
 
 export type GetVmwareCloudDirectorOrganizationError = OvhOpError;
-/** List VMware Cloud Director organizations */
+/** Get VMware Cloud Director organization details */
 export const getVmwareCloudDirectorOrganization: API.OperationMethod<
   GetVmwareCloudDirectorOrganizationRequest,
-  GetVmwareCloudDirectorOrganizationResponse,
+  VmwareCloudDirectorOrganizationWithIAM,
   GetVmwareCloudDirectorOrganizationError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: GetVmwareCloudDirectorOrganizationRequest,
-  output: GetVmwareCloudDirectorOrganizationResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetVmwareCloudDirectorOrganizationOrganizationIdError = OvhOpError;
-/** Get VMware Cloud Director organization details */
-export const getVmwareCloudDirectorOrganizationOrganizationId: API.OperationMethod<
-  GetVmwareCloudDirectorOrganizationOrganizationIdRequest,
-  VmwareCloudDirectorOrganizationWithIAM,
-  GetVmwareCloudDirectorOrganizationOrganizationIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetVmwareCloudDirectorOrganizationOrganizationIdRequest,
   output: VmwareCloudDirectorOrganizationWithIAM,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetVmwareCloudDirectorOrganizationOrganizationIdEventError =
-  OvhOpError;
-/** List all events related to the VMware Cloud Director resources */
-export const getVmwareCloudDirectorOrganizationOrganizationIdEvent: API.OperationMethod<
-  GetVmwareCloudDirectorOrganizationOrganizationIdEventRequest,
-  GetVmwareCloudDirectorOrganizationOrganizationIdEventResponse,
-  GetVmwareCloudDirectorOrganizationOrganizationIdEventError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetVmwareCloudDirectorOrganizationOrganizationIdEventRequest,
-  output: GetVmwareCloudDirectorOrganizationOrganizationIdEventResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetVmwareCloudDirectorOrganizationOrganizationIdTaskError =
-  OvhOpError;
-/** List all asynchronous operations related to the VMware Cloud Director resources */
-export const getVmwareCloudDirectorOrganizationOrganizationIdTask: API.OperationMethod<
-  GetVmwareCloudDirectorOrganizationOrganizationIdTaskRequest,
-  GetVmwareCloudDirectorOrganizationOrganizationIdTaskResponse,
-  GetVmwareCloudDirectorOrganizationOrganizationIdTaskError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetVmwareCloudDirectorOrganizationOrganizationIdTaskRequest,
-  output: GetVmwareCloudDirectorOrganizationOrganizationIdTaskResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetVmwareCloudDirectorOrganizationOrganizationIdTaskTaskIdError =
-  OvhOpError;
+export type GetVmwareCloudDirectorOrganizationTaskError = OvhOpError;
 /** Get a specific task related to the VMware Cloud Director resources */
-export const getVmwareCloudDirectorOrganizationOrganizationIdTaskTaskId: API.OperationMethod<
-  GetVmwareCloudDirectorOrganizationOrganizationIdTaskTaskIdRequest,
+export const getVmwareCloudDirectorOrganizationTask: API.OperationMethod<
+  GetVmwareCloudDirectorOrganizationTaskRequest,
   CommonTask,
-  GetVmwareCloudDirectorOrganizationOrganizationIdTaskTaskIdError,
+  GetVmwareCloudDirectorOrganizationTaskError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetVmwareCloudDirectorOrganizationOrganizationIdTaskTaskIdRequest,
+  input: GetVmwareCloudDirectorOrganizationTaskRequest,
   output: CommonTask,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterError =
-  OvhOpError;
-/** List all organization Virtual DataCenters */
-export const getVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenter: API.OperationMethod<
-  GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterRequest,
-  GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterResponse,
-  GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterRequest,
-  output:
-    GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdError =
+export type GetVmwareCloudDirectorOrganizationVirtualDataCenterError =
   OvhOpError;
 /** Get organization Virtual DataCenter details */
-export const getVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterId: API.OperationMethod<
-  GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdRequest,
+export const getVmwareCloudDirectorOrganizationVirtualDataCenter: API.OperationMethod<
+  GetVmwareCloudDirectorOrganizationVirtualDataCenterRequest,
   VmwareCloudDirectorVirtualDataCenterWithIAM,
-  GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdError,
+  GetVmwareCloudDirectorOrganizationVirtualDataCenterError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input:
-    GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdRequest,
+  input: GetVmwareCloudDirectorOrganizationVirtualDataCenterRequest,
   output: VmwareCloudDirectorVirtualDataCenterWithIAM,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdComputeError =
-  OvhOpError;
-/** List organization Virtual DataCenter associated compute resources */
-export const getVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdCompute: API.OperationMethod<
-  GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdComputeRequest,
-  GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdComputeResponse,
-  GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdComputeError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdComputeRequest,
-  output:
-    GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdComputeResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdComputeComputeIdError =
+export type GetVmwareCloudDirectorOrganizationVirtualDataCenterComputeError =
   OvhOpError;
 /** Get organization Virtual DataCenter associated compute resources */
-export const getVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdComputeComputeId: API.OperationMethod<
-  GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdComputeComputeIdRequest,
+export const getVmwareCloudDirectorOrganizationVirtualDataCenterCompute: API.OperationMethod<
+  GetVmwareCloudDirectorOrganizationVirtualDataCenterComputeRequest,
   VmwareCloudDirectorCompute,
-  GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdComputeComputeIdError,
+  GetVmwareCloudDirectorOrganizationVirtualDataCenterComputeError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input:
-    GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdComputeComputeIdRequest,
+  input: GetVmwareCloudDirectorOrganizationVirtualDataCenterComputeRequest,
   output: VmwareCloudDirectorCompute,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdOrderableResourceError =
-  OvhOpError;
-/** List all orderable resources related to the organization Virtual DataCenter */
-export const getVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdOrderableResource: API.OperationMethod<
-  GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdOrderableResourceRequest,
-  VmwareCloudDirectorOrderableResource,
-  GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdOrderableResourceError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdOrderableResourceRequest,
-  output: VmwareCloudDirectorOrderableResource,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdStorageError =
-  OvhOpError;
-/** List organization Virtual DataCenter associated storage resources */
-export const getVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdStorage: API.OperationMethod<
-  GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdStorageRequest,
-  GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdStorageResponse,
-  GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdStorageError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdStorageRequest,
-  output:
-    GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdStorageResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdStorageStorageIdError =
+export type GetVmwareCloudDirectorOrganizationVirtualDataCenterStorageError =
   OvhOpError;
 /** Get organization Virtual DataCenter associated storage resources */
-export const getVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdStorageStorageId: API.OperationMethod<
-  GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdStorageStorageIdRequest,
+export const getVmwareCloudDirectorOrganizationVirtualDataCenterStorage: API.OperationMethod<
+  GetVmwareCloudDirectorOrganizationVirtualDataCenterStorageRequest,
   VmwareCloudDirectorStorage,
-  GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdStorageStorageIdError,
+  GetVmwareCloudDirectorOrganizationVirtualDataCenterStorageError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input:
-    GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdStorageStorageIdRequest,
+  input: GetVmwareCloudDirectorOrganizationVirtualDataCenterStorageRequest,
   output: VmwareCloudDirectorStorage,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdTaskError =
-  OvhOpError;
-/** List all asynchronous operations related to the organization Virtual DataCenter resource */
-export const getVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdTask: API.OperationMethod<
-  GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdTaskRequest,
-  GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdTaskResponse,
-  GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdTaskError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdTaskRequest,
-  output:
-    GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdTaskResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdTaskTaskIdError =
+export type GetVmwareCloudDirectorOrganizationVirtualDataCenterTaskError =
   OvhOpError;
 /** Get a specific task related to the organization Virtual DataCenter resource */
-export const getVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdTaskTaskId: API.OperationMethod<
-  GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdTaskTaskIdRequest,
+export const getVmwareCloudDirectorOrganizationVirtualDataCenterTask: API.OperationMethod<
+  GetVmwareCloudDirectorOrganizationVirtualDataCenterTaskRequest,
   CommonTask,
-  GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdTaskTaskIdError,
+  GetVmwareCloudDirectorOrganizationVirtualDataCenterTaskError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input:
-    GetVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdTaskTaskIdRequest,
+  input: GetVmwareCloudDirectorOrganizationVirtualDataCenterTaskRequest,
   output: CommonTask,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetVmwareCloudDirectorReferenceRegionError = OvhOpError;
-/** Get region details */
-export const getVmwareCloudDirectorReferenceRegion: API.OperationMethod<
-  GetVmwareCloudDirectorReferenceRegionRequest,
-  GetVmwareCloudDirectorReferenceRegionResponse,
-  GetVmwareCloudDirectorReferenceRegionError,
+export type ListVmwareCloudDirectorBackupError = OvhOpError;
+/** List VMware Cloud Director Backup services */
+export const listVmwareCloudDirectorBackup: API.OperationMethod<
+  ListVmwareCloudDirectorBackupRequest,
+  ListVmwareCloudDirectorBackupResponse,
+  ListVmwareCloudDirectorBackupError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetVmwareCloudDirectorReferenceRegionRequest,
-  output: GetVmwareCloudDirectorReferenceRegionResponse,
+  input: ListVmwareCloudDirectorBackupRequest,
+  output: ListVmwareCloudDirectorBackupResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostVmwareCloudDirectorOrganizationOrganizationIdPasswordError =
+export type ListVmwareCloudDirectorBackupEventError = OvhOpError;
+/** List VMware Cloud Director Backup task */
+export const listVmwareCloudDirectorBackupEvent: API.OperationMethod<
+  ListVmwareCloudDirectorBackupEventRequest,
+  ListVmwareCloudDirectorBackupEventResponse,
+  ListVmwareCloudDirectorBackupEventError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVmwareCloudDirectorBackupEventRequest,
+  output: ListVmwareCloudDirectorBackupEventResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVmwareCloudDirectorBackupTaskError = OvhOpError;
+/** List all asynchronous operations related to the VMware Cloud Director backup service */
+export const listVmwareCloudDirectorBackupTask: API.OperationMethod<
+  ListVmwareCloudDirectorBackupTaskRequest,
+  ListVmwareCloudDirectorBackupTaskResponse,
+  ListVmwareCloudDirectorBackupTaskError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVmwareCloudDirectorBackupTaskRequest,
+  output: ListVmwareCloudDirectorBackupTaskResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVmwareCloudDirectorOrganizationError = OvhOpError;
+/** List VMware Cloud Director organizations */
+export const listVmwareCloudDirectorOrganization: API.OperationMethod<
+  ListVmwareCloudDirectorOrganizationRequest,
+  ListVmwareCloudDirectorOrganizationResponse,
+  ListVmwareCloudDirectorOrganizationError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVmwareCloudDirectorOrganizationRequest,
+  output: ListVmwareCloudDirectorOrganizationResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVmwareCloudDirectorOrganizationEventError = OvhOpError;
+/** List all events related to the VMware Cloud Director resources */
+export const listVmwareCloudDirectorOrganizationEvent: API.OperationMethod<
+  ListVmwareCloudDirectorOrganizationEventRequest,
+  ListVmwareCloudDirectorOrganizationEventResponse,
+  ListVmwareCloudDirectorOrganizationEventError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVmwareCloudDirectorOrganizationEventRequest,
+  output: ListVmwareCloudDirectorOrganizationEventResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVmwareCloudDirectorOrganizationTaskError = OvhOpError;
+/** List all asynchronous operations related to the VMware Cloud Director resources */
+export const listVmwareCloudDirectorOrganizationTask: API.OperationMethod<
+  ListVmwareCloudDirectorOrganizationTaskRequest,
+  ListVmwareCloudDirectorOrganizationTaskResponse,
+  ListVmwareCloudDirectorOrganizationTaskError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVmwareCloudDirectorOrganizationTaskRequest,
+  output: ListVmwareCloudDirectorOrganizationTaskResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVmwareCloudDirectorOrganizationVirtualDataCenterError =
   OvhOpError;
-/** Reset the VMware Cloud Director organization administrator password */
-export const postVmwareCloudDirectorOrganizationOrganizationIdPassword: API.OperationMethod<
-  PostVmwareCloudDirectorOrganizationOrganizationIdPasswordRequest,
-  PostVmwareCloudDirectorOrganizationOrganizationIdPasswordResponse,
-  PostVmwareCloudDirectorOrganizationOrganizationIdPasswordError,
+/** List all organization Virtual DataCenters */
+export const listVmwareCloudDirectorOrganizationVirtualDataCenter: API.OperationMethod<
+  ListVmwareCloudDirectorOrganizationVirtualDataCenterRequest,
+  ListVmwareCloudDirectorOrganizationVirtualDataCenterResponse,
+  ListVmwareCloudDirectorOrganizationVirtualDataCenterError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostVmwareCloudDirectorOrganizationOrganizationIdPasswordRequest,
-  output: PostVmwareCloudDirectorOrganizationOrganizationIdPasswordResponse,
+  input: ListVmwareCloudDirectorOrganizationVirtualDataCenterRequest,
+  output: ListVmwareCloudDirectorOrganizationVirtualDataCenterResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutVmwareCloudDirectorBackupBackupIdError = OvhOpError;
-/** Update VMware Cloud Director Backup service */
-export const putVmwareCloudDirectorBackupBackupId: API.OperationMethod<
-  PutVmwareCloudDirectorBackupBackupIdRequest,
-  VmwareCloudDirectorBackupBackupDetails,
-  PutVmwareCloudDirectorBackupBackupIdError,
+export type ListVmwareCloudDirectorOrganizationVirtualDataCenterComputeError =
+  OvhOpError;
+/** List organization Virtual DataCenter associated compute resources */
+export const listVmwareCloudDirectorOrganizationVirtualDataCenterCompute: API.OperationMethod<
+  ListVmwareCloudDirectorOrganizationVirtualDataCenterComputeRequest,
+  ListVmwareCloudDirectorOrganizationVirtualDataCenterComputeResponse,
+  ListVmwareCloudDirectorOrganizationVirtualDataCenterComputeError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutVmwareCloudDirectorBackupBackupIdRequest,
+  input: ListVmwareCloudDirectorOrganizationVirtualDataCenterComputeRequest,
+  output: ListVmwareCloudDirectorOrganizationVirtualDataCenterComputeResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVmwareCloudDirectorOrganizationVirtualDataCenterOrderableResourceError =
+  OvhOpError;
+/** List all orderable resources related to the organization Virtual DataCenter */
+export const listVmwareCloudDirectorOrganizationVirtualDataCenterOrderableResource: API.OperationMethod<
+  ListVmwareCloudDirectorOrganizationVirtualDataCenterOrderableResourceRequest,
+  VmwareCloudDirectorOrderableResource,
+  ListVmwareCloudDirectorOrganizationVirtualDataCenterOrderableResourceError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input:
+    ListVmwareCloudDirectorOrganizationVirtualDataCenterOrderableResourceRequest,
+  output: VmwareCloudDirectorOrderableResource,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVmwareCloudDirectorOrganizationVirtualDataCenterStorageError =
+  OvhOpError;
+/** List organization Virtual DataCenter associated storage resources */
+export const listVmwareCloudDirectorOrganizationVirtualDataCenterStorage: API.OperationMethod<
+  ListVmwareCloudDirectorOrganizationVirtualDataCenterStorageRequest,
+  ListVmwareCloudDirectorOrganizationVirtualDataCenterStorageResponse,
+  ListVmwareCloudDirectorOrganizationVirtualDataCenterStorageError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVmwareCloudDirectorOrganizationVirtualDataCenterStorageRequest,
+  output: ListVmwareCloudDirectorOrganizationVirtualDataCenterStorageResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVmwareCloudDirectorOrganizationVirtualDataCenterTaskError =
+  OvhOpError;
+/** List all asynchronous operations related to the organization Virtual DataCenter resource */
+export const listVmwareCloudDirectorOrganizationVirtualDataCenterTask: API.OperationMethod<
+  ListVmwareCloudDirectorOrganizationVirtualDataCenterTaskRequest,
+  ListVmwareCloudDirectorOrganizationVirtualDataCenterTaskResponse,
+  ListVmwareCloudDirectorOrganizationVirtualDataCenterTaskError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVmwareCloudDirectorOrganizationVirtualDataCenterTaskRequest,
+  output: ListVmwareCloudDirectorOrganizationVirtualDataCenterTaskResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVmwareCloudDirectorReferenceRegionError = OvhOpError;
+/** Get region details */
+export const listVmwareCloudDirectorReferenceRegion: API.OperationMethod<
+  ListVmwareCloudDirectorReferenceRegionRequest,
+  ListVmwareCloudDirectorReferenceRegionResponse,
+  ListVmwareCloudDirectorReferenceRegionError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVmwareCloudDirectorReferenceRegionRequest,
+  output: ListVmwareCloudDirectorReferenceRegionResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutVmwareCloudDirectorBackupError = OvhOpError;
+/** Update VMware Cloud Director Backup service */
+export const putVmwareCloudDirectorBackup: API.OperationMethod<
+  PutVmwareCloudDirectorBackupRequest,
+  VmwareCloudDirectorBackupBackupDetails,
+  PutVmwareCloudDirectorBackupError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutVmwareCloudDirectorBackupRequest,
   output: VmwareCloudDirectorBackupBackupDetails,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutVmwareCloudDirectorOrganizationOrganizationIdError = OvhOpError;
+export type PutVmwareCloudDirectorOrganizationError = OvhOpError;
 /** Update VMware Cloud Director organization details */
-export const putVmwareCloudDirectorOrganizationOrganizationId: API.OperationMethod<
-  PutVmwareCloudDirectorOrganizationOrganizationIdRequest,
+export const putVmwareCloudDirectorOrganization: API.OperationMethod<
+  PutVmwareCloudDirectorOrganizationRequest,
   VmwareCloudDirectorOrganization,
-  PutVmwareCloudDirectorOrganizationOrganizationIdError,
+  PutVmwareCloudDirectorOrganizationError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutVmwareCloudDirectorOrganizationOrganizationIdRequest,
+  input: PutVmwareCloudDirectorOrganizationRequest,
   output: VmwareCloudDirectorOrganization,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdError =
+export type PutVmwareCloudDirectorOrganizationVirtualDataCenterError =
   OvhOpError;
 /** Update organization Virtual DataCenter details */
-export const putVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterId: API.OperationMethod<
-  PutVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdRequest,
+export const putVmwareCloudDirectorOrganizationVirtualDataCenter: API.OperationMethod<
+  PutVmwareCloudDirectorOrganizationVirtualDataCenterRequest,
   VmwareCloudDirectorVirtualDataCenter,
-  PutVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdError,
+  PutVmwareCloudDirectorOrganizationVirtualDataCenterError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input:
-    PutVmwareCloudDirectorOrganizationOrganizationIdVirtualDataCenterVirtualDataCenterIdRequest,
+  input: PutVmwareCloudDirectorOrganizationVirtualDataCenterRequest,
   output: VmwareCloudDirectorVirtualDataCenter,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,

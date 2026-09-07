@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.ovh.hostingprivatedatabase#IamResourceTagFilterInput": {
@@ -24,28 +25,28 @@
         "smithy.api#documentation": "Resource tag filter"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseRequestIamTagsValueList": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseRequestIamTagsValueList": {
       "type": "list",
       "member": {
         "target": "com.ovh.hostingprivatedatabase#IamResourceTagFilterInput"
       },
       "traits": {}
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseRequestIamTagsMap": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseRequestIamTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseRequestIamTagsValueList"
+        "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseRequestIamTagsValueList"
       },
       "traits": {}
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseRequest": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseRequest": {
       "type": "structure",
       "members": {
         "iamTags": {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseRequestIamTagsMap",
+          "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseRequestIamTagsMap",
           "traits": {
             "smithy.api#httpQuery": "iamTags",
             "smithy.api#documentation": "Filter resources on IAM tags"
@@ -56,18 +57,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseResponseBodyList": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseResponse": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseResponseBodyList",
+          "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -78,13 +79,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabase": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabase": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseRequest"
+        "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseRequest"
       },
       "output": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseResponse"
+        "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -115,7 +116,7 @@
         "smithy.api#documentation": "Available offers"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseAvailableOrderCapacitiesRequest": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseAvailableOrderCapacitiesRequest": {
       "type": "structure",
       "members": {
         "offer": {
@@ -339,10 +340,10 @@
         "smithy.api#documentation": "A list of version available for this offer"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseAvailableOrderCapacities": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseAvailableOrderCapacities": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseAvailableOrderCapacitiesRequest"
+        "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseAvailableOrderCapacitiesRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseAvailableOrderCapacities"
@@ -356,7 +357,7 @@
         "smithy.api#documentation": "Get available order capacities"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameRequest": {
+    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -853,10 +854,10 @@
         "smithy.api#documentation": "Private database version"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceName": {
+    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabase": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameRequest"
+        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseServiceWithIAM"
@@ -870,7 +871,7 @@
         "smithy.api#documentation": "Get a Web Cloud Database properties"
       }
     },
-    "com.ovh.hostingprivatedatabase#PutHostingPrivateDatabaseServiceNameRequest": {
+    "com.ovh.hostingprivatedatabase#PutHostingPrivateDatabaseRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -893,10 +894,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#PutHostingPrivateDatabaseServiceName": {
+    "com.ovh.hostingprivatedatabase#PutHostingPrivateDatabase": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#PutHostingPrivateDatabaseServiceNameRequest"
+        "target": "com.ovh.hostingprivatedatabase#PutHostingPrivateDatabaseRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -910,7 +911,7 @@
         "smithy.api#documentation": "Alter a Web Cloud Database properties"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameAvailableVersionsRequest": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseAvailableVersionsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -926,18 +927,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameAvailableVersionsResponseBodyList": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseAvailableVersionsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseAvailableVersionEnum"
       },
       "traits": {}
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameAvailableVersionsResponse": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseAvailableVersionsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameAvailableVersionsResponseBodyList",
+          "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseAvailableVersionsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -948,13 +949,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameAvailableVersions": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseAvailableVersions": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameAvailableVersionsRequest"
+        "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseAvailableVersionsRequest"
       },
       "output": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameAvailableVersionsResponse"
+        "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseAvailableVersionsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -965,7 +966,7 @@
         "smithy.api#documentation": "Get the availables versions for this private database"
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameChangeContactRequest": {
+    "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseChangeContactRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -999,18 +1000,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameChangeContactResponseBodyList": {
+    "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseChangeContactResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameChangeContactResponse": {
+    "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseChangeContactResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameChangeContactResponseBodyList",
+          "target": "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseChangeContactResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1021,13 +1022,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameChangeContact": {
+    "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseChangeContact": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameChangeContactRequest"
+        "target": "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseChangeContactRequest"
       },
       "output": {
-        "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameChangeContactResponse"
+        "target": "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseChangeContactResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1038,7 +1039,7 @@
         "smithy.api#documentation": "Launch a contact change procedure"
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameChangeFtpPasswordRequest": {
+    "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseChangeFtpPasswordRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1409,10 +1410,10 @@
         "smithy.api#documentation": "Task's status"
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameChangeFtpPassword": {
+    "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseChangeFtpPassword": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameChangeFtpPasswordRequest"
+        "target": "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseChangeFtpPasswordRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseTask"
@@ -1426,7 +1427,7 @@
         "smithy.api#documentation": "Change FTP password of your Web Cloud Database"
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameChangeVersionRequest": {
+    "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseChangeVersionRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1449,10 +1450,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameChangeVersion": {
+    "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseChangeVersion": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameChangeVersionRequest"
+        "target": "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseChangeVersionRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseTask"
@@ -1466,7 +1467,7 @@
         "smithy.api#documentation": "Change DBMS version of your Web Cloud Database"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameConfigRequest": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseConfigRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1636,10 +1637,10 @@
         "smithy.api#documentation": "Web Cloud Database config status"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameConfig": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseConfig": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameConfigRequest"
+        "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseConfigRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseConfigs"
@@ -1675,7 +1676,7 @@
         "smithy.api#documentation": "ConfigKeyValue"
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameConfigUpdateRequestParametersList": {
+    "com.ovh.hostingprivatedatabase#UpdateHostingPrivateDatabaseConfigRequestParametersList": {
       "type": "list",
       "member": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseConfigKeyValue"
@@ -1684,7 +1685,7 @@
         "smithy.api#documentation": "Web Cloud Database configurations"
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameConfigUpdateRequest": {
+    "com.ovh.hostingprivatedatabase#UpdateHostingPrivateDatabaseConfigRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1696,7 +1697,7 @@
           }
         },
         "parameters": {
-          "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameConfigUpdateRequestParametersList",
+          "target": "com.ovh.hostingprivatedatabase#UpdateHostingPrivateDatabaseConfigRequestParametersList",
           "traits": {
             "smithy.api#documentation": "Web Cloud Database configurations",
             "smithy.api#required": {}
@@ -1707,10 +1708,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameConfigUpdate": {
+    "com.ovh.hostingprivatedatabase#UpdateHostingPrivateDatabaseConfig": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameConfigUpdateRequest"
+        "target": "com.ovh.hostingprivatedatabase#UpdateHostingPrivateDatabaseConfigRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseConfigs"
@@ -1854,7 +1855,7 @@
         "smithy.api#documentation": "All reasons you can provide for a service termination"
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameConfirmTerminationRequest": {
+    "com.ovh.hostingprivatedatabase#ConfirmHostingPrivateDatabaseTerminationRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1895,7 +1896,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameConfirmTerminationResponse": {
+    "com.ovh.hostingprivatedatabase#ConfirmHostingPrivateDatabaseTerminationResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -1910,13 +1911,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameConfirmTermination": {
+    "com.ovh.hostingprivatedatabase#ConfirmHostingPrivateDatabaseTermination": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameConfirmTerminationRequest"
+        "target": "com.ovh.hostingprivatedatabase#ConfirmHostingPrivateDatabaseTerminationRequest"
       },
       "output": {
-        "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameConfirmTerminationResponse"
+        "target": "com.ovh.hostingprivatedatabase#ConfirmHostingPrivateDatabaseTerminationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1927,7 +1928,7 @@
         "smithy.api#documentation": "Confirm service termination"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameCpuThrottleRequest": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseCpuThrottleRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1964,18 +1965,18 @@
         "smithy.api#documentation": "CPU throttle informations"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameCpuThrottleResponseBodyList": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseCpuThrottleResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseCpuThrottle"
       },
       "traits": {}
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameCpuThrottleResponse": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseCpuThrottleResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameCpuThrottleResponseBodyList",
+          "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseCpuThrottleResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1986,13 +1987,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameCpuThrottle": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseCpuThrottle": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameCpuThrottleRequest"
+        "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseCpuThrottleRequest"
       },
       "output": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameCpuThrottleResponse"
+        "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseCpuThrottleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2003,7 +2004,7 @@
         "smithy.api#documentation": "List of privatesql CPU throttle"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabaseRequest": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseDatabaseRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2019,18 +2020,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabaseResponseBodyList": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseDatabaseResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabaseResponse": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseDatabaseResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabaseResponseBodyList",
+          "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseDatabaseResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -2041,13 +2042,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabase": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseDatabase": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabaseRequest"
+        "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseDatabaseRequest"
       },
       "output": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabaseResponse"
+        "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseDatabaseResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2058,7 +2059,7 @@
         "smithy.api#documentation": "List databases on a privateDatabase"
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameDatabaseRequest": {
+    "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseDatabaseRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2081,10 +2082,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameDatabase": {
+    "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseDatabase": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameDatabaseRequest"
+        "target": "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseDatabaseRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseTask"
@@ -2098,7 +2099,7 @@
         "smithy.api#documentation": "Create a new database in a Web Cloud Database"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameRequest": {
+    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseDatabaseRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2228,10 +2229,10 @@
         "smithy.api#documentation": "Users granted to this database"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabaseDatabaseName": {
+    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseDatabase": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameRequest"
+        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseDatabaseRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseDatabase"
@@ -2245,7 +2246,7 @@
         "smithy.api#documentation": "Get database properties"
       }
     },
-    "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseServiceNameDatabaseDatabaseNameRequest": {
+    "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseDatabaseRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2269,10 +2270,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseServiceNameDatabaseDatabaseName": {
+    "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseDatabase": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseServiceNameDatabaseDatabaseNameRequest"
+        "target": "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseDatabaseRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseTask"
@@ -2286,7 +2287,7 @@
         "smithy.api#documentation": "Delete a database from a Web Cloud Database"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyRequest": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseDatabaseCopyRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2310,18 +2311,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyResponseBodyList": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseDatabaseCopyResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyResponse": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseDatabaseCopyResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyResponseBodyList",
+          "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseDatabaseCopyResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -2332,13 +2333,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopy": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseDatabaseCopy": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyRequest"
+        "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseDatabaseCopyRequest"
       },
       "output": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyResponse"
+        "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseDatabaseCopyResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2349,7 +2350,7 @@
         "smithy.api#documentation": "List database copy of a privateDatabase"
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyRequest": {
+    "com.ovh.hostingprivatedatabase#CopyHostingPrivateDatabaseDatabaseRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2444,10 +2445,10 @@
         "smithy.api#documentation": "Database copy status"
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopy": {
+    "com.ovh.hostingprivatedatabase#CopyHostingPrivateDatabaseDatabase": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyRequest"
+        "target": "com.ovh.hostingprivatedatabase#CopyHostingPrivateDatabaseDatabaseRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseDatabaseCopy"
@@ -2461,7 +2462,7 @@
         "smithy.api#documentation": "Create a new database copy in a Web Cloud Database"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyIdRequest": {
+    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseDatabaseCopyRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2493,10 +2494,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyId": {
+    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseDatabaseCopy": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyIdRequest"
+        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseDatabaseCopyRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseDatabaseCopy"
@@ -2510,7 +2511,7 @@
         "smithy.api#documentation": "Get database copy properties"
       }
     },
-    "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyIdRequest": {
+    "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseDatabaseCopyRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2542,10 +2543,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyId": {
+    "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseDatabaseCopy": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyIdRequest"
+        "target": "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseDatabaseCopyRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2559,7 +2560,7 @@
         "smithy.api#documentation": "Delete the database copy of a Web Cloud Database"
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyRestoreRequest": {
+    "com.ovh.hostingprivatedatabase#CopyHostingPrivateDatabaseDatabaseRestoreRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2596,10 +2597,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyRestore": {
+    "com.ovh.hostingprivatedatabase#CopyHostingPrivateDatabaseDatabaseRestore": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyRestoreRequest"
+        "target": "com.ovh.hostingprivatedatabase#CopyHostingPrivateDatabaseDatabaseRestoreRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseTask"
@@ -2613,7 +2614,7 @@
         "smithy.api#documentation": "Request the copy into a Web Cloud Database"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpRequest": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseDatabaseDumpRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2637,18 +2638,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpResponseBodyList": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseDatabaseDumpResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpResponse": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseDatabaseDumpResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpResponseBodyList",
+          "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseDatabaseDumpResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -2659,13 +2660,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDump": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseDatabaseDump": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpRequest"
+        "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseDatabaseDumpRequest"
       },
       "output": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpResponse"
+        "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseDatabaseDumpResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2676,7 +2677,7 @@
         "smithy.api#documentation": "Get all database dump from a Web Cloud Database"
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpRequest": {
+    "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseDatabaseDumpRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2706,10 +2707,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDump": {
+    "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseDatabaseDump": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpRequest"
+        "target": "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseDatabaseDumpRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseTask"
@@ -2723,7 +2724,7 @@
         "smithy.api#documentation": "Request the dump of this database (an email will be sent with a link available 30 days)"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpIdRequest": {
+    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseDatabaseDumpRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2793,10 +2794,10 @@
         "smithy.api#documentation": "Dumps"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpId": {
+    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseDatabaseDump": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpIdRequest"
+        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseDatabaseDumpRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseDatabaseDump"
@@ -2810,7 +2811,7 @@
         "smithy.api#documentation": "Get a database dump from a Web Cloud Database"
       }
     },
-    "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpIdRequest": {
+    "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseDatabaseDumpRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2842,10 +2843,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpId": {
+    "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseDatabaseDump": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpIdRequest"
+        "target": "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseDatabaseDumpRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseTask"
@@ -2859,7 +2860,7 @@
         "smithy.api#documentation": "Delete dump before expiration date"
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpIdRestoreRequest": {
+    "com.ovh.hostingprivatedatabase#RestoreHostingPrivateDatabaseDatabaseDumpRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2891,10 +2892,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpIdRestore": {
+    "com.ovh.hostingprivatedatabase#RestoreHostingPrivateDatabaseDatabaseDump": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpIdRestoreRequest"
+        "target": "com.ovh.hostingprivatedatabase#RestoreHostingPrivateDatabaseDatabaseDumpRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseTask"
@@ -2940,7 +2941,7 @@
         "smithy.api#documentation": "Extension status"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionRequest": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseDatabaseExtensionRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2978,18 +2979,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionResponseBodyList": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseDatabaseExtensionResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionResponse": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseDatabaseExtensionResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionResponseBodyList",
+          "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseDatabaseExtensionResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -3000,13 +3001,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtension": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseDatabaseExtension": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionRequest"
+        "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseDatabaseExtensionRequest"
       },
       "output": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionResponse"
+        "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseDatabaseExtensionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3017,7 +3018,7 @@
         "smithy.api#documentation": "List extensions available for a Webcloud Database"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionExtensionNameRequest": {
+    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseDatabaseExtensionRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3090,10 +3091,10 @@
         "smithy.api#documentation": "Required extensions"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionExtensionName": {
+    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseDatabaseExtension": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionExtensionNameRequest"
+        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseDatabaseExtensionRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseExtension"
@@ -3107,7 +3108,7 @@
         "smithy.api#documentation": "Get properties of a Webcloud Database extension"
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionExtensionNameDisableRequest": {
+    "com.ovh.hostingprivatedatabase#DisableHostingPrivateDatabaseDatabaseExtensionRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3139,10 +3140,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionExtensionNameDisable": {
+    "com.ovh.hostingprivatedatabase#DisableHostingPrivateDatabaseDatabaseExtension": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionExtensionNameDisableRequest"
+        "target": "com.ovh.hostingprivatedatabase#DisableHostingPrivateDatabaseDatabaseExtensionRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseTask"
@@ -3156,7 +3157,7 @@
         "smithy.api#documentation": "Disable an extension on a Web Cloud Database"
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionExtensionNameEnableRequest": {
+    "com.ovh.hostingprivatedatabase#EnableHostingPrivateDatabaseDatabaseExtensionRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3188,10 +3189,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionExtensionNameEnable": {
+    "com.ovh.hostingprivatedatabase#EnableHostingPrivateDatabaseDatabaseExtension": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionExtensionNameEnableRequest"
+        "target": "com.ovh.hostingprivatedatabase#EnableHostingPrivateDatabaseDatabaseExtensionRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseTask"
@@ -3205,7 +3206,7 @@
         "smithy.api#documentation": "Enable an extension on a Web Cloud Database"
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameImportRequest": {
+    "com.ovh.hostingprivatedatabase#ImportHostingPrivateDatabaseDatabaseRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3248,10 +3249,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameImport": {
+    "com.ovh.hostingprivatedatabase#ImportHostingPrivateDatabaseDatabase": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameImportRequest"
+        "target": "com.ovh.hostingprivatedatabase#ImportHostingPrivateDatabaseDatabaseRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseTask"
@@ -3265,7 +3266,7 @@
         "smithy.api#documentation": "Import a database into a Web Cloud Database"
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameDatabaseWizardRequest": {
+    "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseDatabaseWizardRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3310,10 +3311,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameDatabaseWizard": {
+    "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseDatabaseWizard": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameDatabaseWizardRequest"
+        "target": "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseDatabaseWizardRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseTask"
@@ -3327,7 +3328,7 @@
         "smithy.api#documentation": "Create a new database/user and grant it"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDumpRequest": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseDumpRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3357,18 +3358,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDumpResponseBodyList": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseDumpResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDumpResponse": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseDumpResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDumpResponseBodyList",
+          "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseDumpResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -3379,13 +3380,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDump": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseDump": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDumpRequest"
+        "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseDumpRequest"
       },
       "output": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDumpResponse"
+        "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseDumpResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3396,7 +3397,7 @@
         "smithy.api#documentation": "Get all database dump from a Web Cloud Database"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDumpDumpIdRequest": {
+    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseDumpRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3464,10 +3465,10 @@
         "smithy.api#documentation": "Dumps"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDumpDumpId": {
+    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseDump": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDumpDumpIdRequest"
+        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseDumpRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseDump"
@@ -3481,7 +3482,7 @@
         "smithy.api#documentation": "Get a database dump from a Web Cloud Database"
       }
     },
-    "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseServiceNameDumpDumpIdRequest": {
+    "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseDumpRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3505,10 +3506,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseServiceNameDumpDumpId": {
+    "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseDump": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseServiceNameDumpDumpIdRequest"
+        "target": "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseDumpRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseTask"
@@ -3522,7 +3523,7 @@
         "smithy.api#documentation": "Delete a database dump from a Web Cloud Database"
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameDumpDumpIdRestoreRequest": {
+    "com.ovh.hostingprivatedatabase#RestoreHostingPrivateDatabaseDumpRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3552,10 +3553,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameDumpDumpIdRestore": {
+    "com.ovh.hostingprivatedatabase#RestoreHostingPrivateDatabaseDump": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameDumpDumpIdRestoreRequest"
+        "target": "com.ovh.hostingprivatedatabase#RestoreHostingPrivateDatabaseDumpRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseTask"
@@ -3569,7 +3570,7 @@
         "smithy.api#documentation": "Restore a database dump into a Web Cloud Database"
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameGenerateTemporaryLogsLinkRequest": {
+    "com.ovh.hostingprivatedatabase#GenerateHostingPrivateDatabaseTemporaryLogsLinkRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3605,10 +3606,10 @@
         "smithy.api#documentation": " Temporary url information"
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameGenerateTemporaryLogsLink": {
+    "com.ovh.hostingprivatedatabase#GenerateHostingPrivateDatabaseTemporaryLogsLink": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameGenerateTemporaryLogsLinkRequest"
+        "target": "com.ovh.hostingprivatedatabase#GenerateHostingPrivateDatabaseTemporaryLogsLinkRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseTemporaryUrlInformations"
@@ -3622,7 +3623,7 @@
         "smithy.api#documentation": "Generate a temporary link to access logs for a Web Cloud Database"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameLogKindRequest": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseLogKindRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3638,18 +3639,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameLogKindResponseBodyList": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseLogKindResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameLogKindResponse": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseLogKindResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameLogKindResponseBodyList",
+          "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseLogKindResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -3660,13 +3661,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameLogKind": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseLogKind": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameLogKindRequest"
+        "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseLogKindRequest"
       },
       "output": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameLogKindResponse"
+        "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseLogKindResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3677,7 +3678,7 @@
         "smithy.api#documentation": "List available log kinds"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameLogKindNameRequest": {
+    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseLogKindRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3754,10 +3755,10 @@
         "smithy.api#documentation": "List of additional log fields managed in this log kind"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameLogKindName": {
+    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseLogKind": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameLogKindNameRequest"
+        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseLogKindRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#DbaasLogsLogKind"
@@ -3771,7 +3772,7 @@
         "smithy.api#documentation": "Get a log kind"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameLogSubscriptionRequest": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseLogSubscriptionRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3794,18 +3795,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameLogSubscriptionResponseBodyList": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseLogSubscriptionResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameLogSubscriptionResponse": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseLogSubscriptionResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameLogSubscriptionResponseBodyList",
+          "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseLogSubscriptionResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -3816,13 +3817,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameLogSubscription": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseLogSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameLogSubscriptionRequest"
+        "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseLogSubscriptionRequest"
       },
       "output": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameLogSubscriptionResponse"
+        "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseLogSubscriptionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3833,7 +3834,7 @@
         "smithy.api#documentation": "List subscription IDs for Web Cloud Database"
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameLogSubscriptionRequest": {
+    "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseLogSubscriptionRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3883,10 +3884,10 @@
         "smithy.api#documentation": "Asynchronous operation after subscribing or unsubscribing to a resource logs"
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameLogSubscription": {
+    "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseLogSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameLogSubscriptionRequest"
+        "target": "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseLogSubscriptionRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#DbaasLogsLogSubscriptionResponse"
@@ -3900,7 +3901,7 @@
         "smithy.api#documentation": "Create subscription to log to customer for a Web Cloud Database"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameLogSubscriptionSubscriptionIdRequest": {
+    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseLogSubscriptionRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3994,10 +3995,10 @@
         "smithy.api#documentation": "Log subscription resource"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameLogSubscriptionSubscriptionId": {
+    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseLogSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameLogSubscriptionSubscriptionIdRequest"
+        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseLogSubscriptionRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#DbaasLogsLogSubscription"
@@ -4011,7 +4012,7 @@
         "smithy.api#documentation": "Get subscription details"
       }
     },
-    "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseServiceNameLogSubscriptionSubscriptionIdRequest": {
+    "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseLogSubscriptionRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4035,10 +4036,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseServiceNameLogSubscriptionSubscriptionId": {
+    "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseLogSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseServiceNameLogSubscriptionSubscriptionIdRequest"
+        "target": "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseLogSubscriptionRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#DbaasLogsLogSubscriptionResponse"
@@ -4052,7 +4053,7 @@
         "smithy.api#documentation": "Delete a subscription"
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameLogUrlRequest": {
+    "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseLogUrlRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4095,10 +4096,10 @@
         "smithy.api#documentation": "Temporary url information"
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameLogUrl": {
+    "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseLogUrl": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameLogUrlRequest"
+        "target": "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseLogUrlRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#DbaasLogsTemporaryLogsLink"
@@ -4112,7 +4113,7 @@
         "smithy.api#documentation": "Generate a temporary URL to retrieve logs"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameMetricsTokenRequest": {
+    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseMetricsTokenRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4148,10 +4149,10 @@
         "smithy.api#documentation": "Metrics token"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameMetricsToken": {
+    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseMetricsToken": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameMetricsTokenRequest"
+        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseMetricsTokenRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseMetricsToken"
@@ -4165,7 +4166,7 @@
         "smithy.api#documentation": "Generate a metrics token"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameOomRequest": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseOomRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4201,18 +4202,18 @@
         "smithy.api#documentation": "List of privatesql OOM kill"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameOomResponseBodyList": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseOomResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseOom"
       },
       "traits": {}
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameOomResponse": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseOomResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameOomResponseBodyList",
+          "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseOomResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -4223,13 +4224,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameOom": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseOom": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameOomRequest"
+        "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseOomRequest"
       },
       "output": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameOomResponse"
+        "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseOomResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4240,7 +4241,7 @@
         "smithy.api#documentation": "List of privatesql OOM kill"
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameQuotaRefreshRequest": {
+    "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseQuotaRefreshRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4256,10 +4257,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameQuotaRefresh": {
+    "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseQuotaRefresh": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameQuotaRefreshRequest"
+        "target": "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseQuotaRefreshRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseTask"
@@ -4273,7 +4274,7 @@
         "smithy.api#documentation": "Refresh the quota of your Web Cloud Database"
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameRestartRequest": {
+    "com.ovh.hostingprivatedatabase#RestartHostingPrivateDatabaseRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4289,10 +4290,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameRestart": {
+    "com.ovh.hostingprivatedatabase#RestartHostingPrivateDatabase": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameRestartRequest"
+        "target": "com.ovh.hostingprivatedatabase#RestartHostingPrivateDatabaseRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseTask"
@@ -4306,7 +4307,7 @@
         "smithy.api#documentation": "Restart the Web Cloud Database"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameServiceInfosRequest": {
+    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceInfosRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4526,10 +4527,10 @@
         "smithy.api#documentation": "service.StateEnum"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameServiceInfos": {
+    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceInfos": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameServiceInfosRequest"
+        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceInfosRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#ServicesService"
@@ -4543,7 +4544,7 @@
         "smithy.api#documentation": "Get service information"
       }
     },
-    "com.ovh.hostingprivatedatabase#PutHostingPrivateDatabaseServiceNameServiceInfosRequest": {
+    "com.ovh.hostingprivatedatabase#PutHostingPrivateDatabaseServiceInfosRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4566,10 +4567,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#PutHostingPrivateDatabaseServiceNameServiceInfos": {
+    "com.ovh.hostingprivatedatabase#PutHostingPrivateDatabaseServiceInfos": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#PutHostingPrivateDatabaseServiceNameServiceInfosRequest"
+        "target": "com.ovh.hostingprivatedatabase#PutHostingPrivateDatabaseServiceInfosRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4583,7 +4584,7 @@
         "smithy.api#documentation": "Update service information"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameTasksRequest": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseTasksRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4613,18 +4614,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameTasksResponseBodyList": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseTasksResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameTasksResponse": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseTasksResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameTasksResponseBodyList",
+          "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseTasksResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -4635,13 +4636,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameTasks": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseTasks": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameTasksRequest"
+        "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseTasksRequest"
       },
       "output": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameTasksResponse"
+        "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseTasksResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4652,7 +4653,7 @@
         "smithy.api#documentation": "List tasks for a Webcloud Database"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameTasksIdRequest": {
+    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseTaskRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4676,10 +4677,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameTasksId": {
+    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseTask": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameTasksIdRequest"
+        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseTaskRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseTask"
@@ -4693,7 +4694,7 @@
         "smithy.api#documentation": "Get task details"
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameTerminateRequest": {
+    "com.ovh.hostingprivatedatabase#TerminateHostingPrivateDatabaseRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4709,7 +4710,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameTerminateResponse": {
+    "com.ovh.hostingprivatedatabase#TerminateHostingPrivateDatabaseResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -4724,13 +4725,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameTerminate": {
+    "com.ovh.hostingprivatedatabase#TerminateHostingPrivateDatabase": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameTerminateRequest"
+        "target": "com.ovh.hostingprivatedatabase#TerminateHostingPrivateDatabaseRequest"
       },
       "output": {
-        "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameTerminateResponse"
+        "target": "com.ovh.hostingprivatedatabase#TerminateHostingPrivateDatabaseResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4741,7 +4742,7 @@
         "smithy.api#documentation": "Ask for the termination of your service"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameUserRequest": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseUserRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4757,18 +4758,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameUserResponseBodyList": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseUserResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameUserResponse": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseUserResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameUserResponseBodyList",
+          "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseUserResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -4779,13 +4780,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameUser": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseUser": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameUserRequest"
+        "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseUserRequest"
       },
       "output": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameUserResponse"
+        "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseUserResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4796,7 +4797,7 @@
         "smithy.api#documentation": "List users on a Web Cloud Database"
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameUserRequest": {
+    "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseUserRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4827,10 +4828,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameUser": {
+    "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseUser": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameUserRequest"
+        "target": "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseUserRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseTask"
@@ -4844,7 +4845,7 @@
         "smithy.api#documentation": "Create a user on a Web Cloud Database"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameUserUserNameRequest": {
+    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseUserRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4929,10 +4930,10 @@
         "smithy.api#documentation": "Databases granted for this user"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameUserUserName": {
+    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseUser": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameUserUserNameRequest"
+        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseUserRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseUser"
@@ -4946,7 +4947,7 @@
         "smithy.api#documentation": "Get user properties"
       }
     },
-    "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseServiceNameUserUserNameRequest": {
+    "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseUserRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4970,10 +4971,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseServiceNameUserUserName": {
+    "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseUser": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseServiceNameUserUserNameRequest"
+        "target": "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseUserRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseTask"
@@ -4987,7 +4988,7 @@
         "smithy.api#documentation": "Delete a user on a Web Cloud Database"
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameUserUserNameChangePasswordRequest": {
+    "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseUserChangePasswordRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -5019,10 +5020,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameUserUserNameChangePassword": {
+    "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseUserChangePassword": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameUserUserNameChangePasswordRequest"
+        "target": "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseUserChangePasswordRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseTask"
@@ -5036,7 +5037,7 @@
         "smithy.api#documentation": "Change the password of a user on a Web Cloud Database"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameUserUserNameGrantRequest": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseUserGrantRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -5060,18 +5061,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameUserUserNameGrantResponseBodyList": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseUserGrantResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameUserUserNameGrantResponse": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseUserGrantResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameUserUserNameGrantResponseBodyList",
+          "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseUserGrantResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -5082,13 +5083,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameUserUserNameGrant": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseUserGrant": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameUserUserNameGrantRequest"
+        "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseUserGrantRequest"
       },
       "output": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameUserUserNameGrantResponse"
+        "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseUserGrantResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5099,7 +5100,7 @@
         "smithy.api#documentation": "Get all information about the grants for a user in a Web Cloud Database"
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameUserUserNameGrantRequest": {
+    "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseUserGrantRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -5137,10 +5138,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameUserUserNameGrant": {
+    "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseUserGrant": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameUserUserNameGrantRequest"
+        "target": "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseUserGrantRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseTask"
@@ -5154,7 +5155,7 @@
         "smithy.api#documentation": "Add grant on a Web Cloud Database"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameUserUserNameGrantDatabaseNameRequest": {
+    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseUserGrantRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -5212,10 +5213,10 @@
         "smithy.api#documentation": "Grant"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameUserUserNameGrantDatabaseName": {
+    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseUserGrant": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameUserUserNameGrantDatabaseNameRequest"
+        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseUserGrantRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseUserGrant"
@@ -5229,7 +5230,7 @@
         "smithy.api#documentation": "Get information about the grants for a user in a Web Cloud Database"
       }
     },
-    "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseServiceNameUserUserNameGrantDatabaseNameRequest": {
+    "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseUserGrantRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -5261,10 +5262,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseServiceNameUserUserNameGrantDatabaseName": {
+    "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseUserGrant": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseServiceNameUserUserNameGrantDatabaseNameRequest"
+        "target": "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseUserGrantRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseTask"
@@ -5278,7 +5279,7 @@
         "smithy.api#documentation": "Delete a grant from a Web Cloud Database"
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameUserUserNameGrantDatabaseNameUpdateRequest": {
+    "com.ovh.hostingprivatedatabase#UpdateHostingPrivateDatabaseUserGrantRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -5317,10 +5318,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameUserUserNameGrantDatabaseNameUpdate": {
+    "com.ovh.hostingprivatedatabase#UpdateHostingPrivateDatabaseUserGrant": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameUserUserNameGrantDatabaseNameUpdateRequest"
+        "target": "com.ovh.hostingprivatedatabase#UpdateHostingPrivateDatabaseUserGrantRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseTask"
@@ -5334,7 +5335,7 @@
         "smithy.api#documentation": "Update the permissions of a grant for a user on a Web Cloud Database"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameWebhostingNetworkRequest": {
+    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseWebhostingNetworkRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -5396,10 +5397,10 @@
         "smithy.api#documentation": "Webhosting network status"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameWebhostingNetwork": {
+    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseWebhostingNetwork": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameWebhostingNetworkRequest"
+        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseWebhostingNetworkRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseWebhostingNetwork"
@@ -5413,7 +5414,7 @@
         "smithy.api#documentation": "Get Webhosting network status"
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameWebhostingNetworkRequest": {
+    "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseWebhostingNetworkRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -5429,10 +5430,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameWebhostingNetwork": {
+    "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseWebhostingNetwork": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameWebhostingNetworkRequest"
+        "target": "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseWebhostingNetworkRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseTask"
@@ -5446,7 +5447,7 @@
         "smithy.api#documentation": "Permit access from the web hosting network on a Web Cloud Database"
       }
     },
-    "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseServiceNameWebhostingNetworkRequest": {
+    "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseWebhostingNetworkRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -5462,10 +5463,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseServiceNameWebhostingNetwork": {
+    "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseWebhostingNetwork": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseServiceNameWebhostingNetworkRequest"
+        "target": "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseWebhostingNetworkRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseTask"
@@ -5479,7 +5480,7 @@
         "smithy.api#documentation": "Delete access from the web hosting network on a Web Cloud Database"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameWebsRequest": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseWebsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -5495,18 +5496,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameWebsResponseBodyList": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseWebsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameWebsResponse": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseWebsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameWebsResponseBodyList",
+          "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseWebsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -5517,13 +5518,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameWebs": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseWebs": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameWebsRequest"
+        "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseWebsRequest"
       },
       "output": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameWebsResponse"
+        "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseWebsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5534,7 +5535,7 @@
         "smithy.api#documentation": "List linked webs"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameWhitelistRequest": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseWhitelistRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -5571,18 +5572,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameWhitelistResponseBodyList": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseWhitelistResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameWhitelistResponse": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseWhitelistResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameWhitelistResponseBodyList",
+          "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseWhitelistResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -5593,13 +5594,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameWhitelist": {
+    "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseWhitelist": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameWhitelistRequest"
+        "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseWhitelistRequest"
       },
       "output": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameWhitelistResponse"
+        "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseWhitelistResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5610,7 +5611,7 @@
         "smithy.api#documentation": "List whitelists on a Web Cloud Database"
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameWhitelistRequest": {
+    "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseWhitelistRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -5652,10 +5653,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameWhitelist": {
+    "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseWhitelist": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameWhitelistRequest"
+        "target": "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseWhitelistRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseTask"
@@ -5669,7 +5670,7 @@
         "smithy.api#documentation": "Create a new IP whitelist in a Web Cloud Database"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameWhitelistIpRequest": {
+    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseWhitelistRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -5783,10 +5784,10 @@
         "smithy.api#documentation": "Whitelist status"
       }
     },
-    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameWhitelistIp": {
+    "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseWhitelist": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameWhitelistIpRequest"
+        "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseWhitelistRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseWhitelist"
@@ -5800,7 +5801,7 @@
         "smithy.api#documentation": "Get whitelist properties"
       }
     },
-    "com.ovh.hostingprivatedatabase#PutHostingPrivateDatabaseServiceNameWhitelistIpRequest": {
+    "com.ovh.hostingprivatedatabase#PutHostingPrivateDatabaseWhitelistRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -5843,10 +5844,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#PutHostingPrivateDatabaseServiceNameWhitelistIp": {
+    "com.ovh.hostingprivatedatabase#PutHostingPrivateDatabaseWhitelist": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#PutHostingPrivateDatabaseServiceNameWhitelistIpRequest"
+        "target": "com.ovh.hostingprivatedatabase#PutHostingPrivateDatabaseWhitelistRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5860,7 +5861,7 @@
         "smithy.api#documentation": "Update an IP whitelist in a Web Cloud Database"
       }
     },
-    "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseServiceNameWhitelistIpRequest": {
+    "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseWhitelistRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -5884,10 +5885,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseServiceNameWhitelistIp": {
+    "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseWhitelist": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseServiceNameWhitelistIpRequest"
+        "target": "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseWhitelistRequest"
       },
       "output": {
         "target": "com.ovh.hostingprivatedatabase#HostingPrivateDatabaseTask"
@@ -5906,220 +5907,220 @@
       "version": "1.0",
       "operations": [
         {
+          "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabase"
+        },
+        {
+          "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseAvailableOrderCapacities"
+        },
+        {
           "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabase"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseAvailableOrderCapacities"
+          "target": "com.ovh.hostingprivatedatabase#PutHostingPrivateDatabase"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceName"
+          "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseAvailableVersions"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#PutHostingPrivateDatabaseServiceName"
+          "target": "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseChangeContact"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameAvailableVersions"
+          "target": "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseChangeFtpPassword"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameChangeContact"
+          "target": "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseChangeVersion"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameChangeFtpPassword"
+          "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseConfig"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameChangeVersion"
+          "target": "com.ovh.hostingprivatedatabase#UpdateHostingPrivateDatabaseConfig"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameConfig"
+          "target": "com.ovh.hostingprivatedatabase#ConfirmHostingPrivateDatabaseTermination"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameConfigUpdate"
+          "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseCpuThrottle"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameConfirmTermination"
+          "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseDatabase"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameCpuThrottle"
+          "target": "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseDatabase"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabase"
+          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseDatabase"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameDatabase"
+          "target": "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseDatabase"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabaseDatabaseName"
+          "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseDatabaseCopy"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseServiceNameDatabaseDatabaseName"
+          "target": "com.ovh.hostingprivatedatabase#CopyHostingPrivateDatabaseDatabase"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopy"
+          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseDatabaseCopy"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopy"
+          "target": "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseDatabaseCopy"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyId"
+          "target": "com.ovh.hostingprivatedatabase#CopyHostingPrivateDatabaseDatabaseRestore"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyId"
+          "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseDatabaseDump"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyRestore"
+          "target": "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseDatabaseDump"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDump"
+          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseDatabaseDump"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDump"
+          "target": "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseDatabaseDump"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpId"
+          "target": "com.ovh.hostingprivatedatabase#RestoreHostingPrivateDatabaseDatabaseDump"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpId"
+          "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseDatabaseExtension"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpIdRestore"
+          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseDatabaseExtension"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtension"
+          "target": "com.ovh.hostingprivatedatabase#DisableHostingPrivateDatabaseDatabaseExtension"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionExtensionName"
+          "target": "com.ovh.hostingprivatedatabase#EnableHostingPrivateDatabaseDatabaseExtension"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionExtensionNameDisable"
+          "target": "com.ovh.hostingprivatedatabase#ImportHostingPrivateDatabaseDatabase"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionExtensionNameEnable"
+          "target": "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseDatabaseWizard"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameImport"
+          "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseDump"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameDatabaseWizard"
+          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseDump"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDump"
+          "target": "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseDump"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameDumpDumpId"
+          "target": "com.ovh.hostingprivatedatabase#RestoreHostingPrivateDatabaseDump"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseServiceNameDumpDumpId"
+          "target": "com.ovh.hostingprivatedatabase#GenerateHostingPrivateDatabaseTemporaryLogsLink"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameDumpDumpIdRestore"
+          "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseLogKind"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameGenerateTemporaryLogsLink"
+          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseLogKind"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameLogKind"
+          "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseLogSubscription"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameLogKindName"
+          "target": "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseLogSubscription"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameLogSubscription"
+          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseLogSubscription"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameLogSubscription"
+          "target": "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseLogSubscription"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameLogSubscriptionSubscriptionId"
+          "target": "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseLogUrl"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseServiceNameLogSubscriptionSubscriptionId"
+          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseMetricsToken"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameLogUrl"
+          "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseOom"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameMetricsToken"
+          "target": "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseQuotaRefresh"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameOom"
+          "target": "com.ovh.hostingprivatedatabase#RestartHostingPrivateDatabase"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameQuotaRefresh"
+          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceInfos"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameRestart"
+          "target": "com.ovh.hostingprivatedatabase#PutHostingPrivateDatabaseServiceInfos"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameServiceInfos"
+          "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseTasks"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#PutHostingPrivateDatabaseServiceNameServiceInfos"
+          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseTask"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameTasks"
+          "target": "com.ovh.hostingprivatedatabase#TerminateHostingPrivateDatabase"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameTasksId"
+          "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseUser"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameTerminate"
+          "target": "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseUser"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameUser"
+          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseUser"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameUser"
+          "target": "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseUser"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameUserUserName"
+          "target": "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseUserChangePassword"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseServiceNameUserUserName"
+          "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseUserGrant"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameUserUserNameChangePassword"
+          "target": "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseUserGrant"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameUserUserNameGrant"
+          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseUserGrant"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameUserUserNameGrant"
+          "target": "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseUserGrant"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameUserUserNameGrantDatabaseName"
+          "target": "com.ovh.hostingprivatedatabase#UpdateHostingPrivateDatabaseUserGrant"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseServiceNameUserUserNameGrantDatabaseName"
+          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseWebhostingNetwork"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameUserUserNameGrantDatabaseNameUpdate"
+          "target": "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseWebhostingNetwork"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameWebhostingNetwork"
+          "target": "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseWebhostingNetwork"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameWebhostingNetwork"
+          "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseWebs"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseServiceNameWebhostingNetwork"
+          "target": "com.ovh.hostingprivatedatabase#ListHostingPrivateDatabaseWhitelist"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameWebs"
+          "target": "com.ovh.hostingprivatedatabase#CreateHostingPrivateDatabaseWhitelist"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameWhitelist"
+          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseWhitelist"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#PostHostingPrivateDatabaseServiceNameWhitelist"
+          "target": "com.ovh.hostingprivatedatabase#PutHostingPrivateDatabaseWhitelist"
         },
         {
-          "target": "com.ovh.hostingprivatedatabase#GetHostingPrivateDatabaseServiceNameWhitelistIp"
-        },
-        {
-          "target": "com.ovh.hostingprivatedatabase#PutHostingPrivateDatabaseServiceNameWhitelistIp"
-        },
-        {
-          "target": "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseServiceNameWhitelistIp"
+          "target": "com.ovh.hostingprivatedatabase#DeleteHostingPrivateDatabaseWhitelist"
         }
       ],
       "traits": {

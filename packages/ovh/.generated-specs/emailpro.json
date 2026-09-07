@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.ovh.emailpro#IamResourceTagFilterInput": {
@@ -24,28 +25,28 @@
         "smithy.api#documentation": "Resource tag filter"
       }
     },
-    "com.ovh.emailpro#GetEmailProRequestIamTagsValueList": {
+    "com.ovh.emailpro#ListEmailProRequestIamTagsValueList": {
       "type": "list",
       "member": {
         "target": "com.ovh.emailpro#IamResourceTagFilterInput"
       },
       "traits": {}
     },
-    "com.ovh.emailpro#GetEmailProRequestIamTagsMap": {
+    "com.ovh.emailpro#ListEmailProRequestIamTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "com.ovh.emailpro#GetEmailProRequestIamTagsValueList"
+        "target": "com.ovh.emailpro#ListEmailProRequestIamTagsValueList"
       },
       "traits": {}
     },
-    "com.ovh.emailpro#GetEmailProRequest": {
+    "com.ovh.emailpro#ListEmailProRequest": {
       "type": "structure",
       "members": {
         "iamTags": {
-          "target": "com.ovh.emailpro#GetEmailProRequestIamTagsMap",
+          "target": "com.ovh.emailpro#ListEmailProRequestIamTagsMap",
           "traits": {
             "smithy.api#httpQuery": "iamTags",
             "smithy.api#documentation": "Filter resources on IAM tags"
@@ -56,18 +57,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailpro#GetEmailProResponseBodyList": {
+    "com.ovh.emailpro#ListEmailProResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.emailpro#GetEmailProResponse": {
+    "com.ovh.emailpro#ListEmailProResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emailpro#GetEmailProResponseBodyList",
+          "target": "com.ovh.emailpro#ListEmailProResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -78,13 +79,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emailpro#GetEmailPro": {
+    "com.ovh.emailpro#ListEmailPro": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#GetEmailProRequest"
+        "target": "com.ovh.emailpro#ListEmailProRequest"
       },
       "output": {
-        "target": "com.ovh.emailpro#GetEmailProResponse"
+        "target": "com.ovh.emailpro#ListEmailProResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -95,7 +96,7 @@
         "smithy.api#documentation": "List available services"
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceRequest": {
+    "com.ovh.emailpro#GetEmailProRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -402,10 +403,10 @@
         "smithy.api#documentation": "Service State"
       }
     },
-    "com.ovh.emailpro#GetEmailProService": {
+    "com.ovh.emailpro#GetEmailPro": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#GetEmailProServiceRequest"
+        "target": "com.ovh.emailpro#GetEmailProRequest"
       },
       "output": {
         "target": "com.ovh.emailpro#EmailProServiceNativeWithIAM"
@@ -426,7 +427,7 @@
         "smithy.api#documentation": "Spam and Antyvirus configuration"
       }
     },
-    "com.ovh.emailpro#PutEmailProServiceRequest": {
+    "com.ovh.emailpro#PutEmailProRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -513,10 +514,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailpro#PutEmailProService": {
+    "com.ovh.emailpro#PutEmailPro": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#PutEmailProServiceRequest"
+        "target": "com.ovh.emailpro#PutEmailProRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -530,7 +531,7 @@
         "smithy.api#documentation": "Alter this object properties"
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceAccountRequest": {
+    "com.ovh.emailpro#ListEmailProAccountRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -560,18 +561,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceAccountResponseBodyList": {
+    "com.ovh.emailpro#ListEmailProAccountResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.emailpro#GetEmailProServiceAccountResponse": {
+    "com.ovh.emailpro#ListEmailProAccountResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emailpro#GetEmailProServiceAccountResponseBodyList",
+          "target": "com.ovh.emailpro#ListEmailProAccountResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -582,13 +583,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceAccount": {
+    "com.ovh.emailpro#ListEmailProAccount": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#GetEmailProServiceAccountRequest"
+        "target": "com.ovh.emailpro#ListEmailProAccountRequest"
       },
       "output": {
-        "target": "com.ovh.emailpro#GetEmailProServiceAccountResponse"
+        "target": "com.ovh.emailpro#ListEmailProAccountResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -599,7 +600,7 @@
         "smithy.api#documentation": "Accounts associated to this pro service"
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceAccountEmailRequest": {
+    "com.ovh.emailpro#GetEmailProAccountRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -911,10 +912,10 @@
         "smithy.api#documentation": "Current object state"
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceAccountEmail": {
+    "com.ovh.emailpro#GetEmailProAccount": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#GetEmailProServiceAccountEmailRequest"
+        "target": "com.ovh.emailpro#GetEmailProAccountRequest"
       },
       "output": {
         "target": "com.ovh.emailpro#EmailProAccountNative"
@@ -928,7 +929,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emailpro#PutEmailProServiceAccountEmailRequestMailingFilterList": {
+    "com.ovh.emailpro#PutEmailProAccountRequestMailingFilterList": {
       "type": "list",
       "member": {
         "target": "com.ovh.emailpro#EmailProMailingFilterEnum"
@@ -937,7 +938,7 @@
         "smithy.api#documentation": "Enable or disable anti-virus and anti-spam"
       }
     },
-    "com.ovh.emailpro#PutEmailProServiceAccountEmailRequest": {
+    "com.ovh.emailpro#PutEmailProAccountRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -1010,7 +1011,7 @@
           }
         },
         "mailingFilter": {
-          "target": "com.ovh.emailpro#PutEmailProServiceAccountEmailRequestMailingFilterList",
+          "target": "com.ovh.emailpro#PutEmailProAccountRequestMailingFilterList",
           "traits": {
             "smithy.api#documentation": "Enable or disable anti-virus and anti-spam",
             "com.distilled.openapi#nullable": {}
@@ -1040,10 +1041,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailpro#PutEmailProServiceAccountEmail": {
+    "com.ovh.emailpro#PutEmailProAccount": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#PutEmailProServiceAccountEmailRequest"
+        "target": "com.ovh.emailpro#PutEmailProAccountRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1057,7 +1058,7 @@
         "smithy.api#documentation": "Alter this object properties"
       }
     },
-    "com.ovh.emailpro#DeleteEmailProServiceAccountEmailRequest": {
+    "com.ovh.emailpro#DeleteEmailProAccountRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -1460,10 +1461,10 @@
         "smithy.api#documentation": "Task status"
       }
     },
-    "com.ovh.emailpro#DeleteEmailProServiceAccountEmail": {
+    "com.ovh.emailpro#DeleteEmailProAccount": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#DeleteEmailProServiceAccountEmailRequest"
+        "target": "com.ovh.emailpro#DeleteEmailProAccountRequest"
       },
       "output": {
         "target": "com.ovh.emailpro#EmailProTask"
@@ -1477,7 +1478,7 @@
         "smithy.api#documentation": "Delete existing mailbox in pro server"
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceAccountEmailAliasRequest": {
+    "com.ovh.emailpro#ListEmailProAccountAliasRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -1501,18 +1502,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceAccountEmailAliasResponseBodyList": {
+    "com.ovh.emailpro#ListEmailProAccountAliasResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.emailpro#GetEmailProServiceAccountEmailAliasResponse": {
+    "com.ovh.emailpro#ListEmailProAccountAliasResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emailpro#GetEmailProServiceAccountEmailAliasResponseBodyList",
+          "target": "com.ovh.emailpro#ListEmailProAccountAliasResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1523,13 +1524,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceAccountEmailAlias": {
+    "com.ovh.emailpro#ListEmailProAccountAlias": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#GetEmailProServiceAccountEmailAliasRequest"
+        "target": "com.ovh.emailpro#ListEmailProAccountAliasRequest"
       },
       "output": {
-        "target": "com.ovh.emailpro#GetEmailProServiceAccountEmailAliasResponse"
+        "target": "com.ovh.emailpro#ListEmailProAccountAliasResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1540,7 +1541,7 @@
         "smithy.api#documentation": "Aliases associated to this mailbox"
       }
     },
-    "com.ovh.emailpro#PostEmailProServiceAccountEmailAliasRequest": {
+    "com.ovh.emailpro#CreateEmailProAccountAliasRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -1571,10 +1572,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailpro#PostEmailProServiceAccountEmailAlias": {
+    "com.ovh.emailpro#CreateEmailProAccountAlias": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#PostEmailProServiceAccountEmailAliasRequest"
+        "target": "com.ovh.emailpro#CreateEmailProAccountAliasRequest"
       },
       "output": {
         "target": "com.ovh.emailpro#EmailProTask"
@@ -1588,7 +1589,7 @@
         "smithy.api#documentation": "Create new alias"
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceAccountEmailAliasAliasRequest": {
+    "com.ovh.emailpro#GetEmailProAccountAliasRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -1646,10 +1647,10 @@
         "smithy.api#documentation": "Aliases on this mailbox"
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceAccountEmailAliasAlias": {
+    "com.ovh.emailpro#GetEmailProAccountAlias": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#GetEmailProServiceAccountEmailAliasAliasRequest"
+        "target": "com.ovh.emailpro#GetEmailProAccountAliasRequest"
       },
       "output": {
         "target": "com.ovh.emailpro#EmailProAccountAlias"
@@ -1663,7 +1664,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emailpro#DeleteEmailProServiceAccountEmailAliasAliasRequest": {
+    "com.ovh.emailpro#DeleteEmailProAccountAliasRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -1695,10 +1696,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailpro#DeleteEmailProServiceAccountEmailAliasAlias": {
+    "com.ovh.emailpro#DeleteEmailProAccountAlias": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#DeleteEmailProServiceAccountEmailAliasAliasRequest"
+        "target": "com.ovh.emailpro#DeleteEmailProAccountAliasRequest"
       },
       "output": {
         "target": "com.ovh.emailpro#EmailProTask"
@@ -1712,7 +1713,7 @@
         "smithy.api#documentation": "Delete existing alias"
       }
     },
-    "com.ovh.emailpro#PostEmailProServiceAccountEmailChangePasswordRequest": {
+    "com.ovh.emailpro#CreateEmailProAccountChangePasswordRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -1744,10 +1745,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailpro#PostEmailProServiceAccountEmailChangePassword": {
+    "com.ovh.emailpro#CreateEmailProAccountChangePassword": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#PostEmailProServiceAccountEmailChangePasswordRequest"
+        "target": "com.ovh.emailpro#CreateEmailProAccountChangePasswordRequest"
       },
       "output": {
         "target": "com.ovh.emailpro#EmailProTask"
@@ -1761,7 +1762,7 @@
         "smithy.api#documentation": "Change mailbox password"
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceAccountEmailDiagnosticsRequest": {
+    "com.ovh.emailpro#GetEmailProAccountDiagnosticsRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -1847,10 +1848,10 @@
         "smithy.api#documentation": "Account Diagnosis"
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceAccountEmailDiagnostics": {
+    "com.ovh.emailpro#GetEmailProAccountDiagnostics": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#GetEmailProServiceAccountEmailDiagnosticsRequest"
+        "target": "com.ovh.emailpro#GetEmailProAccountDiagnosticsRequest"
       },
       "output": {
         "target": "com.ovh.emailpro#EmailProAccountDiagnosis"
@@ -1864,7 +1865,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emailpro#PostEmailProServiceAccountEmailDiagnosticsRequest": {
+    "com.ovh.emailpro#CreateEmailProAccountDiagnosticRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -1896,10 +1897,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailpro#PostEmailProServiceAccountEmailDiagnostics": {
+    "com.ovh.emailpro#CreateEmailProAccountDiagnostic": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#PostEmailProServiceAccountEmailDiagnosticsRequest"
+        "target": "com.ovh.emailpro#CreateEmailProAccountDiagnosticRequest"
       },
       "output": {
         "target": "com.ovh.emailpro#EmailProTask"
@@ -1913,7 +1914,7 @@
         "smithy.api#documentation": "Create new diagnosis request"
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceAccountEmailFullAccessRequest": {
+    "com.ovh.emailpro#ListEmailProAccountFullAccessRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -1937,18 +1938,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceAccountEmailFullAccessResponseBodyList": {
+    "com.ovh.emailpro#ListEmailProAccountFullAccessResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.emailpro#GetEmailProServiceAccountEmailFullAccessResponse": {
+    "com.ovh.emailpro#ListEmailProAccountFullAccessResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emailpro#GetEmailProServiceAccountEmailFullAccessResponseBodyList",
+          "target": "com.ovh.emailpro#ListEmailProAccountFullAccessResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1959,13 +1960,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceAccountEmailFullAccess": {
+    "com.ovh.emailpro#ListEmailProAccountFullAccess": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#GetEmailProServiceAccountEmailFullAccessRequest"
+        "target": "com.ovh.emailpro#ListEmailProAccountFullAccessRequest"
       },
       "output": {
-        "target": "com.ovh.emailpro#GetEmailProServiceAccountEmailFullAccessResponse"
+        "target": "com.ovh.emailpro#ListEmailProAccountFullAccessResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1976,7 +1977,7 @@
         "smithy.api#documentation": "Full access granted users for this mailbox"
       }
     },
-    "com.ovh.emailpro#PostEmailProServiceAccountEmailFullAccessRequest": {
+    "com.ovh.emailpro#CreateEmailProAccountFullAccessRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -2007,10 +2008,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailpro#PostEmailProServiceAccountEmailFullAccess": {
+    "com.ovh.emailpro#CreateEmailProAccountFullAccess": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#PostEmailProServiceAccountEmailFullAccessRequest"
+        "target": "com.ovh.emailpro#CreateEmailProAccountFullAccessRequest"
       },
       "output": {
         "target": "com.ovh.emailpro#EmailProTask"
@@ -2024,7 +2025,7 @@
         "smithy.api#documentation": "Allow full access to a user"
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceAccountEmailFullAccessAllowedAccountIdRequest": {
+    "com.ovh.emailpro#GetEmailProAccountFullAccessRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -2082,10 +2083,10 @@
         "smithy.api#documentation": "Users having full access on this mailbox"
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceAccountEmailFullAccessAllowedAccountId": {
+    "com.ovh.emailpro#GetEmailProAccountFullAccess": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#GetEmailProServiceAccountEmailFullAccessAllowedAccountIdRequest"
+        "target": "com.ovh.emailpro#GetEmailProAccountFullAccessRequest"
       },
       "output": {
         "target": "com.ovh.emailpro#EmailProAccountFullAccess"
@@ -2099,7 +2100,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emailpro#DeleteEmailProServiceAccountEmailFullAccessAllowedAccountIdRequest": {
+    "com.ovh.emailpro#DeleteEmailProAccountFullAccessRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -2131,10 +2132,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailpro#DeleteEmailProServiceAccountEmailFullAccessAllowedAccountId": {
+    "com.ovh.emailpro#DeleteEmailProAccountFullAccess": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#DeleteEmailProServiceAccountEmailFullAccessAllowedAccountIdRequest"
+        "target": "com.ovh.emailpro#DeleteEmailProAccountFullAccessRequest"
       },
       "output": {
         "target": "com.ovh.emailpro#EmailProTask"
@@ -2148,7 +2149,7 @@
         "smithy.api#documentation": "Revoke full access"
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceAccountEmailSendAsRequest": {
+    "com.ovh.emailpro#ListEmailProAccountSendAsRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -2172,18 +2173,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceAccountEmailSendAsResponseBodyList": {
+    "com.ovh.emailpro#ListEmailProAccountSendAsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.emailpro#GetEmailProServiceAccountEmailSendAsResponse": {
+    "com.ovh.emailpro#ListEmailProAccountSendAsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emailpro#GetEmailProServiceAccountEmailSendAsResponseBodyList",
+          "target": "com.ovh.emailpro#ListEmailProAccountSendAsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -2194,13 +2195,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceAccountEmailSendAs": {
+    "com.ovh.emailpro#ListEmailProAccountSendAs": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#GetEmailProServiceAccountEmailSendAsRequest"
+        "target": "com.ovh.emailpro#ListEmailProAccountSendAsRequest"
       },
       "output": {
-        "target": "com.ovh.emailpro#GetEmailProServiceAccountEmailSendAsResponse"
+        "target": "com.ovh.emailpro#ListEmailProAccountSendAsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2211,7 +2212,7 @@
         "smithy.api#documentation": "Send as granted users for this mailbox"
       }
     },
-    "com.ovh.emailpro#PostEmailProServiceAccountEmailSendAsRequest": {
+    "com.ovh.emailpro#SendEmailProAccountAsRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -2242,10 +2243,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailpro#PostEmailProServiceAccountEmailSendAs": {
+    "com.ovh.emailpro#SendEmailProAccountAs": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#PostEmailProServiceAccountEmailSendAsRequest"
+        "target": "com.ovh.emailpro#SendEmailProAccountAsRequest"
       },
       "output": {
         "target": "com.ovh.emailpro#EmailProTask"
@@ -2259,7 +2260,7 @@
         "smithy.api#documentation": "Allow another user to send mails from this mailbox"
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceAccountEmailSendAsAllowedAccountIdRequest": {
+    "com.ovh.emailpro#GetEmailProAccountSendAsRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -2317,10 +2318,10 @@
         "smithy.api#documentation": "Users authorized to send mails from this mailbox"
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceAccountEmailSendAsAllowedAccountId": {
+    "com.ovh.emailpro#GetEmailProAccountSendAs": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#GetEmailProServiceAccountEmailSendAsAllowedAccountIdRequest"
+        "target": "com.ovh.emailpro#GetEmailProAccountSendAsRequest"
       },
       "output": {
         "target": "com.ovh.emailpro#EmailProAccountSendAs"
@@ -2334,7 +2335,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emailpro#DeleteEmailProServiceAccountEmailSendAsAllowedAccountIdRequest": {
+    "com.ovh.emailpro#DeleteEmailProAccountSendAsRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -2366,10 +2367,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailpro#DeleteEmailProServiceAccountEmailSendAsAllowedAccountId": {
+    "com.ovh.emailpro#DeleteEmailProAccountSendAs": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#DeleteEmailProServiceAccountEmailSendAsAllowedAccountIdRequest"
+        "target": "com.ovh.emailpro#DeleteEmailProAccountSendAsRequest"
       },
       "output": {
         "target": "com.ovh.emailpro#EmailProTask"
@@ -2383,7 +2384,7 @@
         "smithy.api#documentation": "Delete allowed user for sendAs"
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceAccountEmailSendOnBehalfToRequest": {
+    "com.ovh.emailpro#ListEmailProAccountSendOnBehalfToRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -2407,18 +2408,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceAccountEmailSendOnBehalfToResponseBodyList": {
+    "com.ovh.emailpro#ListEmailProAccountSendOnBehalfToResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.emailpro#GetEmailProServiceAccountEmailSendOnBehalfToResponse": {
+    "com.ovh.emailpro#ListEmailProAccountSendOnBehalfToResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emailpro#GetEmailProServiceAccountEmailSendOnBehalfToResponseBodyList",
+          "target": "com.ovh.emailpro#ListEmailProAccountSendOnBehalfToResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -2429,13 +2430,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceAccountEmailSendOnBehalfTo": {
+    "com.ovh.emailpro#ListEmailProAccountSendOnBehalfTo": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#GetEmailProServiceAccountEmailSendOnBehalfToRequest"
+        "target": "com.ovh.emailpro#ListEmailProAccountSendOnBehalfToRequest"
       },
       "output": {
-        "target": "com.ovh.emailpro#GetEmailProServiceAccountEmailSendOnBehalfToResponse"
+        "target": "com.ovh.emailpro#ListEmailProAccountSendOnBehalfToResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2446,7 +2447,7 @@
         "smithy.api#documentation": "SendOnBehalfTo granted users for this mailbox"
       }
     },
-    "com.ovh.emailpro#PostEmailProServiceAccountEmailSendOnBehalfToRequest": {
+    "com.ovh.emailpro#SendEmailProAccountOnBehalfToRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -2477,10 +2478,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailpro#PostEmailProServiceAccountEmailSendOnBehalfTo": {
+    "com.ovh.emailpro#SendEmailProAccountOnBehalfTo": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#PostEmailProServiceAccountEmailSendOnBehalfToRequest"
+        "target": "com.ovh.emailpro#SendEmailProAccountOnBehalfToRequest"
       },
       "output": {
         "target": "com.ovh.emailpro#EmailProTask"
@@ -2494,7 +2495,7 @@
         "smithy.api#documentation": "Allow another user to Send On Behalf To mails from this mailbox"
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceAccountEmailSendOnBehalfToAllowedAccountIdRequest": {
+    "com.ovh.emailpro#GetEmailProAccountSendOnBehalfToRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -2552,10 +2553,10 @@
         "smithy.api#documentation": "Get users authorized to Send On Behalf To mails from this mailbox"
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceAccountEmailSendOnBehalfToAllowedAccountId": {
+    "com.ovh.emailpro#GetEmailProAccountSendOnBehalfTo": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#GetEmailProServiceAccountEmailSendOnBehalfToAllowedAccountIdRequest"
+        "target": "com.ovh.emailpro#GetEmailProAccountSendOnBehalfToRequest"
       },
       "output": {
         "target": "com.ovh.emailpro#EmailProAccountSendOnBehalfTo"
@@ -2569,7 +2570,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emailpro#DeleteEmailProServiceAccountEmailSendOnBehalfToAllowedAccountIdRequest": {
+    "com.ovh.emailpro#DeleteEmailProAccountSendOnBehalfToRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -2601,10 +2602,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailpro#DeleteEmailProServiceAccountEmailSendOnBehalfToAllowedAccountId": {
+    "com.ovh.emailpro#DeleteEmailProAccountSendOnBehalfTo": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#DeleteEmailProServiceAccountEmailSendOnBehalfToAllowedAccountIdRequest"
+        "target": "com.ovh.emailpro#DeleteEmailProAccountSendOnBehalfToRequest"
       },
       "output": {
         "target": "com.ovh.emailpro#EmailProTask"
@@ -2618,7 +2619,7 @@
         "smithy.api#documentation": "Delete allowed user for SendOnBehalfTo"
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceAccountEmailTasksRequest": {
+    "com.ovh.emailpro#ListEmailProAccountTasksRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -2642,18 +2643,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceAccountEmailTasksResponseBodyList": {
+    "com.ovh.emailpro#ListEmailProAccountTasksResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.emailpro#GetEmailProServiceAccountEmailTasksResponse": {
+    "com.ovh.emailpro#ListEmailProAccountTasksResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emailpro#GetEmailProServiceAccountEmailTasksResponseBodyList",
+          "target": "com.ovh.emailpro#ListEmailProAccountTasksResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -2664,13 +2665,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceAccountEmailTasks": {
+    "com.ovh.emailpro#ListEmailProAccountTasks": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#GetEmailProServiceAccountEmailTasksRequest"
+        "target": "com.ovh.emailpro#ListEmailProAccountTasksRequest"
       },
       "output": {
-        "target": "com.ovh.emailpro#GetEmailProServiceAccountEmailTasksResponse"
+        "target": "com.ovh.emailpro#ListEmailProAccountTasksResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2681,7 +2682,7 @@
         "smithy.api#documentation": "Pending task for this mailbox"
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceAccountEmailTasksIdRequest": {
+    "com.ovh.emailpro#GetEmailProAccountTaskRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -2713,10 +2714,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceAccountEmailTasksId": {
+    "com.ovh.emailpro#GetEmailProAccountTask": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#GetEmailProServiceAccountEmailTasksIdRequest"
+        "target": "com.ovh.emailpro#GetEmailProAccountTaskRequest"
       },
       "output": {
         "target": "com.ovh.emailpro#EmailProTask"
@@ -2730,7 +2731,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emailpro#PostEmailProServiceAccountEmailTerminateRequest": {
+    "com.ovh.emailpro#TerminateEmailProAccountRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -2754,7 +2755,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailpro#PostEmailProServiceAccountEmailTerminateResponse": {
+    "com.ovh.emailpro#TerminateEmailProAccountResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -2769,13 +2770,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emailpro#PostEmailProServiceAccountEmailTerminate": {
+    "com.ovh.emailpro#TerminateEmailProAccount": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#PostEmailProServiceAccountEmailTerminateRequest"
+        "target": "com.ovh.emailpro#TerminateEmailProAccountRequest"
       },
       "output": {
-        "target": "com.ovh.emailpro#PostEmailProServiceAccountEmailTerminateResponse"
+        "target": "com.ovh.emailpro#TerminateEmailProAccountResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2786,7 +2787,7 @@
         "smithy.api#documentation": "Terminate account at expiration date"
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceBillingMigratedRequest": {
+    "com.ovh.emailpro#GetEmailProBillingMigratedRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -2802,7 +2803,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceBillingMigratedResponse": {
+    "com.ovh.emailpro#GetEmailProBillingMigratedResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -2817,13 +2818,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceBillingMigrated": {
+    "com.ovh.emailpro#GetEmailProBillingMigrated": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#GetEmailProServiceBillingMigratedRequest"
+        "target": "com.ovh.emailpro#GetEmailProBillingMigratedRequest"
       },
       "output": {
-        "target": "com.ovh.emailpro#GetEmailProServiceBillingMigratedResponse"
+        "target": "com.ovh.emailpro#GetEmailProBillingMigratedResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2834,7 +2835,7 @@
         "smithy.api#documentation": "Detects billing transition status for the service"
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceBillingPlanRequest": {
+    "com.ovh.emailpro#GetEmailProBillingPlanRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -2850,7 +2851,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceBillingPlanResponse": {
+    "com.ovh.emailpro#GetEmailProBillingPlanResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -2865,13 +2866,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceBillingPlan": {
+    "com.ovh.emailpro#GetEmailProBillingPlan": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#GetEmailProServiceBillingPlanRequest"
+        "target": "com.ovh.emailpro#GetEmailProBillingPlanRequest"
       },
       "output": {
-        "target": "com.ovh.emailpro#GetEmailProServiceBillingPlanResponse"
+        "target": "com.ovh.emailpro#GetEmailProBillingPlanResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2882,7 +2883,7 @@
         "smithy.api#documentation": "Emailpro billing plan"
       }
     },
-    "com.ovh.emailpro#PostEmailProServiceChangeContactRequest": {
+    "com.ovh.emailpro#CreateEmailProChangeContactRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -2916,18 +2917,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailpro#PostEmailProServiceChangeContactResponseBodyList": {
+    "com.ovh.emailpro#CreateEmailProChangeContactResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.emailpro#PostEmailProServiceChangeContactResponse": {
+    "com.ovh.emailpro#CreateEmailProChangeContactResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emailpro#PostEmailProServiceChangeContactResponseBodyList",
+          "target": "com.ovh.emailpro#CreateEmailProChangeContactResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -2938,13 +2939,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emailpro#PostEmailProServiceChangeContact": {
+    "com.ovh.emailpro#CreateEmailProChangeContact": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#PostEmailProServiceChangeContactRequest"
+        "target": "com.ovh.emailpro#CreateEmailProChangeContactRequest"
       },
       "output": {
-        "target": "com.ovh.emailpro#PostEmailProServiceChangeContactResponse"
+        "target": "com.ovh.emailpro#CreateEmailProChangeContactResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2955,7 +2956,7 @@
         "smithy.api#documentation": "Launch a contact change procedure"
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceDomainRequest": {
+    "com.ovh.emailpro#ListEmailProDomainRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -2978,18 +2979,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceDomainResponseBodyList": {
+    "com.ovh.emailpro#ListEmailProDomainResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.emailpro#GetEmailProServiceDomainResponse": {
+    "com.ovh.emailpro#ListEmailProDomainResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emailpro#GetEmailProServiceDomainResponseBodyList",
+          "target": "com.ovh.emailpro#ListEmailProDomainResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -3000,13 +3001,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceDomain": {
+    "com.ovh.emailpro#ListEmailProDomain": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#GetEmailProServiceDomainRequest"
+        "target": "com.ovh.emailpro#ListEmailProDomainRequest"
       },
       "output": {
-        "target": "com.ovh.emailpro#GetEmailProServiceDomainResponse"
+        "target": "com.ovh.emailpro#ListEmailProDomainResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3037,7 +3038,7 @@
         "smithy.api#documentation": "Domain type"
       }
     },
-    "com.ovh.emailpro#PostEmailProServiceDomainRequest": {
+    "com.ovh.emailpro#CreateEmailProDomainRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -3103,10 +3104,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailpro#PostEmailProServiceDomain": {
+    "com.ovh.emailpro#CreateEmailProDomain": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#PostEmailProServiceDomainRequest"
+        "target": "com.ovh.emailpro#CreateEmailProDomainRequest"
       },
       "output": {
         "target": "com.ovh.emailpro#EmailProTask"
@@ -3120,7 +3121,7 @@
         "smithy.api#documentation": "Create new domain in pro services"
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceDomainDomainNameRequest": {
+    "com.ovh.emailpro#GetEmailProDomainRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -3384,10 +3385,10 @@
         "smithy.api#documentation": "Domain SRV record configured in DNS"
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceDomainDomainName": {
+    "com.ovh.emailpro#GetEmailProDomain": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#GetEmailProServiceDomainDomainNameRequest"
+        "target": "com.ovh.emailpro#GetEmailProDomainRequest"
       },
       "output": {
         "target": "com.ovh.emailpro#EmailProDomainNative"
@@ -3401,7 +3402,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emailpro#PutEmailProServiceDomainDomainNameRequest": {
+    "com.ovh.emailpro#PutEmailProDomainRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -3438,10 +3439,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailpro#PutEmailProServiceDomainDomainName": {
+    "com.ovh.emailpro#PutEmailProDomain": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#PutEmailProServiceDomainDomainNameRequest"
+        "target": "com.ovh.emailpro#PutEmailProDomainRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3455,7 +3456,7 @@
         "smithy.api#documentation": "Alter this object properties"
       }
     },
-    "com.ovh.emailpro#DeleteEmailProServiceDomainDomainNameRequest": {
+    "com.ovh.emailpro#DeleteEmailProDomainRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -3479,10 +3480,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailpro#DeleteEmailProServiceDomainDomainName": {
+    "com.ovh.emailpro#DeleteEmailProDomain": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#DeleteEmailProServiceDomainDomainNameRequest"
+        "target": "com.ovh.emailpro#DeleteEmailProDomainRequest"
       },
       "output": {
         "target": "com.ovh.emailpro#EmailProTask"
@@ -3496,7 +3497,7 @@
         "smithy.api#documentation": "Delete existing domain in pro services"
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceDomainDomainNameDisclaimerRequest": {
+    "com.ovh.emailpro#GetEmailProDomainDisclaimerRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -3558,10 +3559,10 @@
         "smithy.api#documentation": "disclaimer"
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceDomainDomainNameDisclaimer": {
+    "com.ovh.emailpro#GetEmailProDomainDisclaimer": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#GetEmailProServiceDomainDomainNameDisclaimerRequest"
+        "target": "com.ovh.emailpro#GetEmailProDomainDisclaimerRequest"
       },
       "output": {
         "target": "com.ovh.emailpro#EmailProDisclaimerNative"
@@ -3575,7 +3576,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emailpro#PostEmailProServiceDomainDomainNameDisclaimerRequest": {
+    "com.ovh.emailpro#CreateEmailProDomainDisclaimerRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -3612,10 +3613,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailpro#PostEmailProServiceDomainDomainNameDisclaimer": {
+    "com.ovh.emailpro#CreateEmailProDomainDisclaimer": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#PostEmailProServiceDomainDomainNameDisclaimerRequest"
+        "target": "com.ovh.emailpro#CreateEmailProDomainDisclaimerRequest"
       },
       "output": {
         "target": "com.ovh.emailpro#EmailProTask"
@@ -3629,7 +3630,7 @@
         "smithy.api#documentation": "Create organization disclaimer of each email"
       }
     },
-    "com.ovh.emailpro#PutEmailProServiceDomainDomainNameDisclaimerRequest": {
+    "com.ovh.emailpro#PutEmailProDomainDisclaimerRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -3665,10 +3666,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailpro#PutEmailProServiceDomainDomainNameDisclaimer": {
+    "com.ovh.emailpro#PutEmailProDomainDisclaimer": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#PutEmailProServiceDomainDomainNameDisclaimerRequest"
+        "target": "com.ovh.emailpro#PutEmailProDomainDisclaimerRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3682,7 +3683,7 @@
         "smithy.api#documentation": "Alter this object properties"
       }
     },
-    "com.ovh.emailpro#DeleteEmailProServiceDomainDomainNameDisclaimerRequest": {
+    "com.ovh.emailpro#DeleteEmailProDomainDisclaimerRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -3706,10 +3707,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailpro#DeleteEmailProServiceDomainDomainNameDisclaimer": {
+    "com.ovh.emailpro#DeleteEmailProDomainDisclaimer": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#DeleteEmailProServiceDomainDomainNameDisclaimerRequest"
+        "target": "com.ovh.emailpro#DeleteEmailProDomainDisclaimerRequest"
       },
       "output": {
         "target": "com.ovh.emailpro#EmailProTask"
@@ -3723,7 +3724,7 @@
         "smithy.api#documentation": "Delete existing organization disclaimer"
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceDomainDomainNameDisclaimerAttributeRequest": {
+    "com.ovh.emailpro#ListEmailProDomainDisclaimerAttributeRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -3905,18 +3906,18 @@
         "smithy.api#documentation": "Disclaimer attributes list"
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceDomainDomainNameDisclaimerAttributeResponseBodyList": {
+    "com.ovh.emailpro#ListEmailProDomainDisclaimerAttributeResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.emailpro#EmailProDisclaimerAttributeEnum"
       },
       "traits": {}
     },
-    "com.ovh.emailpro#GetEmailProServiceDomainDomainNameDisclaimerAttributeResponse": {
+    "com.ovh.emailpro#ListEmailProDomainDisclaimerAttributeResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emailpro#GetEmailProServiceDomainDomainNameDisclaimerAttributeResponseBodyList",
+          "target": "com.ovh.emailpro#ListEmailProDomainDisclaimerAttributeResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -3927,13 +3928,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceDomainDomainNameDisclaimerAttribute": {
+    "com.ovh.emailpro#ListEmailProDomainDisclaimerAttribute": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#GetEmailProServiceDomainDomainNameDisclaimerAttributeRequest"
+        "target": "com.ovh.emailpro#ListEmailProDomainDisclaimerAttributeRequest"
       },
       "output": {
-        "target": "com.ovh.emailpro#GetEmailProServiceDomainDomainNameDisclaimerAttributeResponse"
+        "target": "com.ovh.emailpro#ListEmailProDomainDisclaimerAttributeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3944,7 +3945,7 @@
         "smithy.api#documentation": "Get diclaimer attributes to substitute with Active Directory properties"
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceDomainDomainNameDkimRequest": {
+    "com.ovh.emailpro#ListEmailProDomainDkimRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -3968,18 +3969,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceDomainDomainNameDkimResponseBodyList": {
+    "com.ovh.emailpro#ListEmailProDomainDkimResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.emailpro#GetEmailProServiceDomainDomainNameDkimResponse": {
+    "com.ovh.emailpro#ListEmailProDomainDkimResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emailpro#GetEmailProServiceDomainDomainNameDkimResponseBodyList",
+          "target": "com.ovh.emailpro#ListEmailProDomainDkimResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -3990,13 +3991,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceDomainDomainNameDkim": {
+    "com.ovh.emailpro#ListEmailProDomainDkim": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#GetEmailProServiceDomainDomainNameDkimRequest"
+        "target": "com.ovh.emailpro#ListEmailProDomainDkimRequest"
       },
       "output": {
-        "target": "com.ovh.emailpro#GetEmailProServiceDomainDomainNameDkimResponse"
+        "target": "com.ovh.emailpro#ListEmailProDomainDkimResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4007,7 +4008,7 @@
         "smithy.api#documentation": "DKIM associated to this domain"
       }
     },
-    "com.ovh.emailpro#PostEmailProServiceDomainDomainNameDkimRequest": {
+    "com.ovh.emailpro#CreateEmailProDomainDkimRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -4050,10 +4051,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailpro#PostEmailProServiceDomainDomainNameDkim": {
+    "com.ovh.emailpro#CreateEmailProDomainDkim": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#PostEmailProServiceDomainDomainNameDkimRequest"
+        "target": "com.ovh.emailpro#CreateEmailProDomainDkimRequest"
       },
       "output": {
         "target": "com.ovh.emailpro#EmailProTask"
@@ -4067,7 +4068,7 @@
         "smithy.api#documentation": "Create DKIM selector on this domain"
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceDomainDomainNameDkimSelectorNameRequest": {
+    "com.ovh.emailpro#GetEmailProDomainDkimRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -4228,10 +4229,10 @@
         "smithy.api#documentation": "DKIM status"
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceDomainDomainNameDkimSelectorName": {
+    "com.ovh.emailpro#GetEmailProDomainDkim": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#GetEmailProServiceDomainDomainNameDkimSelectorNameRequest"
+        "target": "com.ovh.emailpro#GetEmailProDomainDkimRequest"
       },
       "output": {
         "target": "com.ovh.emailpro#EmailProDkim"
@@ -4245,7 +4246,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emailpro#DeleteEmailProServiceDomainDomainNameDkimSelectorNameRequest": {
+    "com.ovh.emailpro#DeleteEmailProDomainDkimRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -4277,10 +4278,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailpro#DeleteEmailProServiceDomainDomainNameDkimSelectorName": {
+    "com.ovh.emailpro#DeleteEmailProDomainDkim": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#DeleteEmailProServiceDomainDomainNameDkimSelectorNameRequest"
+        "target": "com.ovh.emailpro#DeleteEmailProDomainDkimRequest"
       },
       "output": {
         "target": "com.ovh.emailpro#EmailProTask"
@@ -4294,7 +4295,7 @@
         "smithy.api#documentation": "Delete DKIM selector on this domain"
       }
     },
-    "com.ovh.emailpro#PostEmailProServiceDomainDomainNameDkimSelectorNameDisableRequest": {
+    "com.ovh.emailpro#DisableEmailProDomainDkimRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -4326,10 +4327,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailpro#PostEmailProServiceDomainDomainNameDkimSelectorNameDisable": {
+    "com.ovh.emailpro#DisableEmailProDomainDkim": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#PostEmailProServiceDomainDomainNameDkimSelectorNameDisableRequest"
+        "target": "com.ovh.emailpro#DisableEmailProDomainDkimRequest"
       },
       "output": {
         "target": "com.ovh.emailpro#EmailProTask"
@@ -4343,7 +4344,7 @@
         "smithy.api#documentation": "disable dkim signing"
       }
     },
-    "com.ovh.emailpro#PostEmailProServiceDomainDomainNameDkimSelectorNameEnableRequest": {
+    "com.ovh.emailpro#EnableEmailProDomainDkimRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -4375,10 +4376,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailpro#PostEmailProServiceDomainDomainNameDkimSelectorNameEnable": {
+    "com.ovh.emailpro#EnableEmailProDomainDkim": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#PostEmailProServiceDomainDomainNameDkimSelectorNameEnableRequest"
+        "target": "com.ovh.emailpro#EnableEmailProDomainDkimRequest"
       },
       "output": {
         "target": "com.ovh.emailpro#EmailProTask"
@@ -4392,7 +4393,7 @@
         "smithy.api#documentation": "enable dkim signing or switch selector used"
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceDomainDomainNameDkimSelectorRequest": {
+    "com.ovh.emailpro#ListEmailProDomainDkimSelectorRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -4416,18 +4417,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceDomainDomainNameDkimSelectorResponseBodyList": {
+    "com.ovh.emailpro#ListEmailProDomainDkimSelectorResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.emailpro#GetEmailProServiceDomainDomainNameDkimSelectorResponse": {
+    "com.ovh.emailpro#ListEmailProDomainDkimSelectorResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emailpro#GetEmailProServiceDomainDomainNameDkimSelectorResponseBodyList",
+          "target": "com.ovh.emailpro#ListEmailProDomainDkimSelectorResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -4438,13 +4439,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceDomainDomainNameDkimSelector": {
+    "com.ovh.emailpro#ListEmailProDomainDkimSelector": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#GetEmailProServiceDomainDomainNameDkimSelectorRequest"
+        "target": "com.ovh.emailpro#ListEmailProDomainDkimSelectorRequest"
       },
       "output": {
-        "target": "com.ovh.emailpro#GetEmailProServiceDomainDomainNameDkimSelectorResponse"
+        "target": "com.ovh.emailpro#ListEmailProDomainDkimSelectorResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4455,7 +4456,7 @@
         "smithy.api#documentation": "Get dkim selector list"
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceExternalContactRequest": {
+    "com.ovh.emailpro#ListEmailProExternalContactRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -4506,18 +4507,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceExternalContactResponseBodyList": {
+    "com.ovh.emailpro#ListEmailProExternalContactResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.emailpro#GetEmailProServiceExternalContactResponse": {
+    "com.ovh.emailpro#ListEmailProExternalContactResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emailpro#GetEmailProServiceExternalContactResponseBodyList",
+          "target": "com.ovh.emailpro#ListEmailProExternalContactResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -4528,13 +4529,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceExternalContact": {
+    "com.ovh.emailpro#ListEmailProExternalContact": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#GetEmailProServiceExternalContactRequest"
+        "target": "com.ovh.emailpro#ListEmailProExternalContactRequest"
       },
       "output": {
-        "target": "com.ovh.emailpro#GetEmailProServiceExternalContactResponse"
+        "target": "com.ovh.emailpro#ListEmailProExternalContactResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4545,7 +4546,7 @@
         "smithy.api#documentation": "External contacts for this service"
       }
     },
-    "com.ovh.emailpro#PostEmailProServiceExternalContactRequest": {
+    "com.ovh.emailpro#CreateEmailProExternalContactRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -4598,10 +4599,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailpro#PostEmailProServiceExternalContact": {
+    "com.ovh.emailpro#CreateEmailProExternalContact": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#PostEmailProServiceExternalContactRequest"
+        "target": "com.ovh.emailpro#CreateEmailProExternalContactRequest"
       },
       "output": {
         "target": "com.ovh.emailpro#EmailProTask"
@@ -4615,7 +4616,7 @@
         "smithy.api#documentation": "create new external contact"
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceExternalContactExternalEmailAddressRequest": {
+    "com.ovh.emailpro#GetEmailProExternalContactRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -4710,10 +4711,10 @@
         "smithy.api#documentation": "External contact for this pro service"
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceExternalContactExternalEmailAddress": {
+    "com.ovh.emailpro#GetEmailProExternalContact": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#GetEmailProServiceExternalContactExternalEmailAddressRequest"
+        "target": "com.ovh.emailpro#GetEmailProExternalContactRequest"
       },
       "output": {
         "target": "com.ovh.emailpro#EmailProExternalContactNative"
@@ -4727,7 +4728,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emailpro#PutEmailProServiceExternalContactExternalEmailAddressRequest": {
+    "com.ovh.emailpro#PutEmailProExternalContactRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -4784,10 +4785,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailpro#PutEmailProServiceExternalContactExternalEmailAddress": {
+    "com.ovh.emailpro#PutEmailProExternalContact": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#PutEmailProServiceExternalContactExternalEmailAddressRequest"
+        "target": "com.ovh.emailpro#PutEmailProExternalContactRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4801,7 +4802,7 @@
         "smithy.api#documentation": "Alter this object properties"
       }
     },
-    "com.ovh.emailpro#DeleteEmailProServiceExternalContactExternalEmailAddressRequest": {
+    "com.ovh.emailpro#DeleteEmailProExternalContactRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -4825,10 +4826,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailpro#DeleteEmailProServiceExternalContactExternalEmailAddress": {
+    "com.ovh.emailpro#DeleteEmailProExternalContact": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#DeleteEmailProServiceExternalContactExternalEmailAddressRequest"
+        "target": "com.ovh.emailpro#DeleteEmailProExternalContactRequest"
       },
       "output": {
         "target": "com.ovh.emailpro#EmailProTask"
@@ -4842,7 +4843,7 @@
         "smithy.api#documentation": "delete external contact"
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceServerRequest": {
+    "com.ovh.emailpro#GetEmailProServerRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -4962,10 +4963,10 @@
         "smithy.api#documentation": "Server State"
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceServer": {
+    "com.ovh.emailpro#GetEmailProServer": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#GetEmailProServiceServerRequest"
+        "target": "com.ovh.emailpro#GetEmailProServerRequest"
       },
       "output": {
         "target": "com.ovh.emailpro#EmailProServer"
@@ -4979,7 +4980,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceServiceInfosRequest": {
+    "com.ovh.emailpro#GetEmailProServiceInfosRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -5203,10 +5204,10 @@
       },
       "traits": {}
     },
-    "com.ovh.emailpro#GetEmailProServiceServiceInfos": {
+    "com.ovh.emailpro#GetEmailProServiceInfos": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#GetEmailProServiceServiceInfosRequest"
+        "target": "com.ovh.emailpro#GetEmailProServiceInfosRequest"
       },
       "output": {
         "target": "com.ovh.emailpro#ServicesService"
@@ -5220,7 +5221,7 @@
         "smithy.api#documentation": "Get service information"
       }
     },
-    "com.ovh.emailpro#PutEmailProServiceServiceInfosRequest": {
+    "com.ovh.emailpro#PutEmailProServiceInfosRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -5243,10 +5244,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailpro#PutEmailProServiceServiceInfos": {
+    "com.ovh.emailpro#PutEmailProServiceInfos": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#PutEmailProServiceServiceInfosRequest"
+        "target": "com.ovh.emailpro#PutEmailProServiceInfosRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5260,7 +5261,7 @@
         "smithy.api#documentation": "Update service information"
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceTaskRequest": {
+    "com.ovh.emailpro#ListEmailProTaskRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -5276,18 +5277,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceTaskResponseBodyList": {
+    "com.ovh.emailpro#ListEmailProTaskResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.emailpro#GetEmailProServiceTaskResponse": {
+    "com.ovh.emailpro#ListEmailProTaskResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emailpro#GetEmailProServiceTaskResponseBodyList",
+          "target": "com.ovh.emailpro#ListEmailProTaskResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -5298,13 +5299,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceTask": {
+    "com.ovh.emailpro#ListEmailProTask": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#GetEmailProServiceTaskRequest"
+        "target": "com.ovh.emailpro#ListEmailProTaskRequest"
       },
       "output": {
-        "target": "com.ovh.emailpro#GetEmailProServiceTaskResponse"
+        "target": "com.ovh.emailpro#ListEmailProTaskResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5315,7 +5316,7 @@
         "smithy.api#documentation": "Pending actions"
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceTaskIdRequest": {
+    "com.ovh.emailpro#GetEmailProTaskRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -5339,10 +5340,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailpro#GetEmailProServiceTaskId": {
+    "com.ovh.emailpro#GetEmailProTask": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#GetEmailProServiceTaskIdRequest"
+        "target": "com.ovh.emailpro#GetEmailProTaskRequest"
       },
       "output": {
         "target": "com.ovh.emailpro#EmailProTask"
@@ -5356,7 +5357,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emailpro#PostEmailProServiceUpdateFlagsOnAllAccountsRequest": {
+    "com.ovh.emailpro#UpdateEmailProFlagsOnAllAccountsRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -5372,10 +5373,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailpro#PostEmailProServiceUpdateFlagsOnAllAccounts": {
+    "com.ovh.emailpro#UpdateEmailProFlagsOnAllAccounts": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailpro#PostEmailProServiceUpdateFlagsOnAllAccountsRequest"
+        "target": "com.ovh.emailpro#UpdateEmailProFlagsOnAllAccountsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5394,184 +5395,184 @@
       "version": "1.0",
       "operations": [
         {
+          "target": "com.ovh.emailpro#ListEmailPro"
+        },
+        {
           "target": "com.ovh.emailpro#GetEmailPro"
         },
         {
-          "target": "com.ovh.emailpro#GetEmailProService"
+          "target": "com.ovh.emailpro#PutEmailPro"
         },
         {
-          "target": "com.ovh.emailpro#PutEmailProService"
+          "target": "com.ovh.emailpro#ListEmailProAccount"
         },
         {
-          "target": "com.ovh.emailpro#GetEmailProServiceAccount"
+          "target": "com.ovh.emailpro#GetEmailProAccount"
         },
         {
-          "target": "com.ovh.emailpro#GetEmailProServiceAccountEmail"
+          "target": "com.ovh.emailpro#PutEmailProAccount"
         },
         {
-          "target": "com.ovh.emailpro#PutEmailProServiceAccountEmail"
+          "target": "com.ovh.emailpro#DeleteEmailProAccount"
         },
         {
-          "target": "com.ovh.emailpro#DeleteEmailProServiceAccountEmail"
+          "target": "com.ovh.emailpro#ListEmailProAccountAlias"
         },
         {
-          "target": "com.ovh.emailpro#GetEmailProServiceAccountEmailAlias"
+          "target": "com.ovh.emailpro#CreateEmailProAccountAlias"
         },
         {
-          "target": "com.ovh.emailpro#PostEmailProServiceAccountEmailAlias"
+          "target": "com.ovh.emailpro#GetEmailProAccountAlias"
         },
         {
-          "target": "com.ovh.emailpro#GetEmailProServiceAccountEmailAliasAlias"
+          "target": "com.ovh.emailpro#DeleteEmailProAccountAlias"
         },
         {
-          "target": "com.ovh.emailpro#DeleteEmailProServiceAccountEmailAliasAlias"
+          "target": "com.ovh.emailpro#CreateEmailProAccountChangePassword"
         },
         {
-          "target": "com.ovh.emailpro#PostEmailProServiceAccountEmailChangePassword"
+          "target": "com.ovh.emailpro#GetEmailProAccountDiagnostics"
         },
         {
-          "target": "com.ovh.emailpro#GetEmailProServiceAccountEmailDiagnostics"
+          "target": "com.ovh.emailpro#CreateEmailProAccountDiagnostic"
         },
         {
-          "target": "com.ovh.emailpro#PostEmailProServiceAccountEmailDiagnostics"
+          "target": "com.ovh.emailpro#ListEmailProAccountFullAccess"
         },
         {
-          "target": "com.ovh.emailpro#GetEmailProServiceAccountEmailFullAccess"
+          "target": "com.ovh.emailpro#CreateEmailProAccountFullAccess"
         },
         {
-          "target": "com.ovh.emailpro#PostEmailProServiceAccountEmailFullAccess"
+          "target": "com.ovh.emailpro#GetEmailProAccountFullAccess"
         },
         {
-          "target": "com.ovh.emailpro#GetEmailProServiceAccountEmailFullAccessAllowedAccountId"
+          "target": "com.ovh.emailpro#DeleteEmailProAccountFullAccess"
         },
         {
-          "target": "com.ovh.emailpro#DeleteEmailProServiceAccountEmailFullAccessAllowedAccountId"
+          "target": "com.ovh.emailpro#ListEmailProAccountSendAs"
         },
         {
-          "target": "com.ovh.emailpro#GetEmailProServiceAccountEmailSendAs"
+          "target": "com.ovh.emailpro#SendEmailProAccountAs"
         },
         {
-          "target": "com.ovh.emailpro#PostEmailProServiceAccountEmailSendAs"
+          "target": "com.ovh.emailpro#GetEmailProAccountSendAs"
         },
         {
-          "target": "com.ovh.emailpro#GetEmailProServiceAccountEmailSendAsAllowedAccountId"
+          "target": "com.ovh.emailpro#DeleteEmailProAccountSendAs"
         },
         {
-          "target": "com.ovh.emailpro#DeleteEmailProServiceAccountEmailSendAsAllowedAccountId"
+          "target": "com.ovh.emailpro#ListEmailProAccountSendOnBehalfTo"
         },
         {
-          "target": "com.ovh.emailpro#GetEmailProServiceAccountEmailSendOnBehalfTo"
+          "target": "com.ovh.emailpro#SendEmailProAccountOnBehalfTo"
         },
         {
-          "target": "com.ovh.emailpro#PostEmailProServiceAccountEmailSendOnBehalfTo"
+          "target": "com.ovh.emailpro#GetEmailProAccountSendOnBehalfTo"
         },
         {
-          "target": "com.ovh.emailpro#GetEmailProServiceAccountEmailSendOnBehalfToAllowedAccountId"
+          "target": "com.ovh.emailpro#DeleteEmailProAccountSendOnBehalfTo"
         },
         {
-          "target": "com.ovh.emailpro#DeleteEmailProServiceAccountEmailSendOnBehalfToAllowedAccountId"
+          "target": "com.ovh.emailpro#ListEmailProAccountTasks"
         },
         {
-          "target": "com.ovh.emailpro#GetEmailProServiceAccountEmailTasks"
+          "target": "com.ovh.emailpro#GetEmailProAccountTask"
         },
         {
-          "target": "com.ovh.emailpro#GetEmailProServiceAccountEmailTasksId"
+          "target": "com.ovh.emailpro#TerminateEmailProAccount"
         },
         {
-          "target": "com.ovh.emailpro#PostEmailProServiceAccountEmailTerminate"
+          "target": "com.ovh.emailpro#GetEmailProBillingMigrated"
         },
         {
-          "target": "com.ovh.emailpro#GetEmailProServiceBillingMigrated"
+          "target": "com.ovh.emailpro#GetEmailProBillingPlan"
         },
         {
-          "target": "com.ovh.emailpro#GetEmailProServiceBillingPlan"
+          "target": "com.ovh.emailpro#CreateEmailProChangeContact"
         },
         {
-          "target": "com.ovh.emailpro#PostEmailProServiceChangeContact"
+          "target": "com.ovh.emailpro#ListEmailProDomain"
         },
         {
-          "target": "com.ovh.emailpro#GetEmailProServiceDomain"
+          "target": "com.ovh.emailpro#CreateEmailProDomain"
         },
         {
-          "target": "com.ovh.emailpro#PostEmailProServiceDomain"
+          "target": "com.ovh.emailpro#GetEmailProDomain"
         },
         {
-          "target": "com.ovh.emailpro#GetEmailProServiceDomainDomainName"
+          "target": "com.ovh.emailpro#PutEmailProDomain"
         },
         {
-          "target": "com.ovh.emailpro#PutEmailProServiceDomainDomainName"
+          "target": "com.ovh.emailpro#DeleteEmailProDomain"
         },
         {
-          "target": "com.ovh.emailpro#DeleteEmailProServiceDomainDomainName"
+          "target": "com.ovh.emailpro#GetEmailProDomainDisclaimer"
         },
         {
-          "target": "com.ovh.emailpro#GetEmailProServiceDomainDomainNameDisclaimer"
+          "target": "com.ovh.emailpro#CreateEmailProDomainDisclaimer"
         },
         {
-          "target": "com.ovh.emailpro#PostEmailProServiceDomainDomainNameDisclaimer"
+          "target": "com.ovh.emailpro#PutEmailProDomainDisclaimer"
         },
         {
-          "target": "com.ovh.emailpro#PutEmailProServiceDomainDomainNameDisclaimer"
+          "target": "com.ovh.emailpro#DeleteEmailProDomainDisclaimer"
         },
         {
-          "target": "com.ovh.emailpro#DeleteEmailProServiceDomainDomainNameDisclaimer"
+          "target": "com.ovh.emailpro#ListEmailProDomainDisclaimerAttribute"
         },
         {
-          "target": "com.ovh.emailpro#GetEmailProServiceDomainDomainNameDisclaimerAttribute"
+          "target": "com.ovh.emailpro#ListEmailProDomainDkim"
         },
         {
-          "target": "com.ovh.emailpro#GetEmailProServiceDomainDomainNameDkim"
+          "target": "com.ovh.emailpro#CreateEmailProDomainDkim"
         },
         {
-          "target": "com.ovh.emailpro#PostEmailProServiceDomainDomainNameDkim"
+          "target": "com.ovh.emailpro#GetEmailProDomainDkim"
         },
         {
-          "target": "com.ovh.emailpro#GetEmailProServiceDomainDomainNameDkimSelectorName"
+          "target": "com.ovh.emailpro#DeleteEmailProDomainDkim"
         },
         {
-          "target": "com.ovh.emailpro#DeleteEmailProServiceDomainDomainNameDkimSelectorName"
+          "target": "com.ovh.emailpro#DisableEmailProDomainDkim"
         },
         {
-          "target": "com.ovh.emailpro#PostEmailProServiceDomainDomainNameDkimSelectorNameDisable"
+          "target": "com.ovh.emailpro#EnableEmailProDomainDkim"
         },
         {
-          "target": "com.ovh.emailpro#PostEmailProServiceDomainDomainNameDkimSelectorNameEnable"
+          "target": "com.ovh.emailpro#ListEmailProDomainDkimSelector"
         },
         {
-          "target": "com.ovh.emailpro#GetEmailProServiceDomainDomainNameDkimSelector"
+          "target": "com.ovh.emailpro#ListEmailProExternalContact"
         },
         {
-          "target": "com.ovh.emailpro#GetEmailProServiceExternalContact"
+          "target": "com.ovh.emailpro#CreateEmailProExternalContact"
         },
         {
-          "target": "com.ovh.emailpro#PostEmailProServiceExternalContact"
+          "target": "com.ovh.emailpro#GetEmailProExternalContact"
         },
         {
-          "target": "com.ovh.emailpro#GetEmailProServiceExternalContactExternalEmailAddress"
+          "target": "com.ovh.emailpro#PutEmailProExternalContact"
         },
         {
-          "target": "com.ovh.emailpro#PutEmailProServiceExternalContactExternalEmailAddress"
+          "target": "com.ovh.emailpro#DeleteEmailProExternalContact"
         },
         {
-          "target": "com.ovh.emailpro#DeleteEmailProServiceExternalContactExternalEmailAddress"
+          "target": "com.ovh.emailpro#GetEmailProServer"
         },
         {
-          "target": "com.ovh.emailpro#GetEmailProServiceServer"
+          "target": "com.ovh.emailpro#GetEmailProServiceInfos"
         },
         {
-          "target": "com.ovh.emailpro#GetEmailProServiceServiceInfos"
+          "target": "com.ovh.emailpro#PutEmailProServiceInfos"
         },
         {
-          "target": "com.ovh.emailpro#PutEmailProServiceServiceInfos"
+          "target": "com.ovh.emailpro#ListEmailProTask"
         },
         {
-          "target": "com.ovh.emailpro#GetEmailProServiceTask"
+          "target": "com.ovh.emailpro#GetEmailProTask"
         },
         {
-          "target": "com.ovh.emailpro#GetEmailProServiceTaskId"
-        },
-        {
-          "target": "com.ovh.emailpro#PostEmailProServiceUpdateFlagsOnAllAccounts"
+          "target": "com.ovh.emailpro#UpdateEmailProFlagsOnAllAccounts"
         }
       ],
       "traits": {

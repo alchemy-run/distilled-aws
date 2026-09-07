@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.ovh.xdsl#IamResourceTagFilterInput": {
@@ -24,28 +25,28 @@
         "smithy.api#documentation": "Resource tag filter"
       }
     },
-    "com.ovh.xdsl#GetXdslRequestIamTagsValueList": {
+    "com.ovh.xdsl#ListXdslRequestIamTagsValueList": {
       "type": "list",
       "member": {
         "target": "com.ovh.xdsl#IamResourceTagFilterInput"
       },
       "traits": {}
     },
-    "com.ovh.xdsl#GetXdslRequestIamTagsMap": {
+    "com.ovh.xdsl#ListXdslRequestIamTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "com.ovh.xdsl#GetXdslRequestIamTagsValueList"
+        "target": "com.ovh.xdsl#ListXdslRequestIamTagsValueList"
       },
       "traits": {}
     },
-    "com.ovh.xdsl#GetXdslRequest": {
+    "com.ovh.xdsl#ListXdslRequest": {
       "type": "structure",
       "members": {
         "iamTags": {
-          "target": "com.ovh.xdsl#GetXdslRequestIamTagsMap",
+          "target": "com.ovh.xdsl#ListXdslRequestIamTagsMap",
           "traits": {
             "smithy.api#httpQuery": "iamTags",
             "smithy.api#documentation": "Filter resources on IAM tags"
@@ -56,18 +57,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#GetXdslResponseBodyList": {
+    "com.ovh.xdsl#ListXdslResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.xdsl#GetXdslResponse": {
+    "com.ovh.xdsl#ListXdslResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.xdsl#GetXdslResponseBodyList",
+          "target": "com.ovh.xdsl#ListXdslResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -78,13 +79,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.xdsl#GetXdsl": {
+    "com.ovh.xdsl#ListXdsl": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslRequest"
+        "target": "com.ovh.xdsl#ListXdslRequest"
       },
       "output": {
-        "target": "com.ovh.xdsl#GetXdslResponse"
+        "target": "com.ovh.xdsl#ListXdslResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -95,28 +96,28 @@
         "smithy.api#documentation": "List available services"
       }
     },
-    "com.ovh.xdsl#GetXdslEmailProRequestIamTagsValueList": {
+    "com.ovh.xdsl#ListXdslEmailProRequestIamTagsValueList": {
       "type": "list",
       "member": {
         "target": "com.ovh.xdsl#IamResourceTagFilterInput"
       },
       "traits": {}
     },
-    "com.ovh.xdsl#GetXdslEmailProRequestIamTagsMap": {
+    "com.ovh.xdsl#ListXdslEmailProRequestIamTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "com.ovh.xdsl#GetXdslEmailProRequestIamTagsValueList"
+        "target": "com.ovh.xdsl#ListXdslEmailProRequestIamTagsValueList"
       },
       "traits": {}
     },
-    "com.ovh.xdsl#GetXdslEmailProRequest": {
+    "com.ovh.xdsl#ListXdslEmailProRequest": {
       "type": "structure",
       "members": {
         "iamTags": {
-          "target": "com.ovh.xdsl#GetXdslEmailProRequestIamTagsMap",
+          "target": "com.ovh.xdsl#ListXdslEmailProRequestIamTagsMap",
           "traits": {
             "smithy.api#httpQuery": "iamTags",
             "smithy.api#documentation": "Filter resources on IAM tags"
@@ -127,18 +128,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#GetXdslEmailProResponseBodyList": {
+    "com.ovh.xdsl#ListXdslEmailProResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.xdsl#GetXdslEmailProResponse": {
+    "com.ovh.xdsl#ListXdslEmailProResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.xdsl#GetXdslEmailProResponseBodyList",
+          "target": "com.ovh.xdsl#ListXdslEmailProResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -149,13 +150,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.xdsl#GetXdslEmailPro": {
+    "com.ovh.xdsl#ListXdslEmailPro": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslEmailProRequest"
+        "target": "com.ovh.xdsl#ListXdslEmailProRequest"
       },
       "output": {
-        "target": "com.ovh.xdsl#GetXdslEmailProResponse"
+        "target": "com.ovh.xdsl#ListXdslEmailProResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -166,7 +167,7 @@
         "smithy.api#documentation": "List available services"
       }
     },
-    "com.ovh.xdsl#GetXdslEmailProEmailRequest": {
+    "com.ovh.xdsl#GetXdslEmailProRequest": {
       "type": "structure",
       "members": {
         "email": {
@@ -420,10 +421,10 @@
         "smithy.api#documentation": "Current object state"
       }
     },
-    "com.ovh.xdsl#GetXdslEmailProEmail": {
+    "com.ovh.xdsl#GetXdslEmailPro": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslEmailProEmailRequest"
+        "target": "com.ovh.xdsl#GetXdslEmailProRequest"
       },
       "output": {
         "target": "com.ovh.xdsl#XdslXdslEmailProWithIAM"
@@ -437,7 +438,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.xdsl#PutXdslEmailProEmailRequest": {
+    "com.ovh.xdsl#PutXdslEmailProRequest": {
       "type": "structure",
       "members": {
         "email": {
@@ -481,10 +482,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#PutXdslEmailProEmail": {
+    "com.ovh.xdsl#PutXdslEmailPro": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#PutXdslEmailProEmailRequest"
+        "target": "com.ovh.xdsl#PutXdslEmailProRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -498,7 +499,7 @@
         "smithy.api#documentation": "Alter this object properties"
       }
     },
-    "com.ovh.xdsl#DeleteXdslEmailProEmailRequest": {
+    "com.ovh.xdsl#DeleteXdslEmailProRequest": {
       "type": "structure",
       "members": {
         "email": {
@@ -514,10 +515,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#DeleteXdslEmailProEmail": {
+    "com.ovh.xdsl#DeleteXdslEmailPro": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#DeleteXdslEmailProEmailRequest"
+        "target": "com.ovh.xdsl#DeleteXdslEmailProRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -643,7 +644,7 @@
         "smithy.api#documentation": "Change the email password"
       }
     },
-    "com.ovh.xdsl#GetXdslIncidentsRequest": {
+    "com.ovh.xdsl#ListXdslIncidentsRequest": {
       "type": "structure",
       "members": {
         "creationDate": {
@@ -665,18 +666,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#GetXdslIncidentsResponseBodyList": {
+    "com.ovh.xdsl#ListXdslIncidentsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.xdsl#GetXdslIncidentsResponse": {
+    "com.ovh.xdsl#ListXdslIncidentsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.xdsl#GetXdslIncidentsResponseBodyList",
+          "target": "com.ovh.xdsl#ListXdslIncidentsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -687,13 +688,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.xdsl#GetXdslIncidents": {
+    "com.ovh.xdsl#ListXdslIncidents": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslIncidentsRequest"
+        "target": "com.ovh.xdsl#ListXdslIncidentsRequest"
       },
       "output": {
-        "target": "com.ovh.xdsl#GetXdslIncidentsResponse"
+        "target": "com.ovh.xdsl#ListXdslIncidentsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -704,7 +705,7 @@
         "smithy.api#documentation": "List of incidents"
       }
     },
-    "com.ovh.xdsl#GetXdslIncidentsIdRequest": {
+    "com.ovh.xdsl#GetXdslIncidentRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -834,10 +835,10 @@
         "smithy.api#documentation": "Operator"
       }
     },
-    "com.ovh.xdsl#GetXdslIncidentsId": {
+    "com.ovh.xdsl#GetXdslIncident": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslIncidentsIdRequest"
+        "target": "com.ovh.xdsl#GetXdslIncidentRequest"
       },
       "output": {
         "target": "com.ovh.xdsl#XdslIncident"
@@ -851,28 +852,28 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.xdsl#GetXdslSpareRequestIamTagsValueList": {
+    "com.ovh.xdsl#ListXdslSpareRequestIamTagsValueList": {
       "type": "list",
       "member": {
         "target": "com.ovh.xdsl#IamResourceTagFilterInput"
       },
       "traits": {}
     },
-    "com.ovh.xdsl#GetXdslSpareRequestIamTagsMap": {
+    "com.ovh.xdsl#ListXdslSpareRequestIamTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "com.ovh.xdsl#GetXdslSpareRequestIamTagsValueList"
+        "target": "com.ovh.xdsl#ListXdslSpareRequestIamTagsValueList"
       },
       "traits": {}
     },
-    "com.ovh.xdsl#GetXdslSpareRequest": {
+    "com.ovh.xdsl#ListXdslSpareRequest": {
       "type": "structure",
       "members": {
         "iamTags": {
-          "target": "com.ovh.xdsl#GetXdslSpareRequestIamTagsMap",
+          "target": "com.ovh.xdsl#ListXdslSpareRequestIamTagsMap",
           "traits": {
             "smithy.api#httpQuery": "iamTags",
             "smithy.api#documentation": "Filter resources on IAM tags"
@@ -883,18 +884,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#GetXdslSpareResponseBodyList": {
+    "com.ovh.xdsl#ListXdslSpareResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.xdsl#GetXdslSpareResponse": {
+    "com.ovh.xdsl#ListXdslSpareResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.xdsl#GetXdslSpareResponseBodyList",
+          "target": "com.ovh.xdsl#ListXdslSpareResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -905,13 +906,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.xdsl#GetXdslSpare": {
+    "com.ovh.xdsl#ListXdslSpare": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslSpareRequest"
+        "target": "com.ovh.xdsl#ListXdslSpareRequest"
       },
       "output": {
-        "target": "com.ovh.xdsl#GetXdslSpareResponse"
+        "target": "com.ovh.xdsl#ListXdslSpareResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -922,18 +923,18 @@
         "smithy.api#documentation": "List available services"
       }
     },
-    "com.ovh.xdsl#GetXdslSpareBrandsResponseBodyList": {
+    "com.ovh.xdsl#ListXdslSpareBrandsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.xdsl#GetXdslSpareBrandsResponse": {
+    "com.ovh.xdsl#ListXdslSpareBrandsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.xdsl#GetXdslSpareBrandsResponseBodyList",
+          "target": "com.ovh.xdsl#ListXdslSpareBrandsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -944,13 +945,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.xdsl#GetXdslSpareBrands": {
+    "com.ovh.xdsl#ListXdslSpareBrands": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.ovh.xdsl#GetXdslSpareBrandsResponse"
+        "target": "com.ovh.xdsl#ListXdslSpareBrandsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -961,7 +962,7 @@
         "smithy.api#documentation": "Get all available spare brands"
       }
     },
-    "com.ovh.xdsl#GetXdslSpareSpareRequest": {
+    "com.ovh.xdsl#GetXdslSpareRequest": {
       "type": "structure",
       "members": {
         "spare": {
@@ -1004,10 +1005,10 @@
         "smithy.api#documentation": "Spare properties"
       }
     },
-    "com.ovh.xdsl#GetXdslSpareSpare": {
+    "com.ovh.xdsl#GetXdslSpare": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslSpareSpareRequest"
+        "target": "com.ovh.xdsl#GetXdslSpareRequest"
       },
       "output": {
         "target": "com.ovh.xdsl#SpareXdslXdslSpareWithIAM"
@@ -1021,7 +1022,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.xdsl#DeleteXdslSpareSpareRequest": {
+    "com.ovh.xdsl#DeleteXdslSpareRequest": {
       "type": "structure",
       "members": {
         "spare": {
@@ -1037,10 +1038,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#DeleteXdslSpareSpare": {
+    "com.ovh.xdsl#DeleteXdslSpare": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#DeleteXdslSpareSpareRequest"
+        "target": "com.ovh.xdsl#DeleteXdslSpareRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1054,7 +1055,7 @@
         "smithy.api#documentation": "Delete the spare as if it was not belonging to OVH anymore"
       }
     },
-    "com.ovh.xdsl#GetXdslSpareSpareCompatibleReplacementRequest": {
+    "com.ovh.xdsl#ListXdslSpareCompatibleReplacementRequest": {
       "type": "structure",
       "members": {
         "spare": {
@@ -1070,18 +1071,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#GetXdslSpareSpareCompatibleReplacementResponseBodyList": {
+    "com.ovh.xdsl#ListXdslSpareCompatibleReplacementResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.xdsl#GetXdslSpareSpareCompatibleReplacementResponse": {
+    "com.ovh.xdsl#ListXdslSpareCompatibleReplacementResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.xdsl#GetXdslSpareSpareCompatibleReplacementResponseBodyList",
+          "target": "com.ovh.xdsl#ListXdslSpareCompatibleReplacementResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1092,13 +1093,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.xdsl#GetXdslSpareSpareCompatibleReplacement": {
+    "com.ovh.xdsl#ListXdslSpareCompatibleReplacement": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslSpareSpareCompatibleReplacementRequest"
+        "target": "com.ovh.xdsl#ListXdslSpareCompatibleReplacementRequest"
       },
       "output": {
-        "target": "com.ovh.xdsl#GetXdslSpareSpareCompatibleReplacementResponse"
+        "target": "com.ovh.xdsl#ListXdslSpareCompatibleReplacementResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1149,7 +1150,7 @@
         "smithy.api#documentation": "Replace the modem by its spare"
       }
     },
-    "com.ovh.xdsl#PostXdslSpareSpareReturnMerchandiseRequest": {
+    "com.ovh.xdsl#CreateXdslSpareReturnMerchandiseRequest": {
       "type": "structure",
       "members": {
         "spare": {
@@ -1165,10 +1166,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#PostXdslSpareSpareReturnMerchandise": {
+    "com.ovh.xdsl#CreateXdslSpareReturnMerchandise": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#PostXdslSpareSpareReturnMerchandiseRequest"
+        "target": "com.ovh.xdsl#CreateXdslSpareReturnMerchandiseRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1182,7 +1183,7 @@
         "smithy.api#documentation": "Return the broken equipment in instantRefund"
       }
     },
-    "com.ovh.xdsl#GetXdslSpareSpareServiceInfosRequest": {
+    "com.ovh.xdsl#GetXdslSpareServiceInfosRequest": {
       "type": "structure",
       "members": {
         "spare": {
@@ -1402,10 +1403,10 @@
         "smithy.api#documentation": "service.StateEnum"
       }
     },
-    "com.ovh.xdsl#GetXdslSpareSpareServiceInfos": {
+    "com.ovh.xdsl#GetXdslSpareServiceInfos": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslSpareSpareServiceInfosRequest"
+        "target": "com.ovh.xdsl#GetXdslSpareServiceInfosRequest"
       },
       "output": {
         "target": "com.ovh.xdsl#ServicesService"
@@ -1419,7 +1420,7 @@
         "smithy.api#documentation": "Get service information"
       }
     },
-    "com.ovh.xdsl#PutXdslSpareSpareServiceInfosRequest": {
+    "com.ovh.xdsl#PutXdslSpareServiceInfosRequest": {
       "type": "structure",
       "members": {
         "spare": {
@@ -1442,10 +1443,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#PutXdslSpareSpareServiceInfos": {
+    "com.ovh.xdsl#PutXdslSpareServiceInfos": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#PutXdslSpareSpareServiceInfosRequest"
+        "target": "com.ovh.xdsl#PutXdslSpareServiceInfosRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2195,7 +2196,7 @@
         "smithy.api#documentation": "Delete this Modem Template"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameRequest": {
+    "com.ovh.xdsl#GetXdslRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2592,10 +2593,10 @@
         "smithy.api#documentation": "Status of the access"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceName": {
+    "com.ovh.xdsl#GetXdsl": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameRequest"
+        "target": "com.ovh.xdsl#GetXdslRequest"
       },
       "output": {
         "target": "com.ovh.xdsl#XdslAccessWithIAM"
@@ -2609,7 +2610,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.xdsl#PutXdslServiceNameRequest": {
+    "com.ovh.xdsl#PutXdslRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2641,10 +2642,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#PutXdslServiceName": {
+    "com.ovh.xdsl#PutXdsl": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#PutXdslServiceNameRequest"
+        "target": "com.ovh.xdsl#PutXdslRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2658,7 +2659,7 @@
         "smithy.api#documentation": "Alter this object properties"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameAddressMoveExtraIpRangeRequest": {
+    "com.ovh.xdsl#GetXdslAddressMoveExtraIpRangeRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2700,10 +2701,10 @@
         "smithy.api#documentation": "Informations about the extra IP range during address move"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameAddressMoveExtraIpRange": {
+    "com.ovh.xdsl#GetXdslAddressMoveExtraIpRange": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameAddressMoveExtraIpRangeRequest"
+        "target": "com.ovh.xdsl#GetXdslAddressMoveExtraIpRangeRequest"
       },
       "output": {
         "target": "com.ovh.xdsl#XdslExtraIpRangeMove"
@@ -2717,7 +2718,7 @@
         "smithy.api#documentation": "Informations about the extra IP range during address move"
       }
     },
-    "com.ovh.xdsl#PostXdslServiceNameAddressMoveExtraIpRangeMoveRequest": {
+    "com.ovh.xdsl#CreateXdslAddressMoveExtraIpRangeMoveRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2803,10 +2804,10 @@
         "smithy.api#documentation": "Status of a task."
       }
     },
-    "com.ovh.xdsl#PostXdslServiceNameAddressMoveExtraIpRangeMove": {
+    "com.ovh.xdsl#CreateXdslAddressMoveExtraIpRangeMove": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#PostXdslServiceNameAddressMoveExtraIpRangeMoveRequest"
+        "target": "com.ovh.xdsl#CreateXdslAddressMoveExtraIpRangeMoveRequest"
       },
       "output": {
         "target": "com.ovh.xdsl#XdslTask"
@@ -2820,7 +2821,7 @@
         "smithy.api#documentation": "Initiate the extra IP range migration"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameAntiSpamsRequest": {
+    "com.ovh.xdsl#ListXdslAntiSpamsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2836,18 +2837,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameAntiSpamsResponseBodyList": {
+    "com.ovh.xdsl#ListXdslAntiSpamsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.xdsl#GetXdslServiceNameAntiSpamsResponse": {
+    "com.ovh.xdsl#ListXdslAntiSpamsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.xdsl#GetXdslServiceNameAntiSpamsResponseBodyList",
+          "target": "com.ovh.xdsl#ListXdslAntiSpamsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -2858,13 +2859,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameAntiSpams": {
+    "com.ovh.xdsl#ListXdslAntiSpams": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameAntiSpamsRequest"
+        "target": "com.ovh.xdsl#ListXdslAntiSpamsRequest"
       },
       "output": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameAntiSpamsResponse"
+        "target": "com.ovh.xdsl#ListXdslAntiSpamsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2875,7 +2876,7 @@
         "smithy.api#documentation": "List antiSpams for this access"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameAntiSpamsIpRequest": {
+    "com.ovh.xdsl#GetXdslAntiSpamRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2969,10 +2970,10 @@
         "smithy.api#documentation": "AntiSpam status"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameAntiSpamsIp": {
+    "com.ovh.xdsl#GetXdslAntiSpam": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameAntiSpamsIpRequest"
+        "target": "com.ovh.xdsl#GetXdslAntiSpamRequest"
       },
       "output": {
         "target": "com.ovh.xdsl#XdslAntiSpam"
@@ -2986,7 +2987,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameAntiSpamsIpEvidencesRequest": {
+    "com.ovh.xdsl#ListXdslAntiSpamEvidencesRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3099,10 +3100,10 @@
         "smithy.api#documentation": "Evidences AsyncTask status"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameAntiSpamsIpEvidences": {
+    "com.ovh.xdsl#ListXdslAntiSpamEvidences": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameAntiSpamsIpEvidencesRequest"
+        "target": "com.ovh.xdsl#ListXdslAntiSpamEvidencesRequest"
       },
       "output": {
         "target": "com.ovh.xdsl#XdslAntiSpamEvidencesInfo"
@@ -3156,7 +3157,7 @@
         "smithy.api#documentation": "Apply TemplateModem to existing Modem"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameCanCancelResiliationRequest": {
+    "com.ovh.xdsl#GetXdslCanCancelResiliationRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3172,7 +3173,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameCanCancelResiliationResponse": {
+    "com.ovh.xdsl#GetXdslCanCancelResiliationResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -3187,13 +3188,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameCanCancelResiliation": {
+    "com.ovh.xdsl#GetXdslCanCancelResiliation": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameCanCancelResiliationRequest"
+        "target": "com.ovh.xdsl#GetXdslCanCancelResiliationRequest"
       },
       "output": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameCanCancelResiliationResponse"
+        "target": "com.ovh.xdsl#GetXdslCanCancelResiliationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3204,7 +3205,7 @@
         "smithy.api#documentation": "Get information about the ongoing resiliation"
       }
     },
-    "com.ovh.xdsl#PostXdslServiceNameCancelResiliationRequest": {
+    "com.ovh.xdsl#CancelXdslResiliationRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3220,10 +3221,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#PostXdslServiceNameCancelResiliation": {
+    "com.ovh.xdsl#CancelXdslResiliation": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#PostXdslServiceNameCancelResiliationRequest"
+        "target": "com.ovh.xdsl#CancelXdslResiliationRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3310,7 +3311,7 @@
         "smithy.api#documentation": "Launch a contact change procedure"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameDiagnosticRequest": {
+    "com.ovh.xdsl#GetXdslDiagnosticRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3502,10 +3503,10 @@
         "smithy.api#documentation": "Test details by line"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameDiagnostic": {
+    "com.ovh.xdsl#GetXdslDiagnostic": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameDiagnosticRequest"
+        "target": "com.ovh.xdsl#GetXdslDiagnosticRequest"
       },
       "output": {
         "target": "com.ovh.xdsl#XdslAccessDiagnostic"
@@ -3519,7 +3520,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.xdsl#PostXdslServiceNameDiagnosticRequest": {
+    "com.ovh.xdsl#CreateXdslDiagnosticRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3535,10 +3536,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#PostXdslServiceNameDiagnostic": {
+    "com.ovh.xdsl#CreateXdslDiagnostic": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#PostXdslServiceNameDiagnosticRequest"
+        "target": "com.ovh.xdsl#CreateXdslDiagnosticRequest"
       },
       "output": {
         "target": "com.ovh.xdsl#XdslTask"
@@ -3584,7 +3585,7 @@
         "smithy.api#documentation": "Status of the fiber eligibility"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameFiberEligibilitiesRequest": {
+    "com.ovh.xdsl#ListXdslFiberEligibilitiesRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3607,18 +3608,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameFiberEligibilitiesResponseBodyList": {
+    "com.ovh.xdsl#ListXdslFiberEligibilitiesResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.xdsl#GetXdslServiceNameFiberEligibilitiesResponse": {
+    "com.ovh.xdsl#ListXdslFiberEligibilitiesResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.xdsl#GetXdslServiceNameFiberEligibilitiesResponseBodyList",
+          "target": "com.ovh.xdsl#ListXdslFiberEligibilitiesResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -3629,13 +3630,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameFiberEligibilities": {
+    "com.ovh.xdsl#ListXdslFiberEligibilities": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameFiberEligibilitiesRequest"
+        "target": "com.ovh.xdsl#ListXdslFiberEligibilitiesRequest"
       },
       "output": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameFiberEligibilitiesResponse"
+        "target": "com.ovh.xdsl#ListXdslFiberEligibilitiesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3646,7 +3647,7 @@
         "smithy.api#documentation": "List fiber eligibilities for this access"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameFiberEligibilitiesIdRequest": {
+    "com.ovh.xdsl#GetXdslFiberEligibilityRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3973,10 +3974,10 @@
         "smithy.api#documentation": "Details of a provider"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameFiberEligibilitiesId": {
+    "com.ovh.xdsl#GetXdslFiberEligibility": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameFiberEligibilitiesIdRequest"
+        "target": "com.ovh.xdsl#GetXdslFiberEligibilityRequest"
       },
       "output": {
         "target": "com.ovh.xdsl#XdslFiberEligibility"
@@ -3990,7 +3991,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameIncidentRequest": {
+    "com.ovh.xdsl#GetXdslIncidentRequest2": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4006,10 +4007,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameIncident": {
+    "com.ovh.xdsl#GetXdslIncident2": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameIncidentRequest"
+        "target": "com.ovh.xdsl#GetXdslIncidentRequest2"
       },
       "output": {
         "target": "com.ovh.xdsl#XdslIncident"
@@ -4023,7 +4024,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameIpsRequest": {
+    "com.ovh.xdsl#ListXdslIpsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4039,18 +4040,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameIpsResponseBodyList": {
+    "com.ovh.xdsl#ListXdslIpsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.xdsl#GetXdslServiceNameIpsResponse": {
+    "com.ovh.xdsl#ListXdslIpsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.xdsl#GetXdslServiceNameIpsResponseBodyList",
+          "target": "com.ovh.xdsl#ListXdslIpsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -4061,13 +4062,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameIps": {
+    "com.ovh.xdsl#ListXdslIps": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameIpsRequest"
+        "target": "com.ovh.xdsl#ListXdslIpsRequest"
       },
       "output": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameIpsResponse"
+        "target": "com.ovh.xdsl#ListXdslIpsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4078,7 +4079,7 @@
         "smithy.api#documentation": "List of IPs addresses for this access"
       }
     },
-    "com.ovh.xdsl#PostXdslServiceNameIpsRequest": {
+    "com.ovh.xdsl#CreateXdslIpsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4094,10 +4095,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#PostXdslServiceNameIps": {
+    "com.ovh.xdsl#CreateXdslIps": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#PostXdslServiceNameIpsRequest"
+        "target": "com.ovh.xdsl#CreateXdslIpsRequest"
       },
       "output": {
         "target": "com.ovh.xdsl#XdslTask"
@@ -4111,7 +4112,7 @@
         "smithy.api#documentation": "Order an extra /29 range of IPv4 addresses"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameIpsIpRequest": {
+    "com.ovh.xdsl#GetXdslIpsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4217,10 +4218,10 @@
         "smithy.api#documentation": "Ip versions"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameIpsIp": {
+    "com.ovh.xdsl#GetXdslIps": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameIpsIpRequest"
+        "target": "com.ovh.xdsl#GetXdslIpsRequest"
       },
       "output": {
         "target": "com.ovh.xdsl#XdslIP"
@@ -4234,7 +4235,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.xdsl#DeleteXdslServiceNameIpsIpRequest": {
+    "com.ovh.xdsl#DeleteXdslIpsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4258,10 +4259,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#DeleteXdslServiceNameIpsIp": {
+    "com.ovh.xdsl#DeleteXdslIps": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#DeleteXdslServiceNameIpsIpRequest"
+        "target": "com.ovh.xdsl#DeleteXdslIpsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4315,7 +4316,7 @@
         "smithy.api#documentation": "Change the status of the IPv6 for this access"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameLinesRequest": {
+    "com.ovh.xdsl#ListXdslLinesRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4331,18 +4332,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameLinesResponseBodyList": {
+    "com.ovh.xdsl#ListXdslLinesResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.xdsl#GetXdslServiceNameLinesResponse": {
+    "com.ovh.xdsl#ListXdslLinesResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.xdsl#GetXdslServiceNameLinesResponseBodyList",
+          "target": "com.ovh.xdsl#ListXdslLinesResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -4353,13 +4354,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameLines": {
+    "com.ovh.xdsl#ListXdslLines": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameLinesRequest"
+        "target": "com.ovh.xdsl#ListXdslLinesRequest"
       },
       "output": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameLinesResponse"
+        "target": "com.ovh.xdsl#ListXdslLinesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4370,7 +4371,7 @@
         "smithy.api#documentation": "The lines of the access"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameLinesNumberRequest": {
+    "com.ovh.xdsl#GetXdslLineRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4604,10 +4605,10 @@
         "smithy.api#documentation": "Detailed information about the sections between the DSLAM and the telephone jack"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameLinesNumber": {
+    "com.ovh.xdsl#GetXdslLine": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameLinesNumberRequest"
+        "target": "com.ovh.xdsl#GetXdslLineRequest"
       },
       "output": {
         "target": "com.ovh.xdsl#XdslLine"
@@ -4621,7 +4622,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.xdsl#PostXdslServiceNameLinesNumberDiagnosticCancelRequest": {
+    "com.ovh.xdsl#CancelXdslLinesDiagnosticRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4645,10 +4646,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#PostXdslServiceNameLinesNumberDiagnosticCancel": {
+    "com.ovh.xdsl#CancelXdslLinesDiagnostic": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#PostXdslServiceNameLinesNumberDiagnosticCancelRequest"
+        "target": "com.ovh.xdsl#CancelXdslLinesDiagnosticRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6158,7 +6159,7 @@
         "smithy.api#documentation": "Update and get advanced diagnostic of the line"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameLinesNumberDslamPortRequest": {
+    "com.ovh.xdsl#GetXdslLineDslamPortRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6256,10 +6257,10 @@
         "smithy.api#documentation": "Different states of a DSLAM port"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameLinesNumberDslamPort": {
+    "com.ovh.xdsl#GetXdslLineDslamPort": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameLinesNumberDslamPortRequest"
+        "target": "com.ovh.xdsl#GetXdslLineDslamPortRequest"
       },
       "output": {
         "target": "com.ovh.xdsl#XdslDslamPort"
@@ -6273,7 +6274,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameLinesNumberDslamPortAvailableProfilesRequest": {
+    "com.ovh.xdsl#ListXdslLineDslamPortAvailableProfilesRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6297,18 +6298,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameLinesNumberDslamPortAvailableProfilesResponseBodyList": {
+    "com.ovh.xdsl#ListXdslLineDslamPortAvailableProfilesResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.xdsl#XdslDslamLineProfile"
       },
       "traits": {}
     },
-    "com.ovh.xdsl#GetXdslServiceNameLinesNumberDslamPortAvailableProfilesResponse": {
+    "com.ovh.xdsl#ListXdslLineDslamPortAvailableProfilesResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.xdsl#GetXdslServiceNameLinesNumberDslamPortAvailableProfilesResponseBodyList",
+          "target": "com.ovh.xdsl#ListXdslLineDslamPortAvailableProfilesResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -6319,13 +6320,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameLinesNumberDslamPortAvailableProfiles": {
+    "com.ovh.xdsl#ListXdslLineDslamPortAvailableProfiles": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameLinesNumberDslamPortAvailableProfilesRequest"
+        "target": "com.ovh.xdsl#ListXdslLineDslamPortAvailableProfilesRequest"
       },
       "output": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameLinesNumberDslamPortAvailableProfilesResponse"
+        "target": "com.ovh.xdsl#ListXdslLineDslamPortAvailableProfilesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6384,7 +6385,7 @@
         "smithy.api#documentation": "Change the profile of the port"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameLinesNumberDslamPortLogsRequest": {
+    "com.ovh.xdsl#ListXdslLineDslamPortLogsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6441,18 +6442,18 @@
         "smithy.api#documentation": "A message log from the DSLAM"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameLinesNumberDslamPortLogsResponseBodyList": {
+    "com.ovh.xdsl#ListXdslLineDslamPortLogsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.xdsl#XdslDslamPortLog"
       },
       "traits": {}
     },
-    "com.ovh.xdsl#GetXdslServiceNameLinesNumberDslamPortLogsResponse": {
+    "com.ovh.xdsl#ListXdslLineDslamPortLogsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.xdsl#GetXdslServiceNameLinesNumberDslamPortLogsResponseBodyList",
+          "target": "com.ovh.xdsl#ListXdslLineDslamPortLogsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -6463,13 +6464,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameLinesNumberDslamPortLogs": {
+    "com.ovh.xdsl#ListXdslLineDslamPortLogs": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameLinesNumberDslamPortLogsRequest"
+        "target": "com.ovh.xdsl#ListXdslLineDslamPortLogsRequest"
       },
       "output": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameLinesNumberDslamPortLogsResponse"
+        "target": "com.ovh.xdsl#ListXdslLineDslamPortLogsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6480,7 +6481,7 @@
         "smithy.api#documentation": "Get the logs emitted by the DSLAM for this port"
       }
     },
-    "com.ovh.xdsl#PostXdslServiceNameLinesNumberDslamPortResetRequest": {
+    "com.ovh.xdsl#ResetXdslLinesDslamPortRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6504,10 +6505,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#PostXdslServiceNameLinesNumberDslamPortReset": {
+    "com.ovh.xdsl#ResetXdslLinesDslamPort": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#PostXdslServiceNameLinesNumberDslamPortResetRequest"
+        "target": "com.ovh.xdsl#ResetXdslLinesDslamPortRequest"
       },
       "output": {
         "target": "com.ovh.xdsl#XdslTask"
@@ -6621,7 +6622,7 @@
         "smithy.api#documentation": "Various types of statisctics available for the line."
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameLinesNumberStatisticsRequest": {
+    "com.ovh.xdsl#ListXdslLineStatisticsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6697,10 +6698,10 @@
       },
       "traits": {}
     },
-    "com.ovh.xdsl#GetXdslServiceNameLinesNumberStatistics": {
+    "com.ovh.xdsl#ListXdslLineStatistics": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameLinesNumberStatisticsRequest"
+        "target": "com.ovh.xdsl#ListXdslLineStatisticsRequest"
       },
       "output": {
         "target": "com.ovh.xdsl#ComplexTypeUnitAndValuesXdslTimestampAndValue"
@@ -6774,7 +6775,7 @@
         "smithy.api#documentation": "Enable or disable email sending ability"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameModemRequest": {
+    "com.ovh.xdsl#GetXdslModemRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6989,10 +6990,10 @@
         "smithy.api#documentation": "Level of the Firewall ( BlockAll will block all connections, Normal will block all incoming connections except those in PortMapping and let go all outgoing connections , Disabled will disable all the Firewall and let all incoming or outgoing connections pass through )"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameModem": {
+    "com.ovh.xdsl#GetXdslModem": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameModemRequest"
+        "target": "com.ovh.xdsl#GetXdslModemRequest"
       },
       "output": {
         "target": "com.ovh.xdsl#XdslModem"
@@ -7006,7 +7007,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.xdsl#PutXdslServiceNameModemRequest": {
+    "com.ovh.xdsl#PutXdslModemRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7054,10 +7055,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#PutXdslServiceNameModem": {
+    "com.ovh.xdsl#PutXdslModem": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#PutXdslServiceNameModemRequest"
+        "target": "com.ovh.xdsl#PutXdslModemRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7071,7 +7072,7 @@
         "smithy.api#documentation": "Alter this object properties"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameModemAvailableACSBackendRequest": {
+    "com.ovh.xdsl#ListXdslModemAvailableACSBackendRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7087,18 +7088,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameModemAvailableACSBackendResponseBodyList": {
+    "com.ovh.xdsl#ListXdslModemAvailableACSBackendResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.xdsl#GetXdslServiceNameModemAvailableACSBackendResponse": {
+    "com.ovh.xdsl#ListXdslModemAvailableACSBackendResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.xdsl#GetXdslServiceNameModemAvailableACSBackendResponseBodyList",
+          "target": "com.ovh.xdsl#ListXdslModemAvailableACSBackendResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -7109,13 +7110,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameModemAvailableACSBackend": {
+    "com.ovh.xdsl#ListXdslModemAvailableACSBackend": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameModemAvailableACSBackendRequest"
+        "target": "com.ovh.xdsl#ListXdslModemAvailableACSBackendRequest"
       },
       "output": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameModemAvailableACSBackendResponse"
+        "target": "com.ovh.xdsl#ListXdslModemAvailableACSBackendResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7146,7 +7147,7 @@
         "smithy.api#documentation": "Frequency of WLAN"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameModemAvailableWLANChannelRequest": {
+    "com.ovh.xdsl#ListXdslModemAvailableWLANChannelRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7170,18 +7171,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameModemAvailableWLANChannelResponseBodyList": {
+    "com.ovh.xdsl#ListXdslModemAvailableWLANChannelResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.xdsl#GetXdslServiceNameModemAvailableWLANChannelResponse": {
+    "com.ovh.xdsl#ListXdslModemAvailableWLANChannelResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.xdsl#GetXdslServiceNameModemAvailableWLANChannelResponseBodyList",
+          "target": "com.ovh.xdsl#ListXdslModemAvailableWLANChannelResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -7192,13 +7193,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameModemAvailableWLANChannel": {
+    "com.ovh.xdsl#ListXdslModemAvailableWLANChannel": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameModemAvailableWLANChannelRequest"
+        "target": "com.ovh.xdsl#ListXdslModemAvailableWLANChannelRequest"
       },
       "output": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameModemAvailableWLANChannelResponse"
+        "target": "com.ovh.xdsl#ListXdslModemAvailableWLANChannelResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8061,7 +8062,7 @@
         "smithy.api#documentation": "Replace access modem by last model, fees will be applied."
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameModemConnectedDevicesRequest": {
+    "com.ovh.xdsl#ListXdslModemConnectedDevicesRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8077,18 +8078,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameModemConnectedDevicesResponseBodyList": {
+    "com.ovh.xdsl#ListXdslModemConnectedDevicesResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.xdsl#GetXdslServiceNameModemConnectedDevicesResponse": {
+    "com.ovh.xdsl#ListXdslModemConnectedDevicesResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.xdsl#GetXdslServiceNameModemConnectedDevicesResponseBodyList",
+          "target": "com.ovh.xdsl#ListXdslModemConnectedDevicesResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -8099,13 +8100,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameModemConnectedDevices": {
+    "com.ovh.xdsl#ListXdslModemConnectedDevices": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameModemConnectedDevicesRequest"
+        "target": "com.ovh.xdsl#ListXdslModemConnectedDevicesRequest"
       },
       "output": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameModemConnectedDevicesResponse"
+        "target": "com.ovh.xdsl#ListXdslModemConnectedDevicesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8116,7 +8117,7 @@
         "smithy.api#documentation": "List of devices connected on this modem"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameModemConnectedDevicesMacAddressRequest": {
+    "com.ovh.xdsl#GetXdslModemConnectedDeviceRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8222,10 +8223,10 @@
         "smithy.api#documentation": "How did the device got its IP Address"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameModemConnectedDevicesMacAddress": {
+    "com.ovh.xdsl#GetXdslModemConnectedDevice": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameModemConnectedDevicesMacAddressRequest"
+        "target": "com.ovh.xdsl#GetXdslModemConnectedDeviceRequest"
       },
       "output": {
         "target": "com.ovh.xdsl#XdslConnectedDevice"
@@ -8421,7 +8422,7 @@
         "smithy.api#documentation": "Launch a task to install target firmware on modem"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameModemFirmwareAvailableRequest": {
+    "com.ovh.xdsl#ListXdslModemFirmwareAvailableRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8437,18 +8438,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameModemFirmwareAvailableResponseBodyList": {
+    "com.ovh.xdsl#ListXdslModemFirmwareAvailableResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.xdsl#GetXdslServiceNameModemFirmwareAvailableResponse": {
+    "com.ovh.xdsl#ListXdslModemFirmwareAvailableResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.xdsl#GetXdslServiceNameModemFirmwareAvailableResponseBodyList",
+          "target": "com.ovh.xdsl#ListXdslModemFirmwareAvailableResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -8459,13 +8460,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameModemFirmwareAvailable": {
+    "com.ovh.xdsl#ListXdslModemFirmwareAvailable": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameModemFirmwareAvailableRequest"
+        "target": "com.ovh.xdsl#ListXdslModemFirmwareAvailableRequest"
       },
       "output": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameModemFirmwareAvailableResponse"
+        "target": "com.ovh.xdsl#ListXdslModemFirmwareAvailableResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8652,7 +8653,7 @@
         "smithy.api#documentation": "Change the status of the ipsec alg service on modem"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameModemLanRequest": {
+    "com.ovh.xdsl#ListXdslModemLanRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8668,18 +8669,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameModemLanResponseBodyList": {
+    "com.ovh.xdsl#ListXdslModemLanResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.xdsl#GetXdslServiceNameModemLanResponse": {
+    "com.ovh.xdsl#ListXdslModemLanResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.xdsl#GetXdslServiceNameModemLanResponseBodyList",
+          "target": "com.ovh.xdsl#ListXdslModemLanResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -8690,13 +8691,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameModemLan": {
+    "com.ovh.xdsl#ListXdslModemLan": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameModemLanRequest"
+        "target": "com.ovh.xdsl#ListXdslModemLanRequest"
       },
       "output": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameModemLanResponse"
+        "target": "com.ovh.xdsl#ListXdslModemLanResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8707,7 +8708,7 @@
         "smithy.api#documentation": "List of LANs on this modem"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameModemLanLanNameRequest": {
+    "com.ovh.xdsl#GetXdslModemLanRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8770,10 +8771,10 @@
         "smithy.api#documentation": "LAN Configuration of the Modem"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameModemLanLanName": {
+    "com.ovh.xdsl#GetXdslModemLan": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameModemLanLanNameRequest"
+        "target": "com.ovh.xdsl#GetXdslModemLanRequest"
       },
       "output": {
         "target": "com.ovh.xdsl#XdslLAN"
@@ -8787,7 +8788,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.xdsl#PutXdslServiceNameModemLanLanNameRequest": {
+    "com.ovh.xdsl#PutXdslModemLanRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8829,10 +8830,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#PutXdslServiceNameModemLanLanName": {
+    "com.ovh.xdsl#PutXdslModemLan": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#PutXdslServiceNameModemLanLanNameRequest"
+        "target": "com.ovh.xdsl#PutXdslModemLanRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8846,7 +8847,7 @@
         "smithy.api#documentation": "Alter this object properties"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameModemLanLanNameDhcpRequest": {
+    "com.ovh.xdsl#ListXdslModemLanDhcpRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8870,18 +8871,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameModemLanLanNameDhcpResponseBodyList": {
+    "com.ovh.xdsl#ListXdslModemLanDhcpResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.xdsl#GetXdslServiceNameModemLanLanNameDhcpResponse": {
+    "com.ovh.xdsl#ListXdslModemLanDhcpResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.xdsl#GetXdslServiceNameModemLanLanNameDhcpResponseBodyList",
+          "target": "com.ovh.xdsl#ListXdslModemLanDhcpResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -8892,13 +8893,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameModemLanLanNameDhcp": {
+    "com.ovh.xdsl#ListXdslModemLanDhcp": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameModemLanLanNameDhcpRequest"
+        "target": "com.ovh.xdsl#ListXdslModemLanDhcpRequest"
       },
       "output": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameModemLanLanNameDhcpResponse"
+        "target": "com.ovh.xdsl#ListXdslModemLanDhcpResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8909,7 +8910,7 @@
         "smithy.api#documentation": "List of DHCP on this modem"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameModemLanLanNameDhcpDhcpNameRequest": {
+    "com.ovh.xdsl#GetXdslModemLanDhcpRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9017,10 +9018,10 @@
         "smithy.api#documentation": "DHCP Configuration of the Modem"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameModemLanLanNameDhcpDhcpName": {
+    "com.ovh.xdsl#GetXdslModemLanDhcp": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameModemLanLanNameDhcpDhcpNameRequest"
+        "target": "com.ovh.xdsl#GetXdslModemLanDhcpRequest"
       },
       "output": {
         "target": "com.ovh.xdsl#XdslDHCP"
@@ -9034,7 +9035,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.xdsl#PutXdslServiceNameModemLanLanNameDhcpDhcpNameRequest": {
+    "com.ovh.xdsl#PutXdslModemLanDhcpRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9121,10 +9122,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#PutXdslServiceNameModemLanLanNameDhcpDhcpName": {
+    "com.ovh.xdsl#PutXdslModemLanDhcp": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#PutXdslServiceNameModemLanLanNameDhcpDhcpNameRequest"
+        "target": "com.ovh.xdsl#PutXdslModemLanDhcpRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -10112,7 +10113,7 @@
         "smithy.api#documentation": "Reboot the modem"
       }
     },
-    "com.ovh.xdsl#PostXdslServiceNameModemReconfigureVoipRequest": {
+    "com.ovh.xdsl#CreateXdslModemReconfigureVoipRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -10128,10 +10129,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#PostXdslServiceNameModemReconfigureVoip": {
+    "com.ovh.xdsl#CreateXdslModemReconfigureVoip": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#PostXdslServiceNameModemReconfigureVoipRequest"
+        "target": "com.ovh.xdsl#CreateXdslModemReconfigureVoipRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -10145,7 +10146,7 @@
         "smithy.api#documentation": "Reconfigure voip line on modem"
       }
     },
-    "com.ovh.xdsl#PostXdslServiceNameModemRefreshConnectedDevicesRequest": {
+    "com.ovh.xdsl#RefreshXdslModemConnectedDevicesRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -10161,10 +10162,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#PostXdslServiceNameModemRefreshConnectedDevices": {
+    "com.ovh.xdsl#RefreshXdslModemConnectedDevices": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#PostXdslServiceNameModemRefreshConnectedDevicesRequest"
+        "target": "com.ovh.xdsl#RefreshXdslModemConnectedDevicesRequest"
       },
       "output": {
         "target": "com.ovh.xdsl#XdslTask"
@@ -10217,7 +10218,7 @@
         "smithy.api#documentation": "Reset the modem to its default configuration"
       }
     },
-    "com.ovh.xdsl#PostXdslServiceNameModemResetPortMappingConfigRequest": {
+    "com.ovh.xdsl#ResetXdslModemPortMappingConfigRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -10233,10 +10234,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#PostXdslServiceNameModemResetPortMappingConfig": {
+    "com.ovh.xdsl#ResetXdslModemPortMappingConfig": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#PostXdslServiceNameModemResetPortMappingConfigRequest"
+        "target": "com.ovh.xdsl#ResetXdslModemPortMappingConfigRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -10250,7 +10251,7 @@
         "smithy.api#documentation": "Remove all the current port mapping rules"
       }
     },
-    "com.ovh.xdsl#PostXdslServiceNameModemRetrieveInfoRequest": {
+    "com.ovh.xdsl#GetXdslModemInfoRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -10507,10 +10508,10 @@
         "smithy.api#documentation": "AsyncTask status"
       }
     },
-    "com.ovh.xdsl#PostXdslServiceNameModemRetrieveInfo": {
+    "com.ovh.xdsl#GetXdslModemInfo": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#PostXdslServiceNameModemRetrieveInfoRequest"
+        "target": "com.ovh.xdsl#GetXdslModemInfoRequest"
       },
       "output": {
         "target": "com.ovh.xdsl#XdslAsyncTaskXdslModemInfo"
@@ -10700,7 +10701,7 @@
         "smithy.api#documentation": "Change the status of the Upnp on modem"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameModemWifiRequest": {
+    "com.ovh.xdsl#ListXdslModemWifiRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -10716,18 +10717,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameModemWifiResponseBodyList": {
+    "com.ovh.xdsl#ListXdslModemWifiResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.xdsl#GetXdslServiceNameModemWifiResponse": {
+    "com.ovh.xdsl#ListXdslModemWifiResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.xdsl#GetXdslServiceNameModemWifiResponseBodyList",
+          "target": "com.ovh.xdsl#ListXdslModemWifiResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -10738,13 +10739,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameModemWifi": {
+    "com.ovh.xdsl#ListXdslModemWifi": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameModemWifiRequest"
+        "target": "com.ovh.xdsl#ListXdslModemWifiRequest"
       },
       "output": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameModemWifiResponse"
+        "target": "com.ovh.xdsl#ListXdslModemWifiResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10755,7 +10756,7 @@
         "smithy.api#documentation": "List of WLANs on this modem"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameModemWifiWifiNameRequest": {
+    "com.ovh.xdsl#GetXdslModemWifiRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -10910,10 +10911,10 @@
         "smithy.api#documentation": "Type of WLAN security protection"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameModemWifiWifiName": {
+    "com.ovh.xdsl#GetXdslModemWifi": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameModemWifiWifiNameRequest"
+        "target": "com.ovh.xdsl#GetXdslModemWifiRequest"
       },
       "output": {
         "target": "com.ovh.xdsl#XdslWLAN"
@@ -10927,7 +10928,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.xdsl#PutXdslServiceNameModemWifiWifiNameRequest": {
+    "com.ovh.xdsl#PutXdslModemWifiRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -10993,10 +10994,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#PutXdslServiceNameModemWifiWifiName": {
+    "com.ovh.xdsl#PutXdslModemWifi": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#PutXdslServiceNameModemWifiWifiNameRequest"
+        "target": "com.ovh.xdsl#PutXdslModemWifiRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -11010,7 +11011,7 @@
         "smithy.api#documentation": "Alter this object properties"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameModemWifiWifiNameQrCodeRequest": {
+    "com.ovh.xdsl#GetXdslModemWifiQrCodeRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -11034,7 +11035,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameModemWifiWifiNameQrCodeResponse": {
+    "com.ovh.xdsl#GetXdslModemWifiQrCodeResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -11049,13 +11050,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameModemWifiWifiNameQrCode": {
+    "com.ovh.xdsl#GetXdslModemWifiQrCode": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameModemWifiWifiNameQrCodeRequest"
+        "target": "com.ovh.xdsl#GetXdslModemWifiQrCodeRequest"
       },
       "output": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameModemWifiWifiNameQrCodeResponse"
+        "target": "com.ovh.xdsl#GetXdslModemWifiQrCodeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11066,7 +11067,7 @@
         "smithy.api#documentation": "Get the WiFi configuration QR code as base64, if applicable"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameModemWifiRadioRequest": {
+    "com.ovh.xdsl#ListXdslModemWifiRadioRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -11082,18 +11083,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameModemWifiRadioResponseBodyList": {
+    "com.ovh.xdsl#ListXdslModemWifiRadioResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.xdsl#GetXdslServiceNameModemWifiRadioResponse": {
+    "com.ovh.xdsl#ListXdslModemWifiRadioResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.xdsl#GetXdslServiceNameModemWifiRadioResponseBodyList",
+          "target": "com.ovh.xdsl#ListXdslModemWifiRadioResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -11104,13 +11105,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameModemWifiRadio": {
+    "com.ovh.xdsl#ListXdslModemWifiRadio": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameModemWifiRadioRequest"
+        "target": "com.ovh.xdsl#ListXdslModemWifiRadioRequest"
       },
       "output": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameModemWifiRadioResponse"
+        "target": "com.ovh.xdsl#ListXdslModemWifiRadioResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11121,7 +11122,7 @@
         "smithy.api#documentation": "List of wifiRadios on this modem"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameModemWifiRadioRadioNameRequest": {
+    "com.ovh.xdsl#GetXdslModemWifiRadioRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -11252,10 +11253,10 @@
         "smithy.api#documentation": "Supported IEEE 802.11 standards by this radio"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameModemWifiRadioRadioName": {
+    "com.ovh.xdsl#GetXdslModemWifiRadio": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameModemWifiRadioRadioNameRequest"
+        "target": "com.ovh.xdsl#GetXdslModemWifiRadioRequest"
       },
       "output": {
         "target": "com.ovh.xdsl#XdslWifiRadio"
@@ -11269,7 +11270,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.xdsl#PutXdslServiceNameModemWifiRadioRadioNameRequest": {
+    "com.ovh.xdsl#PutXdslModemWifiRadioRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -11305,10 +11306,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#PutXdslServiceNameModemWifiRadioRadioName": {
+    "com.ovh.xdsl#PutXdslModemWifiRadio": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#PutXdslServiceNameModemWifiRadioRadioNameRequest"
+        "target": "com.ovh.xdsl#PutXdslModemWifiRadioRequest"
       },
       "output": {
         "target": "com.ovh.xdsl#XdslTask"
@@ -11726,7 +11727,7 @@
         "smithy.api#documentation": "Delete this notification"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameOntRequest": {
+    "com.ovh.xdsl#GetXdslOntRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -11762,10 +11763,10 @@
         "smithy.api#documentation": "Access ONT information"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameOnt": {
+    "com.ovh.xdsl#GetXdslOnt": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameOntRequest"
+        "target": "com.ovh.xdsl#GetXdslOntRequest"
       },
       "output": {
         "target": "com.ovh.xdsl#XdslOnt"
@@ -11779,7 +11780,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameOrderFollowupRequest": {
+    "com.ovh.xdsl#ListXdslOrderFollowupRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -11978,18 +11979,18 @@
         "smithy.api#documentation": "The status of an order step"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameOrderFollowupResponseBodyList": {
+    "com.ovh.xdsl#ListXdslOrderFollowupResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.xdsl#XdslOrderFollowupStep"
       },
       "traits": {}
     },
-    "com.ovh.xdsl#GetXdslServiceNameOrderFollowupResponse": {
+    "com.ovh.xdsl#ListXdslOrderFollowupResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.xdsl#GetXdslServiceNameOrderFollowupResponseBodyList",
+          "target": "com.ovh.xdsl#ListXdslOrderFollowupResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -12000,13 +12001,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameOrderFollowup": {
+    "com.ovh.xdsl#ListXdslOrderFollowup": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameOrderFollowupRequest"
+        "target": "com.ovh.xdsl#ListXdslOrderFollowupRequest"
       },
       "output": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameOrderFollowupResponse"
+        "target": "com.ovh.xdsl#ListXdslOrderFollowupResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12071,7 +12072,7 @@
         "smithy.api#documentation": "Book a meeting and relaunch order"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNamePendingActionRequest": {
+    "com.ovh.xdsl#GetXdslPendingActionRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -12101,10 +12102,10 @@
         "smithy.api#documentation": "Scheduled action before the next renewal of the service"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNamePendingAction": {
+    "com.ovh.xdsl#GetXdslPendingAction": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslServiceNamePendingActionRequest"
+        "target": "com.ovh.xdsl#GetXdslPendingActionRequest"
       },
       "output": {
         "target": "com.ovh.xdsl#XdslPendingAction"
@@ -12118,7 +12119,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameRadiusConnectionLogsRequest": {
+    "com.ovh.xdsl#ListXdslRadiusConnectionLogsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -12154,18 +12155,18 @@
         "smithy.api#documentation": "Log entry of an auth attempt to the radius server"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameRadiusConnectionLogsResponseBodyList": {
+    "com.ovh.xdsl#ListXdslRadiusConnectionLogsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.xdsl#XdslRadiusConnectionLog"
       },
       "traits": {}
     },
-    "com.ovh.xdsl#GetXdslServiceNameRadiusConnectionLogsResponse": {
+    "com.ovh.xdsl#ListXdslRadiusConnectionLogsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.xdsl#GetXdslServiceNameRadiusConnectionLogsResponseBodyList",
+          "target": "com.ovh.xdsl#ListXdslRadiusConnectionLogsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -12176,13 +12177,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameRadiusConnectionLogs": {
+    "com.ovh.xdsl#ListXdslRadiusConnectionLogs": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameRadiusConnectionLogsRequest"
+        "target": "com.ovh.xdsl#ListXdslRadiusConnectionLogsRequest"
       },
       "output": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameRadiusConnectionLogsResponse"
+        "target": "com.ovh.xdsl#ListXdslRadiusConnectionLogsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12193,7 +12194,7 @@
         "smithy.api#documentation": "List the radius connection logs"
       }
     },
-    "com.ovh.xdsl#PostXdslServiceNameRequestPPPLoginMailRequest": {
+    "com.ovh.xdsl#CreateXdslRequestPPPLoginMailRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -12209,10 +12210,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#PostXdslServiceNameRequestPPPLoginMail": {
+    "com.ovh.xdsl#CreateXdslRequestPPPLoginMail": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#PostXdslServiceNameRequestPPPLoginMailRequest"
+        "target": "com.ovh.xdsl#CreateXdslRequestPPPLoginMailRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -12356,7 +12357,7 @@
         "smithy.api#documentation": "Resiliate the access"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameResiliationFollowupRequest": {
+    "com.ovh.xdsl#GetXdslResiliationFollowupRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -12372,10 +12373,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameResiliationFollowup": {
+    "com.ovh.xdsl#GetXdslResiliationFollowup": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameResiliationFollowupRequest"
+        "target": "com.ovh.xdsl#GetXdslResiliationFollowupRequest"
       },
       "output": {
         "target": "com.ovh.xdsl#XdslResiliationFollowUpDetail"
@@ -12389,7 +12390,7 @@
         "smithy.api#documentation": "Get information about the ongoing resiliation"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameResiliationTermsRequest": {
+    "com.ovh.xdsl#GetXdslResiliationTermsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -12516,10 +12517,10 @@
         "smithy.api#documentation": "List of available resiliation reasons"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameResiliationTerms": {
+    "com.ovh.xdsl#GetXdslResiliationTerms": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameResiliationTermsRequest"
+        "target": "com.ovh.xdsl#GetXdslResiliationTermsRequest"
       },
       "output": {
         "target": "com.ovh.xdsl#XdslResiliationTerms"
@@ -12533,7 +12534,7 @@
         "smithy.api#documentation": "Get resiliation terms"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameRmaRequest": {
+    "com.ovh.xdsl#ListXdslRmaRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -12549,18 +12550,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameRmaResponseBodyList": {
+    "com.ovh.xdsl#ListXdslRmaResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.xdsl#GetXdslServiceNameRmaResponse": {
+    "com.ovh.xdsl#ListXdslRmaResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.xdsl#GetXdslServiceNameRmaResponseBodyList",
+          "target": "com.ovh.xdsl#ListXdslRmaResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -12571,13 +12572,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameRma": {
+    "com.ovh.xdsl#ListXdslRma": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameRmaRequest"
+        "target": "com.ovh.xdsl#ListXdslRmaRequest"
       },
       "output": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameRmaResponse"
+        "target": "com.ovh.xdsl#ListXdslRmaResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12588,7 +12589,7 @@
         "smithy.api#documentation": "Return Merchandise Authorisation associated"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameRmaIdRequest": {
+    "com.ovh.xdsl#GetXdslRmaRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -14617,10 +14618,10 @@
         "smithy.api#documentation": "Return merchandise authorisation type"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameRmaId": {
+    "com.ovh.xdsl#GetXdslRma": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameRmaIdRequest"
+        "target": "com.ovh.xdsl#GetXdslRmaRequest"
       },
       "output": {
         "target": "com.ovh.xdsl#TelephonyRma"
@@ -14634,7 +14635,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.xdsl#PutXdslServiceNameRmaIdRequest": {
+    "com.ovh.xdsl#PutXdslRmaRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -14670,10 +14671,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#PutXdslServiceNameRmaId": {
+    "com.ovh.xdsl#PutXdslRma": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#PutXdslServiceNameRmaIdRequest"
+        "target": "com.ovh.xdsl#PutXdslRmaRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -14687,7 +14688,7 @@
         "smithy.api#documentation": "Alter this object properties"
       }
     },
-    "com.ovh.xdsl#DeleteXdslServiceNameRmaIdRequest": {
+    "com.ovh.xdsl#DeleteXdslRmaRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -14711,10 +14712,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#DeleteXdslServiceNameRmaId": {
+    "com.ovh.xdsl#DeleteXdslRma": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#DeleteXdslServiceNameRmaIdRequest"
+        "target": "com.ovh.xdsl#DeleteXdslRmaRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -14796,7 +14797,7 @@
         "smithy.api#documentation": "Change RMA type"
       }
     },
-    "com.ovh.xdsl#PostXdslServiceNameSearchOrderMeetingsRequest": {
+    "com.ovh.xdsl#SearchXdslOrderMeetingsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -14927,10 +14928,10 @@
         "smithy.api#documentation": "A time slot"
       }
     },
-    "com.ovh.xdsl#PostXdslServiceNameSearchOrderMeetings": {
+    "com.ovh.xdsl#SearchXdslOrderMeetings": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#PostXdslServiceNameSearchOrderMeetingsRequest"
+        "target": "com.ovh.xdsl#SearchXdslOrderMeetingsRequest"
       },
       "output": {
         "target": "com.ovh.xdsl#XdslAsyncTaskConnectivityEligibilityMeetings"
@@ -14944,7 +14945,7 @@
         "smithy.api#documentation": "Search for available line creation meeting time slots, for order only"
       }
     },
-    "com.ovh.xdsl#PostXdslServiceNameSendOrderToProviderRequest": {
+    "com.ovh.xdsl#SendXdslOrderToProviderRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -14960,10 +14961,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#PostXdslServiceNameSendOrderToProvider": {
+    "com.ovh.xdsl#SendXdslOrderToProvider": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#PostXdslServiceNameSendOrderToProviderRequest"
+        "target": "com.ovh.xdsl#SendXdslOrderToProviderRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -14977,7 +14978,7 @@
         "smithy.api#documentation": "Unlock order in \"waitingCustomer\" status"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameServiceInfosRequest": {
+    "com.ovh.xdsl#GetXdslServiceInfosRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -14993,10 +14994,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameServiceInfos": {
+    "com.ovh.xdsl#GetXdslServiceInfos": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameServiceInfosRequest"
+        "target": "com.ovh.xdsl#GetXdslServiceInfosRequest"
       },
       "output": {
         "target": "com.ovh.xdsl#ServicesService"
@@ -15010,7 +15011,7 @@
         "smithy.api#documentation": "Get service information"
       }
     },
-    "com.ovh.xdsl#PutXdslServiceNameServiceInfosRequest": {
+    "com.ovh.xdsl#PutXdslServiceInfosRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -15033,10 +15034,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#PutXdslServiceNameServiceInfos": {
+    "com.ovh.xdsl#PutXdslServiceInfos": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#PutXdslServiceNameServiceInfosRequest"
+        "target": "com.ovh.xdsl#PutXdslServiceInfosRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -15076,7 +15077,7 @@
         "smithy.api#documentation": "Various types of statisctics available for the access."
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameStatisticsRequest": {
+    "com.ovh.xdsl#ListXdslStatisticsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -15162,10 +15163,10 @@
       },
       "traits": {}
     },
-    "com.ovh.xdsl#GetXdslServiceNameStatistics": {
+    "com.ovh.xdsl#ListXdslStatistics": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameStatisticsRequest"
+        "target": "com.ovh.xdsl#ListXdslStatisticsRequest"
       },
       "output": {
         "target": "com.ovh.xdsl#ComplexTypeUnitAndValuesXdslAccessLatency"
@@ -15179,7 +15180,7 @@
         "smithy.api#documentation": "Get various statistics about this access"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameTasksRequest": {
+    "com.ovh.xdsl#ListXdslTasksRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -15209,18 +15210,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameTasksResponseBodyList": {
+    "com.ovh.xdsl#ListXdslTasksResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.xdsl#GetXdslServiceNameTasksResponse": {
+    "com.ovh.xdsl#ListXdslTasksResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.xdsl#GetXdslServiceNameTasksResponseBodyList",
+          "target": "com.ovh.xdsl#ListXdslTasksResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -15231,13 +15232,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameTasks": {
+    "com.ovh.xdsl#ListXdslTasks": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameTasksRequest"
+        "target": "com.ovh.xdsl#ListXdslTasksRequest"
       },
       "output": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameTasksResponse"
+        "target": "com.ovh.xdsl#ListXdslTasksResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -15248,7 +15249,7 @@
         "smithy.api#documentation": "Tasks scheduled for this access"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameTasksIdRequest": {
+    "com.ovh.xdsl#GetXdslTaskRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -15272,10 +15273,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameTasksId": {
+    "com.ovh.xdsl#GetXdslTask": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameTasksIdRequest"
+        "target": "com.ovh.xdsl#GetXdslTaskRequest"
       },
       "output": {
         "target": "com.ovh.xdsl#XdslTask"
@@ -15289,7 +15290,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.xdsl#PostXdslServiceNameTasksIdArchiveRequest": {
+    "com.ovh.xdsl#ArchiveXdslTaskRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -15313,10 +15314,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.xdsl#PostXdslServiceNameTasksIdArchive": {
+    "com.ovh.xdsl#ArchiveXdslTask": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#PostXdslServiceNameTasksIdArchiveRequest"
+        "target": "com.ovh.xdsl#ArchiveXdslTaskRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -15330,7 +15331,7 @@
         "smithy.api#documentation": "Delete the task in problem from the results"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameTotalDeconsolidationTermsRequest": {
+    "com.ovh.xdsl#GetXdslTotalDeconsolidationTermsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -15372,10 +15373,10 @@
         "smithy.api#documentation": "Show the deconsolidation terms"
       }
     },
-    "com.ovh.xdsl#GetXdslServiceNameTotalDeconsolidationTerms": {
+    "com.ovh.xdsl#GetXdslTotalDeconsolidationTerms": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.xdsl#GetXdslServiceNameTotalDeconsolidationTermsRequest"
+        "target": "com.ovh.xdsl#GetXdslTotalDeconsolidationTermsRequest"
       },
       "output": {
         "target": "com.ovh.xdsl#XdslDeconsolidationTerms"
@@ -15440,55 +15441,55 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.ovh.xdsl#GetXdsl"
+          "target": "com.ovh.xdsl#ListXdsl"
+        },
+        {
+          "target": "com.ovh.xdsl#ListXdslEmailPro"
         },
         {
           "target": "com.ovh.xdsl#GetXdslEmailPro"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslEmailProEmail"
+          "target": "com.ovh.xdsl#PutXdslEmailPro"
         },
         {
-          "target": "com.ovh.xdsl#PutXdslEmailProEmail"
-        },
-        {
-          "target": "com.ovh.xdsl#DeleteXdslEmailProEmail"
+          "target": "com.ovh.xdsl#DeleteXdslEmailPro"
         },
         {
           "target": "com.ovh.xdsl#ChangeEmailPassword"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslIncidents"
+          "target": "com.ovh.xdsl#ListXdslIncidents"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslIncidentsId"
+          "target": "com.ovh.xdsl#GetXdslIncident"
+        },
+        {
+          "target": "com.ovh.xdsl#ListXdslSpare"
+        },
+        {
+          "target": "com.ovh.xdsl#ListXdslSpareBrands"
         },
         {
           "target": "com.ovh.xdsl#GetXdslSpare"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslSpareBrands"
+          "target": "com.ovh.xdsl#DeleteXdslSpare"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslSpareSpare"
-        },
-        {
-          "target": "com.ovh.xdsl#DeleteXdslSpareSpare"
-        },
-        {
-          "target": "com.ovh.xdsl#GetXdslSpareSpareCompatibleReplacement"
+          "target": "com.ovh.xdsl#ListXdslSpareCompatibleReplacement"
         },
         {
           "target": "com.ovh.xdsl#ReplaceModemBySpare"
         },
         {
-          "target": "com.ovh.xdsl#PostXdslSpareSpareReturnMerchandise"
+          "target": "com.ovh.xdsl#CreateXdslSpareReturnMerchandise"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslSpareSpareServiceInfos"
+          "target": "com.ovh.xdsl#GetXdslSpareServiceInfos"
         },
         {
-          "target": "com.ovh.xdsl#PutXdslSpareSpareServiceInfos"
+          "target": "com.ovh.xdsl#PutXdslSpareServiceInfos"
         },
         {
           "target": "com.ovh.xdsl#GetModemTemplates"
@@ -15506,112 +15507,112 @@
           "target": "com.ovh.xdsl#DeleteModemTemplate"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslServiceName"
+          "target": "com.ovh.xdsl#GetXdsl"
         },
         {
-          "target": "com.ovh.xdsl#PutXdslServiceName"
+          "target": "com.ovh.xdsl#PutXdsl"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslServiceNameAddressMoveExtraIpRange"
+          "target": "com.ovh.xdsl#GetXdslAddressMoveExtraIpRange"
         },
         {
-          "target": "com.ovh.xdsl#PostXdslServiceNameAddressMoveExtraIpRangeMove"
+          "target": "com.ovh.xdsl#CreateXdslAddressMoveExtraIpRangeMove"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslServiceNameAntiSpams"
+          "target": "com.ovh.xdsl#ListXdslAntiSpams"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslServiceNameAntiSpamsIp"
+          "target": "com.ovh.xdsl#GetXdslAntiSpam"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslServiceNameAntiSpamsIpEvidences"
+          "target": "com.ovh.xdsl#ListXdslAntiSpamEvidences"
         },
         {
           "target": "com.ovh.xdsl#ApplyTemplateModem"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslServiceNameCanCancelResiliation"
+          "target": "com.ovh.xdsl#GetXdslCanCancelResiliation"
         },
         {
-          "target": "com.ovh.xdsl#PostXdslServiceNameCancelResiliation"
+          "target": "com.ovh.xdsl#CancelXdslResiliation"
         },
         {
           "target": "com.ovh.xdsl#ChangeContact"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslServiceNameDiagnostic"
+          "target": "com.ovh.xdsl#GetXdslDiagnostic"
         },
         {
-          "target": "com.ovh.xdsl#PostXdslServiceNameDiagnostic"
+          "target": "com.ovh.xdsl#CreateXdslDiagnostic"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslServiceNameFiberEligibilities"
+          "target": "com.ovh.xdsl#ListXdslFiberEligibilities"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslServiceNameFiberEligibilitiesId"
+          "target": "com.ovh.xdsl#GetXdslFiberEligibility"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslServiceNameIncident"
+          "target": "com.ovh.xdsl#GetXdslIncident2"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslServiceNameIps"
+          "target": "com.ovh.xdsl#ListXdslIps"
         },
         {
-          "target": "com.ovh.xdsl#PostXdslServiceNameIps"
+          "target": "com.ovh.xdsl#CreateXdslIps"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslServiceNameIpsIp"
+          "target": "com.ovh.xdsl#GetXdslIps"
         },
         {
-          "target": "com.ovh.xdsl#DeleteXdslServiceNameIpsIp"
+          "target": "com.ovh.xdsl#DeleteXdslIps"
         },
         {
           "target": "com.ovh.xdsl#UpdateIp"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslServiceNameLines"
+          "target": "com.ovh.xdsl#ListXdslLines"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslServiceNameLinesNumber"
+          "target": "com.ovh.xdsl#GetXdslLine"
         },
         {
-          "target": "com.ovh.xdsl#PostXdslServiceNameLinesNumberDiagnosticCancel"
+          "target": "com.ovh.xdsl#CancelXdslLinesDiagnostic"
         },
         {
           "target": "com.ovh.xdsl#UpdateLineDiagnostic"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslServiceNameLinesNumberDslamPort"
+          "target": "com.ovh.xdsl#GetXdslLineDslamPort"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslServiceNameLinesNumberDslamPortAvailableProfiles"
+          "target": "com.ovh.xdsl#ListXdslLineDslamPortAvailableProfiles"
         },
         {
           "target": "com.ovh.xdsl#ChangeLineDSLAMProfile"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslServiceNameLinesNumberDslamPortLogs"
+          "target": "com.ovh.xdsl#ListXdslLineDslamPortLogs"
         },
         {
-          "target": "com.ovh.xdsl#PostXdslServiceNameLinesNumberDslamPortReset"
+          "target": "com.ovh.xdsl#ResetXdslLinesDslamPort"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslServiceNameLinesNumberStatistics"
+          "target": "com.ovh.xdsl#ListXdslLineStatistics"
         },
         {
           "target": "com.ovh.xdsl#UpdateMailSending"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslServiceNameModem"
+          "target": "com.ovh.xdsl#GetXdslModem"
         },
         {
-          "target": "com.ovh.xdsl#PutXdslServiceNameModem"
+          "target": "com.ovh.xdsl#PutXdslModem"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslServiceNameModemAvailableACSBackend"
+          "target": "com.ovh.xdsl#ListXdslModemAvailableACSBackend"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslServiceNameModemAvailableWLANChannel"
+          "target": "com.ovh.xdsl#ListXdslModemAvailableWLANChannel"
         },
         {
           "target": "com.ovh.xdsl#GetBlocIPStatus"
@@ -15632,10 +15633,10 @@
           "target": "com.ovh.xdsl#ReplaceAccessModem"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslServiceNameModemConnectedDevices"
+          "target": "com.ovh.xdsl#ListXdslModemConnectedDevices"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslServiceNameModemConnectedDevicesMacAddress"
+          "target": "com.ovh.xdsl#GetXdslModemConnectedDevice"
         },
         {
           "target": "com.ovh.xdsl#GetContentSharingStatus"
@@ -15650,7 +15651,7 @@
           "target": "com.ovh.xdsl#InstallFrimware"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslServiceNameModemFirmwareAvailable"
+          "target": "com.ovh.xdsl#ListXdslModemFirmwareAvailable"
         },
         {
           "target": "com.ovh.xdsl#GetFTPStatus"
@@ -15665,22 +15666,22 @@
           "target": "com.ovh.xdsl#UpdateIpsecAlgStatus"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslServiceNameModemLan"
+          "target": "com.ovh.xdsl#ListXdslModemLan"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslServiceNameModemLanLanName"
+          "target": "com.ovh.xdsl#GetXdslModemLan"
         },
         {
-          "target": "com.ovh.xdsl#PutXdslServiceNameModemLanLanName"
+          "target": "com.ovh.xdsl#PutXdslModemLan"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslServiceNameModemLanLanNameDhcp"
+          "target": "com.ovh.xdsl#ListXdslModemLanDhcp"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslServiceNameModemLanLanNameDhcpDhcpName"
+          "target": "com.ovh.xdsl#GetXdslModemLanDhcp"
         },
         {
-          "target": "com.ovh.xdsl#PutXdslServiceNameModemLanLanNameDhcpDhcpName"
+          "target": "com.ovh.xdsl#PutXdslModemLanDhcp"
         },
         {
           "target": "com.ovh.xdsl#GetDHCPStaticAddresses"
@@ -15728,19 +15729,19 @@
           "target": "com.ovh.xdsl#RebootModem"
         },
         {
-          "target": "com.ovh.xdsl#PostXdslServiceNameModemReconfigureVoip"
+          "target": "com.ovh.xdsl#CreateXdslModemReconfigureVoip"
         },
         {
-          "target": "com.ovh.xdsl#PostXdslServiceNameModemRefreshConnectedDevices"
+          "target": "com.ovh.xdsl#RefreshXdslModemConnectedDevices"
         },
         {
           "target": "com.ovh.xdsl#ResetModemConfiguration"
         },
         {
-          "target": "com.ovh.xdsl#PostXdslServiceNameModemResetPortMappingConfig"
+          "target": "com.ovh.xdsl#ResetXdslModemPortMappingConfig"
         },
         {
-          "target": "com.ovh.xdsl#PostXdslServiceNameModemRetrieveInfo"
+          "target": "com.ovh.xdsl#GetXdslModemInfo"
         },
         {
           "target": "com.ovh.xdsl#GetSipAlgStatus"
@@ -15755,25 +15756,25 @@
           "target": "com.ovh.xdsl#UpdateUpnpStatus"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslServiceNameModemWifi"
+          "target": "com.ovh.xdsl#ListXdslModemWifi"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslServiceNameModemWifiWifiName"
+          "target": "com.ovh.xdsl#GetXdslModemWifi"
         },
         {
-          "target": "com.ovh.xdsl#PutXdslServiceNameModemWifiWifiName"
+          "target": "com.ovh.xdsl#PutXdslModemWifi"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslServiceNameModemWifiWifiNameQrCode"
+          "target": "com.ovh.xdsl#GetXdslModemWifiQrCode"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslServiceNameModemWifiRadio"
+          "target": "com.ovh.xdsl#ListXdslModemWifiRadio"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslServiceNameModemWifiRadioRadioName"
+          "target": "com.ovh.xdsl#GetXdslModemWifiRadio"
         },
         {
-          "target": "com.ovh.xdsl#PutXdslServiceNameModemWifiRadioRadioName"
+          "target": "com.ovh.xdsl#PutXdslModemWifiRadio"
         },
         {
           "target": "com.ovh.xdsl#GetMonitoringNotifications"
@@ -15791,22 +15792,22 @@
           "target": "com.ovh.xdsl#RemoveMonitoringNotification"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslServiceNameOnt"
+          "target": "com.ovh.xdsl#GetXdslOnt"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslServiceNameOrderFollowup"
+          "target": "com.ovh.xdsl#ListXdslOrderFollowup"
         },
         {
           "target": "com.ovh.xdsl#BookMeeting"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslServiceNamePendingAction"
+          "target": "com.ovh.xdsl#GetXdslPendingAction"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslServiceNameRadiusConnectionLogs"
+          "target": "com.ovh.xdsl#ListXdslRadiusConnectionLogs"
         },
         {
-          "target": "com.ovh.xdsl#PostXdslServiceNameRequestPPPLoginMail"
+          "target": "com.ovh.xdsl#CreateXdslRequestPPPLoginMail"
         },
         {
           "target": "com.ovh.xdsl#RequestTotalDeconsolidation"
@@ -15815,52 +15816,52 @@
           "target": "com.ovh.xdsl#ResiliateAccess"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslServiceNameResiliationFollowup"
+          "target": "com.ovh.xdsl#GetXdslResiliationFollowup"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslServiceNameResiliationTerms"
+          "target": "com.ovh.xdsl#GetXdslResiliationTerms"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslServiceNameRma"
+          "target": "com.ovh.xdsl#ListXdslRma"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslServiceNameRmaId"
+          "target": "com.ovh.xdsl#GetXdslRma"
         },
         {
-          "target": "com.ovh.xdsl#PutXdslServiceNameRmaId"
+          "target": "com.ovh.xdsl#PutXdslRma"
         },
         {
-          "target": "com.ovh.xdsl#DeleteXdslServiceNameRmaId"
+          "target": "com.ovh.xdsl#DeleteXdslRma"
         },
         {
           "target": "com.ovh.xdsl#UpdateRMAType"
         },
         {
-          "target": "com.ovh.xdsl#PostXdslServiceNameSearchOrderMeetings"
+          "target": "com.ovh.xdsl#SearchXdslOrderMeetings"
         },
         {
-          "target": "com.ovh.xdsl#PostXdslServiceNameSendOrderToProvider"
+          "target": "com.ovh.xdsl#SendXdslOrderToProvider"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslServiceNameServiceInfos"
+          "target": "com.ovh.xdsl#GetXdslServiceInfos"
         },
         {
-          "target": "com.ovh.xdsl#PutXdslServiceNameServiceInfos"
+          "target": "com.ovh.xdsl#PutXdslServiceInfos"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslServiceNameStatistics"
+          "target": "com.ovh.xdsl#ListXdslStatistics"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslServiceNameTasks"
+          "target": "com.ovh.xdsl#ListXdslTasks"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslServiceNameTasksId"
+          "target": "com.ovh.xdsl#GetXdslTask"
         },
         {
-          "target": "com.ovh.xdsl#PostXdslServiceNameTasksIdArchive"
+          "target": "com.ovh.xdsl#ArchiveXdslTask"
         },
         {
-          "target": "com.ovh.xdsl#GetXdslServiceNameTotalDeconsolidationTerms"
+          "target": "com.ovh.xdsl#GetXdslTotalDeconsolidationTerms"
         },
         {
           "target": "com.ovh.xdsl#UpdateRIO"

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.ovh.emailmxplan#IamResourceTagFilterInput": {
@@ -24,28 +25,28 @@
         "smithy.api#documentation": "Resource tag filter"
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanRequestIamTagsValueList": {
+    "com.ovh.emailmxplan#ListEmailMxplanRequestIamTagsValueList": {
       "type": "list",
       "member": {
         "target": "com.ovh.emailmxplan#IamResourceTagFilterInput"
       },
       "traits": {}
     },
-    "com.ovh.emailmxplan#GetEmailMxplanRequestIamTagsMap": {
+    "com.ovh.emailmxplan#ListEmailMxplanRequestIamTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "com.ovh.emailmxplan#GetEmailMxplanRequestIamTagsValueList"
+        "target": "com.ovh.emailmxplan#ListEmailMxplanRequestIamTagsValueList"
       },
       "traits": {}
     },
-    "com.ovh.emailmxplan#GetEmailMxplanRequest": {
+    "com.ovh.emailmxplan#ListEmailMxplanRequest": {
       "type": "structure",
       "members": {
         "iamTags": {
-          "target": "com.ovh.emailmxplan#GetEmailMxplanRequestIamTagsMap",
+          "target": "com.ovh.emailmxplan#ListEmailMxplanRequestIamTagsMap",
           "traits": {
             "smithy.api#httpQuery": "iamTags",
             "smithy.api#documentation": "Filter resources on IAM tags"
@@ -56,18 +57,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanResponseBodyList": {
+    "com.ovh.emailmxplan#ListEmailMxplanResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.emailmxplan#GetEmailMxplanResponse": {
+    "com.ovh.emailmxplan#ListEmailMxplanResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emailmxplan#GetEmailMxplanResponseBodyList",
+          "target": "com.ovh.emailmxplan#ListEmailMxplanResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -78,13 +79,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplan": {
+    "com.ovh.emailmxplan#ListEmailMxplan": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailmxplan#GetEmailMxplanRequest"
+        "target": "com.ovh.emailmxplan#ListEmailMxplanRequest"
       },
       "output": {
-        "target": "com.ovh.emailmxplan#GetEmailMxplanResponse"
+        "target": "com.ovh.emailmxplan#ListEmailMxplanResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -95,7 +96,7 @@
         "smithy.api#documentation": "List available services"
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceRequest": {
+    "com.ovh.emailmxplan#GetEmailMxplanRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -408,10 +409,10 @@
         "smithy.api#documentation": "Service State"
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanService": {
+    "com.ovh.emailmxplan#GetEmailMxplan": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailmxplan#GetEmailMxplanServiceRequest"
+        "target": "com.ovh.emailmxplan#GetEmailMxplanRequest"
       },
       "output": {
         "target": "com.ovh.emailmxplan#EmailMxplanServiceWithIAM"
@@ -425,7 +426,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emailmxplan#PutEmailMxplanServiceRequest": {
+    "com.ovh.emailmxplan#PutEmailMxplanRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -512,10 +513,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailmxplan#PutEmailMxplanService": {
+    "com.ovh.emailmxplan#PutEmailMxplan": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailmxplan#PutEmailMxplanServiceRequest"
+        "target": "com.ovh.emailmxplan#PutEmailMxplanRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -529,7 +530,7 @@
         "smithy.api#documentation": "Alter this object properties"
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceAccountRequest": {
+    "com.ovh.emailmxplan#ListEmailMxplanAccountRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -559,18 +560,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceAccountResponseBodyList": {
+    "com.ovh.emailmxplan#ListEmailMxplanAccountResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceAccountResponse": {
+    "com.ovh.emailmxplan#ListEmailMxplanAccountResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emailmxplan#GetEmailMxplanServiceAccountResponseBodyList",
+          "target": "com.ovh.emailmxplan#ListEmailMxplanAccountResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -581,13 +582,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceAccount": {
+    "com.ovh.emailmxplan#ListEmailMxplanAccount": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailmxplan#GetEmailMxplanServiceAccountRequest"
+        "target": "com.ovh.emailmxplan#ListEmailMxplanAccountRequest"
       },
       "output": {
-        "target": "com.ovh.emailmxplan#GetEmailMxplanServiceAccountResponse"
+        "target": "com.ovh.emailmxplan#ListEmailMxplanAccountResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -598,7 +599,7 @@
         "smithy.api#documentation": "Accounts associated to this mxplan service"
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailRequest": {
+    "com.ovh.emailmxplan#GetEmailMxplanAccountRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -910,10 +911,10 @@
         "smithy.api#documentation": "Current object state"
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmail": {
+    "com.ovh.emailmxplan#GetEmailMxplanAccount": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailRequest"
+        "target": "com.ovh.emailmxplan#GetEmailMxplanAccountRequest"
       },
       "output": {
         "target": "com.ovh.emailmxplan#EmailMxplanAccount"
@@ -927,7 +928,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emailmxplan#PutEmailMxplanServiceAccountEmailRequestMailingFilterList": {
+    "com.ovh.emailmxplan#PutEmailMxplanAccountRequestMailingFilterList": {
       "type": "list",
       "member": {
         "target": "com.ovh.emailmxplan#EmailProMailingFilterEnum"
@@ -936,7 +937,7 @@
         "smithy.api#documentation": "Enable or disable anti-virus and anti-spam"
       }
     },
-    "com.ovh.emailmxplan#PutEmailMxplanServiceAccountEmailRequest": {
+    "com.ovh.emailmxplan#PutEmailMxplanAccountRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -1009,7 +1010,7 @@
           }
         },
         "mailingFilter": {
-          "target": "com.ovh.emailmxplan#PutEmailMxplanServiceAccountEmailRequestMailingFilterList",
+          "target": "com.ovh.emailmxplan#PutEmailMxplanAccountRequestMailingFilterList",
           "traits": {
             "smithy.api#documentation": "Enable or disable anti-virus and anti-spam",
             "com.distilled.openapi#nullable": {}
@@ -1039,10 +1040,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailmxplan#PutEmailMxplanServiceAccountEmail": {
+    "com.ovh.emailmxplan#PutEmailMxplanAccount": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailmxplan#PutEmailMxplanServiceAccountEmailRequest"
+        "target": "com.ovh.emailmxplan#PutEmailMxplanAccountRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1056,7 +1057,7 @@
         "smithy.api#documentation": "Alter this object properties"
       }
     },
-    "com.ovh.emailmxplan#DeleteEmailMxplanServiceAccountEmailRequest": {
+    "com.ovh.emailmxplan#DeleteEmailMxplanAccountRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -1459,10 +1460,10 @@
         "smithy.api#documentation": "Task status"
       }
     },
-    "com.ovh.emailmxplan#DeleteEmailMxplanServiceAccountEmail": {
+    "com.ovh.emailmxplan#DeleteEmailMxplanAccount": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailmxplan#DeleteEmailMxplanServiceAccountEmailRequest"
+        "target": "com.ovh.emailmxplan#DeleteEmailMxplanAccountRequest"
       },
       "output": {
         "target": "com.ovh.emailmxplan#EmailProTask"
@@ -1476,7 +1477,7 @@
         "smithy.api#documentation": "Delete existing mailbox in mxplan server"
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailAliasRequest": {
+    "com.ovh.emailmxplan#ListEmailMxplanAccountAliasRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -1500,18 +1501,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailAliasResponseBodyList": {
+    "com.ovh.emailmxplan#ListEmailMxplanAccountAliasResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailAliasResponse": {
+    "com.ovh.emailmxplan#ListEmailMxplanAccountAliasResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailAliasResponseBodyList",
+          "target": "com.ovh.emailmxplan#ListEmailMxplanAccountAliasResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1522,13 +1523,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailAlias": {
+    "com.ovh.emailmxplan#ListEmailMxplanAccountAlias": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailAliasRequest"
+        "target": "com.ovh.emailmxplan#ListEmailMxplanAccountAliasRequest"
       },
       "output": {
-        "target": "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailAliasResponse"
+        "target": "com.ovh.emailmxplan#ListEmailMxplanAccountAliasResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1539,7 +1540,7 @@
         "smithy.api#documentation": "Aliases associated to this mailbox"
       }
     },
-    "com.ovh.emailmxplan#PostEmailMxplanServiceAccountEmailAliasRequest": {
+    "com.ovh.emailmxplan#CreateEmailMxplanAccountAliasRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -1570,10 +1571,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailmxplan#PostEmailMxplanServiceAccountEmailAlias": {
+    "com.ovh.emailmxplan#CreateEmailMxplanAccountAlias": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailmxplan#PostEmailMxplanServiceAccountEmailAliasRequest"
+        "target": "com.ovh.emailmxplan#CreateEmailMxplanAccountAliasRequest"
       },
       "output": {
         "target": "com.ovh.emailmxplan#EmailProTask"
@@ -1587,7 +1588,7 @@
         "smithy.api#documentation": "Create new alias"
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailAliasAliasRequest": {
+    "com.ovh.emailmxplan#GetEmailMxplanAccountAliasRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -1645,10 +1646,10 @@
         "smithy.api#documentation": "Aliases on this mailbox"
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailAliasAlias": {
+    "com.ovh.emailmxplan#GetEmailMxplanAccountAlias": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailAliasAliasRequest"
+        "target": "com.ovh.emailmxplan#GetEmailMxplanAccountAliasRequest"
       },
       "output": {
         "target": "com.ovh.emailmxplan#EmailMxplanAccountAlias"
@@ -1662,7 +1663,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emailmxplan#DeleteEmailMxplanServiceAccountEmailAliasAliasRequest": {
+    "com.ovh.emailmxplan#DeleteEmailMxplanAccountAliasRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -1694,10 +1695,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailmxplan#DeleteEmailMxplanServiceAccountEmailAliasAlias": {
+    "com.ovh.emailmxplan#DeleteEmailMxplanAccountAlias": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailmxplan#DeleteEmailMxplanServiceAccountEmailAliasAliasRequest"
+        "target": "com.ovh.emailmxplan#DeleteEmailMxplanAccountAliasRequest"
       },
       "output": {
         "target": "com.ovh.emailmxplan#EmailProTask"
@@ -1711,7 +1712,7 @@
         "smithy.api#documentation": "Delete existing alias"
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailCapabilitiesRequest": {
+    "com.ovh.emailmxplan#ListEmailMxplanAccountCapabilitiesRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -1759,10 +1760,10 @@
         "smithy.api#documentation": "List of allowed quotas (no constraint if null)"
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailCapabilities": {
+    "com.ovh.emailmxplan#ListEmailMxplanAccountCapabilities": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailCapabilitiesRequest"
+        "target": "com.ovh.emailmxplan#ListEmailMxplanAccountCapabilitiesRequest"
       },
       "output": {
         "target": "com.ovh.emailmxplan#EmailMxplanAccountCapabilities"
@@ -1776,7 +1777,7 @@
         "smithy.api#documentation": "Get available capabilities for this account"
       }
     },
-    "com.ovh.emailmxplan#PostEmailMxplanServiceAccountEmailChangePasswordRequest": {
+    "com.ovh.emailmxplan#CreateEmailMxplanAccountChangePasswordRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -1808,10 +1809,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailmxplan#PostEmailMxplanServiceAccountEmailChangePassword": {
+    "com.ovh.emailmxplan#CreateEmailMxplanAccountChangePassword": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailmxplan#PostEmailMxplanServiceAccountEmailChangePasswordRequest"
+        "target": "com.ovh.emailmxplan#CreateEmailMxplanAccountChangePasswordRequest"
       },
       "output": {
         "target": "com.ovh.emailmxplan#EmailProTask"
@@ -1825,7 +1826,7 @@
         "smithy.api#documentation": "Change mailbox password"
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailDiagnosticRequest": {
+    "com.ovh.emailmxplan#GetEmailMxplanAccountDiagnosticRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -1911,10 +1912,10 @@
         "smithy.api#documentation": "Account Diagnosis"
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailDiagnostic": {
+    "com.ovh.emailmxplan#GetEmailMxplanAccountDiagnostic": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailDiagnosticRequest"
+        "target": "com.ovh.emailmxplan#GetEmailMxplanAccountDiagnosticRequest"
       },
       "output": {
         "target": "com.ovh.emailmxplan#EmailMxplanAccountDiagnosis"
@@ -1928,7 +1929,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emailmxplan#PostEmailMxplanServiceAccountEmailDiagnosticRequest": {
+    "com.ovh.emailmxplan#CreateEmailMxplanAccountDiagnosticRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -1960,10 +1961,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailmxplan#PostEmailMxplanServiceAccountEmailDiagnostic": {
+    "com.ovh.emailmxplan#CreateEmailMxplanAccountDiagnostic": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailmxplan#PostEmailMxplanServiceAccountEmailDiagnosticRequest"
+        "target": "com.ovh.emailmxplan#CreateEmailMxplanAccountDiagnosticRequest"
       },
       "output": {
         "target": "com.ovh.emailmxplan#EmailProTask"
@@ -1977,7 +1978,7 @@
         "smithy.api#documentation": "Create new diagnosis request"
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailFullAccessRequest": {
+    "com.ovh.emailmxplan#ListEmailMxplanAccountFullAccessRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -2001,18 +2002,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailFullAccessResponseBodyList": {
+    "com.ovh.emailmxplan#ListEmailMxplanAccountFullAccessResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailFullAccessResponse": {
+    "com.ovh.emailmxplan#ListEmailMxplanAccountFullAccessResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailFullAccessResponseBodyList",
+          "target": "com.ovh.emailmxplan#ListEmailMxplanAccountFullAccessResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -2023,13 +2024,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailFullAccess": {
+    "com.ovh.emailmxplan#ListEmailMxplanAccountFullAccess": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailFullAccessRequest"
+        "target": "com.ovh.emailmxplan#ListEmailMxplanAccountFullAccessRequest"
       },
       "output": {
-        "target": "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailFullAccessResponse"
+        "target": "com.ovh.emailmxplan#ListEmailMxplanAccountFullAccessResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2040,7 +2041,7 @@
         "smithy.api#documentation": "Full access granted users for this mailbox"
       }
     },
-    "com.ovh.emailmxplan#PostEmailMxplanServiceAccountEmailFullAccessRequest": {
+    "com.ovh.emailmxplan#CreateEmailMxplanAccountFullAccessRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -2071,10 +2072,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailmxplan#PostEmailMxplanServiceAccountEmailFullAccess": {
+    "com.ovh.emailmxplan#CreateEmailMxplanAccountFullAccess": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailmxplan#PostEmailMxplanServiceAccountEmailFullAccessRequest"
+        "target": "com.ovh.emailmxplan#CreateEmailMxplanAccountFullAccessRequest"
       },
       "output": {
         "target": "com.ovh.emailmxplan#EmailProTask"
@@ -2088,7 +2089,7 @@
         "smithy.api#documentation": "Allow full access to a user"
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailFullAccessAllowedAccountIdRequest": {
+    "com.ovh.emailmxplan#GetEmailMxplanAccountFullAccessRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -2146,10 +2147,10 @@
         "smithy.api#documentation": "Users having full access on this mailbox"
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailFullAccessAllowedAccountId": {
+    "com.ovh.emailmxplan#GetEmailMxplanAccountFullAccess": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailFullAccessAllowedAccountIdRequest"
+        "target": "com.ovh.emailmxplan#GetEmailMxplanAccountFullAccessRequest"
       },
       "output": {
         "target": "com.ovh.emailmxplan#EmailMxplanAccountFullAccess"
@@ -2163,7 +2164,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emailmxplan#DeleteEmailMxplanServiceAccountEmailFullAccessAllowedAccountIdRequest": {
+    "com.ovh.emailmxplan#DeleteEmailMxplanAccountFullAccessRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -2195,10 +2196,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailmxplan#DeleteEmailMxplanServiceAccountEmailFullAccessAllowedAccountId": {
+    "com.ovh.emailmxplan#DeleteEmailMxplanAccountFullAccess": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailmxplan#DeleteEmailMxplanServiceAccountEmailFullAccessAllowedAccountIdRequest"
+        "target": "com.ovh.emailmxplan#DeleteEmailMxplanAccountFullAccessRequest"
       },
       "output": {
         "target": "com.ovh.emailmxplan#EmailProTask"
@@ -2212,7 +2213,7 @@
         "smithy.api#documentation": "Revoke full access"
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailSendAsRequest": {
+    "com.ovh.emailmxplan#ListEmailMxplanAccountSendAsRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -2236,18 +2237,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailSendAsResponseBodyList": {
+    "com.ovh.emailmxplan#ListEmailMxplanAccountSendAsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailSendAsResponse": {
+    "com.ovh.emailmxplan#ListEmailMxplanAccountSendAsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailSendAsResponseBodyList",
+          "target": "com.ovh.emailmxplan#ListEmailMxplanAccountSendAsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -2258,13 +2259,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailSendAs": {
+    "com.ovh.emailmxplan#ListEmailMxplanAccountSendAs": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailSendAsRequest"
+        "target": "com.ovh.emailmxplan#ListEmailMxplanAccountSendAsRequest"
       },
       "output": {
-        "target": "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailSendAsResponse"
+        "target": "com.ovh.emailmxplan#ListEmailMxplanAccountSendAsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2275,7 +2276,7 @@
         "smithy.api#documentation": "Send as granted users for this mailbox"
       }
     },
-    "com.ovh.emailmxplan#PostEmailMxplanServiceAccountEmailSendAsRequest": {
+    "com.ovh.emailmxplan#SendEmailMxplanAccountAsRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -2306,10 +2307,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailmxplan#PostEmailMxplanServiceAccountEmailSendAs": {
+    "com.ovh.emailmxplan#SendEmailMxplanAccountAs": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailmxplan#PostEmailMxplanServiceAccountEmailSendAsRequest"
+        "target": "com.ovh.emailmxplan#SendEmailMxplanAccountAsRequest"
       },
       "output": {
         "target": "com.ovh.emailmxplan#EmailProTask"
@@ -2323,7 +2324,7 @@
         "smithy.api#documentation": "Allow another user to send mails from this mailbox"
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailSendAsAllowedAccountIdRequest": {
+    "com.ovh.emailmxplan#GetEmailMxplanAccountSendAsRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -2381,10 +2382,10 @@
         "smithy.api#documentation": "Users authorized to send mails from this mailbox"
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailSendAsAllowedAccountId": {
+    "com.ovh.emailmxplan#GetEmailMxplanAccountSendAs": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailSendAsAllowedAccountIdRequest"
+        "target": "com.ovh.emailmxplan#GetEmailMxplanAccountSendAsRequest"
       },
       "output": {
         "target": "com.ovh.emailmxplan#EmailMxplanAccountSendAs"
@@ -2398,7 +2399,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emailmxplan#DeleteEmailMxplanServiceAccountEmailSendAsAllowedAccountIdRequest": {
+    "com.ovh.emailmxplan#DeleteEmailMxplanAccountSendAsRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -2430,10 +2431,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailmxplan#DeleteEmailMxplanServiceAccountEmailSendAsAllowedAccountId": {
+    "com.ovh.emailmxplan#DeleteEmailMxplanAccountSendAs": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailmxplan#DeleteEmailMxplanServiceAccountEmailSendAsAllowedAccountIdRequest"
+        "target": "com.ovh.emailmxplan#DeleteEmailMxplanAccountSendAsRequest"
       },
       "output": {
         "target": "com.ovh.emailmxplan#EmailProTask"
@@ -2447,7 +2448,7 @@
         "smithy.api#documentation": "Delete allowed user for sendAs"
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailSendOnBehalfToRequest": {
+    "com.ovh.emailmxplan#ListEmailMxplanAccountSendOnBehalfToRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -2471,18 +2472,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailSendOnBehalfToResponseBodyList": {
+    "com.ovh.emailmxplan#ListEmailMxplanAccountSendOnBehalfToResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailSendOnBehalfToResponse": {
+    "com.ovh.emailmxplan#ListEmailMxplanAccountSendOnBehalfToResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailSendOnBehalfToResponseBodyList",
+          "target": "com.ovh.emailmxplan#ListEmailMxplanAccountSendOnBehalfToResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -2493,13 +2494,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailSendOnBehalfTo": {
+    "com.ovh.emailmxplan#ListEmailMxplanAccountSendOnBehalfTo": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailSendOnBehalfToRequest"
+        "target": "com.ovh.emailmxplan#ListEmailMxplanAccountSendOnBehalfToRequest"
       },
       "output": {
-        "target": "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailSendOnBehalfToResponse"
+        "target": "com.ovh.emailmxplan#ListEmailMxplanAccountSendOnBehalfToResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2510,7 +2511,7 @@
         "smithy.api#documentation": "SendOnBehalfTo granted users for this mailbox"
       }
     },
-    "com.ovh.emailmxplan#PostEmailMxplanServiceAccountEmailSendOnBehalfToRequest": {
+    "com.ovh.emailmxplan#SendEmailMxplanAccountOnBehalfToRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -2541,10 +2542,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailmxplan#PostEmailMxplanServiceAccountEmailSendOnBehalfTo": {
+    "com.ovh.emailmxplan#SendEmailMxplanAccountOnBehalfTo": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailmxplan#PostEmailMxplanServiceAccountEmailSendOnBehalfToRequest"
+        "target": "com.ovh.emailmxplan#SendEmailMxplanAccountOnBehalfToRequest"
       },
       "output": {
         "target": "com.ovh.emailmxplan#EmailProTask"
@@ -2558,7 +2559,7 @@
         "smithy.api#documentation": "Allow another user to Send On Behalf To mails from this mailbox"
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailSendOnBehalfToAllowedAccountIdRequest": {
+    "com.ovh.emailmxplan#GetEmailMxplanAccountSendOnBehalfToRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -2616,10 +2617,10 @@
         "smithy.api#documentation": "Get users authorized to Send On Behalf To mails from this mailbox"
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailSendOnBehalfToAllowedAccountId": {
+    "com.ovh.emailmxplan#GetEmailMxplanAccountSendOnBehalfTo": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailSendOnBehalfToAllowedAccountIdRequest"
+        "target": "com.ovh.emailmxplan#GetEmailMxplanAccountSendOnBehalfToRequest"
       },
       "output": {
         "target": "com.ovh.emailmxplan#EmailMxplanAccountSendOnBehalfTo"
@@ -2633,7 +2634,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emailmxplan#DeleteEmailMxplanServiceAccountEmailSendOnBehalfToAllowedAccountIdRequest": {
+    "com.ovh.emailmxplan#DeleteEmailMxplanAccountSendOnBehalfToRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -2665,10 +2666,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailmxplan#DeleteEmailMxplanServiceAccountEmailSendOnBehalfToAllowedAccountId": {
+    "com.ovh.emailmxplan#DeleteEmailMxplanAccountSendOnBehalfTo": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailmxplan#DeleteEmailMxplanServiceAccountEmailSendOnBehalfToAllowedAccountIdRequest"
+        "target": "com.ovh.emailmxplan#DeleteEmailMxplanAccountSendOnBehalfToRequest"
       },
       "output": {
         "target": "com.ovh.emailmxplan#EmailProTask"
@@ -2682,7 +2683,7 @@
         "smithy.api#documentation": "Delete allowed user for SendOnBehalfTo"
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailTaskRequest": {
+    "com.ovh.emailmxplan#ListEmailMxplanAccountTaskRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -2706,18 +2707,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailTaskResponseBodyList": {
+    "com.ovh.emailmxplan#ListEmailMxplanAccountTaskResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailTaskResponse": {
+    "com.ovh.emailmxplan#ListEmailMxplanAccountTaskResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailTaskResponseBodyList",
+          "target": "com.ovh.emailmxplan#ListEmailMxplanAccountTaskResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -2728,13 +2729,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailTask": {
+    "com.ovh.emailmxplan#ListEmailMxplanAccountTask": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailTaskRequest"
+        "target": "com.ovh.emailmxplan#ListEmailMxplanAccountTaskRequest"
       },
       "output": {
-        "target": "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailTaskResponse"
+        "target": "com.ovh.emailmxplan#ListEmailMxplanAccountTaskResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2745,7 +2746,7 @@
         "smithy.api#documentation": "Pending task for this mailbox"
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailTaskIdRequest": {
+    "com.ovh.emailmxplan#GetEmailMxplanAccountTaskRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -2777,10 +2778,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailTaskId": {
+    "com.ovh.emailmxplan#GetEmailMxplanAccountTask": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailTaskIdRequest"
+        "target": "com.ovh.emailmxplan#GetEmailMxplanAccountTaskRequest"
       },
       "output": {
         "target": "com.ovh.emailmxplan#EmailProTask"
@@ -2794,7 +2795,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceDomainRequest": {
+    "com.ovh.emailmxplan#ListEmailMxplanDomainRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -2817,18 +2818,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceDomainResponseBodyList": {
+    "com.ovh.emailmxplan#ListEmailMxplanDomainResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceDomainResponse": {
+    "com.ovh.emailmxplan#ListEmailMxplanDomainResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emailmxplan#GetEmailMxplanServiceDomainResponseBodyList",
+          "target": "com.ovh.emailmxplan#ListEmailMxplanDomainResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -2839,13 +2840,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceDomain": {
+    "com.ovh.emailmxplan#ListEmailMxplanDomain": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailmxplan#GetEmailMxplanServiceDomainRequest"
+        "target": "com.ovh.emailmxplan#ListEmailMxplanDomainRequest"
       },
       "output": {
-        "target": "com.ovh.emailmxplan#GetEmailMxplanServiceDomainResponse"
+        "target": "com.ovh.emailmxplan#ListEmailMxplanDomainResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2856,7 +2857,7 @@
         "smithy.api#documentation": "Domains associated to this service"
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceDomainDomainNameRequest": {
+    "com.ovh.emailmxplan#GetEmailMxplanDomainRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -3030,10 +3031,10 @@
         "smithy.api#documentation": "Domain type"
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceDomainDomainName": {
+    "com.ovh.emailmxplan#GetEmailMxplanDomain": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailmxplan#GetEmailMxplanServiceDomainDomainNameRequest"
+        "target": "com.ovh.emailmxplan#GetEmailMxplanDomainRequest"
       },
       "output": {
         "target": "com.ovh.emailmxplan#EmailMxplanDomain"
@@ -3047,7 +3048,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emailmxplan#PutEmailMxplanServiceDomainDomainNameRequest": {
+    "com.ovh.emailmxplan#PutEmailMxplanDomainRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -3084,10 +3085,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailmxplan#PutEmailMxplanServiceDomainDomainName": {
+    "com.ovh.emailmxplan#PutEmailMxplanDomain": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailmxplan#PutEmailMxplanServiceDomainDomainNameRequest"
+        "target": "com.ovh.emailmxplan#PutEmailMxplanDomainRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3101,7 +3102,7 @@
         "smithy.api#documentation": "Alter this object properties"
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceDomainDomainNameDisclaimerRequest": {
+    "com.ovh.emailmxplan#GetEmailMxplanDomainDisclaimerRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -3163,10 +3164,10 @@
         "smithy.api#documentation": "disclaimer"
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceDomainDomainNameDisclaimer": {
+    "com.ovh.emailmxplan#GetEmailMxplanDomainDisclaimer": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailmxplan#GetEmailMxplanServiceDomainDomainNameDisclaimerRequest"
+        "target": "com.ovh.emailmxplan#GetEmailMxplanDomainDisclaimerRequest"
       },
       "output": {
         "target": "com.ovh.emailmxplan#EmailProDisclaimer"
@@ -3180,7 +3181,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emailmxplan#PostEmailMxplanServiceDomainDomainNameDisclaimerRequest": {
+    "com.ovh.emailmxplan#CreateEmailMxplanDomainDisclaimerRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -3217,10 +3218,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailmxplan#PostEmailMxplanServiceDomainDomainNameDisclaimer": {
+    "com.ovh.emailmxplan#CreateEmailMxplanDomainDisclaimer": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailmxplan#PostEmailMxplanServiceDomainDomainNameDisclaimerRequest"
+        "target": "com.ovh.emailmxplan#CreateEmailMxplanDomainDisclaimerRequest"
       },
       "output": {
         "target": "com.ovh.emailmxplan#EmailProTask"
@@ -3234,7 +3235,7 @@
         "smithy.api#documentation": "Create organization disclaimer of each email"
       }
     },
-    "com.ovh.emailmxplan#PutEmailMxplanServiceDomainDomainNameDisclaimerRequest": {
+    "com.ovh.emailmxplan#PutEmailMxplanDomainDisclaimerRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -3270,10 +3271,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailmxplan#PutEmailMxplanServiceDomainDomainNameDisclaimer": {
+    "com.ovh.emailmxplan#PutEmailMxplanDomainDisclaimer": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailmxplan#PutEmailMxplanServiceDomainDomainNameDisclaimerRequest"
+        "target": "com.ovh.emailmxplan#PutEmailMxplanDomainDisclaimerRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3287,7 +3288,7 @@
         "smithy.api#documentation": "Alter this object properties"
       }
     },
-    "com.ovh.emailmxplan#DeleteEmailMxplanServiceDomainDomainNameDisclaimerRequest": {
+    "com.ovh.emailmxplan#DeleteEmailMxplanDomainDisclaimerRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -3311,10 +3312,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailmxplan#DeleteEmailMxplanServiceDomainDomainNameDisclaimer": {
+    "com.ovh.emailmxplan#DeleteEmailMxplanDomainDisclaimer": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailmxplan#DeleteEmailMxplanServiceDomainDomainNameDisclaimerRequest"
+        "target": "com.ovh.emailmxplan#DeleteEmailMxplanDomainDisclaimerRequest"
       },
       "output": {
         "target": "com.ovh.emailmxplan#EmailProTask"
@@ -3328,7 +3329,7 @@
         "smithy.api#documentation": "Delete existing organization disclaimer"
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceDomainDomainNameDisclaimerAttributeRequest": {
+    "com.ovh.emailmxplan#ListEmailMxplanDomainDisclaimerAttributeRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -3510,18 +3511,18 @@
         "smithy.api#documentation": "Disclaimer attributes list"
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceDomainDomainNameDisclaimerAttributeResponseBodyList": {
+    "com.ovh.emailmxplan#ListEmailMxplanDomainDisclaimerAttributeResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.emailmxplan#EmailProDisclaimerAttributeEnum"
       },
       "traits": {}
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceDomainDomainNameDisclaimerAttributeResponse": {
+    "com.ovh.emailmxplan#ListEmailMxplanDomainDisclaimerAttributeResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emailmxplan#GetEmailMxplanServiceDomainDomainNameDisclaimerAttributeResponseBodyList",
+          "target": "com.ovh.emailmxplan#ListEmailMxplanDomainDisclaimerAttributeResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -3532,13 +3533,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceDomainDomainNameDisclaimerAttribute": {
+    "com.ovh.emailmxplan#ListEmailMxplanDomainDisclaimerAttribute": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailmxplan#GetEmailMxplanServiceDomainDomainNameDisclaimerAttributeRequest"
+        "target": "com.ovh.emailmxplan#ListEmailMxplanDomainDisclaimerAttributeRequest"
       },
       "output": {
-        "target": "com.ovh.emailmxplan#GetEmailMxplanServiceDomainDomainNameDisclaimerAttributeResponse"
+        "target": "com.ovh.emailmxplan#ListEmailMxplanDomainDisclaimerAttributeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3549,7 +3550,7 @@
         "smithy.api#documentation": "Get diclaimer attributes to substitute with Active Directory properties"
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceExternalContactRequest": {
+    "com.ovh.emailmxplan#ListEmailMxplanExternalContactRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -3600,18 +3601,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceExternalContactResponseBodyList": {
+    "com.ovh.emailmxplan#ListEmailMxplanExternalContactResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceExternalContactResponse": {
+    "com.ovh.emailmxplan#ListEmailMxplanExternalContactResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emailmxplan#GetEmailMxplanServiceExternalContactResponseBodyList",
+          "target": "com.ovh.emailmxplan#ListEmailMxplanExternalContactResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -3622,13 +3623,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceExternalContact": {
+    "com.ovh.emailmxplan#ListEmailMxplanExternalContact": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailmxplan#GetEmailMxplanServiceExternalContactRequest"
+        "target": "com.ovh.emailmxplan#ListEmailMxplanExternalContactRequest"
       },
       "output": {
-        "target": "com.ovh.emailmxplan#GetEmailMxplanServiceExternalContactResponse"
+        "target": "com.ovh.emailmxplan#ListEmailMxplanExternalContactResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3639,7 +3640,7 @@
         "smithy.api#documentation": "External contacts for this service"
       }
     },
-    "com.ovh.emailmxplan#PostEmailMxplanServiceExternalContactRequest": {
+    "com.ovh.emailmxplan#CreateEmailMxplanExternalContactRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -3692,10 +3693,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailmxplan#PostEmailMxplanServiceExternalContact": {
+    "com.ovh.emailmxplan#CreateEmailMxplanExternalContact": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailmxplan#PostEmailMxplanServiceExternalContactRequest"
+        "target": "com.ovh.emailmxplan#CreateEmailMxplanExternalContactRequest"
       },
       "output": {
         "target": "com.ovh.emailmxplan#EmailProTask"
@@ -3709,7 +3710,7 @@
         "smithy.api#documentation": "create new external contact"
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceExternalContactExternalEmailAddressRequest": {
+    "com.ovh.emailmxplan#GetEmailMxplanExternalContactRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -3804,10 +3805,10 @@
         "smithy.api#documentation": "External contact for this mxplan service"
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceExternalContactExternalEmailAddress": {
+    "com.ovh.emailmxplan#GetEmailMxplanExternalContact": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailmxplan#GetEmailMxplanServiceExternalContactExternalEmailAddressRequest"
+        "target": "com.ovh.emailmxplan#GetEmailMxplanExternalContactRequest"
       },
       "output": {
         "target": "com.ovh.emailmxplan#EmailMxplanExternalContact"
@@ -3821,7 +3822,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emailmxplan#PutEmailMxplanServiceExternalContactExternalEmailAddressRequest": {
+    "com.ovh.emailmxplan#PutEmailMxplanExternalContactRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -3878,10 +3879,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailmxplan#PutEmailMxplanServiceExternalContactExternalEmailAddress": {
+    "com.ovh.emailmxplan#PutEmailMxplanExternalContact": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailmxplan#PutEmailMxplanServiceExternalContactExternalEmailAddressRequest"
+        "target": "com.ovh.emailmxplan#PutEmailMxplanExternalContactRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3895,7 +3896,7 @@
         "smithy.api#documentation": "Alter this object properties"
       }
     },
-    "com.ovh.emailmxplan#DeleteEmailMxplanServiceExternalContactExternalEmailAddressRequest": {
+    "com.ovh.emailmxplan#DeleteEmailMxplanExternalContactRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -3919,10 +3920,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailmxplan#DeleteEmailMxplanServiceExternalContactExternalEmailAddress": {
+    "com.ovh.emailmxplan#DeleteEmailMxplanExternalContact": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailmxplan#DeleteEmailMxplanServiceExternalContactExternalEmailAddressRequest"
+        "target": "com.ovh.emailmxplan#DeleteEmailMxplanExternalContactRequest"
       },
       "output": {
         "target": "com.ovh.emailmxplan#EmailProTask"
@@ -3936,7 +3937,7 @@
         "smithy.api#documentation": "delete external contact"
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceServerRequest": {
+    "com.ovh.emailmxplan#GetEmailMxplanServerRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -4056,10 +4057,10 @@
         "smithy.api#documentation": "Server State"
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceServer": {
+    "com.ovh.emailmxplan#GetEmailMxplanServer": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailmxplan#GetEmailMxplanServiceServerRequest"
+        "target": "com.ovh.emailmxplan#GetEmailMxplanServerRequest"
       },
       "output": {
         "target": "com.ovh.emailmxplan#EmailMxplanServer"
@@ -4073,7 +4074,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceTaskRequest": {
+    "com.ovh.emailmxplan#ListEmailMxplanTaskRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -4089,18 +4090,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceTaskResponseBodyList": {
+    "com.ovh.emailmxplan#ListEmailMxplanTaskResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceTaskResponse": {
+    "com.ovh.emailmxplan#ListEmailMxplanTaskResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emailmxplan#GetEmailMxplanServiceTaskResponseBodyList",
+          "target": "com.ovh.emailmxplan#ListEmailMxplanTaskResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -4111,13 +4112,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceTask": {
+    "com.ovh.emailmxplan#ListEmailMxplanTask": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailmxplan#GetEmailMxplanServiceTaskRequest"
+        "target": "com.ovh.emailmxplan#ListEmailMxplanTaskRequest"
       },
       "output": {
-        "target": "com.ovh.emailmxplan#GetEmailMxplanServiceTaskResponse"
+        "target": "com.ovh.emailmxplan#ListEmailMxplanTaskResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4128,7 +4129,7 @@
         "smithy.api#documentation": "Pending actions"
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceTaskIdRequest": {
+    "com.ovh.emailmxplan#GetEmailMxplanTaskRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -4152,10 +4153,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailmxplan#GetEmailMxplanServiceTaskId": {
+    "com.ovh.emailmxplan#GetEmailMxplanTask": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailmxplan#GetEmailMxplanServiceTaskIdRequest"
+        "target": "com.ovh.emailmxplan#GetEmailMxplanTaskRequest"
       },
       "output": {
         "target": "com.ovh.emailmxplan#EmailProTask"
@@ -4169,7 +4170,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emailmxplan#PostEmailMxplanServiceUpdateFlagsOnAllAccountsRequest": {
+    "com.ovh.emailmxplan#UpdateEmailMxplanFlagsOnAllAccountsRequest": {
       "type": "structure",
       "members": {
         "service": {
@@ -4185,10 +4186,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emailmxplan#PostEmailMxplanServiceUpdateFlagsOnAllAccounts": {
+    "com.ovh.emailmxplan#UpdateEmailMxplanFlagsOnAllAccounts": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emailmxplan#PostEmailMxplanServiceUpdateFlagsOnAllAccountsRequest"
+        "target": "com.ovh.emailmxplan#UpdateEmailMxplanFlagsOnAllAccountsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4207,142 +4208,142 @@
       "version": "1.0",
       "operations": [
         {
+          "target": "com.ovh.emailmxplan#ListEmailMxplan"
+        },
+        {
           "target": "com.ovh.emailmxplan#GetEmailMxplan"
         },
         {
-          "target": "com.ovh.emailmxplan#GetEmailMxplanService"
+          "target": "com.ovh.emailmxplan#PutEmailMxplan"
         },
         {
-          "target": "com.ovh.emailmxplan#PutEmailMxplanService"
+          "target": "com.ovh.emailmxplan#ListEmailMxplanAccount"
         },
         {
-          "target": "com.ovh.emailmxplan#GetEmailMxplanServiceAccount"
+          "target": "com.ovh.emailmxplan#GetEmailMxplanAccount"
         },
         {
-          "target": "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmail"
+          "target": "com.ovh.emailmxplan#PutEmailMxplanAccount"
         },
         {
-          "target": "com.ovh.emailmxplan#PutEmailMxplanServiceAccountEmail"
+          "target": "com.ovh.emailmxplan#DeleteEmailMxplanAccount"
         },
         {
-          "target": "com.ovh.emailmxplan#DeleteEmailMxplanServiceAccountEmail"
+          "target": "com.ovh.emailmxplan#ListEmailMxplanAccountAlias"
         },
         {
-          "target": "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailAlias"
+          "target": "com.ovh.emailmxplan#CreateEmailMxplanAccountAlias"
         },
         {
-          "target": "com.ovh.emailmxplan#PostEmailMxplanServiceAccountEmailAlias"
+          "target": "com.ovh.emailmxplan#GetEmailMxplanAccountAlias"
         },
         {
-          "target": "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailAliasAlias"
+          "target": "com.ovh.emailmxplan#DeleteEmailMxplanAccountAlias"
         },
         {
-          "target": "com.ovh.emailmxplan#DeleteEmailMxplanServiceAccountEmailAliasAlias"
+          "target": "com.ovh.emailmxplan#ListEmailMxplanAccountCapabilities"
         },
         {
-          "target": "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailCapabilities"
+          "target": "com.ovh.emailmxplan#CreateEmailMxplanAccountChangePassword"
         },
         {
-          "target": "com.ovh.emailmxplan#PostEmailMxplanServiceAccountEmailChangePassword"
+          "target": "com.ovh.emailmxplan#GetEmailMxplanAccountDiagnostic"
         },
         {
-          "target": "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailDiagnostic"
+          "target": "com.ovh.emailmxplan#CreateEmailMxplanAccountDiagnostic"
         },
         {
-          "target": "com.ovh.emailmxplan#PostEmailMxplanServiceAccountEmailDiagnostic"
+          "target": "com.ovh.emailmxplan#ListEmailMxplanAccountFullAccess"
         },
         {
-          "target": "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailFullAccess"
+          "target": "com.ovh.emailmxplan#CreateEmailMxplanAccountFullAccess"
         },
         {
-          "target": "com.ovh.emailmxplan#PostEmailMxplanServiceAccountEmailFullAccess"
+          "target": "com.ovh.emailmxplan#GetEmailMxplanAccountFullAccess"
         },
         {
-          "target": "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailFullAccessAllowedAccountId"
+          "target": "com.ovh.emailmxplan#DeleteEmailMxplanAccountFullAccess"
         },
         {
-          "target": "com.ovh.emailmxplan#DeleteEmailMxplanServiceAccountEmailFullAccessAllowedAccountId"
+          "target": "com.ovh.emailmxplan#ListEmailMxplanAccountSendAs"
         },
         {
-          "target": "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailSendAs"
+          "target": "com.ovh.emailmxplan#SendEmailMxplanAccountAs"
         },
         {
-          "target": "com.ovh.emailmxplan#PostEmailMxplanServiceAccountEmailSendAs"
+          "target": "com.ovh.emailmxplan#GetEmailMxplanAccountSendAs"
         },
         {
-          "target": "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailSendAsAllowedAccountId"
+          "target": "com.ovh.emailmxplan#DeleteEmailMxplanAccountSendAs"
         },
         {
-          "target": "com.ovh.emailmxplan#DeleteEmailMxplanServiceAccountEmailSendAsAllowedAccountId"
+          "target": "com.ovh.emailmxplan#ListEmailMxplanAccountSendOnBehalfTo"
         },
         {
-          "target": "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailSendOnBehalfTo"
+          "target": "com.ovh.emailmxplan#SendEmailMxplanAccountOnBehalfTo"
         },
         {
-          "target": "com.ovh.emailmxplan#PostEmailMxplanServiceAccountEmailSendOnBehalfTo"
+          "target": "com.ovh.emailmxplan#GetEmailMxplanAccountSendOnBehalfTo"
         },
         {
-          "target": "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailSendOnBehalfToAllowedAccountId"
+          "target": "com.ovh.emailmxplan#DeleteEmailMxplanAccountSendOnBehalfTo"
         },
         {
-          "target": "com.ovh.emailmxplan#DeleteEmailMxplanServiceAccountEmailSendOnBehalfToAllowedAccountId"
+          "target": "com.ovh.emailmxplan#ListEmailMxplanAccountTask"
         },
         {
-          "target": "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailTask"
+          "target": "com.ovh.emailmxplan#GetEmailMxplanAccountTask"
         },
         {
-          "target": "com.ovh.emailmxplan#GetEmailMxplanServiceAccountEmailTaskId"
+          "target": "com.ovh.emailmxplan#ListEmailMxplanDomain"
         },
         {
-          "target": "com.ovh.emailmxplan#GetEmailMxplanServiceDomain"
+          "target": "com.ovh.emailmxplan#GetEmailMxplanDomain"
         },
         {
-          "target": "com.ovh.emailmxplan#GetEmailMxplanServiceDomainDomainName"
+          "target": "com.ovh.emailmxplan#PutEmailMxplanDomain"
         },
         {
-          "target": "com.ovh.emailmxplan#PutEmailMxplanServiceDomainDomainName"
+          "target": "com.ovh.emailmxplan#GetEmailMxplanDomainDisclaimer"
         },
         {
-          "target": "com.ovh.emailmxplan#GetEmailMxplanServiceDomainDomainNameDisclaimer"
+          "target": "com.ovh.emailmxplan#CreateEmailMxplanDomainDisclaimer"
         },
         {
-          "target": "com.ovh.emailmxplan#PostEmailMxplanServiceDomainDomainNameDisclaimer"
+          "target": "com.ovh.emailmxplan#PutEmailMxplanDomainDisclaimer"
         },
         {
-          "target": "com.ovh.emailmxplan#PutEmailMxplanServiceDomainDomainNameDisclaimer"
+          "target": "com.ovh.emailmxplan#DeleteEmailMxplanDomainDisclaimer"
         },
         {
-          "target": "com.ovh.emailmxplan#DeleteEmailMxplanServiceDomainDomainNameDisclaimer"
+          "target": "com.ovh.emailmxplan#ListEmailMxplanDomainDisclaimerAttribute"
         },
         {
-          "target": "com.ovh.emailmxplan#GetEmailMxplanServiceDomainDomainNameDisclaimerAttribute"
+          "target": "com.ovh.emailmxplan#ListEmailMxplanExternalContact"
         },
         {
-          "target": "com.ovh.emailmxplan#GetEmailMxplanServiceExternalContact"
+          "target": "com.ovh.emailmxplan#CreateEmailMxplanExternalContact"
         },
         {
-          "target": "com.ovh.emailmxplan#PostEmailMxplanServiceExternalContact"
+          "target": "com.ovh.emailmxplan#GetEmailMxplanExternalContact"
         },
         {
-          "target": "com.ovh.emailmxplan#GetEmailMxplanServiceExternalContactExternalEmailAddress"
+          "target": "com.ovh.emailmxplan#PutEmailMxplanExternalContact"
         },
         {
-          "target": "com.ovh.emailmxplan#PutEmailMxplanServiceExternalContactExternalEmailAddress"
+          "target": "com.ovh.emailmxplan#DeleteEmailMxplanExternalContact"
         },
         {
-          "target": "com.ovh.emailmxplan#DeleteEmailMxplanServiceExternalContactExternalEmailAddress"
+          "target": "com.ovh.emailmxplan#GetEmailMxplanServer"
         },
         {
-          "target": "com.ovh.emailmxplan#GetEmailMxplanServiceServer"
+          "target": "com.ovh.emailmxplan#ListEmailMxplanTask"
         },
         {
-          "target": "com.ovh.emailmxplan#GetEmailMxplanServiceTask"
+          "target": "com.ovh.emailmxplan#GetEmailMxplanTask"
         },
         {
-          "target": "com.ovh.emailmxplan#GetEmailMxplanServiceTaskId"
-        },
-        {
-          "target": "com.ovh.emailmxplan#PostEmailMxplanServiceUpdateFlagsOnAllAccounts"
+          "target": "com.ovh.emailmxplan#UpdateEmailMxplanFlagsOnAllAccounts"
         }
       ],
       "traits": {

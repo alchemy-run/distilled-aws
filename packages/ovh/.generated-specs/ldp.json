@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.ovh.ldp#IamResourceTagFilterInput": {
@@ -24,28 +25,28 @@
         "smithy.api#documentation": "Resource tag filter"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsRequestIamTagsValueList": {
+    "com.ovh.ldp#ListDbaasLogsRequestIamTagsValueList": {
       "type": "list",
       "member": {
         "target": "com.ovh.ldp#IamResourceTagFilterInput"
       },
       "traits": {}
     },
-    "com.ovh.ldp#GetDbaasLogsRequestIamTagsMap": {
+    "com.ovh.ldp#ListDbaasLogsRequestIamTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "com.ovh.ldp#GetDbaasLogsRequestIamTagsValueList"
+        "target": "com.ovh.ldp#ListDbaasLogsRequestIamTagsValueList"
       },
       "traits": {}
     },
-    "com.ovh.ldp#GetDbaasLogsRequest": {
+    "com.ovh.ldp#ListDbaasLogsRequest": {
       "type": "structure",
       "members": {
         "iamTags": {
-          "target": "com.ovh.ldp#GetDbaasLogsRequestIamTagsMap",
+          "target": "com.ovh.ldp#ListDbaasLogsRequestIamTagsMap",
           "traits": {
             "smithy.api#httpQuery": "iamTags",
             "smithy.api#documentation": "Filter resources on IAM tags"
@@ -56,18 +57,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsResponseBodyList": {
+    "com.ovh.ldp#ListDbaasLogsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.ldp#GetDbaasLogsResponse": {
+    "com.ovh.ldp#ListDbaasLogsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ldp#GetDbaasLogsResponseBodyList",
+          "target": "com.ovh.ldp#ListDbaasLogsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -78,13 +79,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogs": {
+    "com.ovh.ldp#ListDbaasLogs": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsRequest"
+        "target": "com.ovh.ldp#ListDbaasLogsRequest"
       },
       "output": {
-        "target": "com.ovh.ldp#GetDbaasLogsResponse"
+        "target": "com.ovh.ldp#ListDbaasLogsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -95,7 +96,7 @@
         "smithy.api#documentation": "List available services"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameRequest": {
+    "com.ovh.ldp#GetDbaasLogRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -280,10 +281,10 @@
         "smithy.api#documentation": "Possible values for ServiceStateEnum"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceName": {
+    "com.ovh.ldp#GetDbaasLog": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameRequest"
+        "target": "com.ovh.ldp#GetDbaasLogRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsServiceWithIAM"
@@ -302,7 +303,7 @@
         "smithy.api#documentation": "Returns the service object of connected identity."
       }
     },
-    "com.ovh.ldp#PutDbaasLogsServiceNameRequest": {
+    "com.ovh.ldp#PutDbaasLogRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -504,10 +505,10 @@
         "smithy.api#documentation": "Possible values for OperationStateEnum"
       }
     },
-    "com.ovh.ldp#PutDbaasLogsServiceName": {
+    "com.ovh.ldp#PutDbaasLog": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#PutDbaasLogsServiceNameRequest"
+        "target": "com.ovh.ldp#PutDbaasLogRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -532,7 +533,7 @@
         "smithy.api#documentation": "Update the service properties"
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameChangeContactRequest": {
+    "com.ovh.ldp#CreateDbaasLogChangeContactRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -566,18 +567,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameChangeContactResponseBodyList": {
+    "com.ovh.ldp#CreateDbaasLogChangeContactResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameChangeContactResponse": {
+    "com.ovh.ldp#CreateDbaasLogChangeContactResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ldp#PostDbaasLogsServiceNameChangeContactResponseBodyList",
+          "target": "com.ovh.ldp#CreateDbaasLogChangeContactResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -588,13 +589,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameChangeContact": {
+    "com.ovh.ldp#CreateDbaasLogChangeContact": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#PostDbaasLogsServiceNameChangeContactRequest"
+        "target": "com.ovh.ldp#CreateDbaasLogChangeContactRequest"
       },
       "output": {
-        "target": "com.ovh.ldp#PostDbaasLogsServiceNameChangeContactResponse"
+        "target": "com.ovh.ldp#CreateDbaasLogChangeContactResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -605,7 +606,7 @@
         "smithy.api#documentation": "Launch a contact change procedure"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameClusterRequest": {
+    "com.ovh.ldp#ListDbaasLogClusterRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -628,18 +629,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameClusterResponseBodyList": {
+    "com.ovh.ldp#ListDbaasLogClusterResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameClusterResponse": {
+    "com.ovh.ldp#ListDbaasLogClusterResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameClusterResponseBodyList",
+          "target": "com.ovh.ldp#ListDbaasLogClusterResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -650,13 +651,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameCluster": {
+    "com.ovh.ldp#ListDbaasLogCluster": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameClusterRequest"
+        "target": "com.ovh.ldp#ListDbaasLogClusterRequest"
       },
       "output": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameClusterResponse"
+        "target": "com.ovh.ldp#ListDbaasLogClusterResponse"
       },
       "errors": [
         {
@@ -672,7 +673,7 @@
         "smithy.api#documentation": "Returns the list of allowed cluster"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameClusterClusterIdRequest": {
+    "com.ovh.ldp#GetDbaasLogClusterRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -911,10 +912,10 @@
         "smithy.api#documentation": "Possible values for ClusterRegionEnum"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameClusterClusterId": {
+    "com.ovh.ldp#GetDbaasLogCluster": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameClusterClusterIdRequest"
+        "target": "com.ovh.ldp#GetDbaasLogClusterRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsCluster"
@@ -933,7 +934,7 @@
         "smithy.api#documentation": "Returns details of an allowed cluster"
       }
     },
-    "com.ovh.ldp#PutDbaasLogsServiceNameClusterClusterIdRequestArchiveAllowedNetworksList": {
+    "com.ovh.ldp#PutDbaasLogClusterRequestArchiveAllowedNetworksList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -942,7 +943,7 @@
         "smithy.api#documentation": "Allowed networks for ARCHIVE flow type"
       }
     },
-    "com.ovh.ldp#PutDbaasLogsServiceNameClusterClusterIdRequestDirectInputAllowedNetworksList": {
+    "com.ovh.ldp#PutDbaasLogClusterRequestDirectInputAllowedNetworksList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -951,7 +952,7 @@
         "smithy.api#documentation": "Allowed networks for DIRECT_INPUT flow type"
       }
     },
-    "com.ovh.ldp#PutDbaasLogsServiceNameClusterClusterIdRequestQueryAllowedNetworksList": {
+    "com.ovh.ldp#PutDbaasLogClusterRequestQueryAllowedNetworksList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -960,7 +961,7 @@
         "smithy.api#documentation": "Allowed networks for QUERY flow type"
       }
     },
-    "com.ovh.ldp#PutDbaasLogsServiceNameClusterClusterIdRequest": {
+    "com.ovh.ldp#PutDbaasLogClusterRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -980,21 +981,21 @@
           }
         },
         "archiveAllowedNetworks": {
-          "target": "com.ovh.ldp#PutDbaasLogsServiceNameClusterClusterIdRequestArchiveAllowedNetworksList",
+          "target": "com.ovh.ldp#PutDbaasLogClusterRequestArchiveAllowedNetworksList",
           "traits": {
             "smithy.api#documentation": "Allowed networks for ARCHIVE flow type",
             "com.distilled.openapi#nullable": {}
           }
         },
         "directInputAllowedNetworks": {
-          "target": "com.ovh.ldp#PutDbaasLogsServiceNameClusterClusterIdRequestDirectInputAllowedNetworksList",
+          "target": "com.ovh.ldp#PutDbaasLogClusterRequestDirectInputAllowedNetworksList",
           "traits": {
             "smithy.api#documentation": "Allowed networks for DIRECT_INPUT flow type",
             "com.distilled.openapi#nullable": {}
           }
         },
         "queryAllowedNetworks": {
-          "target": "com.ovh.ldp#PutDbaasLogsServiceNameClusterClusterIdRequestQueryAllowedNetworksList",
+          "target": "com.ovh.ldp#PutDbaasLogClusterRequestQueryAllowedNetworksList",
           "traits": {
             "smithy.api#documentation": "Allowed networks for QUERY flow type",
             "com.distilled.openapi#nullable": {}
@@ -1005,10 +1006,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#PutDbaasLogsServiceNameClusterClusterId": {
+    "com.ovh.ldp#PutDbaasLogCluster": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#PutDbaasLogsServiceNameClusterClusterIdRequest"
+        "target": "com.ovh.ldp#PutDbaasLogClusterRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -1030,7 +1031,7 @@
         "smithy.api#documentation": "Update details of an allowed cluster"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameClusterClusterIdRetentionRequest": {
+    "com.ovh.ldp#ListDbaasLogClusterRetentionRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1054,18 +1055,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameClusterClusterIdRetentionResponseBodyList": {
+    "com.ovh.ldp#ListDbaasLogClusterRetentionResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameClusterClusterIdRetentionResponse": {
+    "com.ovh.ldp#ListDbaasLogClusterRetentionResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameClusterClusterIdRetentionResponseBodyList",
+          "target": "com.ovh.ldp#ListDbaasLogClusterRetentionResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1076,13 +1077,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameClusterClusterIdRetention": {
+    "com.ovh.ldp#ListDbaasLogClusterRetention": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameClusterClusterIdRetentionRequest"
+        "target": "com.ovh.ldp#ListDbaasLogClusterRetentionRequest"
       },
       "output": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameClusterClusterIdRetentionResponse"
+        "target": "com.ovh.ldp#ListDbaasLogClusterRetentionResponse"
       },
       "errors": [
         {
@@ -1101,7 +1102,7 @@
         "smithy.api#documentation": "List all the retention ID available for a given cluster"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameClusterClusterIdRetentionRetentionIdRequest": {
+    "com.ovh.ldp#GetDbaasLogClusterRetentionRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1192,10 +1193,10 @@
         "smithy.api#documentation": "Possible values for RetentionTypeEnum"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameClusterClusterIdRetentionRetentionId": {
+    "com.ovh.ldp#GetDbaasLogClusterRetention": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameClusterClusterIdRetentionRetentionIdRequest"
+        "target": "com.ovh.ldp#GetDbaasLogClusterRetentionRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsClusterRetention"
@@ -1217,7 +1218,7 @@
         "smithy.api#documentation": "Returns details of a retention"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameEncryptionKeyRequest": {
+    "com.ovh.ldp#ListDbaasLogEncryptionKeyRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1240,18 +1241,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameEncryptionKeyResponseBodyList": {
+    "com.ovh.ldp#ListDbaasLogEncryptionKeyResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameEncryptionKeyResponse": {
+    "com.ovh.ldp#ListDbaasLogEncryptionKeyResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameEncryptionKeyResponseBodyList",
+          "target": "com.ovh.ldp#ListDbaasLogEncryptionKeyResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1262,13 +1263,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameEncryptionKey": {
+    "com.ovh.ldp#ListDbaasLogEncryptionKey": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameEncryptionKeyRequest"
+        "target": "com.ovh.ldp#ListDbaasLogEncryptionKeyRequest"
       },
       "output": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameEncryptionKeyResponse"
+        "target": "com.ovh.ldp#ListDbaasLogEncryptionKeyResponse"
       },
       "errors": [
         {
@@ -1284,7 +1285,7 @@
         "smithy.api#documentation": "Return the list of registred encryption keys"
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameEncryptionKeyRequest": {
+    "com.ovh.ldp#CreateDbaasLogEncryptionKeyRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1321,10 +1322,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameEncryptionKey": {
+    "com.ovh.ldp#CreateDbaasLogEncryptionKey": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#PostDbaasLogsServiceNameEncryptionKeyRequest"
+        "target": "com.ovh.ldp#CreateDbaasLogEncryptionKeyRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -1349,7 +1350,7 @@
         "smithy.api#documentation": "Add a new encryption key"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameEncryptionKeyEncryptionKeyIdRequest": {
+    "com.ovh.ldp#GetDbaasLogEncryptionKeyRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1459,10 +1460,10 @@
         "smithy.api#documentation": "Possible values for EncryptionKeyAlgorithmEnum"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameEncryptionKeyEncryptionKeyId": {
+    "com.ovh.ldp#GetDbaasLogEncryptionKey": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameEncryptionKeyEncryptionKeyIdRequest"
+        "target": "com.ovh.ldp#GetDbaasLogEncryptionKeyRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsEncryptionKey"
@@ -1484,7 +1485,7 @@
         "smithy.api#documentation": "Return details of an encryption key"
       }
     },
-    "com.ovh.ldp#DeleteDbaasLogsServiceNameEncryptionKeyEncryptionKeyIdRequest": {
+    "com.ovh.ldp#DeleteDbaasLogEncryptionKeyRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1508,10 +1509,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#DeleteDbaasLogsServiceNameEncryptionKeyEncryptionKeyId": {
+    "com.ovh.ldp#DeleteDbaasLogEncryptionKey": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#DeleteDbaasLogsServiceNameEncryptionKeyEncryptionKeyIdRequest"
+        "target": "com.ovh.ldp#DeleteDbaasLogEncryptionKeyRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -1533,7 +1534,7 @@
         "smithy.api#documentation": "Delete the specified encryption key"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameInputRequest": {
+    "com.ovh.ldp#ListDbaasLogInputRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1556,18 +1557,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameInputResponseBodyList": {
+    "com.ovh.ldp#ListDbaasLogInputResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameInputResponse": {
+    "com.ovh.ldp#ListDbaasLogInputResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameInputResponseBodyList",
+          "target": "com.ovh.ldp#ListDbaasLogInputResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1578,13 +1579,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameInput": {
+    "com.ovh.ldp#ListDbaasLogInput": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameInputRequest"
+        "target": "com.ovh.ldp#ListDbaasLogInputRequest"
       },
       "output": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameInputResponse"
+        "target": "com.ovh.ldp#ListDbaasLogInputResponse"
       },
       "errors": [
         {
@@ -1600,7 +1601,7 @@
         "smithy.api#documentation": "Returns the list of registered input attached to the logged user"
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameInputRequestAllowedNetworksList": {
+    "com.ovh.ldp#CreateDbaasLogInputRequestAllowedNetworksList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1609,7 +1610,7 @@
         "smithy.api#documentation": "IP blocks"
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameInputRequest": {
+    "com.ovh.ldp#CreateDbaasLogInputRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1621,7 +1622,7 @@
           }
         },
         "allowedNetworks": {
-          "target": "com.ovh.ldp#PostDbaasLogsServiceNameInputRequestAllowedNetworksList",
+          "target": "com.ovh.ldp#CreateDbaasLogInputRequestAllowedNetworksList",
           "traits": {
             "smithy.api#documentation": "IP blocks",
             "com.distilled.openapi#nullable": {}
@@ -1702,10 +1703,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameInput": {
+    "com.ovh.ldp#CreateDbaasLogInput": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#PostDbaasLogsServiceNameInputRequest"
+        "target": "com.ovh.ldp#CreateDbaasLogInputRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -1730,7 +1731,7 @@
         "smithy.api#documentation": "Register a new input object"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameInputEngineRequest": {
+    "com.ovh.ldp#ListDbaasLogInputEngineRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1746,18 +1747,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameInputEngineResponseBodyList": {
+    "com.ovh.ldp#ListDbaasLogInputEngineResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameInputEngineResponse": {
+    "com.ovh.ldp#ListDbaasLogInputEngineResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameInputEngineResponseBodyList",
+          "target": "com.ovh.ldp#ListDbaasLogInputEngineResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1768,13 +1769,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameInputEngine": {
+    "com.ovh.ldp#ListDbaasLogInputEngine": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameInputEngineRequest"
+        "target": "com.ovh.ldp#ListDbaasLogInputEngineRequest"
       },
       "output": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameInputEngineResponse"
+        "target": "com.ovh.ldp#ListDbaasLogInputEngineResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1785,7 +1786,7 @@
         "smithy.api#documentation": "Returns the list of available input engines"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameInputEngineEngineIdRequest": {
+    "com.ovh.ldp#GetDbaasLogInputEngineRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1867,10 +1868,10 @@
         "smithy.api#documentation": "Possible values for EngineNameEnum"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameInputEngineEngineId": {
+    "com.ovh.ldp#GetDbaasLogInputEngine": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameInputEngineEngineIdRequest"
+        "target": "com.ovh.ldp#GetDbaasLogInputEngineRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsEngine"
@@ -1889,7 +1890,7 @@
         "smithy.api#documentation": "Returns details of specified input engine"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameInputEngineEngineIdHelperRequest": {
+    "com.ovh.ldp#ListDbaasLogInputEngineHelperRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1913,18 +1914,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameInputEngineEngineIdHelperResponseBodyList": {
+    "com.ovh.ldp#ListDbaasLogInputEngineHelperResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameInputEngineEngineIdHelperResponse": {
+    "com.ovh.ldp#ListDbaasLogInputEngineHelperResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameInputEngineEngineIdHelperResponseBodyList",
+          "target": "com.ovh.ldp#ListDbaasLogInputEngineHelperResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1935,13 +1936,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameInputEngineEngineIdHelper": {
+    "com.ovh.ldp#ListDbaasLogInputEngineHelper": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameInputEngineEngineIdHelperRequest"
+        "target": "com.ovh.ldp#ListDbaasLogInputEngineHelperRequest"
       },
       "output": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameInputEngineEngineIdHelperResponse"
+        "target": "com.ovh.ldp#ListDbaasLogInputEngineHelperResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1952,7 +1953,7 @@
         "smithy.api#documentation": "Return the list of available helpers for the given input engine"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameInputEngineEngineIdHelperHelperIdRequest": {
+    "com.ovh.ldp#GetDbaasLogInputEngineHelperRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2077,10 +2078,10 @@
         "smithy.api#documentation": "Helper sections"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameInputEngineEngineIdHelperHelperId": {
+    "com.ovh.ldp#GetDbaasLogInputEngineHelper": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameInputEngineEngineIdHelperHelperIdRequest"
+        "target": "com.ovh.ldp#GetDbaasLogInputEngineHelperRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsHelper"
@@ -2099,7 +2100,7 @@
         "smithy.api#documentation": "Returns details of specified input engine helper"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameInputInputIdRequest": {
+    "com.ovh.ldp#GetDbaasLogInputRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2294,10 +2295,10 @@
         "smithy.api#documentation": "Possible values for InputStatusEnum"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameInputInputId": {
+    "com.ovh.ldp#GetDbaasLogInput": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameInputInputIdRequest"
+        "target": "com.ovh.ldp#GetDbaasLogInputRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsInput"
@@ -2316,7 +2317,7 @@
         "smithy.api#documentation": "Returns details of specified input"
       }
     },
-    "com.ovh.ldp#PutDbaasLogsServiceNameInputInputIdRequestAllowedNetworksList": {
+    "com.ovh.ldp#PutDbaasLogInputRequestAllowedNetworksList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -2325,7 +2326,7 @@
         "smithy.api#documentation": "IP blocks"
       }
     },
-    "com.ovh.ldp#PutDbaasLogsServiceNameInputInputIdRequest": {
+    "com.ovh.ldp#PutDbaasLogInputRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2345,7 +2346,7 @@
           }
         },
         "allowedNetworks": {
-          "target": "com.ovh.ldp#PutDbaasLogsServiceNameInputInputIdRequestAllowedNetworksList",
+          "target": "com.ovh.ldp#PutDbaasLogInputRequestAllowedNetworksList",
           "traits": {
             "smithy.api#documentation": "IP blocks",
             "com.distilled.openapi#nullable": {}
@@ -2426,10 +2427,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#PutDbaasLogsServiceNameInputInputId": {
+    "com.ovh.ldp#PutDbaasLogInput": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#PutDbaasLogsServiceNameInputInputIdRequest"
+        "target": "com.ovh.ldp#PutDbaasLogInputRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -2454,7 +2455,7 @@
         "smithy.api#documentation": "Update information of specified input object"
       }
     },
-    "com.ovh.ldp#DeleteDbaasLogsServiceNameInputInputIdRequest": {
+    "com.ovh.ldp#DeleteDbaasLogInputRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2478,10 +2479,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#DeleteDbaasLogsServiceNameInputInputId": {
+    "com.ovh.ldp#DeleteDbaasLogInput": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#DeleteDbaasLogsServiceNameInputInputIdRequest"
+        "target": "com.ovh.ldp#DeleteDbaasLogInputRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -2503,7 +2504,7 @@
         "smithy.api#documentation": "Remove the specified input object"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameInputInputIdActionRequest": {
+    "com.ovh.ldp#ListDbaasLogInputActionRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2591,18 +2592,18 @@
         "smithy.api#documentation": "Possible values for InputActionTypeEnum"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameInputInputIdActionResponseBodyList": {
+    "com.ovh.ldp#ListDbaasLogInputActionResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.ldp#DbaasLogsInputAction"
       },
       "traits": {}
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameInputInputIdActionResponse": {
+    "com.ovh.ldp#ListDbaasLogInputActionResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameInputInputIdActionResponseBodyList",
+          "target": "com.ovh.ldp#ListDbaasLogInputActionResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -2613,13 +2614,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameInputInputIdAction": {
+    "com.ovh.ldp#ListDbaasLogInputAction": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameInputInputIdActionRequest"
+        "target": "com.ovh.ldp#ListDbaasLogInputActionRequest"
       },
       "output": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameInputInputIdActionResponse"
+        "target": "com.ovh.ldp#ListDbaasLogInputActionResponse"
       },
       "errors": [
         {
@@ -2635,7 +2636,7 @@
         "smithy.api#documentation": "Returns actions of specified input"
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameInputInputIdConfigtestRequest": {
+    "com.ovh.ldp#CreateDbaasLogInputConfigtestRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2659,10 +2660,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameInputInputIdConfigtest": {
+    "com.ovh.ldp#CreateDbaasLogInputConfigtest": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#PostDbaasLogsServiceNameInputInputIdConfigtestRequest"
+        "target": "com.ovh.ldp#CreateDbaasLogInputConfigtestRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -2684,7 +2685,7 @@
         "smithy.api#documentation": "Validate configuration of specified input"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameInputInputIdConfigtestResultRequest": {
+    "com.ovh.ldp#GetDbaasLogInputConfigtestResultRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2743,10 +2744,10 @@
         "smithy.api#documentation": "Config test results"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameInputInputIdConfigtestResult": {
+    "com.ovh.ldp#GetDbaasLogInputConfigtestResult": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameInputInputIdConfigtestResultRequest"
+        "target": "com.ovh.ldp#GetDbaasLogInputConfigtestResultRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsTestResult"
@@ -2765,7 +2766,7 @@
         "smithy.api#documentation": "Returns the config test operation result"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameInputInputIdConfigurationFlowggerRequest": {
+    "com.ovh.ldp#GetDbaasLogInputConfigurationFlowggerRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2873,10 +2874,10 @@
         "smithy.api#documentation": "Possible values for FlowggerConfigurationLogFramingEnum"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameInputInputIdConfigurationFlowgger": {
+    "com.ovh.ldp#GetDbaasLogInputConfigurationFlowgger": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameInputInputIdConfigurationFlowggerRequest"
+        "target": "com.ovh.ldp#GetDbaasLogInputConfigurationFlowggerRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsFlowggerConfiguration"
@@ -2895,7 +2896,7 @@
         "smithy.api#documentation": "Returns the flowgger configuration"
       }
     },
-    "com.ovh.ldp#PutDbaasLogsServiceNameInputInputIdConfigurationFlowggerRequest": {
+    "com.ovh.ldp#PutDbaasLogInputConfigurationFlowggerRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2933,10 +2934,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#PutDbaasLogsServiceNameInputInputIdConfigurationFlowgger": {
+    "com.ovh.ldp#PutDbaasLogInputConfigurationFlowgger": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#PutDbaasLogsServiceNameInputInputIdConfigurationFlowggerRequest"
+        "target": "com.ovh.ldp#PutDbaasLogInputConfigurationFlowggerRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -2958,7 +2959,7 @@
         "smithy.api#documentation": "Update the flowgger configuration"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameInputInputIdConfigurationLogstashRequest": {
+    "com.ovh.ldp#GetDbaasLogInputConfigurationLogstashRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3010,10 +3011,10 @@
         "smithy.api#documentation": "Logstash configuration"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameInputInputIdConfigurationLogstash": {
+    "com.ovh.ldp#GetDbaasLogInputConfigurationLogstash": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameInputInputIdConfigurationLogstashRequest"
+        "target": "com.ovh.ldp#GetDbaasLogInputConfigurationLogstashRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsLogstashConfiguration"
@@ -3032,7 +3033,7 @@
         "smithy.api#documentation": "Returns the logstash configuration"
       }
     },
-    "com.ovh.ldp#PutDbaasLogsServiceNameInputInputIdConfigurationLogstashRequest": {
+    "com.ovh.ldp#PutDbaasLogInputConfigurationLogstashRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3077,10 +3078,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#PutDbaasLogsServiceNameInputInputIdConfigurationLogstash": {
+    "com.ovh.ldp#PutDbaasLogInputConfigurationLogstash": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#PutDbaasLogsServiceNameInputInputIdConfigurationLogstashRequest"
+        "target": "com.ovh.ldp#PutDbaasLogInputConfigurationLogstashRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -3102,7 +3103,7 @@
         "smithy.api#documentation": "Update the logstash configuration"
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameInputInputIdEndRequest": {
+    "com.ovh.ldp#CreateDbaasLogInputEndRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3126,10 +3127,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameInputInputIdEnd": {
+    "com.ovh.ldp#CreateDbaasLogInputEnd": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#PostDbaasLogsServiceNameInputInputIdEndRequest"
+        "target": "com.ovh.ldp#CreateDbaasLogInputEndRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -3151,7 +3152,7 @@
         "smithy.api#documentation": "Schedule the end of specified input"
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameInputInputIdLogsUrlRequest": {
+    "com.ovh.ldp#CreateDbaasLogInputLogUrlRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3195,10 +3196,10 @@
         "smithy.api#documentation": "Temporary url information"
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameInputInputIdLogsUrl": {
+    "com.ovh.ldp#CreateDbaasLogInputLogUrl": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#PostDbaasLogsServiceNameInputInputIdLogsUrlRequest"
+        "target": "com.ovh.ldp#CreateDbaasLogInputLogUrlRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsTemporaryLogsLink"
@@ -3220,7 +3221,7 @@
         "smithy.api#documentation": "Generate a temporary url to retrieve input logs"
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameInputInputIdRestartRequest": {
+    "com.ovh.ldp#RestartDbaasLogsInputRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3244,10 +3245,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameInputInputIdRestart": {
+    "com.ovh.ldp#RestartDbaasLogsInput": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#PostDbaasLogsServiceNameInputInputIdRestartRequest"
+        "target": "com.ovh.ldp#RestartDbaasLogsInputRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -3269,7 +3270,7 @@
         "smithy.api#documentation": "Schedule the restart of specified input"
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameInputInputIdStartRequest": {
+    "com.ovh.ldp#StartDbaasLogsInputRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3293,10 +3294,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameInputInputIdStart": {
+    "com.ovh.ldp#StartDbaasLogsInput": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#PostDbaasLogsServiceNameInputInputIdStartRequest"
+        "target": "com.ovh.ldp#StartDbaasLogsInputRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -3318,7 +3319,7 @@
         "smithy.api#documentation": "Schedule the start of specified input"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameInputInputIdUrlRequest": {
+    "com.ovh.ldp#ListDbaasLogInputUrlRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3544,18 +3545,18 @@
         "smithy.api#documentation": "Possible values for UrlTypeEnum"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameInputInputIdUrlResponseBodyList": {
+    "com.ovh.ldp#ListDbaasLogInputUrlResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.ldp#DbaasLogsUrl"
       },
       "traits": {}
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameInputInputIdUrlResponse": {
+    "com.ovh.ldp#ListDbaasLogInputUrlResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameInputInputIdUrlResponseBodyList",
+          "target": "com.ovh.ldp#ListDbaasLogInputUrlResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -3566,13 +3567,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameInputInputIdUrl": {
+    "com.ovh.ldp#ListDbaasLogInputUrl": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameInputInputIdUrlRequest"
+        "target": "com.ovh.ldp#ListDbaasLogInputUrlRequest"
       },
       "output": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameInputInputIdUrlResponse"
+        "target": "com.ovh.ldp#ListDbaasLogInputUrlResponse"
       },
       "errors": [
         {
@@ -3588,7 +3589,7 @@
         "smithy.api#documentation": "Returns the list of urls of specified input"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameMetricsRequest": {
+    "com.ovh.ldp#GetDbaasLogMetricsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3624,10 +3625,10 @@
         "smithy.api#documentation": "Metrics access"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameMetrics": {
+    "com.ovh.ldp#GetDbaasLogMetrics": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameMetricsRequest"
+        "target": "com.ovh.ldp#GetDbaasLogMetricsRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsServiceMetric"
@@ -3646,7 +3647,7 @@
         "smithy.api#documentation": "Returns Metrics credentials"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOperationRequest": {
+    "com.ovh.ldp#ListDbaasLogOperationRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3662,18 +3663,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOperationResponseBodyList": {
+    "com.ovh.ldp#ListDbaasLogOperationResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOperationResponse": {
+    "com.ovh.ldp#ListDbaasLogOperationResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOperationResponseBodyList",
+          "target": "com.ovh.ldp#ListDbaasLogOperationResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -3684,13 +3685,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOperation": {
+    "com.ovh.ldp#ListDbaasLogOperation": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOperationRequest"
+        "target": "com.ovh.ldp#ListDbaasLogOperationRequest"
       },
       "output": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOperationResponse"
+        "target": "com.ovh.ldp#ListDbaasLogOperationResponse"
       },
       "errors": [
         {
@@ -3706,7 +3707,7 @@
         "smithy.api#documentation": "Latest operations"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOperationOperationIdRequest": {
+    "com.ovh.ldp#GetDbaasLogOperationRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3730,10 +3731,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOperationOperationId": {
+    "com.ovh.ldp#GetDbaasLogOperation": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOperationOperationIdRequest"
+        "target": "com.ovh.ldp#GetDbaasLogOperationRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -3752,7 +3753,7 @@
         "smithy.api#documentation": "Returns details of specified operation"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogDashboardRequest": {
+    "com.ovh.ldp#ListDbaasLogOutputGraylogDashboardRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3775,18 +3776,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogDashboardResponseBodyList": {
+    "com.ovh.ldp#ListDbaasLogOutputGraylogDashboardResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogDashboardResponse": {
+    "com.ovh.ldp#ListDbaasLogOutputGraylogDashboardResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogDashboardResponseBodyList",
+          "target": "com.ovh.ldp#ListDbaasLogOutputGraylogDashboardResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -3797,13 +3798,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogDashboard": {
+    "com.ovh.ldp#ListDbaasLogOutputGraylogDashboard": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogDashboardRequest"
+        "target": "com.ovh.ldp#ListDbaasLogOutputGraylogDashboardRequest"
       },
       "output": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogDashboardResponse"
+        "target": "com.ovh.ldp#ListDbaasLogOutputGraylogDashboardResponse"
       },
       "errors": [
         {
@@ -3819,7 +3820,7 @@
         "smithy.api#documentation": "Returns the list of graylog dashboards"
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameOutputGraylogDashboardRequest": {
+    "com.ovh.ldp#CreateDbaasLogOutputGraylogDashboardRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3849,10 +3850,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameOutputGraylogDashboard": {
+    "com.ovh.ldp#CreateDbaasLogOutputGraylogDashboard": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#PostDbaasLogsServiceNameOutputGraylogDashboardRequest"
+        "target": "com.ovh.ldp#CreateDbaasLogOutputGraylogDashboardRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -3874,7 +3875,7 @@
         "smithy.api#documentation": "Register a new graylog dashboard"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogDashboardDashboardIdRequest": {
+    "com.ovh.ldp#GetDbaasLogOutputGraylogDashboardRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3943,10 +3944,10 @@
         "smithy.api#documentation": "Graylog dashboard"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogDashboardDashboardId": {
+    "com.ovh.ldp#GetDbaasLogOutputGraylogDashboard": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogDashboardDashboardIdRequest"
+        "target": "com.ovh.ldp#GetDbaasLogOutputGraylogDashboardRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsDashboard"
@@ -3965,7 +3966,7 @@
         "smithy.api#documentation": "Returns details of specified graylog dashboard"
       }
     },
-    "com.ovh.ldp#PutDbaasLogsServiceNameOutputGraylogDashboardDashboardIdRequest": {
+    "com.ovh.ldp#PutDbaasLogOutputGraylogDashboardRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4003,10 +4004,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#PutDbaasLogsServiceNameOutputGraylogDashboardDashboardId": {
+    "com.ovh.ldp#PutDbaasLogOutputGraylogDashboard": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#PutDbaasLogsServiceNameOutputGraylogDashboardDashboardIdRequest"
+        "target": "com.ovh.ldp#PutDbaasLogOutputGraylogDashboardRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -4028,7 +4029,7 @@
         "smithy.api#documentation": "Update information of specified graylog dashboard"
       }
     },
-    "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputGraylogDashboardDashboardIdRequest": {
+    "com.ovh.ldp#DeleteDbaasLogOutputGraylogDashboardRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4052,10 +4053,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputGraylogDashboardDashboardId": {
+    "com.ovh.ldp#DeleteDbaasLogOutputGraylogDashboard": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputGraylogDashboardDashboardIdRequest"
+        "target": "com.ovh.ldp#DeleteDbaasLogOutputGraylogDashboardRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -4077,7 +4078,7 @@
         "smithy.api#documentation": "Remove specified graylog dashboard"
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameOutputGraylogDashboardDashboardIdDuplicateRequest": {
+    "com.ovh.ldp#DuplicateDbaasLogsOutputGraylogDashboardRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4122,10 +4123,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameOutputGraylogDashboardDashboardIdDuplicate": {
+    "com.ovh.ldp#DuplicateDbaasLogsOutputGraylogDashboard": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#PostDbaasLogsServiceNameOutputGraylogDashboardDashboardIdDuplicateRequest"
+        "target": "com.ovh.ldp#DuplicateDbaasLogsOutputGraylogDashboardRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -4150,7 +4151,7 @@
         "smithy.api#documentation": "Copy all widgets from specified dashboard to a new one"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogDashboardDashboardIdUrlRequest": {
+    "com.ovh.ldp#ListDbaasLogOutputGraylogDashboardUrlRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4174,18 +4175,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogDashboardDashboardIdUrlResponseBodyList": {
+    "com.ovh.ldp#ListDbaasLogOutputGraylogDashboardUrlResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.ldp#DbaasLogsUrl"
       },
       "traits": {}
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogDashboardDashboardIdUrlResponse": {
+    "com.ovh.ldp#ListDbaasLogOutputGraylogDashboardUrlResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogDashboardDashboardIdUrlResponseBodyList",
+          "target": "com.ovh.ldp#ListDbaasLogOutputGraylogDashboardUrlResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -4196,13 +4197,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogDashboardDashboardIdUrl": {
+    "com.ovh.ldp#ListDbaasLogOutputGraylogDashboardUrl": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogDashboardDashboardIdUrlRequest"
+        "target": "com.ovh.ldp#ListDbaasLogOutputGraylogDashboardUrlRequest"
       },
       "output": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogDashboardDashboardIdUrlResponse"
+        "target": "com.ovh.ldp#ListDbaasLogOutputGraylogDashboardUrlResponse"
       },
       "errors": [
         {
@@ -4218,7 +4219,7 @@
         "smithy.api#documentation": "Returns the list of urls of specified graylog dashboard"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamRequest": {
+    "com.ovh.ldp#ListDbaasLogOutputGraylogStreamRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4241,18 +4242,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamResponseBodyList": {
+    "com.ovh.ldp#ListDbaasLogOutputGraylogStreamResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamResponse": {
+    "com.ovh.ldp#ListDbaasLogOutputGraylogStreamResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamResponseBodyList",
+          "target": "com.ovh.ldp#ListDbaasLogOutputGraylogStreamResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -4263,13 +4264,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStream": {
+    "com.ovh.ldp#ListDbaasLogOutputGraylogStream": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamRequest"
+        "target": "com.ovh.ldp#ListDbaasLogOutputGraylogStreamRequest"
       },
       "output": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamResponse"
+        "target": "com.ovh.ldp#ListDbaasLogOutputGraylogStreamResponse"
       },
       "errors": [
         {
@@ -4343,7 +4344,7 @@
         "smithy.api#documentation": "Possible values for StreamColdStorageContentEnum"
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameOutputGraylogStreamRequestEncryptionKeysIdsList": {
+    "com.ovh.ldp#CreateDbaasLogOutputGraylogStreamRequestEncryptionKeysIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -4352,7 +4353,7 @@
         "smithy.api#documentation": "Encryption keys used to encrypt stream archives"
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameOutputGraylogStreamRequest": {
+    "com.ovh.ldp#CreateDbaasLogOutputGraylogStreamRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4406,7 +4407,7 @@
           }
         },
         "encryptionKeysIds": {
-          "target": "com.ovh.ldp#PostDbaasLogsServiceNameOutputGraylogStreamRequestEncryptionKeysIdsList",
+          "target": "com.ovh.ldp#CreateDbaasLogOutputGraylogStreamRequestEncryptionKeysIdsList",
           "traits": {
             "smithy.api#documentation": "Encryption keys used to encrypt stream archives",
             "com.distilled.openapi#nullable": {}
@@ -4473,10 +4474,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameOutputGraylogStream": {
+    "com.ovh.ldp#CreateDbaasLogOutputGraylogStream": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#PostDbaasLogsServiceNameOutputGraylogStreamRequest"
+        "target": "com.ovh.ldp#CreateDbaasLogOutputGraylogStreamRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -4501,7 +4502,7 @@
         "smithy.api#documentation": "Register a new graylog stream"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRequest": {
+    "com.ovh.ldp#GetDbaasLogOutputGraylogStreamRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4706,10 +4707,10 @@
         "smithy.api#documentation": "Encryption keys used to encrypt stream archives"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamId": {
+    "com.ovh.ldp#GetDbaasLogOutputGraylogStream": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRequest"
+        "target": "com.ovh.ldp#GetDbaasLogOutputGraylogStreamRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsStream"
@@ -4728,7 +4729,7 @@
         "smithy.api#documentation": "Returns details of specified graylog stream"
       }
     },
-    "com.ovh.ldp#PutDbaasLogsServiceNameOutputGraylogStreamStreamIdRequestEncryptionKeysIdsList": {
+    "com.ovh.ldp#PutDbaasLogOutputGraylogStreamRequestEncryptionKeysIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -4737,7 +4738,7 @@
         "smithy.api#documentation": "Encryption keys used to encrypt stream archives"
       }
     },
-    "com.ovh.ldp#PutDbaasLogsServiceNameOutputGraylogStreamStreamIdRequest": {
+    "com.ovh.ldp#PutDbaasLogOutputGraylogStreamRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4799,7 +4800,7 @@
           }
         },
         "encryptionKeysIds": {
-          "target": "com.ovh.ldp#PutDbaasLogsServiceNameOutputGraylogStreamStreamIdRequestEncryptionKeysIdsList",
+          "target": "com.ovh.ldp#PutDbaasLogOutputGraylogStreamRequestEncryptionKeysIdsList",
           "traits": {
             "smithy.api#documentation": "Encryption keys used to encrypt stream archives",
             "com.distilled.openapi#nullable": {}
@@ -4852,10 +4853,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#PutDbaasLogsServiceNameOutputGraylogStreamStreamId": {
+    "com.ovh.ldp#PutDbaasLogOutputGraylogStream": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#PutDbaasLogsServiceNameOutputGraylogStreamStreamIdRequest"
+        "target": "com.ovh.ldp#PutDbaasLogOutputGraylogStreamRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -4880,7 +4881,7 @@
         "smithy.api#documentation": "Update information of specified graylog stream"
       }
     },
-    "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdRequest": {
+    "com.ovh.ldp#DeleteDbaasLogOutputGraylogStreamRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4904,10 +4905,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputGraylogStreamStreamId": {
+    "com.ovh.ldp#DeleteDbaasLogOutputGraylogStream": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdRequest"
+        "target": "com.ovh.ldp#DeleteDbaasLogOutputGraylogStreamRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -4929,7 +4930,7 @@
         "smithy.api#documentation": "Remove specified graylog stream"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertRequest": {
+    "com.ovh.ldp#ListDbaasLogOutputGraylogStreamAlertRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4953,18 +4954,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertResponseBodyList": {
+    "com.ovh.ldp#ListDbaasLogOutputGraylogStreamAlertResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertResponse": {
+    "com.ovh.ldp#ListDbaasLogOutputGraylogStreamAlertResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertResponseBodyList",
+          "target": "com.ovh.ldp#ListDbaasLogOutputGraylogStreamAlertResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -4975,13 +4976,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdAlert": {
+    "com.ovh.ldp#ListDbaasLogOutputGraylogStreamAlert": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertRequest"
+        "target": "com.ovh.ldp#ListDbaasLogOutputGraylogStreamAlertRequest"
       },
       "output": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertResponse"
+        "target": "com.ovh.ldp#ListDbaasLogOutputGraylogStreamAlertResponse"
       },
       "errors": [
         {
@@ -5099,7 +5100,7 @@
         "smithy.api#documentation": "Possible values for StreamAlertConditionThresholdTypeEnum"
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertRequest": {
+    "com.ovh.ldp#CreateDbaasLogOutputGraylogStreamAlertRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -5207,10 +5208,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameOutputGraylogStreamStreamIdAlert": {
+    "com.ovh.ldp#CreateDbaasLogOutputGraylogStreamAlert": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#PostDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertRequest"
+        "target": "com.ovh.ldp#CreateDbaasLogOutputGraylogStreamAlertRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -5235,7 +5236,7 @@
         "smithy.api#documentation": "Register a new alert on specified graylog stream"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertAlertIdRequest": {
+    "com.ovh.ldp#GetDbaasLogOutputGraylogStreamAlertRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -5362,10 +5363,10 @@
         "smithy.api#documentation": "Alert condition"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertAlertId": {
+    "com.ovh.ldp#GetDbaasLogOutputGraylogStreamAlert": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertAlertIdRequest"
+        "target": "com.ovh.ldp#GetDbaasLogOutputGraylogStreamAlertRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsStreamAlertCondition"
@@ -5384,7 +5385,7 @@
         "smithy.api#documentation": "Returns details of specified graylog stream alert"
       }
     },
-    "com.ovh.ldp#PutDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertAlertIdRequest": {
+    "com.ovh.ldp#PutDbaasLogOutputGraylogStreamAlertRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -5500,10 +5501,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#PutDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertAlertId": {
+    "com.ovh.ldp#PutDbaasLogOutputGraylogStreamAlert": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#PutDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertAlertIdRequest"
+        "target": "com.ovh.ldp#PutDbaasLogOutputGraylogStreamAlertRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -5528,7 +5529,7 @@
         "smithy.api#documentation": "Update alert information of specified graylog stream"
       }
     },
-    "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertAlertIdRequest": {
+    "com.ovh.ldp#DeleteDbaasLogOutputGraylogStreamAlertRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -5560,10 +5561,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertAlertId": {
+    "com.ovh.ldp#DeleteDbaasLogOutputGraylogStreamAlert": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertAlertIdRequest"
+        "target": "com.ovh.ldp#DeleteDbaasLogOutputGraylogStreamAlertRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -5585,7 +5586,7 @@
         "smithy.api#documentation": "Remove alert from specified graylog stream"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveRequest": {
+    "com.ovh.ldp#ListDbaasLogOutputGraylogStreamArchiveRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -5609,18 +5610,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveResponseBodyList": {
+    "com.ovh.ldp#ListDbaasLogOutputGraylogStreamArchiveResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveResponse": {
+    "com.ovh.ldp#ListDbaasLogOutputGraylogStreamArchiveResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveResponseBodyList",
+          "target": "com.ovh.ldp#ListDbaasLogOutputGraylogStreamArchiveResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -5631,13 +5632,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchive": {
+    "com.ovh.ldp#ListDbaasLogOutputGraylogStreamArchive": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveRequest"
+        "target": "com.ovh.ldp#ListDbaasLogOutputGraylogStreamArchiveRequest"
       },
       "output": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveResponse"
+        "target": "com.ovh.ldp#ListDbaasLogOutputGraylogStreamArchiveResponse"
       },
       "errors": [
         {
@@ -5653,7 +5654,7 @@
         "smithy.api#documentation": "Returns the list of archives"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdRequest": {
+    "com.ovh.ldp#GetDbaasLogOutputGraylogStreamArchiveRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -5768,10 +5769,10 @@
         "smithy.api#documentation": "Possible values for ArchiveRetrievalStateEnum"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveId": {
+    "com.ovh.ldp#GetDbaasLogOutputGraylogStreamArchive": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdRequest"
+        "target": "com.ovh.ldp#GetDbaasLogOutputGraylogStreamArchiveRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsArchive"
@@ -5790,7 +5791,7 @@
         "smithy.api#documentation": "Returns details of specified archive"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdEncryptionKeyRequest": {
+    "com.ovh.ldp#ListDbaasLogOutputGraylogStreamArchiveEncryptionKeyRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -5822,18 +5823,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdEncryptionKeyResponseBodyList": {
+    "com.ovh.ldp#ListDbaasLogOutputGraylogStreamArchiveEncryptionKeyResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdEncryptionKeyResponse": {
+    "com.ovh.ldp#ListDbaasLogOutputGraylogStreamArchiveEncryptionKeyResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdEncryptionKeyResponseBodyList",
+          "target": "com.ovh.ldp#ListDbaasLogOutputGraylogStreamArchiveEncryptionKeyResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -5844,13 +5845,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdEncryptionKey": {
+    "com.ovh.ldp#ListDbaasLogOutputGraylogStreamArchiveEncryptionKey": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdEncryptionKeyRequest"
+        "target": "com.ovh.ldp#ListDbaasLogOutputGraylogStreamArchiveEncryptionKeyRequest"
       },
       "output": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdEncryptionKeyResponse"
+        "target": "com.ovh.ldp#ListDbaasLogOutputGraylogStreamArchiveEncryptionKeyResponse"
       },
       "errors": [
         {
@@ -5866,7 +5867,7 @@
         "smithy.api#documentation": "Get the list of encryption keys used to encrypt the archive"
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdUrlRequest": {
+    "com.ovh.ldp#CreateDbaasLogOutputGraylogStreamArchiveUrlRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -5918,10 +5919,10 @@
         "smithy.api#documentation": "Stream archive url"
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdUrl": {
+    "com.ovh.ldp#CreateDbaasLogOutputGraylogStreamArchiveUrl": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#PostDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdUrlRequest"
+        "target": "com.ovh.ldp#CreateDbaasLogOutputGraylogStreamArchiveUrlRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsArchiveUrl"
@@ -5940,7 +5941,7 @@
         "smithy.api#documentation": "Get a public temporary URL to access the archive"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleRequest": {
+    "com.ovh.ldp#ListDbaasLogOutputGraylogStreamRuleRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -5964,18 +5965,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleResponseBodyList": {
+    "com.ovh.ldp#ListDbaasLogOutputGraylogStreamRuleResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleResponse": {
+    "com.ovh.ldp#ListDbaasLogOutputGraylogStreamRuleResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleResponseBodyList",
+          "target": "com.ovh.ldp#ListDbaasLogOutputGraylogStreamRuleResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -5986,13 +5987,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRule": {
+    "com.ovh.ldp#ListDbaasLogOutputGraylogStreamRule": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleRequest"
+        "target": "com.ovh.ldp#ListDbaasLogOutputGraylogStreamRuleRequest"
       },
       "output": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleResponse"
+        "target": "com.ovh.ldp#ListDbaasLogOutputGraylogStreamRuleResponse"
       },
       "errors": [
         {
@@ -6040,7 +6041,7 @@
         "smithy.api#documentation": "Possible values for StreamRuleOperatorEnum"
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleRequest": {
+    "com.ovh.ldp#CreateDbaasLogOutputGraylogStreamRuleRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6092,10 +6093,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameOutputGraylogStreamStreamIdRule": {
+    "com.ovh.ldp#CreateDbaasLogOutputGraylogStreamRule": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#PostDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleRequest"
+        "target": "com.ovh.ldp#CreateDbaasLogOutputGraylogStreamRuleRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -6120,7 +6121,7 @@
         "smithy.api#documentation": "Register a new rule on specified graylog stream"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleRuleIdRequest": {
+    "com.ovh.ldp#GetDbaasLogOutputGraylogStreamRuleRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6192,10 +6193,10 @@
         "smithy.api#documentation": "Stream rule"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleRuleId": {
+    "com.ovh.ldp#GetDbaasLogOutputGraylogStreamRule": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleRuleIdRequest"
+        "target": "com.ovh.ldp#GetDbaasLogOutputGraylogStreamRuleRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsStreamRule"
@@ -6214,7 +6215,7 @@
         "smithy.api#documentation": "Returns details of specified graylog stream rule"
       }
     },
-    "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleRuleIdRequest": {
+    "com.ovh.ldp#DeleteDbaasLogOutputGraylogStreamRuleRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6246,10 +6247,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleRuleId": {
+    "com.ovh.ldp#DeleteDbaasLogOutputGraylogStreamRule": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleRuleIdRequest"
+        "target": "com.ovh.ldp#DeleteDbaasLogOutputGraylogStreamRuleRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -6271,7 +6272,7 @@
         "smithy.api#documentation": "Remove specified graylog stream rule"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionRequest": {
+    "com.ovh.ldp#ListDbaasLogOutputGraylogStreamSubscriptionRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6309,18 +6310,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionResponseBodyList": {
+    "com.ovh.ldp#ListDbaasLogOutputGraylogStreamSubscriptionResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionResponse": {
+    "com.ovh.ldp#ListDbaasLogOutputGraylogStreamSubscriptionResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionResponseBodyList",
+          "target": "com.ovh.ldp#ListDbaasLogOutputGraylogStreamSubscriptionResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -6331,13 +6332,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscription": {
+    "com.ovh.ldp#ListDbaasLogOutputGraylogStreamSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionRequest"
+        "target": "com.ovh.ldp#ListDbaasLogOutputGraylogStreamSubscriptionRequest"
       },
       "output": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionResponse"
+        "target": "com.ovh.ldp#ListDbaasLogOutputGraylogStreamSubscriptionResponse"
       },
       "errors": [
         {
@@ -6353,7 +6354,7 @@
         "smithy.api#documentation": "Returns the list of subscriptions targeting a specified graylog stream"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionSubscriptionIdRequest": {
+    "com.ovh.ldp#GetDbaasLogOutputGraylogStreamSubscriptionRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6455,10 +6456,10 @@
         "smithy.api#documentation": "Log subscription resource"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionSubscriptionId": {
+    "com.ovh.ldp#GetDbaasLogOutputGraylogStreamSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionSubscriptionIdRequest"
+        "target": "com.ovh.ldp#GetDbaasLogOutputGraylogStreamSubscriptionRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsLogSubscription"
@@ -6477,7 +6478,7 @@
         "smithy.api#documentation": "Returns details of specified graylog stream subscription"
       }
     },
-    "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionSubscriptionIdRequest": {
+    "com.ovh.ldp#DeleteDbaasLogOutputGraylogStreamSubscriptionRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6509,10 +6510,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionSubscriptionId": {
+    "com.ovh.ldp#DeleteDbaasLogOutputGraylogStreamSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionSubscriptionIdRequest"
+        "target": "com.ovh.ldp#DeleteDbaasLogOutputGraylogStreamSubscriptionRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -6531,7 +6532,7 @@
         "smithy.api#documentation": "Delete a specified subscription targeting a specified graylog stream"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdUrlRequest": {
+    "com.ovh.ldp#ListDbaasLogOutputGraylogStreamUrlRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6555,18 +6556,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdUrlResponseBodyList": {
+    "com.ovh.ldp#ListDbaasLogOutputGraylogStreamUrlResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.ldp#DbaasLogsUrl"
       },
       "traits": {}
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdUrlResponse": {
+    "com.ovh.ldp#ListDbaasLogOutputGraylogStreamUrlResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdUrlResponseBodyList",
+          "target": "com.ovh.ldp#ListDbaasLogOutputGraylogStreamUrlResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -6577,13 +6578,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdUrl": {
+    "com.ovh.ldp#ListDbaasLogOutputGraylogStreamUrl": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdUrlRequest"
+        "target": "com.ovh.ldp#ListDbaasLogOutputGraylogStreamUrlRequest"
       },
       "output": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdUrlResponse"
+        "target": "com.ovh.ldp#ListDbaasLogOutputGraylogStreamUrlResponse"
       },
       "errors": [
         {
@@ -6599,7 +6600,7 @@
         "smithy.api#documentation": "Returns the list of urls of specified graylog stream"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputMetricTenantRequest": {
+    "com.ovh.ldp#ListDbaasLogOutputMetricTenantRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6615,18 +6616,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputMetricTenantResponseBodyList": {
+    "com.ovh.ldp#ListDbaasLogOutputMetricTenantResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputMetricTenantResponse": {
+    "com.ovh.ldp#ListDbaasLogOutputMetricTenantResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputMetricTenantResponseBodyList",
+          "target": "com.ovh.ldp#ListDbaasLogOutputMetricTenantResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -6637,13 +6638,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputMetricTenant": {
+    "com.ovh.ldp#ListDbaasLogOutputMetricTenant": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputMetricTenantRequest"
+        "target": "com.ovh.ldp#ListDbaasLogOutputMetricTenantRequest"
       },
       "output": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputMetricTenantResponse"
+        "target": "com.ovh.ldp#ListDbaasLogOutputMetricTenantResponse"
       },
       "errors": [
         {
@@ -6659,7 +6660,7 @@
         "smithy.api#documentation": "List service's metric tenants"
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameOutputMetricTenantRequest": {
+    "com.ovh.ldp#CreateDbaasLogOutputMetricTenantRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6702,10 +6703,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameOutputMetricTenant": {
+    "com.ovh.ldp#CreateDbaasLogOutputMetricTenant": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#PostDbaasLogsServiceNameOutputMetricTenantRequest"
+        "target": "com.ovh.ldp#CreateDbaasLogOutputMetricTenantRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -6727,7 +6728,7 @@
         "smithy.api#documentation": "Create a metric tenant"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputMetricTenantTenantIdRequest": {
+    "com.ovh.ldp#GetDbaasLogOutputMetricTenantRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6840,10 +6841,10 @@
         "smithy.api#documentation": "Possible values for DeliveryStatusEnum"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputMetricTenantTenantId": {
+    "com.ovh.ldp#GetDbaasLogOutputMetricTenant": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputMetricTenantTenantIdRequest"
+        "target": "com.ovh.ldp#GetDbaasLogOutputMetricTenantRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsMetricTenant"
@@ -6865,7 +6866,7 @@
         "smithy.api#documentation": "Get the details about a metric tenant"
       }
     },
-    "com.ovh.ldp#PutDbaasLogsServiceNameOutputMetricTenantTenantIdRequest": {
+    "com.ovh.ldp#PutDbaasLogOutputMetricTenantRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6916,10 +6917,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#PutDbaasLogsServiceNameOutputMetricTenantTenantId": {
+    "com.ovh.ldp#PutDbaasLogOutputMetricTenant": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#PutDbaasLogsServiceNameOutputMetricTenantTenantIdRequest"
+        "target": "com.ovh.ldp#PutDbaasLogOutputMetricTenantRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -6944,7 +6945,7 @@
         "smithy.api#documentation": "Update a metric tenant"
       }
     },
-    "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputMetricTenantTenantIdRequest": {
+    "com.ovh.ldp#DeleteDbaasLogOutputMetricTenantRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6968,10 +6969,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputMetricTenantTenantId": {
+    "com.ovh.ldp#DeleteDbaasLogOutputMetricTenant": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputMetricTenantTenantIdRequest"
+        "target": "com.ovh.ldp#DeleteDbaasLogOutputMetricTenantRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -6993,7 +6994,7 @@
         "smithy.api#documentation": "Delete a metric tenant"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionRequest": {
+    "com.ovh.ldp#ListDbaasLogOutputMetricTenantSubscriptionRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7031,18 +7032,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionResponseBodyList": {
+    "com.ovh.ldp#ListDbaasLogOutputMetricTenantSubscriptionResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionResponse": {
+    "com.ovh.ldp#ListDbaasLogOutputMetricTenantSubscriptionResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionResponseBodyList",
+          "target": "com.ovh.ldp#ListDbaasLogOutputMetricTenantSubscriptionResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -7053,13 +7054,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputMetricTenantTenantIdSubscription": {
+    "com.ovh.ldp#ListDbaasLogOutputMetricTenantSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionRequest"
+        "target": "com.ovh.ldp#ListDbaasLogOutputMetricTenantSubscriptionRequest"
       },
       "output": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionResponse"
+        "target": "com.ovh.ldp#ListDbaasLogOutputMetricTenantSubscriptionResponse"
       },
       "errors": [
         {
@@ -7075,7 +7076,7 @@
         "smithy.api#documentation": "Returns the list of subscriptions targeting a specified metric tenant"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionSubscriptionIdRequest": {
+    "com.ovh.ldp#GetDbaasLogOutputMetricTenantSubscriptionRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7157,10 +7158,10 @@
         "smithy.api#documentation": "Metrics subscription"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionSubscriptionId": {
+    "com.ovh.ldp#GetDbaasLogOutputMetricTenantSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionSubscriptionIdRequest"
+        "target": "com.ovh.ldp#GetDbaasLogOutputMetricTenantSubscriptionRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsMetricSubscription"
@@ -7179,7 +7180,7 @@
         "smithy.api#documentation": "Returns details of specified metric tenant subscription"
       }
     },
-    "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionSubscriptionIdRequest": {
+    "com.ovh.ldp#DeleteDbaasLogOutputMetricTenantSubscriptionRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7211,10 +7212,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionSubscriptionId": {
+    "com.ovh.ldp#DeleteDbaasLogOutputMetricTenantSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionSubscriptionIdRequest"
+        "target": "com.ovh.ldp#DeleteDbaasLogOutputMetricTenantSubscriptionRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -7233,7 +7234,7 @@
         "smithy.api#documentation": "Delete a specified subscription targeting a specified metric tenant"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputMetricTenantTenantIdUrlRequest": {
+    "com.ovh.ldp#ListDbaasLogOutputMetricTenantUrlRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7257,18 +7258,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputMetricTenantTenantIdUrlResponseBodyList": {
+    "com.ovh.ldp#ListDbaasLogOutputMetricTenantUrlResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.ldp#DbaasLogsUrl"
       },
       "traits": {}
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputMetricTenantTenantIdUrlResponse": {
+    "com.ovh.ldp#ListDbaasLogOutputMetricTenantUrlResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputMetricTenantTenantIdUrlResponseBodyList",
+          "target": "com.ovh.ldp#ListDbaasLogOutputMetricTenantUrlResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -7279,13 +7280,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputMetricTenantTenantIdUrl": {
+    "com.ovh.ldp#ListDbaasLogOutputMetricTenantUrl": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputMetricTenantTenantIdUrlRequest"
+        "target": "com.ovh.ldp#ListDbaasLogOutputMetricTenantUrlRequest"
       },
       "output": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputMetricTenantTenantIdUrlResponse"
+        "target": "com.ovh.ldp#ListDbaasLogOutputMetricTenantUrlResponse"
       },
       "errors": [
         {
@@ -7301,7 +7302,7 @@
         "smithy.api#documentation": "Returns the list of urls of specified metric tenant"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchAliasRequest": {
+    "com.ovh.ldp#ListDbaasLogOutputOpensearchAliasRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7324,18 +7325,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchAliasResponseBodyList": {
+    "com.ovh.ldp#ListDbaasLogOutputOpensearchAliasResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchAliasResponse": {
+    "com.ovh.ldp#ListDbaasLogOutputOpensearchAliasResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchAliasResponseBodyList",
+          "target": "com.ovh.ldp#ListDbaasLogOutputOpensearchAliasResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -7346,13 +7347,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchAlias": {
+    "com.ovh.ldp#ListDbaasLogOutputOpensearchAlias": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchAliasRequest"
+        "target": "com.ovh.ldp#ListDbaasLogOutputOpensearchAliasRequest"
       },
       "output": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchAliasResponse"
+        "target": "com.ovh.ldp#ListDbaasLogOutputOpensearchAliasResponse"
       },
       "errors": [
         {
@@ -7368,7 +7369,7 @@
         "smithy.api#documentation": "Returns the list of alias for connected user"
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameOutputOpensearchAliasRequest": {
+    "com.ovh.ldp#CreateDbaasLogOutputOpensearchAliasRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7398,10 +7399,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameOutputOpensearchAlias": {
+    "com.ovh.ldp#CreateDbaasLogOutputOpensearchAlias": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#PostDbaasLogsServiceNameOutputOpensearchAliasRequest"
+        "target": "com.ovh.ldp#CreateDbaasLogOutputOpensearchAliasRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -7426,7 +7427,7 @@
         "smithy.api#documentation": "Register a new OpenSearch alias"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdRequest": {
+    "com.ovh.ldp#GetDbaasLogOutputOpensearchAliasRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7508,10 +7509,10 @@
         "smithy.api#documentation": "Alias"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchAliasAliasId": {
+    "com.ovh.ldp#GetDbaasLogOutputOpensearchAlias": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdRequest"
+        "target": "com.ovh.ldp#GetDbaasLogOutputOpensearchAliasRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsAlias"
@@ -7530,7 +7531,7 @@
         "smithy.api#documentation": "Returns specified OpenSearch alias"
       }
     },
-    "com.ovh.ldp#PutDbaasLogsServiceNameOutputOpensearchAliasAliasIdRequest": {
+    "com.ovh.ldp#PutDbaasLogOutputOpensearchAliasRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7561,10 +7562,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#PutDbaasLogsServiceNameOutputOpensearchAliasAliasId": {
+    "com.ovh.ldp#PutDbaasLogOutputOpensearchAlias": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#PutDbaasLogsServiceNameOutputOpensearchAliasAliasIdRequest"
+        "target": "com.ovh.ldp#PutDbaasLogOutputOpensearchAliasRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -7586,7 +7587,7 @@
         "smithy.api#documentation": "Update specified OpenSearch alias"
       }
     },
-    "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputOpensearchAliasAliasIdRequest": {
+    "com.ovh.ldp#DeleteDbaasLogOutputOpensearchAliasRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7610,10 +7611,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputOpensearchAliasAliasId": {
+    "com.ovh.ldp#DeleteDbaasLogOutputOpensearchAlias": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputOpensearchAliasAliasIdRequest"
+        "target": "com.ovh.ldp#DeleteDbaasLogOutputOpensearchAliasRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -7635,7 +7636,7 @@
         "smithy.api#documentation": "Remove specified OpenSearch alias"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexRequest": {
+    "com.ovh.ldp#ListDbaasLogOutputOpensearchAliasIndexRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7659,18 +7660,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexResponseBodyList": {
+    "com.ovh.ldp#ListDbaasLogOutputOpensearchAliasIndexResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexResponse": {
+    "com.ovh.ldp#ListDbaasLogOutputOpensearchAliasIndexResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexResponseBodyList",
+          "target": "com.ovh.ldp#ListDbaasLogOutputOpensearchAliasIndexResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -7681,13 +7682,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndex": {
+    "com.ovh.ldp#ListDbaasLogOutputOpensearchAliasIndex": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexRequest"
+        "target": "com.ovh.ldp#ListDbaasLogOutputOpensearchAliasIndexRequest"
       },
       "output": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexResponse"
+        "target": "com.ovh.ldp#ListDbaasLogOutputOpensearchAliasIndexResponse"
       },
       "errors": [
         {
@@ -7703,7 +7704,7 @@
         "smithy.api#documentation": "Returns the list of OpenSearch indexes attached to specified OpenSearch alias"
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexRequest": {
+    "com.ovh.ldp#ListDbaasLogsOutputOpensearchAliasRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7734,10 +7735,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndex": {
+    "com.ovh.ldp#ListDbaasLogsOutputOpensearchAlias": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#PostDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexRequest"
+        "target": "com.ovh.ldp#ListDbaasLogsOutputOpensearchAliasRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -7762,7 +7763,7 @@
         "smithy.api#documentation": "Attach a OpenSearch index to specified OpenSearch alias"
       }
     },
-    "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexIndexIdRequest": {
+    "com.ovh.ldp#DeleteDbaasLogOutputOpensearchAliasIndexRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7794,10 +7795,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexIndexId": {
+    "com.ovh.ldp#DeleteDbaasLogOutputOpensearchAliasIndex": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexIndexIdRequest"
+        "target": "com.ovh.ldp#DeleteDbaasLogOutputOpensearchAliasIndexRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -7819,7 +7820,7 @@
         "smithy.api#documentation": "Detach a OpenSearch index from specified OpenSearch alias"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamRequest": {
+    "com.ovh.ldp#ListDbaasLogOutputOpensearchAliasStreamRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7843,18 +7844,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamResponseBodyList": {
+    "com.ovh.ldp#ListDbaasLogOutputOpensearchAliasStreamResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamResponse": {
+    "com.ovh.ldp#ListDbaasLogOutputOpensearchAliasStreamResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamResponseBodyList",
+          "target": "com.ovh.ldp#ListDbaasLogOutputOpensearchAliasStreamResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -7865,13 +7866,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdStream": {
+    "com.ovh.ldp#ListDbaasLogOutputOpensearchAliasStream": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamRequest"
+        "target": "com.ovh.ldp#ListDbaasLogOutputOpensearchAliasStreamRequest"
       },
       "output": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamResponse"
+        "target": "com.ovh.ldp#ListDbaasLogOutputOpensearchAliasStreamResponse"
       },
       "errors": [
         {
@@ -7887,7 +7888,7 @@
         "smithy.api#documentation": "Returns the list of Graylog streams attached to specified OpenSearch alias"
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamRequest": {
+    "com.ovh.ldp#CreateDbaasLogOutputOpensearchAliasStreamRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7918,10 +7919,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameOutputOpensearchAliasAliasIdStream": {
+    "com.ovh.ldp#CreateDbaasLogOutputOpensearchAliasStream": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#PostDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamRequest"
+        "target": "com.ovh.ldp#CreateDbaasLogOutputOpensearchAliasStreamRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -7943,7 +7944,7 @@
         "smithy.api#documentation": "Attach a Graylog stream to specified OpenSearch alias"
       }
     },
-    "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamStreamIdRequest": {
+    "com.ovh.ldp#DeleteDbaasLogOutputOpensearchAliasStreamRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7975,10 +7976,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamStreamId": {
+    "com.ovh.ldp#DeleteDbaasLogOutputOpensearchAliasStream": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamStreamIdRequest"
+        "target": "com.ovh.ldp#DeleteDbaasLogOutputOpensearchAliasStreamRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -8000,7 +8001,7 @@
         "smithy.api#documentation": "Detach a Graylog stream from specified OpenSearch alias"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdUrlRequest": {
+    "com.ovh.ldp#ListDbaasLogOutputOpensearchAliasUrlRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8024,18 +8025,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdUrlResponseBodyList": {
+    "com.ovh.ldp#ListDbaasLogOutputOpensearchAliasUrlResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.ldp#DbaasLogsUrl"
       },
       "traits": {}
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdUrlResponse": {
+    "com.ovh.ldp#ListDbaasLogOutputOpensearchAliasUrlResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdUrlResponseBodyList",
+          "target": "com.ovh.ldp#ListDbaasLogOutputOpensearchAliasUrlResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -8046,13 +8047,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdUrl": {
+    "com.ovh.ldp#ListDbaasLogOutputOpensearchAliasUrl": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdUrlRequest"
+        "target": "com.ovh.ldp#ListDbaasLogOutputOpensearchAliasUrlRequest"
       },
       "output": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdUrlResponse"
+        "target": "com.ovh.ldp#ListDbaasLogOutputOpensearchAliasUrlResponse"
       },
       "errors": [
         {
@@ -8068,7 +8069,7 @@
         "smithy.api#documentation": "Returns the list of urls of specified alias"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchIndexRequest": {
+    "com.ovh.ldp#ListDbaasLogOutputOpensearchIndexRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8091,18 +8092,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchIndexResponseBodyList": {
+    "com.ovh.ldp#ListDbaasLogOutputOpensearchIndexResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchIndexResponse": {
+    "com.ovh.ldp#ListDbaasLogOutputOpensearchIndexResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchIndexResponseBodyList",
+          "target": "com.ovh.ldp#ListDbaasLogOutputOpensearchIndexResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -8113,13 +8114,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchIndex": {
+    "com.ovh.ldp#ListDbaasLogOutputOpensearchIndex": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchIndexRequest"
+        "target": "com.ovh.ldp#ListDbaasLogOutputOpensearchIndexRequest"
       },
       "output": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchIndexResponse"
+        "target": "com.ovh.ldp#ListDbaasLogOutputOpensearchIndexResponse"
       },
       "errors": [
         {
@@ -8135,7 +8136,7 @@
         "smithy.api#documentation": "Returns the list of OpenSearch indexes"
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameOutputOpensearchIndexRequest": {
+    "com.ovh.ldp#ListDbaasLogsOutputOpensearchRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8179,10 +8180,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameOutputOpensearchIndex": {
+    "com.ovh.ldp#ListDbaasLogsOutputOpensearch": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#PostDbaasLogsServiceNameOutputOpensearchIndexRequest"
+        "target": "com.ovh.ldp#ListDbaasLogsOutputOpensearchRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -8207,7 +8208,7 @@
         "smithy.api#documentation": "Register a new OpenSearch index"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchIndexIndexIdRequest": {
+    "com.ovh.ldp#GetDbaasLogOutputOpensearchIndexRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8304,10 +8305,10 @@
         "smithy.api#documentation": "Index"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchIndexIndexId": {
+    "com.ovh.ldp#GetDbaasLogOutputOpensearchIndex": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchIndexIndexIdRequest"
+        "target": "com.ovh.ldp#GetDbaasLogOutputOpensearchIndexRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsIndex"
@@ -8326,7 +8327,7 @@
         "smithy.api#documentation": "Returns specified OpenSearch index"
       }
     },
-    "com.ovh.ldp#PutDbaasLogsServiceNameOutputOpensearchIndexIndexIdRequest": {
+    "com.ovh.ldp#PutDbaasLogOutputOpensearchIndexRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8364,10 +8365,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#PutDbaasLogsServiceNameOutputOpensearchIndexIndexId": {
+    "com.ovh.ldp#PutDbaasLogOutputOpensearchIndex": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#PutDbaasLogsServiceNameOutputOpensearchIndexIndexIdRequest"
+        "target": "com.ovh.ldp#PutDbaasLogOutputOpensearchIndexRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -8389,7 +8390,7 @@
         "smithy.api#documentation": "Update specified OpenSearch index"
       }
     },
-    "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputOpensearchIndexIndexIdRequest": {
+    "com.ovh.ldp#DeleteDbaasLogOutputOpensearchIndexRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8413,10 +8414,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputOpensearchIndexIndexId": {
+    "com.ovh.ldp#DeleteDbaasLogOutputOpensearchIndex": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputOpensearchIndexIndexIdRequest"
+        "target": "com.ovh.ldp#DeleteDbaasLogOutputOpensearchIndexRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -8438,7 +8439,7 @@
         "smithy.api#documentation": "Remove specified OpenSearch index"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchIndexIndexIdUrlRequest": {
+    "com.ovh.ldp#ListDbaasLogOutputOpensearchIndexUrlRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8462,18 +8463,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchIndexIndexIdUrlResponseBodyList": {
+    "com.ovh.ldp#ListDbaasLogOutputOpensearchIndexUrlResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.ldp#DbaasLogsUrl"
       },
       "traits": {}
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchIndexIndexIdUrlResponse": {
+    "com.ovh.ldp#ListDbaasLogOutputOpensearchIndexUrlResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchIndexIndexIdUrlResponseBodyList",
+          "target": "com.ovh.ldp#ListDbaasLogOutputOpensearchIndexUrlResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -8484,13 +8485,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchIndexIndexIdUrl": {
+    "com.ovh.ldp#ListDbaasLogOutputOpensearchIndexUrl": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchIndexIndexIdUrlRequest"
+        "target": "com.ovh.ldp#ListDbaasLogOutputOpensearchIndexUrlRequest"
       },
       "output": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchIndexIndexIdUrlResponse"
+        "target": "com.ovh.ldp#ListDbaasLogOutputOpensearchIndexUrlResponse"
       },
       "errors": [
         {
@@ -8506,7 +8507,7 @@
         "smithy.api#documentation": "Returns the list of urls of specified index"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchOsdRequest": {
+    "com.ovh.ldp#ListDbaasLogOutputOpensearchOsdRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8522,18 +8523,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchOsdResponseBodyList": {
+    "com.ovh.ldp#ListDbaasLogOutputOpensearchOsdResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchOsdResponse": {
+    "com.ovh.ldp#ListDbaasLogOutputOpensearchOsdResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchOsdResponseBodyList",
+          "target": "com.ovh.ldp#ListDbaasLogOutputOpensearchOsdResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -8544,13 +8545,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchOsd": {
+    "com.ovh.ldp#ListDbaasLogOutputOpensearchOsd": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchOsdRequest"
+        "target": "com.ovh.ldp#ListDbaasLogOutputOpensearchOsdRequest"
       },
       "output": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchOsdResponse"
+        "target": "com.ovh.ldp#ListDbaasLogOutputOpensearchOsdResponse"
       },
       "errors": [
         {
@@ -8566,7 +8567,7 @@
         "smithy.api#documentation": "Returns the list of OpenSearch Dashboards instances"
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameOutputOpensearchOsdRequest": {
+    "com.ovh.ldp#CreateDbaasLogOutputOpensearchOsdRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8589,10 +8590,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameOutputOpensearchOsd": {
+    "com.ovh.ldp#CreateDbaasLogOutputOpensearchOsd": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#PostDbaasLogsServiceNameOutputOpensearchOsdRequest"
+        "target": "com.ovh.ldp#CreateDbaasLogOutputOpensearchOsdRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -8614,7 +8615,7 @@
         "smithy.api#documentation": "Register a new OpenSearch Dashboards instance"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchOsdOsdIdRequest": {
+    "com.ovh.ldp#GetDbaasLogOutputOpensearchOsdRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8689,10 +8690,10 @@
         "smithy.api#documentation": "OpenSearch Dashboards instance"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchOsdOsdId": {
+    "com.ovh.ldp#GetDbaasLogOutputOpensearchOsd": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchOsdOsdIdRequest"
+        "target": "com.ovh.ldp#GetDbaasLogOutputOpensearchOsdRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOsd"
@@ -8711,7 +8712,7 @@
         "smithy.api#documentation": "Returns specified OpenSearch Dashboards instance"
       }
     },
-    "com.ovh.ldp#PutDbaasLogsServiceNameOutputOpensearchOsdOsdIdRequest": {
+    "com.ovh.ldp#PutDbaasLogOutputOpensearchOsdRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8742,10 +8743,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#PutDbaasLogsServiceNameOutputOpensearchOsdOsdId": {
+    "com.ovh.ldp#PutDbaasLogOutputOpensearchOsd": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#PutDbaasLogsServiceNameOutputOpensearchOsdOsdIdRequest"
+        "target": "com.ovh.ldp#PutDbaasLogOutputOpensearchOsdRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -8767,7 +8768,7 @@
         "smithy.api#documentation": "Update specified OpenSearch Dashboards instance"
       }
     },
-    "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputOpensearchOsdOsdIdRequest": {
+    "com.ovh.ldp#DeleteDbaasLogOutputOpensearchOsdRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8791,10 +8792,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputOpensearchOsdOsdId": {
+    "com.ovh.ldp#DeleteDbaasLogOutputOpensearchOsd": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputOpensearchOsdOsdIdRequest"
+        "target": "com.ovh.ldp#DeleteDbaasLogOutputOpensearchOsdRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -8816,7 +8817,7 @@
         "smithy.api#documentation": "Remove specified OpenSearch Dashboards instance"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchOsdOsdIdUrlRequest": {
+    "com.ovh.ldp#ListDbaasLogOutputOpensearchOsdUrlRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8840,18 +8841,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchOsdOsdIdUrlResponseBodyList": {
+    "com.ovh.ldp#ListDbaasLogOutputOpensearchOsdUrlResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.ldp#DbaasLogsUrl"
       },
       "traits": {}
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchOsdOsdIdUrlResponse": {
+    "com.ovh.ldp#ListDbaasLogOutputOpensearchOsdUrlResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchOsdOsdIdUrlResponseBodyList",
+          "target": "com.ovh.ldp#ListDbaasLogOutputOpensearchOsdUrlResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -8862,13 +8863,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchOsdOsdIdUrl": {
+    "com.ovh.ldp#ListDbaasLogOutputOpensearchOsdUrl": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchOsdOsdIdUrlRequest"
+        "target": "com.ovh.ldp#ListDbaasLogOutputOpensearchOsdUrlRequest"
       },
       "output": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchOsdOsdIdUrlResponse"
+        "target": "com.ovh.ldp#ListDbaasLogOutputOpensearchOsdUrlResponse"
       },
       "errors": [
         {
@@ -8884,7 +8885,7 @@
         "smithy.api#documentation": "Returns the list of urls of specified OpenSearch Dashboards"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameRoleRequest": {
+    "com.ovh.ldp#ListDbaasLogRoleRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8907,18 +8908,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameRoleResponseBodyList": {
+    "com.ovh.ldp#ListDbaasLogRoleResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameRoleResponse": {
+    "com.ovh.ldp#ListDbaasLogRoleResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameRoleResponseBodyList",
+          "target": "com.ovh.ldp#ListDbaasLogRoleResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -8929,13 +8930,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameRole": {
+    "com.ovh.ldp#ListDbaasLogRole": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameRoleRequest"
+        "target": "com.ovh.ldp#ListDbaasLogRoleRequest"
       },
       "output": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameRoleResponse"
+        "target": "com.ovh.ldp#ListDbaasLogRoleResponse"
       },
       "errors": [
         {
@@ -8954,7 +8955,7 @@
         "smithy.api#documentation": "Returns the list of roles"
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameRoleRequest": {
+    "com.ovh.ldp#CreateDbaasLogRoleRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8984,10 +8985,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameRole": {
+    "com.ovh.ldp#CreateDbaasLogRole": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#PostDbaasLogsServiceNameRoleRequest"
+        "target": "com.ovh.ldp#CreateDbaasLogRoleRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -9012,7 +9013,7 @@
         "smithy.api#documentation": "Register a new role"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameRoleRoleIdRequest": {
+    "com.ovh.ldp#GetDbaasLogRoleRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9087,10 +9088,10 @@
         "smithy.api#documentation": "Role"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameRoleRoleId": {
+    "com.ovh.ldp#GetDbaasLogRole": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameRoleRoleIdRequest"
+        "target": "com.ovh.ldp#GetDbaasLogRoleRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsRole"
@@ -9112,7 +9113,7 @@
         "smithy.api#documentation": "Returns details of specified role"
       }
     },
-    "com.ovh.ldp#PutDbaasLogsServiceNameRoleRoleIdRequest": {
+    "com.ovh.ldp#PutDbaasLogRoleRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9150,10 +9151,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#PutDbaasLogsServiceNameRoleRoleId": {
+    "com.ovh.ldp#PutDbaasLogRole": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#PutDbaasLogsServiceNameRoleRoleIdRequest"
+        "target": "com.ovh.ldp#PutDbaasLogRoleRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -9175,7 +9176,7 @@
         "smithy.api#documentation": "Update information of specified role"
       }
     },
-    "com.ovh.ldp#DeleteDbaasLogsServiceNameRoleRoleIdRequest": {
+    "com.ovh.ldp#DeleteDbaasLogRoleRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9199,10 +9200,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#DeleteDbaasLogsServiceNameRoleRoleId": {
+    "com.ovh.ldp#DeleteDbaasLogRole": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#DeleteDbaasLogsServiceNameRoleRoleIdRequest"
+        "target": "com.ovh.ldp#DeleteDbaasLogRoleRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -9224,7 +9225,7 @@
         "smithy.api#documentation": "Remove specified role"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameRoleRoleIdMemberRequest": {
+    "com.ovh.ldp#ListDbaasLogRoleMemberRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9248,18 +9249,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameRoleRoleIdMemberResponseBodyList": {
+    "com.ovh.ldp#ListDbaasLogRoleMemberResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameRoleRoleIdMemberResponse": {
+    "com.ovh.ldp#ListDbaasLogRoleMemberResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameRoleRoleIdMemberResponseBodyList",
+          "target": "com.ovh.ldp#ListDbaasLogRoleMemberResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -9270,13 +9271,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameRoleRoleIdMember": {
+    "com.ovh.ldp#ListDbaasLogRoleMember": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameRoleRoleIdMemberRequest"
+        "target": "com.ovh.ldp#ListDbaasLogRoleMemberRequest"
       },
       "output": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameRoleRoleIdMemberResponse"
+        "target": "com.ovh.ldp#ListDbaasLogRoleMemberResponse"
       },
       "errors": [
         {
@@ -9295,7 +9296,7 @@
         "smithy.api#documentation": "Returns the member list of specified role"
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameRoleRoleIdMemberRequest": {
+    "com.ovh.ldp#CreateDbaasLogRoleMemberRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9333,10 +9334,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameRoleRoleIdMember": {
+    "com.ovh.ldp#CreateDbaasLogRoleMember": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#PostDbaasLogsServiceNameRoleRoleIdMemberRequest"
+        "target": "com.ovh.ldp#CreateDbaasLogRoleMemberRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -9358,7 +9359,7 @@
         "smithy.api#documentation": "Append user into the member list of specified role"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameRoleRoleIdMemberUsernameRequest": {
+    "com.ovh.ldp#GetDbaasLogRoleMemberRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9417,10 +9418,10 @@
         "smithy.api#documentation": "Member"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameRoleRoleIdMemberUsername": {
+    "com.ovh.ldp#GetDbaasLogRoleMember": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameRoleRoleIdMemberUsernameRequest"
+        "target": "com.ovh.ldp#GetDbaasLogRoleMemberRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsMember"
@@ -9442,7 +9443,7 @@
         "smithy.api#documentation": "Returns the member metadata"
       }
     },
-    "com.ovh.ldp#PutDbaasLogsServiceNameRoleRoleIdMemberUsernameRequest": {
+    "com.ovh.ldp#PutDbaasLogRoleMemberRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9481,10 +9482,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#PutDbaasLogsServiceNameRoleRoleIdMemberUsername": {
+    "com.ovh.ldp#PutDbaasLogRoleMember": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#PutDbaasLogsServiceNameRoleRoleIdMemberUsernameRequest"
+        "target": "com.ovh.ldp#PutDbaasLogRoleMemberRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -9506,7 +9507,7 @@
         "smithy.api#documentation": "Update the member metadata"
       }
     },
-    "com.ovh.ldp#DeleteDbaasLogsServiceNameRoleRoleIdMemberUsernameRequest": {
+    "com.ovh.ldp#DeleteDbaasLogRoleMemberRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9538,10 +9539,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#DeleteDbaasLogsServiceNameRoleRoleIdMemberUsername": {
+    "com.ovh.ldp#DeleteDbaasLogRoleMember": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#DeleteDbaasLogsServiceNameRoleRoleIdMemberUsernameRequest"
+        "target": "com.ovh.ldp#DeleteDbaasLogRoleMemberRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -9563,7 +9564,7 @@
         "smithy.api#documentation": "Remove user from the member list of specified role"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameRoleRoleIdPermissionRequest": {
+    "com.ovh.ldp#ListDbaasLogRolePermissionRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9587,18 +9588,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameRoleRoleIdPermissionResponseBodyList": {
+    "com.ovh.ldp#ListDbaasLogRolePermissionResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameRoleRoleIdPermissionResponse": {
+    "com.ovh.ldp#ListDbaasLogRolePermissionResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameRoleRoleIdPermissionResponseBodyList",
+          "target": "com.ovh.ldp#ListDbaasLogRolePermissionResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -9609,13 +9610,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameRoleRoleIdPermission": {
+    "com.ovh.ldp#ListDbaasLogRolePermission": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameRoleRoleIdPermissionRequest"
+        "target": "com.ovh.ldp#ListDbaasLogRolePermissionRequest"
       },
       "output": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameRoleRoleIdPermissionResponse"
+        "target": "com.ovh.ldp#ListDbaasLogRolePermissionResponse"
       },
       "errors": [
         {
@@ -9631,7 +9632,7 @@
         "smithy.api#documentation": "Returns the list of permissions of specified role"
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameRoleRoleIdPermissionAliasRequest": {
+    "com.ovh.ldp#CreateDbaasLogRolePermissionAliasRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9662,10 +9663,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameRoleRoleIdPermissionAlias": {
+    "com.ovh.ldp#CreateDbaasLogRolePermissionAlias": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#PostDbaasLogsServiceNameRoleRoleIdPermissionAliasRequest"
+        "target": "com.ovh.ldp#CreateDbaasLogRolePermissionAliasRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -9710,7 +9711,7 @@
         "smithy.api#documentation": "Possible values for PermissionTypeEnum"
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameRoleRoleIdPermissionDashboardRequest": {
+    "com.ovh.ldp#CreateDbaasLogRolePermissionDashboardRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9748,10 +9749,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameRoleRoleIdPermissionDashboard": {
+    "com.ovh.ldp#CreateDbaasLogRolePermissionDashboard": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#PostDbaasLogsServiceNameRoleRoleIdPermissionDashboardRequest"
+        "target": "com.ovh.ldp#CreateDbaasLogRolePermissionDashboardRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -9776,7 +9777,7 @@
         "smithy.api#documentation": "Append a graylog dashboard permission to role"
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameRoleRoleIdPermissionIndexRequest": {
+    "com.ovh.ldp#ListDbaasLogsRolePermissionRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9814,10 +9815,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameRoleRoleIdPermissionIndex": {
+    "com.ovh.ldp#ListDbaasLogsRolePermission": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#PostDbaasLogsServiceNameRoleRoleIdPermissionIndexRequest"
+        "target": "com.ovh.ldp#ListDbaasLogsRolePermissionRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -9842,7 +9843,7 @@
         "smithy.api#documentation": "Append a elasticsearch index permission to role"
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameRoleRoleIdPermissionOsdRequest": {
+    "com.ovh.ldp#CreateDbaasLogRolePermissionOsdRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9880,10 +9881,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameRoleRoleIdPermissionOsd": {
+    "com.ovh.ldp#CreateDbaasLogRolePermissionOsd": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#PostDbaasLogsServiceNameRoleRoleIdPermissionOsdRequest"
+        "target": "com.ovh.ldp#CreateDbaasLogRolePermissionOsdRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -9908,7 +9909,7 @@
         "smithy.api#documentation": "Append a OpenSearch Dashboards permission to role"
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameRoleRoleIdPermissionStreamRequest": {
+    "com.ovh.ldp#CreateDbaasLogRolePermissionStreamRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -9939,10 +9940,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameRoleRoleIdPermissionStream": {
+    "com.ovh.ldp#CreateDbaasLogRolePermissionStream": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#PostDbaasLogsServiceNameRoleRoleIdPermissionStreamRequest"
+        "target": "com.ovh.ldp#CreateDbaasLogRolePermissionStreamRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -9967,7 +9968,7 @@
         "smithy.api#documentation": "Append a graylog stream permission to role"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameRoleRoleIdPermissionPermissionIdRequest": {
+    "com.ovh.ldp#GetDbaasLogRolePermissionRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -10055,10 +10056,10 @@
         "smithy.api#documentation": "Role permission"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameRoleRoleIdPermissionPermissionId": {
+    "com.ovh.ldp#GetDbaasLogRolePermission": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameRoleRoleIdPermissionPermissionIdRequest"
+        "target": "com.ovh.ldp#GetDbaasLogRolePermissionRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsPermission"
@@ -10077,7 +10078,7 @@
         "smithy.api#documentation": "Returns details of specified permission"
       }
     },
-    "com.ovh.ldp#DeleteDbaasLogsServiceNameRoleRoleIdPermissionPermissionIdRequest": {
+    "com.ovh.ldp#DeleteDbaasLogRolePermissionRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -10109,10 +10110,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#DeleteDbaasLogsServiceNameRoleRoleIdPermissionPermissionId": {
+    "com.ovh.ldp#DeleteDbaasLogRolePermission": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#DeleteDbaasLogsServiceNameRoleRoleIdPermissionPermissionIdRequest"
+        "target": "com.ovh.ldp#DeleteDbaasLogRolePermissionRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -10134,7 +10135,7 @@
         "smithy.api#documentation": "Remove specified permission"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameServiceInfosRequest": {
+    "com.ovh.ldp#GetDbaasLogServiceInfosRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -10354,10 +10355,10 @@
         "smithy.api#documentation": "service.StateEnum"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameServiceInfos": {
+    "com.ovh.ldp#GetDbaasLogServiceInfos": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameServiceInfosRequest"
+        "target": "com.ovh.ldp#GetDbaasLogServiceInfosRequest"
       },
       "output": {
         "target": "com.ovh.ldp#ServicesService"
@@ -10371,7 +10372,7 @@
         "smithy.api#documentation": "Get service information"
       }
     },
-    "com.ovh.ldp#PutDbaasLogsServiceNameServiceInfosRequest": {
+    "com.ovh.ldp#PutDbaasLogServiceInfosRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -10394,10 +10395,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#PutDbaasLogsServiceNameServiceInfos": {
+    "com.ovh.ldp#PutDbaasLogServiceInfos": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#PutDbaasLogsServiceNameServiceInfosRequest"
+        "target": "com.ovh.ldp#PutDbaasLogServiceInfosRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -10411,7 +10412,7 @@
         "smithy.api#documentation": "Update service information"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameTokenRequest": {
+    "com.ovh.ldp#ListDbaasLogTokenRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -10434,18 +10435,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameTokenResponseBodyList": {
+    "com.ovh.ldp#ListDbaasLogTokenResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameTokenResponse": {
+    "com.ovh.ldp#ListDbaasLogTokenResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameTokenResponseBodyList",
+          "target": "com.ovh.ldp#ListDbaasLogTokenResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -10456,13 +10457,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameToken": {
+    "com.ovh.ldp#ListDbaasLogToken": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameTokenRequest"
+        "target": "com.ovh.ldp#ListDbaasLogTokenRequest"
       },
       "output": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameTokenResponse"
+        "target": "com.ovh.ldp#ListDbaasLogTokenResponse"
       },
       "errors": [
         {
@@ -10481,7 +10482,7 @@
         "smithy.api#documentation": "Returns the list of service tokens"
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameTokenRequest": {
+    "com.ovh.ldp#CreateDbaasLogTokenRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -10511,10 +10512,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameToken": {
+    "com.ovh.ldp#CreateDbaasLogToken": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#PostDbaasLogsServiceNameTokenRequest"
+        "target": "com.ovh.ldp#CreateDbaasLogTokenRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -10539,7 +10540,7 @@
         "smithy.api#documentation": "Add a new token"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameTokenTokenIdRequest": {
+    "com.ovh.ldp#GetDbaasLogTokenRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -10609,10 +10610,10 @@
         "smithy.api#documentation": "Token"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameTokenTokenId": {
+    "com.ovh.ldp#GetDbaasLogToken": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameTokenTokenIdRequest"
+        "target": "com.ovh.ldp#GetDbaasLogTokenRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsToken"
@@ -10634,7 +10635,7 @@
         "smithy.api#documentation": "Returns the specified token"
       }
     },
-    "com.ovh.ldp#DeleteDbaasLogsServiceNameTokenTokenIdRequest": {
+    "com.ovh.ldp#DeleteDbaasLogTokenRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -10658,10 +10659,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#DeleteDbaasLogsServiceNameTokenTokenId": {
+    "com.ovh.ldp#DeleteDbaasLogToken": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#DeleteDbaasLogsServiceNameTokenTokenIdRequest"
+        "target": "com.ovh.ldp#DeleteDbaasLogTokenRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -10683,7 +10684,7 @@
         "smithy.api#documentation": "Delete the specified token"
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameUrlRequest": {
+    "com.ovh.ldp#ListDbaasLogUrlRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -10699,18 +10700,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameUrlResponseBodyList": {
+    "com.ovh.ldp#ListDbaasLogUrlResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.ldp#DbaasLogsUrl"
       },
       "traits": {}
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameUrlResponse": {
+    "com.ovh.ldp#ListDbaasLogUrlResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameUrlResponseBodyList",
+          "target": "com.ovh.ldp#ListDbaasLogUrlResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -10721,13 +10722,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ldp#GetDbaasLogsServiceNameUrl": {
+    "com.ovh.ldp#ListDbaasLogUrl": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameUrlRequest"
+        "target": "com.ovh.ldp#ListDbaasLogUrlRequest"
       },
       "output": {
-        "target": "com.ovh.ldp#GetDbaasLogsServiceNameUrlResponse"
+        "target": "com.ovh.ldp#ListDbaasLogUrlResponse"
       },
       "errors": [
         {
@@ -10743,7 +10744,7 @@
         "smithy.api#documentation": "Returns platform useful urls"
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameUserChangePasswordRequest": {
+    "com.ovh.ldp#CreateDbaasLogUserChangePasswordRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -10767,10 +10768,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ldp#PostDbaasLogsServiceNameUserChangePassword": {
+    "com.ovh.ldp#CreateDbaasLogUserChangePassword": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ldp#PostDbaasLogsServiceNameUserChangePasswordRequest"
+        "target": "com.ovh.ldp#CreateDbaasLogUserChangePasswordRequest"
       },
       "output": {
         "target": "com.ovh.ldp#DbaasLogsOperation"
@@ -10836,379 +10837,379 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.ovh.ldp#GetDbaasLogs"
+          "target": "com.ovh.ldp#ListDbaasLogs"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceName"
+          "target": "com.ovh.ldp#GetDbaasLog"
         },
         {
-          "target": "com.ovh.ldp#PutDbaasLogsServiceName"
+          "target": "com.ovh.ldp#PutDbaasLog"
         },
         {
-          "target": "com.ovh.ldp#PostDbaasLogsServiceNameChangeContact"
+          "target": "com.ovh.ldp#CreateDbaasLogChangeContact"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameCluster"
+          "target": "com.ovh.ldp#ListDbaasLogCluster"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameClusterClusterId"
+          "target": "com.ovh.ldp#GetDbaasLogCluster"
         },
         {
-          "target": "com.ovh.ldp#PutDbaasLogsServiceNameClusterClusterId"
+          "target": "com.ovh.ldp#PutDbaasLogCluster"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameClusterClusterIdRetention"
+          "target": "com.ovh.ldp#ListDbaasLogClusterRetention"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameClusterClusterIdRetentionRetentionId"
+          "target": "com.ovh.ldp#GetDbaasLogClusterRetention"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameEncryptionKey"
+          "target": "com.ovh.ldp#ListDbaasLogEncryptionKey"
         },
         {
-          "target": "com.ovh.ldp#PostDbaasLogsServiceNameEncryptionKey"
+          "target": "com.ovh.ldp#CreateDbaasLogEncryptionKey"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameEncryptionKeyEncryptionKeyId"
+          "target": "com.ovh.ldp#GetDbaasLogEncryptionKey"
         },
         {
-          "target": "com.ovh.ldp#DeleteDbaasLogsServiceNameEncryptionKeyEncryptionKeyId"
+          "target": "com.ovh.ldp#DeleteDbaasLogEncryptionKey"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameInput"
+          "target": "com.ovh.ldp#ListDbaasLogInput"
         },
         {
-          "target": "com.ovh.ldp#PostDbaasLogsServiceNameInput"
+          "target": "com.ovh.ldp#CreateDbaasLogInput"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameInputEngine"
+          "target": "com.ovh.ldp#ListDbaasLogInputEngine"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameInputEngineEngineId"
+          "target": "com.ovh.ldp#GetDbaasLogInputEngine"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameInputEngineEngineIdHelper"
+          "target": "com.ovh.ldp#ListDbaasLogInputEngineHelper"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameInputEngineEngineIdHelperHelperId"
+          "target": "com.ovh.ldp#GetDbaasLogInputEngineHelper"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameInputInputId"
+          "target": "com.ovh.ldp#GetDbaasLogInput"
         },
         {
-          "target": "com.ovh.ldp#PutDbaasLogsServiceNameInputInputId"
+          "target": "com.ovh.ldp#PutDbaasLogInput"
         },
         {
-          "target": "com.ovh.ldp#DeleteDbaasLogsServiceNameInputInputId"
+          "target": "com.ovh.ldp#DeleteDbaasLogInput"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameInputInputIdAction"
+          "target": "com.ovh.ldp#ListDbaasLogInputAction"
         },
         {
-          "target": "com.ovh.ldp#PostDbaasLogsServiceNameInputInputIdConfigtest"
+          "target": "com.ovh.ldp#CreateDbaasLogInputConfigtest"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameInputInputIdConfigtestResult"
+          "target": "com.ovh.ldp#GetDbaasLogInputConfigtestResult"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameInputInputIdConfigurationFlowgger"
+          "target": "com.ovh.ldp#GetDbaasLogInputConfigurationFlowgger"
         },
         {
-          "target": "com.ovh.ldp#PutDbaasLogsServiceNameInputInputIdConfigurationFlowgger"
+          "target": "com.ovh.ldp#PutDbaasLogInputConfigurationFlowgger"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameInputInputIdConfigurationLogstash"
+          "target": "com.ovh.ldp#GetDbaasLogInputConfigurationLogstash"
         },
         {
-          "target": "com.ovh.ldp#PutDbaasLogsServiceNameInputInputIdConfigurationLogstash"
+          "target": "com.ovh.ldp#PutDbaasLogInputConfigurationLogstash"
         },
         {
-          "target": "com.ovh.ldp#PostDbaasLogsServiceNameInputInputIdEnd"
+          "target": "com.ovh.ldp#CreateDbaasLogInputEnd"
         },
         {
-          "target": "com.ovh.ldp#PostDbaasLogsServiceNameInputInputIdLogsUrl"
+          "target": "com.ovh.ldp#CreateDbaasLogInputLogUrl"
         },
         {
-          "target": "com.ovh.ldp#PostDbaasLogsServiceNameInputInputIdRestart"
+          "target": "com.ovh.ldp#RestartDbaasLogsInput"
         },
         {
-          "target": "com.ovh.ldp#PostDbaasLogsServiceNameInputInputIdStart"
+          "target": "com.ovh.ldp#StartDbaasLogsInput"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameInputInputIdUrl"
+          "target": "com.ovh.ldp#ListDbaasLogInputUrl"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameMetrics"
+          "target": "com.ovh.ldp#GetDbaasLogMetrics"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOperation"
+          "target": "com.ovh.ldp#ListDbaasLogOperation"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOperationOperationId"
+          "target": "com.ovh.ldp#GetDbaasLogOperation"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogDashboard"
+          "target": "com.ovh.ldp#ListDbaasLogOutputGraylogDashboard"
         },
         {
-          "target": "com.ovh.ldp#PostDbaasLogsServiceNameOutputGraylogDashboard"
+          "target": "com.ovh.ldp#CreateDbaasLogOutputGraylogDashboard"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogDashboardDashboardId"
+          "target": "com.ovh.ldp#GetDbaasLogOutputGraylogDashboard"
         },
         {
-          "target": "com.ovh.ldp#PutDbaasLogsServiceNameOutputGraylogDashboardDashboardId"
+          "target": "com.ovh.ldp#PutDbaasLogOutputGraylogDashboard"
         },
         {
-          "target": "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputGraylogDashboardDashboardId"
+          "target": "com.ovh.ldp#DeleteDbaasLogOutputGraylogDashboard"
         },
         {
-          "target": "com.ovh.ldp#PostDbaasLogsServiceNameOutputGraylogDashboardDashboardIdDuplicate"
+          "target": "com.ovh.ldp#DuplicateDbaasLogsOutputGraylogDashboard"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogDashboardDashboardIdUrl"
+          "target": "com.ovh.ldp#ListDbaasLogOutputGraylogDashboardUrl"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStream"
+          "target": "com.ovh.ldp#ListDbaasLogOutputGraylogStream"
         },
         {
-          "target": "com.ovh.ldp#PostDbaasLogsServiceNameOutputGraylogStream"
+          "target": "com.ovh.ldp#CreateDbaasLogOutputGraylogStream"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamId"
+          "target": "com.ovh.ldp#GetDbaasLogOutputGraylogStream"
         },
         {
-          "target": "com.ovh.ldp#PutDbaasLogsServiceNameOutputGraylogStreamStreamId"
+          "target": "com.ovh.ldp#PutDbaasLogOutputGraylogStream"
         },
         {
-          "target": "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputGraylogStreamStreamId"
+          "target": "com.ovh.ldp#DeleteDbaasLogOutputGraylogStream"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdAlert"
+          "target": "com.ovh.ldp#ListDbaasLogOutputGraylogStreamAlert"
         },
         {
-          "target": "com.ovh.ldp#PostDbaasLogsServiceNameOutputGraylogStreamStreamIdAlert"
+          "target": "com.ovh.ldp#CreateDbaasLogOutputGraylogStreamAlert"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertAlertId"
+          "target": "com.ovh.ldp#GetDbaasLogOutputGraylogStreamAlert"
         },
         {
-          "target": "com.ovh.ldp#PutDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertAlertId"
+          "target": "com.ovh.ldp#PutDbaasLogOutputGraylogStreamAlert"
         },
         {
-          "target": "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertAlertId"
+          "target": "com.ovh.ldp#DeleteDbaasLogOutputGraylogStreamAlert"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchive"
+          "target": "com.ovh.ldp#ListDbaasLogOutputGraylogStreamArchive"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveId"
+          "target": "com.ovh.ldp#GetDbaasLogOutputGraylogStreamArchive"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdEncryptionKey"
+          "target": "com.ovh.ldp#ListDbaasLogOutputGraylogStreamArchiveEncryptionKey"
         },
         {
-          "target": "com.ovh.ldp#PostDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdUrl"
+          "target": "com.ovh.ldp#CreateDbaasLogOutputGraylogStreamArchiveUrl"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRule"
+          "target": "com.ovh.ldp#ListDbaasLogOutputGraylogStreamRule"
         },
         {
-          "target": "com.ovh.ldp#PostDbaasLogsServiceNameOutputGraylogStreamStreamIdRule"
+          "target": "com.ovh.ldp#CreateDbaasLogOutputGraylogStreamRule"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleRuleId"
+          "target": "com.ovh.ldp#GetDbaasLogOutputGraylogStreamRule"
         },
         {
-          "target": "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleRuleId"
+          "target": "com.ovh.ldp#DeleteDbaasLogOutputGraylogStreamRule"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscription"
+          "target": "com.ovh.ldp#ListDbaasLogOutputGraylogStreamSubscription"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionSubscriptionId"
+          "target": "com.ovh.ldp#GetDbaasLogOutputGraylogStreamSubscription"
         },
         {
-          "target": "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionSubscriptionId"
+          "target": "com.ovh.ldp#DeleteDbaasLogOutputGraylogStreamSubscription"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputGraylogStreamStreamIdUrl"
+          "target": "com.ovh.ldp#ListDbaasLogOutputGraylogStreamUrl"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputMetricTenant"
+          "target": "com.ovh.ldp#ListDbaasLogOutputMetricTenant"
         },
         {
-          "target": "com.ovh.ldp#PostDbaasLogsServiceNameOutputMetricTenant"
+          "target": "com.ovh.ldp#CreateDbaasLogOutputMetricTenant"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputMetricTenantTenantId"
+          "target": "com.ovh.ldp#GetDbaasLogOutputMetricTenant"
         },
         {
-          "target": "com.ovh.ldp#PutDbaasLogsServiceNameOutputMetricTenantTenantId"
+          "target": "com.ovh.ldp#PutDbaasLogOutputMetricTenant"
         },
         {
-          "target": "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputMetricTenantTenantId"
+          "target": "com.ovh.ldp#DeleteDbaasLogOutputMetricTenant"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputMetricTenantTenantIdSubscription"
+          "target": "com.ovh.ldp#ListDbaasLogOutputMetricTenantSubscription"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionSubscriptionId"
+          "target": "com.ovh.ldp#GetDbaasLogOutputMetricTenantSubscription"
         },
         {
-          "target": "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionSubscriptionId"
+          "target": "com.ovh.ldp#DeleteDbaasLogOutputMetricTenantSubscription"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputMetricTenantTenantIdUrl"
+          "target": "com.ovh.ldp#ListDbaasLogOutputMetricTenantUrl"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchAlias"
+          "target": "com.ovh.ldp#ListDbaasLogOutputOpensearchAlias"
         },
         {
-          "target": "com.ovh.ldp#PostDbaasLogsServiceNameOutputOpensearchAlias"
+          "target": "com.ovh.ldp#CreateDbaasLogOutputOpensearchAlias"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchAliasAliasId"
+          "target": "com.ovh.ldp#GetDbaasLogOutputOpensearchAlias"
         },
         {
-          "target": "com.ovh.ldp#PutDbaasLogsServiceNameOutputOpensearchAliasAliasId"
+          "target": "com.ovh.ldp#PutDbaasLogOutputOpensearchAlias"
         },
         {
-          "target": "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputOpensearchAliasAliasId"
+          "target": "com.ovh.ldp#DeleteDbaasLogOutputOpensearchAlias"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndex"
+          "target": "com.ovh.ldp#ListDbaasLogOutputOpensearchAliasIndex"
         },
         {
-          "target": "com.ovh.ldp#PostDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndex"
+          "target": "com.ovh.ldp#ListDbaasLogsOutputOpensearchAlias"
         },
         {
-          "target": "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexIndexId"
+          "target": "com.ovh.ldp#DeleteDbaasLogOutputOpensearchAliasIndex"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdStream"
+          "target": "com.ovh.ldp#ListDbaasLogOutputOpensearchAliasStream"
         },
         {
-          "target": "com.ovh.ldp#PostDbaasLogsServiceNameOutputOpensearchAliasAliasIdStream"
+          "target": "com.ovh.ldp#CreateDbaasLogOutputOpensearchAliasStream"
         },
         {
-          "target": "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamStreamId"
+          "target": "com.ovh.ldp#DeleteDbaasLogOutputOpensearchAliasStream"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdUrl"
+          "target": "com.ovh.ldp#ListDbaasLogOutputOpensearchAliasUrl"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchIndex"
+          "target": "com.ovh.ldp#ListDbaasLogOutputOpensearchIndex"
         },
         {
-          "target": "com.ovh.ldp#PostDbaasLogsServiceNameOutputOpensearchIndex"
+          "target": "com.ovh.ldp#ListDbaasLogsOutputOpensearch"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchIndexIndexId"
+          "target": "com.ovh.ldp#GetDbaasLogOutputOpensearchIndex"
         },
         {
-          "target": "com.ovh.ldp#PutDbaasLogsServiceNameOutputOpensearchIndexIndexId"
+          "target": "com.ovh.ldp#PutDbaasLogOutputOpensearchIndex"
         },
         {
-          "target": "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputOpensearchIndexIndexId"
+          "target": "com.ovh.ldp#DeleteDbaasLogOutputOpensearchIndex"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchIndexIndexIdUrl"
+          "target": "com.ovh.ldp#ListDbaasLogOutputOpensearchIndexUrl"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchOsd"
+          "target": "com.ovh.ldp#ListDbaasLogOutputOpensearchOsd"
         },
         {
-          "target": "com.ovh.ldp#PostDbaasLogsServiceNameOutputOpensearchOsd"
+          "target": "com.ovh.ldp#CreateDbaasLogOutputOpensearchOsd"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchOsdOsdId"
+          "target": "com.ovh.ldp#GetDbaasLogOutputOpensearchOsd"
         },
         {
-          "target": "com.ovh.ldp#PutDbaasLogsServiceNameOutputOpensearchOsdOsdId"
+          "target": "com.ovh.ldp#PutDbaasLogOutputOpensearchOsd"
         },
         {
-          "target": "com.ovh.ldp#DeleteDbaasLogsServiceNameOutputOpensearchOsdOsdId"
+          "target": "com.ovh.ldp#DeleteDbaasLogOutputOpensearchOsd"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameOutputOpensearchOsdOsdIdUrl"
+          "target": "com.ovh.ldp#ListDbaasLogOutputOpensearchOsdUrl"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameRole"
+          "target": "com.ovh.ldp#ListDbaasLogRole"
         },
         {
-          "target": "com.ovh.ldp#PostDbaasLogsServiceNameRole"
+          "target": "com.ovh.ldp#CreateDbaasLogRole"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameRoleRoleId"
+          "target": "com.ovh.ldp#GetDbaasLogRole"
         },
         {
-          "target": "com.ovh.ldp#PutDbaasLogsServiceNameRoleRoleId"
+          "target": "com.ovh.ldp#PutDbaasLogRole"
         },
         {
-          "target": "com.ovh.ldp#DeleteDbaasLogsServiceNameRoleRoleId"
+          "target": "com.ovh.ldp#DeleteDbaasLogRole"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameRoleRoleIdMember"
+          "target": "com.ovh.ldp#ListDbaasLogRoleMember"
         },
         {
-          "target": "com.ovh.ldp#PostDbaasLogsServiceNameRoleRoleIdMember"
+          "target": "com.ovh.ldp#CreateDbaasLogRoleMember"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameRoleRoleIdMemberUsername"
+          "target": "com.ovh.ldp#GetDbaasLogRoleMember"
         },
         {
-          "target": "com.ovh.ldp#PutDbaasLogsServiceNameRoleRoleIdMemberUsername"
+          "target": "com.ovh.ldp#PutDbaasLogRoleMember"
         },
         {
-          "target": "com.ovh.ldp#DeleteDbaasLogsServiceNameRoleRoleIdMemberUsername"
+          "target": "com.ovh.ldp#DeleteDbaasLogRoleMember"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameRoleRoleIdPermission"
+          "target": "com.ovh.ldp#ListDbaasLogRolePermission"
         },
         {
-          "target": "com.ovh.ldp#PostDbaasLogsServiceNameRoleRoleIdPermissionAlias"
+          "target": "com.ovh.ldp#CreateDbaasLogRolePermissionAlias"
         },
         {
-          "target": "com.ovh.ldp#PostDbaasLogsServiceNameRoleRoleIdPermissionDashboard"
+          "target": "com.ovh.ldp#CreateDbaasLogRolePermissionDashboard"
         },
         {
-          "target": "com.ovh.ldp#PostDbaasLogsServiceNameRoleRoleIdPermissionIndex"
+          "target": "com.ovh.ldp#ListDbaasLogsRolePermission"
         },
         {
-          "target": "com.ovh.ldp#PostDbaasLogsServiceNameRoleRoleIdPermissionOsd"
+          "target": "com.ovh.ldp#CreateDbaasLogRolePermissionOsd"
         },
         {
-          "target": "com.ovh.ldp#PostDbaasLogsServiceNameRoleRoleIdPermissionStream"
+          "target": "com.ovh.ldp#CreateDbaasLogRolePermissionStream"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameRoleRoleIdPermissionPermissionId"
+          "target": "com.ovh.ldp#GetDbaasLogRolePermission"
         },
         {
-          "target": "com.ovh.ldp#DeleteDbaasLogsServiceNameRoleRoleIdPermissionPermissionId"
+          "target": "com.ovh.ldp#DeleteDbaasLogRolePermission"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameServiceInfos"
+          "target": "com.ovh.ldp#GetDbaasLogServiceInfos"
         },
         {
-          "target": "com.ovh.ldp#PutDbaasLogsServiceNameServiceInfos"
+          "target": "com.ovh.ldp#PutDbaasLogServiceInfos"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameToken"
+          "target": "com.ovh.ldp#ListDbaasLogToken"
         },
         {
-          "target": "com.ovh.ldp#PostDbaasLogsServiceNameToken"
+          "target": "com.ovh.ldp#CreateDbaasLogToken"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameTokenTokenId"
+          "target": "com.ovh.ldp#GetDbaasLogToken"
         },
         {
-          "target": "com.ovh.ldp#DeleteDbaasLogsServiceNameTokenTokenId"
+          "target": "com.ovh.ldp#DeleteDbaasLogToken"
         },
         {
-          "target": "com.ovh.ldp#GetDbaasLogsServiceNameUrl"
+          "target": "com.ovh.ldp#ListDbaasLogUrl"
         },
         {
-          "target": "com.ovh.ldp#PostDbaasLogsServiceNameUserChangePassword"
+          "target": "com.ovh.ldp#CreateDbaasLogUserChangePassword"
         }
       ],
       "traits": {

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.ovh.dedicatedceph#IamResourceTagFilterInput": {
@@ -24,28 +25,28 @@
         "smithy.api#documentation": "Resource tag filter"
       }
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephRequestIamTagsValueList": {
+    "com.ovh.dedicatedceph#ListDedicatedCephRequestIamTagsValueList": {
       "type": "list",
       "member": {
         "target": "com.ovh.dedicatedceph#IamResourceTagFilterInput"
       },
       "traits": {}
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephRequestIamTagsMap": {
+    "com.ovh.dedicatedceph#ListDedicatedCephRequestIamTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "com.ovh.dedicatedceph#GetDedicatedCephRequestIamTagsValueList"
+        "target": "com.ovh.dedicatedceph#ListDedicatedCephRequestIamTagsValueList"
       },
       "traits": {}
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephRequest": {
+    "com.ovh.dedicatedceph#ListDedicatedCephRequest": {
       "type": "structure",
       "members": {
         "iamTags": {
-          "target": "com.ovh.dedicatedceph#GetDedicatedCephRequestIamTagsMap",
+          "target": "com.ovh.dedicatedceph#ListDedicatedCephRequestIamTagsMap",
           "traits": {
             "smithy.api#httpQuery": "iamTags",
             "smithy.api#documentation": "Filter resources on IAM tags"
@@ -56,18 +57,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephResponseBodyList": {
+    "com.ovh.dedicatedceph#ListDedicatedCephResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephResponse": {
+    "com.ovh.dedicatedceph#ListDedicatedCephResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.dedicatedceph#GetDedicatedCephResponseBodyList",
+          "target": "com.ovh.dedicatedceph#ListDedicatedCephResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -78,13 +79,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.dedicatedceph#GetDedicatedCeph": {
+    "com.ovh.dedicatedceph#ListDedicatedCeph": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatedceph#GetDedicatedCephRequest"
+        "target": "com.ovh.dedicatedceph#ListDedicatedCephRequest"
       },
       "output": {
-        "target": "com.ovh.dedicatedceph#GetDedicatedCephResponse"
+        "target": "com.ovh.dedicatedceph#ListDedicatedCephResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -95,7 +96,7 @@
         "smithy.api#documentation": "List available services"
       }
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameRequest": {
+    "com.ovh.dedicatedceph#GetDedicatedCephRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -361,10 +362,10 @@
         "smithy.api#documentation": "Status of cluster"
       }
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceName": {
+    "com.ovh.dedicatedceph#GetDedicatedCeph": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameRequest"
+        "target": "com.ovh.dedicatedceph#GetDedicatedCephRequest"
       },
       "output": {
         "target": "com.ovh.dedicatedceph#DedicatedCephClusterGetResponseWithIAM"
@@ -434,7 +435,7 @@
         "smithy.api#documentation": "Tunables of cluster"
       }
     },
-    "com.ovh.dedicatedceph#PutDedicatedCephServiceNameRequest": {
+    "com.ovh.dedicatedceph#PutDedicatedCephRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -464,7 +465,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatedceph#PutDedicatedCephServiceNameResponse": {
+    "com.ovh.dedicatedceph#PutDedicatedCephResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -479,13 +480,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.dedicatedceph#PutDedicatedCephServiceName": {
+    "com.ovh.dedicatedceph#PutDedicatedCeph": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatedceph#PutDedicatedCephServiceNameRequest"
+        "target": "com.ovh.dedicatedceph#PutDedicatedCephRequest"
       },
       "output": {
-        "target": "com.ovh.dedicatedceph#PutDedicatedCephServiceNameResponse"
+        "target": "com.ovh.dedicatedceph#PutDedicatedCephResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -496,7 +497,7 @@
         "smithy.api#documentation": "Update cluster details"
       }
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameAclRequest": {
+    "com.ovh.dedicatedceph#ListDedicatedCephAclRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -564,18 +565,18 @@
         "smithy.api#documentation": "Family of IP ACL"
       }
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameAclResponseBodyList": {
+    "com.ovh.dedicatedceph#ListDedicatedCephAclResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.dedicatedceph#DedicatedCephAclGetResponse"
       },
       "traits": {}
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameAclResponse": {
+    "com.ovh.dedicatedceph#ListDedicatedCephAclResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameAclResponseBodyList",
+          "target": "com.ovh.dedicatedceph#ListDedicatedCephAclResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -586,13 +587,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameAcl": {
+    "com.ovh.dedicatedceph#ListDedicatedCephAcl": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameAclRequest"
+        "target": "com.ovh.dedicatedceph#ListDedicatedCephAclRequest"
       },
       "output": {
-        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameAclResponse"
+        "target": "com.ovh.dedicatedceph#ListDedicatedCephAclResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -603,7 +604,7 @@
         "smithy.api#documentation": "Get list of all IP ACLs in a cluster"
       }
     },
-    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameAclRequestAclListList": {
+    "com.ovh.dedicatedceph#CreateDedicatedCephAclRequestAclListList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -612,7 +613,7 @@
         "smithy.api#documentation": "List of new ACLs"
       }
     },
-    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameAclRequest": {
+    "com.ovh.dedicatedceph#CreateDedicatedCephAclRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -624,7 +625,7 @@
           }
         },
         "aclList": {
-          "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameAclRequestAclListList",
+          "target": "com.ovh.dedicatedceph#CreateDedicatedCephAclRequestAclListList",
           "traits": {
             "smithy.api#documentation": "List of new ACLs",
             "smithy.api#required": {}
@@ -635,7 +636,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameAclResponse": {
+    "com.ovh.dedicatedceph#CreateDedicatedCephAclResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -650,13 +651,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameAcl": {
+    "com.ovh.dedicatedceph#CreateDedicatedCephAcl": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameAclRequest"
+        "target": "com.ovh.dedicatedceph#CreateDedicatedCephAclRequest"
       },
       "output": {
-        "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameAclResponse"
+        "target": "com.ovh.dedicatedceph#CreateDedicatedCephAclResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -667,7 +668,7 @@
         "smithy.api#documentation": "Create one or more new IP ACLs"
       }
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameAclAclIdRequest": {
+    "com.ovh.dedicatedceph#GetDedicatedCephAclRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -691,10 +692,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameAclAclId": {
+    "com.ovh.dedicatedceph#GetDedicatedCephAcl": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameAclAclIdRequest"
+        "target": "com.ovh.dedicatedceph#GetDedicatedCephAclRequest"
       },
       "output": {
         "target": "com.ovh.dedicatedceph#DedicatedCephAclGetResponse"
@@ -708,7 +709,7 @@
         "smithy.api#documentation": "Get details about IP ACL"
       }
     },
-    "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameAclAclIdRequest": {
+    "com.ovh.dedicatedceph#DeleteDedicatedCephAclRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -732,7 +733,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameAclAclIdResponse": {
+    "com.ovh.dedicatedceph#DeleteDedicatedCephAclResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -747,13 +748,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameAclAclId": {
+    "com.ovh.dedicatedceph#DeleteDedicatedCephAcl": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameAclAclIdRequest"
+        "target": "com.ovh.dedicatedceph#DeleteDedicatedCephAclRequest"
       },
       "output": {
-        "target": "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameAclAclIdResponse"
+        "target": "com.ovh.dedicatedceph#DeleteDedicatedCephAclResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -764,7 +765,7 @@
         "smithy.api#documentation": "Delete single IP ACL"
       }
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameCephfsRequest": {
+    "com.ovh.dedicatedceph#ListDedicatedCephCephfsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -800,18 +801,18 @@
         "smithy.api#documentation": "CephFS filesystem data"
       }
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameCephfsResponseBodyList": {
+    "com.ovh.dedicatedceph#ListDedicatedCephCephfsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.dedicatedceph#DedicatedCephCephfsGetResponse"
       },
       "traits": {}
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameCephfsResponse": {
+    "com.ovh.dedicatedceph#ListDedicatedCephCephfsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameCephfsResponseBodyList",
+          "target": "com.ovh.dedicatedceph#ListDedicatedCephCephfsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -822,13 +823,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameCephfs": {
+    "com.ovh.dedicatedceph#ListDedicatedCephCephfs": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameCephfsRequest"
+        "target": "com.ovh.dedicatedceph#ListDedicatedCephCephfsRequest"
       },
       "output": {
-        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameCephfsResponse"
+        "target": "com.ovh.dedicatedceph#ListDedicatedCephCephfsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -839,7 +840,7 @@
         "smithy.api#documentation": "List CephFS filesystems"
       }
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameCephfsFsNameRequest": {
+    "com.ovh.dedicatedceph#GetDedicatedCephCephfRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -863,10 +864,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameCephfsFsName": {
+    "com.ovh.dedicatedceph#GetDedicatedCephCephf": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameCephfsFsNameRequest"
+        "target": "com.ovh.dedicatedceph#GetDedicatedCephCephfRequest"
       },
       "output": {
         "target": "com.ovh.dedicatedceph#DedicatedCephCephfsGetResponse"
@@ -880,7 +881,7 @@
         "smithy.api#documentation": "Get CephFS filesystem information"
       }
     },
-    "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameCephfsFsNameRequest": {
+    "com.ovh.dedicatedceph#DeleteDedicatedCephCephfRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -904,7 +905,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameCephfsFsNameResponse": {
+    "com.ovh.dedicatedceph#DeleteDedicatedCephCephfResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -919,13 +920,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameCephfsFsName": {
+    "com.ovh.dedicatedceph#DeleteDedicatedCephCephf": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameCephfsFsNameRequest"
+        "target": "com.ovh.dedicatedceph#DeleteDedicatedCephCephfRequest"
       },
       "output": {
-        "target": "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameCephfsFsNameResponse"
+        "target": "com.ovh.dedicatedceph#DeleteDedicatedCephCephfResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -936,7 +937,7 @@
         "smithy.api#documentation": "Purge CephFS filesystem"
       }
     },
-    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameCephfsFsNameDisableRequest": {
+    "com.ovh.dedicatedceph#DisableDedicatedCephCephfRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -960,7 +961,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameCephfsFsNameDisableResponse": {
+    "com.ovh.dedicatedceph#DisableDedicatedCephCephfResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -975,13 +976,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameCephfsFsNameDisable": {
+    "com.ovh.dedicatedceph#DisableDedicatedCephCephf": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameCephfsFsNameDisableRequest"
+        "target": "com.ovh.dedicatedceph#DisableDedicatedCephCephfRequest"
       },
       "output": {
-        "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameCephfsFsNameDisableResponse"
+        "target": "com.ovh.dedicatedceph#DisableDedicatedCephCephfResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -992,7 +993,7 @@
         "smithy.api#documentation": "Disable CephFS filesystem"
       }
     },
-    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameCephfsFsNameEnableRequest": {
+    "com.ovh.dedicatedceph#EnableDedicatedCephCephfRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1016,7 +1017,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameCephfsFsNameEnableResponse": {
+    "com.ovh.dedicatedceph#EnableDedicatedCephCephfResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -1031,13 +1032,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameCephfsFsNameEnable": {
+    "com.ovh.dedicatedceph#EnableDedicatedCephCephf": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameCephfsFsNameEnableRequest"
+        "target": "com.ovh.dedicatedceph#EnableDedicatedCephCephfRequest"
       },
       "output": {
-        "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameCephfsFsNameEnableResponse"
+        "target": "com.ovh.dedicatedceph#EnableDedicatedCephCephfResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1048,7 +1049,7 @@
         "smithy.api#documentation": "Enable CephFS filesystem"
       }
     },
-    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameChangeContactRequest": {
+    "com.ovh.dedicatedceph#CreateDedicatedCephChangeContactRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1082,18 +1083,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameChangeContactResponseBodyList": {
+    "com.ovh.dedicatedceph#CreateDedicatedCephChangeContactResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameChangeContactResponse": {
+    "com.ovh.dedicatedceph#CreateDedicatedCephChangeContactResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameChangeContactResponseBodyList",
+          "target": "com.ovh.dedicatedceph#CreateDedicatedCephChangeContactResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1104,13 +1105,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameChangeContact": {
+    "com.ovh.dedicatedceph#CreateDedicatedCephChangeContact": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameChangeContactRequest"
+        "target": "com.ovh.dedicatedceph#CreateDedicatedCephChangeContactRequest"
       },
       "output": {
-        "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameChangeContactResponse"
+        "target": "com.ovh.dedicatedceph#CreateDedicatedCephChangeContactResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1251,7 +1252,7 @@
         "smithy.api#documentation": "All reasons you can provide for a service termination"
       }
     },
-    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameConfirmTerminationRequest": {
+    "com.ovh.dedicatedceph#ConfirmDedicatedCephTerminationRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1292,7 +1293,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameConfirmTerminationResponse": {
+    "com.ovh.dedicatedceph#ConfirmDedicatedCephTerminationResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -1307,13 +1308,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameConfirmTermination": {
+    "com.ovh.dedicatedceph#ConfirmDedicatedCephTermination": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameConfirmTerminationRequest"
+        "target": "com.ovh.dedicatedceph#ConfirmDedicatedCephTerminationRequest"
       },
       "output": {
-        "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameConfirmTerminationResponse"
+        "target": "com.ovh.dedicatedceph#ConfirmDedicatedCephTerminationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1324,7 +1325,7 @@
         "smithy.api#documentation": "Confirm service termination"
       }
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameHealthRequest": {
+    "com.ovh.dedicatedceph#GetDedicatedCephHealthRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1384,10 +1385,10 @@
         "smithy.api#documentation": "Health of ceph cluster"
       }
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameHealth": {
+    "com.ovh.dedicatedceph#GetDedicatedCephHealth": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameHealthRequest"
+        "target": "com.ovh.dedicatedceph#GetDedicatedCephHealthRequest"
       },
       "output": {
         "target": "com.ovh.dedicatedceph#DedicatedCephClusterHealthResponse"
@@ -1401,7 +1402,7 @@
         "smithy.api#documentation": "Get cluster health"
       }
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNamePoolRequest": {
+    "com.ovh.dedicatedceph#ListDedicatedCephPoolRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1481,18 +1482,18 @@
         "smithy.api#documentation": "Type of pool"
       }
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNamePoolResponseBodyList": {
+    "com.ovh.dedicatedceph#ListDedicatedCephPoolResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.dedicatedceph#DedicatedCephPoolGetResponse"
       },
       "traits": {}
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNamePoolResponse": {
+    "com.ovh.dedicatedceph#ListDedicatedCephPoolResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNamePoolResponseBodyList",
+          "target": "com.ovh.dedicatedceph#ListDedicatedCephPoolResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1503,13 +1504,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNamePool": {
+    "com.ovh.dedicatedceph#ListDedicatedCephPool": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNamePoolRequest"
+        "target": "com.ovh.dedicatedceph#ListDedicatedCephPoolRequest"
       },
       "output": {
-        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNamePoolResponse"
+        "target": "com.ovh.dedicatedceph#ListDedicatedCephPoolResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1520,7 +1521,7 @@
         "smithy.api#documentation": "Get list of all pools in a cluster"
       }
     },
-    "com.ovh.dedicatedceph#PostDedicatedCephServiceNamePoolRequest": {
+    "com.ovh.dedicatedceph#CreateDedicatedCephPoolRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1543,7 +1544,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatedceph#PostDedicatedCephServiceNamePoolResponse": {
+    "com.ovh.dedicatedceph#CreateDedicatedCephPoolResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -1558,13 +1559,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.dedicatedceph#PostDedicatedCephServiceNamePool": {
+    "com.ovh.dedicatedceph#CreateDedicatedCephPool": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNamePoolRequest"
+        "target": "com.ovh.dedicatedceph#CreateDedicatedCephPoolRequest"
       },
       "output": {
-        "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNamePoolResponse"
+        "target": "com.ovh.dedicatedceph#CreateDedicatedCephPoolResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1575,7 +1576,7 @@
         "smithy.api#documentation": "Create a new ceph pool"
       }
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNamePoolPoolNameRequest": {
+    "com.ovh.dedicatedceph#GetDedicatedCephPoolRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1599,10 +1600,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNamePoolPoolName": {
+    "com.ovh.dedicatedceph#GetDedicatedCephPool": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNamePoolPoolNameRequest"
+        "target": "com.ovh.dedicatedceph#GetDedicatedCephPoolRequest"
       },
       "output": {
         "target": "com.ovh.dedicatedceph#DedicatedCephPoolGetResponse"
@@ -1616,7 +1617,7 @@
         "smithy.api#documentation": "Get details about an existing ceph pool"
       }
     },
-    "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNamePoolPoolNameRequest": {
+    "com.ovh.dedicatedceph#DeleteDedicatedCephPoolRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1640,7 +1641,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNamePoolPoolNameResponse": {
+    "com.ovh.dedicatedceph#DeleteDedicatedCephPoolResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -1655,13 +1656,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNamePoolPoolName": {
+    "com.ovh.dedicatedceph#DeleteDedicatedCephPool": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNamePoolPoolNameRequest"
+        "target": "com.ovh.dedicatedceph#DeleteDedicatedCephPoolRequest"
       },
       "output": {
-        "target": "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNamePoolPoolNameResponse"
+        "target": "com.ovh.dedicatedceph#DeleteDedicatedCephPoolResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1672,7 +1673,7 @@
         "smithy.api#documentation": "Delete a single ceph pool"
       }
     },
-    "com.ovh.dedicatedceph#PutDedicatedCephServiceNamePoolPoolNameAllowDeletionRequest": {
+    "com.ovh.dedicatedceph#PutDedicatedCephPoolAllowDeletionRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1696,7 +1697,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatedceph#PutDedicatedCephServiceNamePoolPoolNameAllowDeletionResponse": {
+    "com.ovh.dedicatedceph#PutDedicatedCephPoolAllowDeletionResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -1711,13 +1712,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.dedicatedceph#PutDedicatedCephServiceNamePoolPoolNameAllowDeletion": {
+    "com.ovh.dedicatedceph#PutDedicatedCephPoolAllowDeletion": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatedceph#PutDedicatedCephServiceNamePoolPoolNameAllowDeletionRequest"
+        "target": "com.ovh.dedicatedceph#PutDedicatedCephPoolAllowDeletionRequest"
       },
       "output": {
-        "target": "com.ovh.dedicatedceph#PutDedicatedCephServiceNamePoolPoolNameAllowDeletionResponse"
+        "target": "com.ovh.dedicatedceph#PutDedicatedCephPoolAllowDeletionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1728,7 +1729,7 @@
         "smithy.api#documentation": "Open 5 minutes window for deleting single ceph pool"
       }
     },
-    "com.ovh.dedicatedceph#PostDedicatedCephServiceNamePoolErasureRequest": {
+    "com.ovh.dedicatedceph#CreateDedicatedCephPoolErasureRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1751,7 +1752,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatedceph#PostDedicatedCephServiceNamePoolErasureResponse": {
+    "com.ovh.dedicatedceph#CreateDedicatedCephPoolErasureResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -1766,13 +1767,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.dedicatedceph#PostDedicatedCephServiceNamePoolErasure": {
+    "com.ovh.dedicatedceph#CreateDedicatedCephPoolErasure": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNamePoolErasureRequest"
+        "target": "com.ovh.dedicatedceph#CreateDedicatedCephPoolErasureRequest"
       },
       "output": {
-        "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNamePoolErasureResponse"
+        "target": "com.ovh.dedicatedceph#CreateDedicatedCephPoolErasureResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1783,7 +1784,7 @@
         "smithy.api#documentation": "Create a new ceph erasure pool"
       }
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameRadosGatewayRequest": {
+    "com.ovh.dedicatedceph#ListDedicatedCephRadosGatewayRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1819,18 +1820,18 @@
         "smithy.api#documentation": "Ceph Rados Gateway data"
       }
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameRadosGatewayResponseBodyList": {
+    "com.ovh.dedicatedceph#ListDedicatedCephRadosGatewayResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.dedicatedceph#DedicatedCephRgwResponse"
       },
       "traits": {}
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameRadosGatewayResponse": {
+    "com.ovh.dedicatedceph#ListDedicatedCephRadosGatewayResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameRadosGatewayResponseBodyList",
+          "target": "com.ovh.dedicatedceph#ListDedicatedCephRadosGatewayResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1841,13 +1842,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameRadosGateway": {
+    "com.ovh.dedicatedceph#ListDedicatedCephRadosGateway": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameRadosGatewayRequest"
+        "target": "com.ovh.dedicatedceph#ListDedicatedCephRadosGatewayRequest"
       },
       "output": {
-        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameRadosGatewayResponse"
+        "target": "com.ovh.dedicatedceph#ListDedicatedCephRadosGatewayResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1858,7 +1859,7 @@
         "smithy.api#documentation": "List Ceph RGW instances"
       }
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameRadosGatewayNameRequest": {
+    "com.ovh.dedicatedceph#GetDedicatedCephRadosGatewayRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1882,10 +1883,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameRadosGatewayName": {
+    "com.ovh.dedicatedceph#GetDedicatedCephRadosGateway": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameRadosGatewayNameRequest"
+        "target": "com.ovh.dedicatedceph#GetDedicatedCephRadosGatewayRequest"
       },
       "output": {
         "target": "com.ovh.dedicatedceph#DedicatedCephRgwResponse"
@@ -1898,7 +1899,7 @@
         }
       }
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameRadosGatewayNameAclRequest": {
+    "com.ovh.dedicatedceph#ListDedicatedCephRadosGatewayAclRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1946,10 +1947,10 @@
         "smithy.api#documentation": "List of IP networks"
       }
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameRadosGatewayNameAcl": {
+    "com.ovh.dedicatedceph#ListDedicatedCephRadosGatewayAcl": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameRadosGatewayNameAclRequest"
+        "target": "com.ovh.dedicatedceph#ListDedicatedCephRadosGatewayAclRequest"
       },
       "output": {
         "target": "com.ovh.dedicatedceph#DedicatedCephRgwAcl"
@@ -1963,7 +1964,7 @@
         "smithy.api#documentation": "Get all Rados Gateway ACL entries"
       }
     },
-    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameRadosGatewayNameAclRequestNetworksList": {
+    "com.ovh.dedicatedceph#CreateDedicatedCephRadosGatewayAclRequestNetworksList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1972,7 +1973,7 @@
         "smithy.api#documentation": "List of IP networks"
       }
     },
-    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameRadosGatewayNameAclRequest": {
+    "com.ovh.dedicatedceph#CreateDedicatedCephRadosGatewayAclRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1992,7 +1993,7 @@
           }
         },
         "networks": {
-          "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameRadosGatewayNameAclRequestNetworksList",
+          "target": "com.ovh.dedicatedceph#CreateDedicatedCephRadosGatewayAclRequestNetworksList",
           "traits": {
             "smithy.api#documentation": "List of IP networks",
             "smithy.api#required": {}
@@ -2003,10 +2004,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameRadosGatewayNameAcl": {
+    "com.ovh.dedicatedceph#CreateDedicatedCephRadosGatewayAcl": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameRadosGatewayNameAclRequest"
+        "target": "com.ovh.dedicatedceph#CreateDedicatedCephRadosGatewayAclRequest"
       },
       "output": {
         "target": "com.ovh.dedicatedceph#DedicatedCephRgwAcl"
@@ -2020,7 +2021,7 @@
         "smithy.api#documentation": "Add Rados Gateway ACL entries, any given network must be unique"
       }
     },
-    "com.ovh.dedicatedceph#PutDedicatedCephServiceNameRadosGatewayNameAclRequestNetworksList": {
+    "com.ovh.dedicatedceph#PutDedicatedCephRadosGatewayAclRequestNetworksList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -2029,7 +2030,7 @@
         "smithy.api#documentation": "List of IP networks"
       }
     },
-    "com.ovh.dedicatedceph#PutDedicatedCephServiceNameRadosGatewayNameAclRequest": {
+    "com.ovh.dedicatedceph#PutDedicatedCephRadosGatewayAclRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2049,7 +2050,7 @@
           }
         },
         "networks": {
-          "target": "com.ovh.dedicatedceph#PutDedicatedCephServiceNameRadosGatewayNameAclRequestNetworksList",
+          "target": "com.ovh.dedicatedceph#PutDedicatedCephRadosGatewayAclRequestNetworksList",
           "traits": {
             "smithy.api#documentation": "List of IP networks",
             "smithy.api#required": {}
@@ -2060,10 +2061,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatedceph#PutDedicatedCephServiceNameRadosGatewayNameAcl": {
+    "com.ovh.dedicatedceph#PutDedicatedCephRadosGatewayAcl": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatedceph#PutDedicatedCephServiceNameRadosGatewayNameAclRequest"
+        "target": "com.ovh.dedicatedceph#PutDedicatedCephRadosGatewayAclRequest"
       },
       "output": {
         "target": "com.ovh.dedicatedceph#DedicatedCephRgwAcl"
@@ -2077,7 +2078,7 @@
         "smithy.api#documentation": "Completely replaces Rados Gateway ACL entries"
       }
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameServiceInfosRequest": {
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceInfosRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2297,10 +2298,10 @@
         "smithy.api#documentation": "service.StateEnum"
       }
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameServiceInfos": {
+    "com.ovh.dedicatedceph#GetDedicatedCephServiceInfos": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameServiceInfosRequest"
+        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceInfosRequest"
       },
       "output": {
         "target": "com.ovh.dedicatedceph#ServicesService"
@@ -2314,7 +2315,7 @@
         "smithy.api#documentation": "Get service information"
       }
     },
-    "com.ovh.dedicatedceph#PutDedicatedCephServiceNameServiceInfosRequest": {
+    "com.ovh.dedicatedceph#PutDedicatedCephServiceInfosRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2337,10 +2338,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatedceph#PutDedicatedCephServiceNameServiceInfos": {
+    "com.ovh.dedicatedceph#PutDedicatedCephServiceInfos": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatedceph#PutDedicatedCephServiceNameServiceInfosRequest"
+        "target": "com.ovh.dedicatedceph#PutDedicatedCephServiceInfosRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2354,7 +2355,7 @@
         "smithy.api#documentation": "Update service information"
       }
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameTaskRequest": {
+    "com.ovh.dedicatedceph#ListDedicatedCephTaskRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2390,18 +2391,18 @@
         "smithy.api#documentation": "List of active tasks"
       }
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameTaskResponseBodyList": {
+    "com.ovh.dedicatedceph#ListDedicatedCephTaskResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.dedicatedceph#DedicatedCephTaskListResponse"
       },
       "traits": {}
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameTaskResponse": {
+    "com.ovh.dedicatedceph#ListDedicatedCephTaskResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameTaskResponseBodyList",
+          "target": "com.ovh.dedicatedceph#ListDedicatedCephTaskResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -2412,13 +2413,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameTask": {
+    "com.ovh.dedicatedceph#ListDedicatedCephTask": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameTaskRequest"
+        "target": "com.ovh.dedicatedceph#ListDedicatedCephTaskRequest"
       },
       "output": {
-        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameTaskResponse"
+        "target": "com.ovh.dedicatedceph#ListDedicatedCephTaskResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2429,7 +2430,7 @@
         "smithy.api#documentation": "List tasks in progress"
       }
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameTaskTaskIdRequest": {
+    "com.ovh.dedicatedceph#GetDedicatedCephTaskRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2518,18 +2519,18 @@
         "smithy.api#documentation": "State of task"
       }
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameTaskTaskIdResponseBodyList": {
+    "com.ovh.dedicatedceph#GetDedicatedCephTaskResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.dedicatedceph#DedicatedCephTaskGetResponse"
       },
       "traits": {}
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameTaskTaskIdResponse": {
+    "com.ovh.dedicatedceph#GetDedicatedCephTaskResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameTaskTaskIdResponseBodyList",
+          "target": "com.ovh.dedicatedceph#GetDedicatedCephTaskResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -2540,13 +2541,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameTaskTaskId": {
+    "com.ovh.dedicatedceph#GetDedicatedCephTask": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameTaskTaskIdRequest"
+        "target": "com.ovh.dedicatedceph#GetDedicatedCephTaskRequest"
       },
       "output": {
-        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameTaskTaskIdResponse"
+        "target": "com.ovh.dedicatedceph#GetDedicatedCephTaskResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2557,7 +2558,7 @@
         "smithy.api#documentation": "Get task details"
       }
     },
-    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameTerminateRequest": {
+    "com.ovh.dedicatedceph#TerminateDedicatedCephRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2573,7 +2574,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameTerminateResponse": {
+    "com.ovh.dedicatedceph#TerminateDedicatedCephResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -2588,13 +2589,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameTerminate": {
+    "com.ovh.dedicatedceph#TerminateDedicatedCeph": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameTerminateRequest"
+        "target": "com.ovh.dedicatedceph#TerminateDedicatedCephRequest"
       },
       "output": {
-        "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameTerminateResponse"
+        "target": "com.ovh.dedicatedceph#TerminateDedicatedCephResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2605,7 +2606,7 @@
         "smithy.api#documentation": "Ask for the termination of your service"
       }
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameUserRequest": {
+    "com.ovh.dedicatedceph#ListDedicatedCephUserRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2666,18 +2667,18 @@
         "smithy.api#documentation": "Ceph user"
       }
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameUserResponseBodyList": {
+    "com.ovh.dedicatedceph#ListDedicatedCephUserResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.dedicatedceph#DedicatedCephUserGetResponse"
       },
       "traits": {}
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameUserResponse": {
+    "com.ovh.dedicatedceph#ListDedicatedCephUserResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameUserResponseBodyList",
+          "target": "com.ovh.dedicatedceph#ListDedicatedCephUserResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -2688,13 +2689,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameUser": {
+    "com.ovh.dedicatedceph#ListDedicatedCephUser": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameUserRequest"
+        "target": "com.ovh.dedicatedceph#ListDedicatedCephUserRequest"
       },
       "output": {
-        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameUserResponse"
+        "target": "com.ovh.dedicatedceph#ListDedicatedCephUserResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2705,7 +2706,7 @@
         "smithy.api#documentation": "Get list of all users in a cluster"
       }
     },
-    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameUserRequest": {
+    "com.ovh.dedicatedceph#CreateDedicatedCephUserRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2728,7 +2729,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameUserResponse": {
+    "com.ovh.dedicatedceph#CreateDedicatedCephUserResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -2743,13 +2744,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameUser": {
+    "com.ovh.dedicatedceph#CreateDedicatedCephUser": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameUserRequest"
+        "target": "com.ovh.dedicatedceph#CreateDedicatedCephUserRequest"
       },
       "output": {
-        "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameUserResponse"
+        "target": "com.ovh.dedicatedceph#CreateDedicatedCephUserResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2760,7 +2761,7 @@
         "smithy.api#documentation": "Create a new ceph user"
       }
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameUserUserNameRequest": {
+    "com.ovh.dedicatedceph#GetDedicatedCephUserRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2784,10 +2785,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameUserUserName": {
+    "com.ovh.dedicatedceph#GetDedicatedCephUser": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameUserUserNameRequest"
+        "target": "com.ovh.dedicatedceph#GetDedicatedCephUserRequest"
       },
       "output": {
         "target": "com.ovh.dedicatedceph#DedicatedCephUserGetResponse"
@@ -2801,7 +2802,7 @@
         "smithy.api#documentation": "Get details about a ceph user"
       }
     },
-    "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameUserUserNameRequest": {
+    "com.ovh.dedicatedceph#DeleteDedicatedCephUserRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2825,7 +2826,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameUserUserNameResponse": {
+    "com.ovh.dedicatedceph#DeleteDedicatedCephUserResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -2840,13 +2841,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameUserUserName": {
+    "com.ovh.dedicatedceph#DeleteDedicatedCephUser": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameUserUserNameRequest"
+        "target": "com.ovh.dedicatedceph#DeleteDedicatedCephUserRequest"
       },
       "output": {
-        "target": "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameUserUserNameResponse"
+        "target": "com.ovh.dedicatedceph#DeleteDedicatedCephUserResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2857,7 +2858,7 @@
         "smithy.api#documentation": "Delete an existing single ceph user"
       }
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameUserUserNamePoolRequest": {
+    "com.ovh.dedicatedceph#ListDedicatedCephUserPoolRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2925,18 +2926,18 @@
         "smithy.api#documentation": "List of permissions"
       }
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameUserUserNamePoolResponseBodyList": {
+    "com.ovh.dedicatedceph#ListDedicatedCephUserPoolResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.dedicatedceph#DedicatedCephUserPoolPermListResponse"
       },
       "traits": {}
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameUserUserNamePoolResponse": {
+    "com.ovh.dedicatedceph#ListDedicatedCephUserPoolResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameUserUserNamePoolResponseBodyList",
+          "target": "com.ovh.dedicatedceph#ListDedicatedCephUserPoolResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -2947,13 +2948,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.dedicatedceph#GetDedicatedCephServiceNameUserUserNamePool": {
+    "com.ovh.dedicatedceph#ListDedicatedCephUserPool": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameUserUserNamePoolRequest"
+        "target": "com.ovh.dedicatedceph#ListDedicatedCephUserPoolRequest"
       },
       "output": {
-        "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameUserUserNamePoolResponse"
+        "target": "com.ovh.dedicatedceph#ListDedicatedCephUserPoolResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3008,7 +3009,7 @@
         "smithy.api#documentation": "List of permissions"
       }
     },
-    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameUserUserNamePoolRequestPermissionsList": {
+    "com.ovh.dedicatedceph#CreateDedicatedCephUserPoolRequestPermissionsList": {
       "type": "list",
       "member": {
         "target": "com.ovh.dedicatedceph#DedicatedCephUserPoolPermSetAllPermissions"
@@ -3017,7 +3018,7 @@
         "smithy.api#documentation": "Permissions"
       }
     },
-    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameUserUserNamePoolRequest": {
+    "com.ovh.dedicatedceph#CreateDedicatedCephUserPoolRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3037,7 +3038,7 @@
           }
         },
         "permissions": {
-          "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameUserUserNamePoolRequestPermissionsList",
+          "target": "com.ovh.dedicatedceph#CreateDedicatedCephUserPoolRequestPermissionsList",
           "traits": {
             "smithy.api#documentation": "Permissions"
           }
@@ -3047,7 +3048,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameUserUserNamePoolResponse": {
+    "com.ovh.dedicatedceph#CreateDedicatedCephUserPoolResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -3062,13 +3063,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.dedicatedceph#PostDedicatedCephServiceNameUserUserNamePool": {
+    "com.ovh.dedicatedceph#CreateDedicatedCephUserPool": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameUserUserNamePoolRequest"
+        "target": "com.ovh.dedicatedceph#CreateDedicatedCephUserPoolRequest"
       },
       "output": {
-        "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameUserUserNamePoolResponse"
+        "target": "com.ovh.dedicatedceph#CreateDedicatedCephUserPoolResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3079,7 +3080,7 @@
         "smithy.api#documentation": "Create new user-pool permissions. All old permissions will be cleared"
       }
     },
-    "com.ovh.dedicatedceph#PutDedicatedCephServiceNameUserUserNamePoolRequest": {
+    "com.ovh.dedicatedceph#PutDedicatedCephUserPoolRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3145,7 +3146,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatedceph#PutDedicatedCephServiceNameUserUserNamePoolResponse": {
+    "com.ovh.dedicatedceph#PutDedicatedCephUserPoolResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -3160,13 +3161,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.dedicatedceph#PutDedicatedCephServiceNameUserUserNamePool": {
+    "com.ovh.dedicatedceph#PutDedicatedCephUserPool": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatedceph#PutDedicatedCephServiceNameUserUserNamePoolRequest"
+        "target": "com.ovh.dedicatedceph#PutDedicatedCephUserPoolRequest"
       },
       "output": {
-        "target": "com.ovh.dedicatedceph#PutDedicatedCephServiceNameUserUserNamePoolResponse"
+        "target": "com.ovh.dedicatedceph#PutDedicatedCephUserPoolResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3177,7 +3178,7 @@
         "smithy.api#documentation": "Update user-pool permission for single pool"
       }
     },
-    "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameUserUserNamePoolPoolNameRequest": {
+    "com.ovh.dedicatedceph#DeleteDedicatedCephUserPoolRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3209,7 +3210,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameUserUserNamePoolPoolNameResponse": {
+    "com.ovh.dedicatedceph#DeleteDedicatedCephUserPoolResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -3224,13 +3225,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameUserUserNamePoolPoolName": {
+    "com.ovh.dedicatedceph#DeleteDedicatedCephUserPool": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameUserUserNamePoolPoolNameRequest"
+        "target": "com.ovh.dedicatedceph#DeleteDedicatedCephUserPoolRequest"
       },
       "output": {
-        "target": "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameUserUserNamePoolPoolNameResponse"
+        "target": "com.ovh.dedicatedceph#DeleteDedicatedCephUserPoolResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3246,121 +3247,121 @@
       "version": "1.0",
       "operations": [
         {
+          "target": "com.ovh.dedicatedceph#ListDedicatedCeph"
+        },
+        {
           "target": "com.ovh.dedicatedceph#GetDedicatedCeph"
         },
         {
-          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceName"
+          "target": "com.ovh.dedicatedceph#PutDedicatedCeph"
         },
         {
-          "target": "com.ovh.dedicatedceph#PutDedicatedCephServiceName"
+          "target": "com.ovh.dedicatedceph#ListDedicatedCephAcl"
         },
         {
-          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameAcl"
+          "target": "com.ovh.dedicatedceph#CreateDedicatedCephAcl"
         },
         {
-          "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameAcl"
+          "target": "com.ovh.dedicatedceph#GetDedicatedCephAcl"
         },
         {
-          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameAclAclId"
+          "target": "com.ovh.dedicatedceph#DeleteDedicatedCephAcl"
         },
         {
-          "target": "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameAclAclId"
+          "target": "com.ovh.dedicatedceph#ListDedicatedCephCephfs"
         },
         {
-          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameCephfs"
+          "target": "com.ovh.dedicatedceph#GetDedicatedCephCephf"
         },
         {
-          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameCephfsFsName"
+          "target": "com.ovh.dedicatedceph#DeleteDedicatedCephCephf"
         },
         {
-          "target": "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameCephfsFsName"
+          "target": "com.ovh.dedicatedceph#DisableDedicatedCephCephf"
         },
         {
-          "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameCephfsFsNameDisable"
+          "target": "com.ovh.dedicatedceph#EnableDedicatedCephCephf"
         },
         {
-          "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameCephfsFsNameEnable"
+          "target": "com.ovh.dedicatedceph#CreateDedicatedCephChangeContact"
         },
         {
-          "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameChangeContact"
+          "target": "com.ovh.dedicatedceph#ConfirmDedicatedCephTermination"
         },
         {
-          "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameConfirmTermination"
+          "target": "com.ovh.dedicatedceph#GetDedicatedCephHealth"
         },
         {
-          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameHealth"
+          "target": "com.ovh.dedicatedceph#ListDedicatedCephPool"
         },
         {
-          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNamePool"
+          "target": "com.ovh.dedicatedceph#CreateDedicatedCephPool"
         },
         {
-          "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNamePool"
+          "target": "com.ovh.dedicatedceph#GetDedicatedCephPool"
         },
         {
-          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNamePoolPoolName"
+          "target": "com.ovh.dedicatedceph#DeleteDedicatedCephPool"
         },
         {
-          "target": "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNamePoolPoolName"
+          "target": "com.ovh.dedicatedceph#PutDedicatedCephPoolAllowDeletion"
         },
         {
-          "target": "com.ovh.dedicatedceph#PutDedicatedCephServiceNamePoolPoolNameAllowDeletion"
+          "target": "com.ovh.dedicatedceph#CreateDedicatedCephPoolErasure"
         },
         {
-          "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNamePoolErasure"
+          "target": "com.ovh.dedicatedceph#ListDedicatedCephRadosGateway"
         },
         {
-          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameRadosGateway"
+          "target": "com.ovh.dedicatedceph#GetDedicatedCephRadosGateway"
         },
         {
-          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameRadosGatewayName"
+          "target": "com.ovh.dedicatedceph#ListDedicatedCephRadosGatewayAcl"
         },
         {
-          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameRadosGatewayNameAcl"
+          "target": "com.ovh.dedicatedceph#CreateDedicatedCephRadosGatewayAcl"
         },
         {
-          "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameRadosGatewayNameAcl"
+          "target": "com.ovh.dedicatedceph#PutDedicatedCephRadosGatewayAcl"
         },
         {
-          "target": "com.ovh.dedicatedceph#PutDedicatedCephServiceNameRadosGatewayNameAcl"
+          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceInfos"
         },
         {
-          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameServiceInfos"
+          "target": "com.ovh.dedicatedceph#PutDedicatedCephServiceInfos"
         },
         {
-          "target": "com.ovh.dedicatedceph#PutDedicatedCephServiceNameServiceInfos"
+          "target": "com.ovh.dedicatedceph#ListDedicatedCephTask"
         },
         {
-          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameTask"
+          "target": "com.ovh.dedicatedceph#GetDedicatedCephTask"
         },
         {
-          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameTaskTaskId"
+          "target": "com.ovh.dedicatedceph#TerminateDedicatedCeph"
         },
         {
-          "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameTerminate"
+          "target": "com.ovh.dedicatedceph#ListDedicatedCephUser"
         },
         {
-          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameUser"
+          "target": "com.ovh.dedicatedceph#CreateDedicatedCephUser"
         },
         {
-          "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameUser"
+          "target": "com.ovh.dedicatedceph#GetDedicatedCephUser"
         },
         {
-          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameUserUserName"
+          "target": "com.ovh.dedicatedceph#DeleteDedicatedCephUser"
         },
         {
-          "target": "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameUserUserName"
+          "target": "com.ovh.dedicatedceph#ListDedicatedCephUserPool"
         },
         {
-          "target": "com.ovh.dedicatedceph#GetDedicatedCephServiceNameUserUserNamePool"
+          "target": "com.ovh.dedicatedceph#CreateDedicatedCephUserPool"
         },
         {
-          "target": "com.ovh.dedicatedceph#PostDedicatedCephServiceNameUserUserNamePool"
+          "target": "com.ovh.dedicatedceph#PutDedicatedCephUserPool"
         },
         {
-          "target": "com.ovh.dedicatedceph#PutDedicatedCephServiceNameUserUserNamePool"
-        },
-        {
-          "target": "com.ovh.dedicatedceph#DeleteDedicatedCephServiceNameUserUserNamePoolPoolName"
+          "target": "com.ovh.dedicatedceph#DeleteDedicatedCephUserPool"
         }
       ],
       "traits": {

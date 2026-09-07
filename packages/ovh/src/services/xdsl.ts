@@ -296,6 +296,34 @@ export const XdslTask = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "XdslTask" }) as any as S.Schema<XdslTask>;
 
+export interface ArchiveXdslTaskRequest {
+  /** Service name */
+  serviceName: string;
+  /** Id */
+  id: number;
+}
+export const ArchiveXdslTaskRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/xdsl/{serviceName}/tasks/{id}/archive",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ArchiveXdslTaskRequest",
+}) as any as S.Schema<ArchiveXdslTaskRequest>;
+
+export interface ArchiveXdslTaskResponse {}
+export const ArchiveXdslTaskResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "ArchiveXdslTaskResponse",
+}) as any as S.Schema<ArchiveXdslTaskResponse>;
+
 export interface BookMeetingRequest {
   /** Service name */
   serviceName: string;
@@ -329,6 +357,59 @@ export const BookMeetingResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "BookMeetingResponse",
 }) as any as S.Schema<BookMeetingResponse>;
+
+export interface CancelXdslLinesDiagnosticRequest {
+  /** Service name */
+  serviceName: string;
+  /** Number */
+  number: string;
+}
+export const CancelXdslLinesDiagnosticRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    number: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/xdsl/{serviceName}/lines/{number}/diagnostic/cancel",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CancelXdslLinesDiagnosticRequest",
+}) as any as S.Schema<CancelXdslLinesDiagnosticRequest>;
+
+export interface CancelXdslLinesDiagnosticResponse {}
+export const CancelXdslLinesDiagnosticResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "CancelXdslLinesDiagnosticResponse",
+}) as any as S.Schema<CancelXdslLinesDiagnosticResponse>;
+
+export interface CancelXdslResiliationRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const CancelXdslResiliationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/xdsl/{serviceName}/cancelResiliation",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CancelXdslResiliationRequest",
+}) as any as S.Schema<CancelXdslResiliationRequest>;
+
+export interface CancelXdslResiliationResponse {}
+export const CancelXdslResiliationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "CancelXdslResiliationResponse",
+}) as any as S.Schema<CancelXdslResiliationResponse>;
 
 export interface ChangeContactRequest {
   /** Service name */
@@ -736,6 +817,135 @@ export const XdslTemplateModem = /*@__PURE__*/ S.suspend(() =>
   identifier: "XdslTemplateModem",
 }) as any as S.Schema<XdslTemplateModem>;
 
+export interface CreateXdslAddressMoveExtraIpRangeMoveRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const CreateXdslAddressMoveExtraIpRangeMoveRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/xdsl/{serviceName}/addressMove/extraIpRangeMove",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateXdslAddressMoveExtraIpRangeMoveRequest",
+  }) as any as S.Schema<CreateXdslAddressMoveExtraIpRangeMoveRequest>;
+
+export interface CreateXdslDiagnosticRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const CreateXdslDiagnosticRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/xdsl/{serviceName}/diagnostic",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateXdslDiagnosticRequest",
+}) as any as S.Schema<CreateXdslDiagnosticRequest>;
+
+export interface CreateXdslIpsRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const CreateXdslIpsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/xdsl/{serviceName}/ips", code: 200 }),
+  ),
+).annotate({
+  identifier: "CreateXdslIpsRequest",
+}) as any as S.Schema<CreateXdslIpsRequest>;
+
+export interface CreateXdslModemReconfigureVoipRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const CreateXdslModemReconfigureVoipRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/xdsl/{serviceName}/modem/reconfigureVoip",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateXdslModemReconfigureVoipRequest",
+}) as any as S.Schema<CreateXdslModemReconfigureVoipRequest>;
+
+export interface CreateXdslModemReconfigureVoipResponse {}
+export const CreateXdslModemReconfigureVoipResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "CreateXdslModemReconfigureVoipResponse",
+}) as any as S.Schema<CreateXdslModemReconfigureVoipResponse>;
+
+export interface CreateXdslRequestPPPLoginMailRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const CreateXdslRequestPPPLoginMailRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/xdsl/{serviceName}/requestPPPLoginMail",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateXdslRequestPPPLoginMailRequest",
+}) as any as S.Schema<CreateXdslRequestPPPLoginMailRequest>;
+
+export interface CreateXdslRequestPPPLoginMailResponse {}
+export const CreateXdslRequestPPPLoginMailResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "CreateXdslRequestPPPLoginMailResponse",
+}) as any as S.Schema<CreateXdslRequestPPPLoginMailResponse>;
+
+export interface CreateXdslSpareReturnMerchandiseRequest {
+  /** Spare */
+  spare: string;
+}
+export const CreateXdslSpareReturnMerchandiseRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      spare: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/xdsl/spare/{spare}/returnMerchandise",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateXdslSpareReturnMerchandiseRequest",
+}) as any as S.Schema<CreateXdslSpareReturnMerchandiseRequest>;
+
+export interface CreateXdslSpareReturnMerchandiseResponse {}
+export const CreateXdslSpareReturnMerchandiseResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "CreateXdslSpareReturnMerchandiseResponse",
+}) as any as S.Schema<CreateXdslSpareReturnMerchandiseResponse>;
+
 export interface DeleteModemTemplateRequest {
   /** Name */
   name: string;
@@ -757,34 +967,34 @@ export const DeleteModemTemplateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteModemTemplateResponse",
 }) as any as S.Schema<DeleteModemTemplateResponse>;
 
-export interface DeleteXdslEmailProEmailRequest {
+export interface DeleteXdslEmailProRequest {
   /** Email */
   email: string;
 }
-export const DeleteXdslEmailProEmailRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteXdslEmailProRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     email: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({ method: "DELETE", uri: "/xdsl/email/pro/{email}", code: 200 }),
   ),
 ).annotate({
-  identifier: "DeleteXdslEmailProEmailRequest",
-}) as any as S.Schema<DeleteXdslEmailProEmailRequest>;
+  identifier: "DeleteXdslEmailProRequest",
+}) as any as S.Schema<DeleteXdslEmailProRequest>;
 
-export interface DeleteXdslEmailProEmailResponse {}
-export const DeleteXdslEmailProEmailResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteXdslEmailProResponse {}
+export const DeleteXdslEmailProResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteXdslEmailProEmailResponse",
-}) as any as S.Schema<DeleteXdslEmailProEmailResponse>;
+  identifier: "DeleteXdslEmailProResponse",
+}) as any as S.Schema<DeleteXdslEmailProResponse>;
 
-export interface DeleteXdslServiceNameIpsIpRequest {
+export interface DeleteXdslIpsRequest {
   /** Service name */
   serviceName: string;
   /** Ip */
   ip: string;
 }
-export const DeleteXdslServiceNameIpsIpRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteXdslIpsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     serviceName: S.String.pipe(T.Label()),
     ip: S.String.pipe(T.Label()),
@@ -796,23 +1006,23 @@ export const DeleteXdslServiceNameIpsIpRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteXdslServiceNameIpsIpRequest",
-}) as any as S.Schema<DeleteXdslServiceNameIpsIpRequest>;
+  identifier: "DeleteXdslIpsRequest",
+}) as any as S.Schema<DeleteXdslIpsRequest>;
 
-export interface DeleteXdslServiceNameIpsIpResponse {}
-export const DeleteXdslServiceNameIpsIpResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteXdslIpsResponse {}
+export const DeleteXdslIpsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteXdslServiceNameIpsIpResponse",
-}) as any as S.Schema<DeleteXdslServiceNameIpsIpResponse>;
+  identifier: "DeleteXdslIpsResponse",
+}) as any as S.Schema<DeleteXdslIpsResponse>;
 
-export interface DeleteXdslServiceNameRmaIdRequest {
+export interface DeleteXdslRmaRequest {
   /** Service name */
   serviceName: string;
   /** Id */
   id: string;
 }
-export const DeleteXdslServiceNameRmaIdRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteXdslRmaRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     serviceName: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
@@ -824,34 +1034,34 @@ export const DeleteXdslServiceNameRmaIdRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteXdslServiceNameRmaIdRequest",
-}) as any as S.Schema<DeleteXdslServiceNameRmaIdRequest>;
+  identifier: "DeleteXdslRmaRequest",
+}) as any as S.Schema<DeleteXdslRmaRequest>;
 
-export interface DeleteXdslServiceNameRmaIdResponse {}
-export const DeleteXdslServiceNameRmaIdResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteXdslRmaResponse {}
+export const DeleteXdslRmaResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteXdslServiceNameRmaIdResponse",
-}) as any as S.Schema<DeleteXdslServiceNameRmaIdResponse>;
+  identifier: "DeleteXdslRmaResponse",
+}) as any as S.Schema<DeleteXdslRmaResponse>;
 
-export interface DeleteXdslSpareSpareRequest {
+export interface DeleteXdslSpareRequest {
   /** Spare */
   spare: string;
 }
-export const DeleteXdslSpareSpareRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteXdslSpareRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     spare: S.String.pipe(T.Label()),
   }).pipe(T.Http({ method: "DELETE", uri: "/xdsl/spare/{spare}", code: 200 })),
 ).annotate({
-  identifier: "DeleteXdslSpareSpareRequest",
-}) as any as S.Schema<DeleteXdslSpareSpareRequest>;
+  identifier: "DeleteXdslSpareRequest",
+}) as any as S.Schema<DeleteXdslSpareRequest>;
 
-export interface DeleteXdslSpareSpareResponse {}
-export const DeleteXdslSpareSpareResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteXdslSpareResponse {}
+export const DeleteXdslSpareResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteXdslSpareSpareResponse",
-}) as any as S.Schema<DeleteXdslSpareSpareResponse>;
+  identifier: "DeleteXdslSpareResponse",
+}) as any as S.Schema<DeleteXdslSpareResponse>;
 
 export interface GetAccessModemReplacementRequest {
   /** Service name */
@@ -1376,322 +1586,15 @@ export const GetWifiOneSsidStatusResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetWifiOneSsidStatusResponse",
 }) as any as S.Schema<GetWifiOneSsidStatusResponse>;
 
-/** Resource tag filter */
-export interface IamResourceTagFilterInput {}
-export const IamResourceTagFilterInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "IamResourceTagFilterInput",
-}) as any as S.Schema<IamResourceTagFilterInput>;
-
-export type GetXdslRequestIamTagsValueList = Array<IamResourceTagFilterInput>;
-export const GetXdslRequestIamTagsValueList = /*@__PURE__*/ S.Array(
-  IamResourceTagFilterInput,
-) as any as S.Schema<GetXdslRequestIamTagsValueList>;
-
-export type GetXdslRequestIamTagsMap = {
-  [key: string]: GetXdslRequestIamTagsValueList | undefined;
-};
-export const GetXdslRequestIamTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  GetXdslRequestIamTagsValueList,
-) as any as S.Schema<GetXdslRequestIamTagsMap>;
-
 export interface GetXdslRequest {
-  /** Filter resources on IAM tags */
-  iamTags?: GetXdslRequestIamTagsMap;
-}
-export const GetXdslRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    iamTags: S.optional(GetXdslRequestIamTagsMap.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/xdsl", code: 200 })),
-).annotate({ identifier: "GetXdslRequest" }) as any as S.Schema<GetXdslRequest>;
-
-export type GetXdslResponseBodyList = Array<string>;
-export const GetXdslResponseBodyList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<GetXdslResponseBodyList>;
-
-export type GetXdslResponse = GetXdslResponseBodyList;
-export const GetXdslResponse = /*@__PURE__*/ S.suspend(() =>
-  GetXdslResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetXdslResponse",
-}) as any as S.Schema<GetXdslResponse>;
-
-export type GetXdslEmailProRequestIamTagsValueList =
-  Array<IamResourceTagFilterInput>;
-export const GetXdslEmailProRequestIamTagsValueList = /*@__PURE__*/ S.Array(
-  IamResourceTagFilterInput,
-) as any as S.Schema<GetXdslEmailProRequestIamTagsValueList>;
-
-export type GetXdslEmailProRequestIamTagsMap = {
-  [key: string]: GetXdslEmailProRequestIamTagsValueList | undefined;
-};
-export const GetXdslEmailProRequestIamTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  GetXdslEmailProRequestIamTagsValueList,
-) as any as S.Schema<GetXdslEmailProRequestIamTagsMap>;
-
-export interface GetXdslEmailProRequest {
-  /** Filter resources on IAM tags */
-  iamTags?: GetXdslEmailProRequestIamTagsMap;
-}
-export const GetXdslEmailProRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    iamTags: S.optional(GetXdslEmailProRequestIamTagsMap.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/xdsl/email/pro", code: 200 })),
-).annotate({
-  identifier: "GetXdslEmailProRequest",
-}) as any as S.Schema<GetXdslEmailProRequest>;
-
-export type GetXdslEmailProResponseBodyList = Array<string>;
-export const GetXdslEmailProResponseBodyList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<GetXdslEmailProResponseBodyList>;
-
-export type GetXdslEmailProResponse = GetXdslEmailProResponseBodyList;
-export const GetXdslEmailProResponse = /*@__PURE__*/ S.suspend(() =>
-  GetXdslEmailProResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetXdslEmailProResponse",
-}) as any as S.Schema<GetXdslEmailProResponse>;
-
-export interface GetXdslEmailProEmailRequest {
-  /** Email */
-  email: string;
-}
-export const GetXdslEmailProEmailRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    email: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/xdsl/email/pro/{email}", code: 200 })),
-).annotate({
-  identifier: "GetXdslEmailProEmailRequest",
-}) as any as S.Schema<GetXdslEmailProEmailRequest>;
-
-/** complexType.UnitAndValue_double */
-export interface ComplexTypeUnitAndValueDouble {
-  unit?: string;
-  value?: number;
-}
-export const ComplexTypeUnitAndValueDouble = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    unit: S.optional(S.String),
-    value: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ComplexTypeUnitAndValueDouble",
-}) as any as S.Schema<ComplexTypeUnitAndValueDouble>;
-
-/** Resource tags. Tags that were internally computed are prefixed with ovh: */
-export type IamResourceMetadataTagsMap = { [key: string]: string | undefined };
-export const IamResourceMetadataTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<IamResourceMetadataTagsMap>;
-
-/** IAM resource metadata embedded in services models */
-export interface IamResourceMetadata {
-  /** Resource display name */
-  displayName?: string | null;
-  /** Unique identifier of the resource */
-  id?: string;
-  /** Resource tags. Tags that were internally computed are prefixed with ovh: */
-  tags?: IamResourceMetadataTagsMap | null;
-  /** Unique resource name used in policies */
-  urn?: string;
-}
-export const IamResourceMetadata = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    displayName: S.optional(S.NullOr(S.String)),
-    id: S.optional(S.String),
-    tags: S.optional(S.NullOr(IamResourceMetadataTagsMap)),
-    urn: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "IamResourceMetadata",
-}) as any as S.Schema<IamResourceMetadata>;
-
-/** complexType.UnitAndValue_long */
-export type ComplexTypeUnitAndValueLong = ComplexTypeUnitAndValueDouble;
-export const ComplexTypeUnitAndValueLong = ComplexTypeUnitAndValueDouble;
-
-/** Current object state */
-export type EmailProObjectStateEnum =
-  | "creating"
-  | "deleting"
-  | "ok"
-  | "reopening"
-  | "suspended"
-  | "suspending"
-  | "unknown";
-export const EmailProObjectStateEnum = /*@__PURE__*/ S.String;
-
-/** XDSL Email Pro */
-export interface XdslXdslEmailProWithIAM {
-  /** Mailbox usage */
-  currentUsage?: ComplexTypeUnitAndValueDouble;
-  /** Account display name */
-  displayName?: string | null;
-  /** Email domain */
-  domain?: string;
-  /** Account first name */
-  firstName?: string | null;
-  /** IAM resource metadata */
-  iam?: IamResourceMetadata | null;
-  /** Account id */
-  id?: number;
-  /** Account initials */
-  initial?: string | null;
-  /** Last logoff */
-  lastLogoffDate?: string | null;
-  /** Last logon */
-  lastLogonDate?: string | null;
-  /** Account last name */
-  lastName?: string | null;
-  /** Account login */
-  login?: string;
-  /** Time of account's password last update */
-  passwordLastUpdate?: string | Redacted.Redacted<string> | null;
-  /** Default email for this mailbox */
-  primaryEmailAddress?: string;
-  /** Account maximum size */
-  quota?: ComplexTypeUnitAndValueDouble;
-  /** Account state */
-  state?: EmailProObjectStateEnum;
-  /** Pending tasks for this account */
-  taskPendingId?: number | null;
-}
-export const XdslXdslEmailProWithIAM = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    currentUsage: S.optional(ComplexTypeUnitAndValueDouble),
-    displayName: S.optional(S.NullOr(S.String)),
-    domain: S.optional(S.String),
-    firstName: S.optional(S.NullOr(S.String)),
-    iam: S.optional(S.NullOr(IamResourceMetadata)),
-    id: S.optional(S.Number),
-    initial: S.optional(S.NullOr(S.String)),
-    lastLogoffDate: S.optional(S.NullOr(S.String)),
-    lastLogonDate: S.optional(S.NullOr(S.String)),
-    lastName: S.optional(S.NullOr(S.String)),
-    login: S.optional(S.String),
-    passwordLastUpdate: S.optional(
-      S.NullOr(S.String).pipe(T.SensitiveValue({})),
-    ),
-    primaryEmailAddress: S.optional(S.String),
-    quota: S.optional(ComplexTypeUnitAndValueDouble),
-    state: S.optional(EmailProObjectStateEnum),
-    taskPendingId: S.optional(S.NullOr(S.Number)),
-  }),
-).annotate({
-  identifier: "XdslXdslEmailProWithIAM",
-}) as any as S.Schema<XdslXdslEmailProWithIAM>;
-
-export interface GetXdslIncidentsRequest {
-  /** Filter the value of creationDate property (>) */
-  creationDate?: string;
-  /** Filter the value of endDate property (<) */
-  endDate?: string;
-}
-export const GetXdslIncidentsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    creationDate: S.optional(S.String.pipe(T.Query())),
-    endDate: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/xdsl/incidents", code: 200 })),
-).annotate({
-  identifier: "GetXdslIncidentsRequest",
-}) as any as S.Schema<GetXdslIncidentsRequest>;
-
-export type GetXdslIncidentsResponseBodyList = Array<number>;
-export const GetXdslIncidentsResponseBodyList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<GetXdslIncidentsResponseBodyList>;
-
-export type GetXdslIncidentsResponse = GetXdslIncidentsResponseBodyList;
-export const GetXdslIncidentsResponse = /*@__PURE__*/ S.suspend(() =>
-  GetXdslIncidentsResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetXdslIncidentsResponse",
-}) as any as S.Schema<GetXdslIncidentsResponse>;
-
-export interface GetXdslIncidentsIdRequest {
-  /** Id */
-  id: number;
-}
-export const GetXdslIncidentsIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.Number.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/xdsl/incidents/{id}", code: 200 })),
-).annotate({
-  identifier: "GetXdslIncidentsIdRequest",
-}) as any as S.Schema<GetXdslIncidentsIdRequest>;
-
-/** Department list */
-export type XdslIncidentDepartmentsList = Array<string>;
-export const XdslIncidentDepartmentsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<XdslIncidentDepartmentsList>;
-
-/** NRA list */
-export type XdslIncidentNraList = Array<string>;
-export const XdslIncidentNraList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<XdslIncidentNraList>;
-
-/** Operators */
-export type XdslOperatorTypeEnum = "collect" | "kosc" | "ovh";
-export const XdslOperatorTypeEnum = /*@__PURE__*/ S.String;
-
-/** Operator */
-export type XdslIncidentOperatorsList = Array<XdslOperatorTypeEnum>;
-export const XdslIncidentOperatorsList = /*@__PURE__*/ S.Array(
-  XdslOperatorTypeEnum,
-) as any as S.Schema<XdslIncidentOperatorsList>;
-
-/** Detected incident */
-export interface XdslIncident {
-  comment?: string;
-  /** Estimated start date */
-  creationDate?: string;
-  /** Department list */
-  departments?: XdslIncidentDepartmentsList;
-  /** Estimated end date */
-  endDate?: string | null;
-  /** ID of the incident */
-  id?: number;
-  /** NRA list */
-  nra?: XdslIncidentNraList;
-  /** Operator */
-  operators?: XdslIncidentOperatorsList;
-  /** Task ID on travaux.ovh.com */
-  taskId?: number | null;
-  taskReference?: string | null;
-}
-export const XdslIncident = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    comment: S.optional(S.String),
-    creationDate: S.optional(S.String),
-    departments: S.optional(XdslIncidentDepartmentsList),
-    endDate: S.optional(S.NullOr(S.String)),
-    id: S.optional(S.Number),
-    nra: S.optional(XdslIncidentNraList),
-    operators: S.optional(XdslIncidentOperatorsList),
-    taskId: S.optional(S.NullOr(S.Number)),
-    taskReference: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({ identifier: "XdslIncident" }) as any as S.Schema<XdslIncident>;
-
-export interface GetXdslServiceNameRequest {
   /** Service name */
   serviceName: string;
 }
-export const GetXdslServiceNameRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetXdslRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     serviceName: S.String.pipe(T.Label()),
   }).pipe(T.Http({ method: "GET", uri: "/xdsl/{serviceName}", code: 200 })),
-).annotate({
-  identifier: "GetXdslServiceNameRequest",
-}) as any as S.Schema<GetXdslServiceNameRequest>;
+).annotate({ identifier: "GetXdslRequest" }) as any as S.Schema<GetXdslRequest>;
 
 /** Possible DSL technologies */
 export type XdslDslTypeEnum = "adsl" | "ftte" | "ftth" | "sdsl" | "vdsl";
@@ -1756,6 +1659,35 @@ export const XdslAccessCapabilities = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "XdslAccessCapabilities",
 }) as any as S.Schema<XdslAccessCapabilities>;
+
+/** Resource tags. Tags that were internally computed are prefixed with ovh: */
+export type IamResourceMetadataTagsMap = { [key: string]: string | undefined };
+export const IamResourceMetadataTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<IamResourceMetadataTagsMap>;
+
+/** IAM resource metadata embedded in services models */
+export interface IamResourceMetadata {
+  /** Resource display name */
+  displayName?: string | null;
+  /** Unique identifier of the resource */
+  id?: string;
+  /** Resource tags. Tags that were internally computed are prefixed with ovh: */
+  tags?: IamResourceMetadataTagsMap | null;
+  /** Unique resource name used in policies */
+  urn?: string;
+}
+export const IamResourceMetadata = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    displayName: S.optional(S.NullOr(S.String)),
+    id: S.optional(S.String),
+    tags: S.optional(S.NullOr(IamResourceMetadataTagsMap)),
+    urn: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "IamResourceMetadata",
+}) as any as S.Schema<IamResourceMetadata>;
 
 /** Status allowed for mail sending */
 export type XdslMailSendingAccessStatusEnum =
@@ -1844,12 +1776,12 @@ export const XdslAccessWithIAM = /*@__PURE__*/ S.suspend(() =>
   identifier: "XdslAccessWithIAM",
 }) as any as S.Schema<XdslAccessWithIAM>;
 
-export interface GetXdslServiceNameAddressMoveExtraIpRangeRequest {
+export interface GetXdslAddressMoveExtraIpRangeRequest {
   /** Service name */
   serviceName: string;
 }
-export const GetXdslServiceNameAddressMoveExtraIpRangeRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetXdslAddressMoveExtraIpRangeRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
     }).pipe(
@@ -1859,9 +1791,9 @@ export const GetXdslServiceNameAddressMoveExtraIpRangeRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "GetXdslServiceNameAddressMoveExtraIpRangeRequest",
-  }) as any as S.Schema<GetXdslServiceNameAddressMoveExtraIpRangeRequest>;
+).annotate({
+  identifier: "GetXdslAddressMoveExtraIpRangeRequest",
+}) as any as S.Schema<GetXdslAddressMoveExtraIpRangeRequest>;
 
 /** Informations about the extra IP range during address move */
 export interface XdslExtraIpRangeMove {
@@ -1882,55 +1814,26 @@ export const XdslExtraIpRangeMove = /*@__PURE__*/ S.suspend(() =>
   identifier: "XdslExtraIpRangeMove",
 }) as any as S.Schema<XdslExtraIpRangeMove>;
 
-export interface GetXdslServiceNameAntiSpamsRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const GetXdslServiceNameAntiSpamsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/xdsl/{serviceName}/antiSpams", code: 200 }),
-  ),
-).annotate({
-  identifier: "GetXdslServiceNameAntiSpamsRequest",
-}) as any as S.Schema<GetXdslServiceNameAntiSpamsRequest>;
-
-export type GetXdslServiceNameAntiSpamsResponseBodyList = Array<string>;
-export const GetXdslServiceNameAntiSpamsResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetXdslServiceNameAntiSpamsResponseBodyList>;
-
-export type GetXdslServiceNameAntiSpamsResponse =
-  GetXdslServiceNameAntiSpamsResponseBodyList;
-export const GetXdslServiceNameAntiSpamsResponse = /*@__PURE__*/ S.suspend(() =>
-  GetXdslServiceNameAntiSpamsResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetXdslServiceNameAntiSpamsResponse",
-}) as any as S.Schema<GetXdslServiceNameAntiSpamsResponse>;
-
-export interface GetXdslServiceNameAntiSpamsIpRequest {
+export interface GetXdslAntiSpamRequest {
   /** Service name */
   serviceName: string;
   /** Ip */
   ip: string;
 }
-export const GetXdslServiceNameAntiSpamsIpRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      ip: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/xdsl/{serviceName}/antiSpams/{ip}",
-        code: 200,
-      }),
-    ),
+export const GetXdslAntiSpamRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    ip: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/xdsl/{serviceName}/antiSpams/{ip}",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "GetXdslServiceNameAntiSpamsIpRequest",
-}) as any as S.Schema<GetXdslServiceNameAntiSpamsIpRequest>;
+  identifier: "GetXdslAntiSpamRequest",
+}) as any as S.Schema<GetXdslAntiSpamRequest>;
 
 /** AntiSpam status */
 export type XdslAntiSpamAntiSpamStatusEnum =
@@ -1961,115 +1864,44 @@ export const XdslAntiSpam = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "XdslAntiSpam" }) as any as S.Schema<XdslAntiSpam>;
 
-export interface GetXdslServiceNameAntiSpamsIpEvidencesRequest {
+export interface GetXdslCanCancelResiliationRequest {
   /** Service name */
   serviceName: string;
-  /** Ip */
-  ip: string;
 }
-export const GetXdslServiceNameAntiSpamsIpEvidencesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      ip: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/xdsl/{serviceName}/antiSpams/{ip}/evidences",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetXdslServiceNameAntiSpamsIpEvidencesRequest",
-  }) as any as S.Schema<GetXdslServiceNameAntiSpamsIpEvidencesRequest>;
-
-/** detail on evidences stored on PCS */
-export interface XdslAntiSpamEvidencesInfoDetail {
-  /** File date on the PCS */
-  date?: string;
-  /** File name on the PCS */
-  filename?: string;
-  /** Temporary URL to access file */
-  url?: string;
-}
-export const XdslAntiSpamEvidencesInfoDetail = /*@__PURE__*/ S.suspend(() =>
+export const GetXdslCanCancelResiliationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    date: S.optional(S.String),
-    filename: S.optional(S.String),
-    url: S.optional(S.String),
-  }),
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/xdsl/{serviceName}/canCancelResiliation",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "XdslAntiSpamEvidencesInfoDetail",
-}) as any as S.Schema<XdslAntiSpamEvidencesInfoDetail>;
+  identifier: "GetXdslCanCancelResiliationRequest",
+}) as any as S.Schema<GetXdslCanCancelResiliationRequest>;
 
-/** Table with evidences stored on PCS */
-export type XdslAntiSpamEvidencesInfoResultList =
-  Array<XdslAntiSpamEvidencesInfoDetail>;
-export const XdslAntiSpamEvidencesInfoResultList = /*@__PURE__*/ S.Array(
-  XdslAntiSpamEvidencesInfoDetail,
-) as any as S.Schema<XdslAntiSpamEvidencesInfoResultList>;
-
-/** Evidences AsyncTask status */
-export type XdslAntiSpamEvidencesInfoStatusEnum = "error" | "ok" | "pending";
-export const XdslAntiSpamEvidencesInfoStatusEnum = /*@__PURE__*/ S.String;
-
-/** List of evidences */
-export interface XdslAntiSpamEvidencesInfo {
-  /** AsyncTask detailed error */
-  error?: string | null;
-  /** Table with evidences stored on PCS */
-  result?: XdslAntiSpamEvidencesInfoResultList | null;
-  /** Evidences AsyncTask status */
-  status?: XdslAntiSpamEvidencesInfoStatusEnum;
-}
-export const XdslAntiSpamEvidencesInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    error: S.optional(S.NullOr(S.String)),
-    result: S.optional(S.NullOr(XdslAntiSpamEvidencesInfoResultList)),
-    status: S.optional(XdslAntiSpamEvidencesInfoStatusEnum),
-  }),
+export type GetXdslCanCancelResiliationResponse = boolean;
+export const GetXdslCanCancelResiliationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Boolean.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "XdslAntiSpamEvidencesInfo",
-}) as any as S.Schema<XdslAntiSpamEvidencesInfo>;
+  identifier: "GetXdslCanCancelResiliationResponse",
+}) as any as S.Schema<GetXdslCanCancelResiliationResponse>;
 
-export interface GetXdslServiceNameCanCancelResiliationRequest {
+export interface GetXdslDiagnosticRequest {
   /** Service name */
   serviceName: string;
 }
-export const GetXdslServiceNameCanCancelResiliationRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/xdsl/{serviceName}/canCancelResiliation",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetXdslServiceNameCanCancelResiliationRequest",
-  }) as any as S.Schema<GetXdslServiceNameCanCancelResiliationRequest>;
-
-export type GetXdslServiceNameCanCancelResiliationResponse = boolean;
-export const GetXdslServiceNameCanCancelResiliationResponse =
-  /*@__PURE__*/ S.suspend(() => S.Boolean.pipe(T.RawResponseRoot())).annotate({
-    identifier: "GetXdslServiceNameCanCancelResiliationResponse",
-  }) as any as S.Schema<GetXdslServiceNameCanCancelResiliationResponse>;
-
-export interface GetXdslServiceNameDiagnosticRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const GetXdslServiceNameDiagnosticRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetXdslDiagnosticRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     serviceName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({ method: "GET", uri: "/xdsl/{serviceName}/diagnostic", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetXdslServiceNameDiagnosticRequest",
-}) as any as S.Schema<GetXdslServiceNameDiagnosticRequest>;
+  identifier: "GetXdslDiagnosticRequest",
+}) as any as S.Schema<GetXdslDiagnosticRequest>;
 
 /** Describe the capabilities of the access diagnostic */
 export interface XdslAccessDiagnosticCapabilities {
@@ -2167,75 +1999,127 @@ export const XdslAccessDiagnostic = /*@__PURE__*/ S.suspend(() =>
   identifier: "XdslAccessDiagnostic",
 }) as any as S.Schema<XdslAccessDiagnostic>;
 
-/** Status of the fiber eligibility */
-export type XdslFiberEligibilityStatusEnum =
-  | "eligible"
-  | "no_building"
-  | "not_eligible"
-  | "not_yet_eligible";
-export const XdslFiberEligibilityStatusEnum = /*@__PURE__*/ S.String;
-
-export interface GetXdslServiceNameFiberEligibilitiesRequest {
-  /** Service name */
-  serviceName: string;
-  /** Filter the value of status property (=) */
-  status?: XdslFiberEligibilityStatusEnum | (string & {});
+export interface GetXdslEmailProRequest {
+  /** Email */
+  email: string;
 }
-export const GetXdslServiceNameFiberEligibilitiesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      status: S.optional(XdslFiberEligibilityStatusEnum.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/xdsl/{serviceName}/fiberEligibilities",
-        code: 200,
-      }),
+export const GetXdslEmailProRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    email: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/xdsl/email/pro/{email}", code: 200 })),
+).annotate({
+  identifier: "GetXdslEmailProRequest",
+}) as any as S.Schema<GetXdslEmailProRequest>;
+
+/** complexType.UnitAndValue_double */
+export interface ComplexTypeUnitAndValueDouble {
+  unit?: string;
+  value?: number;
+}
+export const ComplexTypeUnitAndValueDouble = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    unit: S.optional(S.String),
+    value: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "ComplexTypeUnitAndValueDouble",
+}) as any as S.Schema<ComplexTypeUnitAndValueDouble>;
+
+/** complexType.UnitAndValue_long */
+export type ComplexTypeUnitAndValueLong = ComplexTypeUnitAndValueDouble;
+export const ComplexTypeUnitAndValueLong = ComplexTypeUnitAndValueDouble;
+
+/** Current object state */
+export type EmailProObjectStateEnum =
+  | "creating"
+  | "deleting"
+  | "ok"
+  | "reopening"
+  | "suspended"
+  | "suspending"
+  | "unknown";
+export const EmailProObjectStateEnum = /*@__PURE__*/ S.String;
+
+/** XDSL Email Pro */
+export interface XdslXdslEmailProWithIAM {
+  /** Mailbox usage */
+  currentUsage?: ComplexTypeUnitAndValueDouble;
+  /** Account display name */
+  displayName?: string | null;
+  /** Email domain */
+  domain?: string;
+  /** Account first name */
+  firstName?: string | null;
+  /** IAM resource metadata */
+  iam?: IamResourceMetadata | null;
+  /** Account id */
+  id?: number;
+  /** Account initials */
+  initial?: string | null;
+  /** Last logoff */
+  lastLogoffDate?: string | null;
+  /** Last logon */
+  lastLogonDate?: string | null;
+  /** Account last name */
+  lastName?: string | null;
+  /** Account login */
+  login?: string;
+  /** Time of account's password last update */
+  passwordLastUpdate?: string | Redacted.Redacted<string> | null;
+  /** Default email for this mailbox */
+  primaryEmailAddress?: string;
+  /** Account maximum size */
+  quota?: ComplexTypeUnitAndValueDouble;
+  /** Account state */
+  state?: EmailProObjectStateEnum;
+  /** Pending tasks for this account */
+  taskPendingId?: number | null;
+}
+export const XdslXdslEmailProWithIAM = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    currentUsage: S.optional(ComplexTypeUnitAndValueDouble),
+    displayName: S.optional(S.NullOr(S.String)),
+    domain: S.optional(S.String),
+    firstName: S.optional(S.NullOr(S.String)),
+    iam: S.optional(S.NullOr(IamResourceMetadata)),
+    id: S.optional(S.Number),
+    initial: S.optional(S.NullOr(S.String)),
+    lastLogoffDate: S.optional(S.NullOr(S.String)),
+    lastLogonDate: S.optional(S.NullOr(S.String)),
+    lastName: S.optional(S.NullOr(S.String)),
+    login: S.optional(S.String),
+    passwordLastUpdate: S.optional(
+      S.NullOr(S.String).pipe(T.SensitiveValue({})),
     ),
-  ).annotate({
-    identifier: "GetXdslServiceNameFiberEligibilitiesRequest",
-  }) as any as S.Schema<GetXdslServiceNameFiberEligibilitiesRequest>;
+    primaryEmailAddress: S.optional(S.String),
+    quota: S.optional(ComplexTypeUnitAndValueDouble),
+    state: S.optional(EmailProObjectStateEnum),
+    taskPendingId: S.optional(S.NullOr(S.Number)),
+  }),
+).annotate({
+  identifier: "XdslXdslEmailProWithIAM",
+}) as any as S.Schema<XdslXdslEmailProWithIAM>;
 
-export type GetXdslServiceNameFiberEligibilitiesResponseBodyList =
-  Array<number>;
-export const GetXdslServiceNameFiberEligibilitiesResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<GetXdslServiceNameFiberEligibilitiesResponseBodyList>;
-
-export type GetXdslServiceNameFiberEligibilitiesResponse =
-  GetXdslServiceNameFiberEligibilitiesResponseBodyList;
-export const GetXdslServiceNameFiberEligibilitiesResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetXdslServiceNameFiberEligibilitiesResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetXdslServiceNameFiberEligibilitiesResponse",
-  }) as any as S.Schema<GetXdslServiceNameFiberEligibilitiesResponse>;
-
-export interface GetXdslServiceNameFiberEligibilitiesIdRequest {
+export interface GetXdslFiberEligibilityRequest {
   /** Service name */
   serviceName: string;
   /** Id */
   id: number;
 }
-export const GetXdslServiceNameFiberEligibilitiesIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/xdsl/{serviceName}/fiberEligibilities/{id}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetXdslServiceNameFiberEligibilitiesIdRequest",
-  }) as any as S.Schema<GetXdslServiceNameFiberEligibilitiesIdRequest>;
+export const GetXdslFiberEligibilityRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/xdsl/{serviceName}/fiberEligibilities/{id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetXdslFiberEligibilityRequest",
+}) as any as S.Schema<GetXdslFiberEligibilityRequest>;
 
 /** Copper grid closure trajectory */
 export interface XdslCopperGridClosureTrajectory {
@@ -2336,6 +2220,14 @@ export const XdslProvider = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "XdslProvider" }) as any as S.Schema<XdslProvider>;
 
+/** Status of the fiber eligibility */
+export type XdslFiberEligibilityStatusEnum =
+  | "eligible"
+  | "no_building"
+  | "not_eligible"
+  | "not_yet_eligible";
+export const XdslFiberEligibilityStatusEnum = /*@__PURE__*/ S.String;
+
 /** Fiber eligibility */
 export interface XdslFiberEligibility {
   /** Availability date */
@@ -2384,52 +2276,94 @@ export const XdslFiberEligibility = /*@__PURE__*/ S.suspend(() =>
   identifier: "XdslFiberEligibility",
 }) as any as S.Schema<XdslFiberEligibility>;
 
-export interface GetXdslServiceNameIncidentRequest {
+export interface GetXdslIncidentRequest {
+  /** Id */
+  id: number;
+}
+export const GetXdslIncidentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.Number.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/xdsl/incidents/{id}", code: 200 })),
+).annotate({
+  identifier: "GetXdslIncidentRequest",
+}) as any as S.Schema<GetXdslIncidentRequest>;
+
+/** Department list */
+export type XdslIncidentDepartmentsList = Array<string>;
+export const XdslIncidentDepartmentsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<XdslIncidentDepartmentsList>;
+
+/** NRA list */
+export type XdslIncidentNraList = Array<string>;
+export const XdslIncidentNraList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<XdslIncidentNraList>;
+
+/** Operators */
+export type XdslOperatorTypeEnum = "collect" | "kosc" | "ovh";
+export const XdslOperatorTypeEnum = /*@__PURE__*/ S.String;
+
+/** Operator */
+export type XdslIncidentOperatorsList = Array<XdslOperatorTypeEnum>;
+export const XdslIncidentOperatorsList = /*@__PURE__*/ S.Array(
+  XdslOperatorTypeEnum,
+) as any as S.Schema<XdslIncidentOperatorsList>;
+
+/** Detected incident */
+export interface XdslIncident {
+  comment?: string;
+  /** Estimated start date */
+  creationDate?: string;
+  /** Department list */
+  departments?: XdslIncidentDepartmentsList;
+  /** Estimated end date */
+  endDate?: string | null;
+  /** ID of the incident */
+  id?: number;
+  /** NRA list */
+  nra?: XdslIncidentNraList;
+  /** Operator */
+  operators?: XdslIncidentOperatorsList;
+  /** Task ID on travaux.ovh.com */
+  taskId?: number | null;
+  taskReference?: string | null;
+}
+export const XdslIncident = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    comment: S.optional(S.String),
+    creationDate: S.optional(S.String),
+    departments: S.optional(XdslIncidentDepartmentsList),
+    endDate: S.optional(S.NullOr(S.String)),
+    id: S.optional(S.Number),
+    nra: S.optional(XdslIncidentNraList),
+    operators: S.optional(XdslIncidentOperatorsList),
+    taskId: S.optional(S.NullOr(S.Number)),
+    taskReference: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({ identifier: "XdslIncident" }) as any as S.Schema<XdslIncident>;
+
+export interface GetXdslIncidentRequest2 {
   /** Service name */
   serviceName: string;
 }
-export const GetXdslServiceNameIncidentRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetXdslIncidentRequest2 = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     serviceName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({ method: "GET", uri: "/xdsl/{serviceName}/incident", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetXdslServiceNameIncidentRequest",
-}) as any as S.Schema<GetXdslServiceNameIncidentRequest>;
+  identifier: "GetXdslIncidentRequest2",
+}) as any as S.Schema<GetXdslIncidentRequest2>;
 
-export interface GetXdslServiceNameIpsRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const GetXdslServiceNameIpsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceName: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/xdsl/{serviceName}/ips", code: 200 })),
-).annotate({
-  identifier: "GetXdslServiceNameIpsRequest",
-}) as any as S.Schema<GetXdslServiceNameIpsRequest>;
-
-export type GetXdslServiceNameIpsResponseBodyList = Array<string>;
-export const GetXdslServiceNameIpsResponseBodyList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<GetXdslServiceNameIpsResponseBodyList>;
-
-export type GetXdslServiceNameIpsResponse =
-  GetXdslServiceNameIpsResponseBodyList;
-export const GetXdslServiceNameIpsResponse = /*@__PURE__*/ S.suspend(() =>
-  GetXdslServiceNameIpsResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetXdslServiceNameIpsResponse",
-}) as any as S.Schema<GetXdslServiceNameIpsResponse>;
-
-export interface GetXdslServiceNameIpsIpRequest {
+export interface GetXdslIpsRequest {
   /** Service name */
   serviceName: string;
   /** Ip */
   ip: string;
 }
-export const GetXdslServiceNameIpsIpRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetXdslIpsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     serviceName: S.String.pipe(T.Label()),
     ip: S.String.pipe(T.Label()),
@@ -2437,8 +2371,8 @@ export const GetXdslServiceNameIpsIpRequest = /*@__PURE__*/ S.suspend(() =>
     T.Http({ method: "GET", uri: "/xdsl/{serviceName}/ips/{ip}", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetXdslServiceNameIpsIpRequest",
-}) as any as S.Schema<GetXdslServiceNameIpsIpRequest>;
+  identifier: "GetXdslIpsRequest",
+}) as any as S.Schema<GetXdslIpsRequest>;
 
 export type XdslIPDnsListList = Array<string>;
 export const XdslIPDnsListList = /*@__PURE__*/ S.Array(
@@ -2473,54 +2407,26 @@ export const XdslIP = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "XdslIP" }) as any as S.Schema<XdslIP>;
 
-export interface GetXdslServiceNameLinesRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const GetXdslServiceNameLinesRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/xdsl/{serviceName}/lines", code: 200 }),
-  ),
-).annotate({
-  identifier: "GetXdslServiceNameLinesRequest",
-}) as any as S.Schema<GetXdslServiceNameLinesRequest>;
-
-export type GetXdslServiceNameLinesResponseBodyList = Array<string>;
-export const GetXdslServiceNameLinesResponseBodyList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<GetXdslServiceNameLinesResponseBodyList>;
-
-export type GetXdslServiceNameLinesResponse =
-  GetXdslServiceNameLinesResponseBodyList;
-export const GetXdslServiceNameLinesResponse = /*@__PURE__*/ S.suspend(() =>
-  GetXdslServiceNameLinesResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetXdslServiceNameLinesResponse",
-}) as any as S.Schema<GetXdslServiceNameLinesResponse>;
-
-export interface GetXdslServiceNameLinesNumberRequest {
+export interface GetXdslLineRequest {
   /** Service name */
   serviceName: string;
   /** Number */
   number: string;
 }
-export const GetXdslServiceNameLinesNumberRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      number: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/xdsl/{serviceName}/lines/{number}",
-        code: 200,
-      }),
-    ),
+export const GetXdslLineRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    number: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/xdsl/{serviceName}/lines/{number}",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "GetXdslServiceNameLinesNumberRequest",
-}) as any as S.Schema<GetXdslServiceNameLinesNumberRequest>;
+  identifier: "GetXdslLineRequest",
+}) as any as S.Schema<GetXdslLineRequest>;
 
 /** Infos about a Landline at the concentration point */
 export interface XdslLandlineConcentrationPoint {
@@ -2623,27 +2529,26 @@ export const XdslLine = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "XdslLine" }) as any as S.Schema<XdslLine>;
 
-export interface GetXdslServiceNameLinesNumberDslamPortRequest {
+export interface GetXdslLineDslamPortRequest {
   /** Service name */
   serviceName: string;
   /** Number */
   number: string;
 }
-export const GetXdslServiceNameLinesNumberDslamPortRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      number: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/xdsl/{serviceName}/lines/{number}/dslamPort",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetXdslServiceNameLinesNumberDslamPortRequest",
-  }) as any as S.Schema<GetXdslServiceNameLinesNumberDslamPortRequest>;
+export const GetXdslLineDslamPortRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    number: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/xdsl/{serviceName}/lines/{number}/dslamPort",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetXdslLineDslamPortRequest",
+}) as any as S.Schema<GetXdslLineDslamPortRequest>;
 
 /** Profile on the DSLAM */
 export interface XdslDslamLineProfile {
@@ -2683,209 +2588,19 @@ export const XdslDslamPort = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "XdslDslamPort" }) as any as S.Schema<XdslDslamPort>;
 
-export interface GetXdslServiceNameLinesNumberDslamPortAvailableProfilesRequest {
-  /** Service name */
-  serviceName: string;
-  /** Number */
-  number: string;
-}
-export const GetXdslServiceNameLinesNumberDslamPortAvailableProfilesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      number: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/xdsl/{serviceName}/lines/{number}/dslamPort/availableProfiles",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "GetXdslServiceNameLinesNumberDslamPortAvailableProfilesRequest",
-  }) as any as S.Schema<GetXdslServiceNameLinesNumberDslamPortAvailableProfilesRequest>;
-
-export type GetXdslServiceNameLinesNumberDslamPortAvailableProfilesResponseBodyList =
-  Array<XdslDslamLineProfile>;
-export const GetXdslServiceNameLinesNumberDslamPortAvailableProfilesResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    XdslDslamLineProfile,
-  ) as any as S.Schema<GetXdslServiceNameLinesNumberDslamPortAvailableProfilesResponseBodyList>;
-
-export type GetXdslServiceNameLinesNumberDslamPortAvailableProfilesResponse =
-  GetXdslServiceNameLinesNumberDslamPortAvailableProfilesResponseBodyList;
-export const GetXdslServiceNameLinesNumberDslamPortAvailableProfilesResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetXdslServiceNameLinesNumberDslamPortAvailableProfilesResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier:
-      "GetXdslServiceNameLinesNumberDslamPortAvailableProfilesResponse",
-  }) as any as S.Schema<GetXdslServiceNameLinesNumberDslamPortAvailableProfilesResponse>;
-
-export interface GetXdslServiceNameLinesNumberDslamPortLogsRequest {
-  /** Service name */
-  serviceName: string;
-  /** Number */
-  number: string;
-  limit: number;
-}
-export const GetXdslServiceNameLinesNumberDslamPortLogsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      number: S.String.pipe(T.Label()),
-      limit: S.Number.pipe(T.Query()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/xdsl/{serviceName}/lines/{number}/dslamPort/logs",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetXdslServiceNameLinesNumberDslamPortLogsRequest",
-  }) as any as S.Schema<GetXdslServiceNameLinesNumberDslamPortLogsRequest>;
-
-/** A message log from the DSLAM */
-export interface XdslDslamPortLog {
-  date?: string;
-  /** The last time this message occured */
-  lastOccurrenceDate?: string;
-  message?: string;
-  /** The number of times this message occured between date and lastOccurrenceDate */
-  numberOfOccurrences?: number;
-}
-export const XdslDslamPortLog = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    date: S.optional(S.String),
-    lastOccurrenceDate: S.optional(S.String),
-    message: S.optional(S.String),
-    numberOfOccurrences: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "XdslDslamPortLog",
-}) as any as S.Schema<XdslDslamPortLog>;
-
-export type GetXdslServiceNameLinesNumberDslamPortLogsResponseBodyList =
-  Array<XdslDslamPortLog>;
-export const GetXdslServiceNameLinesNumberDslamPortLogsResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    XdslDslamPortLog,
-  ) as any as S.Schema<GetXdslServiceNameLinesNumberDslamPortLogsResponseBodyList>;
-
-export type GetXdslServiceNameLinesNumberDslamPortLogsResponse =
-  GetXdslServiceNameLinesNumberDslamPortLogsResponseBodyList;
-export const GetXdslServiceNameLinesNumberDslamPortLogsResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetXdslServiceNameLinesNumberDslamPortLogsResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetXdslServiceNameLinesNumberDslamPortLogsResponse",
-  }) as any as S.Schema<GetXdslServiceNameLinesNumberDslamPortLogsResponse>;
-
-/** Periods for statistics. */
-export type XdslStatisticsPeriodEnum =
-  | "daily"
-  | "monthly"
-  | "preview"
-  | "weekly"
-  | "yearly";
-export const XdslStatisticsPeriodEnum = /*@__PURE__*/ S.String;
-
-/** Various types of statisctics available for the line. */
-export type XdslLineStatisticsTypeEnum =
-  | "attenuation:download"
-  | "attenuation:upload"
-  | "error:crc"
-  | "error:fec"
-  | "error:hec"
-  | "snr:download"
-  | "snr:upload"
-  | "synchronization:download"
-  | "synchronization:upload";
-export const XdslLineStatisticsTypeEnum = /*@__PURE__*/ S.String;
-
-export interface GetXdslServiceNameLinesNumberStatisticsRequest {
-  /** Service name */
-  serviceName: string;
-  /** Number */
-  number: string;
-  period: XdslStatisticsPeriodEnum | (string & {});
-  type: XdslLineStatisticsTypeEnum | (string & {});
-}
-export const GetXdslServiceNameLinesNumberStatisticsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      number: S.String.pipe(T.Label()),
-      period: XdslStatisticsPeriodEnum.pipe(T.Query()),
-      type: XdslLineStatisticsTypeEnum.pipe(T.Query()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/xdsl/{serviceName}/lines/{number}/statistics",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetXdslServiceNameLinesNumberStatisticsRequest",
-  }) as any as S.Schema<GetXdslServiceNameLinesNumberStatisticsRequest>;
-
-/** A value associated to a timestamp */
-export interface XdslTimestampAndValue {
-  timestamp?: number;
-  value?: number | null;
-}
-export const XdslTimestampAndValue = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    timestamp: S.optional(S.Number),
-    value: S.optional(S.NullOr(S.Number)),
-  }),
-).annotate({
-  identifier: "XdslTimestampAndValue",
-}) as any as S.Schema<XdslTimestampAndValue>;
-
-export type ComplexTypeUnitAndValuesXdslTimestampAndValueValuesList =
-  Array<XdslTimestampAndValue>;
-export const ComplexTypeUnitAndValuesXdslTimestampAndValueValuesList =
-  /*@__PURE__*/ S.Array(
-    XdslTimestampAndValue,
-  ) as any as S.Schema<ComplexTypeUnitAndValuesXdslTimestampAndValueValuesList>;
-
-/** complexType.UnitAndValues_xdsl.TimestampAndValue */
-export interface ComplexTypeUnitAndValuesXdslTimestampAndValue {
-  unit?: string;
-  values?: ComplexTypeUnitAndValuesXdslTimestampAndValueValuesList;
-}
-export const ComplexTypeUnitAndValuesXdslTimestampAndValue =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      unit: S.optional(S.String),
-      values: S.optional(
-        ComplexTypeUnitAndValuesXdslTimestampAndValueValuesList,
-      ),
-    }),
-  ).annotate({
-    identifier: "ComplexTypeUnitAndValuesXdslTimestampAndValue",
-  }) as any as S.Schema<ComplexTypeUnitAndValuesXdslTimestampAndValue>;
-
-export interface GetXdslServiceNameModemRequest {
+export interface GetXdslModemRequest {
   /** Service name */
   serviceName: string;
 }
-export const GetXdslServiceNameModemRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetXdslModemRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     serviceName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({ method: "GET", uri: "/xdsl/{serviceName}/modem", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetXdslServiceNameModemRequest",
-}) as any as S.Schema<GetXdslServiceNameModemRequest>;
+  identifier: "GetXdslModemRequest",
+}) as any as S.Schema<GetXdslModemRequest>;
 
 /** ACS backend used by the modem */
 export type XdslXdslModemConfigACSBackendEnum = "beta" | "dev" | "stable";
@@ -2993,145 +2708,26 @@ export const XdslModem = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "XdslModem" }) as any as S.Schema<XdslModem>;
 
-export interface GetXdslServiceNameModemAvailableACSBackendRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const GetXdslServiceNameModemAvailableACSBackendRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/xdsl/{serviceName}/modem/availableACSBackend",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetXdslServiceNameModemAvailableACSBackendRequest",
-  }) as any as S.Schema<GetXdslServiceNameModemAvailableACSBackendRequest>;
-
-export type GetXdslServiceNameModemAvailableACSBackendResponseBodyList =
-  Array<string>;
-export const GetXdslServiceNameModemAvailableACSBackendResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetXdslServiceNameModemAvailableACSBackendResponseBodyList>;
-
-export type GetXdslServiceNameModemAvailableACSBackendResponse =
-  GetXdslServiceNameModemAvailableACSBackendResponseBodyList;
-export const GetXdslServiceNameModemAvailableACSBackendResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetXdslServiceNameModemAvailableACSBackendResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetXdslServiceNameModemAvailableACSBackendResponse",
-  }) as any as S.Schema<GetXdslServiceNameModemAvailableACSBackendResponse>;
-
-/** Frequency of WLAN */
-export type XdslWLANFrequencyEnum = "2.4GHz" | "5GHz";
-export const XdslWLANFrequencyEnum = /*@__PURE__*/ S.String;
-
-export interface GetXdslServiceNameModemAvailableWLANChannelRequest {
-  /** Service name */
-  serviceName: string;
-  /** WLAN frequency you want to retrieve channels */
-  frequency: XdslWLANFrequencyEnum | (string & {});
-}
-export const GetXdslServiceNameModemAvailableWLANChannelRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      frequency: XdslWLANFrequencyEnum.pipe(T.Query()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/xdsl/{serviceName}/modem/availableWLANChannel",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetXdslServiceNameModemAvailableWLANChannelRequest",
-  }) as any as S.Schema<GetXdslServiceNameModemAvailableWLANChannelRequest>;
-
-export type GetXdslServiceNameModemAvailableWLANChannelResponseBodyList =
-  Array<number>;
-export const GetXdslServiceNameModemAvailableWLANChannelResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<GetXdslServiceNameModemAvailableWLANChannelResponseBodyList>;
-
-export type GetXdslServiceNameModemAvailableWLANChannelResponse =
-  GetXdslServiceNameModemAvailableWLANChannelResponseBodyList;
-export const GetXdslServiceNameModemAvailableWLANChannelResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetXdslServiceNameModemAvailableWLANChannelResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetXdslServiceNameModemAvailableWLANChannelResponse",
-  }) as any as S.Schema<GetXdslServiceNameModemAvailableWLANChannelResponse>;
-
-export interface GetXdslServiceNameModemConnectedDevicesRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const GetXdslServiceNameModemConnectedDevicesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/xdsl/{serviceName}/modem/connectedDevices",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetXdslServiceNameModemConnectedDevicesRequest",
-  }) as any as S.Schema<GetXdslServiceNameModemConnectedDevicesRequest>;
-
-export type GetXdslServiceNameModemConnectedDevicesResponseBodyList =
-  Array<string>;
-export const GetXdslServiceNameModemConnectedDevicesResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetXdslServiceNameModemConnectedDevicesResponseBodyList>;
-
-export type GetXdslServiceNameModemConnectedDevicesResponse =
-  GetXdslServiceNameModemConnectedDevicesResponseBodyList;
-export const GetXdslServiceNameModemConnectedDevicesResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetXdslServiceNameModemConnectedDevicesResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetXdslServiceNameModemConnectedDevicesResponse",
-  }) as any as S.Schema<GetXdslServiceNameModemConnectedDevicesResponse>;
-
-export interface GetXdslServiceNameModemConnectedDevicesMacAddressRequest {
+export interface GetXdslModemConnectedDeviceRequest {
   /** Service name */
   serviceName: string;
   /** Mac address */
   macAddress: string;
 }
-export const GetXdslServiceNameModemConnectedDevicesMacAddressRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      macAddress: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/xdsl/{serviceName}/modem/connectedDevices/{macAddress}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetXdslServiceNameModemConnectedDevicesMacAddressRequest",
-  }) as any as S.Schema<GetXdslServiceNameModemConnectedDevicesMacAddressRequest>;
+export const GetXdslModemConnectedDeviceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    macAddress: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/xdsl/{serviceName}/modem/connectedDevices/{macAddress}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetXdslModemConnectedDeviceRequest",
+}) as any as S.Schema<GetXdslModemConnectedDeviceRequest>;
 
 /** How did the device got its IP Address */
 export type XdslXdslModemConfigConnectedDeviceAddressSourceEnum =
@@ -3177,91 +2773,175 @@ export const XdslConnectedDevice = /*@__PURE__*/ S.suspend(() =>
   identifier: "XdslConnectedDevice",
 }) as any as S.Schema<XdslConnectedDevice>;
 
-export interface GetXdslServiceNameModemFirmwareAvailableRequest {
+export interface GetXdslModemInfoRequest {
   /** Service name */
   serviceName: string;
 }
-export const GetXdslServiceNameModemFirmwareAvailableRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/xdsl/{serviceName}/modem/firmwareAvailable",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetXdslServiceNameModemFirmwareAvailableRequest",
-  }) as any as S.Schema<GetXdslServiceNameModemFirmwareAvailableRequest>;
-
-export type GetXdslServiceNameModemFirmwareAvailableResponseBodyList =
-  Array<string>;
-export const GetXdslServiceNameModemFirmwareAvailableResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetXdslServiceNameModemFirmwareAvailableResponseBodyList>;
-
-export type GetXdslServiceNameModemFirmwareAvailableResponse =
-  GetXdslServiceNameModemFirmwareAvailableResponseBodyList;
-export const GetXdslServiceNameModemFirmwareAvailableResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetXdslServiceNameModemFirmwareAvailableResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetXdslServiceNameModemFirmwareAvailableResponse",
-  }) as any as S.Schema<GetXdslServiceNameModemFirmwareAvailableResponse>;
-
-export interface GetXdslServiceNameModemLanRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const GetXdslServiceNameModemLanRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetXdslModemInfoRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     serviceName: S.String.pipe(T.Label()),
   }).pipe(
-    T.Http({ method: "GET", uri: "/xdsl/{serviceName}/modem/lan", code: 200 }),
+    T.Http({
+      method: "POST",
+      uri: "/xdsl/{serviceName}/modem/retrieveInfo",
+      code: 200,
+    }),
   ),
 ).annotate({
-  identifier: "GetXdslServiceNameModemLanRequest",
-}) as any as S.Schema<GetXdslServiceNameModemLanRequest>;
+  identifier: "GetXdslModemInfoRequest",
+}) as any as S.Schema<GetXdslModemInfoRequest>;
 
-export type GetXdslServiceNameModemLanResponseBodyList = Array<string>;
-export const GetXdslServiceNameModemLanResponseBodyList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<GetXdslServiceNameModemLanResponseBodyList>;
-
-export type GetXdslServiceNameModemLanResponse =
-  GetXdslServiceNameModemLanResponseBodyList;
-export const GetXdslServiceNameModemLanResponse = /*@__PURE__*/ S.suspend(() =>
-  GetXdslServiceNameModemLanResponseBodyList.pipe(T.RawResponseRoot()),
+/** Describe device information of a Modem */
+export interface XdslDeviceModemInfo {
+  /** Modem brand */
+  brand?: string;
+  /** IPv4 address (e.g., 192.0.2.0) */
+  ip?: string;
+  /** Time of last information refresh */
+  lastUpdate?: string;
+  /** Modem mac address */
+  macAddress?: string;
+  /** Modem type of model */
+  model?: string;
+  /** Organizational Unique Identifier */
+  oui?: string;
+  /** Protocol used for connection */
+  overEthernet?: string | null;
+  /** login used for ppp protocol */
+  pppLogin?: string | null;
+  /** Modem serial key */
+  serial?: string;
+  /** Software Version */
+  softVersion?: string;
+}
+export const XdslDeviceModemInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    brand: S.optional(S.String),
+    ip: S.optional(S.String),
+    lastUpdate: S.optional(S.String),
+    macAddress: S.optional(S.String),
+    model: S.optional(S.String),
+    oui: S.optional(S.String),
+    overEthernet: S.optional(S.NullOr(S.String)),
+    pppLogin: S.optional(S.NullOr(S.String)),
+    serial: S.optional(S.String),
+    softVersion: S.optional(S.String),
+  }),
 ).annotate({
-  identifier: "GetXdslServiceNameModemLanResponse",
-}) as any as S.Schema<GetXdslServiceNameModemLanResponse>;
+  identifier: "XdslDeviceModemInfo",
+}) as any as S.Schema<XdslDeviceModemInfo>;
 
-export interface GetXdslServiceNameModemLanLanNameRequest {
+/** Describe statistics information of a Modem */
+export interface XdslStatsModemInfo {
+  /** Connection uptime */
+  connectionUptime?: number;
+  /** Amount of CRC error detected */
+  crcError?: number;
+  /** Modem uptime */
+  deviceUptime?: number;
+  /** Downstream attenuation */
+  downstreamAttenuation?: number;
+  /** Downstream margin */
+  downstreamMargin?: number;
+  /** Downstream synchronization */
+  downstreamSync?: number;
+  /** Amount of FEC error detected */
+  fecError?: number;
+  /** Amount of HEC error detected */
+  hecError?: number;
+  /** Time of last refresh */
+  lastUpdate?: string;
+  /** Line modulation used */
+  modulation?: string;
+  /** Count from last refresh in seconds */
+  quarterHourStart?: number;
+  /** Synchronization uptime */
+  syncUptime?: number;
+  /** Upstream attenuation */
+  upstreamAttenuation?: number;
+  /** Upstream margin */
+  upstreamMargin?: number;
+  /** Upstream synchronization */
+  upstreamSync?: number;
+}
+export const XdslStatsModemInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    connectionUptime: S.optional(S.Number),
+    crcError: S.optional(S.Number),
+    deviceUptime: S.optional(S.Number),
+    downstreamAttenuation: S.optional(S.Number),
+    downstreamMargin: S.optional(S.Number),
+    downstreamSync: S.optional(S.Number),
+    fecError: S.optional(S.Number),
+    hecError: S.optional(S.Number),
+    lastUpdate: S.optional(S.String),
+    modulation: S.optional(S.String),
+    quarterHourStart: S.optional(S.Number),
+    syncUptime: S.optional(S.Number),
+    upstreamAttenuation: S.optional(S.Number),
+    upstreamMargin: S.optional(S.Number),
+    upstreamSync: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "XdslStatsModemInfo",
+}) as any as S.Schema<XdslStatsModemInfo>;
+
+/** Describe general information of a Modem */
+export interface XdslModemInfo {
+  /** Describe device information of a Modem */
+  device?: XdslDeviceModemInfo;
+  /** Describe statistics information of a Modem */
+  statistics?: XdslStatsModemInfo;
+}
+export const XdslModemInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    device: S.optional(XdslDeviceModemInfo),
+    statistics: S.optional(XdslStatsModemInfo),
+  }),
+).annotate({ identifier: "XdslModemInfo" }) as any as S.Schema<XdslModemInfo>;
+
+/** AsyncTask status */
+export type XdslAsyncTaskStatusEnum = "error" | "ok" | "pending";
+export const XdslAsyncTaskStatusEnum = /*@__PURE__*/ S.String;
+
+/** xdsl.AsyncTask_xdsl.ModemInfo */
+export interface XdslAsyncTaskXdslModemInfo {
+  error?: string | null;
+  /** Describe general information of a Modem */
+  result?: XdslModemInfo | null;
+  /** AsyncTask status */
+  status?: XdslAsyncTaskStatusEnum;
+}
+export const XdslAsyncTaskXdslModemInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    error: S.optional(S.NullOr(S.String)),
+    result: S.optional(S.NullOr(XdslModemInfo)),
+    status: S.optional(XdslAsyncTaskStatusEnum),
+  }),
+).annotate({
+  identifier: "XdslAsyncTaskXdslModemInfo",
+}) as any as S.Schema<XdslAsyncTaskXdslModemInfo>;
+
+export interface GetXdslModemLanRequest {
   /** Service name */
   serviceName: string;
   /** Lan name */
   lanName: string;
 }
-export const GetXdslServiceNameModemLanLanNameRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      lanName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/xdsl/{serviceName}/modem/lan/{lanName}",
-        code: 200,
-      }),
-    ),
+export const GetXdslModemLanRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    lanName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/xdsl/{serviceName}/modem/lan/{lanName}",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "GetXdslServiceNameModemLanLanNameRequest",
-}) as any as S.Schema<GetXdslServiceNameModemLanLanNameRequest>;
+  identifier: "GetXdslModemLanRequest",
+}) as any as S.Schema<GetXdslModemLanRequest>;
 
 /** LAN Configuration of the Modem */
 export interface XdslLAN {
@@ -3286,47 +2966,7 @@ export const XdslLAN = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "XdslLAN" }) as any as S.Schema<XdslLAN>;
 
-export interface GetXdslServiceNameModemLanLanNameDhcpRequest {
-  /** Service name */
-  serviceName: string;
-  /** Lan name */
-  lanName: string;
-}
-export const GetXdslServiceNameModemLanLanNameDhcpRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      lanName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/xdsl/{serviceName}/modem/lan/{lanName}/dhcp",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetXdslServiceNameModemLanLanNameDhcpRequest",
-  }) as any as S.Schema<GetXdslServiceNameModemLanLanNameDhcpRequest>;
-
-export type GetXdslServiceNameModemLanLanNameDhcpResponseBodyList =
-  Array<string>;
-export const GetXdslServiceNameModemLanLanNameDhcpResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetXdslServiceNameModemLanLanNameDhcpResponseBodyList>;
-
-export type GetXdslServiceNameModemLanLanNameDhcpResponse =
-  GetXdslServiceNameModemLanLanNameDhcpResponseBodyList;
-export const GetXdslServiceNameModemLanLanNameDhcpResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetXdslServiceNameModemLanLanNameDhcpResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetXdslServiceNameModemLanLanNameDhcpResponse",
-  }) as any as S.Schema<GetXdslServiceNameModemLanLanNameDhcpResponse>;
-
-export interface GetXdslServiceNameModemLanLanNameDhcpDhcpNameRequest {
+export interface GetXdslModemLanDhcpRequest {
   /** Service name */
   serviceName: string;
   /** Lan name */
@@ -3334,22 +2974,21 @@ export interface GetXdslServiceNameModemLanLanNameDhcpDhcpNameRequest {
   /** Dhcp name */
   dhcpName: string;
 }
-export const GetXdslServiceNameModemLanLanNameDhcpDhcpNameRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      lanName: S.String.pipe(T.Label()),
-      dhcpName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/xdsl/{serviceName}/modem/lan/{lanName}/dhcp/{dhcpName}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetXdslServiceNameModemLanLanNameDhcpDhcpNameRequest",
-  }) as any as S.Schema<GetXdslServiceNameModemLanLanNameDhcpDhcpNameRequest>;
+export const GetXdslModemLanDhcpRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    lanName: S.String.pipe(T.Label()),
+    dhcpName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/xdsl/{serviceName}/modem/lan/{lanName}/dhcp/{dhcpName}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetXdslModemLanDhcpRequest",
+}) as any as S.Schema<GetXdslModemLanDhcpRequest>;
 
 /** DHCP Configuration of the Modem */
 export interface XdslDHCP {
@@ -3392,89 +3031,130 @@ export const XdslDHCP = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "XdslDHCP" }) as any as S.Schema<XdslDHCP>;
 
-export interface GetXdslServiceNameModemWifiRequest {
+export interface GetXdslModemWifiRequest {
   /** Service name */
   serviceName: string;
+  /** Wifi name */
+  wifiName: string;
 }
-export const GetXdslServiceNameModemWifiRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetXdslModemWifiRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     serviceName: S.String.pipe(T.Label()),
+    wifiName: S.String.pipe(T.Label()),
   }).pipe(
-    T.Http({ method: "GET", uri: "/xdsl/{serviceName}/modem/wifi", code: 200 }),
+    T.Http({
+      method: "GET",
+      uri: "/xdsl/{serviceName}/modem/wifi/{wifiName}",
+      code: 200,
+    }),
   ),
 ).annotate({
-  identifier: "GetXdslServiceNameModemWifiRequest",
-}) as any as S.Schema<GetXdslServiceNameModemWifiRequest>;
+  identifier: "GetXdslModemWifiRequest",
+}) as any as S.Schema<GetXdslModemWifiRequest>;
 
-export type GetXdslServiceNameModemWifiResponseBodyList = Array<string>;
-export const GetXdslServiceNameModemWifiResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetXdslServiceNameModemWifiResponseBodyList>;
+/** Type of WLAN security protection */
+export type XdslXdslModemConfigSecurityTypeEnum =
+  | "None"
+  | "WEP"
+  | "WPA"
+  | "WPA2"
+  | "WPA2andWPA3"
+  | "WPA3"
+  | "WPAandWPA2";
+export const XdslXdslModemConfigSecurityTypeEnum = /*@__PURE__*/ S.String;
 
-export type GetXdslServiceNameModemWifiResponse =
-  GetXdslServiceNameModemWifiResponseBodyList;
-export const GetXdslServiceNameModemWifiResponse = /*@__PURE__*/ S.suspend(() =>
-  GetXdslServiceNameModemWifiResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetXdslServiceNameModemWifiResponse",
-}) as any as S.Schema<GetXdslServiceNameModemWifiResponse>;
+/** WLAN Configuration of the Modem */
+export interface XdslWLAN {
+  /** Service Set Identifier of the WLAN interface */
+  SSID?: string;
+  /** Hide or show the Wifi */
+  SSIDAdvertisementEnabled?: boolean;
+  /** Indicate if frequencies 2.4GHz and 5GHz are agregated */
+  bandSteering?: boolean;
+  /** Choice of a channel (When chosen, channelMode is set to Manual) */
+  channel?: number;
+  /** How the WiFi channel is selected */
+  channelMode?: XdslXdslModemConfigChannelModeEnum;
+  /** Wifi state */
+  enabled?: boolean;
+  /** Frequency (2.4GHz | 5GHz) */
+  frequency?: XdslXdslModemConfigFrequencyEnum;
+  /** Indicate if it is normal access wifi or guest wifi */
+  guest?: boolean;
+  /** WiFi security key */
+  securityKey?: string;
+  /** Type of WLAN security protection */
+  securityType?: XdslXdslModemConfigSecurityTypeEnum;
+  /** ID of the ongoing todo (NULL if none) */
+  taskId?: number | null;
+  /** Name of the Wifi */
+  wifiName?: string;
+}
+export const XdslWLAN = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    SSID: S.optional(S.String),
+    SSIDAdvertisementEnabled: S.optional(S.Boolean),
+    bandSteering: S.optional(S.Boolean),
+    channel: S.optional(S.Number),
+    channelMode: S.optional(XdslXdslModemConfigChannelModeEnum),
+    enabled: S.optional(S.Boolean),
+    frequency: S.optional(XdslXdslModemConfigFrequencyEnum),
+    guest: S.optional(S.Boolean),
+    securityKey: S.optional(S.String),
+    securityType: S.optional(XdslXdslModemConfigSecurityTypeEnum),
+    taskId: S.optional(S.NullOr(S.Number)),
+    wifiName: S.optional(S.String),
+  }),
+).annotate({ identifier: "XdslWLAN" }) as any as S.Schema<XdslWLAN>;
 
-export interface GetXdslServiceNameModemWifiRadioRequest {
+export interface GetXdslModemWifiQrCodeRequest {
   /** Service name */
   serviceName: string;
+  /** Wifi name */
+  wifiName: string;
 }
-export const GetXdslServiceNameModemWifiRadioRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/xdsl/{serviceName}/modem/wifiRadio",
-        code: 200,
-      }),
-    ),
+export const GetXdslModemWifiQrCodeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    wifiName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/xdsl/{serviceName}/modem/wifi/{wifiName}/qrCode",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "GetXdslServiceNameModemWifiRadioRequest",
-}) as any as S.Schema<GetXdslServiceNameModemWifiRadioRequest>;
+  identifier: "GetXdslModemWifiQrCodeRequest",
+}) as any as S.Schema<GetXdslModemWifiQrCodeRequest>;
 
-export type GetXdslServiceNameModemWifiRadioResponseBodyList = Array<string>;
-export const GetXdslServiceNameModemWifiRadioResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetXdslServiceNameModemWifiRadioResponseBodyList>;
-
-export type GetXdslServiceNameModemWifiRadioResponse =
-  GetXdslServiceNameModemWifiRadioResponseBodyList;
-export const GetXdslServiceNameModemWifiRadioResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    GetXdslServiceNameModemWifiRadioResponseBodyList.pipe(T.RawResponseRoot()),
+export type GetXdslModemWifiQrCodeResponse = string;
+export const GetXdslModemWifiQrCodeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.String.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "GetXdslServiceNameModemWifiRadioResponse",
-}) as any as S.Schema<GetXdslServiceNameModemWifiRadioResponse>;
+  identifier: "GetXdslModemWifiQrCodeResponse",
+}) as any as S.Schema<GetXdslModemWifiQrCodeResponse>;
 
-export interface GetXdslServiceNameModemWifiRadioRadioNameRequest {
+export interface GetXdslModemWifiRadioRequest {
   /** Service name */
   serviceName: string;
   /** Radio name */
   radioName: string;
 }
-export const GetXdslServiceNameModemWifiRadioRadioNameRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      radioName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/xdsl/{serviceName}/modem/wifiRadio/{radioName}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetXdslServiceNameModemWifiRadioRadioNameRequest",
-  }) as any as S.Schema<GetXdslServiceNameModemWifiRadioRadioNameRequest>;
+export const GetXdslModemWifiRadioRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    radioName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/xdsl/{serviceName}/modem/wifiRadio/{radioName}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetXdslModemWifiRadioRequest",
+}) as any as S.Schema<GetXdslModemWifiRadioRequest>;
 
 /** Supported channels by this radio */
 export type XdslWifiRadioSupportedChannelsList = Array<number>;
@@ -3538,122 +3218,17 @@ export const XdslWifiRadio = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "XdslWifiRadio" }) as any as S.Schema<XdslWifiRadio>;
 
-export interface GetXdslServiceNameModemWifiWifiNameRequest {
-  /** Service name */
-  serviceName: string;
-  /** Wifi name */
-  wifiName: string;
-}
-export const GetXdslServiceNameModemWifiWifiNameRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      wifiName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/xdsl/{serviceName}/modem/wifi/{wifiName}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetXdslServiceNameModemWifiWifiNameRequest",
-  }) as any as S.Schema<GetXdslServiceNameModemWifiWifiNameRequest>;
-
-/** Type of WLAN security protection */
-export type XdslXdslModemConfigSecurityTypeEnum =
-  | "None"
-  | "WEP"
-  | "WPA"
-  | "WPA2"
-  | "WPA2andWPA3"
-  | "WPA3"
-  | "WPAandWPA2";
-export const XdslXdslModemConfigSecurityTypeEnum = /*@__PURE__*/ S.String;
-
-/** WLAN Configuration of the Modem */
-export interface XdslWLAN {
-  /** Service Set Identifier of the WLAN interface */
-  SSID?: string;
-  /** Hide or show the Wifi */
-  SSIDAdvertisementEnabled?: boolean;
-  /** Indicate if frequencies 2.4GHz and 5GHz are agregated */
-  bandSteering?: boolean;
-  /** Choice of a channel (When chosen, channelMode is set to Manual) */
-  channel?: number;
-  /** How the WiFi channel is selected */
-  channelMode?: XdslXdslModemConfigChannelModeEnum;
-  /** Wifi state */
-  enabled?: boolean;
-  /** Frequency (2.4GHz | 5GHz) */
-  frequency?: XdslXdslModemConfigFrequencyEnum;
-  /** Indicate if it is normal access wifi or guest wifi */
-  guest?: boolean;
-  /** WiFi security key */
-  securityKey?: string;
-  /** Type of WLAN security protection */
-  securityType?: XdslXdslModemConfigSecurityTypeEnum;
-  /** ID of the ongoing todo (NULL if none) */
-  taskId?: number | null;
-  /** Name of the Wifi */
-  wifiName?: string;
-}
-export const XdslWLAN = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    SSID: S.optional(S.String),
-    SSIDAdvertisementEnabled: S.optional(S.Boolean),
-    bandSteering: S.optional(S.Boolean),
-    channel: S.optional(S.Number),
-    channelMode: S.optional(XdslXdslModemConfigChannelModeEnum),
-    enabled: S.optional(S.Boolean),
-    frequency: S.optional(XdslXdslModemConfigFrequencyEnum),
-    guest: S.optional(S.Boolean),
-    securityKey: S.optional(S.String),
-    securityType: S.optional(XdslXdslModemConfigSecurityTypeEnum),
-    taskId: S.optional(S.NullOr(S.Number)),
-    wifiName: S.optional(S.String),
-  }),
-).annotate({ identifier: "XdslWLAN" }) as any as S.Schema<XdslWLAN>;
-
-export interface GetXdslServiceNameModemWifiWifiNameQrCodeRequest {
-  /** Service name */
-  serviceName: string;
-  /** Wifi name */
-  wifiName: string;
-}
-export const GetXdslServiceNameModemWifiWifiNameQrCodeRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      wifiName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/xdsl/{serviceName}/modem/wifi/{wifiName}/qrCode",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetXdslServiceNameModemWifiWifiNameQrCodeRequest",
-  }) as any as S.Schema<GetXdslServiceNameModemWifiWifiNameQrCodeRequest>;
-
-export type GetXdslServiceNameModemWifiWifiNameQrCodeResponse = string;
-export const GetXdslServiceNameModemWifiWifiNameQrCodeResponse =
-  /*@__PURE__*/ S.suspend(() => S.String.pipe(T.RawResponseRoot())).annotate({
-    identifier: "GetXdslServiceNameModemWifiWifiNameQrCodeResponse",
-  }) as any as S.Schema<GetXdslServiceNameModemWifiWifiNameQrCodeResponse>;
-
-export interface GetXdslServiceNameOntRequest {
+export interface GetXdslOntRequest {
   /** Service name */
   serviceName: string;
 }
-export const GetXdslServiceNameOntRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetXdslOntRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     serviceName: S.String.pipe(T.Label()),
   }).pipe(T.Http({ method: "GET", uri: "/xdsl/{serviceName}/ont", code: 200 })),
 ).annotate({
-  identifier: "GetXdslServiceNameOntRequest",
-}) as any as S.Schema<GetXdslServiceNameOntRequest>;
+  identifier: "GetXdslOntRequest",
+}) as any as S.Schema<GetXdslOntRequest>;
 
 /** Access ONT information */
 export interface XdslOnt {
@@ -3669,117 +3244,23 @@ export const XdslOnt = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "XdslOnt" }) as any as S.Schema<XdslOnt>;
 
-export interface GetXdslServiceNameOrderFollowupRequest {
+export interface GetXdslPendingActionRequest {
   /** Service name */
   serviceName: string;
 }
-export const GetXdslServiceNameOrderFollowupRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/xdsl/{serviceName}/orderFollowup",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "GetXdslServiceNameOrderFollowupRequest",
-}) as any as S.Schema<GetXdslServiceNameOrderFollowupRequest>;
-
-export type XdslOrderFollowupStepCommentsList = Array<string>;
-export const XdslOrderFollowupStepCommentsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<XdslOrderFollowupStepCommentsList>;
-
-/** The duration units */
-export type XdslOrderFollowupDurationUnitEnum = "day" | "hour" | "minute";
-export const XdslOrderFollowupDurationUnitEnum = /*@__PURE__*/ S.String;
-
-/** The status of an order step */
-export type XdslOrderFollowupStepNameEnum =
-  | "accessIsOperational"
-  | "checkInfrastructure"
-  | "configureAccessOnOVH"
-  | "orderPayed"
-  | "orderReceived"
-  | "orderTreatment"
-  | "sendModem"
-  | "sendOrderToProvider"
-  | "setupCustomerPremisesEquipment"
-  | "waitingForProviderInstallReport"
-  | "waitingForWithdrawalPeriodToBeOver";
-export const XdslOrderFollowupStepNameEnum = /*@__PURE__*/ S.String;
-
-/** The status of an order step */
-export type XdslOrderFollowupStepStatusEnum =
-  | "doing"
-  | "done"
-  | "error"
-  | "todo"
-  | "waitingCustomer";
-export const XdslOrderFollowupStepStatusEnum = /*@__PURE__*/ S.String;
-
-/** A step of the order process */
-export interface XdslOrderFollowupStep {
-  comments?: XdslOrderFollowupStepCommentsList;
-  doneDate?: string | null;
-  /** The duration units */
-  durationUnit?: XdslOrderFollowupDurationUnitEnum;
-  expectedDuration?: number;
-  /** The status of an order step */
-  name?: XdslOrderFollowupStepNameEnum;
-  /** The status of an order step */
-  status?: XdslOrderFollowupStepStatusEnum;
-}
-export const XdslOrderFollowupStep = /*@__PURE__*/ S.suspend(() =>
+export const GetXdslPendingActionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    comments: S.optional(XdslOrderFollowupStepCommentsList),
-    doneDate: S.optional(S.NullOr(S.String)),
-    durationUnit: S.optional(XdslOrderFollowupDurationUnitEnum),
-    expectedDuration: S.optional(S.Number),
-    name: S.optional(XdslOrderFollowupStepNameEnum),
-    status: S.optional(XdslOrderFollowupStepStatusEnum),
-  }),
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/xdsl/{serviceName}/pendingAction",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "XdslOrderFollowupStep",
-}) as any as S.Schema<XdslOrderFollowupStep>;
-
-export type GetXdslServiceNameOrderFollowupResponseBodyList =
-  Array<XdslOrderFollowupStep>;
-export const GetXdslServiceNameOrderFollowupResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    XdslOrderFollowupStep,
-  ) as any as S.Schema<GetXdslServiceNameOrderFollowupResponseBodyList>;
-
-export type GetXdslServiceNameOrderFollowupResponse =
-  GetXdslServiceNameOrderFollowupResponseBodyList;
-export const GetXdslServiceNameOrderFollowupResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    GetXdslServiceNameOrderFollowupResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetXdslServiceNameOrderFollowupResponse",
-}) as any as S.Schema<GetXdslServiceNameOrderFollowupResponse>;
-
-export interface GetXdslServiceNamePendingActionRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const GetXdslServiceNamePendingActionRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/xdsl/{serviceName}/pendingAction",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "GetXdslServiceNamePendingActionRequest",
-}) as any as S.Schema<GetXdslServiceNamePendingActionRequest>;
+  identifier: "GetXdslPendingActionRequest",
+}) as any as S.Schema<GetXdslPendingActionRequest>;
 
 /** Scheduled action before the next renewal of the service */
 export interface XdslPendingAction {
@@ -3795,79 +3276,23 @@ export const XdslPendingAction = /*@__PURE__*/ S.suspend(() =>
   identifier: "XdslPendingAction",
 }) as any as S.Schema<XdslPendingAction>;
 
-export interface GetXdslServiceNameRadiusConnectionLogsRequest {
+export interface GetXdslResiliationFollowupRequest {
   /** Service name */
   serviceName: string;
 }
-export const GetXdslServiceNameRadiusConnectionLogsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/xdsl/{serviceName}/radiusConnectionLogs",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetXdslServiceNameRadiusConnectionLogsRequest",
-  }) as any as S.Schema<GetXdslServiceNameRadiusConnectionLogsRequest>;
-
-/** Log entry of an auth attempt to the radius server */
-export interface XdslRadiusConnectionLog {
-  date?: string;
-  login?: string;
-  message?: string;
-  state?: string;
-}
-export const XdslRadiusConnectionLog = /*@__PURE__*/ S.suspend(() =>
+export const GetXdslResiliationFollowupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    date: S.optional(S.String),
-    login: S.optional(S.String),
-    message: S.optional(S.String),
-    state: S.optional(S.String),
-  }),
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/xdsl/{serviceName}/resiliationFollowup",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "XdslRadiusConnectionLog",
-}) as any as S.Schema<XdslRadiusConnectionLog>;
-
-export type GetXdslServiceNameRadiusConnectionLogsResponseBodyList =
-  Array<XdslRadiusConnectionLog>;
-export const GetXdslServiceNameRadiusConnectionLogsResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    XdslRadiusConnectionLog,
-  ) as any as S.Schema<GetXdslServiceNameRadiusConnectionLogsResponseBodyList>;
-
-export type GetXdslServiceNameRadiusConnectionLogsResponse =
-  GetXdslServiceNameRadiusConnectionLogsResponseBodyList;
-export const GetXdslServiceNameRadiusConnectionLogsResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetXdslServiceNameRadiusConnectionLogsResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetXdslServiceNameRadiusConnectionLogsResponse",
-  }) as any as S.Schema<GetXdslServiceNameRadiusConnectionLogsResponse>;
-
-export interface GetXdslServiceNameResiliationFollowupRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const GetXdslServiceNameResiliationFollowupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/xdsl/{serviceName}/resiliationFollowup",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetXdslServiceNameResiliationFollowupRequest",
-  }) as any as S.Schema<GetXdslServiceNameResiliationFollowupRequest>;
+  identifier: "GetXdslResiliationFollowupRequest",
+}) as any as S.Schema<GetXdslResiliationFollowupRequest>;
 
 /** Details about the resiliation */
 export interface XdslResiliationFollowUpDetail {
@@ -3891,27 +3316,26 @@ export const XdslResiliationFollowUpDetail = /*@__PURE__*/ S.suspend(() =>
   identifier: "XdslResiliationFollowUpDetail",
 }) as any as S.Schema<XdslResiliationFollowUpDetail>;
 
-export interface GetXdslServiceNameResiliationTermsRequest {
+export interface GetXdslResiliationTermsRequest {
   /** Service name */
   serviceName: string;
   /** The desired resiliation date */
   resiliationDate?: string;
 }
-export const GetXdslServiceNameResiliationTermsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      resiliationDate: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/xdsl/{serviceName}/resiliationTerms",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetXdslServiceNameResiliationTermsRequest",
-  }) as any as S.Schema<GetXdslServiceNameResiliationTermsRequest>;
+export const GetXdslResiliationTermsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    resiliationDate: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/xdsl/{serviceName}/resiliationTerms",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetXdslResiliationTermsRequest",
+}) as any as S.Schema<GetXdslResiliationTermsRequest>;
 
 /** Reason of a resiliation */
 export type XdslResiliationReasonEnum =
@@ -3957,38 +3381,13 @@ export const XdslResiliationTerms = /*@__PURE__*/ S.suspend(() =>
   identifier: "XdslResiliationTerms",
 }) as any as S.Schema<XdslResiliationTerms>;
 
-export interface GetXdslServiceNameRmaRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const GetXdslServiceNameRmaRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceName: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/xdsl/{serviceName}/rma", code: 200 })),
-).annotate({
-  identifier: "GetXdslServiceNameRmaRequest",
-}) as any as S.Schema<GetXdslServiceNameRmaRequest>;
-
-export type GetXdslServiceNameRmaResponseBodyList = Array<string>;
-export const GetXdslServiceNameRmaResponseBodyList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<GetXdslServiceNameRmaResponseBodyList>;
-
-export type GetXdslServiceNameRmaResponse =
-  GetXdslServiceNameRmaResponseBodyList;
-export const GetXdslServiceNameRmaResponse = /*@__PURE__*/ S.suspend(() =>
-  GetXdslServiceNameRmaResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetXdslServiceNameRmaResponse",
-}) as any as S.Schema<GetXdslServiceNameRmaResponse>;
-
-export interface GetXdslServiceNameRmaIdRequest {
+export interface GetXdslRmaRequest {
   /** Service name */
   serviceName: string;
   /** Id */
   id: string;
 }
-export const GetXdslServiceNameRmaIdRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetXdslRmaRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     serviceName: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
@@ -3996,8 +3395,8 @@ export const GetXdslServiceNameRmaIdRequest = /*@__PURE__*/ S.suspend(() =>
     T.Http({ method: "GET", uri: "/xdsl/{serviceName}/rma/{id}", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetXdslServiceNameRmaIdRequest",
-}) as any as S.Schema<GetXdslServiceNameRmaIdRequest>;
+  identifier: "GetXdslRmaRequest",
+}) as any as S.Schema<GetXdslRmaRequest>;
 
 /** Return merchandise authorisation offer type */
 export type TelephonyRmaOfferTypeEnum = "deposit" | "loan" | "purchase";
@@ -4425,24 +3824,23 @@ export const TelephonyRma = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "TelephonyRma" }) as any as S.Schema<TelephonyRma>;
 
-export interface GetXdslServiceNameServiceInfosRequest {
+export interface GetXdslServiceInfosRequest {
   /** Service name */
   serviceName: string;
 }
-export const GetXdslServiceNameServiceInfosRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/xdsl/{serviceName}/serviceInfos",
-        code: 200,
-      }),
-    ),
+export const GetXdslServiceInfosRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/xdsl/{serviceName}/serviceInfos",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "GetXdslServiceNameServiceInfosRequest",
-}) as any as S.Schema<GetXdslServiceNameServiceInfosRequest>;
+  identifier: "GetXdslServiceInfosRequest",
+}) as any as S.Schema<GetXdslServiceInfosRequest>;
 
 /** All the possible renew period of your service in month */
 export type ServicesServicePossibleRenewPeriodList = Array<number>;
@@ -4537,6 +3935,1123 @@ export const ServicesService = /*@__PURE__*/ S.suspend(() =>
   identifier: "ServicesService",
 }) as any as S.Schema<ServicesService>;
 
+export interface GetXdslSpareRequest {
+  /** Spare */
+  spare: string;
+}
+export const GetXdslSpareRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    spare: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/xdsl/spare/{spare}", code: 200 })),
+).annotate({
+  identifier: "GetXdslSpareRequest",
+}) as any as S.Schema<GetXdslSpareRequest>;
+
+/** Spare properties */
+export interface SpareXdslXdslSpareWithIAM {
+  /** Modem brand model */
+  brand?: string;
+  /** IAM resource metadata */
+  iam?: IamResourceMetadata | null;
+  /** Mac address */
+  macAddress?: string;
+}
+export const SpareXdslXdslSpareWithIAM = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    brand: S.optional(S.String),
+    iam: S.optional(S.NullOr(IamResourceMetadata)),
+    macAddress: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SpareXdslXdslSpareWithIAM",
+}) as any as S.Schema<SpareXdslXdslSpareWithIAM>;
+
+export interface GetXdslSpareServiceInfosRequest {
+  /** Spare */
+  spare: string;
+}
+export const GetXdslSpareServiceInfosRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    spare: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/xdsl/spare/{spare}/serviceInfos",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetXdslSpareServiceInfosRequest",
+}) as any as S.Schema<GetXdslSpareServiceInfosRequest>;
+
+export interface GetXdslTaskRequest {
+  /** Service name */
+  serviceName: string;
+  /** Id */
+  id: number;
+}
+export const GetXdslTaskRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/xdsl/{serviceName}/tasks/{id}", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetXdslTaskRequest",
+}) as any as S.Schema<GetXdslTaskRequest>;
+
+export interface GetXdslTotalDeconsolidationTermsRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const GetXdslTotalDeconsolidationTermsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/xdsl/{serviceName}/totalDeconsolidationTerms",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "GetXdslTotalDeconsolidationTermsRequest",
+}) as any as S.Schema<GetXdslTotalDeconsolidationTermsRequest>;
+
+/** Show the deconsolidation terms */
+export interface XdslDeconsolidationTerms {
+  /** Duration of month the access will be engaged */
+  engagement?: number;
+  /** Price with it's currency and textual representation */
+  monthlyPrice?: OrderPrice;
+  /** Price with it's currency and textual representation */
+  price?: OrderPrice;
+}
+export const XdslDeconsolidationTerms = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    engagement: S.optional(S.Number),
+    monthlyPrice: S.optional(OrderPrice),
+    price: S.optional(OrderPrice),
+  }),
+).annotate({
+  identifier: "XdslDeconsolidationTerms",
+}) as any as S.Schema<XdslDeconsolidationTerms>;
+
+export interface InstallFrimwareRequest {
+  /** Service name */
+  serviceName: string;
+  /** The firmware version to upgrade to */
+  firmware: string;
+  /** Date of execution, default is now */
+  todoDate?: string;
+}
+export const InstallFrimwareRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    firmware: S.String,
+    todoDate: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/xdsl/{serviceName}/modem/firmware",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "InstallFrimwareRequest",
+}) as any as S.Schema<InstallFrimwareRequest>;
+
+/** Resource tag filter */
+export interface IamResourceTagFilterInput {}
+export const IamResourceTagFilterInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "IamResourceTagFilterInput",
+}) as any as S.Schema<IamResourceTagFilterInput>;
+
+export type ListXdslRequestIamTagsValueList = Array<IamResourceTagFilterInput>;
+export const ListXdslRequestIamTagsValueList = /*@__PURE__*/ S.Array(
+  IamResourceTagFilterInput,
+) as any as S.Schema<ListXdslRequestIamTagsValueList>;
+
+export type ListXdslRequestIamTagsMap = {
+  [key: string]: ListXdslRequestIamTagsValueList | undefined;
+};
+export const ListXdslRequestIamTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  ListXdslRequestIamTagsValueList,
+) as any as S.Schema<ListXdslRequestIamTagsMap>;
+
+export interface ListXdslRequest {
+  /** Filter resources on IAM tags */
+  iamTags?: ListXdslRequestIamTagsMap;
+}
+export const ListXdslRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    iamTags: S.optional(ListXdslRequestIamTagsMap.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/xdsl", code: 200 })),
+).annotate({
+  identifier: "ListXdslRequest",
+}) as any as S.Schema<ListXdslRequest>;
+
+export type ListXdslResponseBodyList = Array<string>;
+export const ListXdslResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListXdslResponseBodyList>;
+
+export type ListXdslResponse = ListXdslResponseBodyList;
+export const ListXdslResponse = /*@__PURE__*/ S.suspend(() =>
+  ListXdslResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListXdslResponse",
+}) as any as S.Schema<ListXdslResponse>;
+
+export interface ListXdslAntiSpamEvidencesRequest {
+  /** Service name */
+  serviceName: string;
+  /** Ip */
+  ip: string;
+}
+export const ListXdslAntiSpamEvidencesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    ip: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/xdsl/{serviceName}/antiSpams/{ip}/evidences",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListXdslAntiSpamEvidencesRequest",
+}) as any as S.Schema<ListXdslAntiSpamEvidencesRequest>;
+
+/** detail on evidences stored on PCS */
+export interface XdslAntiSpamEvidencesInfoDetail {
+  /** File date on the PCS */
+  date?: string;
+  /** File name on the PCS */
+  filename?: string;
+  /** Temporary URL to access file */
+  url?: string;
+}
+export const XdslAntiSpamEvidencesInfoDetail = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    date: S.optional(S.String),
+    filename: S.optional(S.String),
+    url: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "XdslAntiSpamEvidencesInfoDetail",
+}) as any as S.Schema<XdslAntiSpamEvidencesInfoDetail>;
+
+/** Table with evidences stored on PCS */
+export type XdslAntiSpamEvidencesInfoResultList =
+  Array<XdslAntiSpamEvidencesInfoDetail>;
+export const XdslAntiSpamEvidencesInfoResultList = /*@__PURE__*/ S.Array(
+  XdslAntiSpamEvidencesInfoDetail,
+) as any as S.Schema<XdslAntiSpamEvidencesInfoResultList>;
+
+/** Evidences AsyncTask status */
+export type XdslAntiSpamEvidencesInfoStatusEnum = "error" | "ok" | "pending";
+export const XdslAntiSpamEvidencesInfoStatusEnum = /*@__PURE__*/ S.String;
+
+/** List of evidences */
+export interface XdslAntiSpamEvidencesInfo {
+  /** AsyncTask detailed error */
+  error?: string | null;
+  /** Table with evidences stored on PCS */
+  result?: XdslAntiSpamEvidencesInfoResultList | null;
+  /** Evidences AsyncTask status */
+  status?: XdslAntiSpamEvidencesInfoStatusEnum;
+}
+export const XdslAntiSpamEvidencesInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    error: S.optional(S.NullOr(S.String)),
+    result: S.optional(S.NullOr(XdslAntiSpamEvidencesInfoResultList)),
+    status: S.optional(XdslAntiSpamEvidencesInfoStatusEnum),
+  }),
+).annotate({
+  identifier: "XdslAntiSpamEvidencesInfo",
+}) as any as S.Schema<XdslAntiSpamEvidencesInfo>;
+
+export interface ListXdslAntiSpamsRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const ListXdslAntiSpamsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/xdsl/{serviceName}/antiSpams", code: 200 }),
+  ),
+).annotate({
+  identifier: "ListXdslAntiSpamsRequest",
+}) as any as S.Schema<ListXdslAntiSpamsRequest>;
+
+export type ListXdslAntiSpamsResponseBodyList = Array<string>;
+export const ListXdslAntiSpamsResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListXdslAntiSpamsResponseBodyList>;
+
+export type ListXdslAntiSpamsResponse = ListXdslAntiSpamsResponseBodyList;
+export const ListXdslAntiSpamsResponse = /*@__PURE__*/ S.suspend(() =>
+  ListXdslAntiSpamsResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListXdslAntiSpamsResponse",
+}) as any as S.Schema<ListXdslAntiSpamsResponse>;
+
+export type ListXdslEmailProRequestIamTagsValueList =
+  Array<IamResourceTagFilterInput>;
+export const ListXdslEmailProRequestIamTagsValueList = /*@__PURE__*/ S.Array(
+  IamResourceTagFilterInput,
+) as any as S.Schema<ListXdslEmailProRequestIamTagsValueList>;
+
+export type ListXdslEmailProRequestIamTagsMap = {
+  [key: string]: ListXdslEmailProRequestIamTagsValueList | undefined;
+};
+export const ListXdslEmailProRequestIamTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  ListXdslEmailProRequestIamTagsValueList,
+) as any as S.Schema<ListXdslEmailProRequestIamTagsMap>;
+
+export interface ListXdslEmailProRequest {
+  /** Filter resources on IAM tags */
+  iamTags?: ListXdslEmailProRequestIamTagsMap;
+}
+export const ListXdslEmailProRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    iamTags: S.optional(ListXdslEmailProRequestIamTagsMap.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/xdsl/email/pro", code: 200 })),
+).annotate({
+  identifier: "ListXdslEmailProRequest",
+}) as any as S.Schema<ListXdslEmailProRequest>;
+
+export type ListXdslEmailProResponseBodyList = Array<string>;
+export const ListXdslEmailProResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListXdslEmailProResponseBodyList>;
+
+export type ListXdslEmailProResponse = ListXdslEmailProResponseBodyList;
+export const ListXdslEmailProResponse = /*@__PURE__*/ S.suspend(() =>
+  ListXdslEmailProResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListXdslEmailProResponse",
+}) as any as S.Schema<ListXdslEmailProResponse>;
+
+export interface ListXdslFiberEligibilitiesRequest {
+  /** Service name */
+  serviceName: string;
+  /** Filter the value of status property (=) */
+  status?: XdslFiberEligibilityStatusEnum | (string & {});
+}
+export const ListXdslFiberEligibilitiesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    status: S.optional(XdslFiberEligibilityStatusEnum.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/xdsl/{serviceName}/fiberEligibilities",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListXdslFiberEligibilitiesRequest",
+}) as any as S.Schema<ListXdslFiberEligibilitiesRequest>;
+
+export type ListXdslFiberEligibilitiesResponseBodyList = Array<number>;
+export const ListXdslFiberEligibilitiesResponseBodyList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<ListXdslFiberEligibilitiesResponseBodyList>;
+
+export type ListXdslFiberEligibilitiesResponse =
+  ListXdslFiberEligibilitiesResponseBodyList;
+export const ListXdslFiberEligibilitiesResponse = /*@__PURE__*/ S.suspend(() =>
+  ListXdslFiberEligibilitiesResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListXdslFiberEligibilitiesResponse",
+}) as any as S.Schema<ListXdslFiberEligibilitiesResponse>;
+
+export interface ListXdslIncidentsRequest {
+  /** Filter the value of creationDate property (>) */
+  creationDate?: string;
+  /** Filter the value of endDate property (<) */
+  endDate?: string;
+}
+export const ListXdslIncidentsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    creationDate: S.optional(S.String.pipe(T.Query())),
+    endDate: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/xdsl/incidents", code: 200 })),
+).annotate({
+  identifier: "ListXdslIncidentsRequest",
+}) as any as S.Schema<ListXdslIncidentsRequest>;
+
+export type ListXdslIncidentsResponseBodyList = Array<number>;
+export const ListXdslIncidentsResponseBodyList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<ListXdslIncidentsResponseBodyList>;
+
+export type ListXdslIncidentsResponse = ListXdslIncidentsResponseBodyList;
+export const ListXdslIncidentsResponse = /*@__PURE__*/ S.suspend(() =>
+  ListXdslIncidentsResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListXdslIncidentsResponse",
+}) as any as S.Schema<ListXdslIncidentsResponse>;
+
+export interface ListXdslIpsRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const ListXdslIpsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/xdsl/{serviceName}/ips", code: 200 })),
+).annotate({
+  identifier: "ListXdslIpsRequest",
+}) as any as S.Schema<ListXdslIpsRequest>;
+
+export type ListXdslIpsResponseBodyList = Array<string>;
+export const ListXdslIpsResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListXdslIpsResponseBodyList>;
+
+export type ListXdslIpsResponse = ListXdslIpsResponseBodyList;
+export const ListXdslIpsResponse = /*@__PURE__*/ S.suspend(() =>
+  ListXdslIpsResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListXdslIpsResponse",
+}) as any as S.Schema<ListXdslIpsResponse>;
+
+export interface ListXdslLineDslamPortAvailableProfilesRequest {
+  /** Service name */
+  serviceName: string;
+  /** Number */
+  number: string;
+}
+export const ListXdslLineDslamPortAvailableProfilesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      number: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/xdsl/{serviceName}/lines/{number}/dslamPort/availableProfiles",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ListXdslLineDslamPortAvailableProfilesRequest",
+  }) as any as S.Schema<ListXdslLineDslamPortAvailableProfilesRequest>;
+
+export type ListXdslLineDslamPortAvailableProfilesResponseBodyList =
+  Array<XdslDslamLineProfile>;
+export const ListXdslLineDslamPortAvailableProfilesResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    XdslDslamLineProfile,
+  ) as any as S.Schema<ListXdslLineDslamPortAvailableProfilesResponseBodyList>;
+
+export type ListXdslLineDslamPortAvailableProfilesResponse =
+  ListXdslLineDslamPortAvailableProfilesResponseBodyList;
+export const ListXdslLineDslamPortAvailableProfilesResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListXdslLineDslamPortAvailableProfilesResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListXdslLineDslamPortAvailableProfilesResponse",
+  }) as any as S.Schema<ListXdslLineDslamPortAvailableProfilesResponse>;
+
+export interface ListXdslLineDslamPortLogsRequest {
+  /** Service name */
+  serviceName: string;
+  /** Number */
+  number: string;
+  limit: number;
+}
+export const ListXdslLineDslamPortLogsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    number: S.String.pipe(T.Label()),
+    limit: S.Number.pipe(T.Query()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/xdsl/{serviceName}/lines/{number}/dslamPort/logs",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListXdslLineDslamPortLogsRequest",
+}) as any as S.Schema<ListXdslLineDslamPortLogsRequest>;
+
+/** A message log from the DSLAM */
+export interface XdslDslamPortLog {
+  date?: string;
+  /** The last time this message occured */
+  lastOccurrenceDate?: string;
+  message?: string;
+  /** The number of times this message occured between date and lastOccurrenceDate */
+  numberOfOccurrences?: number;
+}
+export const XdslDslamPortLog = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    date: S.optional(S.String),
+    lastOccurrenceDate: S.optional(S.String),
+    message: S.optional(S.String),
+    numberOfOccurrences: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "XdslDslamPortLog",
+}) as any as S.Schema<XdslDslamPortLog>;
+
+export type ListXdslLineDslamPortLogsResponseBodyList = Array<XdslDslamPortLog>;
+export const ListXdslLineDslamPortLogsResponseBodyList = /*@__PURE__*/ S.Array(
+  XdslDslamPortLog,
+) as any as S.Schema<ListXdslLineDslamPortLogsResponseBodyList>;
+
+export type ListXdslLineDslamPortLogsResponse =
+  ListXdslLineDslamPortLogsResponseBodyList;
+export const ListXdslLineDslamPortLogsResponse = /*@__PURE__*/ S.suspend(() =>
+  ListXdslLineDslamPortLogsResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListXdslLineDslamPortLogsResponse",
+}) as any as S.Schema<ListXdslLineDslamPortLogsResponse>;
+
+export interface ListXdslLinesRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const ListXdslLinesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/xdsl/{serviceName}/lines", code: 200 }),
+  ),
+).annotate({
+  identifier: "ListXdslLinesRequest",
+}) as any as S.Schema<ListXdslLinesRequest>;
+
+export type ListXdslLinesResponseBodyList = Array<string>;
+export const ListXdslLinesResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListXdslLinesResponseBodyList>;
+
+export type ListXdslLinesResponse = ListXdslLinesResponseBodyList;
+export const ListXdslLinesResponse = /*@__PURE__*/ S.suspend(() =>
+  ListXdslLinesResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListXdslLinesResponse",
+}) as any as S.Schema<ListXdslLinesResponse>;
+
+/** Periods for statistics. */
+export type XdslStatisticsPeriodEnum =
+  | "daily"
+  | "monthly"
+  | "preview"
+  | "weekly"
+  | "yearly";
+export const XdslStatisticsPeriodEnum = /*@__PURE__*/ S.String;
+
+/** Various types of statisctics available for the line. */
+export type XdslLineStatisticsTypeEnum =
+  | "attenuation:download"
+  | "attenuation:upload"
+  | "error:crc"
+  | "error:fec"
+  | "error:hec"
+  | "snr:download"
+  | "snr:upload"
+  | "synchronization:download"
+  | "synchronization:upload";
+export const XdslLineStatisticsTypeEnum = /*@__PURE__*/ S.String;
+
+export interface ListXdslLineStatisticsRequest {
+  /** Service name */
+  serviceName: string;
+  /** Number */
+  number: string;
+  period: XdslStatisticsPeriodEnum | (string & {});
+  type: XdslLineStatisticsTypeEnum | (string & {});
+}
+export const ListXdslLineStatisticsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    number: S.String.pipe(T.Label()),
+    period: XdslStatisticsPeriodEnum.pipe(T.Query()),
+    type: XdslLineStatisticsTypeEnum.pipe(T.Query()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/xdsl/{serviceName}/lines/{number}/statistics",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListXdslLineStatisticsRequest",
+}) as any as S.Schema<ListXdslLineStatisticsRequest>;
+
+/** A value associated to a timestamp */
+export interface XdslTimestampAndValue {
+  timestamp?: number;
+  value?: number | null;
+}
+export const XdslTimestampAndValue = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    timestamp: S.optional(S.Number),
+    value: S.optional(S.NullOr(S.Number)),
+  }),
+).annotate({
+  identifier: "XdslTimestampAndValue",
+}) as any as S.Schema<XdslTimestampAndValue>;
+
+export type ComplexTypeUnitAndValuesXdslTimestampAndValueValuesList =
+  Array<XdslTimestampAndValue>;
+export const ComplexTypeUnitAndValuesXdslTimestampAndValueValuesList =
+  /*@__PURE__*/ S.Array(
+    XdslTimestampAndValue,
+  ) as any as S.Schema<ComplexTypeUnitAndValuesXdslTimestampAndValueValuesList>;
+
+/** complexType.UnitAndValues_xdsl.TimestampAndValue */
+export interface ComplexTypeUnitAndValuesXdslTimestampAndValue {
+  unit?: string;
+  values?: ComplexTypeUnitAndValuesXdslTimestampAndValueValuesList;
+}
+export const ComplexTypeUnitAndValuesXdslTimestampAndValue =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      unit: S.optional(S.String),
+      values: S.optional(
+        ComplexTypeUnitAndValuesXdslTimestampAndValueValuesList,
+      ),
+    }),
+  ).annotate({
+    identifier: "ComplexTypeUnitAndValuesXdslTimestampAndValue",
+  }) as any as S.Schema<ComplexTypeUnitAndValuesXdslTimestampAndValue>;
+
+export interface ListXdslModemAvailableACSBackendRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const ListXdslModemAvailableACSBackendRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/xdsl/{serviceName}/modem/availableACSBackend",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ListXdslModemAvailableACSBackendRequest",
+}) as any as S.Schema<ListXdslModemAvailableACSBackendRequest>;
+
+export type ListXdslModemAvailableACSBackendResponseBodyList = Array<string>;
+export const ListXdslModemAvailableACSBackendResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListXdslModemAvailableACSBackendResponseBodyList>;
+
+export type ListXdslModemAvailableACSBackendResponse =
+  ListXdslModemAvailableACSBackendResponseBodyList;
+export const ListXdslModemAvailableACSBackendResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    ListXdslModemAvailableACSBackendResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListXdslModemAvailableACSBackendResponse",
+}) as any as S.Schema<ListXdslModemAvailableACSBackendResponse>;
+
+/** Frequency of WLAN */
+export type XdslWLANFrequencyEnum = "2.4GHz" | "5GHz";
+export const XdslWLANFrequencyEnum = /*@__PURE__*/ S.String;
+
+export interface ListXdslModemAvailableWLANChannelRequest {
+  /** Service name */
+  serviceName: string;
+  /** WLAN frequency you want to retrieve channels */
+  frequency: XdslWLANFrequencyEnum | (string & {});
+}
+export const ListXdslModemAvailableWLANChannelRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      frequency: XdslWLANFrequencyEnum.pipe(T.Query()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/xdsl/{serviceName}/modem/availableWLANChannel",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ListXdslModemAvailableWLANChannelRequest",
+}) as any as S.Schema<ListXdslModemAvailableWLANChannelRequest>;
+
+export type ListXdslModemAvailableWLANChannelResponseBodyList = Array<number>;
+export const ListXdslModemAvailableWLANChannelResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.Number,
+  ) as any as S.Schema<ListXdslModemAvailableWLANChannelResponseBodyList>;
+
+export type ListXdslModemAvailableWLANChannelResponse =
+  ListXdslModemAvailableWLANChannelResponseBodyList;
+export const ListXdslModemAvailableWLANChannelResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListXdslModemAvailableWLANChannelResponseBodyList.pipe(T.RawResponseRoot()),
+  ).annotate({
+    identifier: "ListXdslModemAvailableWLANChannelResponse",
+  }) as any as S.Schema<ListXdslModemAvailableWLANChannelResponse>;
+
+export interface ListXdslModemConnectedDevicesRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const ListXdslModemConnectedDevicesRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/xdsl/{serviceName}/modem/connectedDevices",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ListXdslModemConnectedDevicesRequest",
+}) as any as S.Schema<ListXdslModemConnectedDevicesRequest>;
+
+export type ListXdslModemConnectedDevicesResponseBodyList = Array<string>;
+export const ListXdslModemConnectedDevicesResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListXdslModemConnectedDevicesResponseBodyList>;
+
+export type ListXdslModemConnectedDevicesResponse =
+  ListXdslModemConnectedDevicesResponseBodyList;
+export const ListXdslModemConnectedDevicesResponse = /*@__PURE__*/ S.suspend(
+  () => ListXdslModemConnectedDevicesResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListXdslModemConnectedDevicesResponse",
+}) as any as S.Schema<ListXdslModemConnectedDevicesResponse>;
+
+export interface ListXdslModemFirmwareAvailableRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const ListXdslModemFirmwareAvailableRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/xdsl/{serviceName}/modem/firmwareAvailable",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ListXdslModemFirmwareAvailableRequest",
+}) as any as S.Schema<ListXdslModemFirmwareAvailableRequest>;
+
+export type ListXdslModemFirmwareAvailableResponseBodyList = Array<string>;
+export const ListXdslModemFirmwareAvailableResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListXdslModemFirmwareAvailableResponseBodyList>;
+
+export type ListXdslModemFirmwareAvailableResponse =
+  ListXdslModemFirmwareAvailableResponseBodyList;
+export const ListXdslModemFirmwareAvailableResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    ListXdslModemFirmwareAvailableResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListXdslModemFirmwareAvailableResponse",
+}) as any as S.Schema<ListXdslModemFirmwareAvailableResponse>;
+
+export interface ListXdslModemLanRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const ListXdslModemLanRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/xdsl/{serviceName}/modem/lan", code: 200 }),
+  ),
+).annotate({
+  identifier: "ListXdslModemLanRequest",
+}) as any as S.Schema<ListXdslModemLanRequest>;
+
+export type ListXdslModemLanResponseBodyList = Array<string>;
+export const ListXdslModemLanResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListXdslModemLanResponseBodyList>;
+
+export type ListXdslModemLanResponse = ListXdslModemLanResponseBodyList;
+export const ListXdslModemLanResponse = /*@__PURE__*/ S.suspend(() =>
+  ListXdslModemLanResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListXdslModemLanResponse",
+}) as any as S.Schema<ListXdslModemLanResponse>;
+
+export interface ListXdslModemLanDhcpRequest {
+  /** Service name */
+  serviceName: string;
+  /** Lan name */
+  lanName: string;
+}
+export const ListXdslModemLanDhcpRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    lanName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/xdsl/{serviceName}/modem/lan/{lanName}/dhcp",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListXdslModemLanDhcpRequest",
+}) as any as S.Schema<ListXdslModemLanDhcpRequest>;
+
+export type ListXdslModemLanDhcpResponseBodyList = Array<string>;
+export const ListXdslModemLanDhcpResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListXdslModemLanDhcpResponseBodyList>;
+
+export type ListXdslModemLanDhcpResponse = ListXdslModemLanDhcpResponseBodyList;
+export const ListXdslModemLanDhcpResponse = /*@__PURE__*/ S.suspend(() =>
+  ListXdslModemLanDhcpResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListXdslModemLanDhcpResponse",
+}) as any as S.Schema<ListXdslModemLanDhcpResponse>;
+
+export interface ListXdslModemWifiRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const ListXdslModemWifiRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/xdsl/{serviceName}/modem/wifi", code: 200 }),
+  ),
+).annotate({
+  identifier: "ListXdslModemWifiRequest",
+}) as any as S.Schema<ListXdslModemWifiRequest>;
+
+export type ListXdslModemWifiResponseBodyList = Array<string>;
+export const ListXdslModemWifiResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListXdslModemWifiResponseBodyList>;
+
+export type ListXdslModemWifiResponse = ListXdslModemWifiResponseBodyList;
+export const ListXdslModemWifiResponse = /*@__PURE__*/ S.suspend(() =>
+  ListXdslModemWifiResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListXdslModemWifiResponse",
+}) as any as S.Schema<ListXdslModemWifiResponse>;
+
+export interface ListXdslModemWifiRadioRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const ListXdslModemWifiRadioRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/xdsl/{serviceName}/modem/wifiRadio",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListXdslModemWifiRadioRequest",
+}) as any as S.Schema<ListXdslModemWifiRadioRequest>;
+
+export type ListXdslModemWifiRadioResponseBodyList = Array<string>;
+export const ListXdslModemWifiRadioResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListXdslModemWifiRadioResponseBodyList>;
+
+export type ListXdslModemWifiRadioResponse =
+  ListXdslModemWifiRadioResponseBodyList;
+export const ListXdslModemWifiRadioResponse = /*@__PURE__*/ S.suspend(() =>
+  ListXdslModemWifiRadioResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListXdslModemWifiRadioResponse",
+}) as any as S.Schema<ListXdslModemWifiRadioResponse>;
+
+export interface ListXdslOrderFollowupRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const ListXdslOrderFollowupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/xdsl/{serviceName}/orderFollowup",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListXdslOrderFollowupRequest",
+}) as any as S.Schema<ListXdslOrderFollowupRequest>;
+
+export type XdslOrderFollowupStepCommentsList = Array<string>;
+export const XdslOrderFollowupStepCommentsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<XdslOrderFollowupStepCommentsList>;
+
+/** The duration units */
+export type XdslOrderFollowupDurationUnitEnum = "day" | "hour" | "minute";
+export const XdslOrderFollowupDurationUnitEnum = /*@__PURE__*/ S.String;
+
+/** The status of an order step */
+export type XdslOrderFollowupStepNameEnum =
+  | "accessIsOperational"
+  | "checkInfrastructure"
+  | "configureAccessOnOVH"
+  | "orderPayed"
+  | "orderReceived"
+  | "orderTreatment"
+  | "sendModem"
+  | "sendOrderToProvider"
+  | "setupCustomerPremisesEquipment"
+  | "waitingForProviderInstallReport"
+  | "waitingForWithdrawalPeriodToBeOver";
+export const XdslOrderFollowupStepNameEnum = /*@__PURE__*/ S.String;
+
+/** The status of an order step */
+export type XdslOrderFollowupStepStatusEnum =
+  | "doing"
+  | "done"
+  | "error"
+  | "todo"
+  | "waitingCustomer";
+export const XdslOrderFollowupStepStatusEnum = /*@__PURE__*/ S.String;
+
+/** A step of the order process */
+export interface XdslOrderFollowupStep {
+  comments?: XdslOrderFollowupStepCommentsList;
+  doneDate?: string | null;
+  /** The duration units */
+  durationUnit?: XdslOrderFollowupDurationUnitEnum;
+  expectedDuration?: number;
+  /** The status of an order step */
+  name?: XdslOrderFollowupStepNameEnum;
+  /** The status of an order step */
+  status?: XdslOrderFollowupStepStatusEnum;
+}
+export const XdslOrderFollowupStep = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    comments: S.optional(XdslOrderFollowupStepCommentsList),
+    doneDate: S.optional(S.NullOr(S.String)),
+    durationUnit: S.optional(XdslOrderFollowupDurationUnitEnum),
+    expectedDuration: S.optional(S.Number),
+    name: S.optional(XdslOrderFollowupStepNameEnum),
+    status: S.optional(XdslOrderFollowupStepStatusEnum),
+  }),
+).annotate({
+  identifier: "XdslOrderFollowupStep",
+}) as any as S.Schema<XdslOrderFollowupStep>;
+
+export type ListXdslOrderFollowupResponseBodyList =
+  Array<XdslOrderFollowupStep>;
+export const ListXdslOrderFollowupResponseBodyList = /*@__PURE__*/ S.Array(
+  XdslOrderFollowupStep,
+) as any as S.Schema<ListXdslOrderFollowupResponseBodyList>;
+
+export type ListXdslOrderFollowupResponse =
+  ListXdslOrderFollowupResponseBodyList;
+export const ListXdslOrderFollowupResponse = /*@__PURE__*/ S.suspend(() =>
+  ListXdslOrderFollowupResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListXdslOrderFollowupResponse",
+}) as any as S.Schema<ListXdslOrderFollowupResponse>;
+
+export interface ListXdslRadiusConnectionLogsRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const ListXdslRadiusConnectionLogsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/xdsl/{serviceName}/radiusConnectionLogs",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListXdslRadiusConnectionLogsRequest",
+}) as any as S.Schema<ListXdslRadiusConnectionLogsRequest>;
+
+/** Log entry of an auth attempt to the radius server */
+export interface XdslRadiusConnectionLog {
+  date?: string;
+  login?: string;
+  message?: string;
+  state?: string;
+}
+export const XdslRadiusConnectionLog = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    date: S.optional(S.String),
+    login: S.optional(S.String),
+    message: S.optional(S.String),
+    state: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "XdslRadiusConnectionLog",
+}) as any as S.Schema<XdslRadiusConnectionLog>;
+
+export type ListXdslRadiusConnectionLogsResponseBodyList =
+  Array<XdslRadiusConnectionLog>;
+export const ListXdslRadiusConnectionLogsResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    XdslRadiusConnectionLog,
+  ) as any as S.Schema<ListXdslRadiusConnectionLogsResponseBodyList>;
+
+export type ListXdslRadiusConnectionLogsResponse =
+  ListXdslRadiusConnectionLogsResponseBodyList;
+export const ListXdslRadiusConnectionLogsResponse = /*@__PURE__*/ S.suspend(
+  () => ListXdslRadiusConnectionLogsResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListXdslRadiusConnectionLogsResponse",
+}) as any as S.Schema<ListXdslRadiusConnectionLogsResponse>;
+
+export interface ListXdslRmaRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const ListXdslRmaRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/xdsl/{serviceName}/rma", code: 200 })),
+).annotate({
+  identifier: "ListXdslRmaRequest",
+}) as any as S.Schema<ListXdslRmaRequest>;
+
+export type ListXdslRmaResponseBodyList = Array<string>;
+export const ListXdslRmaResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListXdslRmaResponseBodyList>;
+
+export type ListXdslRmaResponse = ListXdslRmaResponseBodyList;
+export const ListXdslRmaResponse = /*@__PURE__*/ S.suspend(() =>
+  ListXdslRmaResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListXdslRmaResponse",
+}) as any as S.Schema<ListXdslRmaResponse>;
+
+export type ListXdslSpareRequestIamTagsValueList =
+  Array<IamResourceTagFilterInput>;
+export const ListXdslSpareRequestIamTagsValueList = /*@__PURE__*/ S.Array(
+  IamResourceTagFilterInput,
+) as any as S.Schema<ListXdslSpareRequestIamTagsValueList>;
+
+export type ListXdslSpareRequestIamTagsMap = {
+  [key: string]: ListXdslSpareRequestIamTagsValueList | undefined;
+};
+export const ListXdslSpareRequestIamTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  ListXdslSpareRequestIamTagsValueList,
+) as any as S.Schema<ListXdslSpareRequestIamTagsMap>;
+
+export interface ListXdslSpareRequest {
+  /** Filter resources on IAM tags */
+  iamTags?: ListXdslSpareRequestIamTagsMap;
+}
+export const ListXdslSpareRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    iamTags: S.optional(ListXdslSpareRequestIamTagsMap.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/xdsl/spare", code: 200 })),
+).annotate({
+  identifier: "ListXdslSpareRequest",
+}) as any as S.Schema<ListXdslSpareRequest>;
+
+export type ListXdslSpareResponseBodyList = Array<string>;
+export const ListXdslSpareResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListXdslSpareResponseBodyList>;
+
+export type ListXdslSpareResponse = ListXdslSpareResponseBodyList;
+export const ListXdslSpareResponse = /*@__PURE__*/ S.suspend(() =>
+  ListXdslSpareResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListXdslSpareResponse",
+}) as any as S.Schema<ListXdslSpareResponse>;
+
+export interface ListXdslSpareBrandsRequest {}
+export const ListXdslSpareBrandsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({ method: "GET", uri: "/xdsl/spare/brands", code: 200 }),
+  ),
+).annotate({
+  identifier: "ListXdslSpareBrandsRequest",
+}) as any as S.Schema<ListXdslSpareBrandsRequest>;
+
+export type ListXdslSpareBrandsResponseBodyList = Array<string>;
+export const ListXdslSpareBrandsResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListXdslSpareBrandsResponseBodyList>;
+
+export type ListXdslSpareBrandsResponse = ListXdslSpareBrandsResponseBodyList;
+export const ListXdslSpareBrandsResponse = /*@__PURE__*/ S.suspend(() =>
+  ListXdslSpareBrandsResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListXdslSpareBrandsResponse",
+}) as any as S.Schema<ListXdslSpareBrandsResponse>;
+
+export interface ListXdslSpareCompatibleReplacementRequest {
+  /** Spare */
+  spare: string;
+}
+export const ListXdslSpareCompatibleReplacementRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      spare: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/xdsl/spare/{spare}/compatibleReplacement",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ListXdslSpareCompatibleReplacementRequest",
+  }) as any as S.Schema<ListXdslSpareCompatibleReplacementRequest>;
+
+export type ListXdslSpareCompatibleReplacementResponseBodyList = Array<string>;
+export const ListXdslSpareCompatibleReplacementResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListXdslSpareCompatibleReplacementResponseBodyList>;
+
+export type ListXdslSpareCompatibleReplacementResponse =
+  ListXdslSpareCompatibleReplacementResponseBodyList;
+export const ListXdslSpareCompatibleReplacementResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListXdslSpareCompatibleReplacementResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListXdslSpareCompatibleReplacementResponse",
+  }) as any as S.Schema<ListXdslSpareCompatibleReplacementResponse>;
+
 /** Various types of statisctics available for the access. */
 export type XdslAccessStatisticsTypeEnum =
   | "ping"
@@ -4544,13 +5059,13 @@ export type XdslAccessStatisticsTypeEnum =
   | "traffic:upload";
 export const XdslAccessStatisticsTypeEnum = /*@__PURE__*/ S.String;
 
-export interface GetXdslServiceNameStatisticsRequest {
+export interface ListXdslStatisticsRequest {
   /** Service name */
   serviceName: string;
   period: XdslStatisticsPeriodEnum | (string & {});
   type: XdslAccessStatisticsTypeEnum | (string & {});
 }
-export const GetXdslServiceNameStatisticsRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListXdslStatisticsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     serviceName: S.String.pipe(T.Label()),
     period: XdslStatisticsPeriodEnum.pipe(T.Query()),
@@ -4559,8 +5074,8 @@ export const GetXdslServiceNameStatisticsRequest = /*@__PURE__*/ S.suspend(() =>
     T.Http({ method: "GET", uri: "/xdsl/{serviceName}/statistics", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetXdslServiceNameStatisticsRequest",
-}) as any as S.Schema<GetXdslServiceNameStatisticsRequest>;
+  identifier: "ListXdslStatisticsRequest",
+}) as any as S.Schema<ListXdslStatisticsRequest>;
 
 /** An access latency item */
 export interface XdslAccessLatency {
@@ -4604,7 +5119,7 @@ export const ComplexTypeUnitAndValuesXdslAccessLatency =
     identifier: "ComplexTypeUnitAndValuesXdslAccessLatency",
   }) as any as S.Schema<ComplexTypeUnitAndValuesXdslAccessLatency>;
 
-export interface GetXdslServiceNameTasksRequest {
+export interface ListXdslTasksRequest {
   /** Service name */
   serviceName: string;
   /** Filter the value of function property (=) */
@@ -4612,7 +5127,7 @@ export interface GetXdslServiceNameTasksRequest {
   /** Filter the value of status property (=) */
   status?: XdslTaskStatusEnum | (string & {});
 }
-export const GetXdslServiceNameTasksRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListXdslTasksRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     serviceName: S.String.pipe(T.Label()),
     function: S.optional(S.String.pipe(T.Query())),
@@ -4621,801 +5136,47 @@ export const GetXdslServiceNameTasksRequest = /*@__PURE__*/ S.suspend(() =>
     T.Http({ method: "GET", uri: "/xdsl/{serviceName}/tasks", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetXdslServiceNameTasksRequest",
-}) as any as S.Schema<GetXdslServiceNameTasksRequest>;
+  identifier: "ListXdslTasksRequest",
+}) as any as S.Schema<ListXdslTasksRequest>;
 
-export type GetXdslServiceNameTasksResponseBodyList = Array<number>;
-export const GetXdslServiceNameTasksResponseBodyList = /*@__PURE__*/ S.Array(
+export type ListXdslTasksResponseBodyList = Array<number>;
+export const ListXdslTasksResponseBodyList = /*@__PURE__*/ S.Array(
   S.Number,
-) as any as S.Schema<GetXdslServiceNameTasksResponseBodyList>;
+) as any as S.Schema<ListXdslTasksResponseBodyList>;
 
-export type GetXdslServiceNameTasksResponse =
-  GetXdslServiceNameTasksResponseBodyList;
-export const GetXdslServiceNameTasksResponse = /*@__PURE__*/ S.suspend(() =>
-  GetXdslServiceNameTasksResponseBodyList.pipe(T.RawResponseRoot()),
+export type ListXdslTasksResponse = ListXdslTasksResponseBodyList;
+export const ListXdslTasksResponse = /*@__PURE__*/ S.suspend(() =>
+  ListXdslTasksResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "GetXdslServiceNameTasksResponse",
-}) as any as S.Schema<GetXdslServiceNameTasksResponse>;
+  identifier: "ListXdslTasksResponse",
+}) as any as S.Schema<ListXdslTasksResponse>;
 
-export interface GetXdslServiceNameTasksIdRequest {
+export interface PutXdslRequest {
   /** Service name */
   serviceName: string;
-  /** Id */
-  id: number;
+  description?: string;
+  /** Rate limit on the LNS in kbps - Only available if canApplyLnsRateLimit capability is set to true - Must be a multiple of 64 - Min value 64 / Max value 100032 */
+  lnsRateLimit?: number | null;
+  /** Whether or not this access is monitored */
+  monitoring?: boolean;
 }
-export const GetXdslServiceNameTasksIdRequest = /*@__PURE__*/ S.suspend(() =>
+export const PutXdslRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     serviceName: S.String.pipe(T.Label()),
-    id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/xdsl/{serviceName}/tasks/{id}", code: 200 }),
-  ),
+    description: S.optional(S.String),
+    lnsRateLimit: S.optional(S.NullOr(S.Number)),
+    monitoring: S.optional(S.Boolean),
+  }).pipe(T.Http({ method: "PUT", uri: "/xdsl/{serviceName}", code: 200 })),
+).annotate({ identifier: "PutXdslRequest" }) as any as S.Schema<PutXdslRequest>;
+
+export interface PutXdslResponse {}
+export const PutXdslResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
 ).annotate({
-  identifier: "GetXdslServiceNameTasksIdRequest",
-}) as any as S.Schema<GetXdslServiceNameTasksIdRequest>;
+  identifier: "PutXdslResponse",
+}) as any as S.Schema<PutXdslResponse>;
 
-export interface GetXdslServiceNameTotalDeconsolidationTermsRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const GetXdslServiceNameTotalDeconsolidationTermsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/xdsl/{serviceName}/totalDeconsolidationTerms",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetXdslServiceNameTotalDeconsolidationTermsRequest",
-  }) as any as S.Schema<GetXdslServiceNameTotalDeconsolidationTermsRequest>;
-
-/** Show the deconsolidation terms */
-export interface XdslDeconsolidationTerms {
-  /** Duration of month the access will be engaged */
-  engagement?: number;
-  /** Price with it's currency and textual representation */
-  monthlyPrice?: OrderPrice;
-  /** Price with it's currency and textual representation */
-  price?: OrderPrice;
-}
-export const XdslDeconsolidationTerms = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    engagement: S.optional(S.Number),
-    monthlyPrice: S.optional(OrderPrice),
-    price: S.optional(OrderPrice),
-  }),
-).annotate({
-  identifier: "XdslDeconsolidationTerms",
-}) as any as S.Schema<XdslDeconsolidationTerms>;
-
-export type GetXdslSpareRequestIamTagsValueList =
-  Array<IamResourceTagFilterInput>;
-export const GetXdslSpareRequestIamTagsValueList = /*@__PURE__*/ S.Array(
-  IamResourceTagFilterInput,
-) as any as S.Schema<GetXdslSpareRequestIamTagsValueList>;
-
-export type GetXdslSpareRequestIamTagsMap = {
-  [key: string]: GetXdslSpareRequestIamTagsValueList | undefined;
-};
-export const GetXdslSpareRequestIamTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  GetXdslSpareRequestIamTagsValueList,
-) as any as S.Schema<GetXdslSpareRequestIamTagsMap>;
-
-export interface GetXdslSpareRequest {
-  /** Filter resources on IAM tags */
-  iamTags?: GetXdslSpareRequestIamTagsMap;
-}
-export const GetXdslSpareRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    iamTags: S.optional(GetXdslSpareRequestIamTagsMap.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/xdsl/spare", code: 200 })),
-).annotate({
-  identifier: "GetXdslSpareRequest",
-}) as any as S.Schema<GetXdslSpareRequest>;
-
-export type GetXdslSpareResponseBodyList = Array<string>;
-export const GetXdslSpareResponseBodyList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<GetXdslSpareResponseBodyList>;
-
-export type GetXdslSpareResponse = GetXdslSpareResponseBodyList;
-export const GetXdslSpareResponse = /*@__PURE__*/ S.suspend(() =>
-  GetXdslSpareResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetXdslSpareResponse",
-}) as any as S.Schema<GetXdslSpareResponse>;
-
-export interface GetXdslSpareBrandsRequest {}
-export const GetXdslSpareBrandsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({ method: "GET", uri: "/xdsl/spare/brands", code: 200 }),
-  ),
-).annotate({
-  identifier: "GetXdslSpareBrandsRequest",
-}) as any as S.Schema<GetXdslSpareBrandsRequest>;
-
-export type GetXdslSpareBrandsResponseBodyList = Array<string>;
-export const GetXdslSpareBrandsResponseBodyList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<GetXdslSpareBrandsResponseBodyList>;
-
-export type GetXdslSpareBrandsResponse = GetXdslSpareBrandsResponseBodyList;
-export const GetXdslSpareBrandsResponse = /*@__PURE__*/ S.suspend(() =>
-  GetXdslSpareBrandsResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetXdslSpareBrandsResponse",
-}) as any as S.Schema<GetXdslSpareBrandsResponse>;
-
-export interface GetXdslSpareSpareRequest {
-  /** Spare */
-  spare: string;
-}
-export const GetXdslSpareSpareRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    spare: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/xdsl/spare/{spare}", code: 200 })),
-).annotate({
-  identifier: "GetXdslSpareSpareRequest",
-}) as any as S.Schema<GetXdslSpareSpareRequest>;
-
-/** Spare properties */
-export interface SpareXdslXdslSpareWithIAM {
-  /** Modem brand model */
-  brand?: string;
-  /** IAM resource metadata */
-  iam?: IamResourceMetadata | null;
-  /** Mac address */
-  macAddress?: string;
-}
-export const SpareXdslXdslSpareWithIAM = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    brand: S.optional(S.String),
-    iam: S.optional(S.NullOr(IamResourceMetadata)),
-    macAddress: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SpareXdslXdslSpareWithIAM",
-}) as any as S.Schema<SpareXdslXdslSpareWithIAM>;
-
-export interface GetXdslSpareSpareCompatibleReplacementRequest {
-  /** Spare */
-  spare: string;
-}
-export const GetXdslSpareSpareCompatibleReplacementRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      spare: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/xdsl/spare/{spare}/compatibleReplacement",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetXdslSpareSpareCompatibleReplacementRequest",
-  }) as any as S.Schema<GetXdslSpareSpareCompatibleReplacementRequest>;
-
-export type GetXdslSpareSpareCompatibleReplacementResponseBodyList =
-  Array<string>;
-export const GetXdslSpareSpareCompatibleReplacementResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetXdslSpareSpareCompatibleReplacementResponseBodyList>;
-
-export type GetXdslSpareSpareCompatibleReplacementResponse =
-  GetXdslSpareSpareCompatibleReplacementResponseBodyList;
-export const GetXdslSpareSpareCompatibleReplacementResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetXdslSpareSpareCompatibleReplacementResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetXdslSpareSpareCompatibleReplacementResponse",
-  }) as any as S.Schema<GetXdslSpareSpareCompatibleReplacementResponse>;
-
-export interface GetXdslSpareSpareServiceInfosRequest {
-  /** Spare */
-  spare: string;
-}
-export const GetXdslSpareSpareServiceInfosRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      spare: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/xdsl/spare/{spare}/serviceInfos",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "GetXdslSpareSpareServiceInfosRequest",
-}) as any as S.Schema<GetXdslSpareSpareServiceInfosRequest>;
-
-export interface InstallFrimwareRequest {
-  /** Service name */
-  serviceName: string;
-  /** The firmware version to upgrade to */
-  firmware: string;
-  /** Date of execution, default is now */
-  todoDate?: string;
-}
-export const InstallFrimwareRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceName: S.String.pipe(T.Label()),
-    firmware: S.String,
-    todoDate: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/xdsl/{serviceName}/modem/firmware",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "InstallFrimwareRequest",
-}) as any as S.Schema<InstallFrimwareRequest>;
-
-export interface PostXdslServiceNameAddressMoveExtraIpRangeMoveRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const PostXdslServiceNameAddressMoveExtraIpRangeMoveRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/xdsl/{serviceName}/addressMove/extraIpRangeMove",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostXdslServiceNameAddressMoveExtraIpRangeMoveRequest",
-  }) as any as S.Schema<PostXdslServiceNameAddressMoveExtraIpRangeMoveRequest>;
-
-export interface PostXdslServiceNameCancelResiliationRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const PostXdslServiceNameCancelResiliationRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/xdsl/{serviceName}/cancelResiliation",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostXdslServiceNameCancelResiliationRequest",
-  }) as any as S.Schema<PostXdslServiceNameCancelResiliationRequest>;
-
-export interface PostXdslServiceNameCancelResiliationResponse {}
-export const PostXdslServiceNameCancelResiliationResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PostXdslServiceNameCancelResiliationResponse",
-  }) as any as S.Schema<PostXdslServiceNameCancelResiliationResponse>;
-
-export interface PostXdslServiceNameDiagnosticRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const PostXdslServiceNameDiagnosticRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/xdsl/{serviceName}/diagnostic",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "PostXdslServiceNameDiagnosticRequest",
-}) as any as S.Schema<PostXdslServiceNameDiagnosticRequest>;
-
-export interface PostXdslServiceNameIpsRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const PostXdslServiceNameIpsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/xdsl/{serviceName}/ips", code: 200 }),
-  ),
-).annotate({
-  identifier: "PostXdslServiceNameIpsRequest",
-}) as any as S.Schema<PostXdslServiceNameIpsRequest>;
-
-export interface PostXdslServiceNameLinesNumberDiagnosticCancelRequest {
-  /** Service name */
-  serviceName: string;
-  /** Number */
-  number: string;
-}
-export const PostXdslServiceNameLinesNumberDiagnosticCancelRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      number: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/xdsl/{serviceName}/lines/{number}/diagnostic/cancel",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostXdslServiceNameLinesNumberDiagnosticCancelRequest",
-  }) as any as S.Schema<PostXdslServiceNameLinesNumberDiagnosticCancelRequest>;
-
-export interface PostXdslServiceNameLinesNumberDiagnosticCancelResponse {}
-export const PostXdslServiceNameLinesNumberDiagnosticCancelResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PostXdslServiceNameLinesNumberDiagnosticCancelResponse",
-  }) as any as S.Schema<PostXdslServiceNameLinesNumberDiagnosticCancelResponse>;
-
-export interface PostXdslServiceNameLinesNumberDslamPortResetRequest {
-  /** Service name */
-  serviceName: string;
-  /** Number */
-  number: string;
-}
-export const PostXdslServiceNameLinesNumberDslamPortResetRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      number: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/xdsl/{serviceName}/lines/{number}/dslamPort/reset",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostXdslServiceNameLinesNumberDslamPortResetRequest",
-  }) as any as S.Schema<PostXdslServiceNameLinesNumberDslamPortResetRequest>;
-
-export interface PostXdslServiceNameModemReconfigureVoipRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const PostXdslServiceNameModemReconfigureVoipRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/xdsl/{serviceName}/modem/reconfigureVoip",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostXdslServiceNameModemReconfigureVoipRequest",
-  }) as any as S.Schema<PostXdslServiceNameModemReconfigureVoipRequest>;
-
-export interface PostXdslServiceNameModemReconfigureVoipResponse {}
-export const PostXdslServiceNameModemReconfigureVoipResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PostXdslServiceNameModemReconfigureVoipResponse",
-  }) as any as S.Schema<PostXdslServiceNameModemReconfigureVoipResponse>;
-
-export interface PostXdslServiceNameModemRefreshConnectedDevicesRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const PostXdslServiceNameModemRefreshConnectedDevicesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/xdsl/{serviceName}/modem/refreshConnectedDevices",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostXdslServiceNameModemRefreshConnectedDevicesRequest",
-  }) as any as S.Schema<PostXdslServiceNameModemRefreshConnectedDevicesRequest>;
-
-export interface PostXdslServiceNameModemResetPortMappingConfigRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const PostXdslServiceNameModemResetPortMappingConfigRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/xdsl/{serviceName}/modem/resetPortMappingConfig",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostXdslServiceNameModemResetPortMappingConfigRequest",
-  }) as any as S.Schema<PostXdslServiceNameModemResetPortMappingConfigRequest>;
-
-export interface PostXdslServiceNameModemResetPortMappingConfigResponse {}
-export const PostXdslServiceNameModemResetPortMappingConfigResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PostXdslServiceNameModemResetPortMappingConfigResponse",
-  }) as any as S.Schema<PostXdslServiceNameModemResetPortMappingConfigResponse>;
-
-export interface PostXdslServiceNameModemRetrieveInfoRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const PostXdslServiceNameModemRetrieveInfoRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/xdsl/{serviceName}/modem/retrieveInfo",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostXdslServiceNameModemRetrieveInfoRequest",
-  }) as any as S.Schema<PostXdslServiceNameModemRetrieveInfoRequest>;
-
-/** Describe device information of a Modem */
-export interface XdslDeviceModemInfo {
-  /** Modem brand */
-  brand?: string;
-  /** IPv4 address (e.g., 192.0.2.0) */
-  ip?: string;
-  /** Time of last information refresh */
-  lastUpdate?: string;
-  /** Modem mac address */
-  macAddress?: string;
-  /** Modem type of model */
-  model?: string;
-  /** Organizational Unique Identifier */
-  oui?: string;
-  /** Protocol used for connection */
-  overEthernet?: string | null;
-  /** login used for ppp protocol */
-  pppLogin?: string | null;
-  /** Modem serial key */
-  serial?: string;
-  /** Software Version */
-  softVersion?: string;
-}
-export const XdslDeviceModemInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    brand: S.optional(S.String),
-    ip: S.optional(S.String),
-    lastUpdate: S.optional(S.String),
-    macAddress: S.optional(S.String),
-    model: S.optional(S.String),
-    oui: S.optional(S.String),
-    overEthernet: S.optional(S.NullOr(S.String)),
-    pppLogin: S.optional(S.NullOr(S.String)),
-    serial: S.optional(S.String),
-    softVersion: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "XdslDeviceModemInfo",
-}) as any as S.Schema<XdslDeviceModemInfo>;
-
-/** Describe statistics information of a Modem */
-export interface XdslStatsModemInfo {
-  /** Connection uptime */
-  connectionUptime?: number;
-  /** Amount of CRC error detected */
-  crcError?: number;
-  /** Modem uptime */
-  deviceUptime?: number;
-  /** Downstream attenuation */
-  downstreamAttenuation?: number;
-  /** Downstream margin */
-  downstreamMargin?: number;
-  /** Downstream synchronization */
-  downstreamSync?: number;
-  /** Amount of FEC error detected */
-  fecError?: number;
-  /** Amount of HEC error detected */
-  hecError?: number;
-  /** Time of last refresh */
-  lastUpdate?: string;
-  /** Line modulation used */
-  modulation?: string;
-  /** Count from last refresh in seconds */
-  quarterHourStart?: number;
-  /** Synchronization uptime */
-  syncUptime?: number;
-  /** Upstream attenuation */
-  upstreamAttenuation?: number;
-  /** Upstream margin */
-  upstreamMargin?: number;
-  /** Upstream synchronization */
-  upstreamSync?: number;
-}
-export const XdslStatsModemInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    connectionUptime: S.optional(S.Number),
-    crcError: S.optional(S.Number),
-    deviceUptime: S.optional(S.Number),
-    downstreamAttenuation: S.optional(S.Number),
-    downstreamMargin: S.optional(S.Number),
-    downstreamSync: S.optional(S.Number),
-    fecError: S.optional(S.Number),
-    hecError: S.optional(S.Number),
-    lastUpdate: S.optional(S.String),
-    modulation: S.optional(S.String),
-    quarterHourStart: S.optional(S.Number),
-    syncUptime: S.optional(S.Number),
-    upstreamAttenuation: S.optional(S.Number),
-    upstreamMargin: S.optional(S.Number),
-    upstreamSync: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "XdslStatsModemInfo",
-}) as any as S.Schema<XdslStatsModemInfo>;
-
-/** Describe general information of a Modem */
-export interface XdslModemInfo {
-  /** Describe device information of a Modem */
-  device?: XdslDeviceModemInfo;
-  /** Describe statistics information of a Modem */
-  statistics?: XdslStatsModemInfo;
-}
-export const XdslModemInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    device: S.optional(XdslDeviceModemInfo),
-    statistics: S.optional(XdslStatsModemInfo),
-  }),
-).annotate({ identifier: "XdslModemInfo" }) as any as S.Schema<XdslModemInfo>;
-
-/** AsyncTask status */
-export type XdslAsyncTaskStatusEnum = "error" | "ok" | "pending";
-export const XdslAsyncTaskStatusEnum = /*@__PURE__*/ S.String;
-
-/** xdsl.AsyncTask_xdsl.ModemInfo */
-export interface XdslAsyncTaskXdslModemInfo {
-  error?: string | null;
-  /** Describe general information of a Modem */
-  result?: XdslModemInfo | null;
-  /** AsyncTask status */
-  status?: XdslAsyncTaskStatusEnum;
-}
-export const XdslAsyncTaskXdslModemInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    error: S.optional(S.NullOr(S.String)),
-    result: S.optional(S.NullOr(XdslModemInfo)),
-    status: S.optional(XdslAsyncTaskStatusEnum),
-  }),
-).annotate({
-  identifier: "XdslAsyncTaskXdslModemInfo",
-}) as any as S.Schema<XdslAsyncTaskXdslModemInfo>;
-
-export interface PostXdslServiceNameRequestPPPLoginMailRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const PostXdslServiceNameRequestPPPLoginMailRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/xdsl/{serviceName}/requestPPPLoginMail",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostXdslServiceNameRequestPPPLoginMailRequest",
-  }) as any as S.Schema<PostXdslServiceNameRequestPPPLoginMailRequest>;
-
-export interface PostXdslServiceNameRequestPPPLoginMailResponse {}
-export const PostXdslServiceNameRequestPPPLoginMailResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PostXdslServiceNameRequestPPPLoginMailResponse",
-  }) as any as S.Schema<PostXdslServiceNameRequestPPPLoginMailResponse>;
-
-export interface PostXdslServiceNameSearchOrderMeetingsRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const PostXdslServiceNameSearchOrderMeetingsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/xdsl/{serviceName}/searchOrderMeetings",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostXdslServiceNameSearchOrderMeetingsRequest",
-  }) as any as S.Schema<PostXdslServiceNameSearchOrderMeetingsRequest>;
-
-/** Represents meeting booking options */
-export interface ConnectivityEligibilityMeetingCapacities {
-  /** Whether or not it is possible to book a meeting online */
-  eRdv?: boolean;
-  /** Whether or not it is possible to be be called by phone to book a meeting */
-  phoneCall?: boolean;
-}
-export const ConnectivityEligibilityMeetingCapacities = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      eRdv: S.optional(S.Boolean),
-      phoneCall: S.optional(S.Boolean),
-    }),
-).annotate({
-  identifier: "ConnectivityEligibilityMeetingCapacities",
-}) as any as S.Schema<ConnectivityEligibilityMeetingCapacities>;
-
-/** Represents a time slot for a meeting */
-export interface ConnectivityEligibilityMeetingSlot {
-  /** End date */
-  endDate?: string;
-  /** Represent a meeting id for a fiber collect operator */
-  slotId?: string | null;
-  /** Start date */
-  startDate?: string;
-  /** An opaque string that represents an intervention unit */
-  uiCode?: string | null;
-}
-export const ConnectivityEligibilityMeetingSlot = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    endDate: S.optional(S.String),
-    slotId: S.optional(S.NullOr(S.String)),
-    startDate: S.optional(S.String),
-    uiCode: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "ConnectivityEligibilityMeetingSlot",
-}) as any as S.Schema<ConnectivityEligibilityMeetingSlot>;
-
-/** A time slot */
-export type ConnectivityEligibilityMeetingsMeetingSlotsList =
-  Array<ConnectivityEligibilityMeetingSlot>;
-export const ConnectivityEligibilityMeetingsMeetingSlotsList =
-  /*@__PURE__*/ S.Array(
-    ConnectivityEligibilityMeetingSlot,
-  ) as any as S.Schema<ConnectivityEligibilityMeetingsMeetingSlotsList>;
-
-/** List of available meeting time slots */
-export interface ConnectivityEligibilityMeetings {
-  /** Whether or not it is possible to book a fake meeting */
-  canBookFakeMeeting?: boolean;
-  /** Represents meeting booking options */
-  capacities?: ConnectivityEligibilityMeetingCapacities;
-  /** A time slot */
-  meetingSlots?: ConnectivityEligibilityMeetingsMeetingSlotsList;
-}
-export const ConnectivityEligibilityMeetings = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    canBookFakeMeeting: S.optional(S.Boolean),
-    capacities: S.optional(ConnectivityEligibilityMeetingCapacities),
-    meetingSlots: S.optional(ConnectivityEligibilityMeetingsMeetingSlotsList),
-  }),
-).annotate({
-  identifier: "ConnectivityEligibilityMeetings",
-}) as any as S.Schema<ConnectivityEligibilityMeetings>;
-
-/** xdsl.AsyncTask_connectivity.eligibility.Meetings */
-export interface XdslAsyncTaskConnectivityEligibilityMeetings {
-  error?: string | null;
-  /** List of available meeting time slots */
-  result?: ConnectivityEligibilityMeetings;
-  /** AsyncTask status */
-  status?: XdslAsyncTaskStatusEnum;
-}
-export const XdslAsyncTaskConnectivityEligibilityMeetings =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      error: S.optional(S.NullOr(S.String)),
-      result: S.optional(ConnectivityEligibilityMeetings),
-      status: S.optional(XdslAsyncTaskStatusEnum),
-    }),
-  ).annotate({
-    identifier: "XdslAsyncTaskConnectivityEligibilityMeetings",
-  }) as any as S.Schema<XdslAsyncTaskConnectivityEligibilityMeetings>;
-
-export interface PostXdslServiceNameSendOrderToProviderRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const PostXdslServiceNameSendOrderToProviderRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/xdsl/{serviceName}/sendOrderToProvider",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostXdslServiceNameSendOrderToProviderRequest",
-  }) as any as S.Schema<PostXdslServiceNameSendOrderToProviderRequest>;
-
-export interface PostXdslServiceNameSendOrderToProviderResponse {}
-export const PostXdslServiceNameSendOrderToProviderResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PostXdslServiceNameSendOrderToProviderResponse",
-  }) as any as S.Schema<PostXdslServiceNameSendOrderToProviderResponse>;
-
-export interface PostXdslServiceNameTasksIdArchiveRequest {
-  /** Service name */
-  serviceName: string;
-  /** Id */
-  id: number;
-}
-export const PostXdslServiceNameTasksIdArchiveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/xdsl/{serviceName}/tasks/{id}/archive",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "PostXdslServiceNameTasksIdArchiveRequest",
-}) as any as S.Schema<PostXdslServiceNameTasksIdArchiveRequest>;
-
-export interface PostXdslServiceNameTasksIdArchiveResponse {}
-export const PostXdslServiceNameTasksIdArchiveResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PostXdslServiceNameTasksIdArchiveResponse",
-  }) as any as S.Schema<PostXdslServiceNameTasksIdArchiveResponse>;
-
-export interface PostXdslSpareSpareReturnMerchandiseRequest {
-  /** Spare */
-  spare: string;
-}
-export const PostXdslSpareSpareReturnMerchandiseRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      spare: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/xdsl/spare/{spare}/returnMerchandise",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostXdslSpareSpareReturnMerchandiseRequest",
-  }) as any as S.Schema<PostXdslSpareSpareReturnMerchandiseRequest>;
-
-export interface PostXdslSpareSpareReturnMerchandiseResponse {}
-export const PostXdslSpareSpareReturnMerchandiseResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PostXdslSpareSpareReturnMerchandiseResponse",
-  }) as any as S.Schema<PostXdslSpareSpareReturnMerchandiseResponse>;
-
-export interface PutXdslEmailProEmailRequest {
+export interface PutXdslEmailProRequest {
   /** Email */
   email: string;
   /** Account display name */
@@ -5427,7 +5188,7 @@ export interface PutXdslEmailProEmailRequest {
   /** Account last name */
   lastName?: string | null;
 }
-export const PutXdslEmailProEmailRequest = /*@__PURE__*/ S.suspend(() =>
+export const PutXdslEmailProRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     email: S.String.pipe(T.Label()),
     displayName: S.optional(S.NullOr(S.String)),
@@ -5436,44 +5197,17 @@ export const PutXdslEmailProEmailRequest = /*@__PURE__*/ S.suspend(() =>
     lastName: S.optional(S.NullOr(S.String)),
   }).pipe(T.Http({ method: "PUT", uri: "/xdsl/email/pro/{email}", code: 200 })),
 ).annotate({
-  identifier: "PutXdslEmailProEmailRequest",
-}) as any as S.Schema<PutXdslEmailProEmailRequest>;
+  identifier: "PutXdslEmailProRequest",
+}) as any as S.Schema<PutXdslEmailProRequest>;
 
-export interface PutXdslEmailProEmailResponse {}
-export const PutXdslEmailProEmailResponse = /*@__PURE__*/ S.suspend(() =>
+export interface PutXdslEmailProResponse {}
+export const PutXdslEmailProResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "PutXdslEmailProEmailResponse",
-}) as any as S.Schema<PutXdslEmailProEmailResponse>;
+  identifier: "PutXdslEmailProResponse",
+}) as any as S.Schema<PutXdslEmailProResponse>;
 
-export interface PutXdslServiceNameRequest {
-  /** Service name */
-  serviceName: string;
-  description?: string;
-  /** Rate limit on the LNS in kbps - Only available if canApplyLnsRateLimit capability is set to true - Must be a multiple of 64 - Min value 64 / Max value 100032 */
-  lnsRateLimit?: number | null;
-  /** Whether or not this access is monitored */
-  monitoring?: boolean;
-}
-export const PutXdslServiceNameRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceName: S.String.pipe(T.Label()),
-    description: S.optional(S.String),
-    lnsRateLimit: S.optional(S.NullOr(S.Number)),
-    monitoring: S.optional(S.Boolean),
-  }).pipe(T.Http({ method: "PUT", uri: "/xdsl/{serviceName}", code: 200 })),
-).annotate({
-  identifier: "PutXdslServiceNameRequest",
-}) as any as S.Schema<PutXdslServiceNameRequest>;
-
-export interface PutXdslServiceNameResponse {}
-export const PutXdslServiceNameResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "PutXdslServiceNameResponse",
-}) as any as S.Schema<PutXdslServiceNameResponse>;
-
-export interface PutXdslServiceNameModemRequest {
+export interface PutXdslModemRequest {
   /** Service name */
   serviceName: string;
   /** ACS backend used by the modem */
@@ -5487,7 +5221,7 @@ export interface PutXdslServiceNameModemRequest {
   /** Size of the Maximum Transmission Unit on the modem's interfaces */
   mtuSize?: XdslXdslModemConfigMTUSizeEnum | (number & {}) | null;
 }
-export const PutXdslServiceNameModemRequest = /*@__PURE__*/ S.suspend(() =>
+export const PutXdslModemRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     serviceName: S.String.pipe(T.Label()),
     acsBackend: S.optional(XdslXdslModemConfigACSBackendEnum),
@@ -5499,17 +5233,17 @@ export const PutXdslServiceNameModemRequest = /*@__PURE__*/ S.suspend(() =>
     T.Http({ method: "PUT", uri: "/xdsl/{serviceName}/modem", code: 200 }),
   ),
 ).annotate({
-  identifier: "PutXdslServiceNameModemRequest",
-}) as any as S.Schema<PutXdslServiceNameModemRequest>;
+  identifier: "PutXdslModemRequest",
+}) as any as S.Schema<PutXdslModemRequest>;
 
-export interface PutXdslServiceNameModemResponse {}
-export const PutXdslServiceNameModemResponse = /*@__PURE__*/ S.suspend(() =>
+export interface PutXdslModemResponse {}
+export const PutXdslModemResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "PutXdslServiceNameModemResponse",
-}) as any as S.Schema<PutXdslServiceNameModemResponse>;
+  identifier: "PutXdslModemResponse",
+}) as any as S.Schema<PutXdslModemResponse>;
 
-export interface PutXdslServiceNameModemLanLanNameRequest {
+export interface PutXdslModemLanRequest {
   /** Service name */
   serviceName: string;
   /** Lan name */
@@ -5521,32 +5255,32 @@ export interface PutXdslServiceNameModemLanLanNameRequest {
   /** IP address (e.g., 192.0.2.0) */
   subnetMask?: string;
 }
-export const PutXdslServiceNameModemLanLanNameRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      lanName: S.String.pipe(T.Label()),
-      IPAddress: S.optional(S.String),
-      addressingType: S.optional(XdslXdslModemConfigAddressingTypeEnum),
-      subnetMask: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/xdsl/{serviceName}/modem/lan/{lanName}",
-        code: 200,
-      }),
-    ),
+export const PutXdslModemLanRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    lanName: S.String.pipe(T.Label()),
+    IPAddress: S.optional(S.String),
+    addressingType: S.optional(XdslXdslModemConfigAddressingTypeEnum),
+    subnetMask: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/xdsl/{serviceName}/modem/lan/{lanName}",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "PutXdslServiceNameModemLanLanNameRequest",
-}) as any as S.Schema<PutXdslServiceNameModemLanLanNameRequest>;
+  identifier: "PutXdslModemLanRequest",
+}) as any as S.Schema<PutXdslModemLanRequest>;
 
-export interface PutXdslServiceNameModemLanLanNameResponse {}
-export const PutXdslServiceNameModemLanLanNameResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PutXdslServiceNameModemLanLanNameResponse",
-  }) as any as S.Schema<PutXdslServiceNameModemLanLanNameResponse>;
+export interface PutXdslModemLanResponse {}
+export const PutXdslModemLanResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "PutXdslModemLanResponse",
+}) as any as S.Schema<PutXdslModemLanResponse>;
 
-export interface PutXdslServiceNameModemLanLanNameDhcpDhcpNameRequest {
+export interface PutXdslModemLanDhcpRequest {
   /** Service name */
   serviceName: string;
   /** Lan name */
@@ -5572,67 +5306,39 @@ export interface PutXdslServiceNameModemLanLanNameDhcpDhcpNameRequest {
   /** IP address (e.g., 192.0.2.0) */
   subnetMask?: string;
 }
-export const PutXdslServiceNameModemLanLanNameDhcpDhcpNameRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      lanName: S.String.pipe(T.Label()),
-      dhcpName: S.String.pipe(T.Label()),
-      defaultGateway: S.optional(S.String),
-      domainName: S.optional(S.String),
-      endAddress: S.optional(S.String),
-      leaseTime: S.optional(S.Number),
-      primaryDNS: S.optional(S.String),
-      secondaryDNS: S.optional(S.NullOr(S.String)),
-      serverEnabled: S.optional(S.Boolean),
-      startAddress: S.optional(S.String),
-      subnetMask: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/xdsl/{serviceName}/modem/lan/{lanName}/dhcp/{dhcpName}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PutXdslServiceNameModemLanLanNameDhcpDhcpNameRequest",
-  }) as any as S.Schema<PutXdslServiceNameModemLanLanNameDhcpDhcpNameRequest>;
+export const PutXdslModemLanDhcpRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    lanName: S.String.pipe(T.Label()),
+    dhcpName: S.String.pipe(T.Label()),
+    defaultGateway: S.optional(S.String),
+    domainName: S.optional(S.String),
+    endAddress: S.optional(S.String),
+    leaseTime: S.optional(S.Number),
+    primaryDNS: S.optional(S.String),
+    secondaryDNS: S.optional(S.NullOr(S.String)),
+    serverEnabled: S.optional(S.Boolean),
+    startAddress: S.optional(S.String),
+    subnetMask: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/xdsl/{serviceName}/modem/lan/{lanName}/dhcp/{dhcpName}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "PutXdslModemLanDhcpRequest",
+}) as any as S.Schema<PutXdslModemLanDhcpRequest>;
 
-export interface PutXdslServiceNameModemLanLanNameDhcpDhcpNameResponse {}
-export const PutXdslServiceNameModemLanLanNameDhcpDhcpNameResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PutXdslServiceNameModemLanLanNameDhcpDhcpNameResponse",
-  }) as any as S.Schema<PutXdslServiceNameModemLanLanNameDhcpDhcpNameResponse>;
+export interface PutXdslModemLanDhcpResponse {}
+export const PutXdslModemLanDhcpResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "PutXdslModemLanDhcpResponse",
+}) as any as S.Schema<PutXdslModemLanDhcpResponse>;
 
-export interface PutXdslServiceNameModemWifiRadioRadioNameRequest {
-  /** Service name */
-  serviceName: string;
-  /** Radio name */
-  radioName: string;
-  /** Current radio channel */
-  channel?: number;
-  /** Change channel selection mode (auto | manual) */
-  channelMode?: XdslXdslModemConfigChannelModeEnum | (string & {});
-}
-export const PutXdslServiceNameModemWifiRadioRadioNameRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      radioName: S.String.pipe(T.Label()),
-      channel: S.optional(S.Number),
-      channelMode: S.optional(XdslXdslModemConfigChannelModeEnum),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/xdsl/{serviceName}/modem/wifiRadio/{radioName}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PutXdslServiceNameModemWifiRadioRadioNameRequest",
-  }) as any as S.Schema<PutXdslServiceNameModemWifiRadioRadioNameRequest>;
-
-export interface PutXdslServiceNameModemWifiWifiNameRequest {
+export interface PutXdslModemWifiRequest {
   /** Service name */
   serviceName: string;
   /** Wifi name */
@@ -5652,36 +5358,63 @@ export interface PutXdslServiceNameModemWifiWifiNameRequest {
   /** Type of WLAN security protection */
   securityType?: XdslXdslModemConfigSecurityTypeEnum | (string & {});
 }
-export const PutXdslServiceNameModemWifiWifiNameRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      wifiName: S.String.pipe(T.Label()),
-      SSID: S.optional(S.String),
-      SSIDAdvertisementEnabled: S.optional(S.Boolean),
-      channel: S.optional(S.Number),
-      channelMode: S.optional(XdslXdslModemConfigChannelModeEnum),
-      enabled: S.optional(S.Boolean),
-      securityKey: S.optional(S.String),
-      securityType: S.optional(XdslXdslModemConfigSecurityTypeEnum),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/xdsl/{serviceName}/modem/wifi/{wifiName}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PutXdslServiceNameModemWifiWifiNameRequest",
-  }) as any as S.Schema<PutXdslServiceNameModemWifiWifiNameRequest>;
+export const PutXdslModemWifiRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    wifiName: S.String.pipe(T.Label()),
+    SSID: S.optional(S.String),
+    SSIDAdvertisementEnabled: S.optional(S.Boolean),
+    channel: S.optional(S.Number),
+    channelMode: S.optional(XdslXdslModemConfigChannelModeEnum),
+    enabled: S.optional(S.Boolean),
+    securityKey: S.optional(S.String),
+    securityType: S.optional(XdslXdslModemConfigSecurityTypeEnum),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/xdsl/{serviceName}/modem/wifi/{wifiName}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "PutXdslModemWifiRequest",
+}) as any as S.Schema<PutXdslModemWifiRequest>;
 
-export interface PutXdslServiceNameModemWifiWifiNameResponse {}
-export const PutXdslServiceNameModemWifiWifiNameResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PutXdslServiceNameModemWifiWifiNameResponse",
-  }) as any as S.Schema<PutXdslServiceNameModemWifiWifiNameResponse>;
+export interface PutXdslModemWifiResponse {}
+export const PutXdslModemWifiResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "PutXdslModemWifiResponse",
+}) as any as S.Schema<PutXdslModemWifiResponse>;
 
-export interface PutXdslServiceNameRmaIdRequest {
+export interface PutXdslModemWifiRadioRequest {
+  /** Service name */
+  serviceName: string;
+  /** Radio name */
+  radioName: string;
+  /** Current radio channel */
+  channel?: number;
+  /** Change channel selection mode (auto | manual) */
+  channelMode?: XdslXdslModemConfigChannelModeEnum | (string & {});
+}
+export const PutXdslModemWifiRadioRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    radioName: S.String.pipe(T.Label()),
+    channel: S.optional(S.Number),
+    channelMode: S.optional(XdslXdslModemConfigChannelModeEnum),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/xdsl/{serviceName}/modem/wifiRadio/{radioName}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "PutXdslModemWifiRadioRequest",
+}) as any as S.Schema<PutXdslModemWifiRadioRequest>;
+
+export interface PutXdslRmaRequest {
   /** Service name */
   serviceName: string;
   /** Id */
@@ -5691,7 +5424,7 @@ export interface PutXdslServiceNameRmaIdRequest {
   /** Contact information structure */
   shippingContact?: TelephonyContact;
 }
-export const PutXdslServiceNameRmaIdRequest = /*@__PURE__*/ S.suspend(() =>
+export const PutXdslRmaRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     serviceName: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
@@ -5701,73 +5434,71 @@ export const PutXdslServiceNameRmaIdRequest = /*@__PURE__*/ S.suspend(() =>
     T.Http({ method: "PUT", uri: "/xdsl/{serviceName}/rma/{id}", code: 200 }),
   ),
 ).annotate({
-  identifier: "PutXdslServiceNameRmaIdRequest",
-}) as any as S.Schema<PutXdslServiceNameRmaIdRequest>;
+  identifier: "PutXdslRmaRequest",
+}) as any as S.Schema<PutXdslRmaRequest>;
 
-export interface PutXdslServiceNameRmaIdResponse {}
-export const PutXdslServiceNameRmaIdResponse = /*@__PURE__*/ S.suspend(() =>
+export interface PutXdslRmaResponse {}
+export const PutXdslRmaResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "PutXdslServiceNameRmaIdResponse",
-}) as any as S.Schema<PutXdslServiceNameRmaIdResponse>;
+  identifier: "PutXdslRmaResponse",
+}) as any as S.Schema<PutXdslRmaResponse>;
 
-export interface PutXdslServiceNameServiceInfosRequest {
+export interface PutXdslServiceInfosRequest {
   /** Service name */
   serviceName: string;
   /** Way of handling the renew */
   renew?: ServiceRenewType | null;
 }
-export const PutXdslServiceNameServiceInfosRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      renew: S.optional(S.NullOr(ServiceRenewType)),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/xdsl/{serviceName}/serviceInfos",
-        code: 200,
-      }),
-    ),
+export const PutXdslServiceInfosRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    renew: S.optional(S.NullOr(ServiceRenewType)),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/xdsl/{serviceName}/serviceInfos",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "PutXdslServiceNameServiceInfosRequest",
-}) as any as S.Schema<PutXdslServiceNameServiceInfosRequest>;
+  identifier: "PutXdslServiceInfosRequest",
+}) as any as S.Schema<PutXdslServiceInfosRequest>;
 
-export interface PutXdslServiceNameServiceInfosResponse {}
-export const PutXdslServiceNameServiceInfosResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
+export interface PutXdslServiceInfosResponse {}
+export const PutXdslServiceInfosResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
 ).annotate({
-  identifier: "PutXdslServiceNameServiceInfosResponse",
-}) as any as S.Schema<PutXdslServiceNameServiceInfosResponse>;
+  identifier: "PutXdslServiceInfosResponse",
+}) as any as S.Schema<PutXdslServiceInfosResponse>;
 
-export interface PutXdslSpareSpareServiceInfosRequest {
+export interface PutXdslSpareServiceInfosRequest {
   /** Spare */
   spare: string;
   /** Way of handling the renew */
   renew?: ServiceRenewType | null;
 }
-export const PutXdslSpareSpareServiceInfosRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      spare: S.String.pipe(T.Label()),
-      renew: S.optional(S.NullOr(ServiceRenewType)),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/xdsl/spare/{spare}/serviceInfos",
-        code: 200,
-      }),
-    ),
+export const PutXdslSpareServiceInfosRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    spare: S.String.pipe(T.Label()),
+    renew: S.optional(S.NullOr(ServiceRenewType)),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/xdsl/spare/{spare}/serviceInfos",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "PutXdslSpareSpareServiceInfosRequest",
-}) as any as S.Schema<PutXdslSpareSpareServiceInfosRequest>;
+  identifier: "PutXdslSpareServiceInfosRequest",
+}) as any as S.Schema<PutXdslSpareServiceInfosRequest>;
 
-export interface PutXdslSpareSpareServiceInfosResponse {}
-export const PutXdslSpareSpareServiceInfosResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
+export interface PutXdslSpareServiceInfosResponse {}
+export const PutXdslSpareServiceInfosResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
 ).annotate({
-  identifier: "PutXdslSpareSpareServiceInfosResponse",
-}) as any as S.Schema<PutXdslSpareSpareServiceInfosResponse>;
+  identifier: "PutXdslSpareServiceInfosResponse",
+}) as any as S.Schema<PutXdslSpareServiceInfosResponse>;
 
 export interface RebootModemRequest {
   /** Service name */
@@ -5789,6 +5520,25 @@ export const RebootModemRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "RebootModemRequest",
 }) as any as S.Schema<RebootModemRequest>;
+
+export interface RefreshXdslModemConnectedDevicesRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const RefreshXdslModemConnectedDevicesRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/xdsl/{serviceName}/modem/refreshConnectedDevices",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "RefreshXdslModemConnectedDevicesRequest",
+}) as any as S.Schema<RefreshXdslModemConnectedDevicesRequest>;
 
 export interface RemoveDHCPStaticAddressRequest {
   /** Service name */
@@ -6140,6 +5890,53 @@ export const ResetModemConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ResetModemConfigurationRequest",
 }) as any as S.Schema<ResetModemConfigurationRequest>;
 
+export interface ResetXdslLinesDslamPortRequest {
+  /** Service name */
+  serviceName: string;
+  /** Number */
+  number: string;
+}
+export const ResetXdslLinesDslamPortRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    number: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/xdsl/{serviceName}/lines/{number}/dslamPort/reset",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ResetXdslLinesDslamPortRequest",
+}) as any as S.Schema<ResetXdslLinesDslamPortRequest>;
+
+export interface ResetXdslModemPortMappingConfigRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const ResetXdslModemPortMappingConfigRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/xdsl/{serviceName}/modem/resetPortMappingConfig",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ResetXdslModemPortMappingConfigRequest",
+}) as any as S.Schema<ResetXdslModemPortMappingConfigRequest>;
+
+export interface ResetXdslModemPortMappingConfigResponse {}
+export const ResetXdslModemPortMappingConfigResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "ResetXdslModemPortMappingConfigResponse",
+}) as any as S.Schema<ResetXdslModemPortMappingConfigResponse>;
+
 /** Information about the reason for the resiliation */
 export type XdslResiliationSurveyInput = IamResourceTagFilterInput;
 export const XdslResiliationSurveyInput = IamResourceTagFilterInput;
@@ -6163,6 +5960,134 @@ export const ResiliateAccessRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ResiliateAccessRequest",
 }) as any as S.Schema<ResiliateAccessRequest>;
+
+export interface SearchXdslOrderMeetingsRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const SearchXdslOrderMeetingsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/xdsl/{serviceName}/searchOrderMeetings",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "SearchXdslOrderMeetingsRequest",
+}) as any as S.Schema<SearchXdslOrderMeetingsRequest>;
+
+/** Represents meeting booking options */
+export interface ConnectivityEligibilityMeetingCapacities {
+  /** Whether or not it is possible to book a meeting online */
+  eRdv?: boolean;
+  /** Whether or not it is possible to be be called by phone to book a meeting */
+  phoneCall?: boolean;
+}
+export const ConnectivityEligibilityMeetingCapacities = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      eRdv: S.optional(S.Boolean),
+      phoneCall: S.optional(S.Boolean),
+    }),
+).annotate({
+  identifier: "ConnectivityEligibilityMeetingCapacities",
+}) as any as S.Schema<ConnectivityEligibilityMeetingCapacities>;
+
+/** Represents a time slot for a meeting */
+export interface ConnectivityEligibilityMeetingSlot {
+  /** End date */
+  endDate?: string;
+  /** Represent a meeting id for a fiber collect operator */
+  slotId?: string | null;
+  /** Start date */
+  startDate?: string;
+  /** An opaque string that represents an intervention unit */
+  uiCode?: string | null;
+}
+export const ConnectivityEligibilityMeetingSlot = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    endDate: S.optional(S.String),
+    slotId: S.optional(S.NullOr(S.String)),
+    startDate: S.optional(S.String),
+    uiCode: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "ConnectivityEligibilityMeetingSlot",
+}) as any as S.Schema<ConnectivityEligibilityMeetingSlot>;
+
+/** A time slot */
+export type ConnectivityEligibilityMeetingsMeetingSlotsList =
+  Array<ConnectivityEligibilityMeetingSlot>;
+export const ConnectivityEligibilityMeetingsMeetingSlotsList =
+  /*@__PURE__*/ S.Array(
+    ConnectivityEligibilityMeetingSlot,
+  ) as any as S.Schema<ConnectivityEligibilityMeetingsMeetingSlotsList>;
+
+/** List of available meeting time slots */
+export interface ConnectivityEligibilityMeetings {
+  /** Whether or not it is possible to book a fake meeting */
+  canBookFakeMeeting?: boolean;
+  /** Represents meeting booking options */
+  capacities?: ConnectivityEligibilityMeetingCapacities;
+  /** A time slot */
+  meetingSlots?: ConnectivityEligibilityMeetingsMeetingSlotsList;
+}
+export const ConnectivityEligibilityMeetings = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    canBookFakeMeeting: S.optional(S.Boolean),
+    capacities: S.optional(ConnectivityEligibilityMeetingCapacities),
+    meetingSlots: S.optional(ConnectivityEligibilityMeetingsMeetingSlotsList),
+  }),
+).annotate({
+  identifier: "ConnectivityEligibilityMeetings",
+}) as any as S.Schema<ConnectivityEligibilityMeetings>;
+
+/** xdsl.AsyncTask_connectivity.eligibility.Meetings */
+export interface XdslAsyncTaskConnectivityEligibilityMeetings {
+  error?: string | null;
+  /** List of available meeting time slots */
+  result?: ConnectivityEligibilityMeetings;
+  /** AsyncTask status */
+  status?: XdslAsyncTaskStatusEnum;
+}
+export const XdslAsyncTaskConnectivityEligibilityMeetings =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      error: S.optional(S.NullOr(S.String)),
+      result: S.optional(ConnectivityEligibilityMeetings),
+      status: S.optional(XdslAsyncTaskStatusEnum),
+    }),
+  ).annotate({
+    identifier: "XdslAsyncTaskConnectivityEligibilityMeetings",
+  }) as any as S.Schema<XdslAsyncTaskConnectivityEligibilityMeetings>;
+
+export interface SendXdslOrderToProviderRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const SendXdslOrderToProviderRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/xdsl/{serviceName}/sendOrderToProvider",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "SendXdslOrderToProviderRequest",
+}) as any as S.Schema<SendXdslOrderToProviderRequest>;
+
+export interface SendXdslOrderToProviderResponse {}
+export const SendXdslOrderToProviderResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "SendXdslOrderToProviderResponse",
+}) as any as S.Schema<SendXdslOrderToProviderResponse>;
 
 export interface SetWifiMeshStatusRequest {
   /** Service name */
@@ -7282,6 +7207,21 @@ export const applyTemplateModem: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ArchiveXdslTaskError = OvhOpError;
+/** Delete the task in problem from the results */
+export const archiveXdslTask: API.OperationMethod<
+  ArchiveXdslTaskRequest,
+  ArchiveXdslTaskResponse,
+  ArchiveXdslTaskError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ArchiveXdslTaskRequest,
+  output: ArchiveXdslTaskResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
 export type BookMeetingError = OvhOpError;
 /** Book a meeting and relaunch order */
 export const bookMeeting: API.OperationMethod<
@@ -7292,6 +7232,36 @@ export const bookMeeting: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: BookMeetingRequest,
   output: BookMeetingResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CancelXdslLinesDiagnosticError = OvhOpError;
+/** Cancel line diagnostic if possible */
+export const cancelXdslLinesDiagnostic: API.OperationMethod<
+  CancelXdslLinesDiagnosticRequest,
+  CancelXdslLinesDiagnosticResponse,
+  CancelXdslLinesDiagnosticError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CancelXdslLinesDiagnosticRequest,
+  output: CancelXdslLinesDiagnosticResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CancelXdslResiliationError = OvhOpError;
+/** Cancel the ongoing resiliation */
+export const cancelXdslResiliation: API.OperationMethod<
+  CancelXdslResiliationRequest,
+  CancelXdslResiliationResponse,
+  CancelXdslResiliationError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CancelXdslResiliationRequest,
+  output: CancelXdslResiliationResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
@@ -7357,6 +7327,96 @@ export const createModemTemplate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type CreateXdslAddressMoveExtraIpRangeMoveError = OvhOpError;
+/** Initiate the extra IP range migration */
+export const createXdslAddressMoveExtraIpRangeMove: API.OperationMethod<
+  CreateXdslAddressMoveExtraIpRangeMoveRequest,
+  XdslTask,
+  CreateXdslAddressMoveExtraIpRangeMoveError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateXdslAddressMoveExtraIpRangeMoveRequest,
+  output: XdslTask,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateXdslDiagnosticError = OvhOpError;
+/** Run diagnostic on the access */
+export const createXdslDiagnostic: API.OperationMethod<
+  CreateXdslDiagnosticRequest,
+  XdslTask,
+  CreateXdslDiagnosticError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateXdslDiagnosticRequest,
+  output: XdslTask,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateXdslIpsError = OvhOpError;
+/** Order an extra /29 range of IPv4 addresses */
+export const createXdslIps: API.OperationMethod<
+  CreateXdslIpsRequest,
+  XdslTask,
+  CreateXdslIpsError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateXdslIpsRequest,
+  output: XdslTask,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateXdslModemReconfigureVoipError = OvhOpError;
+/** Reconfigure voip line on modem */
+export const createXdslModemReconfigureVoip: API.OperationMethod<
+  CreateXdslModemReconfigureVoipRequest,
+  CreateXdslModemReconfigureVoipResponse,
+  CreateXdslModemReconfigureVoipError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateXdslModemReconfigureVoipRequest,
+  output: CreateXdslModemReconfigureVoipResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateXdslRequestPPPLoginMailError = OvhOpError;
+/** Renew PPP password and send the PPP login information to the e-mail of the nicAdmin */
+export const createXdslRequestPPPLoginMail: API.OperationMethod<
+  CreateXdslRequestPPPLoginMailRequest,
+  CreateXdslRequestPPPLoginMailResponse,
+  CreateXdslRequestPPPLoginMailError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateXdslRequestPPPLoginMailRequest,
+  output: CreateXdslRequestPPPLoginMailResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateXdslSpareReturnMerchandiseError = OvhOpError;
+/** Return the broken equipment in instantRefund */
+export const createXdslSpareReturnMerchandise: API.OperationMethod<
+  CreateXdslSpareReturnMerchandiseRequest,
+  CreateXdslSpareReturnMerchandiseResponse,
+  CreateXdslSpareReturnMerchandiseError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateXdslSpareReturnMerchandiseRequest,
+  output: CreateXdslSpareReturnMerchandiseResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
 export type DeleteModemTemplateError = OvhOpError;
 /** Delete this Modem Template */
 export const deleteModemTemplate: API.OperationMethod<
@@ -7372,61 +7432,61 @@ export const deleteModemTemplate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteXdslEmailProEmailError = OvhOpError;
+export type DeleteXdslEmailProError = OvhOpError;
 /** Delete the email */
-export const deleteXdslEmailProEmail: API.OperationMethod<
-  DeleteXdslEmailProEmailRequest,
-  DeleteXdslEmailProEmailResponse,
-  DeleteXdslEmailProEmailError,
+export const deleteXdslEmailPro: API.OperationMethod<
+  DeleteXdslEmailProRequest,
+  DeleteXdslEmailProResponse,
+  DeleteXdslEmailProError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteXdslEmailProEmailRequest,
-  output: DeleteXdslEmailProEmailResponse,
+  input: DeleteXdslEmailProRequest,
+  output: DeleteXdslEmailProResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteXdslServiceNameIpsIpError = OvhOpError;
+export type DeleteXdslIpsError = OvhOpError;
 /** Stop renewing this extra IPv4 option */
-export const deleteXdslServiceNameIpsIp: API.OperationMethod<
-  DeleteXdslServiceNameIpsIpRequest,
-  DeleteXdslServiceNameIpsIpResponse,
-  DeleteXdslServiceNameIpsIpError,
+export const deleteXdslIps: API.OperationMethod<
+  DeleteXdslIpsRequest,
+  DeleteXdslIpsResponse,
+  DeleteXdslIpsError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteXdslServiceNameIpsIpRequest,
-  output: DeleteXdslServiceNameIpsIpResponse,
+  input: DeleteXdslIpsRequest,
+  output: DeleteXdslIpsResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteXdslServiceNameRmaIdError = OvhOpError;
+export type DeleteXdslRmaError = OvhOpError;
 /** Cancel the rma */
-export const deleteXdslServiceNameRmaId: API.OperationMethod<
-  DeleteXdslServiceNameRmaIdRequest,
-  DeleteXdslServiceNameRmaIdResponse,
-  DeleteXdslServiceNameRmaIdError,
+export const deleteXdslRma: API.OperationMethod<
+  DeleteXdslRmaRequest,
+  DeleteXdslRmaResponse,
+  DeleteXdslRmaError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteXdslServiceNameRmaIdRequest,
-  output: DeleteXdslServiceNameRmaIdResponse,
+  input: DeleteXdslRmaRequest,
+  output: DeleteXdslRmaResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteXdslSpareSpareError = OvhOpError;
+export type DeleteXdslSpareError = OvhOpError;
 /** Delete the spare as if it was not belonging to OVH anymore */
-export const deleteXdslSpareSpare: API.OperationMethod<
-  DeleteXdslSpareSpareRequest,
-  DeleteXdslSpareSpareResponse,
-  DeleteXdslSpareSpareError,
+export const deleteXdslSpare: API.OperationMethod<
+  DeleteXdslSpareRequest,
+  DeleteXdslSpareResponse,
+  DeleteXdslSpareError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteXdslSpareSpareRequest,
-  output: DeleteXdslSpareSpareResponse,
+  input: DeleteXdslSpareRequest,
+  output: DeleteXdslSpareResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
@@ -7718,841 +7778,450 @@ export const getWifiOneSsidStatus: API.OperationMethod<
 }));
 
 export type GetXdslError = OvhOpError;
-/** List available services */
+/** Get this object properties */
 export const getXdsl: API.OperationMethod<
   GetXdslRequest,
-  GetXdslResponse,
+  XdslAccessWithIAM,
   GetXdslError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: GetXdslRequest,
-  output: GetXdslResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetXdslEmailProError = OvhOpError;
-/** List available services */
-export const getXdslEmailPro: API.OperationMethod<
-  GetXdslEmailProRequest,
-  GetXdslEmailProResponse,
-  GetXdslEmailProError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslEmailProRequest,
-  output: GetXdslEmailProResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetXdslEmailProEmailError = OvhOpError;
-/** Get this object properties */
-export const getXdslEmailProEmail: API.OperationMethod<
-  GetXdslEmailProEmailRequest,
-  XdslXdslEmailProWithIAM,
-  GetXdslEmailProEmailError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslEmailProEmailRequest,
-  output: XdslXdslEmailProWithIAM,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetXdslIncidentsError = OvhOpError;
-/** List of incidents */
-export const getXdslIncidents: API.OperationMethod<
-  GetXdslIncidentsRequest,
-  GetXdslIncidentsResponse,
-  GetXdslIncidentsError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslIncidentsRequest,
-  output: GetXdslIncidentsResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetXdslIncidentsIdError = OvhOpError;
-/** Get this object properties */
-export const getXdslIncidentsId: API.OperationMethod<
-  GetXdslIncidentsIdRequest,
-  XdslIncident,
-  GetXdslIncidentsIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslIncidentsIdRequest,
-  output: XdslIncident,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetXdslServiceNameError = OvhOpError;
-/** Get this object properties */
-export const getXdslServiceName: API.OperationMethod<
-  GetXdslServiceNameRequest,
-  XdslAccessWithIAM,
-  GetXdslServiceNameError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslServiceNameRequest,
   output: XdslAccessWithIAM,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetXdslServiceNameAddressMoveExtraIpRangeError = OvhOpError;
+export type GetXdslAddressMoveExtraIpRangeError = OvhOpError;
 /** Informations about the extra IP range during address move */
-export const getXdslServiceNameAddressMoveExtraIpRange: API.OperationMethod<
-  GetXdslServiceNameAddressMoveExtraIpRangeRequest,
+export const getXdslAddressMoveExtraIpRange: API.OperationMethod<
+  GetXdslAddressMoveExtraIpRangeRequest,
   XdslExtraIpRangeMove,
-  GetXdslServiceNameAddressMoveExtraIpRangeError,
+  GetXdslAddressMoveExtraIpRangeError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslServiceNameAddressMoveExtraIpRangeRequest,
+  input: GetXdslAddressMoveExtraIpRangeRequest,
   output: XdslExtraIpRangeMove,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetXdslServiceNameAntiSpamsError = OvhOpError;
-/** List antiSpams for this access */
-export const getXdslServiceNameAntiSpams: API.OperationMethod<
-  GetXdslServiceNameAntiSpamsRequest,
-  GetXdslServiceNameAntiSpamsResponse,
-  GetXdslServiceNameAntiSpamsError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslServiceNameAntiSpamsRequest,
-  output: GetXdslServiceNameAntiSpamsResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetXdslServiceNameAntiSpamsIpError = OvhOpError;
+export type GetXdslAntiSpamError = OvhOpError;
 /** Get this object properties */
-export const getXdslServiceNameAntiSpamsIp: API.OperationMethod<
-  GetXdslServiceNameAntiSpamsIpRequest,
+export const getXdslAntiSpam: API.OperationMethod<
+  GetXdslAntiSpamRequest,
   XdslAntiSpam,
-  GetXdslServiceNameAntiSpamsIpError,
+  GetXdslAntiSpamError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslServiceNameAntiSpamsIpRequest,
+  input: GetXdslAntiSpamRequest,
   output: XdslAntiSpam,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetXdslServiceNameAntiSpamsIpEvidencesError = OvhOpError;
-/** List of evidences stored on PCS for this ip */
-export const getXdslServiceNameAntiSpamsIpEvidences: API.OperationMethod<
-  GetXdslServiceNameAntiSpamsIpEvidencesRequest,
-  XdslAntiSpamEvidencesInfo,
-  GetXdslServiceNameAntiSpamsIpEvidencesError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslServiceNameAntiSpamsIpEvidencesRequest,
-  output: XdslAntiSpamEvidencesInfo,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetXdslServiceNameCanCancelResiliationError = OvhOpError;
+export type GetXdslCanCancelResiliationError = OvhOpError;
 /** Get information about the ongoing resiliation */
-export const getXdslServiceNameCanCancelResiliation: API.OperationMethod<
-  GetXdslServiceNameCanCancelResiliationRequest,
-  GetXdslServiceNameCanCancelResiliationResponse,
-  GetXdslServiceNameCanCancelResiliationError,
+export const getXdslCanCancelResiliation: API.OperationMethod<
+  GetXdslCanCancelResiliationRequest,
+  GetXdslCanCancelResiliationResponse,
+  GetXdslCanCancelResiliationError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslServiceNameCanCancelResiliationRequest,
-  output: GetXdslServiceNameCanCancelResiliationResponse,
+  input: GetXdslCanCancelResiliationRequest,
+  output: GetXdslCanCancelResiliationResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetXdslServiceNameDiagnosticError = OvhOpError;
+export type GetXdslDiagnosticError = OvhOpError;
 /** Get this object properties */
-export const getXdslServiceNameDiagnostic: API.OperationMethod<
-  GetXdslServiceNameDiagnosticRequest,
+export const getXdslDiagnostic: API.OperationMethod<
+  GetXdslDiagnosticRequest,
   XdslAccessDiagnostic,
-  GetXdslServiceNameDiagnosticError,
+  GetXdslDiagnosticError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslServiceNameDiagnosticRequest,
+  input: GetXdslDiagnosticRequest,
   output: XdslAccessDiagnostic,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetXdslServiceNameFiberEligibilitiesError = OvhOpError;
-/** List fiber eligibilities for this access */
-export const getXdslServiceNameFiberEligibilities: API.OperationMethod<
-  GetXdslServiceNameFiberEligibilitiesRequest,
-  GetXdslServiceNameFiberEligibilitiesResponse,
-  GetXdslServiceNameFiberEligibilitiesError,
+export type GetXdslEmailProError = OvhOpError;
+/** Get this object properties */
+export const getXdslEmailPro: API.OperationMethod<
+  GetXdslEmailProRequest,
+  XdslXdslEmailProWithIAM,
+  GetXdslEmailProError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslServiceNameFiberEligibilitiesRequest,
-  output: GetXdslServiceNameFiberEligibilitiesResponse,
+  input: GetXdslEmailProRequest,
+  output: XdslXdslEmailProWithIAM,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetXdslServiceNameFiberEligibilitiesIdError = OvhOpError;
+export type GetXdslFiberEligibilityError = OvhOpError;
 /** Get this object properties */
-export const getXdslServiceNameFiberEligibilitiesId: API.OperationMethod<
-  GetXdslServiceNameFiberEligibilitiesIdRequest,
+export const getXdslFiberEligibility: API.OperationMethod<
+  GetXdslFiberEligibilityRequest,
   XdslFiberEligibility,
-  GetXdslServiceNameFiberEligibilitiesIdError,
+  GetXdslFiberEligibilityError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslServiceNameFiberEligibilitiesIdRequest,
+  input: GetXdslFiberEligibilityRequest,
   output: XdslFiberEligibility,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetXdslServiceNameIncidentError = OvhOpError;
+export type GetXdslIncidentError = OvhOpError;
 /** Get this object properties */
-export const getXdslServiceNameIncident: API.OperationMethod<
-  GetXdslServiceNameIncidentRequest,
+export const getXdslIncident: API.OperationMethod<
+  GetXdslIncidentRequest,
   XdslIncident,
-  GetXdslServiceNameIncidentError,
+  GetXdslIncidentError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslServiceNameIncidentRequest,
+  input: GetXdslIncidentRequest,
   output: XdslIncident,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetXdslServiceNameIpsError = OvhOpError;
-/** List of IPs addresses for this access */
-export const getXdslServiceNameIps: API.OperationMethod<
-  GetXdslServiceNameIpsRequest,
-  GetXdslServiceNameIpsResponse,
-  GetXdslServiceNameIpsError,
+export type GetXdslIncident2Error = OvhOpError;
+/** Get this object properties */
+export const getXdslIncident2: API.OperationMethod<
+  GetXdslIncidentRequest2,
+  XdslIncident,
+  GetXdslIncident2Error,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslServiceNameIpsRequest,
-  output: GetXdslServiceNameIpsResponse,
+  input: GetXdslIncidentRequest2,
+  output: XdslIncident,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetXdslServiceNameIpsIpError = OvhOpError;
+export type GetXdslIpsError = OvhOpError;
 /** Get this object properties */
-export const getXdslServiceNameIpsIp: API.OperationMethod<
-  GetXdslServiceNameIpsIpRequest,
+export const getXdslIps: API.OperationMethod<
+  GetXdslIpsRequest,
   XdslIP,
-  GetXdslServiceNameIpsIpError,
+  GetXdslIpsError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslServiceNameIpsIpRequest,
+  input: GetXdslIpsRequest,
   output: XdslIP,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetXdslServiceNameLinesError = OvhOpError;
-/** The lines of the access */
-export const getXdslServiceNameLines: API.OperationMethod<
-  GetXdslServiceNameLinesRequest,
-  GetXdslServiceNameLinesResponse,
-  GetXdslServiceNameLinesError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslServiceNameLinesRequest,
-  output: GetXdslServiceNameLinesResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetXdslServiceNameLinesNumberError = OvhOpError;
+export type GetXdslLineError = OvhOpError;
 /** Get this object properties */
-export const getXdslServiceNameLinesNumber: API.OperationMethod<
-  GetXdslServiceNameLinesNumberRequest,
+export const getXdslLine: API.OperationMethod<
+  GetXdslLineRequest,
   XdslLine,
-  GetXdslServiceNameLinesNumberError,
+  GetXdslLineError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslServiceNameLinesNumberRequest,
+  input: GetXdslLineRequest,
   output: XdslLine,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetXdslServiceNameLinesNumberDslamPortError = OvhOpError;
+export type GetXdslLineDslamPortError = OvhOpError;
 /** Get this object properties */
-export const getXdslServiceNameLinesNumberDslamPort: API.OperationMethod<
-  GetXdslServiceNameLinesNumberDslamPortRequest,
+export const getXdslLineDslamPort: API.OperationMethod<
+  GetXdslLineDslamPortRequest,
   XdslDslamPort,
-  GetXdslServiceNameLinesNumberDslamPortError,
+  GetXdslLineDslamPortError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslServiceNameLinesNumberDslamPortRequest,
+  input: GetXdslLineDslamPortRequest,
   output: XdslDslamPort,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetXdslServiceNameLinesNumberDslamPortAvailableProfilesError =
-  OvhOpError;
-/** List all availables profiles for this port */
-export const getXdslServiceNameLinesNumberDslamPortAvailableProfiles: API.OperationMethod<
-  GetXdslServiceNameLinesNumberDslamPortAvailableProfilesRequest,
-  GetXdslServiceNameLinesNumberDslamPortAvailableProfilesResponse,
-  GetXdslServiceNameLinesNumberDslamPortAvailableProfilesError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslServiceNameLinesNumberDslamPortAvailableProfilesRequest,
-  output: GetXdslServiceNameLinesNumberDslamPortAvailableProfilesResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetXdslServiceNameLinesNumberDslamPortLogsError = OvhOpError;
-/** Get the logs emitted by the DSLAM for this port */
-export const getXdslServiceNameLinesNumberDslamPortLogs: API.OperationMethod<
-  GetXdslServiceNameLinesNumberDslamPortLogsRequest,
-  GetXdslServiceNameLinesNumberDslamPortLogsResponse,
-  GetXdslServiceNameLinesNumberDslamPortLogsError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslServiceNameLinesNumberDslamPortLogsRequest,
-  output: GetXdslServiceNameLinesNumberDslamPortLogsResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetXdslServiceNameLinesNumberStatisticsError = OvhOpError;
-/** Get various statistics about the line */
-export const getXdslServiceNameLinesNumberStatistics: API.OperationMethod<
-  GetXdslServiceNameLinesNumberStatisticsRequest,
-  ComplexTypeUnitAndValuesXdslTimestampAndValue,
-  GetXdslServiceNameLinesNumberStatisticsError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslServiceNameLinesNumberStatisticsRequest,
-  output: ComplexTypeUnitAndValuesXdslTimestampAndValue,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetXdslServiceNameModemError = OvhOpError;
+export type GetXdslModemError = OvhOpError;
 /** Get this object properties */
-export const getXdslServiceNameModem: API.OperationMethod<
-  GetXdslServiceNameModemRequest,
+export const getXdslModem: API.OperationMethod<
+  GetXdslModemRequest,
   XdslModem,
-  GetXdslServiceNameModemError,
+  GetXdslModemError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslServiceNameModemRequest,
+  input: GetXdslModemRequest,
   output: XdslModem,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetXdslServiceNameModemAvailableACSBackendError = OvhOpError;
-/** List available ACS backend for this modem */
-export const getXdslServiceNameModemAvailableACSBackend: API.OperationMethod<
-  GetXdslServiceNameModemAvailableACSBackendRequest,
-  GetXdslServiceNameModemAvailableACSBackendResponse,
-  GetXdslServiceNameModemAvailableACSBackendError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslServiceNameModemAvailableACSBackendRequest,
-  output: GetXdslServiceNameModemAvailableACSBackendResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetXdslServiceNameModemAvailableWLANChannelError = OvhOpError;
-/** List available WLAN channel for this modem */
-export const getXdslServiceNameModemAvailableWLANChannel: API.OperationMethod<
-  GetXdslServiceNameModemAvailableWLANChannelRequest,
-  GetXdslServiceNameModemAvailableWLANChannelResponse,
-  GetXdslServiceNameModemAvailableWLANChannelError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslServiceNameModemAvailableWLANChannelRequest,
-  output: GetXdslServiceNameModemAvailableWLANChannelResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetXdslServiceNameModemConnectedDevicesError = OvhOpError;
-/** List of devices connected on this modem */
-export const getXdslServiceNameModemConnectedDevices: API.OperationMethod<
-  GetXdslServiceNameModemConnectedDevicesRequest,
-  GetXdslServiceNameModemConnectedDevicesResponse,
-  GetXdslServiceNameModemConnectedDevicesError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslServiceNameModemConnectedDevicesRequest,
-  output: GetXdslServiceNameModemConnectedDevicesResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetXdslServiceNameModemConnectedDevicesMacAddressError = OvhOpError;
+export type GetXdslModemConnectedDeviceError = OvhOpError;
 /** Get this object properties */
-export const getXdslServiceNameModemConnectedDevicesMacAddress: API.OperationMethod<
-  GetXdslServiceNameModemConnectedDevicesMacAddressRequest,
+export const getXdslModemConnectedDevice: API.OperationMethod<
+  GetXdslModemConnectedDeviceRequest,
   XdslConnectedDevice,
-  GetXdslServiceNameModemConnectedDevicesMacAddressError,
+  GetXdslModemConnectedDeviceError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslServiceNameModemConnectedDevicesMacAddressRequest,
+  input: GetXdslModemConnectedDeviceRequest,
   output: XdslConnectedDevice,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetXdslServiceNameModemFirmwareAvailableError = OvhOpError;
-/** List available firmware for this modem */
-export const getXdslServiceNameModemFirmwareAvailable: API.OperationMethod<
-  GetXdslServiceNameModemFirmwareAvailableRequest,
-  GetXdslServiceNameModemFirmwareAvailableResponse,
-  GetXdslServiceNameModemFirmwareAvailableError,
+export type GetXdslModemInfoError = OvhOpError;
+/** get general Modem information */
+export const getXdslModemInfo: API.OperationMethod<
+  GetXdslModemInfoRequest,
+  XdslAsyncTaskXdslModemInfo,
+  GetXdslModemInfoError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslServiceNameModemFirmwareAvailableRequest,
-  output: GetXdslServiceNameModemFirmwareAvailableResponse,
+  input: GetXdslModemInfoRequest,
+  output: XdslAsyncTaskXdslModemInfo,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetXdslServiceNameModemLanError = OvhOpError;
-/** List of LANs on this modem */
-export const getXdslServiceNameModemLan: API.OperationMethod<
-  GetXdslServiceNameModemLanRequest,
-  GetXdslServiceNameModemLanResponse,
-  GetXdslServiceNameModemLanError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslServiceNameModemLanRequest,
-  output: GetXdslServiceNameModemLanResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetXdslServiceNameModemLanLanNameError = OvhOpError;
+export type GetXdslModemLanError = OvhOpError;
 /** Get this object properties */
-export const getXdslServiceNameModemLanLanName: API.OperationMethod<
-  GetXdslServiceNameModemLanLanNameRequest,
+export const getXdslModemLan: API.OperationMethod<
+  GetXdslModemLanRequest,
   XdslLAN,
-  GetXdslServiceNameModemLanLanNameError,
+  GetXdslModemLanError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslServiceNameModemLanLanNameRequest,
+  input: GetXdslModemLanRequest,
   output: XdslLAN,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetXdslServiceNameModemLanLanNameDhcpError = OvhOpError;
-/** List of DHCP on this modem */
-export const getXdslServiceNameModemLanLanNameDhcp: API.OperationMethod<
-  GetXdslServiceNameModemLanLanNameDhcpRequest,
-  GetXdslServiceNameModemLanLanNameDhcpResponse,
-  GetXdslServiceNameModemLanLanNameDhcpError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslServiceNameModemLanLanNameDhcpRequest,
-  output: GetXdslServiceNameModemLanLanNameDhcpResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetXdslServiceNameModemLanLanNameDhcpDhcpNameError = OvhOpError;
+export type GetXdslModemLanDhcpError = OvhOpError;
 /** Get this object properties */
-export const getXdslServiceNameModemLanLanNameDhcpDhcpName: API.OperationMethod<
-  GetXdslServiceNameModemLanLanNameDhcpDhcpNameRequest,
+export const getXdslModemLanDhcp: API.OperationMethod<
+  GetXdslModemLanDhcpRequest,
   XdslDHCP,
-  GetXdslServiceNameModemLanLanNameDhcpDhcpNameError,
+  GetXdslModemLanDhcpError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslServiceNameModemLanLanNameDhcpDhcpNameRequest,
+  input: GetXdslModemLanDhcpRequest,
   output: XdslDHCP,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetXdslServiceNameModemWifiError = OvhOpError;
-/** List of WLANs on this modem */
-export const getXdslServiceNameModemWifi: API.OperationMethod<
-  GetXdslServiceNameModemWifiRequest,
-  GetXdslServiceNameModemWifiResponse,
-  GetXdslServiceNameModemWifiError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslServiceNameModemWifiRequest,
-  output: GetXdslServiceNameModemWifiResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetXdslServiceNameModemWifiRadioError = OvhOpError;
-/** List of wifiRadios on this modem */
-export const getXdslServiceNameModemWifiRadio: API.OperationMethod<
-  GetXdslServiceNameModemWifiRadioRequest,
-  GetXdslServiceNameModemWifiRadioResponse,
-  GetXdslServiceNameModemWifiRadioError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslServiceNameModemWifiRadioRequest,
-  output: GetXdslServiceNameModemWifiRadioResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetXdslServiceNameModemWifiRadioRadioNameError = OvhOpError;
+export type GetXdslModemWifiError = OvhOpError;
 /** Get this object properties */
-export const getXdslServiceNameModemWifiRadioRadioName: API.OperationMethod<
-  GetXdslServiceNameModemWifiRadioRadioNameRequest,
-  XdslWifiRadio,
-  GetXdslServiceNameModemWifiRadioRadioNameError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslServiceNameModemWifiRadioRadioNameRequest,
-  output: XdslWifiRadio,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetXdslServiceNameModemWifiWifiNameError = OvhOpError;
-/** Get this object properties */
-export const getXdslServiceNameModemWifiWifiName: API.OperationMethod<
-  GetXdslServiceNameModemWifiWifiNameRequest,
+export const getXdslModemWifi: API.OperationMethod<
+  GetXdslModemWifiRequest,
   XdslWLAN,
-  GetXdslServiceNameModemWifiWifiNameError,
+  GetXdslModemWifiError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslServiceNameModemWifiWifiNameRequest,
+  input: GetXdslModemWifiRequest,
   output: XdslWLAN,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetXdslServiceNameModemWifiWifiNameQrCodeError = OvhOpError;
+export type GetXdslModemWifiQrCodeError = OvhOpError;
 /** Get the WiFi configuration QR code as base64, if applicable */
-export const getXdslServiceNameModemWifiWifiNameQrCode: API.OperationMethod<
-  GetXdslServiceNameModemWifiWifiNameQrCodeRequest,
-  GetXdslServiceNameModemWifiWifiNameQrCodeResponse,
-  GetXdslServiceNameModemWifiWifiNameQrCodeError,
+export const getXdslModemWifiQrCode: API.OperationMethod<
+  GetXdslModemWifiQrCodeRequest,
+  GetXdslModemWifiQrCodeResponse,
+  GetXdslModemWifiQrCodeError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslServiceNameModemWifiWifiNameQrCodeRequest,
-  output: GetXdslServiceNameModemWifiWifiNameQrCodeResponse,
+  input: GetXdslModemWifiQrCodeRequest,
+  output: GetXdslModemWifiQrCodeResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetXdslServiceNameOntError = OvhOpError;
+export type GetXdslModemWifiRadioError = OvhOpError;
 /** Get this object properties */
-export const getXdslServiceNameOnt: API.OperationMethod<
-  GetXdslServiceNameOntRequest,
-  XdslOnt,
-  GetXdslServiceNameOntError,
+export const getXdslModemWifiRadio: API.OperationMethod<
+  GetXdslModemWifiRadioRequest,
+  XdslWifiRadio,
+  GetXdslModemWifiRadioError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslServiceNameOntRequest,
+  input: GetXdslModemWifiRadioRequest,
+  output: XdslWifiRadio,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetXdslOntError = OvhOpError;
+/** Get this object properties */
+export const getXdslOnt: API.OperationMethod<
+  GetXdslOntRequest,
+  XdslOnt,
+  GetXdslOntError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetXdslOntRequest,
   output: XdslOnt,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetXdslServiceNameOrderFollowupError = OvhOpError;
-/** Get the status of the order */
-export const getXdslServiceNameOrderFollowup: API.OperationMethod<
-  GetXdslServiceNameOrderFollowupRequest,
-  GetXdslServiceNameOrderFollowupResponse,
-  GetXdslServiceNameOrderFollowupError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslServiceNameOrderFollowupRequest,
-  output: GetXdslServiceNameOrderFollowupResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetXdslServiceNamePendingActionError = OvhOpError;
+export type GetXdslPendingActionError = OvhOpError;
 /** Get this object properties */
-export const getXdslServiceNamePendingAction: API.OperationMethod<
-  GetXdslServiceNamePendingActionRequest,
+export const getXdslPendingAction: API.OperationMethod<
+  GetXdslPendingActionRequest,
   XdslPendingAction,
-  GetXdslServiceNamePendingActionError,
+  GetXdslPendingActionError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslServiceNamePendingActionRequest,
+  input: GetXdslPendingActionRequest,
   output: XdslPendingAction,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetXdslServiceNameRadiusConnectionLogsError = OvhOpError;
-/** List the radius connection logs */
-export const getXdslServiceNameRadiusConnectionLogs: API.OperationMethod<
-  GetXdslServiceNameRadiusConnectionLogsRequest,
-  GetXdslServiceNameRadiusConnectionLogsResponse,
-  GetXdslServiceNameRadiusConnectionLogsError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslServiceNameRadiusConnectionLogsRequest,
-  output: GetXdslServiceNameRadiusConnectionLogsResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetXdslServiceNameResiliationFollowupError = OvhOpError;
+export type GetXdslResiliationFollowupError = OvhOpError;
 /** Get information about the ongoing resiliation */
-export const getXdslServiceNameResiliationFollowup: API.OperationMethod<
-  GetXdslServiceNameResiliationFollowupRequest,
+export const getXdslResiliationFollowup: API.OperationMethod<
+  GetXdslResiliationFollowupRequest,
   XdslResiliationFollowUpDetail,
-  GetXdslServiceNameResiliationFollowupError,
+  GetXdslResiliationFollowupError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslServiceNameResiliationFollowupRequest,
+  input: GetXdslResiliationFollowupRequest,
   output: XdslResiliationFollowUpDetail,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetXdslServiceNameResiliationTermsError = OvhOpError;
+export type GetXdslResiliationTermsError = OvhOpError;
 /** Get resiliation terms */
-export const getXdslServiceNameResiliationTerms: API.OperationMethod<
-  GetXdslServiceNameResiliationTermsRequest,
+export const getXdslResiliationTerms: API.OperationMethod<
+  GetXdslResiliationTermsRequest,
   XdslResiliationTerms,
-  GetXdslServiceNameResiliationTermsError,
+  GetXdslResiliationTermsError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslServiceNameResiliationTermsRequest,
+  input: GetXdslResiliationTermsRequest,
   output: XdslResiliationTerms,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetXdslServiceNameRmaError = OvhOpError;
-/** Return Merchandise Authorisation associated */
-export const getXdslServiceNameRma: API.OperationMethod<
-  GetXdslServiceNameRmaRequest,
-  GetXdslServiceNameRmaResponse,
-  GetXdslServiceNameRmaError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslServiceNameRmaRequest,
-  output: GetXdslServiceNameRmaResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetXdslServiceNameRmaIdError = OvhOpError;
+export type GetXdslRmaError = OvhOpError;
 /** Get this object properties */
-export const getXdslServiceNameRmaId: API.OperationMethod<
-  GetXdslServiceNameRmaIdRequest,
+export const getXdslRma: API.OperationMethod<
+  GetXdslRmaRequest,
   TelephonyRma,
-  GetXdslServiceNameRmaIdError,
+  GetXdslRmaError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslServiceNameRmaIdRequest,
+  input: GetXdslRmaRequest,
   output: TelephonyRma,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetXdslServiceNameServiceInfosError = OvhOpError;
+export type GetXdslServiceInfosError = OvhOpError;
 /** Get service information */
-export const getXdslServiceNameServiceInfos: API.OperationMethod<
-  GetXdslServiceNameServiceInfosRequest,
+export const getXdslServiceInfos: API.OperationMethod<
+  GetXdslServiceInfosRequest,
   ServicesService,
-  GetXdslServiceNameServiceInfosError,
+  GetXdslServiceInfosError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslServiceNameServiceInfosRequest,
+  input: GetXdslServiceInfosRequest,
   output: ServicesService,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetXdslServiceNameStatisticsError = OvhOpError;
-/** Get various statistics about this access */
-export const getXdslServiceNameStatistics: API.OperationMethod<
-  GetXdslServiceNameStatisticsRequest,
-  ComplexTypeUnitAndValuesXdslAccessLatency,
-  GetXdslServiceNameStatisticsError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslServiceNameStatisticsRequest,
-  output: ComplexTypeUnitAndValuesXdslAccessLatency,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetXdslServiceNameTasksError = OvhOpError;
-/** Tasks scheduled for this access */
-export const getXdslServiceNameTasks: API.OperationMethod<
-  GetXdslServiceNameTasksRequest,
-  GetXdslServiceNameTasksResponse,
-  GetXdslServiceNameTasksError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslServiceNameTasksRequest,
-  output: GetXdslServiceNameTasksResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetXdslServiceNameTasksIdError = OvhOpError;
-/** Get this object properties */
-export const getXdslServiceNameTasksId: API.OperationMethod<
-  GetXdslServiceNameTasksIdRequest,
-  XdslTask,
-  GetXdslServiceNameTasksIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslServiceNameTasksIdRequest,
-  output: XdslTask,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetXdslServiceNameTotalDeconsolidationTermsError = OvhOpError;
-/** Give the price to requestTotalDeconsolidation on the access */
-export const getXdslServiceNameTotalDeconsolidationTerms: API.OperationMethod<
-  GetXdslServiceNameTotalDeconsolidationTermsRequest,
-  XdslDeconsolidationTerms,
-  GetXdslServiceNameTotalDeconsolidationTermsError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslServiceNameTotalDeconsolidationTermsRequest,
-  output: XdslDeconsolidationTerms,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
 export type GetXdslSpareError = OvhOpError;
-/** List available services */
+/** Get this object properties */
 export const getXdslSpare: API.OperationMethod<
   GetXdslSpareRequest,
-  GetXdslSpareResponse,
+  SpareXdslXdslSpareWithIAM,
   GetXdslSpareError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: GetXdslSpareRequest,
-  output: GetXdslSpareResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetXdslSpareBrandsError = OvhOpError;
-/** Get all available spare brands */
-export const getXdslSpareBrands: API.OperationMethod<
-  GetXdslSpareBrandsRequest,
-  GetXdslSpareBrandsResponse,
-  GetXdslSpareBrandsError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslSpareBrandsRequest,
-  output: GetXdslSpareBrandsResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetXdslSpareSpareError = OvhOpError;
-/** Get this object properties */
-export const getXdslSpareSpare: API.OperationMethod<
-  GetXdslSpareSpareRequest,
-  SpareXdslXdslSpareWithIAM,
-  GetXdslSpareSpareError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslSpareSpareRequest,
   output: SpareXdslXdslSpareWithIAM,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetXdslSpareSpareCompatibleReplacementError = OvhOpError;
-/** Return the list of brand compatible to be replaced */
-export const getXdslSpareSpareCompatibleReplacement: API.OperationMethod<
-  GetXdslSpareSpareCompatibleReplacementRequest,
-  GetXdslSpareSpareCompatibleReplacementResponse,
-  GetXdslSpareSpareCompatibleReplacementError,
+export type GetXdslSpareServiceInfosError = OvhOpError;
+/** Get service information */
+export const getXdslSpareServiceInfos: API.OperationMethod<
+  GetXdslSpareServiceInfosRequest,
+  ServicesService,
+  GetXdslSpareServiceInfosError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslSpareSpareCompatibleReplacementRequest,
-  output: GetXdslSpareSpareCompatibleReplacementResponse,
+  input: GetXdslSpareServiceInfosRequest,
+  output: ServicesService,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetXdslSpareSpareServiceInfosError = OvhOpError;
-/** Get service information */
-export const getXdslSpareSpareServiceInfos: API.OperationMethod<
-  GetXdslSpareSpareServiceInfosRequest,
-  ServicesService,
-  GetXdslSpareSpareServiceInfosError,
+export type GetXdslTaskError = OvhOpError;
+/** Get this object properties */
+export const getXdslTask: API.OperationMethod<
+  GetXdslTaskRequest,
+  XdslTask,
+  GetXdslTaskError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetXdslSpareSpareServiceInfosRequest,
-  output: ServicesService,
+  input: GetXdslTaskRequest,
+  output: XdslTask,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetXdslTotalDeconsolidationTermsError = OvhOpError;
+/** Give the price to requestTotalDeconsolidation on the access */
+export const getXdslTotalDeconsolidationTerms: API.OperationMethod<
+  GetXdslTotalDeconsolidationTermsRequest,
+  XdslDeconsolidationTerms,
+  GetXdslTotalDeconsolidationTermsError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetXdslTotalDeconsolidationTermsRequest,
+  output: XdslDeconsolidationTerms,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
@@ -8573,376 +8242,556 @@ export const installFrimware: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PostXdslServiceNameAddressMoveExtraIpRangeMoveError = OvhOpError;
-/** Initiate the extra IP range migration */
-export const postXdslServiceNameAddressMoveExtraIpRangeMove: API.OperationMethod<
-  PostXdslServiceNameAddressMoveExtraIpRangeMoveRequest,
-  XdslTask,
-  PostXdslServiceNameAddressMoveExtraIpRangeMoveError,
+export type ListXdslError = OvhOpError;
+/** List available services */
+export const listXdsl: API.OperationMethod<
+  ListXdslRequest,
+  ListXdslResponse,
+  ListXdslError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostXdslServiceNameAddressMoveExtraIpRangeMoveRequest,
+  input: ListXdslRequest,
+  output: ListXdslResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListXdslAntiSpamEvidencesError = OvhOpError;
+/** List of evidences stored on PCS for this ip */
+export const listXdslAntiSpamEvidences: API.OperationMethod<
+  ListXdslAntiSpamEvidencesRequest,
+  XdslAntiSpamEvidencesInfo,
+  ListXdslAntiSpamEvidencesError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListXdslAntiSpamEvidencesRequest,
+  output: XdslAntiSpamEvidencesInfo,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListXdslAntiSpamsError = OvhOpError;
+/** List antiSpams for this access */
+export const listXdslAntiSpams: API.OperationMethod<
+  ListXdslAntiSpamsRequest,
+  ListXdslAntiSpamsResponse,
+  ListXdslAntiSpamsError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListXdslAntiSpamsRequest,
+  output: ListXdslAntiSpamsResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListXdslEmailProError = OvhOpError;
+/** List available services */
+export const listXdslEmailPro: API.OperationMethod<
+  ListXdslEmailProRequest,
+  ListXdslEmailProResponse,
+  ListXdslEmailProError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListXdslEmailProRequest,
+  output: ListXdslEmailProResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListXdslFiberEligibilitiesError = OvhOpError;
+/** List fiber eligibilities for this access */
+export const listXdslFiberEligibilities: API.OperationMethod<
+  ListXdslFiberEligibilitiesRequest,
+  ListXdslFiberEligibilitiesResponse,
+  ListXdslFiberEligibilitiesError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListXdslFiberEligibilitiesRequest,
+  output: ListXdslFiberEligibilitiesResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListXdslIncidentsError = OvhOpError;
+/** List of incidents */
+export const listXdslIncidents: API.OperationMethod<
+  ListXdslIncidentsRequest,
+  ListXdslIncidentsResponse,
+  ListXdslIncidentsError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListXdslIncidentsRequest,
+  output: ListXdslIncidentsResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListXdslIpsError = OvhOpError;
+/** List of IPs addresses for this access */
+export const listXdslIps: API.OperationMethod<
+  ListXdslIpsRequest,
+  ListXdslIpsResponse,
+  ListXdslIpsError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListXdslIpsRequest,
+  output: ListXdslIpsResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListXdslLineDslamPortAvailableProfilesError = OvhOpError;
+/** List all availables profiles for this port */
+export const listXdslLineDslamPortAvailableProfiles: API.OperationMethod<
+  ListXdslLineDslamPortAvailableProfilesRequest,
+  ListXdslLineDslamPortAvailableProfilesResponse,
+  ListXdslLineDslamPortAvailableProfilesError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListXdslLineDslamPortAvailableProfilesRequest,
+  output: ListXdslLineDslamPortAvailableProfilesResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListXdslLineDslamPortLogsError = OvhOpError;
+/** Get the logs emitted by the DSLAM for this port */
+export const listXdslLineDslamPortLogs: API.OperationMethod<
+  ListXdslLineDslamPortLogsRequest,
+  ListXdslLineDslamPortLogsResponse,
+  ListXdslLineDslamPortLogsError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListXdslLineDslamPortLogsRequest,
+  output: ListXdslLineDslamPortLogsResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListXdslLinesError = OvhOpError;
+/** The lines of the access */
+export const listXdslLines: API.OperationMethod<
+  ListXdslLinesRequest,
+  ListXdslLinesResponse,
+  ListXdslLinesError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListXdslLinesRequest,
+  output: ListXdslLinesResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListXdslLineStatisticsError = OvhOpError;
+/** Get various statistics about the line */
+export const listXdslLineStatistics: API.OperationMethod<
+  ListXdslLineStatisticsRequest,
+  ComplexTypeUnitAndValuesXdslTimestampAndValue,
+  ListXdslLineStatisticsError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListXdslLineStatisticsRequest,
+  output: ComplexTypeUnitAndValuesXdslTimestampAndValue,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListXdslModemAvailableACSBackendError = OvhOpError;
+/** List available ACS backend for this modem */
+export const listXdslModemAvailableACSBackend: API.OperationMethod<
+  ListXdslModemAvailableACSBackendRequest,
+  ListXdslModemAvailableACSBackendResponse,
+  ListXdslModemAvailableACSBackendError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListXdslModemAvailableACSBackendRequest,
+  output: ListXdslModemAvailableACSBackendResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListXdslModemAvailableWLANChannelError = OvhOpError;
+/** List available WLAN channel for this modem */
+export const listXdslModemAvailableWLANChannel: API.OperationMethod<
+  ListXdslModemAvailableWLANChannelRequest,
+  ListXdslModemAvailableWLANChannelResponse,
+  ListXdslModemAvailableWLANChannelError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListXdslModemAvailableWLANChannelRequest,
+  output: ListXdslModemAvailableWLANChannelResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListXdslModemConnectedDevicesError = OvhOpError;
+/** List of devices connected on this modem */
+export const listXdslModemConnectedDevices: API.OperationMethod<
+  ListXdslModemConnectedDevicesRequest,
+  ListXdslModemConnectedDevicesResponse,
+  ListXdslModemConnectedDevicesError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListXdslModemConnectedDevicesRequest,
+  output: ListXdslModemConnectedDevicesResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListXdslModemFirmwareAvailableError = OvhOpError;
+/** List available firmware for this modem */
+export const listXdslModemFirmwareAvailable: API.OperationMethod<
+  ListXdslModemFirmwareAvailableRequest,
+  ListXdslModemFirmwareAvailableResponse,
+  ListXdslModemFirmwareAvailableError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListXdslModemFirmwareAvailableRequest,
+  output: ListXdslModemFirmwareAvailableResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListXdslModemLanError = OvhOpError;
+/** List of LANs on this modem */
+export const listXdslModemLan: API.OperationMethod<
+  ListXdslModemLanRequest,
+  ListXdslModemLanResponse,
+  ListXdslModemLanError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListXdslModemLanRequest,
+  output: ListXdslModemLanResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListXdslModemLanDhcpError = OvhOpError;
+/** List of DHCP on this modem */
+export const listXdslModemLanDhcp: API.OperationMethod<
+  ListXdslModemLanDhcpRequest,
+  ListXdslModemLanDhcpResponse,
+  ListXdslModemLanDhcpError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListXdslModemLanDhcpRequest,
+  output: ListXdslModemLanDhcpResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListXdslModemWifiError = OvhOpError;
+/** List of WLANs on this modem */
+export const listXdslModemWifi: API.OperationMethod<
+  ListXdslModemWifiRequest,
+  ListXdslModemWifiResponse,
+  ListXdslModemWifiError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListXdslModemWifiRequest,
+  output: ListXdslModemWifiResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListXdslModemWifiRadioError = OvhOpError;
+/** List of wifiRadios on this modem */
+export const listXdslModemWifiRadio: API.OperationMethod<
+  ListXdslModemWifiRadioRequest,
+  ListXdslModemWifiRadioResponse,
+  ListXdslModemWifiRadioError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListXdslModemWifiRadioRequest,
+  output: ListXdslModemWifiRadioResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListXdslOrderFollowupError = OvhOpError;
+/** Get the status of the order */
+export const listXdslOrderFollowup: API.OperationMethod<
+  ListXdslOrderFollowupRequest,
+  ListXdslOrderFollowupResponse,
+  ListXdslOrderFollowupError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListXdslOrderFollowupRequest,
+  output: ListXdslOrderFollowupResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListXdslRadiusConnectionLogsError = OvhOpError;
+/** List the radius connection logs */
+export const listXdslRadiusConnectionLogs: API.OperationMethod<
+  ListXdslRadiusConnectionLogsRequest,
+  ListXdslRadiusConnectionLogsResponse,
+  ListXdslRadiusConnectionLogsError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListXdslRadiusConnectionLogsRequest,
+  output: ListXdslRadiusConnectionLogsResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListXdslRmaError = OvhOpError;
+/** Return Merchandise Authorisation associated */
+export const listXdslRma: API.OperationMethod<
+  ListXdslRmaRequest,
+  ListXdslRmaResponse,
+  ListXdslRmaError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListXdslRmaRequest,
+  output: ListXdslRmaResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListXdslSpareError = OvhOpError;
+/** List available services */
+export const listXdslSpare: API.OperationMethod<
+  ListXdslSpareRequest,
+  ListXdslSpareResponse,
+  ListXdslSpareError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListXdslSpareRequest,
+  output: ListXdslSpareResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListXdslSpareBrandsError = OvhOpError;
+/** Get all available spare brands */
+export const listXdslSpareBrands: API.OperationMethod<
+  ListXdslSpareBrandsRequest,
+  ListXdslSpareBrandsResponse,
+  ListXdslSpareBrandsError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListXdslSpareBrandsRequest,
+  output: ListXdslSpareBrandsResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListXdslSpareCompatibleReplacementError = OvhOpError;
+/** Return the list of brand compatible to be replaced */
+export const listXdslSpareCompatibleReplacement: API.OperationMethod<
+  ListXdslSpareCompatibleReplacementRequest,
+  ListXdslSpareCompatibleReplacementResponse,
+  ListXdslSpareCompatibleReplacementError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListXdslSpareCompatibleReplacementRequest,
+  output: ListXdslSpareCompatibleReplacementResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListXdslStatisticsError = OvhOpError;
+/** Get various statistics about this access */
+export const listXdslStatistics: API.OperationMethod<
+  ListXdslStatisticsRequest,
+  ComplexTypeUnitAndValuesXdslAccessLatency,
+  ListXdslStatisticsError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListXdslStatisticsRequest,
+  output: ComplexTypeUnitAndValuesXdslAccessLatency,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListXdslTasksError = OvhOpError;
+/** Tasks scheduled for this access */
+export const listXdslTasks: API.OperationMethod<
+  ListXdslTasksRequest,
+  ListXdslTasksResponse,
+  ListXdslTasksError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListXdslTasksRequest,
+  output: ListXdslTasksResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutXdslError = OvhOpError;
+/** Alter this object properties */
+export const putXdsl: API.OperationMethod<
+  PutXdslRequest,
+  PutXdslResponse,
+  PutXdslError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutXdslRequest,
+  output: PutXdslResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutXdslEmailProError = OvhOpError;
+/** Alter this object properties */
+export const putXdslEmailPro: API.OperationMethod<
+  PutXdslEmailProRequest,
+  PutXdslEmailProResponse,
+  PutXdslEmailProError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutXdslEmailProRequest,
+  output: PutXdslEmailProResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutXdslModemError = OvhOpError;
+/** Alter this object properties */
+export const putXdslModem: API.OperationMethod<
+  PutXdslModemRequest,
+  PutXdslModemResponse,
+  PutXdslModemError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutXdslModemRequest,
+  output: PutXdslModemResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutXdslModemLanError = OvhOpError;
+/** Alter this object properties */
+export const putXdslModemLan: API.OperationMethod<
+  PutXdslModemLanRequest,
+  PutXdslModemLanResponse,
+  PutXdslModemLanError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutXdslModemLanRequest,
+  output: PutXdslModemLanResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutXdslModemLanDhcpError = OvhOpError;
+/** Alter this object properties */
+export const putXdslModemLanDhcp: API.OperationMethod<
+  PutXdslModemLanDhcpRequest,
+  PutXdslModemLanDhcpResponse,
+  PutXdslModemLanDhcpError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutXdslModemLanDhcpRequest,
+  output: PutXdslModemLanDhcpResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutXdslModemWifiError = OvhOpError;
+/** Alter this object properties */
+export const putXdslModemWifi: API.OperationMethod<
+  PutXdslModemWifiRequest,
+  PutXdslModemWifiResponse,
+  PutXdslModemWifiError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutXdslModemWifiRequest,
+  output: PutXdslModemWifiResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutXdslModemWifiRadioError = OvhOpError;
+/** Alter this object properties */
+export const putXdslModemWifiRadio: API.OperationMethod<
+  PutXdslModemWifiRadioRequest,
+  XdslTask,
+  PutXdslModemWifiRadioError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutXdslModemWifiRadioRequest,
   output: XdslTask,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostXdslServiceNameCancelResiliationError = OvhOpError;
-/** Cancel the ongoing resiliation */
-export const postXdslServiceNameCancelResiliation: API.OperationMethod<
-  PostXdslServiceNameCancelResiliationRequest,
-  PostXdslServiceNameCancelResiliationResponse,
-  PostXdslServiceNameCancelResiliationError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostXdslServiceNameCancelResiliationRequest,
-  output: PostXdslServiceNameCancelResiliationResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostXdslServiceNameDiagnosticError = OvhOpError;
-/** Run diagnostic on the access */
-export const postXdslServiceNameDiagnostic: API.OperationMethod<
-  PostXdslServiceNameDiagnosticRequest,
-  XdslTask,
-  PostXdslServiceNameDiagnosticError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostXdslServiceNameDiagnosticRequest,
-  output: XdslTask,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostXdslServiceNameIpsError = OvhOpError;
-/** Order an extra /29 range of IPv4 addresses */
-export const postXdslServiceNameIps: API.OperationMethod<
-  PostXdslServiceNameIpsRequest,
-  XdslTask,
-  PostXdslServiceNameIpsError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostXdslServiceNameIpsRequest,
-  output: XdslTask,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostXdslServiceNameLinesNumberDiagnosticCancelError = OvhOpError;
-/** Cancel line diagnostic if possible */
-export const postXdslServiceNameLinesNumberDiagnosticCancel: API.OperationMethod<
-  PostXdslServiceNameLinesNumberDiagnosticCancelRequest,
-  PostXdslServiceNameLinesNumberDiagnosticCancelResponse,
-  PostXdslServiceNameLinesNumberDiagnosticCancelError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostXdslServiceNameLinesNumberDiagnosticCancelRequest,
-  output: PostXdslServiceNameLinesNumberDiagnosticCancelResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostXdslServiceNameLinesNumberDslamPortResetError = OvhOpError;
-/** Reset the port on the DSLAM */
-export const postXdslServiceNameLinesNumberDslamPortReset: API.OperationMethod<
-  PostXdslServiceNameLinesNumberDslamPortResetRequest,
-  XdslTask,
-  PostXdslServiceNameLinesNumberDslamPortResetError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostXdslServiceNameLinesNumberDslamPortResetRequest,
-  output: XdslTask,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostXdslServiceNameModemReconfigureVoipError = OvhOpError;
-/** Reconfigure voip line on modem */
-export const postXdslServiceNameModemReconfigureVoip: API.OperationMethod<
-  PostXdslServiceNameModemReconfigureVoipRequest,
-  PostXdslServiceNameModemReconfigureVoipResponse,
-  PostXdslServiceNameModemReconfigureVoipError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostXdslServiceNameModemReconfigureVoipRequest,
-  output: PostXdslServiceNameModemReconfigureVoipResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostXdslServiceNameModemRefreshConnectedDevicesError = OvhOpError;
-/** Refresh the list of connected devices on the modem */
-export const postXdslServiceNameModemRefreshConnectedDevices: API.OperationMethod<
-  PostXdslServiceNameModemRefreshConnectedDevicesRequest,
-  XdslTask,
-  PostXdslServiceNameModemRefreshConnectedDevicesError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostXdslServiceNameModemRefreshConnectedDevicesRequest,
-  output: XdslTask,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostXdslServiceNameModemResetPortMappingConfigError = OvhOpError;
-/** Remove all the current port mapping rules */
-export const postXdslServiceNameModemResetPortMappingConfig: API.OperationMethod<
-  PostXdslServiceNameModemResetPortMappingConfigRequest,
-  PostXdslServiceNameModemResetPortMappingConfigResponse,
-  PostXdslServiceNameModemResetPortMappingConfigError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostXdslServiceNameModemResetPortMappingConfigRequest,
-  output: PostXdslServiceNameModemResetPortMappingConfigResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostXdslServiceNameModemRetrieveInfoError = OvhOpError;
-/** get general Modem information */
-export const postXdslServiceNameModemRetrieveInfo: API.OperationMethod<
-  PostXdslServiceNameModemRetrieveInfoRequest,
-  XdslAsyncTaskXdslModemInfo,
-  PostXdslServiceNameModemRetrieveInfoError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostXdslServiceNameModemRetrieveInfoRequest,
-  output: XdslAsyncTaskXdslModemInfo,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostXdslServiceNameRequestPPPLoginMailError = OvhOpError;
-/** Renew PPP password and send the PPP login information to the e-mail of the nicAdmin */
-export const postXdslServiceNameRequestPPPLoginMail: API.OperationMethod<
-  PostXdslServiceNameRequestPPPLoginMailRequest,
-  PostXdslServiceNameRequestPPPLoginMailResponse,
-  PostXdslServiceNameRequestPPPLoginMailError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostXdslServiceNameRequestPPPLoginMailRequest,
-  output: PostXdslServiceNameRequestPPPLoginMailResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostXdslServiceNameSearchOrderMeetingsError = OvhOpError;
-/** Search for available line creation meeting time slots, for order only */
-export const postXdslServiceNameSearchOrderMeetings: API.OperationMethod<
-  PostXdslServiceNameSearchOrderMeetingsRequest,
-  XdslAsyncTaskConnectivityEligibilityMeetings,
-  PostXdslServiceNameSearchOrderMeetingsError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostXdslServiceNameSearchOrderMeetingsRequest,
-  output: XdslAsyncTaskConnectivityEligibilityMeetings,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostXdslServiceNameSendOrderToProviderError = OvhOpError;
-/** Unlock order in "waitingCustomer" status */
-export const postXdslServiceNameSendOrderToProvider: API.OperationMethod<
-  PostXdslServiceNameSendOrderToProviderRequest,
-  PostXdslServiceNameSendOrderToProviderResponse,
-  PostXdslServiceNameSendOrderToProviderError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostXdslServiceNameSendOrderToProviderRequest,
-  output: PostXdslServiceNameSendOrderToProviderResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostXdslServiceNameTasksIdArchiveError = OvhOpError;
-/** Delete the task in problem from the results */
-export const postXdslServiceNameTasksIdArchive: API.OperationMethod<
-  PostXdslServiceNameTasksIdArchiveRequest,
-  PostXdslServiceNameTasksIdArchiveResponse,
-  PostXdslServiceNameTasksIdArchiveError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostXdslServiceNameTasksIdArchiveRequest,
-  output: PostXdslServiceNameTasksIdArchiveResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostXdslSpareSpareReturnMerchandiseError = OvhOpError;
-/** Return the broken equipment in instantRefund */
-export const postXdslSpareSpareReturnMerchandise: API.OperationMethod<
-  PostXdslSpareSpareReturnMerchandiseRequest,
-  PostXdslSpareSpareReturnMerchandiseResponse,
-  PostXdslSpareSpareReturnMerchandiseError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostXdslSpareSpareReturnMerchandiseRequest,
-  output: PostXdslSpareSpareReturnMerchandiseResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PutXdslEmailProEmailError = OvhOpError;
+export type PutXdslRmaError = OvhOpError;
 /** Alter this object properties */
-export const putXdslEmailProEmail: API.OperationMethod<
-  PutXdslEmailProEmailRequest,
-  PutXdslEmailProEmailResponse,
-  PutXdslEmailProEmailError,
+export const putXdslRma: API.OperationMethod<
+  PutXdslRmaRequest,
+  PutXdslRmaResponse,
+  PutXdslRmaError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutXdslEmailProEmailRequest,
-  output: PutXdslEmailProEmailResponse,
+  input: PutXdslRmaRequest,
+  output: PutXdslRmaResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutXdslServiceNameError = OvhOpError;
-/** Alter this object properties */
-export const putXdslServiceName: API.OperationMethod<
-  PutXdslServiceNameRequest,
-  PutXdslServiceNameResponse,
-  PutXdslServiceNameError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PutXdslServiceNameRequest,
-  output: PutXdslServiceNameResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PutXdslServiceNameModemError = OvhOpError;
-/** Alter this object properties */
-export const putXdslServiceNameModem: API.OperationMethod<
-  PutXdslServiceNameModemRequest,
-  PutXdslServiceNameModemResponse,
-  PutXdslServiceNameModemError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PutXdslServiceNameModemRequest,
-  output: PutXdslServiceNameModemResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PutXdslServiceNameModemLanLanNameError = OvhOpError;
-/** Alter this object properties */
-export const putXdslServiceNameModemLanLanName: API.OperationMethod<
-  PutXdslServiceNameModemLanLanNameRequest,
-  PutXdslServiceNameModemLanLanNameResponse,
-  PutXdslServiceNameModemLanLanNameError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PutXdslServiceNameModemLanLanNameRequest,
-  output: PutXdslServiceNameModemLanLanNameResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PutXdslServiceNameModemLanLanNameDhcpDhcpNameError = OvhOpError;
-/** Alter this object properties */
-export const putXdslServiceNameModemLanLanNameDhcpDhcpName: API.OperationMethod<
-  PutXdslServiceNameModemLanLanNameDhcpDhcpNameRequest,
-  PutXdslServiceNameModemLanLanNameDhcpDhcpNameResponse,
-  PutXdslServiceNameModemLanLanNameDhcpDhcpNameError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PutXdslServiceNameModemLanLanNameDhcpDhcpNameRequest,
-  output: PutXdslServiceNameModemLanLanNameDhcpDhcpNameResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PutXdslServiceNameModemWifiRadioRadioNameError = OvhOpError;
-/** Alter this object properties */
-export const putXdslServiceNameModemWifiRadioRadioName: API.OperationMethod<
-  PutXdslServiceNameModemWifiRadioRadioNameRequest,
-  XdslTask,
-  PutXdslServiceNameModemWifiRadioRadioNameError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PutXdslServiceNameModemWifiRadioRadioNameRequest,
-  output: XdslTask,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PutXdslServiceNameModemWifiWifiNameError = OvhOpError;
-/** Alter this object properties */
-export const putXdslServiceNameModemWifiWifiName: API.OperationMethod<
-  PutXdslServiceNameModemWifiWifiNameRequest,
-  PutXdslServiceNameModemWifiWifiNameResponse,
-  PutXdslServiceNameModemWifiWifiNameError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PutXdslServiceNameModemWifiWifiNameRequest,
-  output: PutXdslServiceNameModemWifiWifiNameResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PutXdslServiceNameRmaIdError = OvhOpError;
-/** Alter this object properties */
-export const putXdslServiceNameRmaId: API.OperationMethod<
-  PutXdslServiceNameRmaIdRequest,
-  PutXdslServiceNameRmaIdResponse,
-  PutXdslServiceNameRmaIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PutXdslServiceNameRmaIdRequest,
-  output: PutXdslServiceNameRmaIdResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PutXdslServiceNameServiceInfosError = OvhOpError;
+export type PutXdslServiceInfosError = OvhOpError;
 /** Update service information */
-export const putXdslServiceNameServiceInfos: API.OperationMethod<
-  PutXdslServiceNameServiceInfosRequest,
-  PutXdslServiceNameServiceInfosResponse,
-  PutXdslServiceNameServiceInfosError,
+export const putXdslServiceInfos: API.OperationMethod<
+  PutXdslServiceInfosRequest,
+  PutXdslServiceInfosResponse,
+  PutXdslServiceInfosError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutXdslServiceNameServiceInfosRequest,
-  output: PutXdslServiceNameServiceInfosResponse,
+  input: PutXdslServiceInfosRequest,
+  output: PutXdslServiceInfosResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutXdslSpareSpareServiceInfosError = OvhOpError;
+export type PutXdslSpareServiceInfosError = OvhOpError;
 /** Update service information */
-export const putXdslSpareSpareServiceInfos: API.OperationMethod<
-  PutXdslSpareSpareServiceInfosRequest,
-  PutXdslSpareSpareServiceInfosResponse,
-  PutXdslSpareSpareServiceInfosError,
+export const putXdslSpareServiceInfos: API.OperationMethod<
+  PutXdslSpareServiceInfosRequest,
+  PutXdslSpareServiceInfosResponse,
+  PutXdslSpareServiceInfosError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutXdslSpareSpareServiceInfosRequest,
-  output: PutXdslSpareSpareServiceInfosResponse,
+  input: PutXdslSpareServiceInfosRequest,
+  output: PutXdslSpareServiceInfosResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
@@ -8957,6 +8806,21 @@ export const rebootModem: API.OperationMethod<
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: RebootModemRequest,
+  output: XdslTask,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RefreshXdslModemConnectedDevicesError = OvhOpError;
+/** Refresh the list of connected devices on the modem */
+export const refreshXdslModemConnectedDevices: API.OperationMethod<
+  RefreshXdslModemConnectedDevicesRequest,
+  XdslTask,
+  RefreshXdslModemConnectedDevicesError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RefreshXdslModemConnectedDevicesRequest,
   output: XdslTask,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
@@ -9068,6 +8932,36 @@ export const resetModemConfiguration: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ResetXdslLinesDslamPortError = OvhOpError;
+/** Reset the port on the DSLAM */
+export const resetXdslLinesDslamPort: API.OperationMethod<
+  ResetXdslLinesDslamPortRequest,
+  XdslTask,
+  ResetXdslLinesDslamPortError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ResetXdslLinesDslamPortRequest,
+  output: XdslTask,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ResetXdslModemPortMappingConfigError = OvhOpError;
+/** Remove all the current port mapping rules */
+export const resetXdslModemPortMappingConfig: API.OperationMethod<
+  ResetXdslModemPortMappingConfigRequest,
+  ResetXdslModemPortMappingConfigResponse,
+  ResetXdslModemPortMappingConfigError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ResetXdslModemPortMappingConfigRequest,
+  output: ResetXdslModemPortMappingConfigResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ResiliateAccessError = OvhOpError;
 /** Resiliate the access */
 export const resiliateAccess: API.OperationMethod<
@@ -9078,6 +8972,36 @@ export const resiliateAccess: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ResiliateAccessRequest,
   output: XdslResiliationFollowUpDetail,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type SearchXdslOrderMeetingsError = OvhOpError;
+/** Search for available line creation meeting time slots, for order only */
+export const searchXdslOrderMeetings: API.OperationMethod<
+  SearchXdslOrderMeetingsRequest,
+  XdslAsyncTaskConnectivityEligibilityMeetings,
+  SearchXdslOrderMeetingsError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SearchXdslOrderMeetingsRequest,
+  output: XdslAsyncTaskConnectivityEligibilityMeetings,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type SendXdslOrderToProviderError = OvhOpError;
+/** Unlock order in "waitingCustomer" status */
+export const sendXdslOrderToProvider: API.OperationMethod<
+  SendXdslOrderToProviderRequest,
+  SendXdslOrderToProviderResponse,
+  SendXdslOrderToProviderError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SendXdslOrderToProviderRequest,
+  output: SendXdslOrderToProviderResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,

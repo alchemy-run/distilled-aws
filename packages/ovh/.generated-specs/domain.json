@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.ovh.domain#IamResourceTagFilterInput": {
@@ -2997,7 +2998,7 @@
         "smithy.api#documentation": "Missing description"
       }
     },
-    "com.ovh.domain#PostDomainConfigurationRuleCheckRequest": {
+    "com.ovh.domain#CheckDomainConfigurationRuleRequest": {
       "type": "structure",
       "members": {
         "action": {
@@ -3049,10 +3050,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#PostDomainConfigurationRuleCheck": {
+    "com.ovh.domain#CheckDomainConfigurationRule": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#PostDomainConfigurationRuleCheckRequest"
+        "target": "com.ovh.domain#CheckDomainConfigurationRuleRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4545,18 +4546,18 @@
         "smithy.api#documentation": "List of the labels that are protect with that SMD file"
       }
     },
-    "com.ovh.domain#GetDomainDataSmdResponseBodyList": {
+    "com.ovh.domain#ListDomainDataSmdResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.domain#DomainDataSmdSmd"
       },
       "traits": {}
     },
-    "com.ovh.domain#GetDomainDataSmdResponse": {
+    "com.ovh.domain#ListDomainDataSmdResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.domain#GetDomainDataSmdResponseBodyList",
+          "target": "com.ovh.domain#ListDomainDataSmdResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -4567,13 +4568,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.domain#GetDomainDataSmd": {
+    "com.ovh.domain#ListDomainDataSmd": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.ovh.domain#GetDomainDataSmdResponse"
+        "target": "com.ovh.domain#ListDomainDataSmdResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4584,7 +4585,7 @@
         "smithy.api#documentation": "List all SMD files"
       }
     },
-    "com.ovh.domain#PostDomainDataSmdRequest": {
+    "com.ovh.domain#CreateDomainDataSmdRequest": {
       "type": "structure",
       "members": {
         "data": {
@@ -4599,10 +4600,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#PostDomainDataSmd": {
+    "com.ovh.domain#CreateDomainDataSmd": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#PostDomainDataSmdRequest"
+        "target": "com.ovh.domain#CreateDomainDataSmdRequest"
       },
       "output": {
         "target": "com.ovh.domain#DomainDataSmdSmd"
@@ -4616,7 +4617,7 @@
         "smithy.api#documentation": "Create a SMD file"
       }
     },
-    "com.ovh.domain#GetDomainDataSmdSmdIdRequest": {
+    "com.ovh.domain#GetDomainDataSmdRequest": {
       "type": "structure",
       "members": {
         "smdId": {
@@ -4632,10 +4633,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#GetDomainDataSmdSmdId": {
+    "com.ovh.domain#GetDomainDataSmd": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#GetDomainDataSmdSmdIdRequest"
+        "target": "com.ovh.domain#GetDomainDataSmdRequest"
       },
       "output": {
         "target": "com.ovh.domain#DomainDataSmdSmd"
@@ -4649,7 +4650,7 @@
         "smithy.api#documentation": "Get details about a SMD file"
       }
     },
-    "com.ovh.domain#PutDomainDataSmdSmdIdRequest": {
+    "com.ovh.domain#PutDomainDataSmdRequest": {
       "type": "structure",
       "members": {
         "smdId": {
@@ -4672,10 +4673,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#PutDomainDataSmdSmdId": {
+    "com.ovh.domain#PutDomainDataSmd": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#PutDomainDataSmdSmdIdRequest"
+        "target": "com.ovh.domain#PutDomainDataSmdRequest"
       },
       "output": {
         "target": "com.ovh.domain#DomainDataSmdSmd"
@@ -4689,7 +4690,7 @@
         "smithy.api#documentation": "Update a SMD file"
       }
     },
-    "com.ovh.domain#DeleteDomainDataSmdSmdIdRequest": {
+    "com.ovh.domain#DeleteDomainDataSmdRequest": {
       "type": "structure",
       "members": {
         "smdId": {
@@ -4705,10 +4706,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#DeleteDomainDataSmdSmdId": {
+    "com.ovh.domain#DeleteDomainDataSmd": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#DeleteDomainDataSmdSmdIdRequest"
+        "target": "com.ovh.domain#DeleteDomainDataSmdRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4846,7 +4847,7 @@
         "smithy.api#documentation": "OVH subsidiaries"
       }
     },
-    "com.ovh.domain#GetDomainExtensionsRequest": {
+    "com.ovh.domain#ListDomainExtensionsRequest": {
       "type": "structure",
       "members": {
         "geolocalizations": {
@@ -4882,18 +4883,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#GetDomainExtensionsResponseBodyList": {
+    "com.ovh.domain#ListDomainExtensionsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.domain#GetDomainExtensionsResponse": {
+    "com.ovh.domain#ListDomainExtensionsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.domain#GetDomainExtensionsResponseBodyList",
+          "target": "com.ovh.domain#ListDomainExtensionsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -4904,13 +4905,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.domain#GetDomainExtensions": {
+    "com.ovh.domain#ListDomainExtensions": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#GetDomainExtensionsRequest"
+        "target": "com.ovh.domain#ListDomainExtensionsRequest"
       },
       "output": {
-        "target": "com.ovh.domain#GetDomainExtensionsResponse"
+        "target": "com.ovh.domain#ListDomainExtensionsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4941,18 +4942,18 @@
         "smithy.api#documentation": "Type of extension category"
       }
     },
-    "com.ovh.domain#GetDomainExtensionsByCategoryRequestCategoryTypeList": {
+    "com.ovh.domain#ListDomainExtensionByCategoryRequestCategoryTypeList": {
       "type": "list",
       "member": {
         "target": "com.ovh.domain#DomainExtensionsCategoryTypeEnum"
       },
       "traits": {}
     },
-    "com.ovh.domain#GetDomainExtensionsByCategoryRequest": {
+    "com.ovh.domain#ListDomainExtensionByCategoryRequest": {
       "type": "structure",
       "members": {
         "categoryType": {
-          "target": "com.ovh.domain#GetDomainExtensionsByCategoryRequestCategoryTypeList",
+          "target": "com.ovh.domain#ListDomainExtensionByCategoryRequestCategoryTypeList",
           "traits": {
             "smithy.api#httpQuery": "categoryType",
             "smithy.api#documentation": "Filter by category types"
@@ -5032,10 +5033,10 @@
         "smithy.api#documentation": "Thematics groups extensions by a thematic like 'gastronomy' for '.pizza'"
       }
     },
-    "com.ovh.domain#GetDomainExtensionsByCategory": {
+    "com.ovh.domain#ListDomainExtensionByCategory": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#GetDomainExtensionsByCategoryRequest"
+        "target": "com.ovh.domain#ListDomainExtensionByCategoryRequest"
       },
       "output": {
         "target": "com.ovh.domain#DomainExtensionsExtensionsByCategory"
@@ -5049,7 +5050,7 @@
         "smithy.api#documentation": "List extensions, grouped by category types (like 'thematic', 'geolocalization') and category names (like 'europe')"
       }
     },
-    "com.ovh.domain#GetDomainExtensionsHighlightedRequest": {
+    "com.ovh.domain#ListDomainExtensionHighlightedRequest": {
       "type": "structure",
       "members": {
         "ovhSubsidiary": {
@@ -5064,18 +5065,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#GetDomainExtensionsHighlightedResponseBodyList": {
+    "com.ovh.domain#ListDomainExtensionHighlightedResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.domain#GetDomainExtensionsHighlightedResponse": {
+    "com.ovh.domain#ListDomainExtensionHighlightedResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.domain#GetDomainExtensionsHighlightedResponseBodyList",
+          "target": "com.ovh.domain#ListDomainExtensionHighlightedResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -5086,13 +5087,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.domain#GetDomainExtensionsHighlighted": {
+    "com.ovh.domain#ListDomainExtensionHighlighted": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#GetDomainExtensionsHighlightedRequest"
+        "target": "com.ovh.domain#ListDomainExtensionHighlightedRequest"
       },
       "output": {
-        "target": "com.ovh.domain#GetDomainExtensionsHighlightedResponse"
+        "target": "com.ovh.domain#ListDomainExtensionHighlightedResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5103,7 +5104,7 @@
         "smithy.api#documentation": "List highlighted extensions, ordered by decreased importance"
       }
     },
-    "com.ovh.domain#GetDomainExtensionsPricingAttributesRequest": {
+    "com.ovh.domain#ListDomainExtensionPricingAttributesRequest": {
       "type": "structure",
       "members": {
         "ovhSubsidiary": {
@@ -5144,18 +5145,18 @@
         "smithy.api#documentation": "Result of getting pricing attributes of an extension"
       }
     },
-    "com.ovh.domain#GetDomainExtensionsPricingAttributesResponseBodyList": {
+    "com.ovh.domain#ListDomainExtensionPricingAttributesResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.domain#DomainExtensionsExtensionsPricingAttributes"
       },
       "traits": {}
     },
-    "com.ovh.domain#GetDomainExtensionsPricingAttributesResponse": {
+    "com.ovh.domain#ListDomainExtensionPricingAttributesResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.domain#GetDomainExtensionsPricingAttributesResponseBodyList",
+          "target": "com.ovh.domain#ListDomainExtensionPricingAttributesResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -5166,13 +5167,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.domain#GetDomainExtensionsPricingAttributes": {
+    "com.ovh.domain#ListDomainExtensionPricingAttributes": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#GetDomainExtensionsPricingAttributesRequest"
+        "target": "com.ovh.domain#ListDomainExtensionPricingAttributesRequest"
       },
       "output": {
-        "target": "com.ovh.domain#GetDomainExtensionsPricingAttributesResponse"
+        "target": "com.ovh.domain#ListDomainExtensionPricingAttributesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5183,7 +5184,7 @@
         "smithy.api#documentation": "List extensions with their pricing attributes\n\nList extensions with their pricing attributes. It especially documents whether an extension has been implemented recently or whether the price has dropped."
       }
     },
-    "com.ovh.domain#GetDomainExtensionsNameRequest": {
+    "com.ovh.domain#GetDomainExtensionRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -5213,10 +5214,10 @@
         "smithy.api#documentation": "A domain name extension"
       }
     },
-    "com.ovh.domain#GetDomainExtensionsName": {
+    "com.ovh.domain#GetDomainExtension": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#GetDomainExtensionsNameRequest"
+        "target": "com.ovh.domain#GetDomainExtensionRequest"
       },
       "output": {
         "target": "com.ovh.domain#DomainExtensionsExtension"
@@ -5230,7 +5231,7 @@
         "smithy.api#documentation": "Get an extension"
       }
     },
-    "com.ovh.domain#GetDomainExtensionsNameRegistryConfigurationsRequest": {
+    "com.ovh.domain#GetDomainExtensionRegistryConfigurationsRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -5540,10 +5541,10 @@
         "smithy.api#documentation": "The number of months allowed for a domain transfer"
       }
     },
-    "com.ovh.domain#GetDomainExtensionsNameRegistryConfigurations": {
+    "com.ovh.domain#GetDomainExtensionRegistryConfigurations": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#GetDomainExtensionsNameRegistryConfigurationsRequest"
+        "target": "com.ovh.domain#GetDomainExtensionRegistryConfigurationsRequest"
       },
       "output": {
         "target": "com.ovh.domain#DomainExtensionsRegistryConfigurationsRegistryConfigurations"
@@ -5601,7 +5602,7 @@
         "smithy.api#documentation": "Owner contact reference for a domain order: an OVH contact resource, not a NIC handle."
       }
     },
-    "com.ovh.domain#PostDomainOrderCreateRequestDnsList": {
+    "com.ovh.domain#CreateDomainOrderRequestDnsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -5730,7 +5731,7 @@
         "smithy.api#documentation": "Currency code"
       }
     },
-    "com.ovh.domain#PostDomainOrderCreateRequestPromoCodesList": {
+    "com.ovh.domain#CreateDomainOrderRequestPromoCodesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -5768,7 +5769,7 @@
         "smithy.api#documentation": "DNS zone options for a domain order"
       }
     },
-    "com.ovh.domain#PostDomainOrderCreateRequest": {
+    "com.ovh.domain#CreateDomainOrderRequest": {
       "type": "structure",
       "members": {
         "dryRun": {
@@ -5786,7 +5787,7 @@
           }
         },
         "dns": {
-          "target": "com.ovh.domain#PostDomainOrderCreateRequestDnsList",
+          "target": "com.ovh.domain#CreateDomainOrderRequestDnsList",
           "traits": {
             "smithy.api#documentation": "List of DNS servers (hostnames) to set on the domain. Optional: if omitted, OVHcloud's recommended DNS servers for the domain are used.",
             "com.distilled.openapi#nullable": {}
@@ -5814,7 +5815,7 @@
           }
         },
         "promoCodes": {
-          "target": "com.ovh.domain#PostDomainOrderCreateRequestPromoCodesList",
+          "target": "com.ovh.domain#CreateDomainOrderRequestPromoCodesList",
           "traits": {
             "smithy.api#documentation": "Promotion codes to apply. Optional.",
             "com.distilled.openapi#nullable": {}
@@ -6009,10 +6010,10 @@
         "smithy.api#documentation": "Price with its currency and textual representation as returned by domain/order"
       }
     },
-    "com.ovh.domain#PostDomainOrderCreate": {
+    "com.ovh.domain#CreateDomainOrder": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#PostDomainOrderCreateRequest"
+        "target": "com.ovh.domain#CreateDomainOrderRequest"
       },
       "output": {
         "target": "com.ovh.domain#DomainOrderOrderResponse"
@@ -6276,7 +6277,7 @@
         "smithy.api#documentation": "Get a dnsZone service"
       }
     },
-    "com.ovh.domain#GetDomainZoneZoneNameCapabilitiesRequest": {
+    "com.ovh.domain#GetDomainZoneCapabilitiesRequest": {
       "type": "structure",
       "members": {
         "zoneName": {
@@ -6306,10 +6307,10 @@
         "smithy.api#documentation": "DNS zone capabilities"
       }
     },
-    "com.ovh.domain#GetDomainZoneZoneNameCapabilities": {
+    "com.ovh.domain#GetDomainZoneCapabilities": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#GetDomainZoneZoneNameCapabilitiesRequest"
+        "target": "com.ovh.domain#GetDomainZoneCapabilitiesRequest"
       },
       "output": {
         "target": "com.ovh.domain#DomainZoneCapabilities"
@@ -6323,7 +6324,7 @@
         "smithy.api#documentation": "Get zone capabilities"
       }
     },
-    "com.ovh.domain#PostDomainZoneZoneNameChangeContactRequest": {
+    "com.ovh.domain#CreateDomainZoneChangeContactRequest": {
       "type": "structure",
       "members": {
         "zoneName": {
@@ -6357,18 +6358,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#PostDomainZoneZoneNameChangeContactResponseBodyList": {
+    "com.ovh.domain#CreateDomainZoneChangeContactResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.domain#PostDomainZoneZoneNameChangeContactResponse": {
+    "com.ovh.domain#CreateDomainZoneChangeContactResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.domain#PostDomainZoneZoneNameChangeContactResponseBodyList",
+          "target": "com.ovh.domain#CreateDomainZoneChangeContactResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -6379,13 +6380,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.domain#PostDomainZoneZoneNameChangeContact": {
+    "com.ovh.domain#CreateDomainZoneChangeContact": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#PostDomainZoneZoneNameChangeContactRequest"
+        "target": "com.ovh.domain#CreateDomainZoneChangeContactRequest"
       },
       "output": {
-        "target": "com.ovh.domain#PostDomainZoneZoneNameChangeContactResponse"
+        "target": "com.ovh.domain#CreateDomainZoneChangeContactResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6526,7 +6527,7 @@
         "smithy.api#documentation": "All reasons you can provide for a service termination"
       }
     },
-    "com.ovh.domain#PostDomainZoneZoneNameConfirmTerminationRequest": {
+    "com.ovh.domain#ConfirmDomainZoneTerminationRequest": {
       "type": "structure",
       "members": {
         "zoneName": {
@@ -6579,7 +6580,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#PostDomainZoneZoneNameConfirmTerminationResponse": {
+    "com.ovh.domain#ConfirmDomainZoneTerminationResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -6594,13 +6595,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.domain#PostDomainZoneZoneNameConfirmTermination": {
+    "com.ovh.domain#ConfirmDomainZoneTermination": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#PostDomainZoneZoneNameConfirmTerminationRequest"
+        "target": "com.ovh.domain#ConfirmDomainZoneTerminationRequest"
       },
       "output": {
-        "target": "com.ovh.domain#PostDomainZoneZoneNameConfirmTerminationResponse"
+        "target": "com.ovh.domain#ConfirmDomainZoneTerminationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7368,7 +7369,7 @@
         "smithy.api#documentation": "Delete record object"
       }
     },
-    "com.ovh.domain#GetDomainZoneZoneNameExportRequest": {
+    "com.ovh.domain#GetDomainZoneExportRequest": {
       "type": "structure",
       "members": {
         "zoneName": {
@@ -7384,7 +7385,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#GetDomainZoneZoneNameExportResponse": {
+    "com.ovh.domain#GetDomainZoneExportResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -7399,13 +7400,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.domain#GetDomainZoneZoneNameExport": {
+    "com.ovh.domain#GetDomainZoneExport": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#GetDomainZoneZoneNameExportRequest"
+        "target": "com.ovh.domain#GetDomainZoneExportRequest"
       },
       "output": {
-        "target": "com.ovh.domain#GetDomainZoneZoneNameExportResponse"
+        "target": "com.ovh.domain#GetDomainZoneExportResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7416,7 +7417,7 @@
         "smithy.api#documentation": "Export DNS zone"
       }
     },
-    "com.ovh.domain#GetDomainZoneZoneNameHistoryRequest": {
+    "com.ovh.domain#ListDomainZoneHistoryRequest": {
       "type": "structure",
       "members": {
         "zoneName": {
@@ -7446,18 +7447,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#GetDomainZoneZoneNameHistoryResponseBodyList": {
+    "com.ovh.domain#ListDomainZoneHistoryResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.domain#GetDomainZoneZoneNameHistoryResponse": {
+    "com.ovh.domain#ListDomainZoneHistoryResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.domain#GetDomainZoneZoneNameHistoryResponseBodyList",
+          "target": "com.ovh.domain#ListDomainZoneHistoryResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -7468,13 +7469,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.domain#GetDomainZoneZoneNameHistory": {
+    "com.ovh.domain#ListDomainZoneHistory": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#GetDomainZoneZoneNameHistoryRequest"
+        "target": "com.ovh.domain#ListDomainZoneHistoryRequest"
       },
       "output": {
-        "target": "com.ovh.domain#GetDomainZoneZoneNameHistoryResponse"
+        "target": "com.ovh.domain#ListDomainZoneHistoryResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7485,7 +7486,7 @@
         "smithy.api#documentation": "List zone histories"
       }
     },
-    "com.ovh.domain#GetDomainZoneZoneNameHistoryCreationDateRequest": {
+    "com.ovh.domain#GetDomainZoneHistoryRequest": {
       "type": "structure",
       "members": {
         "zoneName": {
@@ -7529,10 +7530,10 @@
         "smithy.api#documentation": "DNS zone history"
       }
     },
-    "com.ovh.domain#GetDomainZoneZoneNameHistoryCreationDate": {
+    "com.ovh.domain#GetDomainZoneHistory": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#GetDomainZoneZoneNameHistoryCreationDateRequest"
+        "target": "com.ovh.domain#GetDomainZoneHistoryRequest"
       },
       "output": {
         "target": "com.ovh.domain#DomainZoneZoneRestorePoint"
@@ -7546,7 +7547,7 @@
         "smithy.api#documentation": "Get a zone history"
       }
     },
-    "com.ovh.domain#PostDomainZoneZoneNameHistoryCreationDateRestoreRequest": {
+    "com.ovh.domain#RestoreDomainZoneHistoryRequest": {
       "type": "structure",
       "members": {
         "zoneName": {
@@ -7783,10 +7784,10 @@
         "smithy.api#documentation": "All statuses from a dns task"
       }
     },
-    "com.ovh.domain#PostDomainZoneZoneNameHistoryCreationDateRestore": {
+    "com.ovh.domain#RestoreDomainZoneHistory": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#PostDomainZoneZoneNameHistoryCreationDateRestoreRequest"
+        "target": "com.ovh.domain#RestoreDomainZoneHistoryRequest"
       },
       "output": {
         "target": "com.ovh.domain#DomainZoneTask"
@@ -7800,7 +7801,7 @@
         "smithy.api#documentation": "Restore a backup point"
       }
     },
-    "com.ovh.domain#PostDomainZoneZoneNameImportRequest": {
+    "com.ovh.domain#ImportDomainZoneRequest": {
       "type": "structure",
       "members": {
         "zoneName": {
@@ -7823,10 +7824,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#PostDomainZoneZoneNameImport": {
+    "com.ovh.domain#ImportDomainZone": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#PostDomainZoneZoneNameImportRequest"
+        "target": "com.ovh.domain#ImportDomainZoneRequest"
       },
       "output": {
         "target": "com.ovh.domain#DomainZoneTask"
@@ -7840,7 +7841,7 @@
         "smithy.api#documentation": "Import a DNS zone from a zone file"
       }
     },
-    "com.ovh.domain#GetDomainZoneZoneNameOptionRequest": {
+    "com.ovh.domain#ListDomainZoneOptionRequest": {
       "type": "structure",
       "members": {
         "zoneName": {
@@ -7856,18 +7857,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#GetDomainZoneZoneNameOptionResponseBodyList": {
+    "com.ovh.domain#ListDomainZoneOptionResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.domain#GetDomainZoneZoneNameOptionResponse": {
+    "com.ovh.domain#ListDomainZoneOptionResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.domain#GetDomainZoneZoneNameOptionResponseBodyList",
+          "target": "com.ovh.domain#ListDomainZoneOptionResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -7878,13 +7879,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.domain#GetDomainZoneZoneNameOption": {
+    "com.ovh.domain#ListDomainZoneOption": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#GetDomainZoneZoneNameOptionRequest"
+        "target": "com.ovh.domain#ListDomainZoneOptionRequest"
       },
       "output": {
-        "target": "com.ovh.domain#GetDomainZoneZoneNameOptionResponse"
+        "target": "com.ovh.domain#ListDomainZoneOptionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7895,7 +7896,7 @@
         "smithy.api#documentation": "List zone options"
       }
     },
-    "com.ovh.domain#GetDomainZoneZoneNameOptionNameRequest": {
+    "com.ovh.domain#GetDomainZoneOptionRequest": {
       "type": "structure",
       "members": {
         "zoneName": {
@@ -7933,10 +7934,10 @@
         "smithy.api#documentation": "DNS zone option"
       }
     },
-    "com.ovh.domain#GetDomainZoneZoneNameOptionName": {
+    "com.ovh.domain#GetDomainZoneOption": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#GetDomainZoneZoneNameOptionNameRequest"
+        "target": "com.ovh.domain#GetDomainZoneOptionRequest"
       },
       "output": {
         "target": "com.ovh.domain#DomainZoneOption"
@@ -7950,7 +7951,7 @@
         "smithy.api#documentation": "Get zone option"
       }
     },
-    "com.ovh.domain#GetDomainZoneZoneNameOptionNameServiceInfosRequest": {
+    "com.ovh.domain#GetDomainZoneOptionServiceInfosRequest": {
       "type": "structure",
       "members": {
         "zoneName": {
@@ -8178,10 +8179,10 @@
         "smithy.api#documentation": "service.StateEnum"
       }
     },
-    "com.ovh.domain#GetDomainZoneZoneNameOptionNameServiceInfos": {
+    "com.ovh.domain#GetDomainZoneOptionServiceInfos": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#GetDomainZoneZoneNameOptionNameServiceInfosRequest"
+        "target": "com.ovh.domain#GetDomainZoneOptionServiceInfosRequest"
       },
       "output": {
         "target": "com.ovh.domain#ServicesService"
@@ -8195,7 +8196,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.domain#PutDomainZoneZoneNameOptionNameServiceInfosRequest": {
+    "com.ovh.domain#PutDomainZoneOptionServiceInfosRequest": {
       "type": "structure",
       "members": {
         "zoneName": {
@@ -8226,10 +8227,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#PutDomainZoneZoneNameOptionNameServiceInfos": {
+    "com.ovh.domain#PutDomainZoneOptionServiceInfos": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#PutDomainZoneZoneNameOptionNameServiceInfosRequest"
+        "target": "com.ovh.domain#PutDomainZoneOptionServiceInfosRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9129,7 +9130,7 @@
         "smithy.api#documentation": "Resource record name"
       }
     },
-    "com.ovh.domain#PostDomainZoneZoneNameResetRequestDnsRecordsList": {
+    "com.ovh.domain#ResetDomainZoneRequestDnsRecordsList": {
       "type": "list",
       "member": {
         "target": "com.ovh.domain#DomainZoneResetRecord"
@@ -9138,7 +9139,7 @@
         "smithy.api#documentation": "Records that will be set after reset"
       }
     },
-    "com.ovh.domain#PostDomainZoneZoneNameResetRequest": {
+    "com.ovh.domain#ResetDomainZoneRequest": {
       "type": "structure",
       "members": {
         "zoneName": {
@@ -9150,7 +9151,7 @@
           }
         },
         "DnsRecords": {
-          "target": "com.ovh.domain#PostDomainZoneZoneNameResetRequestDnsRecordsList",
+          "target": "com.ovh.domain#ResetDomainZoneRequestDnsRecordsList",
           "traits": {
             "smithy.api#documentation": "Records that will be set after reset"
           }
@@ -9166,10 +9167,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#PostDomainZoneZoneNameReset": {
+    "com.ovh.domain#ResetDomainZone": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#PostDomainZoneZoneNameResetRequest"
+        "target": "com.ovh.domain#ResetDomainZoneRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9183,7 +9184,7 @@
         "smithy.api#documentation": "Reset a DNS zone"
       }
     },
-    "com.ovh.domain#GetDomainZoneZoneNameServiceInfosRequest": {
+    "com.ovh.domain#GetDomainZoneServiceInfosRequest": {
       "type": "structure",
       "members": {
         "zoneName": {
@@ -9199,10 +9200,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#GetDomainZoneZoneNameServiceInfos": {
+    "com.ovh.domain#GetDomainZoneServiceInfos": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#GetDomainZoneZoneNameServiceInfosRequest"
+        "target": "com.ovh.domain#GetDomainZoneServiceInfosRequest"
       },
       "output": {
         "target": "com.ovh.domain#ServicesService"
@@ -9216,7 +9217,7 @@
         "smithy.api#documentation": "Get service information"
       }
     },
-    "com.ovh.domain#PutDomainZoneZoneNameServiceInfosRequest": {
+    "com.ovh.domain#PutDomainZoneServiceInfosRequest": {
       "type": "structure",
       "members": {
         "zoneName": {
@@ -9239,10 +9240,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#PutDomainZoneZoneNameServiceInfos": {
+    "com.ovh.domain#PutDomainZoneServiceInfos": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#PutDomainZoneZoneNameServiceInfosRequest"
+        "target": "com.ovh.domain#PutDomainZoneServiceInfosRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9256,7 +9257,7 @@
         "smithy.api#documentation": "Update service information"
       }
     },
-    "com.ovh.domain#GetDomainZoneZoneNameSoaRequest": {
+    "com.ovh.domain#GetDomainZoneSoaRequest": {
       "type": "structure",
       "members": {
         "zoneName": {
@@ -9322,10 +9323,10 @@
         "smithy.api#documentation": "DNS zone SOA"
       }
     },
-    "com.ovh.domain#GetDomainZoneZoneNameSoa": {
+    "com.ovh.domain#GetDomainZoneSoa": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#GetDomainZoneZoneNameSoaRequest"
+        "target": "com.ovh.domain#GetDomainZoneSoaRequest"
       },
       "output": {
         "target": "com.ovh.domain#DomainZoneSoa"
@@ -9339,7 +9340,7 @@
         "smithy.api#documentation": "Get zone SOA"
       }
     },
-    "com.ovh.domain#PutDomainZoneZoneNameSoaRequest": {
+    "com.ovh.domain#PutDomainZoneSoaRequest": {
       "type": "structure",
       "members": {
         "zoneName": {
@@ -9397,10 +9398,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#PutDomainZoneZoneNameSoa": {
+    "com.ovh.domain#PutDomainZoneSoa": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#PutDomainZoneZoneNameSoaRequest"
+        "target": "com.ovh.domain#PutDomainZoneSoaRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9414,7 +9415,7 @@
         "smithy.api#documentation": "Update zone SOA"
       }
     },
-    "com.ovh.domain#GetDomainZoneZoneNameStatusRequest": {
+    "com.ovh.domain#ListDomainZoneStatusRequest": {
       "type": "structure",
       "members": {
         "zoneName": {
@@ -9476,10 +9477,10 @@
         "smithy.api#documentation": "Warning list if any"
       }
     },
-    "com.ovh.domain#GetDomainZoneZoneNameStatus": {
+    "com.ovh.domain#ListDomainZoneStatus": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#GetDomainZoneZoneNameStatusRequest"
+        "target": "com.ovh.domain#ListDomainZoneStatusRequest"
       },
       "output": {
         "target": "com.ovh.domain#DomainZoneStatus"
@@ -9493,7 +9494,7 @@
         "smithy.api#documentation": "Get zone status"
       }
     },
-    "com.ovh.domain#GetDomainZoneZoneNameTaskRequest": {
+    "com.ovh.domain#ListDomainZoneTaskRequest": {
       "type": "structure",
       "members": {
         "zoneName": {
@@ -9521,18 +9522,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#GetDomainZoneZoneNameTaskResponseBodyList": {
+    "com.ovh.domain#ListDomainZoneTaskResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.domain#GetDomainZoneZoneNameTaskResponse": {
+    "com.ovh.domain#ListDomainZoneTaskResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.domain#GetDomainZoneZoneNameTaskResponseBodyList",
+          "target": "com.ovh.domain#ListDomainZoneTaskResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -9543,13 +9544,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.domain#GetDomainZoneZoneNameTask": {
+    "com.ovh.domain#ListDomainZoneTask": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#GetDomainZoneZoneNameTaskRequest"
+        "target": "com.ovh.domain#ListDomainZoneTaskRequest"
       },
       "output": {
-        "target": "com.ovh.domain#GetDomainZoneZoneNameTaskResponse"
+        "target": "com.ovh.domain#ListDomainZoneTaskResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9560,7 +9561,7 @@
         "smithy.api#documentation": "List zone tasks"
       }
     },
-    "com.ovh.domain#GetDomainZoneZoneNameTaskIdRequest": {
+    "com.ovh.domain#GetDomainZoneTaskRequest": {
       "type": "structure",
       "members": {
         "zoneName": {
@@ -9584,10 +9585,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#GetDomainZoneZoneNameTaskId": {
+    "com.ovh.domain#GetDomainZoneTask": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#GetDomainZoneZoneNameTaskIdRequest"
+        "target": "com.ovh.domain#GetDomainZoneTaskRequest"
       },
       "output": {
         "target": "com.ovh.domain#DomainZoneTask"
@@ -9601,7 +9602,7 @@
         "smithy.api#documentation": "Get a zone task"
       }
     },
-    "com.ovh.domain#PostDomainZoneZoneNameTaskIdAccelerateRequest": {
+    "com.ovh.domain#CreateDomainZoneTaskAccelerateRequest": {
       "type": "structure",
       "members": {
         "zoneName": {
@@ -9625,10 +9626,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#PostDomainZoneZoneNameTaskIdAccelerate": {
+    "com.ovh.domain#CreateDomainZoneTaskAccelerate": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#PostDomainZoneZoneNameTaskIdAccelerateRequest"
+        "target": "com.ovh.domain#CreateDomainZoneTaskAccelerateRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9642,7 +9643,7 @@
         "smithy.api#documentation": "Accelerate a zone task"
       }
     },
-    "com.ovh.domain#PostDomainZoneZoneNameTaskIdCancelRequest": {
+    "com.ovh.domain#CancelDomainZoneTaskRequest": {
       "type": "structure",
       "members": {
         "zoneName": {
@@ -9666,10 +9667,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#PostDomainZoneZoneNameTaskIdCancel": {
+    "com.ovh.domain#CancelDomainZoneTask": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#PostDomainZoneZoneNameTaskIdCancelRequest"
+        "target": "com.ovh.domain#CancelDomainZoneTaskRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9683,7 +9684,7 @@
         "smithy.api#documentation": "Cancel a zone task"
       }
     },
-    "com.ovh.domain#PostDomainZoneZoneNameTaskIdRelaunchRequest": {
+    "com.ovh.domain#CreateDomainZoneTaskRelaunchRequest": {
       "type": "structure",
       "members": {
         "zoneName": {
@@ -9707,10 +9708,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#PostDomainZoneZoneNameTaskIdRelaunch": {
+    "com.ovh.domain#CreateDomainZoneTaskRelaunch": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#PostDomainZoneZoneNameTaskIdRelaunchRequest"
+        "target": "com.ovh.domain#CreateDomainZoneTaskRelaunchRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9724,7 +9725,7 @@
         "smithy.api#documentation": "Restart a zone task"
       }
     },
-    "com.ovh.domain#PostDomainZoneZoneNameTerminateRequest": {
+    "com.ovh.domain#TerminateDomainZoneRequest": {
       "type": "structure",
       "members": {
         "zoneName": {
@@ -9740,7 +9741,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#PostDomainZoneZoneNameTerminateResponse": {
+    "com.ovh.domain#TerminateDomainZoneResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -9755,13 +9756,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.domain#PostDomainZoneZoneNameTerminate": {
+    "com.ovh.domain#TerminateDomainZone": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#PostDomainZoneZoneNameTerminateRequest"
+        "target": "com.ovh.domain#TerminateDomainZoneRequest"
       },
       "output": {
-        "target": "com.ovh.domain#PostDomainZoneZoneNameTerminateResponse"
+        "target": "com.ovh.domain#TerminateDomainZoneResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10571,7 +10572,7 @@
         "smithy.api#documentation": "Edit domain name properties"
       }
     },
-    "com.ovh.domain#GetDomainServiceNameAuthInfoRequest": {
+    "com.ovh.domain#GetDomainAuthInfoRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -10587,7 +10588,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#GetDomainServiceNameAuthInfoResponse": {
+    "com.ovh.domain#GetDomainAuthInfoResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -10602,13 +10603,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.domain#GetDomainServiceNameAuthInfo": {
+    "com.ovh.domain#GetDomainAuthInfo": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#GetDomainServiceNameAuthInfoRequest"
+        "target": "com.ovh.domain#GetDomainAuthInfoRequest"
       },
       "output": {
-        "target": "com.ovh.domain#GetDomainServiceNameAuthInfoResponse"
+        "target": "com.ovh.domain#GetDomainAuthInfoResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10619,7 +10620,7 @@
         "smithy.api#documentation": "Return authInfo code if the domain is unlocked"
       }
     },
-    "com.ovh.domain#PostDomainServiceNameChangeContactRequest": {
+    "com.ovh.domain#CreateDomainChangeContactRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -10653,18 +10654,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#PostDomainServiceNameChangeContactResponseBodyList": {
+    "com.ovh.domain#CreateDomainChangeContactResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.domain#PostDomainServiceNameChangeContactResponse": {
+    "com.ovh.domain#CreateDomainChangeContactResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.domain#PostDomainServiceNameChangeContactResponseBodyList",
+          "target": "com.ovh.domain#CreateDomainChangeContactResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -10675,13 +10676,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.domain#PostDomainServiceNameChangeContact": {
+    "com.ovh.domain#CreateDomainChangeContact": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#PostDomainServiceNameChangeContactRequest"
+        "target": "com.ovh.domain#CreateDomainChangeContactRequest"
       },
       "output": {
-        "target": "com.ovh.domain#PostDomainServiceNameChangeContactResponse"
+        "target": "com.ovh.domain#CreateDomainChangeContactResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10692,7 +10693,7 @@
         "smithy.api#documentation": "Launch a contact change procedure"
       }
     },
-    "com.ovh.domain#GetDomainServiceNameConfigurationsDataRequest": {
+    "com.ovh.domain#GetDomainConfigurationDataRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -10767,10 +10768,10 @@
         "smithy.api#documentation": "Purposes of the domain"
       }
     },
-    "com.ovh.domain#GetDomainServiceNameConfigurationsData": {
+    "com.ovh.domain#GetDomainConfigurationData": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#GetDomainServiceNameConfigurationsDataRequest"
+        "target": "com.ovh.domain#GetDomainConfigurationDataRequest"
       },
       "output": {
         "target": "com.ovh.domain#DomainConfigurationsCustomFields"
@@ -10836,7 +10837,7 @@
         "smithy.api#documentation": "Purposes of the domain"
       }
     },
-    "com.ovh.domain#PutDomainServiceNameConfigurationsDataRequest": {
+    "com.ovh.domain#PutDomainConfigurationDataRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -10858,10 +10859,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#PutDomainServiceNameConfigurationsData": {
+    "com.ovh.domain#PutDomainConfigurationData": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#PutDomainServiceNameConfigurationsDataRequest"
+        "target": "com.ovh.domain#PutDomainConfigurationDataRequest"
       },
       "output": {
         "target": "com.ovh.domain#DomainConfigurationsCustomFields"
@@ -10875,7 +10876,7 @@
         "smithy.api#documentation": "Save extra data configurations for a domain"
       }
     },
-    "com.ovh.domain#GetDomainServiceNameConfigurationsObfuscatedEmailsRequest": {
+    "com.ovh.domain#ListDomainConfigurationObfuscatedEmailsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -10976,18 +10977,18 @@
         "smithy.api#documentation": "The possible types of contacts associated to a domain name"
       }
     },
-    "com.ovh.domain#GetDomainServiceNameConfigurationsObfuscatedEmailsResponseBodyList": {
+    "com.ovh.domain#ListDomainConfigurationObfuscatedEmailsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.domain#DomainConfigurationsObfuscatedEmail"
       },
       "traits": {}
     },
-    "com.ovh.domain#GetDomainServiceNameConfigurationsObfuscatedEmailsResponse": {
+    "com.ovh.domain#ListDomainConfigurationObfuscatedEmailsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.domain#GetDomainServiceNameConfigurationsObfuscatedEmailsResponseBodyList",
+          "target": "com.ovh.domain#ListDomainConfigurationObfuscatedEmailsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -10998,13 +10999,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.domain#GetDomainServiceNameConfigurationsObfuscatedEmails": {
+    "com.ovh.domain#ListDomainConfigurationObfuscatedEmails": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#GetDomainServiceNameConfigurationsObfuscatedEmailsRequest"
+        "target": "com.ovh.domain#ListDomainConfigurationObfuscatedEmailsRequest"
       },
       "output": {
-        "target": "com.ovh.domain#GetDomainServiceNameConfigurationsObfuscatedEmailsResponse"
+        "target": "com.ovh.domain#ListDomainConfigurationObfuscatedEmailsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11015,7 +11016,7 @@
         "smithy.api#documentation": "Retrieve obfuscated emails configuration"
       }
     },
-    "com.ovh.domain#PutDomainServiceNameConfigurationsObfuscatedEmailsRequestContactsList": {
+    "com.ovh.domain#PutDomainConfigurationObfuscatedEmailsRequestContactsList": {
       "type": "list",
       "member": {
         "target": "com.ovh.domain#DomainConfigurationsContactTypeEnum"
@@ -11024,7 +11025,7 @@
         "smithy.api#documentation": "Type of the contacts to request email obfuscation for"
       }
     },
-    "com.ovh.domain#PutDomainServiceNameConfigurationsObfuscatedEmailsRequest": {
+    "com.ovh.domain#PutDomainConfigurationObfuscatedEmailsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -11036,7 +11037,7 @@
           }
         },
         "contacts": {
-          "target": "com.ovh.domain#PutDomainServiceNameConfigurationsObfuscatedEmailsRequestContactsList",
+          "target": "com.ovh.domain#PutDomainConfigurationObfuscatedEmailsRequestContactsList",
           "traits": {
             "smithy.api#documentation": "Type of the contacts to request email obfuscation for",
             "smithy.api#required": {}
@@ -11047,18 +11048,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#PutDomainServiceNameConfigurationsObfuscatedEmailsResponseBodyList": {
+    "com.ovh.domain#PutDomainConfigurationObfuscatedEmailsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.domain#DomainConfigurationsObfuscatedEmail"
       },
       "traits": {}
     },
-    "com.ovh.domain#PutDomainServiceNameConfigurationsObfuscatedEmailsResponse": {
+    "com.ovh.domain#PutDomainConfigurationObfuscatedEmailsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.domain#PutDomainServiceNameConfigurationsObfuscatedEmailsResponseBodyList",
+          "target": "com.ovh.domain#PutDomainConfigurationObfuscatedEmailsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -11069,13 +11070,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.domain#PutDomainServiceNameConfigurationsObfuscatedEmails": {
+    "com.ovh.domain#PutDomainConfigurationObfuscatedEmails": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#PutDomainServiceNameConfigurationsObfuscatedEmailsRequest"
+        "target": "com.ovh.domain#PutDomainConfigurationObfuscatedEmailsRequest"
       },
       "output": {
-        "target": "com.ovh.domain#PutDomainServiceNameConfigurationsObfuscatedEmailsResponse"
+        "target": "com.ovh.domain#PutDomainConfigurationObfuscatedEmailsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11086,7 +11087,7 @@
         "smithy.api#documentation": "Save a new obfuscated emails configuration"
       }
     },
-    "com.ovh.domain#PostDomainServiceNameConfigurationsObfuscatedEmailsRefreshRequestContactsList": {
+    "com.ovh.domain#RefreshDomainConfigurationsObfuscatedEmailRequestContactsList": {
       "type": "list",
       "member": {
         "target": "com.ovh.domain#DomainConfigurationsContactTypeEnum"
@@ -11095,7 +11096,7 @@
         "smithy.api#documentation": "Type of the contacts to refresh email obfuscation for"
       }
     },
-    "com.ovh.domain#PostDomainServiceNameConfigurationsObfuscatedEmailsRefreshRequest": {
+    "com.ovh.domain#RefreshDomainConfigurationsObfuscatedEmailRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -11107,7 +11108,7 @@
           }
         },
         "contacts": {
-          "target": "com.ovh.domain#PostDomainServiceNameConfigurationsObfuscatedEmailsRefreshRequestContactsList",
+          "target": "com.ovh.domain#RefreshDomainConfigurationsObfuscatedEmailRequestContactsList",
           "traits": {
             "smithy.api#documentation": "Type of the contacts to refresh email obfuscation for",
             "smithy.api#required": {}
@@ -11118,10 +11119,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#PostDomainServiceNameConfigurationsObfuscatedEmailsRefresh": {
+    "com.ovh.domain#RefreshDomainConfigurationsObfuscatedEmail": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#PostDomainServiceNameConfigurationsObfuscatedEmailsRefreshRequest"
+        "target": "com.ovh.domain#RefreshDomainConfigurationsObfuscatedEmailRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -11135,7 +11136,7 @@
         "smithy.api#documentation": "Refresh an obfuscated emails configuration with new values"
       }
     },
-    "com.ovh.domain#GetDomainServiceNameConfigurationsOptinRequest": {
+    "com.ovh.domain#ListDomainConfigurationOptinRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -11248,18 +11249,18 @@
         "smithy.api#documentation": "Fields to display publicly on the Whois"
       }
     },
-    "com.ovh.domain#GetDomainServiceNameConfigurationsOptinResponseBodyList": {
+    "com.ovh.domain#ListDomainConfigurationOptinResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.domain#DomainConfigurationsOptin"
       },
       "traits": {}
     },
-    "com.ovh.domain#GetDomainServiceNameConfigurationsOptinResponse": {
+    "com.ovh.domain#ListDomainConfigurationOptinResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.domain#GetDomainServiceNameConfigurationsOptinResponseBodyList",
+          "target": "com.ovh.domain#ListDomainConfigurationOptinResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -11270,13 +11271,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.domain#GetDomainServiceNameConfigurationsOptin": {
+    "com.ovh.domain#ListDomainConfigurationOptin": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#GetDomainServiceNameConfigurationsOptinRequest"
+        "target": "com.ovh.domain#ListDomainConfigurationOptinRequest"
       },
       "output": {
-        "target": "com.ovh.domain#GetDomainServiceNameConfigurationsOptinResponse"
+        "target": "com.ovh.domain#ListDomainConfigurationOptinResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11287,7 +11288,7 @@
         "smithy.api#documentation": "Retrieve optin configuration"
       }
     },
-    "com.ovh.domain#PutDomainServiceNameConfigurationsOptinRequestOptinList": {
+    "com.ovh.domain#PutDomainConfigurationOptinRequestOptinList": {
       "type": "list",
       "member": {
         "target": "com.ovh.domain#DomainConfigurationsOptin"
@@ -11296,7 +11297,7 @@
         "smithy.api#documentation": "New optin configuration"
       }
     },
-    "com.ovh.domain#PutDomainServiceNameConfigurationsOptinRequest": {
+    "com.ovh.domain#PutDomainConfigurationOptinRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -11308,7 +11309,7 @@
           }
         },
         "optin": {
-          "target": "com.ovh.domain#PutDomainServiceNameConfigurationsOptinRequestOptinList",
+          "target": "com.ovh.domain#PutDomainConfigurationOptinRequestOptinList",
           "traits": {
             "smithy.api#documentation": "New optin configuration"
           }
@@ -11318,18 +11319,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#PutDomainServiceNameConfigurationsOptinResponseBodyList": {
+    "com.ovh.domain#PutDomainConfigurationOptinResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.domain#DomainConfigurationsOptin"
       },
       "traits": {}
     },
-    "com.ovh.domain#PutDomainServiceNameConfigurationsOptinResponse": {
+    "com.ovh.domain#PutDomainConfigurationOptinResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.domain#PutDomainServiceNameConfigurationsOptinResponseBodyList",
+          "target": "com.ovh.domain#PutDomainConfigurationOptinResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -11340,13 +11341,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.domain#PutDomainServiceNameConfigurationsOptin": {
+    "com.ovh.domain#PutDomainConfigurationOptin": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#PutDomainServiceNameConfigurationsOptinRequest"
+        "target": "com.ovh.domain#PutDomainConfigurationOptinRequest"
       },
       "output": {
-        "target": "com.ovh.domain#PutDomainServiceNameConfigurationsOptinResponse"
+        "target": "com.ovh.domain#PutDomainConfigurationOptinResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11421,7 +11422,7 @@
         "smithy.api#documentation": "Generated: The key has been created, but has not yet been used for anything.\nPublished: The DNSKEY record is published in the zone, but predecessors of the key may be held in caches.\nReady: The new key data has been published for long enough to guarantee that any previous versions of the DNSKEY RRset have expired from caches.\nActive: The key has started to be used to sign RRsets.\nRetired: A successor key has become active and this key is no longer being used to generate RRSIGs.\nRemoved: The key has been removed from the zone.\nRevoked: The key is published for a period with the \"revoke\" bit set as a way of notifying validating resolvers that have configured it as an trust anchor that it is about to be removed from the zone."
       }
     },
-    "com.ovh.domain#GetDomainServiceNameDsRecordRequest": {
+    "com.ovh.domain#ListDomainDsRecordRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -11451,18 +11452,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#GetDomainServiceNameDsRecordResponseBodyList": {
+    "com.ovh.domain#ListDomainDsRecordResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.domain#GetDomainServiceNameDsRecordResponse": {
+    "com.ovh.domain#ListDomainDsRecordResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.domain#GetDomainServiceNameDsRecordResponseBodyList",
+          "target": "com.ovh.domain#ListDomainDsRecordResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -11473,13 +11474,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.domain#GetDomainServiceNameDsRecord": {
+    "com.ovh.domain#ListDomainDsRecord": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#GetDomainServiceNameDsRecordRequest"
+        "target": "com.ovh.domain#ListDomainDsRecordRequest"
       },
       "output": {
-        "target": "com.ovh.domain#GetDomainServiceNameDsRecordResponse"
+        "target": "com.ovh.domain#ListDomainDsRecordResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11596,7 +11597,7 @@
         "smithy.api#documentation": "DNSSEC Algorithm\n3: DSA\n5: RSASHA1\n6: DSA-NSEC3-SHA1\n7: RSASHA1-NSEC3-SHA1\n8: RSASHA256\n10: RSASHA512\n12: ECC-GOST\n13: ECDSAP256SHA256\n14: ECDSAP384SHA384\n15: ED25519\n16: ED448"
       }
     },
-    "com.ovh.domain#PostDomainServiceNameDsRecordRequestKeysList": {
+    "com.ovh.domain#CreateDomainDsRecordRequestKeysList": {
       "type": "list",
       "member": {
         "target": "com.ovh.domain#DnssecKeyInput"
@@ -11605,7 +11606,7 @@
         "smithy.api#documentation": "New Keys"
       }
     },
-    "com.ovh.domain#PostDomainServiceNameDsRecordRequest": {
+    "com.ovh.domain#CreateDomainDsRecordRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -11617,7 +11618,7 @@
           }
         },
         "keys": {
-          "target": "com.ovh.domain#PostDomainServiceNameDsRecordRequestKeysList",
+          "target": "com.ovh.domain#CreateDomainDsRecordRequestKeysList",
           "traits": {
             "smithy.api#documentation": "New Keys",
             "smithy.api#required": {}
@@ -11781,10 +11782,10 @@
         "smithy.api#documentation": "Operation type"
       }
     },
-    "com.ovh.domain#PostDomainServiceNameDsRecord": {
+    "com.ovh.domain#CreateDomainDsRecord": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#PostDomainServiceNameDsRecordRequest"
+        "target": "com.ovh.domain#CreateDomainDsRecordRequest"
       },
       "output": {
         "target": "com.ovh.domain#DomainTask"
@@ -11798,7 +11799,7 @@
         "smithy.api#documentation": "Update DS records"
       }
     },
-    "com.ovh.domain#GetDomainServiceNameDsRecordIdRequest": {
+    "com.ovh.domain#GetDomainDsRecordRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -11866,10 +11867,10 @@
         "smithy.api#documentation": "Domain's DNSSEC Key"
       }
     },
-    "com.ovh.domain#GetDomainServiceNameDsRecordId": {
+    "com.ovh.domain#GetDomainDsRecord": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#GetDomainServiceNameDsRecordIdRequest"
+        "target": "com.ovh.domain#GetDomainDsRecordRequest"
       },
       "output": {
         "target": "com.ovh.domain#DnssecKey"
@@ -11883,7 +11884,7 @@
         "smithy.api#documentation": "Get details on this DS Record"
       }
     },
-    "com.ovh.domain#GetDomainServiceNameGlueRecordRequest": {
+    "com.ovh.domain#ListDomainGlueRecordRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -11906,18 +11907,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#GetDomainServiceNameGlueRecordResponseBodyList": {
+    "com.ovh.domain#ListDomainGlueRecordResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.domain#GetDomainServiceNameGlueRecordResponse": {
+    "com.ovh.domain#ListDomainGlueRecordResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.domain#GetDomainServiceNameGlueRecordResponseBodyList",
+          "target": "com.ovh.domain#ListDomainGlueRecordResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -11928,13 +11929,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.domain#GetDomainServiceNameGlueRecord": {
+    "com.ovh.domain#ListDomainGlueRecord": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#GetDomainServiceNameGlueRecordRequest"
+        "target": "com.ovh.domain#ListDomainGlueRecordRequest"
       },
       "output": {
-        "target": "com.ovh.domain#GetDomainServiceNameGlueRecordResponse"
+        "target": "com.ovh.domain#ListDomainGlueRecordResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11945,7 +11946,7 @@
         "smithy.api#documentation": "List of glue records"
       }
     },
-    "com.ovh.domain#PostDomainServiceNameGlueRecordRequestIpsList": {
+    "com.ovh.domain#CreateDomainGlueRecordRequestIpsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -11954,7 +11955,7 @@
         "smithy.api#documentation": "IP addresses of the glue record"
       }
     },
-    "com.ovh.domain#PostDomainServiceNameGlueRecordRequest": {
+    "com.ovh.domain#CreateDomainGlueRecordRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -11973,7 +11974,7 @@
           }
         },
         "ips": {
-          "target": "com.ovh.domain#PostDomainServiceNameGlueRecordRequestIpsList",
+          "target": "com.ovh.domain#CreateDomainGlueRecordRequestIpsList",
           "traits": {
             "smithy.api#documentation": "IP addresses of the glue record",
             "smithy.api#required": {}
@@ -11984,10 +11985,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#PostDomainServiceNameGlueRecord": {
+    "com.ovh.domain#CreateDomainGlueRecord": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#PostDomainServiceNameGlueRecordRequest"
+        "target": "com.ovh.domain#CreateDomainGlueRecordRequest"
       },
       "output": {
         "target": "com.ovh.domain#DomainTask"
@@ -12001,7 +12002,7 @@
         "smithy.api#documentation": "Create a glue record"
       }
     },
-    "com.ovh.domain#GetDomainServiceNameGlueRecordHostRequest": {
+    "com.ovh.domain#GetDomainGlueRecordRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -12055,10 +12056,10 @@
         "smithy.api#documentation": "IP address"
       }
     },
-    "com.ovh.domain#GetDomainServiceNameGlueRecordHost": {
+    "com.ovh.domain#GetDomainGlueRecord": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#GetDomainServiceNameGlueRecordHostRequest"
+        "target": "com.ovh.domain#GetDomainGlueRecordRequest"
       },
       "output": {
         "target": "com.ovh.domain#DomainGlueRecordGlueRecord"
@@ -12072,7 +12073,7 @@
         "smithy.api#documentation": "Get this glue record"
       }
     },
-    "com.ovh.domain#DeleteDomainServiceNameGlueRecordHostRequest": {
+    "com.ovh.domain#DeleteDomainGlueRecordRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -12096,10 +12097,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#DeleteDomainServiceNameGlueRecordHost": {
+    "com.ovh.domain#DeleteDomainGlueRecord": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#DeleteDomainServiceNameGlueRecordHostRequest"
+        "target": "com.ovh.domain#DeleteDomainGlueRecordRequest"
       },
       "output": {
         "target": "com.ovh.domain#DomainTask"
@@ -12113,7 +12114,7 @@
         "smithy.api#documentation": "Delete the glue record"
       }
     },
-    "com.ovh.domain#PostDomainServiceNameGlueRecordHostUpdateRequestIpsList": {
+    "com.ovh.domain#UpdateDomainGlueRecordRequestIpsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -12122,7 +12123,7 @@
         "smithy.api#documentation": "IP address"
       }
     },
-    "com.ovh.domain#PostDomainServiceNameGlueRecordHostUpdateRequest": {
+    "com.ovh.domain#UpdateDomainGlueRecordRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -12142,7 +12143,7 @@
           }
         },
         "ips": {
-          "target": "com.ovh.domain#PostDomainServiceNameGlueRecordHostUpdateRequestIpsList",
+          "target": "com.ovh.domain#UpdateDomainGlueRecordRequestIpsList",
           "traits": {
             "smithy.api#documentation": "IP address",
             "smithy.api#required": {}
@@ -12153,10 +12154,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#PostDomainServiceNameGlueRecordHostUpdate": {
+    "com.ovh.domain#UpdateDomainGlueRecord": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#PostDomainServiceNameGlueRecordHostUpdateRequest"
+        "target": "com.ovh.domain#UpdateDomainGlueRecordRequest"
       },
       "output": {
         "target": "com.ovh.domain#DomainTask"
@@ -12170,7 +12171,7 @@
         "smithy.api#documentation": "Update the glue record"
       }
     },
-    "com.ovh.domain#GetDomainServiceNameNameServerRequest": {
+    "com.ovh.domain#ListDomainNameServerRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -12186,18 +12187,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#GetDomainServiceNameNameServerResponseBodyList": {
+    "com.ovh.domain#ListDomainNameServerResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.domain#GetDomainServiceNameNameServerResponse": {
+    "com.ovh.domain#ListDomainNameServerResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.domain#GetDomainServiceNameNameServerResponseBodyList",
+          "target": "com.ovh.domain#ListDomainNameServerResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -12208,13 +12209,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.domain#GetDomainServiceNameNameServer": {
+    "com.ovh.domain#ListDomainNameServer": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#GetDomainServiceNameNameServerRequest"
+        "target": "com.ovh.domain#ListDomainNameServerRequest"
       },
       "output": {
-        "target": "com.ovh.domain#GetDomainServiceNameNameServerResponse"
+        "target": "com.ovh.domain#ListDomainNameServerResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12246,7 +12247,7 @@
         "smithy.api#documentation": "Name server input data"
       }
     },
-    "com.ovh.domain#PostDomainServiceNameNameServerRequestNameServerList": {
+    "com.ovh.domain#CreateDomainNameServerRequestNameServerList": {
       "type": "list",
       "member": {
         "target": "com.ovh.domain#DomainNameServerNameServerInput"
@@ -12255,7 +12256,7 @@
         "smithy.api#documentation": "Name servers to create"
       }
     },
-    "com.ovh.domain#PostDomainServiceNameNameServerRequest": {
+    "com.ovh.domain#CreateDomainNameServerRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -12267,7 +12268,7 @@
           }
         },
         "nameServer": {
-          "target": "com.ovh.domain#PostDomainServiceNameNameServerRequestNameServerList",
+          "target": "com.ovh.domain#CreateDomainNameServerRequestNameServerList",
           "traits": {
             "smithy.api#documentation": "Name servers to create",
             "smithy.api#required": {}
@@ -12278,10 +12279,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#PostDomainServiceNameNameServer": {
+    "com.ovh.domain#CreateDomainNameServer": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#PostDomainServiceNameNameServerRequest"
+        "target": "com.ovh.domain#CreateDomainNameServerRequest"
       },
       "output": {
         "target": "com.ovh.domain#DomainTask"
@@ -12295,7 +12296,7 @@
         "smithy.api#documentation": "Add new name server"
       }
     },
-    "com.ovh.domain#GetDomainServiceNameNameServerIdRequest": {
+    "com.ovh.domain#GetDomainNameServerRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -12358,10 +12359,10 @@
         "smithy.api#documentation": "Full name server configuration"
       }
     },
-    "com.ovh.domain#GetDomainServiceNameNameServerId": {
+    "com.ovh.domain#GetDomainNameServer": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#GetDomainServiceNameNameServerIdRequest"
+        "target": "com.ovh.domain#GetDomainNameServerRequest"
       },
       "output": {
         "target": "com.ovh.domain#DomainNameServerFullNameServer"
@@ -12375,7 +12376,7 @@
         "smithy.api#documentation": "Get this name server configuration"
       }
     },
-    "com.ovh.domain#DeleteDomainServiceNameNameServerIdRequest": {
+    "com.ovh.domain#DeleteDomainNameServerRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -12399,10 +12400,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#DeleteDomainServiceNameNameServerId": {
+    "com.ovh.domain#DeleteDomainNameServer": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#DeleteDomainServiceNameNameServerIdRequest"
+        "target": "com.ovh.domain#DeleteDomainNameServerRequest"
       },
       "output": {
         "target": "com.ovh.domain#DomainTask"
@@ -12416,7 +12417,7 @@
         "smithy.api#documentation": "Delete a name server"
       }
     },
-    "com.ovh.domain#GetDomainServiceNameNameServerIdStatusRequest": {
+    "com.ovh.domain#GetDomainNameServerStatusRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -12487,10 +12488,10 @@
         "smithy.api#documentation": "DNS server state"
       }
     },
-    "com.ovh.domain#GetDomainServiceNameNameServerIdStatus": {
+    "com.ovh.domain#GetDomainNameServerStatus": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#GetDomainServiceNameNameServerIdStatusRequest"
+        "target": "com.ovh.domain#GetDomainNameServerStatusRequest"
       },
       "output": {
         "target": "com.ovh.domain#DomainNameServerNameServerStatus"
@@ -12504,7 +12505,7 @@
         "smithy.api#documentation": "Get name server status"
       }
     },
-    "com.ovh.domain#PostDomainServiceNameNameServersUpdateRequestNameServersList": {
+    "com.ovh.domain#UpdateDomainNameServerRequestNameServersList": {
       "type": "list",
       "member": {
         "target": "com.ovh.domain#DomainNameServerNameServerInput"
@@ -12513,7 +12514,7 @@
         "smithy.api#documentation": "Name servers to update"
       }
     },
-    "com.ovh.domain#PostDomainServiceNameNameServersUpdateRequest": {
+    "com.ovh.domain#UpdateDomainNameServerRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -12525,7 +12526,7 @@
           }
         },
         "nameServers": {
-          "target": "com.ovh.domain#PostDomainServiceNameNameServersUpdateRequestNameServersList",
+          "target": "com.ovh.domain#UpdateDomainNameServerRequestNameServersList",
           "traits": {
             "smithy.api#documentation": "Name servers to update",
             "smithy.api#required": {}
@@ -12536,10 +12537,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#PostDomainServiceNameNameServersUpdate": {
+    "com.ovh.domain#UpdateDomainNameServer": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#PostDomainServiceNameNameServersUpdateRequest"
+        "target": "com.ovh.domain#UpdateDomainNameServerRequest"
       },
       "output": {
         "target": "com.ovh.domain#DomainTask"
@@ -12553,7 +12554,7 @@
         "smithy.api#documentation": "Update DNS servers"
       }
     },
-    "com.ovh.domain#GetDomainServiceNameOptionRequest": {
+    "com.ovh.domain#ListDomainOptionRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -12583,18 +12584,18 @@
         "smithy.api#documentation": "All options a domain can have"
       }
     },
-    "com.ovh.domain#GetDomainServiceNameOptionResponseBodyList": {
+    "com.ovh.domain#ListDomainOptionResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.domain#DomainDomainOptionEnum"
       },
       "traits": {}
     },
-    "com.ovh.domain#GetDomainServiceNameOptionResponse": {
+    "com.ovh.domain#ListDomainOptionResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.domain#GetDomainServiceNameOptionResponseBodyList",
+          "target": "com.ovh.domain#ListDomainOptionResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -12605,13 +12606,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.domain#GetDomainServiceNameOption": {
+    "com.ovh.domain#ListDomainOption": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#GetDomainServiceNameOptionRequest"
+        "target": "com.ovh.domain#ListDomainOptionRequest"
       },
       "output": {
-        "target": "com.ovh.domain#GetDomainServiceNameOptionResponse"
+        "target": "com.ovh.domain#ListDomainOptionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12622,7 +12623,7 @@
         "smithy.api#documentation": "List domain options"
       }
     },
-    "com.ovh.domain#GetDomainServiceNameOptionOptionRequestOption": {
+    "com.ovh.domain#GetDomainOptionRequestOption": {
       "type": "enum",
       "members": {
         "DNSANYCAST": {
@@ -12636,7 +12637,7 @@
         "smithy.api#documentation": "All options a domain can have"
       }
     },
-    "com.ovh.domain#GetDomainServiceNameOptionOptionRequest": {
+    "com.ovh.domain#GetDomainOptionRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -12648,7 +12649,7 @@
           }
         },
         "option": {
-          "target": "com.ovh.domain#GetDomainServiceNameOptionOptionRequestOption",
+          "target": "com.ovh.domain#GetDomainOptionRequestOption",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -12706,10 +12707,10 @@
         "smithy.api#documentation": "All states a domain Option can be in"
       }
     },
-    "com.ovh.domain#GetDomainServiceNameOptionOption": {
+    "com.ovh.domain#GetDomainOption": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#GetDomainServiceNameOptionOptionRequest"
+        "target": "com.ovh.domain#GetDomainOptionRequest"
       },
       "output": {
         "target": "com.ovh.domain#DomainOption"
@@ -12723,7 +12724,7 @@
         "smithy.api#documentation": "Get details on this domain option"
       }
     },
-    "com.ovh.domain#DeleteDomainServiceNameOptionOptionRequestOption": {
+    "com.ovh.domain#DeleteDomainOptionRequestOption": {
       "type": "enum",
       "members": {
         "DNSANYCAST": {
@@ -12737,7 +12738,7 @@
         "smithy.api#documentation": "All options a domain can have"
       }
     },
-    "com.ovh.domain#DeleteDomainServiceNameOptionOptionRequest": {
+    "com.ovh.domain#DeleteDomainOptionRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -12749,7 +12750,7 @@
           }
         },
         "option": {
-          "target": "com.ovh.domain#DeleteDomainServiceNameOptionOptionRequestOption",
+          "target": "com.ovh.domain#DeleteDomainOptionRequestOption",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -12761,10 +12762,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#DeleteDomainServiceNameOptionOption": {
+    "com.ovh.domain#DeleteDomainOption": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#DeleteDomainServiceNameOptionOptionRequest"
+        "target": "com.ovh.domain#DeleteDomainOptionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -12778,7 +12779,7 @@
         "smithy.api#documentation": "Remove a given option"
       }
     },
-    "com.ovh.domain#GetDomainServiceNameOptionsRequest": {
+    "com.ovh.domain#GetDomainOptionsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -12837,10 +12838,10 @@
         "smithy.api#documentation": "Data of a domain option"
       }
     },
-    "com.ovh.domain#GetDomainServiceNameOptions": {
+    "com.ovh.domain#GetDomainOptions": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#GetDomainServiceNameOptionsRequest"
+        "target": "com.ovh.domain#GetDomainOptionsRequest"
       },
       "output": {
         "target": "com.ovh.domain#DomainServiceOptions"
@@ -12874,7 +12875,7 @@
         "smithy.api#documentation": "Type of claim notice"
       }
     },
-    "com.ovh.domain#PostDomainServiceNameOutgoingTransferApproveRequest": {
+    "com.ovh.domain#ApproveDomainOutgoingTransferRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -12902,10 +12903,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#PostDomainServiceNameOutgoingTransferApprove": {
+    "com.ovh.domain#ApproveDomainOutgoingTransfer": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#PostDomainServiceNameOutgoingTransferApproveRequest"
+        "target": "com.ovh.domain#ApproveDomainOutgoingTransferRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -12919,7 +12920,7 @@
         "smithy.api#documentation": "Approve Outgoing Transfer for a domain"
       }
     },
-    "com.ovh.domain#GetDomainServiceNameRulesEmailsObfuscationRequest": {
+    "com.ovh.domain#ListDomainRuleEmailsObfuscationRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -12935,18 +12936,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#GetDomainServiceNameRulesEmailsObfuscationResponseBodyList": {
+    "com.ovh.domain#ListDomainRuleEmailsObfuscationResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.domain#DomainConfigurationsContactTypeEnum"
       },
       "traits": {}
     },
-    "com.ovh.domain#GetDomainServiceNameRulesEmailsObfuscationResponse": {
+    "com.ovh.domain#ListDomainRuleEmailsObfuscationResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.domain#GetDomainServiceNameRulesEmailsObfuscationResponseBodyList",
+          "target": "com.ovh.domain#ListDomainRuleEmailsObfuscationResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -12957,13 +12958,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.domain#GetDomainServiceNameRulesEmailsObfuscation": {
+    "com.ovh.domain#ListDomainRuleEmailsObfuscation": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#GetDomainServiceNameRulesEmailsObfuscationRequest"
+        "target": "com.ovh.domain#ListDomainRuleEmailsObfuscationRequest"
       },
       "output": {
-        "target": "com.ovh.domain#GetDomainServiceNameRulesEmailsObfuscationResponse"
+        "target": "com.ovh.domain#ListDomainRuleEmailsObfuscationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12974,7 +12975,7 @@
         "smithy.api#documentation": "Retrieve emails obfuscation rule"
       }
     },
-    "com.ovh.domain#GetDomainServiceNameRulesOptinRequest": {
+    "com.ovh.domain#ListDomainRuleOptinRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -13019,18 +13020,18 @@
         "smithy.api#documentation": "Fields to display publicly on the Whois"
       }
     },
-    "com.ovh.domain#GetDomainServiceNameRulesOptinResponseBodyList": {
+    "com.ovh.domain#ListDomainRuleOptinResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.domain#DomainRulesOptin"
       },
       "traits": {}
     },
-    "com.ovh.domain#GetDomainServiceNameRulesOptinResponse": {
+    "com.ovh.domain#ListDomainRuleOptinResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.domain#GetDomainServiceNameRulesOptinResponseBodyList",
+          "target": "com.ovh.domain#ListDomainRuleOptinResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -13041,13 +13042,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.domain#GetDomainServiceNameRulesOptin": {
+    "com.ovh.domain#ListDomainRuleOptin": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#GetDomainServiceNameRulesOptinRequest"
+        "target": "com.ovh.domain#ListDomainRuleOptinRequest"
       },
       "output": {
-        "target": "com.ovh.domain#GetDomainServiceNameRulesOptinResponse"
+        "target": "com.ovh.domain#ListDomainRuleOptinResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -13058,7 +13059,7 @@
         "smithy.api#documentation": "Retrieve optin rule"
       }
     },
-    "com.ovh.domain#GetDomainServiceNameServiceInfosRequest": {
+    "com.ovh.domain#GetDomainServiceInfosRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -13074,10 +13075,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#GetDomainServiceNameServiceInfos": {
+    "com.ovh.domain#GetDomainServiceInfos": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#GetDomainServiceNameServiceInfosRequest"
+        "target": "com.ovh.domain#GetDomainServiceInfosRequest"
       },
       "output": {
         "target": "com.ovh.domain#ServicesService"
@@ -13091,7 +13092,7 @@
         "smithy.api#documentation": "Get service information"
       }
     },
-    "com.ovh.domain#PutDomainServiceNameServiceInfosRequest": {
+    "com.ovh.domain#PutDomainServiceInfosRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -13114,10 +13115,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#PutDomainServiceNameServiceInfos": {
+    "com.ovh.domain#PutDomainServiceInfos": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#PutDomainServiceNameServiceInfosRequest"
+        "target": "com.ovh.domain#PutDomainServiceInfosRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -13131,7 +13132,7 @@
         "smithy.api#documentation": "Update service information"
       }
     },
-    "com.ovh.domain#GetDomainServiceNameTaskRequest": {
+    "com.ovh.domain#ListDomainTaskRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -13168,18 +13169,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#GetDomainServiceNameTaskResponseBodyList": {
+    "com.ovh.domain#ListDomainTaskResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.domain#GetDomainServiceNameTaskResponse": {
+    "com.ovh.domain#ListDomainTaskResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.domain#GetDomainServiceNameTaskResponseBodyList",
+          "target": "com.ovh.domain#ListDomainTaskResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -13190,13 +13191,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.domain#GetDomainServiceNameTask": {
+    "com.ovh.domain#ListDomainTask": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#GetDomainServiceNameTaskRequest"
+        "target": "com.ovh.domain#ListDomainTaskRequest"
       },
       "output": {
-        "target": "com.ovh.domain#GetDomainServiceNameTaskResponse"
+        "target": "com.ovh.domain#ListDomainTaskResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -13207,7 +13208,7 @@
         "smithy.api#documentation": "List all domain tasks"
       }
     },
-    "com.ovh.domain#GetDomainServiceNameTaskIdRequest": {
+    "com.ovh.domain#GetDomainTaskRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -13231,10 +13232,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#GetDomainServiceNameTaskId": {
+    "com.ovh.domain#GetDomainTask": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#GetDomainServiceNameTaskIdRequest"
+        "target": "com.ovh.domain#GetDomainTaskRequest"
       },
       "output": {
         "target": "com.ovh.domain#DomainTask"
@@ -13248,7 +13249,7 @@
         "smithy.api#documentation": "Get details about a domain task"
       }
     },
-    "com.ovh.domain#PostDomainServiceNameTaskIdAccelerateRequest": {
+    "com.ovh.domain#CreateDomainTaskAccelerateRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -13272,10 +13273,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#PostDomainServiceNameTaskIdAccelerate": {
+    "com.ovh.domain#CreateDomainTaskAccelerate": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#PostDomainServiceNameTaskIdAccelerateRequest"
+        "target": "com.ovh.domain#CreateDomainTaskAccelerateRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -13289,7 +13290,7 @@
         "smithy.api#documentation": "Accelerate the task"
       }
     },
-    "com.ovh.domain#PostDomainServiceNameTaskIdCancelRequest": {
+    "com.ovh.domain#CancelDomainTaskRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -13313,10 +13314,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#PostDomainServiceNameTaskIdCancel": {
+    "com.ovh.domain#CancelDomainTask": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#PostDomainServiceNameTaskIdCancelRequest"
+        "target": "com.ovh.domain#CancelDomainTaskRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -13330,7 +13331,7 @@
         "smithy.api#documentation": "Cancel the task"
       }
     },
-    "com.ovh.domain#PostDomainServiceNameTaskIdRelaunchRequest": {
+    "com.ovh.domain#CreateDomainTaskRelaunchRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -13354,10 +13355,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#PostDomainServiceNameTaskIdRelaunch": {
+    "com.ovh.domain#CreateDomainTaskRelaunch": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#PostDomainServiceNameTaskIdRelaunchRequest"
+        "target": "com.ovh.domain#CreateDomainTaskRelaunchRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -13371,7 +13372,7 @@
         "smithy.api#documentation": "Relaunch the task"
       }
     },
-    "com.ovh.domain#PostDomainServiceNameUkOutgoingTransferRequest": {
+    "com.ovh.domain#CreateDomainUkOutgoingTransferRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -13394,10 +13395,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.domain#PostDomainServiceNameUkOutgoingTransfer": {
+    "com.ovh.domain#CreateDomainUkOutgoingTransfer": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#PostDomainServiceNameUkOutgoingTransferRequest"
+        "target": "com.ovh.domain#CreateDomainUkOutgoingTransferRequest"
       },
       "output": {
         "target": "com.ovh.domain#DomainTask"
@@ -13411,7 +13412,7 @@
         "smithy.api#documentation": "Schedule an outgoing transfer task for this domain (.uk only)"
       }
     },
-    "com.ovh.domain#GetDomainServiceNameUkRegistrarsRequest": {
+    "com.ovh.domain#ListDomainUkRegistrarsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -13448,18 +13449,18 @@
         "smithy.api#documentation": "Representation of a UK Registrar (used for outgoing transfer)"
       }
     },
-    "com.ovh.domain#GetDomainServiceNameUkRegistrarsResponseBodyList": {
+    "com.ovh.domain#ListDomainUkRegistrarsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.domain#DomainUkRegistrar"
       },
       "traits": {}
     },
-    "com.ovh.domain#GetDomainServiceNameUkRegistrarsResponse": {
+    "com.ovh.domain#ListDomainUkRegistrarsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.domain#GetDomainServiceNameUkRegistrarsResponseBodyList",
+          "target": "com.ovh.domain#ListDomainUkRegistrarsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -13470,13 +13471,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.domain#GetDomainServiceNameUkRegistrars": {
+    "com.ovh.domain#ListDomainUkRegistrars": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.domain#GetDomainServiceNameUkRegistrarsRequest"
+        "target": "com.ovh.domain#ListDomainUkRegistrarsRequest"
       },
       "output": {
-        "target": "com.ovh.domain#GetDomainServiceNameUkRegistrarsResponse"
+        "target": "com.ovh.domain#ListDomainUkRegistrarsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -13498,7 +13499,7 @@
           "target": "com.ovh.domain#GetDomainConfigurationRule"
         },
         {
-          "target": "com.ovh.domain#PostDomainConfigurationRuleCheck"
+          "target": "com.ovh.domain#CheckDomainConfigurationRule"
         },
         {
           "target": "com.ovh.domain#GetContacts"
@@ -13516,40 +13517,40 @@
           "target": "com.ovh.domain#GetDomainDataClaimNotice"
         },
         {
+          "target": "com.ovh.domain#ListDomainDataSmd"
+        },
+        {
+          "target": "com.ovh.domain#CreateDomainDataSmd"
+        },
+        {
           "target": "com.ovh.domain#GetDomainDataSmd"
         },
         {
-          "target": "com.ovh.domain#PostDomainDataSmd"
+          "target": "com.ovh.domain#PutDomainDataSmd"
         },
         {
-          "target": "com.ovh.domain#GetDomainDataSmdSmdId"
+          "target": "com.ovh.domain#DeleteDomainDataSmd"
         },
         {
-          "target": "com.ovh.domain#PutDomainDataSmdSmdId"
+          "target": "com.ovh.domain#ListDomainExtensions"
         },
         {
-          "target": "com.ovh.domain#DeleteDomainDataSmdSmdId"
+          "target": "com.ovh.domain#ListDomainExtensionByCategory"
         },
         {
-          "target": "com.ovh.domain#GetDomainExtensions"
+          "target": "com.ovh.domain#ListDomainExtensionHighlighted"
         },
         {
-          "target": "com.ovh.domain#GetDomainExtensionsByCategory"
+          "target": "com.ovh.domain#ListDomainExtensionPricingAttributes"
         },
         {
-          "target": "com.ovh.domain#GetDomainExtensionsHighlighted"
+          "target": "com.ovh.domain#GetDomainExtension"
         },
         {
-          "target": "com.ovh.domain#GetDomainExtensionsPricingAttributes"
+          "target": "com.ovh.domain#GetDomainExtensionRegistryConfigurations"
         },
         {
-          "target": "com.ovh.domain#GetDomainExtensionsName"
-        },
-        {
-          "target": "com.ovh.domain#GetDomainExtensionsNameRegistryConfigurations"
-        },
-        {
-          "target": "com.ovh.domain#PostDomainOrderCreate"
+          "target": "com.ovh.domain#CreateDomainOrder"
         },
         {
           "target": "com.ovh.domain#GetZones"
@@ -13558,13 +13559,13 @@
           "target": "com.ovh.domain#GetZone"
         },
         {
-          "target": "com.ovh.domain#GetDomainZoneZoneNameCapabilities"
+          "target": "com.ovh.domain#GetDomainZoneCapabilities"
         },
         {
-          "target": "com.ovh.domain#PostDomainZoneZoneNameChangeContact"
+          "target": "com.ovh.domain#CreateDomainZoneChangeContact"
         },
         {
-          "target": "com.ovh.domain#PostDomainZoneZoneNameConfirmTermination"
+          "target": "com.ovh.domain#ConfirmDomainZoneTermination"
         },
         {
           "target": "com.ovh.domain#GetDNSSECStatus"
@@ -13609,31 +13610,31 @@
           "target": "com.ovh.domain#DeleteDynHostRecord"
         },
         {
-          "target": "com.ovh.domain#GetDomainZoneZoneNameExport"
+          "target": "com.ovh.domain#GetDomainZoneExport"
         },
         {
-          "target": "com.ovh.domain#GetDomainZoneZoneNameHistory"
+          "target": "com.ovh.domain#ListDomainZoneHistory"
         },
         {
-          "target": "com.ovh.domain#GetDomainZoneZoneNameHistoryCreationDate"
+          "target": "com.ovh.domain#GetDomainZoneHistory"
         },
         {
-          "target": "com.ovh.domain#PostDomainZoneZoneNameHistoryCreationDateRestore"
+          "target": "com.ovh.domain#RestoreDomainZoneHistory"
         },
         {
-          "target": "com.ovh.domain#PostDomainZoneZoneNameImport"
+          "target": "com.ovh.domain#ImportDomainZone"
         },
         {
-          "target": "com.ovh.domain#GetDomainZoneZoneNameOption"
+          "target": "com.ovh.domain#ListDomainZoneOption"
         },
         {
-          "target": "com.ovh.domain#GetDomainZoneZoneNameOptionName"
+          "target": "com.ovh.domain#GetDomainZoneOption"
         },
         {
-          "target": "com.ovh.domain#GetDomainZoneZoneNameOptionNameServiceInfos"
+          "target": "com.ovh.domain#GetDomainZoneOptionServiceInfos"
         },
         {
-          "target": "com.ovh.domain#PutDomainZoneZoneNameOptionNameServiceInfos"
+          "target": "com.ovh.domain#PutDomainZoneOptionServiceInfos"
         },
         {
           "target": "com.ovh.domain#GetRecords"
@@ -13669,40 +13670,40 @@
           "target": "com.ovh.domain#RefreshZone"
         },
         {
-          "target": "com.ovh.domain#PostDomainZoneZoneNameReset"
+          "target": "com.ovh.domain#ResetDomainZone"
         },
         {
-          "target": "com.ovh.domain#GetDomainZoneZoneNameServiceInfos"
+          "target": "com.ovh.domain#GetDomainZoneServiceInfos"
         },
         {
-          "target": "com.ovh.domain#PutDomainZoneZoneNameServiceInfos"
+          "target": "com.ovh.domain#PutDomainZoneServiceInfos"
         },
         {
-          "target": "com.ovh.domain#GetDomainZoneZoneNameSoa"
+          "target": "com.ovh.domain#GetDomainZoneSoa"
         },
         {
-          "target": "com.ovh.domain#PutDomainZoneZoneNameSoa"
+          "target": "com.ovh.domain#PutDomainZoneSoa"
         },
         {
-          "target": "com.ovh.domain#GetDomainZoneZoneNameStatus"
+          "target": "com.ovh.domain#ListDomainZoneStatus"
         },
         {
-          "target": "com.ovh.domain#GetDomainZoneZoneNameTask"
+          "target": "com.ovh.domain#ListDomainZoneTask"
         },
         {
-          "target": "com.ovh.domain#GetDomainZoneZoneNameTaskId"
+          "target": "com.ovh.domain#GetDomainZoneTask"
         },
         {
-          "target": "com.ovh.domain#PostDomainZoneZoneNameTaskIdAccelerate"
+          "target": "com.ovh.domain#CreateDomainZoneTaskAccelerate"
         },
         {
-          "target": "com.ovh.domain#PostDomainZoneZoneNameTaskIdCancel"
+          "target": "com.ovh.domain#CancelDomainZoneTask"
         },
         {
-          "target": "com.ovh.domain#PostDomainZoneZoneNameTaskIdRelaunch"
+          "target": "com.ovh.domain#CreateDomainZoneTaskRelaunch"
         },
         {
-          "target": "com.ovh.domain#PostDomainZoneZoneNameTerminate"
+          "target": "com.ovh.domain#TerminateDomainZone"
         },
         {
           "target": "com.ovh.domain#GetDomain"
@@ -13711,121 +13712,121 @@
           "target": "com.ovh.domain#EditDomain"
         },
         {
-          "target": "com.ovh.domain#GetDomainServiceNameAuthInfo"
+          "target": "com.ovh.domain#GetDomainAuthInfo"
         },
         {
-          "target": "com.ovh.domain#PostDomainServiceNameChangeContact"
+          "target": "com.ovh.domain#CreateDomainChangeContact"
         },
         {
-          "target": "com.ovh.domain#GetDomainServiceNameConfigurationsData"
+          "target": "com.ovh.domain#GetDomainConfigurationData"
         },
         {
-          "target": "com.ovh.domain#PutDomainServiceNameConfigurationsData"
+          "target": "com.ovh.domain#PutDomainConfigurationData"
         },
         {
-          "target": "com.ovh.domain#GetDomainServiceNameConfigurationsObfuscatedEmails"
+          "target": "com.ovh.domain#ListDomainConfigurationObfuscatedEmails"
         },
         {
-          "target": "com.ovh.domain#PutDomainServiceNameConfigurationsObfuscatedEmails"
+          "target": "com.ovh.domain#PutDomainConfigurationObfuscatedEmails"
         },
         {
-          "target": "com.ovh.domain#PostDomainServiceNameConfigurationsObfuscatedEmailsRefresh"
+          "target": "com.ovh.domain#RefreshDomainConfigurationsObfuscatedEmail"
         },
         {
-          "target": "com.ovh.domain#GetDomainServiceNameConfigurationsOptin"
+          "target": "com.ovh.domain#ListDomainConfigurationOptin"
         },
         {
-          "target": "com.ovh.domain#PutDomainServiceNameConfigurationsOptin"
+          "target": "com.ovh.domain#PutDomainConfigurationOptin"
         },
         {
-          "target": "com.ovh.domain#GetDomainServiceNameDsRecord"
+          "target": "com.ovh.domain#ListDomainDsRecord"
         },
         {
-          "target": "com.ovh.domain#PostDomainServiceNameDsRecord"
+          "target": "com.ovh.domain#CreateDomainDsRecord"
         },
         {
-          "target": "com.ovh.domain#GetDomainServiceNameDsRecordId"
+          "target": "com.ovh.domain#GetDomainDsRecord"
         },
         {
-          "target": "com.ovh.domain#GetDomainServiceNameGlueRecord"
+          "target": "com.ovh.domain#ListDomainGlueRecord"
         },
         {
-          "target": "com.ovh.domain#PostDomainServiceNameGlueRecord"
+          "target": "com.ovh.domain#CreateDomainGlueRecord"
         },
         {
-          "target": "com.ovh.domain#GetDomainServiceNameGlueRecordHost"
+          "target": "com.ovh.domain#GetDomainGlueRecord"
         },
         {
-          "target": "com.ovh.domain#DeleteDomainServiceNameGlueRecordHost"
+          "target": "com.ovh.domain#DeleteDomainGlueRecord"
         },
         {
-          "target": "com.ovh.domain#PostDomainServiceNameGlueRecordHostUpdate"
+          "target": "com.ovh.domain#UpdateDomainGlueRecord"
         },
         {
-          "target": "com.ovh.domain#GetDomainServiceNameNameServer"
+          "target": "com.ovh.domain#ListDomainNameServer"
         },
         {
-          "target": "com.ovh.domain#PostDomainServiceNameNameServer"
+          "target": "com.ovh.domain#CreateDomainNameServer"
         },
         {
-          "target": "com.ovh.domain#GetDomainServiceNameNameServerId"
+          "target": "com.ovh.domain#GetDomainNameServer"
         },
         {
-          "target": "com.ovh.domain#DeleteDomainServiceNameNameServerId"
+          "target": "com.ovh.domain#DeleteDomainNameServer"
         },
         {
-          "target": "com.ovh.domain#GetDomainServiceNameNameServerIdStatus"
+          "target": "com.ovh.domain#GetDomainNameServerStatus"
         },
         {
-          "target": "com.ovh.domain#PostDomainServiceNameNameServersUpdate"
+          "target": "com.ovh.domain#UpdateDomainNameServer"
         },
         {
-          "target": "com.ovh.domain#GetDomainServiceNameOption"
+          "target": "com.ovh.domain#ListDomainOption"
         },
         {
-          "target": "com.ovh.domain#GetDomainServiceNameOptionOption"
+          "target": "com.ovh.domain#GetDomainOption"
         },
         {
-          "target": "com.ovh.domain#DeleteDomainServiceNameOptionOption"
+          "target": "com.ovh.domain#DeleteDomainOption"
         },
         {
-          "target": "com.ovh.domain#GetDomainServiceNameOptions"
+          "target": "com.ovh.domain#GetDomainOptions"
         },
         {
-          "target": "com.ovh.domain#PostDomainServiceNameOutgoingTransferApprove"
+          "target": "com.ovh.domain#ApproveDomainOutgoingTransfer"
         },
         {
-          "target": "com.ovh.domain#GetDomainServiceNameRulesEmailsObfuscation"
+          "target": "com.ovh.domain#ListDomainRuleEmailsObfuscation"
         },
         {
-          "target": "com.ovh.domain#GetDomainServiceNameRulesOptin"
+          "target": "com.ovh.domain#ListDomainRuleOptin"
         },
         {
-          "target": "com.ovh.domain#GetDomainServiceNameServiceInfos"
+          "target": "com.ovh.domain#GetDomainServiceInfos"
         },
         {
-          "target": "com.ovh.domain#PutDomainServiceNameServiceInfos"
+          "target": "com.ovh.domain#PutDomainServiceInfos"
         },
         {
-          "target": "com.ovh.domain#GetDomainServiceNameTask"
+          "target": "com.ovh.domain#ListDomainTask"
         },
         {
-          "target": "com.ovh.domain#GetDomainServiceNameTaskId"
+          "target": "com.ovh.domain#GetDomainTask"
         },
         {
-          "target": "com.ovh.domain#PostDomainServiceNameTaskIdAccelerate"
+          "target": "com.ovh.domain#CreateDomainTaskAccelerate"
         },
         {
-          "target": "com.ovh.domain#PostDomainServiceNameTaskIdCancel"
+          "target": "com.ovh.domain#CancelDomainTask"
         },
         {
-          "target": "com.ovh.domain#PostDomainServiceNameTaskIdRelaunch"
+          "target": "com.ovh.domain#CreateDomainTaskRelaunch"
         },
         {
-          "target": "com.ovh.domain#PostDomainServiceNameUkOutgoingTransfer"
+          "target": "com.ovh.domain#CreateDomainUkOutgoingTransfer"
         },
         {
-          "target": "com.ovh.domain#GetDomainServiceNameUkRegistrars"
+          "target": "com.ovh.domain#ListDomainUkRegistrars"
         }
       ],
       "traits": {

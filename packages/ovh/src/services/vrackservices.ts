@@ -31,145 +31,23 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
-export interface GetVrackServicesReferenceCompatibleManagedServiceTypeRequest {
-  /** Pagination cursor */
-  xPaginationCursor?: string;
-  /** Pagination size */
-  xPaginationSize?: number;
+export interface GetVrackServiceResourceRequest {
+  /** Vrack services ID */
+  vrackServicesId: string;
 }
-export const GetVrackServicesReferenceCompatibleManagedServiceTypeRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      xPaginationCursor: S.optional(
-        S.String.pipe(T.Header("X-Pagination-Cursor")),
-      ),
-      xPaginationSize: S.optional(S.Number.pipe(T.Header("X-Pagination-Size"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/vrackServices/reference/compatibleManagedServiceType",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetVrackServicesReferenceCompatibleManagedServiceTypeRequest",
-  }) as any as S.Schema<GetVrackServicesReferenceCompatibleManagedServiceTypeRequest>;
-
-export type GetVrackServicesReferenceCompatibleManagedServiceTypeResponseBodyList =
-  Array<string>;
-export const GetVrackServicesReferenceCompatibleManagedServiceTypeResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetVrackServicesReferenceCompatibleManagedServiceTypeResponseBodyList>;
-
-export type GetVrackServicesReferenceCompatibleManagedServiceTypeResponse =
-  GetVrackServicesReferenceCompatibleManagedServiceTypeResponseBodyList;
-export const GetVrackServicesReferenceCompatibleManagedServiceTypeResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetVrackServicesReferenceCompatibleManagedServiceTypeResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetVrackServicesReferenceCompatibleManagedServiceTypeResponse",
-  }) as any as S.Schema<GetVrackServicesReferenceCompatibleManagedServiceTypeResponse>;
-
-export interface GetVrackServicesReferenceRegionRequest {
-  /** Pagination cursor */
-  xPaginationCursor?: string;
-  /** Pagination size */
-  xPaginationSize?: number;
-}
-export const GetVrackServicesReferenceRegionRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      xPaginationCursor: S.optional(
-        S.String.pipe(T.Header("X-Pagination-Cursor")),
-      ),
-      xPaginationSize: S.optional(S.Number.pipe(T.Header("X-Pagination-Size"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/vrackServices/reference/region",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "GetVrackServicesReferenceRegionRequest",
-}) as any as S.Schema<GetVrackServicesReferenceRegionRequest>;
-
-/** A vRack Services compatible localization */
-export interface VrackServicesRegion {
-  /** Region name */
-  name?: string;
-}
-export const VrackServicesRegion = /*@__PURE__*/ S.suspend(() =>
+export const GetVrackServiceResourceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: S.optional(S.String),
-  }),
+    vrackServicesId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/vrackServices/resource/{vrackServicesId}",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "VrackServicesRegion",
-}) as any as S.Schema<VrackServicesRegion>;
-
-export type GetVrackServicesReferenceRegionResponseBodyList =
-  Array<VrackServicesRegion>;
-export const GetVrackServicesReferenceRegionResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    VrackServicesRegion,
-  ) as any as S.Schema<GetVrackServicesReferenceRegionResponseBodyList>;
-
-export type GetVrackServicesReferenceRegionResponse =
-  GetVrackServicesReferenceRegionResponseBodyList;
-export const GetVrackServicesReferenceRegionResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    GetVrackServicesReferenceRegionResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetVrackServicesReferenceRegionResponse",
-}) as any as S.Schema<GetVrackServicesReferenceRegionResponse>;
-
-/** Resource tag filter */
-export interface IamResourceTagFilterInput {}
-export const IamResourceTagFilterInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "IamResourceTagFilterInput",
-}) as any as S.Schema<IamResourceTagFilterInput>;
-
-export type GetVrackServicesResourceRequestIamTagsValueList =
-  Array<IamResourceTagFilterInput>;
-export const GetVrackServicesResourceRequestIamTagsValueList =
-  /*@__PURE__*/ S.Array(
-    IamResourceTagFilterInput,
-  ) as any as S.Schema<GetVrackServicesResourceRequestIamTagsValueList>;
-
-export type GetVrackServicesResourceRequestIamTagsMap = {
-  [key: string]: GetVrackServicesResourceRequestIamTagsValueList | undefined;
-};
-export const GetVrackServicesResourceRequestIamTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  GetVrackServicesResourceRequestIamTagsValueList,
-) as any as S.Schema<GetVrackServicesResourceRequestIamTagsMap>;
-
-export interface GetVrackServicesResourceRequest {
-  /** Filter resources on IAM tags */
-  iamTags?: GetVrackServicesResourceRequestIamTagsMap;
-  /** Pagination cursor */
-  xPaginationCursor?: string;
-  /** Pagination size */
-  xPaginationSize?: number;
-}
-export const GetVrackServicesResourceRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    iamTags: S.optional(
-      GetVrackServicesResourceRequestIamTagsMap.pipe(T.Query()),
-    ),
-    xPaginationCursor: S.optional(
-      S.String.pipe(T.Header("X-Pagination-Cursor")),
-    ),
-    xPaginationSize: S.optional(S.Number.pipe(T.Header("X-Pagination-Size"))),
-  }).pipe(T.Http({ method: "GET", uri: "/vrackServices/resource", code: 200 })),
-).annotate({
-  identifier: "GetVrackServicesResourceRequest",
-}) as any as S.Schema<GetVrackServicesResourceRequest>;
+  identifier: "GetVrackServiceResourceRequest",
+}) as any as S.Schema<GetVrackServiceResourceRequest>;
 
 /** ProductStatusEnum */
 export type VrackServicesProductStatusEnum = "ACTIVE" | "DRAFT" | "SUSPENDED";
@@ -495,138 +373,26 @@ export const VrackServicesVrackServicesWithIAM = /*@__PURE__*/ S.suspend(() =>
   identifier: "VrackServicesVrackServicesWithIAM",
 }) as any as S.Schema<VrackServicesVrackServicesWithIAM>;
 
-export type GetVrackServicesResourceResponseBodyList =
-  Array<VrackServicesVrackServicesWithIAM>;
-export const GetVrackServicesResourceResponseBodyList = /*@__PURE__*/ S.Array(
-  VrackServicesVrackServicesWithIAM,
-) as any as S.Schema<GetVrackServicesResourceResponseBodyList>;
-
-export type GetVrackServicesResourceResponse =
-  GetVrackServicesResourceResponseBodyList;
-export const GetVrackServicesResourceResponse = /*@__PURE__*/ S.suspend(() =>
-  GetVrackServicesResourceResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetVrackServicesResourceResponse",
-}) as any as S.Schema<GetVrackServicesResourceResponse>;
-
-export interface GetVrackServicesResourceVrackServicesIdRequest {
+export interface GetVrackServiceResourceTaskRequest {
   /** Vrack services ID */
   vrackServicesId: string;
+  /** Task ID */
+  taskId: string;
 }
-export const GetVrackServicesResourceVrackServicesIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      vrackServicesId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/vrackServices/resource/{vrackServicesId}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetVrackServicesResourceVrackServicesIdRequest",
-  }) as any as S.Schema<GetVrackServicesResourceVrackServicesIdRequest>;
-
-export interface GetVrackServicesResourceVrackServicesIdEligibleManagedServiceRequest {
-  /** Vrack services ID */
-  vrackServicesId: string;
-  /** Pagination cursor */
-  xPaginationCursor?: string;
-  /** Pagination size */
-  xPaginationSize?: number;
-}
-export const GetVrackServicesResourceVrackServicesIdEligibleManagedServiceRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      vrackServicesId: S.String.pipe(T.Label()),
-      xPaginationCursor: S.optional(
-        S.String.pipe(T.Header("X-Pagination-Cursor")),
-      ),
-      xPaginationSize: S.optional(S.Number.pipe(T.Header("X-Pagination-Size"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/vrackServices/resource/{vrackServicesId}/eligibleManagedService",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "GetVrackServicesResourceVrackServicesIdEligibleManagedServiceRequest",
-  }) as any as S.Schema<GetVrackServicesResourceVrackServicesIdEligibleManagedServiceRequest>;
-
-/** List of IAM resource URNs */
-export type VrackServicesEligibleManagedServiceManagedServiceURNsList =
-  Array<string>;
-export const VrackServicesEligibleManagedServiceManagedServiceURNsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<VrackServicesEligibleManagedServiceManagedServiceURNsList>;
-
-/** List of managed services eligible to the requested vRack Services */
-export interface VrackServicesEligibleManagedService {
-  /** IAM resource type. Compatible managed service types are listed by /reference/compatibleManagedServiceType call. */
-  managedServiceType?: string;
-  /** List of IAM resource URNs */
-  managedServiceURNs?: VrackServicesEligibleManagedServiceManagedServiceURNsList;
-}
-export const VrackServicesEligibleManagedService = /*@__PURE__*/ S.suspend(() =>
+export const GetVrackServiceResourceTaskRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    managedServiceType: S.optional(S.String),
-    managedServiceURNs: S.optional(
-      VrackServicesEligibleManagedServiceManagedServiceURNsList,
-    ),
-  }),
+    vrackServicesId: S.String.pipe(T.Label()),
+    taskId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/vrackServices/resource/{vrackServicesId}/task/{taskId}",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "VrackServicesEligibleManagedService",
-}) as any as S.Schema<VrackServicesEligibleManagedService>;
-
-export type GetVrackServicesResourceVrackServicesIdEligibleManagedServiceResponseBodyList =
-  Array<VrackServicesEligibleManagedService>;
-export const GetVrackServicesResourceVrackServicesIdEligibleManagedServiceResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    VrackServicesEligibleManagedService,
-  ) as any as S.Schema<GetVrackServicesResourceVrackServicesIdEligibleManagedServiceResponseBodyList>;
-
-export type GetVrackServicesResourceVrackServicesIdEligibleManagedServiceResponse =
-  GetVrackServicesResourceVrackServicesIdEligibleManagedServiceResponseBodyList;
-export const GetVrackServicesResourceVrackServicesIdEligibleManagedServiceResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetVrackServicesResourceVrackServicesIdEligibleManagedServiceResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier:
-      "GetVrackServicesResourceVrackServicesIdEligibleManagedServiceResponse",
-  }) as any as S.Schema<GetVrackServicesResourceVrackServicesIdEligibleManagedServiceResponse>;
-
-export interface GetVrackServicesResourceVrackServicesIdTaskRequest {
-  /** Vrack services ID */
-  vrackServicesId: string;
-  /** Pagination cursor */
-  xPaginationCursor?: string;
-  /** Pagination size */
-  xPaginationSize?: number;
-}
-export const GetVrackServicesResourceVrackServicesIdTaskRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      vrackServicesId: S.String.pipe(T.Label()),
-      xPaginationCursor: S.optional(
-        S.String.pipe(T.Header("X-Pagination-Cursor")),
-      ),
-      xPaginationSize: S.optional(S.Number.pipe(T.Header("X-Pagination-Size"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/vrackServices/resource/{vrackServicesId}/task",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetVrackServicesResourceVrackServicesIdTaskRequest",
-  }) as any as S.Schema<GetVrackServicesResourceVrackServicesIdTaskRequest>;
+  identifier: "GetVrackServiceResourceTaskRequest",
+}) as any as S.Schema<GetVrackServiceResourceTaskRequest>;
 
 /** Errors that occured on the task */
 export interface CommonTaskError {
@@ -719,47 +485,272 @@ export const CommonTask = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "CommonTask" }) as any as S.Schema<CommonTask>;
 
-export type GetVrackServicesResourceVrackServicesIdTaskResponseBodyList =
-  Array<CommonTask>;
-export const GetVrackServicesResourceVrackServicesIdTaskResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    CommonTask,
-  ) as any as S.Schema<GetVrackServicesResourceVrackServicesIdTaskResponseBodyList>;
-
-export type GetVrackServicesResourceVrackServicesIdTaskResponse =
-  GetVrackServicesResourceVrackServicesIdTaskResponseBodyList;
-export const GetVrackServicesResourceVrackServicesIdTaskResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetVrackServicesResourceVrackServicesIdTaskResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetVrackServicesResourceVrackServicesIdTaskResponse",
-  }) as any as S.Schema<GetVrackServicesResourceVrackServicesIdTaskResponse>;
-
-export interface GetVrackServicesResourceVrackServicesIdTaskTaskIdRequest {
-  /** Vrack services ID */
-  vrackServicesId: string;
-  /** Task ID */
-  taskId: string;
+export interface ListVrackServiceReferenceCompatibleManagedServiceTypeRequest {
+  /** Pagination cursor */
+  xPaginationCursor?: string;
+  /** Pagination size */
+  xPaginationSize?: number;
 }
-export const GetVrackServicesResourceVrackServicesIdTaskTaskIdRequest =
+export const ListVrackServiceReferenceCompatibleManagedServiceTypeRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      vrackServicesId: S.String.pipe(T.Label()),
-      taskId: S.String.pipe(T.Label()),
+      xPaginationCursor: S.optional(
+        S.String.pipe(T.Header("X-Pagination-Cursor")),
+      ),
+      xPaginationSize: S.optional(S.Number.pipe(T.Header("X-Pagination-Size"))),
     }).pipe(
       T.Http({
         method: "GET",
-        uri: "/vrackServices/resource/{vrackServicesId}/task/{taskId}",
+        uri: "/vrackServices/reference/compatibleManagedServiceType",
         code: 200,
       }),
     ),
   ).annotate({
-    identifier: "GetVrackServicesResourceVrackServicesIdTaskTaskIdRequest",
-  }) as any as S.Schema<GetVrackServicesResourceVrackServicesIdTaskTaskIdRequest>;
+    identifier: "ListVrackServiceReferenceCompatibleManagedServiceTypeRequest",
+  }) as any as S.Schema<ListVrackServiceReferenceCompatibleManagedServiceTypeRequest>;
 
-export interface PutVrackServicesResourceVrackServicesIdRequest {
+export type ListVrackServiceReferenceCompatibleManagedServiceTypeResponseBodyList =
+  Array<string>;
+export const ListVrackServiceReferenceCompatibleManagedServiceTypeResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListVrackServiceReferenceCompatibleManagedServiceTypeResponseBodyList>;
+
+export type ListVrackServiceReferenceCompatibleManagedServiceTypeResponse =
+  ListVrackServiceReferenceCompatibleManagedServiceTypeResponseBodyList;
+export const ListVrackServiceReferenceCompatibleManagedServiceTypeResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListVrackServiceReferenceCompatibleManagedServiceTypeResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListVrackServiceReferenceCompatibleManagedServiceTypeResponse",
+  }) as any as S.Schema<ListVrackServiceReferenceCompatibleManagedServiceTypeResponse>;
+
+export interface ListVrackServiceReferenceRegionRequest {
+  /** Pagination cursor */
+  xPaginationCursor?: string;
+  /** Pagination size */
+  xPaginationSize?: number;
+}
+export const ListVrackServiceReferenceRegionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      xPaginationCursor: S.optional(
+        S.String.pipe(T.Header("X-Pagination-Cursor")),
+      ),
+      xPaginationSize: S.optional(S.Number.pipe(T.Header("X-Pagination-Size"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/vrackServices/reference/region",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ListVrackServiceReferenceRegionRequest",
+}) as any as S.Schema<ListVrackServiceReferenceRegionRequest>;
+
+/** A vRack Services compatible localization */
+export interface VrackServicesRegion {
+  /** Region name */
+  name?: string;
+}
+export const VrackServicesRegion = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "VrackServicesRegion",
+}) as any as S.Schema<VrackServicesRegion>;
+
+export type ListVrackServiceReferenceRegionResponseBodyList =
+  Array<VrackServicesRegion>;
+export const ListVrackServiceReferenceRegionResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    VrackServicesRegion,
+  ) as any as S.Schema<ListVrackServiceReferenceRegionResponseBodyList>;
+
+export type ListVrackServiceReferenceRegionResponse =
+  ListVrackServiceReferenceRegionResponseBodyList;
+export const ListVrackServiceReferenceRegionResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    ListVrackServiceReferenceRegionResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListVrackServiceReferenceRegionResponse",
+}) as any as S.Schema<ListVrackServiceReferenceRegionResponse>;
+
+/** Resource tag filter */
+export interface IamResourceTagFilterInput {}
+export const IamResourceTagFilterInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "IamResourceTagFilterInput",
+}) as any as S.Schema<IamResourceTagFilterInput>;
+
+export type ListVrackServiceResourceRequestIamTagsValueList =
+  Array<IamResourceTagFilterInput>;
+export const ListVrackServiceResourceRequestIamTagsValueList =
+  /*@__PURE__*/ S.Array(
+    IamResourceTagFilterInput,
+  ) as any as S.Schema<ListVrackServiceResourceRequestIamTagsValueList>;
+
+export type ListVrackServiceResourceRequestIamTagsMap = {
+  [key: string]: ListVrackServiceResourceRequestIamTagsValueList | undefined;
+};
+export const ListVrackServiceResourceRequestIamTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  ListVrackServiceResourceRequestIamTagsValueList,
+) as any as S.Schema<ListVrackServiceResourceRequestIamTagsMap>;
+
+export interface ListVrackServiceResourceRequest {
+  /** Filter resources on IAM tags */
+  iamTags?: ListVrackServiceResourceRequestIamTagsMap;
+  /** Pagination cursor */
+  xPaginationCursor?: string;
+  /** Pagination size */
+  xPaginationSize?: number;
+}
+export const ListVrackServiceResourceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    iamTags: S.optional(
+      ListVrackServiceResourceRequestIamTagsMap.pipe(T.Query()),
+    ),
+    xPaginationCursor: S.optional(
+      S.String.pipe(T.Header("X-Pagination-Cursor")),
+    ),
+    xPaginationSize: S.optional(S.Number.pipe(T.Header("X-Pagination-Size"))),
+  }).pipe(T.Http({ method: "GET", uri: "/vrackServices/resource", code: 200 })),
+).annotate({
+  identifier: "ListVrackServiceResourceRequest",
+}) as any as S.Schema<ListVrackServiceResourceRequest>;
+
+export type ListVrackServiceResourceResponseBodyList =
+  Array<VrackServicesVrackServicesWithIAM>;
+export const ListVrackServiceResourceResponseBodyList = /*@__PURE__*/ S.Array(
+  VrackServicesVrackServicesWithIAM,
+) as any as S.Schema<ListVrackServiceResourceResponseBodyList>;
+
+export type ListVrackServiceResourceResponse =
+  ListVrackServiceResourceResponseBodyList;
+export const ListVrackServiceResourceResponse = /*@__PURE__*/ S.suspend(() =>
+  ListVrackServiceResourceResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListVrackServiceResourceResponse",
+}) as any as S.Schema<ListVrackServiceResourceResponse>;
+
+export interface ListVrackServiceResourceEligibleManagedServiceRequest {
+  /** Vrack services ID */
+  vrackServicesId: string;
+  /** Pagination cursor */
+  xPaginationCursor?: string;
+  /** Pagination size */
+  xPaginationSize?: number;
+}
+export const ListVrackServiceResourceEligibleManagedServiceRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      vrackServicesId: S.String.pipe(T.Label()),
+      xPaginationCursor: S.optional(
+        S.String.pipe(T.Header("X-Pagination-Cursor")),
+      ),
+      xPaginationSize: S.optional(S.Number.pipe(T.Header("X-Pagination-Size"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/vrackServices/resource/{vrackServicesId}/eligibleManagedService",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ListVrackServiceResourceEligibleManagedServiceRequest",
+  }) as any as S.Schema<ListVrackServiceResourceEligibleManagedServiceRequest>;
+
+/** List of IAM resource URNs */
+export type VrackServicesEligibleManagedServiceManagedServiceURNsList =
+  Array<string>;
+export const VrackServicesEligibleManagedServiceManagedServiceURNsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<VrackServicesEligibleManagedServiceManagedServiceURNsList>;
+
+/** List of managed services eligible to the requested vRack Services */
+export interface VrackServicesEligibleManagedService {
+  /** IAM resource type. Compatible managed service types are listed by /reference/compatibleManagedServiceType call. */
+  managedServiceType?: string;
+  /** List of IAM resource URNs */
+  managedServiceURNs?: VrackServicesEligibleManagedServiceManagedServiceURNsList;
+}
+export const VrackServicesEligibleManagedService = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    managedServiceType: S.optional(S.String),
+    managedServiceURNs: S.optional(
+      VrackServicesEligibleManagedServiceManagedServiceURNsList,
+    ),
+  }),
+).annotate({
+  identifier: "VrackServicesEligibleManagedService",
+}) as any as S.Schema<VrackServicesEligibleManagedService>;
+
+export type ListVrackServiceResourceEligibleManagedServiceResponseBodyList =
+  Array<VrackServicesEligibleManagedService>;
+export const ListVrackServiceResourceEligibleManagedServiceResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    VrackServicesEligibleManagedService,
+  ) as any as S.Schema<ListVrackServiceResourceEligibleManagedServiceResponseBodyList>;
+
+export type ListVrackServiceResourceEligibleManagedServiceResponse =
+  ListVrackServiceResourceEligibleManagedServiceResponseBodyList;
+export const ListVrackServiceResourceEligibleManagedServiceResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListVrackServiceResourceEligibleManagedServiceResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListVrackServiceResourceEligibleManagedServiceResponse",
+  }) as any as S.Schema<ListVrackServiceResourceEligibleManagedServiceResponse>;
+
+export interface ListVrackServiceResourceTaskRequest {
+  /** Vrack services ID */
+  vrackServicesId: string;
+  /** Pagination cursor */
+  xPaginationCursor?: string;
+  /** Pagination size */
+  xPaginationSize?: number;
+}
+export const ListVrackServiceResourceTaskRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    vrackServicesId: S.String.pipe(T.Label()),
+    xPaginationCursor: S.optional(
+      S.String.pipe(T.Header("X-Pagination-Cursor")),
+    ),
+    xPaginationSize: S.optional(S.Number.pipe(T.Header("X-Pagination-Size"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/vrackServices/resource/{vrackServicesId}/task",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListVrackServiceResourceTaskRequest",
+}) as any as S.Schema<ListVrackServiceResourceTaskRequest>;
+
+export type ListVrackServiceResourceTaskResponseBodyList = Array<CommonTask>;
+export const ListVrackServiceResourceTaskResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    CommonTask,
+  ) as any as S.Schema<ListVrackServiceResourceTaskResponseBodyList>;
+
+export type ListVrackServiceResourceTaskResponse =
+  ListVrackServiceResourceTaskResponseBodyList;
+export const ListVrackServiceResourceTaskResponse = /*@__PURE__*/ S.suspend(
+  () => ListVrackServiceResourceTaskResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListVrackServiceResourceTaskResponse",
+}) as any as S.Schema<ListVrackServiceResourceTaskResponse>;
+
+export interface PutVrackServiceResourceRequest {
   /** Vrack services ID */
   vrackServicesId: string;
   /** Computed hash used to control concurrent modification requests. Here, it represents the target specification value the request is based on */
@@ -767,22 +758,21 @@ export interface PutVrackServicesResourceVrackServicesIdRequest {
   /** Requested target specification */
   targetSpec: VrackServicesVrackServicesTargetSpec;
 }
-export const PutVrackServicesResourceVrackServicesIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      vrackServicesId: S.String.pipe(T.Label()),
-      checksum: S.String,
-      targetSpec: VrackServicesVrackServicesTargetSpec,
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/vrackServices/resource/{vrackServicesId}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PutVrackServicesResourceVrackServicesIdRequest",
-  }) as any as S.Schema<PutVrackServicesResourceVrackServicesIdRequest>;
+export const PutVrackServiceResourceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    vrackServicesId: S.String.pipe(T.Label()),
+    checksum: S.String,
+    targetSpec: VrackServicesVrackServicesTargetSpec,
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/vrackServices/resource/{vrackServicesId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "PutVrackServiceResourceRequest",
+}) as any as S.Schema<PutVrackServiceResourceRequest>;
 
 /** Asynchronous operations ongoing on the vRack Services */
 export type VrackServicesVrackServicesCurrentTasksList =
@@ -827,129 +817,121 @@ export const VrackServicesVrackServices = /*@__PURE__*/ S.suspend(() =>
   identifier: "VrackServicesVrackServices",
 }) as any as S.Schema<VrackServicesVrackServices>;
 
-export type GetVrackServicesReferenceCompatibleManagedServiceTypeError =
-  OvhOpError;
-/** List all managed service types that are compatible with vRack Services (IAM resource types) The compatible managed service types are represented here by their IAM resource types. */
-export const getVrackServicesReferenceCompatibleManagedServiceType: API.OperationMethod<
-  GetVrackServicesReferenceCompatibleManagedServiceTypeRequest,
-  GetVrackServicesReferenceCompatibleManagedServiceTypeResponse,
-  GetVrackServicesReferenceCompatibleManagedServiceTypeError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetVrackServicesReferenceCompatibleManagedServiceTypeRequest,
-  output: GetVrackServicesReferenceCompatibleManagedServiceTypeResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetVrackServicesReferenceRegionError = OvhOpError;
-/** List all vRack Services regions */
-export const getVrackServicesReferenceRegion: API.OperationMethod<
-  GetVrackServicesReferenceRegionRequest,
-  GetVrackServicesReferenceRegionResponse,
-  GetVrackServicesReferenceRegionError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetVrackServicesReferenceRegionRequest,
-  output: GetVrackServicesReferenceRegionResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetVrackServicesResourceError = OvhOpError;
-/** List all vRack Services */
-export const getVrackServicesResource: API.OperationMethod<
-  GetVrackServicesResourceRequest,
-  GetVrackServicesResourceResponse,
-  GetVrackServicesResourceError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetVrackServicesResourceRequest,
-  output: GetVrackServicesResourceResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetVrackServicesResourceVrackServicesIdError =
-  | NotFound
-  | OvhOpError;
+export type GetVrackServiceResourceError = NotFound | OvhOpError;
 /** Retrieve a vRack Services */
-export const getVrackServicesResourceVrackServicesId: API.OperationMethod<
-  GetVrackServicesResourceVrackServicesIdRequest,
+export const getVrackServiceResource: API.OperationMethod<
+  GetVrackServiceResourceRequest,
   VrackServicesVrackServicesWithIAM,
-  GetVrackServicesResourceVrackServicesIdError,
+  GetVrackServiceResourceError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetVrackServicesResourceVrackServicesIdRequest,
+  input: GetVrackServiceResourceRequest,
   output: VrackServicesVrackServicesWithIAM,
   errors: [NotFound, UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetVrackServicesResourceVrackServicesIdEligibleManagedServiceError =
-  OvhOpError;
-/** List every managed service eligible to the requested vRack Services */
-export const getVrackServicesResourceVrackServicesIdEligibleManagedService: API.OperationMethod<
-  GetVrackServicesResourceVrackServicesIdEligibleManagedServiceRequest,
-  GetVrackServicesResourceVrackServicesIdEligibleManagedServiceResponse,
-  GetVrackServicesResourceVrackServicesIdEligibleManagedServiceError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetVrackServicesResourceVrackServicesIdEligibleManagedServiceRequest,
-  output: GetVrackServicesResourceVrackServicesIdEligibleManagedServiceResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetVrackServicesResourceVrackServicesIdTaskError = OvhOpError;
-/** List all asynchronous operations related to the vRack Services */
-export const getVrackServicesResourceVrackServicesIdTask: API.OperationMethod<
-  GetVrackServicesResourceVrackServicesIdTaskRequest,
-  GetVrackServicesResourceVrackServicesIdTaskResponse,
-  GetVrackServicesResourceVrackServicesIdTaskError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetVrackServicesResourceVrackServicesIdTaskRequest,
-  output: GetVrackServicesResourceVrackServicesIdTaskResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetVrackServicesResourceVrackServicesIdTaskTaskIdError =
-  | BadRequest
-  | OvhOpError;
+export type GetVrackServiceResourceTaskError = BadRequest | OvhOpError;
 /** Get the task */
-export const getVrackServicesResourceVrackServicesIdTaskTaskId: API.OperationMethod<
-  GetVrackServicesResourceVrackServicesIdTaskTaskIdRequest,
+export const getVrackServiceResourceTask: API.OperationMethod<
+  GetVrackServiceResourceTaskRequest,
   CommonTask,
-  GetVrackServicesResourceVrackServicesIdTaskTaskIdError,
+  GetVrackServiceResourceTaskError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetVrackServicesResourceVrackServicesIdTaskTaskIdRequest,
+  input: GetVrackServiceResourceTaskRequest,
   output: CommonTask,
   errors: [BadRequest, UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutVrackServicesResourceVrackServicesIdError =
-  | BadRequest
-  | NotFound
-  | OvhOpError;
-/** Request updates on the vRack Services configuration It is the unique route handling any update on the vRack Services configuration. It works as following: 1. You define a new target specification in the request payload, 2. If this specification is validated, you get the resource with updated `targetSpec` and `checksum` values in return, 3. The request is processed by one or several **asynchronous** tasks that aims to reconciliate the `currentState` with the `targetSpec` ### Asynchronous processing * To follow this processing, the VrackServices resource can be polled with `GET /vrackServices/resource/{vrackServicesId}`<br>As soon as its `resourceStatus` is *READY*, the requested specification can be considered as applied to the vRack Services. * The `checksum` helps on detecting concurrency cases on update requests. If the polled `checksum` value differs from the one returned in response of your initial request, it means that processing of your request is completed and another request is being processed. * In case of processing error (i.e. `resourceStatus` in *ERROR*), the current vRack Services configuration is still active, but modification requests will be refused until the intervention of the support. * An overview on the asynchronous task(s) is available via the `currentTasks` attribute.<br>More details on a task are provided by the route `GET /vrackServices/resource/{vrackServicesId}/task/{taskId}` ### Seamless configuration actions The request can combine any of the following seamless actions (meaning there won't be any cut of the service while updating): * create a Subnet * delete a Subnet without any Service Endpoint * update a Subnet: * create one or several Service Endpoints **Note** that a Subnet with several Service Endpoints can be created in the same payload ### Not seamless configuration actions The modification of the Subnet characteristics listed below **WILL** result in a service cut while processing the update as they are interpreted as the deletion of the existing Subnet and creation of a new Subnet with provided characteristics. The IPs that were given to the Managed Services will be reelected and may as a result change: * modifications on the Subnet `ServiceRange` * modifications on the Subnet `Vlan` * modifications on the Subnet `CIDR` The embedded Service Endpoints will be also deleted and re-created which implies a flapping accessibility in the vRack for every related managed services. **Note** that deleting a Subnet will also delete embedded Service Endpoints The `vrackId` is a read-only attribute as the association vRack/vRackServices is handled by the [vRack API](console-preview/?section=%2Fvrack&branch=v1) */
-export const putVrackServicesResourceVrackServicesId: API.OperationMethod<
-  PutVrackServicesResourceVrackServicesIdRequest,
-  VrackServicesVrackServices,
-  PutVrackServicesResourceVrackServicesIdError,
+export type ListVrackServiceReferenceCompatibleManagedServiceTypeError =
+  OvhOpError;
+/** List all managed service types that are compatible with vRack Services (IAM resource types) The compatible managed service types are represented here by their IAM resource types. */
+export const listVrackServiceReferenceCompatibleManagedServiceType: API.OperationMethod<
+  ListVrackServiceReferenceCompatibleManagedServiceTypeRequest,
+  ListVrackServiceReferenceCompatibleManagedServiceTypeResponse,
+  ListVrackServiceReferenceCompatibleManagedServiceTypeError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutVrackServicesResourceVrackServicesIdRequest,
+  input: ListVrackServiceReferenceCompatibleManagedServiceTypeRequest,
+  output: ListVrackServiceReferenceCompatibleManagedServiceTypeResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVrackServiceReferenceRegionError = OvhOpError;
+/** List all vRack Services regions */
+export const listVrackServiceReferenceRegion: API.OperationMethod<
+  ListVrackServiceReferenceRegionRequest,
+  ListVrackServiceReferenceRegionResponse,
+  ListVrackServiceReferenceRegionError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVrackServiceReferenceRegionRequest,
+  output: ListVrackServiceReferenceRegionResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVrackServiceResourceError = OvhOpError;
+/** List all vRack Services */
+export const listVrackServiceResource: API.OperationMethod<
+  ListVrackServiceResourceRequest,
+  ListVrackServiceResourceResponse,
+  ListVrackServiceResourceError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVrackServiceResourceRequest,
+  output: ListVrackServiceResourceResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVrackServiceResourceEligibleManagedServiceError = OvhOpError;
+/** List every managed service eligible to the requested vRack Services */
+export const listVrackServiceResourceEligibleManagedService: API.OperationMethod<
+  ListVrackServiceResourceEligibleManagedServiceRequest,
+  ListVrackServiceResourceEligibleManagedServiceResponse,
+  ListVrackServiceResourceEligibleManagedServiceError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVrackServiceResourceEligibleManagedServiceRequest,
+  output: ListVrackServiceResourceEligibleManagedServiceResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVrackServiceResourceTaskError = OvhOpError;
+/** List all asynchronous operations related to the vRack Services */
+export const listVrackServiceResourceTask: API.OperationMethod<
+  ListVrackServiceResourceTaskRequest,
+  ListVrackServiceResourceTaskResponse,
+  ListVrackServiceResourceTaskError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVrackServiceResourceTaskRequest,
+  output: ListVrackServiceResourceTaskResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutVrackServiceResourceError = BadRequest | NotFound | OvhOpError;
+/** Request updates on the vRack Services configuration It is the unique route handling any update on the vRack Services configuration. It works as following: 1. You define a new target specification in the request payload, 2. If this specification is validated, you get the resource with updated `targetSpec` and `checksum` values in return, 3. The request is processed by one or several **asynchronous** tasks that aims to reconciliate the `currentState` with the `targetSpec` ### Asynchronous processing * To follow this processing, the VrackServices resource can be polled with `GET /vrackServices/resource/{vrackServicesId}`<br>As soon as its `resourceStatus` is *READY*, the requested specification can be considered as applied to the vRack Services. * The `checksum` helps on detecting concurrency cases on update requests. If the polled `checksum` value differs from the one returned in response of your initial request, it means that processing of your request is completed and another request is being processed. * In case of processing error (i.e. `resourceStatus` in *ERROR*), the current vRack Services configuration is still active, but modification requests will be refused until the intervention of the support. * An overview on the asynchronous task(s) is available via the `currentTasks` attribute.<br>More details on a task are provided by the route `GET /vrackServices/resource/{vrackServicesId}/task/{taskId}` ### Seamless configuration actions The request can combine any of the following seamless actions (meaning there won't be any cut of the service while updating): * create a Subnet * delete a Subnet without any Service Endpoint * update a Subnet: * create one or several Service Endpoints **Note** that a Subnet with several Service Endpoints can be created in the same payload ### Not seamless configuration actions The modification of the Subnet characteristics listed below **WILL** result in a service cut while processing the update as they are interpreted as the deletion of the existing Subnet and creation of a new Subnet with provided characteristics. The IPs that were given to the Managed Services will be reelected and may as a result change: * modifications on the Subnet `ServiceRange` * modifications on the Subnet `Vlan` * modifications on the Subnet `CIDR` The embedded Service Endpoints will be also deleted and re-created which implies a flapping accessibility in the vRack for every related managed services. **Note** that deleting a Subnet will also delete embedded Service Endpoints The `vrackId` is a read-only attribute as the association vRack/vRackServices is handled by the [vRack API](console-preview/?section=%2Fvrack&branch=v1) */
+export const putVrackServiceResource: API.OperationMethod<
+  PutVrackServiceResourceRequest,
+  VrackServicesVrackServices,
+  PutVrackServiceResourceError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutVrackServiceResourceRequest,
   output: VrackServicesVrackServices,
   errors: [BadRequest, NotFound, UnknownOvhError],
   protocol: OvhProtocol,

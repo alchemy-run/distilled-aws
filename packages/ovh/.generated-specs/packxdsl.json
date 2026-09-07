@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.ovh.packxdsl#IamResourceTagFilterInput": {
@@ -24,28 +25,28 @@
         "smithy.api#documentation": "Resource tag filter"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslRequestIamTagsValueList": {
+    "com.ovh.packxdsl#ListPackXdslRequestIamTagsValueList": {
       "type": "list",
       "member": {
         "target": "com.ovh.packxdsl#IamResourceTagFilterInput"
       },
       "traits": {}
     },
-    "com.ovh.packxdsl#GetPackXdslRequestIamTagsMap": {
+    "com.ovh.packxdsl#ListPackXdslRequestIamTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "com.ovh.packxdsl#GetPackXdslRequestIamTagsValueList"
+        "target": "com.ovh.packxdsl#ListPackXdslRequestIamTagsValueList"
       },
       "traits": {}
     },
-    "com.ovh.packxdsl#GetPackXdslRequest": {
+    "com.ovh.packxdsl#ListPackXdslRequest": {
       "type": "structure",
       "members": {
         "iamTags": {
-          "target": "com.ovh.packxdsl#GetPackXdslRequestIamTagsMap",
+          "target": "com.ovh.packxdsl#ListPackXdslRequestIamTagsMap",
           "traits": {
             "smithy.api#httpQuery": "iamTags",
             "smithy.api#documentation": "Filter resources on IAM tags"
@@ -56,18 +57,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdslResponseBodyList": {
+    "com.ovh.packxdsl#ListPackXdslResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.packxdsl#GetPackXdslResponse": {
+    "com.ovh.packxdsl#ListPackXdslResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.packxdsl#GetPackXdslResponseBodyList",
+          "target": "com.ovh.packxdsl#ListPackXdslResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -78,13 +79,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdsl": {
+    "com.ovh.packxdsl#ListPackXdsl": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#GetPackXdslRequest"
+        "target": "com.ovh.packxdsl#ListPackXdslRequest"
       },
       "output": {
-        "target": "com.ovh.packxdsl#GetPackXdslResponse"
+        "target": "com.ovh.packxdsl#ListPackXdslResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -95,7 +96,7 @@
         "smithy.api#documentation": "List available services"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslSearchRequest": {
+    "com.ovh.packxdsl#ListPackXdslSearchRequest": {
       "type": "structure",
       "members": {
         "pattern": {
@@ -187,18 +188,18 @@
         "smithy.api#documentation": "Possible DSL technologies"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslSearchResponseBodyList": {
+    "com.ovh.packxdsl#ListPackXdslSearchResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.packxdsl#PackXdslPackDetail"
       },
       "traits": {}
     },
-    "com.ovh.packxdsl#GetPackXdslSearchResponse": {
+    "com.ovh.packxdsl#ListPackXdslSearchResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.packxdsl#GetPackXdslSearchResponseBodyList",
+          "target": "com.ovh.packxdsl#ListPackXdslSearchResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -209,13 +210,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdslSearch": {
+    "com.ovh.packxdsl#ListPackXdslSearch": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#GetPackXdslSearchRequest"
+        "target": "com.ovh.packxdsl#ListPackXdslSearchRequest"
       },
       "output": {
-        "target": "com.ovh.packxdsl#GetPackXdslSearchResponse"
+        "target": "com.ovh.packxdsl#ListPackXdslSearchResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -226,7 +227,7 @@
         "smithy.api#documentation": "Get the list of pack linked to the pattern"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameRequest": {
+    "com.ovh.packxdsl#GetPackXdslRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -473,10 +474,10 @@
       },
       "traits": {}
     },
-    "com.ovh.packxdsl#GetPackXdslPackName": {
+    "com.ovh.packxdsl#GetPackXdsl": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameRequest"
+        "target": "com.ovh.packxdsl#GetPackXdslRequest"
       },
       "output": {
         "target": "com.ovh.packxdsl#PackXdslPackAdslWithIAM"
@@ -490,7 +491,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.packxdsl#PutPackXdslPackNameRequest": {
+    "com.ovh.packxdsl#PutPackXdslRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -513,10 +514,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.packxdsl#PutPackXdslPackName": {
+    "com.ovh.packxdsl#PutPackXdsl": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#PutPackXdslPackNameRequest"
+        "target": "com.ovh.packxdsl#PutPackXdslRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -669,7 +670,7 @@
         "smithy.api#documentation": "Option of Offer"
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameAddressMoveMoveOfferRequestOptionsList": {
+    "com.ovh.packxdsl#MovePackXdslAddressMoveOfferRequestOptionsList": {
       "type": "list",
       "member": {
         "target": "com.ovh.packxdsl#PackXdslMigrationOfferOption"
@@ -862,7 +863,7 @@
         "smithy.api#documentation": "Service name"
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameAddressMoveMoveOfferRequestSubServicesToDeleteList": {
+    "com.ovh.packxdsl#MovePackXdslAddressMoveOfferRequestSubServicesToDeleteList": {
       "type": "list",
       "member": {
         "target": "com.ovh.packxdsl#PackXdslMigrationOfferServiceToDelete"
@@ -891,7 +892,7 @@
         "smithy.api#documentation": "Option of Offer"
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameAddressMoveMoveOfferRequestSubServicesToKeepList": {
+    "com.ovh.packxdsl#MovePackXdslAddressMoveOfferRequestSubServicesToKeepList": {
       "type": "list",
       "member": {
         "target": "com.ovh.packxdsl#PackXdslMigrationOfferServiceToKeep"
@@ -900,7 +901,7 @@
         "smithy.api#documentation": "List of domains of services to keep if needed"
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameAddressMoveMoveOfferRequest": {
+    "com.ovh.packxdsl#MovePackXdslAddressMoveOfferRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -1019,7 +1020,7 @@
           }
         },
         "options": {
-          "target": "com.ovh.packxdsl#PostPackXdslPackNameAddressMoveMoveOfferRequestOptionsList",
+          "target": "com.ovh.packxdsl#MovePackXdslAddressMoveOfferRequestOptionsList",
           "traits": {
             "smithy.api#documentation": "Options wanted in the new offer"
           }
@@ -1057,13 +1058,13 @@
           }
         },
         "subServicesToDelete": {
-          "target": "com.ovh.packxdsl#PostPackXdslPackNameAddressMoveMoveOfferRequestSubServicesToDeleteList",
+          "target": "com.ovh.packxdsl#MovePackXdslAddressMoveOfferRequestSubServicesToDeleteList",
           "traits": {
             "smithy.api#documentation": "List of domains of services to delete if needed"
           }
         },
         "subServicesToKeep": {
-          "target": "com.ovh.packxdsl#PostPackXdslPackNameAddressMoveMoveOfferRequestSubServicesToKeepList",
+          "target": "com.ovh.packxdsl#MovePackXdslAddressMoveOfferRequestSubServicesToKeepList",
           "traits": {
             "smithy.api#documentation": "List of domains of services to keep if needed"
           }
@@ -1123,10 +1124,10 @@
         "smithy.api#documentation": "AsyncTask status"
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameAddressMoveMoveOffer": {
+    "com.ovh.packxdsl#MovePackXdslAddressMoveOffer": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#PostPackXdslPackNameAddressMoveMoveOfferRequest"
+        "target": "com.ovh.packxdsl#MovePackXdslAddressMoveOfferRequest"
       },
       "output": {
         "target": "com.ovh.packxdsl#PackXdslAsyncTaskLong"
@@ -1140,7 +1141,7 @@
         "smithy.api#documentation": "Move the access to another address"
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameAddressMoveOffersRequest": {
+    "com.ovh.packxdsl#CreatePackXdslAddressMoveOfferRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -1735,10 +1736,10 @@
         "smithy.api#documentation": "Array of offers"
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameAddressMoveOffers": {
+    "com.ovh.packxdsl#CreatePackXdslAddressMoveOffer": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#PostPackXdslPackNameAddressMoveOffersRequest"
+        "target": "com.ovh.packxdsl#CreatePackXdslAddressMoveOfferRequest"
       },
       "output": {
         "target": "com.ovh.packxdsl#PackXdslAsyncTaskPackXdslAddressMoveMoveOfferResponse"
@@ -1752,7 +1753,7 @@
         "smithy.api#documentation": "Get the possibilities of address move offers available"
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameAddressMoveServicesToDeleteUnpackTermsRequestOptionsList": {
+    "com.ovh.packxdsl#CreatePackXdslAddressMoveServicesToDeleteUnpackTermRequestOptionsList": {
       "type": "list",
       "member": {
         "target": "com.ovh.packxdsl#PackXdslMigrationOfferOption"
@@ -1761,7 +1762,7 @@
         "smithy.api#documentation": "Options wanted in the new offer"
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameAddressMoveServicesToDeleteUnpackTermsRequest": {
+    "com.ovh.packxdsl#CreatePackXdslAddressMoveServicesToDeleteUnpackTermRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -1787,7 +1788,7 @@
           }
         },
         "options": {
-          "target": "com.ovh.packxdsl#PostPackXdslPackNameAddressMoveServicesToDeleteUnpackTermsRequestOptionsList",
+          "target": "com.ovh.packxdsl#CreatePackXdslAddressMoveServicesToDeleteUnpackTermRequestOptionsList",
           "traits": {
             "smithy.api#documentation": "Options wanted in the new offer"
           }
@@ -1870,18 +1871,18 @@
         "smithy.api#documentation": "List of domains of sub services with unpack terms"
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameAddressMoveServicesToDeleteUnpackTermsResponseBodyList": {
+    "com.ovh.packxdsl#CreatePackXdslAddressMoveServicesToDeleteUnpackTermResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.packxdsl#PackXdslMigrationSubServicesDetailsToDelete"
       },
       "traits": {}
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameAddressMoveServicesToDeleteUnpackTermsResponse": {
+    "com.ovh.packxdsl#CreatePackXdslAddressMoveServicesToDeleteUnpackTermResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.packxdsl#PostPackXdslPackNameAddressMoveServicesToDeleteUnpackTermsResponseBodyList",
+          "target": "com.ovh.packxdsl#CreatePackXdslAddressMoveServicesToDeleteUnpackTermResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1892,13 +1893,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameAddressMoveServicesToDeleteUnpackTerms": {
+    "com.ovh.packxdsl#CreatePackXdslAddressMoveServicesToDeleteUnpackTerm": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#PostPackXdslPackNameAddressMoveServicesToDeleteUnpackTermsRequest"
+        "target": "com.ovh.packxdsl#CreatePackXdslAddressMoveServicesToDeleteUnpackTermRequest"
       },
       "output": {
-        "target": "com.ovh.packxdsl#PostPackXdslPackNameAddressMoveServicesToDeleteUnpackTermsResponse"
+        "target": "com.ovh.packxdsl#CreatePackXdslAddressMoveServicesToDeleteUnpackTermResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1909,7 +1910,7 @@
         "smithy.api#documentation": "Calculate services to delete with unpack terms for new offer and options"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameCanCancelResiliationRequest": {
+    "com.ovh.packxdsl#GetPackXdslCanCancelResiliationRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -1925,7 +1926,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameCanCancelResiliationResponse": {
+    "com.ovh.packxdsl#GetPackXdslCanCancelResiliationResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -1940,13 +1941,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameCanCancelResiliation": {
+    "com.ovh.packxdsl#GetPackXdslCanCancelResiliation": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameCanCancelResiliationRequest"
+        "target": "com.ovh.packxdsl#GetPackXdslCanCancelResiliationRequest"
       },
       "output": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameCanCancelResiliationResponse"
+        "target": "com.ovh.packxdsl#GetPackXdslCanCancelResiliationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1957,7 +1958,7 @@
         "smithy.api#documentation": "Check if the resiliation can be cancelled"
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameCancelResiliationRequest": {
+    "com.ovh.packxdsl#CancelPackXdslResiliationRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -1973,10 +1974,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameCancelResiliation": {
+    "com.ovh.packxdsl#CancelPackXdslResiliation": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#PostPackXdslPackNameCancelResiliationRequest"
+        "target": "com.ovh.packxdsl#CancelPackXdslResiliationRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1990,7 +1991,7 @@
         "smithy.api#documentation": "Cancel the ongoing resiliation"
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameChangeContactRequest": {
+    "com.ovh.packxdsl#CreatePackXdslChangeContactRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -2024,18 +2025,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameChangeContactResponseBodyList": {
+    "com.ovh.packxdsl#CreatePackXdslChangeContactResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameChangeContactResponse": {
+    "com.ovh.packxdsl#CreatePackXdslChangeContactResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.packxdsl#PostPackXdslPackNameChangeContactResponseBodyList",
+          "target": "com.ovh.packxdsl#CreatePackXdslChangeContactResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -2046,13 +2047,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameChangeContact": {
+    "com.ovh.packxdsl#CreatePackXdslChangeContact": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#PostPackXdslPackNameChangeContactRequest"
+        "target": "com.ovh.packxdsl#CreatePackXdslChangeContactRequest"
       },
       "output": {
-        "target": "com.ovh.packxdsl#PostPackXdslPackNameChangeContactResponse"
+        "target": "com.ovh.packxdsl#CreatePackXdslChangeContactResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2063,7 +2064,7 @@
         "smithy.api#documentation": "Launch a contact change procedure"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameContactOwnerRequest": {
+    "com.ovh.packxdsl#GetPackXdslContactOwnerRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -3687,10 +3688,10 @@
         "smithy.api#documentation": "Countries a nichandle can choose"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameContactOwner": {
+    "com.ovh.packxdsl#GetPackXdslContactOwner": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameContactOwnerRequest"
+        "target": "com.ovh.packxdsl#GetPackXdslContactOwnerRequest"
       },
       "output": {
         "target": "com.ovh.packxdsl#PackXdslContactInfos"
@@ -3704,7 +3705,7 @@
         "smithy.api#documentation": "Get contact infos about the owner"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameDomainOptionsTldsRequest": {
+    "com.ovh.packxdsl#ListPackXdslDomainOptionTldsRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -3720,18 +3721,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameDomainOptionsTldsResponseBodyList": {
+    "com.ovh.packxdsl#ListPackXdslDomainOptionTldsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameDomainOptionsTldsResponse": {
+    "com.ovh.packxdsl#ListPackXdslDomainOptionTldsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameDomainOptionsTldsResponseBodyList",
+          "target": "com.ovh.packxdsl#ListPackXdslDomainOptionTldsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -3742,13 +3743,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameDomainOptionsTlds": {
+    "com.ovh.packxdsl#ListPackXdslDomainOptionTlds": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameDomainOptionsTldsRequest"
+        "target": "com.ovh.packxdsl#ListPackXdslDomainOptionTldsRequest"
       },
       "output": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameDomainOptionsTldsResponse"
+        "target": "com.ovh.packxdsl#ListPackXdslDomainOptionTldsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3759,7 +3760,7 @@
         "smithy.api#documentation": "Get the available tlds for domain order"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameDomainServicesRequest": {
+    "com.ovh.packxdsl#ListPackXdslDomainServicesRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -3775,18 +3776,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameDomainServicesResponseBodyList": {
+    "com.ovh.packxdsl#ListPackXdslDomainServicesResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameDomainServicesResponse": {
+    "com.ovh.packxdsl#ListPackXdslDomainServicesResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameDomainServicesResponseBodyList",
+          "target": "com.ovh.packxdsl#ListPackXdslDomainServicesResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -3797,13 +3798,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameDomainServices": {
+    "com.ovh.packxdsl#ListPackXdslDomainServices": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameDomainServicesRequest"
+        "target": "com.ovh.packxdsl#ListPackXdslDomainServicesRequest"
       },
       "output": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameDomainServicesResponse"
+        "target": "com.ovh.packxdsl#ListPackXdslDomainServicesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3840,7 +3841,7 @@
         "smithy.api#documentation": "Domain action"
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameDomainServicesRequest": {
+    "com.ovh.packxdsl#CreatePackXdslDomainServiceRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -3947,10 +3948,10 @@
         "smithy.api#documentation": "Status of a task."
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameDomainServices": {
+    "com.ovh.packxdsl#CreatePackXdslDomainService": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#PostPackXdslPackNameDomainServicesRequest"
+        "target": "com.ovh.packxdsl#CreatePackXdslDomainServiceRequest"
       },
       "output": {
         "target": "com.ovh.packxdsl#PackXdslTask"
@@ -3964,7 +3965,7 @@
         "smithy.api#documentation": "Activate a domain service"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameEmailProOptionsDomainsRequest": {
+    "com.ovh.packxdsl#ListPackXdslEmailProOptionDomainsRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -3980,18 +3981,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameEmailProOptionsDomainsResponseBodyList": {
+    "com.ovh.packxdsl#ListPackXdslEmailProOptionDomainsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameEmailProOptionsDomainsResponse": {
+    "com.ovh.packxdsl#ListPackXdslEmailProOptionDomainsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameEmailProOptionsDomainsResponseBodyList",
+          "target": "com.ovh.packxdsl#ListPackXdslEmailProOptionDomainsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -4002,13 +4003,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameEmailProOptionsDomains": {
+    "com.ovh.packxdsl#ListPackXdslEmailProOptionDomains": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameEmailProOptionsDomainsRequest"
+        "target": "com.ovh.packxdsl#ListPackXdslEmailProOptionDomainsRequest"
       },
       "output": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameEmailProOptionsDomainsResponse"
+        "target": "com.ovh.packxdsl#ListPackXdslEmailProOptionDomainsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4019,7 +4020,7 @@
         "smithy.api#documentation": "List the available domains for the Email Pro service"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameEmailProOptionsIsEmailAvailableRequest": {
+    "com.ovh.packxdsl#GetPackXdslEmailProOptionIsEmailAvailableRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -4043,7 +4044,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameEmailProOptionsIsEmailAvailableResponse": {
+    "com.ovh.packxdsl#GetPackXdslEmailProOptionIsEmailAvailableResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -4058,13 +4059,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameEmailProOptionsIsEmailAvailable": {
+    "com.ovh.packxdsl#GetPackXdslEmailProOptionIsEmailAvailable": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameEmailProOptionsIsEmailAvailableRequest"
+        "target": "com.ovh.packxdsl#GetPackXdslEmailProOptionIsEmailAvailableRequest"
       },
       "output": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameEmailProOptionsIsEmailAvailableResponse"
+        "target": "com.ovh.packxdsl#GetPackXdslEmailProOptionIsEmailAvailableResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4075,7 +4076,7 @@
         "smithy.api#documentation": "Check if the given email address is available for an Email Pro activation"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameEmailProServicesRequest": {
+    "com.ovh.packxdsl#ListPackXdslEmailProServicesRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -4091,18 +4092,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameEmailProServicesResponseBodyList": {
+    "com.ovh.packxdsl#ListPackXdslEmailProServicesResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameEmailProServicesResponse": {
+    "com.ovh.packxdsl#ListPackXdslEmailProServicesResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameEmailProServicesResponseBodyList",
+          "target": "com.ovh.packxdsl#ListPackXdslEmailProServicesResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -4113,13 +4114,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameEmailProServices": {
+    "com.ovh.packxdsl#ListPackXdslEmailProServices": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameEmailProServicesRequest"
+        "target": "com.ovh.packxdsl#ListPackXdslEmailProServicesRequest"
       },
       "output": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameEmailProServicesResponse"
+        "target": "com.ovh.packxdsl#ListPackXdslEmailProServicesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4130,7 +4131,7 @@
         "smithy.api#documentation": "List the Email Pro services"
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameEmailProServicesRequest": {
+    "com.ovh.packxdsl#CreatePackXdslEmailProServiceRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -4161,10 +4162,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameEmailProServices": {
+    "com.ovh.packxdsl#CreatePackXdslEmailProService": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#PostPackXdslPackNameEmailProServicesRequest"
+        "target": "com.ovh.packxdsl#CreatePackXdslEmailProServiceRequest"
       },
       "output": {
         "target": "com.ovh.packxdsl#PackXdslTask"
@@ -4178,7 +4179,7 @@
         "smithy.api#documentation": "Activate an Email Pro service"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameExchangeAccountServicesRequest": {
+    "com.ovh.packxdsl#ListPackXdslExchangeAccountServicesRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -4194,18 +4195,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameExchangeAccountServicesResponseBodyList": {
+    "com.ovh.packxdsl#ListPackXdslExchangeAccountServicesResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameExchangeAccountServicesResponse": {
+    "com.ovh.packxdsl#ListPackXdslExchangeAccountServicesResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameExchangeAccountServicesResponseBodyList",
+          "target": "com.ovh.packxdsl#ListPackXdslExchangeAccountServicesResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -4216,13 +4217,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameExchangeAccountServices": {
+    "com.ovh.packxdsl#ListPackXdslExchangeAccountServices": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameExchangeAccountServicesRequest"
+        "target": "com.ovh.packxdsl#ListPackXdslExchangeAccountServicesRequest"
       },
       "output": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameExchangeAccountServicesResponse"
+        "target": "com.ovh.packxdsl#ListPackXdslExchangeAccountServicesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4233,7 +4234,7 @@
         "smithy.api#documentation": "Exchange 2013 services"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameExchangeAccountServicesDomainRequest": {
+    "com.ovh.packxdsl#GetPackXdslExchangeAccountServiceRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -4273,10 +4274,10 @@
         "smithy.api#documentation": "Exchange 2013 service"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameExchangeAccountServicesDomain": {
+    "com.ovh.packxdsl#GetPackXdslExchangeAccountService": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameExchangeAccountServicesDomainRequest"
+        "target": "com.ovh.packxdsl#GetPackXdslExchangeAccountServiceRequest"
       },
       "output": {
         "target": "com.ovh.packxdsl#PackXdslExchangeAccountService"
@@ -4290,7 +4291,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameExchangeIndividualOptionsDomainsRequest": {
+    "com.ovh.packxdsl#ListPackXdslExchangeIndividualOptionDomainsRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -4306,18 +4307,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameExchangeIndividualOptionsDomainsResponseBodyList": {
+    "com.ovh.packxdsl#ListPackXdslExchangeIndividualOptionDomainsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameExchangeIndividualOptionsDomainsResponse": {
+    "com.ovh.packxdsl#ListPackXdslExchangeIndividualOptionDomainsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameExchangeIndividualOptionsDomainsResponseBodyList",
+          "target": "com.ovh.packxdsl#ListPackXdslExchangeIndividualOptionDomainsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -4328,13 +4329,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameExchangeIndividualOptionsDomains": {
+    "com.ovh.packxdsl#ListPackXdslExchangeIndividualOptionDomains": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameExchangeIndividualOptionsDomainsRequest"
+        "target": "com.ovh.packxdsl#ListPackXdslExchangeIndividualOptionDomainsRequest"
       },
       "output": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameExchangeIndividualOptionsDomainsResponse"
+        "target": "com.ovh.packxdsl#ListPackXdslExchangeIndividualOptionDomainsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4345,7 +4346,7 @@
         "smithy.api#documentation": "Get the available domains"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameExchangeIndividualOptionsIsEmailAvailableRequest": {
+    "com.ovh.packxdsl#GetPackXdslExchangeIndividualOptionIsEmailAvailableRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -4369,7 +4370,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameExchangeIndividualOptionsIsEmailAvailableResponse": {
+    "com.ovh.packxdsl#GetPackXdslExchangeIndividualOptionIsEmailAvailableResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -4384,13 +4385,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameExchangeIndividualOptionsIsEmailAvailable": {
+    "com.ovh.packxdsl#GetPackXdslExchangeIndividualOptionIsEmailAvailable": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameExchangeIndividualOptionsIsEmailAvailableRequest"
+        "target": "com.ovh.packxdsl#GetPackXdslExchangeIndividualOptionIsEmailAvailableRequest"
       },
       "output": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameExchangeIndividualOptionsIsEmailAvailableResponse"
+        "target": "com.ovh.packxdsl#GetPackXdslExchangeIndividualOptionIsEmailAvailableResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4401,7 +4402,7 @@
         "smithy.api#documentation": "Check if the email address is available for service creation"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameExchangeOrganizationServicesRequest": {
+    "com.ovh.packxdsl#ListPackXdslExchangeOrganizationServicesRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -4417,18 +4418,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameExchangeOrganizationServicesResponseBodyList": {
+    "com.ovh.packxdsl#ListPackXdslExchangeOrganizationServicesResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameExchangeOrganizationServicesResponse": {
+    "com.ovh.packxdsl#ListPackXdslExchangeOrganizationServicesResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameExchangeOrganizationServicesResponseBodyList",
+          "target": "com.ovh.packxdsl#ListPackXdslExchangeOrganizationServicesResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -4439,13 +4440,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameExchangeOrganizationServices": {
+    "com.ovh.packxdsl#ListPackXdslExchangeOrganizationServices": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameExchangeOrganizationServicesRequest"
+        "target": "com.ovh.packxdsl#ListPackXdslExchangeOrganizationServicesRequest"
       },
       "output": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameExchangeOrganizationServicesResponse"
+        "target": "com.ovh.packxdsl#ListPackXdslExchangeOrganizationServicesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4456,7 +4457,7 @@
         "smithy.api#documentation": "Exchange 2013 organization services"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameHostedEmailOptionsDomainsRequest": {
+    "com.ovh.packxdsl#ListPackXdslHostedEmailOptionDomainsRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -4472,18 +4473,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameHostedEmailOptionsDomainsResponseBodyList": {
+    "com.ovh.packxdsl#ListPackXdslHostedEmailOptionDomainsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameHostedEmailOptionsDomainsResponse": {
+    "com.ovh.packxdsl#ListPackXdslHostedEmailOptionDomainsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameHostedEmailOptionsDomainsResponseBodyList",
+          "target": "com.ovh.packxdsl#ListPackXdslHostedEmailOptionDomainsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -4494,13 +4495,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameHostedEmailOptionsDomains": {
+    "com.ovh.packxdsl#ListPackXdslHostedEmailOptionDomains": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameHostedEmailOptionsDomainsRequest"
+        "target": "com.ovh.packxdsl#ListPackXdslHostedEmailOptionDomainsRequest"
       },
       "output": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameHostedEmailOptionsDomainsResponse"
+        "target": "com.ovh.packxdsl#ListPackXdslHostedEmailOptionDomainsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4511,7 +4512,7 @@
         "smithy.api#documentation": "Get the hostedemail available domains"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameHostedEmailServicesRequest": {
+    "com.ovh.packxdsl#ListPackXdslHostedEmailServicesRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -4527,18 +4528,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameHostedEmailServicesResponseBodyList": {
+    "com.ovh.packxdsl#ListPackXdslHostedEmailServicesResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameHostedEmailServicesResponse": {
+    "com.ovh.packxdsl#ListPackXdslHostedEmailServicesResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameHostedEmailServicesResponseBodyList",
+          "target": "com.ovh.packxdsl#ListPackXdslHostedEmailServicesResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -4549,13 +4550,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameHostedEmailServices": {
+    "com.ovh.packxdsl#ListPackXdslHostedEmailServices": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameHostedEmailServicesRequest"
+        "target": "com.ovh.packxdsl#ListPackXdslHostedEmailServicesRequest"
       },
       "output": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameHostedEmailServicesResponse"
+        "target": "com.ovh.packxdsl#ListPackXdslHostedEmailServicesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4566,7 +4567,7 @@
         "smithy.api#documentation": "Hosted email services"
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameHostedEmailServicesRequest": {
+    "com.ovh.packxdsl#CreatePackXdslHostedEmailServiceRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -4597,10 +4598,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameHostedEmailServices": {
+    "com.ovh.packxdsl#CreatePackXdslHostedEmailService": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#PostPackXdslPackNameHostedEmailServicesRequest"
+        "target": "com.ovh.packxdsl#CreatePackXdslHostedEmailServiceRequest"
       },
       "output": {
         "target": "com.ovh.packxdsl#PackXdslTask"
@@ -4614,7 +4615,7 @@
         "smithy.api#documentation": "Activate an hosted email service"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameHostedEmailServicesDomainRequest": {
+    "com.ovh.packxdsl#GetPackXdslHostedEmailServiceRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -4648,10 +4649,10 @@
         "smithy.api#documentation": "Hosted email services"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameHostedEmailServicesDomain": {
+    "com.ovh.packxdsl#GetPackXdslHostedEmailService": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameHostedEmailServicesDomainRequest"
+        "target": "com.ovh.packxdsl#GetPackXdslHostedEmailServiceRequest"
       },
       "output": {
         "target": "com.ovh.packxdsl#PackXdslHostedEmailService"
@@ -4665,7 +4666,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.packxdsl#DeletePackXdslPackNameHostedEmailServicesDomainRequest": {
+    "com.ovh.packxdsl#DeletePackXdslHostedEmailServiceRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -4688,10 +4689,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.packxdsl#DeletePackXdslPackNameHostedEmailServicesDomain": {
+    "com.ovh.packxdsl#DeletePackXdslHostedEmailService": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#DeletePackXdslPackNameHostedEmailServicesDomainRequest"
+        "target": "com.ovh.packxdsl#DeletePackXdslHostedEmailServiceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4705,7 +4706,7 @@
         "smithy.api#documentation": "Delete hosted email account"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameHostedEmailServicesDomainAccountRequest": {
+    "com.ovh.packxdsl#GetPackXdslHostedEmailServiceAccountRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -4800,10 +4801,10 @@
         "smithy.api#documentation": "A numeric value tagged with its unit"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameHostedEmailServicesDomainAccount": {
+    "com.ovh.packxdsl#GetPackXdslHostedEmailServiceAccount": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameHostedEmailServicesDomainAccountRequest"
+        "target": "com.ovh.packxdsl#GetPackXdslHostedEmailServiceAccountRequest"
       },
       "output": {
         "target": "com.ovh.packxdsl#PackXdslHostedEmailAccount"
@@ -4817,7 +4818,7 @@
         "smithy.api#documentation": "Get hosted email account informations"
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameHostedEmailServicesDomainChangePasswordRequest": {
+    "com.ovh.packxdsl#CreatePackXdslHostedEmailServiceChangePasswordRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -4848,10 +4849,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameHostedEmailServicesDomainChangePassword": {
+    "com.ovh.packxdsl#CreatePackXdslHostedEmailServiceChangePassword": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#PostPackXdslPackNameHostedEmailServicesDomainChangePasswordRequest"
+        "target": "com.ovh.packxdsl#CreatePackXdslHostedEmailServiceChangePasswordRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4865,7 +4866,7 @@
         "smithy.api#documentation": "Change hosted email account password"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameHostedEmailServicesDomainConfigurationRequest": {
+    "com.ovh.packxdsl#ListPackXdslHostedEmailServiceConfigurationRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -5038,10 +5039,10 @@
         "smithy.api#documentation": "Available configuration statuses"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameHostedEmailServicesDomainConfiguration": {
+    "com.ovh.packxdsl#ListPackXdslHostedEmailServiceConfiguration": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameHostedEmailServicesDomainConfigurationRequest"
+        "target": "com.ovh.packxdsl#ListPackXdslHostedEmailServiceConfigurationRequest"
       },
       "output": {
         "target": "com.ovh.packxdsl#PackXdslHostedEmailConfiguration"
@@ -5055,7 +5056,7 @@
         "smithy.api#documentation": "Get hosted email configuration informations"
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameMigrationMigrateRequestOptionsList": {
+    "com.ovh.packxdsl#MigratePackXdslMigrationRequestOptionsList": {
       "type": "list",
       "member": {
         "target": "com.ovh.packxdsl#PackXdslMigrationOfferOption"
@@ -5064,7 +5065,7 @@
         "smithy.api#documentation": "Options wanted in the new offer"
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameMigrationMigrateRequestSubServicesToDeleteList": {
+    "com.ovh.packxdsl#MigratePackXdslMigrationRequestSubServicesToDeleteList": {
       "type": "list",
       "member": {
         "target": "com.ovh.packxdsl#PackXdslMigrationOfferServiceToDelete"
@@ -5073,7 +5074,7 @@
         "smithy.api#documentation": "List of domains of services to delete if needed"
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameMigrationMigrateRequestSubServicesToKeepList": {
+    "com.ovh.packxdsl#MigratePackXdslMigrationRequestSubServicesToKeepList": {
       "type": "list",
       "member": {
         "target": "com.ovh.packxdsl#PackXdslMigrationOfferServiceToKeep"
@@ -5082,7 +5083,7 @@
         "smithy.api#documentation": "List of domains of services to keep if needed"
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameMigrationMigrateRequest": {
+    "com.ovh.packxdsl#MigratePackXdslMigrationRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -5169,7 +5170,7 @@
           }
         },
         "options": {
-          "target": "com.ovh.packxdsl#PostPackXdslPackNameMigrationMigrateRequestOptionsList",
+          "target": "com.ovh.packxdsl#MigratePackXdslMigrationRequestOptionsList",
           "traits": {
             "smithy.api#documentation": "Options wanted in the new offer"
           }
@@ -5199,13 +5200,13 @@
           }
         },
         "subServicesToDelete": {
-          "target": "com.ovh.packxdsl#PostPackXdslPackNameMigrationMigrateRequestSubServicesToDeleteList",
+          "target": "com.ovh.packxdsl#MigratePackXdslMigrationRequestSubServicesToDeleteList",
           "traits": {
             "smithy.api#documentation": "List of domains of services to delete if needed"
           }
         },
         "subServicesToKeep": {
-          "target": "com.ovh.packxdsl#PostPackXdslPackNameMigrationMigrateRequestSubServicesToKeepList",
+          "target": "com.ovh.packxdsl#MigratePackXdslMigrationRequestSubServicesToKeepList",
           "traits": {
             "smithy.api#documentation": "List of domains of services to keep if needed"
           }
@@ -5215,10 +5216,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameMigrationMigrate": {
+    "com.ovh.packxdsl#MigratePackXdslMigration": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#PostPackXdslPackNameMigrationMigrateRequest"
+        "target": "com.ovh.packxdsl#MigratePackXdslMigrationRequest"
       },
       "output": {
         "target": "com.ovh.packxdsl#PackXdslTask"
@@ -5232,7 +5233,7 @@
         "smithy.api#documentation": "Migrate to the selected offer"
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameMigrationOffersRequest": {
+    "com.ovh.packxdsl#CreatePackXdslMigrationOfferRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -5651,10 +5652,10 @@
         "smithy.api#documentation": "Array of offers"
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameMigrationOffers": {
+    "com.ovh.packxdsl#CreatePackXdslMigrationOffer": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#PostPackXdslPackNameMigrationOffersRequest"
+        "target": "com.ovh.packxdsl#CreatePackXdslMigrationOfferRequest"
       },
       "output": {
         "target": "com.ovh.packxdsl#PackXdslAsyncTaskPackXdslMigrationMigrationOfferResponse"
@@ -5668,7 +5669,7 @@
         "smithy.api#documentation": "Get the possibilities of migration offers available"
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameMigrationServicesToDeleteUnpackTermsRequestOptionsList": {
+    "com.ovh.packxdsl#CreatePackXdslMigrationServicesToDeleteUnpackTermRequestOptionsList": {
       "type": "list",
       "member": {
         "target": "com.ovh.packxdsl#PackXdslMigrationOfferOption"
@@ -5677,7 +5678,7 @@
         "smithy.api#documentation": "Options wanted in the new offer"
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameMigrationServicesToDeleteUnpackTermsRequest": {
+    "com.ovh.packxdsl#CreatePackXdslMigrationServicesToDeleteUnpackTermRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -5696,7 +5697,7 @@
           }
         },
         "options": {
-          "target": "com.ovh.packxdsl#PostPackXdslPackNameMigrationServicesToDeleteUnpackTermsRequestOptionsList",
+          "target": "com.ovh.packxdsl#CreatePackXdslMigrationServicesToDeleteUnpackTermRequestOptionsList",
           "traits": {
             "smithy.api#documentation": "Options wanted in the new offer"
           }
@@ -5706,18 +5707,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameMigrationServicesToDeleteUnpackTermsResponseBodyList": {
+    "com.ovh.packxdsl#CreatePackXdslMigrationServicesToDeleteUnpackTermResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.packxdsl#PackXdslMigrationSubServicesDetailsToDelete"
       },
       "traits": {}
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameMigrationServicesToDeleteUnpackTermsResponse": {
+    "com.ovh.packxdsl#CreatePackXdslMigrationServicesToDeleteUnpackTermResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.packxdsl#PostPackXdslPackNameMigrationServicesToDeleteUnpackTermsResponseBodyList",
+          "target": "com.ovh.packxdsl#CreatePackXdslMigrationServicesToDeleteUnpackTermResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -5728,13 +5729,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameMigrationServicesToDeleteUnpackTerms": {
+    "com.ovh.packxdsl#CreatePackXdslMigrationServicesToDeleteUnpackTerm": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#PostPackXdslPackNameMigrationServicesToDeleteUnpackTermsRequest"
+        "target": "com.ovh.packxdsl#CreatePackXdslMigrationServicesToDeleteUnpackTermRequest"
       },
       "output": {
-        "target": "com.ovh.packxdsl#PostPackXdslPackNameMigrationServicesToDeleteUnpackTermsResponse"
+        "target": "com.ovh.packxdsl#CreatePackXdslMigrationServicesToDeleteUnpackTermResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5745,7 +5746,7 @@
         "smithy.api#documentation": "Calculate services to delete with unpack terms for an offer and options"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameOrderFollowUpRequest": {
+    "com.ovh.packxdsl#ListPackXdslOrderFollowUpRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -5815,18 +5816,18 @@
         "smithy.api#documentation": "Additional information about the step"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameOrderFollowUpResponseBodyList": {
+    "com.ovh.packxdsl#ListPackXdslOrderFollowUpResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.packxdsl#PackXdslOrderFollowUpStep"
       },
       "traits": {}
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameOrderFollowUpResponse": {
+    "com.ovh.packxdsl#ListPackXdslOrderFollowUpResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameOrderFollowUpResponseBodyList",
+          "target": "com.ovh.packxdsl#ListPackXdslOrderFollowUpResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -5837,13 +5838,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameOrderFollowUp": {
+    "com.ovh.packxdsl#ListPackXdslOrderFollowUp": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameOrderFollowUpRequest"
+        "target": "com.ovh.packxdsl#ListPackXdslOrderFollowUpRequest"
       },
       "output": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameOrderFollowUpResponse"
+        "target": "com.ovh.packxdsl#ListPackXdslOrderFollowUpResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5854,7 +5855,7 @@
         "smithy.api#documentation": "Returns the list of steps and their status that will be executed to deliver the order"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNamePromotionCodeCapabilitiesRequest": {
+    "com.ovh.packxdsl#ListPackXdslPromotionCodeCapabilitiesRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -5949,10 +5950,10 @@
         "smithy.api#documentation": "Enum of the possible errors"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNamePromotionCodeCapabilities": {
+    "com.ovh.packxdsl#ListPackXdslPromotionCodeCapabilities": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNamePromotionCodeCapabilitiesRequest"
+        "target": "com.ovh.packxdsl#ListPackXdslPromotionCodeCapabilitiesRequest"
       },
       "output": {
         "target": "com.ovh.packxdsl#PackXdslPromotionCodeCapabilities"
@@ -5966,7 +5967,7 @@
         "smithy.api#documentation": "Get informations about the promotion code generation"
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNamePromotionCodeGenerateRequest": {
+    "com.ovh.packxdsl#GeneratePackXdslPromotionCodeRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -5982,10 +5983,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNamePromotionCodeGenerate": {
+    "com.ovh.packxdsl#GeneratePackXdslPromotionCode": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#PostPackXdslPackNamePromotionCodeGenerateRequest"
+        "target": "com.ovh.packxdsl#GeneratePackXdslPromotionCodeRequest"
       },
       "output": {
         "target": "com.ovh.packxdsl#PackXdslTask"
@@ -6101,7 +6102,7 @@
         "smithy.api#documentation": "Reason of a resiliation"
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameResiliateRequestServicesToKeepList": {
+    "com.ovh.packxdsl#CreatePackXdslResiliateRequestServicesToKeepList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Double"
@@ -6110,7 +6111,7 @@
         "smithy.api#documentation": "Ids of service you will keep on resiliation. (you can get it with /pack/xdsl/{packName}/subServices)"
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameResiliateRequest": {
+    "com.ovh.packxdsl#CreatePackXdslResiliateRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -6135,7 +6136,7 @@
           }
         },
         "servicesToKeep": {
-          "target": "com.ovh.packxdsl#PostPackXdslPackNameResiliateRequestServicesToKeepList",
+          "target": "com.ovh.packxdsl#CreatePackXdslResiliateRequestServicesToKeepList",
           "traits": {
             "smithy.api#documentation": "Ids of service you will keep on resiliation. (you can get it with /pack/xdsl/{packName}/subServices)"
           }
@@ -6177,10 +6178,10 @@
         "smithy.api#documentation": "Details about the resiliation"
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameResiliate": {
+    "com.ovh.packxdsl#CreatePackXdslResiliate": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#PostPackXdslPackNameResiliateRequest"
+        "target": "com.ovh.packxdsl#CreatePackXdslResiliateRequest"
       },
       "output": {
         "target": "com.ovh.packxdsl#PackXdslResiliationFollowUpDetail"
@@ -6194,7 +6195,7 @@
         "smithy.api#documentation": "Resiliate the pack"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameResiliationFollowUpRequest": {
+    "com.ovh.packxdsl#GetPackXdslResiliationFollowUpRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -6210,10 +6211,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameResiliationFollowUp": {
+    "com.ovh.packxdsl#GetPackXdslResiliationFollowUp": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameResiliationFollowUpRequest"
+        "target": "com.ovh.packxdsl#GetPackXdslResiliationFollowUpRequest"
       },
       "output": {
         "target": "com.ovh.packxdsl#PackXdslResiliationFollowUpDetail"
@@ -6227,7 +6228,7 @@
         "smithy.api#documentation": "Get information about the ongoing resiliation"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameResiliationTermsRequest": {
+    "com.ovh.packxdsl#GetPackXdslResiliationTermsRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -6298,10 +6299,10 @@
         "smithy.api#documentation": "List of available resiliation reasons"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameResiliationTerms": {
+    "com.ovh.packxdsl#GetPackXdslResiliationTerms": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameResiliationTermsRequest"
+        "target": "com.ovh.packxdsl#GetPackXdslResiliationTermsRequest"
       },
       "output": {
         "target": "com.ovh.packxdsl#PackXdslResiliationTerms"
@@ -6315,7 +6316,7 @@
         "smithy.api#documentation": "Get resiliation terms"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameServiceInfosRequest": {
+    "com.ovh.packxdsl#GetPackXdslServiceInfosRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -6539,10 +6540,10 @@
       },
       "traits": {}
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameServiceInfos": {
+    "com.ovh.packxdsl#GetPackXdslServiceInfos": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameServiceInfosRequest"
+        "target": "com.ovh.packxdsl#GetPackXdslServiceInfosRequest"
       },
       "output": {
         "target": "com.ovh.packxdsl#ServicesService"
@@ -6556,7 +6557,7 @@
         "smithy.api#documentation": "Get service information"
       }
     },
-    "com.ovh.packxdsl#PutPackXdslPackNameServiceInfosRequest": {
+    "com.ovh.packxdsl#PutPackXdslServiceInfosRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -6579,10 +6580,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.packxdsl#PutPackXdslPackNameServiceInfos": {
+    "com.ovh.packxdsl#PutPackXdslServiceInfos": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#PutPackXdslPackNameServiceInfosRequest"
+        "target": "com.ovh.packxdsl#PutPackXdslServiceInfosRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6596,7 +6597,7 @@
         "smithy.api#documentation": "Update service information"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameServicesRequest": {
+    "com.ovh.packxdsl#ListPackXdslServicesRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -6632,18 +6633,18 @@
         "smithy.api#documentation": "Informations about a service"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameServicesResponseBodyList": {
+    "com.ovh.packxdsl#ListPackXdslServicesResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.packxdsl#PackXdslServiceInformation"
       },
       "traits": {}
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameServicesResponse": {
+    "com.ovh.packxdsl#ListPackXdslServicesResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameServicesResponseBodyList",
+          "target": "com.ovh.packxdsl#ListPackXdslServicesResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -6654,13 +6655,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameServices": {
+    "com.ovh.packxdsl#ListPackXdslServices": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameServicesRequest"
+        "target": "com.ovh.packxdsl#ListPackXdslServicesRequest"
       },
       "output": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameServicesResponse"
+        "target": "com.ovh.packxdsl#ListPackXdslServicesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6691,7 +6692,7 @@
         "smithy.api#documentation": "Allowed contexts when looking for shipping addresses"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameShippingAddressesRequest": {
+    "com.ovh.packxdsl#ListPackXdslShippingAddressesRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -6744,18 +6745,18 @@
         "smithy.api#documentation": "Shipping address"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameShippingAddressesResponseBodyList": {
+    "com.ovh.packxdsl#ListPackXdslShippingAddressesResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.packxdsl#PackXdslShippingAddress"
       },
       "traits": {}
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameShippingAddressesResponse": {
+    "com.ovh.packxdsl#ListPackXdslShippingAddressesResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameShippingAddressesResponseBodyList",
+          "target": "com.ovh.packxdsl#ListPackXdslShippingAddressesResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -6766,13 +6767,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameShippingAddresses": {
+    "com.ovh.packxdsl#ListPackXdslShippingAddresses": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameShippingAddressesRequest"
+        "target": "com.ovh.packxdsl#ListPackXdslShippingAddressesRequest"
       },
       "output": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameShippingAddressesResponse"
+        "target": "com.ovh.packxdsl#ListPackXdslShippingAddressesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6783,7 +6784,7 @@
         "smithy.api#documentation": "Allowed shipping addresses given a context"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameSubServicesRequest": {
+    "com.ovh.packxdsl#ListPackXdslSubServicesRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -6799,18 +6800,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameSubServicesResponseBodyList": {
+    "com.ovh.packxdsl#ListPackXdslSubServicesResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameSubServicesResponse": {
+    "com.ovh.packxdsl#ListPackXdslSubServicesResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameSubServicesResponseBodyList",
+          "target": "com.ovh.packxdsl#ListPackXdslSubServicesResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -6821,13 +6822,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameSubServices": {
+    "com.ovh.packxdsl#ListPackXdslSubServices": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameSubServicesRequest"
+        "target": "com.ovh.packxdsl#ListPackXdslSubServicesRequest"
       },
       "output": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameSubServicesResponse"
+        "target": "com.ovh.packxdsl#ListPackXdslSubServicesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6838,7 +6839,7 @@
         "smithy.api#documentation": "List services contained in the pack"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameSubServicesDomainRequest": {
+    "com.ovh.packxdsl#GetPackXdslSubServiceRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -6878,10 +6879,10 @@
         "smithy.api#documentation": "Service link to the pack"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameSubServicesDomain": {
+    "com.ovh.packxdsl#GetPackXdslSubService": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameSubServicesDomainRequest"
+        "target": "com.ovh.packxdsl#GetPackXdslSubServiceRequest"
       },
       "output": {
         "target": "com.ovh.packxdsl#PackXdslService"
@@ -6895,7 +6896,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameSubServicesDomainKeepServiceTermsRequest": {
+    "com.ovh.packxdsl#GetPackXdslSubServiceKeepServiceTermsRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -6950,10 +6951,10 @@
         "smithy.api#documentation": "Terms to unpack services"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameSubServicesDomainKeepServiceTerms": {
+    "com.ovh.packxdsl#GetPackXdslSubServiceKeepServiceTerms": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameSubServicesDomainKeepServiceTermsRequest"
+        "target": "com.ovh.packxdsl#GetPackXdslSubServiceKeepServiceTermsRequest"
       },
       "output": {
         "target": "com.ovh.packxdsl#PackXdslUnpackTerms"
@@ -6967,7 +6968,7 @@
         "smithy.api#documentation": "Give the condition to unpack service from pack"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameTasksRequest": {
+    "com.ovh.packxdsl#ListPackXdslTasksRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -6997,18 +6998,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameTasksResponseBodyList": {
+    "com.ovh.packxdsl#ListPackXdslTasksResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameTasksResponse": {
+    "com.ovh.packxdsl#ListPackXdslTasksResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameTasksResponseBodyList",
+          "target": "com.ovh.packxdsl#ListPackXdslTasksResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -7019,13 +7020,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameTasks": {
+    "com.ovh.packxdsl#ListPackXdslTasks": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameTasksRequest"
+        "target": "com.ovh.packxdsl#ListPackXdslTasksRequest"
       },
       "output": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameTasksResponse"
+        "target": "com.ovh.packxdsl#ListPackXdslTasksResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7036,7 +7037,7 @@
         "smithy.api#documentation": "Tasks scheduled for this pack"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameTasksIdRequest": {
+    "com.ovh.packxdsl#GetPackXdslTaskRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -7060,10 +7061,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameTasksId": {
+    "com.ovh.packxdsl#GetPackXdslTask": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameTasksIdRequest"
+        "target": "com.ovh.packxdsl#GetPackXdslTaskRequest"
       },
       "output": {
         "target": "com.ovh.packxdsl#PackXdslTask"
@@ -7077,7 +7078,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameVoipBillingAccountServicesRequest": {
+    "com.ovh.packxdsl#ListPackXdslVoipBillingAccountServicesRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -7093,18 +7094,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameVoipBillingAccountServicesResponseBodyList": {
+    "com.ovh.packxdsl#ListPackXdslVoipBillingAccountServicesResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameVoipBillingAccountServicesResponse": {
+    "com.ovh.packxdsl#ListPackXdslVoipBillingAccountServicesResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameVoipBillingAccountServicesResponseBodyList",
+          "target": "com.ovh.packxdsl#ListPackXdslVoipBillingAccountServicesResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -7115,13 +7116,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameVoipBillingAccountServices": {
+    "com.ovh.packxdsl#ListPackXdslVoipBillingAccountServices": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameVoipBillingAccountServicesRequest"
+        "target": "com.ovh.packxdsl#ListPackXdslVoipBillingAccountServicesRequest"
       },
       "output": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameVoipBillingAccountServicesResponse"
+        "target": "com.ovh.packxdsl#ListPackXdslVoipBillingAccountServicesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7132,7 +7133,7 @@
         "smithy.api#documentation": "VOIP billing accounts"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameVoipEcofaxServicesRequest": {
+    "com.ovh.packxdsl#ListPackXdslVoipEcofaxServicesRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -7148,18 +7149,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameVoipEcofaxServicesResponseBodyList": {
+    "com.ovh.packxdsl#ListPackXdslVoipEcofaxServicesResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameVoipEcofaxServicesResponse": {
+    "com.ovh.packxdsl#ListPackXdslVoipEcofaxServicesResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameVoipEcofaxServicesResponseBodyList",
+          "target": "com.ovh.packxdsl#ListPackXdslVoipEcofaxServicesResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -7170,13 +7171,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameVoipEcofaxServices": {
+    "com.ovh.packxdsl#ListPackXdslVoipEcofaxServices": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameVoipEcofaxServicesRequest"
+        "target": "com.ovh.packxdsl#ListPackXdslVoipEcofaxServicesRequest"
       },
       "output": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameVoipEcofaxServicesResponse"
+        "target": "com.ovh.packxdsl#ListPackXdslVoipEcofaxServicesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7187,7 +7188,7 @@
         "smithy.api#documentation": "VOIP ecofax service"
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameVoipEcofaxServicesRequest": {
+    "com.ovh.packxdsl#CreatePackXdslVoipEcofaxServiceRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -7203,10 +7204,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameVoipEcofaxServices": {
+    "com.ovh.packxdsl#CreatePackXdslVoipEcofaxService": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#PostPackXdslPackNameVoipEcofaxServicesRequest"
+        "target": "com.ovh.packxdsl#CreatePackXdslVoipEcofaxServiceRequest"
       },
       "output": {
         "target": "com.ovh.packxdsl#PackXdslTask"
@@ -7220,7 +7221,7 @@
         "smithy.api#documentation": "Activate a voicefax service"
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameVoipLineOptionsCustomShippingAddressRequest": {
+    "com.ovh.packxdsl#CreatePackXdslVoipLineOptionCustomShippingAddressRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -7271,7 +7272,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameVoipLineOptionsCustomShippingAddressResponse": {
+    "com.ovh.packxdsl#CreatePackXdslVoipLineOptionCustomShippingAddressResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -7286,13 +7287,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameVoipLineOptionsCustomShippingAddress": {
+    "com.ovh.packxdsl#CreatePackXdslVoipLineOptionCustomShippingAddress": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#PostPackXdslPackNameVoipLineOptionsCustomShippingAddressRequest"
+        "target": "com.ovh.packxdsl#CreatePackXdslVoipLineOptionCustomShippingAddressRequest"
       },
       "output": {
-        "target": "com.ovh.packxdsl#PostPackXdslPackNameVoipLineOptionsCustomShippingAddressResponse"
+        "target": "com.ovh.packxdsl#CreatePackXdslVoipLineOptionCustomShippingAddressResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7303,7 +7304,7 @@
         "smithy.api#documentation": "Create a new shippingId to be used for voipLine service creation"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameVoipLineOptionsHardwaresRequest": {
+    "com.ovh.packxdsl#ListPackXdslVoipLineOptionHardwaresRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -7366,18 +7367,18 @@
         "smithy.api#documentation": "Hardware for VoIP line"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameVoipLineOptionsHardwaresResponseBodyList": {
+    "com.ovh.packxdsl#ListPackXdslVoipLineOptionHardwaresResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.packxdsl#PackXdslVoIPHardware"
       },
       "traits": {}
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameVoipLineOptionsHardwaresResponse": {
+    "com.ovh.packxdsl#ListPackXdslVoipLineOptionHardwaresResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameVoipLineOptionsHardwaresResponseBodyList",
+          "target": "com.ovh.packxdsl#ListPackXdslVoipLineOptionHardwaresResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -7388,13 +7389,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameVoipLineOptionsHardwares": {
+    "com.ovh.packxdsl#ListPackXdslVoipLineOptionHardwares": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameVoipLineOptionsHardwaresRequest"
+        "target": "com.ovh.packxdsl#ListPackXdslVoipLineOptionHardwaresRequest"
       },
       "output": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameVoipLineOptionsHardwaresResponse"
+        "target": "com.ovh.packxdsl#ListPackXdslVoipLineOptionHardwaresResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7405,7 +7406,7 @@
         "smithy.api#documentation": "Get available hardwares"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameVoipLineOptionsShippingAddressesRequest": {
+    "com.ovh.packxdsl#ListPackXdslVoipLineOptionShippingAddressesRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -7421,18 +7422,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameVoipLineOptionsShippingAddressesResponseBodyList": {
+    "com.ovh.packxdsl#ListPackXdslVoipLineOptionShippingAddressesResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.packxdsl#PackXdslShippingAddress"
       },
       "traits": {}
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameVoipLineOptionsShippingAddressesResponse": {
+    "com.ovh.packxdsl#ListPackXdslVoipLineOptionShippingAddressesResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameVoipLineOptionsShippingAddressesResponseBodyList",
+          "target": "com.ovh.packxdsl#ListPackXdslVoipLineOptionShippingAddressesResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -7443,13 +7444,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameVoipLineOptionsShippingAddresses": {
+    "com.ovh.packxdsl#ListPackXdslVoipLineOptionShippingAddresses": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameVoipLineOptionsShippingAddressesRequest"
+        "target": "com.ovh.packxdsl#ListPackXdslVoipLineOptionShippingAddressesRequest"
       },
       "output": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameVoipLineOptionsShippingAddressesResponse"
+        "target": "com.ovh.packxdsl#ListPackXdslVoipLineOptionShippingAddressesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7460,7 +7461,7 @@
         "smithy.api#documentation": "Get available shipping addresses"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameVoipLineServicesRequest": {
+    "com.ovh.packxdsl#ListPackXdslVoipLineServicesRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -7476,18 +7477,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameVoipLineServicesResponseBodyList": {
+    "com.ovh.packxdsl#ListPackXdslVoipLineServicesResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameVoipLineServicesResponse": {
+    "com.ovh.packxdsl#ListPackXdslVoipLineServicesResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameVoipLineServicesResponseBodyList",
+          "target": "com.ovh.packxdsl#ListPackXdslVoipLineServicesResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -7498,13 +7499,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameVoipLineServices": {
+    "com.ovh.packxdsl#ListPackXdslVoipLineServices": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameVoipLineServicesRequest"
+        "target": "com.ovh.packxdsl#ListPackXdslVoipLineServicesRequest"
       },
       "output": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameVoipLineServicesResponse"
+        "target": "com.ovh.packxdsl#ListPackXdslVoipLineServicesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7515,7 +7516,7 @@
         "smithy.api#documentation": "VOIP line services"
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameVoipLineServicesRequestHardwareNamesList": {
+    "com.ovh.packxdsl#CreatePackXdslVoipLineServiceRequestHardwareNamesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -7524,7 +7525,7 @@
         "smithy.api#documentation": "List of names from hardwares call"
       }
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameVoipLineServicesRequest": {
+    "com.ovh.packxdsl#CreatePackXdslVoipLineServiceRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -7536,7 +7537,7 @@
           }
         },
         "hardwareNames": {
-          "target": "com.ovh.packxdsl#PostPackXdslPackNameVoipLineServicesRequestHardwareNamesList",
+          "target": "com.ovh.packxdsl#CreatePackXdslVoipLineServiceRequestHardwareNamesList",
           "traits": {
             "smithy.api#documentation": "List of names from hardwares call",
             "smithy.api#required": {}
@@ -7589,10 +7590,10 @@
       },
       "traits": {}
     },
-    "com.ovh.packxdsl#PostPackXdslPackNameVoipLineServices": {
+    "com.ovh.packxdsl#CreatePackXdslVoipLineService": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#PostPackXdslPackNameVoipLineServicesRequest"
+        "target": "com.ovh.packxdsl#CreatePackXdslVoipLineServiceRequest"
       },
       "output": {
         "target": "com.ovh.packxdsl#PackXdslVoIPLineOrder"
@@ -7606,7 +7607,7 @@
         "smithy.api#documentation": "Activate a voip line service"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameVoipLineServicesDomainRequest": {
+    "com.ovh.packxdsl#GetPackXdslVoipLineServiceRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -7643,10 +7644,10 @@
         "smithy.api#documentation": "VOIP line services"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameVoipLineServicesDomain": {
+    "com.ovh.packxdsl#GetPackXdslVoipLineService": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameVoipLineServicesDomainRequest"
+        "target": "com.ovh.packxdsl#GetPackXdslVoipLineServiceRequest"
       },
       "output": {
         "target": "com.ovh.packxdsl#PackXdslVoipLineService"
@@ -7660,7 +7661,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameXdslAccessServicesRequest": {
+    "com.ovh.packxdsl#ListPackXdslXdslAccessServicesRequest": {
       "type": "structure",
       "members": {
         "packName": {
@@ -7676,18 +7677,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameXdslAccessServicesResponseBodyList": {
+    "com.ovh.packxdsl#ListPackXdslXdslAccessServicesResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameXdslAccessServicesResponse": {
+    "com.ovh.packxdsl#ListPackXdslXdslAccessServicesResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameXdslAccessServicesResponseBodyList",
+          "target": "com.ovh.packxdsl#ListPackXdslXdslAccessServicesResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -7698,13 +7699,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.packxdsl#GetPackXdslPackNameXdslAccessServices": {
+    "com.ovh.packxdsl#ListPackXdslXdslAccessServices": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameXdslAccessServicesRequest"
+        "target": "com.ovh.packxdsl#ListPackXdslXdslAccessServicesRequest"
       },
       "output": {
-        "target": "com.ovh.packxdsl#GetPackXdslPackNameXdslAccessServicesResponse"
+        "target": "com.ovh.packxdsl#ListPackXdslXdslAccessServicesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7720,181 +7721,181 @@
       "version": "1.0",
       "operations": [
         {
+          "target": "com.ovh.packxdsl#ListPackXdsl"
+        },
+        {
+          "target": "com.ovh.packxdsl#ListPackXdslSearch"
+        },
+        {
           "target": "com.ovh.packxdsl#GetPackXdsl"
         },
         {
-          "target": "com.ovh.packxdsl#GetPackXdslSearch"
+          "target": "com.ovh.packxdsl#PutPackXdsl"
         },
         {
-          "target": "com.ovh.packxdsl#GetPackXdslPackName"
+          "target": "com.ovh.packxdsl#MovePackXdslAddressMoveOffer"
         },
         {
-          "target": "com.ovh.packxdsl#PutPackXdslPackName"
+          "target": "com.ovh.packxdsl#CreatePackXdslAddressMoveOffer"
         },
         {
-          "target": "com.ovh.packxdsl#PostPackXdslPackNameAddressMoveMoveOffer"
+          "target": "com.ovh.packxdsl#CreatePackXdslAddressMoveServicesToDeleteUnpackTerm"
         },
         {
-          "target": "com.ovh.packxdsl#PostPackXdslPackNameAddressMoveOffers"
+          "target": "com.ovh.packxdsl#GetPackXdslCanCancelResiliation"
         },
         {
-          "target": "com.ovh.packxdsl#PostPackXdslPackNameAddressMoveServicesToDeleteUnpackTerms"
+          "target": "com.ovh.packxdsl#CancelPackXdslResiliation"
         },
         {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameCanCancelResiliation"
+          "target": "com.ovh.packxdsl#CreatePackXdslChangeContact"
         },
         {
-          "target": "com.ovh.packxdsl#PostPackXdslPackNameCancelResiliation"
+          "target": "com.ovh.packxdsl#GetPackXdslContactOwner"
         },
         {
-          "target": "com.ovh.packxdsl#PostPackXdslPackNameChangeContact"
+          "target": "com.ovh.packxdsl#ListPackXdslDomainOptionTlds"
         },
         {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameContactOwner"
+          "target": "com.ovh.packxdsl#ListPackXdslDomainServices"
         },
         {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameDomainOptionsTlds"
+          "target": "com.ovh.packxdsl#CreatePackXdslDomainService"
         },
         {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameDomainServices"
+          "target": "com.ovh.packxdsl#ListPackXdslEmailProOptionDomains"
         },
         {
-          "target": "com.ovh.packxdsl#PostPackXdslPackNameDomainServices"
+          "target": "com.ovh.packxdsl#GetPackXdslEmailProOptionIsEmailAvailable"
         },
         {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameEmailProOptionsDomains"
+          "target": "com.ovh.packxdsl#ListPackXdslEmailProServices"
         },
         {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameEmailProOptionsIsEmailAvailable"
+          "target": "com.ovh.packxdsl#CreatePackXdslEmailProService"
         },
         {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameEmailProServices"
+          "target": "com.ovh.packxdsl#ListPackXdslExchangeAccountServices"
         },
         {
-          "target": "com.ovh.packxdsl#PostPackXdslPackNameEmailProServices"
+          "target": "com.ovh.packxdsl#GetPackXdslExchangeAccountService"
         },
         {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameExchangeAccountServices"
+          "target": "com.ovh.packxdsl#ListPackXdslExchangeIndividualOptionDomains"
         },
         {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameExchangeAccountServicesDomain"
+          "target": "com.ovh.packxdsl#GetPackXdslExchangeIndividualOptionIsEmailAvailable"
         },
         {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameExchangeIndividualOptionsDomains"
+          "target": "com.ovh.packxdsl#ListPackXdslExchangeOrganizationServices"
         },
         {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameExchangeIndividualOptionsIsEmailAvailable"
+          "target": "com.ovh.packxdsl#ListPackXdslHostedEmailOptionDomains"
         },
         {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameExchangeOrganizationServices"
+          "target": "com.ovh.packxdsl#ListPackXdslHostedEmailServices"
         },
         {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameHostedEmailOptionsDomains"
+          "target": "com.ovh.packxdsl#CreatePackXdslHostedEmailService"
         },
         {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameHostedEmailServices"
+          "target": "com.ovh.packxdsl#GetPackXdslHostedEmailService"
         },
         {
-          "target": "com.ovh.packxdsl#PostPackXdslPackNameHostedEmailServices"
+          "target": "com.ovh.packxdsl#DeletePackXdslHostedEmailService"
         },
         {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameHostedEmailServicesDomain"
+          "target": "com.ovh.packxdsl#GetPackXdslHostedEmailServiceAccount"
         },
         {
-          "target": "com.ovh.packxdsl#DeletePackXdslPackNameHostedEmailServicesDomain"
+          "target": "com.ovh.packxdsl#CreatePackXdslHostedEmailServiceChangePassword"
         },
         {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameHostedEmailServicesDomainAccount"
+          "target": "com.ovh.packxdsl#ListPackXdslHostedEmailServiceConfiguration"
         },
         {
-          "target": "com.ovh.packxdsl#PostPackXdslPackNameHostedEmailServicesDomainChangePassword"
+          "target": "com.ovh.packxdsl#MigratePackXdslMigration"
         },
         {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameHostedEmailServicesDomainConfiguration"
+          "target": "com.ovh.packxdsl#CreatePackXdslMigrationOffer"
         },
         {
-          "target": "com.ovh.packxdsl#PostPackXdslPackNameMigrationMigrate"
+          "target": "com.ovh.packxdsl#CreatePackXdslMigrationServicesToDeleteUnpackTerm"
         },
         {
-          "target": "com.ovh.packxdsl#PostPackXdslPackNameMigrationOffers"
+          "target": "com.ovh.packxdsl#ListPackXdslOrderFollowUp"
         },
         {
-          "target": "com.ovh.packxdsl#PostPackXdslPackNameMigrationServicesToDeleteUnpackTerms"
+          "target": "com.ovh.packxdsl#ListPackXdslPromotionCodeCapabilities"
         },
         {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameOrderFollowUp"
+          "target": "com.ovh.packxdsl#GeneratePackXdslPromotionCode"
         },
         {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNamePromotionCodeCapabilities"
+          "target": "com.ovh.packxdsl#CreatePackXdslResiliate"
         },
         {
-          "target": "com.ovh.packxdsl#PostPackXdslPackNamePromotionCodeGenerate"
+          "target": "com.ovh.packxdsl#GetPackXdslResiliationFollowUp"
         },
         {
-          "target": "com.ovh.packxdsl#PostPackXdslPackNameResiliate"
+          "target": "com.ovh.packxdsl#GetPackXdslResiliationTerms"
         },
         {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameResiliationFollowUp"
+          "target": "com.ovh.packxdsl#GetPackXdslServiceInfos"
         },
         {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameResiliationTerms"
+          "target": "com.ovh.packxdsl#PutPackXdslServiceInfos"
         },
         {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameServiceInfos"
+          "target": "com.ovh.packxdsl#ListPackXdslServices"
         },
         {
-          "target": "com.ovh.packxdsl#PutPackXdslPackNameServiceInfos"
+          "target": "com.ovh.packxdsl#ListPackXdslShippingAddresses"
         },
         {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameServices"
+          "target": "com.ovh.packxdsl#ListPackXdslSubServices"
         },
         {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameShippingAddresses"
+          "target": "com.ovh.packxdsl#GetPackXdslSubService"
         },
         {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameSubServices"
+          "target": "com.ovh.packxdsl#GetPackXdslSubServiceKeepServiceTerms"
         },
         {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameSubServicesDomain"
+          "target": "com.ovh.packxdsl#ListPackXdslTasks"
         },
         {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameSubServicesDomainKeepServiceTerms"
+          "target": "com.ovh.packxdsl#GetPackXdslTask"
         },
         {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameTasks"
+          "target": "com.ovh.packxdsl#ListPackXdslVoipBillingAccountServices"
         },
         {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameTasksId"
+          "target": "com.ovh.packxdsl#ListPackXdslVoipEcofaxServices"
         },
         {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameVoipBillingAccountServices"
+          "target": "com.ovh.packxdsl#CreatePackXdslVoipEcofaxService"
         },
         {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameVoipEcofaxServices"
+          "target": "com.ovh.packxdsl#CreatePackXdslVoipLineOptionCustomShippingAddress"
         },
         {
-          "target": "com.ovh.packxdsl#PostPackXdslPackNameVoipEcofaxServices"
+          "target": "com.ovh.packxdsl#ListPackXdslVoipLineOptionHardwares"
         },
         {
-          "target": "com.ovh.packxdsl#PostPackXdslPackNameVoipLineOptionsCustomShippingAddress"
+          "target": "com.ovh.packxdsl#ListPackXdslVoipLineOptionShippingAddresses"
         },
         {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameVoipLineOptionsHardwares"
+          "target": "com.ovh.packxdsl#ListPackXdslVoipLineServices"
         },
         {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameVoipLineOptionsShippingAddresses"
+          "target": "com.ovh.packxdsl#CreatePackXdslVoipLineService"
         },
         {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameVoipLineServices"
+          "target": "com.ovh.packxdsl#GetPackXdslVoipLineService"
         },
         {
-          "target": "com.ovh.packxdsl#PostPackXdslPackNameVoipLineServices"
-        },
-        {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameVoipLineServicesDomain"
-        },
-        {
-          "target": "com.ovh.packxdsl#GetPackXdslPackNameXdslAccessServices"
+          "target": "com.ovh.packxdsl#ListPackXdslXdslAccessServices"
         }
       ],
       "traits": {

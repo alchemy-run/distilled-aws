@@ -41,27 +41,73 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
-export interface DeleteDbaasLogsServiceNameEncryptionKeyEncryptionKeyIdRequest {
+export interface CreateDbaasLogChangeContactRequest {
   /** Service name */
   serviceName: string;
-  /** Encryption key ID */
-  encryptionKeyId: string;
+  /** The contact to set as admin contact */
+  contactAdmin?: string;
+  /** The contact to set as billing contact */
+  contactBilling?: string;
+  /** The contact to set as tech contact */
+  contactTech?: string;
 }
-export const DeleteDbaasLogsServiceNameEncryptionKeyEncryptionKeyIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      encryptionKeyId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/dbaas/logs/{serviceName}/encryptionKey/{encryptionKeyId}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "DeleteDbaasLogsServiceNameEncryptionKeyEncryptionKeyIdRequest",
-  }) as any as S.Schema<DeleteDbaasLogsServiceNameEncryptionKeyEncryptionKeyIdRequest>;
+export const CreateDbaasLogChangeContactRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    contactAdmin: S.optional(S.String),
+    contactBilling: S.optional(S.String),
+    contactTech: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/dbaas/logs/{serviceName}/changeContact",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateDbaasLogChangeContactRequest",
+}) as any as S.Schema<CreateDbaasLogChangeContactRequest>;
+
+export type CreateDbaasLogChangeContactResponseBodyList = Array<number>;
+export const CreateDbaasLogChangeContactResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.Number,
+  ) as any as S.Schema<CreateDbaasLogChangeContactResponseBodyList>;
+
+export type CreateDbaasLogChangeContactResponse =
+  CreateDbaasLogChangeContactResponseBodyList;
+export const CreateDbaasLogChangeContactResponse = /*@__PURE__*/ S.suspend(() =>
+  CreateDbaasLogChangeContactResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "CreateDbaasLogChangeContactResponse",
+}) as any as S.Schema<CreateDbaasLogChangeContactResponse>;
+
+export interface CreateDbaasLogEncryptionKeyRequest {
+  /** Service name */
+  serviceName: string;
+  /** Encryption Key content */
+  content: string;
+  /** Encryption Key fingerprint */
+  fingerprint: string;
+  /** Encryption Key title */
+  title: string;
+}
+export const CreateDbaasLogEncryptionKeyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    content: S.String,
+    fingerprint: S.String,
+    title: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/dbaas/logs/{serviceName}/encryptionKey",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateDbaasLogEncryptionKeyRequest",
+}) as any as S.Schema<CreateDbaasLogEncryptionKeyRequest>;
 
 /** Possible values for OperationStateEnum */
 export type DbaasLogsOperationStateEnum =
@@ -133,35 +179,810 @@ export const DbaasLogsOperation = /*@__PURE__*/ S.suspend(() =>
   identifier: "DbaasLogsOperation",
 }) as any as S.Schema<DbaasLogsOperation>;
 
-export interface DeleteDbaasLogsServiceNameInputInputIdRequest {
+/** IP blocks */
+export type CreateDbaasLogInputRequestAllowedNetworksList = Array<string>;
+export const CreateDbaasLogInputRequestAllowedNetworksList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateDbaasLogInputRequestAllowedNetworksList>;
+
+export interface CreateDbaasLogInputRequest {
+  /** Service name */
+  serviceName: string;
+  /** IP blocks */
+  allowedNetworks?: CreateDbaasLogInputRequestAllowedNetworksList | null;
+  /** Whether the workload is auto-scaled */
+  autoscale?: boolean | null;
+  /** Description */
+  description: string;
+  /** Engine ID */
+  engineId: string;
+  /** Exposed port */
+  exposedPort?: string | null;
+  /** Maximum number of instances in auto-scaled mode */
+  maxScaleInstance?: number | null;
+  /** Minimum number of instances in auto-scaled mode */
+  minScaleInstance?: number | null;
+  /** Number of instance running */
+  nbInstance?: number | null;
+  /** If set, notify when scaling happens */
+  scalingNotifyEnabled?: boolean | null;
+  /** Stream ID */
+  streamId: string;
+  /** Title */
+  title: string;
+}
+export const CreateDbaasLogInputRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    allowedNetworks: S.optional(
+      S.NullOr(CreateDbaasLogInputRequestAllowedNetworksList),
+    ),
+    autoscale: S.optional(S.NullOr(S.Boolean)),
+    description: S.String,
+    engineId: S.String,
+    exposedPort: S.optional(S.NullOr(S.String)),
+    maxScaleInstance: S.optional(S.NullOr(S.Number)),
+    minScaleInstance: S.optional(S.NullOr(S.Number)),
+    nbInstance: S.optional(S.NullOr(S.Number)),
+    scalingNotifyEnabled: S.optional(S.NullOr(S.Boolean)),
+    streamId: S.String,
+    title: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/dbaas/logs/{serviceName}/input",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateDbaasLogInputRequest",
+}) as any as S.Schema<CreateDbaasLogInputRequest>;
+
+export interface CreateDbaasLogInputConfigtestRequest {
   /** Service name */
   serviceName: string;
   /** Input ID */
   inputId: string;
 }
-export const DeleteDbaasLogsServiceNameInputInputIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const CreateDbaasLogInputConfigtestRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       inputId: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
-        method: "DELETE",
-        uri: "/dbaas/logs/{serviceName}/input/{inputId}",
+        method: "POST",
+        uri: "/dbaas/logs/{serviceName}/input/{inputId}/configtest",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateDbaasLogInputConfigtestRequest",
+}) as any as S.Schema<CreateDbaasLogInputConfigtestRequest>;
+
+export interface CreateDbaasLogInputEndRequest {
+  /** Service name */
+  serviceName: string;
+  /** Input ID */
+  inputId: string;
+}
+export const CreateDbaasLogInputEndRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    inputId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/dbaas/logs/{serviceName}/input/{inputId}/end",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateDbaasLogInputEndRequest",
+}) as any as S.Schema<CreateDbaasLogInputEndRequest>;
+
+export interface CreateDbaasLogInputLogUrlRequest {
+  /** Service name */
+  serviceName: string;
+  /** Input ID */
+  inputId: string;
+}
+export const CreateDbaasLogInputLogUrlRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    inputId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/dbaas/logs/{serviceName}/input/{inputId}/logs/url",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateDbaasLogInputLogUrlRequest",
+}) as any as S.Schema<CreateDbaasLogInputLogUrlRequest>;
+
+/** Temporary url information */
+export interface DbaasLogsTemporaryLogsLink {
+  /** Temporary url expiration date */
+  expirationDate?: string;
+  /** Temporary url */
+  url?: string;
+}
+export const DbaasLogsTemporaryLogsLink = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    expirationDate: S.optional(S.String),
+    url: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DbaasLogsTemporaryLogsLink",
+}) as any as S.Schema<DbaasLogsTemporaryLogsLink>;
+
+export interface CreateDbaasLogOutputGraylogDashboardRequest {
+  /** Service name */
+  serviceName: string;
+  /** Description */
+  description: string;
+  /** Title */
+  title: string;
+}
+export const CreateDbaasLogOutputGraylogDashboardRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      description: S.String,
+      title: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/dbaas/logs/{serviceName}/output/graylog/dashboard",
         code: 200,
       }),
     ),
   ).annotate({
-    identifier: "DeleteDbaasLogsServiceNameInputInputIdRequest",
-  }) as any as S.Schema<DeleteDbaasLogsServiceNameInputInputIdRequest>;
+    identifier: "CreateDbaasLogOutputGraylogDashboardRequest",
+  }) as any as S.Schema<CreateDbaasLogOutputGraylogDashboardRequest>;
 
-export interface DeleteDbaasLogsServiceNameOutputGraylogDashboardDashboardIdRequest {
+/** Possible values for StreamColdStorageCompressionEnum */
+export type DbaasLogsStreamColdStorageCompressionEnum =
+  | "DEFLATED"
+  | "GZIP"
+  | "LZMA"
+  | "ZSTD";
+export const DbaasLogsStreamColdStorageCompressionEnum = /*@__PURE__*/ S.String;
+
+/** Possible values for StreamColdStorageContentEnum */
+export type DbaasLogsStreamColdStorageContentEnum = "ALL" | "GELF" | "PLAIN";
+export const DbaasLogsStreamColdStorageContentEnum = /*@__PURE__*/ S.String;
+
+/** Encryption keys used to encrypt stream archives */
+export type CreateDbaasLogOutputGraylogStreamRequestEncryptionKeysIdsList =
+  Array<string>;
+export const CreateDbaasLogOutputGraylogStreamRequestEncryptionKeysIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateDbaasLogOutputGraylogStreamRequestEncryptionKeysIdsList>;
+
+export interface CreateDbaasLogOutputGraylogStreamRequest {
+  /** Service name */
+  serviceName: string;
+  /** Cold storage compression */
+  coldStorageCompression?:
+    | DbaasLogsStreamColdStorageCompressionEnum
+    | (string & {})
+    | null;
+  /** Cold storage archive content */
+  coldStorageContent?:
+    | DbaasLogsStreamColdStorageContentEnum
+    | (string & {})
+    | null;
+  /** Cold storage enabled */
+  coldStorageEnabled?: boolean | null;
+  /** Cold storage notify enabled */
+  coldStorageNotifyEnabled?: boolean | null;
+  /** Cold storage retention time */
+  coldStorageRetention?: number | null;
+  /** Description */
+  description: string;
+  /** Encryption keys used to encrypt stream archives */
+  encryptionKeysIds?: CreateDbaasLogOutputGraylogStreamRequestEncryptionKeysIdsList | null;
+  /** ES indexing enabled */
+  indexingEnabled?: boolean | null;
+  /** Maximum indexing size (in GB) */
+  indexingMaxSize?: number | null;
+  /** If set, notify when size is near 80, 90 or 100 % of the maximum configured setting */
+  indexingNotifyEnabled?: boolean | null;
+  /** Parent stream ID */
+  parentStreamId?: string | null;
+  /** If set, pause indexing when maximum size is reach */
+  pauseIndexingOnMaxSize?: boolean | null;
+  /** Retention ID */
+  retentionId?: string | null;
+  /** Title */
+  title: string;
+  /** Web Socket enabled */
+  webSocketEnabled?: boolean | null;
+}
+export const CreateDbaasLogOutputGraylogStreamRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      coldStorageCompression: S.optional(
+        S.NullOr(DbaasLogsStreamColdStorageCompressionEnum),
+      ),
+      coldStorageContent: S.optional(
+        S.NullOr(DbaasLogsStreamColdStorageContentEnum),
+      ),
+      coldStorageEnabled: S.optional(S.NullOr(S.Boolean)),
+      coldStorageNotifyEnabled: S.optional(S.NullOr(S.Boolean)),
+      coldStorageRetention: S.optional(S.NullOr(S.Number)),
+      description: S.String,
+      encryptionKeysIds: S.optional(
+        S.NullOr(CreateDbaasLogOutputGraylogStreamRequestEncryptionKeysIdsList),
+      ),
+      indexingEnabled: S.optional(S.NullOr(S.Boolean)),
+      indexingMaxSize: S.optional(S.NullOr(S.Number)),
+      indexingNotifyEnabled: S.optional(S.NullOr(S.Boolean)),
+      parentStreamId: S.optional(S.NullOr(S.String)),
+      pauseIndexingOnMaxSize: S.optional(S.NullOr(S.Boolean)),
+      retentionId: S.optional(S.NullOr(S.String)),
+      title: S.String,
+      webSocketEnabled: S.optional(S.NullOr(S.Boolean)),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/dbaas/logs/{serviceName}/output/graylog/stream",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateDbaasLogOutputGraylogStreamRequest",
+}) as any as S.Schema<CreateDbaasLogOutputGraylogStreamRequest>;
+
+/** Possible values for StreamAlertConditionConditionTypeEnum */
+export type DbaasLogsStreamAlertConditionConditionTypeEnum =
+  | "FIELD_CONTENT_VALUE"
+  | "FIELD_VALUE"
+  | "MESSAGE_COUNT";
+export const DbaasLogsStreamAlertConditionConditionTypeEnum =
+  /*@__PURE__*/ S.String;
+
+/** Possible values for StreamAlertConditionConstraintTypeEnum */
+export type DbaasLogsStreamAlertConditionConstraintTypeEnum =
+  | "MAX"
+  | "MEAN"
+  | "MIN"
+  | "STDLABEU"
+  | "SUM";
+export const DbaasLogsStreamAlertConditionConstraintTypeEnum =
+  /*@__PURE__*/ S.String;
+
+/** Possible values for StreamAlertConditionThresholdTypeEnum */
+export type DbaasLogsStreamAlertConditionThresholdTypeEnum =
+  | "EQ"
+  | "GT"
+  | "GTE"
+  | "LT"
+  | "LTE";
+export const DbaasLogsStreamAlertConditionThresholdTypeEnum =
+  /*@__PURE__*/ S.String;
+
+export interface CreateDbaasLogOutputGraylogStreamAlertRequest {
+  /** Service name */
+  serviceName: string;
+  /** Stream ID */
+  streamId: string;
+  /** Backlog */
+  backlog: number;
+  /** Condition type */
+  conditionType?:
+    | DbaasLogsStreamAlertConditionConditionTypeEnum
+    | (string & {})
+    | null;
+  /** Constraint type */
+  constraintType?:
+    | DbaasLogsStreamAlertConditionConstraintTypeEnum
+    | (string & {})
+    | null;
+  /** Field */
+  field?: string | null;
+  /** Grace period */
+  grace: number;
+  /** Query filter */
+  queryFilter?: string | null;
+  /** Repeat notifications enabled */
+  repeatNotificationsEnabled?: boolean | null;
+  /** Threshold */
+  threshold?: number | null;
+  /** Threshold type */
+  thresholdType?:
+    | DbaasLogsStreamAlertConditionThresholdTypeEnum
+    | (string & {})
+    | null;
+  /** Time */
+  time?: number | null;
+  /** Title */
+  title: string;
+  /** Value */
+  value?: string | null;
+}
+export const CreateDbaasLogOutputGraylogStreamAlertRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      streamId: S.String.pipe(T.Label()),
+      backlog: S.Number,
+      conditionType: S.optional(
+        S.NullOr(DbaasLogsStreamAlertConditionConditionTypeEnum),
+      ),
+      constraintType: S.optional(
+        S.NullOr(DbaasLogsStreamAlertConditionConstraintTypeEnum),
+      ),
+      field: S.optional(S.NullOr(S.String)),
+      grace: S.Number,
+      queryFilter: S.optional(S.NullOr(S.String)),
+      repeatNotificationsEnabled: S.optional(S.NullOr(S.Boolean)),
+      threshold: S.optional(S.NullOr(S.Number)),
+      thresholdType: S.optional(
+        S.NullOr(DbaasLogsStreamAlertConditionThresholdTypeEnum),
+      ),
+      time: S.optional(S.NullOr(S.Number)),
+      title: S.String,
+      value: S.optional(S.NullOr(S.String)),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/dbaas/logs/{serviceName}/output/graylog/stream/{streamId}/alert",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateDbaasLogOutputGraylogStreamAlertRequest",
+  }) as any as S.Schema<CreateDbaasLogOutputGraylogStreamAlertRequest>;
+
+export interface CreateDbaasLogOutputGraylogStreamArchiveUrlRequest {
+  /** Service name */
+  serviceName: string;
+  /** Stream ID */
+  streamId: string;
+  /** Archive ID */
+  archiveId: string;
+}
+export const CreateDbaasLogOutputGraylogStreamArchiveUrlRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      streamId: S.String.pipe(T.Label()),
+      archiveId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/dbaas/logs/{serviceName}/output/graylog/stream/{streamId}/archive/{archiveId}/url",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateDbaasLogOutputGraylogStreamArchiveUrlRequest",
+  }) as any as S.Schema<CreateDbaasLogOutputGraylogStreamArchiveUrlRequest>;
+
+/** Stream archive url */
+export interface DbaasLogsArchiveUrl {
+  /** Temporary URL expiration date */
+  expirationDate?: string;
+  /** Temporary URL to get archive */
+  url?: string;
+}
+export const DbaasLogsArchiveUrl = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    expirationDate: S.optional(S.String),
+    url: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DbaasLogsArchiveUrl",
+}) as any as S.Schema<DbaasLogsArchiveUrl>;
+
+/** Possible values for StreamRuleOperatorEnum */
+export type DbaasLogsStreamRuleOperatorEnum =
+  | "FIELD_PRESENCE"
+  | "GREATER_THAN"
+  | "MATCH_EXACTLY"
+  | "SMALLER_THAN";
+export const DbaasLogsStreamRuleOperatorEnum = /*@__PURE__*/ S.String;
+
+export interface CreateDbaasLogOutputGraylogStreamRuleRequest {
+  /** Service name */
+  serviceName: string;
+  /** Stream ID */
+  streamId: string;
+  /** Field name */
+  field: string;
+  /** Invert condition */
+  isInverted?: boolean | null;
+  /** Field operator */
+  operator: DbaasLogsStreamRuleOperatorEnum | (string & {});
+  /** Field value */
+  value: string;
+}
+export const CreateDbaasLogOutputGraylogStreamRuleRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      streamId: S.String.pipe(T.Label()),
+      field: S.String,
+      isInverted: S.optional(S.NullOr(S.Boolean)),
+      operator: DbaasLogsStreamRuleOperatorEnum,
+      value: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/dbaas/logs/{serviceName}/output/graylog/stream/{streamId}/rule",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateDbaasLogOutputGraylogStreamRuleRequest",
+  }) as any as S.Schema<CreateDbaasLogOutputGraylogStreamRuleRequest>;
+
+export interface CreateDbaasLogOutputMetricTenantRequest {
+  /** Service name */
+  serviceName: string;
+  /** Metric tenant description */
+  description: string;
+  /** Maximum number of time series inside the tenant */
+  maxSeries?: number;
+  /** Delete samples older than the specified retention period. */
+  retentionId: string;
+  /** Metric tenant title */
+  title: string;
+}
+export const CreateDbaasLogOutputMetricTenantRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      description: S.String,
+      maxSeries: S.optional(S.Number),
+      retentionId: S.String,
+      title: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/dbaas/logs/{serviceName}/output/metric/tenant",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateDbaasLogOutputMetricTenantRequest",
+}) as any as S.Schema<CreateDbaasLogOutputMetricTenantRequest>;
+
+export interface CreateDbaasLogOutputOpensearchAliasRequest {
+  /** Service name */
+  serviceName: string;
+  /** Description */
+  description: string;
+  /** Suffix */
+  suffix: string;
+}
+export const CreateDbaasLogOutputOpensearchAliasRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      description: S.String,
+      suffix: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/dbaas/logs/{serviceName}/output/opensearch/alias",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateDbaasLogOutputOpensearchAliasRequest",
+  }) as any as S.Schema<CreateDbaasLogOutputOpensearchAliasRequest>;
+
+export interface CreateDbaasLogOutputOpensearchAliasStreamRequest {
+  /** Service name */
+  serviceName: string;
+  /** Alias ID */
+  aliasId: string;
+  /** Stream ID */
+  streamId: string;
+}
+export const CreateDbaasLogOutputOpensearchAliasStreamRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      aliasId: S.String.pipe(T.Label()),
+      streamId: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/dbaas/logs/{serviceName}/output/opensearch/alias/{aliasId}/stream",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateDbaasLogOutputOpensearchAliasStreamRequest",
+  }) as any as S.Schema<CreateDbaasLogOutputOpensearchAliasStreamRequest>;
+
+export interface CreateDbaasLogOutputOpensearchOsdRequest {
+  /** Service name */
+  serviceName: string;
+  /** Description */
+  description: string;
+}
+export const CreateDbaasLogOutputOpensearchOsdRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      description: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/dbaas/logs/{serviceName}/output/opensearch/osd",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateDbaasLogOutputOpensearchOsdRequest",
+}) as any as S.Schema<CreateDbaasLogOutputOpensearchOsdRequest>;
+
+export interface CreateDbaasLogRoleRequest {
+  /** Service name */
+  serviceName: string;
+  /** Description */
+  description: string;
+  /** Name */
+  name: string;
+}
+export const CreateDbaasLogRoleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    description: S.String,
+    name: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/dbaas/logs/{serviceName}/role",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateDbaasLogRoleRequest",
+}) as any as S.Schema<CreateDbaasLogRoleRequest>;
+
+export interface CreateDbaasLogRoleMemberRequest {
+  /** Service name */
+  serviceName: string;
+  /** Role ID */
+  roleId: string;
+  /** Custom note */
+  note?: string | null;
+  /** Username */
+  username: string;
+}
+export const CreateDbaasLogRoleMemberRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    roleId: S.String.pipe(T.Label()),
+    note: S.optional(S.NullOr(S.String)),
+    username: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/dbaas/logs/{serviceName}/role/{roleId}/member",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateDbaasLogRoleMemberRequest",
+}) as any as S.Schema<CreateDbaasLogRoleMemberRequest>;
+
+export interface CreateDbaasLogRolePermissionAliasRequest {
+  /** Service name */
+  serviceName: string;
+  /** Role ID */
+  roleId: string;
+  /** Alias ID */
+  aliasId: string;
+}
+export const CreateDbaasLogRolePermissionAliasRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      roleId: S.String.pipe(T.Label()),
+      aliasId: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/dbaas/logs/{serviceName}/role/{roleId}/permission/alias",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateDbaasLogRolePermissionAliasRequest",
+}) as any as S.Schema<CreateDbaasLogRolePermissionAliasRequest>;
+
+/** Possible values for PermissionTypeEnum */
+export type DbaasLogsPermissionTypeEnum = "READ_ONLY" | "READ_WRITE";
+export const DbaasLogsPermissionTypeEnum = /*@__PURE__*/ S.String;
+
+export interface CreateDbaasLogRolePermissionDashboardRequest {
+  /** Service name */
+  serviceName: string;
+  /** Role ID */
+  roleId: string;
+  /** Dashboard ID */
+  dashboardId: string;
+  /** Permission type */
+  permissionType?: DbaasLogsPermissionTypeEnum | (string & {}) | null;
+}
+export const CreateDbaasLogRolePermissionDashboardRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      roleId: S.String.pipe(T.Label()),
+      dashboardId: S.String,
+      permissionType: S.optional(S.NullOr(DbaasLogsPermissionTypeEnum)),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/dbaas/logs/{serviceName}/role/{roleId}/permission/dashboard",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateDbaasLogRolePermissionDashboardRequest",
+  }) as any as S.Schema<CreateDbaasLogRolePermissionDashboardRequest>;
+
+export interface CreateDbaasLogRolePermissionOsdRequest {
+  /** Service name */
+  serviceName: string;
+  /** Role ID */
+  roleId: string;
+  /** Osd ID */
+  osdId: string;
+  /** Permission type */
+  permissionType?: DbaasLogsPermissionTypeEnum | (string & {}) | null;
+}
+export const CreateDbaasLogRolePermissionOsdRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      roleId: S.String.pipe(T.Label()),
+      osdId: S.String,
+      permissionType: S.optional(S.NullOr(DbaasLogsPermissionTypeEnum)),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/dbaas/logs/{serviceName}/role/{roleId}/permission/osd",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateDbaasLogRolePermissionOsdRequest",
+}) as any as S.Schema<CreateDbaasLogRolePermissionOsdRequest>;
+
+export interface CreateDbaasLogRolePermissionStreamRequest {
+  /** Service name */
+  serviceName: string;
+  /** Role ID */
+  roleId: string;
+  /** Stream ID */
+  streamId: string;
+}
+export const CreateDbaasLogRolePermissionStreamRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      roleId: S.String.pipe(T.Label()),
+      streamId: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/dbaas/logs/{serviceName}/role/{roleId}/permission/stream",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateDbaasLogRolePermissionStreamRequest",
+  }) as any as S.Schema<CreateDbaasLogRolePermissionStreamRequest>;
+
+export interface CreateDbaasLogTokenRequest {
+  /** Service name */
+  serviceName: string;
+  /** Cluster ID */
+  clusterId?: string | null;
+  /** Token name */
+  name: string;
+}
+export const CreateDbaasLogTokenRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    clusterId: S.optional(S.NullOr(S.String)),
+    name: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/dbaas/logs/{serviceName}/token",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateDbaasLogTokenRequest",
+}) as any as S.Schema<CreateDbaasLogTokenRequest>;
+
+export interface CreateDbaasLogUserChangePasswordRequest {
+  /** Service name */
+  serviceName: string;
+  /** Password must be at least 12 characters long contain a number, an uppercase, a lowercase and a special letter */
+  password: string | Redacted.Redacted<string>;
+}
+export const CreateDbaasLogUserChangePasswordRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      password: S.String.pipe(T.SensitiveValue({})),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/dbaas/logs/{serviceName}/user/changePassword",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateDbaasLogUserChangePasswordRequest",
+}) as any as S.Schema<CreateDbaasLogUserChangePasswordRequest>;
+
+export interface DeleteDbaasLogEncryptionKeyRequest {
+  /** Service name */
+  serviceName: string;
+  /** Encryption key ID */
+  encryptionKeyId: string;
+}
+export const DeleteDbaasLogEncryptionKeyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    encryptionKeyId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/dbaas/logs/{serviceName}/encryptionKey/{encryptionKeyId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteDbaasLogEncryptionKeyRequest",
+}) as any as S.Schema<DeleteDbaasLogEncryptionKeyRequest>;
+
+export interface DeleteDbaasLogInputRequest {
+  /** Service name */
+  serviceName: string;
+  /** Input ID */
+  inputId: string;
+}
+export const DeleteDbaasLogInputRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    inputId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/dbaas/logs/{serviceName}/input/{inputId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteDbaasLogInputRequest",
+}) as any as S.Schema<DeleteDbaasLogInputRequest>;
+
+export interface DeleteDbaasLogOutputGraylogDashboardRequest {
   /** Service name */
   serviceName: string;
   /** Dashboard ID */
   dashboardId: string;
 }
-export const DeleteDbaasLogsServiceNameOutputGraylogDashboardDashboardIdRequest =
+export const DeleteDbaasLogOutputGraylogDashboardRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
@@ -174,18 +995,17 @@ export const DeleteDbaasLogsServiceNameOutputGraylogDashboardDashboardIdRequest 
       }),
     ),
   ).annotate({
-    identifier:
-      "DeleteDbaasLogsServiceNameOutputGraylogDashboardDashboardIdRequest",
-  }) as any as S.Schema<DeleteDbaasLogsServiceNameOutputGraylogDashboardDashboardIdRequest>;
+    identifier: "DeleteDbaasLogOutputGraylogDashboardRequest",
+  }) as any as S.Schema<DeleteDbaasLogOutputGraylogDashboardRequest>;
 
-export interface DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdRequest {
+export interface DeleteDbaasLogOutputGraylogStreamRequest {
   /** Service name */
   serviceName: string;
   /** Stream ID */
   streamId: string;
 }
-export const DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const DeleteDbaasLogOutputGraylogStreamRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       streamId: S.String.pipe(T.Label()),
@@ -196,11 +1016,11 @@ export const DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdRequest",
-  }) as any as S.Schema<DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdRequest>;
+).annotate({
+  identifier: "DeleteDbaasLogOutputGraylogStreamRequest",
+}) as any as S.Schema<DeleteDbaasLogOutputGraylogStreamRequest>;
 
-export interface DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertAlertIdRequest {
+export interface DeleteDbaasLogOutputGraylogStreamAlertRequest {
   /** Service name */
   serviceName: string;
   /** Stream ID */
@@ -208,7 +1028,7 @@ export interface DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertAlert
   /** Alert ID */
   alertId: string;
 }
-export const DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertAlertIdRequest =
+export const DeleteDbaasLogOutputGraylogStreamAlertRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
@@ -222,11 +1042,10 @@ export const DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertAlertIdRe
       }),
     ),
   ).annotate({
-    identifier:
-      "DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertAlertIdRequest",
-  }) as any as S.Schema<DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertAlertIdRequest>;
+    identifier: "DeleteDbaasLogOutputGraylogStreamAlertRequest",
+  }) as any as S.Schema<DeleteDbaasLogOutputGraylogStreamAlertRequest>;
 
-export interface DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleRuleIdRequest {
+export interface DeleteDbaasLogOutputGraylogStreamRuleRequest {
   /** Service name */
   serviceName: string;
   /** Stream ID */
@@ -234,7 +1053,7 @@ export interface DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleRuleId
   /** Rule ID */
   ruleId: string;
 }
-export const DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleRuleIdRequest =
+export const DeleteDbaasLogOutputGraylogStreamRuleRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
@@ -248,11 +1067,10 @@ export const DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleRuleIdRequ
       }),
     ),
   ).annotate({
-    identifier:
-      "DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleRuleIdRequest",
-  }) as any as S.Schema<DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleRuleIdRequest>;
+    identifier: "DeleteDbaasLogOutputGraylogStreamRuleRequest",
+  }) as any as S.Schema<DeleteDbaasLogOutputGraylogStreamRuleRequest>;
 
-export interface DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionSubscriptionIdRequest {
+export interface DeleteDbaasLogOutputGraylogStreamSubscriptionRequest {
   /** Service name */
   serviceName: string;
   /** Stream ID */
@@ -260,7 +1078,7 @@ export interface DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscripti
   /** Subscription ID */
   subscriptionId: string;
 }
-export const DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionSubscriptionIdRequest =
+export const DeleteDbaasLogOutputGraylogStreamSubscriptionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
@@ -274,18 +1092,17 @@ export const DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionSu
       }),
     ),
   ).annotate({
-    identifier:
-      "DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionSubscriptionIdRequest",
-  }) as any as S.Schema<DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionSubscriptionIdRequest>;
+    identifier: "DeleteDbaasLogOutputGraylogStreamSubscriptionRequest",
+  }) as any as S.Schema<DeleteDbaasLogOutputGraylogStreamSubscriptionRequest>;
 
-export interface DeleteDbaasLogsServiceNameOutputMetricTenantTenantIdRequest {
+export interface DeleteDbaasLogOutputMetricTenantRequest {
   /** Service name */
   serviceName: string;
   /** Tenant ID */
   tenantId: string;
 }
-export const DeleteDbaasLogsServiceNameOutputMetricTenantTenantIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const DeleteDbaasLogOutputMetricTenantRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       tenantId: S.String.pipe(T.Label()),
@@ -296,11 +1113,11 @@ export const DeleteDbaasLogsServiceNameOutputMetricTenantTenantIdRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "DeleteDbaasLogsServiceNameOutputMetricTenantTenantIdRequest",
-  }) as any as S.Schema<DeleteDbaasLogsServiceNameOutputMetricTenantTenantIdRequest>;
+).annotate({
+  identifier: "DeleteDbaasLogOutputMetricTenantRequest",
+}) as any as S.Schema<DeleteDbaasLogOutputMetricTenantRequest>;
 
-export interface DeleteDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionSubscriptionIdRequest {
+export interface DeleteDbaasLogOutputMetricTenantSubscriptionRequest {
   /** Service name */
   serviceName: string;
   /** Tenant ID */
@@ -308,7 +1125,7 @@ export interface DeleteDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptio
   /** Subscription ID */
   subscriptionId: string;
 }
-export const DeleteDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionSubscriptionIdRequest =
+export const DeleteDbaasLogOutputMetricTenantSubscriptionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
@@ -322,17 +1139,16 @@ export const DeleteDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionSub
       }),
     ),
   ).annotate({
-    identifier:
-      "DeleteDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionSubscriptionIdRequest",
-  }) as any as S.Schema<DeleteDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionSubscriptionIdRequest>;
+    identifier: "DeleteDbaasLogOutputMetricTenantSubscriptionRequest",
+  }) as any as S.Schema<DeleteDbaasLogOutputMetricTenantSubscriptionRequest>;
 
-export interface DeleteDbaasLogsServiceNameOutputOpensearchAliasAliasIdRequest {
+export interface DeleteDbaasLogOutputOpensearchAliasRequest {
   /** Service name */
   serviceName: string;
   /** Alias ID */
   aliasId: string;
 }
-export const DeleteDbaasLogsServiceNameOutputOpensearchAliasAliasIdRequest =
+export const DeleteDbaasLogOutputOpensearchAliasRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
@@ -345,10 +1161,10 @@ export const DeleteDbaasLogsServiceNameOutputOpensearchAliasAliasIdRequest =
       }),
     ),
   ).annotate({
-    identifier: "DeleteDbaasLogsServiceNameOutputOpensearchAliasAliasIdRequest",
-  }) as any as S.Schema<DeleteDbaasLogsServiceNameOutputOpensearchAliasAliasIdRequest>;
+    identifier: "DeleteDbaasLogOutputOpensearchAliasRequest",
+  }) as any as S.Schema<DeleteDbaasLogOutputOpensearchAliasRequest>;
 
-export interface DeleteDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexIndexIdRequest {
+export interface DeleteDbaasLogOutputOpensearchAliasIndexRequest {
   /** Service name */
   serviceName: string;
   /** Alias ID */
@@ -356,7 +1172,7 @@ export interface DeleteDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexInde
   /** Index ID */
   indexId: string;
 }
-export const DeleteDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexIndexIdRequest =
+export const DeleteDbaasLogOutputOpensearchAliasIndexRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
@@ -370,11 +1186,10 @@ export const DeleteDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexIndexIdR
       }),
     ),
   ).annotate({
-    identifier:
-      "DeleteDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexIndexIdRequest",
-  }) as any as S.Schema<DeleteDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexIndexIdRequest>;
+    identifier: "DeleteDbaasLogOutputOpensearchAliasIndexRequest",
+  }) as any as S.Schema<DeleteDbaasLogOutputOpensearchAliasIndexRequest>;
 
-export interface DeleteDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamStreamIdRequest {
+export interface DeleteDbaasLogOutputOpensearchAliasStreamRequest {
   /** Service name */
   serviceName: string;
   /** Alias ID */
@@ -382,7 +1197,7 @@ export interface DeleteDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamStr
   /** Stream ID */
   streamId: string;
 }
-export const DeleteDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamStreamIdRequest =
+export const DeleteDbaasLogOutputOpensearchAliasStreamRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
@@ -396,17 +1211,16 @@ export const DeleteDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamStreamI
       }),
     ),
   ).annotate({
-    identifier:
-      "DeleteDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamStreamIdRequest",
-  }) as any as S.Schema<DeleteDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamStreamIdRequest>;
+    identifier: "DeleteDbaasLogOutputOpensearchAliasStreamRequest",
+  }) as any as S.Schema<DeleteDbaasLogOutputOpensearchAliasStreamRequest>;
 
-export interface DeleteDbaasLogsServiceNameOutputOpensearchIndexIndexIdRequest {
+export interface DeleteDbaasLogOutputOpensearchIndexRequest {
   /** Service name */
   serviceName: string;
   /** Index ID */
   indexId: string;
 }
-export const DeleteDbaasLogsServiceNameOutputOpensearchIndexIndexIdRequest =
+export const DeleteDbaasLogOutputOpensearchIndexRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
@@ -419,17 +1233,17 @@ export const DeleteDbaasLogsServiceNameOutputOpensearchIndexIndexIdRequest =
       }),
     ),
   ).annotate({
-    identifier: "DeleteDbaasLogsServiceNameOutputOpensearchIndexIndexIdRequest",
-  }) as any as S.Schema<DeleteDbaasLogsServiceNameOutputOpensearchIndexIndexIdRequest>;
+    identifier: "DeleteDbaasLogOutputOpensearchIndexRequest",
+  }) as any as S.Schema<DeleteDbaasLogOutputOpensearchIndexRequest>;
 
-export interface DeleteDbaasLogsServiceNameOutputOpensearchOsdOsdIdRequest {
+export interface DeleteDbaasLogOutputOpensearchOsdRequest {
   /** Service name */
   serviceName: string;
   /** Osd ID */
   osdId: string;
 }
-export const DeleteDbaasLogsServiceNameOutputOpensearchOsdOsdIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const DeleteDbaasLogOutputOpensearchOsdRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       osdId: S.String.pipe(T.Label()),
@@ -440,33 +1254,32 @@ export const DeleteDbaasLogsServiceNameOutputOpensearchOsdOsdIdRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "DeleteDbaasLogsServiceNameOutputOpensearchOsdOsdIdRequest",
-  }) as any as S.Schema<DeleteDbaasLogsServiceNameOutputOpensearchOsdOsdIdRequest>;
+).annotate({
+  identifier: "DeleteDbaasLogOutputOpensearchOsdRequest",
+}) as any as S.Schema<DeleteDbaasLogOutputOpensearchOsdRequest>;
 
-export interface DeleteDbaasLogsServiceNameRoleRoleIdRequest {
+export interface DeleteDbaasLogRoleRequest {
   /** Service name */
   serviceName: string;
   /** Role ID */
   roleId: string;
 }
-export const DeleteDbaasLogsServiceNameRoleRoleIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      roleId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/dbaas/logs/{serviceName}/role/{roleId}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "DeleteDbaasLogsServiceNameRoleRoleIdRequest",
-  }) as any as S.Schema<DeleteDbaasLogsServiceNameRoleRoleIdRequest>;
+export const DeleteDbaasLogRoleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    roleId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/dbaas/logs/{serviceName}/role/{roleId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteDbaasLogRoleRequest",
+}) as any as S.Schema<DeleteDbaasLogRoleRequest>;
 
-export interface DeleteDbaasLogsServiceNameRoleRoleIdMemberUsernameRequest {
+export interface DeleteDbaasLogRoleMemberRequest {
   /** Service name */
   serviceName: string;
   /** Role ID */
@@ -474,24 +1287,23 @@ export interface DeleteDbaasLogsServiceNameRoleRoleIdMemberUsernameRequest {
   /** Username */
   username: string;
 }
-export const DeleteDbaasLogsServiceNameRoleRoleIdMemberUsernameRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      roleId: S.String.pipe(T.Label()),
-      username: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/dbaas/logs/{serviceName}/role/{roleId}/member/{username}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "DeleteDbaasLogsServiceNameRoleRoleIdMemberUsernameRequest",
-  }) as any as S.Schema<DeleteDbaasLogsServiceNameRoleRoleIdMemberUsernameRequest>;
+export const DeleteDbaasLogRoleMemberRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    roleId: S.String.pipe(T.Label()),
+    username: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/dbaas/logs/{serviceName}/role/{roleId}/member/{username}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteDbaasLogRoleMemberRequest",
+}) as any as S.Schema<DeleteDbaasLogRoleMemberRequest>;
 
-export interface DeleteDbaasLogsServiceNameRoleRoleIdPermissionPermissionIdRequest {
+export interface DeleteDbaasLogRolePermissionRequest {
   /** Service name */
   serviceName: string;
   /** Role ID */
@@ -499,105 +1311,87 @@ export interface DeleteDbaasLogsServiceNameRoleRoleIdPermissionPermissionIdReque
   /** Permission ID */
   permissionId: string;
 }
-export const DeleteDbaasLogsServiceNameRoleRoleIdPermissionPermissionIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      roleId: S.String.pipe(T.Label()),
-      permissionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/dbaas/logs/{serviceName}/role/{roleId}/permission/{permissionId}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "DeleteDbaasLogsServiceNameRoleRoleIdPermissionPermissionIdRequest",
-  }) as any as S.Schema<DeleteDbaasLogsServiceNameRoleRoleIdPermissionPermissionIdRequest>;
+export const DeleteDbaasLogRolePermissionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    roleId: S.String.pipe(T.Label()),
+    permissionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/dbaas/logs/{serviceName}/role/{roleId}/permission/{permissionId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteDbaasLogRolePermissionRequest",
+}) as any as S.Schema<DeleteDbaasLogRolePermissionRequest>;
 
-export interface DeleteDbaasLogsServiceNameTokenTokenIdRequest {
+export interface DeleteDbaasLogTokenRequest {
   /** Service name */
   serviceName: string;
   /** Token ID */
   tokenId: string;
 }
-export const DeleteDbaasLogsServiceNameTokenTokenIdRequest =
+export const DeleteDbaasLogTokenRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    tokenId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/dbaas/logs/{serviceName}/token/{tokenId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteDbaasLogTokenRequest",
+}) as any as S.Schema<DeleteDbaasLogTokenRequest>;
+
+export interface DuplicateDbaasLogsOutputGraylogDashboardRequest {
+  /** Service name */
+  serviceName: string;
+  /** Dashboard ID */
+  dashboardId: string;
+  /** Description */
+  description: string;
+  /** Stream ID */
+  streamId?: string | null;
+  /** Title */
+  title: string;
+}
+export const DuplicateDbaasLogsOutputGraylogDashboardRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
-      tokenId: S.String.pipe(T.Label()),
+      dashboardId: S.String.pipe(T.Label()),
+      description: S.String,
+      streamId: S.optional(S.NullOr(S.String)),
+      title: S.String,
     }).pipe(
       T.Http({
-        method: "DELETE",
-        uri: "/dbaas/logs/{serviceName}/token/{tokenId}",
+        method: "POST",
+        uri: "/dbaas/logs/{serviceName}/output/graylog/dashboard/{dashboardId}/duplicate",
         code: 200,
       }),
     ),
   ).annotate({
-    identifier: "DeleteDbaasLogsServiceNameTokenTokenIdRequest",
-  }) as any as S.Schema<DeleteDbaasLogsServiceNameTokenTokenIdRequest>;
+    identifier: "DuplicateDbaasLogsOutputGraylogDashboardRequest",
+  }) as any as S.Schema<DuplicateDbaasLogsOutputGraylogDashboardRequest>;
 
-/** Resource tag filter */
-export interface IamResourceTagFilterInput {}
-export const IamResourceTagFilterInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "IamResourceTagFilterInput",
-}) as any as S.Schema<IamResourceTagFilterInput>;
-
-export type GetDbaasLogsRequestIamTagsValueList =
-  Array<IamResourceTagFilterInput>;
-export const GetDbaasLogsRequestIamTagsValueList = /*@__PURE__*/ S.Array(
-  IamResourceTagFilterInput,
-) as any as S.Schema<GetDbaasLogsRequestIamTagsValueList>;
-
-export type GetDbaasLogsRequestIamTagsMap = {
-  [key: string]: GetDbaasLogsRequestIamTagsValueList | undefined;
-};
-export const GetDbaasLogsRequestIamTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  GetDbaasLogsRequestIamTagsValueList,
-) as any as S.Schema<GetDbaasLogsRequestIamTagsMap>;
-
-export interface GetDbaasLogsRequest {
-  /** Filter resources on IAM tags */
-  iamTags?: GetDbaasLogsRequestIamTagsMap;
-}
-export const GetDbaasLogsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    iamTags: S.optional(GetDbaasLogsRequestIamTagsMap.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/dbaas/logs", code: 200 })),
-).annotate({
-  identifier: "GetDbaasLogsRequest",
-}) as any as S.Schema<GetDbaasLogsRequest>;
-
-export type GetDbaasLogsResponseBodyList = Array<string>;
-export const GetDbaasLogsResponseBodyList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<GetDbaasLogsResponseBodyList>;
-
-export type GetDbaasLogsResponse = GetDbaasLogsResponseBodyList;
-export const GetDbaasLogsResponse = /*@__PURE__*/ S.suspend(() =>
-  GetDbaasLogsResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetDbaasLogsResponse",
-}) as any as S.Schema<GetDbaasLogsResponse>;
-
-export interface GetDbaasLogsServiceNameRequest {
+export interface GetDbaasLogRequest {
   /** Service name */
   serviceName: string;
 }
-export const GetDbaasLogsServiceNameRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDbaasLogRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     serviceName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({ method: "GET", uri: "/dbaas/logs/{serviceName}", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetDbaasLogsServiceNameRequest",
-}) as any as S.Schema<GetDbaasLogsServiceNameRequest>;
+  identifier: "GetDbaasLogRequest",
+}) as any as S.Schema<GetDbaasLogRequest>;
 
 /** Resource tags. Tags that were internally computed are prefixed with ovh: */
 export type IamResourceMetadataTagsMap = { [key: string]: string | undefined };
@@ -680,64 +1474,26 @@ export const DbaasLogsServiceWithIAM = /*@__PURE__*/ S.suspend(() =>
   identifier: "DbaasLogsServiceWithIAM",
 }) as any as S.Schema<DbaasLogsServiceWithIAM>;
 
-export interface GetDbaasLogsServiceNameClusterRequest {
-  /** Service name */
-  serviceName: string;
-  /** Filter by name (like) */
-  namePattern?: string;
-}
-export const GetDbaasLogsServiceNameClusterRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      namePattern: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/dbaas/logs/{serviceName}/cluster",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "GetDbaasLogsServiceNameClusterRequest",
-}) as any as S.Schema<GetDbaasLogsServiceNameClusterRequest>;
-
-export type GetDbaasLogsServiceNameClusterResponseBodyList = Array<string>;
-export const GetDbaasLogsServiceNameClusterResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetDbaasLogsServiceNameClusterResponseBodyList>;
-
-export type GetDbaasLogsServiceNameClusterResponse =
-  GetDbaasLogsServiceNameClusterResponseBodyList;
-export const GetDbaasLogsServiceNameClusterResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    GetDbaasLogsServiceNameClusterResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetDbaasLogsServiceNameClusterResponse",
-}) as any as S.Schema<GetDbaasLogsServiceNameClusterResponse>;
-
-export interface GetDbaasLogsServiceNameClusterClusterIdRequest {
+export interface GetDbaasLogClusterRequest {
   /** Service name */
   serviceName: string;
   /** Cluster ID */
   clusterId: string;
 }
-export const GetDbaasLogsServiceNameClusterClusterIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      clusterId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/dbaas/logs/{serviceName}/cluster/{clusterId}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameClusterClusterIdRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameClusterClusterIdRequest>;
+export const GetDbaasLogClusterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    clusterId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/dbaas/logs/{serviceName}/cluster/{clusterId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetDbaasLogClusterRequest",
+}) as any as S.Schema<GetDbaasLogClusterRequest>;
 
 /** Allowed networks for ARCHIVE flow type */
 export type DbaasLogsClusterArchiveAllowedNetworksList = Array<string>;
@@ -829,47 +1585,7 @@ export const DbaasLogsCluster = /*@__PURE__*/ S.suspend(() =>
   identifier: "DbaasLogsCluster",
 }) as any as S.Schema<DbaasLogsCluster>;
 
-export interface GetDbaasLogsServiceNameClusterClusterIdRetentionRequest {
-  /** Service name */
-  serviceName: string;
-  /** Cluster ID */
-  clusterId: string;
-}
-export const GetDbaasLogsServiceNameClusterClusterIdRetentionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      clusterId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/dbaas/logs/{serviceName}/cluster/{clusterId}/retention",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameClusterClusterIdRetentionRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameClusterClusterIdRetentionRequest>;
-
-export type GetDbaasLogsServiceNameClusterClusterIdRetentionResponseBodyList =
-  Array<string>;
-export const GetDbaasLogsServiceNameClusterClusterIdRetentionResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetDbaasLogsServiceNameClusterClusterIdRetentionResponseBodyList>;
-
-export type GetDbaasLogsServiceNameClusterClusterIdRetentionResponse =
-  GetDbaasLogsServiceNameClusterClusterIdRetentionResponseBodyList;
-export const GetDbaasLogsServiceNameClusterClusterIdRetentionResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetDbaasLogsServiceNameClusterClusterIdRetentionResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameClusterClusterIdRetentionResponse",
-  }) as any as S.Schema<GetDbaasLogsServiceNameClusterClusterIdRetentionResponse>;
-
-export interface GetDbaasLogsServiceNameClusterClusterIdRetentionRetentionIdRequest {
+export interface GetDbaasLogClusterRetentionRequest {
   /** Service name */
   serviceName: string;
   /** Cluster ID */
@@ -877,23 +1593,21 @@ export interface GetDbaasLogsServiceNameClusterClusterIdRetentionRetentionIdRequ
   /** Retention ID */
   retentionId: string;
 }
-export const GetDbaasLogsServiceNameClusterClusterIdRetentionRetentionIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      clusterId: S.String.pipe(T.Label()),
-      retentionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/dbaas/logs/{serviceName}/cluster/{clusterId}/retention/{retentionId}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "GetDbaasLogsServiceNameClusterClusterIdRetentionRetentionIdRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameClusterClusterIdRetentionRetentionIdRequest>;
+export const GetDbaasLogClusterRetentionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    clusterId: S.String.pipe(T.Label()),
+    retentionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/dbaas/logs/{serviceName}/cluster/{clusterId}/retention/{retentionId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetDbaasLogClusterRetentionRequest",
+}) as any as S.Schema<GetDbaasLogClusterRetentionRequest>;
 
 /** Possible values for RetentionTypeEnum */
 export type DbaasLogsRetentionTypeEnum =
@@ -924,67 +1638,26 @@ export const DbaasLogsClusterRetention = /*@__PURE__*/ S.suspend(() =>
   identifier: "DbaasLogsClusterRetention",
 }) as any as S.Schema<DbaasLogsClusterRetention>;
 
-export interface GetDbaasLogsServiceNameEncryptionKeyRequest {
-  /** Service name */
-  serviceName: string;
-  /** Filter by title (like) */
-  titlePattern?: string;
-}
-export const GetDbaasLogsServiceNameEncryptionKeyRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      titlePattern: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/dbaas/logs/{serviceName}/encryptionKey",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameEncryptionKeyRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameEncryptionKeyRequest>;
-
-export type GetDbaasLogsServiceNameEncryptionKeyResponseBodyList =
-  Array<string>;
-export const GetDbaasLogsServiceNameEncryptionKeyResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetDbaasLogsServiceNameEncryptionKeyResponseBodyList>;
-
-export type GetDbaasLogsServiceNameEncryptionKeyResponse =
-  GetDbaasLogsServiceNameEncryptionKeyResponseBodyList;
-export const GetDbaasLogsServiceNameEncryptionKeyResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetDbaasLogsServiceNameEncryptionKeyResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameEncryptionKeyResponse",
-  }) as any as S.Schema<GetDbaasLogsServiceNameEncryptionKeyResponse>;
-
-export interface GetDbaasLogsServiceNameEncryptionKeyEncryptionKeyIdRequest {
+export interface GetDbaasLogEncryptionKeyRequest {
   /** Service name */
   serviceName: string;
   /** Encryption key ID */
   encryptionKeyId: string;
 }
-export const GetDbaasLogsServiceNameEncryptionKeyEncryptionKeyIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      encryptionKeyId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/dbaas/logs/{serviceName}/encryptionKey/{encryptionKeyId}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameEncryptionKeyEncryptionKeyIdRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameEncryptionKeyEncryptionKeyIdRequest>;
+export const GetDbaasLogEncryptionKeyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    encryptionKeyId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/dbaas/logs/{serviceName}/encryptionKey/{encryptionKeyId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetDbaasLogEncryptionKeyRequest",
+}) as any as S.Schema<GetDbaasLogEncryptionKeyRequest>;
 
 /** Possible values for EncryptionKeyAlgorithmEnum */
 export type DbaasLogsEncryptionKeyAlgorithmEnum = "ECC25519" | "RSA4096";
@@ -1027,266 +1700,26 @@ export const DbaasLogsEncryptionKey = /*@__PURE__*/ S.suspend(() =>
   identifier: "DbaasLogsEncryptionKey",
 }) as any as S.Schema<DbaasLogsEncryptionKey>;
 
-export interface GetDbaasLogsServiceNameInputRequest {
-  /** Service name */
-  serviceName: string;
-  /** Filter by title (like) */
-  titlePattern?: string;
-}
-export const GetDbaasLogsServiceNameInputRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceName: S.String.pipe(T.Label()),
-    titlePattern: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/dbaas/logs/{serviceName}/input",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "GetDbaasLogsServiceNameInputRequest",
-}) as any as S.Schema<GetDbaasLogsServiceNameInputRequest>;
-
-export type GetDbaasLogsServiceNameInputResponseBodyList = Array<string>;
-export const GetDbaasLogsServiceNameInputResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetDbaasLogsServiceNameInputResponseBodyList>;
-
-export type GetDbaasLogsServiceNameInputResponse =
-  GetDbaasLogsServiceNameInputResponseBodyList;
-export const GetDbaasLogsServiceNameInputResponse = /*@__PURE__*/ S.suspend(
-  () => GetDbaasLogsServiceNameInputResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetDbaasLogsServiceNameInputResponse",
-}) as any as S.Schema<GetDbaasLogsServiceNameInputResponse>;
-
-export interface GetDbaasLogsServiceNameInputEngineRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const GetDbaasLogsServiceNameInputEngineRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/dbaas/logs/{serviceName}/input/engine",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameInputEngineRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameInputEngineRequest>;
-
-export type GetDbaasLogsServiceNameInputEngineResponseBodyList = Array<string>;
-export const GetDbaasLogsServiceNameInputEngineResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetDbaasLogsServiceNameInputEngineResponseBodyList>;
-
-export type GetDbaasLogsServiceNameInputEngineResponse =
-  GetDbaasLogsServiceNameInputEngineResponseBodyList;
-export const GetDbaasLogsServiceNameInputEngineResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetDbaasLogsServiceNameInputEngineResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameInputEngineResponse",
-  }) as any as S.Schema<GetDbaasLogsServiceNameInputEngineResponse>;
-
-export interface GetDbaasLogsServiceNameInputEngineEngineIdRequest {
-  /** Service name */
-  serviceName: string;
-  /** Engine ID */
-  engineId: string;
-}
-export const GetDbaasLogsServiceNameInputEngineEngineIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      engineId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/dbaas/logs/{serviceName}/input/engine/{engineId}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameInputEngineEngineIdRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameInputEngineEngineIdRequest>;
-
-/** Possible values for EngineNameEnum */
-export type DbaasLogsEngineNameEnum = "FLOWGGER" | "LOGSTASH" | "TEST";
-export const DbaasLogsEngineNameEnum = /*@__PURE__*/ S.String;
-
-/** Input engine */
-export interface DbaasLogsEngine {
-  /** Input engine ID */
-  engineId?: string;
-  /** Indicates if engine will soon not be supported */
-  isDeprecated?: boolean;
-  /** Software name */
-  name?: DbaasLogsEngineNameEnum;
-  /** Software version */
-  version?: string;
-}
-export const DbaasLogsEngine = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    engineId: S.optional(S.String),
-    isDeprecated: S.optional(S.Boolean),
-    name: S.optional(DbaasLogsEngineNameEnum),
-    version: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DbaasLogsEngine",
-}) as any as S.Schema<DbaasLogsEngine>;
-
-export interface GetDbaasLogsServiceNameInputEngineEngineIdHelperRequest {
-  /** Service name */
-  serviceName: string;
-  /** Engine ID */
-  engineId: string;
-}
-export const GetDbaasLogsServiceNameInputEngineEngineIdHelperRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      engineId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/dbaas/logs/{serviceName}/input/engine/{engineId}/helper",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameInputEngineEngineIdHelperRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameInputEngineEngineIdHelperRequest>;
-
-export type GetDbaasLogsServiceNameInputEngineEngineIdHelperResponseBodyList =
-  Array<string>;
-export const GetDbaasLogsServiceNameInputEngineEngineIdHelperResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetDbaasLogsServiceNameInputEngineEngineIdHelperResponseBodyList>;
-
-export type GetDbaasLogsServiceNameInputEngineEngineIdHelperResponse =
-  GetDbaasLogsServiceNameInputEngineEngineIdHelperResponseBodyList;
-export const GetDbaasLogsServiceNameInputEngineEngineIdHelperResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetDbaasLogsServiceNameInputEngineEngineIdHelperResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameInputEngineEngineIdHelperResponse",
-  }) as any as S.Schema<GetDbaasLogsServiceNameInputEngineEngineIdHelperResponse>;
-
-export interface GetDbaasLogsServiceNameInputEngineEngineIdHelperHelperIdRequest {
-  /** Service name */
-  serviceName: string;
-  /** Engine ID */
-  engineId: string;
-  /** Helper ID */
-  helperId: string;
-}
-export const GetDbaasLogsServiceNameInputEngineEngineIdHelperHelperIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      engineId: S.String.pipe(T.Label()),
-      helperId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/dbaas/logs/{serviceName}/input/engine/{engineId}/helper/{helperId}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "GetDbaasLogsServiceNameInputEngineEngineIdHelperHelperIdRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameInputEngineEngineIdHelperHelperIdRequest>;
-
-/** Possible values for HelperSectionName */
-export type DbaasLogsHelperSectionNameEnum =
-  | "LOGSTASH_FILTER"
-  | "LOGSTASH_INPUT"
-  | "LOGSTASH_PATTERN";
-export const DbaasLogsHelperSectionNameEnum = /*@__PURE__*/ S.String;
-
-/** Helper section */
-export interface DbaasLogsHelperSection {
-  /** Section content */
-  content?: string;
-  /** Section name */
-  name?: DbaasLogsHelperSectionNameEnum;
-}
-export const DbaasLogsHelperSection = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    content: S.optional(S.String),
-    name: S.optional(DbaasLogsHelperSectionNameEnum),
-  }),
-).annotate({
-  identifier: "DbaasLogsHelperSection",
-}) as any as S.Schema<DbaasLogsHelperSection>;
-
-/** Helper sections */
-export type DbaasLogsHelperSectionsList = Array<DbaasLogsHelperSection>;
-export const DbaasLogsHelperSectionsList = /*@__PURE__*/ S.Array(
-  DbaasLogsHelperSection,
-) as any as S.Schema<DbaasLogsHelperSectionsList>;
-
-/** Helper */
-export interface DbaasLogsHelper {
-  /** Helper description */
-  description?: string;
-  /** Input engine UUID */
-  engineId?: string;
-  /** Helper UUID */
-  helperId?: string;
-  /** Helper sections */
-  sections?: DbaasLogsHelperSectionsList;
-  /** Helper title */
-  title?: string;
-}
-export const DbaasLogsHelper = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    description: S.optional(S.String),
-    engineId: S.optional(S.String),
-    helperId: S.optional(S.String),
-    sections: S.optional(DbaasLogsHelperSectionsList),
-    title: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DbaasLogsHelper",
-}) as any as S.Schema<DbaasLogsHelper>;
-
-export interface GetDbaasLogsServiceNameInputInputIdRequest {
+export interface GetDbaasLogInputRequest {
   /** Service name */
   serviceName: string;
   /** Input ID */
   inputId: string;
 }
-export const GetDbaasLogsServiceNameInputInputIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      inputId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/dbaas/logs/{serviceName}/input/{inputId}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameInputInputIdRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameInputInputIdRequest>;
+export const GetDbaasLogInputRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    inputId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/dbaas/logs/{serviceName}/input/{inputId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetDbaasLogInputRequest",
+}) as any as S.Schema<GetDbaasLogInputRequest>;
 
 /** IP blocks */
 export type DbaasLogsInputAllowedNetworksList = Array<string>;
@@ -1367,80 +1800,14 @@ export const DbaasLogsInput = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "DbaasLogsInput" }) as any as S.Schema<DbaasLogsInput>;
 
-export interface GetDbaasLogsServiceNameInputInputIdActionRequest {
+export interface GetDbaasLogInputConfigtestResultRequest {
   /** Service name */
   serviceName: string;
   /** Input ID */
   inputId: string;
 }
-export const GetDbaasLogsServiceNameInputInputIdActionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      inputId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/dbaas/logs/{serviceName}/input/{inputId}/action",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameInputInputIdActionRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameInputInputIdActionRequest>;
-
-/** Possible values for InputActionTypeEnum */
-export type DbaasLogsInputActionTypeEnum =
-  | "DESTROY"
-  | "END"
-  | "LOG"
-  | "RESTART"
-  | "START"
-  | "TEST";
-export const DbaasLogsInputActionTypeEnum = /*@__PURE__*/ S.String;
-
-/** Action on input */
-export interface DbaasLogsInputAction {
-  /** Indicates if action is allowed */
-  isAllowed?: boolean;
-  /** Action type */
-  type?: DbaasLogsInputActionTypeEnum;
-}
-export const DbaasLogsInputAction = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    isAllowed: S.optional(S.Boolean),
-    type: S.optional(DbaasLogsInputActionTypeEnum),
-  }),
-).annotate({
-  identifier: "DbaasLogsInputAction",
-}) as any as S.Schema<DbaasLogsInputAction>;
-
-export type GetDbaasLogsServiceNameInputInputIdActionResponseBodyList =
-  Array<DbaasLogsInputAction>;
-export const GetDbaasLogsServiceNameInputInputIdActionResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    DbaasLogsInputAction,
-  ) as any as S.Schema<GetDbaasLogsServiceNameInputInputIdActionResponseBodyList>;
-
-export type GetDbaasLogsServiceNameInputInputIdActionResponse =
-  GetDbaasLogsServiceNameInputInputIdActionResponseBodyList;
-export const GetDbaasLogsServiceNameInputInputIdActionResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetDbaasLogsServiceNameInputInputIdActionResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameInputInputIdActionResponse",
-  }) as any as S.Schema<GetDbaasLogsServiceNameInputInputIdActionResponse>;
-
-export interface GetDbaasLogsServiceNameInputInputIdConfigtestResultRequest {
-  /** Service name */
-  serviceName: string;
-  /** Input ID */
-  inputId: string;
-}
-export const GetDbaasLogsServiceNameInputInputIdConfigtestResultRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetDbaasLogInputConfigtestResultRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       inputId: S.String.pipe(T.Label()),
@@ -1451,9 +1818,9 @@ export const GetDbaasLogsServiceNameInputInputIdConfigtestResultRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameInputInputIdConfigtestResultRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameInputInputIdConfigtestResultRequest>;
+).annotate({
+  identifier: "GetDbaasLogInputConfigtestResultRequest",
+}) as any as S.Schema<GetDbaasLogInputConfigtestResultRequest>;
 
 /** Config test results */
 export interface DbaasLogsTestResult {
@@ -1477,13 +1844,13 @@ export const DbaasLogsTestResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "DbaasLogsTestResult",
 }) as any as S.Schema<DbaasLogsTestResult>;
 
-export interface GetDbaasLogsServiceNameInputInputIdConfigurationFlowggerRequest {
+export interface GetDbaasLogInputConfigurationFlowggerRequest {
   /** Service name */
   serviceName: string;
   /** Input ID */
   inputId: string;
 }
-export const GetDbaasLogsServiceNameInputInputIdConfigurationFlowggerRequest =
+export const GetDbaasLogInputConfigurationFlowggerRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
@@ -1496,9 +1863,8 @@ export const GetDbaasLogsServiceNameInputInputIdConfigurationFlowggerRequest =
       }),
     ),
   ).annotate({
-    identifier:
-      "GetDbaasLogsServiceNameInputInputIdConfigurationFlowggerRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameInputInputIdConfigurationFlowggerRequest>;
+    identifier: "GetDbaasLogInputConfigurationFlowggerRequest",
+  }) as any as S.Schema<GetDbaasLogInputConfigurationFlowggerRequest>;
 
 /** Possible values for FlowggerConfigurationLogFormatEnum */
 export type DbaasLogsFlowggerConfigurationLogFormatEnum =
@@ -1534,13 +1900,13 @@ export const DbaasLogsFlowggerConfiguration = /*@__PURE__*/ S.suspend(() =>
   identifier: "DbaasLogsFlowggerConfiguration",
 }) as any as S.Schema<DbaasLogsFlowggerConfiguration>;
 
-export interface GetDbaasLogsServiceNameInputInputIdConfigurationLogstashRequest {
+export interface GetDbaasLogInputConfigurationLogstashRequest {
   /** Service name */
   serviceName: string;
   /** Input ID */
   inputId: string;
 }
-export const GetDbaasLogsServiceNameInputInputIdConfigurationLogstashRequest =
+export const GetDbaasLogInputConfigurationLogstashRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
@@ -1553,9 +1919,8 @@ export const GetDbaasLogsServiceNameInputInputIdConfigurationLogstashRequest =
       }),
     ),
   ).annotate({
-    identifier:
-      "GetDbaasLogsServiceNameInputInputIdConfigurationLogstashRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameInputInputIdConfigurationLogstashRequest>;
+    identifier: "GetDbaasLogInputConfigurationLogstashRequest",
+  }) as any as S.Schema<GetDbaasLogInputConfigurationLogstashRequest>;
 
 /** Logstash configuration */
 export interface DbaasLogsLogstashConfiguration {
@@ -1576,111 +1941,148 @@ export const DbaasLogsLogstashConfiguration = /*@__PURE__*/ S.suspend(() =>
   identifier: "DbaasLogsLogstashConfiguration",
 }) as any as S.Schema<DbaasLogsLogstashConfiguration>;
 
-export interface GetDbaasLogsServiceNameInputInputIdUrlRequest {
+export interface GetDbaasLogInputEngineRequest {
   /** Service name */
   serviceName: string;
-  /** Input ID */
-  inputId: string;
+  /** Engine ID */
+  engineId: string;
 }
-export const GetDbaasLogsServiceNameInputInputIdUrlRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      inputId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/dbaas/logs/{serviceName}/input/{inputId}/url",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameInputInputIdUrlRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameInputInputIdUrlRequest>;
-
-/** Possible values for UrlTypeEnum */
-export type DbaasLogsUrlTypeEnum =
-  | "CONSOLE"
-  | "ELASTICSEARCH_API"
-  | "GRAYLOG_API"
-  | "GRAYLOG_WEBUI"
-  | "HTTP_GELF"
-  | "HTTP_TLS_GELF"
-  | "KIBANA_WEBUI"
-  | "OPENSEARCH_API"
-  | "OSD_WEBUI"
-  | "PROMETHEUS_API"
-  | "SERVICE_DOMAIN"
-  | "TCP_BEATS"
-  | "TCP_CAP_N_PROTO"
-  | "TCP_GELF"
-  | "TCP_LTSV_LINE"
-  | "TCP_LTSV_NUL"
-  | "TCP_RFC5424"
-  | "TCP_TLS_BEATS"
-  | "TCP_TLS_CAP_N_PROTO"
-  | "TCP_TLS_GELF"
-  | "TCP_TLS_LTSV_LINE"
-  | "TCP_TLS_LTSV_NUL"
-  | "TCP_TLS_RFC5424"
-  | "UDP_CAP_N_PROTO"
-  | "UDP_GELF"
-  | "UDP_LTSV_LINE"
-  | "UDP_LTSV_NUL"
-  | "UDP_RFC5424"
-  | "WEB_SOCKET";
-export const DbaasLogsUrlTypeEnum = /*@__PURE__*/ S.String;
-
-/** Web address */
-export interface DbaasLogsUrl {
-  /** Web URI */
-  address?: string;
-  /** Service type */
-  type?: DbaasLogsUrlTypeEnum;
-}
-export const DbaasLogsUrl = /*@__PURE__*/ S.suspend(() =>
+export const GetDbaasLogInputEngineRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    address: S.optional(S.String),
-    type: S.optional(DbaasLogsUrlTypeEnum),
+    serviceName: S.String.pipe(T.Label()),
+    engineId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/dbaas/logs/{serviceName}/input/engine/{engineId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetDbaasLogInputEngineRequest",
+}) as any as S.Schema<GetDbaasLogInputEngineRequest>;
+
+/** Possible values for EngineNameEnum */
+export type DbaasLogsEngineNameEnum = "FLOWGGER" | "LOGSTASH" | "TEST";
+export const DbaasLogsEngineNameEnum = /*@__PURE__*/ S.String;
+
+/** Input engine */
+export interface DbaasLogsEngine {
+  /** Input engine ID */
+  engineId?: string;
+  /** Indicates if engine will soon not be supported */
+  isDeprecated?: boolean;
+  /** Software name */
+  name?: DbaasLogsEngineNameEnum;
+  /** Software version */
+  version?: string;
+}
+export const DbaasLogsEngine = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    engineId: S.optional(S.String),
+    isDeprecated: S.optional(S.Boolean),
+    name: S.optional(DbaasLogsEngineNameEnum),
+    version: S.optional(S.String),
   }),
-).annotate({ identifier: "DbaasLogsUrl" }) as any as S.Schema<DbaasLogsUrl>;
+).annotate({
+  identifier: "DbaasLogsEngine",
+}) as any as S.Schema<DbaasLogsEngine>;
 
-export type GetDbaasLogsServiceNameInputInputIdUrlResponseBodyList =
-  Array<DbaasLogsUrl>;
-export const GetDbaasLogsServiceNameInputInputIdUrlResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    DbaasLogsUrl,
-  ) as any as S.Schema<GetDbaasLogsServiceNameInputInputIdUrlResponseBodyList>;
+export interface GetDbaasLogInputEngineHelperRequest {
+  /** Service name */
+  serviceName: string;
+  /** Engine ID */
+  engineId: string;
+  /** Helper ID */
+  helperId: string;
+}
+export const GetDbaasLogInputEngineHelperRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    engineId: S.String.pipe(T.Label()),
+    helperId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/dbaas/logs/{serviceName}/input/engine/{engineId}/helper/{helperId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetDbaasLogInputEngineHelperRequest",
+}) as any as S.Schema<GetDbaasLogInputEngineHelperRequest>;
 
-export type GetDbaasLogsServiceNameInputInputIdUrlResponse =
-  GetDbaasLogsServiceNameInputInputIdUrlResponseBodyList;
-export const GetDbaasLogsServiceNameInputInputIdUrlResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetDbaasLogsServiceNameInputInputIdUrlResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameInputInputIdUrlResponse",
-  }) as any as S.Schema<GetDbaasLogsServiceNameInputInputIdUrlResponse>;
+/** Possible values for HelperSectionName */
+export type DbaasLogsHelperSectionNameEnum =
+  | "LOGSTASH_FILTER"
+  | "LOGSTASH_INPUT"
+  | "LOGSTASH_PATTERN";
+export const DbaasLogsHelperSectionNameEnum = /*@__PURE__*/ S.String;
 
-export interface GetDbaasLogsServiceNameMetricsRequest {
+/** Helper section */
+export interface DbaasLogsHelperSection {
+  /** Section content */
+  content?: string;
+  /** Section name */
+  name?: DbaasLogsHelperSectionNameEnum;
+}
+export const DbaasLogsHelperSection = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    content: S.optional(S.String),
+    name: S.optional(DbaasLogsHelperSectionNameEnum),
+  }),
+).annotate({
+  identifier: "DbaasLogsHelperSection",
+}) as any as S.Schema<DbaasLogsHelperSection>;
+
+/** Helper sections */
+export type DbaasLogsHelperSectionsList = Array<DbaasLogsHelperSection>;
+export const DbaasLogsHelperSectionsList = /*@__PURE__*/ S.Array(
+  DbaasLogsHelperSection,
+) as any as S.Schema<DbaasLogsHelperSectionsList>;
+
+/** Helper */
+export interface DbaasLogsHelper {
+  /** Helper description */
+  description?: string;
+  /** Input engine UUID */
+  engineId?: string;
+  /** Helper UUID */
+  helperId?: string;
+  /** Helper sections */
+  sections?: DbaasLogsHelperSectionsList;
+  /** Helper title */
+  title?: string;
+}
+export const DbaasLogsHelper = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    description: S.optional(S.String),
+    engineId: S.optional(S.String),
+    helperId: S.optional(S.String),
+    sections: S.optional(DbaasLogsHelperSectionsList),
+    title: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DbaasLogsHelper",
+}) as any as S.Schema<DbaasLogsHelper>;
+
+export interface GetDbaasLogMetricsRequest {
   /** Service name */
   serviceName: string;
 }
-export const GetDbaasLogsServiceNameMetricsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/dbaas/logs/{serviceName}/metrics",
-        code: 200,
-      }),
-    ),
+export const GetDbaasLogMetricsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/dbaas/logs/{serviceName}/metrics",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "GetDbaasLogsServiceNameMetricsRequest",
-}) as any as S.Schema<GetDbaasLogsServiceNameMetricsRequest>;
+  identifier: "GetDbaasLogMetricsRequest",
+}) as any as S.Schema<GetDbaasLogMetricsRequest>;
 
 /** Metrics access */
 export interface DbaasLogsServiceMetric {
@@ -1698,110 +2100,35 @@ export const DbaasLogsServiceMetric = /*@__PURE__*/ S.suspend(() =>
   identifier: "DbaasLogsServiceMetric",
 }) as any as S.Schema<DbaasLogsServiceMetric>;
 
-export interface GetDbaasLogsServiceNameOperationRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const GetDbaasLogsServiceNameOperationRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/dbaas/logs/{serviceName}/operation",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "GetDbaasLogsServiceNameOperationRequest",
-}) as any as S.Schema<GetDbaasLogsServiceNameOperationRequest>;
-
-export type GetDbaasLogsServiceNameOperationResponseBodyList = Array<string>;
-export const GetDbaasLogsServiceNameOperationResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetDbaasLogsServiceNameOperationResponseBodyList>;
-
-export type GetDbaasLogsServiceNameOperationResponse =
-  GetDbaasLogsServiceNameOperationResponseBodyList;
-export const GetDbaasLogsServiceNameOperationResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    GetDbaasLogsServiceNameOperationResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetDbaasLogsServiceNameOperationResponse",
-}) as any as S.Schema<GetDbaasLogsServiceNameOperationResponse>;
-
-export interface GetDbaasLogsServiceNameOperationOperationIdRequest {
+export interface GetDbaasLogOperationRequest {
   /** Service name */
   serviceName: string;
   /** Operation ID */
   operationId: string;
 }
-export const GetDbaasLogsServiceNameOperationOperationIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      operationId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/dbaas/logs/{serviceName}/operation/{operationId}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameOperationOperationIdRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOperationOperationIdRequest>;
+export const GetDbaasLogOperationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    operationId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/dbaas/logs/{serviceName}/operation/{operationId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetDbaasLogOperationRequest",
+}) as any as S.Schema<GetDbaasLogOperationRequest>;
 
-export interface GetDbaasLogsServiceNameOutputGraylogDashboardRequest {
-  /** Service name */
-  serviceName: string;
-  /** Filter by title (like) */
-  titlePattern?: string;
-}
-export const GetDbaasLogsServiceNameOutputGraylogDashboardRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      titlePattern: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/dbaas/logs/{serviceName}/output/graylog/dashboard",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameOutputGraylogDashboardRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputGraylogDashboardRequest>;
-
-export type GetDbaasLogsServiceNameOutputGraylogDashboardResponseBodyList =
-  Array<string>;
-export const GetDbaasLogsServiceNameOutputGraylogDashboardResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetDbaasLogsServiceNameOutputGraylogDashboardResponseBodyList>;
-
-export type GetDbaasLogsServiceNameOutputGraylogDashboardResponse =
-  GetDbaasLogsServiceNameOutputGraylogDashboardResponseBodyList;
-export const GetDbaasLogsServiceNameOutputGraylogDashboardResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetDbaasLogsServiceNameOutputGraylogDashboardResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameOutputGraylogDashboardResponse",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputGraylogDashboardResponse>;
-
-export interface GetDbaasLogsServiceNameOutputGraylogDashboardDashboardIdRequest {
+export interface GetDbaasLogOutputGraylogDashboardRequest {
   /** Service name */
   serviceName: string;
   /** Dashboard ID */
   dashboardId: string;
 }
-export const GetDbaasLogsServiceNameOutputGraylogDashboardDashboardIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetDbaasLogOutputGraylogDashboardRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       dashboardId: S.String.pipe(T.Label()),
@@ -1812,10 +2139,9 @@ export const GetDbaasLogsServiceNameOutputGraylogDashboardDashboardIdRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier:
-      "GetDbaasLogsServiceNameOutputGraylogDashboardDashboardIdRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputGraylogDashboardDashboardIdRequest>;
+).annotate({
+  identifier: "GetDbaasLogOutputGraylogDashboardRequest",
+}) as any as S.Schema<GetDbaasLogOutputGraylogDashboardRequest>;
 
 /** Graylog dashboard */
 export interface DbaasLogsDashboard {
@@ -1845,96 +2171,14 @@ export const DbaasLogsDashboard = /*@__PURE__*/ S.suspend(() =>
   identifier: "DbaasLogsDashboard",
 }) as any as S.Schema<DbaasLogsDashboard>;
 
-export interface GetDbaasLogsServiceNameOutputGraylogDashboardDashboardIdUrlRequest {
-  /** Service name */
-  serviceName: string;
-  /** Dashboard ID */
-  dashboardId: string;
-}
-export const GetDbaasLogsServiceNameOutputGraylogDashboardDashboardIdUrlRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      dashboardId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/dbaas/logs/{serviceName}/output/graylog/dashboard/{dashboardId}/url",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "GetDbaasLogsServiceNameOutputGraylogDashboardDashboardIdUrlRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputGraylogDashboardDashboardIdUrlRequest>;
-
-export type GetDbaasLogsServiceNameOutputGraylogDashboardDashboardIdUrlResponseBodyList =
-  Array<DbaasLogsUrl>;
-export const GetDbaasLogsServiceNameOutputGraylogDashboardDashboardIdUrlResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    DbaasLogsUrl,
-  ) as any as S.Schema<GetDbaasLogsServiceNameOutputGraylogDashboardDashboardIdUrlResponseBodyList>;
-
-export type GetDbaasLogsServiceNameOutputGraylogDashboardDashboardIdUrlResponse =
-  GetDbaasLogsServiceNameOutputGraylogDashboardDashboardIdUrlResponseBodyList;
-export const GetDbaasLogsServiceNameOutputGraylogDashboardDashboardIdUrlResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetDbaasLogsServiceNameOutputGraylogDashboardDashboardIdUrlResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier:
-      "GetDbaasLogsServiceNameOutputGraylogDashboardDashboardIdUrlResponse",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputGraylogDashboardDashboardIdUrlResponse>;
-
-export interface GetDbaasLogsServiceNameOutputGraylogStreamRequest {
-  /** Service name */
-  serviceName: string;
-  /** Filter by title (like) */
-  titlePattern?: string;
-}
-export const GetDbaasLogsServiceNameOutputGraylogStreamRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      titlePattern: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/dbaas/logs/{serviceName}/output/graylog/stream",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameOutputGraylogStreamRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputGraylogStreamRequest>;
-
-export type GetDbaasLogsServiceNameOutputGraylogStreamResponseBodyList =
-  Array<string>;
-export const GetDbaasLogsServiceNameOutputGraylogStreamResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetDbaasLogsServiceNameOutputGraylogStreamResponseBodyList>;
-
-export type GetDbaasLogsServiceNameOutputGraylogStreamResponse =
-  GetDbaasLogsServiceNameOutputGraylogStreamResponseBodyList;
-export const GetDbaasLogsServiceNameOutputGraylogStreamResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetDbaasLogsServiceNameOutputGraylogStreamResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameOutputGraylogStreamResponse",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputGraylogStreamResponse>;
-
-export interface GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRequest {
+export interface GetDbaasLogOutputGraylogStreamRequest {
   /** Service name */
   serviceName: string;
   /** Stream ID */
   streamId: string;
 }
-export const GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetDbaasLogOutputGraylogStreamRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       streamId: S.String.pipe(T.Label()),
@@ -1945,21 +2189,9 @@ export const GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRequest>;
-
-/** Possible values for StreamColdStorageCompressionEnum */
-export type DbaasLogsStreamColdStorageCompressionEnum =
-  | "DEFLATED"
-  | "GZIP"
-  | "LZMA"
-  | "ZSTD";
-export const DbaasLogsStreamColdStorageCompressionEnum = /*@__PURE__*/ S.String;
-
-/** Possible values for StreamColdStorageContentEnum */
-export type DbaasLogsStreamColdStorageContentEnum = "ALL" | "GELF" | "PLAIN";
-export const DbaasLogsStreamColdStorageContentEnum = /*@__PURE__*/ S.String;
+).annotate({
+  identifier: "GetDbaasLogOutputGraylogStreamRequest",
+}) as any as S.Schema<GetDbaasLogOutputGraylogStreamRequest>;
 
 /** Encryption keys used to encrypt stream archives */
 export type DbaasLogsStreamEncryptionKeysIdsList = Array<string>;
@@ -2058,49 +2290,7 @@ export const DbaasLogsStream = /*@__PURE__*/ S.suspend(() =>
   identifier: "DbaasLogsStream",
 }) as any as S.Schema<DbaasLogsStream>;
 
-export interface GetDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertRequest {
-  /** Service name */
-  serviceName: string;
-  /** Stream ID */
-  streamId: string;
-}
-export const GetDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      streamId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/dbaas/logs/{serviceName}/output/graylog/stream/{streamId}/alert",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "GetDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertRequest>;
-
-export type GetDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertResponseBodyList =
-  Array<string>;
-export const GetDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertResponseBodyList>;
-
-export type GetDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertResponse =
-  GetDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertResponseBodyList;
-export const GetDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier:
-      "GetDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertResponse",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertResponse>;
-
-export interface GetDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertAlertIdRequest {
+export interface GetDbaasLogOutputGraylogStreamAlertRequest {
   /** Service name */
   serviceName: string;
   /** Stream ID */
@@ -2108,7 +2298,7 @@ export interface GetDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertAlertIdR
   /** Alert ID */
   alertId: string;
 }
-export const GetDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertAlertIdRequest =
+export const GetDbaasLogOutputGraylogStreamAlertRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
@@ -2122,37 +2312,8 @@ export const GetDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertAlertIdReque
       }),
     ),
   ).annotate({
-    identifier:
-      "GetDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertAlertIdRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertAlertIdRequest>;
-
-/** Possible values for StreamAlertConditionConditionTypeEnum */
-export type DbaasLogsStreamAlertConditionConditionTypeEnum =
-  | "FIELD_CONTENT_VALUE"
-  | "FIELD_VALUE"
-  | "MESSAGE_COUNT";
-export const DbaasLogsStreamAlertConditionConditionTypeEnum =
-  /*@__PURE__*/ S.String;
-
-/** Possible values for StreamAlertConditionConstraintTypeEnum */
-export type DbaasLogsStreamAlertConditionConstraintTypeEnum =
-  | "MAX"
-  | "MEAN"
-  | "MIN"
-  | "STDLABEU"
-  | "SUM";
-export const DbaasLogsStreamAlertConditionConstraintTypeEnum =
-  /*@__PURE__*/ S.String;
-
-/** Possible values for StreamAlertConditionThresholdTypeEnum */
-export type DbaasLogsStreamAlertConditionThresholdTypeEnum =
-  | "EQ"
-  | "GT"
-  | "GTE"
-  | "LT"
-  | "LTE";
-export const DbaasLogsStreamAlertConditionThresholdTypeEnum =
-  /*@__PURE__*/ S.String;
+    identifier: "GetDbaasLogOutputGraylogStreamAlertRequest",
+  }) as any as S.Schema<GetDbaasLogOutputGraylogStreamAlertRequest>;
 
 /** Alert condition */
 export interface DbaasLogsStreamAlertCondition {
@@ -2209,49 +2370,7 @@ export const DbaasLogsStreamAlertCondition = /*@__PURE__*/ S.suspend(() =>
   identifier: "DbaasLogsStreamAlertCondition",
 }) as any as S.Schema<DbaasLogsStreamAlertCondition>;
 
-export interface GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveRequest {
-  /** Service name */
-  serviceName: string;
-  /** Stream ID */
-  streamId: string;
-}
-export const GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      streamId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/dbaas/logs/{serviceName}/output/graylog/stream/{streamId}/archive",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveRequest>;
-
-export type GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveResponseBodyList =
-  Array<string>;
-export const GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveResponseBodyList>;
-
-export type GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveResponse =
-  GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveResponseBodyList;
-export const GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier:
-      "GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveResponse",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveResponse>;
-
-export interface GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdRequest {
+export interface GetDbaasLogOutputGraylogStreamArchiveRequest {
   /** Service name */
   serviceName: string;
   /** Stream ID */
@@ -2259,7 +2378,7 @@ export interface GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiv
   /** Archive ID */
   archiveId: string;
 }
-export const GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdRequest =
+export const GetDbaasLogOutputGraylogStreamArchiveRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
@@ -2273,9 +2392,8 @@ export const GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdR
       }),
     ),
   ).annotate({
-    identifier:
-      "GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdRequest>;
+    identifier: "GetDbaasLogOutputGraylogStreamArchiveRequest",
+  }) as any as S.Schema<GetDbaasLogOutputGraylogStreamArchiveRequest>;
 
 /** Possible values for ArchiveRetrievalStateEnum */
 export type DbaasLogsArchiveRetrievalStateEnum =
@@ -2318,93 +2436,7 @@ export const DbaasLogsArchive = /*@__PURE__*/ S.suspend(() =>
   identifier: "DbaasLogsArchive",
 }) as any as S.Schema<DbaasLogsArchive>;
 
-export interface GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdEncryptionKeyRequest {
-  /** Service name */
-  serviceName: string;
-  /** Stream ID */
-  streamId: string;
-  /** Archive ID */
-  archiveId: string;
-}
-export const GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdEncryptionKeyRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      streamId: S.String.pipe(T.Label()),
-      archiveId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/dbaas/logs/{serviceName}/output/graylog/stream/{streamId}/archive/{archiveId}/encryptionKey",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdEncryptionKeyRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdEncryptionKeyRequest>;
-
-export type GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdEncryptionKeyResponseBodyList =
-  Array<string>;
-export const GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdEncryptionKeyResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdEncryptionKeyResponseBodyList>;
-
-export type GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdEncryptionKeyResponse =
-  GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdEncryptionKeyResponseBodyList;
-export const GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdEncryptionKeyResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdEncryptionKeyResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier:
-      "GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdEncryptionKeyResponse",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdEncryptionKeyResponse>;
-
-export interface GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleRequest {
-  /** Service name */
-  serviceName: string;
-  /** Stream ID */
-  streamId: string;
-}
-export const GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      streamId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/dbaas/logs/{serviceName}/output/graylog/stream/{streamId}/rule",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleRequest>;
-
-export type GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleResponseBodyList =
-  Array<string>;
-export const GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleResponseBodyList>;
-
-export type GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleResponse =
-  GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleResponseBodyList;
-export const GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier:
-      "GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleResponse",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleResponse>;
-
-export interface GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleRuleIdRequest {
+export interface GetDbaasLogOutputGraylogStreamRuleRequest {
   /** Service name */
   serviceName: string;
   /** Stream ID */
@@ -2412,7 +2444,7 @@ export interface GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleRuleIdReq
   /** Rule ID */
   ruleId: string;
 }
-export const GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleRuleIdRequest =
+export const GetDbaasLogOutputGraylogStreamRuleRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
@@ -2426,17 +2458,8 @@ export const GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleRuleIdRequest
       }),
     ),
   ).annotate({
-    identifier:
-      "GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleRuleIdRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleRuleIdRequest>;
-
-/** Possible values for StreamRuleOperatorEnum */
-export type DbaasLogsStreamRuleOperatorEnum =
-  | "FIELD_PRESENCE"
-  | "GREATER_THAN"
-  | "MATCH_EXACTLY"
-  | "SMALLER_THAN";
-export const DbaasLogsStreamRuleOperatorEnum = /*@__PURE__*/ S.String;
+    identifier: "GetDbaasLogOutputGraylogStreamRuleRequest",
+  }) as any as S.Schema<GetDbaasLogOutputGraylogStreamRuleRequest>;
 
 /** Stream rule */
 export interface DbaasLogsStreamRule {
@@ -2463,55 +2486,7 @@ export const DbaasLogsStreamRule = /*@__PURE__*/ S.suspend(() =>
   identifier: "DbaasLogsStreamRule",
 }) as any as S.Schema<DbaasLogsStreamRule>;
 
-export interface GetDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionRequest {
-  /** Service name */
-  serviceName: string;
-  /** Stream ID */
-  streamId: string;
-  /** Filter by resource name (like) */
-  resourceName?: string;
-  /** Filter by resource type (like) */
-  resourceType?: string;
-}
-export const GetDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      streamId: S.String.pipe(T.Label()),
-      resourceName: S.optional(S.String.pipe(T.Query())),
-      resourceType: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/dbaas/logs/{serviceName}/output/graylog/stream/{streamId}/subscription",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "GetDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionRequest>;
-
-export type GetDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionResponseBodyList =
-  Array<string>;
-export const GetDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionResponseBodyList>;
-
-export type GetDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionResponse =
-  GetDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionResponseBodyList;
-export const GetDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier:
-      "GetDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionResponse",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionResponse>;
-
-export interface GetDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionSubscriptionIdRequest {
+export interface GetDbaasLogOutputGraylogStreamSubscriptionRequest {
   /** Service name */
   serviceName: string;
   /** Stream ID */
@@ -2519,7 +2494,7 @@ export interface GetDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionS
   /** Subscription ID */
   subscriptionId: string;
 }
-export const GetDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionSubscriptionIdRequest =
+export const GetDbaasLogOutputGraylogStreamSubscriptionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
@@ -2533,9 +2508,8 @@ export const GetDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionSubsc
       }),
     ),
   ).annotate({
-    identifier:
-      "GetDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionSubscriptionIdRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionSubscriptionIdRequest>;
+    identifier: "GetDbaasLogOutputGraylogStreamSubscriptionRequest",
+  }) as any as S.Schema<GetDbaasLogOutputGraylogStreamSubscriptionRequest>;
 
 /** Log subscription resource */
 export interface DbaasLogsLogSubscriptionResource {
@@ -2584,91 +2558,14 @@ export const DbaasLogsLogSubscription = /*@__PURE__*/ S.suspend(() =>
   identifier: "DbaasLogsLogSubscription",
 }) as any as S.Schema<DbaasLogsLogSubscription>;
 
-export interface GetDbaasLogsServiceNameOutputGraylogStreamStreamIdUrlRequest {
-  /** Service name */
-  serviceName: string;
-  /** Stream ID */
-  streamId: string;
-}
-export const GetDbaasLogsServiceNameOutputGraylogStreamStreamIdUrlRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      streamId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/dbaas/logs/{serviceName}/output/graylog/stream/{streamId}/url",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameOutputGraylogStreamStreamIdUrlRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputGraylogStreamStreamIdUrlRequest>;
-
-export type GetDbaasLogsServiceNameOutputGraylogStreamStreamIdUrlResponseBodyList =
-  Array<DbaasLogsUrl>;
-export const GetDbaasLogsServiceNameOutputGraylogStreamStreamIdUrlResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    DbaasLogsUrl,
-  ) as any as S.Schema<GetDbaasLogsServiceNameOutputGraylogStreamStreamIdUrlResponseBodyList>;
-
-export type GetDbaasLogsServiceNameOutputGraylogStreamStreamIdUrlResponse =
-  GetDbaasLogsServiceNameOutputGraylogStreamStreamIdUrlResponseBodyList;
-export const GetDbaasLogsServiceNameOutputGraylogStreamStreamIdUrlResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetDbaasLogsServiceNameOutputGraylogStreamStreamIdUrlResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameOutputGraylogStreamStreamIdUrlResponse",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputGraylogStreamStreamIdUrlResponse>;
-
-export interface GetDbaasLogsServiceNameOutputMetricTenantRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const GetDbaasLogsServiceNameOutputMetricTenantRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/dbaas/logs/{serviceName}/output/metric/tenant",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameOutputMetricTenantRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputMetricTenantRequest>;
-
-export type GetDbaasLogsServiceNameOutputMetricTenantResponseBodyList =
-  Array<string>;
-export const GetDbaasLogsServiceNameOutputMetricTenantResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetDbaasLogsServiceNameOutputMetricTenantResponseBodyList>;
-
-export type GetDbaasLogsServiceNameOutputMetricTenantResponse =
-  GetDbaasLogsServiceNameOutputMetricTenantResponseBodyList;
-export const GetDbaasLogsServiceNameOutputMetricTenantResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetDbaasLogsServiceNameOutputMetricTenantResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameOutputMetricTenantResponse",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputMetricTenantResponse>;
-
-export interface GetDbaasLogsServiceNameOutputMetricTenantTenantIdRequest {
+export interface GetDbaasLogOutputMetricTenantRequest {
   /** Service name */
   serviceName: string;
   /** Tenant ID */
   tenantId: string;
 }
-export const GetDbaasLogsServiceNameOutputMetricTenantTenantIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetDbaasLogOutputMetricTenantRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       tenantId: S.String.pipe(T.Label()),
@@ -2679,9 +2576,9 @@ export const GetDbaasLogsServiceNameOutputMetricTenantTenantIdRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameOutputMetricTenantTenantIdRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputMetricTenantTenantIdRequest>;
+).annotate({
+  identifier: "GetDbaasLogOutputMetricTenantRequest",
+}) as any as S.Schema<GetDbaasLogOutputMetricTenantRequest>;
 
 /** Possible values for DeliveryStatusEnum */
 export type DbaasLogsDeliveryStatusEnum =
@@ -2725,55 +2622,7 @@ export const DbaasLogsMetricTenant = /*@__PURE__*/ S.suspend(() =>
   identifier: "DbaasLogsMetricTenant",
 }) as any as S.Schema<DbaasLogsMetricTenant>;
 
-export interface GetDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionRequest {
-  /** Service name */
-  serviceName: string;
-  /** Tenant ID */
-  tenantId: string;
-  /** Filter by resource name (like) */
-  resourceName?: string;
-  /** Filter by resource type (like) */
-  resourceType?: string;
-}
-export const GetDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      tenantId: S.String.pipe(T.Label()),
-      resourceName: S.optional(S.String.pipe(T.Query())),
-      resourceType: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/dbaas/logs/{serviceName}/output/metric/tenant/{tenantId}/subscription",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "GetDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionRequest>;
-
-export type GetDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionResponseBodyList =
-  Array<string>;
-export const GetDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionResponseBodyList>;
-
-export type GetDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionResponse =
-  GetDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionResponseBodyList;
-export const GetDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier:
-      "GetDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionResponse",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionResponse>;
-
-export interface GetDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionSubscriptionIdRequest {
+export interface GetDbaasLogOutputMetricTenantSubscriptionRequest {
   /** Service name */
   serviceName: string;
   /** Tenant ID */
@@ -2781,7 +2630,7 @@ export interface GetDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionSu
   /** Subscription ID */
   subscriptionId: string;
 }
-export const GetDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionSubscriptionIdRequest =
+export const GetDbaasLogOutputMetricTenantSubscriptionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
@@ -2795,9 +2644,8 @@ export const GetDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionSubscr
       }),
     ),
   ).annotate({
-    identifier:
-      "GetDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionSubscriptionIdRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionSubscriptionIdRequest>;
+    identifier: "GetDbaasLogOutputMetricTenantSubscriptionRequest",
+  }) as any as S.Schema<GetDbaasLogOutputMetricTenantSubscriptionRequest>;
 
 /** Metrics subscription */
 export interface DbaasLogsMetricSubscription {
@@ -2830,94 +2678,14 @@ export const DbaasLogsMetricSubscription = /*@__PURE__*/ S.suspend(() =>
   identifier: "DbaasLogsMetricSubscription",
 }) as any as S.Schema<DbaasLogsMetricSubscription>;
 
-export interface GetDbaasLogsServiceNameOutputMetricTenantTenantIdUrlRequest {
-  /** Service name */
-  serviceName: string;
-  /** Tenant ID */
-  tenantId: string;
-}
-export const GetDbaasLogsServiceNameOutputMetricTenantTenantIdUrlRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      tenantId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/dbaas/logs/{serviceName}/output/metric/tenant/{tenantId}/url",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameOutputMetricTenantTenantIdUrlRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputMetricTenantTenantIdUrlRequest>;
-
-export type GetDbaasLogsServiceNameOutputMetricTenantTenantIdUrlResponseBodyList =
-  Array<DbaasLogsUrl>;
-export const GetDbaasLogsServiceNameOutputMetricTenantTenantIdUrlResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    DbaasLogsUrl,
-  ) as any as S.Schema<GetDbaasLogsServiceNameOutputMetricTenantTenantIdUrlResponseBodyList>;
-
-export type GetDbaasLogsServiceNameOutputMetricTenantTenantIdUrlResponse =
-  GetDbaasLogsServiceNameOutputMetricTenantTenantIdUrlResponseBodyList;
-export const GetDbaasLogsServiceNameOutputMetricTenantTenantIdUrlResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetDbaasLogsServiceNameOutputMetricTenantTenantIdUrlResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameOutputMetricTenantTenantIdUrlResponse",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputMetricTenantTenantIdUrlResponse>;
-
-export interface GetDbaasLogsServiceNameOutputOpensearchAliasRequest {
-  /** Service name */
-  serviceName: string;
-  /** Filter by name (like) */
-  namePattern?: string;
-}
-export const GetDbaasLogsServiceNameOutputOpensearchAliasRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      namePattern: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/dbaas/logs/{serviceName}/output/opensearch/alias",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameOutputOpensearchAliasRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputOpensearchAliasRequest>;
-
-export type GetDbaasLogsServiceNameOutputOpensearchAliasResponseBodyList =
-  Array<string>;
-export const GetDbaasLogsServiceNameOutputOpensearchAliasResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetDbaasLogsServiceNameOutputOpensearchAliasResponseBodyList>;
-
-export type GetDbaasLogsServiceNameOutputOpensearchAliasResponse =
-  GetDbaasLogsServiceNameOutputOpensearchAliasResponseBodyList;
-export const GetDbaasLogsServiceNameOutputOpensearchAliasResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetDbaasLogsServiceNameOutputOpensearchAliasResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameOutputOpensearchAliasResponse",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputOpensearchAliasResponse>;
-
-export interface GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdRequest {
+export interface GetDbaasLogOutputOpensearchAliasRequest {
   /** Service name */
   serviceName: string;
   /** Alias ID */
   aliasId: string;
 }
-export const GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetDbaasLogOutputOpensearchAliasRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       aliasId: S.String.pipe(T.Label()),
@@ -2928,9 +2696,9 @@ export const GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdRequest>;
+).annotate({
+  identifier: "GetDbaasLogOutputOpensearchAliasRequest",
+}) as any as S.Schema<GetDbaasLogOutputOpensearchAliasRequest>;
 
 /** Alias */
 export interface DbaasLogsAlias {
@@ -2964,179 +2732,14 @@ export const DbaasLogsAlias = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "DbaasLogsAlias" }) as any as S.Schema<DbaasLogsAlias>;
 
-export interface GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexRequest {
-  /** Service name */
-  serviceName: string;
-  /** Alias ID */
-  aliasId: string;
-}
-export const GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      aliasId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/dbaas/logs/{serviceName}/output/opensearch/alias/{aliasId}/index",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexRequest>;
-
-export type GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexResponseBodyList =
-  Array<string>;
-export const GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexResponseBodyList>;
-
-export type GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexResponse =
-  GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexResponseBodyList;
-export const GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier:
-      "GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexResponse",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexResponse>;
-
-export interface GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamRequest {
-  /** Service name */
-  serviceName: string;
-  /** Alias ID */
-  aliasId: string;
-}
-export const GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      aliasId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/dbaas/logs/{serviceName}/output/opensearch/alias/{aliasId}/stream",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamRequest>;
-
-export type GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamResponseBodyList =
-  Array<string>;
-export const GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamResponseBodyList>;
-
-export type GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamResponse =
-  GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamResponseBodyList;
-export const GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier:
-      "GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamResponse",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamResponse>;
-
-export interface GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdUrlRequest {
-  /** Service name */
-  serviceName: string;
-  /** Alias ID */
-  aliasId: string;
-}
-export const GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdUrlRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      aliasId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/dbaas/logs/{serviceName}/output/opensearch/alias/{aliasId}/url",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdUrlRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdUrlRequest>;
-
-export type GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdUrlResponseBodyList =
-  Array<DbaasLogsUrl>;
-export const GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdUrlResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    DbaasLogsUrl,
-  ) as any as S.Schema<GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdUrlResponseBodyList>;
-
-export type GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdUrlResponse =
-  GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdUrlResponseBodyList;
-export const GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdUrlResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdUrlResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier:
-      "GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdUrlResponse",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdUrlResponse>;
-
-export interface GetDbaasLogsServiceNameOutputOpensearchIndexRequest {
-  /** Service name */
-  serviceName: string;
-  /** Filter by name (like) */
-  namePattern?: string;
-}
-export const GetDbaasLogsServiceNameOutputOpensearchIndexRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      namePattern: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/dbaas/logs/{serviceName}/output/opensearch/index",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameOutputOpensearchIndexRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputOpensearchIndexRequest>;
-
-export type GetDbaasLogsServiceNameOutputOpensearchIndexResponseBodyList =
-  Array<string>;
-export const GetDbaasLogsServiceNameOutputOpensearchIndexResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetDbaasLogsServiceNameOutputOpensearchIndexResponseBodyList>;
-
-export type GetDbaasLogsServiceNameOutputOpensearchIndexResponse =
-  GetDbaasLogsServiceNameOutputOpensearchIndexResponseBodyList;
-export const GetDbaasLogsServiceNameOutputOpensearchIndexResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetDbaasLogsServiceNameOutputOpensearchIndexResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameOutputOpensearchIndexResponse",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputOpensearchIndexResponse>;
-
-export interface GetDbaasLogsServiceNameOutputOpensearchIndexIndexIdRequest {
+export interface GetDbaasLogOutputOpensearchIndexRequest {
   /** Service name */
   serviceName: string;
   /** Index ID */
   indexId: string;
 }
-export const GetDbaasLogsServiceNameOutputOpensearchIndexIndexIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetDbaasLogOutputOpensearchIndexRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       indexId: S.String.pipe(T.Label()),
@@ -3147,9 +2750,9 @@ export const GetDbaasLogsServiceNameOutputOpensearchIndexIndexIdRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameOutputOpensearchIndexIndexIdRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputOpensearchIndexIndexIdRequest>;
+).annotate({
+  identifier: "GetDbaasLogOutputOpensearchIndexRequest",
+}) as any as S.Schema<GetDbaasLogOutputOpensearchIndexRequest>;
 
 /** Index */
 export interface DbaasLogsIndex {
@@ -3189,92 +2792,14 @@ export const DbaasLogsIndex = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "DbaasLogsIndex" }) as any as S.Schema<DbaasLogsIndex>;
 
-export interface GetDbaasLogsServiceNameOutputOpensearchIndexIndexIdUrlRequest {
-  /** Service name */
-  serviceName: string;
-  /** Index ID */
-  indexId: string;
-}
-export const GetDbaasLogsServiceNameOutputOpensearchIndexIndexIdUrlRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      indexId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/dbaas/logs/{serviceName}/output/opensearch/index/{indexId}/url",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameOutputOpensearchIndexIndexIdUrlRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputOpensearchIndexIndexIdUrlRequest>;
-
-export type GetDbaasLogsServiceNameOutputOpensearchIndexIndexIdUrlResponseBodyList =
-  Array<DbaasLogsUrl>;
-export const GetDbaasLogsServiceNameOutputOpensearchIndexIndexIdUrlResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    DbaasLogsUrl,
-  ) as any as S.Schema<GetDbaasLogsServiceNameOutputOpensearchIndexIndexIdUrlResponseBodyList>;
-
-export type GetDbaasLogsServiceNameOutputOpensearchIndexIndexIdUrlResponse =
-  GetDbaasLogsServiceNameOutputOpensearchIndexIndexIdUrlResponseBodyList;
-export const GetDbaasLogsServiceNameOutputOpensearchIndexIndexIdUrlResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetDbaasLogsServiceNameOutputOpensearchIndexIndexIdUrlResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier:
-      "GetDbaasLogsServiceNameOutputOpensearchIndexIndexIdUrlResponse",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputOpensearchIndexIndexIdUrlResponse>;
-
-export interface GetDbaasLogsServiceNameOutputOpensearchOsdRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const GetDbaasLogsServiceNameOutputOpensearchOsdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/dbaas/logs/{serviceName}/output/opensearch/osd",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameOutputOpensearchOsdRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputOpensearchOsdRequest>;
-
-export type GetDbaasLogsServiceNameOutputOpensearchOsdResponseBodyList =
-  Array<string>;
-export const GetDbaasLogsServiceNameOutputOpensearchOsdResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetDbaasLogsServiceNameOutputOpensearchOsdResponseBodyList>;
-
-export type GetDbaasLogsServiceNameOutputOpensearchOsdResponse =
-  GetDbaasLogsServiceNameOutputOpensearchOsdResponseBodyList;
-export const GetDbaasLogsServiceNameOutputOpensearchOsdResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetDbaasLogsServiceNameOutputOpensearchOsdResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameOutputOpensearchOsdResponse",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputOpensearchOsdResponse>;
-
-export interface GetDbaasLogsServiceNameOutputOpensearchOsdOsdIdRequest {
+export interface GetDbaasLogOutputOpensearchOsdRequest {
   /** Service name */
   serviceName: string;
   /** Osd ID */
   osdId: string;
 }
-export const GetDbaasLogsServiceNameOutputOpensearchOsdOsdIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetDbaasLogOutputOpensearchOsdRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       osdId: S.String.pipe(T.Label()),
@@ -3285,9 +2810,9 @@ export const GetDbaasLogsServiceNameOutputOpensearchOsdOsdIdRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameOutputOpensearchOsdOsdIdRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputOpensearchOsdOsdIdRequest>;
+).annotate({
+  identifier: "GetDbaasLogOutputOpensearchOsdRequest",
+}) as any as S.Schema<GetDbaasLogOutputOpensearchOsdRequest>;
 
 /** OpenSearch Dashboards instance */
 export interface DbaasLogsOsd {
@@ -3318,98 +2843,26 @@ export const DbaasLogsOsd = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "DbaasLogsOsd" }) as any as S.Schema<DbaasLogsOsd>;
 
-export interface GetDbaasLogsServiceNameOutputOpensearchOsdOsdIdUrlRequest {
-  /** Service name */
-  serviceName: string;
-  /** Osd ID */
-  osdId: string;
-}
-export const GetDbaasLogsServiceNameOutputOpensearchOsdOsdIdUrlRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      osdId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/dbaas/logs/{serviceName}/output/opensearch/osd/{osdId}/url",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameOutputOpensearchOsdOsdIdUrlRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputOpensearchOsdOsdIdUrlRequest>;
-
-export type GetDbaasLogsServiceNameOutputOpensearchOsdOsdIdUrlResponseBodyList =
-  Array<DbaasLogsUrl>;
-export const GetDbaasLogsServiceNameOutputOpensearchOsdOsdIdUrlResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    DbaasLogsUrl,
-  ) as any as S.Schema<GetDbaasLogsServiceNameOutputOpensearchOsdOsdIdUrlResponseBodyList>;
-
-export type GetDbaasLogsServiceNameOutputOpensearchOsdOsdIdUrlResponse =
-  GetDbaasLogsServiceNameOutputOpensearchOsdOsdIdUrlResponseBodyList;
-export const GetDbaasLogsServiceNameOutputOpensearchOsdOsdIdUrlResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetDbaasLogsServiceNameOutputOpensearchOsdOsdIdUrlResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameOutputOpensearchOsdOsdIdUrlResponse",
-  }) as any as S.Schema<GetDbaasLogsServiceNameOutputOpensearchOsdOsdIdUrlResponse>;
-
-export interface GetDbaasLogsServiceNameRoleRequest {
-  /** Service name */
-  serviceName: string;
-  /** Filter by name (like) */
-  namePattern?: string;
-}
-export const GetDbaasLogsServiceNameRoleRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceName: S.String.pipe(T.Label()),
-    namePattern: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/dbaas/logs/{serviceName}/role", code: 200 }),
-  ),
-).annotate({
-  identifier: "GetDbaasLogsServiceNameRoleRequest",
-}) as any as S.Schema<GetDbaasLogsServiceNameRoleRequest>;
-
-export type GetDbaasLogsServiceNameRoleResponseBodyList = Array<string>;
-export const GetDbaasLogsServiceNameRoleResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetDbaasLogsServiceNameRoleResponseBodyList>;
-
-export type GetDbaasLogsServiceNameRoleResponse =
-  GetDbaasLogsServiceNameRoleResponseBodyList;
-export const GetDbaasLogsServiceNameRoleResponse = /*@__PURE__*/ S.suspend(() =>
-  GetDbaasLogsServiceNameRoleResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetDbaasLogsServiceNameRoleResponse",
-}) as any as S.Schema<GetDbaasLogsServiceNameRoleResponse>;
-
-export interface GetDbaasLogsServiceNameRoleRoleIdRequest {
+export interface GetDbaasLogRoleRequest {
   /** Service name */
   serviceName: string;
   /** Role ID */
   roleId: string;
 }
-export const GetDbaasLogsServiceNameRoleRoleIdRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      roleId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/dbaas/logs/{serviceName}/role/{roleId}",
-        code: 200,
-      }),
-    ),
+export const GetDbaasLogRoleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    roleId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/dbaas/logs/{serviceName}/role/{roleId}",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "GetDbaasLogsServiceNameRoleRoleIdRequest",
-}) as any as S.Schema<GetDbaasLogsServiceNameRoleRoleIdRequest>;
+  identifier: "GetDbaasLogRoleRequest",
+}) as any as S.Schema<GetDbaasLogRoleRequest>;
 
 /** Role */
 export interface DbaasLogsRole {
@@ -3440,47 +2893,7 @@ export const DbaasLogsRole = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "DbaasLogsRole" }) as any as S.Schema<DbaasLogsRole>;
 
-export interface GetDbaasLogsServiceNameRoleRoleIdMemberRequest {
-  /** Service name */
-  serviceName: string;
-  /** Role ID */
-  roleId: string;
-}
-export const GetDbaasLogsServiceNameRoleRoleIdMemberRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      roleId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/dbaas/logs/{serviceName}/role/{roleId}/member",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameRoleRoleIdMemberRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameRoleRoleIdMemberRequest>;
-
-export type GetDbaasLogsServiceNameRoleRoleIdMemberResponseBodyList =
-  Array<string>;
-export const GetDbaasLogsServiceNameRoleRoleIdMemberResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetDbaasLogsServiceNameRoleRoleIdMemberResponseBodyList>;
-
-export type GetDbaasLogsServiceNameRoleRoleIdMemberResponse =
-  GetDbaasLogsServiceNameRoleRoleIdMemberResponseBodyList;
-export const GetDbaasLogsServiceNameRoleRoleIdMemberResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetDbaasLogsServiceNameRoleRoleIdMemberResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameRoleRoleIdMemberResponse",
-  }) as any as S.Schema<GetDbaasLogsServiceNameRoleRoleIdMemberResponse>;
-
-export interface GetDbaasLogsServiceNameRoleRoleIdMemberUsernameRequest {
+export interface GetDbaasLogRoleMemberRequest {
   /** Service name */
   serviceName: string;
   /** Role ID */
@@ -3488,22 +2901,21 @@ export interface GetDbaasLogsServiceNameRoleRoleIdMemberUsernameRequest {
   /** Username */
   username: string;
 }
-export const GetDbaasLogsServiceNameRoleRoleIdMemberUsernameRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      roleId: S.String.pipe(T.Label()),
-      username: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/dbaas/logs/{serviceName}/role/{roleId}/member/{username}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameRoleRoleIdMemberUsernameRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameRoleRoleIdMemberUsernameRequest>;
+export const GetDbaasLogRoleMemberRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    roleId: S.String.pipe(T.Label()),
+    username: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/dbaas/logs/{serviceName}/role/{roleId}/member/{username}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetDbaasLogRoleMemberRequest",
+}) as any as S.Schema<GetDbaasLogRoleMemberRequest>;
 
 /** Member */
 export interface DbaasLogsMember {
@@ -3524,47 +2936,7 @@ export const DbaasLogsMember = /*@__PURE__*/ S.suspend(() =>
   identifier: "DbaasLogsMember",
 }) as any as S.Schema<DbaasLogsMember>;
 
-export interface GetDbaasLogsServiceNameRoleRoleIdPermissionRequest {
-  /** Service name */
-  serviceName: string;
-  /** Role ID */
-  roleId: string;
-}
-export const GetDbaasLogsServiceNameRoleRoleIdPermissionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      roleId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/dbaas/logs/{serviceName}/role/{roleId}/permission",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameRoleRoleIdPermissionRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameRoleRoleIdPermissionRequest>;
-
-export type GetDbaasLogsServiceNameRoleRoleIdPermissionResponseBodyList =
-  Array<string>;
-export const GetDbaasLogsServiceNameRoleRoleIdPermissionResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetDbaasLogsServiceNameRoleRoleIdPermissionResponseBodyList>;
-
-export type GetDbaasLogsServiceNameRoleRoleIdPermissionResponse =
-  GetDbaasLogsServiceNameRoleRoleIdPermissionResponseBodyList;
-export const GetDbaasLogsServiceNameRoleRoleIdPermissionResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetDbaasLogsServiceNameRoleRoleIdPermissionResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameRoleRoleIdPermissionResponse",
-  }) as any as S.Schema<GetDbaasLogsServiceNameRoleRoleIdPermissionResponse>;
-
-export interface GetDbaasLogsServiceNameRoleRoleIdPermissionPermissionIdRequest {
+export interface GetDbaasLogRolePermissionRequest {
   /** Service name */
   serviceName: string;
   /** Role ID */
@@ -3572,27 +2944,21 @@ export interface GetDbaasLogsServiceNameRoleRoleIdPermissionPermissionIdRequest 
   /** Permission ID */
   permissionId: string;
 }
-export const GetDbaasLogsServiceNameRoleRoleIdPermissionPermissionIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      roleId: S.String.pipe(T.Label()),
-      permissionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/dbaas/logs/{serviceName}/role/{roleId}/permission/{permissionId}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "GetDbaasLogsServiceNameRoleRoleIdPermissionPermissionIdRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameRoleRoleIdPermissionPermissionIdRequest>;
-
-/** Possible values for PermissionTypeEnum */
-export type DbaasLogsPermissionTypeEnum = "READ_ONLY" | "READ_WRITE";
-export const DbaasLogsPermissionTypeEnum = /*@__PURE__*/ S.String;
+export const GetDbaasLogRolePermissionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    roleId: S.String.pipe(T.Label()),
+    permissionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/dbaas/logs/{serviceName}/role/{roleId}/permission/{permissionId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetDbaasLogRolePermissionRequest",
+}) as any as S.Schema<GetDbaasLogRolePermissionRequest>;
 
 /** Role permission */
 export interface DbaasLogsPermission {
@@ -3625,24 +2991,23 @@ export const DbaasLogsPermission = /*@__PURE__*/ S.suspend(() =>
   identifier: "DbaasLogsPermission",
 }) as any as S.Schema<DbaasLogsPermission>;
 
-export interface GetDbaasLogsServiceNameServiceInfosRequest {
+export interface GetDbaasLogServiceInfosRequest {
   /** Service name */
   serviceName: string;
 }
-export const GetDbaasLogsServiceNameServiceInfosRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/dbaas/logs/{serviceName}/serviceInfos",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameServiceInfosRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameServiceInfosRequest>;
+export const GetDbaasLogServiceInfosRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/dbaas/logs/{serviceName}/serviceInfos",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetDbaasLogServiceInfosRequest",
+}) as any as S.Schema<GetDbaasLogServiceInfosRequest>;
 
 /** All the possible renew period of your service in month */
 export type ServicesServicePossibleRenewPeriodList = Array<number>;
@@ -3737,62 +3102,26 @@ export const ServicesService = /*@__PURE__*/ S.suspend(() =>
   identifier: "ServicesService",
 }) as any as S.Schema<ServicesService>;
 
-export interface GetDbaasLogsServiceNameTokenRequest {
-  /** Service name */
-  serviceName: string;
-  /** Filter by name (like) */
-  namePattern?: string;
-}
-export const GetDbaasLogsServiceNameTokenRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceName: S.String.pipe(T.Label()),
-    namePattern: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/dbaas/logs/{serviceName}/token",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "GetDbaasLogsServiceNameTokenRequest",
-}) as any as S.Schema<GetDbaasLogsServiceNameTokenRequest>;
-
-export type GetDbaasLogsServiceNameTokenResponseBodyList = Array<string>;
-export const GetDbaasLogsServiceNameTokenResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetDbaasLogsServiceNameTokenResponseBodyList>;
-
-export type GetDbaasLogsServiceNameTokenResponse =
-  GetDbaasLogsServiceNameTokenResponseBodyList;
-export const GetDbaasLogsServiceNameTokenResponse = /*@__PURE__*/ S.suspend(
-  () => GetDbaasLogsServiceNameTokenResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetDbaasLogsServiceNameTokenResponse",
-}) as any as S.Schema<GetDbaasLogsServiceNameTokenResponse>;
-
-export interface GetDbaasLogsServiceNameTokenTokenIdRequest {
+export interface GetDbaasLogTokenRequest {
   /** Service name */
   serviceName: string;
   /** Token ID */
   tokenId: string;
 }
-export const GetDbaasLogsServiceNameTokenTokenIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      tokenId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/dbaas/logs/{serviceName}/token/{tokenId}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetDbaasLogsServiceNameTokenTokenIdRequest",
-  }) as any as S.Schema<GetDbaasLogsServiceNameTokenTokenIdRequest>;
+export const GetDbaasLogTokenRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    tokenId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/dbaas/logs/{serviceName}/token/{tokenId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetDbaasLogTokenRequest",
+}) as any as S.Schema<GetDbaasLogTokenRequest>;
 
 /** Token */
 export interface DbaasLogsToken {
@@ -3820,513 +3149,577 @@ export const DbaasLogsToken = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "DbaasLogsToken" }) as any as S.Schema<DbaasLogsToken>;
 
-export interface GetDbaasLogsServiceNameUrlRequest {
+export interface ListDbaasLogClusterRequest {
+  /** Service name */
+  serviceName: string;
+  /** Filter by name (like) */
+  namePattern?: string;
+}
+export const ListDbaasLogClusterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    namePattern: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/dbaas/logs/{serviceName}/cluster",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListDbaasLogClusterRequest",
+}) as any as S.Schema<ListDbaasLogClusterRequest>;
+
+export type ListDbaasLogClusterResponseBodyList = Array<string>;
+export const ListDbaasLogClusterResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListDbaasLogClusterResponseBodyList>;
+
+export type ListDbaasLogClusterResponse = ListDbaasLogClusterResponseBodyList;
+export const ListDbaasLogClusterResponse = /*@__PURE__*/ S.suspend(() =>
+  ListDbaasLogClusterResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListDbaasLogClusterResponse",
+}) as any as S.Schema<ListDbaasLogClusterResponse>;
+
+export interface ListDbaasLogClusterRetentionRequest {
+  /** Service name */
+  serviceName: string;
+  /** Cluster ID */
+  clusterId: string;
+}
+export const ListDbaasLogClusterRetentionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    clusterId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/dbaas/logs/{serviceName}/cluster/{clusterId}/retention",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListDbaasLogClusterRetentionRequest",
+}) as any as S.Schema<ListDbaasLogClusterRetentionRequest>;
+
+export type ListDbaasLogClusterRetentionResponseBodyList = Array<string>;
+export const ListDbaasLogClusterRetentionResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListDbaasLogClusterRetentionResponseBodyList>;
+
+export type ListDbaasLogClusterRetentionResponse =
+  ListDbaasLogClusterRetentionResponseBodyList;
+export const ListDbaasLogClusterRetentionResponse = /*@__PURE__*/ S.suspend(
+  () => ListDbaasLogClusterRetentionResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListDbaasLogClusterRetentionResponse",
+}) as any as S.Schema<ListDbaasLogClusterRetentionResponse>;
+
+export interface ListDbaasLogEncryptionKeyRequest {
+  /** Service name */
+  serviceName: string;
+  /** Filter by title (like) */
+  titlePattern?: string;
+}
+export const ListDbaasLogEncryptionKeyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    titlePattern: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/dbaas/logs/{serviceName}/encryptionKey",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListDbaasLogEncryptionKeyRequest",
+}) as any as S.Schema<ListDbaasLogEncryptionKeyRequest>;
+
+export type ListDbaasLogEncryptionKeyResponseBodyList = Array<string>;
+export const ListDbaasLogEncryptionKeyResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListDbaasLogEncryptionKeyResponseBodyList>;
+
+export type ListDbaasLogEncryptionKeyResponse =
+  ListDbaasLogEncryptionKeyResponseBodyList;
+export const ListDbaasLogEncryptionKeyResponse = /*@__PURE__*/ S.suspend(() =>
+  ListDbaasLogEncryptionKeyResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListDbaasLogEncryptionKeyResponse",
+}) as any as S.Schema<ListDbaasLogEncryptionKeyResponse>;
+
+export interface ListDbaasLogInputRequest {
+  /** Service name */
+  serviceName: string;
+  /** Filter by title (like) */
+  titlePattern?: string;
+}
+export const ListDbaasLogInputRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    titlePattern: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/dbaas/logs/{serviceName}/input",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListDbaasLogInputRequest",
+}) as any as S.Schema<ListDbaasLogInputRequest>;
+
+export type ListDbaasLogInputResponseBodyList = Array<string>;
+export const ListDbaasLogInputResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListDbaasLogInputResponseBodyList>;
+
+export type ListDbaasLogInputResponse = ListDbaasLogInputResponseBodyList;
+export const ListDbaasLogInputResponse = /*@__PURE__*/ S.suspend(() =>
+  ListDbaasLogInputResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListDbaasLogInputResponse",
+}) as any as S.Schema<ListDbaasLogInputResponse>;
+
+export interface ListDbaasLogInputActionRequest {
+  /** Service name */
+  serviceName: string;
+  /** Input ID */
+  inputId: string;
+}
+export const ListDbaasLogInputActionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    inputId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/dbaas/logs/{serviceName}/input/{inputId}/action",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListDbaasLogInputActionRequest",
+}) as any as S.Schema<ListDbaasLogInputActionRequest>;
+
+/** Possible values for InputActionTypeEnum */
+export type DbaasLogsInputActionTypeEnum =
+  | "DESTROY"
+  | "END"
+  | "LOG"
+  | "RESTART"
+  | "START"
+  | "TEST";
+export const DbaasLogsInputActionTypeEnum = /*@__PURE__*/ S.String;
+
+/** Action on input */
+export interface DbaasLogsInputAction {
+  /** Indicates if action is allowed */
+  isAllowed?: boolean;
+  /** Action type */
+  type?: DbaasLogsInputActionTypeEnum;
+}
+export const DbaasLogsInputAction = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    isAllowed: S.optional(S.Boolean),
+    type: S.optional(DbaasLogsInputActionTypeEnum),
+  }),
+).annotate({
+  identifier: "DbaasLogsInputAction",
+}) as any as S.Schema<DbaasLogsInputAction>;
+
+export type ListDbaasLogInputActionResponseBodyList =
+  Array<DbaasLogsInputAction>;
+export const ListDbaasLogInputActionResponseBodyList = /*@__PURE__*/ S.Array(
+  DbaasLogsInputAction,
+) as any as S.Schema<ListDbaasLogInputActionResponseBodyList>;
+
+export type ListDbaasLogInputActionResponse =
+  ListDbaasLogInputActionResponseBodyList;
+export const ListDbaasLogInputActionResponse = /*@__PURE__*/ S.suspend(() =>
+  ListDbaasLogInputActionResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListDbaasLogInputActionResponse",
+}) as any as S.Schema<ListDbaasLogInputActionResponse>;
+
+export interface ListDbaasLogInputEngineRequest {
   /** Service name */
   serviceName: string;
 }
-export const GetDbaasLogsServiceNameUrlRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListDbaasLogInputEngineRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     serviceName: S.String.pipe(T.Label()),
   }).pipe(
-    T.Http({ method: "GET", uri: "/dbaas/logs/{serviceName}/url", code: 200 }),
+    T.Http({
+      method: "GET",
+      uri: "/dbaas/logs/{serviceName}/input/engine",
+      code: 200,
+    }),
   ),
 ).annotate({
-  identifier: "GetDbaasLogsServiceNameUrlRequest",
-}) as any as S.Schema<GetDbaasLogsServiceNameUrlRequest>;
+  identifier: "ListDbaasLogInputEngineRequest",
+}) as any as S.Schema<ListDbaasLogInputEngineRequest>;
 
-export type GetDbaasLogsServiceNameUrlResponseBodyList = Array<DbaasLogsUrl>;
-export const GetDbaasLogsServiceNameUrlResponseBodyList = /*@__PURE__*/ S.Array(
-  DbaasLogsUrl,
-) as any as S.Schema<GetDbaasLogsServiceNameUrlResponseBodyList>;
+export type ListDbaasLogInputEngineResponseBodyList = Array<string>;
+export const ListDbaasLogInputEngineResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListDbaasLogInputEngineResponseBodyList>;
 
-export type GetDbaasLogsServiceNameUrlResponse =
-  GetDbaasLogsServiceNameUrlResponseBodyList;
-export const GetDbaasLogsServiceNameUrlResponse = /*@__PURE__*/ S.suspend(() =>
-  GetDbaasLogsServiceNameUrlResponseBodyList.pipe(T.RawResponseRoot()),
+export type ListDbaasLogInputEngineResponse =
+  ListDbaasLogInputEngineResponseBodyList;
+export const ListDbaasLogInputEngineResponse = /*@__PURE__*/ S.suspend(() =>
+  ListDbaasLogInputEngineResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "GetDbaasLogsServiceNameUrlResponse",
-}) as any as S.Schema<GetDbaasLogsServiceNameUrlResponse>;
+  identifier: "ListDbaasLogInputEngineResponse",
+}) as any as S.Schema<ListDbaasLogInputEngineResponse>;
 
-export interface PostDbaasLogsServiceNameChangeContactRequest {
+export interface ListDbaasLogInputEngineHelperRequest {
   /** Service name */
   serviceName: string;
-  /** The contact to set as admin contact */
-  contactAdmin?: string;
-  /** The contact to set as billing contact */
-  contactBilling?: string;
-  /** The contact to set as tech contact */
-  contactTech?: string;
-}
-export const PostDbaasLogsServiceNameChangeContactRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      contactAdmin: S.optional(S.String),
-      contactBilling: S.optional(S.String),
-      contactTech: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/dbaas/logs/{serviceName}/changeContact",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostDbaasLogsServiceNameChangeContactRequest",
-  }) as any as S.Schema<PostDbaasLogsServiceNameChangeContactRequest>;
-
-export type PostDbaasLogsServiceNameChangeContactResponseBodyList =
-  Array<number>;
-export const PostDbaasLogsServiceNameChangeContactResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<PostDbaasLogsServiceNameChangeContactResponseBodyList>;
-
-export type PostDbaasLogsServiceNameChangeContactResponse =
-  PostDbaasLogsServiceNameChangeContactResponseBodyList;
-export const PostDbaasLogsServiceNameChangeContactResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    PostDbaasLogsServiceNameChangeContactResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "PostDbaasLogsServiceNameChangeContactResponse",
-  }) as any as S.Schema<PostDbaasLogsServiceNameChangeContactResponse>;
-
-export interface PostDbaasLogsServiceNameEncryptionKeyRequest {
-  /** Service name */
-  serviceName: string;
-  /** Encryption Key content */
-  content: string;
-  /** Encryption Key fingerprint */
-  fingerprint: string;
-  /** Encryption Key title */
-  title: string;
-}
-export const PostDbaasLogsServiceNameEncryptionKeyRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      content: S.String,
-      fingerprint: S.String,
-      title: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/dbaas/logs/{serviceName}/encryptionKey",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostDbaasLogsServiceNameEncryptionKeyRequest",
-  }) as any as S.Schema<PostDbaasLogsServiceNameEncryptionKeyRequest>;
-
-/** IP blocks */
-export type PostDbaasLogsServiceNameInputRequestAllowedNetworksList =
-  Array<string>;
-export const PostDbaasLogsServiceNameInputRequestAllowedNetworksList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostDbaasLogsServiceNameInputRequestAllowedNetworksList>;
-
-export interface PostDbaasLogsServiceNameInputRequest {
-  /** Service name */
-  serviceName: string;
-  /** IP blocks */
-  allowedNetworks?: PostDbaasLogsServiceNameInputRequestAllowedNetworksList | null;
-  /** Whether the workload is auto-scaled */
-  autoscale?: boolean | null;
-  /** Description */
-  description: string;
   /** Engine ID */
   engineId: string;
-  /** Exposed port */
-  exposedPort?: string | null;
-  /** Maximum number of instances in auto-scaled mode */
-  maxScaleInstance?: number | null;
-  /** Minimum number of instances in auto-scaled mode */
-  minScaleInstance?: number | null;
-  /** Number of instance running */
-  nbInstance?: number | null;
-  /** If set, notify when scaling happens */
-  scalingNotifyEnabled?: boolean | null;
-  /** Stream ID */
-  streamId: string;
-  /** Title */
-  title: string;
 }
-export const PostDbaasLogsServiceNameInputRequest = /*@__PURE__*/ S.suspend(
+export const ListDbaasLogInputEngineHelperRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
-      allowedNetworks: S.optional(
-        S.NullOr(PostDbaasLogsServiceNameInputRequestAllowedNetworksList),
-      ),
-      autoscale: S.optional(S.NullOr(S.Boolean)),
-      description: S.String,
-      engineId: S.String,
-      exposedPort: S.optional(S.NullOr(S.String)),
-      maxScaleInstance: S.optional(S.NullOr(S.Number)),
-      minScaleInstance: S.optional(S.NullOr(S.Number)),
-      nbInstance: S.optional(S.NullOr(S.Number)),
-      scalingNotifyEnabled: S.optional(S.NullOr(S.Boolean)),
-      streamId: S.String,
-      title: S.String,
+      engineId: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
-        method: "POST",
-        uri: "/dbaas/logs/{serviceName}/input",
+        method: "GET",
+        uri: "/dbaas/logs/{serviceName}/input/engine/{engineId}/helper",
         code: 200,
       }),
     ),
 ).annotate({
-  identifier: "PostDbaasLogsServiceNameInputRequest",
-}) as any as S.Schema<PostDbaasLogsServiceNameInputRequest>;
+  identifier: "ListDbaasLogInputEngineHelperRequest",
+}) as any as S.Schema<ListDbaasLogInputEngineHelperRequest>;
 
-export interface PostDbaasLogsServiceNameInputInputIdConfigtestRequest {
+export type ListDbaasLogInputEngineHelperResponseBodyList = Array<string>;
+export const ListDbaasLogInputEngineHelperResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListDbaasLogInputEngineHelperResponseBodyList>;
+
+export type ListDbaasLogInputEngineHelperResponse =
+  ListDbaasLogInputEngineHelperResponseBodyList;
+export const ListDbaasLogInputEngineHelperResponse = /*@__PURE__*/ S.suspend(
+  () => ListDbaasLogInputEngineHelperResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListDbaasLogInputEngineHelperResponse",
+}) as any as S.Schema<ListDbaasLogInputEngineHelperResponse>;
+
+export interface ListDbaasLogInputUrlRequest {
   /** Service name */
   serviceName: string;
   /** Input ID */
   inputId: string;
 }
-export const PostDbaasLogsServiceNameInputInputIdConfigtestRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      inputId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/dbaas/logs/{serviceName}/input/{inputId}/configtest",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostDbaasLogsServiceNameInputInputIdConfigtestRequest",
-  }) as any as S.Schema<PostDbaasLogsServiceNameInputInputIdConfigtestRequest>;
-
-export interface PostDbaasLogsServiceNameInputInputIdEndRequest {
-  /** Service name */
-  serviceName: string;
-  /** Input ID */
-  inputId: string;
-}
-export const PostDbaasLogsServiceNameInputInputIdEndRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      inputId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/dbaas/logs/{serviceName}/input/{inputId}/end",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostDbaasLogsServiceNameInputInputIdEndRequest",
-  }) as any as S.Schema<PostDbaasLogsServiceNameInputInputIdEndRequest>;
-
-export interface PostDbaasLogsServiceNameInputInputIdLogsUrlRequest {
-  /** Service name */
-  serviceName: string;
-  /** Input ID */
-  inputId: string;
-}
-export const PostDbaasLogsServiceNameInputInputIdLogsUrlRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      inputId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/dbaas/logs/{serviceName}/input/{inputId}/logs/url",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostDbaasLogsServiceNameInputInputIdLogsUrlRequest",
-  }) as any as S.Schema<PostDbaasLogsServiceNameInputInputIdLogsUrlRequest>;
-
-/** Temporary url information */
-export interface DbaasLogsTemporaryLogsLink {
-  /** Temporary url expiration date */
-  expirationDate?: string;
-  /** Temporary url */
-  url?: string;
-}
-export const DbaasLogsTemporaryLogsLink = /*@__PURE__*/ S.suspend(() =>
+export const ListDbaasLogInputUrlRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    expirationDate: S.optional(S.String),
-    url: S.optional(S.String),
-  }),
+    serviceName: S.String.pipe(T.Label()),
+    inputId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/dbaas/logs/{serviceName}/input/{inputId}/url",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "DbaasLogsTemporaryLogsLink",
-}) as any as S.Schema<DbaasLogsTemporaryLogsLink>;
+  identifier: "ListDbaasLogInputUrlRequest",
+}) as any as S.Schema<ListDbaasLogInputUrlRequest>;
 
-export interface PostDbaasLogsServiceNameInputInputIdRestartRequest {
+/** Possible values for UrlTypeEnum */
+export type DbaasLogsUrlTypeEnum =
+  | "CONSOLE"
+  | "ELASTICSEARCH_API"
+  | "GRAYLOG_API"
+  | "GRAYLOG_WEBUI"
+  | "HTTP_GELF"
+  | "HTTP_TLS_GELF"
+  | "KIBANA_WEBUI"
+  | "OPENSEARCH_API"
+  | "OSD_WEBUI"
+  | "PROMETHEUS_API"
+  | "SERVICE_DOMAIN"
+  | "TCP_BEATS"
+  | "TCP_CAP_N_PROTO"
+  | "TCP_GELF"
+  | "TCP_LTSV_LINE"
+  | "TCP_LTSV_NUL"
+  | "TCP_RFC5424"
+  | "TCP_TLS_BEATS"
+  | "TCP_TLS_CAP_N_PROTO"
+  | "TCP_TLS_GELF"
+  | "TCP_TLS_LTSV_LINE"
+  | "TCP_TLS_LTSV_NUL"
+  | "TCP_TLS_RFC5424"
+  | "UDP_CAP_N_PROTO"
+  | "UDP_GELF"
+  | "UDP_LTSV_LINE"
+  | "UDP_LTSV_NUL"
+  | "UDP_RFC5424"
+  | "WEB_SOCKET";
+export const DbaasLogsUrlTypeEnum = /*@__PURE__*/ S.String;
+
+/** Web address */
+export interface DbaasLogsUrl {
+  /** Web URI */
+  address?: string;
+  /** Service type */
+  type?: DbaasLogsUrlTypeEnum;
+}
+export const DbaasLogsUrl = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    address: S.optional(S.String),
+    type: S.optional(DbaasLogsUrlTypeEnum),
+  }),
+).annotate({ identifier: "DbaasLogsUrl" }) as any as S.Schema<DbaasLogsUrl>;
+
+export type ListDbaasLogInputUrlResponseBodyList = Array<DbaasLogsUrl>;
+export const ListDbaasLogInputUrlResponseBodyList = /*@__PURE__*/ S.Array(
+  DbaasLogsUrl,
+) as any as S.Schema<ListDbaasLogInputUrlResponseBodyList>;
+
+export type ListDbaasLogInputUrlResponse = ListDbaasLogInputUrlResponseBodyList;
+export const ListDbaasLogInputUrlResponse = /*@__PURE__*/ S.suspend(() =>
+  ListDbaasLogInputUrlResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListDbaasLogInputUrlResponse",
+}) as any as S.Schema<ListDbaasLogInputUrlResponse>;
+
+export interface ListDbaasLogOperationRequest {
   /** Service name */
   serviceName: string;
-  /** Input ID */
-  inputId: string;
 }
-export const PostDbaasLogsServiceNameInputInputIdRestartRequest =
+export const ListDbaasLogOperationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/dbaas/logs/{serviceName}/operation",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListDbaasLogOperationRequest",
+}) as any as S.Schema<ListDbaasLogOperationRequest>;
+
+export type ListDbaasLogOperationResponseBodyList = Array<string>;
+export const ListDbaasLogOperationResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListDbaasLogOperationResponseBodyList>;
+
+export type ListDbaasLogOperationResponse =
+  ListDbaasLogOperationResponseBodyList;
+export const ListDbaasLogOperationResponse = /*@__PURE__*/ S.suspend(() =>
+  ListDbaasLogOperationResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListDbaasLogOperationResponse",
+}) as any as S.Schema<ListDbaasLogOperationResponse>;
+
+export interface ListDbaasLogOutputGraylogDashboardRequest {
+  /** Service name */
+  serviceName: string;
+  /** Filter by title (like) */
+  titlePattern?: string;
+}
+export const ListDbaasLogOutputGraylogDashboardRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
-      inputId: S.String.pipe(T.Label()),
+      titlePattern: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
-        method: "POST",
-        uri: "/dbaas/logs/{serviceName}/input/{inputId}/restart",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostDbaasLogsServiceNameInputInputIdRestartRequest",
-  }) as any as S.Schema<PostDbaasLogsServiceNameInputInputIdRestartRequest>;
-
-export interface PostDbaasLogsServiceNameInputInputIdStartRequest {
-  /** Service name */
-  serviceName: string;
-  /** Input ID */
-  inputId: string;
-}
-export const PostDbaasLogsServiceNameInputInputIdStartRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      inputId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/dbaas/logs/{serviceName}/input/{inputId}/start",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostDbaasLogsServiceNameInputInputIdStartRequest",
-  }) as any as S.Schema<PostDbaasLogsServiceNameInputInputIdStartRequest>;
-
-export interface PostDbaasLogsServiceNameOutputGraylogDashboardRequest {
-  /** Service name */
-  serviceName: string;
-  /** Description */
-  description: string;
-  /** Title */
-  title: string;
-}
-export const PostDbaasLogsServiceNameOutputGraylogDashboardRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      description: S.String,
-      title: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
+        method: "GET",
         uri: "/dbaas/logs/{serviceName}/output/graylog/dashboard",
         code: 200,
       }),
     ),
   ).annotate({
-    identifier: "PostDbaasLogsServiceNameOutputGraylogDashboardRequest",
-  }) as any as S.Schema<PostDbaasLogsServiceNameOutputGraylogDashboardRequest>;
+    identifier: "ListDbaasLogOutputGraylogDashboardRequest",
+  }) as any as S.Schema<ListDbaasLogOutputGraylogDashboardRequest>;
 
-export interface PostDbaasLogsServiceNameOutputGraylogDashboardDashboardIdDuplicateRequest {
+export type ListDbaasLogOutputGraylogDashboardResponseBodyList = Array<string>;
+export const ListDbaasLogOutputGraylogDashboardResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListDbaasLogOutputGraylogDashboardResponseBodyList>;
+
+export type ListDbaasLogOutputGraylogDashboardResponse =
+  ListDbaasLogOutputGraylogDashboardResponseBodyList;
+export const ListDbaasLogOutputGraylogDashboardResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListDbaasLogOutputGraylogDashboardResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListDbaasLogOutputGraylogDashboardResponse",
+  }) as any as S.Schema<ListDbaasLogOutputGraylogDashboardResponse>;
+
+export interface ListDbaasLogOutputGraylogDashboardUrlRequest {
   /** Service name */
   serviceName: string;
   /** Dashboard ID */
   dashboardId: string;
-  /** Description */
-  description: string;
-  /** Stream ID */
-  streamId?: string | null;
-  /** Title */
-  title: string;
 }
-export const PostDbaasLogsServiceNameOutputGraylogDashboardDashboardIdDuplicateRequest =
+export const ListDbaasLogOutputGraylogDashboardUrlRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       dashboardId: S.String.pipe(T.Label()),
-      description: S.String,
-      streamId: S.optional(S.NullOr(S.String)),
-      title: S.String,
     }).pipe(
       T.Http({
-        method: "POST",
-        uri: "/dbaas/logs/{serviceName}/output/graylog/dashboard/{dashboardId}/duplicate",
+        method: "GET",
+        uri: "/dbaas/logs/{serviceName}/output/graylog/dashboard/{dashboardId}/url",
         code: 200,
       }),
     ),
   ).annotate({
-    identifier:
-      "PostDbaasLogsServiceNameOutputGraylogDashboardDashboardIdDuplicateRequest",
-  }) as any as S.Schema<PostDbaasLogsServiceNameOutputGraylogDashboardDashboardIdDuplicateRequest>;
+    identifier: "ListDbaasLogOutputGraylogDashboardUrlRequest",
+  }) as any as S.Schema<ListDbaasLogOutputGraylogDashboardUrlRequest>;
 
-/** Encryption keys used to encrypt stream archives */
-export type PostDbaasLogsServiceNameOutputGraylogStreamRequestEncryptionKeysIdsList =
-  Array<string>;
-export const PostDbaasLogsServiceNameOutputGraylogStreamRequestEncryptionKeysIdsList =
+export type ListDbaasLogOutputGraylogDashboardUrlResponseBodyList =
+  Array<DbaasLogsUrl>;
+export const ListDbaasLogOutputGraylogDashboardUrlResponseBodyList =
   /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostDbaasLogsServiceNameOutputGraylogStreamRequestEncryptionKeysIdsList>;
+    DbaasLogsUrl,
+  ) as any as S.Schema<ListDbaasLogOutputGraylogDashboardUrlResponseBodyList>;
 
-export interface PostDbaasLogsServiceNameOutputGraylogStreamRequest {
+export type ListDbaasLogOutputGraylogDashboardUrlResponse =
+  ListDbaasLogOutputGraylogDashboardUrlResponseBodyList;
+export const ListDbaasLogOutputGraylogDashboardUrlResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListDbaasLogOutputGraylogDashboardUrlResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListDbaasLogOutputGraylogDashboardUrlResponse",
+  }) as any as S.Schema<ListDbaasLogOutputGraylogDashboardUrlResponse>;
+
+export interface ListDbaasLogOutputGraylogStreamRequest {
   /** Service name */
   serviceName: string;
-  /** Cold storage compression */
-  coldStorageCompression?:
-    | DbaasLogsStreamColdStorageCompressionEnum
-    | (string & {})
-    | null;
-  /** Cold storage archive content */
-  coldStorageContent?:
-    | DbaasLogsStreamColdStorageContentEnum
-    | (string & {})
-    | null;
-  /** Cold storage enabled */
-  coldStorageEnabled?: boolean | null;
-  /** Cold storage notify enabled */
-  coldStorageNotifyEnabled?: boolean | null;
-  /** Cold storage retention time */
-  coldStorageRetention?: number | null;
-  /** Description */
-  description: string;
-  /** Encryption keys used to encrypt stream archives */
-  encryptionKeysIds?: PostDbaasLogsServiceNameOutputGraylogStreamRequestEncryptionKeysIdsList | null;
-  /** ES indexing enabled */
-  indexingEnabled?: boolean | null;
-  /** Maximum indexing size (in GB) */
-  indexingMaxSize?: number | null;
-  /** If set, notify when size is near 80, 90 or 100 % of the maximum configured setting */
-  indexingNotifyEnabled?: boolean | null;
-  /** Parent stream ID */
-  parentStreamId?: string | null;
-  /** If set, pause indexing when maximum size is reach */
-  pauseIndexingOnMaxSize?: boolean | null;
-  /** Retention ID */
-  retentionId?: string | null;
-  /** Title */
-  title: string;
-  /** Web Socket enabled */
-  webSocketEnabled?: boolean | null;
+  /** Filter by title (like) */
+  titlePattern?: string;
 }
-export const PostDbaasLogsServiceNameOutputGraylogStreamRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const ListDbaasLogOutputGraylogStreamRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
-      coldStorageCompression: S.optional(
-        S.NullOr(DbaasLogsStreamColdStorageCompressionEnum),
-      ),
-      coldStorageContent: S.optional(
-        S.NullOr(DbaasLogsStreamColdStorageContentEnum),
-      ),
-      coldStorageEnabled: S.optional(S.NullOr(S.Boolean)),
-      coldStorageNotifyEnabled: S.optional(S.NullOr(S.Boolean)),
-      coldStorageRetention: S.optional(S.NullOr(S.Number)),
-      description: S.String,
-      encryptionKeysIds: S.optional(
-        S.NullOr(
-          PostDbaasLogsServiceNameOutputGraylogStreamRequestEncryptionKeysIdsList,
-        ),
-      ),
-      indexingEnabled: S.optional(S.NullOr(S.Boolean)),
-      indexingMaxSize: S.optional(S.NullOr(S.Number)),
-      indexingNotifyEnabled: S.optional(S.NullOr(S.Boolean)),
-      parentStreamId: S.optional(S.NullOr(S.String)),
-      pauseIndexingOnMaxSize: S.optional(S.NullOr(S.Boolean)),
-      retentionId: S.optional(S.NullOr(S.String)),
-      title: S.String,
-      webSocketEnabled: S.optional(S.NullOr(S.Boolean)),
+      titlePattern: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
-        method: "POST",
+        method: "GET",
         uri: "/dbaas/logs/{serviceName}/output/graylog/stream",
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "PostDbaasLogsServiceNameOutputGraylogStreamRequest",
-  }) as any as S.Schema<PostDbaasLogsServiceNameOutputGraylogStreamRequest>;
+).annotate({
+  identifier: "ListDbaasLogOutputGraylogStreamRequest",
+}) as any as S.Schema<ListDbaasLogOutputGraylogStreamRequest>;
 
-export interface PostDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertRequest {
+export type ListDbaasLogOutputGraylogStreamResponseBodyList = Array<string>;
+export const ListDbaasLogOutputGraylogStreamResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListDbaasLogOutputGraylogStreamResponseBodyList>;
+
+export type ListDbaasLogOutputGraylogStreamResponse =
+  ListDbaasLogOutputGraylogStreamResponseBodyList;
+export const ListDbaasLogOutputGraylogStreamResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    ListDbaasLogOutputGraylogStreamResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListDbaasLogOutputGraylogStreamResponse",
+}) as any as S.Schema<ListDbaasLogOutputGraylogStreamResponse>;
+
+export interface ListDbaasLogOutputGraylogStreamAlertRequest {
   /** Service name */
   serviceName: string;
   /** Stream ID */
   streamId: string;
-  /** Backlog */
-  backlog: number;
-  /** Condition type */
-  conditionType?:
-    | DbaasLogsStreamAlertConditionConditionTypeEnum
-    | (string & {})
-    | null;
-  /** Constraint type */
-  constraintType?:
-    | DbaasLogsStreamAlertConditionConstraintTypeEnum
-    | (string & {})
-    | null;
-  /** Field */
-  field?: string | null;
-  /** Grace period */
-  grace: number;
-  /** Query filter */
-  queryFilter?: string | null;
-  /** Repeat notifications enabled */
-  repeatNotificationsEnabled?: boolean | null;
-  /** Threshold */
-  threshold?: number | null;
-  /** Threshold type */
-  thresholdType?:
-    | DbaasLogsStreamAlertConditionThresholdTypeEnum
-    | (string & {})
-    | null;
-  /** Time */
-  time?: number | null;
-  /** Title */
-  title: string;
-  /** Value */
-  value?: string | null;
 }
-export const PostDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertRequest =
+export const ListDbaasLogOutputGraylogStreamAlertRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       streamId: S.String.pipe(T.Label()),
-      backlog: S.Number,
-      conditionType: S.optional(
-        S.NullOr(DbaasLogsStreamAlertConditionConditionTypeEnum),
-      ),
-      constraintType: S.optional(
-        S.NullOr(DbaasLogsStreamAlertConditionConstraintTypeEnum),
-      ),
-      field: S.optional(S.NullOr(S.String)),
-      grace: S.Number,
-      queryFilter: S.optional(S.NullOr(S.String)),
-      repeatNotificationsEnabled: S.optional(S.NullOr(S.Boolean)),
-      threshold: S.optional(S.NullOr(S.Number)),
-      thresholdType: S.optional(
-        S.NullOr(DbaasLogsStreamAlertConditionThresholdTypeEnum),
-      ),
-      time: S.optional(S.NullOr(S.Number)),
-      title: S.String,
-      value: S.optional(S.NullOr(S.String)),
     }).pipe(
       T.Http({
-        method: "POST",
+        method: "GET",
         uri: "/dbaas/logs/{serviceName}/output/graylog/stream/{streamId}/alert",
         code: 200,
       }),
     ),
   ).annotate({
-    identifier:
-      "PostDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertRequest",
-  }) as any as S.Schema<PostDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertRequest>;
+    identifier: "ListDbaasLogOutputGraylogStreamAlertRequest",
+  }) as any as S.Schema<ListDbaasLogOutputGraylogStreamAlertRequest>;
 
-export interface PostDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdUrlRequest {
+export type ListDbaasLogOutputGraylogStreamAlertResponseBodyList =
+  Array<string>;
+export const ListDbaasLogOutputGraylogStreamAlertResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListDbaasLogOutputGraylogStreamAlertResponseBodyList>;
+
+export type ListDbaasLogOutputGraylogStreamAlertResponse =
+  ListDbaasLogOutputGraylogStreamAlertResponseBodyList;
+export const ListDbaasLogOutputGraylogStreamAlertResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListDbaasLogOutputGraylogStreamAlertResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListDbaasLogOutputGraylogStreamAlertResponse",
+  }) as any as S.Schema<ListDbaasLogOutputGraylogStreamAlertResponse>;
+
+export interface ListDbaasLogOutputGraylogStreamArchiveRequest {
+  /** Service name */
+  serviceName: string;
+  /** Stream ID */
+  streamId: string;
+}
+export const ListDbaasLogOutputGraylogStreamArchiveRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      streamId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/dbaas/logs/{serviceName}/output/graylog/stream/{streamId}/archive",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ListDbaasLogOutputGraylogStreamArchiveRequest",
+  }) as any as S.Schema<ListDbaasLogOutputGraylogStreamArchiveRequest>;
+
+export type ListDbaasLogOutputGraylogStreamArchiveResponseBodyList =
+  Array<string>;
+export const ListDbaasLogOutputGraylogStreamArchiveResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListDbaasLogOutputGraylogStreamArchiveResponseBodyList>;
+
+export type ListDbaasLogOutputGraylogStreamArchiveResponse =
+  ListDbaasLogOutputGraylogStreamArchiveResponseBodyList;
+export const ListDbaasLogOutputGraylogStreamArchiveResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListDbaasLogOutputGraylogStreamArchiveResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListDbaasLogOutputGraylogStreamArchiveResponse",
+  }) as any as S.Schema<ListDbaasLogOutputGraylogStreamArchiveResponse>;
+
+export interface ListDbaasLogOutputGraylogStreamArchiveEncryptionKeyRequest {
   /** Service name */
   serviceName: string;
   /** Stream ID */
@@ -4334,7 +3727,7 @@ export interface PostDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchi
   /** Archive ID */
   archiveId: string;
 }
-export const PostDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdUrlRequest =
+export const ListDbaasLogOutputGraylogStreamArchiveEncryptionKeyRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
@@ -4342,176 +3735,728 @@ export const PostDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveId
       archiveId: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
-        method: "POST",
-        uri: "/dbaas/logs/{serviceName}/output/graylog/stream/{streamId}/archive/{archiveId}/url",
+        method: "GET",
+        uri: "/dbaas/logs/{serviceName}/output/graylog/stream/{streamId}/archive/{archiveId}/encryptionKey",
         code: 200,
       }),
     ),
   ).annotate({
-    identifier:
-      "PostDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdUrlRequest",
-  }) as any as S.Schema<PostDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdUrlRequest>;
+    identifier: "ListDbaasLogOutputGraylogStreamArchiveEncryptionKeyRequest",
+  }) as any as S.Schema<ListDbaasLogOutputGraylogStreamArchiveEncryptionKeyRequest>;
 
-/** Stream archive url */
-export interface DbaasLogsArchiveUrl {
-  /** Temporary URL expiration date */
-  expirationDate?: string;
-  /** Temporary URL to get archive */
-  url?: string;
-}
-export const DbaasLogsArchiveUrl = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    expirationDate: S.optional(S.String),
-    url: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DbaasLogsArchiveUrl",
-}) as any as S.Schema<DbaasLogsArchiveUrl>;
+export type ListDbaasLogOutputGraylogStreamArchiveEncryptionKeyResponseBodyList =
+  Array<string>;
+export const ListDbaasLogOutputGraylogStreamArchiveEncryptionKeyResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListDbaasLogOutputGraylogStreamArchiveEncryptionKeyResponseBodyList>;
 
-export interface PostDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleRequest {
+export type ListDbaasLogOutputGraylogStreamArchiveEncryptionKeyResponse =
+  ListDbaasLogOutputGraylogStreamArchiveEncryptionKeyResponseBodyList;
+export const ListDbaasLogOutputGraylogStreamArchiveEncryptionKeyResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListDbaasLogOutputGraylogStreamArchiveEncryptionKeyResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListDbaasLogOutputGraylogStreamArchiveEncryptionKeyResponse",
+  }) as any as S.Schema<ListDbaasLogOutputGraylogStreamArchiveEncryptionKeyResponse>;
+
+export interface ListDbaasLogOutputGraylogStreamRuleRequest {
   /** Service name */
   serviceName: string;
   /** Stream ID */
   streamId: string;
-  /** Field name */
-  field: string;
-  /** Invert condition */
-  isInverted?: boolean | null;
-  /** Field operator */
-  operator: DbaasLogsStreamRuleOperatorEnum | (string & {});
-  /** Field value */
-  value: string;
 }
-export const PostDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleRequest =
+export const ListDbaasLogOutputGraylogStreamRuleRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       streamId: S.String.pipe(T.Label()),
-      field: S.String,
-      isInverted: S.optional(S.NullOr(S.Boolean)),
-      operator: DbaasLogsStreamRuleOperatorEnum,
-      value: S.String,
     }).pipe(
       T.Http({
-        method: "POST",
+        method: "GET",
         uri: "/dbaas/logs/{serviceName}/output/graylog/stream/{streamId}/rule",
         code: 200,
       }),
     ),
   ).annotate({
-    identifier:
-      "PostDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleRequest",
-  }) as any as S.Schema<PostDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleRequest>;
+    identifier: "ListDbaasLogOutputGraylogStreamRuleRequest",
+  }) as any as S.Schema<ListDbaasLogOutputGraylogStreamRuleRequest>;
 
-export interface PostDbaasLogsServiceNameOutputMetricTenantRequest {
+export type ListDbaasLogOutputGraylogStreamRuleResponseBodyList = Array<string>;
+export const ListDbaasLogOutputGraylogStreamRuleResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListDbaasLogOutputGraylogStreamRuleResponseBodyList>;
+
+export type ListDbaasLogOutputGraylogStreamRuleResponse =
+  ListDbaasLogOutputGraylogStreamRuleResponseBodyList;
+export const ListDbaasLogOutputGraylogStreamRuleResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListDbaasLogOutputGraylogStreamRuleResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListDbaasLogOutputGraylogStreamRuleResponse",
+  }) as any as S.Schema<ListDbaasLogOutputGraylogStreamRuleResponse>;
+
+export interface ListDbaasLogOutputGraylogStreamSubscriptionRequest {
   /** Service name */
   serviceName: string;
-  /** Metric tenant description */
-  description: string;
-  /** Maximum number of time series inside the tenant */
-  maxSeries?: number;
-  /** Delete samples older than the specified retention period. */
-  retentionId: string;
-  /** Metric tenant title */
-  title: string;
+  /** Stream ID */
+  streamId: string;
+  /** Filter by resource name (like) */
+  resourceName?: string;
+  /** Filter by resource type (like) */
+  resourceType?: string;
 }
-export const PostDbaasLogsServiceNameOutputMetricTenantRequest =
+export const ListDbaasLogOutputGraylogStreamSubscriptionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
-      description: S.String,
-      maxSeries: S.optional(S.Number),
-      retentionId: S.String,
-      title: S.String,
+      streamId: S.String.pipe(T.Label()),
+      resourceName: S.optional(S.String.pipe(T.Query())),
+      resourceType: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
-        method: "POST",
+        method: "GET",
+        uri: "/dbaas/logs/{serviceName}/output/graylog/stream/{streamId}/subscription",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ListDbaasLogOutputGraylogStreamSubscriptionRequest",
+  }) as any as S.Schema<ListDbaasLogOutputGraylogStreamSubscriptionRequest>;
+
+export type ListDbaasLogOutputGraylogStreamSubscriptionResponseBodyList =
+  Array<string>;
+export const ListDbaasLogOutputGraylogStreamSubscriptionResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListDbaasLogOutputGraylogStreamSubscriptionResponseBodyList>;
+
+export type ListDbaasLogOutputGraylogStreamSubscriptionResponse =
+  ListDbaasLogOutputGraylogStreamSubscriptionResponseBodyList;
+export const ListDbaasLogOutputGraylogStreamSubscriptionResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListDbaasLogOutputGraylogStreamSubscriptionResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListDbaasLogOutputGraylogStreamSubscriptionResponse",
+  }) as any as S.Schema<ListDbaasLogOutputGraylogStreamSubscriptionResponse>;
+
+export interface ListDbaasLogOutputGraylogStreamUrlRequest {
+  /** Service name */
+  serviceName: string;
+  /** Stream ID */
+  streamId: string;
+}
+export const ListDbaasLogOutputGraylogStreamUrlRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      streamId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/dbaas/logs/{serviceName}/output/graylog/stream/{streamId}/url",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ListDbaasLogOutputGraylogStreamUrlRequest",
+  }) as any as S.Schema<ListDbaasLogOutputGraylogStreamUrlRequest>;
+
+export type ListDbaasLogOutputGraylogStreamUrlResponseBodyList =
+  Array<DbaasLogsUrl>;
+export const ListDbaasLogOutputGraylogStreamUrlResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    DbaasLogsUrl,
+  ) as any as S.Schema<ListDbaasLogOutputGraylogStreamUrlResponseBodyList>;
+
+export type ListDbaasLogOutputGraylogStreamUrlResponse =
+  ListDbaasLogOutputGraylogStreamUrlResponseBodyList;
+export const ListDbaasLogOutputGraylogStreamUrlResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListDbaasLogOutputGraylogStreamUrlResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListDbaasLogOutputGraylogStreamUrlResponse",
+  }) as any as S.Schema<ListDbaasLogOutputGraylogStreamUrlResponse>;
+
+export interface ListDbaasLogOutputMetricTenantRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const ListDbaasLogOutputMetricTenantRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
         uri: "/dbaas/logs/{serviceName}/output/metric/tenant",
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "PostDbaasLogsServiceNameOutputMetricTenantRequest",
-  }) as any as S.Schema<PostDbaasLogsServiceNameOutputMetricTenantRequest>;
+).annotate({
+  identifier: "ListDbaasLogOutputMetricTenantRequest",
+}) as any as S.Schema<ListDbaasLogOutputMetricTenantRequest>;
 
-export interface PostDbaasLogsServiceNameOutputOpensearchAliasRequest {
+export type ListDbaasLogOutputMetricTenantResponseBodyList = Array<string>;
+export const ListDbaasLogOutputMetricTenantResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListDbaasLogOutputMetricTenantResponseBodyList>;
+
+export type ListDbaasLogOutputMetricTenantResponse =
+  ListDbaasLogOutputMetricTenantResponseBodyList;
+export const ListDbaasLogOutputMetricTenantResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    ListDbaasLogOutputMetricTenantResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListDbaasLogOutputMetricTenantResponse",
+}) as any as S.Schema<ListDbaasLogOutputMetricTenantResponse>;
+
+export interface ListDbaasLogOutputMetricTenantSubscriptionRequest {
   /** Service name */
   serviceName: string;
-  /** Description */
-  description: string;
-  /** Suffix */
-  suffix: string;
+  /** Tenant ID */
+  tenantId: string;
+  /** Filter by resource name (like) */
+  resourceName?: string;
+  /** Filter by resource type (like) */
+  resourceType?: string;
 }
-export const PostDbaasLogsServiceNameOutputOpensearchAliasRequest =
+export const ListDbaasLogOutputMetricTenantSubscriptionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
-      description: S.String,
-      suffix: S.String,
+      tenantId: S.String.pipe(T.Label()),
+      resourceName: S.optional(S.String.pipe(T.Query())),
+      resourceType: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
-        method: "POST",
-        uri: "/dbaas/logs/{serviceName}/output/opensearch/alias",
+        method: "GET",
+        uri: "/dbaas/logs/{serviceName}/output/metric/tenant/{tenantId}/subscription",
         code: 200,
       }),
     ),
   ).annotate({
-    identifier: "PostDbaasLogsServiceNameOutputOpensearchAliasRequest",
-  }) as any as S.Schema<PostDbaasLogsServiceNameOutputOpensearchAliasRequest>;
+    identifier: "ListDbaasLogOutputMetricTenantSubscriptionRequest",
+  }) as any as S.Schema<ListDbaasLogOutputMetricTenantSubscriptionRequest>;
 
-export interface PostDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexRequest {
+export type ListDbaasLogOutputMetricTenantSubscriptionResponseBodyList =
+  Array<string>;
+export const ListDbaasLogOutputMetricTenantSubscriptionResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListDbaasLogOutputMetricTenantSubscriptionResponseBodyList>;
+
+export type ListDbaasLogOutputMetricTenantSubscriptionResponse =
+  ListDbaasLogOutputMetricTenantSubscriptionResponseBodyList;
+export const ListDbaasLogOutputMetricTenantSubscriptionResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListDbaasLogOutputMetricTenantSubscriptionResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListDbaasLogOutputMetricTenantSubscriptionResponse",
+  }) as any as S.Schema<ListDbaasLogOutputMetricTenantSubscriptionResponse>;
+
+export interface ListDbaasLogOutputMetricTenantUrlRequest {
+  /** Service name */
+  serviceName: string;
+  /** Tenant ID */
+  tenantId: string;
+}
+export const ListDbaasLogOutputMetricTenantUrlRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      tenantId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/dbaas/logs/{serviceName}/output/metric/tenant/{tenantId}/url",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ListDbaasLogOutputMetricTenantUrlRequest",
+}) as any as S.Schema<ListDbaasLogOutputMetricTenantUrlRequest>;
+
+export type ListDbaasLogOutputMetricTenantUrlResponseBodyList =
+  Array<DbaasLogsUrl>;
+export const ListDbaasLogOutputMetricTenantUrlResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    DbaasLogsUrl,
+  ) as any as S.Schema<ListDbaasLogOutputMetricTenantUrlResponseBodyList>;
+
+export type ListDbaasLogOutputMetricTenantUrlResponse =
+  ListDbaasLogOutputMetricTenantUrlResponseBodyList;
+export const ListDbaasLogOutputMetricTenantUrlResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListDbaasLogOutputMetricTenantUrlResponseBodyList.pipe(T.RawResponseRoot()),
+  ).annotate({
+    identifier: "ListDbaasLogOutputMetricTenantUrlResponse",
+  }) as any as S.Schema<ListDbaasLogOutputMetricTenantUrlResponse>;
+
+export interface ListDbaasLogOutputOpensearchAliasRequest {
+  /** Service name */
+  serviceName: string;
+  /** Filter by name (like) */
+  namePattern?: string;
+}
+export const ListDbaasLogOutputOpensearchAliasRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      namePattern: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/dbaas/logs/{serviceName}/output/opensearch/alias",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ListDbaasLogOutputOpensearchAliasRequest",
+}) as any as S.Schema<ListDbaasLogOutputOpensearchAliasRequest>;
+
+export type ListDbaasLogOutputOpensearchAliasResponseBodyList = Array<string>;
+export const ListDbaasLogOutputOpensearchAliasResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListDbaasLogOutputOpensearchAliasResponseBodyList>;
+
+export type ListDbaasLogOutputOpensearchAliasResponse =
+  ListDbaasLogOutputOpensearchAliasResponseBodyList;
+export const ListDbaasLogOutputOpensearchAliasResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListDbaasLogOutputOpensearchAliasResponseBodyList.pipe(T.RawResponseRoot()),
+  ).annotate({
+    identifier: "ListDbaasLogOutputOpensearchAliasResponse",
+  }) as any as S.Schema<ListDbaasLogOutputOpensearchAliasResponse>;
+
+export interface ListDbaasLogOutputOpensearchAliasIndexRequest {
   /** Service name */
   serviceName: string;
   /** Alias ID */
   aliasId: string;
-  /** Index ID */
-  indexId: string;
 }
-export const PostDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexRequest =
+export const ListDbaasLogOutputOpensearchAliasIndexRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       aliasId: S.String.pipe(T.Label()),
-      indexId: S.String,
     }).pipe(
       T.Http({
-        method: "POST",
+        method: "GET",
         uri: "/dbaas/logs/{serviceName}/output/opensearch/alias/{aliasId}/index",
         code: 200,
       }),
     ),
   ).annotate({
-    identifier:
-      "PostDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexRequest",
-  }) as any as S.Schema<PostDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexRequest>;
+    identifier: "ListDbaasLogOutputOpensearchAliasIndexRequest",
+  }) as any as S.Schema<ListDbaasLogOutputOpensearchAliasIndexRequest>;
 
-export interface PostDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamRequest {
+export type ListDbaasLogOutputOpensearchAliasIndexResponseBodyList =
+  Array<string>;
+export const ListDbaasLogOutputOpensearchAliasIndexResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListDbaasLogOutputOpensearchAliasIndexResponseBodyList>;
+
+export type ListDbaasLogOutputOpensearchAliasIndexResponse =
+  ListDbaasLogOutputOpensearchAliasIndexResponseBodyList;
+export const ListDbaasLogOutputOpensearchAliasIndexResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListDbaasLogOutputOpensearchAliasIndexResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListDbaasLogOutputOpensearchAliasIndexResponse",
+  }) as any as S.Schema<ListDbaasLogOutputOpensearchAliasIndexResponse>;
+
+export interface ListDbaasLogOutputOpensearchAliasStreamRequest {
   /** Service name */
   serviceName: string;
   /** Alias ID */
   aliasId: string;
-  /** Stream ID */
-  streamId: string;
 }
-export const PostDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamRequest =
+export const ListDbaasLogOutputOpensearchAliasStreamRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       aliasId: S.String.pipe(T.Label()),
-      streamId: S.String,
     }).pipe(
       T.Http({
-        method: "POST",
+        method: "GET",
         uri: "/dbaas/logs/{serviceName}/output/opensearch/alias/{aliasId}/stream",
         code: 200,
       }),
     ),
   ).annotate({
-    identifier:
-      "PostDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamRequest",
-  }) as any as S.Schema<PostDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamRequest>;
+    identifier: "ListDbaasLogOutputOpensearchAliasStreamRequest",
+  }) as any as S.Schema<ListDbaasLogOutputOpensearchAliasStreamRequest>;
 
-export interface PostDbaasLogsServiceNameOutputOpensearchIndexRequest {
+export type ListDbaasLogOutputOpensearchAliasStreamResponseBodyList =
+  Array<string>;
+export const ListDbaasLogOutputOpensearchAliasStreamResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListDbaasLogOutputOpensearchAliasStreamResponseBodyList>;
+
+export type ListDbaasLogOutputOpensearchAliasStreamResponse =
+  ListDbaasLogOutputOpensearchAliasStreamResponseBodyList;
+export const ListDbaasLogOutputOpensearchAliasStreamResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListDbaasLogOutputOpensearchAliasStreamResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListDbaasLogOutputOpensearchAliasStreamResponse",
+  }) as any as S.Schema<ListDbaasLogOutputOpensearchAliasStreamResponse>;
+
+export interface ListDbaasLogOutputOpensearchAliasUrlRequest {
+  /** Service name */
+  serviceName: string;
+  /** Alias ID */
+  aliasId: string;
+}
+export const ListDbaasLogOutputOpensearchAliasUrlRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      aliasId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/dbaas/logs/{serviceName}/output/opensearch/alias/{aliasId}/url",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ListDbaasLogOutputOpensearchAliasUrlRequest",
+  }) as any as S.Schema<ListDbaasLogOutputOpensearchAliasUrlRequest>;
+
+export type ListDbaasLogOutputOpensearchAliasUrlResponseBodyList =
+  Array<DbaasLogsUrl>;
+export const ListDbaasLogOutputOpensearchAliasUrlResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    DbaasLogsUrl,
+  ) as any as S.Schema<ListDbaasLogOutputOpensearchAliasUrlResponseBodyList>;
+
+export type ListDbaasLogOutputOpensearchAliasUrlResponse =
+  ListDbaasLogOutputOpensearchAliasUrlResponseBodyList;
+export const ListDbaasLogOutputOpensearchAliasUrlResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListDbaasLogOutputOpensearchAliasUrlResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListDbaasLogOutputOpensearchAliasUrlResponse",
+  }) as any as S.Schema<ListDbaasLogOutputOpensearchAliasUrlResponse>;
+
+export interface ListDbaasLogOutputOpensearchIndexRequest {
+  /** Service name */
+  serviceName: string;
+  /** Filter by name (like) */
+  namePattern?: string;
+}
+export const ListDbaasLogOutputOpensearchIndexRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      namePattern: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/dbaas/logs/{serviceName}/output/opensearch/index",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ListDbaasLogOutputOpensearchIndexRequest",
+}) as any as S.Schema<ListDbaasLogOutputOpensearchIndexRequest>;
+
+export type ListDbaasLogOutputOpensearchIndexResponseBodyList = Array<string>;
+export const ListDbaasLogOutputOpensearchIndexResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListDbaasLogOutputOpensearchIndexResponseBodyList>;
+
+export type ListDbaasLogOutputOpensearchIndexResponse =
+  ListDbaasLogOutputOpensearchIndexResponseBodyList;
+export const ListDbaasLogOutputOpensearchIndexResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListDbaasLogOutputOpensearchIndexResponseBodyList.pipe(T.RawResponseRoot()),
+  ).annotate({
+    identifier: "ListDbaasLogOutputOpensearchIndexResponse",
+  }) as any as S.Schema<ListDbaasLogOutputOpensearchIndexResponse>;
+
+export interface ListDbaasLogOutputOpensearchIndexUrlRequest {
+  /** Service name */
+  serviceName: string;
+  /** Index ID */
+  indexId: string;
+}
+export const ListDbaasLogOutputOpensearchIndexUrlRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      indexId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/dbaas/logs/{serviceName}/output/opensearch/index/{indexId}/url",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ListDbaasLogOutputOpensearchIndexUrlRequest",
+  }) as any as S.Schema<ListDbaasLogOutputOpensearchIndexUrlRequest>;
+
+export type ListDbaasLogOutputOpensearchIndexUrlResponseBodyList =
+  Array<DbaasLogsUrl>;
+export const ListDbaasLogOutputOpensearchIndexUrlResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    DbaasLogsUrl,
+  ) as any as S.Schema<ListDbaasLogOutputOpensearchIndexUrlResponseBodyList>;
+
+export type ListDbaasLogOutputOpensearchIndexUrlResponse =
+  ListDbaasLogOutputOpensearchIndexUrlResponseBodyList;
+export const ListDbaasLogOutputOpensearchIndexUrlResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListDbaasLogOutputOpensearchIndexUrlResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListDbaasLogOutputOpensearchIndexUrlResponse",
+  }) as any as S.Schema<ListDbaasLogOutputOpensearchIndexUrlResponse>;
+
+export interface ListDbaasLogOutputOpensearchOsdRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const ListDbaasLogOutputOpensearchOsdRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/dbaas/logs/{serviceName}/output/opensearch/osd",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ListDbaasLogOutputOpensearchOsdRequest",
+}) as any as S.Schema<ListDbaasLogOutputOpensearchOsdRequest>;
+
+export type ListDbaasLogOutputOpensearchOsdResponseBodyList = Array<string>;
+export const ListDbaasLogOutputOpensearchOsdResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListDbaasLogOutputOpensearchOsdResponseBodyList>;
+
+export type ListDbaasLogOutputOpensearchOsdResponse =
+  ListDbaasLogOutputOpensearchOsdResponseBodyList;
+export const ListDbaasLogOutputOpensearchOsdResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    ListDbaasLogOutputOpensearchOsdResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListDbaasLogOutputOpensearchOsdResponse",
+}) as any as S.Schema<ListDbaasLogOutputOpensearchOsdResponse>;
+
+export interface ListDbaasLogOutputOpensearchOsdUrlRequest {
+  /** Service name */
+  serviceName: string;
+  /** Osd ID */
+  osdId: string;
+}
+export const ListDbaasLogOutputOpensearchOsdUrlRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      osdId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/dbaas/logs/{serviceName}/output/opensearch/osd/{osdId}/url",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ListDbaasLogOutputOpensearchOsdUrlRequest",
+  }) as any as S.Schema<ListDbaasLogOutputOpensearchOsdUrlRequest>;
+
+export type ListDbaasLogOutputOpensearchOsdUrlResponseBodyList =
+  Array<DbaasLogsUrl>;
+export const ListDbaasLogOutputOpensearchOsdUrlResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    DbaasLogsUrl,
+  ) as any as S.Schema<ListDbaasLogOutputOpensearchOsdUrlResponseBodyList>;
+
+export type ListDbaasLogOutputOpensearchOsdUrlResponse =
+  ListDbaasLogOutputOpensearchOsdUrlResponseBodyList;
+export const ListDbaasLogOutputOpensearchOsdUrlResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListDbaasLogOutputOpensearchOsdUrlResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListDbaasLogOutputOpensearchOsdUrlResponse",
+  }) as any as S.Schema<ListDbaasLogOutputOpensearchOsdUrlResponse>;
+
+export interface ListDbaasLogRoleRequest {
+  /** Service name */
+  serviceName: string;
+  /** Filter by name (like) */
+  namePattern?: string;
+}
+export const ListDbaasLogRoleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    namePattern: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/dbaas/logs/{serviceName}/role", code: 200 }),
+  ),
+).annotate({
+  identifier: "ListDbaasLogRoleRequest",
+}) as any as S.Schema<ListDbaasLogRoleRequest>;
+
+export type ListDbaasLogRoleResponseBodyList = Array<string>;
+export const ListDbaasLogRoleResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListDbaasLogRoleResponseBodyList>;
+
+export type ListDbaasLogRoleResponse = ListDbaasLogRoleResponseBodyList;
+export const ListDbaasLogRoleResponse = /*@__PURE__*/ S.suspend(() =>
+  ListDbaasLogRoleResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListDbaasLogRoleResponse",
+}) as any as S.Schema<ListDbaasLogRoleResponse>;
+
+export interface ListDbaasLogRoleMemberRequest {
+  /** Service name */
+  serviceName: string;
+  /** Role ID */
+  roleId: string;
+}
+export const ListDbaasLogRoleMemberRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    roleId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/dbaas/logs/{serviceName}/role/{roleId}/member",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListDbaasLogRoleMemberRequest",
+}) as any as S.Schema<ListDbaasLogRoleMemberRequest>;
+
+export type ListDbaasLogRoleMemberResponseBodyList = Array<string>;
+export const ListDbaasLogRoleMemberResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListDbaasLogRoleMemberResponseBodyList>;
+
+export type ListDbaasLogRoleMemberResponse =
+  ListDbaasLogRoleMemberResponseBodyList;
+export const ListDbaasLogRoleMemberResponse = /*@__PURE__*/ S.suspend(() =>
+  ListDbaasLogRoleMemberResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListDbaasLogRoleMemberResponse",
+}) as any as S.Schema<ListDbaasLogRoleMemberResponse>;
+
+export interface ListDbaasLogRolePermissionRequest {
+  /** Service name */
+  serviceName: string;
+  /** Role ID */
+  roleId: string;
+}
+export const ListDbaasLogRolePermissionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    roleId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/dbaas/logs/{serviceName}/role/{roleId}/permission",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListDbaasLogRolePermissionRequest",
+}) as any as S.Schema<ListDbaasLogRolePermissionRequest>;
+
+export type ListDbaasLogRolePermissionResponseBodyList = Array<string>;
+export const ListDbaasLogRolePermissionResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListDbaasLogRolePermissionResponseBodyList>;
+
+export type ListDbaasLogRolePermissionResponse =
+  ListDbaasLogRolePermissionResponseBodyList;
+export const ListDbaasLogRolePermissionResponse = /*@__PURE__*/ S.suspend(() =>
+  ListDbaasLogRolePermissionResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListDbaasLogRolePermissionResponse",
+}) as any as S.Schema<ListDbaasLogRolePermissionResponse>;
+
+/** Resource tag filter */
+export interface IamResourceTagFilterInput {}
+export const IamResourceTagFilterInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "IamResourceTagFilterInput",
+}) as any as S.Schema<IamResourceTagFilterInput>;
+
+export type ListDbaasLogsRequestIamTagsValueList =
+  Array<IamResourceTagFilterInput>;
+export const ListDbaasLogsRequestIamTagsValueList = /*@__PURE__*/ S.Array(
+  IamResourceTagFilterInput,
+) as any as S.Schema<ListDbaasLogsRequestIamTagsValueList>;
+
+export type ListDbaasLogsRequestIamTagsMap = {
+  [key: string]: ListDbaasLogsRequestIamTagsValueList | undefined;
+};
+export const ListDbaasLogsRequestIamTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  ListDbaasLogsRequestIamTagsValueList,
+) as any as S.Schema<ListDbaasLogsRequestIamTagsMap>;
+
+export interface ListDbaasLogsRequest {
+  /** Filter resources on IAM tags */
+  iamTags?: ListDbaasLogsRequestIamTagsMap;
+}
+export const ListDbaasLogsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    iamTags: S.optional(ListDbaasLogsRequestIamTagsMap.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/dbaas/logs", code: 200 })),
+).annotate({
+  identifier: "ListDbaasLogsRequest",
+}) as any as S.Schema<ListDbaasLogsRequest>;
+
+export type ListDbaasLogsResponseBodyList = Array<string>;
+export const ListDbaasLogsResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListDbaasLogsResponseBodyList>;
+
+export type ListDbaasLogsResponse = ListDbaasLogsResponseBodyList;
+export const ListDbaasLogsResponse = /*@__PURE__*/ S.suspend(() =>
+  ListDbaasLogsResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListDbaasLogsResponse",
+}) as any as S.Schema<ListDbaasLogsResponse>;
+
+export interface ListDbaasLogsOutputOpensearchRequest {
   /** Service name */
   serviceName: string;
   /** If set, notify when size is near 80, 90 or 100 % of its maximum capacity */
@@ -4523,8 +4468,8 @@ export interface PostDbaasLogsServiceNameOutputOpensearchIndexRequest {
   /** Suffix */
   suffix: string;
 }
-export const PostDbaasLogsServiceNameOutputOpensearchIndexRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const ListDbaasLogsOutputOpensearchRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       alertNotifyEnabled: S.optional(S.NullOr(S.Boolean)),
@@ -4538,138 +4483,36 @@ export const PostDbaasLogsServiceNameOutputOpensearchIndexRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "PostDbaasLogsServiceNameOutputOpensearchIndexRequest",
-  }) as any as S.Schema<PostDbaasLogsServiceNameOutputOpensearchIndexRequest>;
-
-export interface PostDbaasLogsServiceNameOutputOpensearchOsdRequest {
-  /** Service name */
-  serviceName: string;
-  /** Description */
-  description: string;
-}
-export const PostDbaasLogsServiceNameOutputOpensearchOsdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      description: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/dbaas/logs/{serviceName}/output/opensearch/osd",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostDbaasLogsServiceNameOutputOpensearchOsdRequest",
-  }) as any as S.Schema<PostDbaasLogsServiceNameOutputOpensearchOsdRequest>;
-
-export interface PostDbaasLogsServiceNameRoleRequest {
-  /** Service name */
-  serviceName: string;
-  /** Description */
-  description: string;
-  /** Name */
-  name: string;
-}
-export const PostDbaasLogsServiceNameRoleRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceName: S.String.pipe(T.Label()),
-    description: S.String,
-    name: S.String,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/dbaas/logs/{serviceName}/role",
-      code: 200,
-    }),
-  ),
 ).annotate({
-  identifier: "PostDbaasLogsServiceNameRoleRequest",
-}) as any as S.Schema<PostDbaasLogsServiceNameRoleRequest>;
+  identifier: "ListDbaasLogsOutputOpensearchRequest",
+}) as any as S.Schema<ListDbaasLogsOutputOpensearchRequest>;
 
-export interface PostDbaasLogsServiceNameRoleRoleIdMemberRequest {
+export interface ListDbaasLogsOutputOpensearchAliasRequest {
   /** Service name */
   serviceName: string;
-  /** Role ID */
-  roleId: string;
-  /** Custom note */
-  note?: string | null;
-  /** Username */
-  username: string;
-}
-export const PostDbaasLogsServiceNameRoleRoleIdMemberRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      roleId: S.String.pipe(T.Label()),
-      note: S.optional(S.NullOr(S.String)),
-      username: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/dbaas/logs/{serviceName}/role/{roleId}/member",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostDbaasLogsServiceNameRoleRoleIdMemberRequest",
-  }) as any as S.Schema<PostDbaasLogsServiceNameRoleRoleIdMemberRequest>;
-
-export interface PostDbaasLogsServiceNameRoleRoleIdPermissionAliasRequest {
-  /** Service name */
-  serviceName: string;
-  /** Role ID */
-  roleId: string;
   /** Alias ID */
   aliasId: string;
+  /** Index ID */
+  indexId: string;
 }
-export const PostDbaasLogsServiceNameRoleRoleIdPermissionAliasRequest =
+export const ListDbaasLogsOutputOpensearchAliasRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
-      roleId: S.String.pipe(T.Label()),
-      aliasId: S.String,
+      aliasId: S.String.pipe(T.Label()),
+      indexId: S.String,
     }).pipe(
       T.Http({
         method: "POST",
-        uri: "/dbaas/logs/{serviceName}/role/{roleId}/permission/alias",
+        uri: "/dbaas/logs/{serviceName}/output/opensearch/alias/{aliasId}/index",
         code: 200,
       }),
     ),
   ).annotate({
-    identifier: "PostDbaasLogsServiceNameRoleRoleIdPermissionAliasRequest",
-  }) as any as S.Schema<PostDbaasLogsServiceNameRoleRoleIdPermissionAliasRequest>;
+    identifier: "ListDbaasLogsOutputOpensearchAliasRequest",
+  }) as any as S.Schema<ListDbaasLogsOutputOpensearchAliasRequest>;
 
-export interface PostDbaasLogsServiceNameRoleRoleIdPermissionDashboardRequest {
-  /** Service name */
-  serviceName: string;
-  /** Role ID */
-  roleId: string;
-  /** Dashboard ID */
-  dashboardId: string;
-  /** Permission type */
-  permissionType?: DbaasLogsPermissionTypeEnum | (string & {}) | null;
-}
-export const PostDbaasLogsServiceNameRoleRoleIdPermissionDashboardRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      roleId: S.String.pipe(T.Label()),
-      dashboardId: S.String,
-      permissionType: S.optional(S.NullOr(DbaasLogsPermissionTypeEnum)),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/dbaas/logs/{serviceName}/role/{roleId}/permission/dashboard",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostDbaasLogsServiceNameRoleRoleIdPermissionDashboardRequest",
-  }) as any as S.Schema<PostDbaasLogsServiceNameRoleRoleIdPermissionDashboardRequest>;
-
-export interface PostDbaasLogsServiceNameRoleRoleIdPermissionIndexRequest {
+export interface ListDbaasLogsRolePermissionRequest {
   /** Service name */
   serviceName: string;
   /** Role ID */
@@ -4679,125 +4522,83 @@ export interface PostDbaasLogsServiceNameRoleRoleIdPermissionIndexRequest {
   /** Permission type */
   permissionType?: DbaasLogsPermissionTypeEnum | (string & {}) | null;
 }
-export const PostDbaasLogsServiceNameRoleRoleIdPermissionIndexRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      roleId: S.String.pipe(T.Label()),
-      indexId: S.String,
-      permissionType: S.optional(S.NullOr(DbaasLogsPermissionTypeEnum)),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/dbaas/logs/{serviceName}/role/{roleId}/permission/index",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostDbaasLogsServiceNameRoleRoleIdPermissionIndexRequest",
-  }) as any as S.Schema<PostDbaasLogsServiceNameRoleRoleIdPermissionIndexRequest>;
-
-export interface PostDbaasLogsServiceNameRoleRoleIdPermissionOsdRequest {
-  /** Service name */
-  serviceName: string;
-  /** Role ID */
-  roleId: string;
-  /** Osd ID */
-  osdId: string;
-  /** Permission type */
-  permissionType?: DbaasLogsPermissionTypeEnum | (string & {}) | null;
-}
-export const PostDbaasLogsServiceNameRoleRoleIdPermissionOsdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      roleId: S.String.pipe(T.Label()),
-      osdId: S.String,
-      permissionType: S.optional(S.NullOr(DbaasLogsPermissionTypeEnum)),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/dbaas/logs/{serviceName}/role/{roleId}/permission/osd",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostDbaasLogsServiceNameRoleRoleIdPermissionOsdRequest",
-  }) as any as S.Schema<PostDbaasLogsServiceNameRoleRoleIdPermissionOsdRequest>;
-
-export interface PostDbaasLogsServiceNameRoleRoleIdPermissionStreamRequest {
-  /** Service name */
-  serviceName: string;
-  /** Role ID */
-  roleId: string;
-  /** Stream ID */
-  streamId: string;
-}
-export const PostDbaasLogsServiceNameRoleRoleIdPermissionStreamRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      roleId: S.String.pipe(T.Label()),
-      streamId: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/dbaas/logs/{serviceName}/role/{roleId}/permission/stream",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostDbaasLogsServiceNameRoleRoleIdPermissionStreamRequest",
-  }) as any as S.Schema<PostDbaasLogsServiceNameRoleRoleIdPermissionStreamRequest>;
-
-export interface PostDbaasLogsServiceNameTokenRequest {
-  /** Service name */
-  serviceName: string;
-  /** Cluster ID */
-  clusterId?: string | null;
-  /** Token name */
-  name: string;
-}
-export const PostDbaasLogsServiceNameTokenRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      clusterId: S.optional(S.NullOr(S.String)),
-      name: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/dbaas/logs/{serviceName}/token",
-        code: 200,
-      }),
-    ),
+export const ListDbaasLogsRolePermissionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    roleId: S.String.pipe(T.Label()),
+    indexId: S.String,
+    permissionType: S.optional(S.NullOr(DbaasLogsPermissionTypeEnum)),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/dbaas/logs/{serviceName}/role/{roleId}/permission/index",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "PostDbaasLogsServiceNameTokenRequest",
-}) as any as S.Schema<PostDbaasLogsServiceNameTokenRequest>;
+  identifier: "ListDbaasLogsRolePermissionRequest",
+}) as any as S.Schema<ListDbaasLogsRolePermissionRequest>;
 
-export interface PostDbaasLogsServiceNameUserChangePasswordRequest {
+export interface ListDbaasLogTokenRequest {
   /** Service name */
   serviceName: string;
-  /** Password must be at least 12 characters long contain a number, an uppercase, a lowercase and a special letter */
-  password: string | Redacted.Redacted<string>;
+  /** Filter by name (like) */
+  namePattern?: string;
 }
-export const PostDbaasLogsServiceNameUserChangePasswordRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      password: S.String.pipe(T.SensitiveValue({})),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/dbaas/logs/{serviceName}/user/changePassword",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostDbaasLogsServiceNameUserChangePasswordRequest",
-  }) as any as S.Schema<PostDbaasLogsServiceNameUserChangePasswordRequest>;
+export const ListDbaasLogTokenRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    namePattern: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/dbaas/logs/{serviceName}/token",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListDbaasLogTokenRequest",
+}) as any as S.Schema<ListDbaasLogTokenRequest>;
 
-export interface PutDbaasLogsServiceNameRequest {
+export type ListDbaasLogTokenResponseBodyList = Array<string>;
+export const ListDbaasLogTokenResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListDbaasLogTokenResponseBodyList>;
+
+export type ListDbaasLogTokenResponse = ListDbaasLogTokenResponseBodyList;
+export const ListDbaasLogTokenResponse = /*@__PURE__*/ S.suspend(() =>
+  ListDbaasLogTokenResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListDbaasLogTokenResponse",
+}) as any as S.Schema<ListDbaasLogTokenResponse>;
+
+export interface ListDbaasLogUrlRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const ListDbaasLogUrlRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/dbaas/logs/{serviceName}/url", code: 200 }),
+  ),
+).annotate({
+  identifier: "ListDbaasLogUrlRequest",
+}) as any as S.Schema<ListDbaasLogUrlRequest>;
+
+export type ListDbaasLogUrlResponseBodyList = Array<DbaasLogsUrl>;
+export const ListDbaasLogUrlResponseBodyList = /*@__PURE__*/ S.Array(
+  DbaasLogsUrl,
+) as any as S.Schema<ListDbaasLogUrlResponseBodyList>;
+
+export type ListDbaasLogUrlResponse = ListDbaasLogUrlResponseBodyList;
+export const ListDbaasLogUrlResponse = /*@__PURE__*/ S.suspend(() =>
+  ListDbaasLogUrlResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListDbaasLogUrlResponse",
+}) as any as S.Schema<ListDbaasLogUrlResponse>;
+
+export interface PutDbaasLogRequest {
   /** Service name */
   serviceName: string;
   /** Service custom name */
@@ -4805,7 +4606,7 @@ export interface PutDbaasLogsServiceNameRequest {
   /** Enable IAM for this service */
   enableIam?: boolean | null;
 }
-export const PutDbaasLogsServiceNameRequest = /*@__PURE__*/ S.suspend(() =>
+export const PutDbaasLogRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     serviceName: S.String.pipe(T.Label()),
     displayName: S.optional(S.NullOr(S.String)),
@@ -4814,91 +4615,80 @@ export const PutDbaasLogsServiceNameRequest = /*@__PURE__*/ S.suspend(() =>
     T.Http({ method: "PUT", uri: "/dbaas/logs/{serviceName}", code: 200 }),
   ),
 ).annotate({
-  identifier: "PutDbaasLogsServiceNameRequest",
-}) as any as S.Schema<PutDbaasLogsServiceNameRequest>;
+  identifier: "PutDbaasLogRequest",
+}) as any as S.Schema<PutDbaasLogRequest>;
 
 /** Allowed networks for ARCHIVE flow type */
-export type PutDbaasLogsServiceNameClusterClusterIdRequestArchiveAllowedNetworksList =
-  Array<string>;
-export const PutDbaasLogsServiceNameClusterClusterIdRequestArchiveAllowedNetworksList =
+export type PutDbaasLogClusterRequestArchiveAllowedNetworksList = Array<string>;
+export const PutDbaasLogClusterRequestArchiveAllowedNetworksList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<PutDbaasLogsServiceNameClusterClusterIdRequestArchiveAllowedNetworksList>;
+  ) as any as S.Schema<PutDbaasLogClusterRequestArchiveAllowedNetworksList>;
 
 /** Allowed networks for DIRECT_INPUT flow type */
-export type PutDbaasLogsServiceNameClusterClusterIdRequestDirectInputAllowedNetworksList =
+export type PutDbaasLogClusterRequestDirectInputAllowedNetworksList =
   Array<string>;
-export const PutDbaasLogsServiceNameClusterClusterIdRequestDirectInputAllowedNetworksList =
+export const PutDbaasLogClusterRequestDirectInputAllowedNetworksList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<PutDbaasLogsServiceNameClusterClusterIdRequestDirectInputAllowedNetworksList>;
+  ) as any as S.Schema<PutDbaasLogClusterRequestDirectInputAllowedNetworksList>;
 
 /** Allowed networks for QUERY flow type */
-export type PutDbaasLogsServiceNameClusterClusterIdRequestQueryAllowedNetworksList =
-  Array<string>;
-export const PutDbaasLogsServiceNameClusterClusterIdRequestQueryAllowedNetworksList =
+export type PutDbaasLogClusterRequestQueryAllowedNetworksList = Array<string>;
+export const PutDbaasLogClusterRequestQueryAllowedNetworksList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<PutDbaasLogsServiceNameClusterClusterIdRequestQueryAllowedNetworksList>;
+  ) as any as S.Schema<PutDbaasLogClusterRequestQueryAllowedNetworksList>;
 
-export interface PutDbaasLogsServiceNameClusterClusterIdRequest {
+export interface PutDbaasLogClusterRequest {
   /** Service name */
   serviceName: string;
   /** Cluster ID */
   clusterId: string;
   /** Allowed networks for ARCHIVE flow type */
-  archiveAllowedNetworks?: PutDbaasLogsServiceNameClusterClusterIdRequestArchiveAllowedNetworksList | null;
+  archiveAllowedNetworks?: PutDbaasLogClusterRequestArchiveAllowedNetworksList | null;
   /** Allowed networks for DIRECT_INPUT flow type */
-  directInputAllowedNetworks?: PutDbaasLogsServiceNameClusterClusterIdRequestDirectInputAllowedNetworksList | null;
+  directInputAllowedNetworks?: PutDbaasLogClusterRequestDirectInputAllowedNetworksList | null;
   /** Allowed networks for QUERY flow type */
-  queryAllowedNetworks?: PutDbaasLogsServiceNameClusterClusterIdRequestQueryAllowedNetworksList | null;
+  queryAllowedNetworks?: PutDbaasLogClusterRequestQueryAllowedNetworksList | null;
 }
-export const PutDbaasLogsServiceNameClusterClusterIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      clusterId: S.String.pipe(T.Label()),
-      archiveAllowedNetworks: S.optional(
-        S.NullOr(
-          PutDbaasLogsServiceNameClusterClusterIdRequestArchiveAllowedNetworksList,
-        ),
-      ),
-      directInputAllowedNetworks: S.optional(
-        S.NullOr(
-          PutDbaasLogsServiceNameClusterClusterIdRequestDirectInputAllowedNetworksList,
-        ),
-      ),
-      queryAllowedNetworks: S.optional(
-        S.NullOr(
-          PutDbaasLogsServiceNameClusterClusterIdRequestQueryAllowedNetworksList,
-        ),
-      ),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/dbaas/logs/{serviceName}/cluster/{clusterId}",
-        code: 200,
-      }),
+export const PutDbaasLogClusterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    clusterId: S.String.pipe(T.Label()),
+    archiveAllowedNetworks: S.optional(
+      S.NullOr(PutDbaasLogClusterRequestArchiveAllowedNetworksList),
     ),
-  ).annotate({
-    identifier: "PutDbaasLogsServiceNameClusterClusterIdRequest",
-  }) as any as S.Schema<PutDbaasLogsServiceNameClusterClusterIdRequest>;
+    directInputAllowedNetworks: S.optional(
+      S.NullOr(PutDbaasLogClusterRequestDirectInputAllowedNetworksList),
+    ),
+    queryAllowedNetworks: S.optional(
+      S.NullOr(PutDbaasLogClusterRequestQueryAllowedNetworksList),
+    ),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/dbaas/logs/{serviceName}/cluster/{clusterId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "PutDbaasLogClusterRequest",
+}) as any as S.Schema<PutDbaasLogClusterRequest>;
 
 /** IP blocks */
-export type PutDbaasLogsServiceNameInputInputIdRequestAllowedNetworksList =
-  Array<string>;
-export const PutDbaasLogsServiceNameInputInputIdRequestAllowedNetworksList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PutDbaasLogsServiceNameInputInputIdRequestAllowedNetworksList>;
+export type PutDbaasLogInputRequestAllowedNetworksList = Array<string>;
+export const PutDbaasLogInputRequestAllowedNetworksList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<PutDbaasLogInputRequestAllowedNetworksList>;
 
-export interface PutDbaasLogsServiceNameInputInputIdRequest {
+export interface PutDbaasLogInputRequest {
   /** Service name */
   serviceName: string;
   /** Input ID */
   inputId: string;
   /** IP blocks */
-  allowedNetworks?: PutDbaasLogsServiceNameInputInputIdRequestAllowedNetworksList | null;
+  allowedNetworks?: PutDbaasLogInputRequestAllowedNetworksList | null;
   /** Whether the workload is auto-scaled */
   autoscale?: boolean | null;
   /** Description */
@@ -4920,36 +4710,35 @@ export interface PutDbaasLogsServiceNameInputInputIdRequest {
   /** Title */
   title: string;
 }
-export const PutDbaasLogsServiceNameInputInputIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      inputId: S.String.pipe(T.Label()),
-      allowedNetworks: S.optional(
-        S.NullOr(PutDbaasLogsServiceNameInputInputIdRequestAllowedNetworksList),
-      ),
-      autoscale: S.optional(S.NullOr(S.Boolean)),
-      description: S.String,
-      engineId: S.String,
-      exposedPort: S.optional(S.NullOr(S.String)),
-      maxScaleInstance: S.optional(S.NullOr(S.Number)),
-      minScaleInstance: S.optional(S.NullOr(S.Number)),
-      nbInstance: S.optional(S.NullOr(S.Number)),
-      scalingNotifyEnabled: S.optional(S.NullOr(S.Boolean)),
-      streamId: S.String,
-      title: S.String,
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/dbaas/logs/{serviceName}/input/{inputId}",
-        code: 200,
-      }),
+export const PutDbaasLogInputRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    inputId: S.String.pipe(T.Label()),
+    allowedNetworks: S.optional(
+      S.NullOr(PutDbaasLogInputRequestAllowedNetworksList),
     ),
-  ).annotate({
-    identifier: "PutDbaasLogsServiceNameInputInputIdRequest",
-  }) as any as S.Schema<PutDbaasLogsServiceNameInputInputIdRequest>;
+    autoscale: S.optional(S.NullOr(S.Boolean)),
+    description: S.String,
+    engineId: S.String,
+    exposedPort: S.optional(S.NullOr(S.String)),
+    maxScaleInstance: S.optional(S.NullOr(S.Number)),
+    minScaleInstance: S.optional(S.NullOr(S.Number)),
+    nbInstance: S.optional(S.NullOr(S.Number)),
+    scalingNotifyEnabled: S.optional(S.NullOr(S.Boolean)),
+    streamId: S.String,
+    title: S.String,
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/dbaas/logs/{serviceName}/input/{inputId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "PutDbaasLogInputRequest",
+}) as any as S.Schema<PutDbaasLogInputRequest>;
 
-export interface PutDbaasLogsServiceNameInputInputIdConfigurationFlowggerRequest {
+export interface PutDbaasLogInputConfigurationFlowggerRequest {
   /** Service name */
   serviceName: string;
   /** Input ID */
@@ -4959,7 +4748,7 @@ export interface PutDbaasLogsServiceNameInputInputIdConfigurationFlowggerRequest
   /** Log framing */
   logFraming: DbaasLogsFlowggerConfigurationLogFramingEnum | (string & {});
 }
-export const PutDbaasLogsServiceNameInputInputIdConfigurationFlowggerRequest =
+export const PutDbaasLogInputConfigurationFlowggerRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
@@ -4974,11 +4763,10 @@ export const PutDbaasLogsServiceNameInputInputIdConfigurationFlowggerRequest =
       }),
     ),
   ).annotate({
-    identifier:
-      "PutDbaasLogsServiceNameInputInputIdConfigurationFlowggerRequest",
-  }) as any as S.Schema<PutDbaasLogsServiceNameInputInputIdConfigurationFlowggerRequest>;
+    identifier: "PutDbaasLogInputConfigurationFlowggerRequest",
+  }) as any as S.Schema<PutDbaasLogInputConfigurationFlowggerRequest>;
 
-export interface PutDbaasLogsServiceNameInputInputIdConfigurationLogstashRequest {
+export interface PutDbaasLogInputConfigurationLogstashRequest {
   /** Service name */
   serviceName: string;
   /** Input ID */
@@ -4990,7 +4778,7 @@ export interface PutDbaasLogsServiceNameInputInputIdConfigurationLogstashRequest
   /** Pattern section */
   patternSection?: string | null;
 }
-export const PutDbaasLogsServiceNameInputInputIdConfigurationLogstashRequest =
+export const PutDbaasLogInputConfigurationLogstashRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
@@ -5006,11 +4794,10 @@ export const PutDbaasLogsServiceNameInputInputIdConfigurationLogstashRequest =
       }),
     ),
   ).annotate({
-    identifier:
-      "PutDbaasLogsServiceNameInputInputIdConfigurationLogstashRequest",
-  }) as any as S.Schema<PutDbaasLogsServiceNameInputInputIdConfigurationLogstashRequest>;
+    identifier: "PutDbaasLogInputConfigurationLogstashRequest",
+  }) as any as S.Schema<PutDbaasLogInputConfigurationLogstashRequest>;
 
-export interface PutDbaasLogsServiceNameOutputGraylogDashboardDashboardIdRequest {
+export interface PutDbaasLogOutputGraylogDashboardRequest {
   /** Service name */
   serviceName: string;
   /** Dashboard ID */
@@ -5020,8 +4807,8 @@ export interface PutDbaasLogsServiceNameOutputGraylogDashboardDashboardIdRequest
   /** Title */
   title: string;
 }
-export const PutDbaasLogsServiceNameOutputGraylogDashboardDashboardIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const PutDbaasLogOutputGraylogDashboardRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       dashboardId: S.String.pipe(T.Label()),
@@ -5034,20 +4821,19 @@ export const PutDbaasLogsServiceNameOutputGraylogDashboardDashboardIdRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier:
-      "PutDbaasLogsServiceNameOutputGraylogDashboardDashboardIdRequest",
-  }) as any as S.Schema<PutDbaasLogsServiceNameOutputGraylogDashboardDashboardIdRequest>;
+).annotate({
+  identifier: "PutDbaasLogOutputGraylogDashboardRequest",
+}) as any as S.Schema<PutDbaasLogOutputGraylogDashboardRequest>;
 
 /** Encryption keys used to encrypt stream archives */
-export type PutDbaasLogsServiceNameOutputGraylogStreamStreamIdRequestEncryptionKeysIdsList =
+export type PutDbaasLogOutputGraylogStreamRequestEncryptionKeysIdsList =
   Array<string>;
-export const PutDbaasLogsServiceNameOutputGraylogStreamStreamIdRequestEncryptionKeysIdsList =
+export const PutDbaasLogOutputGraylogStreamRequestEncryptionKeysIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<PutDbaasLogsServiceNameOutputGraylogStreamStreamIdRequestEncryptionKeysIdsList>;
+  ) as any as S.Schema<PutDbaasLogOutputGraylogStreamRequestEncryptionKeysIdsList>;
 
-export interface PutDbaasLogsServiceNameOutputGraylogStreamStreamIdRequest {
+export interface PutDbaasLogOutputGraylogStreamRequest {
   /** Service name */
   serviceName: string;
   /** Stream ID */
@@ -5071,7 +4857,7 @@ export interface PutDbaasLogsServiceNameOutputGraylogStreamStreamIdRequest {
   /** Description */
   description: string;
   /** Encryption keys used to encrypt stream archives */
-  encryptionKeysIds?: PutDbaasLogsServiceNameOutputGraylogStreamStreamIdRequestEncryptionKeysIdsList | null;
+  encryptionKeysIds?: PutDbaasLogOutputGraylogStreamRequestEncryptionKeysIdsList | null;
   /** ES indexing enabled */
   indexingEnabled?: boolean | null;
   /** Maximum indexing size (in GB) */
@@ -5085,8 +4871,8 @@ export interface PutDbaasLogsServiceNameOutputGraylogStreamStreamIdRequest {
   /** Web socket enabled */
   webSocketEnabled?: boolean | null;
 }
-export const PutDbaasLogsServiceNameOutputGraylogStreamStreamIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const PutDbaasLogOutputGraylogStreamRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       streamId: S.String.pipe(T.Label()),
@@ -5101,9 +4887,7 @@ export const PutDbaasLogsServiceNameOutputGraylogStreamStreamIdRequest =
       coldStorageRetention: S.optional(S.NullOr(S.Number)),
       description: S.String,
       encryptionKeysIds: S.optional(
-        S.NullOr(
-          PutDbaasLogsServiceNameOutputGraylogStreamStreamIdRequestEncryptionKeysIdsList,
-        ),
+        S.NullOr(PutDbaasLogOutputGraylogStreamRequestEncryptionKeysIdsList),
       ),
       indexingEnabled: S.optional(S.NullOr(S.Boolean)),
       indexingMaxSize: S.optional(S.NullOr(S.Number)),
@@ -5118,11 +4902,11 @@ export const PutDbaasLogsServiceNameOutputGraylogStreamStreamIdRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "PutDbaasLogsServiceNameOutputGraylogStreamStreamIdRequest",
-  }) as any as S.Schema<PutDbaasLogsServiceNameOutputGraylogStreamStreamIdRequest>;
+).annotate({
+  identifier: "PutDbaasLogOutputGraylogStreamRequest",
+}) as any as S.Schema<PutDbaasLogOutputGraylogStreamRequest>;
 
-export interface PutDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertAlertIdRequest {
+export interface PutDbaasLogOutputGraylogStreamAlertRequest {
   /** Service name */
   serviceName: string;
   /** Stream ID */
@@ -5163,7 +4947,7 @@ export interface PutDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertAlertIdR
   /** Value */
   value?: string | null;
 }
-export const PutDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertAlertIdRequest =
+export const PutDbaasLogOutputGraylogStreamAlertRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
@@ -5195,11 +4979,10 @@ export const PutDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertAlertIdReque
       }),
     ),
   ).annotate({
-    identifier:
-      "PutDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertAlertIdRequest",
-  }) as any as S.Schema<PutDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertAlertIdRequest>;
+    identifier: "PutDbaasLogOutputGraylogStreamAlertRequest",
+  }) as any as S.Schema<PutDbaasLogOutputGraylogStreamAlertRequest>;
 
-export interface PutDbaasLogsServiceNameOutputMetricTenantTenantIdRequest {
+export interface PutDbaasLogOutputMetricTenantRequest {
   /** Service name */
   serviceName: string;
   /** Tenant ID */
@@ -5213,8 +4996,8 @@ export interface PutDbaasLogsServiceNameOutputMetricTenantTenantIdRequest {
   /** Metric tenant title */
   title: string;
 }
-export const PutDbaasLogsServiceNameOutputMetricTenantTenantIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const PutDbaasLogOutputMetricTenantRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       tenantId: S.String.pipe(T.Label()),
@@ -5229,11 +5012,11 @@ export const PutDbaasLogsServiceNameOutputMetricTenantTenantIdRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "PutDbaasLogsServiceNameOutputMetricTenantTenantIdRequest",
-  }) as any as S.Schema<PutDbaasLogsServiceNameOutputMetricTenantTenantIdRequest>;
+).annotate({
+  identifier: "PutDbaasLogOutputMetricTenantRequest",
+}) as any as S.Schema<PutDbaasLogOutputMetricTenantRequest>;
 
-export interface PutDbaasLogsServiceNameOutputOpensearchAliasAliasIdRequest {
+export interface PutDbaasLogOutputOpensearchAliasRequest {
   /** Service name */
   serviceName: string;
   /** Alias ID */
@@ -5241,8 +5024,8 @@ export interface PutDbaasLogsServiceNameOutputOpensearchAliasAliasIdRequest {
   /** Description */
   description: string;
 }
-export const PutDbaasLogsServiceNameOutputOpensearchAliasAliasIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const PutDbaasLogOutputOpensearchAliasRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       aliasId: S.String.pipe(T.Label()),
@@ -5254,11 +5037,11 @@ export const PutDbaasLogsServiceNameOutputOpensearchAliasAliasIdRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "PutDbaasLogsServiceNameOutputOpensearchAliasAliasIdRequest",
-  }) as any as S.Schema<PutDbaasLogsServiceNameOutputOpensearchAliasAliasIdRequest>;
+).annotate({
+  identifier: "PutDbaasLogOutputOpensearchAliasRequest",
+}) as any as S.Schema<PutDbaasLogOutputOpensearchAliasRequest>;
 
-export interface PutDbaasLogsServiceNameOutputOpensearchIndexIndexIdRequest {
+export interface PutDbaasLogOutputOpensearchIndexRequest {
   /** Service name */
   serviceName: string;
   /** Index ID */
@@ -5268,8 +5051,8 @@ export interface PutDbaasLogsServiceNameOutputOpensearchIndexIndexIdRequest {
   /** Description */
   description: string;
 }
-export const PutDbaasLogsServiceNameOutputOpensearchIndexIndexIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const PutDbaasLogOutputOpensearchIndexRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       indexId: S.String.pipe(T.Label()),
@@ -5282,11 +5065,11 @@ export const PutDbaasLogsServiceNameOutputOpensearchIndexIndexIdRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "PutDbaasLogsServiceNameOutputOpensearchIndexIndexIdRequest",
-  }) as any as S.Schema<PutDbaasLogsServiceNameOutputOpensearchIndexIndexIdRequest>;
+).annotate({
+  identifier: "PutDbaasLogOutputOpensearchIndexRequest",
+}) as any as S.Schema<PutDbaasLogOutputOpensearchIndexRequest>;
 
-export interface PutDbaasLogsServiceNameOutputOpensearchOsdOsdIdRequest {
+export interface PutDbaasLogOutputOpensearchOsdRequest {
   /** Service name */
   serviceName: string;
   /** Osd ID */
@@ -5294,8 +5077,8 @@ export interface PutDbaasLogsServiceNameOutputOpensearchOsdOsdIdRequest {
   /** Description */
   description: string;
 }
-export const PutDbaasLogsServiceNameOutputOpensearchOsdOsdIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const PutDbaasLogOutputOpensearchOsdRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       osdId: S.String.pipe(T.Label()),
@@ -5307,11 +5090,11 @@ export const PutDbaasLogsServiceNameOutputOpensearchOsdOsdIdRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "PutDbaasLogsServiceNameOutputOpensearchOsdOsdIdRequest",
-  }) as any as S.Schema<PutDbaasLogsServiceNameOutputOpensearchOsdOsdIdRequest>;
+).annotate({
+  identifier: "PutDbaasLogOutputOpensearchOsdRequest",
+}) as any as S.Schema<PutDbaasLogOutputOpensearchOsdRequest>;
 
-export interface PutDbaasLogsServiceNameRoleRoleIdRequest {
+export interface PutDbaasLogRoleRequest {
   /** Service name */
   serviceName: string;
   /** Role ID */
@@ -5321,25 +5104,24 @@ export interface PutDbaasLogsServiceNameRoleRoleIdRequest {
   /** Name */
   name: string;
 }
-export const PutDbaasLogsServiceNameRoleRoleIdRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      roleId: S.String.pipe(T.Label()),
-      description: S.String,
-      name: S.String,
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/dbaas/logs/{serviceName}/role/{roleId}",
-        code: 200,
-      }),
-    ),
+export const PutDbaasLogRoleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    roleId: S.String.pipe(T.Label()),
+    description: S.String,
+    name: S.String,
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/dbaas/logs/{serviceName}/role/{roleId}",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "PutDbaasLogsServiceNameRoleRoleIdRequest",
-}) as any as S.Schema<PutDbaasLogsServiceNameRoleRoleIdRequest>;
+  identifier: "PutDbaasLogRoleRequest",
+}) as any as S.Schema<PutDbaasLogRoleRequest>;
 
-export interface PutDbaasLogsServiceNameRoleRoleIdMemberUsernameRequest {
+export interface PutDbaasLogRoleMemberRequest {
   /** Service name */
   serviceName: string;
   /** Role ID */
@@ -5349,2244 +5131,2143 @@ export interface PutDbaasLogsServiceNameRoleRoleIdMemberUsernameRequest {
   /** Custom note */
   note?: string | null;
 }
-export const PutDbaasLogsServiceNameRoleRoleIdMemberUsernameRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      roleId: S.String.pipe(T.Label()),
-      username: S.String.pipe(T.Label()),
-      note: S.optional(S.NullOr(S.String)),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/dbaas/logs/{serviceName}/role/{roleId}/member/{username}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PutDbaasLogsServiceNameRoleRoleIdMemberUsernameRequest",
-  }) as any as S.Schema<PutDbaasLogsServiceNameRoleRoleIdMemberUsernameRequest>;
+export const PutDbaasLogRoleMemberRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    roleId: S.String.pipe(T.Label()),
+    username: S.String.pipe(T.Label()),
+    note: S.optional(S.NullOr(S.String)),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/dbaas/logs/{serviceName}/role/{roleId}/member/{username}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "PutDbaasLogRoleMemberRequest",
+}) as any as S.Schema<PutDbaasLogRoleMemberRequest>;
 
-export interface PutDbaasLogsServiceNameServiceInfosRequest {
+export interface PutDbaasLogServiceInfosRequest {
   /** Service name */
   serviceName: string;
   /** Way of handling the renew */
   renew?: ServiceRenewType | null;
 }
-export const PutDbaasLogsServiceNameServiceInfosRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      renew: S.optional(S.NullOr(ServiceRenewType)),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/dbaas/logs/{serviceName}/serviceInfos",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PutDbaasLogsServiceNameServiceInfosRequest",
-  }) as any as S.Schema<PutDbaasLogsServiceNameServiceInfosRequest>;
-
-export interface PutDbaasLogsServiceNameServiceInfosResponse {}
-export const PutDbaasLogsServiceNameServiceInfosResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PutDbaasLogsServiceNameServiceInfosResponse",
-  }) as any as S.Schema<PutDbaasLogsServiceNameServiceInfosResponse>;
-
-export type DeleteDbaasLogsServiceNameEncryptionKeyEncryptionKeyIdError =
-  | Forbidden
-  | NotFound
-  | OvhOpError;
-/** Delete the specified encryption key */
-export const deleteDbaasLogsServiceNameEncryptionKeyEncryptionKeyId: API.OperationMethod<
-  DeleteDbaasLogsServiceNameEncryptionKeyEncryptionKeyIdRequest,
-  DbaasLogsOperation,
-  DeleteDbaasLogsServiceNameEncryptionKeyEncryptionKeyIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteDbaasLogsServiceNameEncryptionKeyEncryptionKeyIdRequest,
-  output: DbaasLogsOperation,
-  errors: [Forbidden, NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteDbaasLogsServiceNameInputInputIdError =
-  | Forbidden
-  | NotFound
-  | OvhOpError;
-/** Remove the specified input object */
-export const deleteDbaasLogsServiceNameInputInputId: API.OperationMethod<
-  DeleteDbaasLogsServiceNameInputInputIdRequest,
-  DbaasLogsOperation,
-  DeleteDbaasLogsServiceNameInputInputIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteDbaasLogsServiceNameInputInputIdRequest,
-  output: DbaasLogsOperation,
-  errors: [Forbidden, NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteDbaasLogsServiceNameOutputGraylogDashboardDashboardIdError =
-  | Forbidden
-  | NotFound
-  | OvhOpError;
-/** Remove specified graylog dashboard */
-export const deleteDbaasLogsServiceNameOutputGraylogDashboardDashboardId: API.OperationMethod<
-  DeleteDbaasLogsServiceNameOutputGraylogDashboardDashboardIdRequest,
-  DbaasLogsOperation,
-  DeleteDbaasLogsServiceNameOutputGraylogDashboardDashboardIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteDbaasLogsServiceNameOutputGraylogDashboardDashboardIdRequest,
-  output: DbaasLogsOperation,
-  errors: [Forbidden, NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdError =
-  | Forbidden
-  | NotFound
-  | OvhOpError;
-/** Remove specified graylog stream */
-export const deleteDbaasLogsServiceNameOutputGraylogStreamStreamId: API.OperationMethod<
-  DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdRequest,
-  DbaasLogsOperation,
-  DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdRequest,
-  output: DbaasLogsOperation,
-  errors: [Forbidden, NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertAlertIdError =
-  | Forbidden
-  | NotFound
-  | OvhOpError;
-/** Remove alert from specified graylog stream */
-export const deleteDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertAlertId: API.OperationMethod<
-  DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertAlertIdRequest,
-  DbaasLogsOperation,
-  DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertAlertIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertAlertIdRequest,
-  output: DbaasLogsOperation,
-  errors: [Forbidden, NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleRuleIdError =
-  | Forbidden
-  | NotFound
-  | OvhOpError;
-/** Remove specified graylog stream rule */
-export const deleteDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleRuleId: API.OperationMethod<
-  DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleRuleIdRequest,
-  DbaasLogsOperation,
-  DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleRuleIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleRuleIdRequest,
-  output: DbaasLogsOperation,
-  errors: [Forbidden, NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionSubscriptionIdError =
-  | NotFound
-  | OvhOpError;
-/** Delete a specified subscription targeting a specified graylog stream */
-export const deleteDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionSubscriptionId: API.OperationMethod<
-  DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionSubscriptionIdRequest,
-  DbaasLogsOperation,
-  DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionSubscriptionIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    DeleteDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionSubscriptionIdRequest,
-  output: DbaasLogsOperation,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteDbaasLogsServiceNameOutputMetricTenantTenantIdError =
-  | Forbidden
-  | NotFound
-  | OvhOpError;
-/** Delete a metric tenant */
-export const deleteDbaasLogsServiceNameOutputMetricTenantTenantId: API.OperationMethod<
-  DeleteDbaasLogsServiceNameOutputMetricTenantTenantIdRequest,
-  DbaasLogsOperation,
-  DeleteDbaasLogsServiceNameOutputMetricTenantTenantIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteDbaasLogsServiceNameOutputMetricTenantTenantIdRequest,
-  output: DbaasLogsOperation,
-  errors: [Forbidden, NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionSubscriptionIdError =
-  | NotFound
-  | OvhOpError;
-/** Delete a specified subscription targeting a specified metric tenant */
-export const deleteDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionSubscriptionId: API.OperationMethod<
-  DeleteDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionSubscriptionIdRequest,
-  DbaasLogsOperation,
-  DeleteDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionSubscriptionIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    DeleteDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionSubscriptionIdRequest,
-  output: DbaasLogsOperation,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteDbaasLogsServiceNameOutputOpensearchAliasAliasIdError =
-  | Forbidden
-  | NotFound
-  | OvhOpError;
-/** Remove specified OpenSearch alias */
-export const deleteDbaasLogsServiceNameOutputOpensearchAliasAliasId: API.OperationMethod<
-  DeleteDbaasLogsServiceNameOutputOpensearchAliasAliasIdRequest,
-  DbaasLogsOperation,
-  DeleteDbaasLogsServiceNameOutputOpensearchAliasAliasIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteDbaasLogsServiceNameOutputOpensearchAliasAliasIdRequest,
-  output: DbaasLogsOperation,
-  errors: [Forbidden, NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexIndexIdError =
-  | Forbidden
-  | NotFound
-  | OvhOpError;
-/** Detach a OpenSearch index from specified OpenSearch alias */
-export const deleteDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexIndexId: API.OperationMethod<
-  DeleteDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexIndexIdRequest,
-  DbaasLogsOperation,
-  DeleteDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexIndexIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    DeleteDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexIndexIdRequest,
-  output: DbaasLogsOperation,
-  errors: [Forbidden, NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamStreamIdError =
-  | Forbidden
-  | NotFound
-  | OvhOpError;
-/** Detach a Graylog stream from specified OpenSearch alias */
-export const deleteDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamStreamId: API.OperationMethod<
-  DeleteDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamStreamIdRequest,
-  DbaasLogsOperation,
-  DeleteDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamStreamIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    DeleteDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamStreamIdRequest,
-  output: DbaasLogsOperation,
-  errors: [Forbidden, NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteDbaasLogsServiceNameOutputOpensearchIndexIndexIdError =
-  | Forbidden
-  | NotFound
-  | OvhOpError;
-/** Remove specified OpenSearch index */
-export const deleteDbaasLogsServiceNameOutputOpensearchIndexIndexId: API.OperationMethod<
-  DeleteDbaasLogsServiceNameOutputOpensearchIndexIndexIdRequest,
-  DbaasLogsOperation,
-  DeleteDbaasLogsServiceNameOutputOpensearchIndexIndexIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteDbaasLogsServiceNameOutputOpensearchIndexIndexIdRequest,
-  output: DbaasLogsOperation,
-  errors: [Forbidden, NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteDbaasLogsServiceNameOutputOpensearchOsdOsdIdError =
-  | Forbidden
-  | NotFound
-  | OvhOpError;
-/** Remove specified OpenSearch Dashboards instance */
-export const deleteDbaasLogsServiceNameOutputOpensearchOsdOsdId: API.OperationMethod<
-  DeleteDbaasLogsServiceNameOutputOpensearchOsdOsdIdRequest,
-  DbaasLogsOperation,
-  DeleteDbaasLogsServiceNameOutputOpensearchOsdOsdIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteDbaasLogsServiceNameOutputOpensearchOsdOsdIdRequest,
-  output: DbaasLogsOperation,
-  errors: [Forbidden, NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteDbaasLogsServiceNameRoleRoleIdError =
-  | Forbidden
-  | NotFound
-  | OvhOpError;
-/** Remove specified role */
-export const deleteDbaasLogsServiceNameRoleRoleId: API.OperationMethod<
-  DeleteDbaasLogsServiceNameRoleRoleIdRequest,
-  DbaasLogsOperation,
-  DeleteDbaasLogsServiceNameRoleRoleIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteDbaasLogsServiceNameRoleRoleIdRequest,
-  output: DbaasLogsOperation,
-  errors: [Forbidden, NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteDbaasLogsServiceNameRoleRoleIdMemberUsernameError =
-  | Forbidden
-  | NotFound
-  | OvhOpError;
-/** Remove user from the member list of specified role */
-export const deleteDbaasLogsServiceNameRoleRoleIdMemberUsername: API.OperationMethod<
-  DeleteDbaasLogsServiceNameRoleRoleIdMemberUsernameRequest,
-  DbaasLogsOperation,
-  DeleteDbaasLogsServiceNameRoleRoleIdMemberUsernameError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteDbaasLogsServiceNameRoleRoleIdMemberUsernameRequest,
-  output: DbaasLogsOperation,
-  errors: [Forbidden, NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteDbaasLogsServiceNameRoleRoleIdPermissionPermissionIdError =
-  | Forbidden
-  | NotFound
-  | OvhOpError;
-/** Remove specified permission */
-export const deleteDbaasLogsServiceNameRoleRoleIdPermissionPermissionId: API.OperationMethod<
-  DeleteDbaasLogsServiceNameRoleRoleIdPermissionPermissionIdRequest,
-  DbaasLogsOperation,
-  DeleteDbaasLogsServiceNameRoleRoleIdPermissionPermissionIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteDbaasLogsServiceNameRoleRoleIdPermissionPermissionIdRequest,
-  output: DbaasLogsOperation,
-  errors: [Forbidden, NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteDbaasLogsServiceNameTokenTokenIdError =
-  | Forbidden
-  | NotFound
-  | OvhOpError;
-/** Delete the specified token */
-export const deleteDbaasLogsServiceNameTokenTokenId: API.OperationMethod<
-  DeleteDbaasLogsServiceNameTokenTokenIdRequest,
-  DbaasLogsOperation,
-  DeleteDbaasLogsServiceNameTokenTokenIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteDbaasLogsServiceNameTokenTokenIdRequest,
-  output: DbaasLogsOperation,
-  errors: [Forbidden, NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsError = OvhOpError;
-/** List available services */
-export const getDbaasLogs: API.OperationMethod<
-  GetDbaasLogsRequest,
-  GetDbaasLogsResponse,
-  GetDbaasLogsError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsRequest,
-  output: GetDbaasLogsResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameError = NotFound | OvhOpError;
-/** Returns the service object of connected identity. */
-export const getDbaasLogsServiceName: API.OperationMethod<
-  GetDbaasLogsServiceNameRequest,
-  DbaasLogsServiceWithIAM,
-  GetDbaasLogsServiceNameError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameRequest,
-  output: DbaasLogsServiceWithIAM,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameClusterError = NotFound | OvhOpError;
-/** Returns the list of allowed cluster */
-export const getDbaasLogsServiceNameCluster: API.OperationMethod<
-  GetDbaasLogsServiceNameClusterRequest,
-  GetDbaasLogsServiceNameClusterResponse,
-  GetDbaasLogsServiceNameClusterError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameClusterRequest,
-  output: GetDbaasLogsServiceNameClusterResponse,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameClusterClusterIdError =
-  | NotFound
-  | OvhOpError;
-/** Returns details of an allowed cluster */
-export const getDbaasLogsServiceNameClusterClusterId: API.OperationMethod<
-  GetDbaasLogsServiceNameClusterClusterIdRequest,
-  DbaasLogsCluster,
-  GetDbaasLogsServiceNameClusterClusterIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameClusterClusterIdRequest,
-  output: DbaasLogsCluster,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameClusterClusterIdRetentionError =
-  | Forbidden
-  | NotFound
-  | OvhOpError;
-/** List all the retention ID available for a given cluster */
-export const getDbaasLogsServiceNameClusterClusterIdRetention: API.OperationMethod<
-  GetDbaasLogsServiceNameClusterClusterIdRetentionRequest,
-  GetDbaasLogsServiceNameClusterClusterIdRetentionResponse,
-  GetDbaasLogsServiceNameClusterClusterIdRetentionError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameClusterClusterIdRetentionRequest,
-  output: GetDbaasLogsServiceNameClusterClusterIdRetentionResponse,
-  errors: [Forbidden, NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameClusterClusterIdRetentionRetentionIdError =
-  | Forbidden
-  | NotFound
-  | OvhOpError;
-/** Returns details of a retention */
-export const getDbaasLogsServiceNameClusterClusterIdRetentionRetentionId: API.OperationMethod<
-  GetDbaasLogsServiceNameClusterClusterIdRetentionRetentionIdRequest,
-  DbaasLogsClusterRetention,
-  GetDbaasLogsServiceNameClusterClusterIdRetentionRetentionIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameClusterClusterIdRetentionRetentionIdRequest,
-  output: DbaasLogsClusterRetention,
-  errors: [Forbidden, NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameEncryptionKeyError = NotFound | OvhOpError;
-/** Return the list of registred encryption keys */
-export const getDbaasLogsServiceNameEncryptionKey: API.OperationMethod<
-  GetDbaasLogsServiceNameEncryptionKeyRequest,
-  GetDbaasLogsServiceNameEncryptionKeyResponse,
-  GetDbaasLogsServiceNameEncryptionKeyError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameEncryptionKeyRequest,
-  output: GetDbaasLogsServiceNameEncryptionKeyResponse,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameEncryptionKeyEncryptionKeyIdError =
-  | Forbidden
-  | NotFound
-  | OvhOpError;
-/** Return details of an encryption key */
-export const getDbaasLogsServiceNameEncryptionKeyEncryptionKeyId: API.OperationMethod<
-  GetDbaasLogsServiceNameEncryptionKeyEncryptionKeyIdRequest,
-  DbaasLogsEncryptionKey,
-  GetDbaasLogsServiceNameEncryptionKeyEncryptionKeyIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameEncryptionKeyEncryptionKeyIdRequest,
-  output: DbaasLogsEncryptionKey,
-  errors: [Forbidden, NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameInputError = NotFound | OvhOpError;
-/** Returns the list of registered input attached to the logged user */
-export const getDbaasLogsServiceNameInput: API.OperationMethod<
-  GetDbaasLogsServiceNameInputRequest,
-  GetDbaasLogsServiceNameInputResponse,
-  GetDbaasLogsServiceNameInputError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameInputRequest,
-  output: GetDbaasLogsServiceNameInputResponse,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameInputEngineError = OvhOpError;
-/** Returns the list of available input engines */
-export const getDbaasLogsServiceNameInputEngine: API.OperationMethod<
-  GetDbaasLogsServiceNameInputEngineRequest,
-  GetDbaasLogsServiceNameInputEngineResponse,
-  GetDbaasLogsServiceNameInputEngineError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameInputEngineRequest,
-  output: GetDbaasLogsServiceNameInputEngineResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameInputEngineEngineIdError =
-  | NotFound
-  | OvhOpError;
-/** Returns details of specified input engine */
-export const getDbaasLogsServiceNameInputEngineEngineId: API.OperationMethod<
-  GetDbaasLogsServiceNameInputEngineEngineIdRequest,
-  DbaasLogsEngine,
-  GetDbaasLogsServiceNameInputEngineEngineIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameInputEngineEngineIdRequest,
-  output: DbaasLogsEngine,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameInputEngineEngineIdHelperError = OvhOpError;
-/** Return the list of available helpers for the given input engine */
-export const getDbaasLogsServiceNameInputEngineEngineIdHelper: API.OperationMethod<
-  GetDbaasLogsServiceNameInputEngineEngineIdHelperRequest,
-  GetDbaasLogsServiceNameInputEngineEngineIdHelperResponse,
-  GetDbaasLogsServiceNameInputEngineEngineIdHelperError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameInputEngineEngineIdHelperRequest,
-  output: GetDbaasLogsServiceNameInputEngineEngineIdHelperResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameInputEngineEngineIdHelperHelperIdError =
-  | NotFound
-  | OvhOpError;
-/** Returns details of specified input engine helper */
-export const getDbaasLogsServiceNameInputEngineEngineIdHelperHelperId: API.OperationMethod<
-  GetDbaasLogsServiceNameInputEngineEngineIdHelperHelperIdRequest,
-  DbaasLogsHelper,
-  GetDbaasLogsServiceNameInputEngineEngineIdHelperHelperIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameInputEngineEngineIdHelperHelperIdRequest,
-  output: DbaasLogsHelper,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameInputInputIdError = NotFound | OvhOpError;
-/** Returns details of specified input */
-export const getDbaasLogsServiceNameInputInputId: API.OperationMethod<
-  GetDbaasLogsServiceNameInputInputIdRequest,
-  DbaasLogsInput,
-  GetDbaasLogsServiceNameInputInputIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameInputInputIdRequest,
-  output: DbaasLogsInput,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameInputInputIdActionError =
-  | NotFound
-  | OvhOpError;
-/** Returns actions of specified input */
-export const getDbaasLogsServiceNameInputInputIdAction: API.OperationMethod<
-  GetDbaasLogsServiceNameInputInputIdActionRequest,
-  GetDbaasLogsServiceNameInputInputIdActionResponse,
-  GetDbaasLogsServiceNameInputInputIdActionError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameInputInputIdActionRequest,
-  output: GetDbaasLogsServiceNameInputInputIdActionResponse,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameInputInputIdConfigtestResultError =
-  | NotFound
-  | OvhOpError;
-/** Returns the config test operation result */
-export const getDbaasLogsServiceNameInputInputIdConfigtestResult: API.OperationMethod<
-  GetDbaasLogsServiceNameInputInputIdConfigtestResultRequest,
-  DbaasLogsTestResult,
-  GetDbaasLogsServiceNameInputInputIdConfigtestResultError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameInputInputIdConfigtestResultRequest,
-  output: DbaasLogsTestResult,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameInputInputIdConfigurationFlowggerError =
-  | NotFound
-  | OvhOpError;
-/** Returns the flowgger configuration */
-export const getDbaasLogsServiceNameInputInputIdConfigurationFlowgger: API.OperationMethod<
-  GetDbaasLogsServiceNameInputInputIdConfigurationFlowggerRequest,
-  DbaasLogsFlowggerConfiguration,
-  GetDbaasLogsServiceNameInputInputIdConfigurationFlowggerError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameInputInputIdConfigurationFlowggerRequest,
-  output: DbaasLogsFlowggerConfiguration,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameInputInputIdConfigurationLogstashError =
-  | NotFound
-  | OvhOpError;
-/** Returns the logstash configuration */
-export const getDbaasLogsServiceNameInputInputIdConfigurationLogstash: API.OperationMethod<
-  GetDbaasLogsServiceNameInputInputIdConfigurationLogstashRequest,
-  DbaasLogsLogstashConfiguration,
-  GetDbaasLogsServiceNameInputInputIdConfigurationLogstashError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameInputInputIdConfigurationLogstashRequest,
-  output: DbaasLogsLogstashConfiguration,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameInputInputIdUrlError = NotFound | OvhOpError;
-/** Returns the list of urls of specified input */
-export const getDbaasLogsServiceNameInputInputIdUrl: API.OperationMethod<
-  GetDbaasLogsServiceNameInputInputIdUrlRequest,
-  GetDbaasLogsServiceNameInputInputIdUrlResponse,
-  GetDbaasLogsServiceNameInputInputIdUrlError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameInputInputIdUrlRequest,
-  output: GetDbaasLogsServiceNameInputInputIdUrlResponse,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameMetricsError = NotFound | OvhOpError;
-/** Returns Metrics credentials */
-export const getDbaasLogsServiceNameMetrics: API.OperationMethod<
-  GetDbaasLogsServiceNameMetricsRequest,
-  DbaasLogsServiceMetric,
-  GetDbaasLogsServiceNameMetricsError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameMetricsRequest,
-  output: DbaasLogsServiceMetric,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameOperationError = NotFound | OvhOpError;
-/** Latest operations */
-export const getDbaasLogsServiceNameOperation: API.OperationMethod<
-  GetDbaasLogsServiceNameOperationRequest,
-  GetDbaasLogsServiceNameOperationResponse,
-  GetDbaasLogsServiceNameOperationError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameOperationRequest,
-  output: GetDbaasLogsServiceNameOperationResponse,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameOperationOperationIdError =
-  | NotFound
-  | OvhOpError;
-/** Returns details of specified operation */
-export const getDbaasLogsServiceNameOperationOperationId: API.OperationMethod<
-  GetDbaasLogsServiceNameOperationOperationIdRequest,
-  DbaasLogsOperation,
-  GetDbaasLogsServiceNameOperationOperationIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameOperationOperationIdRequest,
-  output: DbaasLogsOperation,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameOutputGraylogDashboardError =
-  | NotFound
-  | OvhOpError;
-/** Returns the list of graylog dashboards */
-export const getDbaasLogsServiceNameOutputGraylogDashboard: API.OperationMethod<
-  GetDbaasLogsServiceNameOutputGraylogDashboardRequest,
-  GetDbaasLogsServiceNameOutputGraylogDashboardResponse,
-  GetDbaasLogsServiceNameOutputGraylogDashboardError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameOutputGraylogDashboardRequest,
-  output: GetDbaasLogsServiceNameOutputGraylogDashboardResponse,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameOutputGraylogDashboardDashboardIdError =
-  | NotFound
-  | OvhOpError;
-/** Returns details of specified graylog dashboard */
-export const getDbaasLogsServiceNameOutputGraylogDashboardDashboardId: API.OperationMethod<
-  GetDbaasLogsServiceNameOutputGraylogDashboardDashboardIdRequest,
-  DbaasLogsDashboard,
-  GetDbaasLogsServiceNameOutputGraylogDashboardDashboardIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameOutputGraylogDashboardDashboardIdRequest,
-  output: DbaasLogsDashboard,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameOutputGraylogDashboardDashboardIdUrlError =
-  | NotFound
-  | OvhOpError;
-/** Returns the list of urls of specified graylog dashboard */
-export const getDbaasLogsServiceNameOutputGraylogDashboardDashboardIdUrl: API.OperationMethod<
-  GetDbaasLogsServiceNameOutputGraylogDashboardDashboardIdUrlRequest,
-  GetDbaasLogsServiceNameOutputGraylogDashboardDashboardIdUrlResponse,
-  GetDbaasLogsServiceNameOutputGraylogDashboardDashboardIdUrlError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameOutputGraylogDashboardDashboardIdUrlRequest,
-  output: GetDbaasLogsServiceNameOutputGraylogDashboardDashboardIdUrlResponse,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameOutputGraylogStreamError =
-  | NotFound
-  | OvhOpError;
-/** Returns the list of graylog streams */
-export const getDbaasLogsServiceNameOutputGraylogStream: API.OperationMethod<
-  GetDbaasLogsServiceNameOutputGraylogStreamRequest,
-  GetDbaasLogsServiceNameOutputGraylogStreamResponse,
-  GetDbaasLogsServiceNameOutputGraylogStreamError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameOutputGraylogStreamRequest,
-  output: GetDbaasLogsServiceNameOutputGraylogStreamResponse,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameOutputGraylogStreamStreamIdError =
-  | NotFound
-  | OvhOpError;
-/** Returns details of specified graylog stream */
-export const getDbaasLogsServiceNameOutputGraylogStreamStreamId: API.OperationMethod<
-  GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRequest,
-  DbaasLogsStream,
-  GetDbaasLogsServiceNameOutputGraylogStreamStreamIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRequest,
-  output: DbaasLogsStream,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertError =
-  | NotFound
-  | OvhOpError;
-/** Returns the list of configured alerts of specified graylog stream */
-export const getDbaasLogsServiceNameOutputGraylogStreamStreamIdAlert: API.OperationMethod<
-  GetDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertRequest,
-  GetDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertResponse,
-  GetDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertRequest,
-  output: GetDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertResponse,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertAlertIdError =
-  | NotFound
-  | OvhOpError;
-/** Returns details of specified graylog stream alert */
-export const getDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertAlertId: API.OperationMethod<
-  GetDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertAlertIdRequest,
-  DbaasLogsStreamAlertCondition,
-  GetDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertAlertIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertAlertIdRequest,
-  output: DbaasLogsStreamAlertCondition,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveError =
-  | NotFound
-  | OvhOpError;
-/** Returns the list of archives */
-export const getDbaasLogsServiceNameOutputGraylogStreamStreamIdArchive: API.OperationMethod<
-  GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveRequest,
-  GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveResponse,
-  GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveRequest,
-  output: GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveResponse,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdError =
-  | NotFound
-  | OvhOpError;
-/** Returns details of specified archive */
-export const getDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveId: API.OperationMethod<
-  GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdRequest,
-  DbaasLogsArchive,
-  GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdRequest,
-  output: DbaasLogsArchive,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdEncryptionKeyError =
-  | NotFound
-  | OvhOpError;
-/** Get the list of encryption keys used to encrypt the archive */
-export const getDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdEncryptionKey: API.OperationMethod<
-  GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdEncryptionKeyRequest,
-  GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdEncryptionKeyResponse,
-  GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdEncryptionKeyError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdEncryptionKeyRequest,
-  output:
-    GetDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdEncryptionKeyResponse,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleError =
-  | NotFound
-  | OvhOpError;
-/** Returns the list of rules of specified graylog stream */
-export const getDbaasLogsServiceNameOutputGraylogStreamStreamIdRule: API.OperationMethod<
-  GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleRequest,
-  GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleResponse,
-  GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleRequest,
-  output: GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleResponse,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleRuleIdError =
-  | NotFound
-  | OvhOpError;
-/** Returns details of specified graylog stream rule */
-export const getDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleRuleId: API.OperationMethod<
-  GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleRuleIdRequest,
-  DbaasLogsStreamRule,
-  GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleRuleIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleRuleIdRequest,
-  output: DbaasLogsStreamRule,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionError =
-  | NotFound
-  | OvhOpError;
-/** Returns the list of subscriptions targeting a specified graylog stream */
-export const getDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscription: API.OperationMethod<
-  GetDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionRequest,
-  GetDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionResponse,
-  GetDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionRequest,
-  output:
-    GetDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionResponse,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionSubscriptionIdError =
-  | NotFound
-  | OvhOpError;
-/** Returns details of specified graylog stream subscription */
-export const getDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionSubscriptionId: API.OperationMethod<
-  GetDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionSubscriptionIdRequest,
-  DbaasLogsLogSubscription,
-  GetDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionSubscriptionIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    GetDbaasLogsServiceNameOutputGraylogStreamStreamIdSubscriptionSubscriptionIdRequest,
-  output: DbaasLogsLogSubscription,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameOutputGraylogStreamStreamIdUrlError =
-  | NotFound
-  | OvhOpError;
-/** Returns the list of urls of specified graylog stream */
-export const getDbaasLogsServiceNameOutputGraylogStreamStreamIdUrl: API.OperationMethod<
-  GetDbaasLogsServiceNameOutputGraylogStreamStreamIdUrlRequest,
-  GetDbaasLogsServiceNameOutputGraylogStreamStreamIdUrlResponse,
-  GetDbaasLogsServiceNameOutputGraylogStreamStreamIdUrlError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameOutputGraylogStreamStreamIdUrlRequest,
-  output: GetDbaasLogsServiceNameOutputGraylogStreamStreamIdUrlResponse,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameOutputMetricTenantError =
-  | NotFound
-  | OvhOpError;
-/** List service's metric tenants */
-export const getDbaasLogsServiceNameOutputMetricTenant: API.OperationMethod<
-  GetDbaasLogsServiceNameOutputMetricTenantRequest,
-  GetDbaasLogsServiceNameOutputMetricTenantResponse,
-  GetDbaasLogsServiceNameOutputMetricTenantError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameOutputMetricTenantRequest,
-  output: GetDbaasLogsServiceNameOutputMetricTenantResponse,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameOutputMetricTenantTenantIdError =
-  | Forbidden
-  | NotFound
-  | OvhOpError;
-/** Get the details about a metric tenant */
-export const getDbaasLogsServiceNameOutputMetricTenantTenantId: API.OperationMethod<
-  GetDbaasLogsServiceNameOutputMetricTenantTenantIdRequest,
-  DbaasLogsMetricTenant,
-  GetDbaasLogsServiceNameOutputMetricTenantTenantIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameOutputMetricTenantTenantIdRequest,
-  output: DbaasLogsMetricTenant,
-  errors: [Forbidden, NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionError =
-  | NotFound
-  | OvhOpError;
-/** Returns the list of subscriptions targeting a specified metric tenant */
-export const getDbaasLogsServiceNameOutputMetricTenantTenantIdSubscription: API.OperationMethod<
-  GetDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionRequest,
-  GetDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionResponse,
-  GetDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionRequest,
-  output: GetDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionResponse,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionSubscriptionIdError =
-  | NotFound
-  | OvhOpError;
-/** Returns details of specified metric tenant subscription */
-export const getDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionSubscriptionId: API.OperationMethod<
-  GetDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionSubscriptionIdRequest,
-  DbaasLogsMetricSubscription,
-  GetDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionSubscriptionIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    GetDbaasLogsServiceNameOutputMetricTenantTenantIdSubscriptionSubscriptionIdRequest,
-  output: DbaasLogsMetricSubscription,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameOutputMetricTenantTenantIdUrlError =
-  | NotFound
-  | OvhOpError;
-/** Returns the list of urls of specified metric tenant */
-export const getDbaasLogsServiceNameOutputMetricTenantTenantIdUrl: API.OperationMethod<
-  GetDbaasLogsServiceNameOutputMetricTenantTenantIdUrlRequest,
-  GetDbaasLogsServiceNameOutputMetricTenantTenantIdUrlResponse,
-  GetDbaasLogsServiceNameOutputMetricTenantTenantIdUrlError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameOutputMetricTenantTenantIdUrlRequest,
-  output: GetDbaasLogsServiceNameOutputMetricTenantTenantIdUrlResponse,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameOutputOpensearchAliasError =
-  | NotFound
-  | OvhOpError;
-/** Returns the list of alias for connected user */
-export const getDbaasLogsServiceNameOutputOpensearchAlias: API.OperationMethod<
-  GetDbaasLogsServiceNameOutputOpensearchAliasRequest,
-  GetDbaasLogsServiceNameOutputOpensearchAliasResponse,
-  GetDbaasLogsServiceNameOutputOpensearchAliasError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameOutputOpensearchAliasRequest,
-  output: GetDbaasLogsServiceNameOutputOpensearchAliasResponse,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdError =
-  | NotFound
-  | OvhOpError;
-/** Returns specified OpenSearch alias */
-export const getDbaasLogsServiceNameOutputOpensearchAliasAliasId: API.OperationMethod<
-  GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdRequest,
-  DbaasLogsAlias,
-  GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdRequest,
-  output: DbaasLogsAlias,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexError =
-  | NotFound
-  | OvhOpError;
-/** Returns the list of OpenSearch indexes attached to specified OpenSearch alias */
-export const getDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndex: API.OperationMethod<
-  GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexRequest,
-  GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexResponse,
-  GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexRequest,
-  output: GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexResponse,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamError =
-  | NotFound
-  | OvhOpError;
-/** Returns the list of Graylog streams attached to specified OpenSearch alias */
-export const getDbaasLogsServiceNameOutputOpensearchAliasAliasIdStream: API.OperationMethod<
-  GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamRequest,
-  GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamResponse,
-  GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamRequest,
-  output: GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamResponse,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdUrlError =
-  | NotFound
-  | OvhOpError;
-/** Returns the list of urls of specified alias */
-export const getDbaasLogsServiceNameOutputOpensearchAliasAliasIdUrl: API.OperationMethod<
-  GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdUrlRequest,
-  GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdUrlResponse,
-  GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdUrlError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdUrlRequest,
-  output: GetDbaasLogsServiceNameOutputOpensearchAliasAliasIdUrlResponse,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameOutputOpensearchIndexError =
-  | NotFound
-  | OvhOpError;
-/** Returns the list of OpenSearch indexes */
-export const getDbaasLogsServiceNameOutputOpensearchIndex: API.OperationMethod<
-  GetDbaasLogsServiceNameOutputOpensearchIndexRequest,
-  GetDbaasLogsServiceNameOutputOpensearchIndexResponse,
-  GetDbaasLogsServiceNameOutputOpensearchIndexError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameOutputOpensearchIndexRequest,
-  output: GetDbaasLogsServiceNameOutputOpensearchIndexResponse,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameOutputOpensearchIndexIndexIdError =
-  | NotFound
-  | OvhOpError;
-/** Returns specified OpenSearch index */
-export const getDbaasLogsServiceNameOutputOpensearchIndexIndexId: API.OperationMethod<
-  GetDbaasLogsServiceNameOutputOpensearchIndexIndexIdRequest,
-  DbaasLogsIndex,
-  GetDbaasLogsServiceNameOutputOpensearchIndexIndexIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameOutputOpensearchIndexIndexIdRequest,
-  output: DbaasLogsIndex,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameOutputOpensearchIndexIndexIdUrlError =
-  | NotFound
-  | OvhOpError;
-/** Returns the list of urls of specified index */
-export const getDbaasLogsServiceNameOutputOpensearchIndexIndexIdUrl: API.OperationMethod<
-  GetDbaasLogsServiceNameOutputOpensearchIndexIndexIdUrlRequest,
-  GetDbaasLogsServiceNameOutputOpensearchIndexIndexIdUrlResponse,
-  GetDbaasLogsServiceNameOutputOpensearchIndexIndexIdUrlError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameOutputOpensearchIndexIndexIdUrlRequest,
-  output: GetDbaasLogsServiceNameOutputOpensearchIndexIndexIdUrlResponse,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameOutputOpensearchOsdError =
-  | NotFound
-  | OvhOpError;
-/** Returns the list of OpenSearch Dashboards instances */
-export const getDbaasLogsServiceNameOutputOpensearchOsd: API.OperationMethod<
-  GetDbaasLogsServiceNameOutputOpensearchOsdRequest,
-  GetDbaasLogsServiceNameOutputOpensearchOsdResponse,
-  GetDbaasLogsServiceNameOutputOpensearchOsdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameOutputOpensearchOsdRequest,
-  output: GetDbaasLogsServiceNameOutputOpensearchOsdResponse,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameOutputOpensearchOsdOsdIdError =
-  | NotFound
-  | OvhOpError;
-/** Returns specified OpenSearch Dashboards instance */
-export const getDbaasLogsServiceNameOutputOpensearchOsdOsdId: API.OperationMethod<
-  GetDbaasLogsServiceNameOutputOpensearchOsdOsdIdRequest,
-  DbaasLogsOsd,
-  GetDbaasLogsServiceNameOutputOpensearchOsdOsdIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameOutputOpensearchOsdOsdIdRequest,
-  output: DbaasLogsOsd,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameOutputOpensearchOsdOsdIdUrlError =
-  | NotFound
-  | OvhOpError;
-/** Returns the list of urls of specified OpenSearch Dashboards */
-export const getDbaasLogsServiceNameOutputOpensearchOsdOsdIdUrl: API.OperationMethod<
-  GetDbaasLogsServiceNameOutputOpensearchOsdOsdIdUrlRequest,
-  GetDbaasLogsServiceNameOutputOpensearchOsdOsdIdUrlResponse,
-  GetDbaasLogsServiceNameOutputOpensearchOsdOsdIdUrlError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameOutputOpensearchOsdOsdIdUrlRequest,
-  output: GetDbaasLogsServiceNameOutputOpensearchOsdOsdIdUrlResponse,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameRoleError =
-  | Forbidden
-  | NotFound
-  | OvhOpError;
-/** Returns the list of roles */
-export const getDbaasLogsServiceNameRole: API.OperationMethod<
-  GetDbaasLogsServiceNameRoleRequest,
-  GetDbaasLogsServiceNameRoleResponse,
-  GetDbaasLogsServiceNameRoleError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameRoleRequest,
-  output: GetDbaasLogsServiceNameRoleResponse,
-  errors: [Forbidden, NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameRoleRoleIdError =
-  | Forbidden
-  | NotFound
-  | OvhOpError;
-/** Returns details of specified role */
-export const getDbaasLogsServiceNameRoleRoleId: API.OperationMethod<
-  GetDbaasLogsServiceNameRoleRoleIdRequest,
-  DbaasLogsRole,
-  GetDbaasLogsServiceNameRoleRoleIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameRoleRoleIdRequest,
-  output: DbaasLogsRole,
-  errors: [Forbidden, NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameRoleRoleIdMemberError =
-  | Forbidden
-  | NotFound
-  | OvhOpError;
-/** Returns the member list of specified role */
-export const getDbaasLogsServiceNameRoleRoleIdMember: API.OperationMethod<
-  GetDbaasLogsServiceNameRoleRoleIdMemberRequest,
-  GetDbaasLogsServiceNameRoleRoleIdMemberResponse,
-  GetDbaasLogsServiceNameRoleRoleIdMemberError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameRoleRoleIdMemberRequest,
-  output: GetDbaasLogsServiceNameRoleRoleIdMemberResponse,
-  errors: [Forbidden, NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameRoleRoleIdMemberUsernameError =
-  | Forbidden
-  | NotFound
-  | OvhOpError;
-/** Returns the member metadata */
-export const getDbaasLogsServiceNameRoleRoleIdMemberUsername: API.OperationMethod<
-  GetDbaasLogsServiceNameRoleRoleIdMemberUsernameRequest,
-  DbaasLogsMember,
-  GetDbaasLogsServiceNameRoleRoleIdMemberUsernameError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameRoleRoleIdMemberUsernameRequest,
-  output: DbaasLogsMember,
-  errors: [Forbidden, NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameRoleRoleIdPermissionError =
-  | NotFound
-  | OvhOpError;
-/** Returns the list of permissions of specified role */
-export const getDbaasLogsServiceNameRoleRoleIdPermission: API.OperationMethod<
-  GetDbaasLogsServiceNameRoleRoleIdPermissionRequest,
-  GetDbaasLogsServiceNameRoleRoleIdPermissionResponse,
-  GetDbaasLogsServiceNameRoleRoleIdPermissionError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameRoleRoleIdPermissionRequest,
-  output: GetDbaasLogsServiceNameRoleRoleIdPermissionResponse,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameRoleRoleIdPermissionPermissionIdError =
-  | NotFound
-  | OvhOpError;
-/** Returns details of specified permission */
-export const getDbaasLogsServiceNameRoleRoleIdPermissionPermissionId: API.OperationMethod<
-  GetDbaasLogsServiceNameRoleRoleIdPermissionPermissionIdRequest,
-  DbaasLogsPermission,
-  GetDbaasLogsServiceNameRoleRoleIdPermissionPermissionIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameRoleRoleIdPermissionPermissionIdRequest,
-  output: DbaasLogsPermission,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameServiceInfosError = OvhOpError;
-/** Get service information */
-export const getDbaasLogsServiceNameServiceInfos: API.OperationMethod<
-  GetDbaasLogsServiceNameServiceInfosRequest,
-  ServicesService,
-  GetDbaasLogsServiceNameServiceInfosError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameServiceInfosRequest,
-  output: ServicesService,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameTokenError =
-  | Forbidden
-  | NotFound
-  | OvhOpError;
-/** Returns the list of service tokens */
-export const getDbaasLogsServiceNameToken: API.OperationMethod<
-  GetDbaasLogsServiceNameTokenRequest,
-  GetDbaasLogsServiceNameTokenResponse,
-  GetDbaasLogsServiceNameTokenError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameTokenRequest,
-  output: GetDbaasLogsServiceNameTokenResponse,
-  errors: [Forbidden, NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameTokenTokenIdError =
-  | Forbidden
-  | NotFound
-  | OvhOpError;
-/** Returns the specified token */
-export const getDbaasLogsServiceNameTokenTokenId: API.OperationMethod<
-  GetDbaasLogsServiceNameTokenTokenIdRequest,
-  DbaasLogsToken,
-  GetDbaasLogsServiceNameTokenTokenIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameTokenTokenIdRequest,
-  output: DbaasLogsToken,
-  errors: [Forbidden, NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDbaasLogsServiceNameUrlError = NotFound | OvhOpError;
-/** Returns platform useful urls */
-export const getDbaasLogsServiceNameUrl: API.OperationMethod<
-  GetDbaasLogsServiceNameUrlRequest,
-  GetDbaasLogsServiceNameUrlResponse,
-  GetDbaasLogsServiceNameUrlError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDbaasLogsServiceNameUrlRequest,
-  output: GetDbaasLogsServiceNameUrlResponse,
-  errors: [NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostDbaasLogsServiceNameChangeContactError = OvhOpError;
+export const PutDbaasLogServiceInfosRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    renew: S.optional(S.NullOr(ServiceRenewType)),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/dbaas/logs/{serviceName}/serviceInfos",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "PutDbaasLogServiceInfosRequest",
+}) as any as S.Schema<PutDbaasLogServiceInfosRequest>;
+
+export interface PutDbaasLogServiceInfosResponse {}
+export const PutDbaasLogServiceInfosResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "PutDbaasLogServiceInfosResponse",
+}) as any as S.Schema<PutDbaasLogServiceInfosResponse>;
+
+export interface RestartDbaasLogsInputRequest {
+  /** Service name */
+  serviceName: string;
+  /** Input ID */
+  inputId: string;
+}
+export const RestartDbaasLogsInputRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    inputId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/dbaas/logs/{serviceName}/input/{inputId}/restart",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "RestartDbaasLogsInputRequest",
+}) as any as S.Schema<RestartDbaasLogsInputRequest>;
+
+export interface StartDbaasLogsInputRequest {
+  /** Service name */
+  serviceName: string;
+  /** Input ID */
+  inputId: string;
+}
+export const StartDbaasLogsInputRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    inputId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/dbaas/logs/{serviceName}/input/{inputId}/start",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "StartDbaasLogsInputRequest",
+}) as any as S.Schema<StartDbaasLogsInputRequest>;
+
+export type CreateDbaasLogChangeContactError = OvhOpError;
 /** Launch a contact change procedure */
-export const postDbaasLogsServiceNameChangeContact: API.OperationMethod<
-  PostDbaasLogsServiceNameChangeContactRequest,
-  PostDbaasLogsServiceNameChangeContactResponse,
-  PostDbaasLogsServiceNameChangeContactError,
+export const createDbaasLogChangeContact: API.OperationMethod<
+  CreateDbaasLogChangeContactRequest,
+  CreateDbaasLogChangeContactResponse,
+  CreateDbaasLogChangeContactError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostDbaasLogsServiceNameChangeContactRequest,
-  output: PostDbaasLogsServiceNameChangeContactResponse,
+  input: CreateDbaasLogChangeContactRequest,
+  output: CreateDbaasLogChangeContactResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostDbaasLogsServiceNameEncryptionKeyError =
+export type CreateDbaasLogEncryptionKeyError =
   | Forbidden
   | NotFound
   | Conflict
   | OvhOpError;
 /** Add a new encryption key */
-export const postDbaasLogsServiceNameEncryptionKey: API.OperationMethod<
-  PostDbaasLogsServiceNameEncryptionKeyRequest,
+export const createDbaasLogEncryptionKey: API.OperationMethod<
+  CreateDbaasLogEncryptionKeyRequest,
   DbaasLogsOperation,
-  PostDbaasLogsServiceNameEncryptionKeyError,
+  CreateDbaasLogEncryptionKeyError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostDbaasLogsServiceNameEncryptionKeyRequest,
+  input: CreateDbaasLogEncryptionKeyRequest,
   output: DbaasLogsOperation,
   errors: [Forbidden, NotFound, Conflict, UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostDbaasLogsServiceNameInputError =
+export type CreateDbaasLogInputError =
   | Forbidden
   | NotFound
   | Conflict
   | OvhOpError;
 /** Register a new input object */
-export const postDbaasLogsServiceNameInput: API.OperationMethod<
-  PostDbaasLogsServiceNameInputRequest,
+export const createDbaasLogInput: API.OperationMethod<
+  CreateDbaasLogInputRequest,
   DbaasLogsOperation,
-  PostDbaasLogsServiceNameInputError,
+  CreateDbaasLogInputError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostDbaasLogsServiceNameInputRequest,
+  input: CreateDbaasLogInputRequest,
   output: DbaasLogsOperation,
   errors: [Forbidden, NotFound, Conflict, UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostDbaasLogsServiceNameInputInputIdConfigtestError =
+export type CreateDbaasLogInputConfigtestError =
   | Forbidden
   | NotFound
   | OvhOpError;
 /** Validate configuration of specified input */
-export const postDbaasLogsServiceNameInputInputIdConfigtest: API.OperationMethod<
-  PostDbaasLogsServiceNameInputInputIdConfigtestRequest,
+export const createDbaasLogInputConfigtest: API.OperationMethod<
+  CreateDbaasLogInputConfigtestRequest,
   DbaasLogsOperation,
-  PostDbaasLogsServiceNameInputInputIdConfigtestError,
+  CreateDbaasLogInputConfigtestError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostDbaasLogsServiceNameInputInputIdConfigtestRequest,
+  input: CreateDbaasLogInputConfigtestRequest,
   output: DbaasLogsOperation,
   errors: [Forbidden, NotFound, UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostDbaasLogsServiceNameInputInputIdEndError =
-  | Forbidden
-  | NotFound
-  | OvhOpError;
+export type CreateDbaasLogInputEndError = Forbidden | NotFound | OvhOpError;
 /** Schedule the end of specified input */
-export const postDbaasLogsServiceNameInputInputIdEnd: API.OperationMethod<
-  PostDbaasLogsServiceNameInputInputIdEndRequest,
+export const createDbaasLogInputEnd: API.OperationMethod<
+  CreateDbaasLogInputEndRequest,
   DbaasLogsOperation,
-  PostDbaasLogsServiceNameInputInputIdEndError,
+  CreateDbaasLogInputEndError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostDbaasLogsServiceNameInputInputIdEndRequest,
+  input: CreateDbaasLogInputEndRequest,
   output: DbaasLogsOperation,
   errors: [Forbidden, NotFound, UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostDbaasLogsServiceNameInputInputIdLogsUrlError =
-  | Forbidden
-  | NotFound
-  | OvhOpError;
+export type CreateDbaasLogInputLogUrlError = Forbidden | NotFound | OvhOpError;
 /** Generate a temporary url to retrieve input logs */
-export const postDbaasLogsServiceNameInputInputIdLogsUrl: API.OperationMethod<
-  PostDbaasLogsServiceNameInputInputIdLogsUrlRequest,
+export const createDbaasLogInputLogUrl: API.OperationMethod<
+  CreateDbaasLogInputLogUrlRequest,
   DbaasLogsTemporaryLogsLink,
-  PostDbaasLogsServiceNameInputInputIdLogsUrlError,
+  CreateDbaasLogInputLogUrlError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostDbaasLogsServiceNameInputInputIdLogsUrlRequest,
+  input: CreateDbaasLogInputLogUrlRequest,
   output: DbaasLogsTemporaryLogsLink,
   errors: [Forbidden, NotFound, UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostDbaasLogsServiceNameInputInputIdRestartError =
-  | Forbidden
-  | NotFound
-  | OvhOpError;
-/** Schedule the restart of specified input */
-export const postDbaasLogsServiceNameInputInputIdRestart: API.OperationMethod<
-  PostDbaasLogsServiceNameInputInputIdRestartRequest,
-  DbaasLogsOperation,
-  PostDbaasLogsServiceNameInputInputIdRestartError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostDbaasLogsServiceNameInputInputIdRestartRequest,
-  output: DbaasLogsOperation,
-  errors: [Forbidden, NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostDbaasLogsServiceNameInputInputIdStartError =
-  | Forbidden
-  | NotFound
-  | OvhOpError;
-/** Schedule the start of specified input */
-export const postDbaasLogsServiceNameInputInputIdStart: API.OperationMethod<
-  PostDbaasLogsServiceNameInputInputIdStartRequest,
-  DbaasLogsOperation,
-  PostDbaasLogsServiceNameInputInputIdStartError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostDbaasLogsServiceNameInputInputIdStartRequest,
-  output: DbaasLogsOperation,
-  errors: [Forbidden, NotFound, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostDbaasLogsServiceNameOutputGraylogDashboardError =
+export type CreateDbaasLogOutputGraylogDashboardError =
   | Forbidden
   | NotFound
   | OvhOpError;
 /** Register a new graylog dashboard */
-export const postDbaasLogsServiceNameOutputGraylogDashboard: API.OperationMethod<
-  PostDbaasLogsServiceNameOutputGraylogDashboardRequest,
+export const createDbaasLogOutputGraylogDashboard: API.OperationMethod<
+  CreateDbaasLogOutputGraylogDashboardRequest,
   DbaasLogsOperation,
-  PostDbaasLogsServiceNameOutputGraylogDashboardError,
+  CreateDbaasLogOutputGraylogDashboardError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostDbaasLogsServiceNameOutputGraylogDashboardRequest,
+  input: CreateDbaasLogOutputGraylogDashboardRequest,
   output: DbaasLogsOperation,
   errors: [Forbidden, NotFound, UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostDbaasLogsServiceNameOutputGraylogDashboardDashboardIdDuplicateError =
-  | Forbidden
-  | NotFound
-  | Conflict
-  | OvhOpError;
-/** Copy all widgets from specified dashboard to a new one */
-export const postDbaasLogsServiceNameOutputGraylogDashboardDashboardIdDuplicate: API.OperationMethod<
-  PostDbaasLogsServiceNameOutputGraylogDashboardDashboardIdDuplicateRequest,
-  DbaasLogsOperation,
-  PostDbaasLogsServiceNameOutputGraylogDashboardDashboardIdDuplicateError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    PostDbaasLogsServiceNameOutputGraylogDashboardDashboardIdDuplicateRequest,
-  output: DbaasLogsOperation,
-  errors: [Forbidden, NotFound, Conflict, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostDbaasLogsServiceNameOutputGraylogStreamError =
+export type CreateDbaasLogOutputGraylogStreamError =
   | Forbidden
   | NotFound
   | Conflict
   | OvhOpError;
 /** Register a new graylog stream */
-export const postDbaasLogsServiceNameOutputGraylogStream: API.OperationMethod<
-  PostDbaasLogsServiceNameOutputGraylogStreamRequest,
+export const createDbaasLogOutputGraylogStream: API.OperationMethod<
+  CreateDbaasLogOutputGraylogStreamRequest,
   DbaasLogsOperation,
-  PostDbaasLogsServiceNameOutputGraylogStreamError,
+  CreateDbaasLogOutputGraylogStreamError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostDbaasLogsServiceNameOutputGraylogStreamRequest,
+  input: CreateDbaasLogOutputGraylogStreamRequest,
   output: DbaasLogsOperation,
   errors: [Forbidden, NotFound, Conflict, UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertError =
+export type CreateDbaasLogOutputGraylogStreamAlertError =
   | Forbidden
   | NotFound
   | Conflict
   | OvhOpError;
 /** Register a new alert on specified graylog stream */
-export const postDbaasLogsServiceNameOutputGraylogStreamStreamIdAlert: API.OperationMethod<
-  PostDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertRequest,
+export const createDbaasLogOutputGraylogStreamAlert: API.OperationMethod<
+  CreateDbaasLogOutputGraylogStreamAlertRequest,
   DbaasLogsOperation,
-  PostDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertError,
+  CreateDbaasLogOutputGraylogStreamAlertError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertRequest,
+  input: CreateDbaasLogOutputGraylogStreamAlertRequest,
   output: DbaasLogsOperation,
   errors: [Forbidden, NotFound, Conflict, UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdUrlError =
+export type CreateDbaasLogOutputGraylogStreamArchiveUrlError =
   | NotFound
   | OvhOpError;
 /** Get a public temporary URL to access the archive */
-export const postDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdUrl: API.OperationMethod<
-  PostDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdUrlRequest,
+export const createDbaasLogOutputGraylogStreamArchiveUrl: API.OperationMethod<
+  CreateDbaasLogOutputGraylogStreamArchiveUrlRequest,
   DbaasLogsArchiveUrl,
-  PostDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdUrlError,
+  CreateDbaasLogOutputGraylogStreamArchiveUrlError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input:
-    PostDbaasLogsServiceNameOutputGraylogStreamStreamIdArchiveArchiveIdUrlRequest,
+  input: CreateDbaasLogOutputGraylogStreamArchiveUrlRequest,
   output: DbaasLogsArchiveUrl,
   errors: [NotFound, UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleError =
+export type CreateDbaasLogOutputGraylogStreamRuleError =
   | Forbidden
   | NotFound
   | Conflict
   | OvhOpError;
 /** Register a new rule on specified graylog stream */
-export const postDbaasLogsServiceNameOutputGraylogStreamStreamIdRule: API.OperationMethod<
-  PostDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleRequest,
+export const createDbaasLogOutputGraylogStreamRule: API.OperationMethod<
+  CreateDbaasLogOutputGraylogStreamRuleRequest,
   DbaasLogsOperation,
-  PostDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleError,
+  CreateDbaasLogOutputGraylogStreamRuleError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostDbaasLogsServiceNameOutputGraylogStreamStreamIdRuleRequest,
+  input: CreateDbaasLogOutputGraylogStreamRuleRequest,
   output: DbaasLogsOperation,
   errors: [Forbidden, NotFound, Conflict, UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostDbaasLogsServiceNameOutputMetricTenantError =
+export type CreateDbaasLogOutputMetricTenantError =
   | Forbidden
   | Conflict
   | OvhOpError;
 /** Create a metric tenant */
-export const postDbaasLogsServiceNameOutputMetricTenant: API.OperationMethod<
-  PostDbaasLogsServiceNameOutputMetricTenantRequest,
+export const createDbaasLogOutputMetricTenant: API.OperationMethod<
+  CreateDbaasLogOutputMetricTenantRequest,
   DbaasLogsOperation,
-  PostDbaasLogsServiceNameOutputMetricTenantError,
+  CreateDbaasLogOutputMetricTenantError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostDbaasLogsServiceNameOutputMetricTenantRequest,
+  input: CreateDbaasLogOutputMetricTenantRequest,
   output: DbaasLogsOperation,
   errors: [Forbidden, Conflict, UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostDbaasLogsServiceNameOutputOpensearchAliasError =
+export type CreateDbaasLogOutputOpensearchAliasError =
   | Forbidden
   | NotFound
   | Conflict
   | OvhOpError;
 /** Register a new OpenSearch alias */
-export const postDbaasLogsServiceNameOutputOpensearchAlias: API.OperationMethod<
-  PostDbaasLogsServiceNameOutputOpensearchAliasRequest,
+export const createDbaasLogOutputOpensearchAlias: API.OperationMethod<
+  CreateDbaasLogOutputOpensearchAliasRequest,
   DbaasLogsOperation,
-  PostDbaasLogsServiceNameOutputOpensearchAliasError,
+  CreateDbaasLogOutputOpensearchAliasError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostDbaasLogsServiceNameOutputOpensearchAliasRequest,
+  input: CreateDbaasLogOutputOpensearchAliasRequest,
   output: DbaasLogsOperation,
   errors: [Forbidden, NotFound, Conflict, UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexError =
-  | Forbidden
-  | NotFound
-  | Conflict
-  | OvhOpError;
-/** Attach a OpenSearch index to specified OpenSearch alias */
-export const postDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndex: API.OperationMethod<
-  PostDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexRequest,
-  DbaasLogsOperation,
-  PostDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostDbaasLogsServiceNameOutputOpensearchAliasAliasIdIndexRequest,
-  output: DbaasLogsOperation,
-  errors: [Forbidden, NotFound, Conflict, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamError =
+export type CreateDbaasLogOutputOpensearchAliasStreamError =
   | Forbidden
   | NotFound
   | OvhOpError;
 /** Attach a Graylog stream to specified OpenSearch alias */
-export const postDbaasLogsServiceNameOutputOpensearchAliasAliasIdStream: API.OperationMethod<
-  PostDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamRequest,
+export const createDbaasLogOutputOpensearchAliasStream: API.OperationMethod<
+  CreateDbaasLogOutputOpensearchAliasStreamRequest,
   DbaasLogsOperation,
-  PostDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamError,
+  CreateDbaasLogOutputOpensearchAliasStreamError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostDbaasLogsServiceNameOutputOpensearchAliasAliasIdStreamRequest,
+  input: CreateDbaasLogOutputOpensearchAliasStreamRequest,
   output: DbaasLogsOperation,
   errors: [Forbidden, NotFound, UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostDbaasLogsServiceNameOutputOpensearchIndexError =
-  | Forbidden
-  | NotFound
-  | Conflict
-  | OvhOpError;
-/** Register a new OpenSearch index */
-export const postDbaasLogsServiceNameOutputOpensearchIndex: API.OperationMethod<
-  PostDbaasLogsServiceNameOutputOpensearchIndexRequest,
-  DbaasLogsOperation,
-  PostDbaasLogsServiceNameOutputOpensearchIndexError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostDbaasLogsServiceNameOutputOpensearchIndexRequest,
-  output: DbaasLogsOperation,
-  errors: [Forbidden, NotFound, Conflict, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostDbaasLogsServiceNameOutputOpensearchOsdError =
+export type CreateDbaasLogOutputOpensearchOsdError =
   | Forbidden
   | NotFound
   | OvhOpError;
 /** Register a new OpenSearch Dashboards instance */
-export const postDbaasLogsServiceNameOutputOpensearchOsd: API.OperationMethod<
-  PostDbaasLogsServiceNameOutputOpensearchOsdRequest,
+export const createDbaasLogOutputOpensearchOsd: API.OperationMethod<
+  CreateDbaasLogOutputOpensearchOsdRequest,
   DbaasLogsOperation,
-  PostDbaasLogsServiceNameOutputOpensearchOsdError,
+  CreateDbaasLogOutputOpensearchOsdError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostDbaasLogsServiceNameOutputOpensearchOsdRequest,
+  input: CreateDbaasLogOutputOpensearchOsdRequest,
   output: DbaasLogsOperation,
   errors: [Forbidden, NotFound, UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostDbaasLogsServiceNameRoleError =
+export type CreateDbaasLogRoleError =
   | Forbidden
   | NotFound
   | Conflict
   | OvhOpError;
 /** Register a new role */
-export const postDbaasLogsServiceNameRole: API.OperationMethod<
-  PostDbaasLogsServiceNameRoleRequest,
+export const createDbaasLogRole: API.OperationMethod<
+  CreateDbaasLogRoleRequest,
   DbaasLogsOperation,
-  PostDbaasLogsServiceNameRoleError,
+  CreateDbaasLogRoleError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostDbaasLogsServiceNameRoleRequest,
+  input: CreateDbaasLogRoleRequest,
   output: DbaasLogsOperation,
   errors: [Forbidden, NotFound, Conflict, UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostDbaasLogsServiceNameRoleRoleIdMemberError =
-  | Forbidden
-  | NotFound
-  | OvhOpError;
+export type CreateDbaasLogRoleMemberError = Forbidden | NotFound | OvhOpError;
 /** Append user into the member list of specified role */
-export const postDbaasLogsServiceNameRoleRoleIdMember: API.OperationMethod<
-  PostDbaasLogsServiceNameRoleRoleIdMemberRequest,
+export const createDbaasLogRoleMember: API.OperationMethod<
+  CreateDbaasLogRoleMemberRequest,
   DbaasLogsOperation,
-  PostDbaasLogsServiceNameRoleRoleIdMemberError,
+  CreateDbaasLogRoleMemberError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostDbaasLogsServiceNameRoleRoleIdMemberRequest,
+  input: CreateDbaasLogRoleMemberRequest,
   output: DbaasLogsOperation,
   errors: [Forbidden, NotFound, UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostDbaasLogsServiceNameRoleRoleIdPermissionAliasError =
+export type CreateDbaasLogRolePermissionAliasError =
   | Forbidden
   | NotFound
   | Conflict
   | OvhOpError;
 /** Append a elasticsearch alias permission to role */
-export const postDbaasLogsServiceNameRoleRoleIdPermissionAlias: API.OperationMethod<
-  PostDbaasLogsServiceNameRoleRoleIdPermissionAliasRequest,
+export const createDbaasLogRolePermissionAlias: API.OperationMethod<
+  CreateDbaasLogRolePermissionAliasRequest,
   DbaasLogsOperation,
-  PostDbaasLogsServiceNameRoleRoleIdPermissionAliasError,
+  CreateDbaasLogRolePermissionAliasError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostDbaasLogsServiceNameRoleRoleIdPermissionAliasRequest,
+  input: CreateDbaasLogRolePermissionAliasRequest,
   output: DbaasLogsOperation,
   errors: [Forbidden, NotFound, Conflict, UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostDbaasLogsServiceNameRoleRoleIdPermissionDashboardError =
+export type CreateDbaasLogRolePermissionDashboardError =
   | Forbidden
   | NotFound
   | Conflict
   | OvhOpError;
 /** Append a graylog dashboard permission to role */
-export const postDbaasLogsServiceNameRoleRoleIdPermissionDashboard: API.OperationMethod<
-  PostDbaasLogsServiceNameRoleRoleIdPermissionDashboardRequest,
+export const createDbaasLogRolePermissionDashboard: API.OperationMethod<
+  CreateDbaasLogRolePermissionDashboardRequest,
   DbaasLogsOperation,
-  PostDbaasLogsServiceNameRoleRoleIdPermissionDashboardError,
+  CreateDbaasLogRolePermissionDashboardError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostDbaasLogsServiceNameRoleRoleIdPermissionDashboardRequest,
+  input: CreateDbaasLogRolePermissionDashboardRequest,
   output: DbaasLogsOperation,
   errors: [Forbidden, NotFound, Conflict, UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostDbaasLogsServiceNameRoleRoleIdPermissionIndexError =
-  | Forbidden
-  | NotFound
-  | Conflict
-  | OvhOpError;
-/** Append a elasticsearch index permission to role */
-export const postDbaasLogsServiceNameRoleRoleIdPermissionIndex: API.OperationMethod<
-  PostDbaasLogsServiceNameRoleRoleIdPermissionIndexRequest,
-  DbaasLogsOperation,
-  PostDbaasLogsServiceNameRoleRoleIdPermissionIndexError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostDbaasLogsServiceNameRoleRoleIdPermissionIndexRequest,
-  output: DbaasLogsOperation,
-  errors: [Forbidden, NotFound, Conflict, UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostDbaasLogsServiceNameRoleRoleIdPermissionOsdError =
+export type CreateDbaasLogRolePermissionOsdError =
   | Forbidden
   | NotFound
   | Conflict
   | OvhOpError;
 /** Append a OpenSearch Dashboards permission to role */
-export const postDbaasLogsServiceNameRoleRoleIdPermissionOsd: API.OperationMethod<
-  PostDbaasLogsServiceNameRoleRoleIdPermissionOsdRequest,
+export const createDbaasLogRolePermissionOsd: API.OperationMethod<
+  CreateDbaasLogRolePermissionOsdRequest,
   DbaasLogsOperation,
-  PostDbaasLogsServiceNameRoleRoleIdPermissionOsdError,
+  CreateDbaasLogRolePermissionOsdError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostDbaasLogsServiceNameRoleRoleIdPermissionOsdRequest,
+  input: CreateDbaasLogRolePermissionOsdRequest,
   output: DbaasLogsOperation,
   errors: [Forbidden, NotFound, Conflict, UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostDbaasLogsServiceNameRoleRoleIdPermissionStreamError =
+export type CreateDbaasLogRolePermissionStreamError =
   | Forbidden
   | NotFound
   | Conflict
   | OvhOpError;
 /** Append a graylog stream permission to role */
-export const postDbaasLogsServiceNameRoleRoleIdPermissionStream: API.OperationMethod<
-  PostDbaasLogsServiceNameRoleRoleIdPermissionStreamRequest,
+export const createDbaasLogRolePermissionStream: API.OperationMethod<
+  CreateDbaasLogRolePermissionStreamRequest,
   DbaasLogsOperation,
-  PostDbaasLogsServiceNameRoleRoleIdPermissionStreamError,
+  CreateDbaasLogRolePermissionStreamError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostDbaasLogsServiceNameRoleRoleIdPermissionStreamRequest,
+  input: CreateDbaasLogRolePermissionStreamRequest,
   output: DbaasLogsOperation,
   errors: [Forbidden, NotFound, Conflict, UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostDbaasLogsServiceNameTokenError =
+export type CreateDbaasLogTokenError =
   | Forbidden
   | NotFound
   | Conflict
   | OvhOpError;
 /** Add a new token */
-export const postDbaasLogsServiceNameToken: API.OperationMethod<
-  PostDbaasLogsServiceNameTokenRequest,
+export const createDbaasLogToken: API.OperationMethod<
+  CreateDbaasLogTokenRequest,
   DbaasLogsOperation,
-  PostDbaasLogsServiceNameTokenError,
+  CreateDbaasLogTokenError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostDbaasLogsServiceNameTokenRequest,
+  input: CreateDbaasLogTokenRequest,
   output: DbaasLogsOperation,
   errors: [Forbidden, NotFound, Conflict, UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostDbaasLogsServiceNameUserChangePasswordError =
+export type CreateDbaasLogUserChangePasswordError =
   | Forbidden
   | NotFound
   | OvhOpError;
 /** Initiate a password change procedure. */
-export const postDbaasLogsServiceNameUserChangePassword: API.OperationMethod<
-  PostDbaasLogsServiceNameUserChangePasswordRequest,
+export const createDbaasLogUserChangePassword: API.OperationMethod<
+  CreateDbaasLogUserChangePasswordRequest,
   DbaasLogsOperation,
-  PostDbaasLogsServiceNameUserChangePasswordError,
+  CreateDbaasLogUserChangePasswordError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostDbaasLogsServiceNameUserChangePasswordRequest,
+  input: CreateDbaasLogUserChangePasswordRequest,
   output: DbaasLogsOperation,
   errors: [Forbidden, NotFound, UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutDbaasLogsServiceNameError =
+export type DeleteDbaasLogEncryptionKeyError =
+  | Forbidden
+  | NotFound
+  | OvhOpError;
+/** Delete the specified encryption key */
+export const deleteDbaasLogEncryptionKey: API.OperationMethod<
+  DeleteDbaasLogEncryptionKeyRequest,
+  DbaasLogsOperation,
+  DeleteDbaasLogEncryptionKeyError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDbaasLogEncryptionKeyRequest,
+  output: DbaasLogsOperation,
+  errors: [Forbidden, NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteDbaasLogInputError = Forbidden | NotFound | OvhOpError;
+/** Remove the specified input object */
+export const deleteDbaasLogInput: API.OperationMethod<
+  DeleteDbaasLogInputRequest,
+  DbaasLogsOperation,
+  DeleteDbaasLogInputError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDbaasLogInputRequest,
+  output: DbaasLogsOperation,
+  errors: [Forbidden, NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteDbaasLogOutputGraylogDashboardError =
+  | Forbidden
+  | NotFound
+  | OvhOpError;
+/** Remove specified graylog dashboard */
+export const deleteDbaasLogOutputGraylogDashboard: API.OperationMethod<
+  DeleteDbaasLogOutputGraylogDashboardRequest,
+  DbaasLogsOperation,
+  DeleteDbaasLogOutputGraylogDashboardError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDbaasLogOutputGraylogDashboardRequest,
+  output: DbaasLogsOperation,
+  errors: [Forbidden, NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteDbaasLogOutputGraylogStreamError =
+  | Forbidden
+  | NotFound
+  | OvhOpError;
+/** Remove specified graylog stream */
+export const deleteDbaasLogOutputGraylogStream: API.OperationMethod<
+  DeleteDbaasLogOutputGraylogStreamRequest,
+  DbaasLogsOperation,
+  DeleteDbaasLogOutputGraylogStreamError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDbaasLogOutputGraylogStreamRequest,
+  output: DbaasLogsOperation,
+  errors: [Forbidden, NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteDbaasLogOutputGraylogStreamAlertError =
+  | Forbidden
+  | NotFound
+  | OvhOpError;
+/** Remove alert from specified graylog stream */
+export const deleteDbaasLogOutputGraylogStreamAlert: API.OperationMethod<
+  DeleteDbaasLogOutputGraylogStreamAlertRequest,
+  DbaasLogsOperation,
+  DeleteDbaasLogOutputGraylogStreamAlertError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDbaasLogOutputGraylogStreamAlertRequest,
+  output: DbaasLogsOperation,
+  errors: [Forbidden, NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteDbaasLogOutputGraylogStreamRuleError =
+  | Forbidden
+  | NotFound
+  | OvhOpError;
+/** Remove specified graylog stream rule */
+export const deleteDbaasLogOutputGraylogStreamRule: API.OperationMethod<
+  DeleteDbaasLogOutputGraylogStreamRuleRequest,
+  DbaasLogsOperation,
+  DeleteDbaasLogOutputGraylogStreamRuleError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDbaasLogOutputGraylogStreamRuleRequest,
+  output: DbaasLogsOperation,
+  errors: [Forbidden, NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteDbaasLogOutputGraylogStreamSubscriptionError =
+  | NotFound
+  | OvhOpError;
+/** Delete a specified subscription targeting a specified graylog stream */
+export const deleteDbaasLogOutputGraylogStreamSubscription: API.OperationMethod<
+  DeleteDbaasLogOutputGraylogStreamSubscriptionRequest,
+  DbaasLogsOperation,
+  DeleteDbaasLogOutputGraylogStreamSubscriptionError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDbaasLogOutputGraylogStreamSubscriptionRequest,
+  output: DbaasLogsOperation,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteDbaasLogOutputMetricTenantError =
+  | Forbidden
+  | NotFound
+  | OvhOpError;
+/** Delete a metric tenant */
+export const deleteDbaasLogOutputMetricTenant: API.OperationMethod<
+  DeleteDbaasLogOutputMetricTenantRequest,
+  DbaasLogsOperation,
+  DeleteDbaasLogOutputMetricTenantError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDbaasLogOutputMetricTenantRequest,
+  output: DbaasLogsOperation,
+  errors: [Forbidden, NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteDbaasLogOutputMetricTenantSubscriptionError =
+  | NotFound
+  | OvhOpError;
+/** Delete a specified subscription targeting a specified metric tenant */
+export const deleteDbaasLogOutputMetricTenantSubscription: API.OperationMethod<
+  DeleteDbaasLogOutputMetricTenantSubscriptionRequest,
+  DbaasLogsOperation,
+  DeleteDbaasLogOutputMetricTenantSubscriptionError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDbaasLogOutputMetricTenantSubscriptionRequest,
+  output: DbaasLogsOperation,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteDbaasLogOutputOpensearchAliasError =
+  | Forbidden
+  | NotFound
+  | OvhOpError;
+/** Remove specified OpenSearch alias */
+export const deleteDbaasLogOutputOpensearchAlias: API.OperationMethod<
+  DeleteDbaasLogOutputOpensearchAliasRequest,
+  DbaasLogsOperation,
+  DeleteDbaasLogOutputOpensearchAliasError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDbaasLogOutputOpensearchAliasRequest,
+  output: DbaasLogsOperation,
+  errors: [Forbidden, NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteDbaasLogOutputOpensearchAliasIndexError =
+  | Forbidden
+  | NotFound
+  | OvhOpError;
+/** Detach a OpenSearch index from specified OpenSearch alias */
+export const deleteDbaasLogOutputOpensearchAliasIndex: API.OperationMethod<
+  DeleteDbaasLogOutputOpensearchAliasIndexRequest,
+  DbaasLogsOperation,
+  DeleteDbaasLogOutputOpensearchAliasIndexError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDbaasLogOutputOpensearchAliasIndexRequest,
+  output: DbaasLogsOperation,
+  errors: [Forbidden, NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteDbaasLogOutputOpensearchAliasStreamError =
+  | Forbidden
+  | NotFound
+  | OvhOpError;
+/** Detach a Graylog stream from specified OpenSearch alias */
+export const deleteDbaasLogOutputOpensearchAliasStream: API.OperationMethod<
+  DeleteDbaasLogOutputOpensearchAliasStreamRequest,
+  DbaasLogsOperation,
+  DeleteDbaasLogOutputOpensearchAliasStreamError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDbaasLogOutputOpensearchAliasStreamRequest,
+  output: DbaasLogsOperation,
+  errors: [Forbidden, NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteDbaasLogOutputOpensearchIndexError =
+  | Forbidden
+  | NotFound
+  | OvhOpError;
+/** Remove specified OpenSearch index */
+export const deleteDbaasLogOutputOpensearchIndex: API.OperationMethod<
+  DeleteDbaasLogOutputOpensearchIndexRequest,
+  DbaasLogsOperation,
+  DeleteDbaasLogOutputOpensearchIndexError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDbaasLogOutputOpensearchIndexRequest,
+  output: DbaasLogsOperation,
+  errors: [Forbidden, NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteDbaasLogOutputOpensearchOsdError =
+  | Forbidden
+  | NotFound
+  | OvhOpError;
+/** Remove specified OpenSearch Dashboards instance */
+export const deleteDbaasLogOutputOpensearchOsd: API.OperationMethod<
+  DeleteDbaasLogOutputOpensearchOsdRequest,
+  DbaasLogsOperation,
+  DeleteDbaasLogOutputOpensearchOsdError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDbaasLogOutputOpensearchOsdRequest,
+  output: DbaasLogsOperation,
+  errors: [Forbidden, NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteDbaasLogRoleError = Forbidden | NotFound | OvhOpError;
+/** Remove specified role */
+export const deleteDbaasLogRole: API.OperationMethod<
+  DeleteDbaasLogRoleRequest,
+  DbaasLogsOperation,
+  DeleteDbaasLogRoleError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDbaasLogRoleRequest,
+  output: DbaasLogsOperation,
+  errors: [Forbidden, NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteDbaasLogRoleMemberError = Forbidden | NotFound | OvhOpError;
+/** Remove user from the member list of specified role */
+export const deleteDbaasLogRoleMember: API.OperationMethod<
+  DeleteDbaasLogRoleMemberRequest,
+  DbaasLogsOperation,
+  DeleteDbaasLogRoleMemberError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDbaasLogRoleMemberRequest,
+  output: DbaasLogsOperation,
+  errors: [Forbidden, NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteDbaasLogRolePermissionError =
+  | Forbidden
+  | NotFound
+  | OvhOpError;
+/** Remove specified permission */
+export const deleteDbaasLogRolePermission: API.OperationMethod<
+  DeleteDbaasLogRolePermissionRequest,
+  DbaasLogsOperation,
+  DeleteDbaasLogRolePermissionError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDbaasLogRolePermissionRequest,
+  output: DbaasLogsOperation,
+  errors: [Forbidden, NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteDbaasLogTokenError = Forbidden | NotFound | OvhOpError;
+/** Delete the specified token */
+export const deleteDbaasLogToken: API.OperationMethod<
+  DeleteDbaasLogTokenRequest,
+  DbaasLogsOperation,
+  DeleteDbaasLogTokenError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDbaasLogTokenRequest,
+  output: DbaasLogsOperation,
+  errors: [Forbidden, NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DuplicateDbaasLogsOutputGraylogDashboardError =
   | Forbidden
   | NotFound
   | Conflict
   | OvhOpError;
-/** Update the service properties */
-export const putDbaasLogsServiceName: API.OperationMethod<
-  PutDbaasLogsServiceNameRequest,
+/** Copy all widgets from specified dashboard to a new one */
+export const duplicateDbaasLogsOutputGraylogDashboard: API.OperationMethod<
+  DuplicateDbaasLogsOutputGraylogDashboardRequest,
   DbaasLogsOperation,
-  PutDbaasLogsServiceNameError,
+  DuplicateDbaasLogsOutputGraylogDashboardError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutDbaasLogsServiceNameRequest,
+  input: DuplicateDbaasLogsOutputGraylogDashboardRequest,
   output: DbaasLogsOperation,
   errors: [Forbidden, NotFound, Conflict, UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutDbaasLogsServiceNameClusterClusterIdError =
+export type GetDbaasLogError = NotFound | OvhOpError;
+/** Returns the service object of connected identity. */
+export const getDbaasLog: API.OperationMethod<
+  GetDbaasLogRequest,
+  DbaasLogsServiceWithIAM,
+  GetDbaasLogError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDbaasLogRequest,
+  output: DbaasLogsServiceWithIAM,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDbaasLogClusterError = NotFound | OvhOpError;
+/** Returns details of an allowed cluster */
+export const getDbaasLogCluster: API.OperationMethod<
+  GetDbaasLogClusterRequest,
+  DbaasLogsCluster,
+  GetDbaasLogClusterError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDbaasLogClusterRequest,
+  output: DbaasLogsCluster,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDbaasLogClusterRetentionError =
   | Forbidden
   | NotFound
   | OvhOpError;
-/** Update details of an allowed cluster */
-export const putDbaasLogsServiceNameClusterClusterId: API.OperationMethod<
-  PutDbaasLogsServiceNameClusterClusterIdRequest,
-  DbaasLogsOperation,
-  PutDbaasLogsServiceNameClusterClusterIdError,
+/** Returns details of a retention */
+export const getDbaasLogClusterRetention: API.OperationMethod<
+  GetDbaasLogClusterRetentionRequest,
+  DbaasLogsClusterRetention,
+  GetDbaasLogClusterRetentionError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutDbaasLogsServiceNameClusterClusterIdRequest,
+  input: GetDbaasLogClusterRetentionRequest,
+  output: DbaasLogsClusterRetention,
+  errors: [Forbidden, NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDbaasLogEncryptionKeyError = Forbidden | NotFound | OvhOpError;
+/** Return details of an encryption key */
+export const getDbaasLogEncryptionKey: API.OperationMethod<
+  GetDbaasLogEncryptionKeyRequest,
+  DbaasLogsEncryptionKey,
+  GetDbaasLogEncryptionKeyError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDbaasLogEncryptionKeyRequest,
+  output: DbaasLogsEncryptionKey,
+  errors: [Forbidden, NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDbaasLogInputError = NotFound | OvhOpError;
+/** Returns details of specified input */
+export const getDbaasLogInput: API.OperationMethod<
+  GetDbaasLogInputRequest,
+  DbaasLogsInput,
+  GetDbaasLogInputError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDbaasLogInputRequest,
+  output: DbaasLogsInput,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDbaasLogInputConfigtestResultError = NotFound | OvhOpError;
+/** Returns the config test operation result */
+export const getDbaasLogInputConfigtestResult: API.OperationMethod<
+  GetDbaasLogInputConfigtestResultRequest,
+  DbaasLogsTestResult,
+  GetDbaasLogInputConfigtestResultError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDbaasLogInputConfigtestResultRequest,
+  output: DbaasLogsTestResult,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDbaasLogInputConfigurationFlowggerError = NotFound | OvhOpError;
+/** Returns the flowgger configuration */
+export const getDbaasLogInputConfigurationFlowgger: API.OperationMethod<
+  GetDbaasLogInputConfigurationFlowggerRequest,
+  DbaasLogsFlowggerConfiguration,
+  GetDbaasLogInputConfigurationFlowggerError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDbaasLogInputConfigurationFlowggerRequest,
+  output: DbaasLogsFlowggerConfiguration,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDbaasLogInputConfigurationLogstashError = NotFound | OvhOpError;
+/** Returns the logstash configuration */
+export const getDbaasLogInputConfigurationLogstash: API.OperationMethod<
+  GetDbaasLogInputConfigurationLogstashRequest,
+  DbaasLogsLogstashConfiguration,
+  GetDbaasLogInputConfigurationLogstashError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDbaasLogInputConfigurationLogstashRequest,
+  output: DbaasLogsLogstashConfiguration,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDbaasLogInputEngineError = NotFound | OvhOpError;
+/** Returns details of specified input engine */
+export const getDbaasLogInputEngine: API.OperationMethod<
+  GetDbaasLogInputEngineRequest,
+  DbaasLogsEngine,
+  GetDbaasLogInputEngineError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDbaasLogInputEngineRequest,
+  output: DbaasLogsEngine,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDbaasLogInputEngineHelperError = NotFound | OvhOpError;
+/** Returns details of specified input engine helper */
+export const getDbaasLogInputEngineHelper: API.OperationMethod<
+  GetDbaasLogInputEngineHelperRequest,
+  DbaasLogsHelper,
+  GetDbaasLogInputEngineHelperError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDbaasLogInputEngineHelperRequest,
+  output: DbaasLogsHelper,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDbaasLogMetricsError = NotFound | OvhOpError;
+/** Returns Metrics credentials */
+export const getDbaasLogMetrics: API.OperationMethod<
+  GetDbaasLogMetricsRequest,
+  DbaasLogsServiceMetric,
+  GetDbaasLogMetricsError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDbaasLogMetricsRequest,
+  output: DbaasLogsServiceMetric,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDbaasLogOperationError = NotFound | OvhOpError;
+/** Returns details of specified operation */
+export const getDbaasLogOperation: API.OperationMethod<
+  GetDbaasLogOperationRequest,
+  DbaasLogsOperation,
+  GetDbaasLogOperationError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDbaasLogOperationRequest,
+  output: DbaasLogsOperation,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDbaasLogOutputGraylogDashboardError = NotFound | OvhOpError;
+/** Returns details of specified graylog dashboard */
+export const getDbaasLogOutputGraylogDashboard: API.OperationMethod<
+  GetDbaasLogOutputGraylogDashboardRequest,
+  DbaasLogsDashboard,
+  GetDbaasLogOutputGraylogDashboardError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDbaasLogOutputGraylogDashboardRequest,
+  output: DbaasLogsDashboard,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDbaasLogOutputGraylogStreamError = NotFound | OvhOpError;
+/** Returns details of specified graylog stream */
+export const getDbaasLogOutputGraylogStream: API.OperationMethod<
+  GetDbaasLogOutputGraylogStreamRequest,
+  DbaasLogsStream,
+  GetDbaasLogOutputGraylogStreamError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDbaasLogOutputGraylogStreamRequest,
+  output: DbaasLogsStream,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDbaasLogOutputGraylogStreamAlertError = NotFound | OvhOpError;
+/** Returns details of specified graylog stream alert */
+export const getDbaasLogOutputGraylogStreamAlert: API.OperationMethod<
+  GetDbaasLogOutputGraylogStreamAlertRequest,
+  DbaasLogsStreamAlertCondition,
+  GetDbaasLogOutputGraylogStreamAlertError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDbaasLogOutputGraylogStreamAlertRequest,
+  output: DbaasLogsStreamAlertCondition,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDbaasLogOutputGraylogStreamArchiveError = NotFound | OvhOpError;
+/** Returns details of specified archive */
+export const getDbaasLogOutputGraylogStreamArchive: API.OperationMethod<
+  GetDbaasLogOutputGraylogStreamArchiveRequest,
+  DbaasLogsArchive,
+  GetDbaasLogOutputGraylogStreamArchiveError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDbaasLogOutputGraylogStreamArchiveRequest,
+  output: DbaasLogsArchive,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDbaasLogOutputGraylogStreamRuleError = NotFound | OvhOpError;
+/** Returns details of specified graylog stream rule */
+export const getDbaasLogOutputGraylogStreamRule: API.OperationMethod<
+  GetDbaasLogOutputGraylogStreamRuleRequest,
+  DbaasLogsStreamRule,
+  GetDbaasLogOutputGraylogStreamRuleError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDbaasLogOutputGraylogStreamRuleRequest,
+  output: DbaasLogsStreamRule,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDbaasLogOutputGraylogStreamSubscriptionError =
+  | NotFound
+  | OvhOpError;
+/** Returns details of specified graylog stream subscription */
+export const getDbaasLogOutputGraylogStreamSubscription: API.OperationMethod<
+  GetDbaasLogOutputGraylogStreamSubscriptionRequest,
+  DbaasLogsLogSubscription,
+  GetDbaasLogOutputGraylogStreamSubscriptionError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDbaasLogOutputGraylogStreamSubscriptionRequest,
+  output: DbaasLogsLogSubscription,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDbaasLogOutputMetricTenantError =
+  | Forbidden
+  | NotFound
+  | OvhOpError;
+/** Get the details about a metric tenant */
+export const getDbaasLogOutputMetricTenant: API.OperationMethod<
+  GetDbaasLogOutputMetricTenantRequest,
+  DbaasLogsMetricTenant,
+  GetDbaasLogOutputMetricTenantError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDbaasLogOutputMetricTenantRequest,
+  output: DbaasLogsMetricTenant,
+  errors: [Forbidden, NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDbaasLogOutputMetricTenantSubscriptionError =
+  | NotFound
+  | OvhOpError;
+/** Returns details of specified metric tenant subscription */
+export const getDbaasLogOutputMetricTenantSubscription: API.OperationMethod<
+  GetDbaasLogOutputMetricTenantSubscriptionRequest,
+  DbaasLogsMetricSubscription,
+  GetDbaasLogOutputMetricTenantSubscriptionError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDbaasLogOutputMetricTenantSubscriptionRequest,
+  output: DbaasLogsMetricSubscription,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDbaasLogOutputOpensearchAliasError = NotFound | OvhOpError;
+/** Returns specified OpenSearch alias */
+export const getDbaasLogOutputOpensearchAlias: API.OperationMethod<
+  GetDbaasLogOutputOpensearchAliasRequest,
+  DbaasLogsAlias,
+  GetDbaasLogOutputOpensearchAliasError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDbaasLogOutputOpensearchAliasRequest,
+  output: DbaasLogsAlias,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDbaasLogOutputOpensearchIndexError = NotFound | OvhOpError;
+/** Returns specified OpenSearch index */
+export const getDbaasLogOutputOpensearchIndex: API.OperationMethod<
+  GetDbaasLogOutputOpensearchIndexRequest,
+  DbaasLogsIndex,
+  GetDbaasLogOutputOpensearchIndexError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDbaasLogOutputOpensearchIndexRequest,
+  output: DbaasLogsIndex,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDbaasLogOutputOpensearchOsdError = NotFound | OvhOpError;
+/** Returns specified OpenSearch Dashboards instance */
+export const getDbaasLogOutputOpensearchOsd: API.OperationMethod<
+  GetDbaasLogOutputOpensearchOsdRequest,
+  DbaasLogsOsd,
+  GetDbaasLogOutputOpensearchOsdError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDbaasLogOutputOpensearchOsdRequest,
+  output: DbaasLogsOsd,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDbaasLogRoleError = Forbidden | NotFound | OvhOpError;
+/** Returns details of specified role */
+export const getDbaasLogRole: API.OperationMethod<
+  GetDbaasLogRoleRequest,
+  DbaasLogsRole,
+  GetDbaasLogRoleError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDbaasLogRoleRequest,
+  output: DbaasLogsRole,
+  errors: [Forbidden, NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDbaasLogRoleMemberError = Forbidden | NotFound | OvhOpError;
+/** Returns the member metadata */
+export const getDbaasLogRoleMember: API.OperationMethod<
+  GetDbaasLogRoleMemberRequest,
+  DbaasLogsMember,
+  GetDbaasLogRoleMemberError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDbaasLogRoleMemberRequest,
+  output: DbaasLogsMember,
+  errors: [Forbidden, NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDbaasLogRolePermissionError = NotFound | OvhOpError;
+/** Returns details of specified permission */
+export const getDbaasLogRolePermission: API.OperationMethod<
+  GetDbaasLogRolePermissionRequest,
+  DbaasLogsPermission,
+  GetDbaasLogRolePermissionError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDbaasLogRolePermissionRequest,
+  output: DbaasLogsPermission,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDbaasLogServiceInfosError = OvhOpError;
+/** Get service information */
+export const getDbaasLogServiceInfos: API.OperationMethod<
+  GetDbaasLogServiceInfosRequest,
+  ServicesService,
+  GetDbaasLogServiceInfosError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDbaasLogServiceInfosRequest,
+  output: ServicesService,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDbaasLogTokenError = Forbidden | NotFound | OvhOpError;
+/** Returns the specified token */
+export const getDbaasLogToken: API.OperationMethod<
+  GetDbaasLogTokenRequest,
+  DbaasLogsToken,
+  GetDbaasLogTokenError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDbaasLogTokenRequest,
+  output: DbaasLogsToken,
+  errors: [Forbidden, NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDbaasLogClusterError = NotFound | OvhOpError;
+/** Returns the list of allowed cluster */
+export const listDbaasLogCluster: API.OperationMethod<
+  ListDbaasLogClusterRequest,
+  ListDbaasLogClusterResponse,
+  ListDbaasLogClusterError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDbaasLogClusterRequest,
+  output: ListDbaasLogClusterResponse,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDbaasLogClusterRetentionError =
+  | Forbidden
+  | NotFound
+  | OvhOpError;
+/** List all the retention ID available for a given cluster */
+export const listDbaasLogClusterRetention: API.OperationMethod<
+  ListDbaasLogClusterRetentionRequest,
+  ListDbaasLogClusterRetentionResponse,
+  ListDbaasLogClusterRetentionError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDbaasLogClusterRetentionRequest,
+  output: ListDbaasLogClusterRetentionResponse,
+  errors: [Forbidden, NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDbaasLogEncryptionKeyError = NotFound | OvhOpError;
+/** Return the list of registred encryption keys */
+export const listDbaasLogEncryptionKey: API.OperationMethod<
+  ListDbaasLogEncryptionKeyRequest,
+  ListDbaasLogEncryptionKeyResponse,
+  ListDbaasLogEncryptionKeyError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDbaasLogEncryptionKeyRequest,
+  output: ListDbaasLogEncryptionKeyResponse,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDbaasLogInputError = NotFound | OvhOpError;
+/** Returns the list of registered input attached to the logged user */
+export const listDbaasLogInput: API.OperationMethod<
+  ListDbaasLogInputRequest,
+  ListDbaasLogInputResponse,
+  ListDbaasLogInputError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDbaasLogInputRequest,
+  output: ListDbaasLogInputResponse,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDbaasLogInputActionError = NotFound | OvhOpError;
+/** Returns actions of specified input */
+export const listDbaasLogInputAction: API.OperationMethod<
+  ListDbaasLogInputActionRequest,
+  ListDbaasLogInputActionResponse,
+  ListDbaasLogInputActionError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDbaasLogInputActionRequest,
+  output: ListDbaasLogInputActionResponse,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDbaasLogInputEngineError = OvhOpError;
+/** Returns the list of available input engines */
+export const listDbaasLogInputEngine: API.OperationMethod<
+  ListDbaasLogInputEngineRequest,
+  ListDbaasLogInputEngineResponse,
+  ListDbaasLogInputEngineError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDbaasLogInputEngineRequest,
+  output: ListDbaasLogInputEngineResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDbaasLogInputEngineHelperError = OvhOpError;
+/** Return the list of available helpers for the given input engine */
+export const listDbaasLogInputEngineHelper: API.OperationMethod<
+  ListDbaasLogInputEngineHelperRequest,
+  ListDbaasLogInputEngineHelperResponse,
+  ListDbaasLogInputEngineHelperError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDbaasLogInputEngineHelperRequest,
+  output: ListDbaasLogInputEngineHelperResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDbaasLogInputUrlError = NotFound | OvhOpError;
+/** Returns the list of urls of specified input */
+export const listDbaasLogInputUrl: API.OperationMethod<
+  ListDbaasLogInputUrlRequest,
+  ListDbaasLogInputUrlResponse,
+  ListDbaasLogInputUrlError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDbaasLogInputUrlRequest,
+  output: ListDbaasLogInputUrlResponse,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDbaasLogOperationError = NotFound | OvhOpError;
+/** Latest operations */
+export const listDbaasLogOperation: API.OperationMethod<
+  ListDbaasLogOperationRequest,
+  ListDbaasLogOperationResponse,
+  ListDbaasLogOperationError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDbaasLogOperationRequest,
+  output: ListDbaasLogOperationResponse,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDbaasLogOutputGraylogDashboardError = NotFound | OvhOpError;
+/** Returns the list of graylog dashboards */
+export const listDbaasLogOutputGraylogDashboard: API.OperationMethod<
+  ListDbaasLogOutputGraylogDashboardRequest,
+  ListDbaasLogOutputGraylogDashboardResponse,
+  ListDbaasLogOutputGraylogDashboardError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDbaasLogOutputGraylogDashboardRequest,
+  output: ListDbaasLogOutputGraylogDashboardResponse,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDbaasLogOutputGraylogDashboardUrlError = NotFound | OvhOpError;
+/** Returns the list of urls of specified graylog dashboard */
+export const listDbaasLogOutputGraylogDashboardUrl: API.OperationMethod<
+  ListDbaasLogOutputGraylogDashboardUrlRequest,
+  ListDbaasLogOutputGraylogDashboardUrlResponse,
+  ListDbaasLogOutputGraylogDashboardUrlError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDbaasLogOutputGraylogDashboardUrlRequest,
+  output: ListDbaasLogOutputGraylogDashboardUrlResponse,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDbaasLogOutputGraylogStreamError = NotFound | OvhOpError;
+/** Returns the list of graylog streams */
+export const listDbaasLogOutputGraylogStream: API.OperationMethod<
+  ListDbaasLogOutputGraylogStreamRequest,
+  ListDbaasLogOutputGraylogStreamResponse,
+  ListDbaasLogOutputGraylogStreamError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDbaasLogOutputGraylogStreamRequest,
+  output: ListDbaasLogOutputGraylogStreamResponse,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDbaasLogOutputGraylogStreamAlertError = NotFound | OvhOpError;
+/** Returns the list of configured alerts of specified graylog stream */
+export const listDbaasLogOutputGraylogStreamAlert: API.OperationMethod<
+  ListDbaasLogOutputGraylogStreamAlertRequest,
+  ListDbaasLogOutputGraylogStreamAlertResponse,
+  ListDbaasLogOutputGraylogStreamAlertError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDbaasLogOutputGraylogStreamAlertRequest,
+  output: ListDbaasLogOutputGraylogStreamAlertResponse,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDbaasLogOutputGraylogStreamArchiveError = NotFound | OvhOpError;
+/** Returns the list of archives */
+export const listDbaasLogOutputGraylogStreamArchive: API.OperationMethod<
+  ListDbaasLogOutputGraylogStreamArchiveRequest,
+  ListDbaasLogOutputGraylogStreamArchiveResponse,
+  ListDbaasLogOutputGraylogStreamArchiveError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDbaasLogOutputGraylogStreamArchiveRequest,
+  output: ListDbaasLogOutputGraylogStreamArchiveResponse,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDbaasLogOutputGraylogStreamArchiveEncryptionKeyError =
+  | NotFound
+  | OvhOpError;
+/** Get the list of encryption keys used to encrypt the archive */
+export const listDbaasLogOutputGraylogStreamArchiveEncryptionKey: API.OperationMethod<
+  ListDbaasLogOutputGraylogStreamArchiveEncryptionKeyRequest,
+  ListDbaasLogOutputGraylogStreamArchiveEncryptionKeyResponse,
+  ListDbaasLogOutputGraylogStreamArchiveEncryptionKeyError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDbaasLogOutputGraylogStreamArchiveEncryptionKeyRequest,
+  output: ListDbaasLogOutputGraylogStreamArchiveEncryptionKeyResponse,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDbaasLogOutputGraylogStreamRuleError = NotFound | OvhOpError;
+/** Returns the list of rules of specified graylog stream */
+export const listDbaasLogOutputGraylogStreamRule: API.OperationMethod<
+  ListDbaasLogOutputGraylogStreamRuleRequest,
+  ListDbaasLogOutputGraylogStreamRuleResponse,
+  ListDbaasLogOutputGraylogStreamRuleError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDbaasLogOutputGraylogStreamRuleRequest,
+  output: ListDbaasLogOutputGraylogStreamRuleResponse,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDbaasLogOutputGraylogStreamSubscriptionError =
+  | NotFound
+  | OvhOpError;
+/** Returns the list of subscriptions targeting a specified graylog stream */
+export const listDbaasLogOutputGraylogStreamSubscription: API.OperationMethod<
+  ListDbaasLogOutputGraylogStreamSubscriptionRequest,
+  ListDbaasLogOutputGraylogStreamSubscriptionResponse,
+  ListDbaasLogOutputGraylogStreamSubscriptionError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDbaasLogOutputGraylogStreamSubscriptionRequest,
+  output: ListDbaasLogOutputGraylogStreamSubscriptionResponse,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDbaasLogOutputGraylogStreamUrlError = NotFound | OvhOpError;
+/** Returns the list of urls of specified graylog stream */
+export const listDbaasLogOutputGraylogStreamUrl: API.OperationMethod<
+  ListDbaasLogOutputGraylogStreamUrlRequest,
+  ListDbaasLogOutputGraylogStreamUrlResponse,
+  ListDbaasLogOutputGraylogStreamUrlError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDbaasLogOutputGraylogStreamUrlRequest,
+  output: ListDbaasLogOutputGraylogStreamUrlResponse,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDbaasLogOutputMetricTenantError = NotFound | OvhOpError;
+/** List service's metric tenants */
+export const listDbaasLogOutputMetricTenant: API.OperationMethod<
+  ListDbaasLogOutputMetricTenantRequest,
+  ListDbaasLogOutputMetricTenantResponse,
+  ListDbaasLogOutputMetricTenantError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDbaasLogOutputMetricTenantRequest,
+  output: ListDbaasLogOutputMetricTenantResponse,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDbaasLogOutputMetricTenantSubscriptionError =
+  | NotFound
+  | OvhOpError;
+/** Returns the list of subscriptions targeting a specified metric tenant */
+export const listDbaasLogOutputMetricTenantSubscription: API.OperationMethod<
+  ListDbaasLogOutputMetricTenantSubscriptionRequest,
+  ListDbaasLogOutputMetricTenantSubscriptionResponse,
+  ListDbaasLogOutputMetricTenantSubscriptionError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDbaasLogOutputMetricTenantSubscriptionRequest,
+  output: ListDbaasLogOutputMetricTenantSubscriptionResponse,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDbaasLogOutputMetricTenantUrlError = NotFound | OvhOpError;
+/** Returns the list of urls of specified metric tenant */
+export const listDbaasLogOutputMetricTenantUrl: API.OperationMethod<
+  ListDbaasLogOutputMetricTenantUrlRequest,
+  ListDbaasLogOutputMetricTenantUrlResponse,
+  ListDbaasLogOutputMetricTenantUrlError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDbaasLogOutputMetricTenantUrlRequest,
+  output: ListDbaasLogOutputMetricTenantUrlResponse,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDbaasLogOutputOpensearchAliasError = NotFound | OvhOpError;
+/** Returns the list of alias for connected user */
+export const listDbaasLogOutputOpensearchAlias: API.OperationMethod<
+  ListDbaasLogOutputOpensearchAliasRequest,
+  ListDbaasLogOutputOpensearchAliasResponse,
+  ListDbaasLogOutputOpensearchAliasError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDbaasLogOutputOpensearchAliasRequest,
+  output: ListDbaasLogOutputOpensearchAliasResponse,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDbaasLogOutputOpensearchAliasIndexError = NotFound | OvhOpError;
+/** Returns the list of OpenSearch indexes attached to specified OpenSearch alias */
+export const listDbaasLogOutputOpensearchAliasIndex: API.OperationMethod<
+  ListDbaasLogOutputOpensearchAliasIndexRequest,
+  ListDbaasLogOutputOpensearchAliasIndexResponse,
+  ListDbaasLogOutputOpensearchAliasIndexError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDbaasLogOutputOpensearchAliasIndexRequest,
+  output: ListDbaasLogOutputOpensearchAliasIndexResponse,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDbaasLogOutputOpensearchAliasStreamError =
+  | NotFound
+  | OvhOpError;
+/** Returns the list of Graylog streams attached to specified OpenSearch alias */
+export const listDbaasLogOutputOpensearchAliasStream: API.OperationMethod<
+  ListDbaasLogOutputOpensearchAliasStreamRequest,
+  ListDbaasLogOutputOpensearchAliasStreamResponse,
+  ListDbaasLogOutputOpensearchAliasStreamError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDbaasLogOutputOpensearchAliasStreamRequest,
+  output: ListDbaasLogOutputOpensearchAliasStreamResponse,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDbaasLogOutputOpensearchAliasUrlError = NotFound | OvhOpError;
+/** Returns the list of urls of specified alias */
+export const listDbaasLogOutputOpensearchAliasUrl: API.OperationMethod<
+  ListDbaasLogOutputOpensearchAliasUrlRequest,
+  ListDbaasLogOutputOpensearchAliasUrlResponse,
+  ListDbaasLogOutputOpensearchAliasUrlError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDbaasLogOutputOpensearchAliasUrlRequest,
+  output: ListDbaasLogOutputOpensearchAliasUrlResponse,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDbaasLogOutputOpensearchIndexError = NotFound | OvhOpError;
+/** Returns the list of OpenSearch indexes */
+export const listDbaasLogOutputOpensearchIndex: API.OperationMethod<
+  ListDbaasLogOutputOpensearchIndexRequest,
+  ListDbaasLogOutputOpensearchIndexResponse,
+  ListDbaasLogOutputOpensearchIndexError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDbaasLogOutputOpensearchIndexRequest,
+  output: ListDbaasLogOutputOpensearchIndexResponse,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDbaasLogOutputOpensearchIndexUrlError = NotFound | OvhOpError;
+/** Returns the list of urls of specified index */
+export const listDbaasLogOutputOpensearchIndexUrl: API.OperationMethod<
+  ListDbaasLogOutputOpensearchIndexUrlRequest,
+  ListDbaasLogOutputOpensearchIndexUrlResponse,
+  ListDbaasLogOutputOpensearchIndexUrlError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDbaasLogOutputOpensearchIndexUrlRequest,
+  output: ListDbaasLogOutputOpensearchIndexUrlResponse,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDbaasLogOutputOpensearchOsdError = NotFound | OvhOpError;
+/** Returns the list of OpenSearch Dashboards instances */
+export const listDbaasLogOutputOpensearchOsd: API.OperationMethod<
+  ListDbaasLogOutputOpensearchOsdRequest,
+  ListDbaasLogOutputOpensearchOsdResponse,
+  ListDbaasLogOutputOpensearchOsdError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDbaasLogOutputOpensearchOsdRequest,
+  output: ListDbaasLogOutputOpensearchOsdResponse,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDbaasLogOutputOpensearchOsdUrlError = NotFound | OvhOpError;
+/** Returns the list of urls of specified OpenSearch Dashboards */
+export const listDbaasLogOutputOpensearchOsdUrl: API.OperationMethod<
+  ListDbaasLogOutputOpensearchOsdUrlRequest,
+  ListDbaasLogOutputOpensearchOsdUrlResponse,
+  ListDbaasLogOutputOpensearchOsdUrlError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDbaasLogOutputOpensearchOsdUrlRequest,
+  output: ListDbaasLogOutputOpensearchOsdUrlResponse,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDbaasLogRoleError = Forbidden | NotFound | OvhOpError;
+/** Returns the list of roles */
+export const listDbaasLogRole: API.OperationMethod<
+  ListDbaasLogRoleRequest,
+  ListDbaasLogRoleResponse,
+  ListDbaasLogRoleError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDbaasLogRoleRequest,
+  output: ListDbaasLogRoleResponse,
+  errors: [Forbidden, NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDbaasLogRoleMemberError = Forbidden | NotFound | OvhOpError;
+/** Returns the member list of specified role */
+export const listDbaasLogRoleMember: API.OperationMethod<
+  ListDbaasLogRoleMemberRequest,
+  ListDbaasLogRoleMemberResponse,
+  ListDbaasLogRoleMemberError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDbaasLogRoleMemberRequest,
+  output: ListDbaasLogRoleMemberResponse,
+  errors: [Forbidden, NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDbaasLogRolePermissionError = NotFound | OvhOpError;
+/** Returns the list of permissions of specified role */
+export const listDbaasLogRolePermission: API.OperationMethod<
+  ListDbaasLogRolePermissionRequest,
+  ListDbaasLogRolePermissionResponse,
+  ListDbaasLogRolePermissionError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDbaasLogRolePermissionRequest,
+  output: ListDbaasLogRolePermissionResponse,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDbaasLogsError = OvhOpError;
+/** List available services */
+export const listDbaasLogs: API.OperationMethod<
+  ListDbaasLogsRequest,
+  ListDbaasLogsResponse,
+  ListDbaasLogsError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDbaasLogsRequest,
+  output: ListDbaasLogsResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDbaasLogsOutputOpensearchError =
+  | Forbidden
+  | NotFound
+  | Conflict
+  | OvhOpError;
+/** Register a new OpenSearch index */
+export const listDbaasLogsOutputOpensearch: API.OperationMethod<
+  ListDbaasLogsOutputOpensearchRequest,
+  DbaasLogsOperation,
+  ListDbaasLogsOutputOpensearchError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDbaasLogsOutputOpensearchRequest,
+  output: DbaasLogsOperation,
+  errors: [Forbidden, NotFound, Conflict, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDbaasLogsOutputOpensearchAliasError =
+  | Forbidden
+  | NotFound
+  | Conflict
+  | OvhOpError;
+/** Attach a OpenSearch index to specified OpenSearch alias */
+export const listDbaasLogsOutputOpensearchAlias: API.OperationMethod<
+  ListDbaasLogsOutputOpensearchAliasRequest,
+  DbaasLogsOperation,
+  ListDbaasLogsOutputOpensearchAliasError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDbaasLogsOutputOpensearchAliasRequest,
+  output: DbaasLogsOperation,
+  errors: [Forbidden, NotFound, Conflict, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDbaasLogsRolePermissionError =
+  | Forbidden
+  | NotFound
+  | Conflict
+  | OvhOpError;
+/** Append a elasticsearch index permission to role */
+export const listDbaasLogsRolePermission: API.OperationMethod<
+  ListDbaasLogsRolePermissionRequest,
+  DbaasLogsOperation,
+  ListDbaasLogsRolePermissionError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDbaasLogsRolePermissionRequest,
+  output: DbaasLogsOperation,
+  errors: [Forbidden, NotFound, Conflict, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDbaasLogTokenError = Forbidden | NotFound | OvhOpError;
+/** Returns the list of service tokens */
+export const listDbaasLogToken: API.OperationMethod<
+  ListDbaasLogTokenRequest,
+  ListDbaasLogTokenResponse,
+  ListDbaasLogTokenError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDbaasLogTokenRequest,
+  output: ListDbaasLogTokenResponse,
+  errors: [Forbidden, NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDbaasLogUrlError = NotFound | OvhOpError;
+/** Returns platform useful urls */
+export const listDbaasLogUrl: API.OperationMethod<
+  ListDbaasLogUrlRequest,
+  ListDbaasLogUrlResponse,
+  ListDbaasLogUrlError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDbaasLogUrlRequest,
+  output: ListDbaasLogUrlResponse,
+  errors: [NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutDbaasLogError = Forbidden | NotFound | Conflict | OvhOpError;
+/** Update the service properties */
+export const putDbaasLog: API.OperationMethod<
+  PutDbaasLogRequest,
+  DbaasLogsOperation,
+  PutDbaasLogError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutDbaasLogRequest,
+  output: DbaasLogsOperation,
+  errors: [Forbidden, NotFound, Conflict, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutDbaasLogClusterError = Forbidden | NotFound | OvhOpError;
+/** Update details of an allowed cluster */
+export const putDbaasLogCluster: API.OperationMethod<
+  PutDbaasLogClusterRequest,
+  DbaasLogsOperation,
+  PutDbaasLogClusterError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutDbaasLogClusterRequest,
   output: DbaasLogsOperation,
   errors: [Forbidden, NotFound, UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutDbaasLogsServiceNameInputInputIdError =
+export type PutDbaasLogInputError =
   | Forbidden
   | NotFound
   | Conflict
   | OvhOpError;
 /** Update information of specified input object */
-export const putDbaasLogsServiceNameInputInputId: API.OperationMethod<
-  PutDbaasLogsServiceNameInputInputIdRequest,
+export const putDbaasLogInput: API.OperationMethod<
+  PutDbaasLogInputRequest,
   DbaasLogsOperation,
-  PutDbaasLogsServiceNameInputInputIdError,
+  PutDbaasLogInputError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutDbaasLogsServiceNameInputInputIdRequest,
+  input: PutDbaasLogInputRequest,
   output: DbaasLogsOperation,
   errors: [Forbidden, NotFound, Conflict, UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutDbaasLogsServiceNameInputInputIdConfigurationFlowggerError =
+export type PutDbaasLogInputConfigurationFlowggerError =
   | Forbidden
   | NotFound
   | OvhOpError;
 /** Update the flowgger configuration */
-export const putDbaasLogsServiceNameInputInputIdConfigurationFlowgger: API.OperationMethod<
-  PutDbaasLogsServiceNameInputInputIdConfigurationFlowggerRequest,
+export const putDbaasLogInputConfigurationFlowgger: API.OperationMethod<
+  PutDbaasLogInputConfigurationFlowggerRequest,
   DbaasLogsOperation,
-  PutDbaasLogsServiceNameInputInputIdConfigurationFlowggerError,
+  PutDbaasLogInputConfigurationFlowggerError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutDbaasLogsServiceNameInputInputIdConfigurationFlowggerRequest,
+  input: PutDbaasLogInputConfigurationFlowggerRequest,
   output: DbaasLogsOperation,
   errors: [Forbidden, NotFound, UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutDbaasLogsServiceNameInputInputIdConfigurationLogstashError =
+export type PutDbaasLogInputConfigurationLogstashError =
   | Forbidden
   | NotFound
   | OvhOpError;
 /** Update the logstash configuration */
-export const putDbaasLogsServiceNameInputInputIdConfigurationLogstash: API.OperationMethod<
-  PutDbaasLogsServiceNameInputInputIdConfigurationLogstashRequest,
+export const putDbaasLogInputConfigurationLogstash: API.OperationMethod<
+  PutDbaasLogInputConfigurationLogstashRequest,
   DbaasLogsOperation,
-  PutDbaasLogsServiceNameInputInputIdConfigurationLogstashError,
+  PutDbaasLogInputConfigurationLogstashError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutDbaasLogsServiceNameInputInputIdConfigurationLogstashRequest,
+  input: PutDbaasLogInputConfigurationLogstashRequest,
   output: DbaasLogsOperation,
   errors: [Forbidden, NotFound, UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutDbaasLogsServiceNameOutputGraylogDashboardDashboardIdError =
+export type PutDbaasLogOutputGraylogDashboardError =
   | Forbidden
   | NotFound
   | OvhOpError;
 /** Update information of specified graylog dashboard */
-export const putDbaasLogsServiceNameOutputGraylogDashboardDashboardId: API.OperationMethod<
-  PutDbaasLogsServiceNameOutputGraylogDashboardDashboardIdRequest,
+export const putDbaasLogOutputGraylogDashboard: API.OperationMethod<
+  PutDbaasLogOutputGraylogDashboardRequest,
   DbaasLogsOperation,
-  PutDbaasLogsServiceNameOutputGraylogDashboardDashboardIdError,
+  PutDbaasLogOutputGraylogDashboardError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutDbaasLogsServiceNameOutputGraylogDashboardDashboardIdRequest,
+  input: PutDbaasLogOutputGraylogDashboardRequest,
   output: DbaasLogsOperation,
   errors: [Forbidden, NotFound, UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutDbaasLogsServiceNameOutputGraylogStreamStreamIdError =
+export type PutDbaasLogOutputGraylogStreamError =
   | Forbidden
   | NotFound
   | Conflict
   | OvhOpError;
 /** Update information of specified graylog stream */
-export const putDbaasLogsServiceNameOutputGraylogStreamStreamId: API.OperationMethod<
-  PutDbaasLogsServiceNameOutputGraylogStreamStreamIdRequest,
+export const putDbaasLogOutputGraylogStream: API.OperationMethod<
+  PutDbaasLogOutputGraylogStreamRequest,
   DbaasLogsOperation,
-  PutDbaasLogsServiceNameOutputGraylogStreamStreamIdError,
+  PutDbaasLogOutputGraylogStreamError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutDbaasLogsServiceNameOutputGraylogStreamStreamIdRequest,
+  input: PutDbaasLogOutputGraylogStreamRequest,
   output: DbaasLogsOperation,
   errors: [Forbidden, NotFound, Conflict, UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertAlertIdError =
+export type PutDbaasLogOutputGraylogStreamAlertError =
   | Forbidden
   | NotFound
   | Conflict
   | OvhOpError;
 /** Update alert information of specified graylog stream */
-export const putDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertAlertId: API.OperationMethod<
-  PutDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertAlertIdRequest,
+export const putDbaasLogOutputGraylogStreamAlert: API.OperationMethod<
+  PutDbaasLogOutputGraylogStreamAlertRequest,
   DbaasLogsOperation,
-  PutDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertAlertIdError,
+  PutDbaasLogOutputGraylogStreamAlertError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutDbaasLogsServiceNameOutputGraylogStreamStreamIdAlertAlertIdRequest,
+  input: PutDbaasLogOutputGraylogStreamAlertRequest,
   output: DbaasLogsOperation,
   errors: [Forbidden, NotFound, Conflict, UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutDbaasLogsServiceNameOutputMetricTenantTenantIdError =
+export type PutDbaasLogOutputMetricTenantError =
   | Forbidden
   | NotFound
   | Conflict
   | OvhOpError;
 /** Update a metric tenant */
-export const putDbaasLogsServiceNameOutputMetricTenantTenantId: API.OperationMethod<
-  PutDbaasLogsServiceNameOutputMetricTenantTenantIdRequest,
+export const putDbaasLogOutputMetricTenant: API.OperationMethod<
+  PutDbaasLogOutputMetricTenantRequest,
   DbaasLogsOperation,
-  PutDbaasLogsServiceNameOutputMetricTenantTenantIdError,
+  PutDbaasLogOutputMetricTenantError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutDbaasLogsServiceNameOutputMetricTenantTenantIdRequest,
+  input: PutDbaasLogOutputMetricTenantRequest,
   output: DbaasLogsOperation,
   errors: [Forbidden, NotFound, Conflict, UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutDbaasLogsServiceNameOutputOpensearchAliasAliasIdError =
+export type PutDbaasLogOutputOpensearchAliasError =
   | Forbidden
   | NotFound
   | OvhOpError;
 /** Update specified OpenSearch alias */
-export const putDbaasLogsServiceNameOutputOpensearchAliasAliasId: API.OperationMethod<
-  PutDbaasLogsServiceNameOutputOpensearchAliasAliasIdRequest,
+export const putDbaasLogOutputOpensearchAlias: API.OperationMethod<
+  PutDbaasLogOutputOpensearchAliasRequest,
   DbaasLogsOperation,
-  PutDbaasLogsServiceNameOutputOpensearchAliasAliasIdError,
+  PutDbaasLogOutputOpensearchAliasError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutDbaasLogsServiceNameOutputOpensearchAliasAliasIdRequest,
+  input: PutDbaasLogOutputOpensearchAliasRequest,
   output: DbaasLogsOperation,
   errors: [Forbidden, NotFound, UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutDbaasLogsServiceNameOutputOpensearchIndexIndexIdError =
+export type PutDbaasLogOutputOpensearchIndexError =
   | Forbidden
   | NotFound
   | OvhOpError;
 /** Update specified OpenSearch index */
-export const putDbaasLogsServiceNameOutputOpensearchIndexIndexId: API.OperationMethod<
-  PutDbaasLogsServiceNameOutputOpensearchIndexIndexIdRequest,
+export const putDbaasLogOutputOpensearchIndex: API.OperationMethod<
+  PutDbaasLogOutputOpensearchIndexRequest,
   DbaasLogsOperation,
-  PutDbaasLogsServiceNameOutputOpensearchIndexIndexIdError,
+  PutDbaasLogOutputOpensearchIndexError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutDbaasLogsServiceNameOutputOpensearchIndexIndexIdRequest,
+  input: PutDbaasLogOutputOpensearchIndexRequest,
   output: DbaasLogsOperation,
   errors: [Forbidden, NotFound, UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutDbaasLogsServiceNameOutputOpensearchOsdOsdIdError =
+export type PutDbaasLogOutputOpensearchOsdError =
   | Forbidden
   | NotFound
   | OvhOpError;
 /** Update specified OpenSearch Dashboards instance */
-export const putDbaasLogsServiceNameOutputOpensearchOsdOsdId: API.OperationMethod<
-  PutDbaasLogsServiceNameOutputOpensearchOsdOsdIdRequest,
+export const putDbaasLogOutputOpensearchOsd: API.OperationMethod<
+  PutDbaasLogOutputOpensearchOsdRequest,
   DbaasLogsOperation,
-  PutDbaasLogsServiceNameOutputOpensearchOsdOsdIdError,
+  PutDbaasLogOutputOpensearchOsdError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutDbaasLogsServiceNameOutputOpensearchOsdOsdIdRequest,
+  input: PutDbaasLogOutputOpensearchOsdRequest,
   output: DbaasLogsOperation,
   errors: [Forbidden, NotFound, UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutDbaasLogsServiceNameRoleRoleIdError =
-  | Forbidden
-  | NotFound
-  | OvhOpError;
+export type PutDbaasLogRoleError = Forbidden | NotFound | OvhOpError;
 /** Update information of specified role */
-export const putDbaasLogsServiceNameRoleRoleId: API.OperationMethod<
-  PutDbaasLogsServiceNameRoleRoleIdRequest,
+export const putDbaasLogRole: API.OperationMethod<
+  PutDbaasLogRoleRequest,
   DbaasLogsOperation,
-  PutDbaasLogsServiceNameRoleRoleIdError,
+  PutDbaasLogRoleError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutDbaasLogsServiceNameRoleRoleIdRequest,
+  input: PutDbaasLogRoleRequest,
   output: DbaasLogsOperation,
   errors: [Forbidden, NotFound, UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutDbaasLogsServiceNameRoleRoleIdMemberUsernameError =
-  | Forbidden
-  | NotFound
-  | OvhOpError;
+export type PutDbaasLogRoleMemberError = Forbidden | NotFound | OvhOpError;
 /** Update the member metadata */
-export const putDbaasLogsServiceNameRoleRoleIdMemberUsername: API.OperationMethod<
-  PutDbaasLogsServiceNameRoleRoleIdMemberUsernameRequest,
+export const putDbaasLogRoleMember: API.OperationMethod<
+  PutDbaasLogRoleMemberRequest,
   DbaasLogsOperation,
-  PutDbaasLogsServiceNameRoleRoleIdMemberUsernameError,
+  PutDbaasLogRoleMemberError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutDbaasLogsServiceNameRoleRoleIdMemberUsernameRequest,
+  input: PutDbaasLogRoleMemberRequest,
   output: DbaasLogsOperation,
   errors: [Forbidden, NotFound, UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutDbaasLogsServiceNameServiceInfosError = OvhOpError;
+export type PutDbaasLogServiceInfosError = OvhOpError;
 /** Update service information */
-export const putDbaasLogsServiceNameServiceInfos: API.OperationMethod<
-  PutDbaasLogsServiceNameServiceInfosRequest,
-  PutDbaasLogsServiceNameServiceInfosResponse,
-  PutDbaasLogsServiceNameServiceInfosError,
+export const putDbaasLogServiceInfos: API.OperationMethod<
+  PutDbaasLogServiceInfosRequest,
+  PutDbaasLogServiceInfosResponse,
+  PutDbaasLogServiceInfosError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutDbaasLogsServiceNameServiceInfosRequest,
-  output: PutDbaasLogsServiceNameServiceInfosResponse,
+  input: PutDbaasLogServiceInfosRequest,
+  output: PutDbaasLogServiceInfosResponse,
   errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RestartDbaasLogsInputError = Forbidden | NotFound | OvhOpError;
+/** Schedule the restart of specified input */
+export const restartDbaasLogsInput: API.OperationMethod<
+  RestartDbaasLogsInputRequest,
+  DbaasLogsOperation,
+  RestartDbaasLogsInputError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RestartDbaasLogsInputRequest,
+  output: DbaasLogsOperation,
+  errors: [Forbidden, NotFound, UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type StartDbaasLogsInputError = Forbidden | NotFound | OvhOpError;
+/** Schedule the start of specified input */
+export const startDbaasLogsInput: API.OperationMethod<
+  StartDbaasLogsInputRequest,
+  DbaasLogsOperation,
+  StartDbaasLogsInputError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: StartDbaasLogsInputRequest,
+  output: DbaasLogsOperation,
+  errors: [Forbidden, NotFound, UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));

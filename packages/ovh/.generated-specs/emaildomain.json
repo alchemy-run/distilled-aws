@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.ovh.emaildomain#IamResourceTagFilterInput": {
@@ -24,28 +25,28 @@
         "smithy.api#documentation": "Resource tag filter"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainRequestIamTagsValueList": {
+    "com.ovh.emaildomain#ListEmailDomainRequestIamTagsValueList": {
       "type": "list",
       "member": {
         "target": "com.ovh.emaildomain#IamResourceTagFilterInput"
       },
       "traits": {}
     },
-    "com.ovh.emaildomain#GetEmailDomainRequestIamTagsMap": {
+    "com.ovh.emaildomain#ListEmailDomainRequestIamTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "com.ovh.emaildomain#GetEmailDomainRequestIamTagsValueList"
+        "target": "com.ovh.emaildomain#ListEmailDomainRequestIamTagsValueList"
       },
       "traits": {}
     },
-    "com.ovh.emaildomain#GetEmailDomainRequest": {
+    "com.ovh.emaildomain#ListEmailDomainRequest": {
       "type": "structure",
       "members": {
         "iamTags": {
-          "target": "com.ovh.emaildomain#GetEmailDomainRequestIamTagsMap",
+          "target": "com.ovh.emaildomain#ListEmailDomainRequestIamTagsMap",
           "traits": {
             "smithy.api#httpQuery": "iamTags",
             "smithy.api#documentation": "Filter resources on IAM tags"
@@ -56,18 +57,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainResponseBodyList": {
+    "com.ovh.emaildomain#ListEmailDomainResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.emaildomain#GetEmailDomainResponse": {
+    "com.ovh.emaildomain#ListEmailDomainResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emaildomain#GetEmailDomainResponseBodyList",
+          "target": "com.ovh.emaildomain#ListEmailDomainResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -78,13 +79,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomain": {
+    "com.ovh.emaildomain#ListEmailDomain": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainRequest"
+        "target": "com.ovh.emaildomain#ListEmailDomainRequest"
       },
       "output": {
-        "target": "com.ovh.emaildomain#GetEmailDomainResponse"
+        "target": "com.ovh.emaildomain#ListEmailDomainResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -95,7 +96,7 @@
         "smithy.api#documentation": "List available services"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDelegatedAccountRequest": {
+    "com.ovh.emaildomain#ListEmailDomainDelegatedAccountRequest": {
       "type": "structure",
       "members": {
         "accountName": {
@@ -117,18 +118,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDelegatedAccountResponseBodyList": {
+    "com.ovh.emaildomain#ListEmailDomainDelegatedAccountResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.emaildomain#GetEmailDomainDelegatedAccountResponse": {
+    "com.ovh.emaildomain#ListEmailDomainDelegatedAccountResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emaildomain#GetEmailDomainDelegatedAccountResponseBodyList",
+          "target": "com.ovh.emaildomain#ListEmailDomainDelegatedAccountResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -139,13 +140,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDelegatedAccount": {
+    "com.ovh.emaildomain#ListEmailDomainDelegatedAccount": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDelegatedAccountRequest"
+        "target": "com.ovh.emaildomain#ListEmailDomainDelegatedAccountRequest"
       },
       "output": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDelegatedAccountResponse"
+        "target": "com.ovh.emaildomain#ListEmailDomainDelegatedAccountResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -156,7 +157,7 @@
         "smithy.api#documentation": "Delegated emails"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDelegatedAccountEmailRequest": {
+    "com.ovh.emaildomain#GetEmailDomainDelegatedAccountRequest": {
       "type": "structure",
       "members": {
         "email": {
@@ -232,10 +233,10 @@
         "smithy.api#documentation": "List of allowed sizes for this account in bytes"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDelegatedAccountEmail": {
+    "com.ovh.emaildomain#GetEmailDomainDelegatedAccount": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDelegatedAccountEmailRequest"
+        "target": "com.ovh.emaildomain#GetEmailDomainDelegatedAccountRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainAccountDelegated"
@@ -249,7 +250,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emaildomain#PutEmailDomainDelegatedAccountEmailRequest": {
+    "com.ovh.emaildomain#PutEmailDomainDelegatedAccountRequest": {
       "type": "structure",
       "members": {
         "email": {
@@ -277,10 +278,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#PutEmailDomainDelegatedAccountEmail": {
+    "com.ovh.emaildomain#PutEmailDomainDelegatedAccount": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#PutEmailDomainDelegatedAccountEmailRequest"
+        "target": "com.ovh.emaildomain#PutEmailDomainDelegatedAccountRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -294,7 +295,7 @@
         "smithy.api#documentation": "Alter this object properties"
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDelegatedAccountEmailChangePasswordRequest": {
+    "com.ovh.emaildomain#CreateEmailDomainDelegatedAccountChangePasswordRequest": {
       "type": "structure",
       "members": {
         "email": {
@@ -412,10 +413,10 @@
         "smithy.api#documentation": "Possible values for pop action task"
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDelegatedAccountEmailChangePassword": {
+    "com.ovh.emaildomain#CreateEmailDomainDelegatedAccountChangePassword": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#PostEmailDomainDelegatedAccountEmailChangePasswordRequest"
+        "target": "com.ovh.emaildomain#CreateEmailDomainDelegatedAccountChangePasswordRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainTaskPop"
@@ -429,7 +430,7 @@
         "smithy.api#documentation": "Change mailbox password (length : [9;30], no space at begin and end, no accent)"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDelegatedAccountEmailFilterRequest": {
+    "com.ovh.emaildomain#ListEmailDomainDelegatedAccountFilterRequest": {
       "type": "structure",
       "members": {
         "email": {
@@ -445,18 +446,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDelegatedAccountEmailFilterResponseBodyList": {
+    "com.ovh.emaildomain#ListEmailDomainDelegatedAccountFilterResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.emaildomain#GetEmailDomainDelegatedAccountEmailFilterResponse": {
+    "com.ovh.emaildomain#ListEmailDomainDelegatedAccountFilterResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emaildomain#GetEmailDomainDelegatedAccountEmailFilterResponseBodyList",
+          "target": "com.ovh.emaildomain#ListEmailDomainDelegatedAccountFilterResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -467,13 +468,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDelegatedAccountEmailFilter": {
+    "com.ovh.emaildomain#ListEmailDomainDelegatedAccountFilter": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDelegatedAccountEmailFilterRequest"
+        "target": "com.ovh.emaildomain#ListEmailDomainDelegatedAccountFilterRequest"
       },
       "output": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDelegatedAccountEmailFilterResponse"
+        "target": "com.ovh.emaildomain#ListEmailDomainDelegatedAccountFilterResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -542,7 +543,7 @@
         "smithy.api#documentation": "Possible values for filter operation"
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDelegatedAccountEmailFilterRequest": {
+    "com.ovh.emaildomain#CreateEmailDomainDelegatedAccountFilterRequest": {
       "type": "structure",
       "members": {
         "email": {
@@ -651,10 +652,10 @@
         "smithy.api#documentation": "Task filter List"
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDelegatedAccountEmailFilter": {
+    "com.ovh.emaildomain#CreateEmailDomainDelegatedAccountFilter": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#PostEmailDomainDelegatedAccountEmailFilterRequest"
+        "target": "com.ovh.emaildomain#CreateEmailDomainDelegatedAccountFilterRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainTaskFilter"
@@ -668,7 +669,7 @@
         "smithy.api#documentation": "Create new filter for account"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDelegatedAccountEmailFilterNameRequest": {
+    "com.ovh.emaildomain#GetEmailDomainDelegatedAccountFilterRequest": {
       "type": "structure",
       "members": {
         "email": {
@@ -744,10 +745,10 @@
         "smithy.api#documentation": "Filter List"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDelegatedAccountEmailFilterName": {
+    "com.ovh.emaildomain#GetEmailDomainDelegatedAccountFilter": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDelegatedAccountEmailFilterNameRequest"
+        "target": "com.ovh.emaildomain#GetEmailDomainDelegatedAccountFilterRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainFilter"
@@ -761,7 +762,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emaildomain#DeleteEmailDomainDelegatedAccountEmailFilterNameRequest": {
+    "com.ovh.emaildomain#DeleteEmailDomainDelegatedAccountFilterRequest": {
       "type": "structure",
       "members": {
         "email": {
@@ -785,18 +786,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#DeleteEmailDomainDelegatedAccountEmailFilterNameResponseBodyList": {
+    "com.ovh.emaildomain#DeleteEmailDomainDelegatedAccountFilterResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.emaildomain#EmailDomainTaskFilter"
       },
       "traits": {}
     },
-    "com.ovh.emaildomain#DeleteEmailDomainDelegatedAccountEmailFilterNameResponse": {
+    "com.ovh.emaildomain#DeleteEmailDomainDelegatedAccountFilterResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emaildomain#DeleteEmailDomainDelegatedAccountEmailFilterNameResponseBodyList",
+          "target": "com.ovh.emaildomain#DeleteEmailDomainDelegatedAccountFilterResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -807,13 +808,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emaildomain#DeleteEmailDomainDelegatedAccountEmailFilterName": {
+    "com.ovh.emaildomain#DeleteEmailDomainDelegatedAccountFilter": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#DeleteEmailDomainDelegatedAccountEmailFilterNameRequest"
+        "target": "com.ovh.emaildomain#DeleteEmailDomainDelegatedAccountFilterRequest"
       },
       "output": {
-        "target": "com.ovh.emaildomain#DeleteEmailDomainDelegatedAccountEmailFilterNameResponse"
+        "target": "com.ovh.emaildomain#DeleteEmailDomainDelegatedAccountFilterResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -824,7 +825,7 @@
         "smithy.api#documentation": "Delete an existing filter"
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDelegatedAccountEmailFilterNameChangeActivityRequest": {
+    "com.ovh.emaildomain#CreateEmailDomainDelegatedAccountFilterChangeActivityRequest": {
       "type": "structure",
       "members": {
         "email": {
@@ -855,10 +856,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDelegatedAccountEmailFilterNameChangeActivity": {
+    "com.ovh.emaildomain#CreateEmailDomainDelegatedAccountFilterChangeActivity": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#PostEmailDomainDelegatedAccountEmailFilterNameChangeActivityRequest"
+        "target": "com.ovh.emaildomain#CreateEmailDomainDelegatedAccountFilterChangeActivityRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainTaskFilter"
@@ -872,7 +873,7 @@
         "smithy.api#documentation": "Change filter activity"
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDelegatedAccountEmailFilterNameChangePriorityRequest": {
+    "com.ovh.emaildomain#CreateEmailDomainDelegatedAccountFilterChangePriorityRequest": {
       "type": "structure",
       "members": {
         "email": {
@@ -903,10 +904,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDelegatedAccountEmailFilterNameChangePriority": {
+    "com.ovh.emaildomain#CreateEmailDomainDelegatedAccountFilterChangePriority": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#PostEmailDomainDelegatedAccountEmailFilterNameChangePriorityRequest"
+        "target": "com.ovh.emaildomain#CreateEmailDomainDelegatedAccountFilterChangePriorityRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainTaskFilter"
@@ -920,7 +921,7 @@
         "smithy.api#documentation": "Change filter priority"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDelegatedAccountEmailFilterNameRuleRequest": {
+    "com.ovh.emaildomain#ListEmailDomainDelegatedAccountFilterRuleRequest": {
       "type": "structure",
       "members": {
         "email": {
@@ -944,18 +945,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDelegatedAccountEmailFilterNameRuleResponseBodyList": {
+    "com.ovh.emaildomain#ListEmailDomainDelegatedAccountFilterRuleResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.emaildomain#GetEmailDomainDelegatedAccountEmailFilterNameRuleResponse": {
+    "com.ovh.emaildomain#ListEmailDomainDelegatedAccountFilterRuleResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emaildomain#GetEmailDomainDelegatedAccountEmailFilterNameRuleResponseBodyList",
+          "target": "com.ovh.emaildomain#ListEmailDomainDelegatedAccountFilterRuleResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -966,13 +967,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDelegatedAccountEmailFilterNameRule": {
+    "com.ovh.emaildomain#ListEmailDomainDelegatedAccountFilterRule": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDelegatedAccountEmailFilterNameRuleRequest"
+        "target": "com.ovh.emaildomain#ListEmailDomainDelegatedAccountFilterRuleRequest"
       },
       "output": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDelegatedAccountEmailFilterNameRuleResponse"
+        "target": "com.ovh.emaildomain#ListEmailDomainDelegatedAccountFilterRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -983,7 +984,7 @@
         "smithy.api#documentation": "Get rules"
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDelegatedAccountEmailFilterNameRuleRequest": {
+    "com.ovh.emaildomain#CreateEmailDomainDelegatedAccountFilterRuleRequest": {
       "type": "structure",
       "members": {
         "email": {
@@ -1028,10 +1029,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDelegatedAccountEmailFilterNameRule": {
+    "com.ovh.emaildomain#CreateEmailDomainDelegatedAccountFilterRule": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#PostEmailDomainDelegatedAccountEmailFilterNameRuleRequest"
+        "target": "com.ovh.emaildomain#CreateEmailDomainDelegatedAccountFilterRuleRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainTaskFilter"
@@ -1045,7 +1046,7 @@
         "smithy.api#documentation": "Create new rule for filter"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDelegatedAccountEmailFilterNameRuleIdRequest": {
+    "com.ovh.emaildomain#GetEmailDomainDelegatedAccountFilterRuleRequest": {
       "type": "structure",
       "members": {
         "email": {
@@ -1105,10 +1106,10 @@
         "smithy.api#documentation": "Rule List"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDelegatedAccountEmailFilterNameRuleId": {
+    "com.ovh.emaildomain#GetEmailDomainDelegatedAccountFilterRule": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDelegatedAccountEmailFilterNameRuleIdRequest"
+        "target": "com.ovh.emaildomain#GetEmailDomainDelegatedAccountFilterRuleRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainRule"
@@ -1122,7 +1123,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emaildomain#DeleteEmailDomainDelegatedAccountEmailFilterNameRuleIdRequest": {
+    "com.ovh.emaildomain#DeleteEmailDomainDelegatedAccountFilterRuleRequest": {
       "type": "structure",
       "members": {
         "email": {
@@ -1153,18 +1154,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#DeleteEmailDomainDelegatedAccountEmailFilterNameRuleIdResponseBodyList": {
+    "com.ovh.emaildomain#DeleteEmailDomainDelegatedAccountFilterRuleResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.emaildomain#EmailDomainTaskFilter"
       },
       "traits": {}
     },
-    "com.ovh.emaildomain#DeleteEmailDomainDelegatedAccountEmailFilterNameRuleIdResponse": {
+    "com.ovh.emaildomain#DeleteEmailDomainDelegatedAccountFilterRuleResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emaildomain#DeleteEmailDomainDelegatedAccountEmailFilterNameRuleIdResponseBodyList",
+          "target": "com.ovh.emaildomain#DeleteEmailDomainDelegatedAccountFilterRuleResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1175,13 +1176,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emaildomain#DeleteEmailDomainDelegatedAccountEmailFilterNameRuleId": {
+    "com.ovh.emaildomain#DeleteEmailDomainDelegatedAccountFilterRule": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#DeleteEmailDomainDelegatedAccountEmailFilterNameRuleIdRequest"
+        "target": "com.ovh.emaildomain#DeleteEmailDomainDelegatedAccountFilterRuleRequest"
       },
       "output": {
-        "target": "com.ovh.emaildomain#DeleteEmailDomainDelegatedAccountEmailFilterNameRuleIdResponse"
+        "target": "com.ovh.emaildomain#DeleteEmailDomainDelegatedAccountFilterRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1192,7 +1193,7 @@
         "smithy.api#documentation": "Delete an existing filter"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDelegatedAccountEmailResponderRequest": {
+    "com.ovh.emaildomain#GetEmailDomainDelegatedAccountResponderRequest": {
       "type": "structure",
       "members": {
         "email": {
@@ -1255,10 +1256,10 @@
         "smithy.api#documentation": "Responder of account"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDelegatedAccountEmailResponder": {
+    "com.ovh.emaildomain#GetEmailDomainDelegatedAccountResponder": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDelegatedAccountEmailResponderRequest"
+        "target": "com.ovh.emaildomain#GetEmailDomainDelegatedAccountResponderRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainResponderAccount"
@@ -1272,7 +1273,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDelegatedAccountEmailResponderRequest": {
+    "com.ovh.emaildomain#CreateEmailDomainDelegatedAccountResponderRequest": {
       "type": "structure",
       "members": {
         "email": {
@@ -1434,10 +1435,10 @@
         "smithy.api#documentation": "Possible type task"
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDelegatedAccountEmailResponder": {
+    "com.ovh.emaildomain#CreateEmailDomainDelegatedAccountResponder": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#PostEmailDomainDelegatedAccountEmailResponderRequest"
+        "target": "com.ovh.emaildomain#CreateEmailDomainDelegatedAccountResponderRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainTaskSpecialAccount"
@@ -1451,7 +1452,7 @@
         "smithy.api#documentation": "Create new responder in server"
       }
     },
-    "com.ovh.emaildomain#PutEmailDomainDelegatedAccountEmailResponderRequest": {
+    "com.ovh.emaildomain#PutEmailDomainDelegatedAccountResponderRequest": {
       "type": "structure",
       "members": {
         "email": {
@@ -1487,10 +1488,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#PutEmailDomainDelegatedAccountEmailResponder": {
+    "com.ovh.emaildomain#PutEmailDomainDelegatedAccountResponder": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#PutEmailDomainDelegatedAccountEmailResponderRequest"
+        "target": "com.ovh.emaildomain#PutEmailDomainDelegatedAccountResponderRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1504,7 +1505,7 @@
         "smithy.api#documentation": "Alter this object properties"
       }
     },
-    "com.ovh.emaildomain#DeleteEmailDomainDelegatedAccountEmailResponderRequest": {
+    "com.ovh.emaildomain#DeleteEmailDomainDelegatedAccountResponderRequest": {
       "type": "structure",
       "members": {
         "email": {
@@ -1520,10 +1521,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#DeleteEmailDomainDelegatedAccountEmailResponder": {
+    "com.ovh.emaildomain#DeleteEmailDomainDelegatedAccountResponder": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#DeleteEmailDomainDelegatedAccountEmailResponderRequest"
+        "target": "com.ovh.emaildomain#DeleteEmailDomainDelegatedAccountResponderRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainTaskSpecialAccount"
@@ -1537,7 +1538,7 @@
         "smithy.api#documentation": "Delete an existing responder in server"
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDelegatedAccountEmailUpdateUsageRequest": {
+    "com.ovh.emaildomain#UpdateEmailDomainDelegatedAccountUsageRequest": {
       "type": "structure",
       "members": {
         "email": {
@@ -1553,10 +1554,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDelegatedAccountEmailUpdateUsage": {
+    "com.ovh.emaildomain#UpdateEmailDomainDelegatedAccountUsage": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#PostEmailDomainDelegatedAccountEmailUpdateUsageRequest"
+        "target": "com.ovh.emaildomain#UpdateEmailDomainDelegatedAccountUsageRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1570,7 +1571,7 @@
         "smithy.api#documentation": "Update usage of account"
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDelegatedAccountEmailUsageRequest": {
+    "com.ovh.emaildomain#CreateEmailDomainDelegatedAccountUsageRequest": {
       "type": "structure",
       "members": {
         "email": {
@@ -1615,10 +1616,10 @@
         "smithy.api#documentation": "Structure of usage account"
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDelegatedAccountEmailUsage": {
+    "com.ovh.emaildomain#CreateEmailDomainDelegatedAccountUsage": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#PostEmailDomainDelegatedAccountEmailUsageRequest"
+        "target": "com.ovh.emaildomain#CreateEmailDomainDelegatedAccountUsageRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#DomainDomainUsageAccountStruct"
@@ -1679,7 +1680,7 @@
         "smithy.api#documentation": "Get limits of mailing list"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainRequest": {
+    "com.ovh.emaildomain#GetEmailDomainRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -1940,10 +1941,10 @@
         "smithy.api#documentation": "Possible values for status domain"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomain": {
+    "com.ovh.emaildomain#GetEmailDomain": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainRequest"
+        "target": "com.ovh.emaildomain#GetEmailDomainRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainDomainServiceWithIAM"
@@ -1957,7 +1958,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainAccountRequest": {
+    "com.ovh.emaildomain#ListEmailDomainAccountRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -1987,18 +1988,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainAccountResponseBodyList": {
+    "com.ovh.emaildomain#ListEmailDomainAccountResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainAccountResponse": {
+    "com.ovh.emaildomain#ListEmailDomainAccountResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainAccountResponseBodyList",
+          "target": "com.ovh.emaildomain#ListEmailDomainAccountResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -2009,13 +2010,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainAccount": {
+    "com.ovh.emaildomain#ListEmailDomainAccount": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainAccountRequest"
+        "target": "com.ovh.emaildomain#ListEmailDomainAccountRequest"
       },
       "output": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainAccountResponse"
+        "target": "com.ovh.emaildomain#ListEmailDomainAccountResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2026,7 +2027,7 @@
         "smithy.api#documentation": "Get accounts"
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainAccountRequest": {
+    "com.ovh.emaildomain#CreateEmailDomainAccountRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -2069,10 +2070,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainAccount": {
+    "com.ovh.emaildomain#CreateEmailDomainAccount": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#PostEmailDomainDomainAccountRequest"
+        "target": "com.ovh.emaildomain#CreateEmailDomainAccountRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainTaskPop"
@@ -2086,7 +2087,7 @@
         "smithy.api#documentation": "Create new mailbox in server"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameRequest": {
+    "com.ovh.emaildomain#GetEmailDomainAccountRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -2154,10 +2155,10 @@
         "smithy.api#documentation": "Account List"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountName": {
+    "com.ovh.emaildomain#GetEmailDomainAccount": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameRequest"
+        "target": "com.ovh.emaildomain#GetEmailDomainAccountRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainAccount"
@@ -2171,7 +2172,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emaildomain#PutEmailDomainDomainAccountAccountNameRequest": {
+    "com.ovh.emaildomain#PutEmailDomainAccountRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -2207,10 +2208,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#PutEmailDomainDomainAccountAccountName": {
+    "com.ovh.emaildomain#PutEmailDomainAccount": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#PutEmailDomainDomainAccountAccountNameRequest"
+        "target": "com.ovh.emaildomain#PutEmailDomainAccountRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2224,7 +2225,7 @@
         "smithy.api#documentation": "Alter this object properties"
       }
     },
-    "com.ovh.emaildomain#DeleteEmailDomainDomainAccountAccountNameRequest": {
+    "com.ovh.emaildomain#DeleteEmailDomainAccountRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -2248,10 +2249,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#DeleteEmailDomainDomainAccountAccountName": {
+    "com.ovh.emaildomain#DeleteEmailDomainAccount": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#DeleteEmailDomainDomainAccountAccountNameRequest"
+        "target": "com.ovh.emaildomain#DeleteEmailDomainAccountRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainTaskPop"
@@ -2265,7 +2266,7 @@
         "smithy.api#documentation": "Delete an existing mailbox in server"
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainAccountAccountNameChangePasswordRequest": {
+    "com.ovh.emaildomain#CreateEmailDomainAccountChangePasswordRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -2297,10 +2298,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainAccountAccountNameChangePassword": {
+    "com.ovh.emaildomain#CreateEmailDomainAccountChangePassword": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#PostEmailDomainDomainAccountAccountNameChangePasswordRequest"
+        "target": "com.ovh.emaildomain#CreateEmailDomainAccountChangePasswordRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainTaskPop"
@@ -2314,7 +2315,7 @@
         "smithy.api#documentation": "Change mailbox password (length : [9;30], no space at begin and end, no accent)"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameDelegationRequest": {
+    "com.ovh.emaildomain#ListEmailDomainAccountDelegationRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -2338,18 +2339,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameDelegationResponseBodyList": {
+    "com.ovh.emaildomain#ListEmailDomainAccountDelegationResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameDelegationResponse": {
+    "com.ovh.emaildomain#ListEmailDomainAccountDelegationResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameDelegationResponseBodyList",
+          "target": "com.ovh.emaildomain#ListEmailDomainAccountDelegationResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -2360,13 +2361,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameDelegation": {
+    "com.ovh.emaildomain#ListEmailDomainAccountDelegation": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameDelegationRequest"
+        "target": "com.ovh.emaildomain#ListEmailDomainAccountDelegationRequest"
       },
       "output": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameDelegationResponse"
+        "target": "com.ovh.emaildomain#ListEmailDomainAccountDelegationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2377,7 +2378,7 @@
         "smithy.api#documentation": "Get delegations"
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainAccountAccountNameDelegationRequest": {
+    "com.ovh.emaildomain#CreateEmailDomainAccountDelegationRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -2408,7 +2409,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainAccountAccountNameDelegationResponse": {
+    "com.ovh.emaildomain#CreateEmailDomainAccountDelegationResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -2423,13 +2424,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainAccountAccountNameDelegation": {
+    "com.ovh.emaildomain#CreateEmailDomainAccountDelegation": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#PostEmailDomainDomainAccountAccountNameDelegationRequest"
+        "target": "com.ovh.emaildomain#CreateEmailDomainAccountDelegationRequest"
       },
       "output": {
-        "target": "com.ovh.emaildomain#PostEmailDomainDomainAccountAccountNameDelegationResponse"
+        "target": "com.ovh.emaildomain#CreateEmailDomainAccountDelegationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2440,7 +2441,7 @@
         "smithy.api#documentation": "Create delegation for this account"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameDelegationAccountIdRequest": {
+    "com.ovh.emaildomain#GetEmailDomainAccountDelegationRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -2486,10 +2487,10 @@
         "smithy.api#documentation": "Delegation List"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameDelegationAccountId": {
+    "com.ovh.emaildomain#GetEmailDomainAccountDelegation": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameDelegationAccountIdRequest"
+        "target": "com.ovh.emaildomain#GetEmailDomainAccountDelegationRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainDelegation"
@@ -2503,7 +2504,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emaildomain#DeleteEmailDomainDomainAccountAccountNameDelegationAccountIdRequest": {
+    "com.ovh.emaildomain#DeleteEmailDomainAccountDelegationRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -2535,7 +2536,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#DeleteEmailDomainDomainAccountAccountNameDelegationAccountIdResponse": {
+    "com.ovh.emaildomain#DeleteEmailDomainAccountDelegationResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -2550,13 +2551,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emaildomain#DeleteEmailDomainDomainAccountAccountNameDelegationAccountId": {
+    "com.ovh.emaildomain#DeleteEmailDomainAccountDelegation": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#DeleteEmailDomainDomainAccountAccountNameDelegationAccountIdRequest"
+        "target": "com.ovh.emaildomain#DeleteEmailDomainAccountDelegationRequest"
       },
       "output": {
-        "target": "com.ovh.emaildomain#DeleteEmailDomainDomainAccountAccountNameDelegationAccountIdResponse"
+        "target": "com.ovh.emaildomain#DeleteEmailDomainAccountDelegationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2567,7 +2568,7 @@
         "smithy.api#documentation": "Delete an existing delegation"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameFilterRequest": {
+    "com.ovh.emaildomain#ListEmailDomainAccountFilterRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -2591,18 +2592,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameFilterResponseBodyList": {
+    "com.ovh.emaildomain#ListEmailDomainAccountFilterResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameFilterResponse": {
+    "com.ovh.emaildomain#ListEmailDomainAccountFilterResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameFilterResponseBodyList",
+          "target": "com.ovh.emaildomain#ListEmailDomainAccountFilterResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -2613,13 +2614,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameFilter": {
+    "com.ovh.emaildomain#ListEmailDomainAccountFilter": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameFilterRequest"
+        "target": "com.ovh.emaildomain#ListEmailDomainAccountFilterRequest"
       },
       "output": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameFilterResponse"
+        "target": "com.ovh.emaildomain#ListEmailDomainAccountFilterResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2630,7 +2631,7 @@
         "smithy.api#documentation": "Get filters"
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainAccountAccountNameFilterRequest": {
+    "com.ovh.emaildomain#CreateEmailDomainAccountFilterRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -2709,10 +2710,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainAccountAccountNameFilter": {
+    "com.ovh.emaildomain#CreateEmailDomainAccountFilter": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#PostEmailDomainDomainAccountAccountNameFilterRequest"
+        "target": "com.ovh.emaildomain#CreateEmailDomainAccountFilterRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainTaskFilter"
@@ -2726,7 +2727,7 @@
         "smithy.api#documentation": "Create new filter for account"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameFilterNameRequest": {
+    "com.ovh.emaildomain#GetEmailDomainAccountFilterRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -2758,10 +2759,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameFilterName": {
+    "com.ovh.emaildomain#GetEmailDomainAccountFilter": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameFilterNameRequest"
+        "target": "com.ovh.emaildomain#GetEmailDomainAccountFilterRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainFilter"
@@ -2775,7 +2776,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emaildomain#DeleteEmailDomainDomainAccountAccountNameFilterNameRequest": {
+    "com.ovh.emaildomain#DeleteEmailDomainAccountFilterRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -2807,18 +2808,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#DeleteEmailDomainDomainAccountAccountNameFilterNameResponseBodyList": {
+    "com.ovh.emaildomain#DeleteEmailDomainAccountFilterResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.emaildomain#EmailDomainTaskFilter"
       },
       "traits": {}
     },
-    "com.ovh.emaildomain#DeleteEmailDomainDomainAccountAccountNameFilterNameResponse": {
+    "com.ovh.emaildomain#DeleteEmailDomainAccountFilterResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emaildomain#DeleteEmailDomainDomainAccountAccountNameFilterNameResponseBodyList",
+          "target": "com.ovh.emaildomain#DeleteEmailDomainAccountFilterResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -2829,13 +2830,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emaildomain#DeleteEmailDomainDomainAccountAccountNameFilterName": {
+    "com.ovh.emaildomain#DeleteEmailDomainAccountFilter": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#DeleteEmailDomainDomainAccountAccountNameFilterNameRequest"
+        "target": "com.ovh.emaildomain#DeleteEmailDomainAccountFilterRequest"
       },
       "output": {
-        "target": "com.ovh.emaildomain#DeleteEmailDomainDomainAccountAccountNameFilterNameResponse"
+        "target": "com.ovh.emaildomain#DeleteEmailDomainAccountFilterResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2846,7 +2847,7 @@
         "smithy.api#documentation": "Delete an existing filter"
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainAccountAccountNameFilterNameChangeActivityRequest": {
+    "com.ovh.emaildomain#CreateEmailDomainAccountFilterChangeActivityRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -2885,10 +2886,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainAccountAccountNameFilterNameChangeActivity": {
+    "com.ovh.emaildomain#CreateEmailDomainAccountFilterChangeActivity": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#PostEmailDomainDomainAccountAccountNameFilterNameChangeActivityRequest"
+        "target": "com.ovh.emaildomain#CreateEmailDomainAccountFilterChangeActivityRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainTaskFilter"
@@ -2902,7 +2903,7 @@
         "smithy.api#documentation": "Change filter activity"
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainAccountAccountNameFilterNameChangePriorityRequest": {
+    "com.ovh.emaildomain#CreateEmailDomainAccountFilterChangePriorityRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -2941,10 +2942,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainAccountAccountNameFilterNameChangePriority": {
+    "com.ovh.emaildomain#CreateEmailDomainAccountFilterChangePriority": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#PostEmailDomainDomainAccountAccountNameFilterNameChangePriorityRequest"
+        "target": "com.ovh.emaildomain#CreateEmailDomainAccountFilterChangePriorityRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainTaskFilter"
@@ -2958,7 +2959,7 @@
         "smithy.api#documentation": "Change filter priority"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameFilterNameRuleRequest": {
+    "com.ovh.emaildomain#ListEmailDomainAccountFilterRuleRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -2990,18 +2991,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameFilterNameRuleResponseBodyList": {
+    "com.ovh.emaildomain#ListEmailDomainAccountFilterRuleResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameFilterNameRuleResponse": {
+    "com.ovh.emaildomain#ListEmailDomainAccountFilterRuleResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameFilterNameRuleResponseBodyList",
+          "target": "com.ovh.emaildomain#ListEmailDomainAccountFilterRuleResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -3012,13 +3013,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameFilterNameRule": {
+    "com.ovh.emaildomain#ListEmailDomainAccountFilterRule": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameFilterNameRuleRequest"
+        "target": "com.ovh.emaildomain#ListEmailDomainAccountFilterRuleRequest"
       },
       "output": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameFilterNameRuleResponse"
+        "target": "com.ovh.emaildomain#ListEmailDomainAccountFilterRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3029,7 +3030,7 @@
         "smithy.api#documentation": "Get rules"
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainAccountAccountNameFilterNameRuleRequest": {
+    "com.ovh.emaildomain#CreateEmailDomainAccountFilterRuleRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -3082,10 +3083,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainAccountAccountNameFilterNameRule": {
+    "com.ovh.emaildomain#CreateEmailDomainAccountFilterRule": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#PostEmailDomainDomainAccountAccountNameFilterNameRuleRequest"
+        "target": "com.ovh.emaildomain#CreateEmailDomainAccountFilterRuleRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainTaskFilter"
@@ -3099,7 +3100,7 @@
         "smithy.api#documentation": "Create new rule for filter"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameFilterNameRuleIdRequest": {
+    "com.ovh.emaildomain#GetEmailDomainAccountFilterRuleRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -3138,10 +3139,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameFilterNameRuleId": {
+    "com.ovh.emaildomain#GetEmailDomainAccountFilterRule": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameFilterNameRuleIdRequest"
+        "target": "com.ovh.emaildomain#GetEmailDomainAccountFilterRuleRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainRule"
@@ -3155,7 +3156,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emaildomain#DeleteEmailDomainDomainAccountAccountNameFilterNameRuleIdRequest": {
+    "com.ovh.emaildomain#DeleteEmailDomainAccountFilterRuleRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -3194,18 +3195,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#DeleteEmailDomainDomainAccountAccountNameFilterNameRuleIdResponseBodyList": {
+    "com.ovh.emaildomain#DeleteEmailDomainAccountFilterRuleResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.emaildomain#EmailDomainTaskFilter"
       },
       "traits": {}
     },
-    "com.ovh.emaildomain#DeleteEmailDomainDomainAccountAccountNameFilterNameRuleIdResponse": {
+    "com.ovh.emaildomain#DeleteEmailDomainAccountFilterRuleResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emaildomain#DeleteEmailDomainDomainAccountAccountNameFilterNameRuleIdResponseBodyList",
+          "target": "com.ovh.emaildomain#DeleteEmailDomainAccountFilterRuleResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -3216,13 +3217,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emaildomain#DeleteEmailDomainDomainAccountAccountNameFilterNameRuleId": {
+    "com.ovh.emaildomain#DeleteEmailDomainAccountFilterRule": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#DeleteEmailDomainDomainAccountAccountNameFilterNameRuleIdRequest"
+        "target": "com.ovh.emaildomain#DeleteEmailDomainAccountFilterRuleRequest"
       },
       "output": {
-        "target": "com.ovh.emaildomain#DeleteEmailDomainDomainAccountAccountNameFilterNameRuleIdResponse"
+        "target": "com.ovh.emaildomain#DeleteEmailDomainAccountFilterRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3265,7 +3266,7 @@
         "smithy.api#documentation": "Types of migration service"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameMigrateRequest": {
+    "com.ovh.emaildomain#ListEmailDomainAccountMigrateRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -3296,18 +3297,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameMigrateResponseBodyList": {
+    "com.ovh.emaildomain#ListEmailDomainAccountMigrateResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameMigrateResponse": {
+    "com.ovh.emaildomain#ListEmailDomainAccountMigrateResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameMigrateResponseBodyList",
+          "target": "com.ovh.emaildomain#ListEmailDomainAccountMigrateResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -3318,13 +3319,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameMigrate": {
+    "com.ovh.emaildomain#ListEmailDomainAccountMigrate": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameMigrateRequest"
+        "target": "com.ovh.emaildomain#ListEmailDomainAccountMigrateRequest"
       },
       "output": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameMigrateResponse"
+        "target": "com.ovh.emaildomain#ListEmailDomainAccountMigrateResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3335,7 +3336,7 @@
         "smithy.api#documentation": "Get migration service"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameMigrateDestinationServiceNameRequest": {
+    "com.ovh.emaildomain#GetEmailDomainAccountMigrateRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -3417,10 +3418,10 @@
         "smithy.api#documentation": "Migration service"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameMigrateDestinationServiceName": {
+    "com.ovh.emaildomain#GetEmailDomainAccountMigrate": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameMigrateDestinationServiceNameRequest"
+        "target": "com.ovh.emaildomain#GetEmailDomainAccountMigrateRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainMigrationService"
@@ -3434,7 +3435,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameMigrateDestinationServiceNameDestinationEmailAddressRequest": {
+    "com.ovh.emaildomain#ListEmailDomainAccountMigrateDestinationEmailAddressRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -3473,18 +3474,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameMigrateDestinationServiceNameDestinationEmailAddressResponseBodyList": {
+    "com.ovh.emaildomain#ListEmailDomainAccountMigrateDestinationEmailAddressResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameMigrateDestinationServiceNameDestinationEmailAddressResponse": {
+    "com.ovh.emaildomain#ListEmailDomainAccountMigrateDestinationEmailAddressResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameMigrateDestinationServiceNameDestinationEmailAddressResponseBodyList",
+          "target": "com.ovh.emaildomain#ListEmailDomainAccountMigrateDestinationEmailAddressResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -3495,13 +3496,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameMigrateDestinationServiceNameDestinationEmailAddress": {
+    "com.ovh.emaildomain#ListEmailDomainAccountMigrateDestinationEmailAddress": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameMigrateDestinationServiceNameDestinationEmailAddressRequest"
+        "target": "com.ovh.emaildomain#ListEmailDomainAccountMigrateDestinationEmailAddressRequest"
       },
       "output": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameMigrateDestinationServiceNameDestinationEmailAddressResponse"
+        "target": "com.ovh.emaildomain#ListEmailDomainAccountMigrateDestinationEmailAddressResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3512,7 +3513,7 @@
         "smithy.api#documentation": "List of email address available for migration"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameMigrateDestinationServiceNameDestinationEmailAddressDestinationEmailAddressRequest": {
+    "com.ovh.emaildomain#GetEmailDomainAccountMigrateDestinationEmailAddressRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -3572,10 +3573,10 @@
         "smithy.api#documentation": "Migration account"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameMigrateDestinationServiceNameDestinationEmailAddressDestinationEmailAddress": {
+    "com.ovh.emaildomain#GetEmailDomainAccountMigrateDestinationEmailAddress": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameMigrateDestinationServiceNameDestinationEmailAddressDestinationEmailAddressRequest"
+        "target": "com.ovh.emaildomain#GetEmailDomainAccountMigrateDestinationEmailAddressRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainMigrationAccount"
@@ -3589,7 +3590,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameMigrateDestinationServiceNameDestinationEmailAddressDestinationEmailAddressCheckMigrateRequest": {
+    "com.ovh.emaildomain#ListEmailDomainAccountMigrateDestinationEmailAddressCheckMigrateRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -3848,10 +3849,10 @@
         "smithy.api#documentation": "List of warnings"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameMigrateDestinationServiceNameDestinationEmailAddressDestinationEmailAddressCheckMigrate": {
+    "com.ovh.emaildomain#ListEmailDomainAccountMigrateDestinationEmailAddressCheckMigrate": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameMigrateDestinationServiceNameDestinationEmailAddressDestinationEmailAddressCheckMigrateRequest"
+        "target": "com.ovh.emaildomain#ListEmailDomainAccountMigrateDestinationEmailAddressCheckMigrateRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainMigrationCheckStruct"
@@ -3865,7 +3866,7 @@
         "smithy.api#documentation": "Check if it's possible to migrate"
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainAccountAccountNameMigrateDestinationServiceNameDestinationEmailAddressDestinationEmailAddressMigrateRequest": {
+    "com.ovh.emaildomain#MigrateEmailDomainAccountMigrateDestinationEmailAddressRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -3913,10 +3914,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainAccountAccountNameMigrateDestinationServiceNameDestinationEmailAddressDestinationEmailAddressMigrate": {
+    "com.ovh.emaildomain#MigrateEmailDomainAccountMigrateDestinationEmailAddress": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#PostEmailDomainDomainAccountAccountNameMigrateDestinationServiceNameDestinationEmailAddressDestinationEmailAddressMigrateRequest"
+        "target": "com.ovh.emaildomain#MigrateEmailDomainAccountMigrateDestinationEmailAddressRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainTaskPop"
@@ -3930,7 +3931,7 @@
         "smithy.api#documentation": "Migrate account to destination account"
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainAccountAccountNameUpdateUsageRequest": {
+    "com.ovh.emaildomain#UpdateEmailDomainAccountUsageRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -3954,10 +3955,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainAccountAccountNameUpdateUsage": {
+    "com.ovh.emaildomain#UpdateEmailDomainAccountUsage": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#PostEmailDomainDomainAccountAccountNameUpdateUsageRequest"
+        "target": "com.ovh.emaildomain#UpdateEmailDomainAccountUsageRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3971,7 +3972,7 @@
         "smithy.api#documentation": "Update usage of account"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameUsageRequest": {
+    "com.ovh.emaildomain#GetEmailDomainAccountUsageRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -3995,10 +3996,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameUsage": {
+    "com.ovh.emaildomain#GetEmailDomainAccountUsage": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameUsageRequest"
+        "target": "com.ovh.emaildomain#GetEmailDomainAccountUsageRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#DomainDomainUsageAccountStruct"
@@ -4012,7 +4013,7 @@
         "smithy.api#documentation": "usage of account"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainAclRequest": {
+    "com.ovh.emaildomain#ListEmailDomainAclRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -4028,18 +4029,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainAclResponseBodyList": {
+    "com.ovh.emaildomain#ListEmailDomainAclResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainAclResponse": {
+    "com.ovh.emaildomain#ListEmailDomainAclResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainAclResponseBodyList",
+          "target": "com.ovh.emaildomain#ListEmailDomainAclResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -4050,13 +4051,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainAcl": {
+    "com.ovh.emaildomain#ListEmailDomainAcl": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainAclRequest"
+        "target": "com.ovh.emaildomain#ListEmailDomainAclRequest"
       },
       "output": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainAclResponse"
+        "target": "com.ovh.emaildomain#ListEmailDomainAclResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4067,7 +4068,7 @@
         "smithy.api#documentation": "Get ACL on your domain"
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainAclRequest": {
+    "com.ovh.emaildomain#CreateEmailDomainAclRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -4104,10 +4105,10 @@
         "smithy.api#documentation": "Email ACL"
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainAcl": {
+    "com.ovh.emaildomain#CreateEmailDomainAcl": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#PostEmailDomainDomainAclRequest"
+        "target": "com.ovh.emaildomain#CreateEmailDomainAclRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainAcl"
@@ -4121,7 +4122,7 @@
         "smithy.api#documentation": "Create new ACL"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainAclAccountIdRequest": {
+    "com.ovh.emaildomain#GetEmailDomainAclRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -4145,10 +4146,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainAclAccountId": {
+    "com.ovh.emaildomain#GetEmailDomainAcl": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainAclAccountIdRequest"
+        "target": "com.ovh.emaildomain#GetEmailDomainAclRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainAcl"
@@ -4162,7 +4163,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emaildomain#DeleteEmailDomainDomainAclAccountIdRequest": {
+    "com.ovh.emaildomain#DeleteEmailDomainAclRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -4186,10 +4187,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#DeleteEmailDomainDomainAclAccountId": {
+    "com.ovh.emaildomain#DeleteEmailDomainAcl": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#DeleteEmailDomainDomainAclAccountIdRequest"
+        "target": "com.ovh.emaildomain#DeleteEmailDomainAclRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4203,7 +4204,7 @@
         "smithy.api#documentation": "Delete ACL"
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainChangeContactRequest": {
+    "com.ovh.emaildomain#CreateEmailDomainChangeContactRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -4237,18 +4238,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainChangeContactResponseBodyList": {
+    "com.ovh.emaildomain#CreateEmailDomainChangeContactResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainChangeContactResponse": {
+    "com.ovh.emaildomain#CreateEmailDomainChangeContactResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emaildomain#PostEmailDomainDomainChangeContactResponseBodyList",
+          "target": "com.ovh.emaildomain#CreateEmailDomainChangeContactResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -4259,13 +4260,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainChangeContact": {
+    "com.ovh.emaildomain#CreateEmailDomainChangeContact": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#PostEmailDomainDomainChangeContactRequest"
+        "target": "com.ovh.emaildomain#CreateEmailDomainChangeContactRequest"
       },
       "output": {
-        "target": "com.ovh.emaildomain#PostEmailDomainDomainChangeContactResponse"
+        "target": "com.ovh.emaildomain#CreateEmailDomainChangeContactResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4314,7 +4315,7 @@
         "smithy.api#documentation": "Possible values for MX filter"
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainChangeDnsMXFilterRequest": {
+    "com.ovh.emaildomain#CreateEmailDomainChangeDnsMXFilterRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -4349,10 +4350,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainChangeDnsMXFilter": {
+    "com.ovh.emaildomain#CreateEmailDomainChangeDnsMXFilter": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#PostEmailDomainDomainChangeDnsMXFilterRequest"
+        "target": "com.ovh.emaildomain#CreateEmailDomainChangeDnsMXFilterRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4458,7 +4459,7 @@
         "smithy.api#documentation": "All reasons you can provide for a service termination"
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainConfirmTerminationRequest": {
+    "com.ovh.emaildomain#ConfirmEmailDomainTerminationRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -4493,7 +4494,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainConfirmTerminationResponse": {
+    "com.ovh.emaildomain#ConfirmEmailDomainTerminationResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -4508,13 +4509,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainConfirmTermination": {
+    "com.ovh.emaildomain#ConfirmEmailDomainTermination": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#PostEmailDomainDomainConfirmTerminationRequest"
+        "target": "com.ovh.emaildomain#ConfirmEmailDomainTerminationRequest"
       },
       "output": {
-        "target": "com.ovh.emaildomain#PostEmailDomainDomainConfirmTerminationResponse"
+        "target": "com.ovh.emaildomain#ConfirmEmailDomainTerminationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4525,7 +4526,7 @@
         "smithy.api#documentation": "Confirm termination of your email service"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainDkimRequest": {
+    "com.ovh.emaildomain#ListEmailDomainDkimRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -4675,10 +4676,10 @@
         "smithy.api#documentation": "Status of DKIM deployment"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainDkim": {
+    "com.ovh.emaildomain#ListEmailDomainDkim": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainDkimRequest"
+        "target": "com.ovh.emaildomain#ListEmailDomainDkimRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainDkimSimplified"
@@ -4692,7 +4693,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emaildomain#PutEmailDomainDomainDkimDisableRequest": {
+    "com.ovh.emaildomain#PutEmailDomainDkimDisableRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -4790,10 +4791,10 @@
         "smithy.api#documentation": "Possible values for domain task status"
       }
     },
-    "com.ovh.emaildomain#PutEmailDomainDomainDkimDisable": {
+    "com.ovh.emaildomain#PutEmailDomainDkimDisable": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#PutEmailDomainDomainDkimDisableRequest"
+        "target": "com.ovh.emaildomain#PutEmailDomainDkimDisableRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainTask"
@@ -4807,7 +4808,7 @@
         "smithy.api#documentation": "Disable DKIM"
       }
     },
-    "com.ovh.emaildomain#PutEmailDomainDomainDkimEnableRequest": {
+    "com.ovh.emaildomain#PutEmailDomainDkimEnableRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -4823,10 +4824,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#PutEmailDomainDomainDkimEnable": {
+    "com.ovh.emaildomain#PutEmailDomainDkimEnable": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#PutEmailDomainDomainDkimEnableRequest"
+        "target": "com.ovh.emaildomain#PutEmailDomainDkimEnableRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainTask"
@@ -4840,7 +4841,7 @@
         "smithy.api#documentation": "Enable DKIM"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainDnsMXFilterRequest": {
+    "com.ovh.emaildomain#GetEmailDomainDnsMXFilterRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -4863,7 +4864,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainDnsMXFilterResponse": {
+    "com.ovh.emaildomain#GetEmailDomainDnsMXFilterResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -4878,13 +4879,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainDnsMXFilter": {
+    "com.ovh.emaildomain#GetEmailDomainDnsMXFilter": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainDnsMXFilterRequest"
+        "target": "com.ovh.emaildomain#GetEmailDomainDnsMXFilterRequest"
       },
       "output": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainDnsMXFilterResponse"
+        "target": "com.ovh.emaildomain#GetEmailDomainDnsMXFilterResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4895,7 +4896,7 @@
         "smithy.api#documentation": "Domain MX filter"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainDnsMXRecordsRequest": {
+    "com.ovh.emaildomain#ListEmailDomainDnsMXRecordsRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -4918,18 +4919,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainDnsMXRecordsResponseBodyList": {
+    "com.ovh.emaildomain#ListEmailDomainDnsMXRecordsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainDnsMXRecordsResponse": {
+    "com.ovh.emaildomain#ListEmailDomainDnsMXRecordsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainDnsMXRecordsResponseBodyList",
+          "target": "com.ovh.emaildomain#ListEmailDomainDnsMXRecordsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -4940,13 +4941,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainDnsMXRecords": {
+    "com.ovh.emaildomain#ListEmailDomainDnsMXRecords": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainDnsMXRecordsRequest"
+        "target": "com.ovh.emaildomain#ListEmailDomainDnsMXRecordsRequest"
       },
       "output": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainDnsMXRecordsResponse"
+        "target": "com.ovh.emaildomain#ListEmailDomainDnsMXRecordsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4957,7 +4958,7 @@
         "smithy.api#documentation": "Domain MX records"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainMailingListRequest": {
+    "com.ovh.emaildomain#ListEmailDomainMailingListRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -4980,18 +4981,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainMailingListResponseBodyList": {
+    "com.ovh.emaildomain#ListEmailDomainMailingListResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainMailingListResponse": {
+    "com.ovh.emaildomain#ListEmailDomainMailingListResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainMailingListResponseBodyList",
+          "target": "com.ovh.emaildomain#ListEmailDomainMailingListResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -5002,13 +5003,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainMailingList": {
+    "com.ovh.emaildomain#ListEmailDomainMailingList": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainMailingListRequest"
+        "target": "com.ovh.emaildomain#ListEmailDomainMailingListRequest"
       },
       "output": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainMailingListResponse"
+        "target": "com.ovh.emaildomain#ListEmailDomainMailingListResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5101,7 +5102,7 @@
         "smithy.api#documentation": "Structure of imapCopy"
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainMailingListRequest": {
+    "com.ovh.emaildomain#CreateEmailDomainMailingListRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -5177,10 +5178,10 @@
         "smithy.api#documentation": "Task Mailing List"
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainMailingList": {
+    "com.ovh.emaildomain#CreateEmailDomainMailingList": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#PostEmailDomainDomainMailingListRequest"
+        "target": "com.ovh.emaildomain#CreateEmailDomainMailingListRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainTaskMl"
@@ -5194,7 +5195,7 @@
         "smithy.api#documentation": "Create new mailingList"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainMailingListNameRequest": {
+    "com.ovh.emaildomain#GetEmailDomainMailingListRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -5277,10 +5278,10 @@
         "smithy.api#documentation": "Mailing List"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainMailingListName": {
+    "com.ovh.emaildomain#GetEmailDomainMailingList": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainMailingListNameRequest"
+        "target": "com.ovh.emaildomain#GetEmailDomainMailingListRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainMailingList"
@@ -5294,7 +5295,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emaildomain#PutEmailDomainDomainMailingListNameRequest": {
+    "com.ovh.emaildomain#PutEmailDomainMailingListRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -5337,10 +5338,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#PutEmailDomainDomainMailingListName": {
+    "com.ovh.emaildomain#PutEmailDomainMailingList": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#PutEmailDomainDomainMailingListNameRequest"
+        "target": "com.ovh.emaildomain#PutEmailDomainMailingListRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5354,7 +5355,7 @@
         "smithy.api#documentation": "Alter this object properties"
       }
     },
-    "com.ovh.emaildomain#DeleteEmailDomainDomainMailingListNameRequest": {
+    "com.ovh.emaildomain#DeleteEmailDomainMailingListRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -5378,10 +5379,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#DeleteEmailDomainDomainMailingListName": {
+    "com.ovh.emaildomain#DeleteEmailDomainMailingList": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#DeleteEmailDomainDomainMailingListNameRequest"
+        "target": "com.ovh.emaildomain#DeleteEmailDomainMailingListRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainTaskMl"
@@ -5395,7 +5396,7 @@
         "smithy.api#documentation": "Delete existing Mailing list"
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainMailingListNameChangeOptionsRequest": {
+    "com.ovh.emaildomain#CreateEmailDomainMailingListChangeOptionRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -5426,10 +5427,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainMailingListNameChangeOptions": {
+    "com.ovh.emaildomain#CreateEmailDomainMailingListChangeOption": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#PostEmailDomainDomainMailingListNameChangeOptionsRequest"
+        "target": "com.ovh.emaildomain#CreateEmailDomainMailingListChangeOptionRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainTaskMl"
@@ -5443,7 +5444,7 @@
         "smithy.api#documentation": "Change mailing list options"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainMailingListNameModeratorRequest": {
+    "com.ovh.emaildomain#ListEmailDomainMailingListModeratorRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -5474,18 +5475,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainMailingListNameModeratorResponseBodyList": {
+    "com.ovh.emaildomain#ListEmailDomainMailingListModeratorResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainMailingListNameModeratorResponse": {
+    "com.ovh.emaildomain#ListEmailDomainMailingListModeratorResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainMailingListNameModeratorResponseBodyList",
+          "target": "com.ovh.emaildomain#ListEmailDomainMailingListModeratorResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -5496,13 +5497,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainMailingListNameModerator": {
+    "com.ovh.emaildomain#ListEmailDomainMailingListModerator": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainMailingListNameModeratorRequest"
+        "target": "com.ovh.emaildomain#ListEmailDomainMailingListModeratorRequest"
       },
       "output": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainMailingListNameModeratorResponse"
+        "target": "com.ovh.emaildomain#ListEmailDomainMailingListModeratorResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5513,7 +5514,7 @@
         "smithy.api#documentation": "List of moderators"
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainMailingListNameModeratorRequest": {
+    "com.ovh.emaildomain#CreateEmailDomainMailingListModeratorRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -5544,10 +5545,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainMailingListNameModerator": {
+    "com.ovh.emaildomain#CreateEmailDomainMailingListModerator": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#PostEmailDomainDomainMailingListNameModeratorRequest"
+        "target": "com.ovh.emaildomain#CreateEmailDomainMailingListModeratorRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainTaskMl"
@@ -5561,7 +5562,7 @@
         "smithy.api#documentation": "Add moderator to mailing list"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainMailingListNameModeratorEmailRequest": {
+    "com.ovh.emaildomain#GetEmailDomainMailingListModeratorRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -5609,10 +5610,10 @@
         "smithy.api#documentation": "Moderators List"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainMailingListNameModeratorEmail": {
+    "com.ovh.emaildomain#GetEmailDomainMailingListModerator": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainMailingListNameModeratorEmailRequest"
+        "target": "com.ovh.emaildomain#GetEmailDomainMailingListModeratorRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainModerator"
@@ -5626,7 +5627,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emaildomain#DeleteEmailDomainDomainMailingListNameModeratorEmailRequest": {
+    "com.ovh.emaildomain#DeleteEmailDomainMailingListModeratorRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -5657,10 +5658,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#DeleteEmailDomainDomainMailingListNameModeratorEmail": {
+    "com.ovh.emaildomain#DeleteEmailDomainMailingListModerator": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#DeleteEmailDomainDomainMailingListNameModeratorEmailRequest"
+        "target": "com.ovh.emaildomain#DeleteEmailDomainMailingListModeratorRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainTaskMl"
@@ -5674,7 +5675,7 @@
         "smithy.api#documentation": "Delete existing moderator"
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainMailingListNameSendListByEmailRequest": {
+    "com.ovh.emaildomain#SendEmailDomainMailingListListByEmailRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -5705,10 +5706,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainMailingListNameSendListByEmail": {
+    "com.ovh.emaildomain#SendEmailDomainMailingListListByEmail": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#PostEmailDomainDomainMailingListNameSendListByEmailRequest"
+        "target": "com.ovh.emaildomain#SendEmailDomainMailingListListByEmailRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainTaskMl"
@@ -5722,7 +5723,7 @@
         "smithy.api#documentation": "Send moderators list and subscribers list of this mailing list by email"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainMailingListNameSubscriberRequest": {
+    "com.ovh.emaildomain#ListEmailDomainMailingListSubscriberRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -5753,18 +5754,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainMailingListNameSubscriberResponseBodyList": {
+    "com.ovh.emaildomain#ListEmailDomainMailingListSubscriberResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainMailingListNameSubscriberResponse": {
+    "com.ovh.emaildomain#ListEmailDomainMailingListSubscriberResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainMailingListNameSubscriberResponseBodyList",
+          "target": "com.ovh.emaildomain#ListEmailDomainMailingListSubscriberResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -5775,13 +5776,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainMailingListNameSubscriber": {
+    "com.ovh.emaildomain#ListEmailDomainMailingListSubscriber": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainMailingListNameSubscriberRequest"
+        "target": "com.ovh.emaildomain#ListEmailDomainMailingListSubscriberRequest"
       },
       "output": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainMailingListNameSubscriberResponse"
+        "target": "com.ovh.emaildomain#ListEmailDomainMailingListSubscriberResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5792,7 +5793,7 @@
         "smithy.api#documentation": "List of subscribers"
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainMailingListNameSubscriberRequest": {
+    "com.ovh.emaildomain#CreateEmailDomainMailingListSubscriberRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -5823,10 +5824,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainMailingListNameSubscriber": {
+    "com.ovh.emaildomain#CreateEmailDomainMailingListSubscriber": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#PostEmailDomainDomainMailingListNameSubscriberRequest"
+        "target": "com.ovh.emaildomain#CreateEmailDomainMailingListSubscriberRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainTaskMl"
@@ -5840,7 +5841,7 @@
         "smithy.api#documentation": "Add subscriber to mailing list"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainMailingListNameSubscriberEmailRequest": {
+    "com.ovh.emaildomain#GetEmailDomainMailingListSubscriberRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -5888,10 +5889,10 @@
         "smithy.api#documentation": "Subscribers List"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainMailingListNameSubscriberEmail": {
+    "com.ovh.emaildomain#GetEmailDomainMailingListSubscriber": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainMailingListNameSubscriberEmailRequest"
+        "target": "com.ovh.emaildomain#GetEmailDomainMailingListSubscriberRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainSubscriber"
@@ -5905,7 +5906,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emaildomain#DeleteEmailDomainDomainMailingListNameSubscriberEmailRequest": {
+    "com.ovh.emaildomain#DeleteEmailDomainMailingListSubscriberRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -5936,10 +5937,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#DeleteEmailDomainDomainMailingListNameSubscriberEmail": {
+    "com.ovh.emaildomain#DeleteEmailDomainMailingListSubscriber": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#DeleteEmailDomainDomainMailingListNameSubscriberEmailRequest"
+        "target": "com.ovh.emaildomain#DeleteEmailDomainMailingListSubscriberRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainTaskMl"
@@ -5953,7 +5954,7 @@
         "smithy.api#documentation": "Delete existing subscriber"
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainMigrateDelegationV3toV6Request": {
+    "com.ovh.emaildomain#MigrateEmailDomainDelegationV3toV6Request": {
       "type": "structure",
       "members": {
         "domain": {
@@ -5969,10 +5970,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainMigrateDelegationV3toV6": {
+    "com.ovh.emaildomain#MigrateEmailDomainDelegationV3toV6": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#PostEmailDomainDomainMigrateDelegationV3toV6Request"
+        "target": "com.ovh.emaildomain#MigrateEmailDomainDelegationV3toV6Request"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5986,7 +5987,7 @@
         "smithy.api#documentation": "Create delegation of domain with same nic than V3"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainQuotaRequest": {
+    "com.ovh.emaildomain#GetEmailDomainQuotaRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -6040,10 +6041,10 @@
         "smithy.api#documentation": "Values of quota account (pop, mailing list, redirection, responder and big pop)"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainQuota": {
+    "com.ovh.emaildomain#GetEmailDomainQuota": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainQuotaRequest"
+        "target": "com.ovh.emaildomain#GetEmailDomainQuotaRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#DomainDomainQuota"
@@ -6057,7 +6058,7 @@
         "smithy.api#documentation": "List all quotas for this domain"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainRecommendedDNSRecordsRequest": {
+    "com.ovh.emaildomain#ListEmailDomainRecommendedDNSRecordsRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -6229,18 +6230,18 @@
         "smithy.api#documentation": "Types of DNS record for fieldType"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainRecommendedDNSRecordsResponseBodyList": {
+    "com.ovh.emaildomain#ListEmailDomainRecommendedDNSRecordsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.emaildomain#EmailDomainRecord"
       },
       "traits": {}
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainRecommendedDNSRecordsResponse": {
+    "com.ovh.emaildomain#ListEmailDomainRecommendedDNSRecordsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainRecommendedDNSRecordsResponseBodyList",
+          "target": "com.ovh.emaildomain#ListEmailDomainRecommendedDNSRecordsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -6251,13 +6252,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainRecommendedDNSRecords": {
+    "com.ovh.emaildomain#ListEmailDomainRecommendedDNSRecords": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainRecommendedDNSRecordsRequest"
+        "target": "com.ovh.emaildomain#ListEmailDomainRecommendedDNSRecordsRequest"
       },
       "output": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainRecommendedDNSRecordsResponse"
+        "target": "com.ovh.emaildomain#ListEmailDomainRecommendedDNSRecordsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6268,7 +6269,7 @@
         "smithy.api#documentation": "Recommended domain DNS records"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainRedirectionRequest": {
+    "com.ovh.emaildomain#ListEmailDomainRedirectionRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -6298,18 +6299,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainRedirectionResponseBodyList": {
+    "com.ovh.emaildomain#ListEmailDomainRedirectionResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainRedirectionResponse": {
+    "com.ovh.emaildomain#ListEmailDomainRedirectionResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainRedirectionResponseBodyList",
+          "target": "com.ovh.emaildomain#ListEmailDomainRedirectionResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -6320,13 +6321,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainRedirection": {
+    "com.ovh.emaildomain#ListEmailDomainRedirection": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainRedirectionRequest"
+        "target": "com.ovh.emaildomain#ListEmailDomainRedirectionRequest"
       },
       "output": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainRedirectionResponse"
+        "target": "com.ovh.emaildomain#ListEmailDomainRedirectionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6337,7 +6338,7 @@
         "smithy.api#documentation": "Get redirections"
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainRedirectionRequest": {
+    "com.ovh.emaildomain#CreateEmailDomainRedirectionRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -6374,10 +6375,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainRedirection": {
+    "com.ovh.emaildomain#CreateEmailDomainRedirection": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#PostEmailDomainDomainRedirectionRequest"
+        "target": "com.ovh.emaildomain#CreateEmailDomainRedirectionRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainTaskSpecialAccount"
@@ -6391,7 +6392,7 @@
         "smithy.api#documentation": "Create new redirection in server"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainRedirectionIdRequest": {
+    "com.ovh.emaildomain#GetEmailDomainRedirectionRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -6441,10 +6442,10 @@
         "smithy.api#documentation": "Global Redirection"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainRedirectionId": {
+    "com.ovh.emaildomain#GetEmailDomainRedirection": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainRedirectionIdRequest"
+        "target": "com.ovh.emaildomain#GetEmailDomainRedirectionRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainRedirectionGlobal"
@@ -6458,7 +6459,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emaildomain#DeleteEmailDomainDomainRedirectionIdRequest": {
+    "com.ovh.emaildomain#DeleteEmailDomainRedirectionRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -6482,10 +6483,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#DeleteEmailDomainDomainRedirectionId": {
+    "com.ovh.emaildomain#DeleteEmailDomainRedirection": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#DeleteEmailDomainDomainRedirectionIdRequest"
+        "target": "com.ovh.emaildomain#DeleteEmailDomainRedirectionRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainTaskSpecialAccount"
@@ -6499,7 +6500,7 @@
         "smithy.api#documentation": "Delete an existing redirection in server"
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainRedirectionIdChangeRedirectionRequest": {
+    "com.ovh.emaildomain#CreateEmailDomainRedirectionChangeRedirectionRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -6530,10 +6531,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainRedirectionIdChangeRedirection": {
+    "com.ovh.emaildomain#CreateEmailDomainRedirectionChangeRedirection": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#PostEmailDomainDomainRedirectionIdChangeRedirectionRequest"
+        "target": "com.ovh.emaildomain#CreateEmailDomainRedirectionChangeRedirectionRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainTaskSpecialAccount"
@@ -6547,7 +6548,7 @@
         "smithy.api#documentation": "Change redirection"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainResponderRequest": {
+    "com.ovh.emaildomain#ListEmailDomainResponderRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -6570,18 +6571,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainResponderResponseBodyList": {
+    "com.ovh.emaildomain#ListEmailDomainResponderResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainResponderResponse": {
+    "com.ovh.emaildomain#ListEmailDomainResponderResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainResponderResponseBodyList",
+          "target": "com.ovh.emaildomain#ListEmailDomainResponderResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -6592,13 +6593,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainResponder": {
+    "com.ovh.emaildomain#ListEmailDomainResponder": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainResponderRequest"
+        "target": "com.ovh.emaildomain#ListEmailDomainResponderRequest"
       },
       "output": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainResponderResponse"
+        "target": "com.ovh.emaildomain#ListEmailDomainResponderResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6609,7 +6610,7 @@
         "smithy.api#documentation": "Get responders"
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainResponderRequest": {
+    "com.ovh.emaildomain#CreateEmailDomainResponderRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -6664,10 +6665,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainResponder": {
+    "com.ovh.emaildomain#CreateEmailDomainResponder": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#PostEmailDomainDomainResponderRequest"
+        "target": "com.ovh.emaildomain#CreateEmailDomainResponderRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainTaskSpecialAccount"
@@ -6681,7 +6682,7 @@
         "smithy.api#documentation": "Create new responder in server"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainResponderAccountRequest": {
+    "com.ovh.emaildomain#GetEmailDomainResponderRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -6752,10 +6753,10 @@
         "smithy.api#documentation": "Responder"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainResponderAccount": {
+    "com.ovh.emaildomain#GetEmailDomainResponder": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainResponderAccountRequest"
+        "target": "com.ovh.emaildomain#GetEmailDomainResponderRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainResponder"
@@ -6769,7 +6770,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emaildomain#PutEmailDomainDomainResponderAccountRequest": {
+    "com.ovh.emaildomain#PutEmailDomainResponderRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -6813,10 +6814,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#PutEmailDomainDomainResponderAccount": {
+    "com.ovh.emaildomain#PutEmailDomainResponder": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#PutEmailDomainDomainResponderAccountRequest"
+        "target": "com.ovh.emaildomain#PutEmailDomainResponderRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6830,7 +6831,7 @@
         "smithy.api#documentation": "Alter this object properties"
       }
     },
-    "com.ovh.emaildomain#DeleteEmailDomainDomainResponderAccountRequest": {
+    "com.ovh.emaildomain#DeleteEmailDomainResponderRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -6854,10 +6855,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#DeleteEmailDomainDomainResponderAccount": {
+    "com.ovh.emaildomain#DeleteEmailDomainResponder": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#DeleteEmailDomainDomainResponderAccountRequest"
+        "target": "com.ovh.emaildomain#DeleteEmailDomainResponderRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainTaskSpecialAccount"
@@ -6871,7 +6872,7 @@
         "smithy.api#documentation": "Delete an existing responder in server"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainServiceInfosRequest": {
+    "com.ovh.emaildomain#GetEmailDomainServiceInfosRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -7095,10 +7096,10 @@
       },
       "traits": {}
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainServiceInfos": {
+    "com.ovh.emaildomain#GetEmailDomainServiceInfos": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainServiceInfosRequest"
+        "target": "com.ovh.emaildomain#GetEmailDomainServiceInfosRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#ServicesService"
@@ -7112,7 +7113,7 @@
         "smithy.api#documentation": "Get service information"
       }
     },
-    "com.ovh.emaildomain#PutEmailDomainDomainServiceInfosRequest": {
+    "com.ovh.emaildomain#PutEmailDomainServiceInfosRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -7135,10 +7136,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#PutEmailDomainDomainServiceInfos": {
+    "com.ovh.emaildomain#PutEmailDomainServiceInfos": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#PutEmailDomainDomainServiceInfosRequest"
+        "target": "com.ovh.emaildomain#PutEmailDomainServiceInfosRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7152,7 +7153,7 @@
         "smithy.api#documentation": "Update service information"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainSummaryRequest": {
+    "com.ovh.emaildomain#GetEmailDomainSummaryRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -7200,10 +7201,10 @@
         "smithy.api#documentation": "Values of number account (account, mailing list, redirection and responder)"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainSummary": {
+    "com.ovh.emaildomain#GetEmailDomainSummary": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainSummaryRequest"
+        "target": "com.ovh.emaildomain#GetEmailDomainSummaryRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#DomainDomainSummary"
@@ -7217,7 +7218,7 @@
         "smithy.api#documentation": "Summary for this domain"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainTaskAccountRequest": {
+    "com.ovh.emaildomain#ListEmailDomainTaskAccountRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -7240,18 +7241,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainTaskAccountResponseBodyList": {
+    "com.ovh.emaildomain#ListEmailDomainTaskAccountResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainTaskAccountResponse": {
+    "com.ovh.emaildomain#ListEmailDomainTaskAccountResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainTaskAccountResponseBodyList",
+          "target": "com.ovh.emaildomain#ListEmailDomainTaskAccountResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -7262,13 +7263,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainTaskAccount": {
+    "com.ovh.emaildomain#ListEmailDomainTaskAccount": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainTaskAccountRequest"
+        "target": "com.ovh.emaildomain#ListEmailDomainTaskAccountRequest"
       },
       "output": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainTaskAccountResponse"
+        "target": "com.ovh.emaildomain#ListEmailDomainTaskAccountResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7279,7 +7280,7 @@
         "smithy.api#documentation": "Get account tasks"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainTaskAccountIdRequest": {
+    "com.ovh.emaildomain#GetEmailDomainTaskAccountRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -7303,10 +7304,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainTaskAccountId": {
+    "com.ovh.emaildomain#GetEmailDomainTaskAccount": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainTaskAccountIdRequest"
+        "target": "com.ovh.emaildomain#GetEmailDomainTaskAccountRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainTaskPop"
@@ -7320,7 +7321,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainTaskAllRequest": {
+    "com.ovh.emaildomain#ListEmailDomainTaskAllRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -7336,18 +7337,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainTaskAllResponseBodyList": {
+    "com.ovh.emaildomain#ListEmailDomainTaskAllResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainTaskAllResponse": {
+    "com.ovh.emaildomain#ListEmailDomainTaskAllResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainTaskAllResponseBodyList",
+          "target": "com.ovh.emaildomain#ListEmailDomainTaskAllResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -7358,13 +7359,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainTaskAll": {
+    "com.ovh.emaildomain#ListEmailDomainTaskAll": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainTaskAllRequest"
+        "target": "com.ovh.emaildomain#ListEmailDomainTaskAllRequest"
       },
       "output": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainTaskAllResponse"
+        "target": "com.ovh.emaildomain#ListEmailDomainTaskAllResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7375,7 +7376,7 @@
         "smithy.api#documentation": "Get tasks"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainTaskAllIdRequest": {
+    "com.ovh.emaildomain#GetEmailDomainTaskAllRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -7399,10 +7400,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainTaskAllId": {
+    "com.ovh.emaildomain#GetEmailDomainTaskAll": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainTaskAllIdRequest"
+        "target": "com.ovh.emaildomain#GetEmailDomainTaskAllRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainTask"
@@ -7416,7 +7417,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainTaskFilterRequest": {
+    "com.ovh.emaildomain#ListEmailDomainTaskFilterRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -7439,18 +7440,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainTaskFilterResponseBodyList": {
+    "com.ovh.emaildomain#ListEmailDomainTaskFilterResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainTaskFilterResponse": {
+    "com.ovh.emaildomain#ListEmailDomainTaskFilterResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainTaskFilterResponseBodyList",
+          "target": "com.ovh.emaildomain#ListEmailDomainTaskFilterResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -7461,13 +7462,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainTaskFilter": {
+    "com.ovh.emaildomain#ListEmailDomainTaskFilter": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainTaskFilterRequest"
+        "target": "com.ovh.emaildomain#ListEmailDomainTaskFilterRequest"
       },
       "output": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainTaskFilterResponse"
+        "target": "com.ovh.emaildomain#ListEmailDomainTaskFilterResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7478,7 +7479,7 @@
         "smithy.api#documentation": "Get filter tasks"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainTaskFilterIdRequest": {
+    "com.ovh.emaildomain#GetEmailDomainTaskFilterRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -7502,10 +7503,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainTaskFilterId": {
+    "com.ovh.emaildomain#GetEmailDomainTaskFilter": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainTaskFilterIdRequest"
+        "target": "com.ovh.emaildomain#GetEmailDomainTaskFilterRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainTaskFilter"
@@ -7519,7 +7520,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainTaskMailinglistRequest": {
+    "com.ovh.emaildomain#ListEmailDomainTaskMailinglistRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -7542,18 +7543,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainTaskMailinglistResponseBodyList": {
+    "com.ovh.emaildomain#ListEmailDomainTaskMailinglistResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainTaskMailinglistResponse": {
+    "com.ovh.emaildomain#ListEmailDomainTaskMailinglistResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainTaskMailinglistResponseBodyList",
+          "target": "com.ovh.emaildomain#ListEmailDomainTaskMailinglistResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -7564,13 +7565,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainTaskMailinglist": {
+    "com.ovh.emaildomain#ListEmailDomainTaskMailinglist": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainTaskMailinglistRequest"
+        "target": "com.ovh.emaildomain#ListEmailDomainTaskMailinglistRequest"
       },
       "output": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainTaskMailinglistResponse"
+        "target": "com.ovh.emaildomain#ListEmailDomainTaskMailinglistResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7581,7 +7582,7 @@
         "smithy.api#documentation": "Get Mailing List tasks"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainTaskMailinglistIdRequest": {
+    "com.ovh.emaildomain#GetEmailDomainTaskMailinglistRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -7604,10 +7605,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainTaskMailinglistId": {
+    "com.ovh.emaildomain#GetEmailDomainTaskMailinglist": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainTaskMailinglistIdRequest"
+        "target": "com.ovh.emaildomain#GetEmailDomainTaskMailinglistRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainTaskMl"
@@ -7621,7 +7622,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainTaskRedirectionRequest": {
+    "com.ovh.emaildomain#ListEmailDomainTaskRedirectionRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -7644,18 +7645,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainTaskRedirectionResponseBodyList": {
+    "com.ovh.emaildomain#ListEmailDomainTaskRedirectionResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainTaskRedirectionResponse": {
+    "com.ovh.emaildomain#ListEmailDomainTaskRedirectionResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainTaskRedirectionResponseBodyList",
+          "target": "com.ovh.emaildomain#ListEmailDomainTaskRedirectionResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -7666,13 +7667,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainTaskRedirection": {
+    "com.ovh.emaildomain#ListEmailDomainTaskRedirection": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainTaskRedirectionRequest"
+        "target": "com.ovh.emaildomain#ListEmailDomainTaskRedirectionRequest"
       },
       "output": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainTaskRedirectionResponse"
+        "target": "com.ovh.emaildomain#ListEmailDomainTaskRedirectionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7683,7 +7684,7 @@
         "smithy.api#documentation": "Get redirection tasks"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainTaskRedirectionIdRequest": {
+    "com.ovh.emaildomain#GetEmailDomainTaskRedirectionRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -7707,10 +7708,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainTaskRedirectionId": {
+    "com.ovh.emaildomain#GetEmailDomainTaskRedirection": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainTaskRedirectionIdRequest"
+        "target": "com.ovh.emaildomain#GetEmailDomainTaskRedirectionRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainTaskSpecialAccount"
@@ -7724,7 +7725,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainTaskResponderRequest": {
+    "com.ovh.emaildomain#ListEmailDomainTaskResponderRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -7747,18 +7748,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainTaskResponderResponseBodyList": {
+    "com.ovh.emaildomain#ListEmailDomainTaskResponderResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainTaskResponderResponse": {
+    "com.ovh.emaildomain#ListEmailDomainTaskResponderResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainTaskResponderResponseBodyList",
+          "target": "com.ovh.emaildomain#ListEmailDomainTaskResponderResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -7769,13 +7770,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainTaskResponder": {
+    "com.ovh.emaildomain#ListEmailDomainTaskResponder": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainTaskResponderRequest"
+        "target": "com.ovh.emaildomain#ListEmailDomainTaskResponderRequest"
       },
       "output": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainTaskResponderResponse"
+        "target": "com.ovh.emaildomain#ListEmailDomainTaskResponderResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7786,7 +7787,7 @@
         "smithy.api#documentation": "Get responder tasks"
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainTaskResponderIdRequest": {
+    "com.ovh.emaildomain#GetEmailDomainTaskResponderRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -7810,10 +7811,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#GetEmailDomainDomainTaskResponderId": {
+    "com.ovh.emaildomain#GetEmailDomainTaskResponder": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#GetEmailDomainDomainTaskResponderIdRequest"
+        "target": "com.ovh.emaildomain#GetEmailDomainTaskResponderRequest"
       },
       "output": {
         "target": "com.ovh.emaildomain#EmailDomainTaskSpecialAccount"
@@ -7827,7 +7828,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainTerminateRequest": {
+    "com.ovh.emaildomain#TerminateEmailDomainRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -7843,7 +7844,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainTerminateResponse": {
+    "com.ovh.emaildomain#TerminateEmailDomainResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -7858,13 +7859,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.emaildomain#PostEmailDomainDomainTerminate": {
+    "com.ovh.emaildomain#TerminateEmailDomain": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.emaildomain#PostEmailDomainDomainTerminateRequest"
+        "target": "com.ovh.emaildomain#TerminateEmailDomainRequest"
       },
       "output": {
-        "target": "com.ovh.emaildomain#PostEmailDomainDomainTerminateResponse"
+        "target": "com.ovh.emaildomain#TerminateEmailDomainResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7880,325 +7881,325 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.ovh.emaildomain#GetEmailDomain"
+          "target": "com.ovh.emaildomain#ListEmailDomain"
+        },
+        {
+          "target": "com.ovh.emaildomain#ListEmailDomainDelegatedAccount"
         },
         {
           "target": "com.ovh.emaildomain#GetEmailDomainDelegatedAccount"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDelegatedAccountEmail"
+          "target": "com.ovh.emaildomain#PutEmailDomainDelegatedAccount"
         },
         {
-          "target": "com.ovh.emaildomain#PutEmailDomainDelegatedAccountEmail"
+          "target": "com.ovh.emaildomain#CreateEmailDomainDelegatedAccountChangePassword"
         },
         {
-          "target": "com.ovh.emaildomain#PostEmailDomainDelegatedAccountEmailChangePassword"
+          "target": "com.ovh.emaildomain#ListEmailDomainDelegatedAccountFilter"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDelegatedAccountEmailFilter"
+          "target": "com.ovh.emaildomain#CreateEmailDomainDelegatedAccountFilter"
         },
         {
-          "target": "com.ovh.emaildomain#PostEmailDomainDelegatedAccountEmailFilter"
+          "target": "com.ovh.emaildomain#GetEmailDomainDelegatedAccountFilter"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDelegatedAccountEmailFilterName"
+          "target": "com.ovh.emaildomain#DeleteEmailDomainDelegatedAccountFilter"
         },
         {
-          "target": "com.ovh.emaildomain#DeleteEmailDomainDelegatedAccountEmailFilterName"
+          "target": "com.ovh.emaildomain#CreateEmailDomainDelegatedAccountFilterChangeActivity"
         },
         {
-          "target": "com.ovh.emaildomain#PostEmailDomainDelegatedAccountEmailFilterNameChangeActivity"
+          "target": "com.ovh.emaildomain#CreateEmailDomainDelegatedAccountFilterChangePriority"
         },
         {
-          "target": "com.ovh.emaildomain#PostEmailDomainDelegatedAccountEmailFilterNameChangePriority"
+          "target": "com.ovh.emaildomain#ListEmailDomainDelegatedAccountFilterRule"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDelegatedAccountEmailFilterNameRule"
+          "target": "com.ovh.emaildomain#CreateEmailDomainDelegatedAccountFilterRule"
         },
         {
-          "target": "com.ovh.emaildomain#PostEmailDomainDelegatedAccountEmailFilterNameRule"
+          "target": "com.ovh.emaildomain#GetEmailDomainDelegatedAccountFilterRule"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDelegatedAccountEmailFilterNameRuleId"
+          "target": "com.ovh.emaildomain#DeleteEmailDomainDelegatedAccountFilterRule"
         },
         {
-          "target": "com.ovh.emaildomain#DeleteEmailDomainDelegatedAccountEmailFilterNameRuleId"
+          "target": "com.ovh.emaildomain#GetEmailDomainDelegatedAccountResponder"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDelegatedAccountEmailResponder"
+          "target": "com.ovh.emaildomain#CreateEmailDomainDelegatedAccountResponder"
         },
         {
-          "target": "com.ovh.emaildomain#PostEmailDomainDelegatedAccountEmailResponder"
+          "target": "com.ovh.emaildomain#PutEmailDomainDelegatedAccountResponder"
         },
         {
-          "target": "com.ovh.emaildomain#PutEmailDomainDelegatedAccountEmailResponder"
+          "target": "com.ovh.emaildomain#DeleteEmailDomainDelegatedAccountResponder"
         },
         {
-          "target": "com.ovh.emaildomain#DeleteEmailDomainDelegatedAccountEmailResponder"
+          "target": "com.ovh.emaildomain#UpdateEmailDomainDelegatedAccountUsage"
         },
         {
-          "target": "com.ovh.emaildomain#PostEmailDomainDelegatedAccountEmailUpdateUsage"
-        },
-        {
-          "target": "com.ovh.emaildomain#PostEmailDomainDelegatedAccountEmailUsage"
+          "target": "com.ovh.emaildomain#CreateEmailDomainDelegatedAccountUsage"
         },
         {
           "target": "com.ovh.emaildomain#GetEmailDomainMailingListLimits"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomain"
+          "target": "com.ovh.emaildomain#GetEmailDomain"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainAccount"
+          "target": "com.ovh.emaildomain#ListEmailDomainAccount"
         },
         {
-          "target": "com.ovh.emaildomain#PostEmailDomainDomainAccount"
+          "target": "com.ovh.emaildomain#CreateEmailDomainAccount"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountName"
+          "target": "com.ovh.emaildomain#GetEmailDomainAccount"
         },
         {
-          "target": "com.ovh.emaildomain#PutEmailDomainDomainAccountAccountName"
+          "target": "com.ovh.emaildomain#PutEmailDomainAccount"
         },
         {
-          "target": "com.ovh.emaildomain#DeleteEmailDomainDomainAccountAccountName"
+          "target": "com.ovh.emaildomain#DeleteEmailDomainAccount"
         },
         {
-          "target": "com.ovh.emaildomain#PostEmailDomainDomainAccountAccountNameChangePassword"
+          "target": "com.ovh.emaildomain#CreateEmailDomainAccountChangePassword"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameDelegation"
+          "target": "com.ovh.emaildomain#ListEmailDomainAccountDelegation"
         },
         {
-          "target": "com.ovh.emaildomain#PostEmailDomainDomainAccountAccountNameDelegation"
+          "target": "com.ovh.emaildomain#CreateEmailDomainAccountDelegation"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameDelegationAccountId"
+          "target": "com.ovh.emaildomain#GetEmailDomainAccountDelegation"
         },
         {
-          "target": "com.ovh.emaildomain#DeleteEmailDomainDomainAccountAccountNameDelegationAccountId"
+          "target": "com.ovh.emaildomain#DeleteEmailDomainAccountDelegation"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameFilter"
+          "target": "com.ovh.emaildomain#ListEmailDomainAccountFilter"
         },
         {
-          "target": "com.ovh.emaildomain#PostEmailDomainDomainAccountAccountNameFilter"
+          "target": "com.ovh.emaildomain#CreateEmailDomainAccountFilter"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameFilterName"
+          "target": "com.ovh.emaildomain#GetEmailDomainAccountFilter"
         },
         {
-          "target": "com.ovh.emaildomain#DeleteEmailDomainDomainAccountAccountNameFilterName"
+          "target": "com.ovh.emaildomain#DeleteEmailDomainAccountFilter"
         },
         {
-          "target": "com.ovh.emaildomain#PostEmailDomainDomainAccountAccountNameFilterNameChangeActivity"
+          "target": "com.ovh.emaildomain#CreateEmailDomainAccountFilterChangeActivity"
         },
         {
-          "target": "com.ovh.emaildomain#PostEmailDomainDomainAccountAccountNameFilterNameChangePriority"
+          "target": "com.ovh.emaildomain#CreateEmailDomainAccountFilterChangePriority"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameFilterNameRule"
+          "target": "com.ovh.emaildomain#ListEmailDomainAccountFilterRule"
         },
         {
-          "target": "com.ovh.emaildomain#PostEmailDomainDomainAccountAccountNameFilterNameRule"
+          "target": "com.ovh.emaildomain#CreateEmailDomainAccountFilterRule"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameFilterNameRuleId"
+          "target": "com.ovh.emaildomain#GetEmailDomainAccountFilterRule"
         },
         {
-          "target": "com.ovh.emaildomain#DeleteEmailDomainDomainAccountAccountNameFilterNameRuleId"
+          "target": "com.ovh.emaildomain#DeleteEmailDomainAccountFilterRule"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameMigrate"
+          "target": "com.ovh.emaildomain#ListEmailDomainAccountMigrate"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameMigrateDestinationServiceName"
+          "target": "com.ovh.emaildomain#GetEmailDomainAccountMigrate"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameMigrateDestinationServiceNameDestinationEmailAddress"
+          "target": "com.ovh.emaildomain#ListEmailDomainAccountMigrateDestinationEmailAddress"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameMigrateDestinationServiceNameDestinationEmailAddressDestinationEmailAddress"
+          "target": "com.ovh.emaildomain#GetEmailDomainAccountMigrateDestinationEmailAddress"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameMigrateDestinationServiceNameDestinationEmailAddressDestinationEmailAddressCheckMigrate"
+          "target": "com.ovh.emaildomain#ListEmailDomainAccountMigrateDestinationEmailAddressCheckMigrate"
         },
         {
-          "target": "com.ovh.emaildomain#PostEmailDomainDomainAccountAccountNameMigrateDestinationServiceNameDestinationEmailAddressDestinationEmailAddressMigrate"
+          "target": "com.ovh.emaildomain#MigrateEmailDomainAccountMigrateDestinationEmailAddress"
         },
         {
-          "target": "com.ovh.emaildomain#PostEmailDomainDomainAccountAccountNameUpdateUsage"
+          "target": "com.ovh.emaildomain#UpdateEmailDomainAccountUsage"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainAccountAccountNameUsage"
+          "target": "com.ovh.emaildomain#GetEmailDomainAccountUsage"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainAcl"
+          "target": "com.ovh.emaildomain#ListEmailDomainAcl"
         },
         {
-          "target": "com.ovh.emaildomain#PostEmailDomainDomainAcl"
+          "target": "com.ovh.emaildomain#CreateEmailDomainAcl"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainAclAccountId"
+          "target": "com.ovh.emaildomain#GetEmailDomainAcl"
         },
         {
-          "target": "com.ovh.emaildomain#DeleteEmailDomainDomainAclAccountId"
+          "target": "com.ovh.emaildomain#DeleteEmailDomainAcl"
         },
         {
-          "target": "com.ovh.emaildomain#PostEmailDomainDomainChangeContact"
+          "target": "com.ovh.emaildomain#CreateEmailDomainChangeContact"
         },
         {
-          "target": "com.ovh.emaildomain#PostEmailDomainDomainChangeDnsMXFilter"
+          "target": "com.ovh.emaildomain#CreateEmailDomainChangeDnsMXFilter"
         },
         {
-          "target": "com.ovh.emaildomain#PostEmailDomainDomainConfirmTermination"
+          "target": "com.ovh.emaildomain#ConfirmEmailDomainTermination"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainDkim"
+          "target": "com.ovh.emaildomain#ListEmailDomainDkim"
         },
         {
-          "target": "com.ovh.emaildomain#PutEmailDomainDomainDkimDisable"
+          "target": "com.ovh.emaildomain#PutEmailDomainDkimDisable"
         },
         {
-          "target": "com.ovh.emaildomain#PutEmailDomainDomainDkimEnable"
+          "target": "com.ovh.emaildomain#PutEmailDomainDkimEnable"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainDnsMXFilter"
+          "target": "com.ovh.emaildomain#GetEmailDomainDnsMXFilter"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainDnsMXRecords"
+          "target": "com.ovh.emaildomain#ListEmailDomainDnsMXRecords"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainMailingList"
+          "target": "com.ovh.emaildomain#ListEmailDomainMailingList"
         },
         {
-          "target": "com.ovh.emaildomain#PostEmailDomainDomainMailingList"
+          "target": "com.ovh.emaildomain#CreateEmailDomainMailingList"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainMailingListName"
+          "target": "com.ovh.emaildomain#GetEmailDomainMailingList"
         },
         {
-          "target": "com.ovh.emaildomain#PutEmailDomainDomainMailingListName"
+          "target": "com.ovh.emaildomain#PutEmailDomainMailingList"
         },
         {
-          "target": "com.ovh.emaildomain#DeleteEmailDomainDomainMailingListName"
+          "target": "com.ovh.emaildomain#DeleteEmailDomainMailingList"
         },
         {
-          "target": "com.ovh.emaildomain#PostEmailDomainDomainMailingListNameChangeOptions"
+          "target": "com.ovh.emaildomain#CreateEmailDomainMailingListChangeOption"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainMailingListNameModerator"
+          "target": "com.ovh.emaildomain#ListEmailDomainMailingListModerator"
         },
         {
-          "target": "com.ovh.emaildomain#PostEmailDomainDomainMailingListNameModerator"
+          "target": "com.ovh.emaildomain#CreateEmailDomainMailingListModerator"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainMailingListNameModeratorEmail"
+          "target": "com.ovh.emaildomain#GetEmailDomainMailingListModerator"
         },
         {
-          "target": "com.ovh.emaildomain#DeleteEmailDomainDomainMailingListNameModeratorEmail"
+          "target": "com.ovh.emaildomain#DeleteEmailDomainMailingListModerator"
         },
         {
-          "target": "com.ovh.emaildomain#PostEmailDomainDomainMailingListNameSendListByEmail"
+          "target": "com.ovh.emaildomain#SendEmailDomainMailingListListByEmail"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainMailingListNameSubscriber"
+          "target": "com.ovh.emaildomain#ListEmailDomainMailingListSubscriber"
         },
         {
-          "target": "com.ovh.emaildomain#PostEmailDomainDomainMailingListNameSubscriber"
+          "target": "com.ovh.emaildomain#CreateEmailDomainMailingListSubscriber"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainMailingListNameSubscriberEmail"
+          "target": "com.ovh.emaildomain#GetEmailDomainMailingListSubscriber"
         },
         {
-          "target": "com.ovh.emaildomain#DeleteEmailDomainDomainMailingListNameSubscriberEmail"
+          "target": "com.ovh.emaildomain#DeleteEmailDomainMailingListSubscriber"
         },
         {
-          "target": "com.ovh.emaildomain#PostEmailDomainDomainMigrateDelegationV3toV6"
+          "target": "com.ovh.emaildomain#MigrateEmailDomainDelegationV3toV6"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainQuota"
+          "target": "com.ovh.emaildomain#GetEmailDomainQuota"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainRecommendedDNSRecords"
+          "target": "com.ovh.emaildomain#ListEmailDomainRecommendedDNSRecords"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainRedirection"
+          "target": "com.ovh.emaildomain#ListEmailDomainRedirection"
         },
         {
-          "target": "com.ovh.emaildomain#PostEmailDomainDomainRedirection"
+          "target": "com.ovh.emaildomain#CreateEmailDomainRedirection"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainRedirectionId"
+          "target": "com.ovh.emaildomain#GetEmailDomainRedirection"
         },
         {
-          "target": "com.ovh.emaildomain#DeleteEmailDomainDomainRedirectionId"
+          "target": "com.ovh.emaildomain#DeleteEmailDomainRedirection"
         },
         {
-          "target": "com.ovh.emaildomain#PostEmailDomainDomainRedirectionIdChangeRedirection"
+          "target": "com.ovh.emaildomain#CreateEmailDomainRedirectionChangeRedirection"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainResponder"
+          "target": "com.ovh.emaildomain#ListEmailDomainResponder"
         },
         {
-          "target": "com.ovh.emaildomain#PostEmailDomainDomainResponder"
+          "target": "com.ovh.emaildomain#CreateEmailDomainResponder"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainResponderAccount"
+          "target": "com.ovh.emaildomain#GetEmailDomainResponder"
         },
         {
-          "target": "com.ovh.emaildomain#PutEmailDomainDomainResponderAccount"
+          "target": "com.ovh.emaildomain#PutEmailDomainResponder"
         },
         {
-          "target": "com.ovh.emaildomain#DeleteEmailDomainDomainResponderAccount"
+          "target": "com.ovh.emaildomain#DeleteEmailDomainResponder"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainServiceInfos"
+          "target": "com.ovh.emaildomain#GetEmailDomainServiceInfos"
         },
         {
-          "target": "com.ovh.emaildomain#PutEmailDomainDomainServiceInfos"
+          "target": "com.ovh.emaildomain#PutEmailDomainServiceInfos"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainSummary"
+          "target": "com.ovh.emaildomain#GetEmailDomainSummary"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainTaskAccount"
+          "target": "com.ovh.emaildomain#ListEmailDomainTaskAccount"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainTaskAccountId"
+          "target": "com.ovh.emaildomain#GetEmailDomainTaskAccount"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainTaskAll"
+          "target": "com.ovh.emaildomain#ListEmailDomainTaskAll"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainTaskAllId"
+          "target": "com.ovh.emaildomain#GetEmailDomainTaskAll"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainTaskFilter"
+          "target": "com.ovh.emaildomain#ListEmailDomainTaskFilter"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainTaskFilterId"
+          "target": "com.ovh.emaildomain#GetEmailDomainTaskFilter"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainTaskMailinglist"
+          "target": "com.ovh.emaildomain#ListEmailDomainTaskMailinglist"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainTaskMailinglistId"
+          "target": "com.ovh.emaildomain#GetEmailDomainTaskMailinglist"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainTaskRedirection"
+          "target": "com.ovh.emaildomain#ListEmailDomainTaskRedirection"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainTaskRedirectionId"
+          "target": "com.ovh.emaildomain#GetEmailDomainTaskRedirection"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainTaskResponder"
+          "target": "com.ovh.emaildomain#ListEmailDomainTaskResponder"
         },
         {
-          "target": "com.ovh.emaildomain#GetEmailDomainDomainTaskResponderId"
+          "target": "com.ovh.emaildomain#GetEmailDomainTaskResponder"
         },
         {
-          "target": "com.ovh.emaildomain#PostEmailDomainDomainTerminate"
+          "target": "com.ovh.emaildomain#TerminateEmailDomain"
         }
       ],
       "traits": {

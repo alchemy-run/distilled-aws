@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.ovh.ip#IamResourceTagFilterInput": {
@@ -24,20 +25,20 @@
         "smithy.api#documentation": "Resource tag filter"
       }
     },
-    "com.ovh.ip#GetIpRequestIamTagsValueList": {
+    "com.ovh.ip#ListIpRequestIamTagsValueList": {
       "type": "list",
       "member": {
         "target": "com.ovh.ip#IamResourceTagFilterInput"
       },
       "traits": {}
     },
-    "com.ovh.ip#GetIpRequestIamTagsMap": {
+    "com.ovh.ip#ListIpRequestIamTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "com.ovh.ip#GetIpRequestIamTagsValueList"
+        "target": "com.ovh.ip#ListIpRequestIamTagsValueList"
       },
       "traits": {}
     },
@@ -165,7 +166,7 @@
         "smithy.api#documentation": "Possible values for IP version"
       }
     },
-    "com.ovh.ip#GetIpRequest": {
+    "com.ovh.ip#ListIpRequest": {
       "type": "structure",
       "members": {
         "campus": {
@@ -183,7 +184,7 @@
           }
         },
         "iamTags": {
-          "target": "com.ovh.ip#GetIpRequestIamTagsMap",
+          "target": "com.ovh.ip#ListIpRequestIamTagsMap",
           "traits": {
             "smithy.api#httpQuery": "iamTags",
             "smithy.api#documentation": "Filter resources on IAM tags"
@@ -229,18 +230,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#GetIpResponseBodyList": {
+    "com.ovh.ip#ListIpResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.ip#GetIpResponse": {
+    "com.ovh.ip#ListIpResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ip#GetIpResponseBodyList",
+          "target": "com.ovh.ip#ListIpResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -251,13 +252,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ip#GetIp": {
+    "com.ovh.ip#ListIp": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#GetIpRequest"
+        "target": "com.ovh.ip#ListIpRequest"
       },
       "output": {
-        "target": "com.ovh.ip#GetIpResponse"
+        "target": "com.ovh.ip#ListIpResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -742,18 +743,18 @@
         "smithy.api#documentation": "Possible values for IP campuses' names"
       }
     },
-    "com.ovh.ip#GetIpCampusResponseBodyList": {
+    "com.ovh.ip#ListIpCampusResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.ip#IpCampus"
       },
       "traits": {}
     },
-    "com.ovh.ip#GetIpCampusResponse": {
+    "com.ovh.ip#ListIpCampusResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ip#GetIpCampusResponseBodyList",
+          "target": "com.ovh.ip#ListIpCampusResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -764,13 +765,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ip#GetIpCampus": {
+    "com.ovh.ip#ListIpCampus": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.ovh.ip#GetIpCampusResponse"
+        "target": "com.ovh.ip#ListIpCampusResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -781,28 +782,28 @@
         "smithy.api#documentation": "Get IP campuses"
       }
     },
-    "com.ovh.ip#GetIpServiceRequestIamTagsValueList": {
+    "com.ovh.ip#ListIpServiceRequestIamTagsValueList": {
       "type": "list",
       "member": {
         "target": "com.ovh.ip#IamResourceTagFilterInput"
       },
       "traits": {}
     },
-    "com.ovh.ip#GetIpServiceRequestIamTagsMap": {
+    "com.ovh.ip#ListIpServiceRequestIamTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "com.ovh.ip#GetIpServiceRequestIamTagsValueList"
+        "target": "com.ovh.ip#ListIpServiceRequestIamTagsValueList"
       },
       "traits": {}
     },
-    "com.ovh.ip#GetIpServiceRequest": {
+    "com.ovh.ip#ListIpServiceRequest": {
       "type": "structure",
       "members": {
         "iamTags": {
-          "target": "com.ovh.ip#GetIpServiceRequestIamTagsMap",
+          "target": "com.ovh.ip#ListIpServiceRequestIamTagsMap",
           "traits": {
             "smithy.api#httpQuery": "iamTags",
             "smithy.api#documentation": "Filter resources on IAM tags"
@@ -813,18 +814,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#GetIpServiceResponseBodyList": {
+    "com.ovh.ip#ListIpServiceResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.ip#GetIpServiceResponse": {
+    "com.ovh.ip#ListIpServiceResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ip#GetIpServiceResponseBodyList",
+          "target": "com.ovh.ip#ListIpServiceResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -835,13 +836,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ip#GetIpService": {
+    "com.ovh.ip#ListIpService": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#GetIpServiceRequest"
+        "target": "com.ovh.ip#ListIpServiceRequest"
       },
       "output": {
-        "target": "com.ovh.ip#GetIpServiceResponse"
+        "target": "com.ovh.ip#ListIpServiceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -852,7 +853,7 @@
         "smithy.api#documentation": "Your ip services"
       }
     },
-    "com.ovh.ip#GetIpServiceServiceNameRequest": {
+    "com.ovh.ip#GetIpServiceRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2548,10 +2549,10 @@
         "smithy.api#documentation": "Information about routing"
       }
     },
-    "com.ovh.ip#GetIpServiceServiceName": {
+    "com.ovh.ip#GetIpService": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#GetIpServiceServiceNameRequest"
+        "target": "com.ovh.ip#GetIpServiceRequest"
       },
       "output": {
         "target": "com.ovh.ip#IpServiceIpWithIAM"
@@ -2565,7 +2566,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.ip#PutIpServiceServiceNameRequest": {
+    "com.ovh.ip#PutIpServiceRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2588,10 +2589,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#PutIpServiceServiceName": {
+    "com.ovh.ip#PutIpService": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#PutIpServiceServiceNameRequest"
+        "target": "com.ovh.ip#PutIpServiceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2605,7 +2606,7 @@
         "smithy.api#documentation": "Alter this object properties"
       }
     },
-    "com.ovh.ip#PostIpServiceServiceNameChangeContactRequest": {
+    "com.ovh.ip#CreateIpServiceChangeContactRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2639,18 +2640,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#PostIpServiceServiceNameChangeContactResponseBodyList": {
+    "com.ovh.ip#CreateIpServiceChangeContactResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.ip#PostIpServiceServiceNameChangeContactResponse": {
+    "com.ovh.ip#CreateIpServiceChangeContactResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ip#PostIpServiceServiceNameChangeContactResponseBodyList",
+          "target": "com.ovh.ip#CreateIpServiceChangeContactResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -2661,13 +2662,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ip#PostIpServiceServiceNameChangeContact": {
+    "com.ovh.ip#CreateIpServiceChangeContact": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#PostIpServiceServiceNameChangeContactRequest"
+        "target": "com.ovh.ip#CreateIpServiceChangeContactRequest"
       },
       "output": {
-        "target": "com.ovh.ip#PostIpServiceServiceNameChangeContactResponse"
+        "target": "com.ovh.ip#CreateIpServiceChangeContactResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2808,7 +2809,7 @@
         "smithy.api#documentation": "All reasons you can provide for a service termination"
       }
     },
-    "com.ovh.ip#PostIpServiceServiceNameConfirmTerminationRequest": {
+    "com.ovh.ip#ConfirmIpServiceTerminationRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2849,7 +2850,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#PostIpServiceServiceNameConfirmTerminationResponse": {
+    "com.ovh.ip#ConfirmIpServiceTerminationResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -2864,13 +2865,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ip#PostIpServiceServiceNameConfirmTermination": {
+    "com.ovh.ip#ConfirmIpServiceTermination": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#PostIpServiceServiceNameConfirmTerminationRequest"
+        "target": "com.ovh.ip#ConfirmIpServiceTerminationRequest"
       },
       "output": {
-        "target": "com.ovh.ip#PostIpServiceServiceNameConfirmTerminationResponse"
+        "target": "com.ovh.ip#ConfirmIpServiceTerminationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2881,7 +2882,7 @@
         "smithy.api#documentation": "Confirm service termination"
       }
     },
-    "com.ovh.ip#GetIpServiceServiceNameServiceInfosRequest": {
+    "com.ovh.ip#GetIpServiceServiceInfosRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3105,10 +3106,10 @@
       },
       "traits": {}
     },
-    "com.ovh.ip#GetIpServiceServiceNameServiceInfos": {
+    "com.ovh.ip#GetIpServiceServiceInfos": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#GetIpServiceServiceNameServiceInfosRequest"
+        "target": "com.ovh.ip#GetIpServiceServiceInfosRequest"
       },
       "output": {
         "target": "com.ovh.ip#ServicesService"
@@ -3122,7 +3123,7 @@
         "smithy.api#documentation": "Get service information"
       }
     },
-    "com.ovh.ip#PutIpServiceServiceNameServiceInfosRequest": {
+    "com.ovh.ip#PutIpServiceServiceInfosRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3145,10 +3146,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#PutIpServiceServiceNameServiceInfos": {
+    "com.ovh.ip#PutIpServiceServiceInfos": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#PutIpServiceServiceNameServiceInfosRequest"
+        "target": "com.ovh.ip#PutIpServiceServiceInfosRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3162,7 +3163,7 @@
         "smithy.api#documentation": "Update service information"
       }
     },
-    "com.ovh.ip#PostIpServiceServiceNameTerminateRequest": {
+    "com.ovh.ip#TerminateIpServiceRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3178,7 +3179,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#PostIpServiceServiceNameTerminateResponse": {
+    "com.ovh.ip#TerminateIpServiceResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -3193,13 +3194,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ip#PostIpServiceServiceNameTerminate": {
+    "com.ovh.ip#TerminateIpService": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#PostIpServiceServiceNameTerminateRequest"
+        "target": "com.ovh.ip#TerminateIpServiceRequest"
       },
       "output": {
-        "target": "com.ovh.ip#PostIpServiceServiceNameTerminateResponse"
+        "target": "com.ovh.ip#TerminateIpServiceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3210,7 +3211,7 @@
         "smithy.api#documentation": "Ask for the termination of your service\n\nAsk for the termination of your service. Admin contact of this service will receive a termination token by email in order to confirm its termination with /confirmTermination endpoint."
       }
     },
-    "com.ovh.ip#GetIpIpRequest": {
+    "com.ovh.ip#GetIpRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -3668,10 +3669,10 @@
         "smithy.api#documentation": "Where is the IP used/usable, in the form of region codenames (alpha)"
       }
     },
-    "com.ovh.ip#GetIpIp": {
+    "com.ovh.ip#GetIp": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#GetIpIpRequest"
+        "target": "com.ovh.ip#GetIpRequest"
       },
       "output": {
         "target": "com.ovh.ip#IpIpWithIAM"
@@ -3685,7 +3686,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.ip#PutIpIpRequest": {
+    "com.ovh.ip#PutIpRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -3707,10 +3708,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#PutIpIp": {
+    "com.ovh.ip#PutIp": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#PutIpIpRequest"
+        "target": "com.ovh.ip#PutIpRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3744,7 +3745,7 @@
         "smithy.api#documentation": "Possible values for IP state"
       }
     },
-    "com.ovh.ip#GetIpIpAntihackRequest": {
+    "com.ovh.ip#ListIpAntihackRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -3766,18 +3767,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#GetIpIpAntihackResponseBodyList": {
+    "com.ovh.ip#ListIpAntihackResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.ip#GetIpIpAntihackResponse": {
+    "com.ovh.ip#ListIpAntihackResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ip#GetIpIpAntihackResponseBodyList",
+          "target": "com.ovh.ip#ListIpAntihackResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -3788,13 +3789,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ip#GetIpIpAntihack": {
+    "com.ovh.ip#ListIpAntihack": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#GetIpIpAntihackRequest"
+        "target": "com.ovh.ip#ListIpAntihackRequest"
       },
       "output": {
-        "target": "com.ovh.ip#GetIpIpAntihackResponse"
+        "target": "com.ovh.ip#ListIpAntihackResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3805,7 +3806,7 @@
         "smithy.api#documentation": "Anti-Hack blocked IP"
       }
     },
-    "com.ovh.ip#GetIpIpAntihackIpBlockedRequest": {
+    "com.ovh.ip#GetIpAntihackRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -3867,10 +3868,10 @@
         "smithy.api#documentation": "Blocked IP information"
       }
     },
-    "com.ovh.ip#GetIpIpAntihackIpBlocked": {
+    "com.ovh.ip#GetIpAntihack": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#GetIpIpAntihackIpBlockedRequest"
+        "target": "com.ovh.ip#GetIpAntihackRequest"
       },
       "output": {
         "target": "com.ovh.ip#IpBlockedIp"
@@ -3884,7 +3885,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.ip#PostIpIpAntihackIpBlockedUnblockRequest": {
+    "com.ovh.ip#UnblockIpAntihackRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -3907,10 +3908,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#PostIpIpAntihackIpBlockedUnblock": {
+    "com.ovh.ip#UnblockIpAntihack": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#PostIpIpAntihackIpBlockedUnblockRequest"
+        "target": "com.ovh.ip#UnblockIpAntihackRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3944,7 +3945,7 @@
         "smithy.api#documentation": "Possible values for IP state"
       }
     },
-    "com.ovh.ip#GetIpIpArpRequest": {
+    "com.ovh.ip#ListIpArpRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -3966,18 +3967,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#GetIpIpArpResponseBodyList": {
+    "com.ovh.ip#ListIpArpResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.ip#GetIpIpArpResponse": {
+    "com.ovh.ip#ListIpArpResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ip#GetIpIpArpResponseBodyList",
+          "target": "com.ovh.ip#ListIpArpResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -3988,13 +3989,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ip#GetIpIpArp": {
+    "com.ovh.ip#ListIpArp": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#GetIpIpArpRequest"
+        "target": "com.ovh.ip#ListIpArpRequest"
       },
       "output": {
-        "target": "com.ovh.ip#GetIpIpArpResponse"
+        "target": "com.ovh.ip#ListIpArpResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4005,7 +4006,7 @@
         "smithy.api#documentation": "ARP blocked IP"
       }
     },
-    "com.ovh.ip#GetIpIpArpIpBlockedRequest": {
+    "com.ovh.ip#GetIpArpRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -4067,10 +4068,10 @@
         "smithy.api#documentation": "ARP blocked IP information"
       }
     },
-    "com.ovh.ip#GetIpIpArpIpBlocked": {
+    "com.ovh.ip#GetIpArp": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#GetIpIpArpIpBlockedRequest"
+        "target": "com.ovh.ip#GetIpArpRequest"
       },
       "output": {
         "target": "com.ovh.ip#IpArpBlockedIp"
@@ -4084,7 +4085,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.ip#PostIpIpArpIpBlockedUnblockRequest": {
+    "com.ovh.ip#UnblockIpArpRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -4107,10 +4108,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#PostIpIpArpIpBlockedUnblock": {
+    "com.ovh.ip#UnblockIpArp": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#PostIpIpArpIpBlockedUnblockRequest"
+        "target": "com.ovh.ip#UnblockIpArpRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4124,7 +4125,7 @@
         "smithy.api#documentation": "Unblock this IP"
       }
     },
-    "com.ovh.ip#GetIpIpBringYourOwnIpAggregateRequest": {
+    "com.ovh.ip#ListIpBringYourOwnIpAggregateRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -4168,18 +4169,18 @@
         "smithy.api#documentation": "Existing Additional IP(s) that will be aggregated"
       }
     },
-    "com.ovh.ip#GetIpIpBringYourOwnIpAggregateResponseBodyList": {
+    "com.ovh.ip#ListIpBringYourOwnIpAggregateResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.ip#IpByoipAggregationPreview"
       },
       "traits": {}
     },
-    "com.ovh.ip#GetIpIpBringYourOwnIpAggregateResponse": {
+    "com.ovh.ip#ListIpBringYourOwnIpAggregateResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ip#GetIpIpBringYourOwnIpAggregateResponseBodyList",
+          "target": "com.ovh.ip#ListIpBringYourOwnIpAggregateResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -4190,13 +4191,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ip#GetIpIpBringYourOwnIpAggregate": {
+    "com.ovh.ip#ListIpBringYourOwnIpAggregate": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#GetIpIpBringYourOwnIpAggregateRequest"
+        "target": "com.ovh.ip#ListIpBringYourOwnIpAggregateRequest"
       },
       "output": {
-        "target": "com.ovh.ip#GetIpIpBringYourOwnIpAggregateResponse"
+        "target": "com.ovh.ip#ListIpBringYourOwnIpAggregateResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4207,7 +4208,7 @@
         "smithy.api#documentation": "Get available aggregation configurations for this BYOIP Additional IP and it's neighbor(s)"
       }
     },
-    "com.ovh.ip#PostIpIpBringYourOwnIpAggregateRequest": {
+    "com.ovh.ip#CreateIpBringYourOwnIpAggregateRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -4377,10 +4378,10 @@
         "smithy.api#documentation": "different task status"
       }
     },
-    "com.ovh.ip#PostIpIpBringYourOwnIpAggregate": {
+    "com.ovh.ip#CreateIpBringYourOwnIpAggregate": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#PostIpIpBringYourOwnIpAggregateRequest"
+        "target": "com.ovh.ip#CreateIpBringYourOwnIpAggregateRequest"
       },
       "output": {
         "target": "com.ovh.ip#IpIpTask"
@@ -4394,7 +4395,7 @@
         "smithy.api#documentation": "Aggregate a sliced BYOIP Additional IPs and it's neighbor(s) into a single bigger Additional IP parent"
       }
     },
-    "com.ovh.ip#GetIpIpBringYourOwnIpSliceRequest": {
+    "com.ovh.ip#ListIpBringYourOwnIpSliceRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -4438,18 +4439,18 @@
         "smithy.api#documentation": "Additional IP(s) that will be created"
       }
     },
-    "com.ovh.ip#GetIpIpBringYourOwnIpSliceResponseBodyList": {
+    "com.ovh.ip#ListIpBringYourOwnIpSliceResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.ip#IpByoipSlicingPreview"
       },
       "traits": {}
     },
-    "com.ovh.ip#GetIpIpBringYourOwnIpSliceResponse": {
+    "com.ovh.ip#ListIpBringYourOwnIpSliceResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ip#GetIpIpBringYourOwnIpSliceResponseBodyList",
+          "target": "com.ovh.ip#ListIpBringYourOwnIpSliceResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -4460,13 +4461,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ip#GetIpIpBringYourOwnIpSlice": {
+    "com.ovh.ip#ListIpBringYourOwnIpSlice": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#GetIpIpBringYourOwnIpSliceRequest"
+        "target": "com.ovh.ip#ListIpBringYourOwnIpSliceRequest"
       },
       "output": {
-        "target": "com.ovh.ip#GetIpIpBringYourOwnIpSliceResponse"
+        "target": "com.ovh.ip#ListIpBringYourOwnIpSliceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4477,7 +4478,7 @@
         "smithy.api#documentation": "Get available slicing configurations for this BYOIP Additional IP"
       }
     },
-    "com.ovh.ip#PostIpIpBringYourOwnIpSliceRequest": {
+    "com.ovh.ip#CreateIpBringYourOwnIpSliceRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -4499,10 +4500,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#PostIpIpBringYourOwnIpSlice": {
+    "com.ovh.ip#CreateIpBringYourOwnIpSlice": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#PostIpIpBringYourOwnIpSliceRequest"
+        "target": "com.ovh.ip#CreateIpBringYourOwnIpSliceRequest"
       },
       "output": {
         "target": "com.ovh.ip#IpIpTask"
@@ -4516,7 +4517,7 @@
         "smithy.api#documentation": "Slice a BYOIP Additional IP into smaller Additional IPs"
       }
     },
-    "com.ovh.ip#PostIpIpChangeOrgRequest": {
+    "com.ovh.ip#CreateIpChangeOrgRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -4538,10 +4539,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#PostIpIpChangeOrg": {
+    "com.ovh.ip#CreateIpChangeOrg": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#PostIpIpChangeOrgRequest"
+        "target": "com.ovh.ip#CreateIpChangeOrgRequest"
       },
       "output": {
         "target": "com.ovh.ip#IpIpTask"
@@ -4555,7 +4556,7 @@
         "smithy.api#documentation": "Change organisation of this IP"
       }
     },
-    "com.ovh.ip#GetIpIpDelegationRequest": {
+    "com.ovh.ip#ListIpDelegationRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -4570,18 +4571,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#GetIpIpDelegationResponseBodyList": {
+    "com.ovh.ip#ListIpDelegationResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.ip#GetIpIpDelegationResponse": {
+    "com.ovh.ip#ListIpDelegationResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ip#GetIpIpDelegationResponseBodyList",
+          "target": "com.ovh.ip#ListIpDelegationResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -4592,13 +4593,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ip#GetIpIpDelegation": {
+    "com.ovh.ip#ListIpDelegation": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#GetIpIpDelegationRequest"
+        "target": "com.ovh.ip#ListIpDelegationRequest"
       },
       "output": {
-        "target": "com.ovh.ip#GetIpIpDelegationResponse"
+        "target": "com.ovh.ip#ListIpDelegationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4609,7 +4610,7 @@
         "smithy.api#documentation": "Reverse delegation on IPv6 subnet"
       }
     },
-    "com.ovh.ip#PostIpIpDelegationRequest": {
+    "com.ovh.ip#CreateIpDelegationRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -4645,10 +4646,10 @@
         "smithy.api#documentation": "Your reverse delegations on IPv6 subnet"
       }
     },
-    "com.ovh.ip#PostIpIpDelegation": {
+    "com.ovh.ip#CreateIpDelegation": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#PostIpIpDelegationRequest"
+        "target": "com.ovh.ip#CreateIpDelegationRequest"
       },
       "output": {
         "target": "com.ovh.ip#IpReverseDelegation"
@@ -4662,7 +4663,7 @@
         "smithy.api#documentation": "Add target for reverse delegation on IPv6 subnet"
       }
     },
-    "com.ovh.ip#GetIpIpDelegationTargetRequest": {
+    "com.ovh.ip#GetIpDelegationRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -4685,10 +4686,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#GetIpIpDelegationTarget": {
+    "com.ovh.ip#GetIpDelegation": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#GetIpIpDelegationTargetRequest"
+        "target": "com.ovh.ip#GetIpDelegationRequest"
       },
       "output": {
         "target": "com.ovh.ip#IpReverseDelegation"
@@ -4702,7 +4703,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.ip#DeleteIpIpDelegationTargetRequest": {
+    "com.ovh.ip#DeleteIpDelegationRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -4725,10 +4726,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#DeleteIpIpDelegationTarget": {
+    "com.ovh.ip#DeleteIpDelegation": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#DeleteIpIpDelegationTargetRequest"
+        "target": "com.ovh.ip#DeleteIpDelegationRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4768,7 +4769,7 @@
         "smithy.api#documentation": "Possible values for firewall ip state"
       }
     },
-    "com.ovh.ip#GetIpIpFirewallRequest": {
+    "com.ovh.ip#ListIpFirewallRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -4797,18 +4798,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#GetIpIpFirewallResponseBodyList": {
+    "com.ovh.ip#ListIpFirewallResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.ip#GetIpIpFirewallResponse": {
+    "com.ovh.ip#ListIpFirewallResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ip#GetIpIpFirewallResponseBodyList",
+          "target": "com.ovh.ip#ListIpFirewallResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -4819,13 +4820,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ip#GetIpIpFirewall": {
+    "com.ovh.ip#ListIpFirewall": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#GetIpIpFirewallRequest"
+        "target": "com.ovh.ip#ListIpFirewallRequest"
       },
       "output": {
-        "target": "com.ovh.ip#GetIpIpFirewallResponse"
+        "target": "com.ovh.ip#ListIpFirewallResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4836,7 +4837,7 @@
         "smithy.api#documentation": "Ip under firewall"
       }
     },
-    "com.ovh.ip#PostIpIpFirewallRequest": {
+    "com.ovh.ip#CreateIpFirewallRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -4877,10 +4878,10 @@
         "smithy.api#documentation": "Your IP on firewall"
       }
     },
-    "com.ovh.ip#PostIpIpFirewall": {
+    "com.ovh.ip#CreateIpFirewall": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#PostIpIpFirewallRequest"
+        "target": "com.ovh.ip#CreateIpFirewallRequest"
       },
       "output": {
         "target": "com.ovh.ip#IpFirewallIp"
@@ -4894,7 +4895,7 @@
         "smithy.api#documentation": "AntiDDOS option. Add new IP on firewall"
       }
     },
-    "com.ovh.ip#GetIpIpFirewallIpOnFirewallRequest": {
+    "com.ovh.ip#GetIpFirewallRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -4916,10 +4917,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#GetIpIpFirewallIpOnFirewall": {
+    "com.ovh.ip#GetIpFirewall": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#GetIpIpFirewallIpOnFirewallRequest"
+        "target": "com.ovh.ip#GetIpFirewallRequest"
       },
       "output": {
         "target": "com.ovh.ip#IpFirewallIp"
@@ -4933,7 +4934,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.ip#PutIpIpFirewallIpOnFirewallRequest": {
+    "com.ovh.ip#PutIpFirewallRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -4958,10 +4959,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#PutIpIpFirewallIpOnFirewall": {
+    "com.ovh.ip#PutIpFirewall": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#PutIpIpFirewallIpOnFirewallRequest"
+        "target": "com.ovh.ip#PutIpFirewallRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4975,7 +4976,7 @@
         "smithy.api#documentation": "Alter this object properties"
       }
     },
-    "com.ovh.ip#DeleteIpIpFirewallIpOnFirewallRequest": {
+    "com.ovh.ip#DeleteIpFirewallRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -4997,7 +4998,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#DeleteIpIpFirewallIpOnFirewallResponse": {
+    "com.ovh.ip#DeleteIpFirewallResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -5012,13 +5013,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ip#DeleteIpIpFirewallIpOnFirewall": {
+    "com.ovh.ip#DeleteIpFirewall": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#DeleteIpIpFirewallIpOnFirewallRequest"
+        "target": "com.ovh.ip#DeleteIpFirewallRequest"
       },
       "output": {
-        "target": "com.ovh.ip#DeleteIpIpFirewallIpOnFirewallResponse"
+        "target": "com.ovh.ip#DeleteIpFirewallResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5055,7 +5056,7 @@
         "smithy.api#documentation": "Possible values for firewall rule state"
       }
     },
-    "com.ovh.ip#GetIpIpFirewallIpOnFirewallRuleRequest": {
+    "com.ovh.ip#ListIpFirewallRuleRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -5084,18 +5085,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#GetIpIpFirewallIpOnFirewallRuleResponseBodyList": {
+    "com.ovh.ip#ListIpFirewallRuleResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.ip#GetIpIpFirewallIpOnFirewallRuleResponse": {
+    "com.ovh.ip#ListIpFirewallRuleResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ip#GetIpIpFirewallIpOnFirewallRuleResponseBodyList",
+          "target": "com.ovh.ip#ListIpFirewallRuleResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -5106,13 +5107,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ip#GetIpIpFirewallIpOnFirewallRule": {
+    "com.ovh.ip#ListIpFirewallRule": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#GetIpIpFirewallIpOnFirewallRuleRequest"
+        "target": "com.ovh.ip#ListIpFirewallRuleRequest"
       },
       "output": {
-        "target": "com.ovh.ip#GetIpIpFirewallIpOnFirewallRuleResponse"
+        "target": "com.ovh.ip#ListIpFirewallRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5363,7 +5364,7 @@
         "smithy.api#documentation": "Possible values for TCP option - only for TCP protocol"
       }
     },
-    "com.ovh.ip#PostIpIpFirewallIpOnFirewallRuleRequest": {
+    "com.ovh.ip#CreateIpFirewallRuleRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -5505,10 +5506,10 @@
         "smithy.api#documentation": "Rule on ip"
       }
     },
-    "com.ovh.ip#PostIpIpFirewallIpOnFirewallRule": {
+    "com.ovh.ip#CreateIpFirewallRule": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#PostIpIpFirewallIpOnFirewallRuleRequest"
+        "target": "com.ovh.ip#CreateIpFirewallRuleRequest"
       },
       "output": {
         "target": "com.ovh.ip#IpFirewallNetworkRule"
@@ -5522,7 +5523,7 @@
         "smithy.api#documentation": "AntiDDOS option. Add new rule on your IP"
       }
     },
-    "com.ovh.ip#GetIpIpFirewallIpOnFirewallRuleSequenceRequest": {
+    "com.ovh.ip#GetIpFirewallRuleRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -5551,10 +5552,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#GetIpIpFirewallIpOnFirewallRuleSequence": {
+    "com.ovh.ip#GetIpFirewallRule": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#GetIpIpFirewallIpOnFirewallRuleSequenceRequest"
+        "target": "com.ovh.ip#GetIpFirewallRuleRequest"
       },
       "output": {
         "target": "com.ovh.ip#IpFirewallNetworkRule"
@@ -5568,7 +5569,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.ip#DeleteIpIpFirewallIpOnFirewallRuleSequenceRequest": {
+    "com.ovh.ip#DeleteIpFirewallRuleRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -5597,10 +5598,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#DeleteIpIpFirewallIpOnFirewallRuleSequence": {
+    "com.ovh.ip#DeleteIpFirewallRule": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#DeleteIpIpFirewallIpOnFirewallRuleSequenceRequest"
+        "target": "com.ovh.ip#DeleteIpFirewallRuleRequest"
       },
       "output": {
         "target": "com.ovh.ip#IpFirewallNetworkRule"
@@ -5614,7 +5615,7 @@
         "smithy.api#documentation": "AntiDDOS option. Delete rule"
       }
     },
-    "com.ovh.ip#GetIpIpGameRequest": {
+    "com.ovh.ip#ListIpGameRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -5629,18 +5630,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#GetIpIpGameResponseBodyList": {
+    "com.ovh.ip#ListIpGameResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.ip#GetIpIpGameResponse": {
+    "com.ovh.ip#ListIpGameResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ip#GetIpIpGameResponseBodyList",
+          "target": "com.ovh.ip#ListIpGameResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -5651,13 +5652,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ip#GetIpIpGame": {
+    "com.ovh.ip#ListIpGame": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#GetIpIpGameRequest"
+        "target": "com.ovh.ip#ListIpGameRequest"
       },
       "output": {
-        "target": "com.ovh.ip#GetIpIpGameResponse"
+        "target": "com.ovh.ip#ListIpGameResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5668,7 +5669,7 @@
         "smithy.api#documentation": "Ip under game anti-ddos"
       }
     },
-    "com.ovh.ip#GetIpIpGameIpOnGameRequest": {
+    "com.ovh.ip#GetIpGameRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -5885,10 +5886,10 @@
         "smithy.api#documentation": "List of protocols available on this IP"
       }
     },
-    "com.ovh.ip#GetIpIpGameIpOnGame": {
+    "com.ovh.ip#GetIpGame": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#GetIpIpGameIpOnGameRequest"
+        "target": "com.ovh.ip#GetIpGameRequest"
       },
       "output": {
         "target": "com.ovh.ip#IpGameMitigation"
@@ -5902,7 +5903,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.ip#PutIpIpGameIpOnGameRequest": {
+    "com.ovh.ip#PutIpGameRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -5930,10 +5931,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#PutIpIpGameIpOnGame": {
+    "com.ovh.ip#PutIpGame": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#PutIpIpGameIpOnGameRequest"
+        "target": "com.ovh.ip#PutIpGameRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5947,7 +5948,7 @@
         "smithy.api#documentation": "Alter this object properties"
       }
     },
-    "com.ovh.ip#GetIpIpGameIpOnGameRuleRequest": {
+    "com.ovh.ip#ListIpGameRuleRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -5969,18 +5970,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#GetIpIpGameIpOnGameRuleResponseBodyList": {
+    "com.ovh.ip#ListIpGameRuleResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.ip#GetIpIpGameIpOnGameRuleResponse": {
+    "com.ovh.ip#ListIpGameRuleResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ip#GetIpIpGameIpOnGameRuleResponseBodyList",
+          "target": "com.ovh.ip#ListIpGameRuleResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -5991,13 +5992,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ip#GetIpIpGameIpOnGameRule": {
+    "com.ovh.ip#ListIpGameRule": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#GetIpIpGameIpOnGameRuleRequest"
+        "target": "com.ovh.ip#ListIpGameRuleRequest"
       },
       "output": {
-        "target": "com.ovh.ip#GetIpIpGameIpOnGameRuleResponse"
+        "target": "com.ovh.ip#ListIpGameRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6022,7 +6023,7 @@
         "smithy.api#documentation": "Start and end points (inclusive) of a range"
       }
     },
-    "com.ovh.ip#PostIpIpGameIpOnGameRuleRequest": {
+    "com.ovh.ip#CreateIpGameRuleRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -6110,10 +6111,10 @@
         "smithy.api#documentation": "Possible values for game mitigation rule state"
       }
     },
-    "com.ovh.ip#PostIpIpGameIpOnGameRule": {
+    "com.ovh.ip#CreateIpGameRule": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#PostIpIpGameIpOnGameRuleRequest"
+        "target": "com.ovh.ip#CreateIpGameRuleRequest"
       },
       "output": {
         "target": "com.ovh.ip#IpGameMitigationRule"
@@ -6127,7 +6128,7 @@
         "smithy.api#documentation": "Add new rule on your IP"
       }
     },
-    "com.ovh.ip#GetIpIpGameIpOnGameRuleIdRequest": {
+    "com.ovh.ip#GetIpGameRuleRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -6157,10 +6158,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#GetIpIpGameIpOnGameRuleId": {
+    "com.ovh.ip#GetIpGameRule": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#GetIpIpGameIpOnGameRuleIdRequest"
+        "target": "com.ovh.ip#GetIpGameRuleRequest"
       },
       "output": {
         "target": "com.ovh.ip#IpGameMitigationRule"
@@ -6174,7 +6175,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.ip#DeleteIpIpGameIpOnGameRuleIdRequest": {
+    "com.ovh.ip#DeleteIpGameRuleRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -6204,10 +6205,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#DeleteIpIpGameIpOnGameRuleId": {
+    "com.ovh.ip#DeleteIpGameRule": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#DeleteIpIpGameIpOnGameRuleIdRequest"
+        "target": "com.ovh.ip#DeleteIpGameRuleRequest"
       },
       "output": {
         "target": "com.ovh.ip#IpGameMitigationRule"
@@ -6221,7 +6222,7 @@
         "smithy.api#documentation": "Delete rule"
       }
     },
-    "com.ovh.ip#GetIpIpLicenseCloudLinuxRequest": {
+    "com.ovh.ip#ListIpLicenseCloudLinuxRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -6243,18 +6244,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#GetIpIpLicenseCloudLinuxResponseBodyList": {
+    "com.ovh.ip#ListIpLicenseCloudLinuxResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.ip#GetIpIpLicenseCloudLinuxResponse": {
+    "com.ovh.ip#ListIpLicenseCloudLinuxResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ip#GetIpIpLicenseCloudLinuxResponseBodyList",
+          "target": "com.ovh.ip#ListIpLicenseCloudLinuxResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -6265,13 +6266,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ip#GetIpIpLicenseCloudLinux": {
+    "com.ovh.ip#ListIpLicenseCloudLinux": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#GetIpIpLicenseCloudLinuxRequest"
+        "target": "com.ovh.ip#ListIpLicenseCloudLinuxRequest"
       },
       "output": {
-        "target": "com.ovh.ip#GetIpIpLicenseCloudLinuxResponse"
+        "target": "com.ovh.ip#ListIpLicenseCloudLinuxResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6282,7 +6283,7 @@
         "smithy.api#documentation": "Cloud Linux licenses associated to this IP"
       }
     },
-    "com.ovh.ip#GetIpIpLicenseCpanelRequest": {
+    "com.ovh.ip#ListIpLicenseCpanelRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -6304,18 +6305,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#GetIpIpLicenseCpanelResponseBodyList": {
+    "com.ovh.ip#ListIpLicenseCpanelResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.ip#GetIpIpLicenseCpanelResponse": {
+    "com.ovh.ip#ListIpLicenseCpanelResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ip#GetIpIpLicenseCpanelResponseBodyList",
+          "target": "com.ovh.ip#ListIpLicenseCpanelResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -6326,13 +6327,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ip#GetIpIpLicenseCpanel": {
+    "com.ovh.ip#ListIpLicenseCpanel": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#GetIpIpLicenseCpanelRequest"
+        "target": "com.ovh.ip#ListIpLicenseCpanelRequest"
       },
       "output": {
-        "target": "com.ovh.ip#GetIpIpLicenseCpanelResponse"
+        "target": "com.ovh.ip#ListIpLicenseCpanelResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6343,7 +6344,7 @@
         "smithy.api#documentation": "Cpanel licenses associated to this IP"
       }
     },
-    "com.ovh.ip#GetIpIpLicenseDirectadminRequest": {
+    "com.ovh.ip#ListIpLicenseDirectadminRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -6365,18 +6366,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#GetIpIpLicenseDirectadminResponseBodyList": {
+    "com.ovh.ip#ListIpLicenseDirectadminResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.ip#GetIpIpLicenseDirectadminResponse": {
+    "com.ovh.ip#ListIpLicenseDirectadminResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ip#GetIpIpLicenseDirectadminResponseBodyList",
+          "target": "com.ovh.ip#ListIpLicenseDirectadminResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -6387,13 +6388,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ip#GetIpIpLicenseDirectadmin": {
+    "com.ovh.ip#ListIpLicenseDirectadmin": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#GetIpIpLicenseDirectadminRequest"
+        "target": "com.ovh.ip#ListIpLicenseDirectadminRequest"
       },
       "output": {
-        "target": "com.ovh.ip#GetIpIpLicenseDirectadminResponse"
+        "target": "com.ovh.ip#ListIpLicenseDirectadminResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6404,7 +6405,7 @@
         "smithy.api#documentation": "DirectAdmin licenses associated to this IP"
       }
     },
-    "com.ovh.ip#GetIpIpLicensePleskRequest": {
+    "com.ovh.ip#ListIpLicensePleskRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -6426,18 +6427,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#GetIpIpLicensePleskResponseBodyList": {
+    "com.ovh.ip#ListIpLicensePleskResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.ip#GetIpIpLicensePleskResponse": {
+    "com.ovh.ip#ListIpLicensePleskResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ip#GetIpIpLicensePleskResponseBodyList",
+          "target": "com.ovh.ip#ListIpLicensePleskResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -6448,13 +6449,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ip#GetIpIpLicensePlesk": {
+    "com.ovh.ip#ListIpLicensePlesk": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#GetIpIpLicensePleskRequest"
+        "target": "com.ovh.ip#ListIpLicensePleskRequest"
       },
       "output": {
-        "target": "com.ovh.ip#GetIpIpLicensePleskResponse"
+        "target": "com.ovh.ip#ListIpLicensePleskResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6465,7 +6466,7 @@
         "smithy.api#documentation": "Plesk licenses associated to this IP"
       }
     },
-    "com.ovh.ip#GetIpIpLicenseSqlserverRequest": {
+    "com.ovh.ip#ListIpLicenseSqlserverRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -6487,18 +6488,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#GetIpIpLicenseSqlserverResponseBodyList": {
+    "com.ovh.ip#ListIpLicenseSqlserverResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.ip#GetIpIpLicenseSqlserverResponse": {
+    "com.ovh.ip#ListIpLicenseSqlserverResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ip#GetIpIpLicenseSqlserverResponseBodyList",
+          "target": "com.ovh.ip#ListIpLicenseSqlserverResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -6509,13 +6510,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ip#GetIpIpLicenseSqlserver": {
+    "com.ovh.ip#ListIpLicenseSqlserver": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#GetIpIpLicenseSqlserverRequest"
+        "target": "com.ovh.ip#ListIpLicenseSqlserverRequest"
       },
       "output": {
-        "target": "com.ovh.ip#GetIpIpLicenseSqlserverResponse"
+        "target": "com.ovh.ip#ListIpLicenseSqlserverResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6526,7 +6527,7 @@
         "smithy.api#documentation": "SQL Server licenses associated to this IP"
       }
     },
-    "com.ovh.ip#GetIpIpLicenseVirtuozzoRequest": {
+    "com.ovh.ip#ListIpLicenseVirtuozzoRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -6548,18 +6549,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#GetIpIpLicenseVirtuozzoResponseBodyList": {
+    "com.ovh.ip#ListIpLicenseVirtuozzoResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.ip#GetIpIpLicenseVirtuozzoResponse": {
+    "com.ovh.ip#ListIpLicenseVirtuozzoResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ip#GetIpIpLicenseVirtuozzoResponseBodyList",
+          "target": "com.ovh.ip#ListIpLicenseVirtuozzoResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -6570,13 +6571,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ip#GetIpIpLicenseVirtuozzo": {
+    "com.ovh.ip#ListIpLicenseVirtuozzo": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#GetIpIpLicenseVirtuozzoRequest"
+        "target": "com.ovh.ip#ListIpLicenseVirtuozzoRequest"
       },
       "output": {
-        "target": "com.ovh.ip#GetIpIpLicenseVirtuozzoResponse"
+        "target": "com.ovh.ip#ListIpLicenseVirtuozzoResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6587,7 +6588,7 @@
         "smithy.api#documentation": "Virtuozzo licenses associated to this IP"
       }
     },
-    "com.ovh.ip#GetIpIpLicenseWindowsRequest": {
+    "com.ovh.ip#ListIpLicenseWindowsRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -6609,18 +6610,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#GetIpIpLicenseWindowsResponseBodyList": {
+    "com.ovh.ip#ListIpLicenseWindowsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.ip#GetIpIpLicenseWindowsResponse": {
+    "com.ovh.ip#ListIpLicenseWindowsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ip#GetIpIpLicenseWindowsResponseBodyList",
+          "target": "com.ovh.ip#ListIpLicenseWindowsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -6631,13 +6632,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ip#GetIpIpLicenseWindows": {
+    "com.ovh.ip#ListIpLicenseWindows": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#GetIpIpLicenseWindowsRequest"
+        "target": "com.ovh.ip#ListIpLicenseWindowsRequest"
       },
       "output": {
-        "target": "com.ovh.ip#GetIpIpLicenseWindowsResponse"
+        "target": "com.ovh.ip#ListIpLicenseWindowsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6648,7 +6649,7 @@
         "smithy.api#documentation": "Windows licenses associated to this IP"
       }
     },
-    "com.ovh.ip#GetIpIpLicenseWorklightRequest": {
+    "com.ovh.ip#ListIpLicenseWorklightRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -6670,18 +6671,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#GetIpIpLicenseWorklightResponseBodyList": {
+    "com.ovh.ip#ListIpLicenseWorklightResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.ip#GetIpIpLicenseWorklightResponse": {
+    "com.ovh.ip#ListIpLicenseWorklightResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ip#GetIpIpLicenseWorklightResponseBodyList",
+          "target": "com.ovh.ip#ListIpLicenseWorklightResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -6692,13 +6693,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ip#GetIpIpLicenseWorklight": {
+    "com.ovh.ip#ListIpLicenseWorklight": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#GetIpIpLicenseWorklightRequest"
+        "target": "com.ovh.ip#ListIpLicenseWorklightRequest"
       },
       "output": {
-        "target": "com.ovh.ip#GetIpIpLicenseWorklightResponse"
+        "target": "com.ovh.ip#ListIpLicenseWorklightResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6709,7 +6710,7 @@
         "smithy.api#documentation": "WorkLight licenses associated to this IP"
       }
     },
-    "com.ovh.ip#GetIpIpMigrationTokenRequest": {
+    "com.ovh.ip#GetIpMigrationTokenRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -6744,10 +6745,10 @@
         "smithy.api#documentation": "IP migration to OVH"
       }
     },
-    "com.ovh.ip#GetIpIpMigrationToken": {
+    "com.ovh.ip#GetIpMigrationToken": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#GetIpIpMigrationTokenRequest"
+        "target": "com.ovh.ip#GetIpMigrationTokenRequest"
       },
       "output": {
         "target": "com.ovh.ip#IpIpMigrationToken"
@@ -6761,7 +6762,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.ip#PostIpIpMigrationTokenRequest": {
+    "com.ovh.ip#CreateIpMigrationTokenRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -6783,10 +6784,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#PostIpIpMigrationToken": {
+    "com.ovh.ip#CreateIpMigrationToken": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#PostIpIpMigrationTokenRequest"
+        "target": "com.ovh.ip#CreateIpMigrationTokenRequest"
       },
       "output": {
         "target": "com.ovh.ip#IpIpMigrationToken"
@@ -6826,7 +6827,7 @@
         "smithy.api#documentation": "Possible values for mitigation state"
       }
     },
-    "com.ovh.ip#GetIpIpMitigationRequest": {
+    "com.ovh.ip#ListIpMitigationRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -6855,18 +6856,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#GetIpIpMitigationResponseBodyList": {
+    "com.ovh.ip#ListIpMitigationResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.ip#GetIpIpMitigationResponse": {
+    "com.ovh.ip#ListIpMitigationResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ip#GetIpIpMitigationResponseBodyList",
+          "target": "com.ovh.ip#ListIpMitigationResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -6877,13 +6878,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ip#GetIpIpMitigation": {
+    "com.ovh.ip#ListIpMitigation": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#GetIpIpMitigationRequest"
+        "target": "com.ovh.ip#ListIpMitigationRequest"
       },
       "output": {
-        "target": "com.ovh.ip#GetIpIpMitigationResponse"
+        "target": "com.ovh.ip#ListIpMitigationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6894,7 +6895,7 @@
         "smithy.api#documentation": "Ip under mitigation"
       }
     },
-    "com.ovh.ip#PostIpIpMitigationRequest": {
+    "com.ovh.ip#CreateIpMitigationRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -6944,10 +6945,10 @@
         "smithy.api#documentation": "Your IP on mitigation"
       }
     },
-    "com.ovh.ip#PostIpIpMitigation": {
+    "com.ovh.ip#CreateIpMitigation": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#PostIpIpMitigationRequest"
+        "target": "com.ovh.ip#CreateIpMitigationRequest"
       },
       "output": {
         "target": "com.ovh.ip#IpMitigationIp"
@@ -6961,7 +6962,7 @@
         "smithy.api#documentation": "AntiDDOS option. Add new IP on permanent mitigation"
       }
     },
-    "com.ovh.ip#GetIpIpMitigationIpOnMitigationRequest": {
+    "com.ovh.ip#GetIpMitigationRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -6983,10 +6984,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#GetIpIpMitigationIpOnMitigation": {
+    "com.ovh.ip#GetIpMitigation": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#GetIpIpMitigationIpOnMitigationRequest"
+        "target": "com.ovh.ip#GetIpMitigationRequest"
       },
       "output": {
         "target": "com.ovh.ip#IpMitigationIp"
@@ -7000,7 +7001,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.ip#PutIpIpMitigationIpOnMitigationRequest": {
+    "com.ovh.ip#PutIpMitigationRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -7028,10 +7029,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#PutIpIpMitigationIpOnMitigation": {
+    "com.ovh.ip#PutIpMitigation": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#PutIpIpMitigationIpOnMitigationRequest"
+        "target": "com.ovh.ip#PutIpMitigationRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7045,7 +7046,7 @@
         "smithy.api#documentation": "Alter this object properties"
       }
     },
-    "com.ovh.ip#DeleteIpIpMitigationIpOnMitigationRequest": {
+    "com.ovh.ip#DeleteIpMitigationRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -7067,10 +7068,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#DeleteIpIpMitigationIpOnMitigation": {
+    "com.ovh.ip#DeleteIpMitigation": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#DeleteIpIpMitigationIpOnMitigationRequest"
+        "target": "com.ovh.ip#DeleteIpMitigationRequest"
       },
       "output": {
         "target": "com.ovh.ip#IpMitigationIp"
@@ -7084,7 +7085,7 @@
         "smithy.api#documentation": "AntiDDOS option. Delete IP from mitigation"
       }
     },
-    "com.ovh.ip#GetIpIpMitigationProfilesRequest": {
+    "com.ovh.ip#ListIpMitigationProfilesRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -7099,18 +7100,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#GetIpIpMitigationProfilesResponseBodyList": {
+    "com.ovh.ip#ListIpMitigationProfilesResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.ip#GetIpIpMitigationProfilesResponse": {
+    "com.ovh.ip#ListIpMitigationProfilesResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ip#GetIpIpMitigationProfilesResponseBodyList",
+          "target": "com.ovh.ip#ListIpMitigationProfilesResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -7121,13 +7122,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ip#GetIpIpMitigationProfiles": {
+    "com.ovh.ip#ListIpMitigationProfiles": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#GetIpIpMitigationProfilesRequest"
+        "target": "com.ovh.ip#ListIpMitigationProfilesRequest"
       },
       "output": {
-        "target": "com.ovh.ip#GetIpIpMitigationProfilesResponse"
+        "target": "com.ovh.ip#ListIpMitigationProfilesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7176,7 +7177,7 @@
         "smithy.api#documentation": "Possible values for auto mitigation timeout (minutes)"
       }
     },
-    "com.ovh.ip#PostIpIpMitigationProfilesRequest": {
+    "com.ovh.ip#CreateIpMitigationProfileRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -7247,10 +7248,10 @@
         "smithy.api#documentation": "Possible values for mitigation profile state"
       }
     },
-    "com.ovh.ip#PostIpIpMitigationProfiles": {
+    "com.ovh.ip#CreateIpMitigationProfile": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#PostIpIpMitigationProfilesRequest"
+        "target": "com.ovh.ip#CreateIpMitigationProfileRequest"
       },
       "output": {
         "target": "com.ovh.ip#IpMitigationProfile"
@@ -7264,7 +7265,7 @@
         "smithy.api#documentation": "Create new profile for one of your ip"
       }
     },
-    "com.ovh.ip#GetIpIpMitigationProfilesIpMitigationProfileRequest": {
+    "com.ovh.ip#GetIpMitigationProfileRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -7286,10 +7287,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#GetIpIpMitigationProfilesIpMitigationProfile": {
+    "com.ovh.ip#GetIpMitigationProfile": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#GetIpIpMitigationProfilesIpMitigationProfileRequest"
+        "target": "com.ovh.ip#GetIpMitigationProfileRequest"
       },
       "output": {
         "target": "com.ovh.ip#IpMitigationProfile"
@@ -7303,7 +7304,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.ip#PutIpIpMitigationProfilesIpMitigationProfileRequest": {
+    "com.ovh.ip#PutIpMitigationProfileRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -7331,10 +7332,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#PutIpIpMitigationProfilesIpMitigationProfile": {
+    "com.ovh.ip#PutIpMitigationProfile": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#PutIpIpMitigationProfilesIpMitigationProfileRequest"
+        "target": "com.ovh.ip#PutIpMitigationProfileRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7348,7 +7349,7 @@
         "smithy.api#documentation": "Alter this object properties"
       }
     },
-    "com.ovh.ip#DeleteIpIpMitigationProfilesIpMitigationProfileRequest": {
+    "com.ovh.ip#DeleteIpMitigationProfileRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -7370,10 +7371,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#DeleteIpIpMitigationProfilesIpMitigationProfile": {
+    "com.ovh.ip#DeleteIpMitigationProfile": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#DeleteIpIpMitigationProfilesIpMitigationProfileRequest"
+        "target": "com.ovh.ip#DeleteIpMitigationProfileRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7387,7 +7388,7 @@
         "smithy.api#documentation": "Delete mitigation profile"
       }
     },
-    "com.ovh.ip#GetIpIpMoveRequest": {
+    "com.ovh.ip#ListIpMoveRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -7536,10 +7537,10 @@
         "smithy.api#documentation": "list of vps"
       }
     },
-    "com.ovh.ip#GetIpIpMove": {
+    "com.ovh.ip#ListIpMove": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#GetIpIpMoveRequest"
+        "target": "com.ovh.ip#ListIpMoveRequest"
       },
       "output": {
         "target": "com.ovh.ip#IpDestinations"
@@ -7553,7 +7554,7 @@
         "smithy.api#documentation": "List services available as a destination"
       }
     },
-    "com.ovh.ip#PostIpIpMoveRequest": {
+    "com.ovh.ip#MoveIpRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -7581,10 +7582,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#PostIpIpMove": {
+    "com.ovh.ip#MoveIp": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#PostIpIpMoveRequest"
+        "target": "com.ovh.ip#MoveIpRequest"
       },
       "output": {
         "target": "com.ovh.ip#IpIpTask"
@@ -7598,7 +7599,7 @@
         "smithy.api#documentation": "Move this IP to another service"
       }
     },
-    "com.ovh.ip#PostIpIpParkRequest": {
+    "com.ovh.ip#CreateIpParkRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -7613,10 +7614,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#PostIpIpPark": {
+    "com.ovh.ip#CreateIpPark": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#PostIpIpParkRequest"
+        "target": "com.ovh.ip#CreateIpParkRequest"
       },
       "output": {
         "target": "com.ovh.ip#IpIpTask"
@@ -7662,7 +7663,7 @@
         "smithy.api#documentation": "Possible values for antiphishing state"
       }
     },
-    "com.ovh.ip#GetIpIpPhishingRequest": {
+    "com.ovh.ip#ListIpPhishingRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -7691,18 +7692,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#GetIpIpPhishingResponseBodyList": {
+    "com.ovh.ip#ListIpPhishingResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.ip#GetIpIpPhishingResponse": {
+    "com.ovh.ip#ListIpPhishingResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ip#GetIpIpPhishingResponseBodyList",
+          "target": "com.ovh.ip#ListIpPhishingResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -7713,13 +7714,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ip#GetIpIpPhishing": {
+    "com.ovh.ip#ListIpPhishing": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#GetIpIpPhishingRequest"
+        "target": "com.ovh.ip#ListIpPhishingRequest"
       },
       "output": {
-        "target": "com.ovh.ip#GetIpIpPhishingResponse"
+        "target": "com.ovh.ip#ListIpPhishingResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7730,7 +7731,7 @@
         "smithy.api#documentation": "Ip under anti-phishing"
       }
     },
-    "com.ovh.ip#GetIpIpPhishingIdRequest": {
+    "com.ovh.ip#GetIpPhishingRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -7791,10 +7792,10 @@
         "smithy.api#documentation": "Phishing URLs hosted on your IP"
       }
     },
-    "com.ovh.ip#GetIpIpPhishingId": {
+    "com.ovh.ip#GetIpPhishing": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#GetIpIpPhishingIdRequest"
+        "target": "com.ovh.ip#GetIpPhishingRequest"
       },
       "output": {
         "target": "com.ovh.ip#IpAntiphishing"
@@ -7808,7 +7809,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.ip#GetIpIpReverseRequest": {
+    "com.ovh.ip#ListIpReverseRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -7823,18 +7824,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#GetIpIpReverseResponseBodyList": {
+    "com.ovh.ip#ListIpReverseResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.ip#GetIpIpReverseResponse": {
+    "com.ovh.ip#ListIpReverseResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ip#GetIpIpReverseResponseBodyList",
+          "target": "com.ovh.ip#ListIpReverseResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -7845,13 +7846,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ip#GetIpIpReverse": {
+    "com.ovh.ip#ListIpReverse": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#GetIpIpReverseRequest"
+        "target": "com.ovh.ip#ListIpReverseRequest"
       },
       "output": {
-        "target": "com.ovh.ip#GetIpIpReverseResponse"
+        "target": "com.ovh.ip#ListIpReverseResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7862,7 +7863,7 @@
         "smithy.api#documentation": "Reverse on your ip"
       }
     },
-    "com.ovh.ip#PostIpIpReverseRequest": {
+    "com.ovh.ip#CreateIpReverseRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -7903,10 +7904,10 @@
         "smithy.api#documentation": "Your reverse records on IP"
       }
     },
-    "com.ovh.ip#PostIpIpReverse": {
+    "com.ovh.ip#CreateIpReverse": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#PostIpIpReverseRequest"
+        "target": "com.ovh.ip#CreateIpReverseRequest"
       },
       "output": {
         "target": "com.ovh.ip#IpReverseIp"
@@ -7920,7 +7921,7 @@
         "smithy.api#documentation": "Add reverse on an ip"
       }
     },
-    "com.ovh.ip#GetIpIpReverseIpReverseRequest": {
+    "com.ovh.ip#GetIpReverseRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -7942,10 +7943,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#GetIpIpReverseIpReverse": {
+    "com.ovh.ip#GetIpReverse": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#GetIpIpReverseIpReverseRequest"
+        "target": "com.ovh.ip#GetIpReverseRequest"
       },
       "output": {
         "target": "com.ovh.ip#IpReverseIp"
@@ -7959,7 +7960,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.ip#DeleteIpIpReverseIpReverseRequest": {
+    "com.ovh.ip#DeleteIpReverseRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -7981,10 +7982,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#DeleteIpIpReverseIpReverse": {
+    "com.ovh.ip#DeleteIpReverse": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#DeleteIpIpReverseIpReverseRequest"
+        "target": "com.ovh.ip#DeleteIpReverseRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7998,7 +7999,7 @@
         "smithy.api#documentation": "Delete a reverse on one IP"
       }
     },
-    "com.ovh.ip#GetIpIpRipeRequest": {
+    "com.ovh.ip#GetIpRipeRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -8033,10 +8034,10 @@
         "smithy.api#documentation": "IP block RIPE informations"
       }
     },
-    "com.ovh.ip#GetIpIpRipe": {
+    "com.ovh.ip#GetIpRipe": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#GetIpIpRipeRequest"
+        "target": "com.ovh.ip#GetIpRipeRequest"
       },
       "output": {
         "target": "com.ovh.ip#IpRipeInfos"
@@ -8050,7 +8051,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.ip#PutIpIpRipeRequest": {
+    "com.ovh.ip#PutIpRipeRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -8077,10 +8078,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#PutIpIpRipe": {
+    "com.ovh.ip#PutIpRipe": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#PutIpIpRipeRequest"
+        "target": "com.ovh.ip#PutIpRipeRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8120,7 +8121,7 @@
         "smithy.api#documentation": "Possible values for spam state"
       }
     },
-    "com.ovh.ip#GetIpIpSpamRequest": {
+    "com.ovh.ip#ListIpSpamRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -8142,18 +8143,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#GetIpIpSpamResponseBodyList": {
+    "com.ovh.ip#ListIpSpamResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.ip#GetIpIpSpamResponse": {
+    "com.ovh.ip#ListIpSpamResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ip#GetIpIpSpamResponseBodyList",
+          "target": "com.ovh.ip#ListIpSpamResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -8164,13 +8165,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ip#GetIpIpSpam": {
+    "com.ovh.ip#ListIpSpam": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#GetIpIpSpamRequest"
+        "target": "com.ovh.ip#ListIpSpamRequest"
       },
       "output": {
-        "target": "com.ovh.ip#GetIpIpSpamResponse"
+        "target": "com.ovh.ip#ListIpSpamResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8181,7 +8182,7 @@
         "smithy.api#documentation": "Ip spamming"
       }
     },
-    "com.ovh.ip#GetIpIpSpamIpSpammingRequest": {
+    "com.ovh.ip#GetIpSpamRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -8236,10 +8237,10 @@
         "smithy.api#documentation": "Your IP spam stats"
       }
     },
-    "com.ovh.ip#GetIpIpSpamIpSpamming": {
+    "com.ovh.ip#GetIpSpam": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#GetIpIpSpamIpSpammingRequest"
+        "target": "com.ovh.ip#GetIpSpamRequest"
       },
       "output": {
         "target": "com.ovh.ip#IpSpamIp"
@@ -8253,7 +8254,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.ip#GetIpIpSpamIpSpammingStatsRequest": {
+    "com.ovh.ip#ListIpSpamStatsRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -8373,18 +8374,18 @@
         "smithy.api#documentation": "Detailed list of the spams"
       }
     },
-    "com.ovh.ip#GetIpIpSpamIpSpammingStatsResponseBodyList": {
+    "com.ovh.ip#ListIpSpamStatsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.ip#IpSpamStats"
       },
       "traits": {}
     },
-    "com.ovh.ip#GetIpIpSpamIpSpammingStatsResponse": {
+    "com.ovh.ip#ListIpSpamStatsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ip#GetIpIpSpamIpSpammingStatsResponseBodyList",
+          "target": "com.ovh.ip#ListIpSpamStatsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -8395,13 +8396,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ip#GetIpIpSpamIpSpammingStats": {
+    "com.ovh.ip#ListIpSpamStats": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#GetIpIpSpamIpSpammingStatsRequest"
+        "target": "com.ovh.ip#ListIpSpamStatsRequest"
       },
       "output": {
-        "target": "com.ovh.ip#GetIpIpSpamIpSpammingStatsResponse"
+        "target": "com.ovh.ip#ListIpSpamStatsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8412,7 +8413,7 @@
         "smithy.api#documentation": "Get statistics about the email traffic"
       }
     },
-    "com.ovh.ip#PostIpIpSpamIpSpammingUnblockRequest": {
+    "com.ovh.ip#UnblockIpSpamRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -8435,10 +8436,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#PostIpIpSpamIpSpammingUnblock": {
+    "com.ovh.ip#UnblockIpSpam": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#PostIpIpSpamIpSpammingUnblockRequest"
+        "target": "com.ovh.ip#UnblockIpSpamRequest"
       },
       "output": {
         "target": "com.ovh.ip#IpSpamIp"
@@ -8452,7 +8453,7 @@
         "smithy.api#documentation": "Release the ip from anti-spam system"
       }
     },
-    "com.ovh.ip#GetIpIpTaskRequest": {
+    "com.ovh.ip#ListIpTaskRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -8481,18 +8482,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#GetIpIpTaskResponseBodyList": {
+    "com.ovh.ip#ListIpTaskResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.ip#GetIpIpTaskResponse": {
+    "com.ovh.ip#ListIpTaskResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.ip#GetIpIpTaskResponseBodyList",
+          "target": "com.ovh.ip#ListIpTaskResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -8503,13 +8504,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.ip#GetIpIpTask": {
+    "com.ovh.ip#ListIpTask": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#GetIpIpTaskRequest"
+        "target": "com.ovh.ip#ListIpTaskRequest"
       },
       "output": {
-        "target": "com.ovh.ip#GetIpIpTaskResponse"
+        "target": "com.ovh.ip#ListIpTaskResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8520,7 +8521,7 @@
         "smithy.api#documentation": "IP tasks"
       }
     },
-    "com.ovh.ip#GetIpIpTaskTaskIdRequest": {
+    "com.ovh.ip#GetIpTaskRequest": {
       "type": "structure",
       "members": {
         "ip": {
@@ -8543,10 +8544,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.ip#GetIpIpTaskTaskId": {
+    "com.ovh.ip#GetIpTask": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.ip#GetIpIpTaskTaskIdRequest"
+        "target": "com.ovh.ip#GetIpTaskRequest"
       },
       "output": {
         "target": "com.ovh.ip#IpIpTask"
@@ -8565,244 +8566,244 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.ovh.ip#GetIp"
+          "target": "com.ovh.ip#ListIp"
         },
         {
-          "target": "com.ovh.ip#GetIpCampus"
+          "target": "com.ovh.ip#ListIpCampus"
+        },
+        {
+          "target": "com.ovh.ip#ListIpService"
         },
         {
           "target": "com.ovh.ip#GetIpService"
         },
         {
-          "target": "com.ovh.ip#GetIpServiceServiceName"
+          "target": "com.ovh.ip#PutIpService"
         },
         {
-          "target": "com.ovh.ip#PutIpServiceServiceName"
+          "target": "com.ovh.ip#CreateIpServiceChangeContact"
         },
         {
-          "target": "com.ovh.ip#PostIpServiceServiceNameChangeContact"
+          "target": "com.ovh.ip#ConfirmIpServiceTermination"
         },
         {
-          "target": "com.ovh.ip#PostIpServiceServiceNameConfirmTermination"
+          "target": "com.ovh.ip#GetIpServiceServiceInfos"
         },
         {
-          "target": "com.ovh.ip#GetIpServiceServiceNameServiceInfos"
+          "target": "com.ovh.ip#PutIpServiceServiceInfos"
         },
         {
-          "target": "com.ovh.ip#PutIpServiceServiceNameServiceInfos"
+          "target": "com.ovh.ip#TerminateIpService"
         },
         {
-          "target": "com.ovh.ip#PostIpServiceServiceNameTerminate"
+          "target": "com.ovh.ip#GetIp"
         },
         {
-          "target": "com.ovh.ip#GetIpIp"
+          "target": "com.ovh.ip#PutIp"
         },
         {
-          "target": "com.ovh.ip#PutIpIp"
+          "target": "com.ovh.ip#ListIpAntihack"
         },
         {
-          "target": "com.ovh.ip#GetIpIpAntihack"
+          "target": "com.ovh.ip#GetIpAntihack"
         },
         {
-          "target": "com.ovh.ip#GetIpIpAntihackIpBlocked"
+          "target": "com.ovh.ip#UnblockIpAntihack"
         },
         {
-          "target": "com.ovh.ip#PostIpIpAntihackIpBlockedUnblock"
+          "target": "com.ovh.ip#ListIpArp"
         },
         {
-          "target": "com.ovh.ip#GetIpIpArp"
+          "target": "com.ovh.ip#GetIpArp"
         },
         {
-          "target": "com.ovh.ip#GetIpIpArpIpBlocked"
+          "target": "com.ovh.ip#UnblockIpArp"
         },
         {
-          "target": "com.ovh.ip#PostIpIpArpIpBlockedUnblock"
+          "target": "com.ovh.ip#ListIpBringYourOwnIpAggregate"
         },
         {
-          "target": "com.ovh.ip#GetIpIpBringYourOwnIpAggregate"
+          "target": "com.ovh.ip#CreateIpBringYourOwnIpAggregate"
         },
         {
-          "target": "com.ovh.ip#PostIpIpBringYourOwnIpAggregate"
+          "target": "com.ovh.ip#ListIpBringYourOwnIpSlice"
         },
         {
-          "target": "com.ovh.ip#GetIpIpBringYourOwnIpSlice"
+          "target": "com.ovh.ip#CreateIpBringYourOwnIpSlice"
         },
         {
-          "target": "com.ovh.ip#PostIpIpBringYourOwnIpSlice"
+          "target": "com.ovh.ip#CreateIpChangeOrg"
         },
         {
-          "target": "com.ovh.ip#PostIpIpChangeOrg"
+          "target": "com.ovh.ip#ListIpDelegation"
         },
         {
-          "target": "com.ovh.ip#GetIpIpDelegation"
+          "target": "com.ovh.ip#CreateIpDelegation"
         },
         {
-          "target": "com.ovh.ip#PostIpIpDelegation"
+          "target": "com.ovh.ip#GetIpDelegation"
         },
         {
-          "target": "com.ovh.ip#GetIpIpDelegationTarget"
+          "target": "com.ovh.ip#DeleteIpDelegation"
         },
         {
-          "target": "com.ovh.ip#DeleteIpIpDelegationTarget"
+          "target": "com.ovh.ip#ListIpFirewall"
         },
         {
-          "target": "com.ovh.ip#GetIpIpFirewall"
+          "target": "com.ovh.ip#CreateIpFirewall"
         },
         {
-          "target": "com.ovh.ip#PostIpIpFirewall"
+          "target": "com.ovh.ip#GetIpFirewall"
         },
         {
-          "target": "com.ovh.ip#GetIpIpFirewallIpOnFirewall"
+          "target": "com.ovh.ip#PutIpFirewall"
         },
         {
-          "target": "com.ovh.ip#PutIpIpFirewallIpOnFirewall"
+          "target": "com.ovh.ip#DeleteIpFirewall"
         },
         {
-          "target": "com.ovh.ip#DeleteIpIpFirewallIpOnFirewall"
+          "target": "com.ovh.ip#ListIpFirewallRule"
         },
         {
-          "target": "com.ovh.ip#GetIpIpFirewallIpOnFirewallRule"
+          "target": "com.ovh.ip#CreateIpFirewallRule"
         },
         {
-          "target": "com.ovh.ip#PostIpIpFirewallIpOnFirewallRule"
+          "target": "com.ovh.ip#GetIpFirewallRule"
         },
         {
-          "target": "com.ovh.ip#GetIpIpFirewallIpOnFirewallRuleSequence"
+          "target": "com.ovh.ip#DeleteIpFirewallRule"
         },
         {
-          "target": "com.ovh.ip#DeleteIpIpFirewallIpOnFirewallRuleSequence"
+          "target": "com.ovh.ip#ListIpGame"
         },
         {
-          "target": "com.ovh.ip#GetIpIpGame"
+          "target": "com.ovh.ip#GetIpGame"
         },
         {
-          "target": "com.ovh.ip#GetIpIpGameIpOnGame"
+          "target": "com.ovh.ip#PutIpGame"
         },
         {
-          "target": "com.ovh.ip#PutIpIpGameIpOnGame"
+          "target": "com.ovh.ip#ListIpGameRule"
         },
         {
-          "target": "com.ovh.ip#GetIpIpGameIpOnGameRule"
+          "target": "com.ovh.ip#CreateIpGameRule"
         },
         {
-          "target": "com.ovh.ip#PostIpIpGameIpOnGameRule"
+          "target": "com.ovh.ip#GetIpGameRule"
         },
         {
-          "target": "com.ovh.ip#GetIpIpGameIpOnGameRuleId"
+          "target": "com.ovh.ip#DeleteIpGameRule"
         },
         {
-          "target": "com.ovh.ip#DeleteIpIpGameIpOnGameRuleId"
+          "target": "com.ovh.ip#ListIpLicenseCloudLinux"
         },
         {
-          "target": "com.ovh.ip#GetIpIpLicenseCloudLinux"
+          "target": "com.ovh.ip#ListIpLicenseCpanel"
         },
         {
-          "target": "com.ovh.ip#GetIpIpLicenseCpanel"
+          "target": "com.ovh.ip#ListIpLicenseDirectadmin"
         },
         {
-          "target": "com.ovh.ip#GetIpIpLicenseDirectadmin"
+          "target": "com.ovh.ip#ListIpLicensePlesk"
         },
         {
-          "target": "com.ovh.ip#GetIpIpLicensePlesk"
+          "target": "com.ovh.ip#ListIpLicenseSqlserver"
         },
         {
-          "target": "com.ovh.ip#GetIpIpLicenseSqlserver"
+          "target": "com.ovh.ip#ListIpLicenseVirtuozzo"
         },
         {
-          "target": "com.ovh.ip#GetIpIpLicenseVirtuozzo"
+          "target": "com.ovh.ip#ListIpLicenseWindows"
         },
         {
-          "target": "com.ovh.ip#GetIpIpLicenseWindows"
+          "target": "com.ovh.ip#ListIpLicenseWorklight"
         },
         {
-          "target": "com.ovh.ip#GetIpIpLicenseWorklight"
+          "target": "com.ovh.ip#GetIpMigrationToken"
         },
         {
-          "target": "com.ovh.ip#GetIpIpMigrationToken"
+          "target": "com.ovh.ip#CreateIpMigrationToken"
         },
         {
-          "target": "com.ovh.ip#PostIpIpMigrationToken"
+          "target": "com.ovh.ip#ListIpMitigation"
         },
         {
-          "target": "com.ovh.ip#GetIpIpMitigation"
+          "target": "com.ovh.ip#CreateIpMitigation"
         },
         {
-          "target": "com.ovh.ip#PostIpIpMitigation"
+          "target": "com.ovh.ip#GetIpMitigation"
         },
         {
-          "target": "com.ovh.ip#GetIpIpMitigationIpOnMitigation"
+          "target": "com.ovh.ip#PutIpMitigation"
         },
         {
-          "target": "com.ovh.ip#PutIpIpMitigationIpOnMitigation"
+          "target": "com.ovh.ip#DeleteIpMitigation"
         },
         {
-          "target": "com.ovh.ip#DeleteIpIpMitigationIpOnMitigation"
+          "target": "com.ovh.ip#ListIpMitigationProfiles"
         },
         {
-          "target": "com.ovh.ip#GetIpIpMitigationProfiles"
+          "target": "com.ovh.ip#CreateIpMitigationProfile"
         },
         {
-          "target": "com.ovh.ip#PostIpIpMitigationProfiles"
+          "target": "com.ovh.ip#GetIpMitigationProfile"
         },
         {
-          "target": "com.ovh.ip#GetIpIpMitigationProfilesIpMitigationProfile"
+          "target": "com.ovh.ip#PutIpMitigationProfile"
         },
         {
-          "target": "com.ovh.ip#PutIpIpMitigationProfilesIpMitigationProfile"
+          "target": "com.ovh.ip#DeleteIpMitigationProfile"
         },
         {
-          "target": "com.ovh.ip#DeleteIpIpMitigationProfilesIpMitigationProfile"
+          "target": "com.ovh.ip#ListIpMove"
         },
         {
-          "target": "com.ovh.ip#GetIpIpMove"
+          "target": "com.ovh.ip#MoveIp"
         },
         {
-          "target": "com.ovh.ip#PostIpIpMove"
+          "target": "com.ovh.ip#CreateIpPark"
         },
         {
-          "target": "com.ovh.ip#PostIpIpPark"
+          "target": "com.ovh.ip#ListIpPhishing"
         },
         {
-          "target": "com.ovh.ip#GetIpIpPhishing"
+          "target": "com.ovh.ip#GetIpPhishing"
         },
         {
-          "target": "com.ovh.ip#GetIpIpPhishingId"
+          "target": "com.ovh.ip#ListIpReverse"
         },
         {
-          "target": "com.ovh.ip#GetIpIpReverse"
+          "target": "com.ovh.ip#CreateIpReverse"
         },
         {
-          "target": "com.ovh.ip#PostIpIpReverse"
+          "target": "com.ovh.ip#GetIpReverse"
         },
         {
-          "target": "com.ovh.ip#GetIpIpReverseIpReverse"
+          "target": "com.ovh.ip#DeleteIpReverse"
         },
         {
-          "target": "com.ovh.ip#DeleteIpIpReverseIpReverse"
+          "target": "com.ovh.ip#GetIpRipe"
         },
         {
-          "target": "com.ovh.ip#GetIpIpRipe"
+          "target": "com.ovh.ip#PutIpRipe"
         },
         {
-          "target": "com.ovh.ip#PutIpIpRipe"
+          "target": "com.ovh.ip#ListIpSpam"
         },
         {
-          "target": "com.ovh.ip#GetIpIpSpam"
+          "target": "com.ovh.ip#GetIpSpam"
         },
         {
-          "target": "com.ovh.ip#GetIpIpSpamIpSpamming"
+          "target": "com.ovh.ip#ListIpSpamStats"
         },
         {
-          "target": "com.ovh.ip#GetIpIpSpamIpSpammingStats"
+          "target": "com.ovh.ip#UnblockIpSpam"
         },
         {
-          "target": "com.ovh.ip#PostIpIpSpamIpSpammingUnblock"
+          "target": "com.ovh.ip#ListIpTask"
         },
         {
-          "target": "com.ovh.ip#GetIpIpTask"
-        },
-        {
-          "target": "com.ovh.ip#GetIpIpTaskTaskId"
+          "target": "com.ovh.ip#GetIpTask"
         }
       ],
       "traits": {

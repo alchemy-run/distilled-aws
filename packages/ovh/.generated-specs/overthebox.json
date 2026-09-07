@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.ovh.overthebox#IamResourceTagFilterInput": {
@@ -24,28 +25,28 @@
         "smithy.api#documentation": "Resource tag filter"
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxRequestIamTagsValueList": {
+    "com.ovh.overthebox#ListOverTheBoxRequestIamTagsValueList": {
       "type": "list",
       "member": {
         "target": "com.ovh.overthebox#IamResourceTagFilterInput"
       },
       "traits": {}
     },
-    "com.ovh.overthebox#GetOverTheBoxRequestIamTagsMap": {
+    "com.ovh.overthebox#ListOverTheBoxRequestIamTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "com.ovh.overthebox#GetOverTheBoxRequestIamTagsValueList"
+        "target": "com.ovh.overthebox#ListOverTheBoxRequestIamTagsValueList"
       },
       "traits": {}
     },
-    "com.ovh.overthebox#GetOverTheBoxRequest": {
+    "com.ovh.overthebox#ListOverTheBoxRequest": {
       "type": "structure",
       "members": {
         "iamTags": {
-          "target": "com.ovh.overthebox#GetOverTheBoxRequestIamTagsMap",
+          "target": "com.ovh.overthebox#ListOverTheBoxRequestIamTagsMap",
           "traits": {
             "smithy.api#httpQuery": "iamTags",
             "smithy.api#documentation": "Filter resources on IAM tags"
@@ -56,18 +57,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxResponseBodyList": {
+    "com.ovh.overthebox#ListOverTheBoxResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.overthebox#GetOverTheBoxResponse": {
+    "com.ovh.overthebox#ListOverTheBoxResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.overthebox#GetOverTheBoxResponseBodyList",
+          "target": "com.ovh.overthebox#ListOverTheBoxResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -78,13 +79,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.overthebox#GetOverTheBox": {
+    "com.ovh.overthebox#ListOverTheBox": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.overthebox#GetOverTheBoxRequest"
+        "target": "com.ovh.overthebox#ListOverTheBoxRequest"
       },
       "output": {
-        "target": "com.ovh.overthebox#GetOverTheBoxResponse"
+        "target": "com.ovh.overthebox#ListOverTheBoxResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -121,18 +122,18 @@
         "smithy.api#documentation": "Enum of Offers"
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxAvailableOffersResponseBodyList": {
+    "com.ovh.overthebox#ListOverTheBoxAvailableOffersResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.overthebox#PriceOverTheBoxOfferEnum"
       },
       "traits": {}
     },
-    "com.ovh.overthebox#GetOverTheBoxAvailableOffersResponse": {
+    "com.ovh.overthebox#ListOverTheBoxAvailableOffersResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.overthebox#GetOverTheBoxAvailableOffersResponseBodyList",
+          "target": "com.ovh.overthebox#ListOverTheBoxAvailableOffersResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -143,13 +144,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxAvailableOffers": {
+    "com.ovh.overthebox#ListOverTheBoxAvailableOffers": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.ovh.overthebox#GetOverTheBoxAvailableOffersResponse"
+        "target": "com.ovh.overthebox#ListOverTheBoxAvailableOffersResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -183,18 +184,18 @@
         "smithy.api#documentation": "A device for registration"
       }
     },
-    "com.ovh.overthebox#PostOverTheBoxDevicesResponseBodyList": {
+    "com.ovh.overthebox#CreateOverTheBoxDeviceResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.overthebox#OverTheBoxDeviceForRegistration"
       },
       "traits": {}
     },
-    "com.ovh.overthebox#PostOverTheBoxDevicesResponse": {
+    "com.ovh.overthebox#CreateOverTheBoxDeviceResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.overthebox#PostOverTheBoxDevicesResponseBodyList",
+          "target": "com.ovh.overthebox#CreateOverTheBoxDeviceResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -205,13 +206,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.overthebox#PostOverTheBoxDevices": {
+    "com.ovh.overthebox#CreateOverTheBoxDevice": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.ovh.overthebox#PostOverTheBoxDevicesResponse"
+        "target": "com.ovh.overthebox#CreateOverTheBoxDeviceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -222,28 +223,28 @@
         "smithy.api#documentation": "Get the list of devices connected from the same IP address"
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxHardwareRequestIamTagsValueList": {
+    "com.ovh.overthebox#ListOverTheBoxHardwareRequestIamTagsValueList": {
       "type": "list",
       "member": {
         "target": "com.ovh.overthebox#IamResourceTagFilterInput"
       },
       "traits": {}
     },
-    "com.ovh.overthebox#GetOverTheBoxHardwareRequestIamTagsMap": {
+    "com.ovh.overthebox#ListOverTheBoxHardwareRequestIamTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "com.ovh.overthebox#GetOverTheBoxHardwareRequestIamTagsValueList"
+        "target": "com.ovh.overthebox#ListOverTheBoxHardwareRequestIamTagsValueList"
       },
       "traits": {}
     },
-    "com.ovh.overthebox#GetOverTheBoxHardwareRequest": {
+    "com.ovh.overthebox#ListOverTheBoxHardwareRequest": {
       "type": "structure",
       "members": {
         "iamTags": {
-          "target": "com.ovh.overthebox#GetOverTheBoxHardwareRequestIamTagsMap",
+          "target": "com.ovh.overthebox#ListOverTheBoxHardwareRequestIamTagsMap",
           "traits": {
             "smithy.api#httpQuery": "iamTags",
             "smithy.api#documentation": "Filter resources on IAM tags"
@@ -254,18 +255,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxHardwareResponseBodyList": {
+    "com.ovh.overthebox#ListOverTheBoxHardwareResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.overthebox#GetOverTheBoxHardwareResponse": {
+    "com.ovh.overthebox#ListOverTheBoxHardwareResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.overthebox#GetOverTheBoxHardwareResponseBodyList",
+          "target": "com.ovh.overthebox#ListOverTheBoxHardwareResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -276,13 +277,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxHardware": {
+    "com.ovh.overthebox#ListOverTheBoxHardware": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.overthebox#GetOverTheBoxHardwareRequest"
+        "target": "com.ovh.overthebox#ListOverTheBoxHardwareRequest"
       },
       "output": {
-        "target": "com.ovh.overthebox#GetOverTheBoxHardwareResponse"
+        "target": "com.ovh.overthebox#ListOverTheBoxHardwareResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -293,18 +294,18 @@
         "smithy.api#documentation": "List available services"
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxHardwareAvailableResponseBodyList": {
+    "com.ovh.overthebox#ListOverTheBoxHardwareAvailableResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.overthebox#GetOverTheBoxHardwareAvailableResponse": {
+    "com.ovh.overthebox#ListOverTheBoxHardwareAvailableResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.overthebox#GetOverTheBoxHardwareAvailableResponseBodyList",
+          "target": "com.ovh.overthebox#ListOverTheBoxHardwareAvailableResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -315,13 +316,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxHardwareAvailable": {
+    "com.ovh.overthebox#ListOverTheBoxHardwareAvailable": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.ovh.overthebox#GetOverTheBoxHardwareAvailableResponse"
+        "target": "com.ovh.overthebox#ListOverTheBoxHardwareAvailableResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -332,7 +333,7 @@
         "smithy.api#documentation": "List hardware that can be linked to a service"
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxHardwareHardwareNameRequest": {
+    "com.ovh.overthebox#GetOverTheBoxHardwareRequest": {
       "type": "structure",
       "members": {
         "hardwareName": {
@@ -446,10 +447,10 @@
         "smithy.api#documentation": "Resource tags. Tags that were internally computed are prefixed with ovh:"
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxHardwareHardwareName": {
+    "com.ovh.overthebox#GetOverTheBoxHardware": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.overthebox#GetOverTheBoxHardwareHardwareNameRequest"
+        "target": "com.ovh.overthebox#GetOverTheBoxHardwareRequest"
       },
       "output": {
         "target": "com.ovh.overthebox#OverTheBoxHardwareWithIAM"
@@ -463,7 +464,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameRequest": {
+    "com.ovh.overthebox#GetOverTheBoxRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -716,10 +717,10 @@
         "smithy.api#documentation": "Tunnel mode of the service."
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceName": {
+    "com.ovh.overthebox#GetOverTheBox": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.overthebox#GetOverTheBoxServiceNameRequest"
+        "target": "com.ovh.overthebox#GetOverTheBoxRequest"
       },
       "output": {
         "target": "com.ovh.overthebox#OverTheBoxServiceWithIAM"
@@ -733,7 +734,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.overthebox#PutOverTheBoxServiceNameRequest": {
+    "com.ovh.overthebox#PutOverTheBoxRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -768,10 +769,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.overthebox#PutOverTheBoxServiceName": {
+    "com.ovh.overthebox#PutOverTheBox": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.overthebox#PutOverTheBoxServiceNameRequest"
+        "target": "com.ovh.overthebox#PutOverTheBoxRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -785,7 +786,7 @@
         "smithy.api#documentation": "Alter this object properties"
       }
     },
-    "com.ovh.overthebox#DeleteOverTheBoxServiceNameRequest": {
+    "com.ovh.overthebox#DeleteOverTheBoxRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -801,10 +802,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.overthebox#DeleteOverTheBoxServiceName": {
+    "com.ovh.overthebox#DeleteOverTheBox": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.overthebox#DeleteOverTheBoxServiceNameRequest"
+        "target": "com.ovh.overthebox#DeleteOverTheBoxRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -818,7 +819,7 @@
         "smithy.api#documentation": "Resiliate a service"
       }
     },
-    "com.ovh.overthebox#PutOverTheBoxServiceNameAutoMTURequest": {
+    "com.ovh.overthebox#PutOverTheBoxAutoMTURequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -841,10 +842,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.overthebox#PutOverTheBoxServiceNameAutoMTU": {
+    "com.ovh.overthebox#PutOverTheBoxAutoMTU": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.overthebox#PutOverTheBoxServiceNameAutoMTURequest"
+        "target": "com.ovh.overthebox#PutOverTheBoxAutoMTURequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -858,7 +859,7 @@
         "smithy.api#documentation": "Change the value of autoMTU"
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameAvailableReleaseChannelsRequest": {
+    "com.ovh.overthebox#ListOverTheBoxAvailableReleaseChannelsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -874,18 +875,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameAvailableReleaseChannelsResponseBodyList": {
+    "com.ovh.overthebox#ListOverTheBoxAvailableReleaseChannelsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameAvailableReleaseChannelsResponse": {
+    "com.ovh.overthebox#ListOverTheBoxAvailableReleaseChannelsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.overthebox#GetOverTheBoxServiceNameAvailableReleaseChannelsResponseBodyList",
+          "target": "com.ovh.overthebox#ListOverTheBoxAvailableReleaseChannelsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -896,13 +897,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameAvailableReleaseChannels": {
+    "com.ovh.overthebox#ListOverTheBoxAvailableReleaseChannels": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.overthebox#GetOverTheBoxServiceNameAvailableReleaseChannelsRequest"
+        "target": "com.ovh.overthebox#ListOverTheBoxAvailableReleaseChannelsRequest"
       },
       "output": {
-        "target": "com.ovh.overthebox#GetOverTheBoxServiceNameAvailableReleaseChannelsResponse"
+        "target": "com.ovh.overthebox#ListOverTheBoxAvailableReleaseChannelsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -913,7 +914,7 @@
         "smithy.api#documentation": "List available release channels for this service"
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameBackupsRequest": {
+    "com.ovh.overthebox#ListOverTheBoxBackupsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -929,18 +930,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameBackupsResponseBodyList": {
+    "com.ovh.overthebox#ListOverTheBoxBackupsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameBackupsResponse": {
+    "com.ovh.overthebox#ListOverTheBoxBackupsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.overthebox#GetOverTheBoxServiceNameBackupsResponseBodyList",
+          "target": "com.ovh.overthebox#ListOverTheBoxBackupsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -951,13 +952,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameBackups": {
+    "com.ovh.overthebox#ListOverTheBoxBackups": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.overthebox#GetOverTheBoxServiceNameBackupsRequest"
+        "target": "com.ovh.overthebox#ListOverTheBoxBackupsRequest"
       },
       "output": {
-        "target": "com.ovh.overthebox#GetOverTheBoxServiceNameBackupsResponse"
+        "target": "com.ovh.overthebox#ListOverTheBoxBackupsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -968,7 +969,7 @@
         "smithy.api#documentation": "List of backups for this service"
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameBackupsBackupIdRequest": {
+    "com.ovh.overthebox#GetOverTheBoxBackupRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1019,10 +1020,10 @@
         "smithy.api#documentation": "Backup"
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameBackupsBackupId": {
+    "com.ovh.overthebox#GetOverTheBoxBackup": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.overthebox#GetOverTheBoxServiceNameBackupsBackupIdRequest"
+        "target": "com.ovh.overthebox#GetOverTheBoxBackupRequest"
       },
       "output": {
         "target": "com.ovh.overthebox#OverTheBoxBackup"
@@ -1036,7 +1037,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.overthebox#DeleteOverTheBoxServiceNameBackupsBackupIdRequest": {
+    "com.ovh.overthebox#DeleteOverTheBoxBackupRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1060,10 +1061,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.overthebox#DeleteOverTheBoxServiceNameBackupsBackupId": {
+    "com.ovh.overthebox#DeleteOverTheBoxBackup": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.overthebox#DeleteOverTheBoxServiceNameBackupsBackupIdRequest"
+        "target": "com.ovh.overthebox#DeleteOverTheBoxBackupRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1077,7 +1078,7 @@
         "smithy.api#documentation": "Delete a backup"
       }
     },
-    "com.ovh.overthebox#PostOverTheBoxServiceNameCancelResiliationRequest": {
+    "com.ovh.overthebox#CancelOverTheBoxResiliationRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1093,10 +1094,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.overthebox#PostOverTheBoxServiceNameCancelResiliation": {
+    "com.ovh.overthebox#CancelOverTheBoxResiliation": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.overthebox#PostOverTheBoxServiceNameCancelResiliationRequest"
+        "target": "com.ovh.overthebox#CancelOverTheBoxResiliationRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1110,7 +1111,7 @@
         "smithy.api#documentation": "Cancel the resiliation of the Service"
       }
     },
-    "com.ovh.overthebox#PostOverTheBoxServiceNameChangeContactRequest": {
+    "com.ovh.overthebox#CreateOverTheBoxChangeContactRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1144,18 +1145,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.overthebox#PostOverTheBoxServiceNameChangeContactResponseBodyList": {
+    "com.ovh.overthebox#CreateOverTheBoxChangeContactResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.ovh.overthebox#PostOverTheBoxServiceNameChangeContactResponse": {
+    "com.ovh.overthebox#CreateOverTheBoxChangeContactResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.overthebox#PostOverTheBoxServiceNameChangeContactResponseBodyList",
+          "target": "com.ovh.overthebox#CreateOverTheBoxChangeContactResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1166,13 +1167,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.overthebox#PostOverTheBoxServiceNameChangeContact": {
+    "com.ovh.overthebox#CreateOverTheBoxChangeContact": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.overthebox#PostOverTheBoxServiceNameChangeContactRequest"
+        "target": "com.ovh.overthebox#CreateOverTheBoxChangeContactRequest"
       },
       "output": {
-        "target": "com.ovh.overthebox#PostOverTheBoxServiceNameChangeContactResponse"
+        "target": "com.ovh.overthebox#CreateOverTheBoxChangeContactResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1183,7 +1184,7 @@
         "smithy.api#documentation": "Launch a contact change procedure"
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameDeviceRequest": {
+    "com.ovh.overthebox#GetOverTheBoxDeviceRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1444,10 +1445,10 @@
         "smithy.api#documentation": "Infos about a device system"
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameDevice": {
+    "com.ovh.overthebox#GetOverTheBoxDevice": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.overthebox#GetOverTheBoxServiceNameDeviceRequest"
+        "target": "com.ovh.overthebox#GetOverTheBoxDeviceRequest"
       },
       "output": {
         "target": "com.ovh.overthebox#OverTheBoxDevice"
@@ -1461,7 +1462,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.overthebox#DeleteOverTheBoxServiceNameDeviceRequest": {
+    "com.ovh.overthebox#DeleteOverTheBoxDeviceRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1477,10 +1478,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.overthebox#DeleteOverTheBoxServiceNameDevice": {
+    "com.ovh.overthebox#DeleteOverTheBoxDevice": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.overthebox#DeleteOverTheBoxServiceNameDeviceRequest"
+        "target": "com.ovh.overthebox#DeleteOverTheBoxDeviceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1526,7 +1527,7 @@
         "smithy.api#documentation": "Status of a task."
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameDeviceActionsRequest": {
+    "com.ovh.overthebox#ListOverTheBoxDeviceActionsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1556,18 +1557,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameDeviceActionsResponseBodyList": {
+    "com.ovh.overthebox#ListOverTheBoxDeviceActionsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameDeviceActionsResponse": {
+    "com.ovh.overthebox#ListOverTheBoxDeviceActionsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.overthebox#GetOverTheBoxServiceNameDeviceActionsResponseBodyList",
+          "target": "com.ovh.overthebox#ListOverTheBoxDeviceActionsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1578,13 +1579,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameDeviceActions": {
+    "com.ovh.overthebox#ListOverTheBoxDeviceActions": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.overthebox#GetOverTheBoxServiceNameDeviceActionsRequest"
+        "target": "com.ovh.overthebox#ListOverTheBoxDeviceActionsRequest"
       },
       "output": {
-        "target": "com.ovh.overthebox#GetOverTheBoxServiceNameDeviceActionsResponse"
+        "target": "com.ovh.overthebox#ListOverTheBoxDeviceActionsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1595,7 +1596,7 @@
         "smithy.api#documentation": "List of actions scheduled for this device"
       }
     },
-    "com.ovh.overthebox#PostOverTheBoxServiceNameDeviceActionsRequest": {
+    "com.ovh.overthebox#CreateOverTheBoxDeviceActionRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1668,10 +1669,10 @@
         "smithy.api#documentation": "Device action"
       }
     },
-    "com.ovh.overthebox#PostOverTheBoxServiceNameDeviceActions": {
+    "com.ovh.overthebox#CreateOverTheBoxDeviceAction": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.overthebox#PostOverTheBoxServiceNameDeviceActionsRequest"
+        "target": "com.ovh.overthebox#CreateOverTheBoxDeviceActionRequest"
       },
       "output": {
         "target": "com.ovh.overthebox#OverTheBoxDeviceAction"
@@ -1685,7 +1686,7 @@
         "smithy.api#documentation": "Create a device action on the device"
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameDeviceActionsActionIdRequest": {
+    "com.ovh.overthebox#GetOverTheBoxDeviceActionRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1709,10 +1710,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameDeviceActionsActionId": {
+    "com.ovh.overthebox#GetOverTheBoxDeviceAction": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.overthebox#GetOverTheBoxServiceNameDeviceActionsActionIdRequest"
+        "target": "com.ovh.overthebox#GetOverTheBoxDeviceActionRequest"
       },
       "output": {
         "target": "com.ovh.overthebox#OverTheBoxDeviceAction"
@@ -1726,7 +1727,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameDeviceAvailableActionsRequest": {
+    "com.ovh.overthebox#ListOverTheBoxDeviceAvailableActionsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1762,18 +1763,18 @@
         "smithy.api#documentation": "Device action"
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameDeviceAvailableActionsResponseBodyList": {
+    "com.ovh.overthebox#ListOverTheBoxDeviceAvailableActionsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.overthebox#OverTheBoxAvailableDeviceAction"
       },
       "traits": {}
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameDeviceAvailableActionsResponse": {
+    "com.ovh.overthebox#ListOverTheBoxDeviceAvailableActionsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.overthebox#GetOverTheBoxServiceNameDeviceAvailableActionsResponseBodyList",
+          "target": "com.ovh.overthebox#ListOverTheBoxDeviceAvailableActionsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1784,13 +1785,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameDeviceAvailableActions": {
+    "com.ovh.overthebox#ListOverTheBoxDeviceAvailableActions": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.overthebox#GetOverTheBoxServiceNameDeviceAvailableActionsRequest"
+        "target": "com.ovh.overthebox#ListOverTheBoxDeviceAvailableActionsRequest"
       },
       "output": {
-        "target": "com.ovh.overthebox#GetOverTheBoxServiceNameDeviceAvailableActionsResponse"
+        "target": "com.ovh.overthebox#ListOverTheBoxDeviceAvailableActionsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1801,7 +1802,7 @@
         "smithy.api#documentation": "List the available device actions"
       }
     },
-    "com.ovh.overthebox#PostOverTheBoxServiceNameDeviceBackupRequest": {
+    "com.ovh.overthebox#CreateOverTheBoxDeviceBackupRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1817,10 +1818,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.overthebox#PostOverTheBoxServiceNameDeviceBackup": {
+    "com.ovh.overthebox#CreateOverTheBoxDeviceBackup": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.overthebox#PostOverTheBoxServiceNameDeviceBackupRequest"
+        "target": "com.ovh.overthebox#CreateOverTheBoxDeviceBackupRequest"
       },
       "output": {
         "target": "com.ovh.overthebox#OverTheBoxDeviceAction"
@@ -1834,7 +1835,7 @@
         "smithy.api#documentation": "Create an action to generate a backup"
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameDeviceHardwareRequest": {
+    "com.ovh.overthebox#GetOverTheBoxDeviceHardwareRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1895,10 +1896,10 @@
         "smithy.api#documentation": "Hardware properties"
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameDeviceHardware": {
+    "com.ovh.overthebox#GetOverTheBoxDeviceHardware": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.overthebox#GetOverTheBoxServiceNameDeviceHardwareRequest"
+        "target": "com.ovh.overthebox#GetOverTheBoxDeviceHardwareRequest"
       },
       "output": {
         "target": "com.ovh.overthebox#OverTheBoxHardware"
@@ -1912,7 +1913,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.overthebox#PostOverTheBoxServiceNameDeviceLogsRequest": {
+    "com.ovh.overthebox#CreateOverTheBoxDeviceLogRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1948,10 +1949,10 @@
         "smithy.api#documentation": "Temporary url informations"
       }
     },
-    "com.ovh.overthebox#PostOverTheBoxServiceNameDeviceLogs": {
+    "com.ovh.overthebox#CreateOverTheBoxDeviceLog": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.overthebox#PostOverTheBoxServiceNameDeviceLogsRequest"
+        "target": "com.ovh.overthebox#CreateOverTheBoxDeviceLogRequest"
       },
       "output": {
         "target": "com.ovh.overthebox#OverTheBoxTemporaryLogsLink"
@@ -1965,7 +1966,7 @@
         "smithy.api#documentation": "Generate a temporary url to retrieve device logs"
       }
     },
-    "com.ovh.overthebox#PostOverTheBoxServiceNameDeviceRestoreBackupRequest": {
+    "com.ovh.overthebox#RestoreOverTheBoxDeviceBackupRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1988,18 +1989,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.overthebox#PostOverTheBoxServiceNameDeviceRestoreBackupResponseBodyList": {
+    "com.ovh.overthebox#RestoreOverTheBoxDeviceBackupResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.overthebox#OverTheBoxDeviceAction"
       },
       "traits": {}
     },
-    "com.ovh.overthebox#PostOverTheBoxServiceNameDeviceRestoreBackupResponse": {
+    "com.ovh.overthebox#RestoreOverTheBoxDeviceBackupResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.overthebox#PostOverTheBoxServiceNameDeviceRestoreBackupResponseBodyList",
+          "target": "com.ovh.overthebox#RestoreOverTheBoxDeviceBackupResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -2010,13 +2011,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.overthebox#PostOverTheBoxServiceNameDeviceRestoreBackup": {
+    "com.ovh.overthebox#RestoreOverTheBoxDeviceBackup": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.overthebox#PostOverTheBoxServiceNameDeviceRestoreBackupRequest"
+        "target": "com.ovh.overthebox#RestoreOverTheBoxDeviceBackupRequest"
       },
       "output": {
-        "target": "com.ovh.overthebox#PostOverTheBoxServiceNameDeviceRestoreBackupResponse"
+        "target": "com.ovh.overthebox#RestoreOverTheBoxDeviceBackupResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2027,7 +2028,7 @@
         "smithy.api#documentation": "Create a group of actions to restore a given backup"
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameIpsRequest": {
+    "com.ovh.overthebox#ListOverTheBoxIpsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2043,18 +2044,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameIpsResponseBodyList": {
+    "com.ovh.overthebox#ListOverTheBoxIpsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameIpsResponse": {
+    "com.ovh.overthebox#ListOverTheBoxIpsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.overthebox#GetOverTheBoxServiceNameIpsResponseBodyList",
+          "target": "com.ovh.overthebox#ListOverTheBoxIpsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -2065,13 +2066,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameIps": {
+    "com.ovh.overthebox#ListOverTheBoxIps": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.overthebox#GetOverTheBoxServiceNameIpsRequest"
+        "target": "com.ovh.overthebox#ListOverTheBoxIpsRequest"
       },
       "output": {
-        "target": "com.ovh.overthebox#GetOverTheBoxServiceNameIpsResponse"
+        "target": "com.ovh.overthebox#ListOverTheBoxIpsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2082,7 +2083,7 @@
         "smithy.api#documentation": "List IP assigned to an OverTheBox service"
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameIpsIpRequest": {
+    "com.ovh.overthebox#GetOverTheBoxIpsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2216,10 +2217,10 @@
         "smithy.api#documentation": "IP version"
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameIpsIp": {
+    "com.ovh.overthebox#GetOverTheBoxIps": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.overthebox#GetOverTheBoxServiceNameIpsIpRequest"
+        "target": "com.ovh.overthebox#GetOverTheBoxIpsRequest"
       },
       "output": {
         "target": "com.ovh.overthebox#OtbServiceIp"
@@ -2233,7 +2234,7 @@
         "smithy.api#documentation": "Get details IP assigned to an OverTheBox service"
       }
     },
-    "com.ovh.overthebox#PutOverTheBoxServiceNameIpv6Request": {
+    "com.ovh.overthebox#PutOverTheBoxIpv6Request": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2314,10 +2315,10 @@
         "smithy.api#documentation": "Status of a task."
       }
     },
-    "com.ovh.overthebox#PutOverTheBoxServiceNameIpv6": {
+    "com.ovh.overthebox#PutOverTheBoxIpv6": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.overthebox#PutOverTheBoxServiceNameIpv6Request"
+        "target": "com.ovh.overthebox#PutOverTheBoxIpv6Request"
       },
       "output": {
         "target": "com.ovh.overthebox#OverTheBoxTask"
@@ -2331,7 +2332,7 @@
         "smithy.api#documentation": "Change the status of IPv6 on this service"
       }
     },
-    "com.ovh.overthebox#PostOverTheBoxServiceNameLinkDeviceRequest": {
+    "com.ovh.overthebox#CreateOverTheBoxLinkDeviceRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2354,10 +2355,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.overthebox#PostOverTheBoxServiceNameLinkDevice": {
+    "com.ovh.overthebox#CreateOverTheBoxLinkDevice": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.overthebox#PostOverTheBoxServiceNameLinkDeviceRequest"
+        "target": "com.ovh.overthebox#CreateOverTheBoxLinkDeviceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2371,7 +2372,7 @@
         "smithy.api#documentation": "Link a device to this service"
       }
     },
-    "com.ovh.overthebox#PostOverTheBoxServiceNameLinkHardwareRequest": {
+    "com.ovh.overthebox#CreateOverTheBoxLinkHardwareRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2394,10 +2395,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.overthebox#PostOverTheBoxServiceNameLinkHardware": {
+    "com.ovh.overthebox#CreateOverTheBoxLinkHardware": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.overthebox#PostOverTheBoxServiceNameLinkHardwareRequest"
+        "target": "com.ovh.overthebox#CreateOverTheBoxLinkHardwareRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2411,7 +2412,7 @@
         "smithy.api#documentation": "Link an available hardware to this service"
       }
     },
-    "com.ovh.overthebox#PostOverTheBoxServiceNameMigrationChangeOffersRequest": {
+    "com.ovh.overthebox#CreateOverTheBoxMigrationChangeOfferRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2466,10 +2467,10 @@
         "smithy.api#documentation": "Migration order"
       }
     },
-    "com.ovh.overthebox#PostOverTheBoxServiceNameMigrationChangeOffers": {
+    "com.ovh.overthebox#CreateOverTheBoxMigrationChangeOffer": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.overthebox#PostOverTheBoxServiceNameMigrationChangeOffersRequest"
+        "target": "com.ovh.overthebox#CreateOverTheBoxMigrationChangeOfferRequest"
       },
       "output": {
         "target": "com.ovh.overthebox#OverTheBoxOrderMigration"
@@ -2483,7 +2484,7 @@
         "smithy.api#documentation": "Migrate to the selected overTheBox offer"
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameMigrationOffersRequest": {
+    "com.ovh.overthebox#ListOverTheBoxMigrationOffersRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2714,18 +2715,18 @@
         "smithy.api#documentation": "Details of available hardwares"
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameMigrationOffersResponseBodyList": {
+    "com.ovh.overthebox#ListOverTheBoxMigrationOffersResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.overthebox#OverTheBoxAvailableMigrationOffer"
       },
       "traits": {}
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameMigrationOffersResponse": {
+    "com.ovh.overthebox#ListOverTheBoxMigrationOffersResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.overthebox#GetOverTheBoxServiceNameMigrationOffersResponseBodyList",
+          "target": "com.ovh.overthebox#ListOverTheBoxMigrationOffersResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -2736,13 +2737,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameMigrationOffers": {
+    "com.ovh.overthebox#ListOverTheBoxMigrationOffers": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.overthebox#GetOverTheBoxServiceNameMigrationOffersRequest"
+        "target": "com.ovh.overthebox#ListOverTheBoxMigrationOffersRequest"
       },
       "output": {
-        "target": "com.ovh.overthebox#GetOverTheBoxServiceNameMigrationOffersResponse"
+        "target": "com.ovh.overthebox#ListOverTheBoxMigrationOffersResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2753,7 +2754,7 @@
         "smithy.api#documentation": "List all available offers one can migrate to"
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameRemoteAccessesRequest": {
+    "com.ovh.overthebox#ListOverTheBoxRemoteAccessesRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2769,18 +2770,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameRemoteAccessesResponseBodyList": {
+    "com.ovh.overthebox#ListOverTheBoxRemoteAccessesResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameRemoteAccessesResponse": {
+    "com.ovh.overthebox#ListOverTheBoxRemoteAccessesResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.overthebox#GetOverTheBoxServiceNameRemoteAccessesResponseBodyList",
+          "target": "com.ovh.overthebox#ListOverTheBoxRemoteAccessesResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -2791,13 +2792,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameRemoteAccesses": {
+    "com.ovh.overthebox#ListOverTheBoxRemoteAccesses": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.overthebox#GetOverTheBoxServiceNameRemoteAccessesRequest"
+        "target": "com.ovh.overthebox#ListOverTheBoxRemoteAccessesRequest"
       },
       "output": {
-        "target": "com.ovh.overthebox#GetOverTheBoxServiceNameRemoteAccessesResponse"
+        "target": "com.ovh.overthebox#ListOverTheBoxRemoteAccessesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2808,7 +2809,7 @@
         "smithy.api#documentation": "List of remote accesses for the service"
       }
     },
-    "com.ovh.overthebox#PostOverTheBoxServiceNameRemoteAccessesRequest": {
+    "com.ovh.overthebox#CreateOverTheBoxRemoteAccessRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3030,10 +3031,10 @@
         "smithy.api#documentation": "Status of the remote access."
       }
     },
-    "com.ovh.overthebox#PostOverTheBoxServiceNameRemoteAccesses": {
+    "com.ovh.overthebox#CreateOverTheBoxRemoteAccess": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.overthebox#PostOverTheBoxServiceNameRemoteAccessesRequest"
+        "target": "com.ovh.overthebox#CreateOverTheBoxRemoteAccessRequest"
       },
       "output": {
         "target": "com.ovh.overthebox#OverTheBoxRemoteAccess"
@@ -3047,7 +3048,7 @@
         "smithy.api#documentation": "Create a new remote access for the service"
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameRemoteAccessesRemoteAccessIdRequest": {
+    "com.ovh.overthebox#GetOverTheBoxRemoteAccessRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3071,10 +3072,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameRemoteAccessesRemoteAccessId": {
+    "com.ovh.overthebox#GetOverTheBoxRemoteAccess": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.overthebox#GetOverTheBoxServiceNameRemoteAccessesRemoteAccessIdRequest"
+        "target": "com.ovh.overthebox#GetOverTheBoxRemoteAccessRequest"
       },
       "output": {
         "target": "com.ovh.overthebox#OverTheBoxRemoteAccess"
@@ -3088,7 +3089,7 @@
         "smithy.api#documentation": "Get this object properties"
       }
     },
-    "com.ovh.overthebox#DeleteOverTheBoxServiceNameRemoteAccessesRemoteAccessIdRequest": {
+    "com.ovh.overthebox#DeleteOverTheBoxRemoteAccessRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3112,10 +3113,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.overthebox#DeleteOverTheBoxServiceNameRemoteAccessesRemoteAccessId": {
+    "com.ovh.overthebox#DeleteOverTheBoxRemoteAccess": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.overthebox#DeleteOverTheBoxServiceNameRemoteAccessesRemoteAccessIdRequest"
+        "target": "com.ovh.overthebox#DeleteOverTheBoxRemoteAccessRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3129,7 +3130,7 @@
         "smithy.api#documentation": "Delete a remote access"
       }
     },
-    "com.ovh.overthebox#PostOverTheBoxServiceNameRemoteAccessesRemoteAccessIdAuthorizeRequest": {
+    "com.ovh.overthebox#AuthorizeOverTheBoxRemoteAccessRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3153,10 +3154,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.overthebox#PostOverTheBoxServiceNameRemoteAccessesRemoteAccessIdAuthorize": {
+    "com.ovh.overthebox#AuthorizeOverTheBoxRemoteAccess": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.overthebox#PostOverTheBoxServiceNameRemoteAccessesRemoteAccessIdAuthorizeRequest"
+        "target": "com.ovh.overthebox#AuthorizeOverTheBoxRemoteAccessRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3170,7 +3171,7 @@
         "smithy.api#documentation": "Authorize the remote access"
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameServiceInfosRequest": {
+    "com.ovh.overthebox#GetOverTheBoxServiceInfosRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3394,10 +3395,10 @@
       },
       "traits": {}
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameServiceInfos": {
+    "com.ovh.overthebox#GetOverTheBoxServiceInfos": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.overthebox#GetOverTheBoxServiceNameServiceInfosRequest"
+        "target": "com.ovh.overthebox#GetOverTheBoxServiceInfosRequest"
       },
       "output": {
         "target": "com.ovh.overthebox#ServicesService"
@@ -3411,7 +3412,7 @@
         "smithy.api#documentation": "Get service information"
       }
     },
-    "com.ovh.overthebox#PutOverTheBoxServiceNameServiceInfosRequest": {
+    "com.ovh.overthebox#PutOverTheBoxServiceInfosRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3434,10 +3435,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.overthebox#PutOverTheBoxServiceNameServiceInfos": {
+    "com.ovh.overthebox#PutOverTheBoxServiceInfos": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.overthebox#PutOverTheBoxServiceNameServiceInfosRequest"
+        "target": "com.ovh.overthebox#PutOverTheBoxServiceInfosRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3509,7 +3510,7 @@
         "smithy.api#documentation": "Statistics Period"
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameStatisticsRequest": {
+    "com.ovh.overthebox#ListOverTheBoxStatisticsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3658,18 +3659,18 @@
         "smithy.api#documentation": "Serie Unit"
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameStatisticsResponseBodyList": {
+    "com.ovh.overthebox#ListOverTheBoxStatisticsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.ovh.overthebox#OtbDeviceStatistics"
       },
       "traits": {}
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameStatisticsResponse": {
+    "com.ovh.overthebox#ListOverTheBoxStatisticsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.overthebox#GetOverTheBoxServiceNameStatisticsResponseBodyList",
+          "target": "com.ovh.overthebox#ListOverTheBoxStatisticsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -3680,13 +3681,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameStatistics": {
+    "com.ovh.overthebox#ListOverTheBoxStatistics": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.overthebox#GetOverTheBoxServiceNameStatisticsRequest"
+        "target": "com.ovh.overthebox#ListOverTheBoxStatisticsRequest"
       },
       "output": {
-        "target": "com.ovh.overthebox#GetOverTheBoxServiceNameStatisticsResponse"
+        "target": "com.ovh.overthebox#ListOverTheBoxStatisticsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3697,7 +3698,7 @@
         "smithy.api#documentation": "Get statistics for an OTB device"
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameTasksRequest": {
+    "com.ovh.overthebox#ListOverTheBoxTasksRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3727,18 +3728,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameTasksResponseBodyList": {
+    "com.ovh.overthebox#ListOverTheBoxTasksResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameTasksResponse": {
+    "com.ovh.overthebox#ListOverTheBoxTasksResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.ovh.overthebox#GetOverTheBoxServiceNameTasksResponseBodyList",
+          "target": "com.ovh.overthebox#ListOverTheBoxTasksResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -3749,13 +3750,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameTasks": {
+    "com.ovh.overthebox#ListOverTheBoxTasks": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.overthebox#GetOverTheBoxServiceNameTasksRequest"
+        "target": "com.ovh.overthebox#ListOverTheBoxTasksRequest"
       },
       "output": {
-        "target": "com.ovh.overthebox#GetOverTheBoxServiceNameTasksResponse"
+        "target": "com.ovh.overthebox#ListOverTheBoxTasksResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3766,7 +3767,7 @@
         "smithy.api#documentation": "List of tasks scheduled for this service"
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameTasksTaskIdRequest": {
+    "com.ovh.overthebox#GetOverTheBoxTaskRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3790,10 +3791,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.ovh.overthebox#GetOverTheBoxServiceNameTasksTaskId": {
+    "com.ovh.overthebox#GetOverTheBoxTask": {
       "type": "operation",
       "input": {
-        "target": "com.ovh.overthebox#GetOverTheBoxServiceNameTasksTaskIdRequest"
+        "target": "com.ovh.overthebox#GetOverTheBoxTaskRequest"
       },
       "output": {
         "target": "com.ovh.overthebox#OverTheBoxTask"
@@ -3812,133 +3813,133 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.ovh.overthebox#GetOverTheBox"
+          "target": "com.ovh.overthebox#ListOverTheBox"
         },
         {
-          "target": "com.ovh.overthebox#GetOverTheBoxAvailableOffers"
+          "target": "com.ovh.overthebox#ListOverTheBoxAvailableOffers"
         },
         {
-          "target": "com.ovh.overthebox#PostOverTheBoxDevices"
+          "target": "com.ovh.overthebox#CreateOverTheBoxDevice"
+        },
+        {
+          "target": "com.ovh.overthebox#ListOverTheBoxHardware"
+        },
+        {
+          "target": "com.ovh.overthebox#ListOverTheBoxHardwareAvailable"
         },
         {
           "target": "com.ovh.overthebox#GetOverTheBoxHardware"
         },
         {
-          "target": "com.ovh.overthebox#GetOverTheBoxHardwareAvailable"
+          "target": "com.ovh.overthebox#GetOverTheBox"
         },
         {
-          "target": "com.ovh.overthebox#GetOverTheBoxHardwareHardwareName"
+          "target": "com.ovh.overthebox#PutOverTheBox"
         },
         {
-          "target": "com.ovh.overthebox#GetOverTheBoxServiceName"
+          "target": "com.ovh.overthebox#DeleteOverTheBox"
         },
         {
-          "target": "com.ovh.overthebox#PutOverTheBoxServiceName"
+          "target": "com.ovh.overthebox#PutOverTheBoxAutoMTU"
         },
         {
-          "target": "com.ovh.overthebox#DeleteOverTheBoxServiceName"
+          "target": "com.ovh.overthebox#ListOverTheBoxAvailableReleaseChannels"
         },
         {
-          "target": "com.ovh.overthebox#PutOverTheBoxServiceNameAutoMTU"
+          "target": "com.ovh.overthebox#ListOverTheBoxBackups"
         },
         {
-          "target": "com.ovh.overthebox#GetOverTheBoxServiceNameAvailableReleaseChannels"
+          "target": "com.ovh.overthebox#GetOverTheBoxBackup"
         },
         {
-          "target": "com.ovh.overthebox#GetOverTheBoxServiceNameBackups"
+          "target": "com.ovh.overthebox#DeleteOverTheBoxBackup"
         },
         {
-          "target": "com.ovh.overthebox#GetOverTheBoxServiceNameBackupsBackupId"
+          "target": "com.ovh.overthebox#CancelOverTheBoxResiliation"
         },
         {
-          "target": "com.ovh.overthebox#DeleteOverTheBoxServiceNameBackupsBackupId"
+          "target": "com.ovh.overthebox#CreateOverTheBoxChangeContact"
         },
         {
-          "target": "com.ovh.overthebox#PostOverTheBoxServiceNameCancelResiliation"
+          "target": "com.ovh.overthebox#GetOverTheBoxDevice"
         },
         {
-          "target": "com.ovh.overthebox#PostOverTheBoxServiceNameChangeContact"
+          "target": "com.ovh.overthebox#DeleteOverTheBoxDevice"
         },
         {
-          "target": "com.ovh.overthebox#GetOverTheBoxServiceNameDevice"
+          "target": "com.ovh.overthebox#ListOverTheBoxDeviceActions"
         },
         {
-          "target": "com.ovh.overthebox#DeleteOverTheBoxServiceNameDevice"
+          "target": "com.ovh.overthebox#CreateOverTheBoxDeviceAction"
         },
         {
-          "target": "com.ovh.overthebox#GetOverTheBoxServiceNameDeviceActions"
+          "target": "com.ovh.overthebox#GetOverTheBoxDeviceAction"
         },
         {
-          "target": "com.ovh.overthebox#PostOverTheBoxServiceNameDeviceActions"
+          "target": "com.ovh.overthebox#ListOverTheBoxDeviceAvailableActions"
         },
         {
-          "target": "com.ovh.overthebox#GetOverTheBoxServiceNameDeviceActionsActionId"
+          "target": "com.ovh.overthebox#CreateOverTheBoxDeviceBackup"
         },
         {
-          "target": "com.ovh.overthebox#GetOverTheBoxServiceNameDeviceAvailableActions"
+          "target": "com.ovh.overthebox#GetOverTheBoxDeviceHardware"
         },
         {
-          "target": "com.ovh.overthebox#PostOverTheBoxServiceNameDeviceBackup"
+          "target": "com.ovh.overthebox#CreateOverTheBoxDeviceLog"
         },
         {
-          "target": "com.ovh.overthebox#GetOverTheBoxServiceNameDeviceHardware"
+          "target": "com.ovh.overthebox#RestoreOverTheBoxDeviceBackup"
         },
         {
-          "target": "com.ovh.overthebox#PostOverTheBoxServiceNameDeviceLogs"
+          "target": "com.ovh.overthebox#ListOverTheBoxIps"
         },
         {
-          "target": "com.ovh.overthebox#PostOverTheBoxServiceNameDeviceRestoreBackup"
+          "target": "com.ovh.overthebox#GetOverTheBoxIps"
         },
         {
-          "target": "com.ovh.overthebox#GetOverTheBoxServiceNameIps"
+          "target": "com.ovh.overthebox#PutOverTheBoxIpv6"
         },
         {
-          "target": "com.ovh.overthebox#GetOverTheBoxServiceNameIpsIp"
+          "target": "com.ovh.overthebox#CreateOverTheBoxLinkDevice"
         },
         {
-          "target": "com.ovh.overthebox#PutOverTheBoxServiceNameIpv6"
+          "target": "com.ovh.overthebox#CreateOverTheBoxLinkHardware"
         },
         {
-          "target": "com.ovh.overthebox#PostOverTheBoxServiceNameLinkDevice"
+          "target": "com.ovh.overthebox#CreateOverTheBoxMigrationChangeOffer"
         },
         {
-          "target": "com.ovh.overthebox#PostOverTheBoxServiceNameLinkHardware"
+          "target": "com.ovh.overthebox#ListOverTheBoxMigrationOffers"
         },
         {
-          "target": "com.ovh.overthebox#PostOverTheBoxServiceNameMigrationChangeOffers"
+          "target": "com.ovh.overthebox#ListOverTheBoxRemoteAccesses"
         },
         {
-          "target": "com.ovh.overthebox#GetOverTheBoxServiceNameMigrationOffers"
+          "target": "com.ovh.overthebox#CreateOverTheBoxRemoteAccess"
         },
         {
-          "target": "com.ovh.overthebox#GetOverTheBoxServiceNameRemoteAccesses"
+          "target": "com.ovh.overthebox#GetOverTheBoxRemoteAccess"
         },
         {
-          "target": "com.ovh.overthebox#PostOverTheBoxServiceNameRemoteAccesses"
+          "target": "com.ovh.overthebox#DeleteOverTheBoxRemoteAccess"
         },
         {
-          "target": "com.ovh.overthebox#GetOverTheBoxServiceNameRemoteAccessesRemoteAccessId"
+          "target": "com.ovh.overthebox#AuthorizeOverTheBoxRemoteAccess"
         },
         {
-          "target": "com.ovh.overthebox#DeleteOverTheBoxServiceNameRemoteAccessesRemoteAccessId"
+          "target": "com.ovh.overthebox#GetOverTheBoxServiceInfos"
         },
         {
-          "target": "com.ovh.overthebox#PostOverTheBoxServiceNameRemoteAccessesRemoteAccessIdAuthorize"
+          "target": "com.ovh.overthebox#PutOverTheBoxServiceInfos"
         },
         {
-          "target": "com.ovh.overthebox#GetOverTheBoxServiceNameServiceInfos"
+          "target": "com.ovh.overthebox#ListOverTheBoxStatistics"
         },
         {
-          "target": "com.ovh.overthebox#PutOverTheBoxServiceNameServiceInfos"
+          "target": "com.ovh.overthebox#ListOverTheBoxTasks"
         },
         {
-          "target": "com.ovh.overthebox#GetOverTheBoxServiceNameStatistics"
-        },
-        {
-          "target": "com.ovh.overthebox#GetOverTheBoxServiceNameTasks"
-        },
-        {
-          "target": "com.ovh.overthebox#GetOverTheBoxServiceNameTasksTaskId"
+          "target": "com.ovh.overthebox#GetOverTheBoxTask"
         }
       ],
       "traits": {

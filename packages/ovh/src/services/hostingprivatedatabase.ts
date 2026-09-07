@@ -13,28 +13,153 @@ import * as Retry from "../retry.ts";
 
 export type { OvhOpError, OvhOpContext };
 
-export interface DeleteHostingPrivateDatabaseServiceNameDatabaseDatabaseNameRequest {
+/** All future uses you can provide for a service termination */
+export type ServiceTerminationFutureUseEnum =
+  | "NOT_REPLACING_SERVICE"
+  | "OTHER"
+  | "SUBSCRIBE_AN_OTHER_SERVICE"
+  | "SUBSCRIBE_OTHER_KIND_OF_SERVICE_WITH_COMPETITOR"
+  | "SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR";
+export const ServiceTerminationFutureUseEnum = /*@__PURE__*/ S.String;
+
+/** All reasons you can provide for a service termination */
+export type ServiceTerminationReasonEnum =
+  | "FEATURES_DONT_SUIT_ME"
+  | "LACK_OF_PERFORMANCES"
+  | "MIGRATED_TO_ANOTHER_OVH_PRODUCT"
+  | "MIGRATED_TO_COMPETITOR"
+  | "NOT_ENOUGH_RECOGNITION"
+  | "NOT_NEEDED_ANYMORE"
+  | "NOT_RELIABLE"
+  | "NO_ANSWER"
+  | "OTHER"
+  | "PRODUCT_DIMENSION_DONT_SUIT_ME"
+  | "PRODUCT_TOOLS_DONT_SUIT_ME"
+  | "TOO_EXPENSIVE"
+  | "TOO_HARD_TO_USE"
+  | "UNSATIFIED_BY_CUSTOMER_SUPPORT";
+export const ServiceTerminationReasonEnum = /*@__PURE__*/ S.String;
+
+export interface ConfirmHostingPrivateDatabaseTerminationRequest {
+  /** Service name */
+  serviceName: string;
+  /** Commentary about your termination request */
+  commentary?: string;
+  /** All future uses you can provide for a service termination */
+  futureUse?: ServiceTerminationFutureUseEnum | (string & {});
+  /** All reasons you can provide for a service termination */
+  reason?: ServiceTerminationReasonEnum | (string & {});
+  /** The termination token sent by email to the admin contact */
+  token: string;
+}
+export const ConfirmHostingPrivateDatabaseTerminationRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      commentary: S.optional(S.String),
+      futureUse: S.optional(ServiceTerminationFutureUseEnum),
+      reason: S.optional(ServiceTerminationReasonEnum),
+      token: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/hosting/privateDatabase/{serviceName}/confirmTermination",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ConfirmHostingPrivateDatabaseTerminationRequest",
+  }) as any as S.Schema<ConfirmHostingPrivateDatabaseTerminationRequest>;
+
+export type ConfirmHostingPrivateDatabaseTerminationResponse = string;
+export const ConfirmHostingPrivateDatabaseTerminationResponse =
+  /*@__PURE__*/ S.suspend(() => S.String.pipe(T.RawResponseRoot())).annotate({
+    identifier: "ConfirmHostingPrivateDatabaseTerminationResponse",
+  }) as any as S.Schema<ConfirmHostingPrivateDatabaseTerminationResponse>;
+
+export interface CopyHostingPrivateDatabaseDatabaseRequest {
   /** Service name */
   serviceName: string;
   /** Database name */
   databaseName: string;
 }
-export const DeleteHostingPrivateDatabaseServiceNameDatabaseDatabaseNameRequest =
+export const CopyHostingPrivateDatabaseDatabaseRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       databaseName: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
-        method: "DELETE",
-        uri: "/hosting/privateDatabase/{serviceName}/database/{databaseName}",
+        method: "POST",
+        uri: "/hosting/privateDatabase/{serviceName}/database/{databaseName}/copy",
         code: 200,
       }),
     ),
   ).annotate({
-    identifier:
-      "DeleteHostingPrivateDatabaseServiceNameDatabaseDatabaseNameRequest",
-  }) as any as S.Schema<DeleteHostingPrivateDatabaseServiceNameDatabaseDatabaseNameRequest>;
+    identifier: "CopyHostingPrivateDatabaseDatabaseRequest",
+  }) as any as S.Schema<CopyHostingPrivateDatabaseDatabaseRequest>;
+
+/** Database copy status */
+export type HostingPrivateDatabaseDatabaseCopyStatusEnum =
+  | "doing"
+  | "done"
+  | "error"
+  | "todo";
+export const HostingPrivateDatabaseDatabaseCopyStatusEnum =
+  /*@__PURE__*/ S.String;
+
+/** Database copy */
+export interface HostingPrivateDatabaseDatabaseCopy {
+  /** Creation date of the database copy */
+  creationDate?: string;
+  /** Expiration date of the database copy */
+  expirationDate?: string | null;
+  /** Database copy ID */
+  id?: string;
+  /** Last update of the database copy */
+  lastUpdate?: string;
+  /** Database copy status */
+  status?: HostingPrivateDatabaseDatabaseCopyStatusEnum;
+}
+export const HostingPrivateDatabaseDatabaseCopy = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    creationDate: S.optional(S.String),
+    expirationDate: S.optional(S.NullOr(S.String)),
+    id: S.optional(S.String),
+    lastUpdate: S.optional(S.String),
+    status: S.optional(HostingPrivateDatabaseDatabaseCopyStatusEnum),
+  }),
+).annotate({
+  identifier: "HostingPrivateDatabaseDatabaseCopy",
+}) as any as S.Schema<HostingPrivateDatabaseDatabaseCopy>;
+
+export interface CopyHostingPrivateDatabaseDatabaseRestoreRequest {
+  /** Service name */
+  serviceName: string;
+  /** Database name */
+  databaseName: string;
+  /** Copy ID */
+  copyId: string;
+  /** Whether to flush the database before restoring the copy (default to false) */
+  flushDatabase?: boolean;
+}
+export const CopyHostingPrivateDatabaseDatabaseRestoreRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      databaseName: S.String.pipe(T.Label()),
+      copyId: S.String,
+      flushDatabase: S.optional(S.Boolean),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/hosting/privateDatabase/{serviceName}/database/{databaseName}/copyRestore",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CopyHostingPrivateDatabaseDatabaseRestoreRequest",
+  }) as any as S.Schema<CopyHostingPrivateDatabaseDatabaseRestoreRequest>;
 
 /** Task's dunction */
 export type HostingPrivateDatabaseTaskFunctionEnum =
@@ -125,323 +250,73 @@ export const HostingPrivateDatabaseTask = /*@__PURE__*/ S.suspend(() =>
   identifier: "HostingPrivateDatabaseTask",
 }) as any as S.Schema<HostingPrivateDatabaseTask>;
 
-export interface DeleteHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyIdRequest {
+export interface CreateHostingPrivateDatabaseChangeContactRequest {
   /** Service name */
   serviceName: string;
-  /** Database name */
-  databaseName: string;
-  /** Id */
-  id: string;
+  /** The contact to set as admin contact */
+  contactAdmin?: string;
+  /** The contact to set as billing contact */
+  contactBilling?: string;
+  /** The contact to set as tech contact */
+  contactTech?: string;
 }
-export const DeleteHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyIdRequest =
+export const CreateHostingPrivateDatabaseChangeContactRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
-      databaseName: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
+      contactAdmin: S.optional(S.String),
+      contactBilling: S.optional(S.String),
+      contactTech: S.optional(S.String),
     }).pipe(
       T.Http({
-        method: "DELETE",
-        uri: "/hosting/privateDatabase/{serviceName}/database/{databaseName}/copy/{id}",
+        method: "POST",
+        uri: "/hosting/privateDatabase/{serviceName}/changeContact",
         code: 200,
       }),
     ),
   ).annotate({
-    identifier:
-      "DeleteHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyIdRequest",
-  }) as any as S.Schema<DeleteHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyIdRequest>;
+    identifier: "CreateHostingPrivateDatabaseChangeContactRequest",
+  }) as any as S.Schema<CreateHostingPrivateDatabaseChangeContactRequest>;
 
-export interface DeleteHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyIdResponse {}
-export const DeleteHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyIdResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier:
-      "DeleteHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyIdResponse",
-  }) as any as S.Schema<DeleteHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyIdResponse>;
-
-export interface DeleteHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpIdRequest {
-  /** Service name */
-  serviceName: string;
-  /** Database name */
-  databaseName: string;
-  /** Id */
-  id: number;
-}
-export const DeleteHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      databaseName: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/hosting/privateDatabase/{serviceName}/database/{databaseName}/dump/{id}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "DeleteHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpIdRequest",
-  }) as any as S.Schema<DeleteHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpIdRequest>;
-
-export interface DeleteHostingPrivateDatabaseServiceNameDumpDumpIdRequest {
-  /** Service name */
-  serviceName: string;
-  /** Dump ID */
-  dumpId: number;
-}
-export const DeleteHostingPrivateDatabaseServiceNameDumpDumpIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      dumpId: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/hosting/privateDatabase/{serviceName}/dump/{dumpId}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "DeleteHostingPrivateDatabaseServiceNameDumpDumpIdRequest",
-  }) as any as S.Schema<DeleteHostingPrivateDatabaseServiceNameDumpDumpIdRequest>;
-
-export interface DeleteHostingPrivateDatabaseServiceNameLogSubscriptionSubscriptionIdRequest {
-  /** Service name */
-  serviceName: string;
-  /** Subscription ID */
-  subscriptionId: string;
-}
-export const DeleteHostingPrivateDatabaseServiceNameLogSubscriptionSubscriptionIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      subscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/hosting/privateDatabase/{serviceName}/log/subscription/{subscriptionId}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "DeleteHostingPrivateDatabaseServiceNameLogSubscriptionSubscriptionIdRequest",
-  }) as any as S.Schema<DeleteHostingPrivateDatabaseServiceNameLogSubscriptionSubscriptionIdRequest>;
-
-/** Asynchronous operation after subscribing or unsubscribing to a resource logs */
-export interface DbaasLogsLogSubscriptionResponse {
-  /** Identifier of the operation */
-  operationId?: string;
-  /** Operation owner's service name */
-  serviceName?: string;
-}
-export const DbaasLogsLogSubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    operationId: S.optional(S.String),
-    serviceName: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DbaasLogsLogSubscriptionResponse",
-}) as any as S.Schema<DbaasLogsLogSubscriptionResponse>;
-
-export interface DeleteHostingPrivateDatabaseServiceNameUserUserNameRequest {
-  /** Service name */
-  serviceName: string;
-  /** User name */
-  userName: string;
-}
-export const DeleteHostingPrivateDatabaseServiceNameUserUserNameRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      userName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/hosting/privateDatabase/{serviceName}/user/{userName}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "DeleteHostingPrivateDatabaseServiceNameUserUserNameRequest",
-  }) as any as S.Schema<DeleteHostingPrivateDatabaseServiceNameUserUserNameRequest>;
-
-export interface DeleteHostingPrivateDatabaseServiceNameUserUserNameGrantDatabaseNameRequest {
-  /** Service name */
-  serviceName: string;
-  /** User name */
-  userName: string;
-  /** Database name */
-  databaseName: string;
-}
-export const DeleteHostingPrivateDatabaseServiceNameUserUserNameGrantDatabaseNameRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      userName: S.String.pipe(T.Label()),
-      databaseName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/hosting/privateDatabase/{serviceName}/user/{userName}/grant/{databaseName}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "DeleteHostingPrivateDatabaseServiceNameUserUserNameGrantDatabaseNameRequest",
-  }) as any as S.Schema<DeleteHostingPrivateDatabaseServiceNameUserUserNameGrantDatabaseNameRequest>;
-
-export interface DeleteHostingPrivateDatabaseServiceNameWebhostingNetworkRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const DeleteHostingPrivateDatabaseServiceNameWebhostingNetworkRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/hosting/privateDatabase/{serviceName}/webhostingNetwork",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "DeleteHostingPrivateDatabaseServiceNameWebhostingNetworkRequest",
-  }) as any as S.Schema<DeleteHostingPrivateDatabaseServiceNameWebhostingNetworkRequest>;
-
-export interface DeleteHostingPrivateDatabaseServiceNameWhitelistIpRequest {
-  /** Service name */
-  serviceName: string;
-  /** Ip */
-  ip: string;
-}
-export const DeleteHostingPrivateDatabaseServiceNameWhitelistIpRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      ip: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/hosting/privateDatabase/{serviceName}/whitelist/{ip}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "DeleteHostingPrivateDatabaseServiceNameWhitelistIpRequest",
-  }) as any as S.Schema<DeleteHostingPrivateDatabaseServiceNameWhitelistIpRequest>;
-
-/** Resource tag filter */
-export interface IamResourceTagFilterInput {}
-export const IamResourceTagFilterInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "IamResourceTagFilterInput",
-}) as any as S.Schema<IamResourceTagFilterInput>;
-
-export type GetHostingPrivateDatabaseRequestIamTagsValueList =
-  Array<IamResourceTagFilterInput>;
-export const GetHostingPrivateDatabaseRequestIamTagsValueList =
+export type CreateHostingPrivateDatabaseChangeContactResponseBodyList =
+  Array<number>;
+export const CreateHostingPrivateDatabaseChangeContactResponseBodyList =
   /*@__PURE__*/ S.Array(
-    IamResourceTagFilterInput,
-  ) as any as S.Schema<GetHostingPrivateDatabaseRequestIamTagsValueList>;
+    S.Number,
+  ) as any as S.Schema<CreateHostingPrivateDatabaseChangeContactResponseBodyList>;
 
-export type GetHostingPrivateDatabaseRequestIamTagsMap = {
-  [key: string]: GetHostingPrivateDatabaseRequestIamTagsValueList | undefined;
-};
-export const GetHostingPrivateDatabaseRequestIamTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    GetHostingPrivateDatabaseRequestIamTagsValueList,
-  ) as any as S.Schema<GetHostingPrivateDatabaseRequestIamTagsMap>;
-
-export interface GetHostingPrivateDatabaseRequest {
-  /** Filter resources on IAM tags */
-  iamTags?: GetHostingPrivateDatabaseRequestIamTagsMap;
-}
-export const GetHostingPrivateDatabaseRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    iamTags: S.optional(
-      GetHostingPrivateDatabaseRequestIamTagsMap.pipe(T.Query()),
+export type CreateHostingPrivateDatabaseChangeContactResponse =
+  CreateHostingPrivateDatabaseChangeContactResponseBodyList;
+export const CreateHostingPrivateDatabaseChangeContactResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    CreateHostingPrivateDatabaseChangeContactResponseBodyList.pipe(
+      T.RawResponseRoot(),
     ),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/hosting/privateDatabase", code: 200 }),
-  ),
-).annotate({
-  identifier: "GetHostingPrivateDatabaseRequest",
-}) as any as S.Schema<GetHostingPrivateDatabaseRequest>;
+  ).annotate({
+    identifier: "CreateHostingPrivateDatabaseChangeContactResponse",
+  }) as any as S.Schema<CreateHostingPrivateDatabaseChangeContactResponse>;
 
-export type GetHostingPrivateDatabaseResponseBodyList = Array<string>;
-export const GetHostingPrivateDatabaseResponseBodyList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<GetHostingPrivateDatabaseResponseBodyList>;
-
-export type GetHostingPrivateDatabaseResponse =
-  GetHostingPrivateDatabaseResponseBodyList;
-export const GetHostingPrivateDatabaseResponse = /*@__PURE__*/ S.suspend(() =>
-  GetHostingPrivateDatabaseResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetHostingPrivateDatabaseResponse",
-}) as any as S.Schema<GetHostingPrivateDatabaseResponse>;
-
-/** Available offers */
-export type HostingPrivateDatabaseOfferEnum = "classic" | "public";
-export const HostingPrivateDatabaseOfferEnum = /*@__PURE__*/ S.String;
-
-export interface GetHostingPrivateDatabaseAvailableOrderCapacitiesRequest {
-  offer: HostingPrivateDatabaseOfferEnum | (string & {});
+export interface CreateHostingPrivateDatabaseChangeFtpPasswordRequest {
+  /** Service name */
+  serviceName: string;
+  /** New ftp admin password (alphanumeric and 8 characters minimum) */
+  password: string | Redacted.Redacted<string>;
 }
-export const GetHostingPrivateDatabaseAvailableOrderCapacitiesRequest =
+export const CreateHostingPrivateDatabaseChangeFtpPasswordRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      offer: HostingPrivateDatabaseOfferEnum.pipe(T.Query()),
+      serviceName: S.String.pipe(T.Label()),
+      password: S.String.pipe(T.SensitiveValue({})),
     }).pipe(
       T.Http({
-        method: "GET",
-        uri: "/hosting/privateDatabase/availableOrderCapacities",
+        method: "POST",
+        uri: "/hosting/privateDatabase/{serviceName}/changeFtpPassword",
         code: 200,
       }),
     ),
   ).annotate({
-    identifier: "GetHostingPrivateDatabaseAvailableOrderCapacitiesRequest",
-  }) as any as S.Schema<GetHostingPrivateDatabaseAvailableOrderCapacitiesRequest>;
-
-/** Private database datacenter */
-export type HostingPrivateDatabaseDatacenterEnum =
-  | "bhs1"
-  | "gra1"
-  | "gra2"
-  | "gra3";
-export const HostingPrivateDatabaseDatacenterEnum = /*@__PURE__*/ S.String;
-
-/** A list of datacenter available for this offer */
-export type HostingPrivateDatabaseAvailableOrderCapacitiesDatacenterList =
-  Array<HostingPrivateDatabaseDatacenterEnum>;
-export const HostingPrivateDatabaseAvailableOrderCapacitiesDatacenterList =
-  /*@__PURE__*/ S.Array(
-    HostingPrivateDatabaseDatacenterEnum,
-  ) as any as S.Schema<HostingPrivateDatabaseAvailableOrderCapacitiesDatacenterList>;
-
-/** Private database available ram sizes */
-export type HostingPrivateDatabaseAvailableRamSizeEnum =
-  | "1024"
-  | "2048"
-  | "4096"
-  | "512";
-export const HostingPrivateDatabaseAvailableRamSizeEnum =
-  /*@__PURE__*/ S.String;
-
-/** A list of ram size available for this offer */
-export type HostingPrivateDatabaseAvailableOrderCapacitiesRamList =
-  Array<HostingPrivateDatabaseAvailableRamSizeEnum>;
-export const HostingPrivateDatabaseAvailableOrderCapacitiesRamList =
-  /*@__PURE__*/ S.Array(
-    HostingPrivateDatabaseAvailableRamSizeEnum,
-  ) as any as S.Schema<HostingPrivateDatabaseAvailableOrderCapacitiesRamList>;
+    identifier: "CreateHostingPrivateDatabaseChangeFtpPasswordRequest",
+  }) as any as S.Schema<CreateHostingPrivateDatabaseChangeFtpPasswordRequest>;
 
 /** Private database available version */
 export type HostingPrivateDatabaseAvailableVersionEnum =
@@ -461,59 +336,653 @@ export type HostingPrivateDatabaseAvailableVersionEnum =
 export const HostingPrivateDatabaseAvailableVersionEnum =
   /*@__PURE__*/ S.String;
 
-/** A list of version available for this offer */
-export type HostingPrivateDatabaseAvailableOrderCapacitiesVersionList =
-  Array<HostingPrivateDatabaseAvailableVersionEnum>;
-export const HostingPrivateDatabaseAvailableOrderCapacitiesVersionList =
-  /*@__PURE__*/ S.Array(
-    HostingPrivateDatabaseAvailableVersionEnum,
-  ) as any as S.Schema<HostingPrivateDatabaseAvailableOrderCapacitiesVersionList>;
-
-/** Description for available order capacities following an offer */
-export interface HostingPrivateDatabaseAvailableOrderCapacities {
-  /** A list of datacenter available for this offer */
-  datacenter?: HostingPrivateDatabaseAvailableOrderCapacitiesDatacenterList;
-  /** Offer */
-  offer?: HostingPrivateDatabaseOfferEnum;
-  /** A list of ram size available for this offer */
-  ram?: HostingPrivateDatabaseAvailableOrderCapacitiesRamList;
-  /** A list of version available for this offer */
-  version?: HostingPrivateDatabaseAvailableOrderCapacitiesVersionList;
+export interface CreateHostingPrivateDatabaseChangeVersionRequest {
+  /** Service name */
+  serviceName: string;
+  /** Change the private database engine version */
+  version: HostingPrivateDatabaseAvailableVersionEnum | (string & {});
 }
-export const HostingPrivateDatabaseAvailableOrderCapacities =
+export const CreateHostingPrivateDatabaseChangeVersionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      datacenter: S.optional(
-        HostingPrivateDatabaseAvailableOrderCapacitiesDatacenterList,
-      ),
-      offer: S.optional(HostingPrivateDatabaseOfferEnum),
-      ram: S.optional(HostingPrivateDatabaseAvailableOrderCapacitiesRamList),
-      version: S.optional(
-        HostingPrivateDatabaseAvailableOrderCapacitiesVersionList,
-      ),
-    }),
+      serviceName: S.String.pipe(T.Label()),
+      version: HostingPrivateDatabaseAvailableVersionEnum,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/hosting/privateDatabase/{serviceName}/changeVersion",
+        code: 200,
+      }),
+    ),
   ).annotate({
-    identifier: "HostingPrivateDatabaseAvailableOrderCapacities",
-  }) as any as S.Schema<HostingPrivateDatabaseAvailableOrderCapacities>;
+    identifier: "CreateHostingPrivateDatabaseChangeVersionRequest",
+  }) as any as S.Schema<CreateHostingPrivateDatabaseChangeVersionRequest>;
 
-export interface GetHostingPrivateDatabaseServiceNameRequest {
+export interface CreateHostingPrivateDatabaseDatabaseRequest {
+  /** Service name */
+  serviceName: string;
+  /** Name of your new database */
+  databaseName: string;
+}
+export const CreateHostingPrivateDatabaseDatabaseRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      databaseName: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/hosting/privateDatabase/{serviceName}/database",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateHostingPrivateDatabaseDatabaseRequest",
+  }) as any as S.Schema<CreateHostingPrivateDatabaseDatabaseRequest>;
+
+export interface CreateHostingPrivateDatabaseDatabaseDumpRequest {
+  /** Service name */
+  serviceName: string;
+  /** Database name */
+  databaseName: string;
+  /** Whether to receive an email when the import is complete (default to false) */
+  sendEmail?: boolean;
+}
+export const CreateHostingPrivateDatabaseDatabaseDumpRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      databaseName: S.String.pipe(T.Label()),
+      sendEmail: S.optional(S.Boolean),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/hosting/privateDatabase/{serviceName}/database/{databaseName}/dump",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateHostingPrivateDatabaseDatabaseDumpRequest",
+  }) as any as S.Schema<CreateHostingPrivateDatabaseDatabaseDumpRequest>;
+
+/** Grant on a database for a specific user */
+export type HostingPrivateDatabaseGrantGrantEnum =
+  | "admin"
+  | "none"
+  | "ro"
+  | "rw";
+export const HostingPrivateDatabaseGrantGrantEnum = /*@__PURE__*/ S.String;
+
+export interface CreateHostingPrivateDatabaseDatabaseWizardRequest {
+  /** Service name */
+  serviceName: string;
+  /** Name of your new database */
+  databaseName: string;
+  /** Grant of the user on this database */
+  grant: HostingPrivateDatabaseGrantGrantEnum | (string & {});
+  /** Password for the new user (alphanumeric and 8 characters minimum) */
+  password: string | Redacted.Redacted<string>;
+  /** New user name used to connect on your database */
+  userName: string;
+}
+export const CreateHostingPrivateDatabaseDatabaseWizardRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      databaseName: S.String,
+      grant: HostingPrivateDatabaseGrantGrantEnum,
+      password: S.String.pipe(T.SensitiveValue({})),
+      userName: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/hosting/privateDatabase/{serviceName}/databaseWizard",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateHostingPrivateDatabaseDatabaseWizardRequest",
+  }) as any as S.Schema<CreateHostingPrivateDatabaseDatabaseWizardRequest>;
+
+export interface CreateHostingPrivateDatabaseLogSubscriptionRequest {
+  /** Service name */
+  serviceName: string;
+  /** Log kind name to subscribe to */
+  kind: string;
+  /** Customer log stream ID */
+  streamId: string;
+}
+export const CreateHostingPrivateDatabaseLogSubscriptionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      kind: S.String,
+      streamId: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/hosting/privateDatabase/{serviceName}/log/subscription",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateHostingPrivateDatabaseLogSubscriptionRequest",
+  }) as any as S.Schema<CreateHostingPrivateDatabaseLogSubscriptionRequest>;
+
+/** Asynchronous operation after subscribing or unsubscribing to a resource logs */
+export interface DbaasLogsLogSubscriptionResponse {
+  /** Identifier of the operation */
+  operationId?: string;
+  /** Operation owner's service name */
+  serviceName?: string;
+}
+export const DbaasLogsLogSubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    operationId: S.optional(S.String),
+    serviceName: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DbaasLogsLogSubscriptionResponse",
+}) as any as S.Schema<DbaasLogsLogSubscriptionResponse>;
+
+export interface CreateHostingPrivateDatabaseLogUrlRequest {
+  /** Service name */
+  serviceName: string;
+  /** Log kind name */
+  kind: string;
+}
+export const CreateHostingPrivateDatabaseLogUrlRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      kind: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/hosting/privateDatabase/{serviceName}/log/url",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateHostingPrivateDatabaseLogUrlRequest",
+  }) as any as S.Schema<CreateHostingPrivateDatabaseLogUrlRequest>;
+
+/** Temporary url information */
+export interface DbaasLogsTemporaryLogsLink {
+  /** Temporary url expiration date */
+  expirationDate?: string;
+  /** Temporary url */
+  url?: string;
+}
+export const DbaasLogsTemporaryLogsLink = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    expirationDate: S.optional(S.String),
+    url: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DbaasLogsTemporaryLogsLink",
+}) as any as S.Schema<DbaasLogsTemporaryLogsLink>;
+
+export interface CreateHostingPrivateDatabaseQuotaRefreshRequest {
   /** Service name */
   serviceName: string;
 }
-export const GetHostingPrivateDatabaseServiceNameRequest =
+export const CreateHostingPrivateDatabaseQuotaRefreshRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
-        method: "GET",
-        uri: "/hosting/privateDatabase/{serviceName}",
+        method: "POST",
+        uri: "/hosting/privateDatabase/{serviceName}/quotaRefresh",
         code: 200,
       }),
     ),
   ).annotate({
-    identifier: "GetHostingPrivateDatabaseServiceNameRequest",
-  }) as any as S.Schema<GetHostingPrivateDatabaseServiceNameRequest>;
+    identifier: "CreateHostingPrivateDatabaseQuotaRefreshRequest",
+  }) as any as S.Schema<CreateHostingPrivateDatabaseQuotaRefreshRequest>;
+
+export interface CreateHostingPrivateDatabaseUserRequest {
+  /** Service name */
+  serviceName: string;
+  /** Password for the new user ( alphanumeric and 8 characters minimum ) */
+  password: string | Redacted.Redacted<string>;
+  /** User name used to connect on your databases */
+  userName: string;
+}
+export const CreateHostingPrivateDatabaseUserRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      password: S.String.pipe(T.SensitiveValue({})),
+      userName: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/hosting/privateDatabase/{serviceName}/user",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateHostingPrivateDatabaseUserRequest",
+}) as any as S.Schema<CreateHostingPrivateDatabaseUserRequest>;
+
+export interface CreateHostingPrivateDatabaseUserChangePasswordRequest {
+  /** Service name */
+  serviceName: string;
+  /** User name */
+  userName: string;
+  /** Password for the new user ( alphanumeric and 8 characters minimum ) */
+  password: string | Redacted.Redacted<string>;
+}
+export const CreateHostingPrivateDatabaseUserChangePasswordRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      userName: S.String.pipe(T.Label()),
+      password: S.String.pipe(T.SensitiveValue({})),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/hosting/privateDatabase/{serviceName}/user/{userName}/changePassword",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateHostingPrivateDatabaseUserChangePasswordRequest",
+  }) as any as S.Schema<CreateHostingPrivateDatabaseUserChangePasswordRequest>;
+
+export interface CreateHostingPrivateDatabaseUserGrantRequest {
+  /** Service name */
+  serviceName: string;
+  /** User name */
+  userName: string;
+  /** Database name where add grant */
+  databaseName: string;
+  /** Grant on a database for a specific user */
+  grant: HostingPrivateDatabaseGrantGrantEnum | (string & {});
+}
+export const CreateHostingPrivateDatabaseUserGrantRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      userName: S.String.pipe(T.Label()),
+      databaseName: S.String,
+      grant: HostingPrivateDatabaseGrantGrantEnum,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/hosting/privateDatabase/{serviceName}/user/{userName}/grant",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateHostingPrivateDatabaseUserGrantRequest",
+  }) as any as S.Schema<CreateHostingPrivateDatabaseUserGrantRequest>;
+
+export interface CreateHostingPrivateDatabaseWebhostingNetworkRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const CreateHostingPrivateDatabaseWebhostingNetworkRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/hosting/privateDatabase/{serviceName}/webhostingNetwork",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateHostingPrivateDatabaseWebhostingNetworkRequest",
+  }) as any as S.Schema<CreateHostingPrivateDatabaseWebhostingNetworkRequest>;
+
+export interface CreateHostingPrivateDatabaseWhitelistRequest {
+  /** Service name */
+  serviceName: string;
+  /** The whitelisted IP in your Web Cloud Database */
+  ip: string;
+  /** Custom name for your Whitelisted IP */
+  name?: string | null;
+  /** Authorize this IP to access service port */
+  service?: boolean;
+  /** Authorize this IP to access sftp port */
+  sftp?: boolean;
+}
+export const CreateHostingPrivateDatabaseWhitelistRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      ip: S.String,
+      name: S.optional(S.NullOr(S.String)),
+      service: S.optional(S.Boolean),
+      sftp: S.optional(S.Boolean),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/hosting/privateDatabase/{serviceName}/whitelist",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateHostingPrivateDatabaseWhitelistRequest",
+  }) as any as S.Schema<CreateHostingPrivateDatabaseWhitelistRequest>;
+
+export interface DeleteHostingPrivateDatabaseDatabaseRequest {
+  /** Service name */
+  serviceName: string;
+  /** Database name */
+  databaseName: string;
+}
+export const DeleteHostingPrivateDatabaseDatabaseRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      databaseName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/hosting/privateDatabase/{serviceName}/database/{databaseName}",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "DeleteHostingPrivateDatabaseDatabaseRequest",
+  }) as any as S.Schema<DeleteHostingPrivateDatabaseDatabaseRequest>;
+
+export interface DeleteHostingPrivateDatabaseDatabaseCopyRequest {
+  /** Service name */
+  serviceName: string;
+  /** Database name */
+  databaseName: string;
+  /** Id */
+  id: string;
+}
+export const DeleteHostingPrivateDatabaseDatabaseCopyRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      databaseName: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/hosting/privateDatabase/{serviceName}/database/{databaseName}/copy/{id}",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "DeleteHostingPrivateDatabaseDatabaseCopyRequest",
+  }) as any as S.Schema<DeleteHostingPrivateDatabaseDatabaseCopyRequest>;
+
+export interface DeleteHostingPrivateDatabaseDatabaseCopyResponse {}
+export const DeleteHostingPrivateDatabaseDatabaseCopyResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DeleteHostingPrivateDatabaseDatabaseCopyResponse",
+  }) as any as S.Schema<DeleteHostingPrivateDatabaseDatabaseCopyResponse>;
+
+export interface DeleteHostingPrivateDatabaseDatabaseDumpRequest {
+  /** Service name */
+  serviceName: string;
+  /** Database name */
+  databaseName: string;
+  /** Id */
+  id: number;
+}
+export const DeleteHostingPrivateDatabaseDatabaseDumpRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      databaseName: S.String.pipe(T.Label()),
+      id: S.Number.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/hosting/privateDatabase/{serviceName}/database/{databaseName}/dump/{id}",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "DeleteHostingPrivateDatabaseDatabaseDumpRequest",
+  }) as any as S.Schema<DeleteHostingPrivateDatabaseDatabaseDumpRequest>;
+
+export interface DeleteHostingPrivateDatabaseDumpRequest {
+  /** Service name */
+  serviceName: string;
+  /** Dump ID */
+  dumpId: number;
+}
+export const DeleteHostingPrivateDatabaseDumpRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      dumpId: S.Number.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/hosting/privateDatabase/{serviceName}/dump/{dumpId}",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "DeleteHostingPrivateDatabaseDumpRequest",
+}) as any as S.Schema<DeleteHostingPrivateDatabaseDumpRequest>;
+
+export interface DeleteHostingPrivateDatabaseLogSubscriptionRequest {
+  /** Service name */
+  serviceName: string;
+  /** Subscription ID */
+  subscriptionId: string;
+}
+export const DeleteHostingPrivateDatabaseLogSubscriptionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      subscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/hosting/privateDatabase/{serviceName}/log/subscription/{subscriptionId}",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "DeleteHostingPrivateDatabaseLogSubscriptionRequest",
+  }) as any as S.Schema<DeleteHostingPrivateDatabaseLogSubscriptionRequest>;
+
+export interface DeleteHostingPrivateDatabaseUserRequest {
+  /** Service name */
+  serviceName: string;
+  /** User name */
+  userName: string;
+}
+export const DeleteHostingPrivateDatabaseUserRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      userName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/hosting/privateDatabase/{serviceName}/user/{userName}",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "DeleteHostingPrivateDatabaseUserRequest",
+}) as any as S.Schema<DeleteHostingPrivateDatabaseUserRequest>;
+
+export interface DeleteHostingPrivateDatabaseUserGrantRequest {
+  /** Service name */
+  serviceName: string;
+  /** User name */
+  userName: string;
+  /** Database name */
+  databaseName: string;
+}
+export const DeleteHostingPrivateDatabaseUserGrantRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      userName: S.String.pipe(T.Label()),
+      databaseName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/hosting/privateDatabase/{serviceName}/user/{userName}/grant/{databaseName}",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "DeleteHostingPrivateDatabaseUserGrantRequest",
+  }) as any as S.Schema<DeleteHostingPrivateDatabaseUserGrantRequest>;
+
+export interface DeleteHostingPrivateDatabaseWebhostingNetworkRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const DeleteHostingPrivateDatabaseWebhostingNetworkRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/hosting/privateDatabase/{serviceName}/webhostingNetwork",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "DeleteHostingPrivateDatabaseWebhostingNetworkRequest",
+  }) as any as S.Schema<DeleteHostingPrivateDatabaseWebhostingNetworkRequest>;
+
+export interface DeleteHostingPrivateDatabaseWhitelistRequest {
+  /** Service name */
+  serviceName: string;
+  /** Ip */
+  ip: string;
+}
+export const DeleteHostingPrivateDatabaseWhitelistRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      ip: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/hosting/privateDatabase/{serviceName}/whitelist/{ip}",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "DeleteHostingPrivateDatabaseWhitelistRequest",
+  }) as any as S.Schema<DeleteHostingPrivateDatabaseWhitelistRequest>;
+
+export interface DisableHostingPrivateDatabaseDatabaseExtensionRequest {
+  /** Service name */
+  serviceName: string;
+  /** Database name */
+  databaseName: string;
+  /** Extension name */
+  extensionName: string;
+}
+export const DisableHostingPrivateDatabaseDatabaseExtensionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      databaseName: S.String.pipe(T.Label()),
+      extensionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/hosting/privateDatabase/{serviceName}/database/{databaseName}/extension/{extensionName}/disable",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "DisableHostingPrivateDatabaseDatabaseExtensionRequest",
+  }) as any as S.Schema<DisableHostingPrivateDatabaseDatabaseExtensionRequest>;
+
+export interface EnableHostingPrivateDatabaseDatabaseExtensionRequest {
+  /** Service name */
+  serviceName: string;
+  /** Database name */
+  databaseName: string;
+  /** Extension name */
+  extensionName: string;
+}
+export const EnableHostingPrivateDatabaseDatabaseExtensionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      databaseName: S.String.pipe(T.Label()),
+      extensionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/hosting/privateDatabase/{serviceName}/database/{databaseName}/extension/{extensionName}/enable",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "EnableHostingPrivateDatabaseDatabaseExtensionRequest",
+  }) as any as S.Schema<EnableHostingPrivateDatabaseDatabaseExtensionRequest>;
+
+export interface GenerateHostingPrivateDatabaseTemporaryLogsLinkRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const GenerateHostingPrivateDatabaseTemporaryLogsLinkRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/hosting/privateDatabase/{serviceName}/generateTemporaryLogsLink",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "GenerateHostingPrivateDatabaseTemporaryLogsLinkRequest",
+  }) as any as S.Schema<GenerateHostingPrivateDatabaseTemporaryLogsLinkRequest>;
+
+/** Temporary url information */
+export interface HostingPrivateDatabaseTemporaryUrlInformations {
+  /** Temporary url expiration date */
+  expirationDate?: string;
+  /** Temporary url */
+  url?: string;
+}
+export const HostingPrivateDatabaseTemporaryUrlInformations =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      expirationDate: S.optional(S.String),
+      url: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "HostingPrivateDatabaseTemporaryUrlInformations",
+  }) as any as S.Schema<HostingPrivateDatabaseTemporaryUrlInformations>;
+
+export interface GetHostingPrivateDatabaseRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const GetHostingPrivateDatabaseRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/hosting/privateDatabase/{serviceName}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetHostingPrivateDatabaseRequest",
+}) as any as S.Schema<GetHostingPrivateDatabaseRequest>;
 
 /** Private database capability */
 export interface HostingPrivateDatabaseCapability {
@@ -544,6 +1013,14 @@ export const HostingPrivateDatabaseServiceWithIAMCapabilitiesList =
   /*@__PURE__*/ S.Array(
     HostingPrivateDatabaseCapability,
   ) as any as S.Schema<HostingPrivateDatabaseServiceWithIAMCapabilitiesList>;
+
+/** Private database datacenter */
+export type HostingPrivateDatabaseDatacenterEnum =
+  | "bhs1"
+  | "gra1"
+  | "gra2"
+  | "gra3";
+export const HostingPrivateDatabaseDatacenterEnum = /*@__PURE__*/ S.String;
 
 /** Parameters required to query metrics from OpenTSDB */
 export interface HostingPrivateDatabaseGraphEndpoint {
@@ -596,6 +1073,10 @@ export const IamResourceMetadata = /*@__PURE__*/ S.suspend(() =>
 /** Private database infrastructure */
 export type HostingPrivateDatabaseInfrastructureEnum = "docker";
 export const HostingPrivateDatabaseInfrastructureEnum = /*@__PURE__*/ S.String;
+
+/** Available offers */
+export type HostingPrivateDatabaseOfferEnum = "classic" | "public";
+export const HostingPrivateDatabaseOfferEnum = /*@__PURE__*/ S.String;
 
 /** A numeric value tagged with its unit */
 export interface ComplexTypeUnitAndValueLong {
@@ -738,244 +1219,14 @@ export const HostingPrivateDatabaseServiceWithIAM = /*@__PURE__*/ S.suspend(
   identifier: "HostingPrivateDatabaseServiceWithIAM",
 }) as any as S.Schema<HostingPrivateDatabaseServiceWithIAM>;
 
-export interface GetHostingPrivateDatabaseServiceNameAvailableVersionsRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const GetHostingPrivateDatabaseServiceNameAvailableVersionsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/hosting/privateDatabase/{serviceName}/availableVersions",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetHostingPrivateDatabaseServiceNameAvailableVersionsRequest",
-  }) as any as S.Schema<GetHostingPrivateDatabaseServiceNameAvailableVersionsRequest>;
-
-export type GetHostingPrivateDatabaseServiceNameAvailableVersionsResponseBodyList =
-  Array<HostingPrivateDatabaseAvailableVersionEnum>;
-export const GetHostingPrivateDatabaseServiceNameAvailableVersionsResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    HostingPrivateDatabaseAvailableVersionEnum,
-  ) as any as S.Schema<GetHostingPrivateDatabaseServiceNameAvailableVersionsResponseBodyList>;
-
-export type GetHostingPrivateDatabaseServiceNameAvailableVersionsResponse =
-  GetHostingPrivateDatabaseServiceNameAvailableVersionsResponseBodyList;
-export const GetHostingPrivateDatabaseServiceNameAvailableVersionsResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetHostingPrivateDatabaseServiceNameAvailableVersionsResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetHostingPrivateDatabaseServiceNameAvailableVersionsResponse",
-  }) as any as S.Schema<GetHostingPrivateDatabaseServiceNameAvailableVersionsResponse>;
-
-export interface GetHostingPrivateDatabaseServiceNameConfigRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const GetHostingPrivateDatabaseServiceNameConfigRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/hosting/privateDatabase/{serviceName}/config",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetHostingPrivateDatabaseServiceNameConfigRequest",
-  }) as any as S.Schema<GetHostingPrivateDatabaseServiceNameConfigRequest>;
-
-/** Configuration available values */
-export type HostingPrivateDatabaseConfigDetailAvailableValuesList =
-  Array<string>;
-export const HostingPrivateDatabaseConfigDetailAvailableValuesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<HostingPrivateDatabaseConfigDetailAvailableValuesList>;
-
-/** Web Cloud Database config type */
-export type HostingPrivateDatabaseConfigTypeEnum =
-  | "boolean"
-  | "number"
-  | "string";
-export const HostingPrivateDatabaseConfigTypeEnum = /*@__PURE__*/ S.String;
-
-/** Config detail */
-export interface HostingPrivateDatabaseConfigDetail {
-  /** Configuration available values */
-  availableValues?: HostingPrivateDatabaseConfigDetailAvailableValuesList;
-  /** Configuration default value */
-  defaultValue?: string;
-  /** Configuration description */
-  description?: string;
-  /** Configuration key name */
-  key?: string;
-  /** Configuration last update */
-  lastUpdate?: string;
-  /** Configuration value type */
-  type?: HostingPrivateDatabaseConfigTypeEnum;
-  /** Configuration unit type */
-  unit?: string | null;
-  /** Configuration current value */
-  value?: string;
-}
-export const HostingPrivateDatabaseConfigDetail = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    availableValues: S.optional(
-      HostingPrivateDatabaseConfigDetailAvailableValuesList,
-    ),
-    defaultValue: S.optional(S.String),
-    description: S.optional(S.String),
-    key: S.optional(S.String),
-    lastUpdate: S.optional(S.String),
-    type: S.optional(HostingPrivateDatabaseConfigTypeEnum),
-    unit: S.optional(S.NullOr(S.String)),
-    value: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "HostingPrivateDatabaseConfigDetail",
-}) as any as S.Schema<HostingPrivateDatabaseConfigDetail>;
-
-/** Configuration details */
-export type HostingPrivateDatabaseConfigsDetailsList =
-  Array<HostingPrivateDatabaseConfigDetail>;
-export const HostingPrivateDatabaseConfigsDetailsList = /*@__PURE__*/ S.Array(
-  HostingPrivateDatabaseConfigDetail,
-) as any as S.Schema<HostingPrivateDatabaseConfigsDetailsList>;
-
-/** Web Cloud Database config status */
-export type HostingPrivateDatabaseConfigStatusEnum = "applied" | "updating";
-export const HostingPrivateDatabaseConfigStatusEnum = /*@__PURE__*/ S.String;
-
-/** Configs */
-export interface HostingPrivateDatabaseConfigs {
-  /** Configuration details */
-  details?: HostingPrivateDatabaseConfigsDetailsList;
-  /** Configuration last update */
-  lastUpdate?: string;
-  /** Configuration status */
-  status?: HostingPrivateDatabaseConfigStatusEnum;
-  /** Configuration linked task id */
-  taskId?: number | null;
-}
-export const HostingPrivateDatabaseConfigs = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    details: S.optional(HostingPrivateDatabaseConfigsDetailsList),
-    lastUpdate: S.optional(S.String),
-    status: S.optional(HostingPrivateDatabaseConfigStatusEnum),
-    taskId: S.optional(S.NullOr(S.Number)),
-  }),
-).annotate({
-  identifier: "HostingPrivateDatabaseConfigs",
-}) as any as S.Schema<HostingPrivateDatabaseConfigs>;
-
-export interface GetHostingPrivateDatabaseServiceNameCpuThrottleRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const GetHostingPrivateDatabaseServiceNameCpuThrottleRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/hosting/privateDatabase/{serviceName}/cpuThrottle",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetHostingPrivateDatabaseServiceNameCpuThrottleRequest",
-  }) as any as S.Schema<GetHostingPrivateDatabaseServiceNameCpuThrottleRequest>;
-
-/** CPU throttle informations */
-export interface HostingPrivateDatabaseCpuThrottle {
-  /** End date of the CPU throttle */
-  endDate?: string | null;
-  /** Start date of the CPU throttle */
-  startDate?: string;
-}
-export const HostingPrivateDatabaseCpuThrottle = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    endDate: S.optional(S.NullOr(S.String)),
-    startDate: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "HostingPrivateDatabaseCpuThrottle",
-}) as any as S.Schema<HostingPrivateDatabaseCpuThrottle>;
-
-export type GetHostingPrivateDatabaseServiceNameCpuThrottleResponseBodyList =
-  Array<HostingPrivateDatabaseCpuThrottle>;
-export const GetHostingPrivateDatabaseServiceNameCpuThrottleResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    HostingPrivateDatabaseCpuThrottle,
-  ) as any as S.Schema<GetHostingPrivateDatabaseServiceNameCpuThrottleResponseBodyList>;
-
-export type GetHostingPrivateDatabaseServiceNameCpuThrottleResponse =
-  GetHostingPrivateDatabaseServiceNameCpuThrottleResponseBodyList;
-export const GetHostingPrivateDatabaseServiceNameCpuThrottleResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetHostingPrivateDatabaseServiceNameCpuThrottleResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetHostingPrivateDatabaseServiceNameCpuThrottleResponse",
-  }) as any as S.Schema<GetHostingPrivateDatabaseServiceNameCpuThrottleResponse>;
-
-export interface GetHostingPrivateDatabaseServiceNameDatabaseRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const GetHostingPrivateDatabaseServiceNameDatabaseRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/hosting/privateDatabase/{serviceName}/database",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetHostingPrivateDatabaseServiceNameDatabaseRequest",
-  }) as any as S.Schema<GetHostingPrivateDatabaseServiceNameDatabaseRequest>;
-
-export type GetHostingPrivateDatabaseServiceNameDatabaseResponseBodyList =
-  Array<string>;
-export const GetHostingPrivateDatabaseServiceNameDatabaseResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetHostingPrivateDatabaseServiceNameDatabaseResponseBodyList>;
-
-export type GetHostingPrivateDatabaseServiceNameDatabaseResponse =
-  GetHostingPrivateDatabaseServiceNameDatabaseResponseBodyList;
-export const GetHostingPrivateDatabaseServiceNameDatabaseResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetHostingPrivateDatabaseServiceNameDatabaseResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetHostingPrivateDatabaseServiceNameDatabaseResponse",
-  }) as any as S.Schema<GetHostingPrivateDatabaseServiceNameDatabaseResponse>;
-
-export interface GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameRequest {
+export interface GetHostingPrivateDatabaseDatabaseRequest {
   /** Service name */
   serviceName: string;
   /** Database name */
   databaseName: string;
 }
-export const GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetHostingPrivateDatabaseDatabaseRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       databaseName: S.String.pipe(T.Label()),
@@ -986,18 +1237,9 @@ export const GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier:
-      "GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameRequest",
-  }) as any as S.Schema<GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameRequest>;
-
-/** Grant on a database for a specific user */
-export type HostingPrivateDatabaseGrantGrantEnum =
-  | "admin"
-  | "none"
-  | "ro"
-  | "rw";
-export const HostingPrivateDatabaseGrantGrantEnum = /*@__PURE__*/ S.String;
+).annotate({
+  identifier: "GetHostingPrivateDatabaseDatabaseRequest",
+}) as any as S.Schema<GetHostingPrivateDatabaseDatabaseRequest>;
 
 /** Users */
 export interface HostingPrivateDatabaseDatabaseUser {
@@ -1050,49 +1292,7 @@ export const HostingPrivateDatabaseDatabase = /*@__PURE__*/ S.suspend(() =>
   identifier: "HostingPrivateDatabaseDatabase",
 }) as any as S.Schema<HostingPrivateDatabaseDatabase>;
 
-export interface GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyRequest {
-  /** Service name */
-  serviceName: string;
-  /** Database name */
-  databaseName: string;
-}
-export const GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      databaseName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/hosting/privateDatabase/{serviceName}/database/{databaseName}/copy",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyRequest",
-  }) as any as S.Schema<GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyRequest>;
-
-export type GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyResponseBodyList =
-  Array<string>;
-export const GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyResponseBodyList>;
-
-export type GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyResponse =
-  GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyResponseBodyList;
-export const GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier:
-      "GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyResponse",
-  }) as any as S.Schema<GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyResponse>;
-
-export interface GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyIdRequest {
+export interface GetHostingPrivateDatabaseDatabaseCopyRequest {
   /** Service name */
   serviceName: string;
   /** Database name */
@@ -1100,7 +1300,7 @@ export interface GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyIdR
   /** Id */
   id: string;
 }
-export const GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyIdRequest =
+export const GetHostingPrivateDatabaseDatabaseCopyRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
@@ -1114,87 +1314,10 @@ export const GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyIdReque
       }),
     ),
   ).annotate({
-    identifier:
-      "GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyIdRequest",
-  }) as any as S.Schema<GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyIdRequest>;
+    identifier: "GetHostingPrivateDatabaseDatabaseCopyRequest",
+  }) as any as S.Schema<GetHostingPrivateDatabaseDatabaseCopyRequest>;
 
-/** Database copy status */
-export type HostingPrivateDatabaseDatabaseCopyStatusEnum =
-  | "doing"
-  | "done"
-  | "error"
-  | "todo";
-export const HostingPrivateDatabaseDatabaseCopyStatusEnum =
-  /*@__PURE__*/ S.String;
-
-/** Database copy */
-export interface HostingPrivateDatabaseDatabaseCopy {
-  /** Creation date of the database copy */
-  creationDate?: string;
-  /** Expiration date of the database copy */
-  expirationDate?: string | null;
-  /** Database copy ID */
-  id?: string;
-  /** Last update of the database copy */
-  lastUpdate?: string;
-  /** Database copy status */
-  status?: HostingPrivateDatabaseDatabaseCopyStatusEnum;
-}
-export const HostingPrivateDatabaseDatabaseCopy = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    creationDate: S.optional(S.String),
-    expirationDate: S.optional(S.NullOr(S.String)),
-    id: S.optional(S.String),
-    lastUpdate: S.optional(S.String),
-    status: S.optional(HostingPrivateDatabaseDatabaseCopyStatusEnum),
-  }),
-).annotate({
-  identifier: "HostingPrivateDatabaseDatabaseCopy",
-}) as any as S.Schema<HostingPrivateDatabaseDatabaseCopy>;
-
-export interface GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpRequest {
-  /** Service name */
-  serviceName: string;
-  /** Database name */
-  databaseName: string;
-}
-export const GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      databaseName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/hosting/privateDatabase/{serviceName}/database/{databaseName}/dump",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpRequest",
-  }) as any as S.Schema<GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpRequest>;
-
-export type GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpResponseBodyList =
-  Array<number>;
-export const GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpResponseBodyList>;
-
-export type GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpResponse =
-  GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpResponseBodyList;
-export const GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier:
-      "GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpResponse",
-  }) as any as S.Schema<GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpResponse>;
-
-export interface GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpIdRequest {
+export interface GetHostingPrivateDatabaseDatabaseDumpRequest {
   /** Service name */
   serviceName: string;
   /** Database name */
@@ -1202,7 +1325,7 @@ export interface GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpIdR
   /** Id */
   id: number;
 }
-export const GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpIdRequest =
+export const GetHostingPrivateDatabaseDatabaseDumpRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
@@ -1216,9 +1339,8 @@ export const GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpIdReque
       }),
     ),
   ).annotate({
-    identifier:
-      "GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpIdRequest",
-  }) as any as S.Schema<GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpIdRequest>;
+    identifier: "GetHostingPrivateDatabaseDatabaseDumpRequest",
+  }) as any as S.Schema<GetHostingPrivateDatabaseDatabaseDumpRequest>;
 
 /** Dumps */
 export interface HostingPrivateDatabaseDatabaseDump {
@@ -1245,65 +1367,7 @@ export const HostingPrivateDatabaseDatabaseDump = /*@__PURE__*/ S.suspend(() =>
   identifier: "HostingPrivateDatabaseDatabaseDump",
 }) as any as S.Schema<HostingPrivateDatabaseDatabaseDump>;
 
-/** Extension status */
-export type HostingPrivateDatabaseExtensionStatusEnum =
-  | "disabled"
-  | "disabling"
-  | "enabled"
-  | "enabling";
-export const HostingPrivateDatabaseExtensionStatusEnum = /*@__PURE__*/ S.String;
-
-export interface GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionRequest {
-  /** Service name */
-  serviceName: string;
-  /** Database name */
-  databaseName: string;
-  /** Filter results on extension name (like) */
-  extensionName?: string;
-  /** Filter results on status (=) */
-  status?: HostingPrivateDatabaseExtensionStatusEnum | (string & {});
-}
-export const GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      databaseName: S.String.pipe(T.Label()),
-      extensionName: S.optional(S.String.pipe(T.Query())),
-      status: S.optional(
-        HostingPrivateDatabaseExtensionStatusEnum.pipe(T.Query()),
-      ),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/hosting/privateDatabase/{serviceName}/database/{databaseName}/extension",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionRequest",
-  }) as any as S.Schema<GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionRequest>;
-
-export type GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionResponseBodyList =
-  Array<string>;
-export const GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionResponseBodyList>;
-
-export type GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionResponse =
-  GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionResponseBodyList;
-export const GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier:
-      "GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionResponse",
-  }) as any as S.Schema<GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionResponse>;
-
-export interface GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionExtensionNameRequest {
+export interface GetHostingPrivateDatabaseDatabaseExtensionRequest {
   /** Service name */
   serviceName: string;
   /** Database name */
@@ -1311,7 +1375,7 @@ export interface GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensi
   /** Extension name */
   extensionName: string;
 }
-export const GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionExtensionNameRequest =
+export const GetHostingPrivateDatabaseDatabaseExtensionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
@@ -1325,9 +1389,8 @@ export const GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionEx
       }),
     ),
   ).annotate({
-    identifier:
-      "GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionExtensionNameRequest",
-  }) as any as S.Schema<GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionExtensionNameRequest>;
+    identifier: "GetHostingPrivateDatabaseDatabaseExtensionRequest",
+  }) as any as S.Schema<GetHostingPrivateDatabaseDatabaseExtensionRequest>;
 
 /** Required extensions */
 export type HostingPrivateDatabaseExtensionRequiredExtensionsList =
@@ -1336,6 +1399,14 @@ export const HostingPrivateDatabaseExtensionRequiredExtensionsList =
   /*@__PURE__*/ S.Array(
     S.String,
   ) as any as S.Schema<HostingPrivateDatabaseExtensionRequiredExtensionsList>;
+
+/** Extension status */
+export type HostingPrivateDatabaseExtensionStatusEnum =
+  | "disabled"
+  | "disabling"
+  | "enabled"
+  | "enabling";
+export const HostingPrivateDatabaseExtensionStatusEnum = /*@__PURE__*/ S.String;
 
 /** Webcloud Database extension */
 export interface HostingPrivateDatabaseExtension {
@@ -1361,57 +1432,14 @@ export const HostingPrivateDatabaseExtension = /*@__PURE__*/ S.suspend(() =>
   identifier: "HostingPrivateDatabaseExtension",
 }) as any as S.Schema<HostingPrivateDatabaseExtension>;
 
-export interface GetHostingPrivateDatabaseServiceNameDumpRequest {
-  /** Service name */
-  serviceName: string;
-  /** Filter the value of databaseName property (like) */
-  databaseName?: string;
-  /** Filter the value of orphan property (=) */
-  orphan?: boolean;
-}
-export const GetHostingPrivateDatabaseServiceNameDumpRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      databaseName: S.optional(S.String.pipe(T.Query())),
-      orphan: S.optional(S.Boolean.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/hosting/privateDatabase/{serviceName}/dump",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetHostingPrivateDatabaseServiceNameDumpRequest",
-  }) as any as S.Schema<GetHostingPrivateDatabaseServiceNameDumpRequest>;
-
-export type GetHostingPrivateDatabaseServiceNameDumpResponseBodyList =
-  Array<number>;
-export const GetHostingPrivateDatabaseServiceNameDumpResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<GetHostingPrivateDatabaseServiceNameDumpResponseBodyList>;
-
-export type GetHostingPrivateDatabaseServiceNameDumpResponse =
-  GetHostingPrivateDatabaseServiceNameDumpResponseBodyList;
-export const GetHostingPrivateDatabaseServiceNameDumpResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetHostingPrivateDatabaseServiceNameDumpResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetHostingPrivateDatabaseServiceNameDumpResponse",
-  }) as any as S.Schema<GetHostingPrivateDatabaseServiceNameDumpResponse>;
-
-export interface GetHostingPrivateDatabaseServiceNameDumpDumpIdRequest {
+export interface GetHostingPrivateDatabaseDumpRequest {
   /** Service name */
   serviceName: string;
   /** Dump ID */
   dumpId: number;
 }
-export const GetHostingPrivateDatabaseServiceNameDumpDumpIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetHostingPrivateDatabaseDumpRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       dumpId: S.Number.pipe(T.Label()),
@@ -1422,9 +1450,9 @@ export const GetHostingPrivateDatabaseServiceNameDumpDumpIdRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "GetHostingPrivateDatabaseServiceNameDumpDumpIdRequest",
-  }) as any as S.Schema<GetHostingPrivateDatabaseServiceNameDumpDumpIdRequest>;
+).annotate({
+  identifier: "GetHostingPrivateDatabaseDumpRequest",
+}) as any as S.Schema<GetHostingPrivateDatabaseDumpRequest>;
 
 /** Dumps */
 export interface HostingPrivateDatabaseDump {
@@ -1454,51 +1482,14 @@ export const HostingPrivateDatabaseDump = /*@__PURE__*/ S.suspend(() =>
   identifier: "HostingPrivateDatabaseDump",
 }) as any as S.Schema<HostingPrivateDatabaseDump>;
 
-export interface GetHostingPrivateDatabaseServiceNameLogKindRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const GetHostingPrivateDatabaseServiceNameLogKindRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/hosting/privateDatabase/{serviceName}/log/kind",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetHostingPrivateDatabaseServiceNameLogKindRequest",
-  }) as any as S.Schema<GetHostingPrivateDatabaseServiceNameLogKindRequest>;
-
-export type GetHostingPrivateDatabaseServiceNameLogKindResponseBodyList =
-  Array<string>;
-export const GetHostingPrivateDatabaseServiceNameLogKindResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetHostingPrivateDatabaseServiceNameLogKindResponseBodyList>;
-
-export type GetHostingPrivateDatabaseServiceNameLogKindResponse =
-  GetHostingPrivateDatabaseServiceNameLogKindResponseBodyList;
-export const GetHostingPrivateDatabaseServiceNameLogKindResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetHostingPrivateDatabaseServiceNameLogKindResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetHostingPrivateDatabaseServiceNameLogKindResponse",
-  }) as any as S.Schema<GetHostingPrivateDatabaseServiceNameLogKindResponse>;
-
-export interface GetHostingPrivateDatabaseServiceNameLogKindNameRequest {
+export interface GetHostingPrivateDatabaseLogKindRequest {
   /** Service name */
   serviceName: string;
   /** Name */
   name: string;
 }
-export const GetHostingPrivateDatabaseServiceNameLogKindNameRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetHostingPrivateDatabaseLogKindRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       name: S.String.pipe(T.Label()),
@@ -1509,9 +1500,9 @@ export const GetHostingPrivateDatabaseServiceNameLogKindNameRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "GetHostingPrivateDatabaseServiceNameLogKindNameRequest",
-  }) as any as S.Schema<GetHostingPrivateDatabaseServiceNameLogKindNameRequest>;
+).annotate({
+  identifier: "GetHostingPrivateDatabaseLogKindRequest",
+}) as any as S.Schema<GetHostingPrivateDatabaseLogKindRequest>;
 
 /** List of additional log fields managed in this log kind */
 export type DbaasLogsLogKindAdditionalReturnedFieldsList = Array<string>;
@@ -1550,53 +1541,13 @@ export const DbaasLogsLogKind = /*@__PURE__*/ S.suspend(() =>
   identifier: "DbaasLogsLogKind",
 }) as any as S.Schema<DbaasLogsLogKind>;
 
-export interface GetHostingPrivateDatabaseServiceNameLogSubscriptionRequest {
-  /** Service name */
-  serviceName: string;
-  /** Filter on a specific kind */
-  kind?: string;
-}
-export const GetHostingPrivateDatabaseServiceNameLogSubscriptionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      kind: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/hosting/privateDatabase/{serviceName}/log/subscription",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetHostingPrivateDatabaseServiceNameLogSubscriptionRequest",
-  }) as any as S.Schema<GetHostingPrivateDatabaseServiceNameLogSubscriptionRequest>;
-
-export type GetHostingPrivateDatabaseServiceNameLogSubscriptionResponseBodyList =
-  Array<string>;
-export const GetHostingPrivateDatabaseServiceNameLogSubscriptionResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetHostingPrivateDatabaseServiceNameLogSubscriptionResponseBodyList>;
-
-export type GetHostingPrivateDatabaseServiceNameLogSubscriptionResponse =
-  GetHostingPrivateDatabaseServiceNameLogSubscriptionResponseBodyList;
-export const GetHostingPrivateDatabaseServiceNameLogSubscriptionResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetHostingPrivateDatabaseServiceNameLogSubscriptionResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetHostingPrivateDatabaseServiceNameLogSubscriptionResponse",
-  }) as any as S.Schema<GetHostingPrivateDatabaseServiceNameLogSubscriptionResponse>;
-
-export interface GetHostingPrivateDatabaseServiceNameLogSubscriptionSubscriptionIdRequest {
+export interface GetHostingPrivateDatabaseLogSubscriptionRequest {
   /** Service name */
   serviceName: string;
   /** Subscription ID */
   subscriptionId: string;
 }
-export const GetHostingPrivateDatabaseServiceNameLogSubscriptionSubscriptionIdRequest =
+export const GetHostingPrivateDatabaseLogSubscriptionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
@@ -1609,9 +1560,8 @@ export const GetHostingPrivateDatabaseServiceNameLogSubscriptionSubscriptionIdRe
       }),
     ),
   ).annotate({
-    identifier:
-      "GetHostingPrivateDatabaseServiceNameLogSubscriptionSubscriptionIdRequest",
-  }) as any as S.Schema<GetHostingPrivateDatabaseServiceNameLogSubscriptionSubscriptionIdRequest>;
+    identifier: "GetHostingPrivateDatabaseLogSubscriptionRequest",
+  }) as any as S.Schema<GetHostingPrivateDatabaseLogSubscriptionRequest>;
 
 /** Log subscription resource */
 export interface DbaasLogsLogSubscriptionResource {
@@ -1660,11 +1610,11 @@ export const DbaasLogsLogSubscription = /*@__PURE__*/ S.suspend(() =>
   identifier: "DbaasLogsLogSubscription",
 }) as any as S.Schema<DbaasLogsLogSubscription>;
 
-export interface GetHostingPrivateDatabaseServiceNameMetricsTokenRequest {
+export interface GetHostingPrivateDatabaseMetricsTokenRequest {
   /** Service name */
   serviceName: string;
 }
-export const GetHostingPrivateDatabaseServiceNameMetricsTokenRequest =
+export const GetHostingPrivateDatabaseMetricsTokenRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
@@ -1676,8 +1626,8 @@ export const GetHostingPrivateDatabaseServiceNameMetricsTokenRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetHostingPrivateDatabaseServiceNameMetricsTokenRequest",
-  }) as any as S.Schema<GetHostingPrivateDatabaseServiceNameMetricsTokenRequest>;
+    identifier: "GetHostingPrivateDatabaseMetricsTokenRequest",
+  }) as any as S.Schema<GetHostingPrivateDatabaseMetricsTokenRequest>;
 
 /** Metrics token */
 export interface HostingPrivateDatabaseMetricsToken {
@@ -1695,64 +1645,11 @@ export const HostingPrivateDatabaseMetricsToken = /*@__PURE__*/ S.suspend(() =>
   identifier: "HostingPrivateDatabaseMetricsToken",
 }) as any as S.Schema<HostingPrivateDatabaseMetricsToken>;
 
-export interface GetHostingPrivateDatabaseServiceNameOomRequest {
+export interface GetHostingPrivateDatabaseServiceInfosRequest {
   /** Service name */
   serviceName: string;
 }
-export const GetHostingPrivateDatabaseServiceNameOomRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/hosting/privateDatabase/{serviceName}/oom",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetHostingPrivateDatabaseServiceNameOomRequest",
-  }) as any as S.Schema<GetHostingPrivateDatabaseServiceNameOomRequest>;
-
-/** List of privatesql OOM kill */
-export interface HostingPrivateDatabaseOom {
-  /** Date of the OOM kill */
-  date?: string;
-  /** Memory size reached */
-  sizeReached?: number;
-}
-export const HostingPrivateDatabaseOom = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    date: S.optional(S.String),
-    sizeReached: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "HostingPrivateDatabaseOom",
-}) as any as S.Schema<HostingPrivateDatabaseOom>;
-
-export type GetHostingPrivateDatabaseServiceNameOomResponseBodyList =
-  Array<HostingPrivateDatabaseOom>;
-export const GetHostingPrivateDatabaseServiceNameOomResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    HostingPrivateDatabaseOom,
-  ) as any as S.Schema<GetHostingPrivateDatabaseServiceNameOomResponseBodyList>;
-
-export type GetHostingPrivateDatabaseServiceNameOomResponse =
-  GetHostingPrivateDatabaseServiceNameOomResponseBodyList;
-export const GetHostingPrivateDatabaseServiceNameOomResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetHostingPrivateDatabaseServiceNameOomResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetHostingPrivateDatabaseServiceNameOomResponse",
-  }) as any as S.Schema<GetHostingPrivateDatabaseServiceNameOomResponse>;
-
-export interface GetHostingPrivateDatabaseServiceNameServiceInfosRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const GetHostingPrivateDatabaseServiceNameServiceInfosRequest =
+export const GetHostingPrivateDatabaseServiceInfosRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
@@ -1764,8 +1661,8 @@ export const GetHostingPrivateDatabaseServiceNameServiceInfosRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetHostingPrivateDatabaseServiceNameServiceInfosRequest",
-  }) as any as S.Schema<GetHostingPrivateDatabaseServiceNameServiceInfosRequest>;
+    identifier: "GetHostingPrivateDatabaseServiceInfosRequest",
+  }) as any as S.Schema<GetHostingPrivateDatabaseServiceInfosRequest>;
 
 /** All the possible renew period of your service in month */
 export type ServicesServicePossibleRenewPeriodList = Array<number>;
@@ -1860,59 +1757,14 @@ export const ServicesService = /*@__PURE__*/ S.suspend(() =>
   identifier: "ServicesService",
 }) as any as S.Schema<ServicesService>;
 
-export interface GetHostingPrivateDatabaseServiceNameTasksRequest {
-  /** Service name */
-  serviceName: string;
-  /** Filter the value of function property */
-  function?: HostingPrivateDatabaseTaskFunctionEnum | (string & {});
-  /** Filter the value of status property */
-  status?: HostingPrivateDatabaseTaskStatusEnum | (string & {});
-}
-export const GetHostingPrivateDatabaseServiceNameTasksRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      function: S.optional(
-        HostingPrivateDatabaseTaskFunctionEnum.pipe(T.Query()),
-      ),
-      status: S.optional(HostingPrivateDatabaseTaskStatusEnum.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/hosting/privateDatabase/{serviceName}/tasks",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetHostingPrivateDatabaseServiceNameTasksRequest",
-  }) as any as S.Schema<GetHostingPrivateDatabaseServiceNameTasksRequest>;
-
-export type GetHostingPrivateDatabaseServiceNameTasksResponseBodyList =
-  Array<number>;
-export const GetHostingPrivateDatabaseServiceNameTasksResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<GetHostingPrivateDatabaseServiceNameTasksResponseBodyList>;
-
-export type GetHostingPrivateDatabaseServiceNameTasksResponse =
-  GetHostingPrivateDatabaseServiceNameTasksResponseBodyList;
-export const GetHostingPrivateDatabaseServiceNameTasksResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetHostingPrivateDatabaseServiceNameTasksResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetHostingPrivateDatabaseServiceNameTasksResponse",
-  }) as any as S.Schema<GetHostingPrivateDatabaseServiceNameTasksResponse>;
-
-export interface GetHostingPrivateDatabaseServiceNameTasksIdRequest {
+export interface GetHostingPrivateDatabaseTaskRequest {
   /** Service name */
   serviceName: string;
   /** Id */
   id: number;
 }
-export const GetHostingPrivateDatabaseServiceNameTasksIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetHostingPrivateDatabaseTaskRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       id: S.Number.pipe(T.Label()),
@@ -1923,55 +1775,18 @@ export const GetHostingPrivateDatabaseServiceNameTasksIdRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "GetHostingPrivateDatabaseServiceNameTasksIdRequest",
-  }) as any as S.Schema<GetHostingPrivateDatabaseServiceNameTasksIdRequest>;
+).annotate({
+  identifier: "GetHostingPrivateDatabaseTaskRequest",
+}) as any as S.Schema<GetHostingPrivateDatabaseTaskRequest>;
 
-export interface GetHostingPrivateDatabaseServiceNameUserRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const GetHostingPrivateDatabaseServiceNameUserRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/hosting/privateDatabase/{serviceName}/user",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetHostingPrivateDatabaseServiceNameUserRequest",
-  }) as any as S.Schema<GetHostingPrivateDatabaseServiceNameUserRequest>;
-
-export type GetHostingPrivateDatabaseServiceNameUserResponseBodyList =
-  Array<string>;
-export const GetHostingPrivateDatabaseServiceNameUserResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetHostingPrivateDatabaseServiceNameUserResponseBodyList>;
-
-export type GetHostingPrivateDatabaseServiceNameUserResponse =
-  GetHostingPrivateDatabaseServiceNameUserResponseBodyList;
-export const GetHostingPrivateDatabaseServiceNameUserResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetHostingPrivateDatabaseServiceNameUserResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetHostingPrivateDatabaseServiceNameUserResponse",
-  }) as any as S.Schema<GetHostingPrivateDatabaseServiceNameUserResponse>;
-
-export interface GetHostingPrivateDatabaseServiceNameUserUserNameRequest {
+export interface GetHostingPrivateDatabaseUserRequest {
   /** Service name */
   serviceName: string;
   /** User name */
   userName: string;
 }
-export const GetHostingPrivateDatabaseServiceNameUserUserNameRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetHostingPrivateDatabaseUserRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
       userName: S.String.pipe(T.Label()),
@@ -1982,9 +1797,9 @@ export const GetHostingPrivateDatabaseServiceNameUserUserNameRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "GetHostingPrivateDatabaseServiceNameUserUserNameRequest",
-  }) as any as S.Schema<GetHostingPrivateDatabaseServiceNameUserUserNameRequest>;
+).annotate({
+  identifier: "GetHostingPrivateDatabaseUserRequest",
+}) as any as S.Schema<GetHostingPrivateDatabaseUserRequest>;
 
 /** Users */
 export interface HostingPrivateDatabaseUserDatabase {
@@ -2031,47 +1846,7 @@ export const HostingPrivateDatabaseUser = /*@__PURE__*/ S.suspend(() =>
   identifier: "HostingPrivateDatabaseUser",
 }) as any as S.Schema<HostingPrivateDatabaseUser>;
 
-export interface GetHostingPrivateDatabaseServiceNameUserUserNameGrantRequest {
-  /** Service name */
-  serviceName: string;
-  /** User name */
-  userName: string;
-}
-export const GetHostingPrivateDatabaseServiceNameUserUserNameGrantRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      userName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/hosting/privateDatabase/{serviceName}/user/{userName}/grant",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetHostingPrivateDatabaseServiceNameUserUserNameGrantRequest",
-  }) as any as S.Schema<GetHostingPrivateDatabaseServiceNameUserUserNameGrantRequest>;
-
-export type GetHostingPrivateDatabaseServiceNameUserUserNameGrantResponseBodyList =
-  Array<string>;
-export const GetHostingPrivateDatabaseServiceNameUserUserNameGrantResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetHostingPrivateDatabaseServiceNameUserUserNameGrantResponseBodyList>;
-
-export type GetHostingPrivateDatabaseServiceNameUserUserNameGrantResponse =
-  GetHostingPrivateDatabaseServiceNameUserUserNameGrantResponseBodyList;
-export const GetHostingPrivateDatabaseServiceNameUserUserNameGrantResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetHostingPrivateDatabaseServiceNameUserUserNameGrantResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetHostingPrivateDatabaseServiceNameUserUserNameGrantResponse",
-  }) as any as S.Schema<GetHostingPrivateDatabaseServiceNameUserUserNameGrantResponse>;
-
-export interface GetHostingPrivateDatabaseServiceNameUserUserNameGrantDatabaseNameRequest {
+export interface GetHostingPrivateDatabaseUserGrantRequest {
   /** Service name */
   serviceName: string;
   /** User name */
@@ -2079,7 +1854,7 @@ export interface GetHostingPrivateDatabaseServiceNameUserUserNameGrantDatabaseNa
   /** Database name */
   databaseName: string;
 }
-export const GetHostingPrivateDatabaseServiceNameUserUserNameGrantDatabaseNameRequest =
+export const GetHostingPrivateDatabaseUserGrantRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
@@ -2093,9 +1868,8 @@ export const GetHostingPrivateDatabaseServiceNameUserUserNameGrantDatabaseNameRe
       }),
     ),
   ).annotate({
-    identifier:
-      "GetHostingPrivateDatabaseServiceNameUserUserNameGrantDatabaseNameRequest",
-  }) as any as S.Schema<GetHostingPrivateDatabaseServiceNameUserUserNameGrantDatabaseNameRequest>;
+    identifier: "GetHostingPrivateDatabaseUserGrantRequest",
+  }) as any as S.Schema<GetHostingPrivateDatabaseUserGrantRequest>;
 
 /** Grant */
 export interface HostingPrivateDatabaseUserGrant {
@@ -2116,11 +1890,11 @@ export const HostingPrivateDatabaseUserGrant = /*@__PURE__*/ S.suspend(() =>
   identifier: "HostingPrivateDatabaseUserGrant",
 }) as any as S.Schema<HostingPrivateDatabaseUserGrant>;
 
-export interface GetHostingPrivateDatabaseServiceNameWebhostingNetworkRequest {
+export interface GetHostingPrivateDatabaseWebhostingNetworkRequest {
   /** Service name */
   serviceName: string;
 }
-export const GetHostingPrivateDatabaseServiceNameWebhostingNetworkRequest =
+export const GetHostingPrivateDatabaseWebhostingNetworkRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
@@ -2132,8 +1906,8 @@ export const GetHostingPrivateDatabaseServiceNameWebhostingNetworkRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetHostingPrivateDatabaseServiceNameWebhostingNetworkRequest",
-  }) as any as S.Schema<GetHostingPrivateDatabaseServiceNameWebhostingNetworkRequest>;
+    identifier: "GetHostingPrivateDatabaseWebhostingNetworkRequest",
+  }) as any as S.Schema<GetHostingPrivateDatabaseWebhostingNetworkRequest>;
 
 /** Webhosting network status */
 export type HostingPrivateDatabaseWebhostingNetworkStatusEnum =
@@ -2158,96 +1932,13 @@ export const HostingPrivateDatabaseWebhostingNetwork = /*@__PURE__*/ S.suspend(
   identifier: "HostingPrivateDatabaseWebhostingNetwork",
 }) as any as S.Schema<HostingPrivateDatabaseWebhostingNetwork>;
 
-export interface GetHostingPrivateDatabaseServiceNameWebsRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const GetHostingPrivateDatabaseServiceNameWebsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/hosting/privateDatabase/{serviceName}/webs",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetHostingPrivateDatabaseServiceNameWebsRequest",
-  }) as any as S.Schema<GetHostingPrivateDatabaseServiceNameWebsRequest>;
-
-export type GetHostingPrivateDatabaseServiceNameWebsResponseBodyList =
-  Array<string>;
-export const GetHostingPrivateDatabaseServiceNameWebsResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetHostingPrivateDatabaseServiceNameWebsResponseBodyList>;
-
-export type GetHostingPrivateDatabaseServiceNameWebsResponse =
-  GetHostingPrivateDatabaseServiceNameWebsResponseBodyList;
-export const GetHostingPrivateDatabaseServiceNameWebsResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetHostingPrivateDatabaseServiceNameWebsResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetHostingPrivateDatabaseServiceNameWebsResponse",
-  }) as any as S.Schema<GetHostingPrivateDatabaseServiceNameWebsResponse>;
-
-export interface GetHostingPrivateDatabaseServiceNameWhitelistRequest {
-  /** Service name */
-  serviceName: string;
-  /** Filter the value of ip property (contains or equals) */
-  ip?: string;
-  /** Filter the value of service property */
-  service?: boolean;
-  /** Filter the value of sftp property */
-  sftp?: boolean;
-}
-export const GetHostingPrivateDatabaseServiceNameWhitelistRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      ip: S.optional(S.String.pipe(T.Query())),
-      service: S.optional(S.Boolean.pipe(T.Query())),
-      sftp: S.optional(S.Boolean.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/hosting/privateDatabase/{serviceName}/whitelist",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetHostingPrivateDatabaseServiceNameWhitelistRequest",
-  }) as any as S.Schema<GetHostingPrivateDatabaseServiceNameWhitelistRequest>;
-
-export type GetHostingPrivateDatabaseServiceNameWhitelistResponseBodyList =
-  Array<string>;
-export const GetHostingPrivateDatabaseServiceNameWhitelistResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetHostingPrivateDatabaseServiceNameWhitelistResponseBodyList>;
-
-export type GetHostingPrivateDatabaseServiceNameWhitelistResponse =
-  GetHostingPrivateDatabaseServiceNameWhitelistResponseBodyList;
-export const GetHostingPrivateDatabaseServiceNameWhitelistResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetHostingPrivateDatabaseServiceNameWhitelistResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetHostingPrivateDatabaseServiceNameWhitelistResponse",
-  }) as any as S.Schema<GetHostingPrivateDatabaseServiceNameWhitelistResponse>;
-
-export interface GetHostingPrivateDatabaseServiceNameWhitelistIpRequest {
+export interface GetHostingPrivateDatabaseWhitelistRequest {
   /** Service name */
   serviceName: string;
   /** Ip */
   ip: string;
 }
-export const GetHostingPrivateDatabaseServiceNameWhitelistIpRequest =
+export const GetHostingPrivateDatabaseWhitelistRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
@@ -2260,8 +1951,8 @@ export const GetHostingPrivateDatabaseServiceNameWhitelistIpRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetHostingPrivateDatabaseServiceNameWhitelistIpRequest",
-  }) as any as S.Schema<GetHostingPrivateDatabaseServiceNameWhitelistIpRequest>;
+    identifier: "GetHostingPrivateDatabaseWhitelistRequest",
+  }) as any as S.Schema<GetHostingPrivateDatabaseWhitelistRequest>;
 
 /** Whitelist status */
 export type HostingPrivateDatabaseWhitelistStatusEnum =
@@ -2305,95 +1996,1070 @@ export const HostingPrivateDatabaseWhitelist = /*@__PURE__*/ S.suspend(() =>
   identifier: "HostingPrivateDatabaseWhitelist",
 }) as any as S.Schema<HostingPrivateDatabaseWhitelist>;
 
-export interface PostHostingPrivateDatabaseServiceNameChangeContactRequest {
+export interface ImportHostingPrivateDatabaseDatabaseRequest {
   /** Service name */
   serviceName: string;
-  /** The contact to set as admin contact */
-  contactAdmin?: string;
-  /** The contact to set as billing contact */
-  contactBilling?: string;
-  /** The contact to set as tech contact */
-  contactTech?: string;
+  /** Database name */
+  databaseName: string;
+  /** Documents ID of the dump from /me/documents */
+  documentId: string;
+  /** Whether to flush the database before importing the dump (default to false) */
+  flushDatabase?: boolean;
+  /** Whether to receive an email when the import is complete (default to false) */
+  sendEmail?: boolean;
 }
-export const PostHostingPrivateDatabaseServiceNameChangeContactRequest =
+export const ImportHostingPrivateDatabaseDatabaseRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
-      contactAdmin: S.optional(S.String),
-      contactBilling: S.optional(S.String),
-      contactTech: S.optional(S.String),
+      databaseName: S.String.pipe(T.Label()),
+      documentId: S.String,
+      flushDatabase: S.optional(S.Boolean),
+      sendEmail: S.optional(S.Boolean),
     }).pipe(
       T.Http({
         method: "POST",
-        uri: "/hosting/privateDatabase/{serviceName}/changeContact",
+        uri: "/hosting/privateDatabase/{serviceName}/database/{databaseName}/import",
         code: 200,
       }),
     ),
   ).annotate({
-    identifier: "PostHostingPrivateDatabaseServiceNameChangeContactRequest",
-  }) as any as S.Schema<PostHostingPrivateDatabaseServiceNameChangeContactRequest>;
+    identifier: "ImportHostingPrivateDatabaseDatabaseRequest",
+  }) as any as S.Schema<ImportHostingPrivateDatabaseDatabaseRequest>;
 
-export type PostHostingPrivateDatabaseServiceNameChangeContactResponseBodyList =
-  Array<number>;
-export const PostHostingPrivateDatabaseServiceNameChangeContactResponseBodyList =
+/** Resource tag filter */
+export interface IamResourceTagFilterInput {}
+export const IamResourceTagFilterInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "IamResourceTagFilterInput",
+}) as any as S.Schema<IamResourceTagFilterInput>;
+
+export type ListHostingPrivateDatabaseRequestIamTagsValueList =
+  Array<IamResourceTagFilterInput>;
+export const ListHostingPrivateDatabaseRequestIamTagsValueList =
   /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<PostHostingPrivateDatabaseServiceNameChangeContactResponseBodyList>;
+    IamResourceTagFilterInput,
+  ) as any as S.Schema<ListHostingPrivateDatabaseRequestIamTagsValueList>;
 
-export type PostHostingPrivateDatabaseServiceNameChangeContactResponse =
-  PostHostingPrivateDatabaseServiceNameChangeContactResponseBodyList;
-export const PostHostingPrivateDatabaseServiceNameChangeContactResponse =
+export type ListHostingPrivateDatabaseRequestIamTagsMap = {
+  [key: string]: ListHostingPrivateDatabaseRequestIamTagsValueList | undefined;
+};
+export const ListHostingPrivateDatabaseRequestIamTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    ListHostingPrivateDatabaseRequestIamTagsValueList,
+  ) as any as S.Schema<ListHostingPrivateDatabaseRequestIamTagsMap>;
+
+export interface ListHostingPrivateDatabaseRequest {
+  /** Filter resources on IAM tags */
+  iamTags?: ListHostingPrivateDatabaseRequestIamTagsMap;
+}
+export const ListHostingPrivateDatabaseRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    iamTags: S.optional(
+      ListHostingPrivateDatabaseRequestIamTagsMap.pipe(T.Query()),
+    ),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/hosting/privateDatabase", code: 200 }),
+  ),
+).annotate({
+  identifier: "ListHostingPrivateDatabaseRequest",
+}) as any as S.Schema<ListHostingPrivateDatabaseRequest>;
+
+export type ListHostingPrivateDatabaseResponseBodyList = Array<string>;
+export const ListHostingPrivateDatabaseResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListHostingPrivateDatabaseResponseBodyList>;
+
+export type ListHostingPrivateDatabaseResponse =
+  ListHostingPrivateDatabaseResponseBodyList;
+export const ListHostingPrivateDatabaseResponse = /*@__PURE__*/ S.suspend(() =>
+  ListHostingPrivateDatabaseResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListHostingPrivateDatabaseResponse",
+}) as any as S.Schema<ListHostingPrivateDatabaseResponse>;
+
+export interface ListHostingPrivateDatabaseAvailableOrderCapacitiesRequest {
+  offer: HostingPrivateDatabaseOfferEnum | (string & {});
+}
+export const ListHostingPrivateDatabaseAvailableOrderCapacitiesRequest =
   /*@__PURE__*/ S.suspend(() =>
-    PostHostingPrivateDatabaseServiceNameChangeContactResponseBodyList.pipe(
+    S.Struct({
+      offer: HostingPrivateDatabaseOfferEnum.pipe(T.Query()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/hosting/privateDatabase/availableOrderCapacities",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ListHostingPrivateDatabaseAvailableOrderCapacitiesRequest",
+  }) as any as S.Schema<ListHostingPrivateDatabaseAvailableOrderCapacitiesRequest>;
+
+/** A list of datacenter available for this offer */
+export type HostingPrivateDatabaseAvailableOrderCapacitiesDatacenterList =
+  Array<HostingPrivateDatabaseDatacenterEnum>;
+export const HostingPrivateDatabaseAvailableOrderCapacitiesDatacenterList =
+  /*@__PURE__*/ S.Array(
+    HostingPrivateDatabaseDatacenterEnum,
+  ) as any as S.Schema<HostingPrivateDatabaseAvailableOrderCapacitiesDatacenterList>;
+
+/** Private database available ram sizes */
+export type HostingPrivateDatabaseAvailableRamSizeEnum =
+  | "1024"
+  | "2048"
+  | "4096"
+  | "512";
+export const HostingPrivateDatabaseAvailableRamSizeEnum =
+  /*@__PURE__*/ S.String;
+
+/** A list of ram size available for this offer */
+export type HostingPrivateDatabaseAvailableOrderCapacitiesRamList =
+  Array<HostingPrivateDatabaseAvailableRamSizeEnum>;
+export const HostingPrivateDatabaseAvailableOrderCapacitiesRamList =
+  /*@__PURE__*/ S.Array(
+    HostingPrivateDatabaseAvailableRamSizeEnum,
+  ) as any as S.Schema<HostingPrivateDatabaseAvailableOrderCapacitiesRamList>;
+
+/** A list of version available for this offer */
+export type HostingPrivateDatabaseAvailableOrderCapacitiesVersionList =
+  Array<HostingPrivateDatabaseAvailableVersionEnum>;
+export const HostingPrivateDatabaseAvailableOrderCapacitiesVersionList =
+  /*@__PURE__*/ S.Array(
+    HostingPrivateDatabaseAvailableVersionEnum,
+  ) as any as S.Schema<HostingPrivateDatabaseAvailableOrderCapacitiesVersionList>;
+
+/** Description for available order capacities following an offer */
+export interface HostingPrivateDatabaseAvailableOrderCapacities {
+  /** A list of datacenter available for this offer */
+  datacenter?: HostingPrivateDatabaseAvailableOrderCapacitiesDatacenterList;
+  /** Offer */
+  offer?: HostingPrivateDatabaseOfferEnum;
+  /** A list of ram size available for this offer */
+  ram?: HostingPrivateDatabaseAvailableOrderCapacitiesRamList;
+  /** A list of version available for this offer */
+  version?: HostingPrivateDatabaseAvailableOrderCapacitiesVersionList;
+}
+export const HostingPrivateDatabaseAvailableOrderCapacities =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      datacenter: S.optional(
+        HostingPrivateDatabaseAvailableOrderCapacitiesDatacenterList,
+      ),
+      offer: S.optional(HostingPrivateDatabaseOfferEnum),
+      ram: S.optional(HostingPrivateDatabaseAvailableOrderCapacitiesRamList),
+      version: S.optional(
+        HostingPrivateDatabaseAvailableOrderCapacitiesVersionList,
+      ),
+    }),
+  ).annotate({
+    identifier: "HostingPrivateDatabaseAvailableOrderCapacities",
+  }) as any as S.Schema<HostingPrivateDatabaseAvailableOrderCapacities>;
+
+export interface ListHostingPrivateDatabaseAvailableVersionsRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const ListHostingPrivateDatabaseAvailableVersionsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/hosting/privateDatabase/{serviceName}/availableVersions",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ListHostingPrivateDatabaseAvailableVersionsRequest",
+  }) as any as S.Schema<ListHostingPrivateDatabaseAvailableVersionsRequest>;
+
+export type ListHostingPrivateDatabaseAvailableVersionsResponseBodyList =
+  Array<HostingPrivateDatabaseAvailableVersionEnum>;
+export const ListHostingPrivateDatabaseAvailableVersionsResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    HostingPrivateDatabaseAvailableVersionEnum,
+  ) as any as S.Schema<ListHostingPrivateDatabaseAvailableVersionsResponseBodyList>;
+
+export type ListHostingPrivateDatabaseAvailableVersionsResponse =
+  ListHostingPrivateDatabaseAvailableVersionsResponseBodyList;
+export const ListHostingPrivateDatabaseAvailableVersionsResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListHostingPrivateDatabaseAvailableVersionsResponseBodyList.pipe(
       T.RawResponseRoot(),
     ),
   ).annotate({
-    identifier: "PostHostingPrivateDatabaseServiceNameChangeContactResponse",
-  }) as any as S.Schema<PostHostingPrivateDatabaseServiceNameChangeContactResponse>;
+    identifier: "ListHostingPrivateDatabaseAvailableVersionsResponse",
+  }) as any as S.Schema<ListHostingPrivateDatabaseAvailableVersionsResponse>;
 
-export interface PostHostingPrivateDatabaseServiceNameChangeFtpPasswordRequest {
+export interface ListHostingPrivateDatabaseConfigRequest {
   /** Service name */
   serviceName: string;
-  /** New ftp admin password (alphanumeric and 8 characters minimum) */
-  password: string | Redacted.Redacted<string>;
 }
-export const PostHostingPrivateDatabaseServiceNameChangeFtpPasswordRequest =
+export const ListHostingPrivateDatabaseConfigRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/hosting/privateDatabase/{serviceName}/config",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ListHostingPrivateDatabaseConfigRequest",
+}) as any as S.Schema<ListHostingPrivateDatabaseConfigRequest>;
+
+/** Configuration available values */
+export type HostingPrivateDatabaseConfigDetailAvailableValuesList =
+  Array<string>;
+export const HostingPrivateDatabaseConfigDetailAvailableValuesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<HostingPrivateDatabaseConfigDetailAvailableValuesList>;
+
+/** Web Cloud Database config type */
+export type HostingPrivateDatabaseConfigTypeEnum =
+  | "boolean"
+  | "number"
+  | "string";
+export const HostingPrivateDatabaseConfigTypeEnum = /*@__PURE__*/ S.String;
+
+/** Config detail */
+export interface HostingPrivateDatabaseConfigDetail {
+  /** Configuration available values */
+  availableValues?: HostingPrivateDatabaseConfigDetailAvailableValuesList;
+  /** Configuration default value */
+  defaultValue?: string;
+  /** Configuration description */
+  description?: string;
+  /** Configuration key name */
+  key?: string;
+  /** Configuration last update */
+  lastUpdate?: string;
+  /** Configuration value type */
+  type?: HostingPrivateDatabaseConfigTypeEnum;
+  /** Configuration unit type */
+  unit?: string | null;
+  /** Configuration current value */
+  value?: string;
+}
+export const HostingPrivateDatabaseConfigDetail = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    availableValues: S.optional(
+      HostingPrivateDatabaseConfigDetailAvailableValuesList,
+    ),
+    defaultValue: S.optional(S.String),
+    description: S.optional(S.String),
+    key: S.optional(S.String),
+    lastUpdate: S.optional(S.String),
+    type: S.optional(HostingPrivateDatabaseConfigTypeEnum),
+    unit: S.optional(S.NullOr(S.String)),
+    value: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "HostingPrivateDatabaseConfigDetail",
+}) as any as S.Schema<HostingPrivateDatabaseConfigDetail>;
+
+/** Configuration details */
+export type HostingPrivateDatabaseConfigsDetailsList =
+  Array<HostingPrivateDatabaseConfigDetail>;
+export const HostingPrivateDatabaseConfigsDetailsList = /*@__PURE__*/ S.Array(
+  HostingPrivateDatabaseConfigDetail,
+) as any as S.Schema<HostingPrivateDatabaseConfigsDetailsList>;
+
+/** Web Cloud Database config status */
+export type HostingPrivateDatabaseConfigStatusEnum = "applied" | "updating";
+export const HostingPrivateDatabaseConfigStatusEnum = /*@__PURE__*/ S.String;
+
+/** Configs */
+export interface HostingPrivateDatabaseConfigs {
+  /** Configuration details */
+  details?: HostingPrivateDatabaseConfigsDetailsList;
+  /** Configuration last update */
+  lastUpdate?: string;
+  /** Configuration status */
+  status?: HostingPrivateDatabaseConfigStatusEnum;
+  /** Configuration linked task id */
+  taskId?: number | null;
+}
+export const HostingPrivateDatabaseConfigs = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    details: S.optional(HostingPrivateDatabaseConfigsDetailsList),
+    lastUpdate: S.optional(S.String),
+    status: S.optional(HostingPrivateDatabaseConfigStatusEnum),
+    taskId: S.optional(S.NullOr(S.Number)),
+  }),
+).annotate({
+  identifier: "HostingPrivateDatabaseConfigs",
+}) as any as S.Schema<HostingPrivateDatabaseConfigs>;
+
+export interface ListHostingPrivateDatabaseCpuThrottleRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const ListHostingPrivateDatabaseCpuThrottleRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
-      password: S.String.pipe(T.SensitiveValue({})),
     }).pipe(
       T.Http({
-        method: "POST",
-        uri: "/hosting/privateDatabase/{serviceName}/changeFtpPassword",
+        method: "GET",
+        uri: "/hosting/privateDatabase/{serviceName}/cpuThrottle",
         code: 200,
       }),
     ),
   ).annotate({
-    identifier: "PostHostingPrivateDatabaseServiceNameChangeFtpPasswordRequest",
-  }) as any as S.Schema<PostHostingPrivateDatabaseServiceNameChangeFtpPasswordRequest>;
+    identifier: "ListHostingPrivateDatabaseCpuThrottleRequest",
+  }) as any as S.Schema<ListHostingPrivateDatabaseCpuThrottleRequest>;
 
-export interface PostHostingPrivateDatabaseServiceNameChangeVersionRequest {
+/** CPU throttle informations */
+export interface HostingPrivateDatabaseCpuThrottle {
+  /** End date of the CPU throttle */
+  endDate?: string | null;
+  /** Start date of the CPU throttle */
+  startDate?: string;
+}
+export const HostingPrivateDatabaseCpuThrottle = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    endDate: S.optional(S.NullOr(S.String)),
+    startDate: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "HostingPrivateDatabaseCpuThrottle",
+}) as any as S.Schema<HostingPrivateDatabaseCpuThrottle>;
+
+export type ListHostingPrivateDatabaseCpuThrottleResponseBodyList =
+  Array<HostingPrivateDatabaseCpuThrottle>;
+export const ListHostingPrivateDatabaseCpuThrottleResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    HostingPrivateDatabaseCpuThrottle,
+  ) as any as S.Schema<ListHostingPrivateDatabaseCpuThrottleResponseBodyList>;
+
+export type ListHostingPrivateDatabaseCpuThrottleResponse =
+  ListHostingPrivateDatabaseCpuThrottleResponseBodyList;
+export const ListHostingPrivateDatabaseCpuThrottleResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListHostingPrivateDatabaseCpuThrottleResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListHostingPrivateDatabaseCpuThrottleResponse",
+  }) as any as S.Schema<ListHostingPrivateDatabaseCpuThrottleResponse>;
+
+export interface ListHostingPrivateDatabaseDatabaseRequest {
   /** Service name */
   serviceName: string;
-  /** Change the private database engine version */
-  version: HostingPrivateDatabaseAvailableVersionEnum | (string & {});
 }
-export const PostHostingPrivateDatabaseServiceNameChangeVersionRequest =
+export const ListHostingPrivateDatabaseDatabaseRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
-      version: HostingPrivateDatabaseAvailableVersionEnum,
     }).pipe(
       T.Http({
-        method: "POST",
-        uri: "/hosting/privateDatabase/{serviceName}/changeVersion",
+        method: "GET",
+        uri: "/hosting/privateDatabase/{serviceName}/database",
         code: 200,
       }),
     ),
   ).annotate({
-    identifier: "PostHostingPrivateDatabaseServiceNameChangeVersionRequest",
-  }) as any as S.Schema<PostHostingPrivateDatabaseServiceNameChangeVersionRequest>;
+    identifier: "ListHostingPrivateDatabaseDatabaseRequest",
+  }) as any as S.Schema<ListHostingPrivateDatabaseDatabaseRequest>;
+
+export type ListHostingPrivateDatabaseDatabaseResponseBodyList = Array<string>;
+export const ListHostingPrivateDatabaseDatabaseResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListHostingPrivateDatabaseDatabaseResponseBodyList>;
+
+export type ListHostingPrivateDatabaseDatabaseResponse =
+  ListHostingPrivateDatabaseDatabaseResponseBodyList;
+export const ListHostingPrivateDatabaseDatabaseResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListHostingPrivateDatabaseDatabaseResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListHostingPrivateDatabaseDatabaseResponse",
+  }) as any as S.Schema<ListHostingPrivateDatabaseDatabaseResponse>;
+
+export interface ListHostingPrivateDatabaseDatabaseCopyRequest {
+  /** Service name */
+  serviceName: string;
+  /** Database name */
+  databaseName: string;
+}
+export const ListHostingPrivateDatabaseDatabaseCopyRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      databaseName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/hosting/privateDatabase/{serviceName}/database/{databaseName}/copy",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ListHostingPrivateDatabaseDatabaseCopyRequest",
+  }) as any as S.Schema<ListHostingPrivateDatabaseDatabaseCopyRequest>;
+
+export type ListHostingPrivateDatabaseDatabaseCopyResponseBodyList =
+  Array<string>;
+export const ListHostingPrivateDatabaseDatabaseCopyResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListHostingPrivateDatabaseDatabaseCopyResponseBodyList>;
+
+export type ListHostingPrivateDatabaseDatabaseCopyResponse =
+  ListHostingPrivateDatabaseDatabaseCopyResponseBodyList;
+export const ListHostingPrivateDatabaseDatabaseCopyResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListHostingPrivateDatabaseDatabaseCopyResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListHostingPrivateDatabaseDatabaseCopyResponse",
+  }) as any as S.Schema<ListHostingPrivateDatabaseDatabaseCopyResponse>;
+
+export interface ListHostingPrivateDatabaseDatabaseDumpRequest {
+  /** Service name */
+  serviceName: string;
+  /** Database name */
+  databaseName: string;
+}
+export const ListHostingPrivateDatabaseDatabaseDumpRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      databaseName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/hosting/privateDatabase/{serviceName}/database/{databaseName}/dump",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ListHostingPrivateDatabaseDatabaseDumpRequest",
+  }) as any as S.Schema<ListHostingPrivateDatabaseDatabaseDumpRequest>;
+
+export type ListHostingPrivateDatabaseDatabaseDumpResponseBodyList =
+  Array<number>;
+export const ListHostingPrivateDatabaseDatabaseDumpResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.Number,
+  ) as any as S.Schema<ListHostingPrivateDatabaseDatabaseDumpResponseBodyList>;
+
+export type ListHostingPrivateDatabaseDatabaseDumpResponse =
+  ListHostingPrivateDatabaseDatabaseDumpResponseBodyList;
+export const ListHostingPrivateDatabaseDatabaseDumpResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListHostingPrivateDatabaseDatabaseDumpResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListHostingPrivateDatabaseDatabaseDumpResponse",
+  }) as any as S.Schema<ListHostingPrivateDatabaseDatabaseDumpResponse>;
+
+export interface ListHostingPrivateDatabaseDatabaseExtensionRequest {
+  /** Service name */
+  serviceName: string;
+  /** Database name */
+  databaseName: string;
+  /** Filter results on extension name (like) */
+  extensionName?: string;
+  /** Filter results on status (=) */
+  status?: HostingPrivateDatabaseExtensionStatusEnum | (string & {});
+}
+export const ListHostingPrivateDatabaseDatabaseExtensionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      databaseName: S.String.pipe(T.Label()),
+      extensionName: S.optional(S.String.pipe(T.Query())),
+      status: S.optional(
+        HostingPrivateDatabaseExtensionStatusEnum.pipe(T.Query()),
+      ),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/hosting/privateDatabase/{serviceName}/database/{databaseName}/extension",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ListHostingPrivateDatabaseDatabaseExtensionRequest",
+  }) as any as S.Schema<ListHostingPrivateDatabaseDatabaseExtensionRequest>;
+
+export type ListHostingPrivateDatabaseDatabaseExtensionResponseBodyList =
+  Array<string>;
+export const ListHostingPrivateDatabaseDatabaseExtensionResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListHostingPrivateDatabaseDatabaseExtensionResponseBodyList>;
+
+export type ListHostingPrivateDatabaseDatabaseExtensionResponse =
+  ListHostingPrivateDatabaseDatabaseExtensionResponseBodyList;
+export const ListHostingPrivateDatabaseDatabaseExtensionResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListHostingPrivateDatabaseDatabaseExtensionResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListHostingPrivateDatabaseDatabaseExtensionResponse",
+  }) as any as S.Schema<ListHostingPrivateDatabaseDatabaseExtensionResponse>;
+
+export interface ListHostingPrivateDatabaseDumpRequest {
+  /** Service name */
+  serviceName: string;
+  /** Filter the value of databaseName property (like) */
+  databaseName?: string;
+  /** Filter the value of orphan property (=) */
+  orphan?: boolean;
+}
+export const ListHostingPrivateDatabaseDumpRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      databaseName: S.optional(S.String.pipe(T.Query())),
+      orphan: S.optional(S.Boolean.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/hosting/privateDatabase/{serviceName}/dump",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ListHostingPrivateDatabaseDumpRequest",
+}) as any as S.Schema<ListHostingPrivateDatabaseDumpRequest>;
+
+export type ListHostingPrivateDatabaseDumpResponseBodyList = Array<number>;
+export const ListHostingPrivateDatabaseDumpResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.Number,
+  ) as any as S.Schema<ListHostingPrivateDatabaseDumpResponseBodyList>;
+
+export type ListHostingPrivateDatabaseDumpResponse =
+  ListHostingPrivateDatabaseDumpResponseBodyList;
+export const ListHostingPrivateDatabaseDumpResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    ListHostingPrivateDatabaseDumpResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListHostingPrivateDatabaseDumpResponse",
+}) as any as S.Schema<ListHostingPrivateDatabaseDumpResponse>;
+
+export interface ListHostingPrivateDatabaseLogKindRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const ListHostingPrivateDatabaseLogKindRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/hosting/privateDatabase/{serviceName}/log/kind",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ListHostingPrivateDatabaseLogKindRequest",
+}) as any as S.Schema<ListHostingPrivateDatabaseLogKindRequest>;
+
+export type ListHostingPrivateDatabaseLogKindResponseBodyList = Array<string>;
+export const ListHostingPrivateDatabaseLogKindResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListHostingPrivateDatabaseLogKindResponseBodyList>;
+
+export type ListHostingPrivateDatabaseLogKindResponse =
+  ListHostingPrivateDatabaseLogKindResponseBodyList;
+export const ListHostingPrivateDatabaseLogKindResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListHostingPrivateDatabaseLogKindResponseBodyList.pipe(T.RawResponseRoot()),
+  ).annotate({
+    identifier: "ListHostingPrivateDatabaseLogKindResponse",
+  }) as any as S.Schema<ListHostingPrivateDatabaseLogKindResponse>;
+
+export interface ListHostingPrivateDatabaseLogSubscriptionRequest {
+  /** Service name */
+  serviceName: string;
+  /** Filter on a specific kind */
+  kind?: string;
+}
+export const ListHostingPrivateDatabaseLogSubscriptionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      kind: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/hosting/privateDatabase/{serviceName}/log/subscription",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ListHostingPrivateDatabaseLogSubscriptionRequest",
+  }) as any as S.Schema<ListHostingPrivateDatabaseLogSubscriptionRequest>;
+
+export type ListHostingPrivateDatabaseLogSubscriptionResponseBodyList =
+  Array<string>;
+export const ListHostingPrivateDatabaseLogSubscriptionResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListHostingPrivateDatabaseLogSubscriptionResponseBodyList>;
+
+export type ListHostingPrivateDatabaseLogSubscriptionResponse =
+  ListHostingPrivateDatabaseLogSubscriptionResponseBodyList;
+export const ListHostingPrivateDatabaseLogSubscriptionResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListHostingPrivateDatabaseLogSubscriptionResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListHostingPrivateDatabaseLogSubscriptionResponse",
+  }) as any as S.Schema<ListHostingPrivateDatabaseLogSubscriptionResponse>;
+
+export interface ListHostingPrivateDatabaseOomRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const ListHostingPrivateDatabaseOomRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/hosting/privateDatabase/{serviceName}/oom",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ListHostingPrivateDatabaseOomRequest",
+}) as any as S.Schema<ListHostingPrivateDatabaseOomRequest>;
+
+/** List of privatesql OOM kill */
+export interface HostingPrivateDatabaseOom {
+  /** Date of the OOM kill */
+  date?: string;
+  /** Memory size reached */
+  sizeReached?: number;
+}
+export const HostingPrivateDatabaseOom = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    date: S.optional(S.String),
+    sizeReached: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "HostingPrivateDatabaseOom",
+}) as any as S.Schema<HostingPrivateDatabaseOom>;
+
+export type ListHostingPrivateDatabaseOomResponseBodyList =
+  Array<HostingPrivateDatabaseOom>;
+export const ListHostingPrivateDatabaseOomResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    HostingPrivateDatabaseOom,
+  ) as any as S.Schema<ListHostingPrivateDatabaseOomResponseBodyList>;
+
+export type ListHostingPrivateDatabaseOomResponse =
+  ListHostingPrivateDatabaseOomResponseBodyList;
+export const ListHostingPrivateDatabaseOomResponse = /*@__PURE__*/ S.suspend(
+  () => ListHostingPrivateDatabaseOomResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListHostingPrivateDatabaseOomResponse",
+}) as any as S.Schema<ListHostingPrivateDatabaseOomResponse>;
+
+export interface ListHostingPrivateDatabaseTasksRequest {
+  /** Service name */
+  serviceName: string;
+  /** Filter the value of function property */
+  function?: HostingPrivateDatabaseTaskFunctionEnum | (string & {});
+  /** Filter the value of status property */
+  status?: HostingPrivateDatabaseTaskStatusEnum | (string & {});
+}
+export const ListHostingPrivateDatabaseTasksRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      function: S.optional(
+        HostingPrivateDatabaseTaskFunctionEnum.pipe(T.Query()),
+      ),
+      status: S.optional(HostingPrivateDatabaseTaskStatusEnum.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/hosting/privateDatabase/{serviceName}/tasks",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ListHostingPrivateDatabaseTasksRequest",
+}) as any as S.Schema<ListHostingPrivateDatabaseTasksRequest>;
+
+export type ListHostingPrivateDatabaseTasksResponseBodyList = Array<number>;
+export const ListHostingPrivateDatabaseTasksResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.Number,
+  ) as any as S.Schema<ListHostingPrivateDatabaseTasksResponseBodyList>;
+
+export type ListHostingPrivateDatabaseTasksResponse =
+  ListHostingPrivateDatabaseTasksResponseBodyList;
+export const ListHostingPrivateDatabaseTasksResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    ListHostingPrivateDatabaseTasksResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListHostingPrivateDatabaseTasksResponse",
+}) as any as S.Schema<ListHostingPrivateDatabaseTasksResponse>;
+
+export interface ListHostingPrivateDatabaseUserRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const ListHostingPrivateDatabaseUserRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/hosting/privateDatabase/{serviceName}/user",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ListHostingPrivateDatabaseUserRequest",
+}) as any as S.Schema<ListHostingPrivateDatabaseUserRequest>;
+
+export type ListHostingPrivateDatabaseUserResponseBodyList = Array<string>;
+export const ListHostingPrivateDatabaseUserResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListHostingPrivateDatabaseUserResponseBodyList>;
+
+export type ListHostingPrivateDatabaseUserResponse =
+  ListHostingPrivateDatabaseUserResponseBodyList;
+export const ListHostingPrivateDatabaseUserResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    ListHostingPrivateDatabaseUserResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListHostingPrivateDatabaseUserResponse",
+}) as any as S.Schema<ListHostingPrivateDatabaseUserResponse>;
+
+export interface ListHostingPrivateDatabaseUserGrantRequest {
+  /** Service name */
+  serviceName: string;
+  /** User name */
+  userName: string;
+}
+export const ListHostingPrivateDatabaseUserGrantRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      userName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/hosting/privateDatabase/{serviceName}/user/{userName}/grant",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ListHostingPrivateDatabaseUserGrantRequest",
+  }) as any as S.Schema<ListHostingPrivateDatabaseUserGrantRequest>;
+
+export type ListHostingPrivateDatabaseUserGrantResponseBodyList = Array<string>;
+export const ListHostingPrivateDatabaseUserGrantResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListHostingPrivateDatabaseUserGrantResponseBodyList>;
+
+export type ListHostingPrivateDatabaseUserGrantResponse =
+  ListHostingPrivateDatabaseUserGrantResponseBodyList;
+export const ListHostingPrivateDatabaseUserGrantResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListHostingPrivateDatabaseUserGrantResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListHostingPrivateDatabaseUserGrantResponse",
+  }) as any as S.Schema<ListHostingPrivateDatabaseUserGrantResponse>;
+
+export interface ListHostingPrivateDatabaseWebsRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const ListHostingPrivateDatabaseWebsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/hosting/privateDatabase/{serviceName}/webs",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ListHostingPrivateDatabaseWebsRequest",
+}) as any as S.Schema<ListHostingPrivateDatabaseWebsRequest>;
+
+export type ListHostingPrivateDatabaseWebsResponseBodyList = Array<string>;
+export const ListHostingPrivateDatabaseWebsResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListHostingPrivateDatabaseWebsResponseBodyList>;
+
+export type ListHostingPrivateDatabaseWebsResponse =
+  ListHostingPrivateDatabaseWebsResponseBodyList;
+export const ListHostingPrivateDatabaseWebsResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    ListHostingPrivateDatabaseWebsResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListHostingPrivateDatabaseWebsResponse",
+}) as any as S.Schema<ListHostingPrivateDatabaseWebsResponse>;
+
+export interface ListHostingPrivateDatabaseWhitelistRequest {
+  /** Service name */
+  serviceName: string;
+  /** Filter the value of ip property (contains or equals) */
+  ip?: string;
+  /** Filter the value of service property */
+  service?: boolean;
+  /** Filter the value of sftp property */
+  sftp?: boolean;
+}
+export const ListHostingPrivateDatabaseWhitelistRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      ip: S.optional(S.String.pipe(T.Query())),
+      service: S.optional(S.Boolean.pipe(T.Query())),
+      sftp: S.optional(S.Boolean.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/hosting/privateDatabase/{serviceName}/whitelist",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ListHostingPrivateDatabaseWhitelistRequest",
+  }) as any as S.Schema<ListHostingPrivateDatabaseWhitelistRequest>;
+
+export type ListHostingPrivateDatabaseWhitelistResponseBodyList = Array<string>;
+export const ListHostingPrivateDatabaseWhitelistResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListHostingPrivateDatabaseWhitelistResponseBodyList>;
+
+export type ListHostingPrivateDatabaseWhitelistResponse =
+  ListHostingPrivateDatabaseWhitelistResponseBodyList;
+export const ListHostingPrivateDatabaseWhitelistResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListHostingPrivateDatabaseWhitelistResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListHostingPrivateDatabaseWhitelistResponse",
+  }) as any as S.Schema<ListHostingPrivateDatabaseWhitelistResponse>;
+
+export interface PutHostingPrivateDatabaseRequest {
+  /** Service name */
+  serviceName: string;
+  /** Set the name displayed in customer panel for your private database (max 50 chars) */
+  displayName?: string | null;
+}
+export const PutHostingPrivateDatabaseRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.String.pipe(T.Label()),
+    displayName: S.optional(S.NullOr(S.String)),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/hosting/privateDatabase/{serviceName}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "PutHostingPrivateDatabaseRequest",
+}) as any as S.Schema<PutHostingPrivateDatabaseRequest>;
+
+export interface PutHostingPrivateDatabaseResponse {}
+export const PutHostingPrivateDatabaseResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "PutHostingPrivateDatabaseResponse",
+}) as any as S.Schema<PutHostingPrivateDatabaseResponse>;
+
+export interface PutHostingPrivateDatabaseServiceInfosRequest {
+  /** Service name */
+  serviceName: string;
+  /** Way of handling the renew */
+  renew?: ServiceRenewType | null;
+}
+export const PutHostingPrivateDatabaseServiceInfosRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      renew: S.optional(S.NullOr(ServiceRenewType)),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/hosting/privateDatabase/{serviceName}/serviceInfos",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "PutHostingPrivateDatabaseServiceInfosRequest",
+  }) as any as S.Schema<PutHostingPrivateDatabaseServiceInfosRequest>;
+
+export interface PutHostingPrivateDatabaseServiceInfosResponse {}
+export const PutHostingPrivateDatabaseServiceInfosResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "PutHostingPrivateDatabaseServiceInfosResponse",
+  }) as any as S.Schema<PutHostingPrivateDatabaseServiceInfosResponse>;
+
+export interface PutHostingPrivateDatabaseWhitelistRequest {
+  /** Service name */
+  serviceName: string;
+  /** Ip */
+  ip: string;
+  /** Custom name for your Whitelisted IP */
+  name?: string | null;
+  /** Authorize this IP to access service port */
+  service?: boolean;
+  /** Authorize this IP to access sftp port */
+  sftp?: boolean;
+}
+export const PutHostingPrivateDatabaseWhitelistRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      ip: S.String.pipe(T.Label()),
+      name: S.optional(S.NullOr(S.String)),
+      service: S.optional(S.Boolean),
+      sftp: S.optional(S.Boolean),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/hosting/privateDatabase/{serviceName}/whitelist/{ip}",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "PutHostingPrivateDatabaseWhitelistRequest",
+  }) as any as S.Schema<PutHostingPrivateDatabaseWhitelistRequest>;
+
+export interface PutHostingPrivateDatabaseWhitelistResponse {}
+export const PutHostingPrivateDatabaseWhitelistResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "PutHostingPrivateDatabaseWhitelistResponse",
+  }) as any as S.Schema<PutHostingPrivateDatabaseWhitelistResponse>;
+
+export interface RestartHostingPrivateDatabaseRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const RestartHostingPrivateDatabaseRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/hosting/privateDatabase/{serviceName}/restart",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "RestartHostingPrivateDatabaseRequest",
+}) as any as S.Schema<RestartHostingPrivateDatabaseRequest>;
+
+export interface RestoreHostingPrivateDatabaseDatabaseDumpRequest {
+  /** Service name */
+  serviceName: string;
+  /** Database name */
+  databaseName: string;
+  /** Id */
+  id: number;
+}
+export const RestoreHostingPrivateDatabaseDatabaseDumpRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      databaseName: S.String.pipe(T.Label()),
+      id: S.Number.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/hosting/privateDatabase/{serviceName}/database/{databaseName}/dump/{id}/restore",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "RestoreHostingPrivateDatabaseDatabaseDumpRequest",
+  }) as any as S.Schema<RestoreHostingPrivateDatabaseDatabaseDumpRequest>;
+
+export interface RestoreHostingPrivateDatabaseDumpRequest {
+  /** Service name */
+  serviceName: string;
+  /** Dump ID */
+  dumpId: number;
+  /** Database name */
+  databaseName?: string;
+}
+export const RestoreHostingPrivateDatabaseDumpRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+      dumpId: S.Number.pipe(T.Label()),
+      databaseName: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/hosting/privateDatabase/{serviceName}/dump/{dumpId}/restore",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "RestoreHostingPrivateDatabaseDumpRequest",
+}) as any as S.Schema<RestoreHostingPrivateDatabaseDumpRequest>;
+
+export interface TerminateHostingPrivateDatabaseRequest {
+  /** Service name */
+  serviceName: string;
+}
+export const TerminateHostingPrivateDatabaseRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      serviceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/hosting/privateDatabase/{serviceName}/terminate",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "TerminateHostingPrivateDatabaseRequest",
+}) as any as S.Schema<TerminateHostingPrivateDatabaseRequest>;
+
+export type TerminateHostingPrivateDatabaseResponse = string;
+export const TerminateHostingPrivateDatabaseResponse = /*@__PURE__*/ S.suspend(
+  () => S.String.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "TerminateHostingPrivateDatabaseResponse",
+}) as any as S.Schema<TerminateHostingPrivateDatabaseResponse>;
 
 /** ConfigKeyValue */
 export interface HostingPrivateDatabaseConfigKeyValue {
@@ -2413,25 +3079,24 @@ export const HostingPrivateDatabaseConfigKeyValue = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<HostingPrivateDatabaseConfigKeyValue>;
 
 /** Web Cloud Database configurations */
-export type PostHostingPrivateDatabaseServiceNameConfigUpdateRequestParametersList =
+export type UpdateHostingPrivateDatabaseConfigRequestParametersList =
   Array<HostingPrivateDatabaseConfigKeyValue>;
-export const PostHostingPrivateDatabaseServiceNameConfigUpdateRequestParametersList =
+export const UpdateHostingPrivateDatabaseConfigRequestParametersList =
   /*@__PURE__*/ S.Array(
     HostingPrivateDatabaseConfigKeyValue,
-  ) as any as S.Schema<PostHostingPrivateDatabaseServiceNameConfigUpdateRequestParametersList>;
+  ) as any as S.Schema<UpdateHostingPrivateDatabaseConfigRequestParametersList>;
 
-export interface PostHostingPrivateDatabaseServiceNameConfigUpdateRequest {
+export interface UpdateHostingPrivateDatabaseConfigRequest {
   /** Service name */
   serviceName: string;
   /** Web Cloud Database configurations */
-  parameters: PostHostingPrivateDatabaseServiceNameConfigUpdateRequestParametersList;
+  parameters: UpdateHostingPrivateDatabaseConfigRequestParametersList;
 }
-export const PostHostingPrivateDatabaseServiceNameConfigUpdateRequest =
+export const UpdateHostingPrivateDatabaseConfigRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
-      parameters:
-        PostHostingPrivateDatabaseServiceNameConfigUpdateRequestParametersList,
+      parameters: UpdateHostingPrivateDatabaseConfigRequestParametersList,
     }).pipe(
       T.Http({
         method: "POST",
@@ -2440,585 +3105,10 @@ export const PostHostingPrivateDatabaseServiceNameConfigUpdateRequest =
       }),
     ),
   ).annotate({
-    identifier: "PostHostingPrivateDatabaseServiceNameConfigUpdateRequest",
-  }) as any as S.Schema<PostHostingPrivateDatabaseServiceNameConfigUpdateRequest>;
+    identifier: "UpdateHostingPrivateDatabaseConfigRequest",
+  }) as any as S.Schema<UpdateHostingPrivateDatabaseConfigRequest>;
 
-/** All future uses you can provide for a service termination */
-export type ServiceTerminationFutureUseEnum =
-  | "NOT_REPLACING_SERVICE"
-  | "OTHER"
-  | "SUBSCRIBE_AN_OTHER_SERVICE"
-  | "SUBSCRIBE_OTHER_KIND_OF_SERVICE_WITH_COMPETITOR"
-  | "SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR";
-export const ServiceTerminationFutureUseEnum = /*@__PURE__*/ S.String;
-
-/** All reasons you can provide for a service termination */
-export type ServiceTerminationReasonEnum =
-  | "FEATURES_DONT_SUIT_ME"
-  | "LACK_OF_PERFORMANCES"
-  | "MIGRATED_TO_ANOTHER_OVH_PRODUCT"
-  | "MIGRATED_TO_COMPETITOR"
-  | "NOT_ENOUGH_RECOGNITION"
-  | "NOT_NEEDED_ANYMORE"
-  | "NOT_RELIABLE"
-  | "NO_ANSWER"
-  | "OTHER"
-  | "PRODUCT_DIMENSION_DONT_SUIT_ME"
-  | "PRODUCT_TOOLS_DONT_SUIT_ME"
-  | "TOO_EXPENSIVE"
-  | "TOO_HARD_TO_USE"
-  | "UNSATIFIED_BY_CUSTOMER_SUPPORT";
-export const ServiceTerminationReasonEnum = /*@__PURE__*/ S.String;
-
-export interface PostHostingPrivateDatabaseServiceNameConfirmTerminationRequest {
-  /** Service name */
-  serviceName: string;
-  /** Commentary about your termination request */
-  commentary?: string;
-  /** All future uses you can provide for a service termination */
-  futureUse?: ServiceTerminationFutureUseEnum | (string & {});
-  /** All reasons you can provide for a service termination */
-  reason?: ServiceTerminationReasonEnum | (string & {});
-  /** The termination token sent by email to the admin contact */
-  token: string;
-}
-export const PostHostingPrivateDatabaseServiceNameConfirmTerminationRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      commentary: S.optional(S.String),
-      futureUse: S.optional(ServiceTerminationFutureUseEnum),
-      reason: S.optional(ServiceTerminationReasonEnum),
-      token: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/hosting/privateDatabase/{serviceName}/confirmTermination",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "PostHostingPrivateDatabaseServiceNameConfirmTerminationRequest",
-  }) as any as S.Schema<PostHostingPrivateDatabaseServiceNameConfirmTerminationRequest>;
-
-export type PostHostingPrivateDatabaseServiceNameConfirmTerminationResponse =
-  string;
-export const PostHostingPrivateDatabaseServiceNameConfirmTerminationResponse =
-  /*@__PURE__*/ S.suspend(() => S.String.pipe(T.RawResponseRoot())).annotate({
-    identifier:
-      "PostHostingPrivateDatabaseServiceNameConfirmTerminationResponse",
-  }) as any as S.Schema<PostHostingPrivateDatabaseServiceNameConfirmTerminationResponse>;
-
-export interface PostHostingPrivateDatabaseServiceNameDatabaseRequest {
-  /** Service name */
-  serviceName: string;
-  /** Name of your new database */
-  databaseName: string;
-}
-export const PostHostingPrivateDatabaseServiceNameDatabaseRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      databaseName: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/hosting/privateDatabase/{serviceName}/database",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostHostingPrivateDatabaseServiceNameDatabaseRequest",
-  }) as any as S.Schema<PostHostingPrivateDatabaseServiceNameDatabaseRequest>;
-
-export interface PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyRequest {
-  /** Service name */
-  serviceName: string;
-  /** Database name */
-  databaseName: string;
-}
-export const PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      databaseName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/hosting/privateDatabase/{serviceName}/database/{databaseName}/copy",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyRequest",
-  }) as any as S.Schema<PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyRequest>;
-
-export interface PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyRestoreRequest {
-  /** Service name */
-  serviceName: string;
-  /** Database name */
-  databaseName: string;
-  /** Copy ID */
-  copyId: string;
-  /** Whether to flush the database before restoring the copy (default to false) */
-  flushDatabase?: boolean;
-}
-export const PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyRestoreRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      databaseName: S.String.pipe(T.Label()),
-      copyId: S.String,
-      flushDatabase: S.optional(S.Boolean),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/hosting/privateDatabase/{serviceName}/database/{databaseName}/copyRestore",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyRestoreRequest",
-  }) as any as S.Schema<PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyRestoreRequest>;
-
-export interface PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpRequest {
-  /** Service name */
-  serviceName: string;
-  /** Database name */
-  databaseName: string;
-  /** Whether to receive an email when the import is complete (default to false) */
-  sendEmail?: boolean;
-}
-export const PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      databaseName: S.String.pipe(T.Label()),
-      sendEmail: S.optional(S.Boolean),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/hosting/privateDatabase/{serviceName}/database/{databaseName}/dump",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpRequest",
-  }) as any as S.Schema<PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpRequest>;
-
-export interface PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpIdRestoreRequest {
-  /** Service name */
-  serviceName: string;
-  /** Database name */
-  databaseName: string;
-  /** Id */
-  id: number;
-}
-export const PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpIdRestoreRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      databaseName: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/hosting/privateDatabase/{serviceName}/database/{databaseName}/dump/{id}/restore",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpIdRestoreRequest",
-  }) as any as S.Schema<PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpIdRestoreRequest>;
-
-export interface PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionExtensionNameDisableRequest {
-  /** Service name */
-  serviceName: string;
-  /** Database name */
-  databaseName: string;
-  /** Extension name */
-  extensionName: string;
-}
-export const PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionExtensionNameDisableRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      databaseName: S.String.pipe(T.Label()),
-      extensionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/hosting/privateDatabase/{serviceName}/database/{databaseName}/extension/{extensionName}/disable",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionExtensionNameDisableRequest",
-  }) as any as S.Schema<PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionExtensionNameDisableRequest>;
-
-export interface PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionExtensionNameEnableRequest {
-  /** Service name */
-  serviceName: string;
-  /** Database name */
-  databaseName: string;
-  /** Extension name */
-  extensionName: string;
-}
-export const PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionExtensionNameEnableRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      databaseName: S.String.pipe(T.Label()),
-      extensionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/hosting/privateDatabase/{serviceName}/database/{databaseName}/extension/{extensionName}/enable",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionExtensionNameEnableRequest",
-  }) as any as S.Schema<PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionExtensionNameEnableRequest>;
-
-export interface PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameImportRequest {
-  /** Service name */
-  serviceName: string;
-  /** Database name */
-  databaseName: string;
-  /** Documents ID of the dump from /me/documents */
-  documentId: string;
-  /** Whether to flush the database before importing the dump (default to false) */
-  flushDatabase?: boolean;
-  /** Whether to receive an email when the import is complete (default to false) */
-  sendEmail?: boolean;
-}
-export const PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameImportRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      databaseName: S.String.pipe(T.Label()),
-      documentId: S.String,
-      flushDatabase: S.optional(S.Boolean),
-      sendEmail: S.optional(S.Boolean),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/hosting/privateDatabase/{serviceName}/database/{databaseName}/import",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameImportRequest",
-  }) as any as S.Schema<PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameImportRequest>;
-
-export interface PostHostingPrivateDatabaseServiceNameDatabaseWizardRequest {
-  /** Service name */
-  serviceName: string;
-  /** Name of your new database */
-  databaseName: string;
-  /** Grant of the user on this database */
-  grant: HostingPrivateDatabaseGrantGrantEnum | (string & {});
-  /** Password for the new user (alphanumeric and 8 characters minimum) */
-  password: string | Redacted.Redacted<string>;
-  /** New user name used to connect on your database */
-  userName: string;
-}
-export const PostHostingPrivateDatabaseServiceNameDatabaseWizardRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      databaseName: S.String,
-      grant: HostingPrivateDatabaseGrantGrantEnum,
-      password: S.String.pipe(T.SensitiveValue({})),
-      userName: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/hosting/privateDatabase/{serviceName}/databaseWizard",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostHostingPrivateDatabaseServiceNameDatabaseWizardRequest",
-  }) as any as S.Schema<PostHostingPrivateDatabaseServiceNameDatabaseWizardRequest>;
-
-export interface PostHostingPrivateDatabaseServiceNameDumpDumpIdRestoreRequest {
-  /** Service name */
-  serviceName: string;
-  /** Dump ID */
-  dumpId: number;
-  /** Database name */
-  databaseName?: string;
-}
-export const PostHostingPrivateDatabaseServiceNameDumpDumpIdRestoreRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      dumpId: S.Number.pipe(T.Label()),
-      databaseName: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/hosting/privateDatabase/{serviceName}/dump/{dumpId}/restore",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostHostingPrivateDatabaseServiceNameDumpDumpIdRestoreRequest",
-  }) as any as S.Schema<PostHostingPrivateDatabaseServiceNameDumpDumpIdRestoreRequest>;
-
-export interface PostHostingPrivateDatabaseServiceNameGenerateTemporaryLogsLinkRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const PostHostingPrivateDatabaseServiceNameGenerateTemporaryLogsLinkRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/hosting/privateDatabase/{serviceName}/generateTemporaryLogsLink",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "PostHostingPrivateDatabaseServiceNameGenerateTemporaryLogsLinkRequest",
-  }) as any as S.Schema<PostHostingPrivateDatabaseServiceNameGenerateTemporaryLogsLinkRequest>;
-
-/** Temporary url information */
-export interface HostingPrivateDatabaseTemporaryUrlInformations {
-  /** Temporary url expiration date */
-  expirationDate?: string;
-  /** Temporary url */
-  url?: string;
-}
-export const HostingPrivateDatabaseTemporaryUrlInformations =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      expirationDate: S.optional(S.String),
-      url: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "HostingPrivateDatabaseTemporaryUrlInformations",
-  }) as any as S.Schema<HostingPrivateDatabaseTemporaryUrlInformations>;
-
-export interface PostHostingPrivateDatabaseServiceNameLogSubscriptionRequest {
-  /** Service name */
-  serviceName: string;
-  /** Log kind name to subscribe to */
-  kind: string;
-  /** Customer log stream ID */
-  streamId: string;
-}
-export const PostHostingPrivateDatabaseServiceNameLogSubscriptionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      kind: S.String,
-      streamId: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/hosting/privateDatabase/{serviceName}/log/subscription",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostHostingPrivateDatabaseServiceNameLogSubscriptionRequest",
-  }) as any as S.Schema<PostHostingPrivateDatabaseServiceNameLogSubscriptionRequest>;
-
-export interface PostHostingPrivateDatabaseServiceNameLogUrlRequest {
-  /** Service name */
-  serviceName: string;
-  /** Log kind name */
-  kind: string;
-}
-export const PostHostingPrivateDatabaseServiceNameLogUrlRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      kind: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/hosting/privateDatabase/{serviceName}/log/url",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostHostingPrivateDatabaseServiceNameLogUrlRequest",
-  }) as any as S.Schema<PostHostingPrivateDatabaseServiceNameLogUrlRequest>;
-
-/** Temporary url information */
-export interface DbaasLogsTemporaryLogsLink {
-  /** Temporary url expiration date */
-  expirationDate?: string;
-  /** Temporary url */
-  url?: string;
-}
-export const DbaasLogsTemporaryLogsLink = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    expirationDate: S.optional(S.String),
-    url: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DbaasLogsTemporaryLogsLink",
-}) as any as S.Schema<DbaasLogsTemporaryLogsLink>;
-
-export interface PostHostingPrivateDatabaseServiceNameQuotaRefreshRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const PostHostingPrivateDatabaseServiceNameQuotaRefreshRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/hosting/privateDatabase/{serviceName}/quotaRefresh",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostHostingPrivateDatabaseServiceNameQuotaRefreshRequest",
-  }) as any as S.Schema<PostHostingPrivateDatabaseServiceNameQuotaRefreshRequest>;
-
-export interface PostHostingPrivateDatabaseServiceNameRestartRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const PostHostingPrivateDatabaseServiceNameRestartRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/hosting/privateDatabase/{serviceName}/restart",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostHostingPrivateDatabaseServiceNameRestartRequest",
-  }) as any as S.Schema<PostHostingPrivateDatabaseServiceNameRestartRequest>;
-
-export interface PostHostingPrivateDatabaseServiceNameTerminateRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const PostHostingPrivateDatabaseServiceNameTerminateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/hosting/privateDatabase/{serviceName}/terminate",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostHostingPrivateDatabaseServiceNameTerminateRequest",
-  }) as any as S.Schema<PostHostingPrivateDatabaseServiceNameTerminateRequest>;
-
-export type PostHostingPrivateDatabaseServiceNameTerminateResponse = string;
-export const PostHostingPrivateDatabaseServiceNameTerminateResponse =
-  /*@__PURE__*/ S.suspend(() => S.String.pipe(T.RawResponseRoot())).annotate({
-    identifier: "PostHostingPrivateDatabaseServiceNameTerminateResponse",
-  }) as any as S.Schema<PostHostingPrivateDatabaseServiceNameTerminateResponse>;
-
-export interface PostHostingPrivateDatabaseServiceNameUserRequest {
-  /** Service name */
-  serviceName: string;
-  /** Password for the new user ( alphanumeric and 8 characters minimum ) */
-  password: string | Redacted.Redacted<string>;
-  /** User name used to connect on your databases */
-  userName: string;
-}
-export const PostHostingPrivateDatabaseServiceNameUserRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      password: S.String.pipe(T.SensitiveValue({})),
-      userName: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/hosting/privateDatabase/{serviceName}/user",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostHostingPrivateDatabaseServiceNameUserRequest",
-  }) as any as S.Schema<PostHostingPrivateDatabaseServiceNameUserRequest>;
-
-export interface PostHostingPrivateDatabaseServiceNameUserUserNameChangePasswordRequest {
-  /** Service name */
-  serviceName: string;
-  /** User name */
-  userName: string;
-  /** Password for the new user ( alphanumeric and 8 characters minimum ) */
-  password: string | Redacted.Redacted<string>;
-}
-export const PostHostingPrivateDatabaseServiceNameUserUserNameChangePasswordRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      userName: S.String.pipe(T.Label()),
-      password: S.String.pipe(T.SensitiveValue({})),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/hosting/privateDatabase/{serviceName}/user/{userName}/changePassword",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "PostHostingPrivateDatabaseServiceNameUserUserNameChangePasswordRequest",
-  }) as any as S.Schema<PostHostingPrivateDatabaseServiceNameUserUserNameChangePasswordRequest>;
-
-export interface PostHostingPrivateDatabaseServiceNameUserUserNameGrantRequest {
-  /** Service name */
-  serviceName: string;
-  /** User name */
-  userName: string;
-  /** Database name where add grant */
-  databaseName: string;
-  /** Grant on a database for a specific user */
-  grant: HostingPrivateDatabaseGrantGrantEnum | (string & {});
-}
-export const PostHostingPrivateDatabaseServiceNameUserUserNameGrantRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      userName: S.String.pipe(T.Label()),
-      databaseName: S.String,
-      grant: HostingPrivateDatabaseGrantGrantEnum,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/hosting/privateDatabase/{serviceName}/user/{userName}/grant",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostHostingPrivateDatabaseServiceNameUserUserNameGrantRequest",
-  }) as any as S.Schema<PostHostingPrivateDatabaseServiceNameUserUserNameGrantRequest>;
-
-export interface PostHostingPrivateDatabaseServiceNameUserUserNameGrantDatabaseNameUpdateRequest {
+export interface UpdateHostingPrivateDatabaseUserGrantRequest {
   /** Service name */
   serviceName: string;
   /** User name */
@@ -3028,7 +3118,7 @@ export interface PostHostingPrivateDatabaseServiceNameUserUserNameGrantDatabaseN
   /** Grant on a database for a specific user */
   grant: HostingPrivateDatabaseGrantGrantEnum | (string & {});
 }
-export const PostHostingPrivateDatabaseServiceNameUserUserNameGrantDatabaseNameUpdateRequest =
+export const UpdateHostingPrivateDatabaseUserGrantRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       serviceName: S.String.pipe(T.Label()),
@@ -3043,1283 +3133,1085 @@ export const PostHostingPrivateDatabaseServiceNameUserUserNameGrantDatabaseNameU
       }),
     ),
   ).annotate({
-    identifier:
-      "PostHostingPrivateDatabaseServiceNameUserUserNameGrantDatabaseNameUpdateRequest",
-  }) as any as S.Schema<PostHostingPrivateDatabaseServiceNameUserUserNameGrantDatabaseNameUpdateRequest>;
+    identifier: "UpdateHostingPrivateDatabaseUserGrantRequest",
+  }) as any as S.Schema<UpdateHostingPrivateDatabaseUserGrantRequest>;
 
-export interface PostHostingPrivateDatabaseServiceNameWebhostingNetworkRequest {
-  /** Service name */
-  serviceName: string;
-}
-export const PostHostingPrivateDatabaseServiceNameWebhostingNetworkRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/hosting/privateDatabase/{serviceName}/webhostingNetwork",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostHostingPrivateDatabaseServiceNameWebhostingNetworkRequest",
-  }) as any as S.Schema<PostHostingPrivateDatabaseServiceNameWebhostingNetworkRequest>;
-
-export interface PostHostingPrivateDatabaseServiceNameWhitelistRequest {
-  /** Service name */
-  serviceName: string;
-  /** The whitelisted IP in your Web Cloud Database */
-  ip: string;
-  /** Custom name for your Whitelisted IP */
-  name?: string | null;
-  /** Authorize this IP to access service port */
-  service?: boolean;
-  /** Authorize this IP to access sftp port */
-  sftp?: boolean;
-}
-export const PostHostingPrivateDatabaseServiceNameWhitelistRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      ip: S.String,
-      name: S.optional(S.NullOr(S.String)),
-      service: S.optional(S.Boolean),
-      sftp: S.optional(S.Boolean),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/hosting/privateDatabase/{serviceName}/whitelist",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostHostingPrivateDatabaseServiceNameWhitelistRequest",
-  }) as any as S.Schema<PostHostingPrivateDatabaseServiceNameWhitelistRequest>;
-
-export interface PutHostingPrivateDatabaseServiceNameRequest {
-  /** Service name */
-  serviceName: string;
-  /** Set the name displayed in customer panel for your private database (max 50 chars) */
-  displayName?: string | null;
-}
-export const PutHostingPrivateDatabaseServiceNameRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      displayName: S.optional(S.NullOr(S.String)),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/hosting/privateDatabase/{serviceName}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PutHostingPrivateDatabaseServiceNameRequest",
-  }) as any as S.Schema<PutHostingPrivateDatabaseServiceNameRequest>;
-
-export interface PutHostingPrivateDatabaseServiceNameResponse {}
-export const PutHostingPrivateDatabaseServiceNameResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PutHostingPrivateDatabaseServiceNameResponse",
-  }) as any as S.Schema<PutHostingPrivateDatabaseServiceNameResponse>;
-
-export interface PutHostingPrivateDatabaseServiceNameServiceInfosRequest {
-  /** Service name */
-  serviceName: string;
-  /** Way of handling the renew */
-  renew?: ServiceRenewType | null;
-}
-export const PutHostingPrivateDatabaseServiceNameServiceInfosRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      renew: S.optional(S.NullOr(ServiceRenewType)),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/hosting/privateDatabase/{serviceName}/serviceInfos",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PutHostingPrivateDatabaseServiceNameServiceInfosRequest",
-  }) as any as S.Schema<PutHostingPrivateDatabaseServiceNameServiceInfosRequest>;
-
-export interface PutHostingPrivateDatabaseServiceNameServiceInfosResponse {}
-export const PutHostingPrivateDatabaseServiceNameServiceInfosResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PutHostingPrivateDatabaseServiceNameServiceInfosResponse",
-  }) as any as S.Schema<PutHostingPrivateDatabaseServiceNameServiceInfosResponse>;
-
-export interface PutHostingPrivateDatabaseServiceNameWhitelistIpRequest {
-  /** Service name */
-  serviceName: string;
-  /** Ip */
-  ip: string;
-  /** Custom name for your Whitelisted IP */
-  name?: string | null;
-  /** Authorize this IP to access service port */
-  service?: boolean;
-  /** Authorize this IP to access sftp port */
-  sftp?: boolean;
-}
-export const PutHostingPrivateDatabaseServiceNameWhitelistIpRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceName: S.String.pipe(T.Label()),
-      ip: S.String.pipe(T.Label()),
-      name: S.optional(S.NullOr(S.String)),
-      service: S.optional(S.Boolean),
-      sftp: S.optional(S.Boolean),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/hosting/privateDatabase/{serviceName}/whitelist/{ip}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PutHostingPrivateDatabaseServiceNameWhitelistIpRequest",
-  }) as any as S.Schema<PutHostingPrivateDatabaseServiceNameWhitelistIpRequest>;
-
-export interface PutHostingPrivateDatabaseServiceNameWhitelistIpResponse {}
-export const PutHostingPrivateDatabaseServiceNameWhitelistIpResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PutHostingPrivateDatabaseServiceNameWhitelistIpResponse",
-  }) as any as S.Schema<PutHostingPrivateDatabaseServiceNameWhitelistIpResponse>;
-
-export type DeleteHostingPrivateDatabaseServiceNameDatabaseDatabaseNameError =
-  OvhOpError;
-/** Delete a database from a Web Cloud Database */
-export const deleteHostingPrivateDatabaseServiceNameDatabaseDatabaseName: API.OperationMethod<
-  DeleteHostingPrivateDatabaseServiceNameDatabaseDatabaseNameRequest,
-  HostingPrivateDatabaseTask,
-  DeleteHostingPrivateDatabaseServiceNameDatabaseDatabaseNameError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteHostingPrivateDatabaseServiceNameDatabaseDatabaseNameRequest,
-  output: HostingPrivateDatabaseTask,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyIdError =
-  OvhOpError;
-/** Delete the database copy of a Web Cloud Database */
-export const deleteHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyId: API.OperationMethod<
-  DeleteHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyIdRequest,
-  DeleteHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyIdResponse,
-  DeleteHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    DeleteHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyIdRequest,
-  output:
-    DeleteHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyIdResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpIdError =
-  OvhOpError;
-/** Delete dump before expiration date */
-export const deleteHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpId: API.OperationMethod<
-  DeleteHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpIdRequest,
-  HostingPrivateDatabaseTask,
-  DeleteHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    DeleteHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpIdRequest,
-  output: HostingPrivateDatabaseTask,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteHostingPrivateDatabaseServiceNameDumpDumpIdError = OvhOpError;
-/** Delete a database dump from a Web Cloud Database */
-export const deleteHostingPrivateDatabaseServiceNameDumpDumpId: API.OperationMethod<
-  DeleteHostingPrivateDatabaseServiceNameDumpDumpIdRequest,
-  HostingPrivateDatabaseTask,
-  DeleteHostingPrivateDatabaseServiceNameDumpDumpIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteHostingPrivateDatabaseServiceNameDumpDumpIdRequest,
-  output: HostingPrivateDatabaseTask,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteHostingPrivateDatabaseServiceNameLogSubscriptionSubscriptionIdError =
-  OvhOpError;
-/** Delete a subscription */
-export const deleteHostingPrivateDatabaseServiceNameLogSubscriptionSubscriptionId: API.OperationMethod<
-  DeleteHostingPrivateDatabaseServiceNameLogSubscriptionSubscriptionIdRequest,
-  DbaasLogsLogSubscriptionResponse,
-  DeleteHostingPrivateDatabaseServiceNameLogSubscriptionSubscriptionIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    DeleteHostingPrivateDatabaseServiceNameLogSubscriptionSubscriptionIdRequest,
-  output: DbaasLogsLogSubscriptionResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteHostingPrivateDatabaseServiceNameUserUserNameError =
-  OvhOpError;
-/** Delete a user on a Web Cloud Database */
-export const deleteHostingPrivateDatabaseServiceNameUserUserName: API.OperationMethod<
-  DeleteHostingPrivateDatabaseServiceNameUserUserNameRequest,
-  HostingPrivateDatabaseTask,
-  DeleteHostingPrivateDatabaseServiceNameUserUserNameError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteHostingPrivateDatabaseServiceNameUserUserNameRequest,
-  output: HostingPrivateDatabaseTask,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteHostingPrivateDatabaseServiceNameUserUserNameGrantDatabaseNameError =
-  OvhOpError;
-/** Delete a grant from a Web Cloud Database */
-export const deleteHostingPrivateDatabaseServiceNameUserUserNameGrantDatabaseName: API.OperationMethod<
-  DeleteHostingPrivateDatabaseServiceNameUserUserNameGrantDatabaseNameRequest,
-  HostingPrivateDatabaseTask,
-  DeleteHostingPrivateDatabaseServiceNameUserUserNameGrantDatabaseNameError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    DeleteHostingPrivateDatabaseServiceNameUserUserNameGrantDatabaseNameRequest,
-  output: HostingPrivateDatabaseTask,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteHostingPrivateDatabaseServiceNameWebhostingNetworkError =
-  OvhOpError;
-/** Delete access from the web hosting network on a Web Cloud Database */
-export const deleteHostingPrivateDatabaseServiceNameWebhostingNetwork: API.OperationMethod<
-  DeleteHostingPrivateDatabaseServiceNameWebhostingNetworkRequest,
-  HostingPrivateDatabaseTask,
-  DeleteHostingPrivateDatabaseServiceNameWebhostingNetworkError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteHostingPrivateDatabaseServiceNameWebhostingNetworkRequest,
-  output: HostingPrivateDatabaseTask,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteHostingPrivateDatabaseServiceNameWhitelistIpError =
-  OvhOpError;
-/** Delete an IP whitelist from a Web Cloud Database */
-export const deleteHostingPrivateDatabaseServiceNameWhitelistIp: API.OperationMethod<
-  DeleteHostingPrivateDatabaseServiceNameWhitelistIpRequest,
-  HostingPrivateDatabaseTask,
-  DeleteHostingPrivateDatabaseServiceNameWhitelistIpError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteHostingPrivateDatabaseServiceNameWhitelistIpRequest,
-  output: HostingPrivateDatabaseTask,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetHostingPrivateDatabaseError = OvhOpError;
-/** List available Web Cloud Databases */
-export const getHostingPrivateDatabase: API.OperationMethod<
-  GetHostingPrivateDatabaseRequest,
-  GetHostingPrivateDatabaseResponse,
-  GetHostingPrivateDatabaseError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetHostingPrivateDatabaseRequest,
-  output: GetHostingPrivateDatabaseResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetHostingPrivateDatabaseAvailableOrderCapacitiesError = OvhOpError;
-/** Get available order capacities */
-export const getHostingPrivateDatabaseAvailableOrderCapacities: API.OperationMethod<
-  GetHostingPrivateDatabaseAvailableOrderCapacitiesRequest,
-  HostingPrivateDatabaseAvailableOrderCapacities,
-  GetHostingPrivateDatabaseAvailableOrderCapacitiesError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetHostingPrivateDatabaseAvailableOrderCapacitiesRequest,
-  output: HostingPrivateDatabaseAvailableOrderCapacities,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetHostingPrivateDatabaseServiceNameError = OvhOpError;
-/** Get a Web Cloud Database properties */
-export const getHostingPrivateDatabaseServiceName: API.OperationMethod<
-  GetHostingPrivateDatabaseServiceNameRequest,
-  HostingPrivateDatabaseServiceWithIAM,
-  GetHostingPrivateDatabaseServiceNameError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetHostingPrivateDatabaseServiceNameRequest,
-  output: HostingPrivateDatabaseServiceWithIAM,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetHostingPrivateDatabaseServiceNameAvailableVersionsError =
-  OvhOpError;
-/** Get the availables versions for this private database */
-export const getHostingPrivateDatabaseServiceNameAvailableVersions: API.OperationMethod<
-  GetHostingPrivateDatabaseServiceNameAvailableVersionsRequest,
-  GetHostingPrivateDatabaseServiceNameAvailableVersionsResponse,
-  GetHostingPrivateDatabaseServiceNameAvailableVersionsError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetHostingPrivateDatabaseServiceNameAvailableVersionsRequest,
-  output: GetHostingPrivateDatabaseServiceNameAvailableVersionsResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetHostingPrivateDatabaseServiceNameConfigError = OvhOpError;
-/** Get the current configuration for this Web Cloud Database */
-export const getHostingPrivateDatabaseServiceNameConfig: API.OperationMethod<
-  GetHostingPrivateDatabaseServiceNameConfigRequest,
-  HostingPrivateDatabaseConfigs,
-  GetHostingPrivateDatabaseServiceNameConfigError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetHostingPrivateDatabaseServiceNameConfigRequest,
-  output: HostingPrivateDatabaseConfigs,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetHostingPrivateDatabaseServiceNameCpuThrottleError = OvhOpError;
-/** List of privatesql CPU throttle */
-export const getHostingPrivateDatabaseServiceNameCpuThrottle: API.OperationMethod<
-  GetHostingPrivateDatabaseServiceNameCpuThrottleRequest,
-  GetHostingPrivateDatabaseServiceNameCpuThrottleResponse,
-  GetHostingPrivateDatabaseServiceNameCpuThrottleError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetHostingPrivateDatabaseServiceNameCpuThrottleRequest,
-  output: GetHostingPrivateDatabaseServiceNameCpuThrottleResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetHostingPrivateDatabaseServiceNameDatabaseError = OvhOpError;
-/** List databases on a privateDatabase */
-export const getHostingPrivateDatabaseServiceNameDatabase: API.OperationMethod<
-  GetHostingPrivateDatabaseServiceNameDatabaseRequest,
-  GetHostingPrivateDatabaseServiceNameDatabaseResponse,
-  GetHostingPrivateDatabaseServiceNameDatabaseError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetHostingPrivateDatabaseServiceNameDatabaseRequest,
-  output: GetHostingPrivateDatabaseServiceNameDatabaseResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameError =
-  OvhOpError;
-/** Get database properties */
-export const getHostingPrivateDatabaseServiceNameDatabaseDatabaseName: API.OperationMethod<
-  GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameRequest,
-  HostingPrivateDatabaseDatabase,
-  GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameRequest,
-  output: HostingPrivateDatabaseDatabase,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyError =
-  OvhOpError;
-/** List database copy of a privateDatabase */
-export const getHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopy: API.OperationMethod<
-  GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyRequest,
-  GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyResponse,
-  GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyRequest,
-  output: GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyIdError =
-  OvhOpError;
-/** Get database copy properties */
-export const getHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyId: API.OperationMethod<
-  GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyIdRequest,
-  HostingPrivateDatabaseDatabaseCopy,
-  GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyIdRequest,
-  output: HostingPrivateDatabaseDatabaseCopy,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpError =
-  OvhOpError;
-/** Get all database dump from a Web Cloud Database */
-export const getHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDump: API.OperationMethod<
-  GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpRequest,
-  GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpResponse,
-  GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpRequest,
-  output: GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpIdError =
-  OvhOpError;
-/** Get a database dump from a Web Cloud Database */
-export const getHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpId: API.OperationMethod<
-  GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpIdRequest,
-  HostingPrivateDatabaseDatabaseDump,
-  GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpIdRequest,
-  output: HostingPrivateDatabaseDatabaseDump,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionError =
-  OvhOpError;
-/** List extensions available for a Webcloud Database */
-export const getHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtension: API.OperationMethod<
-  GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionRequest,
-  GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionResponse,
-  GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionRequest,
-  output:
-    GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionExtensionNameError =
-  OvhOpError;
-/** Get properties of a Webcloud Database extension */
-export const getHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionExtensionName: API.OperationMethod<
-  GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionExtensionNameRequest,
-  HostingPrivateDatabaseExtension,
-  GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionExtensionNameError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    GetHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionExtensionNameRequest,
-  output: HostingPrivateDatabaseExtension,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetHostingPrivateDatabaseServiceNameDumpError = OvhOpError;
-/** Get all database dump from a Web Cloud Database */
-export const getHostingPrivateDatabaseServiceNameDump: API.OperationMethod<
-  GetHostingPrivateDatabaseServiceNameDumpRequest,
-  GetHostingPrivateDatabaseServiceNameDumpResponse,
-  GetHostingPrivateDatabaseServiceNameDumpError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetHostingPrivateDatabaseServiceNameDumpRequest,
-  output: GetHostingPrivateDatabaseServiceNameDumpResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetHostingPrivateDatabaseServiceNameDumpDumpIdError = OvhOpError;
-/** Get a database dump from a Web Cloud Database */
-export const getHostingPrivateDatabaseServiceNameDumpDumpId: API.OperationMethod<
-  GetHostingPrivateDatabaseServiceNameDumpDumpIdRequest,
-  HostingPrivateDatabaseDump,
-  GetHostingPrivateDatabaseServiceNameDumpDumpIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetHostingPrivateDatabaseServiceNameDumpDumpIdRequest,
-  output: HostingPrivateDatabaseDump,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetHostingPrivateDatabaseServiceNameLogKindError = OvhOpError;
-/** List available log kinds */
-export const getHostingPrivateDatabaseServiceNameLogKind: API.OperationMethod<
-  GetHostingPrivateDatabaseServiceNameLogKindRequest,
-  GetHostingPrivateDatabaseServiceNameLogKindResponse,
-  GetHostingPrivateDatabaseServiceNameLogKindError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetHostingPrivateDatabaseServiceNameLogKindRequest,
-  output: GetHostingPrivateDatabaseServiceNameLogKindResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetHostingPrivateDatabaseServiceNameLogKindNameError = OvhOpError;
-/** Get a log kind */
-export const getHostingPrivateDatabaseServiceNameLogKindName: API.OperationMethod<
-  GetHostingPrivateDatabaseServiceNameLogKindNameRequest,
-  DbaasLogsLogKind,
-  GetHostingPrivateDatabaseServiceNameLogKindNameError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetHostingPrivateDatabaseServiceNameLogKindNameRequest,
-  output: DbaasLogsLogKind,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetHostingPrivateDatabaseServiceNameLogSubscriptionError =
-  OvhOpError;
-/** List subscription IDs for Web Cloud Database */
-export const getHostingPrivateDatabaseServiceNameLogSubscription: API.OperationMethod<
-  GetHostingPrivateDatabaseServiceNameLogSubscriptionRequest,
-  GetHostingPrivateDatabaseServiceNameLogSubscriptionResponse,
-  GetHostingPrivateDatabaseServiceNameLogSubscriptionError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetHostingPrivateDatabaseServiceNameLogSubscriptionRequest,
-  output: GetHostingPrivateDatabaseServiceNameLogSubscriptionResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetHostingPrivateDatabaseServiceNameLogSubscriptionSubscriptionIdError =
-  OvhOpError;
-/** Get subscription details */
-export const getHostingPrivateDatabaseServiceNameLogSubscriptionSubscriptionId: API.OperationMethod<
-  GetHostingPrivateDatabaseServiceNameLogSubscriptionSubscriptionIdRequest,
-  DbaasLogsLogSubscription,
-  GetHostingPrivateDatabaseServiceNameLogSubscriptionSubscriptionIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    GetHostingPrivateDatabaseServiceNameLogSubscriptionSubscriptionIdRequest,
-  output: DbaasLogsLogSubscription,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetHostingPrivateDatabaseServiceNameMetricsTokenError = OvhOpError;
-/** Generate a metrics token */
-export const getHostingPrivateDatabaseServiceNameMetricsToken: API.OperationMethod<
-  GetHostingPrivateDatabaseServiceNameMetricsTokenRequest,
-  HostingPrivateDatabaseMetricsToken,
-  GetHostingPrivateDatabaseServiceNameMetricsTokenError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetHostingPrivateDatabaseServiceNameMetricsTokenRequest,
-  output: HostingPrivateDatabaseMetricsToken,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetHostingPrivateDatabaseServiceNameOomError = OvhOpError;
-/** List of privatesql OOM kill */
-export const getHostingPrivateDatabaseServiceNameOom: API.OperationMethod<
-  GetHostingPrivateDatabaseServiceNameOomRequest,
-  GetHostingPrivateDatabaseServiceNameOomResponse,
-  GetHostingPrivateDatabaseServiceNameOomError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetHostingPrivateDatabaseServiceNameOomRequest,
-  output: GetHostingPrivateDatabaseServiceNameOomResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetHostingPrivateDatabaseServiceNameServiceInfosError = OvhOpError;
-/** Get service information */
-export const getHostingPrivateDatabaseServiceNameServiceInfos: API.OperationMethod<
-  GetHostingPrivateDatabaseServiceNameServiceInfosRequest,
-  ServicesService,
-  GetHostingPrivateDatabaseServiceNameServiceInfosError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetHostingPrivateDatabaseServiceNameServiceInfosRequest,
-  output: ServicesService,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetHostingPrivateDatabaseServiceNameTasksError = OvhOpError;
-/** List tasks for a Webcloud Database */
-export const getHostingPrivateDatabaseServiceNameTasks: API.OperationMethod<
-  GetHostingPrivateDatabaseServiceNameTasksRequest,
-  GetHostingPrivateDatabaseServiceNameTasksResponse,
-  GetHostingPrivateDatabaseServiceNameTasksError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetHostingPrivateDatabaseServiceNameTasksRequest,
-  output: GetHostingPrivateDatabaseServiceNameTasksResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetHostingPrivateDatabaseServiceNameTasksIdError = OvhOpError;
-/** Get task details */
-export const getHostingPrivateDatabaseServiceNameTasksId: API.OperationMethod<
-  GetHostingPrivateDatabaseServiceNameTasksIdRequest,
-  HostingPrivateDatabaseTask,
-  GetHostingPrivateDatabaseServiceNameTasksIdError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetHostingPrivateDatabaseServiceNameTasksIdRequest,
-  output: HostingPrivateDatabaseTask,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetHostingPrivateDatabaseServiceNameUserError = OvhOpError;
-/** List users on a Web Cloud Database */
-export const getHostingPrivateDatabaseServiceNameUser: API.OperationMethod<
-  GetHostingPrivateDatabaseServiceNameUserRequest,
-  GetHostingPrivateDatabaseServiceNameUserResponse,
-  GetHostingPrivateDatabaseServiceNameUserError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetHostingPrivateDatabaseServiceNameUserRequest,
-  output: GetHostingPrivateDatabaseServiceNameUserResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetHostingPrivateDatabaseServiceNameUserUserNameError = OvhOpError;
-/** Get user properties */
-export const getHostingPrivateDatabaseServiceNameUserUserName: API.OperationMethod<
-  GetHostingPrivateDatabaseServiceNameUserUserNameRequest,
-  HostingPrivateDatabaseUser,
-  GetHostingPrivateDatabaseServiceNameUserUserNameError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetHostingPrivateDatabaseServiceNameUserUserNameRequest,
-  output: HostingPrivateDatabaseUser,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetHostingPrivateDatabaseServiceNameUserUserNameGrantError =
-  OvhOpError;
-/** Get all information about the grants for a user in a Web Cloud Database */
-export const getHostingPrivateDatabaseServiceNameUserUserNameGrant: API.OperationMethod<
-  GetHostingPrivateDatabaseServiceNameUserUserNameGrantRequest,
-  GetHostingPrivateDatabaseServiceNameUserUserNameGrantResponse,
-  GetHostingPrivateDatabaseServiceNameUserUserNameGrantError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetHostingPrivateDatabaseServiceNameUserUserNameGrantRequest,
-  output: GetHostingPrivateDatabaseServiceNameUserUserNameGrantResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetHostingPrivateDatabaseServiceNameUserUserNameGrantDatabaseNameError =
-  OvhOpError;
-/** Get information about the grants for a user in a Web Cloud Database */
-export const getHostingPrivateDatabaseServiceNameUserUserNameGrantDatabaseName: API.OperationMethod<
-  GetHostingPrivateDatabaseServiceNameUserUserNameGrantDatabaseNameRequest,
-  HostingPrivateDatabaseUserGrant,
-  GetHostingPrivateDatabaseServiceNameUserUserNameGrantDatabaseNameError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    GetHostingPrivateDatabaseServiceNameUserUserNameGrantDatabaseNameRequest,
-  output: HostingPrivateDatabaseUserGrant,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetHostingPrivateDatabaseServiceNameWebhostingNetworkError =
-  OvhOpError;
-/** Get Webhosting network status */
-export const getHostingPrivateDatabaseServiceNameWebhostingNetwork: API.OperationMethod<
-  GetHostingPrivateDatabaseServiceNameWebhostingNetworkRequest,
-  HostingPrivateDatabaseWebhostingNetwork,
-  GetHostingPrivateDatabaseServiceNameWebhostingNetworkError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetHostingPrivateDatabaseServiceNameWebhostingNetworkRequest,
-  output: HostingPrivateDatabaseWebhostingNetwork,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetHostingPrivateDatabaseServiceNameWebsError = OvhOpError;
-/** List linked webs */
-export const getHostingPrivateDatabaseServiceNameWebs: API.OperationMethod<
-  GetHostingPrivateDatabaseServiceNameWebsRequest,
-  GetHostingPrivateDatabaseServiceNameWebsResponse,
-  GetHostingPrivateDatabaseServiceNameWebsError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetHostingPrivateDatabaseServiceNameWebsRequest,
-  output: GetHostingPrivateDatabaseServiceNameWebsResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetHostingPrivateDatabaseServiceNameWhitelistError = OvhOpError;
-/** List whitelists on a Web Cloud Database */
-export const getHostingPrivateDatabaseServiceNameWhitelist: API.OperationMethod<
-  GetHostingPrivateDatabaseServiceNameWhitelistRequest,
-  GetHostingPrivateDatabaseServiceNameWhitelistResponse,
-  GetHostingPrivateDatabaseServiceNameWhitelistError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetHostingPrivateDatabaseServiceNameWhitelistRequest,
-  output: GetHostingPrivateDatabaseServiceNameWhitelistResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetHostingPrivateDatabaseServiceNameWhitelistIpError = OvhOpError;
-/** Get whitelist properties */
-export const getHostingPrivateDatabaseServiceNameWhitelistIp: API.OperationMethod<
-  GetHostingPrivateDatabaseServiceNameWhitelistIpRequest,
-  HostingPrivateDatabaseWhitelist,
-  GetHostingPrivateDatabaseServiceNameWhitelistIpError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetHostingPrivateDatabaseServiceNameWhitelistIpRequest,
-  output: HostingPrivateDatabaseWhitelist,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostHostingPrivateDatabaseServiceNameChangeContactError =
-  OvhOpError;
-/** Launch a contact change procedure */
-export const postHostingPrivateDatabaseServiceNameChangeContact: API.OperationMethod<
-  PostHostingPrivateDatabaseServiceNameChangeContactRequest,
-  PostHostingPrivateDatabaseServiceNameChangeContactResponse,
-  PostHostingPrivateDatabaseServiceNameChangeContactError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostHostingPrivateDatabaseServiceNameChangeContactRequest,
-  output: PostHostingPrivateDatabaseServiceNameChangeContactResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostHostingPrivateDatabaseServiceNameChangeFtpPasswordError =
-  OvhOpError;
-/** Change FTP password of your Web Cloud Database */
-export const postHostingPrivateDatabaseServiceNameChangeFtpPassword: API.OperationMethod<
-  PostHostingPrivateDatabaseServiceNameChangeFtpPasswordRequest,
-  HostingPrivateDatabaseTask,
-  PostHostingPrivateDatabaseServiceNameChangeFtpPasswordError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostHostingPrivateDatabaseServiceNameChangeFtpPasswordRequest,
-  output: HostingPrivateDatabaseTask,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostHostingPrivateDatabaseServiceNameChangeVersionError =
-  OvhOpError;
-/** Change DBMS version of your Web Cloud Database */
-export const postHostingPrivateDatabaseServiceNameChangeVersion: API.OperationMethod<
-  PostHostingPrivateDatabaseServiceNameChangeVersionRequest,
-  HostingPrivateDatabaseTask,
-  PostHostingPrivateDatabaseServiceNameChangeVersionError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostHostingPrivateDatabaseServiceNameChangeVersionRequest,
-  output: HostingPrivateDatabaseTask,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostHostingPrivateDatabaseServiceNameConfigUpdateError = OvhOpError;
-/** Update the configuration of this Web Cloud Database */
-export const postHostingPrivateDatabaseServiceNameConfigUpdate: API.OperationMethod<
-  PostHostingPrivateDatabaseServiceNameConfigUpdateRequest,
-  HostingPrivateDatabaseConfigs,
-  PostHostingPrivateDatabaseServiceNameConfigUpdateError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostHostingPrivateDatabaseServiceNameConfigUpdateRequest,
-  output: HostingPrivateDatabaseConfigs,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostHostingPrivateDatabaseServiceNameConfirmTerminationError =
-  OvhOpError;
+export type ConfirmHostingPrivateDatabaseTerminationError = OvhOpError;
 /** Confirm service termination */
-export const postHostingPrivateDatabaseServiceNameConfirmTermination: API.OperationMethod<
-  PostHostingPrivateDatabaseServiceNameConfirmTerminationRequest,
-  PostHostingPrivateDatabaseServiceNameConfirmTerminationResponse,
-  PostHostingPrivateDatabaseServiceNameConfirmTerminationError,
+export const confirmHostingPrivateDatabaseTermination: API.OperationMethod<
+  ConfirmHostingPrivateDatabaseTerminationRequest,
+  ConfirmHostingPrivateDatabaseTerminationResponse,
+  ConfirmHostingPrivateDatabaseTerminationError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostHostingPrivateDatabaseServiceNameConfirmTerminationRequest,
-  output: PostHostingPrivateDatabaseServiceNameConfirmTerminationResponse,
+  input: ConfirmHostingPrivateDatabaseTerminationRequest,
+  output: ConfirmHostingPrivateDatabaseTerminationResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostHostingPrivateDatabaseServiceNameDatabaseError = OvhOpError;
-/** Create a new database in a Web Cloud Database */
-export const postHostingPrivateDatabaseServiceNameDatabase: API.OperationMethod<
-  PostHostingPrivateDatabaseServiceNameDatabaseRequest,
-  HostingPrivateDatabaseTask,
-  PostHostingPrivateDatabaseServiceNameDatabaseError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostHostingPrivateDatabaseServiceNameDatabaseRequest,
-  output: HostingPrivateDatabaseTask,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyError =
-  OvhOpError;
+export type CopyHostingPrivateDatabaseDatabaseError = OvhOpError;
 /** Create a new database copy in a Web Cloud Database */
-export const postHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopy: API.OperationMethod<
-  PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyRequest,
+export const copyHostingPrivateDatabaseDatabase: API.OperationMethod<
+  CopyHostingPrivateDatabaseDatabaseRequest,
   HostingPrivateDatabaseDatabaseCopy,
-  PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyError,
+  CopyHostingPrivateDatabaseDatabaseError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyRequest,
+  input: CopyHostingPrivateDatabaseDatabaseRequest,
   output: HostingPrivateDatabaseDatabaseCopy,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyRestoreError =
-  OvhOpError;
+export type CopyHostingPrivateDatabaseDatabaseRestoreError = OvhOpError;
 /** Request the copy into a Web Cloud Database */
-export const postHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyRestore: API.OperationMethod<
-  PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyRestoreRequest,
+export const copyHostingPrivateDatabaseDatabaseRestore: API.OperationMethod<
+  CopyHostingPrivateDatabaseDatabaseRestoreRequest,
   HostingPrivateDatabaseTask,
-  PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyRestoreError,
+  CopyHostingPrivateDatabaseDatabaseRestoreError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input:
-    PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameCopyRestoreRequest,
+  input: CopyHostingPrivateDatabaseDatabaseRestoreRequest,
   output: HostingPrivateDatabaseTask,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpError =
-  OvhOpError;
+export type CreateHostingPrivateDatabaseChangeContactError = OvhOpError;
+/** Launch a contact change procedure */
+export const createHostingPrivateDatabaseChangeContact: API.OperationMethod<
+  CreateHostingPrivateDatabaseChangeContactRequest,
+  CreateHostingPrivateDatabaseChangeContactResponse,
+  CreateHostingPrivateDatabaseChangeContactError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateHostingPrivateDatabaseChangeContactRequest,
+  output: CreateHostingPrivateDatabaseChangeContactResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateHostingPrivateDatabaseChangeFtpPasswordError = OvhOpError;
+/** Change FTP password of your Web Cloud Database */
+export const createHostingPrivateDatabaseChangeFtpPassword: API.OperationMethod<
+  CreateHostingPrivateDatabaseChangeFtpPasswordRequest,
+  HostingPrivateDatabaseTask,
+  CreateHostingPrivateDatabaseChangeFtpPasswordError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateHostingPrivateDatabaseChangeFtpPasswordRequest,
+  output: HostingPrivateDatabaseTask,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateHostingPrivateDatabaseChangeVersionError = OvhOpError;
+/** Change DBMS version of your Web Cloud Database */
+export const createHostingPrivateDatabaseChangeVersion: API.OperationMethod<
+  CreateHostingPrivateDatabaseChangeVersionRequest,
+  HostingPrivateDatabaseTask,
+  CreateHostingPrivateDatabaseChangeVersionError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateHostingPrivateDatabaseChangeVersionRequest,
+  output: HostingPrivateDatabaseTask,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateHostingPrivateDatabaseDatabaseError = OvhOpError;
+/** Create a new database in a Web Cloud Database */
+export const createHostingPrivateDatabaseDatabase: API.OperationMethod<
+  CreateHostingPrivateDatabaseDatabaseRequest,
+  HostingPrivateDatabaseTask,
+  CreateHostingPrivateDatabaseDatabaseError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateHostingPrivateDatabaseDatabaseRequest,
+  output: HostingPrivateDatabaseTask,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateHostingPrivateDatabaseDatabaseDumpError = OvhOpError;
 /** Request the dump of this database (an email will be sent with a link available 30 days) */
-export const postHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDump: API.OperationMethod<
-  PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpRequest,
+export const createHostingPrivateDatabaseDatabaseDump: API.OperationMethod<
+  CreateHostingPrivateDatabaseDatabaseDumpRequest,
   HostingPrivateDatabaseTask,
-  PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpError,
+  CreateHostingPrivateDatabaseDatabaseDumpError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpRequest,
+  input: CreateHostingPrivateDatabaseDatabaseDumpRequest,
   output: HostingPrivateDatabaseTask,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpIdRestoreError =
-  OvhOpError;
-/** Request the restore from this dump */
-export const postHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpIdRestore: API.OperationMethod<
-  PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpIdRestoreRequest,
-  HostingPrivateDatabaseTask,
-  PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpIdRestoreError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameDumpIdRestoreRequest,
-  output: HostingPrivateDatabaseTask,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionExtensionNameDisableError =
-  OvhOpError;
-/** Disable an extension on a Web Cloud Database */
-export const postHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionExtensionNameDisable: API.OperationMethod<
-  PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionExtensionNameDisableRequest,
-  HostingPrivateDatabaseTask,
-  PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionExtensionNameDisableError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionExtensionNameDisableRequest,
-  output: HostingPrivateDatabaseTask,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionExtensionNameEnableError =
-  OvhOpError;
-/** Enable an extension on a Web Cloud Database */
-export const postHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionExtensionNameEnable: API.OperationMethod<
-  PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionExtensionNameEnableRequest,
-  HostingPrivateDatabaseTask,
-  PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionExtensionNameEnableError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameExtensionExtensionNameEnableRequest,
-  output: HostingPrivateDatabaseTask,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameImportError =
-  OvhOpError;
-/** Import a database into a Web Cloud Database */
-export const postHostingPrivateDatabaseServiceNameDatabaseDatabaseNameImport: API.OperationMethod<
-  PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameImportRequest,
-  HostingPrivateDatabaseTask,
-  PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameImportError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostHostingPrivateDatabaseServiceNameDatabaseDatabaseNameImportRequest,
-  output: HostingPrivateDatabaseTask,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostHostingPrivateDatabaseServiceNameDatabaseWizardError =
-  OvhOpError;
+export type CreateHostingPrivateDatabaseDatabaseWizardError = OvhOpError;
 /** Create a new database/user and grant it */
-export const postHostingPrivateDatabaseServiceNameDatabaseWizard: API.OperationMethod<
-  PostHostingPrivateDatabaseServiceNameDatabaseWizardRequest,
+export const createHostingPrivateDatabaseDatabaseWizard: API.OperationMethod<
+  CreateHostingPrivateDatabaseDatabaseWizardRequest,
   HostingPrivateDatabaseTask,
-  PostHostingPrivateDatabaseServiceNameDatabaseWizardError,
+  CreateHostingPrivateDatabaseDatabaseWizardError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostHostingPrivateDatabaseServiceNameDatabaseWizardRequest,
+  input: CreateHostingPrivateDatabaseDatabaseWizardRequest,
   output: HostingPrivateDatabaseTask,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostHostingPrivateDatabaseServiceNameDumpDumpIdRestoreError =
-  OvhOpError;
-/** Restore a database dump into a Web Cloud Database */
-export const postHostingPrivateDatabaseServiceNameDumpDumpIdRestore: API.OperationMethod<
-  PostHostingPrivateDatabaseServiceNameDumpDumpIdRestoreRequest,
-  HostingPrivateDatabaseTask,
-  PostHostingPrivateDatabaseServiceNameDumpDumpIdRestoreError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostHostingPrivateDatabaseServiceNameDumpDumpIdRestoreRequest,
-  output: HostingPrivateDatabaseTask,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostHostingPrivateDatabaseServiceNameGenerateTemporaryLogsLinkError =
-  OvhOpError;
-/** Generate a temporary link to access logs for a Web Cloud Database */
-export const postHostingPrivateDatabaseServiceNameGenerateTemporaryLogsLink: API.OperationMethod<
-  PostHostingPrivateDatabaseServiceNameGenerateTemporaryLogsLinkRequest,
-  HostingPrivateDatabaseTemporaryUrlInformations,
-  PostHostingPrivateDatabaseServiceNameGenerateTemporaryLogsLinkError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostHostingPrivateDatabaseServiceNameGenerateTemporaryLogsLinkRequest,
-  output: HostingPrivateDatabaseTemporaryUrlInformations,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostHostingPrivateDatabaseServiceNameLogSubscriptionError =
-  OvhOpError;
+export type CreateHostingPrivateDatabaseLogSubscriptionError = OvhOpError;
 /** Create subscription to log to customer for a Web Cloud Database */
-export const postHostingPrivateDatabaseServiceNameLogSubscription: API.OperationMethod<
-  PostHostingPrivateDatabaseServiceNameLogSubscriptionRequest,
+export const createHostingPrivateDatabaseLogSubscription: API.OperationMethod<
+  CreateHostingPrivateDatabaseLogSubscriptionRequest,
   DbaasLogsLogSubscriptionResponse,
-  PostHostingPrivateDatabaseServiceNameLogSubscriptionError,
+  CreateHostingPrivateDatabaseLogSubscriptionError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostHostingPrivateDatabaseServiceNameLogSubscriptionRequest,
+  input: CreateHostingPrivateDatabaseLogSubscriptionRequest,
   output: DbaasLogsLogSubscriptionResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostHostingPrivateDatabaseServiceNameLogUrlError = OvhOpError;
+export type CreateHostingPrivateDatabaseLogUrlError = OvhOpError;
 /** Generate a temporary URL to retrieve logs */
-export const postHostingPrivateDatabaseServiceNameLogUrl: API.OperationMethod<
-  PostHostingPrivateDatabaseServiceNameLogUrlRequest,
+export const createHostingPrivateDatabaseLogUrl: API.OperationMethod<
+  CreateHostingPrivateDatabaseLogUrlRequest,
   DbaasLogsTemporaryLogsLink,
-  PostHostingPrivateDatabaseServiceNameLogUrlError,
+  CreateHostingPrivateDatabaseLogUrlError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostHostingPrivateDatabaseServiceNameLogUrlRequest,
+  input: CreateHostingPrivateDatabaseLogUrlRequest,
   output: DbaasLogsTemporaryLogsLink,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostHostingPrivateDatabaseServiceNameQuotaRefreshError = OvhOpError;
+export type CreateHostingPrivateDatabaseQuotaRefreshError = OvhOpError;
 /** Refresh the quota of your Web Cloud Database */
-export const postHostingPrivateDatabaseServiceNameQuotaRefresh: API.OperationMethod<
-  PostHostingPrivateDatabaseServiceNameQuotaRefreshRequest,
+export const createHostingPrivateDatabaseQuotaRefresh: API.OperationMethod<
+  CreateHostingPrivateDatabaseQuotaRefreshRequest,
   HostingPrivateDatabaseTask,
-  PostHostingPrivateDatabaseServiceNameQuotaRefreshError,
+  CreateHostingPrivateDatabaseQuotaRefreshError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostHostingPrivateDatabaseServiceNameQuotaRefreshRequest,
+  input: CreateHostingPrivateDatabaseQuotaRefreshRequest,
   output: HostingPrivateDatabaseTask,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostHostingPrivateDatabaseServiceNameRestartError = OvhOpError;
-/** Restart the Web Cloud Database */
-export const postHostingPrivateDatabaseServiceNameRestart: API.OperationMethod<
-  PostHostingPrivateDatabaseServiceNameRestartRequest,
-  HostingPrivateDatabaseTask,
-  PostHostingPrivateDatabaseServiceNameRestartError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostHostingPrivateDatabaseServiceNameRestartRequest,
-  output: HostingPrivateDatabaseTask,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostHostingPrivateDatabaseServiceNameTerminateError = OvhOpError;
-/** Ask for the termination of your service */
-export const postHostingPrivateDatabaseServiceNameTerminate: API.OperationMethod<
-  PostHostingPrivateDatabaseServiceNameTerminateRequest,
-  PostHostingPrivateDatabaseServiceNameTerminateResponse,
-  PostHostingPrivateDatabaseServiceNameTerminateError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostHostingPrivateDatabaseServiceNameTerminateRequest,
-  output: PostHostingPrivateDatabaseServiceNameTerminateResponse,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostHostingPrivateDatabaseServiceNameUserError = OvhOpError;
+export type CreateHostingPrivateDatabaseUserError = OvhOpError;
 /** Create a user on a Web Cloud Database */
-export const postHostingPrivateDatabaseServiceNameUser: API.OperationMethod<
-  PostHostingPrivateDatabaseServiceNameUserRequest,
+export const createHostingPrivateDatabaseUser: API.OperationMethod<
+  CreateHostingPrivateDatabaseUserRequest,
   HostingPrivateDatabaseTask,
-  PostHostingPrivateDatabaseServiceNameUserError,
+  CreateHostingPrivateDatabaseUserError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostHostingPrivateDatabaseServiceNameUserRequest,
+  input: CreateHostingPrivateDatabaseUserRequest,
   output: HostingPrivateDatabaseTask,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostHostingPrivateDatabaseServiceNameUserUserNameChangePasswordError =
-  OvhOpError;
+export type CreateHostingPrivateDatabaseUserChangePasswordError = OvhOpError;
 /** Change the password of a user on a Web Cloud Database */
-export const postHostingPrivateDatabaseServiceNameUserUserNameChangePassword: API.OperationMethod<
-  PostHostingPrivateDatabaseServiceNameUserUserNameChangePasswordRequest,
+export const createHostingPrivateDatabaseUserChangePassword: API.OperationMethod<
+  CreateHostingPrivateDatabaseUserChangePasswordRequest,
   HostingPrivateDatabaseTask,
-  PostHostingPrivateDatabaseServiceNameUserUserNameChangePasswordError,
+  CreateHostingPrivateDatabaseUserChangePasswordError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostHostingPrivateDatabaseServiceNameUserUserNameChangePasswordRequest,
+  input: CreateHostingPrivateDatabaseUserChangePasswordRequest,
   output: HostingPrivateDatabaseTask,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostHostingPrivateDatabaseServiceNameUserUserNameGrantError =
-  OvhOpError;
+export type CreateHostingPrivateDatabaseUserGrantError = OvhOpError;
 /** Add grant on a Web Cloud Database */
-export const postHostingPrivateDatabaseServiceNameUserUserNameGrant: API.OperationMethod<
-  PostHostingPrivateDatabaseServiceNameUserUserNameGrantRequest,
+export const createHostingPrivateDatabaseUserGrant: API.OperationMethod<
+  CreateHostingPrivateDatabaseUserGrantRequest,
   HostingPrivateDatabaseTask,
-  PostHostingPrivateDatabaseServiceNameUserUserNameGrantError,
+  CreateHostingPrivateDatabaseUserGrantError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostHostingPrivateDatabaseServiceNameUserUserNameGrantRequest,
+  input: CreateHostingPrivateDatabaseUserGrantRequest,
   output: HostingPrivateDatabaseTask,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostHostingPrivateDatabaseServiceNameUserUserNameGrantDatabaseNameUpdateError =
-  OvhOpError;
-/** Update the permissions of a grant for a user on a Web Cloud Database */
-export const postHostingPrivateDatabaseServiceNameUserUserNameGrantDatabaseNameUpdate: API.OperationMethod<
-  PostHostingPrivateDatabaseServiceNameUserUserNameGrantDatabaseNameUpdateRequest,
-  HostingPrivateDatabaseTask,
-  PostHostingPrivateDatabaseServiceNameUserUserNameGrantDatabaseNameUpdateError,
-  OvhOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    PostHostingPrivateDatabaseServiceNameUserUserNameGrantDatabaseNameUpdateRequest,
-  output: HostingPrivateDatabaseTask,
-  errors: [UnknownOvhError],
-  protocol: OvhProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostHostingPrivateDatabaseServiceNameWebhostingNetworkError =
-  OvhOpError;
+export type CreateHostingPrivateDatabaseWebhostingNetworkError = OvhOpError;
 /** Permit access from the web hosting network on a Web Cloud Database */
-export const postHostingPrivateDatabaseServiceNameWebhostingNetwork: API.OperationMethod<
-  PostHostingPrivateDatabaseServiceNameWebhostingNetworkRequest,
+export const createHostingPrivateDatabaseWebhostingNetwork: API.OperationMethod<
+  CreateHostingPrivateDatabaseWebhostingNetworkRequest,
   HostingPrivateDatabaseTask,
-  PostHostingPrivateDatabaseServiceNameWebhostingNetworkError,
+  CreateHostingPrivateDatabaseWebhostingNetworkError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostHostingPrivateDatabaseServiceNameWebhostingNetworkRequest,
+  input: CreateHostingPrivateDatabaseWebhostingNetworkRequest,
   output: HostingPrivateDatabaseTask,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostHostingPrivateDatabaseServiceNameWhitelistError = OvhOpError;
+export type CreateHostingPrivateDatabaseWhitelistError = OvhOpError;
 /** Create a new IP whitelist in a Web Cloud Database */
-export const postHostingPrivateDatabaseServiceNameWhitelist: API.OperationMethod<
-  PostHostingPrivateDatabaseServiceNameWhitelistRequest,
+export const createHostingPrivateDatabaseWhitelist: API.OperationMethod<
+  CreateHostingPrivateDatabaseWhitelistRequest,
   HostingPrivateDatabaseTask,
-  PostHostingPrivateDatabaseServiceNameWhitelistError,
+  CreateHostingPrivateDatabaseWhitelistError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostHostingPrivateDatabaseServiceNameWhitelistRequest,
+  input: CreateHostingPrivateDatabaseWhitelistRequest,
   output: HostingPrivateDatabaseTask,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutHostingPrivateDatabaseServiceNameError = OvhOpError;
+export type DeleteHostingPrivateDatabaseDatabaseError = OvhOpError;
+/** Delete a database from a Web Cloud Database */
+export const deleteHostingPrivateDatabaseDatabase: API.OperationMethod<
+  DeleteHostingPrivateDatabaseDatabaseRequest,
+  HostingPrivateDatabaseTask,
+  DeleteHostingPrivateDatabaseDatabaseError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteHostingPrivateDatabaseDatabaseRequest,
+  output: HostingPrivateDatabaseTask,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteHostingPrivateDatabaseDatabaseCopyError = OvhOpError;
+/** Delete the database copy of a Web Cloud Database */
+export const deleteHostingPrivateDatabaseDatabaseCopy: API.OperationMethod<
+  DeleteHostingPrivateDatabaseDatabaseCopyRequest,
+  DeleteHostingPrivateDatabaseDatabaseCopyResponse,
+  DeleteHostingPrivateDatabaseDatabaseCopyError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteHostingPrivateDatabaseDatabaseCopyRequest,
+  output: DeleteHostingPrivateDatabaseDatabaseCopyResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteHostingPrivateDatabaseDatabaseDumpError = OvhOpError;
+/** Delete dump before expiration date */
+export const deleteHostingPrivateDatabaseDatabaseDump: API.OperationMethod<
+  DeleteHostingPrivateDatabaseDatabaseDumpRequest,
+  HostingPrivateDatabaseTask,
+  DeleteHostingPrivateDatabaseDatabaseDumpError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteHostingPrivateDatabaseDatabaseDumpRequest,
+  output: HostingPrivateDatabaseTask,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteHostingPrivateDatabaseDumpError = OvhOpError;
+/** Delete a database dump from a Web Cloud Database */
+export const deleteHostingPrivateDatabaseDump: API.OperationMethod<
+  DeleteHostingPrivateDatabaseDumpRequest,
+  HostingPrivateDatabaseTask,
+  DeleteHostingPrivateDatabaseDumpError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteHostingPrivateDatabaseDumpRequest,
+  output: HostingPrivateDatabaseTask,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteHostingPrivateDatabaseLogSubscriptionError = OvhOpError;
+/** Delete a subscription */
+export const deleteHostingPrivateDatabaseLogSubscription: API.OperationMethod<
+  DeleteHostingPrivateDatabaseLogSubscriptionRequest,
+  DbaasLogsLogSubscriptionResponse,
+  DeleteHostingPrivateDatabaseLogSubscriptionError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteHostingPrivateDatabaseLogSubscriptionRequest,
+  output: DbaasLogsLogSubscriptionResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteHostingPrivateDatabaseUserError = OvhOpError;
+/** Delete a user on a Web Cloud Database */
+export const deleteHostingPrivateDatabaseUser: API.OperationMethod<
+  DeleteHostingPrivateDatabaseUserRequest,
+  HostingPrivateDatabaseTask,
+  DeleteHostingPrivateDatabaseUserError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteHostingPrivateDatabaseUserRequest,
+  output: HostingPrivateDatabaseTask,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteHostingPrivateDatabaseUserGrantError = OvhOpError;
+/** Delete a grant from a Web Cloud Database */
+export const deleteHostingPrivateDatabaseUserGrant: API.OperationMethod<
+  DeleteHostingPrivateDatabaseUserGrantRequest,
+  HostingPrivateDatabaseTask,
+  DeleteHostingPrivateDatabaseUserGrantError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteHostingPrivateDatabaseUserGrantRequest,
+  output: HostingPrivateDatabaseTask,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteHostingPrivateDatabaseWebhostingNetworkError = OvhOpError;
+/** Delete access from the web hosting network on a Web Cloud Database */
+export const deleteHostingPrivateDatabaseWebhostingNetwork: API.OperationMethod<
+  DeleteHostingPrivateDatabaseWebhostingNetworkRequest,
+  HostingPrivateDatabaseTask,
+  DeleteHostingPrivateDatabaseWebhostingNetworkError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteHostingPrivateDatabaseWebhostingNetworkRequest,
+  output: HostingPrivateDatabaseTask,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteHostingPrivateDatabaseWhitelistError = OvhOpError;
+/** Delete an IP whitelist from a Web Cloud Database */
+export const deleteHostingPrivateDatabaseWhitelist: API.OperationMethod<
+  DeleteHostingPrivateDatabaseWhitelistRequest,
+  HostingPrivateDatabaseTask,
+  DeleteHostingPrivateDatabaseWhitelistError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteHostingPrivateDatabaseWhitelistRequest,
+  output: HostingPrivateDatabaseTask,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DisableHostingPrivateDatabaseDatabaseExtensionError = OvhOpError;
+/** Disable an extension on a Web Cloud Database */
+export const disableHostingPrivateDatabaseDatabaseExtension: API.OperationMethod<
+  DisableHostingPrivateDatabaseDatabaseExtensionRequest,
+  HostingPrivateDatabaseTask,
+  DisableHostingPrivateDatabaseDatabaseExtensionError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DisableHostingPrivateDatabaseDatabaseExtensionRequest,
+  output: HostingPrivateDatabaseTask,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type EnableHostingPrivateDatabaseDatabaseExtensionError = OvhOpError;
+/** Enable an extension on a Web Cloud Database */
+export const enableHostingPrivateDatabaseDatabaseExtension: API.OperationMethod<
+  EnableHostingPrivateDatabaseDatabaseExtensionRequest,
+  HostingPrivateDatabaseTask,
+  EnableHostingPrivateDatabaseDatabaseExtensionError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: EnableHostingPrivateDatabaseDatabaseExtensionRequest,
+  output: HostingPrivateDatabaseTask,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GenerateHostingPrivateDatabaseTemporaryLogsLinkError = OvhOpError;
+/** Generate a temporary link to access logs for a Web Cloud Database */
+export const generateHostingPrivateDatabaseTemporaryLogsLink: API.OperationMethod<
+  GenerateHostingPrivateDatabaseTemporaryLogsLinkRequest,
+  HostingPrivateDatabaseTemporaryUrlInformations,
+  GenerateHostingPrivateDatabaseTemporaryLogsLinkError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GenerateHostingPrivateDatabaseTemporaryLogsLinkRequest,
+  output: HostingPrivateDatabaseTemporaryUrlInformations,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetHostingPrivateDatabaseError = OvhOpError;
+/** Get a Web Cloud Database properties */
+export const getHostingPrivateDatabase: API.OperationMethod<
+  GetHostingPrivateDatabaseRequest,
+  HostingPrivateDatabaseServiceWithIAM,
+  GetHostingPrivateDatabaseError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetHostingPrivateDatabaseRequest,
+  output: HostingPrivateDatabaseServiceWithIAM,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetHostingPrivateDatabaseDatabaseError = OvhOpError;
+/** Get database properties */
+export const getHostingPrivateDatabaseDatabase: API.OperationMethod<
+  GetHostingPrivateDatabaseDatabaseRequest,
+  HostingPrivateDatabaseDatabase,
+  GetHostingPrivateDatabaseDatabaseError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetHostingPrivateDatabaseDatabaseRequest,
+  output: HostingPrivateDatabaseDatabase,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetHostingPrivateDatabaseDatabaseCopyError = OvhOpError;
+/** Get database copy properties */
+export const getHostingPrivateDatabaseDatabaseCopy: API.OperationMethod<
+  GetHostingPrivateDatabaseDatabaseCopyRequest,
+  HostingPrivateDatabaseDatabaseCopy,
+  GetHostingPrivateDatabaseDatabaseCopyError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetHostingPrivateDatabaseDatabaseCopyRequest,
+  output: HostingPrivateDatabaseDatabaseCopy,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetHostingPrivateDatabaseDatabaseDumpError = OvhOpError;
+/** Get a database dump from a Web Cloud Database */
+export const getHostingPrivateDatabaseDatabaseDump: API.OperationMethod<
+  GetHostingPrivateDatabaseDatabaseDumpRequest,
+  HostingPrivateDatabaseDatabaseDump,
+  GetHostingPrivateDatabaseDatabaseDumpError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetHostingPrivateDatabaseDatabaseDumpRequest,
+  output: HostingPrivateDatabaseDatabaseDump,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetHostingPrivateDatabaseDatabaseExtensionError = OvhOpError;
+/** Get properties of a Webcloud Database extension */
+export const getHostingPrivateDatabaseDatabaseExtension: API.OperationMethod<
+  GetHostingPrivateDatabaseDatabaseExtensionRequest,
+  HostingPrivateDatabaseExtension,
+  GetHostingPrivateDatabaseDatabaseExtensionError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetHostingPrivateDatabaseDatabaseExtensionRequest,
+  output: HostingPrivateDatabaseExtension,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetHostingPrivateDatabaseDumpError = OvhOpError;
+/** Get a database dump from a Web Cloud Database */
+export const getHostingPrivateDatabaseDump: API.OperationMethod<
+  GetHostingPrivateDatabaseDumpRequest,
+  HostingPrivateDatabaseDump,
+  GetHostingPrivateDatabaseDumpError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetHostingPrivateDatabaseDumpRequest,
+  output: HostingPrivateDatabaseDump,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetHostingPrivateDatabaseLogKindError = OvhOpError;
+/** Get a log kind */
+export const getHostingPrivateDatabaseLogKind: API.OperationMethod<
+  GetHostingPrivateDatabaseLogKindRequest,
+  DbaasLogsLogKind,
+  GetHostingPrivateDatabaseLogKindError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetHostingPrivateDatabaseLogKindRequest,
+  output: DbaasLogsLogKind,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetHostingPrivateDatabaseLogSubscriptionError = OvhOpError;
+/** Get subscription details */
+export const getHostingPrivateDatabaseLogSubscription: API.OperationMethod<
+  GetHostingPrivateDatabaseLogSubscriptionRequest,
+  DbaasLogsLogSubscription,
+  GetHostingPrivateDatabaseLogSubscriptionError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetHostingPrivateDatabaseLogSubscriptionRequest,
+  output: DbaasLogsLogSubscription,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetHostingPrivateDatabaseMetricsTokenError = OvhOpError;
+/** Generate a metrics token */
+export const getHostingPrivateDatabaseMetricsToken: API.OperationMethod<
+  GetHostingPrivateDatabaseMetricsTokenRequest,
+  HostingPrivateDatabaseMetricsToken,
+  GetHostingPrivateDatabaseMetricsTokenError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetHostingPrivateDatabaseMetricsTokenRequest,
+  output: HostingPrivateDatabaseMetricsToken,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetHostingPrivateDatabaseServiceInfosError = OvhOpError;
+/** Get service information */
+export const getHostingPrivateDatabaseServiceInfos: API.OperationMethod<
+  GetHostingPrivateDatabaseServiceInfosRequest,
+  ServicesService,
+  GetHostingPrivateDatabaseServiceInfosError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetHostingPrivateDatabaseServiceInfosRequest,
+  output: ServicesService,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetHostingPrivateDatabaseTaskError = OvhOpError;
+/** Get task details */
+export const getHostingPrivateDatabaseTask: API.OperationMethod<
+  GetHostingPrivateDatabaseTaskRequest,
+  HostingPrivateDatabaseTask,
+  GetHostingPrivateDatabaseTaskError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetHostingPrivateDatabaseTaskRequest,
+  output: HostingPrivateDatabaseTask,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetHostingPrivateDatabaseUserError = OvhOpError;
+/** Get user properties */
+export const getHostingPrivateDatabaseUser: API.OperationMethod<
+  GetHostingPrivateDatabaseUserRequest,
+  HostingPrivateDatabaseUser,
+  GetHostingPrivateDatabaseUserError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetHostingPrivateDatabaseUserRequest,
+  output: HostingPrivateDatabaseUser,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetHostingPrivateDatabaseUserGrantError = OvhOpError;
+/** Get information about the grants for a user in a Web Cloud Database */
+export const getHostingPrivateDatabaseUserGrant: API.OperationMethod<
+  GetHostingPrivateDatabaseUserGrantRequest,
+  HostingPrivateDatabaseUserGrant,
+  GetHostingPrivateDatabaseUserGrantError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetHostingPrivateDatabaseUserGrantRequest,
+  output: HostingPrivateDatabaseUserGrant,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetHostingPrivateDatabaseWebhostingNetworkError = OvhOpError;
+/** Get Webhosting network status */
+export const getHostingPrivateDatabaseWebhostingNetwork: API.OperationMethod<
+  GetHostingPrivateDatabaseWebhostingNetworkRequest,
+  HostingPrivateDatabaseWebhostingNetwork,
+  GetHostingPrivateDatabaseWebhostingNetworkError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetHostingPrivateDatabaseWebhostingNetworkRequest,
+  output: HostingPrivateDatabaseWebhostingNetwork,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetHostingPrivateDatabaseWhitelistError = OvhOpError;
+/** Get whitelist properties */
+export const getHostingPrivateDatabaseWhitelist: API.OperationMethod<
+  GetHostingPrivateDatabaseWhitelistRequest,
+  HostingPrivateDatabaseWhitelist,
+  GetHostingPrivateDatabaseWhitelistError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetHostingPrivateDatabaseWhitelistRequest,
+  output: HostingPrivateDatabaseWhitelist,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ImportHostingPrivateDatabaseDatabaseError = OvhOpError;
+/** Import a database into a Web Cloud Database */
+export const importHostingPrivateDatabaseDatabase: API.OperationMethod<
+  ImportHostingPrivateDatabaseDatabaseRequest,
+  HostingPrivateDatabaseTask,
+  ImportHostingPrivateDatabaseDatabaseError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ImportHostingPrivateDatabaseDatabaseRequest,
+  output: HostingPrivateDatabaseTask,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListHostingPrivateDatabaseError = OvhOpError;
+/** List available Web Cloud Databases */
+export const listHostingPrivateDatabase: API.OperationMethod<
+  ListHostingPrivateDatabaseRequest,
+  ListHostingPrivateDatabaseResponse,
+  ListHostingPrivateDatabaseError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListHostingPrivateDatabaseRequest,
+  output: ListHostingPrivateDatabaseResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListHostingPrivateDatabaseAvailableOrderCapacitiesError =
+  OvhOpError;
+/** Get available order capacities */
+export const listHostingPrivateDatabaseAvailableOrderCapacities: API.OperationMethod<
+  ListHostingPrivateDatabaseAvailableOrderCapacitiesRequest,
+  HostingPrivateDatabaseAvailableOrderCapacities,
+  ListHostingPrivateDatabaseAvailableOrderCapacitiesError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListHostingPrivateDatabaseAvailableOrderCapacitiesRequest,
+  output: HostingPrivateDatabaseAvailableOrderCapacities,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListHostingPrivateDatabaseAvailableVersionsError = OvhOpError;
+/** Get the availables versions for this private database */
+export const listHostingPrivateDatabaseAvailableVersions: API.OperationMethod<
+  ListHostingPrivateDatabaseAvailableVersionsRequest,
+  ListHostingPrivateDatabaseAvailableVersionsResponse,
+  ListHostingPrivateDatabaseAvailableVersionsError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListHostingPrivateDatabaseAvailableVersionsRequest,
+  output: ListHostingPrivateDatabaseAvailableVersionsResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListHostingPrivateDatabaseConfigError = OvhOpError;
+/** Get the current configuration for this Web Cloud Database */
+export const listHostingPrivateDatabaseConfig: API.OperationMethod<
+  ListHostingPrivateDatabaseConfigRequest,
+  HostingPrivateDatabaseConfigs,
+  ListHostingPrivateDatabaseConfigError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListHostingPrivateDatabaseConfigRequest,
+  output: HostingPrivateDatabaseConfigs,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListHostingPrivateDatabaseCpuThrottleError = OvhOpError;
+/** List of privatesql CPU throttle */
+export const listHostingPrivateDatabaseCpuThrottle: API.OperationMethod<
+  ListHostingPrivateDatabaseCpuThrottleRequest,
+  ListHostingPrivateDatabaseCpuThrottleResponse,
+  ListHostingPrivateDatabaseCpuThrottleError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListHostingPrivateDatabaseCpuThrottleRequest,
+  output: ListHostingPrivateDatabaseCpuThrottleResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListHostingPrivateDatabaseDatabaseError = OvhOpError;
+/** List databases on a privateDatabase */
+export const listHostingPrivateDatabaseDatabase: API.OperationMethod<
+  ListHostingPrivateDatabaseDatabaseRequest,
+  ListHostingPrivateDatabaseDatabaseResponse,
+  ListHostingPrivateDatabaseDatabaseError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListHostingPrivateDatabaseDatabaseRequest,
+  output: ListHostingPrivateDatabaseDatabaseResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListHostingPrivateDatabaseDatabaseCopyError = OvhOpError;
+/** List database copy of a privateDatabase */
+export const listHostingPrivateDatabaseDatabaseCopy: API.OperationMethod<
+  ListHostingPrivateDatabaseDatabaseCopyRequest,
+  ListHostingPrivateDatabaseDatabaseCopyResponse,
+  ListHostingPrivateDatabaseDatabaseCopyError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListHostingPrivateDatabaseDatabaseCopyRequest,
+  output: ListHostingPrivateDatabaseDatabaseCopyResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListHostingPrivateDatabaseDatabaseDumpError = OvhOpError;
+/** Get all database dump from a Web Cloud Database */
+export const listHostingPrivateDatabaseDatabaseDump: API.OperationMethod<
+  ListHostingPrivateDatabaseDatabaseDumpRequest,
+  ListHostingPrivateDatabaseDatabaseDumpResponse,
+  ListHostingPrivateDatabaseDatabaseDumpError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListHostingPrivateDatabaseDatabaseDumpRequest,
+  output: ListHostingPrivateDatabaseDatabaseDumpResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListHostingPrivateDatabaseDatabaseExtensionError = OvhOpError;
+/** List extensions available for a Webcloud Database */
+export const listHostingPrivateDatabaseDatabaseExtension: API.OperationMethod<
+  ListHostingPrivateDatabaseDatabaseExtensionRequest,
+  ListHostingPrivateDatabaseDatabaseExtensionResponse,
+  ListHostingPrivateDatabaseDatabaseExtensionError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListHostingPrivateDatabaseDatabaseExtensionRequest,
+  output: ListHostingPrivateDatabaseDatabaseExtensionResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListHostingPrivateDatabaseDumpError = OvhOpError;
+/** Get all database dump from a Web Cloud Database */
+export const listHostingPrivateDatabaseDump: API.OperationMethod<
+  ListHostingPrivateDatabaseDumpRequest,
+  ListHostingPrivateDatabaseDumpResponse,
+  ListHostingPrivateDatabaseDumpError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListHostingPrivateDatabaseDumpRequest,
+  output: ListHostingPrivateDatabaseDumpResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListHostingPrivateDatabaseLogKindError = OvhOpError;
+/** List available log kinds */
+export const listHostingPrivateDatabaseLogKind: API.OperationMethod<
+  ListHostingPrivateDatabaseLogKindRequest,
+  ListHostingPrivateDatabaseLogKindResponse,
+  ListHostingPrivateDatabaseLogKindError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListHostingPrivateDatabaseLogKindRequest,
+  output: ListHostingPrivateDatabaseLogKindResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListHostingPrivateDatabaseLogSubscriptionError = OvhOpError;
+/** List subscription IDs for Web Cloud Database */
+export const listHostingPrivateDatabaseLogSubscription: API.OperationMethod<
+  ListHostingPrivateDatabaseLogSubscriptionRequest,
+  ListHostingPrivateDatabaseLogSubscriptionResponse,
+  ListHostingPrivateDatabaseLogSubscriptionError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListHostingPrivateDatabaseLogSubscriptionRequest,
+  output: ListHostingPrivateDatabaseLogSubscriptionResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListHostingPrivateDatabaseOomError = OvhOpError;
+/** List of privatesql OOM kill */
+export const listHostingPrivateDatabaseOom: API.OperationMethod<
+  ListHostingPrivateDatabaseOomRequest,
+  ListHostingPrivateDatabaseOomResponse,
+  ListHostingPrivateDatabaseOomError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListHostingPrivateDatabaseOomRequest,
+  output: ListHostingPrivateDatabaseOomResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListHostingPrivateDatabaseTasksError = OvhOpError;
+/** List tasks for a Webcloud Database */
+export const listHostingPrivateDatabaseTasks: API.OperationMethod<
+  ListHostingPrivateDatabaseTasksRequest,
+  ListHostingPrivateDatabaseTasksResponse,
+  ListHostingPrivateDatabaseTasksError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListHostingPrivateDatabaseTasksRequest,
+  output: ListHostingPrivateDatabaseTasksResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListHostingPrivateDatabaseUserError = OvhOpError;
+/** List users on a Web Cloud Database */
+export const listHostingPrivateDatabaseUser: API.OperationMethod<
+  ListHostingPrivateDatabaseUserRequest,
+  ListHostingPrivateDatabaseUserResponse,
+  ListHostingPrivateDatabaseUserError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListHostingPrivateDatabaseUserRequest,
+  output: ListHostingPrivateDatabaseUserResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListHostingPrivateDatabaseUserGrantError = OvhOpError;
+/** Get all information about the grants for a user in a Web Cloud Database */
+export const listHostingPrivateDatabaseUserGrant: API.OperationMethod<
+  ListHostingPrivateDatabaseUserGrantRequest,
+  ListHostingPrivateDatabaseUserGrantResponse,
+  ListHostingPrivateDatabaseUserGrantError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListHostingPrivateDatabaseUserGrantRequest,
+  output: ListHostingPrivateDatabaseUserGrantResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListHostingPrivateDatabaseWebsError = OvhOpError;
+/** List linked webs */
+export const listHostingPrivateDatabaseWebs: API.OperationMethod<
+  ListHostingPrivateDatabaseWebsRequest,
+  ListHostingPrivateDatabaseWebsResponse,
+  ListHostingPrivateDatabaseWebsError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListHostingPrivateDatabaseWebsRequest,
+  output: ListHostingPrivateDatabaseWebsResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListHostingPrivateDatabaseWhitelistError = OvhOpError;
+/** List whitelists on a Web Cloud Database */
+export const listHostingPrivateDatabaseWhitelist: API.OperationMethod<
+  ListHostingPrivateDatabaseWhitelistRequest,
+  ListHostingPrivateDatabaseWhitelistResponse,
+  ListHostingPrivateDatabaseWhitelistError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListHostingPrivateDatabaseWhitelistRequest,
+  output: ListHostingPrivateDatabaseWhitelistResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutHostingPrivateDatabaseError = OvhOpError;
 /** Alter a Web Cloud Database properties */
-export const putHostingPrivateDatabaseServiceName: API.OperationMethod<
-  PutHostingPrivateDatabaseServiceNameRequest,
-  PutHostingPrivateDatabaseServiceNameResponse,
-  PutHostingPrivateDatabaseServiceNameError,
+export const putHostingPrivateDatabase: API.OperationMethod<
+  PutHostingPrivateDatabaseRequest,
+  PutHostingPrivateDatabaseResponse,
+  PutHostingPrivateDatabaseError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutHostingPrivateDatabaseServiceNameRequest,
-  output: PutHostingPrivateDatabaseServiceNameResponse,
+  input: PutHostingPrivateDatabaseRequest,
+  output: PutHostingPrivateDatabaseResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutHostingPrivateDatabaseServiceNameServiceInfosError = OvhOpError;
+export type PutHostingPrivateDatabaseServiceInfosError = OvhOpError;
 /** Update service information */
-export const putHostingPrivateDatabaseServiceNameServiceInfos: API.OperationMethod<
-  PutHostingPrivateDatabaseServiceNameServiceInfosRequest,
-  PutHostingPrivateDatabaseServiceNameServiceInfosResponse,
-  PutHostingPrivateDatabaseServiceNameServiceInfosError,
+export const putHostingPrivateDatabaseServiceInfos: API.OperationMethod<
+  PutHostingPrivateDatabaseServiceInfosRequest,
+  PutHostingPrivateDatabaseServiceInfosResponse,
+  PutHostingPrivateDatabaseServiceInfosError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutHostingPrivateDatabaseServiceNameServiceInfosRequest,
-  output: PutHostingPrivateDatabaseServiceNameServiceInfosResponse,
+  input: PutHostingPrivateDatabaseServiceInfosRequest,
+  output: PutHostingPrivateDatabaseServiceInfosResponse,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutHostingPrivateDatabaseServiceNameWhitelistIpError = OvhOpError;
+export type PutHostingPrivateDatabaseWhitelistError = OvhOpError;
 /** Update an IP whitelist in a Web Cloud Database */
-export const putHostingPrivateDatabaseServiceNameWhitelistIp: API.OperationMethod<
-  PutHostingPrivateDatabaseServiceNameWhitelistIpRequest,
-  PutHostingPrivateDatabaseServiceNameWhitelistIpResponse,
-  PutHostingPrivateDatabaseServiceNameWhitelistIpError,
+export const putHostingPrivateDatabaseWhitelist: API.OperationMethod<
+  PutHostingPrivateDatabaseWhitelistRequest,
+  PutHostingPrivateDatabaseWhitelistResponse,
+  PutHostingPrivateDatabaseWhitelistError,
   OvhOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutHostingPrivateDatabaseServiceNameWhitelistIpRequest,
-  output: PutHostingPrivateDatabaseServiceNameWhitelistIpResponse,
+  input: PutHostingPrivateDatabaseWhitelistRequest,
+  output: PutHostingPrivateDatabaseWhitelistResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RestartHostingPrivateDatabaseError = OvhOpError;
+/** Restart the Web Cloud Database */
+export const restartHostingPrivateDatabase: API.OperationMethod<
+  RestartHostingPrivateDatabaseRequest,
+  HostingPrivateDatabaseTask,
+  RestartHostingPrivateDatabaseError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RestartHostingPrivateDatabaseRequest,
+  output: HostingPrivateDatabaseTask,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RestoreHostingPrivateDatabaseDatabaseDumpError = OvhOpError;
+/** Request the restore from this dump */
+export const restoreHostingPrivateDatabaseDatabaseDump: API.OperationMethod<
+  RestoreHostingPrivateDatabaseDatabaseDumpRequest,
+  HostingPrivateDatabaseTask,
+  RestoreHostingPrivateDatabaseDatabaseDumpError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RestoreHostingPrivateDatabaseDatabaseDumpRequest,
+  output: HostingPrivateDatabaseTask,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RestoreHostingPrivateDatabaseDumpError = OvhOpError;
+/** Restore a database dump into a Web Cloud Database */
+export const restoreHostingPrivateDatabaseDump: API.OperationMethod<
+  RestoreHostingPrivateDatabaseDumpRequest,
+  HostingPrivateDatabaseTask,
+  RestoreHostingPrivateDatabaseDumpError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RestoreHostingPrivateDatabaseDumpRequest,
+  output: HostingPrivateDatabaseTask,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type TerminateHostingPrivateDatabaseError = OvhOpError;
+/** Ask for the termination of your service */
+export const terminateHostingPrivateDatabase: API.OperationMethod<
+  TerminateHostingPrivateDatabaseRequest,
+  TerminateHostingPrivateDatabaseResponse,
+  TerminateHostingPrivateDatabaseError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: TerminateHostingPrivateDatabaseRequest,
+  output: TerminateHostingPrivateDatabaseResponse,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateHostingPrivateDatabaseConfigError = OvhOpError;
+/** Update the configuration of this Web Cloud Database */
+export const updateHostingPrivateDatabaseConfig: API.OperationMethod<
+  UpdateHostingPrivateDatabaseConfigRequest,
+  HostingPrivateDatabaseConfigs,
+  UpdateHostingPrivateDatabaseConfigError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateHostingPrivateDatabaseConfigRequest,
+  output: HostingPrivateDatabaseConfigs,
+  errors: [UnknownOvhError],
+  protocol: OvhProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateHostingPrivateDatabaseUserGrantError = OvhOpError;
+/** Update the permissions of a grant for a user on a Web Cloud Database */
+export const updateHostingPrivateDatabaseUserGrant: API.OperationMethod<
+  UpdateHostingPrivateDatabaseUserGrantRequest,
+  HostingPrivateDatabaseTask,
+  UpdateHostingPrivateDatabaseUserGrantError,
+  OvhOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateHostingPrivateDatabaseUserGrantRequest,
+  output: HostingPrivateDatabaseTask,
   errors: [UnknownOvhError],
   protocol: OvhProtocol,
   retry: Retry.Retry,
