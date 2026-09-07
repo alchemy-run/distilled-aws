@@ -171,6 +171,12 @@
     },
     {
       "path": "./packages/workos/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/adyen/tsconfig.json"
+    },
+    {
+      "path": "./packages/adyen/tsconfig.scripts.json"
     }
   ]
 }
