@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.resend.api#GetEmailsRequest": {
+    "com.resend.api#ListEmailsRequest": {
       "type": "structure",
       "members": {
         "limit": {
@@ -188,10 +189,10 @@
         "smithy.api#documentation": "Array containing email information."
       }
     },
-    "com.resend.api#GetEmails": {
+    "com.resend.api#ListEmails": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#GetEmailsRequest"
+        "target": "com.resend.api#ListEmailsRequest"
       },
       "output": {
         "target": "com.resend.api#ListEmailsResponse"
@@ -205,91 +206,91 @@
         "smithy.api#documentation": "Retrieve a list of emails"
       }
     },
-    "com.resend.api#PostEmailsRequestToCase1List": {
+    "com.resend.api#CreateEmailRequestToCase1List": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.resend.api#PostEmailsRequestTo": {
+    "com.resend.api#CreateEmailRequestTo": {
       "type": "union",
       "members": {
         "Case0": {
           "target": "smithy.api#String"
         },
         "Case1": {
-          "target": "com.resend.api#PostEmailsRequestToCase1List"
+          "target": "com.resend.api#CreateEmailRequestToCase1List"
         }
       },
       "traits": {
         "smithy.api#documentation": "Recipient email address. For multiple addresses, send as an array of strings. Max 50."
       }
     },
-    "com.resend.api#PostEmailsRequestBccCase1List": {
+    "com.resend.api#CreateEmailRequestBccCase1List": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.resend.api#PostEmailsRequestBcc": {
+    "com.resend.api#CreateEmailRequestBcc": {
       "type": "union",
       "members": {
         "Case0": {
           "target": "smithy.api#String"
         },
         "Case1": {
-          "target": "com.resend.api#PostEmailsRequestBccCase1List"
+          "target": "com.resend.api#CreateEmailRequestBccCase1List"
         }
       },
       "traits": {
         "smithy.api#documentation": "Bcc recipient email address. For multiple addresses, send as an array of strings."
       }
     },
-    "com.resend.api#PostEmailsRequestCcCase1List": {
+    "com.resend.api#CreateEmailRequestCcCase1List": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.resend.api#PostEmailsRequestCc": {
+    "com.resend.api#CreateEmailRequestCc": {
       "type": "union",
       "members": {
         "Case0": {
           "target": "smithy.api#String"
         },
         "Case1": {
-          "target": "com.resend.api#PostEmailsRequestCcCase1List"
+          "target": "com.resend.api#CreateEmailRequestCcCase1List"
         }
       },
       "traits": {
         "smithy.api#documentation": "Cc recipient email address. For multiple addresses, send as an array of strings."
       }
     },
-    "com.resend.api#PostEmailsRequestReplyToCase1List": {
+    "com.resend.api#CreateEmailRequestReplyToCase1List": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.resend.api#PostEmailsRequestReplyTo": {
+    "com.resend.api#CreateEmailRequestReplyTo": {
       "type": "union",
       "members": {
         "Case0": {
           "target": "smithy.api#String"
         },
         "Case1": {
-          "target": "com.resend.api#PostEmailsRequestReplyToCase1List"
+          "target": "com.resend.api#CreateEmailRequestReplyToCase1List"
         }
       },
       "traits": {
         "smithy.api#documentation": "Reply-to email address. For multiple addresses, send as an array of strings."
       }
     },
-    "com.resend.api#PostEmailsRequestTemplateVariablesValue": {
+    "com.resend.api#CreateEmailRequestTemplateVariablesValue": {
       "type": "union",
       "members": {
         "Case0": {
@@ -301,19 +302,19 @@
       },
       "traits": {}
     },
-    "com.resend.api#PostEmailsRequestTemplateVariablesMap": {
+    "com.resend.api#CreateEmailRequestTemplateVariablesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "com.resend.api#PostEmailsRequestTemplateVariablesValue"
+        "target": "com.resend.api#CreateEmailRequestTemplateVariablesValue"
       },
       "traits": {
         "smithy.api#documentation": "Template variables object with key/value pairs."
       }
     },
-    "com.resend.api#PostEmailsRequestTemplate": {
+    "com.resend.api#CreateEmailRequestTemplate": {
       "type": "structure",
       "members": {
         "id": {
@@ -324,7 +325,7 @@
           }
         },
         "variables": {
-          "target": "com.resend.api#PostEmailsRequestTemplateVariablesMap",
+          "target": "com.resend.api#CreateEmailRequestTemplateVariablesMap",
           "traits": {
             "smithy.api#documentation": "Template variables object with key/value pairs."
           }
@@ -368,7 +369,7 @@
       },
       "traits": {}
     },
-    "com.resend.api#PostEmailsRequestAttachmentsList": {
+    "com.resend.api#CreateEmailRequestAttachmentsList": {
       "type": "list",
       "member": {
         "target": "com.resend.api#Attachment"
@@ -393,14 +394,14 @@
       },
       "traits": {}
     },
-    "com.resend.api#PostEmailsRequestTagsList": {
+    "com.resend.api#CreateEmailRequestTagsList": {
       "type": "list",
       "member": {
         "target": "com.resend.api#Tag"
       },
       "traits": {}
     },
-    "com.resend.api#PostEmailsRequest": {
+    "com.resend.api#CreateEmailRequest": {
       "type": "structure",
       "members": {
         "from": {
@@ -411,7 +412,7 @@
           }
         },
         "to": {
-          "target": "com.resend.api#PostEmailsRequestTo",
+          "target": "com.resend.api#CreateEmailRequestTo",
           "traits": {
             "smithy.api#documentation": "Recipient email address. For multiple addresses, send as an array of strings. Max 50.",
             "smithy.api#required": {}
@@ -425,19 +426,19 @@
           }
         },
         "bcc": {
-          "target": "com.resend.api#PostEmailsRequestBcc",
+          "target": "com.resend.api#CreateEmailRequestBcc",
           "traits": {
             "smithy.api#documentation": "Bcc recipient email address. For multiple addresses, send as an array of strings."
           }
         },
         "cc": {
-          "target": "com.resend.api#PostEmailsRequestCc",
+          "target": "com.resend.api#CreateEmailRequestCc",
           "traits": {
             "smithy.api#documentation": "Cc recipient email address. For multiple addresses, send as an array of strings."
           }
         },
         "reply_to": {
-          "target": "com.resend.api#PostEmailsRequestReplyTo",
+          "target": "com.resend.api#CreateEmailRequestReplyTo",
           "traits": {
             "smithy.api#documentation": "Reply-to email address. For multiple addresses, send as an array of strings."
           }
@@ -455,7 +456,7 @@
           }
         },
         "template": {
-          "target": "com.resend.api#PostEmailsRequestTemplate"
+          "target": "com.resend.api#CreateEmailRequestTemplate"
         },
         "headers": {
           "target": "smithy.api#Document",
@@ -470,10 +471,10 @@
           }
         },
         "attachments": {
-          "target": "com.resend.api#PostEmailsRequestAttachmentsList"
+          "target": "com.resend.api#CreateEmailRequestAttachmentsList"
         },
         "tags": {
-          "target": "com.resend.api#PostEmailsRequestTagsList"
+          "target": "com.resend.api#CreateEmailRequestTagsList"
         },
         "topic_id": {
           "target": "smithy.api#String",
@@ -498,10 +499,10 @@
       },
       "traits": {}
     },
-    "com.resend.api#PostEmails": {
+    "com.resend.api#CreateEmail": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#PostEmailsRequest"
+        "target": "com.resend.api#CreateEmailRequest"
       },
       "output": {
         "target": "com.resend.api#SendEmailResponse"
@@ -515,7 +516,7 @@
         "smithy.api#documentation": "Send an email"
       }
     },
-    "com.resend.api#GetEmailsEmailIdRequest": {
+    "com.resend.api#GetEmailRequest": {
       "type": "structure",
       "members": {
         "email_id": {
@@ -531,10 +532,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.resend.api#GetEmailsEmailId": {
+    "com.resend.api#GetEmail": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#GetEmailsEmailIdRequest"
+        "target": "com.resend.api#GetEmailRequest"
       },
       "output": {
         "target": "com.resend.api#Email"
@@ -548,7 +549,7 @@
         "smithy.api#documentation": "Retrieve a single email"
       }
     },
-    "com.resend.api#PatchEmailsEmailIdRequest": {
+    "com.resend.api#UpdateEmailRequest": {
       "type": "structure",
       "members": {
         "email_id": {
@@ -576,10 +577,10 @@
       },
       "traits": {}
     },
-    "com.resend.api#PatchEmailsEmailId": {
+    "com.resend.api#UpdateEmail": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#PatchEmailsEmailIdRequest"
+        "target": "com.resend.api#UpdateEmailRequest"
       },
       "output": {
         "target": "com.resend.api#UpdateEmailOptions"
@@ -593,7 +594,7 @@
         "smithy.api#documentation": "Update a single email"
       }
     },
-    "com.resend.api#PostEmailsEmailIdCancelRequest": {
+    "com.resend.api#CancelEmailRequest": {
       "type": "structure",
       "members": {
         "email_id": {
@@ -609,10 +610,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.resend.api#PostEmailsEmailIdCancel": {
+    "com.resend.api#CancelEmail": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#PostEmailsEmailIdCancelRequest"
+        "target": "com.resend.api#CancelEmailRequest"
       },
       "output": {
         "target": "com.resend.api#Email"
@@ -851,18 +852,18 @@
       },
       "traits": {}
     },
-    "com.resend.api#PostEmailsBatchRequestBodyList": {
+    "com.resend.api#CreateEmailBatchRequestBodyList": {
       "type": "list",
       "member": {
         "target": "com.resend.api#SendEmailRequest"
       },
       "traits": {}
     },
-    "com.resend.api#PostEmailsBatchRequest": {
+    "com.resend.api#CreateEmailBatchRequest": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.resend.api#PostEmailsBatchRequestBodyList",
+          "target": "com.resend.api#CreateEmailBatchRequestBodyList",
           "traits": {
             "smithy.api#httpPayload": {}
           }
@@ -900,10 +901,10 @@
       },
       "traits": {}
     },
-    "com.resend.api#PostEmailsBatch": {
+    "com.resend.api#CreateEmailBatch": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#PostEmailsBatchRequest"
+        "target": "com.resend.api#CreateEmailBatchRequest"
       },
       "output": {
         "target": "com.resend.api#CreateBatchEmailsResponse"
@@ -917,7 +918,7 @@
         "smithy.api#documentation": "Trigger up to 100 batch emails at once."
       }
     },
-    "com.resend.api#GetEmailsEmailIdAttachmentsRequest": {
+    "com.resend.api#ListEmailAttachmentsRequest": {
       "type": "structure",
       "members": {
         "email_id": {
@@ -1061,10 +1062,10 @@
         "smithy.api#documentation": "Array containing attachment information."
       }
     },
-    "com.resend.api#GetEmailsEmailIdAttachments": {
+    "com.resend.api#ListEmailAttachments": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#GetEmailsEmailIdAttachmentsRequest"
+        "target": "com.resend.api#ListEmailAttachmentsRequest"
       },
       "output": {
         "target": "com.resend.api#ListAttachmentsResponse"
@@ -1078,7 +1079,7 @@
         "smithy.api#documentation": "Retrieve a list of attachments for a sent email"
       }
     },
-    "com.resend.api#GetEmailsEmailIdAttachmentsAttachmentIdRequest": {
+    "com.resend.api#GetEmailAttachmentRequest": {
       "type": "structure",
       "members": {
         "email_id": {
@@ -1182,10 +1183,10 @@
         "smithy.api#documentation": "How the attachment should be displayed."
       }
     },
-    "com.resend.api#GetEmailsEmailIdAttachmentsAttachmentId": {
+    "com.resend.api#GetEmailAttachment": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#GetEmailsEmailIdAttachmentsAttachmentIdRequest"
+        "target": "com.resend.api#GetEmailAttachmentRequest"
       },
       "output": {
         "target": "com.resend.api#RetrievedAttachment"
@@ -1199,7 +1200,7 @@
         "smithy.api#documentation": "Retrieve a single attachment for a sent email"
       }
     },
-    "com.resend.api#GetEmailsReceivingRequest": {
+    "com.resend.api#ListEmailReceivingRequest": {
       "type": "structure",
       "members": {
         "limit": {
@@ -1438,10 +1439,10 @@
         "smithy.api#documentation": "Array containing received email information."
       }
     },
-    "com.resend.api#GetEmailsReceiving": {
+    "com.resend.api#ListEmailReceiving": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#GetEmailsReceivingRequest"
+        "target": "com.resend.api#ListEmailReceivingRequest"
       },
       "output": {
         "target": "com.resend.api#ListReceivedEmailsResponse"
@@ -1455,7 +1456,7 @@
         "smithy.api#documentation": "Retrieve a list of received emails"
       }
     },
-    "com.resend.api#GetEmailsReceivingEmailIdRequest": {
+    "com.resend.api#GetEmailReceivingRequest": {
       "type": "structure",
       "members": {
         "email_id": {
@@ -1674,10 +1675,10 @@
         "smithy.api#documentation": "Array of attachments."
       }
     },
-    "com.resend.api#GetEmailsReceivingEmailId": {
+    "com.resend.api#GetEmailReceiving": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#GetEmailsReceivingEmailIdRequest"
+        "target": "com.resend.api#GetEmailReceivingRequest"
       },
       "output": {
         "target": "com.resend.api#GetReceivedEmailResponse"
@@ -1691,7 +1692,7 @@
         "smithy.api#documentation": "Retrieve a single received email"
       }
     },
-    "com.resend.api#GetEmailsReceivingEmailIdAttachmentsRequest": {
+    "com.resend.api#ListEmailReceivingAttachmentsRequest": {
       "type": "structure",
       "members": {
         "email_id": {
@@ -1728,10 +1729,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.resend.api#GetEmailsReceivingEmailIdAttachments": {
+    "com.resend.api#ListEmailReceivingAttachments": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#GetEmailsReceivingEmailIdAttachmentsRequest"
+        "target": "com.resend.api#ListEmailReceivingAttachmentsRequest"
       },
       "output": {
         "target": "com.resend.api#ListAttachmentsResponse"
@@ -1745,7 +1746,7 @@
         "smithy.api#documentation": "Retrieve a list of attachments for a received email"
       }
     },
-    "com.resend.api#GetEmailsReceivingEmailIdAttachmentsAttachmentIdRequest": {
+    "com.resend.api#GetEmailReceivingAttachmentRequest": {
       "type": "structure",
       "members": {
         "email_id": {
@@ -1769,10 +1770,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.resend.api#GetEmailsReceivingEmailIdAttachmentsAttachmentId": {
+    "com.resend.api#GetEmailReceivingAttachment": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#GetEmailsReceivingEmailIdAttachmentsAttachmentIdRequest"
+        "target": "com.resend.api#GetEmailReceivingAttachmentRequest"
       },
       "output": {
         "target": "com.resend.api#RetrievedAttachment"
@@ -1786,7 +1787,7 @@
         "smithy.api#documentation": "Retrieve a single attachment for a received email"
       }
     },
-    "com.resend.api#GetDomainsRequest": {
+    "com.resend.api#ListDomainsRequest": {
       "type": "structure",
       "members": {
         "limit": {
@@ -1942,10 +1943,10 @@
       },
       "traits": {}
     },
-    "com.resend.api#GetDomains": {
+    "com.resend.api#ListDomains": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#GetDomainsRequest"
+        "target": "com.resend.api#ListDomainsRequest"
       },
       "output": {
         "target": "com.resend.api#ListDomainsResponse"
@@ -1959,7 +1960,7 @@
         "smithy.api#documentation": "Retrieve a list of domains"
       }
     },
-    "com.resend.api#PostDomainsRequestRegion": {
+    "com.resend.api#CreateDomainRequestRegion": {
       "type": "enum",
       "members": {
         "US_EAST_1": {
@@ -1991,7 +1992,7 @@
         "smithy.api#documentation": "The region where emails will be sent from. Possible values are us-east-1 | eu-west-1 | sa-east-1 | ap-northeast-1"
       }
     },
-    "com.resend.api#PostDomainsRequestTls": {
+    "com.resend.api#CreateDomainRequestTls": {
       "type": "enum",
       "members": {
         "OPPORTUNISTIC": {
@@ -2011,7 +2012,7 @@
         "smithy.api#documentation": "TLS mode. Opportunistic attempts secure connection but falls back to unencrypted. Enforced requires TLS or email won't be sent."
       }
     },
-    "com.resend.api#PostDomainsRequest": {
+    "com.resend.api#CreateDomainRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -2022,7 +2023,7 @@
           }
         },
         "region": {
-          "target": "com.resend.api#PostDomainsRequestRegion",
+          "target": "com.resend.api#CreateDomainRequestRegion",
           "traits": {
             "smithy.api#documentation": "The region where emails will be sent from. Possible values are us-east-1 | eu-west-1 | sa-east-1 | ap-northeast-1"
           }
@@ -2046,7 +2047,7 @@
           }
         },
         "tls": {
-          "target": "com.resend.api#PostDomainsRequestTls",
+          "target": "com.resend.api#CreateDomainRequestTls",
           "traits": {
             "smithy.api#documentation": "TLS mode. Opportunistic attempts secure connection but falls back to unencrypted. Enforced requires TLS or email won't be sent."
           }
@@ -2276,10 +2277,10 @@
       },
       "traits": {}
     },
-    "com.resend.api#PostDomains": {
+    "com.resend.api#CreateDomain": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#PostDomainsRequest"
+        "target": "com.resend.api#CreateDomainRequest"
       },
       "output": {
         "target": "com.resend.api#CreateDomainResponse"
@@ -2293,7 +2294,7 @@
         "smithy.api#documentation": "Create a new domain"
       }
     },
-    "com.resend.api#GetDomainsDomainIdRequest": {
+    "com.resend.api#GetDomainRequest": {
       "type": "structure",
       "members": {
         "domain_id": {
@@ -2382,10 +2383,10 @@
       },
       "traits": {}
     },
-    "com.resend.api#GetDomainsDomainId": {
+    "com.resend.api#GetDomain": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#GetDomainsDomainIdRequest"
+        "target": "com.resend.api#GetDomainRequest"
       },
       "output": {
         "target": "com.resend.api#Domain"
@@ -2399,7 +2400,7 @@
         "smithy.api#documentation": "Retrieve a single domain"
       }
     },
-    "com.resend.api#PatchDomainsDomainIdRequest": {
+    "com.resend.api#UpdateDomainRequest": {
       "type": "structure",
       "members": {
         "domain_id": {
@@ -2460,10 +2461,10 @@
       },
       "traits": {}
     },
-    "com.resend.api#PatchDomainsDomainId": {
+    "com.resend.api#UpdateDomain": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#PatchDomainsDomainIdRequest"
+        "target": "com.resend.api#UpdateDomainRequest"
       },
       "output": {
         "target": "com.resend.api#UpdateDomainResponseSuccess"
@@ -2477,7 +2478,7 @@
         "smithy.api#documentation": "Update an existing domain"
       }
     },
-    "com.resend.api#DeleteDomainsDomainIdRequest": {
+    "com.resend.api#DeleteDomainRequest": {
       "type": "structure",
       "members": {
         "domain_id": {
@@ -2517,10 +2518,10 @@
       },
       "traits": {}
     },
-    "com.resend.api#DeleteDomainsDomainId": {
+    "com.resend.api#DeleteDomain": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#DeleteDomainsDomainIdRequest"
+        "target": "com.resend.api#DeleteDomainRequest"
       },
       "output": {
         "target": "com.resend.api#DeleteDomainResponse"
@@ -2534,7 +2535,7 @@
         "smithy.api#documentation": "Remove an existing domain"
       }
     },
-    "com.resend.api#PostDomainsDomainIdVerifyRequest": {
+    "com.resend.api#VerifyDomainRequest": {
       "type": "structure",
       "members": {
         "domain_id": {
@@ -2568,10 +2569,10 @@
       },
       "traits": {}
     },
-    "com.resend.api#PostDomainsDomainIdVerify": {
+    "com.resend.api#VerifyDomain": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#PostDomainsDomainIdVerifyRequest"
+        "target": "com.resend.api#VerifyDomainRequest"
       },
       "output": {
         "target": "com.resend.api#VerifyDomainResponse"
@@ -2585,7 +2586,7 @@
         "smithy.api#documentation": "Verify an existing domain\n\nTriggers verification of the domain's DNS records including DKIM, SPF, and the tracking CNAME (if a tracking subdomain is configured)."
       }
     },
-    "com.resend.api#GetApiKeysRequest": {
+    "com.resend.api#ListApiKeysRequest": {
       "type": "structure",
       "members": {
         "limit": {
@@ -2673,10 +2674,10 @@
       },
       "traits": {}
     },
-    "com.resend.api#GetApiKeys": {
+    "com.resend.api#ListApiKeys": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#GetApiKeysRequest"
+        "target": "com.resend.api#ListApiKeysRequest"
       },
       "output": {
         "target": "com.resend.api#ListApiKeysResponse"
@@ -2690,7 +2691,7 @@
         "smithy.api#documentation": "Retrieve a list of API keys"
       }
     },
-    "com.resend.api#PostApiKeysRequestPermission": {
+    "com.resend.api#CreateApiKeyRequestPermission": {
       "type": "enum",
       "members": {
         "FULL_ACCESS": {
@@ -2710,7 +2711,7 @@
         "smithy.api#documentation": "The API key can have full access to Resend’s API or be only restricted to send emails. * full_access - Can create, delete, get, and update any resource. * sending_access - Can only send emails."
       }
     },
-    "com.resend.api#PostApiKeysRequest": {
+    "com.resend.api#CreateApiKeyRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -2721,7 +2722,7 @@
           }
         },
         "permission": {
-          "target": "com.resend.api#PostApiKeysRequestPermission",
+          "target": "com.resend.api#CreateApiKeyRequestPermission",
           "traits": {
             "smithy.api#documentation": "The API key can have full access to Resend’s API or be only restricted to send emails. * full_access - Can create, delete, get, and update any resource. * sending_access - Can only send emails."
           }
@@ -2755,10 +2756,10 @@
       },
       "traits": {}
     },
-    "com.resend.api#PostApiKeys": {
+    "com.resend.api#CreateApiKey": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#PostApiKeysRequest"
+        "target": "com.resend.api#CreateApiKeyRequest"
       },
       "output": {
         "target": "com.resend.api#CreateApiKeyResponse"
@@ -2772,7 +2773,7 @@
         "smithy.api#documentation": "Create a new API key"
       }
     },
-    "com.resend.api#DeleteApiKeysApiKeyIdRequest": {
+    "com.resend.api#DeleteApiKeyRequest": {
       "type": "structure",
       "members": {
         "api_key_id": {
@@ -2812,10 +2813,10 @@
       },
       "traits": {}
     },
-    "com.resend.api#DeleteApiKeysApiKeyId": {
+    "com.resend.api#DeleteApiKey": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#DeleteApiKeysApiKeyIdRequest"
+        "target": "com.resend.api#DeleteApiKeyRequest"
       },
       "output": {
         "target": "com.resend.api#DeleteApiKeyResponse"
@@ -2829,7 +2830,7 @@
         "smithy.api#documentation": "Remove an existing API key"
       }
     },
-    "com.resend.api#GetTemplatesRequest": {
+    "com.resend.api#ListTemplatesRequest": {
       "type": "structure",
       "members": {
         "limit": {
@@ -2960,10 +2961,10 @@
         "smithy.api#documentation": "Array containing templates information."
       }
     },
-    "com.resend.api#GetTemplates": {
+    "com.resend.api#ListTemplates": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#GetTemplatesRequest"
+        "target": "com.resend.api#ListTemplatesRequest"
       },
       "output": {
         "target": "com.resend.api#ListTemplatesResponseSuccess"
@@ -2977,7 +2978,7 @@
         "smithy.api#documentation": "Retrieve a list of templates"
       }
     },
-    "com.resend.api#PostTemplatesRequestReplyToList": {
+    "com.resend.api#CreateTemplateRequestReplyToList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -3080,14 +3081,14 @@
         "smithy.api#documentation": "The fallback value of the variable."
       }
     },
-    "com.resend.api#PostTemplatesRequestVariablesList": {
+    "com.resend.api#CreateTemplateRequestVariablesList": {
       "type": "list",
       "member": {
         "target": "com.resend.api#TemplateVariableInput"
       },
       "traits": {}
     },
-    "com.resend.api#PostTemplatesRequest": {
+    "com.resend.api#CreateTemplateRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -3116,7 +3117,7 @@
           }
         },
         "reply_to": {
-          "target": "com.resend.api#PostTemplatesRequestReplyToList",
+          "target": "com.resend.api#CreateTemplateRequestReplyToList",
           "traits": {
             "smithy.api#documentation": "Reply-to email addresses."
           }
@@ -3135,7 +3136,7 @@
           }
         },
         "variables": {
-          "target": "com.resend.api#PostTemplatesRequestVariablesList"
+          "target": "com.resend.api#CreateTemplateRequestVariablesList"
         }
       },
       "traits": {
@@ -3160,10 +3161,10 @@
       },
       "traits": {}
     },
-    "com.resend.api#PostTemplates": {
+    "com.resend.api#CreateTemplate": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#PostTemplatesRequest"
+        "target": "com.resend.api#CreateTemplateRequest"
       },
       "output": {
         "target": "com.resend.api#CreateTemplateResponseSuccess"
@@ -3177,7 +3178,7 @@
         "smithy.api#documentation": "Create a template"
       }
     },
-    "com.resend.api#GetTemplatesIdRequest": {
+    "com.resend.api#GetTemplateRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -3442,10 +3443,10 @@
         "smithy.api#documentation": "The publication status of the template."
       }
     },
-    "com.resend.api#GetTemplatesId": {
+    "com.resend.api#GetTemplate": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#GetTemplatesIdRequest"
+        "target": "com.resend.api#GetTemplateRequest"
       },
       "output": {
         "target": "com.resend.api#Template"
@@ -3459,7 +3460,7 @@
         "smithy.api#documentation": "Retrieve a single template"
       }
     },
-    "com.resend.api#PatchTemplatesIdRequestReplyToList": {
+    "com.resend.api#UpdateTemplateRequestReplyToList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -3468,14 +3469,14 @@
         "smithy.api#documentation": "Reply-to email addresses."
       }
     },
-    "com.resend.api#PatchTemplatesIdRequestVariablesList": {
+    "com.resend.api#UpdateTemplateRequestVariablesList": {
       "type": "list",
       "member": {
         "target": "com.resend.api#TemplateVariableInput"
       },
       "traits": {}
     },
-    "com.resend.api#PatchTemplatesIdRequest": {
+    "com.resend.api#UpdateTemplateRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -3511,7 +3512,7 @@
           }
         },
         "reply_to": {
-          "target": "com.resend.api#PatchTemplatesIdRequestReplyToList",
+          "target": "com.resend.api#UpdateTemplateRequestReplyToList",
           "traits": {
             "smithy.api#documentation": "Reply-to email addresses."
           }
@@ -3529,7 +3530,7 @@
           }
         },
         "variables": {
-          "target": "com.resend.api#PatchTemplatesIdRequestVariablesList"
+          "target": "com.resend.api#UpdateTemplateRequestVariablesList"
         }
       },
       "traits": {
@@ -3554,10 +3555,10 @@
       },
       "traits": {}
     },
-    "com.resend.api#PatchTemplatesId": {
+    "com.resend.api#UpdateTemplate": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#PatchTemplatesIdRequest"
+        "target": "com.resend.api#UpdateTemplateRequest"
       },
       "output": {
         "target": "com.resend.api#UpdateTemplateResponseSuccess"
@@ -3571,7 +3572,7 @@
         "smithy.api#documentation": "Update an existing template"
       }
     },
-    "com.resend.api#DeleteTemplatesIdRequest": {
+    "com.resend.api#DeleteTemplateRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -3611,10 +3612,10 @@
       },
       "traits": {}
     },
-    "com.resend.api#DeleteTemplatesId": {
+    "com.resend.api#DeleteTemplate": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#DeleteTemplatesIdRequest"
+        "target": "com.resend.api#DeleteTemplateRequest"
       },
       "output": {
         "target": "com.resend.api#RemoveTemplateResponseSuccess"
@@ -3628,7 +3629,7 @@
         "smithy.api#documentation": "Remove an existing template"
       }
     },
-    "com.resend.api#PostTemplatesIdPublishRequest": {
+    "com.resend.api#PublishTemplateRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -3662,10 +3663,10 @@
       },
       "traits": {}
     },
-    "com.resend.api#PostTemplatesIdPublish": {
+    "com.resend.api#PublishTemplate": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#PostTemplatesIdPublishRequest"
+        "target": "com.resend.api#PublishTemplateRequest"
       },
       "output": {
         "target": "com.resend.api#PublishTemplateResponseSuccess"
@@ -3679,7 +3680,7 @@
         "smithy.api#documentation": "Publish a template"
       }
     },
-    "com.resend.api#PostTemplatesIdDuplicateRequest": {
+    "com.resend.api#DuplicateTemplateRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -3713,10 +3714,10 @@
       },
       "traits": {}
     },
-    "com.resend.api#PostTemplatesIdDuplicate": {
+    "com.resend.api#DuplicateTemplate": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#PostTemplatesIdDuplicateRequest"
+        "target": "com.resend.api#DuplicateTemplateRequest"
       },
       "output": {
         "target": "com.resend.api#DuplicateTemplateResponseSuccess"
@@ -3730,7 +3731,7 @@
         "smithy.api#documentation": "Duplicate a template"
       }
     },
-    "com.resend.api#GetContactsRequest": {
+    "com.resend.api#ListContactsRequest": {
       "type": "structure",
       "members": {
         "segment_id": {
@@ -3835,10 +3836,10 @@
         "smithy.api#documentation": "Array containing contact information."
       }
     },
-    "com.resend.api#GetContacts": {
+    "com.resend.api#ListContacts": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#GetContactsRequest"
+        "target": "com.resend.api#ListContactsRequest"
       },
       "output": {
         "target": "com.resend.api#ListContactsResponseSuccess"
@@ -3852,7 +3853,7 @@
         "smithy.api#documentation": "Retrieve a list of contacts"
       }
     },
-    "com.resend.api#PostContactsRequestPropertiesMap": {
+    "com.resend.api#CreateContactRequestPropertiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3864,7 +3865,7 @@
         "smithy.api#documentation": "A map of custom property keys and values to create."
       }
     },
-    "com.resend.api#PostContactsRequestSegmentsList": {
+    "com.resend.api#CreateContactRequestSegmentsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -3873,7 +3874,7 @@
         "smithy.api#documentation": "Array of segment IDs to add the contact to."
       }
     },
-    "com.resend.api#PostContactsRequestTopicsItemSubscription": {
+    "com.resend.api#CreateContactRequestTopicsItemSubscription": {
       "type": "enum",
       "members": {
         "OPT_IN": {
@@ -3893,7 +3894,7 @@
         "smithy.api#documentation": "The subscription status for this topic."
       }
     },
-    "com.resend.api#PostContactsRequestTopicsItem": {
+    "com.resend.api#CreateContactRequestTopicsItem": {
       "type": "structure",
       "members": {
         "id": {
@@ -3903,7 +3904,7 @@
           }
         },
         "subscription": {
-          "target": "com.resend.api#PostContactsRequestTopicsItemSubscription",
+          "target": "com.resend.api#CreateContactRequestTopicsItemSubscription",
           "traits": {
             "smithy.api#documentation": "The subscription status for this topic."
           }
@@ -3911,16 +3912,16 @@
       },
       "traits": {}
     },
-    "com.resend.api#PostContactsRequestTopicsList": {
+    "com.resend.api#CreateContactRequestTopicsList": {
       "type": "list",
       "member": {
-        "target": "com.resend.api#PostContactsRequestTopicsItem"
+        "target": "com.resend.api#CreateContactRequestTopicsItem"
       },
       "traits": {
         "smithy.api#documentation": "Array of topic subscriptions for the contact."
       }
     },
-    "com.resend.api#PostContactsRequest": {
+    "com.resend.api#CreateContactRequest": {
       "type": "structure",
       "members": {
         "email": {
@@ -3949,19 +3950,19 @@
           }
         },
         "properties": {
-          "target": "com.resend.api#PostContactsRequestPropertiesMap",
+          "target": "com.resend.api#CreateContactRequestPropertiesMap",
           "traits": {
             "smithy.api#documentation": "A map of custom property keys and values to create."
           }
         },
         "segments": {
-          "target": "com.resend.api#PostContactsRequestSegmentsList",
+          "target": "com.resend.api#CreateContactRequestSegmentsList",
           "traits": {
             "smithy.api#documentation": "Array of segment IDs to add the contact to."
           }
         },
         "topics": {
-          "target": "com.resend.api#PostContactsRequestTopicsList",
+          "target": "com.resend.api#CreateContactRequestTopicsList",
           "traits": {
             "smithy.api#documentation": "Array of topic subscriptions for the contact."
           }
@@ -3995,10 +3996,10 @@
       },
       "traits": {}
     },
-    "com.resend.api#PostContacts": {
+    "com.resend.api#CreateContact": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#PostContactsRequest"
+        "target": "com.resend.api#CreateContactRequest"
       },
       "output": {
         "target": "com.resend.api#CreateContactResponseSuccess"
@@ -4012,7 +4013,7 @@
         "smithy.api#documentation": "Create a new contact"
       }
     },
-    "com.resend.api#GetContactsIdRequest": {
+    "com.resend.api#GetContactRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -4094,10 +4095,10 @@
         "smithy.api#documentation": "A map of custom property keys and values."
       }
     },
-    "com.resend.api#GetContactsId": {
+    "com.resend.api#GetContact": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#GetContactsIdRequest"
+        "target": "com.resend.api#GetContactRequest"
       },
       "output": {
         "target": "com.resend.api#GetContactResponseSuccess"
@@ -4111,7 +4112,7 @@
         "smithy.api#documentation": "Retrieve a single contact by ID or email"
       }
     },
-    "com.resend.api#PatchContactsIdRequestPropertiesMap": {
+    "com.resend.api#UpdateContactRequestPropertiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4123,7 +4124,7 @@
         "smithy.api#documentation": "A map of custom property keys and values to update."
       }
     },
-    "com.resend.api#PatchContactsIdRequest": {
+    "com.resend.api#UpdateContactRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -4159,7 +4160,7 @@
           }
         },
         "properties": {
-          "target": "com.resend.api#PatchContactsIdRequestPropertiesMap",
+          "target": "com.resend.api#UpdateContactRequestPropertiesMap",
           "traits": {
             "smithy.api#documentation": "A map of custom property keys and values to update."
           }
@@ -4187,10 +4188,10 @@
       },
       "traits": {}
     },
-    "com.resend.api#PatchContactsId": {
+    "com.resend.api#UpdateContact": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#PatchContactsIdRequest"
+        "target": "com.resend.api#UpdateContactRequest"
       },
       "output": {
         "target": "com.resend.api#UpdateContactResponseSuccess"
@@ -4204,7 +4205,7 @@
         "smithy.api#documentation": "Update a single contact by ID or email"
       }
     },
-    "com.resend.api#DeleteContactsIdRequest": {
+    "com.resend.api#DeleteContactRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -4244,10 +4245,10 @@
       },
       "traits": {}
     },
-    "com.resend.api#DeleteContactsId": {
+    "com.resend.api#DeleteContact": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#DeleteContactsIdRequest"
+        "target": "com.resend.api#DeleteContactRequest"
       },
       "output": {
         "target": "com.resend.api#RemoveContactResponseSuccess"
@@ -4261,7 +4262,7 @@
         "smithy.api#documentation": "Remove an existing contact by ID or email"
       }
     },
-    "com.resend.api#GetBroadcastsRequest": {
+    "com.resend.api#ListBroadcastsRequest": {
       "type": "structure",
       "members": {
         "limit": {
@@ -4383,10 +4384,10 @@
         "smithy.api#documentation": "Array containing broadcast information."
       }
     },
-    "com.resend.api#GetBroadcasts": {
+    "com.resend.api#ListBroadcasts": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#GetBroadcastsRequest"
+        "target": "com.resend.api#ListBroadcastsRequest"
       },
       "output": {
         "target": "com.resend.api#ListBroadcastsResponseSuccess"
@@ -4400,7 +4401,7 @@
         "smithy.api#documentation": "Retrieve a list of broadcasts"
       }
     },
-    "com.resend.api#PostBroadcastsRequestReplyToList": {
+    "com.resend.api#CreateBroadcastRequestReplyToList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -4409,7 +4410,7 @@
         "smithy.api#documentation": "The email addresses to which replies should be sent."
       }
     },
-    "com.resend.api#PostBroadcastsRequest": {
+    "com.resend.api#CreateBroadcastRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -4446,7 +4447,7 @@
           }
         },
         "reply_to": {
-          "target": "com.resend.api#PostBroadcastsRequestReplyToList",
+          "target": "com.resend.api#CreateBroadcastRequestReplyToList",
           "traits": {
             "smithy.api#documentation": "The email addresses to which replies should be sent."
           }
@@ -4510,10 +4511,10 @@
       },
       "traits": {}
     },
-    "com.resend.api#PostBroadcasts": {
+    "com.resend.api#CreateBroadcast": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#PostBroadcastsRequest"
+        "target": "com.resend.api#CreateBroadcastRequest"
       },
       "output": {
         "target": "com.resend.api#CreateBroadcastResponseSuccess"
@@ -4527,7 +4528,7 @@
         "smithy.api#documentation": "Create a broadcast"
       }
     },
-    "com.resend.api#GetBroadcastsIdRequest": {
+    "com.resend.api#GetBroadcastRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -4653,10 +4654,10 @@
         "smithy.api#documentation": "The email addresses to which replies should be sent."
       }
     },
-    "com.resend.api#GetBroadcastsId": {
+    "com.resend.api#GetBroadcast": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#GetBroadcastsIdRequest"
+        "target": "com.resend.api#GetBroadcastRequest"
       },
       "output": {
         "target": "com.resend.api#GetBroadcastResponseSuccess"
@@ -4670,7 +4671,7 @@
         "smithy.api#documentation": "Retrieve a single broadcast"
       }
     },
-    "com.resend.api#PatchBroadcastsIdRequestReplyToList": {
+    "com.resend.api#UpdateBroadcastRequestReplyToList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -4679,7 +4680,7 @@
         "smithy.api#documentation": "The email addresses to which replies should be sent."
       }
     },
-    "com.resend.api#PatchBroadcastsIdRequest": {
+    "com.resend.api#UpdateBroadcastRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -4721,7 +4722,7 @@
           }
         },
         "reply_to": {
-          "target": "com.resend.api#PatchBroadcastsIdRequestReplyToList",
+          "target": "com.resend.api#UpdateBroadcastRequestReplyToList",
           "traits": {
             "smithy.api#documentation": "The email addresses to which replies should be sent."
           }
@@ -4773,10 +4774,10 @@
       },
       "traits": {}
     },
-    "com.resend.api#PatchBroadcastsId": {
+    "com.resend.api#UpdateBroadcast": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#PatchBroadcastsIdRequest"
+        "target": "com.resend.api#UpdateBroadcastRequest"
       },
       "output": {
         "target": "com.resend.api#UpdateBroadcastResponseSuccess"
@@ -4790,7 +4791,7 @@
         "smithy.api#documentation": "Update an existing broadcast"
       }
     },
-    "com.resend.api#DeleteBroadcastsIdRequest": {
+    "com.resend.api#DeleteBroadcastRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -4830,10 +4831,10 @@
       },
       "traits": {}
     },
-    "com.resend.api#DeleteBroadcastsId": {
+    "com.resend.api#DeleteBroadcast": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#DeleteBroadcastsIdRequest"
+        "target": "com.resend.api#DeleteBroadcastRequest"
       },
       "output": {
         "target": "com.resend.api#RemoveBroadcastResponseSuccess"
@@ -4847,7 +4848,7 @@
         "smithy.api#documentation": "Remove an existing broadcast that is in the draft status"
       }
     },
-    "com.resend.api#PostBroadcastsIdSendRequest": {
+    "com.resend.api#SendBroadcastRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -4881,10 +4882,10 @@
       },
       "traits": {}
     },
-    "com.resend.api#PostBroadcastsIdSend": {
+    "com.resend.api#SendBroadcast": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#PostBroadcastsIdSendRequest"
+        "target": "com.resend.api#SendBroadcastRequest"
       },
       "output": {
         "target": "com.resend.api#SendBroadcastResponseSuccess"
@@ -4898,7 +4899,7 @@
         "smithy.api#documentation": "Send or schedule a broadcast"
       }
     },
-    "com.resend.api#GetWebhooksRequest": {
+    "com.resend.api#ListWebhooksRequest": {
       "type": "structure",
       "members": {
         "limit": {
@@ -5006,10 +5007,10 @@
         "smithy.api#documentation": "Array containing webhook information."
       }
     },
-    "com.resend.api#GetWebhooks": {
+    "com.resend.api#ListWebhooks": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#GetWebhooksRequest"
+        "target": "com.resend.api#ListWebhooksRequest"
       },
       "output": {
         "target": "com.resend.api#ListWebhooksResponse"
@@ -5023,7 +5024,7 @@
         "smithy.api#documentation": "Retrieve a list of webhooks"
       }
     },
-    "com.resend.api#PostWebhooksRequestEventsList": {
+    "com.resend.api#CreateWebhookRequestEventsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -5032,7 +5033,7 @@
         "smithy.api#documentation": "Array of event types to subscribe to."
       }
     },
-    "com.resend.api#PostWebhooksRequest": {
+    "com.resend.api#CreateWebhookRequest": {
       "type": "structure",
       "members": {
         "endpoint": {
@@ -5043,7 +5044,7 @@
           }
         },
         "events": {
-          "target": "com.resend.api#PostWebhooksRequestEventsList",
+          "target": "com.resend.api#CreateWebhookRequestEventsList",
           "traits": {
             "smithy.api#documentation": "Array of event types to subscribe to.",
             "smithy.api#required": {}
@@ -5079,10 +5080,10 @@
       },
       "traits": {}
     },
-    "com.resend.api#PostWebhooks": {
+    "com.resend.api#CreateWebhook": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#PostWebhooksRequest"
+        "target": "com.resend.api#CreateWebhookRequest"
       },
       "output": {
         "target": "com.resend.api#CreateWebhookResponse"
@@ -5096,7 +5097,7 @@
         "smithy.api#documentation": "Create a new webhook"
       }
     },
-    "com.resend.api#GetWebhooksWebhookIdRequest": {
+    "com.resend.api#GetWebhookRequest": {
       "type": "structure",
       "members": {
         "webhook_id": {
@@ -5171,10 +5172,10 @@
         "smithy.api#documentation": "Array of event types subscribed to."
       }
     },
-    "com.resend.api#GetWebhooksWebhookId": {
+    "com.resend.api#GetWebhook": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#GetWebhooksWebhookIdRequest"
+        "target": "com.resend.api#GetWebhookRequest"
       },
       "output": {
         "target": "com.resend.api#GetWebhookResponse"
@@ -5188,7 +5189,7 @@
         "smithy.api#documentation": "Retrieve a single webhook"
       }
     },
-    "com.resend.api#PatchWebhooksWebhookIdRequestEventsList": {
+    "com.resend.api#UpdateWebhookRequestEventsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -5197,7 +5198,7 @@
         "smithy.api#documentation": "Array of event types to subscribe to."
       }
     },
-    "com.resend.api#PatchWebhooksWebhookIdRequestStatus": {
+    "com.resend.api#UpdateWebhookRequestStatus": {
       "type": "enum",
       "members": {
         "ENABLED": {
@@ -5217,7 +5218,7 @@
         "smithy.api#documentation": "The status of the webhook."
       }
     },
-    "com.resend.api#PatchWebhooksWebhookIdRequest": {
+    "com.resend.api#UpdateWebhookRequest": {
       "type": "structure",
       "members": {
         "webhook_id": {
@@ -5235,13 +5236,13 @@
           }
         },
         "events": {
-          "target": "com.resend.api#PatchWebhooksWebhookIdRequestEventsList",
+          "target": "com.resend.api#UpdateWebhookRequestEventsList",
           "traits": {
             "smithy.api#documentation": "Array of event types to subscribe to."
           }
         },
         "status": {
-          "target": "com.resend.api#PatchWebhooksWebhookIdRequestStatus",
+          "target": "com.resend.api#UpdateWebhookRequestStatus",
           "traits": {
             "smithy.api#documentation": "The status of the webhook."
           }
@@ -5269,10 +5270,10 @@
       },
       "traits": {}
     },
-    "com.resend.api#PatchWebhooksWebhookId": {
+    "com.resend.api#UpdateWebhook": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#PatchWebhooksWebhookIdRequest"
+        "target": "com.resend.api#UpdateWebhookRequest"
       },
       "output": {
         "target": "com.resend.api#UpdateWebhookResponse"
@@ -5286,7 +5287,7 @@
         "smithy.api#documentation": "Update an existing webhook"
       }
     },
-    "com.resend.api#DeleteWebhooksWebhookIdRequest": {
+    "com.resend.api#DeleteWebhookRequest": {
       "type": "structure",
       "members": {
         "webhook_id": {
@@ -5326,10 +5327,10 @@
       },
       "traits": {}
     },
-    "com.resend.api#DeleteWebhooksWebhookId": {
+    "com.resend.api#DeleteWebhook": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#DeleteWebhooksWebhookIdRequest"
+        "target": "com.resend.api#DeleteWebhookRequest"
       },
       "output": {
         "target": "com.resend.api#DeleteWebhookResponse"
@@ -5343,7 +5344,7 @@
         "smithy.api#documentation": "Remove an existing webhook"
       }
     },
-    "com.resend.api#GetSegmentsRequest": {
+    "com.resend.api#ListSegmentsRequest": {
       "type": "structure",
       "members": {
         "limit": {
@@ -5435,10 +5436,10 @@
         "smithy.api#documentation": "Array containing segment information."
       }
     },
-    "com.resend.api#GetSegments": {
+    "com.resend.api#ListSegments": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#GetSegmentsRequest"
+        "target": "com.resend.api#ListSegmentsRequest"
       },
       "output": {
         "target": "com.resend.api#ListSegmentsResponseSuccess"
@@ -5452,7 +5453,7 @@
         "smithy.api#documentation": "Retrieve a list of segments"
       }
     },
-    "com.resend.api#PostSegmentsRequest": {
+    "com.resend.api#CreateSegmentRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -5497,10 +5498,10 @@
       },
       "traits": {}
     },
-    "com.resend.api#PostSegments": {
+    "com.resend.api#CreateSegment": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#PostSegmentsRequest"
+        "target": "com.resend.api#CreateSegmentRequest"
       },
       "output": {
         "target": "com.resend.api#CreateSegmentResponseSuccess"
@@ -5514,7 +5515,7 @@
         "smithy.api#documentation": "Create a new segment"
       }
     },
-    "com.resend.api#GetSegmentsIdRequest": {
+    "com.resend.api#GetSegmentRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -5572,10 +5573,10 @@
       },
       "traits": {}
     },
-    "com.resend.api#GetSegmentsId": {
+    "com.resend.api#GetSegment": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#GetSegmentsIdRequest"
+        "target": "com.resend.api#GetSegmentRequest"
       },
       "output": {
         "target": "com.resend.api#GetSegmentResponseSuccess"
@@ -5589,7 +5590,7 @@
         "smithy.api#documentation": "Retrieve a single segment"
       }
     },
-    "com.resend.api#DeleteSegmentsIdRequest": {
+    "com.resend.api#DeleteSegmentRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -5629,10 +5630,10 @@
       },
       "traits": {}
     },
-    "com.resend.api#DeleteSegmentsId": {
+    "com.resend.api#DeleteSegment": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#DeleteSegmentsIdRequest"
+        "target": "com.resend.api#DeleteSegmentRequest"
       },
       "output": {
         "target": "com.resend.api#RemoveSegmentResponseSuccess"
@@ -5646,7 +5647,7 @@
         "smithy.api#documentation": "Remove an existing segment"
       }
     },
-    "com.resend.api#GetTopicsRequest": {
+    "com.resend.api#ListTopicsRequest": {
       "type": "structure",
       "members": {
         "limit": {
@@ -5790,10 +5791,10 @@
         "smithy.api#documentation": "Array containing topic information."
       }
     },
-    "com.resend.api#GetTopics": {
+    "com.resend.api#ListTopics": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#GetTopicsRequest"
+        "target": "com.resend.api#ListTopicsRequest"
       },
       "output": {
         "target": "com.resend.api#ListTopicsResponseSuccess"
@@ -5807,7 +5808,7 @@
         "smithy.api#documentation": "Retrieve a list of topics"
       }
     },
-    "com.resend.api#PostTopicsRequestDefaultSubscription": {
+    "com.resend.api#CreateTopicRequestDefaultSubscription": {
       "type": "enum",
       "members": {
         "OPT_IN": {
@@ -5827,7 +5828,7 @@
         "smithy.api#documentation": "The default subscription status for the topic. Cannot be changed after creation."
       }
     },
-    "com.resend.api#PostTopicsRequestVisibility": {
+    "com.resend.api#CreateTopicRequestVisibility": {
       "type": "enum",
       "members": {
         "PUBLIC": {
@@ -5847,7 +5848,7 @@
         "smithy.api#documentation": "The visibility of the topic. Public topics are visible to all contacts on the unsubscribe page. Private topics are only visible to opted-in contacts."
       }
     },
-    "com.resend.api#PostTopicsRequest": {
+    "com.resend.api#CreateTopicRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -5858,7 +5859,7 @@
           }
         },
         "default_subscription": {
-          "target": "com.resend.api#PostTopicsRequestDefaultSubscription",
+          "target": "com.resend.api#CreateTopicRequestDefaultSubscription",
           "traits": {
             "smithy.api#documentation": "The default subscription status for the topic. Cannot be changed after creation.",
             "smithy.api#required": {}
@@ -5871,7 +5872,7 @@
           }
         },
         "visibility": {
-          "target": "com.resend.api#PostTopicsRequestVisibility",
+          "target": "com.resend.api#CreateTopicRequestVisibility",
           "traits": {
             "smithy.api#documentation": "The visibility of the topic. Public topics are visible to all contacts on the unsubscribe page. Private topics are only visible to opted-in contacts."
           }
@@ -5899,10 +5900,10 @@
       },
       "traits": {}
     },
-    "com.resend.api#PostTopics": {
+    "com.resend.api#CreateTopic": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#PostTopicsRequest"
+        "target": "com.resend.api#CreateTopicRequest"
       },
       "output": {
         "target": "com.resend.api#CreateTopicResponseSuccess"
@@ -5916,7 +5917,7 @@
         "smithy.api#documentation": "Create a new topic"
       }
     },
-    "com.resend.api#GetTopicsIdRequest": {
+    "com.resend.api#GetTopicRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -6020,10 +6021,10 @@
         "smithy.api#documentation": "The visibility of the topic."
       }
     },
-    "com.resend.api#GetTopicsId": {
+    "com.resend.api#GetTopic": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#GetTopicsIdRequest"
+        "target": "com.resend.api#GetTopicRequest"
       },
       "output": {
         "target": "com.resend.api#GetTopicResponseSuccess"
@@ -6037,7 +6038,7 @@
         "smithy.api#documentation": "Retrieve a single topic"
       }
     },
-    "com.resend.api#PatchTopicsIdRequestVisibility": {
+    "com.resend.api#UpdateTopicRequestVisibility": {
       "type": "enum",
       "members": {
         "PUBLIC": {
@@ -6057,7 +6058,7 @@
         "smithy.api#documentation": "The visibility of the topic."
       }
     },
-    "com.resend.api#PatchTopicsIdRequest": {
+    "com.resend.api#UpdateTopicRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -6081,7 +6082,7 @@
           }
         },
         "visibility": {
-          "target": "com.resend.api#PatchTopicsIdRequestVisibility",
+          "target": "com.resend.api#UpdateTopicRequestVisibility",
           "traits": {
             "smithy.api#documentation": "The visibility of the topic."
           }
@@ -6109,10 +6110,10 @@
       },
       "traits": {}
     },
-    "com.resend.api#PatchTopicsId": {
+    "com.resend.api#UpdateTopic": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#PatchTopicsIdRequest"
+        "target": "com.resend.api#UpdateTopicRequest"
       },
       "output": {
         "target": "com.resend.api#UpdateTopicResponseSuccess"
@@ -6126,7 +6127,7 @@
         "smithy.api#documentation": "Update an existing topic"
       }
     },
-    "com.resend.api#DeleteTopicsIdRequest": {
+    "com.resend.api#DeleteTopicRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -6166,10 +6167,10 @@
       },
       "traits": {}
     },
-    "com.resend.api#DeleteTopicsId": {
+    "com.resend.api#DeleteTopic": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#DeleteTopicsIdRequest"
+        "target": "com.resend.api#DeleteTopicRequest"
       },
       "output": {
         "target": "com.resend.api#RemoveTopicResponseSuccess"
@@ -6183,7 +6184,7 @@
         "smithy.api#documentation": "Remove an existing topic"
       }
     },
-    "com.resend.api#GetContactPropertiesRequest": {
+    "com.resend.api#ListContactPropertiesRequest": {
       "type": "structure",
       "members": {
         "limit": {
@@ -6295,10 +6296,10 @@
         "smithy.api#documentation": "Array containing contact property information."
       }
     },
-    "com.resend.api#GetContactProperties": {
+    "com.resend.api#ListContactProperties": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#GetContactPropertiesRequest"
+        "target": "com.resend.api#ListContactPropertiesRequest"
       },
       "output": {
         "target": "com.resend.api#ListContactPropertiesResponseSuccess"
@@ -6312,7 +6313,7 @@
         "smithy.api#documentation": "Retrieve a list of contact properties"
       }
     },
-    "com.resend.api#PostContactPropertiesRequestType": {
+    "com.resend.api#CreateContactPropertyRequestType": {
       "type": "enum",
       "members": {
         "STRING": {
@@ -6332,7 +6333,7 @@
         "smithy.api#documentation": "The property type."
       }
     },
-    "com.resend.api#PostContactPropertiesRequestFallbackValue": {
+    "com.resend.api#CreateContactPropertyRequestFallbackValue": {
       "type": "union",
       "members": {
         "Case0": {
@@ -6346,7 +6347,7 @@
         "smithy.api#documentation": "The default value to use when the property is not set for a contact. Must match the type specified in the type field."
       }
     },
-    "com.resend.api#PostContactPropertiesRequest": {
+    "com.resend.api#CreateContactPropertyRequest": {
       "type": "structure",
       "members": {
         "key": {
@@ -6357,14 +6358,14 @@
           }
         },
         "type": {
-          "target": "com.resend.api#PostContactPropertiesRequestType",
+          "target": "com.resend.api#CreateContactPropertyRequestType",
           "traits": {
             "smithy.api#documentation": "The property type.",
             "smithy.api#required": {}
           }
         },
         "fallback_value": {
-          "target": "com.resend.api#PostContactPropertiesRequestFallbackValue",
+          "target": "com.resend.api#CreateContactPropertyRequestFallbackValue",
           "traits": {
             "smithy.api#documentation": "The default value to use when the property is not set for a contact. Must match the type specified in the type field."
           }
@@ -6392,10 +6393,10 @@
       },
       "traits": {}
     },
-    "com.resend.api#PostContactProperties": {
+    "com.resend.api#CreateContactProperty": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#PostContactPropertiesRequest"
+        "target": "com.resend.api#CreateContactPropertyRequest"
       },
       "output": {
         "target": "com.resend.api#CreateContactPropertyResponseSuccess"
@@ -6409,7 +6410,7 @@
         "smithy.api#documentation": "Create a new contact property"
       }
     },
-    "com.resend.api#GetContactPropertiesIdRequest": {
+    "com.resend.api#GetContactPropertyRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -6481,10 +6482,10 @@
         "smithy.api#documentation": "The default value when the property is not set for a contact."
       }
     },
-    "com.resend.api#GetContactPropertiesId": {
+    "com.resend.api#GetContactProperty": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#GetContactPropertiesIdRequest"
+        "target": "com.resend.api#GetContactPropertyRequest"
       },
       "output": {
         "target": "com.resend.api#GetContactPropertyResponseSuccess"
@@ -6498,7 +6499,7 @@
         "smithy.api#documentation": "Retrieve a single contact property"
       }
     },
-    "com.resend.api#PatchContactPropertiesIdRequestFallbackValue": {
+    "com.resend.api#UpdateContactPropertyRequestFallbackValue": {
       "type": "union",
       "members": {
         "Case0": {
@@ -6512,7 +6513,7 @@
         "smithy.api#documentation": "The default value to use when the property is not set for a contact. Must match the type of the property."
       }
     },
-    "com.resend.api#PatchContactPropertiesIdRequest": {
+    "com.resend.api#UpdateContactPropertyRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -6524,7 +6525,7 @@
           }
         },
         "fallback_value": {
-          "target": "com.resend.api#PatchContactPropertiesIdRequestFallbackValue",
+          "target": "com.resend.api#UpdateContactPropertyRequestFallbackValue",
           "traits": {
             "smithy.api#documentation": "The default value to use when the property is not set for a contact. Must match the type of the property."
           }
@@ -6552,10 +6553,10 @@
       },
       "traits": {}
     },
-    "com.resend.api#PatchContactPropertiesId": {
+    "com.resend.api#UpdateContactProperty": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#PatchContactPropertiesIdRequest"
+        "target": "com.resend.api#UpdateContactPropertyRequest"
       },
       "output": {
         "target": "com.resend.api#UpdateContactPropertyResponseSuccess"
@@ -6569,7 +6570,7 @@
         "smithy.api#documentation": "Update an existing contact property"
       }
     },
-    "com.resend.api#DeleteContactPropertiesIdRequest": {
+    "com.resend.api#DeleteContactPropertyRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -6609,10 +6610,10 @@
       },
       "traits": {}
     },
-    "com.resend.api#DeleteContactPropertiesId": {
+    "com.resend.api#DeleteContactProperty": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#DeleteContactPropertiesIdRequest"
+        "target": "com.resend.api#DeleteContactPropertyRequest"
       },
       "output": {
         "target": "com.resend.api#RemoveContactPropertyResponseSuccess"
@@ -6626,7 +6627,7 @@
         "smithy.api#documentation": "Remove an existing contact property"
       }
     },
-    "com.resend.api#GetContactsContactIdSegmentsRequest": {
+    "com.resend.api#ListContactSegmentsRequest": {
       "type": "structure",
       "members": {
         "contact_id": {
@@ -6720,10 +6721,10 @@
         "smithy.api#documentation": "Array containing segment information for this contact."
       }
     },
-    "com.resend.api#GetContactsContactIdSegments": {
+    "com.resend.api#ListContactSegments": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#GetContactsContactIdSegmentsRequest"
+        "target": "com.resend.api#ListContactSegmentsRequest"
       },
       "output": {
         "target": "com.resend.api#ListContactSegmentsResponseSuccess"
@@ -6737,7 +6738,7 @@
         "smithy.api#documentation": "Retrieve a list of segments for a contact"
       }
     },
-    "com.resend.api#PostContactsContactIdSegmentsSegmentIdRequest": {
+    "com.resend.api#UpdateContactSegmentRequest": {
       "type": "structure",
       "members": {
         "contact_id": {
@@ -6785,10 +6786,10 @@
       },
       "traits": {}
     },
-    "com.resend.api#PostContactsContactIdSegmentsSegmentId": {
+    "com.resend.api#UpdateContactSegment": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#PostContactsContactIdSegmentsSegmentIdRequest"
+        "target": "com.resend.api#UpdateContactSegmentRequest"
       },
       "output": {
         "target": "com.resend.api#AddContactToSegmentResponseSuccess"
@@ -6802,7 +6803,7 @@
         "smithy.api#documentation": "Add a contact to a segment"
       }
     },
-    "com.resend.api#DeleteContactsContactIdSegmentsSegmentIdRequest": {
+    "com.resend.api#DeleteContactSegmentRequest": {
       "type": "structure",
       "members": {
         "contact_id": {
@@ -6856,10 +6857,10 @@
       },
       "traits": {}
     },
-    "com.resend.api#DeleteContactsContactIdSegmentsSegmentId": {
+    "com.resend.api#DeleteContactSegment": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#DeleteContactsContactIdSegmentsSegmentIdRequest"
+        "target": "com.resend.api#DeleteContactSegmentRequest"
       },
       "output": {
         "target": "com.resend.api#RemoveContactFromSegmentResponseSuccess"
@@ -6873,7 +6874,7 @@
         "smithy.api#documentation": "Remove a contact from a segment"
       }
     },
-    "com.resend.api#GetContactsContactIdTopicsRequest": {
+    "com.resend.api#ListContactTopicsRequest": {
       "type": "structure",
       "members": {
         "contact_id": {
@@ -6993,10 +6994,10 @@
         "smithy.api#documentation": "Array containing topic subscriptions for this contact."
       }
     },
-    "com.resend.api#GetContactsContactIdTopics": {
+    "com.resend.api#ListContactTopics": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#GetContactsContactIdTopicsRequest"
+        "target": "com.resend.api#ListContactTopicsRequest"
       },
       "output": {
         "target": "com.resend.api#GetContactTopicsResponseSuccess"
@@ -7010,7 +7011,7 @@
         "smithy.api#documentation": "Retrieve topics for a contact"
       }
     },
-    "com.resend.api#PatchContactsContactIdTopicsRequestTopicsItemSubscription": {
+    "com.resend.api#UpdateContactTopicsRequestTopicsItemSubscription": {
       "type": "enum",
       "members": {
         "OPT_IN": {
@@ -7030,7 +7031,7 @@
         "smithy.api#documentation": "The subscription status (opt_in or opt_out)."
       }
     },
-    "com.resend.api#PatchContactsContactIdTopicsRequestTopicsItem": {
+    "com.resend.api#UpdateContactTopicsRequestTopicsItem": {
       "type": "structure",
       "members": {
         "id": {
@@ -7040,7 +7041,7 @@
           }
         },
         "subscription": {
-          "target": "com.resend.api#PatchContactsContactIdTopicsRequestTopicsItemSubscription",
+          "target": "com.resend.api#UpdateContactTopicsRequestTopicsItemSubscription",
           "traits": {
             "smithy.api#documentation": "The subscription status (opt_in or opt_out)."
           }
@@ -7048,14 +7049,14 @@
       },
       "traits": {}
     },
-    "com.resend.api#PatchContactsContactIdTopicsRequestTopicsList": {
+    "com.resend.api#UpdateContactTopicsRequestTopicsList": {
       "type": "list",
       "member": {
-        "target": "com.resend.api#PatchContactsContactIdTopicsRequestTopicsItem"
+        "target": "com.resend.api#UpdateContactTopicsRequestTopicsItem"
       },
       "traits": {}
     },
-    "com.resend.api#PatchContactsContactIdTopicsRequest": {
+    "com.resend.api#UpdateContactTopicsRequest": {
       "type": "structure",
       "members": {
         "contact_id": {
@@ -7067,7 +7068,7 @@
           }
         },
         "topics": {
-          "target": "com.resend.api#PatchContactsContactIdTopicsRequestTopicsList",
+          "target": "com.resend.api#UpdateContactTopicsRequestTopicsList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -7148,10 +7149,10 @@
         "smithy.api#documentation": "Array of updated topic subscriptions."
       }
     },
-    "com.resend.api#PatchContactsContactIdTopics": {
+    "com.resend.api#UpdateContactTopics": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#PatchContactsContactIdTopicsRequest"
+        "target": "com.resend.api#UpdateContactTopicsRequest"
       },
       "output": {
         "target": "com.resend.api#UpdateContactTopicsResponseSuccess"
@@ -7165,7 +7166,7 @@
         "smithy.api#documentation": "Update topics for a contact"
       }
     },
-    "com.resend.api#GetLogsRequest": {
+    "com.resend.api#ListLogsRequest": {
       "type": "structure",
       "members": {
         "limit": {
@@ -7314,10 +7315,10 @@
         "smithy.api#documentation": "Array containing log information."
       }
     },
-    "com.resend.api#GetLogs": {
+    "com.resend.api#ListLogs": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#GetLogsRequest"
+        "target": "com.resend.api#ListLogsRequest"
       },
       "output": {
         "target": "com.resend.api#ListLogsResponse"
@@ -7331,7 +7332,7 @@
         "smithy.api#documentation": "Retrieve a list of logs"
       }
     },
-    "com.resend.api#GetLogsLogIdRequest": {
+    "com.resend.api#GetLogRequest": {
       "type": "structure",
       "members": {
         "log_id": {
@@ -7454,10 +7455,10 @@
         "smithy.api#documentation": "The HTTP method used."
       }
     },
-    "com.resend.api#GetLogsLogId": {
+    "com.resend.api#GetLog": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#GetLogsLogIdRequest"
+        "target": "com.resend.api#GetLogRequest"
       },
       "output": {
         "target": "com.resend.api#Log"
@@ -7471,7 +7472,7 @@
         "smithy.api#documentation": "Retrieve a single log"
       }
     },
-    "com.resend.api#GetAutomationsRequestStatus": {
+    "com.resend.api#ListAutomationsRequestStatus": {
       "type": "enum",
       "members": {
         "ENABLED": {
@@ -7489,11 +7490,11 @@
       },
       "traits": {}
     },
-    "com.resend.api#GetAutomationsRequest": {
+    "com.resend.api#ListAutomationsRequest": {
       "type": "structure",
       "members": {
         "status": {
-          "target": "com.resend.api#GetAutomationsRequestStatus",
+          "target": "com.resend.api#ListAutomationsRequestStatus",
           "traits": {
             "smithy.api#httpQuery": "status",
             "smithy.api#documentation": "Filter automations by status."
@@ -7614,10 +7615,10 @@
         "smithy.api#documentation": "Array of automations."
       }
     },
-    "com.resend.api#GetAutomations": {
+    "com.resend.api#ListAutomations": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#GetAutomationsRequest"
+        "target": "com.resend.api#ListAutomationsRequest"
       },
       "output": {
         "target": "com.resend.api#ListAutomationsResponse"
@@ -7631,7 +7632,7 @@
         "smithy.api#documentation": "Retrieve a list of automations"
       }
     },
-    "com.resend.api#PostAutomationsRequestStatus": {
+    "com.resend.api#CreateAutomationRequestStatus": {
       "type": "enum",
       "members": {
         "ENABLED": {
@@ -7736,7 +7737,7 @@
         "smithy.api#documentation": "The type of automation step."
       }
     },
-    "com.resend.api#PostAutomationsRequestStepsList": {
+    "com.resend.api#CreateAutomationRequestStepsList": {
       "type": "list",
       "member": {
         "target": "com.resend.api#AutomationStep"
@@ -7811,7 +7812,7 @@
         "smithy.api#documentation": "The type of connection. Defaults to `default`."
       }
     },
-    "com.resend.api#PostAutomationsRequestConnectionsList": {
+    "com.resend.api#CreateAutomationRequestConnectionsList": {
       "type": "list",
       "member": {
         "target": "com.resend.api#AutomationConnection"
@@ -7820,7 +7821,7 @@
         "smithy.api#documentation": "The connections between steps in the automation graph."
       }
     },
-    "com.resend.api#PostAutomationsRequest": {
+    "com.resend.api#CreateAutomationRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -7831,20 +7832,20 @@
           }
         },
         "status": {
-          "target": "com.resend.api#PostAutomationsRequestStatus",
+          "target": "com.resend.api#CreateAutomationRequestStatus",
           "traits": {
             "smithy.api#documentation": "The initial status of the automation. Defaults to `disabled`."
           }
         },
         "steps": {
-          "target": "com.resend.api#PostAutomationsRequestStepsList",
+          "target": "com.resend.api#CreateAutomationRequestStepsList",
           "traits": {
             "smithy.api#documentation": "The steps that compose the automation workflow. Must include at least one `trigger` step.",
             "smithy.api#required": {}
           }
         },
         "connections": {
-          "target": "com.resend.api#PostAutomationsRequestConnectionsList",
+          "target": "com.resend.api#CreateAutomationRequestConnectionsList",
           "traits": {
             "smithy.api#documentation": "The connections between steps in the automation graph.",
             "smithy.api#required": {}
@@ -7873,10 +7874,10 @@
       },
       "traits": {}
     },
-    "com.resend.api#PostAutomations": {
+    "com.resend.api#CreateAutomation": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#PostAutomationsRequest"
+        "target": "com.resend.api#CreateAutomationRequest"
       },
       "output": {
         "target": "com.resend.api#CreateAutomationResponse"
@@ -7890,7 +7891,7 @@
         "smithy.api#documentation": "Create an automation"
       }
     },
-    "com.resend.api#GetAutomationsAutomationIdRequest": {
+    "com.resend.api#GetAutomationRequest": {
       "type": "structure",
       "members": {
         "automation_id": {
@@ -8080,10 +8081,10 @@
         "smithy.api#documentation": "The connections between steps in the active version of the automation."
       }
     },
-    "com.resend.api#GetAutomationsAutomationId": {
+    "com.resend.api#GetAutomation": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#GetAutomationsAutomationIdRequest"
+        "target": "com.resend.api#GetAutomationRequest"
       },
       "output": {
         "target": "com.resend.api#Automation"
@@ -8097,7 +8098,7 @@
         "smithy.api#documentation": "Retrieve a single automation"
       }
     },
-    "com.resend.api#PatchAutomationsAutomationIdRequestStatus": {
+    "com.resend.api#UpdateAutomationRequestStatus": {
       "type": "enum",
       "members": {
         "ENABLED": {
@@ -8117,7 +8118,7 @@
         "smithy.api#documentation": "The status of the automation."
       }
     },
-    "com.resend.api#PatchAutomationsAutomationIdRequestStepsList": {
+    "com.resend.api#UpdateAutomationRequestStepsList": {
       "type": "list",
       "member": {
         "target": "com.resend.api#AutomationStep"
@@ -8126,7 +8127,7 @@
         "smithy.api#documentation": "The steps that compose the automation workflow. Must be provided together with `connections`."
       }
     },
-    "com.resend.api#PatchAutomationsAutomationIdRequestConnectionsList": {
+    "com.resend.api#UpdateAutomationRequestConnectionsList": {
       "type": "list",
       "member": {
         "target": "com.resend.api#AutomationConnection"
@@ -8135,7 +8136,7 @@
         "smithy.api#documentation": "The connections between steps in the automation graph. Must be provided together with `steps`."
       }
     },
-    "com.resend.api#PatchAutomationsAutomationIdRequest": {
+    "com.resend.api#UpdateAutomationRequest": {
       "type": "structure",
       "members": {
         "automation_id": {
@@ -8153,19 +8154,19 @@
           }
         },
         "status": {
-          "target": "com.resend.api#PatchAutomationsAutomationIdRequestStatus",
+          "target": "com.resend.api#UpdateAutomationRequestStatus",
           "traits": {
             "smithy.api#documentation": "The status of the automation."
           }
         },
         "steps": {
-          "target": "com.resend.api#PatchAutomationsAutomationIdRequestStepsList",
+          "target": "com.resend.api#UpdateAutomationRequestStepsList",
           "traits": {
             "smithy.api#documentation": "The steps that compose the automation workflow. Must be provided together with `connections`."
           }
         },
         "connections": {
-          "target": "com.resend.api#PatchAutomationsAutomationIdRequestConnectionsList",
+          "target": "com.resend.api#UpdateAutomationRequestConnectionsList",
           "traits": {
             "smithy.api#documentation": "The connections between steps in the automation graph. Must be provided together with `steps`."
           }
@@ -8193,10 +8194,10 @@
       },
       "traits": {}
     },
-    "com.resend.api#PatchAutomationsAutomationId": {
+    "com.resend.api#UpdateAutomation": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#PatchAutomationsAutomationIdRequest"
+        "target": "com.resend.api#UpdateAutomationRequest"
       },
       "output": {
         "target": "com.resend.api#PatchAutomationResponse"
@@ -8210,7 +8211,7 @@
         "smithy.api#documentation": "Update an automation"
       }
     },
-    "com.resend.api#DeleteAutomationsAutomationIdRequest": {
+    "com.resend.api#DeleteAutomationRequest": {
       "type": "structure",
       "members": {
         "automation_id": {
@@ -8250,10 +8251,10 @@
       },
       "traits": {}
     },
-    "com.resend.api#DeleteAutomationsAutomationId": {
+    "com.resend.api#DeleteAutomation": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#DeleteAutomationsAutomationIdRequest"
+        "target": "com.resend.api#DeleteAutomationRequest"
       },
       "output": {
         "target": "com.resend.api#DeleteAutomationResponse"
@@ -8267,7 +8268,7 @@
         "smithy.api#documentation": "Delete an automation"
       }
     },
-    "com.resend.api#PostAutomationsAutomationIdStopRequest": {
+    "com.resend.api#StopAutomationRequest": {
       "type": "structure",
       "members": {
         "automation_id": {
@@ -8307,10 +8308,10 @@
       },
       "traits": {}
     },
-    "com.resend.api#PostAutomationsAutomationIdStop": {
+    "com.resend.api#StopAutomation": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#PostAutomationsAutomationIdStopRequest"
+        "target": "com.resend.api#StopAutomationRequest"
       },
       "output": {
         "target": "com.resend.api#StopAutomationResponse"
@@ -8324,7 +8325,7 @@
         "smithy.api#documentation": "Stop an automation"
       }
     },
-    "com.resend.api#GetAutomationsAutomationIdRunsRequest": {
+    "com.resend.api#ListAutomationRunsRequest": {
       "type": "structure",
       "members": {
         "automation_id": {
@@ -8471,10 +8472,10 @@
         "smithy.api#documentation": "Array of automation runs."
       }
     },
-    "com.resend.api#GetAutomationsAutomationIdRuns": {
+    "com.resend.api#ListAutomationRuns": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#GetAutomationsAutomationIdRunsRequest"
+        "target": "com.resend.api#ListAutomationRunsRequest"
       },
       "output": {
         "target": "com.resend.api#ListAutomationRunsResponse"
@@ -8488,7 +8489,7 @@
         "smithy.api#documentation": "Retrieve a list of automation runs"
       }
     },
-    "com.resend.api#GetAutomationsAutomationIdRunsRunIdRequest": {
+    "com.resend.api#GetAutomationRunRequest": {
       "type": "structure",
       "members": {
         "automation_id": {
@@ -8719,10 +8720,10 @@
         "smithy.api#documentation": "The steps executed in this run, sorted in graph order."
       }
     },
-    "com.resend.api#GetAutomationsAutomationIdRunsRunId": {
+    "com.resend.api#GetAutomationRun": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#GetAutomationsAutomationIdRunsRunIdRequest"
+        "target": "com.resend.api#GetAutomationRunRequest"
       },
       "output": {
         "target": "com.resend.api#AutomationRun"
@@ -8736,7 +8737,7 @@
         "smithy.api#documentation": "Retrieve a single automation run"
       }
     },
-    "com.resend.api#GetEventsRequest": {
+    "com.resend.api#ListEventsRequest": {
       "type": "structure",
       "members": {
         "limit": {
@@ -8836,10 +8837,10 @@
         "smithy.api#documentation": "Array containing event information."
       }
     },
-    "com.resend.api#GetEvents": {
+    "com.resend.api#ListEvents": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#GetEventsRequest"
+        "target": "com.resend.api#ListEventsRequest"
       },
       "output": {
         "target": "com.resend.api#ListEventsResponse"
@@ -8853,7 +8854,7 @@
         "smithy.api#documentation": "Retrieve a list of events"
       }
     },
-    "com.resend.api#PostEventsRequest": {
+    "com.resend.api#CreateEventRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -8893,10 +8894,10 @@
       },
       "traits": {}
     },
-    "com.resend.api#PostEvents": {
+    "com.resend.api#CreateEvent": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#PostEventsRequest"
+        "target": "com.resend.api#CreateEventRequest"
       },
       "output": {
         "target": "com.resend.api#CreateEventResponse"
@@ -8910,7 +8911,7 @@
         "smithy.api#documentation": "Create an event"
       }
     },
-    "com.resend.api#PostEventsSendRequestPayloadMap": {
+    "com.resend.api#SendEventRequestPayloadMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8922,7 +8923,7 @@
         "smithy.api#documentation": "An optional payload of key/value pairs to include with the event."
       }
     },
-    "com.resend.api#PostEventsSendRequest": {
+    "com.resend.api#SendEventRequest": {
       "type": "structure",
       "members": {
         "event": {
@@ -8945,7 +8946,7 @@
           }
         },
         "payload": {
-          "target": "com.resend.api#PostEventsSendRequestPayloadMap",
+          "target": "com.resend.api#SendEventRequestPayloadMap",
           "traits": {
             "smithy.api#documentation": "An optional payload of key/value pairs to include with the event."
           }
@@ -8955,10 +8956,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.resend.api#PostEventsSend": {
+    "com.resend.api#SendEvent": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#PostEventsSendRequest"
+        "target": "com.resend.api#SendEventRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8972,7 +8973,7 @@
         "smithy.api#documentation": "Send an event"
       }
     },
-    "com.resend.api#GetEventsIdentifierRequest": {
+    "com.resend.api#GetEventRequest": {
       "type": "structure",
       "members": {
         "identifier": {
@@ -9032,10 +9033,10 @@
       },
       "traits": {}
     },
-    "com.resend.api#GetEventsIdentifier": {
+    "com.resend.api#GetEvent": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#GetEventsIdentifierRequest"
+        "target": "com.resend.api#GetEventRequest"
       },
       "output": {
         "target": "com.resend.api#Event"
@@ -9049,7 +9050,7 @@
         "smithy.api#documentation": "Retrieve a single event"
       }
     },
-    "com.resend.api#PatchEventsIdentifierRequest": {
+    "com.resend.api#UpdateEventRequest": {
       "type": "structure",
       "members": {
         "identifier": {
@@ -9091,10 +9092,10 @@
       },
       "traits": {}
     },
-    "com.resend.api#PatchEventsIdentifier": {
+    "com.resend.api#UpdateEvent": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#PatchEventsIdentifierRequest"
+        "target": "com.resend.api#UpdateEventRequest"
       },
       "output": {
         "target": "com.resend.api#UpdateEventResponse"
@@ -9108,7 +9109,7 @@
         "smithy.api#documentation": "Update an event"
       }
     },
-    "com.resend.api#DeleteEventsIdentifierRequest": {
+    "com.resend.api#DeleteEventRequest": {
       "type": "structure",
       "members": {
         "identifier": {
@@ -9148,10 +9149,10 @@
       },
       "traits": {}
     },
-    "com.resend.api#DeleteEventsIdentifier": {
+    "com.resend.api#DeleteEvent": {
       "type": "operation",
       "input": {
-        "target": "com.resend.api#DeleteEventsIdentifierRequest"
+        "target": "com.resend.api#DeleteEventRequest"
       },
       "output": {
         "target": "com.resend.api#RemoveEventResponse"
@@ -9170,241 +9171,241 @@
       "version": "1.5.0",
       "operations": [
         {
-          "target": "com.resend.api#GetEmails"
+          "target": "com.resend.api#ListEmails"
         },
         {
-          "target": "com.resend.api#PostEmails"
+          "target": "com.resend.api#CreateEmail"
         },
         {
-          "target": "com.resend.api#GetEmailsEmailId"
+          "target": "com.resend.api#GetEmail"
         },
         {
-          "target": "com.resend.api#PatchEmailsEmailId"
+          "target": "com.resend.api#UpdateEmail"
         },
         {
-          "target": "com.resend.api#PostEmailsEmailIdCancel"
+          "target": "com.resend.api#CancelEmail"
         },
         {
-          "target": "com.resend.api#PostEmailsBatch"
+          "target": "com.resend.api#CreateEmailBatch"
         },
         {
-          "target": "com.resend.api#GetEmailsEmailIdAttachments"
+          "target": "com.resend.api#ListEmailAttachments"
         },
         {
-          "target": "com.resend.api#GetEmailsEmailIdAttachmentsAttachmentId"
+          "target": "com.resend.api#GetEmailAttachment"
         },
         {
-          "target": "com.resend.api#GetEmailsReceiving"
+          "target": "com.resend.api#ListEmailReceiving"
         },
         {
-          "target": "com.resend.api#GetEmailsReceivingEmailId"
+          "target": "com.resend.api#GetEmailReceiving"
         },
         {
-          "target": "com.resend.api#GetEmailsReceivingEmailIdAttachments"
+          "target": "com.resend.api#ListEmailReceivingAttachments"
         },
         {
-          "target": "com.resend.api#GetEmailsReceivingEmailIdAttachmentsAttachmentId"
+          "target": "com.resend.api#GetEmailReceivingAttachment"
         },
         {
-          "target": "com.resend.api#GetDomains"
+          "target": "com.resend.api#ListDomains"
         },
         {
-          "target": "com.resend.api#PostDomains"
+          "target": "com.resend.api#CreateDomain"
         },
         {
-          "target": "com.resend.api#GetDomainsDomainId"
+          "target": "com.resend.api#GetDomain"
         },
         {
-          "target": "com.resend.api#PatchDomainsDomainId"
+          "target": "com.resend.api#UpdateDomain"
         },
         {
-          "target": "com.resend.api#DeleteDomainsDomainId"
+          "target": "com.resend.api#DeleteDomain"
         },
         {
-          "target": "com.resend.api#PostDomainsDomainIdVerify"
+          "target": "com.resend.api#VerifyDomain"
         },
         {
-          "target": "com.resend.api#GetApiKeys"
+          "target": "com.resend.api#ListApiKeys"
         },
         {
-          "target": "com.resend.api#PostApiKeys"
+          "target": "com.resend.api#CreateApiKey"
         },
         {
-          "target": "com.resend.api#DeleteApiKeysApiKeyId"
+          "target": "com.resend.api#DeleteApiKey"
         },
         {
-          "target": "com.resend.api#GetTemplates"
+          "target": "com.resend.api#ListTemplates"
         },
         {
-          "target": "com.resend.api#PostTemplates"
+          "target": "com.resend.api#CreateTemplate"
         },
         {
-          "target": "com.resend.api#GetTemplatesId"
+          "target": "com.resend.api#GetTemplate"
         },
         {
-          "target": "com.resend.api#PatchTemplatesId"
+          "target": "com.resend.api#UpdateTemplate"
         },
         {
-          "target": "com.resend.api#DeleteTemplatesId"
+          "target": "com.resend.api#DeleteTemplate"
         },
         {
-          "target": "com.resend.api#PostTemplatesIdPublish"
+          "target": "com.resend.api#PublishTemplate"
         },
         {
-          "target": "com.resend.api#PostTemplatesIdDuplicate"
+          "target": "com.resend.api#DuplicateTemplate"
         },
         {
-          "target": "com.resend.api#GetContacts"
+          "target": "com.resend.api#ListContacts"
         },
         {
-          "target": "com.resend.api#PostContacts"
+          "target": "com.resend.api#CreateContact"
         },
         {
-          "target": "com.resend.api#GetContactsId"
+          "target": "com.resend.api#GetContact"
         },
         {
-          "target": "com.resend.api#PatchContactsId"
+          "target": "com.resend.api#UpdateContact"
         },
         {
-          "target": "com.resend.api#DeleteContactsId"
+          "target": "com.resend.api#DeleteContact"
         },
         {
-          "target": "com.resend.api#GetBroadcasts"
+          "target": "com.resend.api#ListBroadcasts"
         },
         {
-          "target": "com.resend.api#PostBroadcasts"
+          "target": "com.resend.api#CreateBroadcast"
         },
         {
-          "target": "com.resend.api#GetBroadcastsId"
+          "target": "com.resend.api#GetBroadcast"
         },
         {
-          "target": "com.resend.api#PatchBroadcastsId"
+          "target": "com.resend.api#UpdateBroadcast"
         },
         {
-          "target": "com.resend.api#DeleteBroadcastsId"
+          "target": "com.resend.api#DeleteBroadcast"
         },
         {
-          "target": "com.resend.api#PostBroadcastsIdSend"
+          "target": "com.resend.api#SendBroadcast"
         },
         {
-          "target": "com.resend.api#GetWebhooks"
+          "target": "com.resend.api#ListWebhooks"
         },
         {
-          "target": "com.resend.api#PostWebhooks"
+          "target": "com.resend.api#CreateWebhook"
         },
         {
-          "target": "com.resend.api#GetWebhooksWebhookId"
+          "target": "com.resend.api#GetWebhook"
         },
         {
-          "target": "com.resend.api#PatchWebhooksWebhookId"
+          "target": "com.resend.api#UpdateWebhook"
         },
         {
-          "target": "com.resend.api#DeleteWebhooksWebhookId"
+          "target": "com.resend.api#DeleteWebhook"
         },
         {
-          "target": "com.resend.api#GetSegments"
+          "target": "com.resend.api#ListSegments"
         },
         {
-          "target": "com.resend.api#PostSegments"
+          "target": "com.resend.api#CreateSegment"
         },
         {
-          "target": "com.resend.api#GetSegmentsId"
+          "target": "com.resend.api#GetSegment"
         },
         {
-          "target": "com.resend.api#DeleteSegmentsId"
+          "target": "com.resend.api#DeleteSegment"
         },
         {
-          "target": "com.resend.api#GetTopics"
+          "target": "com.resend.api#ListTopics"
         },
         {
-          "target": "com.resend.api#PostTopics"
+          "target": "com.resend.api#CreateTopic"
         },
         {
-          "target": "com.resend.api#GetTopicsId"
+          "target": "com.resend.api#GetTopic"
         },
         {
-          "target": "com.resend.api#PatchTopicsId"
+          "target": "com.resend.api#UpdateTopic"
         },
         {
-          "target": "com.resend.api#DeleteTopicsId"
+          "target": "com.resend.api#DeleteTopic"
         },
         {
-          "target": "com.resend.api#GetContactProperties"
+          "target": "com.resend.api#ListContactProperties"
         },
         {
-          "target": "com.resend.api#PostContactProperties"
+          "target": "com.resend.api#CreateContactProperty"
         },
         {
-          "target": "com.resend.api#GetContactPropertiesId"
+          "target": "com.resend.api#GetContactProperty"
         },
         {
-          "target": "com.resend.api#PatchContactPropertiesId"
+          "target": "com.resend.api#UpdateContactProperty"
         },
         {
-          "target": "com.resend.api#DeleteContactPropertiesId"
+          "target": "com.resend.api#DeleteContactProperty"
         },
         {
-          "target": "com.resend.api#GetContactsContactIdSegments"
+          "target": "com.resend.api#ListContactSegments"
         },
         {
-          "target": "com.resend.api#PostContactsContactIdSegmentsSegmentId"
+          "target": "com.resend.api#UpdateContactSegment"
         },
         {
-          "target": "com.resend.api#DeleteContactsContactIdSegmentsSegmentId"
+          "target": "com.resend.api#DeleteContactSegment"
         },
         {
-          "target": "com.resend.api#GetContactsContactIdTopics"
+          "target": "com.resend.api#ListContactTopics"
         },
         {
-          "target": "com.resend.api#PatchContactsContactIdTopics"
+          "target": "com.resend.api#UpdateContactTopics"
         },
         {
-          "target": "com.resend.api#GetLogs"
+          "target": "com.resend.api#ListLogs"
         },
         {
-          "target": "com.resend.api#GetLogsLogId"
+          "target": "com.resend.api#GetLog"
         },
         {
-          "target": "com.resend.api#GetAutomations"
+          "target": "com.resend.api#ListAutomations"
         },
         {
-          "target": "com.resend.api#PostAutomations"
+          "target": "com.resend.api#CreateAutomation"
         },
         {
-          "target": "com.resend.api#GetAutomationsAutomationId"
+          "target": "com.resend.api#GetAutomation"
         },
         {
-          "target": "com.resend.api#PatchAutomationsAutomationId"
+          "target": "com.resend.api#UpdateAutomation"
         },
         {
-          "target": "com.resend.api#DeleteAutomationsAutomationId"
+          "target": "com.resend.api#DeleteAutomation"
         },
         {
-          "target": "com.resend.api#PostAutomationsAutomationIdStop"
+          "target": "com.resend.api#StopAutomation"
         },
         {
-          "target": "com.resend.api#GetAutomationsAutomationIdRuns"
+          "target": "com.resend.api#ListAutomationRuns"
         },
         {
-          "target": "com.resend.api#GetAutomationsAutomationIdRunsRunId"
+          "target": "com.resend.api#GetAutomationRun"
         },
         {
-          "target": "com.resend.api#GetEvents"
+          "target": "com.resend.api#ListEvents"
         },
         {
-          "target": "com.resend.api#PostEvents"
+          "target": "com.resend.api#CreateEvent"
         },
         {
-          "target": "com.resend.api#PostEventsSend"
+          "target": "com.resend.api#SendEvent"
         },
         {
-          "target": "com.resend.api#GetEventsIdentifier"
+          "target": "com.resend.api#GetEvent"
         },
         {
-          "target": "com.resend.api#PatchEventsIdentifier"
+          "target": "com.resend.api#UpdateEvent"
         },
         {
-          "target": "com.resend.api#DeleteEventsIdentifier"
+          "target": "com.resend.api#DeleteEvent"
         }
       ],
       "traits": {
