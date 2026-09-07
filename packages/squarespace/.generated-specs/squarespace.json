@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.squarespace.api#GetTransactionsSummariesRequestContactIdsList": {
@@ -3891,7 +3892,7 @@
         "smithy.api#documentation": "Get contact\n\nReturns the contact for the given contact ID. Requires OAuth website scope website.contacts.read or website.contacts, or API key scope CONTACT_READONLY or CONTACT, or OAuth website scope website.profiles.read or website.profiles (OAuth only)."
       }
     },
-    "com.squarespace.api#PatchContactRequest": {
+    "com.squarespace.api#UpdateContactRequest": {
       "type": "structure",
       "members": {
         "contactId": {
@@ -3916,10 +3917,10 @@
       },
       "traits": {}
     },
-    "com.squarespace.api#PatchContact": {
+    "com.squarespace.api#UpdateContact": {
       "type": "operation",
       "input": {
-        "target": "com.squarespace.api#PatchContactRequest"
+        "target": "com.squarespace.api#UpdateContactRequest"
       },
       "output": {
         "target": "com.squarespace.api#PatchContactResponse"
@@ -10195,7 +10196,7 @@
           "target": "com.squarespace.api#GetContact"
         },
         {
-          "target": "com.squarespace.api#PatchContact"
+          "target": "com.squarespace.api#UpdateContact"
         },
         {
           "target": "com.squarespace.api#DeleteContact"

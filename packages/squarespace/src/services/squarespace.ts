@@ -4323,31 +4323,6 @@ export const PaginatedDiscountListResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "PaginatedDiscountListResponse",
 }) as any as S.Schema<PaginatedDiscountListResponse>;
 
-export interface PatchContactRequest {
-  /** The contact's ID. */
-  contactId: string;
-}
-export const PatchContactRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    contactId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "PATCH", uri: "/v1/contacts/{contactId}", code: 200 }),
-  ),
-).annotate({
-  identifier: "PatchContactRequest",
-}) as any as S.Schema<PatchContactRequest>;
-
-export interface PatchContactResponse {
-  contact?: Contact;
-}
-export const PatchContactResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    contact: S.optional(Contact),
-  }),
-).annotate({
-  identifier: "PatchContactResponse",
-}) as any as S.Schema<PatchContactResponse>;
-
 /** Object for filtering by before and after dates */
 export interface DateFilter {
   /** Filter out any dates after */
@@ -4576,6 +4551,31 @@ export const UpdateAddressBookEntryResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "UpdateAddressBookEntryResponse",
 }) as any as S.Schema<UpdateAddressBookEntryResponse>;
+
+export interface UpdateContactRequest {
+  /** The contact's ID. */
+  contactId: string;
+}
+export const UpdateContactRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    contactId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "PATCH", uri: "/v1/contacts/{contactId}", code: 200 }),
+  ),
+).annotate({
+  identifier: "UpdateContactRequest",
+}) as any as S.Schema<UpdateContactRequest>;
+
+export interface PatchContactResponse {
+  contact?: Contact;
+}
+export const PatchContactResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    contact: S.optional(Contact),
+  }),
+).annotate({
+  identifier: "PatchContactResponse",
+}) as any as S.Schema<PatchContactResponse>;
 
 export type UpdateDiscountRequestCriteria =
   | AnyOrderCriteria
@@ -5705,26 +5705,6 @@ export const listDiscounts: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PatchContactError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | Conflict
-  | SquarespaceOpError;
-/** Update contact Updates a contact using JSON merge patch. Requires OAuth website scope website.contacts, or API key scope CONTACT, or OAuth website scope website.profiles (OAuth only). */
-export const patchContact: API.OperationMethod<
-  PatchContactRequest,
-  PatchContactResponse,
-  PatchContactError,
-  SquarespaceOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PatchContactRequest,
-  output: PatchContactResponse,
-  errors: [BadRequest, Forbidden, NotFound, Conflict, UnknownSquarespaceError],
-  protocol: SquarespaceProtocol,
-  retry: Retry.Retry,
-}));
-
 export type QueryContactsError = BadRequest | Forbidden | SquarespaceOpError;
 /** Query contacts Returns a paginated list of contacts matching filters and sort options in the request body. Requires OAuth website scope website.contacts.read or website.contacts, or API key scope CONTACT_READONLY or CONTACT, or OAuth website scope website.profiles.read or website.profiles (OAuth only). */
 export const queryContacts: API.PaginatedOperationMethod<
@@ -5799,6 +5779,26 @@ export const updateAddressBookEntry: API.OperationMethod<
   input: UpdateAddressBookEntryRequest,
   output: UpdateAddressBookEntryResponse,
   errors: [BadRequest, Forbidden, NotFound, UnknownSquarespaceError],
+  protocol: SquarespaceProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateContactError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | Conflict
+  | SquarespaceOpError;
+/** Update contact Updates a contact using JSON merge patch. Requires OAuth website scope website.contacts, or API key scope CONTACT, or OAuth website scope website.profiles (OAuth only). */
+export const updateContact: API.OperationMethod<
+  UpdateContactRequest,
+  PatchContactResponse,
+  UpdateContactError,
+  SquarespaceOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateContactRequest,
+  output: PatchContactResponse,
+  errors: [BadRequest, Forbidden, NotFound, Conflict, UnknownSquarespaceError],
   protocol: SquarespaceProtocol,
   retry: Retry.Retry,
 }));
