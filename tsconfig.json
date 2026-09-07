@@ -237,6 +237,12 @@
     },
     {
       "path": "./packages/porkbun/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/resend/tsconfig.json"
+    },
+    {
+      "path": "./packages/resend/tsconfig.scripts.json"
     }
   ]
 }

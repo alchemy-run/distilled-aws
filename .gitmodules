@@ -188,3 +188,8 @@
 	url = https://github.com/distilled-mirror/spec-mirror-porkbun.git
 	ignore = dirty
 	shallow = true
+[submodule "packages/resend/specs/spec-mirror-resend"]
+	path = packages/resend/specs/spec-mirror-resend
+	url = https://github.com/distilled-mirror/spec-mirror-resend.git
+	ignore = dirty
+	shallow = true
