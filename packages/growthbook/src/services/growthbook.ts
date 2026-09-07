@@ -1764,6 +1764,3386 @@ export const CompleteRampScheduleResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CompleteRampScheduleResponse",
 }) as any as S.Schema<CompleteRampScheduleResponse>;
 
+/** The attributes to set when using this Archetype */
+export type CreateArchetypeRequestAttributesMap = {
+  [key: string]: unknown | undefined;
+};
+export const CreateArchetypeRequestAttributesMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<CreateArchetypeRequestAttributesMap>;
+
+export type CreateArchetypeRequestProjectsList = Array<string>;
+export const CreateArchetypeRequestProjectsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateArchetypeRequestProjectsList>;
+
+/** Limit this Archetype to specific environments. Omit or leave empty to apply to all environments. */
+export type CreateArchetypeRequestEnvironmentsList = Array<string>;
+export const CreateArchetypeRequestEnvironmentsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateArchetypeRequestEnvironmentsList>;
+
+export interface CreateArchetypeRequest {
+  name: string;
+  description?: string;
+  /** Whether to make this Archetype available to other team members */
+  isPublic: boolean;
+  /** The attributes to set when using this Archetype */
+  attributes?: CreateArchetypeRequestAttributesMap;
+  projects?: CreateArchetypeRequestProjectsList;
+  /** Limit this Archetype to specific environments. Omit or leave empty to apply to all environments. */
+  environments?: CreateArchetypeRequestEnvironmentsList;
+}
+export const CreateArchetypeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    description: S.optional(S.String),
+    isPublic: S.Boolean,
+    attributes: S.optional(CreateArchetypeRequestAttributesMap),
+    projects: S.optional(CreateArchetypeRequestProjectsList),
+    environments: S.optional(CreateArchetypeRequestEnvironmentsList),
+  }).pipe(T.Http({ method: "POST", uri: "/v1/archetypes", code: 200 })),
+).annotate({
+  identifier: "CreateArchetypeRequest",
+}) as any as S.Schema<CreateArchetypeRequest>;
+
+/** The attributes to set when using this Archetype */
+export type ArchetypeAttributesMap = { [key: string]: unknown | undefined };
+export const ArchetypeAttributesMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<ArchetypeAttributesMap>;
+
+export type ArchetypeProjectsList = Array<string>;
+export const ArchetypeProjectsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ArchetypeProjectsList>;
+
+/** Limit this Archetype to specific environments. Omit or leave empty to apply to all environments. */
+export type ArchetypeEnvironmentsList = Array<string>;
+export const ArchetypeEnvironmentsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ArchetypeEnvironmentsList>;
+
+export interface Archetype {
+  id: string;
+  dateCreated: string;
+  dateUpdated: string;
+  name: string;
+  description?: string;
+  /** The userId of the owner (or raw owner name/email for legacy records) */
+  owner: string;
+  /** The email address of the owner, when the owner can be resolved to a known user. */
+  ownerEmail?: string;
+  isPublic: boolean;
+  /** The attributes to set when using this Archetype */
+  attributes: ArchetypeAttributesMap;
+  projects?: ArchetypeProjectsList;
+  /** Limit this Archetype to specific environments. Omit or leave empty to apply to all environments. */
+  environments?: ArchetypeEnvironmentsList;
+}
+export const Archetype = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    dateCreated: S.String,
+    dateUpdated: S.String,
+    name: S.String,
+    description: S.optional(S.String),
+    owner: S.String,
+    ownerEmail: S.optional(S.String),
+    isPublic: S.Boolean,
+    attributes: ArchetypeAttributesMap,
+    projects: S.optional(ArchetypeProjectsList),
+    environments: S.optional(ArchetypeEnvironmentsList),
+  }),
+).annotate({ identifier: "Archetype" }) as any as S.Schema<Archetype>;
+
+export interface CreateArchetypeResponse {
+  archetype: Archetype;
+}
+export const CreateArchetypeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    archetype: Archetype,
+  }),
+).annotate({
+  identifier: "CreateArchetypeResponse",
+}) as any as S.Schema<CreateArchetypeResponse>;
+
+/** The attribute datatype */
+export type CreateAttributeRequestDatatype =
+  | "boolean"
+  | "string"
+  | "number"
+  | "secureString"
+  | "enum"
+  | "string[]"
+  | "number[]"
+  | "secureString[]";
+export const CreateAttributeRequestDatatype = /*@__PURE__*/ S.String;
+
+/** The attribute's format */
+export type CreateAttributeRequestFormat =
+  | ""
+  | "version"
+  | "date"
+  | "isoCountryCode";
+export const CreateAttributeRequestFormat = /*@__PURE__*/ S.String;
+
+export type CreateAttributeRequestProjectsList = Array<string>;
+export const CreateAttributeRequestProjectsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateAttributeRequestProjectsList>;
+
+export type CreateAttributeRequestTagsList = Array<string>;
+export const CreateAttributeRequestTagsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateAttributeRequestTagsList>;
+
+export interface CreateAttributeRequest {
+  /** The attribute property */
+  property: string;
+  /** The attribute datatype */
+  datatype: CreateAttributeRequestDatatype | (string & {});
+  /** The description of the new attribute */
+  description?: string;
+  /** The attribute is archived */
+  archived?: boolean;
+  /** Shall the attribute be hashed */
+  hashAttribute?: boolean;
+  /** Comma-separated list of allowed values. Required for the 'enum' datatype. For array datatypes (string[], number[], secureString[]) it optionally restricts the list to these values. Ignored for all other datatypes. */
+  enum?: string;
+  /** The attribute's format */
+  format?: CreateAttributeRequestFormat | (string & {});
+  projects?: CreateAttributeRequestProjectsList;
+  tags?: CreateAttributeRequestTagsList;
+}
+export const CreateAttributeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    property: S.String,
+    datatype: CreateAttributeRequestDatatype,
+    description: S.optional(S.String),
+    archived: S.optional(S.Boolean),
+    hashAttribute: S.optional(S.Boolean),
+    enum: S.optional(S.String),
+    format: S.optional(CreateAttributeRequestFormat),
+    projects: S.optional(CreateAttributeRequestProjectsList),
+    tags: S.optional(CreateAttributeRequestTagsList),
+  }).pipe(T.Http({ method: "POST", uri: "/v1/attributes", code: 200 })),
+).annotate({
+  identifier: "CreateAttributeRequest",
+}) as any as S.Schema<CreateAttributeRequest>;
+
+export type AttributeDatatype =
+  | "boolean"
+  | "string"
+  | "number"
+  | "secureString"
+  | "enum"
+  | "string[]"
+  | "number[]"
+  | "secureString[]";
+export const AttributeDatatype = /*@__PURE__*/ S.String;
+
+export type AttributeFormat = "" | "version" | "date" | "isoCountryCode";
+export const AttributeFormat = /*@__PURE__*/ S.String;
+
+export type AttributeProjectsList = Array<string>;
+export const AttributeProjectsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<AttributeProjectsList>;
+
+export type AttributeTagsList = Array<string>;
+export const AttributeTagsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<AttributeTagsList>;
+
+export interface Attribute {
+  property: string;
+  datatype: AttributeDatatype;
+  description?: string;
+  hashAttribute?: boolean;
+  archived?: boolean;
+  /** Comma-separated list of allowed values. Required for the 'enum' datatype. For array datatypes (string[], number[], secureString[]) it optionally restricts the list to these values. Ignored for all other datatypes. */
+  enum?: string;
+  format?: AttributeFormat;
+  projects?: AttributeProjectsList;
+  tags?: AttributeTagsList;
+}
+export const Attribute = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    property: S.String,
+    datatype: AttributeDatatype,
+    description: S.optional(S.String),
+    hashAttribute: S.optional(S.Boolean),
+    archived: S.optional(S.Boolean),
+    enum: S.optional(S.String),
+    format: S.optional(AttributeFormat),
+    projects: S.optional(AttributeProjectsList),
+    tags: S.optional(AttributeTagsList),
+  }),
+).annotate({ identifier: "Attribute" }) as any as S.Schema<Attribute>;
+
+export interface CreateAttributeResponse {
+  attribute: Attribute;
+}
+export const CreateAttributeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    attribute: Attribute,
+  }),
+).annotate({
+  identifier: "CreateAttributeResponse",
+}) as any as S.Schema<CreateAttributeResponse>;
+
+/** Fallback `managedBy` for Fact Tables and Fact Metrics that omit the field. Defaults to `"api"`. Filters inherit `"api"` only when the parent Fact Table is api-managed. */
+export type CreateBulkImportFactRequestDefaultManagedBy = "" | "api" | "admin";
+export const CreateBulkImportFactRequestDefaultManagedBy =
+  /*@__PURE__*/ S.String;
+
+/** List of associated project ids */
+export type CreateBulkImportFactRequestFactTablesItemDataProjectsList =
+  Array<string>;
+export const CreateBulkImportFactRequestFactTablesItemDataProjectsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateBulkImportFactRequestFactTablesItemDataProjectsList>;
+
+/** List of associated tags */
+export type CreateBulkImportFactRequestFactTablesItemDataTagsList =
+  Array<string>;
+export const CreateBulkImportFactRequestFactTablesItemDataTagsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateBulkImportFactRequestFactTablesItemDataTagsList>;
+
+/** List of identifier columns in this table. For example, "id" or "anonymous_id" */
+export type CreateBulkImportFactRequestFactTablesItemDataUserIdTypesList =
+  Array<string>;
+export const CreateBulkImportFactRequestFactTablesItemDataUserIdTypesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateBulkImportFactRequestFactTablesItemDataUserIdTypesList>;
+
+export type CreateBulkImportFactRequestFactTablesItemDataAggregatedFactTableSettingsIdTypesList =
+  Array<string>;
+export const CreateBulkImportFactRequestFactTablesItemDataAggregatedFactTableSettingsIdTypesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateBulkImportFactRequestFactTablesItemDataAggregatedFactTableSettingsIdTypesList>;
+
+export interface CreateBulkImportFactRequestFactTablesItemDataAggregatedFactTableSettingsUpdateTime {
+  time: string;
+  timezone: string;
+}
+export const CreateBulkImportFactRequestFactTablesItemDataAggregatedFactTableSettingsUpdateTime =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      time: S.String,
+      timezone: S.String,
+    }),
+  ).annotate({
+    identifier:
+      "CreateBulkImportFactRequestFactTablesItemDataAggregatedFactTableSettingsUpdateTime",
+  }) as any as S.Schema<CreateBulkImportFactRequestFactTablesItemDataAggregatedFactTableSettingsUpdateTime>;
+
+/** Settings for maintaining shared daily aggregated tables (a subset of userIdTypes plus the daily update time and restate lookback window) used to speed up CUPED. Requires the data pipeline (pipeline-mode) feature. */
+export interface CreateBulkImportFactRequestFactTablesItemDataAggregatedFactTableSettings {
+  idTypes: CreateBulkImportFactRequestFactTablesItemDataAggregatedFactTableSettingsIdTypesList;
+  updateTime: CreateBulkImportFactRequestFactTablesItemDataAggregatedFactTableSettingsUpdateTime;
+  lookbackWindow: number;
+  restateChunkDays?: number;
+}
+export const CreateBulkImportFactRequestFactTablesItemDataAggregatedFactTableSettings =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      idTypes:
+        CreateBulkImportFactRequestFactTablesItemDataAggregatedFactTableSettingsIdTypesList,
+      updateTime:
+        CreateBulkImportFactRequestFactTablesItemDataAggregatedFactTableSettingsUpdateTime,
+      lookbackWindow: S.Number,
+      restateChunkDays: S.optional(S.Number),
+    }),
+  ).annotate({
+    identifier:
+      "CreateBulkImportFactRequestFactTablesItemDataAggregatedFactTableSettings",
+  }) as any as S.Schema<CreateBulkImportFactRequestFactTablesItemDataAggregatedFactTableSettings>;
+
+/** The column's data type. Omit (or send "") to have it auto-detected from the SQL. */
+export type FactTableColumnInputDatatype =
+  | "number"
+  | "string"
+  | "date"
+  | "boolean"
+  | "json"
+  | "binary"
+  | "other"
+  | "";
+export const FactTableColumnInputDatatype = /*@__PURE__*/ S.String;
+
+export type FactTableColumnInputNumberFormat =
+  | ""
+  | "currency"
+  | "time:seconds"
+  | "memory:bytes"
+  | "memory:kilobytes";
+export const FactTableColumnInputNumberFormat = /*@__PURE__*/ S.String;
+
+export type FactTableColumnInputJsonFieldsValueDatatype =
+  | "number"
+  | "string"
+  | "date"
+  | "boolean"
+  | "json"
+  | "binary"
+  | "other"
+  | "";
+export const FactTableColumnInputJsonFieldsValueDatatype =
+  /*@__PURE__*/ S.String;
+
+export interface FactTableColumnInputJsonFieldsValue {
+  datatype?: FactTableColumnInputJsonFieldsValueDatatype | (string & {});
+}
+export const FactTableColumnInputJsonFieldsValue = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    datatype: S.optional(FactTableColumnInputJsonFieldsValueDatatype),
+  }),
+).annotate({
+  identifier: "FactTableColumnInputJsonFieldsValue",
+}) as any as S.Schema<FactTableColumnInputJsonFieldsValue>;
+
+/** For JSON columns, defines the structure of nested fields */
+export type FactTableColumnInputJsonFieldsMap = {
+  [key: string]: FactTableColumnInputJsonFieldsValue | undefined;
+};
+export const FactTableColumnInputJsonFieldsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  FactTableColumnInputJsonFieldsValue,
+) as any as S.Schema<FactTableColumnInputJsonFieldsMap>;
+
+/** Specific slices to automatically analyze for this column. */
+export type FactTableColumnInputAutoSlicesList = Array<string>;
+export const FactTableColumnInputAutoSlicesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<FactTableColumnInputAutoSlicesList>;
+
+/** Locked slices that are protected from automatic updates. These will always be included in the slice levels even if they're not in the top values query results. */
+export type FactTableColumnInputLockedAutoSlicesList = Array<string>;
+export const FactTableColumnInputLockedAutoSlicesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<FactTableColumnInputLockedAutoSlicesList>;
+
+export interface FactTableColumnInput {
+  /** The actual column name in the database/SQL query */
+  column: string;
+  /** The column's data type. Omit (or send "") to have it auto-detected from the SQL. */
+  datatype?: FactTableColumnInputDatatype | (string & {});
+  numberFormat?: FactTableColumnInputNumberFormat | (string & {});
+  /** For JSON columns, defines the structure of nested fields */
+  jsonFields?: FactTableColumnInputJsonFieldsMap;
+  /** Display name for the column (can be different from the actual column name) */
+  name?: string;
+  description?: string;
+  /** Whether this column should always be included as an inline filter in queries */
+  alwaysInlineFilter?: boolean;
+  deleted?: boolean;
+  /** Whether this column can be used for auto slice analysis. This is an enterprise feature. */
+  isAutoSliceColumn?: boolean;
+  /** Specific slices to automatically analyze for this column. */
+  autoSlices?: FactTableColumnInputAutoSlicesList;
+  /** Locked slices that are protected from automatic updates. These will always be included in the slice levels even if they're not in the top values query results. */
+  lockedAutoSlices?: FactTableColumnInputLockedAutoSlicesList;
+  /** Whether this is a virtual (computed) column defined by a SQL expression rather than detected from the fact table SQL. Can be set when creating a column, but a column's origin cannot be changed afterwards — sending a value that contradicts an existing column is rejected. */
+  isVirtual?: boolean;
+  /** For virtual columns, the SQL expression that computes the column value. Only valid on a virtual column; when omitted from an update, the existing expression is preserved. */
+  sql?: string;
+}
+export const FactTableColumnInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    column: S.String,
+    datatype: S.optional(FactTableColumnInputDatatype),
+    numberFormat: S.optional(FactTableColumnInputNumberFormat),
+    jsonFields: S.optional(FactTableColumnInputJsonFieldsMap),
+    name: S.optional(S.String),
+    description: S.optional(S.String),
+    alwaysInlineFilter: S.optional(S.Boolean),
+    deleted: S.optional(S.Boolean),
+    isAutoSliceColumn: S.optional(S.Boolean),
+    autoSlices: S.optional(FactTableColumnInputAutoSlicesList),
+    lockedAutoSlices: S.optional(FactTableColumnInputLockedAutoSlicesList),
+    isVirtual: S.optional(S.Boolean),
+    sql: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "FactTableColumnInput",
+}) as any as S.Schema<FactTableColumnInput>;
+
+/** Optional array of column definitions for this fact table. On create, columns are stored as-is. On update, columns upsert by `column`: existing columns are patched, new columns are created, and columns not included are left unchanged. Omit `datatype` to leave an existing column's type untouched; send "" to reset it for auto-detection; new columns are auto-detected when `datatype` is omitted or "". Datatype-dependent properties (e.g. `alwaysInlineFilter`) are validated once the datatype is known. Slice-related properties require an enterprise license. */
+export type CreateBulkImportFactRequestFactTablesItemDataColumnsList =
+  Array<FactTableColumnInput>;
+export const CreateBulkImportFactRequestFactTablesItemDataColumnsList =
+  /*@__PURE__*/ S.Array(
+    FactTableColumnInput,
+  ) as any as S.Schema<CreateBulkImportFactRequestFactTablesItemDataColumnsList>;
+
+/** Set this to "api" to disable editing in the GrowthBook UI */
+export type CreateBulkImportFactRequestFactTablesItemDataManagedBy =
+  | ""
+  | "api"
+  | "admin";
+export const CreateBulkImportFactRequestFactTablesItemDataManagedBy =
+  /*@__PURE__*/ S.String;
+
+export interface CreateBulkImportFactRequestFactTablesItemData {
+  name: string;
+  /** Description of the fact table */
+  description?: string;
+  /** The userId or email address of the owner. If an email address is provided, it will be used to look up the userId of the matching organization member. If an ID is provided, it will be validated as existing in the organization. */
+  owner?: string;
+  /** List of associated project ids */
+  projects?: CreateBulkImportFactRequestFactTablesItemDataProjectsList;
+  /** List of associated tags */
+  tags?: CreateBulkImportFactRequestFactTablesItemDataTagsList;
+  /** The datasource id */
+  datasource: string;
+  /** List of identifier columns in this table. For example, "id" or "anonymous_id" */
+  userIdTypes: CreateBulkImportFactRequestFactTablesItemDataUserIdTypesList;
+  /** Settings for maintaining shared daily aggregated tables (a subset of userIdTypes plus the daily update time and restate lookback window) used to speed up CUPED. Requires the data pipeline (pipeline-mode) feature. */
+  aggregatedFactTableSettings?: CreateBulkImportFactRequestFactTablesItemDataAggregatedFactTableSettings;
+  /** The SQL query for this fact table */
+  sql: string;
+  /** The event name used in SQL template variables */
+  eventName?: string;
+  /** Optional array of column definitions for this fact table. On create, columns are stored as-is. On update, columns upsert by `column`: existing columns are patched, new columns are created, and columns not included are left unchanged. Omit `datatype` to leave an existing column's type untouched; send "" to reset it for auto-detection; new columns are auto-detected when `datatype` is omitted or "". Datatype-dependent properties (e.g. `alwaysInlineFilter`) are validated once the datatype is known. Slice-related properties require an enterprise license. */
+  columns?: CreateBulkImportFactRequestFactTablesItemDataColumnsList;
+  /** Set this to "api" to disable editing in the GrowthBook UI */
+  managedBy?:
+    | CreateBulkImportFactRequestFactTablesItemDataManagedBy
+    | (string & {});
+}
+export const CreateBulkImportFactRequestFactTablesItemData =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      name: S.String,
+      description: S.optional(S.String),
+      owner: S.optional(S.String),
+      projects: S.optional(
+        CreateBulkImportFactRequestFactTablesItemDataProjectsList,
+      ),
+      tags: S.optional(CreateBulkImportFactRequestFactTablesItemDataTagsList),
+      datasource: S.String,
+      userIdTypes: CreateBulkImportFactRequestFactTablesItemDataUserIdTypesList,
+      aggregatedFactTableSettings: S.optional(
+        CreateBulkImportFactRequestFactTablesItemDataAggregatedFactTableSettings,
+      ),
+      sql: S.String,
+      eventName: S.optional(S.String),
+      columns: S.optional(
+        CreateBulkImportFactRequestFactTablesItemDataColumnsList,
+      ),
+      managedBy: S.optional(
+        CreateBulkImportFactRequestFactTablesItemDataManagedBy,
+      ),
+    }),
+  ).annotate({
+    identifier: "CreateBulkImportFactRequestFactTablesItemData",
+  }) as any as S.Schema<CreateBulkImportFactRequestFactTablesItemData>;
+
+export interface CreateBulkImportFactRequestFactTablesItem {
+  id: string;
+  data: CreateBulkImportFactRequestFactTablesItemData;
+}
+export const CreateBulkImportFactRequestFactTablesItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.String,
+      data: CreateBulkImportFactRequestFactTablesItemData,
+    }),
+  ).annotate({
+    identifier: "CreateBulkImportFactRequestFactTablesItem",
+  }) as any as S.Schema<CreateBulkImportFactRequestFactTablesItem>;
+
+export type CreateBulkImportFactRequestFactTablesList =
+  Array<CreateBulkImportFactRequestFactTablesItem>;
+export const CreateBulkImportFactRequestFactTablesList = /*@__PURE__*/ S.Array(
+  CreateBulkImportFactRequestFactTablesItem,
+) as any as S.Schema<CreateBulkImportFactRequestFactTablesList>;
+
+/** Set this to "api" to disable editing in the GrowthBook UI. Before you do this, the Fact Table itself must also be marked as "api" */
+export type CreateBulkImportFactRequestFactTableFiltersItemDataManagedBy =
+  | ""
+  | "api";
+export const CreateBulkImportFactRequestFactTableFiltersItemDataManagedBy =
+  /*@__PURE__*/ S.String;
+
+export interface CreateBulkImportFactRequestFactTableFiltersItemData {
+  name: string;
+  /** Description of the fact table filter */
+  description?: string;
+  /** The SQL expression for this filter. */
+  value: string;
+  /** Set this to "api" to disable editing in the GrowthBook UI. Before you do this, the Fact Table itself must also be marked as "api" */
+  managedBy?:
+    | CreateBulkImportFactRequestFactTableFiltersItemDataManagedBy
+    | (string & {});
+}
+export const CreateBulkImportFactRequestFactTableFiltersItemData =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      name: S.String,
+      description: S.optional(S.String),
+      value: S.String,
+      managedBy: S.optional(
+        CreateBulkImportFactRequestFactTableFiltersItemDataManagedBy,
+      ),
+    }),
+  ).annotate({
+    identifier: "CreateBulkImportFactRequestFactTableFiltersItemData",
+  }) as any as S.Schema<CreateBulkImportFactRequestFactTableFiltersItemData>;
+
+export interface CreateBulkImportFactRequestFactTableFiltersItem {
+  factTableId: string;
+  id: string;
+  data: CreateBulkImportFactRequestFactTableFiltersItemData;
+}
+export const CreateBulkImportFactRequestFactTableFiltersItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      factTableId: S.String,
+      id: S.String,
+      data: CreateBulkImportFactRequestFactTableFiltersItemData,
+    }),
+  ).annotate({
+    identifier: "CreateBulkImportFactRequestFactTableFiltersItem",
+  }) as any as S.Schema<CreateBulkImportFactRequestFactTableFiltersItem>;
+
+export type CreateBulkImportFactRequestFactTableFiltersList =
+  Array<CreateBulkImportFactRequestFactTableFiltersItem>;
+export const CreateBulkImportFactRequestFactTableFiltersList =
+  /*@__PURE__*/ S.Array(
+    CreateBulkImportFactRequestFactTableFiltersItem,
+  ) as any as S.Schema<CreateBulkImportFactRequestFactTableFiltersList>;
+
+export type CreateBulkImportFactRequestFactMetricsItemDataProjectsList =
+  Array<string>;
+export const CreateBulkImportFactRequestFactMetricsItemDataProjectsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateBulkImportFactRequestFactMetricsItemDataProjectsList>;
+
+export type CreateBulkImportFactRequestFactMetricsItemDataTagsList =
+  Array<string>;
+export const CreateBulkImportFactRequestFactMetricsItemDataTagsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateBulkImportFactRequestFactMetricsItemDataTagsList>;
+
+export type CreateBulkImportFactRequestFactMetricsItemDataMetricType =
+  | "proportion"
+  | "retention"
+  | "mean"
+  | "quantile"
+  | "ratio"
+  | "dailyParticipation"
+  | "funnel";
+export const CreateBulkImportFactRequestFactMetricsItemDataMetricType =
+  /*@__PURE__*/ S.String;
+
+/** User aggregation of selected column. Either sum or max for numeric columns; count distinct for string columns; hll merge / kll merge for pre-built sketch columns (requires data-source support); ignored for special columns. Default: sum. If you specify a string column you must explicitly specify count distinct. Not used for proportion metrics; for event quantile metrics only kll merge is applicable. */
+export type CreateBulkImportFactRequestFactMetricsItemDataNumeratorAggregation =
+  | "sum"
+  | "max"
+  | "count distinct"
+  | "hll merge"
+  | "kll merge";
+export const CreateBulkImportFactRequestFactMetricsItemDataNumeratorAggregation =
+  /*@__PURE__*/ S.String;
+
+/** Array of Fact Table Filter Ids. Deprecated, use rowFilters instead. */
+export type CreateBulkImportFactRequestFactMetricsItemDataNumeratorFiltersList =
+  Array<string>;
+export const CreateBulkImportFactRequestFactMetricsItemDataNumeratorFiltersList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateBulkImportFactRequestFactMetricsItemDataNumeratorFiltersList>;
+
+export type CreateBulkImportFactRequestFactMetricsItemDataNumeratorInlineFiltersValueList =
+  Array<string>;
+export const CreateBulkImportFactRequestFactMetricsItemDataNumeratorInlineFiltersValueList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateBulkImportFactRequestFactMetricsItemDataNumeratorInlineFiltersValueList>;
+
+/** Inline filters to apply to the fact table. Keys are column names, values are arrays of values to filter by. Deprecated, use rowFilters instead. */
+export type CreateBulkImportFactRequestFactMetricsItemDataNumeratorInlineFiltersMap =
+  {
+    [key: string]:
+      | CreateBulkImportFactRequestFactMetricsItemDataNumeratorInlineFiltersValueList
+      | undefined;
+  };
+export const CreateBulkImportFactRequestFactMetricsItemDataNumeratorInlineFiltersMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    CreateBulkImportFactRequestFactMetricsItemDataNumeratorInlineFiltersValueList,
+  ) as any as S.Schema<CreateBulkImportFactRequestFactMetricsItemDataNumeratorInlineFiltersMap>;
+
+export type CreateBulkImportFactRequestFactMetricsItemDataNumeratorRowFiltersItemOperator =
+  | "="
+  | "!="
+  | ">"
+  | "<"
+  | ">="
+  | "<="
+  | "between"
+  | "not_between"
+  | "in"
+  | "not_in"
+  | "is_null"
+  | "not_null"
+  | "is_true"
+  | "is_false"
+  | "contains"
+  | "not_contains"
+  | "starts_with"
+  | "ends_with"
+  | "sql_expr"
+  | "saved_filter";
+export const CreateBulkImportFactRequestFactMetricsItemDataNumeratorRowFiltersItemOperator =
+  /*@__PURE__*/ S.String;
+
+/** Not required for is_null, not_null, is_true, is_false operators. The between and not_between operators take at most two values, a lower and an upper bound in that order; leave a bound as an empty string for an open-ended range. */
+export type CreateBulkImportFactRequestFactMetricsItemDataNumeratorRowFiltersItemValuesList =
+  Array<string>;
+export const CreateBulkImportFactRequestFactMetricsItemDataNumeratorRowFiltersItemValuesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateBulkImportFactRequestFactMetricsItemDataNumeratorRowFiltersItemValuesList>;
+
+export interface CreateBulkImportFactRequestFactMetricsItemDataNumeratorRowFiltersItem {
+  operator:
+    | CreateBulkImportFactRequestFactMetricsItemDataNumeratorRowFiltersItemOperator
+    | (string & {});
+  /** Not required for is_null, not_null, is_true, is_false operators. The between and not_between operators take at most two values, a lower and an upper bound in that order; leave a bound as an empty string for an open-ended range. */
+  values?: CreateBulkImportFactRequestFactMetricsItemDataNumeratorRowFiltersItemValuesList;
+  /** Required for all operators except sql_expr and saved_filter. */
+  column?: string;
+}
+export const CreateBulkImportFactRequestFactMetricsItemDataNumeratorRowFiltersItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      operator:
+        CreateBulkImportFactRequestFactMetricsItemDataNumeratorRowFiltersItemOperator,
+      values: S.optional(
+        CreateBulkImportFactRequestFactMetricsItemDataNumeratorRowFiltersItemValuesList,
+      ),
+      column: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier:
+      "CreateBulkImportFactRequestFactMetricsItemDataNumeratorRowFiltersItem",
+  }) as any as S.Schema<CreateBulkImportFactRequestFactMetricsItemDataNumeratorRowFiltersItem>;
+
+/** Filters to apply to the rows of the fact table before aggregation. */
+export type CreateBulkImportFactRequestFactMetricsItemDataNumeratorRowFiltersList =
+  Array<CreateBulkImportFactRequestFactMetricsItemDataNumeratorRowFiltersItem>;
+export const CreateBulkImportFactRequestFactMetricsItemDataNumeratorRowFiltersList =
+  /*@__PURE__*/ S.Array(
+    CreateBulkImportFactRequestFactMetricsItemDataNumeratorRowFiltersItem,
+  ) as any as S.Schema<CreateBulkImportFactRequestFactMetricsItemDataNumeratorRowFiltersList>;
+
+export interface CreateBulkImportFactRequestFactMetricsItemDataNumerator {
+  factTableId: string;
+  /** Must be empty for proportion metrics and dailyParticipation metrics. Otherwise, the column name or one of the special values: '$$distinctUsers' or '$$count' (or '$$distinctDates' if metricType is 'mean' or 'ratio' or 'quantile' and quantileSettings.type is 'unit') */
+  column?: string;
+  /** User aggregation of selected column. Either sum or max for numeric columns; count distinct for string columns; hll merge / kll merge for pre-built sketch columns (requires data-source support); ignored for special columns. Default: sum. If you specify a string column you must explicitly specify count distinct. Not used for proportion metrics; for event quantile metrics only kll merge is applicable. */
+  aggregation?:
+    | CreateBulkImportFactRequestFactMetricsItemDataNumeratorAggregation
+    | (string & {});
+  /** Array of Fact Table Filter Ids. Deprecated, use rowFilters instead. */
+  filters?: CreateBulkImportFactRequestFactMetricsItemDataNumeratorFiltersList;
+  /** Inline filters to apply to the fact table. Keys are column names, values are arrays of values to filter by. Deprecated, use rowFilters instead. */
+  inlineFilters?: CreateBulkImportFactRequestFactMetricsItemDataNumeratorInlineFiltersMap;
+  /** Filters to apply to the rows of the fact table before aggregation. */
+  rowFilters?: CreateBulkImportFactRequestFactMetricsItemDataNumeratorRowFiltersList;
+  /** Column to use to filter users after aggregation. Either '$$count' of rows or the name of a numeric column that will be summed by user. Must specify `aggregateFilter` if using this. Only can be used with 'retention' and 'proportion' metrics. */
+  aggregateFilterColumn?: string;
+  /** Simple comparison operator and value to apply after aggregation (e.g. '= 10' or '>= 1'). Requires `aggregateFilterColumn`. */
+  aggregateFilter?: string;
+}
+export const CreateBulkImportFactRequestFactMetricsItemDataNumerator =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      factTableId: S.String,
+      column: S.optional(S.String),
+      aggregation: S.optional(
+        CreateBulkImportFactRequestFactMetricsItemDataNumeratorAggregation,
+      ),
+      filters: S.optional(
+        CreateBulkImportFactRequestFactMetricsItemDataNumeratorFiltersList,
+      ),
+      inlineFilters: S.optional(
+        CreateBulkImportFactRequestFactMetricsItemDataNumeratorInlineFiltersMap,
+      ),
+      rowFilters: S.optional(
+        CreateBulkImportFactRequestFactMetricsItemDataNumeratorRowFiltersList,
+      ),
+      aggregateFilterColumn: S.optional(S.String),
+      aggregateFilter: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "CreateBulkImportFactRequestFactMetricsItemDataNumerator",
+  }) as any as S.Schema<CreateBulkImportFactRequestFactMetricsItemDataNumerator>;
+
+/** User aggregation of selected column. Either sum or max for numeric columns; count distinct for string columns; hll merge / kll merge for pre-built sketch columns (requires data-source support); ignored for special columns. Default: sum. If you specify a string column you must explicitly specify count distinct. Not used for proportion metrics; for event quantile metrics only kll merge is applicable. */
+export type CreateBulkImportFactRequestFactMetricsItemDataDenominatorAggregation =
+  | "sum"
+  | "max"
+  | "count distinct"
+  | "hll merge"
+  | "kll merge";
+export const CreateBulkImportFactRequestFactMetricsItemDataDenominatorAggregation =
+  /*@__PURE__*/ S.String;
+
+/** Array of Fact Table Filter Ids. Deprecated, use rowFilters instead. */
+export type CreateBulkImportFactRequestFactMetricsItemDataDenominatorFiltersList =
+  Array<string>;
+export const CreateBulkImportFactRequestFactMetricsItemDataDenominatorFiltersList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateBulkImportFactRequestFactMetricsItemDataDenominatorFiltersList>;
+
+export type CreateBulkImportFactRequestFactMetricsItemDataDenominatorInlineFiltersValueList =
+  Array<string>;
+export const CreateBulkImportFactRequestFactMetricsItemDataDenominatorInlineFiltersValueList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateBulkImportFactRequestFactMetricsItemDataDenominatorInlineFiltersValueList>;
+
+/** Inline filters to apply to the fact table. Keys are column names, values are arrays of values to filter by. Deprecated, use rowFilters instead. */
+export type CreateBulkImportFactRequestFactMetricsItemDataDenominatorInlineFiltersMap =
+  {
+    [key: string]:
+      | CreateBulkImportFactRequestFactMetricsItemDataDenominatorInlineFiltersValueList
+      | undefined;
+  };
+export const CreateBulkImportFactRequestFactMetricsItemDataDenominatorInlineFiltersMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    CreateBulkImportFactRequestFactMetricsItemDataDenominatorInlineFiltersValueList,
+  ) as any as S.Schema<CreateBulkImportFactRequestFactMetricsItemDataDenominatorInlineFiltersMap>;
+
+export type CreateBulkImportFactRequestFactMetricsItemDataDenominatorRowFiltersItemOperator =
+  | "="
+  | "!="
+  | ">"
+  | "<"
+  | ">="
+  | "<="
+  | "between"
+  | "not_between"
+  | "in"
+  | "not_in"
+  | "is_null"
+  | "not_null"
+  | "is_true"
+  | "is_false"
+  | "contains"
+  | "not_contains"
+  | "starts_with"
+  | "ends_with"
+  | "sql_expr"
+  | "saved_filter";
+export const CreateBulkImportFactRequestFactMetricsItemDataDenominatorRowFiltersItemOperator =
+  /*@__PURE__*/ S.String;
+
+/** Not required for is_null, not_null, is_true, is_false operators. The between and not_between operators take at most two values, a lower and an upper bound in that order; leave a bound as an empty string for an open-ended range. */
+export type CreateBulkImportFactRequestFactMetricsItemDataDenominatorRowFiltersItemValuesList =
+  Array<string>;
+export const CreateBulkImportFactRequestFactMetricsItemDataDenominatorRowFiltersItemValuesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateBulkImportFactRequestFactMetricsItemDataDenominatorRowFiltersItemValuesList>;
+
+export interface CreateBulkImportFactRequestFactMetricsItemDataDenominatorRowFiltersItem {
+  operator:
+    | CreateBulkImportFactRequestFactMetricsItemDataDenominatorRowFiltersItemOperator
+    | (string & {});
+  /** Not required for is_null, not_null, is_true, is_false operators. The between and not_between operators take at most two values, a lower and an upper bound in that order; leave a bound as an empty string for an open-ended range. */
+  values?: CreateBulkImportFactRequestFactMetricsItemDataDenominatorRowFiltersItemValuesList;
+  /** Required for all operators except sql_expr and saved_filter. */
+  column?: string;
+}
+export const CreateBulkImportFactRequestFactMetricsItemDataDenominatorRowFiltersItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      operator:
+        CreateBulkImportFactRequestFactMetricsItemDataDenominatorRowFiltersItemOperator,
+      values: S.optional(
+        CreateBulkImportFactRequestFactMetricsItemDataDenominatorRowFiltersItemValuesList,
+      ),
+      column: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier:
+      "CreateBulkImportFactRequestFactMetricsItemDataDenominatorRowFiltersItem",
+  }) as any as S.Schema<CreateBulkImportFactRequestFactMetricsItemDataDenominatorRowFiltersItem>;
+
+/** Filters to apply to the rows of the fact table before aggregation. */
+export type CreateBulkImportFactRequestFactMetricsItemDataDenominatorRowFiltersList =
+  Array<CreateBulkImportFactRequestFactMetricsItemDataDenominatorRowFiltersItem>;
+export const CreateBulkImportFactRequestFactMetricsItemDataDenominatorRowFiltersList =
+  /*@__PURE__*/ S.Array(
+    CreateBulkImportFactRequestFactMetricsItemDataDenominatorRowFiltersItem,
+  ) as any as S.Schema<CreateBulkImportFactRequestFactMetricsItemDataDenominatorRowFiltersList>;
+
+/** Only when metricType is 'ratio' */
+export interface CreateBulkImportFactRequestFactMetricsItemDataDenominator {
+  factTableId: string;
+  /** The column name or one of the special values: '$$distinctUsers' or '$$count' (or '$$distinctDates' if metricType is 'mean' or 'ratio' or 'quantile' and quantileSettings.type is 'unit') */
+  column: string;
+  /** User aggregation of selected column. Either sum or max for numeric columns; count distinct for string columns; hll merge / kll merge for pre-built sketch columns (requires data-source support); ignored for special columns. Default: sum. If you specify a string column you must explicitly specify count distinct. Not used for proportion metrics; for event quantile metrics only kll merge is applicable. */
+  aggregation?:
+    | CreateBulkImportFactRequestFactMetricsItemDataDenominatorAggregation
+    | (string & {});
+  /** Array of Fact Table Filter Ids. Deprecated, use rowFilters instead. */
+  filters?: CreateBulkImportFactRequestFactMetricsItemDataDenominatorFiltersList;
+  /** Inline filters to apply to the fact table. Keys are column names, values are arrays of values to filter by. Deprecated, use rowFilters instead. */
+  inlineFilters?: CreateBulkImportFactRequestFactMetricsItemDataDenominatorInlineFiltersMap;
+  /** Filters to apply to the rows of the fact table before aggregation. */
+  rowFilters?: CreateBulkImportFactRequestFactMetricsItemDataDenominatorRowFiltersList;
+}
+export const CreateBulkImportFactRequestFactMetricsItemDataDenominator =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      factTableId: S.String,
+      column: S.String,
+      aggregation: S.optional(
+        CreateBulkImportFactRequestFactMetricsItemDataDenominatorAggregation,
+      ),
+      filters: S.optional(
+        CreateBulkImportFactRequestFactMetricsItemDataDenominatorFiltersList,
+      ),
+      inlineFilters: S.optional(
+        CreateBulkImportFactRequestFactMetricsItemDataDenominatorInlineFiltersMap,
+      ),
+      rowFilters: S.optional(
+        CreateBulkImportFactRequestFactMetricsItemDataDenominatorRowFiltersList,
+      ),
+    }),
+  ).annotate({
+    identifier: "CreateBulkImportFactRequestFactMetricsItemDataDenominator",
+  }) as any as S.Schema<CreateBulkImportFactRequestFactMetricsItemDataDenominator>;
+
+/** Whether the quantile is over unit aggregations or raw event values */
+export type CreateBulkImportFactRequestFactMetricsItemDataQuantileSettingsType =
+  | "event"
+  | "unit";
+export const CreateBulkImportFactRequestFactMetricsItemDataQuantileSettingsType =
+  /*@__PURE__*/ S.String;
+
+/** Controls the settings for quantile metrics (mandatory if metricType is "quantile") */
+export interface CreateBulkImportFactRequestFactMetricsItemDataQuantileSettings {
+  /** Whether the quantile is over unit aggregations or raw event values */
+  type:
+    | CreateBulkImportFactRequestFactMetricsItemDataQuantileSettingsType
+    | (string & {});
+  /** If true, zero values will be ignored when calculating the quantile */
+  ignoreZeros: boolean;
+  /** The quantile value (from 0.001 to 0.999) */
+  quantile: number;
+  /** Optional override for the source-column name used to recover per-row event counts when numerator.aggregation is 'kll merge'. Defaults to '<numerator.column>_n_events'. Only valid for event-quantile metrics with a 'kll merge' numerator. */
+  quantileEventCountColumn?: string;
+}
+export const CreateBulkImportFactRequestFactMetricsItemDataQuantileSettings =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: CreateBulkImportFactRequestFactMetricsItemDataQuantileSettingsType,
+      ignoreZeros: S.Boolean,
+      quantile: S.Number,
+      quantileEventCountColumn: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier:
+      "CreateBulkImportFactRequestFactMetricsItemDataQuantileSettings",
+  }) as any as S.Schema<CreateBulkImportFactRequestFactMetricsItemDataQuantileSettings>;
+
+export type CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsItemRowFiltersItemOperator =
+  | "="
+  | "!="
+  | ">"
+  | "<"
+  | ">="
+  | "<="
+  | "between"
+  | "not_between"
+  | "in"
+  | "not_in"
+  | "is_null"
+  | "not_null"
+  | "is_true"
+  | "is_false"
+  | "contains"
+  | "not_contains"
+  | "starts_with"
+  | "ends_with"
+  | "sql_expr"
+  | "saved_filter";
+export const CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsItemRowFiltersItemOperator =
+  /*@__PURE__*/ S.String;
+
+/** Not required for is_null, not_null, is_true, is_false operators. The between and not_between operators take at most two values, a lower and an upper bound in that order; leave a bound as an empty string for an open-ended range. */
+export type CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsItemRowFiltersItemValuesList =
+  Array<string>;
+export const CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsItemRowFiltersItemValuesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsItemRowFiltersItemValuesList>;
+
+export interface CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsItemRowFiltersItem {
+  operator:
+    | CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsItemRowFiltersItemOperator
+    | (string & {});
+  /** Not required for is_null, not_null, is_true, is_false operators. The between and not_between operators take at most two values, a lower and an upper bound in that order; leave a bound as an empty string for an open-ended range. */
+  values?: CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsItemRowFiltersItemValuesList;
+  /** Required for all operators except sql_expr and saved_filter. */
+  column?: string;
+}
+export const CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsItemRowFiltersItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      operator:
+        CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsItemRowFiltersItemOperator,
+      values: S.optional(
+        CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsItemRowFiltersItemValuesList,
+      ),
+      column: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier:
+      "CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsItemRowFiltersItem",
+  }) as any as S.Schema<CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsItemRowFiltersItem>;
+
+/** Filters that decide whether an event row counts as this step */
+export type CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsItemRowFiltersList =
+  Array<CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsItemRowFiltersItem>;
+export const CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsItemRowFiltersList =
+  /*@__PURE__*/ S.Array(
+    CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsItemRowFiltersItem,
+  ) as any as S.Schema<CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsItemRowFiltersList>;
+
+export type CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsItemConversionWindowUnit =
+  | "weeks"
+  | "days"
+  | "hours"
+  | "minutes";
+export const CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsItemConversionWindowUnit =
+  /*@__PURE__*/ S.String;
+
+/** Bounds how long after the nearest prior required step (or exposure, for the first step / after only-optional priors of an experiment funnel metric) this step's event can occur. */
+export interface CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsItemConversionWindow {
+  unit:
+    | CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsItemConversionWindowUnit
+    | (string & {});
+  value: number;
+}
+export const CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsItemConversionWindow =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      unit: CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsItemConversionWindowUnit,
+      value: S.Number,
+    }),
+  ).annotate({
+    identifier:
+      "CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsItemConversionWindow",
+  }) as any as S.Schema<CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsItemConversionWindow>;
+
+export interface CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsItem {
+  /** Display name for the funnel step */
+  name: string;
+  /** The fact table this step draws events from */
+  factTableId: string;
+  /** Filters that decide whether an event row counts as this step */
+  rowFilters: CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsItemRowFiltersList;
+  /** When true, this step still counts for its own conversion but does not anchor later steps. Later steps window off the nearest prior required step (or exposure, for experiment funnel metrics, when every prior step is optional). */
+  optional: boolean;
+  conversionWindow?: CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsItemConversionWindow | null;
+}
+export const CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      name: S.String,
+      factTableId: S.String,
+      rowFilters:
+        CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsItemRowFiltersList,
+      optional: S.Boolean,
+      conversionWindow: S.optional(
+        S.NullOr(
+          CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsItemConversionWindow,
+        ),
+      ),
+    }),
+  ).annotate({
+    identifier:
+      "CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsItem",
+  }) as any as S.Schema<CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsItem>;
+
+/** Ordered list of funnel steps. Minimum 2 steps required. */
+export type CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsList =
+  Array<CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsItem>;
+export const CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsList =
+  /*@__PURE__*/ S.Array(
+    CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsItem,
+  ) as any as S.Schema<CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsList>;
+
+/** Step ordering mode. Only 'sequential' is supported in v1. */
+export type CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsOrdering =
+  "sequential";
+export const CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsOrdering =
+  /*@__PURE__*/ S.String;
+
+/** Funnel metric settings (required when metricType is "funnel") */
+export interface CreateBulkImportFactRequestFactMetricsItemDataFunnelSettings {
+  /** Ordered list of funnel steps. Minimum 2 steps required. */
+  steps: CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsList;
+  /** Step ordering mode. Only 'sequential' is supported in v1. */
+  ordering?:
+    | CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsOrdering
+    | (string & {});
+  /** Out-of-order tolerance between adjacent steps in seconds. Defaults to 0. */
+  concurrencyWindowSeconds?: number;
+}
+export const CreateBulkImportFactRequestFactMetricsItemDataFunnelSettings =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      steps:
+        CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsList,
+      ordering: S.optional(
+        CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsOrdering,
+      ),
+      concurrencyWindowSeconds: S.optional(S.Number),
+    }),
+  ).annotate({
+    identifier: "CreateBulkImportFactRequestFactMetricsItemDataFunnelSettings",
+  }) as any as S.Schema<CreateBulkImportFactRequestFactMetricsItemDataFunnelSettings>;
+
+export type CreateBulkImportFactRequestFactMetricsItemDataCappingSettingsType =
+  | "none"
+  | "absolute"
+  | "percentile";
+export const CreateBulkImportFactRequestFactMetricsItemDataCappingSettingsType =
+  /*@__PURE__*/ S.String;
+
+/** Controls how outliers are handled */
+export interface CreateBulkImportFactRequestFactMetricsItemDataCappingSettings {
+  type:
+    | CreateBulkImportFactRequestFactMetricsItemDataCappingSettingsType
+    | (string & {});
+  /** When type is absolute, this is the absolute value. When type is percentile, this is the percentile value (from 0.0 to 1.0). */
+  value?: number;
+  /** If true and capping is `percentile`, zeros will be ignored when calculating the percentile. */
+  ignoreZeros?: boolean;
+}
+export const CreateBulkImportFactRequestFactMetricsItemDataCappingSettings =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: CreateBulkImportFactRequestFactMetricsItemDataCappingSettingsType,
+      value: S.optional(S.Number),
+      ignoreZeros: S.optional(S.Boolean),
+    }),
+  ).annotate({
+    identifier: "CreateBulkImportFactRequestFactMetricsItemDataCappingSettings",
+  }) as any as S.Schema<CreateBulkImportFactRequestFactMetricsItemDataCappingSettings>;
+
+export type CreateBulkImportFactRequestFactMetricsItemDataWindowSettingsType =
+  | "none"
+  | "conversion"
+  | "lookback";
+export const CreateBulkImportFactRequestFactMetricsItemDataWindowSettingsType =
+  /*@__PURE__*/ S.String;
+
+/** Default `hours`. */
+export type CreateBulkImportFactRequestFactMetricsItemDataWindowSettingsDelayUnit =
+  | "minutes"
+  | "hours"
+  | "days"
+  | "weeks";
+export const CreateBulkImportFactRequestFactMetricsItemDataWindowSettingsDelayUnit =
+  /*@__PURE__*/ S.String;
+
+/** Default `hours`. */
+export type CreateBulkImportFactRequestFactMetricsItemDataWindowSettingsWindowUnit =
+  | "minutes"
+  | "hours"
+  | "days"
+  | "weeks";
+export const CreateBulkImportFactRequestFactMetricsItemDataWindowSettingsWindowUnit =
+  /*@__PURE__*/ S.String;
+
+/** Controls the conversion window for the metric */
+export interface CreateBulkImportFactRequestFactMetricsItemDataWindowSettings {
+  type:
+    | CreateBulkImportFactRequestFactMetricsItemDataWindowSettingsType
+    | (string & {});
+  /** Wait this many hours after experiment exposure before counting conversions. Ignored if delayValue is set. */
+  delayHours?: number;
+  /** Wait this long after experiment exposure before counting conversions. */
+  delayValue?: number;
+  /** Default `hours`. */
+  delayUnit?:
+    | CreateBulkImportFactRequestFactMetricsItemDataWindowSettingsDelayUnit
+    | (string & {});
+  windowValue?: number;
+  /** Default `hours`. */
+  windowUnit?:
+    | CreateBulkImportFactRequestFactMetricsItemDataWindowSettingsWindowUnit
+    | (string & {});
+}
+export const CreateBulkImportFactRequestFactMetricsItemDataWindowSettings =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: CreateBulkImportFactRequestFactMetricsItemDataWindowSettingsType,
+      delayHours: S.optional(S.Number),
+      delayValue: S.optional(S.Number),
+      delayUnit: S.optional(
+        CreateBulkImportFactRequestFactMetricsItemDataWindowSettingsDelayUnit,
+      ),
+      windowValue: S.optional(S.Number),
+      windowUnit: S.optional(
+        CreateBulkImportFactRequestFactMetricsItemDataWindowSettingsWindowUnit,
+      ),
+    }),
+  ).annotate({
+    identifier: "CreateBulkImportFactRequestFactMetricsItemDataWindowSettings",
+  }) as any as S.Schema<CreateBulkImportFactRequestFactMetricsItemDataWindowSettings>;
+
+/** Controls the bayesian prior for the metric. If omitted, organization defaults will be used. */
+export interface CreateBulkImportFactRequestFactMetricsItemDataPriorSettings {
+  /** If false, the organization default settings will be used instead of the other settings in this object */
+  override: boolean;
+  /** If true, the `mean` and `stddev` will be used, otherwise we will use an improper flat prior. */
+  proper: boolean;
+  /** The mean of the prior distribution of relative effects in proportion terms (e.g. 0.01 is 1%) */
+  mean: number;
+  /** Must be > 0. The standard deviation of the prior distribution of relative effects in proportion terms. */
+  stddev: number;
+}
+export const CreateBulkImportFactRequestFactMetricsItemDataPriorSettings =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      override: S.Boolean,
+      proper: S.Boolean,
+      mean: S.Number,
+      stddev: S.Number,
+    }),
+  ).annotate({
+    identifier: "CreateBulkImportFactRequestFactMetricsItemDataPriorSettings",
+  }) as any as S.Schema<CreateBulkImportFactRequestFactMetricsItemDataPriorSettings>;
+
+/** Controls the regression adjustment (CUPED) settings for the metric */
+export interface CreateBulkImportFactRequestFactMetricsItemDataRegressionAdjustmentSettings {
+  /** If false, the organization default settings will be used */
+  override: boolean;
+  /** Controls whether or not regression adjustment is applied to the metric */
+  enabled?: boolean;
+  /** Number of pre-exposure days to use for the regression adjustment */
+  days?: number;
+}
+export const CreateBulkImportFactRequestFactMetricsItemDataRegressionAdjustmentSettings =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      override: S.Boolean,
+      enabled: S.optional(S.Boolean),
+      days: S.optional(S.Number),
+    }),
+  ).annotate({
+    identifier:
+      "CreateBulkImportFactRequestFactMetricsItemDataRegressionAdjustmentSettings",
+  }) as any as S.Schema<CreateBulkImportFactRequestFactMetricsItemDataRegressionAdjustmentSettings>;
+
+/** Set this to "api" to disable editing in the GrowthBook UI */
+export type CreateBulkImportFactRequestFactMetricsItemDataManagedBy =
+  | ""
+  | "api"
+  | "admin";
+export const CreateBulkImportFactRequestFactMetricsItemDataManagedBy =
+  /*@__PURE__*/ S.String;
+
+/** Array of slice column names that will be automatically included in metric analysis. This is an enterprise feature. */
+export type CreateBulkImportFactRequestFactMetricsItemDataMetricAutoSlicesList =
+  Array<string>;
+export const CreateBulkImportFactRequestFactMetricsItemDataMetricAutoSlicesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateBulkImportFactRequestFactMetricsItemDataMetricAutoSlicesList>;
+
+/** Ids of older metrics (legacy or fact) that this metric supersedes, for example the legacy metric it was migrated from. Cannot include this metric's own id. Informational only - GrowthBook uses it to link the old and new definitions in the UI and to keep showing results from a snapshot that was created before an experiment switched to this metric. This field can only be set through the API. */
+export type CreateBulkImportFactRequestFactMetricsItemDataReplacesList =
+  Array<string>;
+export const CreateBulkImportFactRequestFactMetricsItemDataReplacesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateBulkImportFactRequestFactMetricsItemDataReplacesList>;
+
+export interface CreateBulkImportFactRequestFactMetricsItemData {
+  name: string;
+  description?: string;
+  /** The userId or email address of the owner. If an email address is provided, it will be used to look up the userId of the matching organization member. If an ID is provided, it will be validated as existing in the organization. */
+  owner?: string;
+  projects?: CreateBulkImportFactRequestFactMetricsItemDataProjectsList;
+  tags?: CreateBulkImportFactRequestFactMetricsItemDataTagsList;
+  metricType:
+    | CreateBulkImportFactRequestFactMetricsItemDataMetricType
+    | (string & {});
+  numerator?: CreateBulkImportFactRequestFactMetricsItemDataNumerator | null;
+  /** Only when metricType is 'ratio' */
+  denominator?: CreateBulkImportFactRequestFactMetricsItemDataDenominator;
+  /** Set to true for things like Bounce Rate, where you want the metric to decrease */
+  inverse?: boolean;
+  /** Controls the settings for quantile metrics (mandatory if metricType is "quantile") */
+  quantileSettings?: CreateBulkImportFactRequestFactMetricsItemDataQuantileSettings;
+  /** Funnel metric settings (required when metricType is "funnel") */
+  funnelSettings?: CreateBulkImportFactRequestFactMetricsItemDataFunnelSettings;
+  /** Controls how outliers are handled */
+  cappingSettings?: CreateBulkImportFactRequestFactMetricsItemDataCappingSettings;
+  /** Controls the conversion window for the metric */
+  windowSettings?: CreateBulkImportFactRequestFactMetricsItemDataWindowSettings;
+  /** Controls the bayesian prior for the metric. If omitted, organization defaults will be used. */
+  priorSettings?: CreateBulkImportFactRequestFactMetricsItemDataPriorSettings;
+  /** Controls the regression adjustment (CUPED) settings for the metric */
+  regressionAdjustmentSettings?: CreateBulkImportFactRequestFactMetricsItemDataRegressionAdjustmentSettings;
+  /** No longer used. Threshold for Risk to be considered low enough, as a proportion (e.g. put 0.0025 for 0.25%). <br/> Must be a non-negative number and must not be higher than `riskThresholdDanger`. */
+  riskThresholdSuccess?: number;
+  /** No longer used. Threshold for Risk to be considered too high, as a proportion (e.g. put 0.0125 for 1.25%). <br/> Must be a non-negative number. */
+  riskThresholdDanger?: number;
+  /** If true and the metric is a ratio or dailyParticipation metric, variation means will be displayed as a percentage. Defaults to true for dailyParticipation metrics and false for ratio metrics. */
+  displayAsPercentage?: boolean;
+  /** Minimum percent change to consider uplift significant, as a proportion (e.g. put 0.005 for 0.5%) */
+  minPercentChange?: number;
+  /** Maximum percent change to consider uplift significant, as a proportion (e.g. put 0.5 for 50%) */
+  maxPercentChange?: number;
+  minSampleSize?: number;
+  /** The percentage change that you want to reliably detect before ending an experiment, as a proportion (e.g. put 0.1 for 10%). This is used to estimate the "Days Left" for running experiments. */
+  targetMDE?: number;
+  /** Set this to "api" to disable editing in the GrowthBook UI */
+  managedBy?:
+    | CreateBulkImportFactRequestFactMetricsItemDataManagedBy
+    | (string & {});
+  /** Array of slice column names that will be automatically included in metric analysis. This is an enterprise feature. */
+  metricAutoSlices?: CreateBulkImportFactRequestFactMetricsItemDataMetricAutoSlicesList;
+  /** Ids of older metrics (legacy or fact) that this metric supersedes, for example the legacy metric it was migrated from. Cannot include this metric's own id. Informational only - GrowthBook uses it to link the old and new definitions in the UI and to keep showing results from a snapshot that was created before an experiment switched to this metric. This field can only be set through the API. */
+  replaces?: CreateBulkImportFactRequestFactMetricsItemDataReplacesList;
+  /** Set to true to archive the metric. Archived metrics are hidden by default in the UI and excluded from new experiments. */
+  archived?: boolean;
+}
+export const CreateBulkImportFactRequestFactMetricsItemData =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      name: S.String,
+      description: S.optional(S.String),
+      owner: S.optional(S.String),
+      projects: S.optional(
+        CreateBulkImportFactRequestFactMetricsItemDataProjectsList,
+      ),
+      tags: S.optional(CreateBulkImportFactRequestFactMetricsItemDataTagsList),
+      metricType: CreateBulkImportFactRequestFactMetricsItemDataMetricType,
+      numerator: S.optional(
+        S.NullOr(CreateBulkImportFactRequestFactMetricsItemDataNumerator),
+      ),
+      denominator: S.optional(
+        CreateBulkImportFactRequestFactMetricsItemDataDenominator,
+      ),
+      inverse: S.optional(S.Boolean),
+      quantileSettings: S.optional(
+        CreateBulkImportFactRequestFactMetricsItemDataQuantileSettings,
+      ),
+      funnelSettings: S.optional(
+        CreateBulkImportFactRequestFactMetricsItemDataFunnelSettings,
+      ),
+      cappingSettings: S.optional(
+        CreateBulkImportFactRequestFactMetricsItemDataCappingSettings,
+      ),
+      windowSettings: S.optional(
+        CreateBulkImportFactRequestFactMetricsItemDataWindowSettings,
+      ),
+      priorSettings: S.optional(
+        CreateBulkImportFactRequestFactMetricsItemDataPriorSettings,
+      ),
+      regressionAdjustmentSettings: S.optional(
+        CreateBulkImportFactRequestFactMetricsItemDataRegressionAdjustmentSettings,
+      ),
+      riskThresholdSuccess: S.optional(S.Number),
+      riskThresholdDanger: S.optional(S.Number),
+      displayAsPercentage: S.optional(S.Boolean),
+      minPercentChange: S.optional(S.Number),
+      maxPercentChange: S.optional(S.Number),
+      minSampleSize: S.optional(S.Number),
+      targetMDE: S.optional(S.Number),
+      managedBy: S.optional(
+        CreateBulkImportFactRequestFactMetricsItemDataManagedBy,
+      ),
+      metricAutoSlices: S.optional(
+        CreateBulkImportFactRequestFactMetricsItemDataMetricAutoSlicesList,
+      ),
+      replaces: S.optional(
+        CreateBulkImportFactRequestFactMetricsItemDataReplacesList,
+      ),
+      archived: S.optional(S.Boolean),
+    }),
+  ).annotate({
+    identifier: "CreateBulkImportFactRequestFactMetricsItemData",
+  }) as any as S.Schema<CreateBulkImportFactRequestFactMetricsItemData>;
+
+export interface CreateBulkImportFactRequestFactMetricsItem {
+  id: string;
+  data: CreateBulkImportFactRequestFactMetricsItemData;
+}
+export const CreateBulkImportFactRequestFactMetricsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.String,
+      data: CreateBulkImportFactRequestFactMetricsItemData,
+    }),
+  ).annotate({
+    identifier: "CreateBulkImportFactRequestFactMetricsItem",
+  }) as any as S.Schema<CreateBulkImportFactRequestFactMetricsItem>;
+
+export type CreateBulkImportFactRequestFactMetricsList =
+  Array<CreateBulkImportFactRequestFactMetricsItem>;
+export const CreateBulkImportFactRequestFactMetricsList = /*@__PURE__*/ S.Array(
+  CreateBulkImportFactRequestFactMetricsItem,
+) as any as S.Schema<CreateBulkImportFactRequestFactMetricsList>;
+
+export interface CreateBulkImportFactRequest {
+  /** Fallback `managedBy` for Fact Tables and Fact Metrics that omit the field. Defaults to `"api"`. Filters inherit `"api"` only when the parent Fact Table is api-managed. */
+  defaultManagedBy?:
+    | CreateBulkImportFactRequestDefaultManagedBy
+    | (string & {});
+  /** Validate with zero writes. */
+  dryRun?: boolean;
+  factTables?: CreateBulkImportFactRequestFactTablesList;
+  factTableFilters?: CreateBulkImportFactRequestFactTableFiltersList;
+  factMetrics?: CreateBulkImportFactRequestFactMetricsList;
+}
+export const CreateBulkImportFactRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    defaultManagedBy: S.optional(CreateBulkImportFactRequestDefaultManagedBy),
+    dryRun: S.optional(S.Boolean),
+    factTables: S.optional(CreateBulkImportFactRequestFactTablesList),
+    factTableFilters: S.optional(
+      CreateBulkImportFactRequestFactTableFiltersList,
+    ),
+    factMetrics: S.optional(CreateBulkImportFactRequestFactMetricsList),
+  }).pipe(T.Http({ method: "POST", uri: "/v1/bulk-import/facts", code: 200 })),
+).annotate({
+  identifier: "CreateBulkImportFactRequest",
+}) as any as S.Schema<CreateBulkImportFactRequest>;
+
+export type BulkImportErrorResourceType =
+  | "factTable"
+  | "factTableFilter"
+  | "factMetric";
+export const BulkImportErrorResourceType = /*@__PURE__*/ S.String;
+
+export interface BulkImportError {
+  resourceType: BulkImportErrorResourceType;
+  id: string;
+  message: string;
+}
+export const BulkImportError = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceType: BulkImportErrorResourceType,
+    id: S.String,
+    message: S.String,
+  }),
+).annotate({
+  identifier: "BulkImportError",
+}) as any as S.Schema<BulkImportError>;
+
+export type CreateBulkImportFactResponseErrorsList = Array<BulkImportError>;
+export const CreateBulkImportFactResponseErrorsList = /*@__PURE__*/ S.Array(
+  BulkImportError,
+) as any as S.Schema<CreateBulkImportFactResponseErrorsList>;
+
+export interface CreateBulkImportFactResponse {
+  success: boolean;
+  dryRun: boolean;
+  factTablesAdded: number;
+  factTablesUpdated: number;
+  factTableFiltersAdded: number;
+  factTableFiltersUpdated: number;
+  factMetricsAdded: number;
+  factMetricsUpdated: number;
+  errors: CreateBulkImportFactResponseErrorsList;
+}
+export const CreateBulkImportFactResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    success: S.Boolean,
+    dryRun: S.Boolean,
+    factTablesAdded: S.Number,
+    factTablesUpdated: S.Number,
+    factTableFiltersAdded: S.Number,
+    factTableFiltersUpdated: S.Number,
+    factMetricsAdded: S.Number,
+    factMetricsUpdated: S.Number,
+    errors: CreateBulkImportFactResponseErrorsList,
+  }),
+).annotate({
+  identifier: "CreateBulkImportFactResponse",
+}) as any as S.Schema<CreateBulkImportFactResponse>;
+
+/** Whether to delete code references that are no longer present in the submitted data */
+export type CreateCodeRefRequestDeleteMissing = "true" | "false";
+export const CreateCodeRefRequestDeleteMissing = /*@__PURE__*/ S.String;
+
+export interface CreateCodeRefRequestRefsItem {
+  filePath: string;
+  startingLineNumber: number;
+  lines: string;
+  flagKey: string;
+  contentHash: string;
+}
+export const CreateCodeRefRequestRefsItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    filePath: S.String,
+    startingLineNumber: S.Number,
+    lines: S.String,
+    flagKey: S.String,
+    contentHash: S.String,
+  }),
+).annotate({
+  identifier: "CreateCodeRefRequestRefsItem",
+}) as any as S.Schema<CreateCodeRefRequestRefsItem>;
+
+export type CreateCodeRefRequestRefsList = Array<CreateCodeRefRequestRefsItem>;
+export const CreateCodeRefRequestRefsList = /*@__PURE__*/ S.Array(
+  CreateCodeRefRequestRefsItem,
+) as any as S.Schema<CreateCodeRefRequestRefsList>;
+
+export interface CreateCodeRefRequest {
+  /** Whether to delete code references that are no longer present in the submitted data */
+  deleteMissing?: CreateCodeRefRequestDeleteMissing | (string & {});
+  branch: string;
+  repoName: string;
+  refs: CreateCodeRefRequestRefsList;
+}
+export const CreateCodeRefRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    deleteMissing: S.optional(
+      CreateCodeRefRequestDeleteMissing.pipe(T.Query()),
+    ),
+    branch: S.String,
+    repoName: S.String,
+    refs: CreateCodeRefRequestRefsList,
+  }).pipe(T.Http({ method: "POST", uri: "/v1/code-refs", code: 200 })),
+).annotate({
+  identifier: "CreateCodeRefRequest",
+}) as any as S.Schema<CreateCodeRefRequest>;
+
+export type CreateCodeRefResponseFeaturesUpdatedList = Array<string>;
+export const CreateCodeRefResponseFeaturesUpdatedList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateCodeRefResponseFeaturesUpdatedList>;
+
+export interface CreateCodeRefResponse {
+  featuresUpdated?: CreateCodeRefResponseFeaturesUpdatedList;
+}
+export const CreateCodeRefResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    featuresUpdated: S.optional(CreateCodeRefResponseFeaturesUpdatedList),
+  }),
+).annotate({
+  identifier: "CreateCodeRefResponse",
+}) as any as S.Schema<CreateCodeRefResponse>;
+
+/** Deprecated — pass `skipSchemaValidation` in the request body instead. */
+export type CreateConfigRequestSkipSchemaValidation = string | boolean;
+export const CreateConfigRequestSkipSchemaValidation =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateConfigRequestSkipSchemaValidation>;
+
+/** Deprecated — pass `ignoreWarnings` in the request body instead. */
+export type CreateConfigRequestIgnoreWarnings = string | boolean;
+export const CreateConfigRequestIgnoreWarnings =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateConfigRequestIgnoreWarnings>;
+
+/** Additional composition bases (config `key`s) layered on top of `parent`, in precedence order (later overrides earlier; all override `parent`; own keys win last). Set inheritance here, never via a `@config:` entry in `value`. */
+export type CreateConfigRequestExtendsList = Array<string>;
+export const CreateConfigRequestExtendsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateConfigRequestExtendsList>;
+
+/** This config's base value as a JSON object. Per-environment/project variants are expressed via `scopedOverrides`. */
+export type CreateConfigRequestValueMap = {
+  [key: string]: unknown | undefined;
+};
+export const CreateConfigRequestValueMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<CreateConfigRequestValueMap>;
+
+/** Environment ids this entry applies to. Empty/omitted = any environment. */
+export type CreateConfigRequestScopedOverridesItemEnvironmentsList =
+  Array<string>;
+export const CreateConfigRequestScopedOverridesItemEnvironmentsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateConfigRequestScopedOverridesItemEnvironmentsList>;
+
+/** Project ids this entry applies to. Empty/omitted = any project. */
+export type CreateConfigRequestScopedOverridesItemProjectsList = Array<string>;
+export const CreateConfigRequestScopedOverridesItemProjectsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateConfigRequestScopedOverridesItemProjectsList>;
+
+export interface CreateConfigRequestScopedOverridesItem {
+  /** The `key` of the flavor config (a child config) whose value patches this config when the scope matches. */
+  config: string;
+  /** Environment ids this entry applies to. Empty/omitted = any environment. */
+  environments?: CreateConfigRequestScopedOverridesItemEnvironmentsList;
+  /** Project ids this entry applies to. Empty/omitted = any project. */
+  projects?: CreateConfigRequestScopedOverridesItemProjectsList;
+}
+export const CreateConfigRequestScopedOverridesItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      config: S.String,
+      environments: S.optional(
+        CreateConfigRequestScopedOverridesItemEnvironmentsList,
+      ),
+      projects: S.optional(CreateConfigRequestScopedOverridesItemProjectsList),
+    }),
+).annotate({
+  identifier: "CreateConfigRequestScopedOverridesItem",
+}) as any as S.Schema<CreateConfigRequestScopedOverridesItem>;
+
+/** Ordered, first-match-wins environment/project-scoped variant selection. Each entry points at a flavor config (a child config, by `key`) whose value is deep-merged onto this config's resolved value when the (environment, project) scope matches — resolved at build time, per layer. This is how you create an environment-scoped override (as opposed to a plain child config): make a child config for the override value, then add it here with its scope. Send the complete list to replace it; an empty array clears all overrides. Entries must reference existing configs, may not reference this config itself, and may not be unreachable (fully subsumed by an earlier entry). */
+export type CreateConfigRequestScopedOverridesList =
+  Array<CreateConfigRequestScopedOverridesItem>;
+export const CreateConfigRequestScopedOverridesList = /*@__PURE__*/ S.Array(
+  CreateConfigRequestScopedOverridesItem,
+) as any as S.Schema<CreateConfigRequestScopedOverridesList>;
+
+/** A JSON Schema document (an object). */
+export type ConfigSchemaSourceCase0ValueMap = {
+  [key: string]: unknown | undefined;
+};
+export const ConfigSchemaSourceCase0ValueMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<ConfigSchemaSourceCase0ValueMap>;
+
+export interface ConfigSchemaSourceCase0 {
+  type: string;
+  /** A JSON Schema document (an object). */
+  value: ConfigSchemaSourceCase0ValueMap;
+}
+export const ConfigSchemaSourceCase0 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.String,
+    value: ConfigSchemaSourceCase0ValueMap,
+  }),
+).annotate({
+  identifier: "ConfigSchemaSourceCase0",
+}) as any as S.Schema<ConfigSchemaSourceCase0>;
+
+export interface ConfigSchemaSourceCase1 {
+  type: string;
+  /** TypeScript source — an interface or object type. */
+  value: string;
+}
+export const ConfigSchemaSourceCase1 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.String,
+    value: S.String,
+  }),
+).annotate({
+  identifier: "ConfigSchemaSourceCase1",
+}) as any as S.Schema<ConfigSchemaSourceCase1>;
+
+export interface ConfigSchemaSourceCase2 {
+  type: string;
+  /** Protobuf (proto3) source — a `message` definition. */
+  value: string;
+}
+export const ConfigSchemaSourceCase2 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.String,
+    value: S.String,
+  }),
+).annotate({
+  identifier: "ConfigSchemaSourceCase2",
+}) as any as S.Schema<ConfigSchemaSourceCase2>;
+
+export interface ConfigSchemaSourceCase3 {
+  type: string;
+  /** Python source — a Pydantic `BaseModel` class. */
+  value: string;
+}
+export const ConfigSchemaSourceCase3 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.String,
+    value: S.String,
+  }),
+).annotate({
+  identifier: "ConfigSchemaSourceCase3",
+}) as any as S.Schema<ConfigSchemaSourceCase3>;
+
+export interface ConfigSchemaSourceCase4 {
+  type: string;
+  /** Go source — a `struct` definition. */
+  value: string;
+}
+export const ConfigSchemaSourceCase4 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.String,
+    value: S.String,
+  }),
+).annotate({
+  identifier: "ConfigSchemaSourceCase4",
+}) as any as S.Schema<ConfigSchemaSourceCase4>;
+
+export interface ConfigSchemaSourceCase5 {
+  type: string;
+  /** Rust source — a serde `struct` definition. */
+  value: string;
+}
+export const ConfigSchemaSourceCase5 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.String,
+    value: S.String,
+  }),
+).annotate({
+  identifier: "ConfigSchemaSourceCase5",
+}) as any as S.Schema<ConfigSchemaSourceCase5>;
+
+export type ConfigSchemaSource =
+  | ConfigSchemaSourceCase0
+  | ConfigSchemaSourceCase1
+  | ConfigSchemaSourceCase2
+  | ConfigSchemaSourceCase3
+  | ConfigSchemaSourceCase4
+  | ConfigSchemaSourceCase5;
+export const ConfigSchemaSource =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<ConfigSchemaSource>;
+
+/** The rule expression, as a mongo condition (mongrule) — the same condition syntax as feature targeting, extended with `{ "$ref": "otherField" }` to compare against another field, e.g. `{ "min_replicas": { "$lte": { "$ref": "max_replicas" } } }`. */
+export type CreateConfigRequestInvariantsItemRuleMap = {
+  [key: string]: unknown | undefined;
+};
+export const CreateConfigRequestInvariantsItemRuleMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<CreateConfigRequestInvariantsItemRuleMap>;
+
+export interface CreateConfigRequestInvariantsItem {
+  name: string;
+  /** The rule expression, as a mongo condition (mongrule) — the same condition syntax as feature targeting, extended with `{ "$ref": "otherField" }` to compare against another field, e.g. `{ "min_replicas": { "$lte": { "$ref": "max_replicas" } } }`. */
+  rule: CreateConfigRequestInvariantsItemRuleMap;
+  /** Shown to editors when the rule is violated. Optional — defaults to a generic message naming the rule. */
+  message?: string;
+}
+export const CreateConfigRequestInvariantsItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    rule: CreateConfigRequestInvariantsItemRuleMap,
+    message: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CreateConfigRequestInvariantsItem",
+}) as any as S.Schema<CreateConfigRequestInvariantsItem>;
+
+/** Cross-field validation rules. Each rule's expression is a mongo condition (mongrule). Stored on the config schema and enforced at publish. */
+export type CreateConfigRequestInvariantsList =
+  Array<CreateConfigRequestInvariantsItem>;
+export const CreateConfigRequestInvariantsList = /*@__PURE__*/ S.Array(
+  CreateConfigRequestInvariantsItem,
+) as any as S.Schema<CreateConfigRequestInvariantsList>;
+
+export interface CreateConfigRequest {
+  /** Deprecated — pass `skipSchemaValidation` in the request body instead. */
+  skipSchemaValidation?: CreateConfigRequestSkipSchemaValidation;
+  /** Deprecated — pass `ignoreWarnings` in the request body instead. */
+  ignoreWarnings?: CreateConfigRequestIgnoreWarnings;
+  /** Stable reference handle (lowercase slug, unique per org), referenced as `@config:key` */
+  key: string;
+  /** The display name of the config */
+  name: string;
+  /** The `key` of the config to inherit from (the primary lineage spine). Express inheritance via `parent`/`extends`, NEVER via a `@config:` entry in `value` (which is rejected). */
+  parent?: string;
+  /** Additional composition bases (config `key`s) layered on top of `parent`, in precedence order (later overrides earlier; all override `parent`; own keys win last). Set inheritance here, never via a `@config:` entry in `value`. */
+  extends?: CreateConfigRequestExtendsList;
+  /** This config's base value as a JSON object. Per-environment/project variants are expressed via `scopedOverrides`. */
+  value?: CreateConfigRequestValueMap;
+  /** Ordered, first-match-wins environment/project-scoped variant selection. Each entry points at a flavor config (a child config, by `key`) whose value is deep-merged onto this config's resolved value when the (environment, project) scope matches — resolved at build time, per layer. This is how you create an environment-scoped override (as opposed to a plain child config): make a child config for the override value, then add it here with its scope. Send the complete list to replace it; an empty array clears all overrides. Entries must reference existing configs, may not reference this config itself, and may not be unreachable (fully subsumed by an earlier entry). */
+  scopedOverrides?: CreateConfigRequestScopedOverridesList;
+  description?: string;
+  project?: string;
+  /** The userId or email address of the owner. If an email address is provided, it will be used to look up the userId of the matching organization member. If an ID is provided, it will be validated as existing in the organization. When omitted, it defaults to the user associated with the request's Personal Access Token (PAT), if one is being used. */
+  owner?: string;
+  /** Field definitions for this config, as a JSON Schema document (`{ type: "json-schema", value }`) or typed-code source (`{ type: "typescript" | "protobuf" | "python" | "go" | "rust", value }`) — converted server-side in one call. Fields whose key an ancestor (via `parent`/`extends`) already owns follow "base wins": an identical re-declaration is stripped with a `redundant-declaration` warning; one with a differing definition is rejected. A field owned by two sibling bases is a conflict and is rejected. Omit to leave the config schema-less. Conversion warnings are returned in `warnings`. */
+  schema?: ConfigSchemaSource;
+  /** Optional identifier of the consuming codebase/service. When a typed-code schema (`typescript`/`protobuf`/`python`/`go`/`rust`) is supplied, its named-type structure is captured under this source so `GET /configs/:key/schema?source=<id>&format=<lang>` can reproduce those names. */
+  source?: string;
+  extensible?: boolean;
+  /** Enable the experiment guard on this config: publishing a change served to a running experiment soft-blocks unless overridden. Omit to inherit the org default. */
+  experimentGuard?: boolean;
+  /** Cross-field validation rules. Each rule's expression is a mongo condition (mongrule). Stored on the config schema and enforced at publish. */
+  invariants?: CreateConfigRequestInvariantsList;
+  /** Set to true to publish despite a Custom Hook rejection. This does not bypass schema validation; use `skipSchemaValidation` for that. The caller must have Bypass draft approvals access for Feature Flags, Configs, and Constants in every Project. Otherwise, this field is ignored. */
+  skipHooks?: boolean;
+}
+export const CreateConfigRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    skipSchemaValidation: S.optional(
+      CreateConfigRequestSkipSchemaValidation.pipe(T.Query()),
+    ),
+    ignoreWarnings: S.optional(
+      CreateConfigRequestIgnoreWarnings.pipe(T.Query()),
+    ),
+    key: S.String,
+    name: S.String,
+    parent: S.optional(S.String),
+    extends: S.optional(CreateConfigRequestExtendsList),
+    value: S.optional(CreateConfigRequestValueMap),
+    scopedOverrides: S.optional(CreateConfigRequestScopedOverridesList),
+    description: S.optional(S.String),
+    project: S.optional(S.String),
+    owner: S.optional(S.String),
+    schema: S.optional(ConfigSchemaSource),
+    source: S.optional(S.String),
+    extensible: S.optional(S.Boolean),
+    experimentGuard: S.optional(S.Boolean),
+    invariants: S.optional(CreateConfigRequestInvariantsList),
+    skipHooks: S.optional(S.Boolean),
+  }).pipe(T.Http({ method: "POST", uri: "/v1/configs", code: 200 })),
+).annotate({
+  identifier: "CreateConfigRequest",
+}) as any as S.Schema<CreateConfigRequest>;
+
+export type ConfigSchemaWarningCode =
+  | "dropped-declaration"
+  | "non-object-root"
+  | "unresolved-type"
+  | "unsupported-member"
+  | "redundant-declaration"
+  | "undeclared-rule-field";
+export const ConfigSchemaWarningCode = /*@__PURE__*/ S.String;
+
+export interface ConfigSchemaWarning {
+  code: ConfigSchemaWarningCode;
+  message: string;
+  path?: string;
+}
+export const ConfigSchemaWarning = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    code: ConfigSchemaWarningCode,
+    message: S.String,
+    path: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ConfigSchemaWarning",
+}) as any as S.Schema<ConfigSchemaWarning>;
+
+export type CreateConfigResponseWarningsList = Array<ConfigSchemaWarning>;
+export const CreateConfigResponseWarningsList = /*@__PURE__*/ S.Array(
+  ConfigSchemaWarning,
+) as any as S.Schema<CreateConfigResponseWarningsList>;
+
+/** Steps that failed AFTER the value publish committed (e.g. an experiment-guard toggle in the same request). The publish stands; retry only the named step. */
+export type CreateConfigResponsePostPublishWarningsList = Array<string>;
+export const CreateConfigResponsePostPublishWarningsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateConfigResponsePostPublishWarningsList>;
+
+export interface CreateConfigResponse {
+  config: Config;
+  warnings?: CreateConfigResponseWarningsList;
+  /** Steps that failed AFTER the value publish committed (e.g. an experiment-guard toggle in the same request). The publish stands; retry only the named step. */
+  postPublishWarnings?: CreateConfigResponsePostPublishWarningsList;
+}
+export const CreateConfigResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    config: Config,
+    warnings: S.optional(CreateConfigResponseWarningsList),
+    postPublishWarnings: S.optional(
+      CreateConfigResponsePostPublishWarningsList,
+    ),
+  }),
+).annotate({
+  identifier: "CreateConfigResponse",
+}) as any as S.Schema<CreateConfigResponse>;
+
+export interface CreateConfigRevisionDiscardRequest {
+  key: string;
+  version: number;
+  reason?: string;
+}
+export const CreateConfigRevisionDiscardRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    key: S.String.pipe(T.Label()),
+    version: S.Number.pipe(T.Label()),
+    reason: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/configs-revisions/{key}/{version}/discard",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateConfigRevisionDiscardRequest",
+}) as any as S.Schema<CreateConfigRevisionDiscardRequest>;
+
+export type ConfigRevisionStatus =
+  | "draft"
+  | "pending-review"
+  | "approved"
+  | "changes-requested"
+  | "merged"
+  | "discarded";
+export const ConfigRevisionStatus = /*@__PURE__*/ S.String;
+
+export type ConfigRevisionContributorsList = Array<string>;
+export const ConfigRevisionContributorsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ConfigRevisionContributorsList>;
+
+export type ConfigRevisionReviewDecision =
+  | "approve"
+  | "request-changes"
+  | "comment";
+export const ConfigRevisionReviewDecision = /*@__PURE__*/ S.String;
+
+export interface ConfigRevisionReview {
+  id: string;
+  userId: string;
+  decision: ConfigRevisionReviewDecision;
+  comment?: string;
+  /** True if a later review cycle (re-submit, approval reset, recall, or reopen) superseded this verdict. Stale verdicts are kept for attribution but no longer count as an active approval or change-request. */
+  stale?: boolean;
+  dateCreated: string;
+}
+export const ConfigRevisionReview = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    userId: S.String,
+    decision: ConfigRevisionReviewDecision,
+    comment: S.optional(S.String),
+    stale: S.optional(S.Boolean),
+    dateCreated: S.String,
+  }),
+).annotate({
+  identifier: "ConfigRevisionReview",
+}) as any as S.Schema<ConfigRevisionReview>;
+
+export type ConfigRevisionReviewsList = Array<ConfigRevisionReview>;
+export const ConfigRevisionReviewsList = /*@__PURE__*/ S.Array(
+  ConfigRevisionReview,
+) as any as S.Schema<ConfigRevisionReviewsList>;
+
+export type ConfigRevisionActivityLogEntryAction =
+  | "created"
+  | "updated"
+  | "reviewed"
+  | "approved"
+  | "requested-changes"
+  | "commented"
+  | "review-requested"
+  | "review-retracted"
+  | "merged"
+  | "discarded"
+  | "reopened"
+  | "recalled"
+  | "scheduled-publish"
+  | "scheduled-publish-updated"
+  | "scheduled-publish-canceled"
+  | "merge-recovered";
+export const ConfigRevisionActivityLogEntryAction = /*@__PURE__*/ S.String;
+
+export interface ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0 {
+  op: string;
+  path: string;
+  value: unknown;
+}
+export const ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0 =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      op: S.String,
+      path: S.String,
+      value: S.Unknown,
+    }),
+  ).annotate({
+    identifier:
+      "ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0",
+  }) as any as S.Schema<ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0>;
+
+export interface ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase1 {
+  op: string;
+  path: string;
+}
+export const ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase1 =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      op: S.String,
+      path: S.String,
+    }),
+  ).annotate({
+    identifier:
+      "ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase1",
+  }) as any as S.Schema<ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase1>;
+
+export type ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase2 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
+export const ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase2 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
+
+export interface ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3 {
+  op: string;
+  from: string;
+  path: string;
+}
+export const ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3 =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      op: S.String,
+      from: S.String,
+      path: S.String,
+    }),
+  ).annotate({
+    identifier:
+      "ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3",
+  }) as any as S.Schema<ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3>;
+
+export type ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase4 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3;
+export const ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase4 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3;
+
+export type ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase5 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
+export const ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase5 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
+
+export type ConfigRevisionActivityLogEntryProposedChangesSnapshotItem =
+  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0
+  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase1
+  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0
+  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3
+  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3
+  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
+export const ConfigRevisionActivityLogEntryProposedChangesSnapshotItem =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<ConfigRevisionActivityLogEntryProposedChangesSnapshotItem>;
+
+export type ConfigRevisionActivityLogEntryProposedChangesSnapshotList =
+  Array<ConfigRevisionActivityLogEntryProposedChangesSnapshotItem>;
+export const ConfigRevisionActivityLogEntryProposedChangesSnapshotList =
+  /*@__PURE__*/ S.Array(
+    ConfigRevisionActivityLogEntryProposedChangesSnapshotItem,
+  ) as any as S.Schema<ConfigRevisionActivityLogEntryProposedChangesSnapshotList>;
+
+export interface ConfigRevisionActivityLogEntry {
+  id: string;
+  userId: string;
+  action: ConfigRevisionActivityLogEntryAction;
+  description?: string | null;
+  proposedChangesSnapshot?: ConfigRevisionActivityLogEntryProposedChangesSnapshotList;
+  targetSnapshot?: unknown;
+  dateCreated: string;
+}
+export const ConfigRevisionActivityLogEntry = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    userId: S.String,
+    action: ConfigRevisionActivityLogEntryAction,
+    description: S.optional(S.NullOr(S.String)),
+    proposedChangesSnapshot: S.optional(
+      ConfigRevisionActivityLogEntryProposedChangesSnapshotList,
+    ),
+    targetSnapshot: S.optional(S.Unknown),
+    dateCreated: S.String,
+  }),
+).annotate({
+  identifier: "ConfigRevisionActivityLogEntry",
+}) as any as S.Schema<ConfigRevisionActivityLogEntry>;
+
+export type ConfigRevisionActivityLogList =
+  Array<ConfigRevisionActivityLogEntry>;
+export const ConfigRevisionActivityLogList = /*@__PURE__*/ S.Array(
+  ConfigRevisionActivityLogEntry,
+) as any as S.Schema<ConfigRevisionActivityLogList>;
+
+export type ConfigRevisionResolutionAction = "merged" | "discarded";
+export const ConfigRevisionResolutionAction = /*@__PURE__*/ S.String;
+
+export interface ConfigRevisionResolution {
+  action: ConfigRevisionResolutionAction;
+  userId: string;
+  dateCreated: string;
+}
+export const ConfigRevisionResolution = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    action: ConfigRevisionResolutionAction,
+    userId: S.String,
+    dateCreated: S.String,
+  }),
+).annotate({
+  identifier: "ConfigRevisionResolution",
+}) as any as S.Schema<ConfigRevisionResolution>;
+
+export type ConfigRevisionProposedChangesItemCase0 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
+export const ConfigRevisionProposedChangesItemCase0 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
+
+export type ConfigRevisionProposedChangesItemCase1 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase1;
+export const ConfigRevisionProposedChangesItemCase1 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase1;
+
+export type ConfigRevisionProposedChangesItemCase2 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
+export const ConfigRevisionProposedChangesItemCase2 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
+
+export type ConfigRevisionProposedChangesItemCase3 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3;
+export const ConfigRevisionProposedChangesItemCase3 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3;
+
+export type ConfigRevisionProposedChangesItemCase4 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3;
+export const ConfigRevisionProposedChangesItemCase4 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3;
+
+export type ConfigRevisionProposedChangesItemCase5 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
+export const ConfigRevisionProposedChangesItemCase5 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
+
+export type ConfigRevisionProposedChangesItem =
+  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0
+  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase1
+  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0
+  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3
+  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3
+  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
+export const ConfigRevisionProposedChangesItem =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<ConfigRevisionProposedChangesItem>;
+
+export type ConfigRevisionProposedChangesList =
+  Array<ConfigRevisionProposedChangesItem>;
+export const ConfigRevisionProposedChangesList = /*@__PURE__*/ S.Array(
+  ConfigRevisionProposedChangesItem,
+) as any as S.Schema<ConfigRevisionProposedChangesList>;
+
+export interface ConfigRevision {
+  id: string;
+  version?: number;
+  title?: string;
+  status: ConfigRevisionStatus;
+  authorId: string;
+  authorEmail?: string;
+  contributors?: ConfigRevisionContributorsList;
+  revertedFrom?: string;
+  reviews: ConfigRevisionReviewsList;
+  activityLog: ConfigRevisionActivityLogList;
+  /** Publish automatically the moment this revision is approved. */
+  autoPublishOnApproval?: boolean;
+  /** User the deferred publish will run as. Its authority is re-checked when the publish fires. */
+  autoPublishEnabledBy?: string;
+  /** When the deferred publish fires. Absent when the revision publishes on approval instead, or is not armed at all. */
+  scheduledPublishAt?: string;
+  /** Content edits to this revision are frozen until it fires. */
+  scheduledPublishLockEdits?: boolean;
+  /** Other revisions of the same resource cannot publish until this one fires or is cancelled. */
+  scheduledPublishLockOthers?: boolean;
+  /** Armed by a caller who bypassed the approval requirement. Such a schedule must be cancelled and re-armed rather than edited. */
+  scheduledPublishBypassApproval?: boolean;
+  /** How many times the poller has tried to publish this revision. */
+  scheduledPublishAttempts?: number;
+  /** Why the most recent deferred-publish attempt failed. */
+  scheduledPublishLastError?: string;
+  /** When the poller stopped retrying. Giving up CLEARS the schedule and disarms auto-publish, so nothing fires again until the revision is re-armed. The draft is left open, with `scheduledPublishLastError` preserved for context. */
+  scheduledPublishGaveUpAt?: string;
+  resolution?: ConfigRevisionResolution;
+  dateCreated: string;
+  dateUpdated: string;
+  baseConfig: Config;
+  proposedConfig: Config;
+  proposedChanges: ConfigRevisionProposedChangesList;
+}
+export const ConfigRevision = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    version: S.optional(S.Number),
+    title: S.optional(S.String),
+    status: ConfigRevisionStatus,
+    authorId: S.String,
+    authorEmail: S.optional(S.String),
+    contributors: S.optional(ConfigRevisionContributorsList),
+    revertedFrom: S.optional(S.String),
+    reviews: ConfigRevisionReviewsList,
+    activityLog: ConfigRevisionActivityLogList,
+    autoPublishOnApproval: S.optional(S.Boolean),
+    autoPublishEnabledBy: S.optional(S.String),
+    scheduledPublishAt: S.optional(S.String),
+    scheduledPublishLockEdits: S.optional(S.Boolean),
+    scheduledPublishLockOthers: S.optional(S.Boolean),
+    scheduledPublishBypassApproval: S.optional(S.Boolean),
+    scheduledPublishAttempts: S.optional(S.Number),
+    scheduledPublishLastError: S.optional(S.String),
+    scheduledPublishGaveUpAt: S.optional(S.String),
+    resolution: S.optional(ConfigRevisionResolution),
+    dateCreated: S.String,
+    dateUpdated: S.String,
+    baseConfig: Config,
+    proposedConfig: Config,
+    proposedChanges: ConfigRevisionProposedChangesList,
+  }),
+).annotate({ identifier: "ConfigRevision" }) as any as S.Schema<ConfigRevision>;
+
+export interface CreateConfigRevisionDiscardResponse {
+  revision: ConfigRevision;
+}
+export const CreateConfigRevisionDiscardResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    revision: ConfigRevision,
+  }),
+).annotate({
+  identifier: "CreateConfigRevisionDiscardResponse",
+}) as any as S.Schema<CreateConfigRevisionDiscardResponse>;
+
+/** Deprecated — pass `skipSchemaValidation` in the request body instead. */
+export type CreateConfigRevisionPublishRequestSkipSchemaValidation =
+  | string
+  | boolean;
+export const CreateConfigRevisionPublishRequestSkipSchemaValidation =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateConfigRevisionPublishRequestSkipSchemaValidation>;
+
+/** Deprecated — pass `ignoreWarnings` in the request body instead. */
+export type CreateConfigRevisionPublishRequestIgnoreWarnings = string | boolean;
+export const CreateConfigRevisionPublishRequestIgnoreWarnings =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateConfigRevisionPublishRequestIgnoreWarnings>;
+
+export interface CreateConfigRevisionPublishRequest {
+  key: string;
+  version: number;
+  /** Deprecated — pass `skipSchemaValidation` in the request body instead. */
+  skipSchemaValidation?: CreateConfigRevisionPublishRequestSkipSchemaValidation;
+  /** Deprecated — pass `ignoreWarnings` in the request body instead. */
+  ignoreWarnings?: CreateConfigRevisionPublishRequestIgnoreWarnings;
+  /** Deprecated and ignored. Approval is bypassed automatically when the caller has Bypass draft approvals access for this resource or when the organization enables the REST API approval bypass. Otherwise, the revision must be approved before it can be published. */
+  bypassApproval?: boolean;
+  /** Set to true to publish despite a Custom Hook rejection. This does not bypass schema validation; use `skipSchemaValidation` for that. The caller must have Bypass draft approvals access for Feature Flags, Configs, and Constants in every Project. Otherwise, this field is ignored. */
+  skipHooks?: boolean;
+}
+export const CreateConfigRevisionPublishRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    key: S.String.pipe(T.Label()),
+    version: S.Number.pipe(T.Label()),
+    skipSchemaValidation: S.optional(
+      CreateConfigRevisionPublishRequestSkipSchemaValidation.pipe(T.Query()),
+    ),
+    ignoreWarnings: S.optional(
+      CreateConfigRevisionPublishRequestIgnoreWarnings.pipe(T.Query()),
+    ),
+    bypassApproval: S.optional(S.Boolean),
+    skipHooks: S.optional(S.Boolean),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/configs-revisions/{key}/{version}/publish",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateConfigRevisionPublishRequest",
+}) as any as S.Schema<CreateConfigRevisionPublishRequest>;
+
+/** Gates that would have blocked this publish but were bypassed by the caller's authority. Present only when at least one gate was bypassed. */
+export type CreateConfigRevisionPublishResponseBypassedGatesList =
+  Array<BypassedGates>;
+export const CreateConfigRevisionPublishResponseBypassedGatesList =
+  /*@__PURE__*/ S.Array(
+    BypassedGates,
+  ) as any as S.Schema<CreateConfigRevisionPublishResponseBypassedGatesList>;
+
+export interface CreateConfigRevisionPublishResponse {
+  revision: ConfigRevision;
+  /** Gates that would have blocked this publish but were bypassed by the caller's authority. Present only when at least one gate was bypassed. */
+  bypassedGates?: CreateConfigRevisionPublishResponseBypassedGatesList;
+}
+export const CreateConfigRevisionPublishResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    revision: ConfigRevision,
+    bypassedGates: S.optional(
+      CreateConfigRevisionPublishResponseBypassedGatesList,
+    ),
+  }),
+).annotate({
+  identifier: "CreateConfigRevisionPublishResponse",
+}) as any as S.Schema<CreateConfigRevisionPublishResponse>;
+
+export type CreateConfigRevisionRebaseRequestConflictResolutionsValue =
+  | "overwrite"
+  | "discard"
+  | "union";
+export const CreateConfigRevisionRebaseRequestConflictResolutionsValue =
+  /*@__PURE__*/ S.String;
+
+export type CreateConfigRevisionRebaseRequestConflictResolutionsMap = {
+  [key: string]:
+    | CreateConfigRevisionRebaseRequestConflictResolutionsValue
+    | (string & {})
+    | undefined;
+};
+export const CreateConfigRevisionRebaseRequestConflictResolutionsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    CreateConfigRevisionRebaseRequestConflictResolutionsValue,
+  ) as any as S.Schema<CreateConfigRevisionRebaseRequestConflictResolutionsMap>;
+
+export type CreateConfigRevisionRebaseRequestCustomValuesValueList =
+  Array<unknown>;
+export const CreateConfigRevisionRebaseRequestCustomValuesValueList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<CreateConfigRevisionRebaseRequestCustomValuesValueList>;
+
+/** Custom values to use for `union` strategy fields. Keyed by field name. */
+export type CreateConfigRevisionRebaseRequestCustomValuesMap = {
+  [key: string]:
+    | CreateConfigRevisionRebaseRequestCustomValuesValueList
+    | undefined;
+};
+export const CreateConfigRevisionRebaseRequestCustomValuesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    CreateConfigRevisionRebaseRequestCustomValuesValueList,
+  ) as any as S.Schema<CreateConfigRevisionRebaseRequestCustomValuesMap>;
+
+export interface CreateConfigRevisionRebaseRequest {
+  key: string;
+  version: number;
+  conflictResolutions?: CreateConfigRevisionRebaseRequestConflictResolutionsMap;
+  /** Custom values to use for `union` strategy fields. Keyed by field name. */
+  customValues?: CreateConfigRevisionRebaseRequestCustomValuesMap;
+}
+export const CreateConfigRevisionRebaseRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    key: S.String.pipe(T.Label()),
+    version: S.Number.pipe(T.Label()),
+    conflictResolutions: S.optional(
+      CreateConfigRevisionRebaseRequestConflictResolutionsMap,
+    ),
+    customValues: S.optional(CreateConfigRevisionRebaseRequestCustomValuesMap),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/configs-revisions/{key}/{version}/rebase",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateConfigRevisionRebaseRequest",
+}) as any as S.Schema<CreateConfigRevisionRebaseRequest>;
+
+export interface CreateConfigRevisionRebaseResponse {
+  revision: ConfigRevision;
+}
+export const CreateConfigRevisionRebaseResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    revision: ConfigRevision,
+  }),
+).annotate({
+  identifier: "CreateConfigRevisionRebaseResponse",
+}) as any as S.Schema<CreateConfigRevisionRebaseResponse>;
+
+export interface CreateConfigRevisionRecallReviewRequest {
+  key: string;
+  version: number;
+}
+export const CreateConfigRevisionRecallReviewRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      key: S.String.pipe(T.Label()),
+      version: S.Number.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/v1/configs-revisions/{key}/{version}/recall-review",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateConfigRevisionRecallReviewRequest",
+}) as any as S.Schema<CreateConfigRevisionRecallReviewRequest>;
+
+export interface CreateConfigRevisionRecallReviewResponse {
+  revision: ConfigRevision;
+}
+export const CreateConfigRevisionRecallReviewResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      revision: ConfigRevision,
+    }),
+).annotate({
+  identifier: "CreateConfigRevisionRecallReviewResponse",
+}) as any as S.Schema<CreateConfigRevisionRecallReviewResponse>;
+
+export interface CreateConfigRevisionReopenRequest {
+  key: string;
+  version: number;
+}
+export const CreateConfigRevisionReopenRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    key: S.String.pipe(T.Label()),
+    version: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/configs-revisions/{key}/{version}/reopen",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateConfigRevisionReopenRequest",
+}) as any as S.Schema<CreateConfigRevisionReopenRequest>;
+
+export interface CreateConfigRevisionReopenResponse {
+  revision: ConfigRevision;
+}
+export const CreateConfigRevisionReopenResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    revision: ConfigRevision,
+  }),
+).annotate({
+  identifier: "CreateConfigRevisionReopenResponse",
+}) as any as S.Schema<CreateConfigRevisionReopenResponse>;
+
+export interface CreateConfigRevisionRequestReviewRequest {
+  key: string;
+  version: number;
+  autoPublishOnApproval?: boolean;
+  /** Set to true to acknowledge the warnings listed in a blocked response and continue. This covers experiment guards, locked dependents, and references affected by an archive. When the organization treats schema failures as warnings, it also covers schema and invariant warnings. It never bypasses a rejected Custom Hook. On revision publish endpoints, it can also force-publish an out-of-date draft when the caller has Bypass draft approvals access. */
+  ignoreWarnings?: boolean;
+  /** Set to true to publish despite schema validation errors, failed invariants, or schema changes that invalidate dependent resources. This does not bypass a rejected Custom Hook; use `skipHooks` for that. The caller must have Bypass draft approvals access for Feature Flags, Configs, and Constants in every Project. Otherwise, this field is ignored. */
+  skipSchemaValidation?: boolean;
+  /** Set to true to publish despite a Custom Hook rejection. This does not bypass schema validation; use `skipSchemaValidation` for that. The caller must have Bypass draft approvals access for Feature Flags, Configs, and Constants in every Project. Otherwise, this field is ignored. */
+  skipHooks?: boolean;
+}
+export const CreateConfigRevisionRequestReviewRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      key: S.String.pipe(T.Label()),
+      version: S.Number.pipe(T.Label()),
+      autoPublishOnApproval: S.optional(S.Boolean),
+      ignoreWarnings: S.optional(S.Boolean),
+      skipSchemaValidation: S.optional(S.Boolean),
+      skipHooks: S.optional(S.Boolean),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/v1/configs-revisions/{key}/{version}/request-review",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateConfigRevisionRequestReviewRequest",
+}) as any as S.Schema<CreateConfigRevisionRequestReviewRequest>;
+
+export interface CreateConfigRevisionRequestReviewResponse {
+  revision: ConfigRevision;
+}
+export const CreateConfigRevisionRequestReviewResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      revision: ConfigRevision,
+    }),
+  ).annotate({
+    identifier: "CreateConfigRevisionRequestReviewResponse",
+  }) as any as S.Schema<CreateConfigRevisionRequestReviewResponse>;
+
+/** Deprecated — pass `skipSchemaValidation` in the request body instead. */
+export type CreateConfigRevisionRevertRequestSkipSchemaValidation =
+  | string
+  | boolean;
+export const CreateConfigRevisionRevertRequestSkipSchemaValidation =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateConfigRevisionRevertRequestSkipSchemaValidation>;
+
+/** Deprecated — pass `ignoreWarnings` in the request body instead. */
+export type CreateConfigRevisionRevertRequestIgnoreWarnings = string | boolean;
+export const CreateConfigRevisionRevertRequestIgnoreWarnings =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateConfigRevisionRevertRequestIgnoreWarnings>;
+
+/** Whether to stage the revert as a draft or publish it immediately. Defaults to `draft`, or to `publish` when the org enables 'reverts bypass approval'. */
+export type CreateConfigRevisionRevertRequestStrategy = "draft" | "publish";
+export const CreateConfigRevisionRevertRequestStrategy = /*@__PURE__*/ S.String;
+
+export interface CreateConfigRevisionRevertRequest {
+  key: string;
+  version: number;
+  /** Deprecated — pass `skipSchemaValidation` in the request body instead. */
+  skipSchemaValidation?: CreateConfigRevisionRevertRequestSkipSchemaValidation;
+  /** Deprecated — pass `ignoreWarnings` in the request body instead. */
+  ignoreWarnings?: CreateConfigRevisionRevertRequestIgnoreWarnings;
+  /** Whether to stage the revert as a draft or publish it immediately. Defaults to `draft`, or to `publish` when the org enables 'reverts bypass approval'. */
+  strategy?: CreateConfigRevisionRevertRequestStrategy | (string & {});
+  title?: string;
+  comment?: string;
+  /** Set to true to publish despite a Custom Hook rejection. This does not bypass schema validation; use `skipSchemaValidation` for that. The caller must have Bypass draft approvals access for Feature Flags, Configs, and Constants in every Project. Otherwise, this field is ignored. */
+  skipHooks?: boolean;
+}
+export const CreateConfigRevisionRevertRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    key: S.String.pipe(T.Label()),
+    version: S.Number.pipe(T.Label()),
+    skipSchemaValidation: S.optional(
+      CreateConfigRevisionRevertRequestSkipSchemaValidation.pipe(T.Query()),
+    ),
+    ignoreWarnings: S.optional(
+      CreateConfigRevisionRevertRequestIgnoreWarnings.pipe(T.Query()),
+    ),
+    strategy: S.optional(CreateConfigRevisionRevertRequestStrategy),
+    title: S.optional(S.String),
+    comment: S.optional(S.String),
+    skipHooks: S.optional(S.Boolean),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/configs-revisions/{key}/{version}/revert",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateConfigRevisionRevertRequest",
+}) as any as S.Schema<CreateConfigRevisionRevertRequest>;
+
+/** Gates that would have blocked this publish but were bypassed by the caller's authority. Present only when at least one gate was bypassed. */
+export type CreateConfigRevisionRevertResponseBypassedGatesList =
+  Array<BypassedGates>;
+export const CreateConfigRevisionRevertResponseBypassedGatesList =
+  /*@__PURE__*/ S.Array(
+    BypassedGates,
+  ) as any as S.Schema<CreateConfigRevisionRevertResponseBypassedGatesList>;
+
+export interface CreateConfigRevisionRevertResponse {
+  revision: ConfigRevision;
+  /** Gates that would have blocked this publish but were bypassed by the caller's authority. Present only when at least one gate was bypassed. */
+  bypassedGates?: CreateConfigRevisionRevertResponseBypassedGatesList;
+}
+export const CreateConfigRevisionRevertResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    revision: ConfigRevision,
+    bypassedGates: S.optional(
+      CreateConfigRevisionRevertResponseBypassedGatesList,
+    ),
+  }),
+).annotate({
+  identifier: "CreateConfigRevisionRevertResponse",
+}) as any as S.Schema<CreateConfigRevisionRevertResponse>;
+
+export interface CreateConfigRevisionSchedulePublishRequest {
+  key: string;
+  version: number;
+  /** When to publish, as an RFC3339 timestamp (e.g. `2026-01-31T09:00:00Z` or `2026-01-31T02:00:00-07:00`), or `null` to cancel a pending schedule. */
+  scheduledPublishAt: string | null;
+  lockEdits?: boolean;
+  lockOthers?: boolean;
+  bypassApproval?: boolean;
+  /** Set to true to acknowledge the warnings listed in a blocked response and continue. This covers experiment guards, locked dependents, and references affected by an archive. When the organization treats schema failures as warnings, it also covers schema and invariant warnings. It never bypasses a rejected Custom Hook. On revision publish endpoints, it can also force-publish an out-of-date draft when the caller has Bypass draft approvals access. */
+  ignoreWarnings?: boolean;
+  /** Set to true to publish despite schema validation errors, failed invariants, or schema changes that invalidate dependent resources. This does not bypass a rejected Custom Hook; use `skipHooks` for that. The caller must have Bypass draft approvals access for Feature Flags, Configs, and Constants in every Project. Otherwise, this field is ignored. */
+  skipSchemaValidation?: boolean;
+  /** Set to true to publish despite a Custom Hook rejection. This does not bypass schema validation; use `skipSchemaValidation` for that. The caller must have Bypass draft approvals access for Feature Flags, Configs, and Constants in every Project. Otherwise, this field is ignored. */
+  skipHooks?: boolean;
+}
+export const CreateConfigRevisionSchedulePublishRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      key: S.String.pipe(T.Label()),
+      version: S.Number.pipe(T.Label()),
+      scheduledPublishAt: S.NullOr(S.String),
+      lockEdits: S.optional(S.Boolean),
+      lockOthers: S.optional(S.Boolean),
+      bypassApproval: S.optional(S.Boolean),
+      ignoreWarnings: S.optional(S.Boolean),
+      skipSchemaValidation: S.optional(S.Boolean),
+      skipHooks: S.optional(S.Boolean),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/v1/configs-revisions/{key}/{version}/schedule-publish",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateConfigRevisionSchedulePublishRequest",
+  }) as any as S.Schema<CreateConfigRevisionSchedulePublishRequest>;
+
+export interface CreateConfigRevisionSchedulePublishResponse {
+  revision: ConfigRevision;
+}
+export const CreateConfigRevisionSchedulePublishResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      revision: ConfigRevision,
+    }),
+  ).annotate({
+    identifier: "CreateConfigRevisionSchedulePublishResponse",
+  }) as any as S.Schema<CreateConfigRevisionSchedulePublishResponse>;
+
+export type CreateConfigRevisionSubmitReviewRequestDecision =
+  | "approve"
+  | "request-changes"
+  | "comment";
+export const CreateConfigRevisionSubmitReviewRequestDecision =
+  /*@__PURE__*/ S.String;
+
+export interface CreateConfigRevisionSubmitReviewRequest {
+  key: string;
+  version: number;
+  decision: CreateConfigRevisionSubmitReviewRequestDecision | (string & {});
+  comment?: string;
+  skipAutoPublish?: boolean;
+}
+export const CreateConfigRevisionSubmitReviewRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      key: S.String.pipe(T.Label()),
+      version: S.Number.pipe(T.Label()),
+      decision: CreateConfigRevisionSubmitReviewRequestDecision,
+      comment: S.optional(S.String),
+      skipAutoPublish: S.optional(S.Boolean),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/v1/configs-revisions/{key}/{version}/submit-review",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateConfigRevisionSubmitReviewRequest",
+}) as any as S.Schema<CreateConfigRevisionSubmitReviewRequest>;
+
+export interface CreateConfigRevisionSubmitReviewResponse {
+  revision: ConfigRevision;
+  autoPublished?: boolean;
+}
+export const CreateConfigRevisionSubmitReviewResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      revision: ConfigRevision,
+      autoPublished: S.optional(S.Boolean),
+    }),
+).annotate({
+  identifier: "CreateConfigRevisionSubmitReviewResponse",
+}) as any as S.Schema<CreateConfigRevisionSubmitReviewResponse>;
+
+export interface CreateConfigRevisionUndoReviewRequest {
+  key: string;
+  version: number;
+}
+export const CreateConfigRevisionUndoReviewRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      key: S.String.pipe(T.Label()),
+      version: S.Number.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/v1/configs-revisions/{key}/{version}/undo-review",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateConfigRevisionUndoReviewRequest",
+}) as any as S.Schema<CreateConfigRevisionUndoReviewRequest>;
+
+export interface CreateConfigRevisionUndoReviewResponse {
+  revision: ConfigRevision;
+}
+export const CreateConfigRevisionUndoReviewResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      revision: ConfigRevision,
+    }),
+).annotate({
+  identifier: "CreateConfigRevisionUndoReviewResponse",
+}) as any as S.Schema<CreateConfigRevisionUndoReviewResponse>;
+
+/** `string` (interpolated as `{{ @const:key }}`) or `json` (substituted as a whole value) */
+export type CreateConstantRequestType = "string" | "json";
+export const CreateConstantRequestType = /*@__PURE__*/ S.String;
+
+export type CreateConstantRequestEnvironmentValuesMap = {
+  [key: string]: string | undefined;
+};
+export const CreateConstantRequestEnvironmentValuesMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<CreateConstantRequestEnvironmentValuesMap>;
+
+export interface CreateConstantRequest {
+  /** Stable reference handle (lowercase slug, unique per org), referenced as `@const:key` */
+  key: string;
+  /** The display name of the constant */
+  name: string;
+  /** `string` (interpolated as `{{ @const:key }}`) or `json` (substituted as a whole value) */
+  type: CreateConstantRequestType | (string & {});
+  value?: string;
+  environmentValues?: CreateConstantRequestEnvironmentValuesMap;
+  description?: string;
+  project?: string;
+  /** The userId or email address of the owner. If an email address is provided, it will be used to look up the userId of the matching organization member. If an ID is provided, it will be validated as existing in the organization. When omitted, it defaults to the user associated with the request's Personal Access Token (PAT), if one is being used. */
+  owner?: string;
+}
+export const CreateConstantRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    key: S.String,
+    name: S.String,
+    type: CreateConstantRequestType,
+    value: S.optional(S.String),
+    environmentValues: S.optional(CreateConstantRequestEnvironmentValuesMap),
+    description: S.optional(S.String),
+    project: S.optional(S.String),
+    owner: S.optional(S.String),
+  }).pipe(T.Http({ method: "POST", uri: "/v1/constants", code: 200 })),
+).annotate({
+  identifier: "CreateConstantRequest",
+}) as any as S.Schema<CreateConstantRequest>;
+
+export interface CreateConstantResponse {
+  constant: Constant;
+}
+export const CreateConstantResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    constant: Constant,
+  }),
+).annotate({
+  identifier: "CreateConstantResponse",
+}) as any as S.Schema<CreateConstantResponse>;
+
+export interface CreateConstantRevisionDiscardRequest {
+  key: string;
+  version: number;
+  reason?: string;
+}
+export const CreateConstantRevisionDiscardRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      key: S.String.pipe(T.Label()),
+      version: S.Number.pipe(T.Label()),
+      reason: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/v1/constants-revisions/{key}/{version}/discard",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateConstantRevisionDiscardRequest",
+}) as any as S.Schema<CreateConstantRevisionDiscardRequest>;
+
+export type ConstantRevisionStatus =
+  | "draft"
+  | "pending-review"
+  | "approved"
+  | "changes-requested"
+  | "merged"
+  | "discarded";
+export const ConstantRevisionStatus = /*@__PURE__*/ S.String;
+
+export type ConstantRevisionContributorsList = Array<string>;
+export const ConstantRevisionContributorsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ConstantRevisionContributorsList>;
+
+export type ConstantRevisionReviewDecision =
+  | "approve"
+  | "request-changes"
+  | "comment";
+export const ConstantRevisionReviewDecision = /*@__PURE__*/ S.String;
+
+export interface ConstantRevisionReview {
+  id: string;
+  userId: string;
+  decision: ConstantRevisionReviewDecision;
+  comment?: string;
+  /** True if a later review cycle (re-submit, approval reset, recall, or reopen) superseded this verdict. Stale verdicts are kept for attribution but no longer count as an active approval or change-request. */
+  stale?: boolean;
+  dateCreated: string;
+}
+export const ConstantRevisionReview = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    userId: S.String,
+    decision: ConstantRevisionReviewDecision,
+    comment: S.optional(S.String),
+    stale: S.optional(S.Boolean),
+    dateCreated: S.String,
+  }),
+).annotate({
+  identifier: "ConstantRevisionReview",
+}) as any as S.Schema<ConstantRevisionReview>;
+
+export type ConstantRevisionReviewsList = Array<ConstantRevisionReview>;
+export const ConstantRevisionReviewsList = /*@__PURE__*/ S.Array(
+  ConstantRevisionReview,
+) as any as S.Schema<ConstantRevisionReviewsList>;
+
+export type ConstantRevisionActivityLogEntryAction =
+  | "created"
+  | "updated"
+  | "reviewed"
+  | "approved"
+  | "requested-changes"
+  | "commented"
+  | "review-requested"
+  | "review-retracted"
+  | "merged"
+  | "discarded"
+  | "reopened"
+  | "recalled"
+  | "scheduled-publish"
+  | "scheduled-publish-updated"
+  | "scheduled-publish-canceled"
+  | "merge-recovered";
+export const ConstantRevisionActivityLogEntryAction = /*@__PURE__*/ S.String;
+
+export type ConstantRevisionActivityLogEntryProposedChangesSnapshotItemCase0 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
+export const ConstantRevisionActivityLogEntryProposedChangesSnapshotItemCase0 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
+
+export type ConstantRevisionActivityLogEntryProposedChangesSnapshotItemCase1 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase1;
+export const ConstantRevisionActivityLogEntryProposedChangesSnapshotItemCase1 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase1;
+
+export type ConstantRevisionActivityLogEntryProposedChangesSnapshotItemCase2 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
+export const ConstantRevisionActivityLogEntryProposedChangesSnapshotItemCase2 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
+
+export type ConstantRevisionActivityLogEntryProposedChangesSnapshotItemCase3 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3;
+export const ConstantRevisionActivityLogEntryProposedChangesSnapshotItemCase3 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3;
+
+export type ConstantRevisionActivityLogEntryProposedChangesSnapshotItemCase4 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3;
+export const ConstantRevisionActivityLogEntryProposedChangesSnapshotItemCase4 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3;
+
+export type ConstantRevisionActivityLogEntryProposedChangesSnapshotItemCase5 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
+export const ConstantRevisionActivityLogEntryProposedChangesSnapshotItemCase5 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
+
+export type ConstantRevisionActivityLogEntryProposedChangesSnapshotItem =
+  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0
+  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase1
+  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0
+  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3
+  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3
+  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
+export const ConstantRevisionActivityLogEntryProposedChangesSnapshotItem =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<ConstantRevisionActivityLogEntryProposedChangesSnapshotItem>;
+
+export type ConstantRevisionActivityLogEntryProposedChangesSnapshotList =
+  Array<ConstantRevisionActivityLogEntryProposedChangesSnapshotItem>;
+export const ConstantRevisionActivityLogEntryProposedChangesSnapshotList =
+  /*@__PURE__*/ S.Array(
+    ConstantRevisionActivityLogEntryProposedChangesSnapshotItem,
+  ) as any as S.Schema<ConstantRevisionActivityLogEntryProposedChangesSnapshotList>;
+
+export interface ConstantRevisionActivityLogEntry {
+  id: string;
+  userId: string;
+  action: ConstantRevisionActivityLogEntryAction;
+  description?: string | null;
+  proposedChangesSnapshot?: ConstantRevisionActivityLogEntryProposedChangesSnapshotList;
+  targetSnapshot?: unknown;
+  dateCreated: string;
+}
+export const ConstantRevisionActivityLogEntry = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    userId: S.String,
+    action: ConstantRevisionActivityLogEntryAction,
+    description: S.optional(S.NullOr(S.String)),
+    proposedChangesSnapshot: S.optional(
+      ConstantRevisionActivityLogEntryProposedChangesSnapshotList,
+    ),
+    targetSnapshot: S.optional(S.Unknown),
+    dateCreated: S.String,
+  }),
+).annotate({
+  identifier: "ConstantRevisionActivityLogEntry",
+}) as any as S.Schema<ConstantRevisionActivityLogEntry>;
+
+export type ConstantRevisionActivityLogList =
+  Array<ConstantRevisionActivityLogEntry>;
+export const ConstantRevisionActivityLogList = /*@__PURE__*/ S.Array(
+  ConstantRevisionActivityLogEntry,
+) as any as S.Schema<ConstantRevisionActivityLogList>;
+
+export type ConstantRevisionResolutionAction = "merged" | "discarded";
+export const ConstantRevisionResolutionAction = /*@__PURE__*/ S.String;
+
+export interface ConstantRevisionResolution {
+  action: ConstantRevisionResolutionAction;
+  userId: string;
+  dateCreated: string;
+}
+export const ConstantRevisionResolution = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    action: ConstantRevisionResolutionAction,
+    userId: S.String,
+    dateCreated: S.String,
+  }),
+).annotate({
+  identifier: "ConstantRevisionResolution",
+}) as any as S.Schema<ConstantRevisionResolution>;
+
+export type ConstantRevisionProposedChangesItemCase0 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
+export const ConstantRevisionProposedChangesItemCase0 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
+
+export type ConstantRevisionProposedChangesItemCase1 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase1;
+export const ConstantRevisionProposedChangesItemCase1 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase1;
+
+export type ConstantRevisionProposedChangesItemCase2 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
+export const ConstantRevisionProposedChangesItemCase2 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
+
+export type ConstantRevisionProposedChangesItemCase3 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3;
+export const ConstantRevisionProposedChangesItemCase3 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3;
+
+export type ConstantRevisionProposedChangesItemCase4 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3;
+export const ConstantRevisionProposedChangesItemCase4 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3;
+
+export type ConstantRevisionProposedChangesItemCase5 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
+export const ConstantRevisionProposedChangesItemCase5 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
+
+export type ConstantRevisionProposedChangesItem =
+  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0
+  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase1
+  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0
+  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3
+  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3
+  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
+export const ConstantRevisionProposedChangesItem =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<ConstantRevisionProposedChangesItem>;
+
+export type ConstantRevisionProposedChangesList =
+  Array<ConstantRevisionProposedChangesItem>;
+export const ConstantRevisionProposedChangesList = /*@__PURE__*/ S.Array(
+  ConstantRevisionProposedChangesItem,
+) as any as S.Schema<ConstantRevisionProposedChangesList>;
+
+export interface ConstantRevision {
+  id: string;
+  version?: number;
+  title?: string;
+  status: ConstantRevisionStatus;
+  authorId: string;
+  authorEmail?: string;
+  contributors?: ConstantRevisionContributorsList;
+  revertedFrom?: string;
+  reviews: ConstantRevisionReviewsList;
+  activityLog: ConstantRevisionActivityLogList;
+  /** Publish automatically the moment this revision is approved. */
+  autoPublishOnApproval?: boolean;
+  /** User the deferred publish will run as. Its authority is re-checked when the publish fires. */
+  autoPublishEnabledBy?: string;
+  /** When the deferred publish fires. Absent when the revision publishes on approval instead, or is not armed at all. */
+  scheduledPublishAt?: string;
+  /** Content edits to this revision are frozen until it fires. */
+  scheduledPublishLockEdits?: boolean;
+  /** Other revisions of the same resource cannot publish until this one fires or is cancelled. */
+  scheduledPublishLockOthers?: boolean;
+  /** Armed by a caller who bypassed the approval requirement. Such a schedule must be cancelled and re-armed rather than edited. */
+  scheduledPublishBypassApproval?: boolean;
+  /** How many times the poller has tried to publish this revision. */
+  scheduledPublishAttempts?: number;
+  /** Why the most recent deferred-publish attempt failed. */
+  scheduledPublishLastError?: string;
+  /** When the poller stopped retrying. Giving up CLEARS the schedule and disarms auto-publish, so nothing fires again until the revision is re-armed. The draft is left open, with `scheduledPublishLastError` preserved for context. */
+  scheduledPublishGaveUpAt?: string;
+  resolution?: ConstantRevisionResolution;
+  dateCreated: string;
+  dateUpdated: string;
+  baseConstant: Constant;
+  proposedConstant: Constant;
+  proposedChanges: ConstantRevisionProposedChangesList;
+}
+export const ConstantRevision = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    version: S.optional(S.Number),
+    title: S.optional(S.String),
+    status: ConstantRevisionStatus,
+    authorId: S.String,
+    authorEmail: S.optional(S.String),
+    contributors: S.optional(ConstantRevisionContributorsList),
+    revertedFrom: S.optional(S.String),
+    reviews: ConstantRevisionReviewsList,
+    activityLog: ConstantRevisionActivityLogList,
+    autoPublishOnApproval: S.optional(S.Boolean),
+    autoPublishEnabledBy: S.optional(S.String),
+    scheduledPublishAt: S.optional(S.String),
+    scheduledPublishLockEdits: S.optional(S.Boolean),
+    scheduledPublishLockOthers: S.optional(S.Boolean),
+    scheduledPublishBypassApproval: S.optional(S.Boolean),
+    scheduledPublishAttempts: S.optional(S.Number),
+    scheduledPublishLastError: S.optional(S.String),
+    scheduledPublishGaveUpAt: S.optional(S.String),
+    resolution: S.optional(ConstantRevisionResolution),
+    dateCreated: S.String,
+    dateUpdated: S.String,
+    baseConstant: Constant,
+    proposedConstant: Constant,
+    proposedChanges: ConstantRevisionProposedChangesList,
+  }),
+).annotate({
+  identifier: "ConstantRevision",
+}) as any as S.Schema<ConstantRevision>;
+
+export interface CreateConstantRevisionDiscardResponse {
+  revision: ConstantRevision;
+}
+export const CreateConstantRevisionDiscardResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      revision: ConstantRevision,
+    }),
+).annotate({
+  identifier: "CreateConstantRevisionDiscardResponse",
+}) as any as S.Schema<CreateConstantRevisionDiscardResponse>;
+
+export interface CreateConstantRevisionPublishRequest {
+  key: string;
+  version: number;
+  /** Deprecated and ignored. Approval is bypassed automatically when the caller has Bypass draft approvals access for this resource or when the organization enables the REST API approval bypass. Otherwise, the revision must be approved before it can be published. */
+  bypassApproval?: boolean;
+  /** Set to true to acknowledge the warnings listed in a blocked response and continue. This covers experiment guards, locked dependents, and references affected by an archive. When the organization treats schema failures as warnings, it also covers schema and invariant warnings. It never bypasses a rejected Custom Hook. On revision publish endpoints, it can also force-publish an out-of-date draft when the caller has Bypass draft approvals access. */
+  ignoreWarnings?: boolean;
+  /** Set to true to publish despite schema validation errors, failed invariants, or schema changes that invalidate dependent resources. This does not bypass a rejected Custom Hook; use `skipHooks` for that. The caller must have Bypass draft approvals access for Feature Flags, Configs, and Constants in every Project. Otherwise, this field is ignored. */
+  skipSchemaValidation?: boolean;
+  /** Set to true to publish despite a Custom Hook rejection. This does not bypass schema validation; use `skipSchemaValidation` for that. The caller must have Bypass draft approvals access for Feature Flags, Configs, and Constants in every Project. Otherwise, this field is ignored. */
+  skipHooks?: boolean;
+}
+export const CreateConstantRevisionPublishRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      key: S.String.pipe(T.Label()),
+      version: S.Number.pipe(T.Label()),
+      bypassApproval: S.optional(S.Boolean),
+      ignoreWarnings: S.optional(S.Boolean),
+      skipSchemaValidation: S.optional(S.Boolean),
+      skipHooks: S.optional(S.Boolean),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/v1/constants-revisions/{key}/{version}/publish",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateConstantRevisionPublishRequest",
+}) as any as S.Schema<CreateConstantRevisionPublishRequest>;
+
+/** Gates that would have blocked this publish but were bypassed by the caller's authority. Present only when at least one gate was bypassed. */
+export type CreateConstantRevisionPublishResponseBypassedGatesList =
+  Array<BypassedGates>;
+export const CreateConstantRevisionPublishResponseBypassedGatesList =
+  /*@__PURE__*/ S.Array(
+    BypassedGates,
+  ) as any as S.Schema<CreateConstantRevisionPublishResponseBypassedGatesList>;
+
+export interface CreateConstantRevisionPublishResponse {
+  revision: ConstantRevision;
+  /** Gates that would have blocked this publish but were bypassed by the caller's authority. Present only when at least one gate was bypassed. */
+  bypassedGates?: CreateConstantRevisionPublishResponseBypassedGatesList;
+}
+export const CreateConstantRevisionPublishResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      revision: ConstantRevision,
+      bypassedGates: S.optional(
+        CreateConstantRevisionPublishResponseBypassedGatesList,
+      ),
+    }),
+).annotate({
+  identifier: "CreateConstantRevisionPublishResponse",
+}) as any as S.Schema<CreateConstantRevisionPublishResponse>;
+
+export type CreateConstantRevisionRebaseRequestConflictResolutionsValue =
+  | "overwrite"
+  | "discard";
+export const CreateConstantRevisionRebaseRequestConflictResolutionsValue =
+  /*@__PURE__*/ S.String;
+
+export type CreateConstantRevisionRebaseRequestConflictResolutionsMap = {
+  [key: string]:
+    | CreateConstantRevisionRebaseRequestConflictResolutionsValue
+    | (string & {})
+    | undefined;
+};
+export const CreateConstantRevisionRebaseRequestConflictResolutionsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    CreateConstantRevisionRebaseRequestConflictResolutionsValue,
+  ) as any as S.Schema<CreateConstantRevisionRebaseRequestConflictResolutionsMap>;
+
+export interface CreateConstantRevisionRebaseRequest {
+  key: string;
+  version: number;
+  conflictResolutions?: CreateConstantRevisionRebaseRequestConflictResolutionsMap;
+}
+export const CreateConstantRevisionRebaseRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    key: S.String.pipe(T.Label()),
+    version: S.Number.pipe(T.Label()),
+    conflictResolutions: S.optional(
+      CreateConstantRevisionRebaseRequestConflictResolutionsMap,
+    ),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/constants-revisions/{key}/{version}/rebase",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateConstantRevisionRebaseRequest",
+}) as any as S.Schema<CreateConstantRevisionRebaseRequest>;
+
+export interface CreateConstantRevisionRebaseResponse {
+  revision: ConstantRevision;
+}
+export const CreateConstantRevisionRebaseResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      revision: ConstantRevision,
+    }),
+).annotate({
+  identifier: "CreateConstantRevisionRebaseResponse",
+}) as any as S.Schema<CreateConstantRevisionRebaseResponse>;
+
+export interface CreateConstantRevisionRecallReviewRequest {
+  key: string;
+  version: number;
+}
+export const CreateConstantRevisionRecallReviewRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      key: S.String.pipe(T.Label()),
+      version: S.Number.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/v1/constants-revisions/{key}/{version}/recall-review",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateConstantRevisionRecallReviewRequest",
+  }) as any as S.Schema<CreateConstantRevisionRecallReviewRequest>;
+
+export interface CreateConstantRevisionRecallReviewResponse {
+  revision: ConstantRevision;
+}
+export const CreateConstantRevisionRecallReviewResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      revision: ConstantRevision,
+    }),
+  ).annotate({
+    identifier: "CreateConstantRevisionRecallReviewResponse",
+  }) as any as S.Schema<CreateConstantRevisionRecallReviewResponse>;
+
+export interface CreateConstantRevisionReopenRequest {
+  key: string;
+  version: number;
+}
+export const CreateConstantRevisionReopenRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    key: S.String.pipe(T.Label()),
+    version: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/constants-revisions/{key}/{version}/reopen",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateConstantRevisionReopenRequest",
+}) as any as S.Schema<CreateConstantRevisionReopenRequest>;
+
+export interface CreateConstantRevisionReopenResponse {
+  revision: ConstantRevision;
+}
+export const CreateConstantRevisionReopenResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      revision: ConstantRevision,
+    }),
+).annotate({
+  identifier: "CreateConstantRevisionReopenResponse",
+}) as any as S.Schema<CreateConstantRevisionReopenResponse>;
+
+export interface CreateConstantRevisionRequestReviewRequest {
+  key: string;
+  version: number;
+  autoPublishOnApproval?: boolean;
+  /** Set to true to acknowledge the warnings listed in a blocked response and continue. This covers experiment guards, locked dependents, and references affected by an archive. When the organization treats schema failures as warnings, it also covers schema and invariant warnings. It never bypasses a rejected Custom Hook. On revision publish endpoints, it can also force-publish an out-of-date draft when the caller has Bypass draft approvals access. */
+  ignoreWarnings?: boolean;
+  /** Set to true to publish despite schema validation errors, failed invariants, or schema changes that invalidate dependent resources. This does not bypass a rejected Custom Hook; use `skipHooks` for that. The caller must have Bypass draft approvals access for Feature Flags, Configs, and Constants in every Project. Otherwise, this field is ignored. */
+  skipSchemaValidation?: boolean;
+  /** Set to true to publish despite a Custom Hook rejection. This does not bypass schema validation; use `skipSchemaValidation` for that. The caller must have Bypass draft approvals access for Feature Flags, Configs, and Constants in every Project. Otherwise, this field is ignored. */
+  skipHooks?: boolean;
+}
+export const CreateConstantRevisionRequestReviewRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      key: S.String.pipe(T.Label()),
+      version: S.Number.pipe(T.Label()),
+      autoPublishOnApproval: S.optional(S.Boolean),
+      ignoreWarnings: S.optional(S.Boolean),
+      skipSchemaValidation: S.optional(S.Boolean),
+      skipHooks: S.optional(S.Boolean),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/v1/constants-revisions/{key}/{version}/request-review",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateConstantRevisionRequestReviewRequest",
+  }) as any as S.Schema<CreateConstantRevisionRequestReviewRequest>;
+
+export interface CreateConstantRevisionRequestReviewResponse {
+  revision: ConstantRevision;
+}
+export const CreateConstantRevisionRequestReviewResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      revision: ConstantRevision,
+    }),
+  ).annotate({
+    identifier: "CreateConstantRevisionRequestReviewResponse",
+  }) as any as S.Schema<CreateConstantRevisionRequestReviewResponse>;
+
+/** Whether to stage the revert as a draft or publish it immediately. Defaults to `draft`, or to `publish` when the org enables 'reverts bypass approval'. */
+export type CreateConstantRevisionRevertRequestStrategy = "draft" | "publish";
+export const CreateConstantRevisionRevertRequestStrategy =
+  /*@__PURE__*/ S.String;
+
+export interface CreateConstantRevisionRevertRequest {
+  key: string;
+  version: number;
+  /** Whether to stage the revert as a draft or publish it immediately. Defaults to `draft`, or to `publish` when the org enables 'reverts bypass approval'. */
+  strategy?: CreateConstantRevisionRevertRequestStrategy | (string & {});
+  title?: string;
+  comment?: string;
+  /** Set to true to acknowledge the warnings listed in a blocked response and continue. This covers experiment guards, locked dependents, and references affected by an archive. When the organization treats schema failures as warnings, it also covers schema and invariant warnings. It never bypasses a rejected Custom Hook. On revision publish endpoints, it can also force-publish an out-of-date draft when the caller has Bypass draft approvals access. */
+  ignoreWarnings?: boolean;
+  /** Set to true to publish despite schema validation errors, failed invariants, or schema changes that invalidate dependent resources. This does not bypass a rejected Custom Hook; use `skipHooks` for that. The caller must have Bypass draft approvals access for Feature Flags, Configs, and Constants in every Project. Otherwise, this field is ignored. */
+  skipSchemaValidation?: boolean;
+  /** Set to true to publish despite a Custom Hook rejection. This does not bypass schema validation; use `skipSchemaValidation` for that. The caller must have Bypass draft approvals access for Feature Flags, Configs, and Constants in every Project. Otherwise, this field is ignored. */
+  skipHooks?: boolean;
+}
+export const CreateConstantRevisionRevertRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    key: S.String.pipe(T.Label()),
+    version: S.Number.pipe(T.Label()),
+    strategy: S.optional(CreateConstantRevisionRevertRequestStrategy),
+    title: S.optional(S.String),
+    comment: S.optional(S.String),
+    ignoreWarnings: S.optional(S.Boolean),
+    skipSchemaValidation: S.optional(S.Boolean),
+    skipHooks: S.optional(S.Boolean),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/constants-revisions/{key}/{version}/revert",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateConstantRevisionRevertRequest",
+}) as any as S.Schema<CreateConstantRevisionRevertRequest>;
+
+/** Gates that would have blocked this publish but were bypassed by the caller's authority. Present only when at least one gate was bypassed. */
+export type CreateConstantRevisionRevertResponseBypassedGatesList =
+  Array<BypassedGates>;
+export const CreateConstantRevisionRevertResponseBypassedGatesList =
+  /*@__PURE__*/ S.Array(
+    BypassedGates,
+  ) as any as S.Schema<CreateConstantRevisionRevertResponseBypassedGatesList>;
+
+export interface CreateConstantRevisionRevertResponse {
+  revision: ConstantRevision;
+  /** Gates that would have blocked this publish but were bypassed by the caller's authority. Present only when at least one gate was bypassed. */
+  bypassedGates?: CreateConstantRevisionRevertResponseBypassedGatesList;
+}
+export const CreateConstantRevisionRevertResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      revision: ConstantRevision,
+      bypassedGates: S.optional(
+        CreateConstantRevisionRevertResponseBypassedGatesList,
+      ),
+    }),
+).annotate({
+  identifier: "CreateConstantRevisionRevertResponse",
+}) as any as S.Schema<CreateConstantRevisionRevertResponse>;
+
+export interface CreateConstantRevisionSchedulePublishRequest {
+  key: string;
+  version: number;
+  /** When to publish, as an RFC3339 timestamp (e.g. `2026-01-31T09:00:00Z` or `2026-01-31T02:00:00-07:00`), or `null` to cancel a pending schedule. */
+  scheduledPublishAt: string | null;
+  lockEdits?: boolean;
+  lockOthers?: boolean;
+  bypassApproval?: boolean;
+  /** Set to true to acknowledge the warnings listed in a blocked response and continue. This covers experiment guards, locked dependents, and references affected by an archive. When the organization treats schema failures as warnings, it also covers schema and invariant warnings. It never bypasses a rejected Custom Hook. On revision publish endpoints, it can also force-publish an out-of-date draft when the caller has Bypass draft approvals access. */
+  ignoreWarnings?: boolean;
+  /** Set to true to publish despite schema validation errors, failed invariants, or schema changes that invalidate dependent resources. This does not bypass a rejected Custom Hook; use `skipHooks` for that. The caller must have Bypass draft approvals access for Feature Flags, Configs, and Constants in every Project. Otherwise, this field is ignored. */
+  skipSchemaValidation?: boolean;
+  /** Set to true to publish despite a Custom Hook rejection. This does not bypass schema validation; use `skipSchemaValidation` for that. The caller must have Bypass draft approvals access for Feature Flags, Configs, and Constants in every Project. Otherwise, this field is ignored. */
+  skipHooks?: boolean;
+}
+export const CreateConstantRevisionSchedulePublishRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      key: S.String.pipe(T.Label()),
+      version: S.Number.pipe(T.Label()),
+      scheduledPublishAt: S.NullOr(S.String),
+      lockEdits: S.optional(S.Boolean),
+      lockOthers: S.optional(S.Boolean),
+      bypassApproval: S.optional(S.Boolean),
+      ignoreWarnings: S.optional(S.Boolean),
+      skipSchemaValidation: S.optional(S.Boolean),
+      skipHooks: S.optional(S.Boolean),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/v1/constants-revisions/{key}/{version}/schedule-publish",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateConstantRevisionSchedulePublishRequest",
+  }) as any as S.Schema<CreateConstantRevisionSchedulePublishRequest>;
+
+export interface CreateConstantRevisionSchedulePublishResponse {
+  revision: ConstantRevision;
+}
+export const CreateConstantRevisionSchedulePublishResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      revision: ConstantRevision,
+    }),
+  ).annotate({
+    identifier: "CreateConstantRevisionSchedulePublishResponse",
+  }) as any as S.Schema<CreateConstantRevisionSchedulePublishResponse>;
+
+export type CreateConstantRevisionSubmitReviewRequestDecision =
+  | "approve"
+  | "request-changes"
+  | "comment";
+export const CreateConstantRevisionSubmitReviewRequestDecision =
+  /*@__PURE__*/ S.String;
+
+export interface CreateConstantRevisionSubmitReviewRequest {
+  key: string;
+  version: number;
+  decision: CreateConstantRevisionSubmitReviewRequestDecision | (string & {});
+  comment?: string;
+  skipAutoPublish?: boolean;
+}
+export const CreateConstantRevisionSubmitReviewRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      key: S.String.pipe(T.Label()),
+      version: S.Number.pipe(T.Label()),
+      decision: CreateConstantRevisionSubmitReviewRequestDecision,
+      comment: S.optional(S.String),
+      skipAutoPublish: S.optional(S.Boolean),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/v1/constants-revisions/{key}/{version}/submit-review",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateConstantRevisionSubmitReviewRequest",
+  }) as any as S.Schema<CreateConstantRevisionSubmitReviewRequest>;
+
+export interface CreateConstantRevisionSubmitReviewResponse {
+  revision: ConstantRevision;
+  autoPublished?: boolean;
+}
+export const CreateConstantRevisionSubmitReviewResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      revision: ConstantRevision,
+      autoPublished: S.optional(S.Boolean),
+    }),
+  ).annotate({
+    identifier: "CreateConstantRevisionSubmitReviewResponse",
+  }) as any as S.Schema<CreateConstantRevisionSubmitReviewResponse>;
+
+export interface CreateConstantRevisionUndoReviewRequest {
+  key: string;
+  version: number;
+}
+export const CreateConstantRevisionUndoReviewRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      key: S.String.pipe(T.Label()),
+      version: S.Number.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/v1/constants-revisions/{key}/{version}/undo-review",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateConstantRevisionUndoReviewRequest",
+}) as any as S.Schema<CreateConstantRevisionUndoReviewRequest>;
+
+export interface CreateConstantRevisionUndoReviewResponse {
+  revision: ConstantRevision;
+}
+export const CreateConstantRevisionUndoReviewResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      revision: ConstantRevision,
+    }),
+).annotate({
+  identifier: "CreateConstantRevisionUndoReviewResponse",
+}) as any as S.Schema<CreateConstantRevisionUndoReviewResponse>;
+
 export type CreateContextualBanditRequestTagsList = Array<string>;
 export const CreateContextualBanditRequestTagsList = /*@__PURE__*/ S.Array(
   S.String,
@@ -2420,6 +5800,122 @@ export const CreateCustomFieldResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "CreateCustomFieldResponse",
 }) as any as S.Schema<CreateCustomFieldResponse>;
+
+export type CreateCustomHookRequestHook =
+  | "validateFeature"
+  | "validateFeatureRevision"
+  | "validateConfig"
+  | "validateConfigRevision"
+  | "validateExperiment";
+export const CreateCustomHookRequestHook = /*@__PURE__*/ S.String;
+
+/** Project ids the hook applies to (empty/omitted = all) */
+export type CreateCustomHookRequestProjectsList = Array<string>;
+export const CreateCustomHookRequestProjectsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateCustomHookRequestProjectsList>;
+
+export type CreateCustomHookRequestEntityType =
+  | "feature"
+  | "config"
+  | "experiment";
+export const CreateCustomHookRequestEntityType = /*@__PURE__*/ S.String;
+
+export interface CreateCustomHookRequest {
+  /** The display name of the custom hook */
+  name: string;
+  hook: CreateCustomHookRequestHook | (string & {});
+  code: string;
+  enabled?: boolean;
+  /** Project ids the hook applies to (empty/omitted = all) */
+  projects?: CreateCustomHookRequestProjectsList;
+  entityType?: CreateCustomHookRequestEntityType | (string & {});
+  entityId?: string;
+  incrementalChangesOnly?: boolean;
+}
+export const CreateCustomHookRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    hook: CreateCustomHookRequestHook,
+    code: S.String,
+    enabled: S.optional(S.Boolean),
+    projects: S.optional(CreateCustomHookRequestProjectsList),
+    entityType: S.optional(CreateCustomHookRequestEntityType),
+    entityId: S.optional(S.String),
+    incrementalChangesOnly: S.optional(S.Boolean),
+  }).pipe(T.Http({ method: "POST", uri: "/v1/custom-hooks", code: 200 })),
+).annotate({
+  identifier: "CreateCustomHookRequest",
+}) as any as S.Schema<CreateCustomHookRequest>;
+
+/** Which save/publish event runs the hook (and which entity type it validates) */
+export type CustomHookHook =
+  | "validateFeature"
+  | "validateFeatureRevision"
+  | "validateConfig"
+  | "validateConfigRevision"
+  | "validateExperiment";
+export const CustomHookHook = /*@__PURE__*/ S.String;
+
+/** Project ids the hook applies to (empty = all projects). Always empty for entity-scoped hooks. */
+export type CustomHookProjectsList = Array<string>;
+export const CustomHookProjectsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CustomHookProjectsList>;
+
+/** Set (with entityId) to scope the hook to a single resource. */
+export type CustomHookEntityType = "feature" | "config" | "experiment";
+export const CustomHookEntityType = /*@__PURE__*/ S.String;
+
+export interface CustomHook {
+  id: string;
+  name: string;
+  /** Which save/publish event runs the hook (and which entity type it validates) */
+  hook: CustomHookHook;
+  /** JavaScript function body executed in the sandbox. Throw an Error to block the save; call `addWarning(msg)` for a soft warning. */
+  code: string;
+  enabled: boolean;
+  /** Project ids the hook applies to (empty = all projects). Always empty for entity-scoped hooks. */
+  projects: CustomHookProjectsList;
+  /** Set (with entityId) to scope the hook to a single resource. */
+  entityType?: CustomHookEntityType;
+  /** The scoped resource: a feature id, or a config key. A config-scoped hook always runs for that config and every config that inherits from it (via parent/extends, transitively). */
+  entityId?: string;
+  /** When true, errors/warnings that already existed before the change being validated are suppressed */
+  incrementalChangesOnly?: boolean;
+  lastSuccess?: string;
+  lastFailure?: string;
+  dateCreated: string;
+  dateUpdated: string;
+}
+export const CustomHook = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    name: S.String,
+    hook: CustomHookHook,
+    code: S.String,
+    enabled: S.Boolean,
+    projects: CustomHookProjectsList,
+    entityType: S.optional(CustomHookEntityType),
+    entityId: S.optional(S.String),
+    incrementalChangesOnly: S.optional(S.Boolean),
+    lastSuccess: S.optional(S.String),
+    lastFailure: S.optional(S.String),
+    dateCreated: S.String,
+    dateUpdated: S.String,
+  }),
+).annotate({ identifier: "CustomHook" }) as any as S.Schema<CustomHook>;
+
+export interface CreateCustomHookResponse {
+  customHook: CustomHook;
+}
+export const CreateCustomHookResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    customHook: CustomHook,
+  }),
+).annotate({
+  identifier: "CreateCustomHookResponse",
+}) as any as S.Schema<CreateCustomHookResponse>;
 
 /** Dashboards that are "published" are editable by organization members with appropriate permissions */
 export type CreateDashboardRequestEditLevel = "published" | "private";
@@ -9093,6 +12589,2333 @@ export const CreateDashboardResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateDashboardResponse",
 }) as any as S.Schema<CreateDashboardResponse>;
 
+/** Where this dimension must be managed from. If not set (empty string), it can be managed from anywhere. */
+export type CreateDimensionRequestManagedBy = "" | "api";
+export const CreateDimensionRequestManagedBy = /*@__PURE__*/ S.String;
+
+export interface CreateDimensionRequest {
+  /** Name of the dimension */
+  name: string;
+  /** Description of the dimension */
+  description?: string;
+  /** The userId or email address of the owner. If an email address is provided, it will be used to look up the userId of the matching organization member. If an ID is provided, it will be validated as existing in the organization. */
+  owner?: string;
+  /** ID of the datasource this dimension belongs to */
+  datasourceId: string;
+  /** Type of identifier (user, anonymous, etc.) */
+  identifierType: string;
+  /** SQL query or equivalent for the dimension */
+  query: string;
+  /** Where this dimension must be managed from. If not set (empty string), it can be managed from anywhere. */
+  managedBy?: CreateDimensionRequestManagedBy | (string & {});
+}
+export const CreateDimensionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    description: S.optional(S.String),
+    owner: S.optional(S.String),
+    datasourceId: S.String,
+    identifierType: S.String,
+    query: S.String,
+    managedBy: S.optional(CreateDimensionRequestManagedBy),
+  }).pipe(T.Http({ method: "POST", uri: "/v1/dimensions", code: 200 })),
+).annotate({
+  identifier: "CreateDimensionRequest",
+}) as any as S.Schema<CreateDimensionRequest>;
+
+/** Where this dimension must be managed from. If not set (empty string), it can be managed from anywhere. */
+export type DimensionManagedBy = "" | "api" | "config";
+export const DimensionManagedBy = /*@__PURE__*/ S.String;
+
+export interface Dimension {
+  id: string;
+  dateCreated: string;
+  dateUpdated: string;
+  /** The userId of the owner (or raw owner name/email for legacy records) */
+  owner: string;
+  /** The email address of the owner, when the owner can be resolved to a known user. */
+  ownerEmail?: string;
+  datasourceId: string;
+  identifierType: string;
+  name: string;
+  description?: string;
+  query: string;
+  /** Where this dimension must be managed from. If not set (empty string), it can be managed from anywhere. */
+  managedBy?: DimensionManagedBy;
+}
+export const Dimension = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    dateCreated: S.String,
+    dateUpdated: S.String,
+    owner: S.String,
+    ownerEmail: S.optional(S.String),
+    datasourceId: S.String,
+    identifierType: S.String,
+    name: S.String,
+    description: S.optional(S.String),
+    query: S.String,
+    managedBy: S.optional(DimensionManagedBy),
+  }),
+).annotate({ identifier: "Dimension" }) as any as S.Schema<Dimension>;
+
+export interface CreateDimensionResponse {
+  dimension: Dimension;
+}
+export const CreateDimensionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    dimension: Dimension,
+  }),
+).annotate({
+  identifier: "CreateDimensionResponse",
+}) as any as S.Schema<CreateDimensionResponse>;
+
+export type CreateEnvironmentRequestProjectsList = Array<string>;
+export const CreateEnvironmentRequestProjectsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateEnvironmentRequestProjectsList>;
+
+export interface CreateEnvironmentRequest {
+  /** The ID of the new environment */
+  id: string;
+  /** The description of the new environment */
+  description?: string;
+  /** Show on feature list page */
+  toggleOnList?: boolean;
+  /** Default state for new features */
+  defaultState?: boolean;
+  projects?: CreateEnvironmentRequestProjectsList;
+  /** An environment that the new environment should inherit feature rules from. Requires an enterprise license */
+  parent?: string;
+}
+export const CreateEnvironmentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    description: S.optional(S.String),
+    toggleOnList: S.optional(S.Boolean),
+    defaultState: S.optional(S.Boolean),
+    projects: S.optional(CreateEnvironmentRequestProjectsList),
+    parent: S.optional(S.String),
+  }).pipe(T.Http({ method: "POST", uri: "/v1/environments", code: 200 })),
+).annotate({
+  identifier: "CreateEnvironmentRequest",
+}) as any as S.Schema<CreateEnvironmentRequest>;
+
+export type EnvironmentProjectsList = Array<string>;
+export const EnvironmentProjectsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<EnvironmentProjectsList>;
+
+export interface Environment {
+  id: string;
+  description: string;
+  toggleOnList: boolean;
+  defaultState: boolean;
+  projects: EnvironmentProjectsList;
+  parent?: string;
+}
+export const Environment = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    description: S.String,
+    toggleOnList: S.Boolean,
+    defaultState: S.Boolean,
+    projects: EnvironmentProjectsList,
+    parent: S.optional(S.String),
+  }),
+).annotate({ identifier: "Environment" }) as any as S.Schema<Environment>;
+
+export interface CreateEnvironmentResponse {
+  environment: Environment;
+}
+export const CreateEnvironmentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    environment: Environment,
+  }),
+).annotate({
+  identifier: "CreateEnvironmentResponse",
+}) as any as S.Schema<CreateEnvironmentResponse>;
+
+export type CreateExperimentRequestType = "standard" | "multi-armed-bandit";
+export const CreateExperimentRequestType = /*@__PURE__*/ S.String;
+
+export type CreateExperimentRequestTagsList = Array<string>;
+export const CreateExperimentRequestTagsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateExperimentRequestTagsList>;
+
+export type CreateExperimentRequestMetricsList = Array<string>;
+export const CreateExperimentRequestMetricsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateExperimentRequestMetricsList>;
+
+export type CreateExperimentRequestSecondaryMetricsList = Array<string>;
+export const CreateExperimentRequestSecondaryMetricsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateExperimentRequestSecondaryMetricsList>;
+
+export type CreateExperimentRequestGuardrailMetricsList = Array<string>;
+export const CreateExperimentRequestGuardrailMetricsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateExperimentRequestGuardrailMetricsList>;
+
+export type CreateExperimentRequestStatus = "draft" | "running" | "stopped";
+export const CreateExperimentRequestStatus = /*@__PURE__*/ S.String;
+
+export type CreateExperimentRequestInProgressConversions = "loose" | "strict";
+export const CreateExperimentRequestInProgressConversions =
+  /*@__PURE__*/ S.String;
+
+/** Setting attribution model to `"experimentDuration"` is the same as selecting "Ignore Conversion Windows" for the Conversion Window Override. Setting it to `"lookbackOverride"` requires a `lookbackOverride` object to be provided. */
+export type CreateExperimentRequestAttributionModel =
+  | "firstExposure"
+  | "experimentDuration"
+  | "lookbackOverride";
+export const CreateExperimentRequestAttributionModel = /*@__PURE__*/ S.String;
+
+export type CreateExperimentRequestLookbackOverrideType = "date" | "window";
+export const CreateExperimentRequestLookbackOverrideType =
+  /*@__PURE__*/ S.String;
+
+/** For "window" type - non-negative numeric value (e.g. 7 for 7 days). For "date" type a date string. */
+export type CreateExperimentRequestLookbackOverrideValue = number | string;
+export const CreateExperimentRequestLookbackOverrideValue =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateExperimentRequestLookbackOverrideValue>;
+
+/** Used when type is "window". Defaults to "days". */
+export type CreateExperimentRequestLookbackOverrideValueUnit =
+  | "minutes"
+  | "hours"
+  | "days"
+  | "weeks";
+export const CreateExperimentRequestLookbackOverrideValueUnit =
+  /*@__PURE__*/ S.String;
+
+/** Controls the lookback override for the experiment. For type "window", value must be a non-negative number and valueUnit is required. */
+export interface CreateExperimentRequestLookbackOverride {
+  type: CreateExperimentRequestLookbackOverrideType | (string & {});
+  /** For "window" type - non-negative numeric value (e.g. 7 for 7 days). For "date" type a date string. */
+  value: CreateExperimentRequestLookbackOverrideValue;
+  /** Used when type is "window". Defaults to "days". */
+  valueUnit?: CreateExperimentRequestLookbackOverrideValueUnit | (string & {});
+}
+export const CreateExperimentRequestLookbackOverride = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      type: CreateExperimentRequestLookbackOverrideType,
+      value: CreateExperimentRequestLookbackOverrideValue,
+      valueUnit: S.optional(CreateExperimentRequestLookbackOverrideValueUnit),
+    }),
+).annotate({
+  identifier: "CreateExperimentRequestLookbackOverride",
+}) as any as S.Schema<CreateExperimentRequestLookbackOverride>;
+
+export type CreateExperimentRequestStatsEngine = "bayesian" | "frequentist";
+export const CreateExperimentRequestStatsEngine = /*@__PURE__*/ S.String;
+
+export interface CreateExperimentRequestVariationsItemScreenshotsItem {
+  path: string;
+  width?: number;
+  height?: number;
+  description?: string;
+}
+export const CreateExperimentRequestVariationsItemScreenshotsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      path: S.String,
+      width: S.optional(S.Number),
+      height: S.optional(S.Number),
+      description: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "CreateExperimentRequestVariationsItemScreenshotsItem",
+  }) as any as S.Schema<CreateExperimentRequestVariationsItemScreenshotsItem>;
+
+export type CreateExperimentRequestVariationsItemScreenshotsList =
+  Array<CreateExperimentRequestVariationsItemScreenshotsItem>;
+export const CreateExperimentRequestVariationsItemScreenshotsList =
+  /*@__PURE__*/ S.Array(
+    CreateExperimentRequestVariationsItemScreenshotsItem,
+  ) as any as S.Schema<CreateExperimentRequestVariationsItemScreenshotsList>;
+
+export interface CreateExperimentRequestVariationsItem {
+  id?: string;
+  /** Alias for `id`. Mirrors the GET response. `id` takes precedence. */
+  variationId?: string;
+  key: string;
+  name: string;
+  description?: string;
+  screenshots?: CreateExperimentRequestVariationsItemScreenshotsList;
+}
+export const CreateExperimentRequestVariationsItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      variationId: S.optional(S.String),
+      key: S.String,
+      name: S.String,
+      description: S.optional(S.String),
+      screenshots: S.optional(
+        CreateExperimentRequestVariationsItemScreenshotsList,
+      ),
+    }),
+).annotate({
+  identifier: "CreateExperimentRequestVariationsItem",
+}) as any as S.Schema<CreateExperimentRequestVariationsItem>;
+
+export type CreateExperimentRequestVariationsList =
+  Array<CreateExperimentRequestVariationsItem>;
+export const CreateExperimentRequestVariationsList = /*@__PURE__*/ S.Array(
+  CreateExperimentRequestVariationsItem,
+) as any as S.Schema<CreateExperimentRequestVariationsList>;
+
+export type CreateExperimentRequestPhasesItemNamespaceRangeList = Array<number>;
+export const CreateExperimentRequestPhasesItemNamespaceRangeList =
+  /*@__PURE__*/ S.Array(
+    S.Number,
+  ) as any as S.Schema<CreateExperimentRequestPhasesItemNamespaceRangeList>;
+
+export type CreateExperimentRequestPhasesItemNamespaceRangesItemList =
+  Array<unknown>;
+export const CreateExperimentRequestPhasesItemNamespaceRangesItemList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<CreateExperimentRequestPhasesItemNamespaceRangesItemList>;
+
+export type CreateExperimentRequestPhasesItemNamespaceRangesList =
+  Array<CreateExperimentRequestPhasesItemNamespaceRangesItemList>;
+export const CreateExperimentRequestPhasesItemNamespaceRangesList =
+  /*@__PURE__*/ S.Array(
+    CreateExperimentRequestPhasesItemNamespaceRangesItemList,
+  ) as any as S.Schema<CreateExperimentRequestPhasesItemNamespaceRangesList>;
+
+export interface CreateExperimentRequestPhasesItemNamespace {
+  namespaceId: string;
+  enabled?: boolean;
+  range?: CreateExperimentRequestPhasesItemNamespaceRangeList;
+  ranges?: CreateExperimentRequestPhasesItemNamespaceRangesList;
+}
+export const CreateExperimentRequestPhasesItemNamespace =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      namespaceId: S.String,
+      enabled: S.optional(S.Boolean),
+      range: S.optional(CreateExperimentRequestPhasesItemNamespaceRangeList),
+      ranges: S.optional(CreateExperimentRequestPhasesItemNamespaceRangesList),
+    }),
+  ).annotate({
+    identifier: "CreateExperimentRequestPhasesItemNamespace",
+  }) as any as S.Schema<CreateExperimentRequestPhasesItemNamespace>;
+
+export interface CreateExperimentRequestPhasesItemPrerequisitesItem {
+  /** Feature ID */
+  id: string;
+  condition: string;
+}
+export const CreateExperimentRequestPhasesItemPrerequisitesItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.String,
+      condition: S.String,
+    }),
+  ).annotate({
+    identifier: "CreateExperimentRequestPhasesItemPrerequisitesItem",
+  }) as any as S.Schema<CreateExperimentRequestPhasesItemPrerequisitesItem>;
+
+export type CreateExperimentRequestPhasesItemPrerequisitesList =
+  Array<CreateExperimentRequestPhasesItemPrerequisitesItem>;
+export const CreateExperimentRequestPhasesItemPrerequisitesList =
+  /*@__PURE__*/ S.Array(
+    CreateExperimentRequestPhasesItemPrerequisitesItem,
+  ) as any as S.Schema<CreateExperimentRequestPhasesItemPrerequisitesList>;
+
+export type CreateExperimentRequestPhasesItemSavedGroupsItemMatch =
+  | "all"
+  | "none"
+  | "any";
+export const CreateExperimentRequestPhasesItemSavedGroupsItemMatch =
+  /*@__PURE__*/ S.String;
+
+export type CreateExperimentRequestPhasesItemSavedGroupsItemIdsList =
+  Array<string>;
+export const CreateExperimentRequestPhasesItemSavedGroupsItemIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateExperimentRequestPhasesItemSavedGroupsItemIdsList>;
+
+export interface CreateExperimentRequestPhasesItemSavedGroupsItem {
+  match: CreateExperimentRequestPhasesItemSavedGroupsItemMatch | (string & {});
+  ids: CreateExperimentRequestPhasesItemSavedGroupsItemIdsList;
+}
+export const CreateExperimentRequestPhasesItemSavedGroupsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      match: CreateExperimentRequestPhasesItemSavedGroupsItemMatch,
+      ids: CreateExperimentRequestPhasesItemSavedGroupsItemIdsList,
+    }),
+  ).annotate({
+    identifier: "CreateExperimentRequestPhasesItemSavedGroupsItem",
+  }) as any as S.Schema<CreateExperimentRequestPhasesItemSavedGroupsItem>;
+
+export type CreateExperimentRequestPhasesItemSavedGroupsList =
+  Array<CreateExperimentRequestPhasesItemSavedGroupsItem>;
+export const CreateExperimentRequestPhasesItemSavedGroupsList =
+  /*@__PURE__*/ S.Array(
+    CreateExperimentRequestPhasesItemSavedGroupsItem,
+  ) as any as S.Schema<CreateExperimentRequestPhasesItemSavedGroupsList>;
+
+export type CreateExperimentRequestPhasesItemSavedGroupTargetingItemMatchType =
+  | "all"
+  | "any"
+  | "none";
+export const CreateExperimentRequestPhasesItemSavedGroupTargetingItemMatchType =
+  /*@__PURE__*/ S.String;
+
+export type CreateExperimentRequestPhasesItemSavedGroupTargetingItemSavedGroupsList =
+  Array<string>;
+export const CreateExperimentRequestPhasesItemSavedGroupTargetingItemSavedGroupsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateExperimentRequestPhasesItemSavedGroupTargetingItemSavedGroupsList>;
+
+export interface CreateExperimentRequestPhasesItemSavedGroupTargetingItem {
+  matchType:
+    | CreateExperimentRequestPhasesItemSavedGroupTargetingItemMatchType
+    | (string & {});
+  savedGroups: CreateExperimentRequestPhasesItemSavedGroupTargetingItemSavedGroupsList;
+}
+export const CreateExperimentRequestPhasesItemSavedGroupTargetingItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      matchType:
+        CreateExperimentRequestPhasesItemSavedGroupTargetingItemMatchType,
+      savedGroups:
+        CreateExperimentRequestPhasesItemSavedGroupTargetingItemSavedGroupsList,
+    }),
+  ).annotate({
+    identifier: "CreateExperimentRequestPhasesItemSavedGroupTargetingItem",
+  }) as any as S.Schema<CreateExperimentRequestPhasesItemSavedGroupTargetingItem>;
+
+/** Deprecated — use `savedGroups`. Accepted so a GET response can be posted back unchanged; `savedGroups` takes precedence if both are sent. */
+export type CreateExperimentRequestPhasesItemSavedGroupTargetingList =
+  Array<CreateExperimentRequestPhasesItemSavedGroupTargetingItem>;
+export const CreateExperimentRequestPhasesItemSavedGroupTargetingList =
+  /*@__PURE__*/ S.Array(
+    CreateExperimentRequestPhasesItemSavedGroupTargetingItem,
+  ) as any as S.Schema<CreateExperimentRequestPhasesItemSavedGroupTargetingList>;
+
+/** Deprecated: use `trafficSplit`. Takes precedence if set. */
+export type CreateExperimentRequestPhasesItemVariationWeightsList =
+  Array<number>;
+export const CreateExperimentRequestPhasesItemVariationWeightsList =
+  /*@__PURE__*/ S.Array(
+    S.Number,
+  ) as any as S.Schema<CreateExperimentRequestPhasesItemVariationWeightsList>;
+
+export type CreateExperimentRequestPhasesItemTrafficSplitItem =
+  ContextualBanditVariationWeightsItem;
+export const CreateExperimentRequestPhasesItemTrafficSplitItem =
+  ContextualBanditVariationWeightsItem;
+
+/** Per-variation weights. Mirrors the GET response. */
+export type CreateExperimentRequestPhasesItemTrafficSplitList =
+  Array<ContextualBanditVariationWeightsItem>;
+export const CreateExperimentRequestPhasesItemTrafficSplitList =
+  /*@__PURE__*/ S.Array(
+    ContextualBanditVariationWeightsItem,
+  ) as any as S.Schema<CreateExperimentRequestPhasesItemTrafficSplitList>;
+
+export interface CreateExperimentRequestPhasesItem {
+  name: string;
+  dateStarted: string;
+  dateEnded?: string;
+  reasonForStopping?: string;
+  seed?: string;
+  coverage?: number;
+  namespace?: CreateExperimentRequestPhasesItemNamespace;
+  prerequisites?: CreateExperimentRequestPhasesItemPrerequisitesList;
+  /** Deprecated: use `reasonForStopping`. Takes precedence if set. */
+  reason?: string;
+  /** Deprecated: use `targetingCondition`. Takes precedence if set. */
+  condition?: string;
+  /** Targeting condition as a JSON string. Mirrors the GET response. */
+  targetingCondition?: string;
+  savedGroups?: CreateExperimentRequestPhasesItemSavedGroupsList;
+  /** Deprecated — use `savedGroups`. Accepted so a GET response can be posted back unchanged; `savedGroups` takes precedence if both are sent. */
+  savedGroupTargeting?: CreateExperimentRequestPhasesItemSavedGroupTargetingList;
+  /** Deprecated: use `trafficSplit`. Takes precedence if set. */
+  variationWeights?: CreateExperimentRequestPhasesItemVariationWeightsList;
+  /** Per-variation weights. Mirrors the GET response. */
+  trafficSplit?: CreateExperimentRequestPhasesItemTrafficSplitList;
+}
+export const CreateExperimentRequestPhasesItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    dateStarted: S.String,
+    dateEnded: S.optional(S.String),
+    reasonForStopping: S.optional(S.String),
+    seed: S.optional(S.String),
+    coverage: S.optional(S.Number),
+    namespace: S.optional(CreateExperimentRequestPhasesItemNamespace),
+    prerequisites: S.optional(
+      CreateExperimentRequestPhasesItemPrerequisitesList,
+    ),
+    reason: S.optional(S.String),
+    condition: S.optional(S.String),
+    targetingCondition: S.optional(S.String),
+    savedGroups: S.optional(CreateExperimentRequestPhasesItemSavedGroupsList),
+    savedGroupTargeting: S.optional(
+      CreateExperimentRequestPhasesItemSavedGroupTargetingList,
+    ),
+    variationWeights: S.optional(
+      CreateExperimentRequestPhasesItemVariationWeightsList,
+    ),
+    trafficSplit: S.optional(CreateExperimentRequestPhasesItemTrafficSplitList),
+  }),
+).annotate({
+  identifier: "CreateExperimentRequestPhasesItem",
+}) as any as S.Schema<CreateExperimentRequestPhasesItem>;
+
+export type CreateExperimentRequestPhasesList =
+  Array<CreateExperimentRequestPhasesItem>;
+export const CreateExperimentRequestPhasesList = /*@__PURE__*/ S.Array(
+  CreateExperimentRequestPhasesItem,
+) as any as S.Schema<CreateExperimentRequestPhasesList>;
+
+export type CreateExperimentRequestShareLevel = "public" | "organization";
+export const CreateExperimentRequestShareLevel = /*@__PURE__*/ S.String;
+
+export type CreateExperimentRequestBanditScheduleUnit = "days" | "hours";
+export const CreateExperimentRequestBanditScheduleUnit = /*@__PURE__*/ S.String;
+
+export type CreateExperimentRequestBanditBurnInUnit = "days" | "hours";
+export const CreateExperimentRequestBanditBurnInUnit = /*@__PURE__*/ S.String;
+
+export type CreateExperimentRequestBanditConversionWindowUnit =
+  | "days"
+  | "hours";
+export const CreateExperimentRequestBanditConversionWindowUnit =
+  /*@__PURE__*/ S.String;
+
+export interface CreateExperimentRequestDecisionFrameworkSettingsDecisionFrameworkMetricOverridesItem {
+  /** ID of the metric to override settings for. */
+  id: string;
+  /** The target relative MDE to use for the metric, expressed as proportions (e.g. use 0.1 for 10%). Must be greater than 0. */
+  targetMDE?: number;
+}
+export const CreateExperimentRequestDecisionFrameworkSettingsDecisionFrameworkMetricOverridesItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.String,
+      targetMDE: S.optional(S.Number),
+    }),
+  ).annotate({
+    identifier:
+      "CreateExperimentRequestDecisionFrameworkSettingsDecisionFrameworkMetricOverridesItem",
+  }) as any as S.Schema<CreateExperimentRequestDecisionFrameworkSettingsDecisionFrameworkMetricOverridesItem>;
+
+export type CreateExperimentRequestDecisionFrameworkSettingsDecisionFrameworkMetricOverridesList =
+  Array<CreateExperimentRequestDecisionFrameworkSettingsDecisionFrameworkMetricOverridesItem>;
+export const CreateExperimentRequestDecisionFrameworkSettingsDecisionFrameworkMetricOverridesList =
+  /*@__PURE__*/ S.Array(
+    CreateExperimentRequestDecisionFrameworkSettingsDecisionFrameworkMetricOverridesItem,
+  ) as any as S.Schema<CreateExperimentRequestDecisionFrameworkSettingsDecisionFrameworkMetricOverridesList>;
+
+/** Controls the decision framework and metric overrides for the experiment. Replaces the entire stored object on update (does not patch individual fields). */
+export interface CreateExperimentRequestDecisionFrameworkSettings {
+  decisionCriteriaId?: string;
+  decisionFrameworkMetricOverrides?: CreateExperimentRequestDecisionFrameworkSettingsDecisionFrameworkMetricOverridesList;
+}
+export const CreateExperimentRequestDecisionFrameworkSettings =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      decisionCriteriaId: S.optional(S.String),
+      decisionFrameworkMetricOverrides: S.optional(
+        CreateExperimentRequestDecisionFrameworkSettingsDecisionFrameworkMetricOverridesList,
+      ),
+    }),
+  ).annotate({
+    identifier: "CreateExperimentRequestDecisionFrameworkSettings",
+  }) as any as S.Schema<CreateExperimentRequestDecisionFrameworkSettings>;
+
+export type CreateExperimentRequestMetricOverridesItemWindowType =
+  | "conversion"
+  | "lookback"
+  | "";
+export const CreateExperimentRequestMetricOverridesItemWindowType =
+  /*@__PURE__*/ S.String;
+
+/** Per-metric analysis overrides stored on the experiment (matches internal metricOverrides). */
+export interface CreateExperimentRequestMetricOverridesItem {
+  /** ID of the metric to override settings for. */
+  id: string;
+  windowType?:
+    | CreateExperimentRequestMetricOverridesItemWindowType
+    | (string & {});
+  windowHours?: number;
+  delayHours?: number;
+  /** Must be true for the override to take effect. If true, the other proper prior settings in this object will be used if present. */
+  properPriorOverride?: boolean;
+  properPriorEnabled?: boolean;
+  properPriorMean?: number;
+  properPriorStdDev?: number;
+  /** Must be true for the override to take effect. If true, the other regression adjustment settings in this object will be used if present. */
+  regressionAdjustmentOverride?: boolean;
+  regressionAdjustmentEnabled?: boolean;
+  regressionAdjustmentDays?: number;
+}
+export const CreateExperimentRequestMetricOverridesItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.String,
+      windowType: S.optional(
+        CreateExperimentRequestMetricOverridesItemWindowType,
+      ),
+      windowHours: S.optional(S.Number),
+      delayHours: S.optional(S.Number),
+      properPriorOverride: S.optional(S.Boolean),
+      properPriorEnabled: S.optional(S.Boolean),
+      properPriorMean: S.optional(S.Number),
+      properPriorStdDev: S.optional(S.Number),
+      regressionAdjustmentOverride: S.optional(S.Boolean),
+      regressionAdjustmentEnabled: S.optional(S.Boolean),
+      regressionAdjustmentDays: S.optional(S.Number),
+    }),
+  ).annotate({
+    identifier: "CreateExperimentRequestMetricOverridesItem",
+  }) as any as S.Schema<CreateExperimentRequestMetricOverridesItem>;
+
+/** Per-metric analysis overrides for this experiment. Replaces the entire stored array (does not patch individual entries). */
+export type CreateExperimentRequestMetricOverridesList =
+  Array<CreateExperimentRequestMetricOverridesItem>;
+export const CreateExperimentRequestMetricOverridesList = /*@__PURE__*/ S.Array(
+  CreateExperimentRequestMetricOverridesItem,
+) as any as S.Schema<CreateExperimentRequestMetricOverridesList>;
+
+export type CreateExperimentRequestCustomFieldsMap = {
+  [key: string]: string | undefined;
+};
+export const CreateExperimentRequestCustomFieldsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<CreateExperimentRequestCustomFieldsMap>;
+
+export type CreateExperimentRequestCustomMetricSlicesItemSlicesItemLevelsList =
+  Array<string>;
+export const CreateExperimentRequestCustomMetricSlicesItemSlicesItemLevelsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateExperimentRequestCustomMetricSlicesItemSlicesItemLevelsList>;
+
+export interface CreateExperimentRequestCustomMetricSlicesItemSlicesItem {
+  column: string;
+  levels: CreateExperimentRequestCustomMetricSlicesItemSlicesItemLevelsList;
+}
+export const CreateExperimentRequestCustomMetricSlicesItemSlicesItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      column: S.String,
+      levels: CreateExperimentRequestCustomMetricSlicesItemSlicesItemLevelsList,
+    }),
+  ).annotate({
+    identifier: "CreateExperimentRequestCustomMetricSlicesItemSlicesItem",
+  }) as any as S.Schema<CreateExperimentRequestCustomMetricSlicesItemSlicesItem>;
+
+export type CreateExperimentRequestCustomMetricSlicesItemSlicesList =
+  Array<CreateExperimentRequestCustomMetricSlicesItemSlicesItem>;
+export const CreateExperimentRequestCustomMetricSlicesItemSlicesList =
+  /*@__PURE__*/ S.Array(
+    CreateExperimentRequestCustomMetricSlicesItemSlicesItem,
+  ) as any as S.Schema<CreateExperimentRequestCustomMetricSlicesItemSlicesList>;
+
+export interface CreateExperimentRequestCustomMetricSlicesItem {
+  slices: CreateExperimentRequestCustomMetricSlicesItemSlicesList;
+}
+export const CreateExperimentRequestCustomMetricSlicesItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      slices: CreateExperimentRequestCustomMetricSlicesItemSlicesList,
+    }),
+  ).annotate({
+    identifier: "CreateExperimentRequestCustomMetricSlicesItem",
+  }) as any as S.Schema<CreateExperimentRequestCustomMetricSlicesItem>;
+
+/** Custom slices that apply to ALL applicable metrics in the experiment */
+export type CreateExperimentRequestCustomMetricSlicesList =
+  Array<CreateExperimentRequestCustomMetricSlicesItem>;
+export const CreateExperimentRequestCustomMetricSlicesList =
+  /*@__PURE__*/ S.Array(
+    CreateExperimentRequestCustomMetricSlicesItem,
+  ) as any as S.Schema<CreateExperimentRequestCustomMetricSlicesList>;
+
+export type CreateExperimentRequestPrecomputedUnitDimensionIdsList =
+  Array<string>;
+export const CreateExperimentRequestPrecomputedUnitDimensionIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateExperimentRequestPrecomputedUnitDimensionIdsList>;
+
+export type CreateExperimentRequestStatusUpdateScheduleStopAfterUnit =
+  | "hours"
+  | "days";
+export const CreateExperimentRequestStatusUpdateScheduleStopAfterUnit =
+  /*@__PURE__*/ S.String;
+
+/** Relative end offset. Deferred: resolved to a concrete `stopAt` at the experiment's actual start (or off `dateStarted` when already running). */
+export interface CreateExperimentRequestStatusUpdateScheduleStopAfter {
+  value: number;
+  unit:
+    | CreateExperimentRequestStatusUpdateScheduleStopAfterUnit
+    | (string & {});
+}
+export const CreateExperimentRequestStatusUpdateScheduleStopAfter =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      value: S.Number,
+      unit: CreateExperimentRequestStatusUpdateScheduleStopAfterUnit,
+    }),
+  ).annotate({
+    identifier: "CreateExperimentRequestStatusUpdateScheduleStopAfter",
+  }) as any as S.Schema<CreateExperimentRequestStatusUpdateScheduleStopAfter>;
+
+export type ScheduledStopPlanMode =
+  | "notify"
+  | "auto-ship"
+  | "force-ship"
+  | "stop";
+export const ScheduledStopPlanMode = /*@__PURE__*/ S.String;
+
+/** What to do at the scheduled end when there is no clear winner. Required when `mode` is `"auto-ship"`; ignored for other modes. */
+export type ScheduledStopPlanFallback = "notify" | "force-ship";
+export const ScheduledStopPlanFallback = /*@__PURE__*/ S.String;
+
+/** What happens at the scheduled end date. `notify` keeps the experiment running and just notifies (soft). `auto-ship` (requires the Decision Framework) ships the winning variation and stops; multi-winner ties break on `tiebreakerMetricId` (higher lift); with no clear winner, `fallback` either keeps running (`notify`) or ships `fallbackVariationId`. `force-ship` stops and rolls out `fallbackVariationId`. `stop` is a hard deadline that stops with no rollout. For `force-ship` and `stop`, the Decision Framework verdict (won/lost/inconclusive) is recorded as metadata when available. */
+export interface ScheduledStopPlan {
+  mode: ScheduledStopPlanMode | (string & {});
+  tiebreakerMetricId?: string;
+  /** What to do at the scheduled end when there is no clear winner. Required when `mode` is `"auto-ship"`; ignored for other modes. */
+  fallback?: ScheduledStopPlanFallback | (string & {});
+  fallbackVariationId?: string;
+}
+export const ScheduledStopPlan = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    mode: ScheduledStopPlanMode,
+    tiebreakerMetricId: S.optional(S.String),
+    fallback: S.optional(ScheduledStopPlanFallback),
+    fallbackVariationId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ScheduledStopPlan",
+}) as any as S.Schema<ScheduledStopPlan>;
+
+export interface CreateExperimentRequestStatusUpdateSchedule {
+  /** ISO datetime when the experiment should start. Must be in the future. Setting or clearing this field invalidates any existing staged start (`nextScheduledStatusUpdate`); call POST /experiments/{id}/start to stage the new schedule. */
+  startAt?: string;
+  /** ISO datetime when the experiment should stop. Resolved from `stopAfter` at start when a relative end was set. */
+  stopAt?: string;
+  /** Relative end offset. Deferred: resolved to a concrete `stopAt` at the experiment's actual start (or off `dateStarted` when already running). */
+  stopAfter?: CreateExperimentRequestStatusUpdateScheduleStopAfter;
+  /** End-of-experiment automation applied at the scheduled end. Required whenever a `stopAt` or `stopAfter` is set (any mode, including `notify`). */
+  scheduledStopPlan?: ScheduledStopPlan;
+}
+export const CreateExperimentRequestStatusUpdateSchedule =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      startAt: S.optional(S.String),
+      stopAt: S.optional(S.String),
+      stopAfter: S.optional(
+        CreateExperimentRequestStatusUpdateScheduleStopAfter,
+      ),
+      scheduledStopPlan: S.optional(ScheduledStopPlan),
+    }),
+  ).annotate({
+    identifier: "CreateExperimentRequestStatusUpdateSchedule",
+  }) as any as S.Schema<CreateExperimentRequestStatusUpdateSchedule>;
+
+export interface CreateExperimentRequest {
+  /** ID for the [DataSource](#tag/DataSource_model). Can only be set if a templateId is not provided. */
+  datasourceId?: string;
+  /** The ID property of one of the assignment query objects associated with the datasource. Can only be set if a templateId is not provided. */
+  assignmentQueryId?: string;
+  trackingKey: string;
+  /** If true, allow creating an experiment even if another experiment with the same tracking key already exists. This is ignored if the organization requires unique tracking keys as a rule. */
+  bypassDuplicateKeyCheck?: boolean;
+  /** Name of the experiment */
+  name: string;
+  type?: CreateExperimentRequestType | (string & {});
+  /** Project ID which the experiment belongs to */
+  project?: string;
+  /** ID of the [ExperimentTemplate](#tag/ExperimentTemplate_model) this experiment was created from. Template fields are applied by default and overridden by explicitly provided payload fields. */
+  templateId?: string;
+  /** Hypothesis of the experiment */
+  hypothesis?: string;
+  /** Description of the experiment */
+  description?: string;
+  tags?: CreateExperimentRequestTagsList;
+  metrics?: CreateExperimentRequestMetricsList;
+  secondaryMetrics?: CreateExperimentRequestSecondaryMetricsList;
+  guardrailMetrics?: CreateExperimentRequestGuardrailMetricsList;
+  /** Users must convert on this metric before being included */
+  activationMetric?: string;
+  /** Only users in this segment will be included */
+  segmentId?: string;
+  /** WHERE clause to add to the default experiment query */
+  queryFilter?: string;
+  /** The userId or email address of the owner. If an email address is provided, it will be used to look up the userId of the matching organization member. If an ID is provided, it will be validated as existing in the organization. When omitted, it defaults to the user associated with the request's Personal Access Token (PAT), if one is being used. */
+  owner?: string;
+  archived?: boolean;
+  status?: CreateExperimentRequestStatus | (string & {});
+  autoRefresh?: boolean;
+  hashAttribute?: string;
+  fallbackAttribute?: string;
+  /** Picker preference: show attributes from all projects in this experiment's targeting UI instead of only those in scope for its project and linked features. Does not loosen enforcement — when the organization requires registered attributes with project scoping, out-of-scope attributes are still rejected. */
+  attributeScopeAllProjects?: boolean;
+  hashVersion?: number;
+  disableStickyBucketing?: boolean;
+  bucketVersion?: number;
+  minBucketVersion?: number;
+  releasedVariationId?: string;
+  excludeFromPayload?: boolean;
+  inProgressConversions?:
+    | CreateExperimentRequestInProgressConversions
+    | (string & {});
+  /** Setting attribution model to `"experimentDuration"` is the same as selecting "Ignore Conversion Windows" for the Conversion Window Override. Setting it to `"lookbackOverride"` requires a `lookbackOverride` object to be provided. */
+  attributionModel?: CreateExperimentRequestAttributionModel | (string & {});
+  /** Controls the lookback override for the experiment. For type "window", value must be a non-negative number and valueUnit is required. */
+  lookbackOverride?: CreateExperimentRequestLookbackOverride;
+  statsEngine?: CreateExperimentRequestStatsEngine | (string & {});
+  variations: CreateExperimentRequestVariationsList;
+  phases?: CreateExperimentRequestPhasesList;
+  /** Controls whether regression adjustment (CUPED) is enabled for experiment analyses */
+  regressionAdjustmentEnabled?: boolean;
+  /** Only applicable to frequentist analyses */
+  sequentialTestingEnabled?: boolean;
+  sequentialTestingTuningParameter?: number;
+  shareLevel?: CreateExperimentRequestShareLevel | (string & {});
+  banditScheduleValue?: number;
+  banditScheduleUnit?:
+    | CreateExperimentRequestBanditScheduleUnit
+    | (string & {});
+  banditBurnInValue?: number;
+  banditBurnInUnit?: CreateExperimentRequestBanditBurnInUnit | (string & {});
+  banditConversionWindowValue?: number;
+  banditConversionWindowUnit?:
+    | CreateExperimentRequestBanditConversionWindowUnit
+    | (string & {});
+  /** When null, the organization default is used. */
+  postStratificationEnabled?: boolean | null;
+  /** Controls the decision framework and metric overrides for the experiment. Replaces the entire stored object on update (does not patch individual fields). */
+  decisionFrameworkSettings?: CreateExperimentRequestDecisionFrameworkSettings;
+  /** Per-metric analysis overrides for this experiment. Replaces the entire stored array (does not patch individual entries). */
+  metricOverrides?: CreateExperimentRequestMetricOverridesList;
+  /** ID of the default dashboard for this experiment. */
+  defaultDashboardId?: string;
+  customFields?: CreateExperimentRequestCustomFieldsMap;
+  /** Custom slices that apply to ALL applicable metrics in the experiment */
+  customMetricSlices?: CreateExperimentRequestCustomMetricSlicesList;
+  precomputedUnitDimensionIds?: CreateExperimentRequestPrecomputedUnitDimensionIdsList;
+  statusUpdateSchedule?: CreateExperimentRequestStatusUpdateSchedule;
+  /** Set to true to acknowledge the warnings listed in a blocked response and continue. This covers experiment guards, locked dependents, and references affected by an archive. When the organization treats schema failures as warnings, it also covers schema and invariant warnings. It never bypasses a rejected Custom Hook. On revision publish endpoints, it can also force-publish an out-of-date draft when the caller has Bypass draft approvals access. */
+  ignoreWarnings?: boolean;
+}
+export const CreateExperimentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    datasourceId: S.optional(S.String),
+    assignmentQueryId: S.optional(S.String),
+    trackingKey: S.String,
+    bypassDuplicateKeyCheck: S.optional(S.Boolean),
+    name: S.String,
+    type: S.optional(CreateExperimentRequestType),
+    project: S.optional(S.String),
+    templateId: S.optional(S.String),
+    hypothesis: S.optional(S.String),
+    description: S.optional(S.String),
+    tags: S.optional(CreateExperimentRequestTagsList),
+    metrics: S.optional(CreateExperimentRequestMetricsList),
+    secondaryMetrics: S.optional(CreateExperimentRequestSecondaryMetricsList),
+    guardrailMetrics: S.optional(CreateExperimentRequestGuardrailMetricsList),
+    activationMetric: S.optional(S.String),
+    segmentId: S.optional(S.String),
+    queryFilter: S.optional(S.String),
+    owner: S.optional(S.String),
+    archived: S.optional(S.Boolean),
+    status: S.optional(CreateExperimentRequestStatus),
+    autoRefresh: S.optional(S.Boolean),
+    hashAttribute: S.optional(S.String),
+    fallbackAttribute: S.optional(S.String),
+    attributeScopeAllProjects: S.optional(S.Boolean),
+    hashVersion: S.optional(S.Number),
+    disableStickyBucketing: S.optional(S.Boolean),
+    bucketVersion: S.optional(S.Number),
+    minBucketVersion: S.optional(S.Number),
+    releasedVariationId: S.optional(S.String),
+    excludeFromPayload: S.optional(S.Boolean),
+    inProgressConversions: S.optional(
+      CreateExperimentRequestInProgressConversions,
+    ),
+    attributionModel: S.optional(CreateExperimentRequestAttributionModel),
+    lookbackOverride: S.optional(CreateExperimentRequestLookbackOverride),
+    statsEngine: S.optional(CreateExperimentRequestStatsEngine),
+    variations: CreateExperimentRequestVariationsList,
+    phases: S.optional(CreateExperimentRequestPhasesList),
+    regressionAdjustmentEnabled: S.optional(S.Boolean),
+    sequentialTestingEnabled: S.optional(S.Boolean),
+    sequentialTestingTuningParameter: S.optional(S.Number),
+    shareLevel: S.optional(CreateExperimentRequestShareLevel),
+    banditScheduleValue: S.optional(S.Number),
+    banditScheduleUnit: S.optional(CreateExperimentRequestBanditScheduleUnit),
+    banditBurnInValue: S.optional(S.Number),
+    banditBurnInUnit: S.optional(CreateExperimentRequestBanditBurnInUnit),
+    banditConversionWindowValue: S.optional(S.Number),
+    banditConversionWindowUnit: S.optional(
+      CreateExperimentRequestBanditConversionWindowUnit,
+    ),
+    postStratificationEnabled: S.optional(S.NullOr(S.Boolean)),
+    decisionFrameworkSettings: S.optional(
+      CreateExperimentRequestDecisionFrameworkSettings,
+    ),
+    metricOverrides: S.optional(CreateExperimentRequestMetricOverridesList),
+    defaultDashboardId: S.optional(S.String),
+    customFields: S.optional(CreateExperimentRequestCustomFieldsMap),
+    customMetricSlices: S.optional(
+      CreateExperimentRequestCustomMetricSlicesList,
+    ),
+    precomputedUnitDimensionIds: S.optional(
+      CreateExperimentRequestPrecomputedUnitDimensionIdsList,
+    ),
+    statusUpdateSchedule: S.optional(
+      CreateExperimentRequestStatusUpdateSchedule,
+    ),
+    ignoreWarnings: S.optional(S.Boolean),
+  }).pipe(T.Http({ method: "POST", uri: "/v1/experiments", code: 200 })),
+).annotate({
+  identifier: "CreateExperimentRequest",
+}) as any as S.Schema<CreateExperimentRequest>;
+
+export type ExperimentType = "standard" | "multi-armed-bandit" | "holdout";
+export const ExperimentType = /*@__PURE__*/ S.String;
+
+export type ExperimentTagsList = Array<string>;
+export const ExperimentTagsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ExperimentTagsList>;
+
+export type ExperimentVariationsItemScreenshotsList = Array<string>;
+export const ExperimentVariationsItemScreenshotsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ExperimentVariationsItemScreenshotsList>;
+
+export interface ExperimentVariationsItem {
+  variationId: string;
+  key: string;
+  name: string;
+  description: string;
+  screenshots: ExperimentVariationsItemScreenshotsList;
+}
+export const ExperimentVariationsItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    variationId: S.String,
+    key: S.String,
+    name: S.String,
+    description: S.String,
+    screenshots: ExperimentVariationsItemScreenshotsList,
+  }),
+).annotate({
+  identifier: "ExperimentVariationsItem",
+}) as any as S.Schema<ExperimentVariationsItem>;
+
+export type ExperimentVariationsList = Array<ExperimentVariationsItem>;
+export const ExperimentVariationsList = /*@__PURE__*/ S.Array(
+  ExperimentVariationsItem,
+) as any as S.Schema<ExperimentVariationsList>;
+
+export type ExperimentPhasesItemTrafficSplitItem =
+  ContextualBanditVariationWeightsItem;
+export const ExperimentPhasesItemTrafficSplitItem =
+  ContextualBanditVariationWeightsItem;
+
+export type ExperimentPhasesItemTrafficSplitList =
+  Array<ContextualBanditVariationWeightsItem>;
+export const ExperimentPhasesItemTrafficSplitList = /*@__PURE__*/ S.Array(
+  ContextualBanditVariationWeightsItem,
+) as any as S.Schema<ExperimentPhasesItemTrafficSplitList>;
+
+export type ExperimentPhasesItemNamespaceRangeList = Array<number>;
+export const ExperimentPhasesItemNamespaceRangeList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<ExperimentPhasesItemNamespaceRangeList>;
+
+export type ExperimentPhasesItemNamespaceRangesItemList = Array<unknown>;
+export const ExperimentPhasesItemNamespaceRangesItemList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<ExperimentPhasesItemNamespaceRangesItemList>;
+
+export type ExperimentPhasesItemNamespaceRangesList =
+  Array<ExperimentPhasesItemNamespaceRangesItemList>;
+export const ExperimentPhasesItemNamespaceRangesList = /*@__PURE__*/ S.Array(
+  ExperimentPhasesItemNamespaceRangesItemList,
+) as any as S.Schema<ExperimentPhasesItemNamespaceRangesList>;
+
+export interface ExperimentPhasesItemNamespace {
+  namespaceId: string;
+  enabled?: boolean;
+  range?: ExperimentPhasesItemNamespaceRangeList;
+  ranges?: ExperimentPhasesItemNamespaceRangesList;
+}
+export const ExperimentPhasesItemNamespace = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    namespaceId: S.String,
+    enabled: S.optional(S.Boolean),
+    range: S.optional(ExperimentPhasesItemNamespaceRangeList),
+    ranges: S.optional(ExperimentPhasesItemNamespaceRangesList),
+  }),
+).annotate({
+  identifier: "ExperimentPhasesItemNamespace",
+}) as any as S.Schema<ExperimentPhasesItemNamespace>;
+
+export type ExperimentPhasesItemPrerequisitesItem =
+  RampScheduleStartActionsItemPatchPrerequisitesItem;
+export const ExperimentPhasesItemPrerequisitesItem =
+  RampScheduleStartActionsItemPatchPrerequisitesItem;
+
+export type ExperimentPhasesItemPrerequisitesList =
+  Array<RampScheduleStartActionsItemPatchPrerequisitesItem>;
+export const ExperimentPhasesItemPrerequisitesList = /*@__PURE__*/ S.Array(
+  RampScheduleStartActionsItemPatchPrerequisitesItem,
+) as any as S.Schema<ExperimentPhasesItemPrerequisitesList>;
+
+export type ExperimentPhasesItemSavedGroupTargetingItemMatchType =
+  | "all"
+  | "any"
+  | "none";
+export const ExperimentPhasesItemSavedGroupTargetingItemMatchType =
+  /*@__PURE__*/ S.String;
+
+export type ExperimentPhasesItemSavedGroupTargetingItemSavedGroupsList =
+  Array<string>;
+export const ExperimentPhasesItemSavedGroupTargetingItemSavedGroupsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ExperimentPhasesItemSavedGroupTargetingItemSavedGroupsList>;
+
+export interface ExperimentPhasesItemSavedGroupTargetingItem {
+  matchType: ExperimentPhasesItemSavedGroupTargetingItemMatchType;
+  savedGroups: ExperimentPhasesItemSavedGroupTargetingItemSavedGroupsList;
+}
+export const ExperimentPhasesItemSavedGroupTargetingItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      matchType: ExperimentPhasesItemSavedGroupTargetingItemMatchType,
+      savedGroups: ExperimentPhasesItemSavedGroupTargetingItemSavedGroupsList,
+    }),
+  ).annotate({
+    identifier: "ExperimentPhasesItemSavedGroupTargetingItem",
+  }) as any as S.Schema<ExperimentPhasesItemSavedGroupTargetingItem>;
+
+export type ExperimentPhasesItemSavedGroupTargetingList =
+  Array<ExperimentPhasesItemSavedGroupTargetingItem>;
+export const ExperimentPhasesItemSavedGroupTargetingList =
+  /*@__PURE__*/ S.Array(
+    ExperimentPhasesItemSavedGroupTargetingItem,
+  ) as any as S.Schema<ExperimentPhasesItemSavedGroupTargetingList>;
+
+export interface ExperimentPhasesItem {
+  name: string;
+  dateStarted: string;
+  dateEnded: string;
+  reasonForStopping: string;
+  seed: string;
+  coverage: number;
+  trafficSplit: ExperimentPhasesItemTrafficSplitList;
+  namespace?: ExperimentPhasesItemNamespace;
+  targetingCondition: string;
+  prerequisites?: ExperimentPhasesItemPrerequisitesList;
+  savedGroupTargeting?: ExperimentPhasesItemSavedGroupTargetingList;
+}
+export const ExperimentPhasesItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    dateStarted: S.String,
+    dateEnded: S.String,
+    reasonForStopping: S.String,
+    seed: S.String,
+    coverage: S.Number,
+    trafficSplit: ExperimentPhasesItemTrafficSplitList,
+    namespace: S.optional(ExperimentPhasesItemNamespace),
+    targetingCondition: S.String,
+    prerequisites: S.optional(ExperimentPhasesItemPrerequisitesList),
+    savedGroupTargeting: S.optional(
+      ExperimentPhasesItemSavedGroupTargetingList,
+    ),
+  }),
+).annotate({
+  identifier: "ExperimentPhasesItem",
+}) as any as S.Schema<ExperimentPhasesItem>;
+
+export type ExperimentPhasesList = Array<ExperimentPhasesItem>;
+export const ExperimentPhasesList = /*@__PURE__*/ S.Array(
+  ExperimentPhasesItem,
+) as any as S.Schema<ExperimentPhasesList>;
+
+export type ExperimentAnalysisSettingsInProgressConversions =
+  | "include"
+  | "exclude";
+export const ExperimentAnalysisSettingsInProgressConversions =
+  /*@__PURE__*/ S.String;
+
+/** Setting attribution model to `"experimentDuration"` is the same as selecting "Ignore Conversion Windows" for the Conversion Window Override. Setting it to `"lookbackOverride"` requires a `lookbackOverride` object to be provided. */
+export type ExperimentAnalysisSettingsAttributionModel =
+  | "firstExposure"
+  | "experimentDuration"
+  | "lookbackOverride";
+export const ExperimentAnalysisSettingsAttributionModel =
+  /*@__PURE__*/ S.String;
+
+export type LookbackOverrideType = "date" | "window";
+export const LookbackOverrideType = /*@__PURE__*/ S.String;
+
+/** For "window" type - non-negative numeric value (e.g. 7 for 7 days). For "date" type a date string. */
+export type LookbackOverrideValue = number | string;
+export const LookbackOverrideValue =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<LookbackOverrideValue>;
+
+/** Used when type is "window". Defaults to "days". */
+export type LookbackOverrideValueUnit = "minutes" | "hours" | "days" | "weeks";
+export const LookbackOverrideValueUnit = /*@__PURE__*/ S.String;
+
+/** Controls the lookback override for the experiment. For type "window", value must be a non-negative number and valueUnit is required. */
+export interface LookbackOverride {
+  type: LookbackOverrideType;
+  /** For "window" type - non-negative numeric value (e.g. 7 for 7 days). For "date" type a date string. */
+  value: LookbackOverrideValue;
+  /** Used when type is "window". Defaults to "days". */
+  valueUnit?: LookbackOverrideValueUnit;
+}
+export const LookbackOverride = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: LookbackOverrideType,
+    value: LookbackOverrideValue,
+    valueUnit: S.optional(LookbackOverrideValueUnit),
+  }),
+).annotate({
+  identifier: "LookbackOverride",
+}) as any as S.Schema<LookbackOverride>;
+
+export type ExperimentAnalysisSettingsStatsEngine = "bayesian" | "frequentist";
+export const ExperimentAnalysisSettingsStatsEngine = /*@__PURE__*/ S.String;
+
+export type ExperimentDecisionFrameworkSettingsDecisionFrameworkMetricOverridesItem =
+  CreateExperimentRequestDecisionFrameworkSettingsDecisionFrameworkMetricOverridesItem;
+export const ExperimentDecisionFrameworkSettingsDecisionFrameworkMetricOverridesItem =
+  CreateExperimentRequestDecisionFrameworkSettingsDecisionFrameworkMetricOverridesItem;
+
+export type ExperimentDecisionFrameworkSettingsDecisionFrameworkMetricOverridesList =
+  Array<CreateExperimentRequestDecisionFrameworkSettingsDecisionFrameworkMetricOverridesItem>;
+export const ExperimentDecisionFrameworkSettingsDecisionFrameworkMetricOverridesList =
+  /*@__PURE__*/ S.Array(
+    CreateExperimentRequestDecisionFrameworkSettingsDecisionFrameworkMetricOverridesItem,
+  ) as any as S.Schema<ExperimentDecisionFrameworkSettingsDecisionFrameworkMetricOverridesList>;
+
+/** Controls the decision framework and metric overrides for the experiment. Replaces the entire stored object on update (does not patch individual fields). */
+export interface ExperimentDecisionFrameworkSettings {
+  decisionCriteriaId?: string;
+  decisionFrameworkMetricOverrides?: ExperimentDecisionFrameworkSettingsDecisionFrameworkMetricOverridesList;
+}
+export const ExperimentDecisionFrameworkSettings = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    decisionCriteriaId: S.optional(S.String),
+    decisionFrameworkMetricOverrides: S.optional(
+      ExperimentDecisionFrameworkSettingsDecisionFrameworkMetricOverridesList,
+    ),
+  }),
+).annotate({
+  identifier: "ExperimentDecisionFrameworkSettings",
+}) as any as S.Schema<ExperimentDecisionFrameworkSettings>;
+
+export type ExperimentMetricOverrideEntryWindowType =
+  | "conversion"
+  | "lookback"
+  | "";
+export const ExperimentMetricOverrideEntryWindowType = /*@__PURE__*/ S.String;
+
+/** Per-metric analysis overrides stored on the experiment (matches internal metricOverrides). */
+export interface ExperimentMetricOverrideEntry {
+  /** ID of the metric to override settings for. */
+  id: string;
+  windowType?: ExperimentMetricOverrideEntryWindowType;
+  windowHours?: number;
+  delayHours?: number;
+  /** Must be true for the override to take effect. If true, the other proper prior settings in this object will be used if present. */
+  properPriorOverride?: boolean;
+  properPriorEnabled?: boolean;
+  properPriorMean?: number;
+  properPriorStdDev?: number;
+  /** Must be true for the override to take effect. If true, the other regression adjustment settings in this object will be used if present. */
+  regressionAdjustmentOverride?: boolean;
+  regressionAdjustmentEnabled?: boolean;
+  regressionAdjustmentDays?: number;
+}
+export const ExperimentMetricOverrideEntry = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    windowType: S.optional(ExperimentMetricOverrideEntryWindowType),
+    windowHours: S.optional(S.Number),
+    delayHours: S.optional(S.Number),
+    properPriorOverride: S.optional(S.Boolean),
+    properPriorEnabled: S.optional(S.Boolean),
+    properPriorMean: S.optional(S.Number),
+    properPriorStdDev: S.optional(S.Number),
+    regressionAdjustmentOverride: S.optional(S.Boolean),
+    regressionAdjustmentEnabled: S.optional(S.Boolean),
+    regressionAdjustmentDays: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "ExperimentMetricOverrideEntry",
+}) as any as S.Schema<ExperimentMetricOverrideEntry>;
+
+/** Per-metric analysis overrides; also reflected in goals/secondaryMetrics/guardrails overrides when applicable. On create/update, this replaces the entire stored array (it does not patch individual entries). */
+export type ExperimentAnalysisSettingsMetricOverridesList =
+  Array<ExperimentMetricOverrideEntry>;
+export const ExperimentAnalysisSettingsMetricOverridesList =
+  /*@__PURE__*/ S.Array(
+    ExperimentMetricOverrideEntry,
+  ) as any as S.Schema<ExperimentAnalysisSettingsMetricOverridesList>;
+
+export type ExperimentMetricOverridesWindow = "conversion" | "lookback" | "";
+export const ExperimentMetricOverridesWindow = /*@__PURE__*/ S.String;
+
+export interface ExperimentMetricOverrides {
+  delayHours?: number;
+  windowHours?: number;
+  window?: ExperimentMetricOverridesWindow;
+  winRiskThreshold?: number;
+  loseRiskThreshold?: number;
+  properPriorOverride?: boolean;
+  properPriorEnabled?: boolean;
+  properPriorMean?: number;
+  properPriorStdDev?: number;
+  regressionAdjustmentOverride?: boolean;
+  regressionAdjustmentEnabled?: boolean;
+  regressionAdjustmentDays?: number;
+}
+export const ExperimentMetricOverrides = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    delayHours: S.optional(S.Number),
+    windowHours: S.optional(S.Number),
+    window: S.optional(ExperimentMetricOverridesWindow),
+    winRiskThreshold: S.optional(S.Number),
+    loseRiskThreshold: S.optional(S.Number),
+    properPriorOverride: S.optional(S.Boolean),
+    properPriorEnabled: S.optional(S.Boolean),
+    properPriorMean: S.optional(S.Number),
+    properPriorStdDev: S.optional(S.Number),
+    regressionAdjustmentOverride: S.optional(S.Boolean),
+    regressionAdjustmentEnabled: S.optional(S.Boolean),
+    regressionAdjustmentDays: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "ExperimentMetricOverrides",
+}) as any as S.Schema<ExperimentMetricOverrides>;
+
+export interface ExperimentMetric {
+  metricId: string;
+  overrides: ExperimentMetricOverrides;
+}
+export const ExperimentMetric = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    metricId: S.String,
+    overrides: ExperimentMetricOverrides,
+  }),
+).annotate({
+  identifier: "ExperimentMetric",
+}) as any as S.Schema<ExperimentMetric>;
+
+export type ExperimentAnalysisSettingsGoalsList = Array<ExperimentMetric>;
+export const ExperimentAnalysisSettingsGoalsList = /*@__PURE__*/ S.Array(
+  ExperimentMetric,
+) as any as S.Schema<ExperimentAnalysisSettingsGoalsList>;
+
+export type ExperimentAnalysisSettingsSecondaryMetricsList =
+  Array<ExperimentMetric>;
+export const ExperimentAnalysisSettingsSecondaryMetricsList =
+  /*@__PURE__*/ S.Array(
+    ExperimentMetric,
+  ) as any as S.Schema<ExperimentAnalysisSettingsSecondaryMetricsList>;
+
+export type ExperimentAnalysisSettingsGuardrailsList = Array<ExperimentMetric>;
+export const ExperimentAnalysisSettingsGuardrailsList = /*@__PURE__*/ S.Array(
+  ExperimentMetric,
+) as any as S.Schema<ExperimentAnalysisSettingsGuardrailsList>;
+
+export interface ExperimentAnalysisSettings {
+  datasourceId: string;
+  assignmentQueryId: string;
+  experimentId: string;
+  segmentId: string;
+  queryFilter: string;
+  inProgressConversions: ExperimentAnalysisSettingsInProgressConversions;
+  /** Setting attribution model to `"experimentDuration"` is the same as selecting "Ignore Conversion Windows" for the Conversion Window Override. Setting it to `"lookbackOverride"` requires a `lookbackOverride` object to be provided. */
+  attributionModel: ExperimentAnalysisSettingsAttributionModel;
+  lookbackOverride?: LookbackOverride;
+  statsEngine: ExperimentAnalysisSettingsStatsEngine;
+  regressionAdjustmentEnabled?: boolean;
+  sequentialTestingEnabled?: boolean;
+  sequentialTestingTuningParameter?: number;
+  /** When null, the organization default is used. */
+  postStratificationEnabled?: boolean | null;
+  /** Controls the decision framework and metric overrides for the experiment. Replaces the entire stored object on update (does not patch individual fields). */
+  decisionFrameworkSettings?: ExperimentDecisionFrameworkSettings;
+  /** Per-metric analysis overrides; also reflected in goals/secondaryMetrics/guardrails overrides when applicable. On create/update, this replaces the entire stored array (it does not patch individual entries). */
+  metricOverrides?: ExperimentAnalysisSettingsMetricOverridesList;
+  goals: ExperimentAnalysisSettingsGoalsList;
+  secondaryMetrics: ExperimentAnalysisSettingsSecondaryMetricsList;
+  guardrails: ExperimentAnalysisSettingsGuardrailsList;
+  activationMetric?: ExperimentMetric;
+}
+export const ExperimentAnalysisSettings = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    datasourceId: S.String,
+    assignmentQueryId: S.String,
+    experimentId: S.String,
+    segmentId: S.String,
+    queryFilter: S.String,
+    inProgressConversions: ExperimentAnalysisSettingsInProgressConversions,
+    attributionModel: ExperimentAnalysisSettingsAttributionModel,
+    lookbackOverride: S.optional(LookbackOverride),
+    statsEngine: ExperimentAnalysisSettingsStatsEngine,
+    regressionAdjustmentEnabled: S.optional(S.Boolean),
+    sequentialTestingEnabled: S.optional(S.Boolean),
+    sequentialTestingTuningParameter: S.optional(S.Number),
+    postStratificationEnabled: S.optional(S.NullOr(S.Boolean)),
+    decisionFrameworkSettings: S.optional(ExperimentDecisionFrameworkSettings),
+    metricOverrides: S.optional(ExperimentAnalysisSettingsMetricOverridesList),
+    goals: ExperimentAnalysisSettingsGoalsList,
+    secondaryMetrics: ExperimentAnalysisSettingsSecondaryMetricsList,
+    guardrails: ExperimentAnalysisSettingsGuardrailsList,
+    activationMetric: S.optional(ExperimentMetric),
+  }),
+).annotate({
+  identifier: "ExperimentAnalysisSettings",
+}) as any as S.Schema<ExperimentAnalysisSettings>;
+
+export interface ExperimentResultSummary {
+  status: string;
+  winner: string;
+  conclusions: string;
+  releasedVariationId: string;
+  excludeFromPayload: boolean;
+}
+export const ExperimentResultSummary = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.String,
+    winner: S.String,
+    conclusions: S.String,
+    releasedVariationId: S.String,
+    excludeFromPayload: S.Boolean,
+  }),
+).annotate({
+  identifier: "ExperimentResultSummary",
+}) as any as S.Schema<ExperimentResultSummary>;
+
+export type ExperimentShareLevel = "public" | "organization";
+export const ExperimentShareLevel = /*@__PURE__*/ S.String;
+
+export type ExperimentBanditScheduleUnit = "days" | "hours";
+export const ExperimentBanditScheduleUnit = /*@__PURE__*/ S.String;
+
+export type ExperimentBanditBurnInUnit = "days" | "hours";
+export const ExperimentBanditBurnInUnit = /*@__PURE__*/ S.String;
+
+export type ExperimentBanditConversionWindowUnit = "days" | "hours";
+export const ExperimentBanditConversionWindowUnit = /*@__PURE__*/ S.String;
+
+export type ExperimentLinkedFeaturesList = Array<string>;
+export const ExperimentLinkedFeaturesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ExperimentLinkedFeaturesList>;
+
+export type ExperimentCustomFieldsMap = { [key: string]: unknown | undefined };
+export const ExperimentCustomFieldsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<ExperimentCustomFieldsMap>;
+
+export type ExperimentCustomMetricSlicesItemSlicesItemLevelsList =
+  Array<string>;
+export const ExperimentCustomMetricSlicesItemSlicesItemLevelsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ExperimentCustomMetricSlicesItemSlicesItemLevelsList>;
+
+export interface ExperimentCustomMetricSlicesItemSlicesItem {
+  column: string;
+  levels: ExperimentCustomMetricSlicesItemSlicesItemLevelsList;
+}
+export const ExperimentCustomMetricSlicesItemSlicesItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      column: S.String,
+      levels: ExperimentCustomMetricSlicesItemSlicesItemLevelsList,
+    }),
+  ).annotate({
+    identifier: "ExperimentCustomMetricSlicesItemSlicesItem",
+  }) as any as S.Schema<ExperimentCustomMetricSlicesItemSlicesItem>;
+
+export type ExperimentCustomMetricSlicesItemSlicesList =
+  Array<ExperimentCustomMetricSlicesItemSlicesItem>;
+export const ExperimentCustomMetricSlicesItemSlicesList = /*@__PURE__*/ S.Array(
+  ExperimentCustomMetricSlicesItemSlicesItem,
+) as any as S.Schema<ExperimentCustomMetricSlicesItemSlicesList>;
+
+export interface ExperimentCustomMetricSlicesItem {
+  slices: ExperimentCustomMetricSlicesItemSlicesList;
+}
+export const ExperimentCustomMetricSlicesItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    slices: ExperimentCustomMetricSlicesItemSlicesList,
+  }),
+).annotate({
+  identifier: "ExperimentCustomMetricSlicesItem",
+}) as any as S.Schema<ExperimentCustomMetricSlicesItem>;
+
+/** Custom slices that apply to ALL applicable metrics in the experiment */
+export type ExperimentCustomMetricSlicesList =
+  Array<ExperimentCustomMetricSlicesItem>;
+export const ExperimentCustomMetricSlicesList = /*@__PURE__*/ S.Array(
+  ExperimentCustomMetricSlicesItem,
+) as any as S.Schema<ExperimentCustomMetricSlicesList>;
+
+export type ExperimentPrecomputedUnitDimensionIdsList = Array<string>;
+export const ExperimentPrecomputedUnitDimensionIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ExperimentPrecomputedUnitDimensionIdsList>;
+
+export type ExperimentStatusUpdateScheduleStopAfterUnit = "hours" | "days";
+export const ExperimentStatusUpdateScheduleStopAfterUnit =
+  /*@__PURE__*/ S.String;
+
+/** Relative end offset. Deferred: resolved to a concrete `stopAt` at the experiment's actual start (or off `dateStarted` when already running). */
+export interface ExperimentStatusUpdateScheduleStopAfter {
+  value: number;
+  unit: ExperimentStatusUpdateScheduleStopAfterUnit;
+}
+export const ExperimentStatusUpdateScheduleStopAfter = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      value: S.Number,
+      unit: ExperimentStatusUpdateScheduleStopAfterUnit,
+    }),
+).annotate({
+  identifier: "ExperimentStatusUpdateScheduleStopAfter",
+}) as any as S.Schema<ExperimentStatusUpdateScheduleStopAfter>;
+
+/** Scheduled start/end for an experiment. All fields optional; the end may be an absolute `stopAt` or a deferred relative `stopAfter`, but not both. */
+export interface ExperimentStatusUpdateSchedule {
+  /** ISO datetime when the experiment should start. Must be in the future. Setting or clearing this field invalidates any existing staged start (`nextScheduledStatusUpdate`); call POST /experiments/{id}/start to stage the new schedule. */
+  startAt?: string;
+  /** ISO datetime when the experiment should stop. Resolved from `stopAfter` at start when a relative end was set. */
+  stopAt?: string;
+  /** Relative end offset. Deferred: resolved to a concrete `stopAt` at the experiment's actual start (or off `dateStarted` when already running). */
+  stopAfter?: ExperimentStatusUpdateScheduleStopAfter;
+  /** End-of-experiment automation applied at the scheduled end. Required whenever a `stopAt` or `stopAfter` is set (any mode, including `notify`). */
+  scheduledStopPlan?: ScheduledStopPlan;
+}
+export const ExperimentStatusUpdateSchedule = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    startAt: S.optional(S.String),
+    stopAt: S.optional(S.String),
+    stopAfter: S.optional(ExperimentStatusUpdateScheduleStopAfter),
+    scheduledStopPlan: S.optional(ScheduledStopPlan),
+  }),
+).annotate({
+  identifier: "ExperimentStatusUpdateSchedule",
+}) as any as S.Schema<ExperimentStatusUpdateSchedule>;
+
+export type ExperimentNextScheduledStatusUpdateType = "start" | "stop";
+export const ExperimentNextScheduledStatusUpdateType = /*@__PURE__*/ S.String;
+
+export interface ExperimentNextScheduledStatusUpdate {
+  type: ExperimentNextScheduledStatusUpdateType;
+  date: string;
+}
+export const ExperimentNextScheduledStatusUpdate = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: ExperimentNextScheduledStatusUpdateType,
+    date: S.String,
+  }),
+).annotate({
+  identifier: "ExperimentNextScheduledStatusUpdate",
+}) as any as S.Schema<ExperimentNextScheduledStatusUpdate>;
+
+export interface Experiment {
+  id: string;
+  trackingKey: string;
+  dateCreated: string;
+  dateUpdated: string;
+  name: string;
+  type: ExperimentType;
+  project: string;
+  hypothesis: string;
+  description: string;
+  tags: ExperimentTagsList;
+  /** The userId of the owner (or raw owner name/email for legacy records) */
+  owner: string;
+  /** The email address of the owner, when the owner can be resolved to a known user. */
+  ownerEmail?: string;
+  archived: boolean;
+  status: string;
+  autoRefresh: boolean;
+  hashAttribute: string;
+  fallbackAttribute?: string;
+  hashVersion: number;
+  disableStickyBucketing?: boolean;
+  bucketVersion?: number;
+  minBucketVersion?: number;
+  variations: ExperimentVariationsList;
+  phases: ExperimentPhasesList;
+  settings: ExperimentAnalysisSettings;
+  resultSummary?: ExperimentResultSummary;
+  shareLevel?: ExperimentShareLevel;
+  publicUrl?: string;
+  banditScheduleValue?: number;
+  banditScheduleUnit?: ExperimentBanditScheduleUnit;
+  banditBurnInValue?: number;
+  banditBurnInUnit?: ExperimentBanditBurnInUnit;
+  banditConversionWindowValue?: number;
+  banditConversionWindowUnit?: ExperimentBanditConversionWindowUnit;
+  linkedFeatures?: ExperimentLinkedFeaturesList;
+  attributeScopeAllProjects?: boolean;
+  hasVisualChangesets?: boolean;
+  hasURLRedirects?: boolean;
+  customFields?: ExperimentCustomFieldsMap;
+  /** Custom slices that apply to ALL applicable metrics in the experiment */
+  customMetricSlices?: ExperimentCustomMetricSlicesList;
+  precomputedUnitDimensionIds?: ExperimentPrecomputedUnitDimensionIdsList;
+  /** ID of the default dashboard for this experiment. */
+  defaultDashboardId?: string;
+  templateId?: string;
+  statusUpdateSchedule?: ExperimentStatusUpdateSchedule | null;
+  nextScheduledStatusUpdate?: ExperimentNextScheduledStatusUpdate | null;
+}
+export const Experiment = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    trackingKey: S.String,
+    dateCreated: S.String,
+    dateUpdated: S.String,
+    name: S.String,
+    type: ExperimentType,
+    project: S.String,
+    hypothesis: S.String,
+    description: S.String,
+    tags: ExperimentTagsList,
+    owner: S.String,
+    ownerEmail: S.optional(S.String),
+    archived: S.Boolean,
+    status: S.String,
+    autoRefresh: S.Boolean,
+    hashAttribute: S.String,
+    fallbackAttribute: S.optional(S.String),
+    hashVersion: S.Number,
+    disableStickyBucketing: S.optional(S.Boolean),
+    bucketVersion: S.optional(S.Number),
+    minBucketVersion: S.optional(S.Number),
+    variations: ExperimentVariationsList,
+    phases: ExperimentPhasesList,
+    settings: ExperimentAnalysisSettings,
+    resultSummary: S.optional(ExperimentResultSummary),
+    shareLevel: S.optional(ExperimentShareLevel),
+    publicUrl: S.optional(S.String),
+    banditScheduleValue: S.optional(S.Number),
+    banditScheduleUnit: S.optional(ExperimentBanditScheduleUnit),
+    banditBurnInValue: S.optional(S.Number),
+    banditBurnInUnit: S.optional(ExperimentBanditBurnInUnit),
+    banditConversionWindowValue: S.optional(S.Number),
+    banditConversionWindowUnit: S.optional(
+      ExperimentBanditConversionWindowUnit,
+    ),
+    linkedFeatures: S.optional(ExperimentLinkedFeaturesList),
+    attributeScopeAllProjects: S.optional(S.Boolean),
+    hasVisualChangesets: S.optional(S.Boolean),
+    hasURLRedirects: S.optional(S.Boolean),
+    customFields: S.optional(ExperimentCustomFieldsMap),
+    customMetricSlices: S.optional(ExperimentCustomMetricSlicesList),
+    precomputedUnitDimensionIds: S.optional(
+      ExperimentPrecomputedUnitDimensionIdsList,
+    ),
+    defaultDashboardId: S.optional(S.String),
+    templateId: S.optional(S.String),
+    statusUpdateSchedule: S.optional(S.NullOr(ExperimentStatusUpdateSchedule)),
+    nextScheduledStatusUpdate: S.optional(
+      S.NullOr(ExperimentNextScheduledStatusUpdate),
+    ),
+  }),
+).annotate({ identifier: "Experiment" }) as any as S.Schema<Experiment>;
+
+export interface CreateExperimentResponse {
+  experiment: Experiment;
+}
+export const CreateExperimentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    experiment: Experiment,
+  }),
+).annotate({
+  identifier: "CreateExperimentResponse",
+}) as any as S.Schema<CreateExperimentResponse>;
+
+export interface CreateExperimentModifyTemporaryRolloutRequest {
+  /** The id of the requested resource */
+  id: string;
+  /** If true, keep the stopped experiment in SDK payload and force traffic to the winner variation. If false, end temporary rollout and remove from SDK payload. */
+  enableTemporaryRollout: boolean;
+  /** Variation ID (e.g. var_abc123) to release to 100% of traffic eligible for this experiment. Required if enableTemporaryRollout is true. */
+  releasedVariationId?: string;
+  /** Set to true to acknowledge the warnings listed in a blocked response and continue. This covers experiment guards, locked dependents, and references affected by an archive. When the organization treats schema failures as warnings, it also covers schema and invariant warnings. It never bypasses a rejected Custom Hook. On revision publish endpoints, it can also force-publish an out-of-date draft when the caller has Bypass draft approvals access. */
+  ignoreWarnings?: boolean;
+}
+export const CreateExperimentModifyTemporaryRolloutRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.String.pipe(T.Label()),
+      enableTemporaryRollout: S.Boolean,
+      releasedVariationId: S.optional(S.String),
+      ignoreWarnings: S.optional(S.Boolean),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/v1/experiments/{id}/modify-temporary-rollout",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateExperimentModifyTemporaryRolloutRequest",
+  }) as any as S.Schema<CreateExperimentModifyTemporaryRolloutRequest>;
+
+export type ExperimentWithEnhancedStatusType =
+  | "standard"
+  | "multi-armed-bandit"
+  | "holdout";
+export const ExperimentWithEnhancedStatusType = /*@__PURE__*/ S.String;
+
+export type ExperimentWithEnhancedStatusTagsList = Array<string>;
+export const ExperimentWithEnhancedStatusTagsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ExperimentWithEnhancedStatusTagsList>;
+
+export type ExperimentWithEnhancedStatusVariationsItemScreenshotsList =
+  Array<string>;
+export const ExperimentWithEnhancedStatusVariationsItemScreenshotsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ExperimentWithEnhancedStatusVariationsItemScreenshotsList>;
+
+export interface ExperimentWithEnhancedStatusVariationsItem {
+  variationId: string;
+  key: string;
+  name: string;
+  description: string;
+  screenshots: ExperimentWithEnhancedStatusVariationsItemScreenshotsList;
+}
+export const ExperimentWithEnhancedStatusVariationsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      variationId: S.String,
+      key: S.String,
+      name: S.String,
+      description: S.String,
+      screenshots: ExperimentWithEnhancedStatusVariationsItemScreenshotsList,
+    }),
+  ).annotate({
+    identifier: "ExperimentWithEnhancedStatusVariationsItem",
+  }) as any as S.Schema<ExperimentWithEnhancedStatusVariationsItem>;
+
+export type ExperimentWithEnhancedStatusVariationsList =
+  Array<ExperimentWithEnhancedStatusVariationsItem>;
+export const ExperimentWithEnhancedStatusVariationsList = /*@__PURE__*/ S.Array(
+  ExperimentWithEnhancedStatusVariationsItem,
+) as any as S.Schema<ExperimentWithEnhancedStatusVariationsList>;
+
+export type ExperimentWithEnhancedStatusPhasesItemTrafficSplitItem =
+  ContextualBanditVariationWeightsItem;
+export const ExperimentWithEnhancedStatusPhasesItemTrafficSplitItem =
+  ContextualBanditVariationWeightsItem;
+
+export type ExperimentWithEnhancedStatusPhasesItemTrafficSplitList =
+  Array<ContextualBanditVariationWeightsItem>;
+export const ExperimentWithEnhancedStatusPhasesItemTrafficSplitList =
+  /*@__PURE__*/ S.Array(
+    ContextualBanditVariationWeightsItem,
+  ) as any as S.Schema<ExperimentWithEnhancedStatusPhasesItemTrafficSplitList>;
+
+export type ExperimentWithEnhancedStatusPhasesItemNamespaceRangeList =
+  Array<number>;
+export const ExperimentWithEnhancedStatusPhasesItemNamespaceRangeList =
+  /*@__PURE__*/ S.Array(
+    S.Number,
+  ) as any as S.Schema<ExperimentWithEnhancedStatusPhasesItemNamespaceRangeList>;
+
+export type ExperimentWithEnhancedStatusPhasesItemNamespaceRangesItemList =
+  Array<unknown>;
+export const ExperimentWithEnhancedStatusPhasesItemNamespaceRangesItemList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<ExperimentWithEnhancedStatusPhasesItemNamespaceRangesItemList>;
+
+export type ExperimentWithEnhancedStatusPhasesItemNamespaceRangesList =
+  Array<ExperimentWithEnhancedStatusPhasesItemNamespaceRangesItemList>;
+export const ExperimentWithEnhancedStatusPhasesItemNamespaceRangesList =
+  /*@__PURE__*/ S.Array(
+    ExperimentWithEnhancedStatusPhasesItemNamespaceRangesItemList,
+  ) as any as S.Schema<ExperimentWithEnhancedStatusPhasesItemNamespaceRangesList>;
+
+export interface ExperimentWithEnhancedStatusPhasesItemNamespace {
+  namespaceId: string;
+  enabled?: boolean;
+  range?: ExperimentWithEnhancedStatusPhasesItemNamespaceRangeList;
+  ranges?: ExperimentWithEnhancedStatusPhasesItemNamespaceRangesList;
+}
+export const ExperimentWithEnhancedStatusPhasesItemNamespace =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      namespaceId: S.String,
+      enabled: S.optional(S.Boolean),
+      range: S.optional(
+        ExperimentWithEnhancedStatusPhasesItemNamespaceRangeList,
+      ),
+      ranges: S.optional(
+        ExperimentWithEnhancedStatusPhasesItemNamespaceRangesList,
+      ),
+    }),
+  ).annotate({
+    identifier: "ExperimentWithEnhancedStatusPhasesItemNamespace",
+  }) as any as S.Schema<ExperimentWithEnhancedStatusPhasesItemNamespace>;
+
+export type ExperimentWithEnhancedStatusPhasesItemPrerequisitesItem =
+  RampScheduleStartActionsItemPatchPrerequisitesItem;
+export const ExperimentWithEnhancedStatusPhasesItemPrerequisitesItem =
+  RampScheduleStartActionsItemPatchPrerequisitesItem;
+
+export type ExperimentWithEnhancedStatusPhasesItemPrerequisitesList =
+  Array<RampScheduleStartActionsItemPatchPrerequisitesItem>;
+export const ExperimentWithEnhancedStatusPhasesItemPrerequisitesList =
+  /*@__PURE__*/ S.Array(
+    RampScheduleStartActionsItemPatchPrerequisitesItem,
+  ) as any as S.Schema<ExperimentWithEnhancedStatusPhasesItemPrerequisitesList>;
+
+export type ExperimentWithEnhancedStatusPhasesItemSavedGroupTargetingItemMatchType =
+  | "all"
+  | "any"
+  | "none";
+export const ExperimentWithEnhancedStatusPhasesItemSavedGroupTargetingItemMatchType =
+  /*@__PURE__*/ S.String;
+
+export type ExperimentWithEnhancedStatusPhasesItemSavedGroupTargetingItemSavedGroupsList =
+  Array<string>;
+export const ExperimentWithEnhancedStatusPhasesItemSavedGroupTargetingItemSavedGroupsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ExperimentWithEnhancedStatusPhasesItemSavedGroupTargetingItemSavedGroupsList>;
+
+export interface ExperimentWithEnhancedStatusPhasesItemSavedGroupTargetingItem {
+  matchType: ExperimentWithEnhancedStatusPhasesItemSavedGroupTargetingItemMatchType;
+  savedGroups: ExperimentWithEnhancedStatusPhasesItemSavedGroupTargetingItemSavedGroupsList;
+}
+export const ExperimentWithEnhancedStatusPhasesItemSavedGroupTargetingItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      matchType:
+        ExperimentWithEnhancedStatusPhasesItemSavedGroupTargetingItemMatchType,
+      savedGroups:
+        ExperimentWithEnhancedStatusPhasesItemSavedGroupTargetingItemSavedGroupsList,
+    }),
+  ).annotate({
+    identifier: "ExperimentWithEnhancedStatusPhasesItemSavedGroupTargetingItem",
+  }) as any as S.Schema<ExperimentWithEnhancedStatusPhasesItemSavedGroupTargetingItem>;
+
+export type ExperimentWithEnhancedStatusPhasesItemSavedGroupTargetingList =
+  Array<ExperimentWithEnhancedStatusPhasesItemSavedGroupTargetingItem>;
+export const ExperimentWithEnhancedStatusPhasesItemSavedGroupTargetingList =
+  /*@__PURE__*/ S.Array(
+    ExperimentWithEnhancedStatusPhasesItemSavedGroupTargetingItem,
+  ) as any as S.Schema<ExperimentWithEnhancedStatusPhasesItemSavedGroupTargetingList>;
+
+export interface ExperimentWithEnhancedStatusPhasesItem {
+  name: string;
+  dateStarted: string;
+  dateEnded: string;
+  reasonForStopping: string;
+  seed: string;
+  coverage: number;
+  trafficSplit: ExperimentWithEnhancedStatusPhasesItemTrafficSplitList;
+  namespace?: ExperimentWithEnhancedStatusPhasesItemNamespace;
+  targetingCondition: string;
+  prerequisites?: ExperimentWithEnhancedStatusPhasesItemPrerequisitesList;
+  savedGroupTargeting?: ExperimentWithEnhancedStatusPhasesItemSavedGroupTargetingList;
+}
+export const ExperimentWithEnhancedStatusPhasesItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      name: S.String,
+      dateStarted: S.String,
+      dateEnded: S.String,
+      reasonForStopping: S.String,
+      seed: S.String,
+      coverage: S.Number,
+      trafficSplit: ExperimentWithEnhancedStatusPhasesItemTrafficSplitList,
+      namespace: S.optional(ExperimentWithEnhancedStatusPhasesItemNamespace),
+      targetingCondition: S.String,
+      prerequisites: S.optional(
+        ExperimentWithEnhancedStatusPhasesItemPrerequisitesList,
+      ),
+      savedGroupTargeting: S.optional(
+        ExperimentWithEnhancedStatusPhasesItemSavedGroupTargetingList,
+      ),
+    }),
+).annotate({
+  identifier: "ExperimentWithEnhancedStatusPhasesItem",
+}) as any as S.Schema<ExperimentWithEnhancedStatusPhasesItem>;
+
+export type ExperimentWithEnhancedStatusPhasesList =
+  Array<ExperimentWithEnhancedStatusPhasesItem>;
+export const ExperimentWithEnhancedStatusPhasesList = /*@__PURE__*/ S.Array(
+  ExperimentWithEnhancedStatusPhasesItem,
+) as any as S.Schema<ExperimentWithEnhancedStatusPhasesList>;
+
+export type ExperimentWithEnhancedStatusResultSummary = ExperimentResultSummary;
+export const ExperimentWithEnhancedStatusResultSummary =
+  ExperimentResultSummary;
+
+export type ExperimentWithEnhancedStatusShareLevel = "public" | "organization";
+export const ExperimentWithEnhancedStatusShareLevel = /*@__PURE__*/ S.String;
+
+export type ExperimentWithEnhancedStatusBanditScheduleUnit = "days" | "hours";
+export const ExperimentWithEnhancedStatusBanditScheduleUnit =
+  /*@__PURE__*/ S.String;
+
+export type ExperimentWithEnhancedStatusBanditBurnInUnit = "days" | "hours";
+export const ExperimentWithEnhancedStatusBanditBurnInUnit =
+  /*@__PURE__*/ S.String;
+
+export type ExperimentWithEnhancedStatusBanditConversionWindowUnit =
+  | "days"
+  | "hours";
+export const ExperimentWithEnhancedStatusBanditConversionWindowUnit =
+  /*@__PURE__*/ S.String;
+
+export type ExperimentWithEnhancedStatusLinkedFeaturesList = Array<string>;
+export const ExperimentWithEnhancedStatusLinkedFeaturesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ExperimentWithEnhancedStatusLinkedFeaturesList>;
+
+export type ExperimentWithEnhancedStatusCustomFieldsMap = {
+  [key: string]: unknown | undefined;
+};
+export const ExperimentWithEnhancedStatusCustomFieldsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<ExperimentWithEnhancedStatusCustomFieldsMap>;
+
+export type ExperimentWithEnhancedStatusCustomMetricSlicesItemSlicesItemLevelsList =
+  Array<string>;
+export const ExperimentWithEnhancedStatusCustomMetricSlicesItemSlicesItemLevelsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ExperimentWithEnhancedStatusCustomMetricSlicesItemSlicesItemLevelsList>;
+
+export interface ExperimentWithEnhancedStatusCustomMetricSlicesItemSlicesItem {
+  column: string;
+  levels: ExperimentWithEnhancedStatusCustomMetricSlicesItemSlicesItemLevelsList;
+}
+export const ExperimentWithEnhancedStatusCustomMetricSlicesItemSlicesItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      column: S.String,
+      levels:
+        ExperimentWithEnhancedStatusCustomMetricSlicesItemSlicesItemLevelsList,
+    }),
+  ).annotate({
+    identifier: "ExperimentWithEnhancedStatusCustomMetricSlicesItemSlicesItem",
+  }) as any as S.Schema<ExperimentWithEnhancedStatusCustomMetricSlicesItemSlicesItem>;
+
+export type ExperimentWithEnhancedStatusCustomMetricSlicesItemSlicesList =
+  Array<ExperimentWithEnhancedStatusCustomMetricSlicesItemSlicesItem>;
+export const ExperimentWithEnhancedStatusCustomMetricSlicesItemSlicesList =
+  /*@__PURE__*/ S.Array(
+    ExperimentWithEnhancedStatusCustomMetricSlicesItemSlicesItem,
+  ) as any as S.Schema<ExperimentWithEnhancedStatusCustomMetricSlicesItemSlicesList>;
+
+export interface ExperimentWithEnhancedStatusCustomMetricSlicesItem {
+  slices: ExperimentWithEnhancedStatusCustomMetricSlicesItemSlicesList;
+}
+export const ExperimentWithEnhancedStatusCustomMetricSlicesItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      slices: ExperimentWithEnhancedStatusCustomMetricSlicesItemSlicesList,
+    }),
+  ).annotate({
+    identifier: "ExperimentWithEnhancedStatusCustomMetricSlicesItem",
+  }) as any as S.Schema<ExperimentWithEnhancedStatusCustomMetricSlicesItem>;
+
+/** Custom slices that apply to ALL applicable metrics in the experiment */
+export type ExperimentWithEnhancedStatusCustomMetricSlicesList =
+  Array<ExperimentWithEnhancedStatusCustomMetricSlicesItem>;
+export const ExperimentWithEnhancedStatusCustomMetricSlicesList =
+  /*@__PURE__*/ S.Array(
+    ExperimentWithEnhancedStatusCustomMetricSlicesItem,
+  ) as any as S.Schema<ExperimentWithEnhancedStatusCustomMetricSlicesList>;
+
+export type ExperimentWithEnhancedStatusPrecomputedUnitDimensionIdsList =
+  Array<string>;
+export const ExperimentWithEnhancedStatusPrecomputedUnitDimensionIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ExperimentWithEnhancedStatusPrecomputedUnitDimensionIdsList>;
+
+export type ExperimentWithEnhancedStatusStatusUpdateScheduleStopAfterUnit =
+  | "hours"
+  | "days";
+export const ExperimentWithEnhancedStatusStatusUpdateScheduleStopAfterUnit =
+  /*@__PURE__*/ S.String;
+
+/** Relative end offset. Deferred: resolved to a concrete `stopAt` at the experiment's actual start (or off `dateStarted` when already running). */
+export interface ExperimentWithEnhancedStatusStatusUpdateScheduleStopAfter {
+  value: number;
+  unit: ExperimentWithEnhancedStatusStatusUpdateScheduleStopAfterUnit;
+}
+export const ExperimentWithEnhancedStatusStatusUpdateScheduleStopAfter =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      value: S.Number,
+      unit: ExperimentWithEnhancedStatusStatusUpdateScheduleStopAfterUnit,
+    }),
+  ).annotate({
+    identifier: "ExperimentWithEnhancedStatusStatusUpdateScheduleStopAfter",
+  }) as any as S.Schema<ExperimentWithEnhancedStatusStatusUpdateScheduleStopAfter>;
+
+/** Scheduled start/end for an experiment. All fields optional; the end may be an absolute `stopAt` or a deferred relative `stopAfter`, but not both. */
+export interface ExperimentWithEnhancedStatusStatusUpdateSchedule {
+  /** ISO datetime when the experiment should start. Must be in the future. Setting or clearing this field invalidates any existing staged start (`nextScheduledStatusUpdate`); call POST /experiments/{id}/start to stage the new schedule. */
+  startAt?: string;
+  /** ISO datetime when the experiment should stop. Resolved from `stopAfter` at start when a relative end was set. */
+  stopAt?: string;
+  /** Relative end offset. Deferred: resolved to a concrete `stopAt` at the experiment's actual start (or off `dateStarted` when already running). */
+  stopAfter?: ExperimentWithEnhancedStatusStatusUpdateScheduleStopAfter;
+  /** End-of-experiment automation applied at the scheduled end. Required whenever a `stopAt` or `stopAfter` is set (any mode, including `notify`). */
+  scheduledStopPlan?: ScheduledStopPlan;
+}
+export const ExperimentWithEnhancedStatusStatusUpdateSchedule =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      startAt: S.optional(S.String),
+      stopAt: S.optional(S.String),
+      stopAfter: S.optional(
+        ExperimentWithEnhancedStatusStatusUpdateScheduleStopAfter,
+      ),
+      scheduledStopPlan: S.optional(ScheduledStopPlan),
+    }),
+  ).annotate({
+    identifier: "ExperimentWithEnhancedStatusStatusUpdateSchedule",
+  }) as any as S.Schema<ExperimentWithEnhancedStatusStatusUpdateSchedule>;
+
+export type ExperimentWithEnhancedStatusNextScheduledStatusUpdateType =
+  | "start"
+  | "stop";
+export const ExperimentWithEnhancedStatusNextScheduledStatusUpdateType =
+  /*@__PURE__*/ S.String;
+
+export interface ExperimentWithEnhancedStatusNextScheduledStatusUpdate {
+  type: ExperimentWithEnhancedStatusNextScheduledStatusUpdateType;
+  date: string;
+}
+export const ExperimentWithEnhancedStatusNextScheduledStatusUpdate =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: ExperimentWithEnhancedStatusNextScheduledStatusUpdateType,
+      date: S.String,
+    }),
+  ).annotate({
+    identifier: "ExperimentWithEnhancedStatusNextScheduledStatusUpdate",
+  }) as any as S.Schema<ExperimentWithEnhancedStatusNextScheduledStatusUpdate>;
+
+export type ExperimentWithEnhancedStatusEnhancedStatusStatus =
+  | "Running"
+  | "Stopped"
+  | "Draft"
+  | "Scheduled"
+  | "Archived";
+export const ExperimentWithEnhancedStatusEnhancedStatusStatus =
+  /*@__PURE__*/ S.String;
+
+export interface ExperimentWithEnhancedStatusEnhancedStatus {
+  status: ExperimentWithEnhancedStatusEnhancedStatusStatus;
+  detailedStatus?: string;
+}
+export const ExperimentWithEnhancedStatusEnhancedStatus =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      status: ExperimentWithEnhancedStatusEnhancedStatusStatus,
+      detailedStatus: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "ExperimentWithEnhancedStatusEnhancedStatus",
+  }) as any as S.Schema<ExperimentWithEnhancedStatusEnhancedStatus>;
+
+export interface ExperimentWithEnhancedStatus {
+  id: string;
+  trackingKey: string;
+  dateCreated: string;
+  dateUpdated: string;
+  name: string;
+  type: ExperimentWithEnhancedStatusType;
+  project: string;
+  hypothesis: string;
+  description: string;
+  tags: ExperimentWithEnhancedStatusTagsList;
+  /** The userId of the owner (or raw owner name/email for legacy records) */
+  owner: string;
+  /** The email address of the owner, when the owner can be resolved to a known user. */
+  ownerEmail?: string;
+  archived: boolean;
+  status: string;
+  autoRefresh: boolean;
+  hashAttribute: string;
+  fallbackAttribute?: string;
+  hashVersion: number;
+  disableStickyBucketing?: boolean;
+  bucketVersion?: number;
+  minBucketVersion?: number;
+  variations: ExperimentWithEnhancedStatusVariationsList;
+  phases: ExperimentWithEnhancedStatusPhasesList;
+  settings: ExperimentAnalysisSettings;
+  resultSummary?: ExperimentResultSummary;
+  shareLevel?: ExperimentWithEnhancedStatusShareLevel;
+  publicUrl?: string;
+  banditScheduleValue?: number;
+  banditScheduleUnit?: ExperimentWithEnhancedStatusBanditScheduleUnit;
+  banditBurnInValue?: number;
+  banditBurnInUnit?: ExperimentWithEnhancedStatusBanditBurnInUnit;
+  banditConversionWindowValue?: number;
+  banditConversionWindowUnit?: ExperimentWithEnhancedStatusBanditConversionWindowUnit;
+  linkedFeatures?: ExperimentWithEnhancedStatusLinkedFeaturesList;
+  attributeScopeAllProjects?: boolean;
+  hasVisualChangesets?: boolean;
+  hasURLRedirects?: boolean;
+  customFields?: ExperimentWithEnhancedStatusCustomFieldsMap;
+  /** Custom slices that apply to ALL applicable metrics in the experiment */
+  customMetricSlices?: ExperimentWithEnhancedStatusCustomMetricSlicesList;
+  precomputedUnitDimensionIds?: ExperimentWithEnhancedStatusPrecomputedUnitDimensionIdsList;
+  /** ID of the default dashboard for this experiment. */
+  defaultDashboardId?: string;
+  templateId?: string;
+  statusUpdateSchedule?: ExperimentWithEnhancedStatusStatusUpdateSchedule | null;
+  nextScheduledStatusUpdate?: ExperimentWithEnhancedStatusNextScheduledStatusUpdate | null;
+  enhancedStatus?: ExperimentWithEnhancedStatusEnhancedStatus;
+}
+export const ExperimentWithEnhancedStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    trackingKey: S.String,
+    dateCreated: S.String,
+    dateUpdated: S.String,
+    name: S.String,
+    type: ExperimentWithEnhancedStatusType,
+    project: S.String,
+    hypothesis: S.String,
+    description: S.String,
+    tags: ExperimentWithEnhancedStatusTagsList,
+    owner: S.String,
+    ownerEmail: S.optional(S.String),
+    archived: S.Boolean,
+    status: S.String,
+    autoRefresh: S.Boolean,
+    hashAttribute: S.String,
+    fallbackAttribute: S.optional(S.String),
+    hashVersion: S.Number,
+    disableStickyBucketing: S.optional(S.Boolean),
+    bucketVersion: S.optional(S.Number),
+    minBucketVersion: S.optional(S.Number),
+    variations: ExperimentWithEnhancedStatusVariationsList,
+    phases: ExperimentWithEnhancedStatusPhasesList,
+    settings: ExperimentAnalysisSettings,
+    resultSummary: S.optional(ExperimentResultSummary),
+    shareLevel: S.optional(ExperimentWithEnhancedStatusShareLevel),
+    publicUrl: S.optional(S.String),
+    banditScheduleValue: S.optional(S.Number),
+    banditScheduleUnit: S.optional(
+      ExperimentWithEnhancedStatusBanditScheduleUnit,
+    ),
+    banditBurnInValue: S.optional(S.Number),
+    banditBurnInUnit: S.optional(ExperimentWithEnhancedStatusBanditBurnInUnit),
+    banditConversionWindowValue: S.optional(S.Number),
+    banditConversionWindowUnit: S.optional(
+      ExperimentWithEnhancedStatusBanditConversionWindowUnit,
+    ),
+    linkedFeatures: S.optional(ExperimentWithEnhancedStatusLinkedFeaturesList),
+    attributeScopeAllProjects: S.optional(S.Boolean),
+    hasVisualChangesets: S.optional(S.Boolean),
+    hasURLRedirects: S.optional(S.Boolean),
+    customFields: S.optional(ExperimentWithEnhancedStatusCustomFieldsMap),
+    customMetricSlices: S.optional(
+      ExperimentWithEnhancedStatusCustomMetricSlicesList,
+    ),
+    precomputedUnitDimensionIds: S.optional(
+      ExperimentWithEnhancedStatusPrecomputedUnitDimensionIdsList,
+    ),
+    defaultDashboardId: S.optional(S.String),
+    templateId: S.optional(S.String),
+    statusUpdateSchedule: S.optional(
+      S.NullOr(ExperimentWithEnhancedStatusStatusUpdateSchedule),
+    ),
+    nextScheduledStatusUpdate: S.optional(
+      S.NullOr(ExperimentWithEnhancedStatusNextScheduledStatusUpdate),
+    ),
+    enhancedStatus: S.optional(ExperimentWithEnhancedStatusEnhancedStatus),
+  }),
+).annotate({
+  identifier: "ExperimentWithEnhancedStatus",
+}) as any as S.Schema<ExperimentWithEnhancedStatus>;
+
+export interface CreateExperimentModifyTemporaryRolloutResponse {
+  experiment: ExperimentWithEnhancedStatus;
+}
+export const CreateExperimentModifyTemporaryRolloutResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      experiment: ExperimentWithEnhancedStatus,
+    }),
+  ).annotate({
+    identifier: "CreateExperimentModifyTemporaryRolloutResponse",
+  }) as any as S.Schema<CreateExperimentModifyTemporaryRolloutResponse>;
+
+/** Set to "schedule" if you want this request to trigger notifications and other events as it if were a scheduled update. Defaults to manual. */
+export type CreateExperimentSnapshotRequestTriggeredBy = "manual" | "schedule";
+export const CreateExperimentSnapshotRequestTriggeredBy =
+  /*@__PURE__*/ S.String;
+
+export interface CreateExperimentSnapshotRequest {
+  /** The experiment id of the experiment to update */
+  id: string;
+  /** Set to "schedule" if you want this request to trigger notifications and other events as it if were a scheduled update. Defaults to manual. */
+  triggeredBy?: CreateExperimentSnapshotRequestTriggeredBy | (string & {});
+  /** Dimension to break results down by. For Unit Dimensions, use the dimension id (e.g. "dim_abc123"). For Experiment Dimensions, use "exp:<dimensionName>" (e.g. "exp:country"). Built-in pre-exposure dimensions include "pre:date" and, when configured, "pre:activation". Omit this field to create a standard snapshot. */
+  dimension?: string;
+  /** Zero-based phase index to snapshot, where 0 is the first experiment phase. Defaults to the latest phase. */
+  phase?: number;
+}
+export const CreateExperimentSnapshotRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    triggeredBy: S.optional(CreateExperimentSnapshotRequestTriggeredBy),
+    dimension: S.optional(S.String),
+    phase: S.optional(S.Number),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/v1/experiments/{id}/snapshot", code: 200 }),
+  ),
+).annotate({
+  identifier: "CreateExperimentSnapshotRequest",
+}) as any as S.Schema<CreateExperimentSnapshotRequest>;
+
+export interface Snapshot {
+  id: string;
+  experiment: string;
+  status: string;
+}
+export const Snapshot = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    experiment: S.String,
+    status: S.String,
+  }),
+).annotate({ identifier: "Snapshot" }) as any as S.Schema<Snapshot>;
+
+export interface CreateExperimentSnapshotResponse {
+  snapshot: Snapshot;
+}
+export const CreateExperimentSnapshotResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    snapshot: Snapshot,
+  }),
+).annotate({
+  identifier: "CreateExperimentSnapshotResponse",
+}) as any as S.Schema<CreateExperimentSnapshotResponse>;
+
+export interface CreateExperimentStartRequest {
+  /** The id of the requested resource */
+  id: string;
+  /** If true, skips validating the experiment satisifies all pre-launch checklist items */
+  skipChecklist?: boolean;
+  /** Set to true to acknowledge the warnings listed in a blocked response and continue. This covers experiment guards, locked dependents, and references affected by an archive. When the organization treats schema failures as warnings, it also covers schema and invariant warnings. It never bypasses a rejected Custom Hook. On revision publish endpoints, it can also force-publish an out-of-date draft when the caller has Bypass draft approvals access. */
+  ignoreWarnings?: boolean;
+}
+export const CreateExperimentStartRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    skipChecklist: S.optional(S.Boolean),
+    ignoreWarnings: S.optional(S.Boolean),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/v1/experiments/{id}/start", code: 200 }),
+  ),
+).annotate({
+  identifier: "CreateExperimentStartRequest",
+}) as any as S.Schema<CreateExperimentStartRequest>;
+
+export interface CreateExperimentStartResponse {
+  experiment: ExperimentWithEnhancedStatus;
+  /** Present only when the request staged a future scheduled start instead of starting the experiment immediately. */
+  message?: string;
+}
+export const CreateExperimentStartResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    experiment: ExperimentWithEnhancedStatus,
+    message: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CreateExperimentStartResponse",
+}) as any as S.Schema<CreateExperimentStartResponse>;
+
+/** Manual pre-launch checklist item keys to mark as complete (auto-computed items cannot be updated via this endpoint). */
+export type CreateExperimentStartChecklistManualCompleteRequestKeysList =
+  Array<string>;
+export const CreateExperimentStartChecklistManualCompleteRequestKeysList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateExperimentStartChecklistManualCompleteRequestKeysList>;
+
+export interface CreateExperimentStartChecklistManualCompleteRequest {
+  /** The id of the requested resource */
+  id: string;
+  /** Manual pre-launch checklist item keys to mark as complete (auto-computed items cannot be updated via this endpoint). */
+  keys: CreateExperimentStartChecklistManualCompleteRequestKeysList;
+}
+export const CreateExperimentStartChecklistManualCompleteRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.String.pipe(T.Label()),
+      keys: CreateExperimentStartChecklistManualCompleteRequestKeysList,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/v1/experiments/{id}/start-checklist/manual/complete",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateExperimentStartChecklistManualCompleteRequest",
+  }) as any as S.Schema<CreateExperimentStartChecklistManualCompleteRequest>;
+
+export type ChecklistItemsStatus = "complete" | "incomplete";
+export const ChecklistItemsStatus = /*@__PURE__*/ S.String;
+
+export interface ChecklistItems {
+  key: string;
+  required: boolean;
+  status: ChecklistItemsStatus;
+  manual: boolean;
+  reason: string;
+  /** When true, this item cannot be bypassed with `skipChecklist` — the experiment cannot be started until it is resolved. */
+  hardBlock?: boolean;
+}
+export const ChecklistItems = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    key: S.String,
+    required: S.Boolean,
+    status: ChecklistItemsStatus,
+    manual: S.Boolean,
+    reason: S.String,
+    hardBlock: S.optional(S.Boolean),
+  }),
+).annotate({ identifier: "ChecklistItems" }) as any as S.Schema<ChecklistItems>;
+
+export type CreateExperimentStartChecklistManualCompleteResponseChecklistItemsList =
+  Array<ChecklistItems>;
+export const CreateExperimentStartChecklistManualCompleteResponseChecklistItemsList =
+  /*@__PURE__*/ S.Array(
+    ChecklistItems,
+  ) as any as S.Schema<CreateExperimentStartChecklistManualCompleteResponseChecklistItemsList>;
+
+export type CreateExperimentStartChecklistManualCompleteResponseStatus =
+  | "ready"
+  | "notReady";
+export const CreateExperimentStartChecklistManualCompleteResponseStatus =
+  /*@__PURE__*/ S.String;
+
+export interface CreateExperimentStartChecklistManualCompleteResponse {
+  checklistItems: CreateExperimentStartChecklistManualCompleteResponseChecklistItemsList;
+  status: CreateExperimentStartChecklistManualCompleteResponseStatus;
+}
+export const CreateExperimentStartChecklistManualCompleteResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      checklistItems:
+        CreateExperimentStartChecklistManualCompleteResponseChecklistItemsList,
+      status: CreateExperimentStartChecklistManualCompleteResponseStatus,
+    }),
+  ).annotate({
+    identifier: "CreateExperimentStartChecklistManualCompleteResponse",
+  }) as any as S.Schema<CreateExperimentStartChecklistManualCompleteResponse>;
+
+/** The experiment conclusion status. */
+export type CreateExperimentStopRequestResults =
+  | "dnf"
+  | "won"
+  | "lost"
+  | "inconclusive";
+export const CreateExperimentStopRequestResults = /*@__PURE__*/ S.String;
+
+export interface CreateExperimentStopRequest {
+  /** The id of the requested resource */
+  id: string;
+  /** The experiment conclusion status. */
+  results: CreateExperimentStopRequestResults | (string & {});
+  /** If true, include this stopped experiment in SDK payload and force the release variation (`releasedVariationId`) to all traffic. */
+  enableTemporaryRollout?: boolean;
+  /** Required if enableTemporaryRollout is true. Variation ID (e.g. var_abc123) to release to 100% of traffic eligible for this experiment. */
+  releasedVariationId?: string;
+  /** Variation ID (e.g. var_abc123) of the winning variation. Used only as metadata. Required if results is 'won' and there are multiple test variations. Otherwise, defaults to the test variation when results is 'won' and to the baseline variation for other results. */
+  winnerVariationId?: string;
+  /** Optional markdown summary displayed on the experiment results page. */
+  analysis?: string;
+  /** Optional reason for ending the phase stored on the latest phase metadata. */
+  reason?: string;
+  /** Optional ISO datetime for ending the latest phase. Defaults to the current date and time. */
+  dateEnded?: string;
+  /** Set to true to acknowledge the warnings listed in a blocked response and continue. This covers experiment guards, locked dependents, and references affected by an archive. When the organization treats schema failures as warnings, it also covers schema and invariant warnings. It never bypasses a rejected Custom Hook. On revision publish endpoints, it can also force-publish an out-of-date draft when the caller has Bypass draft approvals access. */
+  ignoreWarnings?: boolean;
+}
+export const CreateExperimentStopRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    results: CreateExperimentStopRequestResults,
+    enableTemporaryRollout: S.optional(S.Boolean),
+    releasedVariationId: S.optional(S.String),
+    winnerVariationId: S.optional(S.String),
+    analysis: S.optional(S.String),
+    reason: S.optional(S.String),
+    dateEnded: S.optional(S.String),
+    ignoreWarnings: S.optional(S.Boolean),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/v1/experiments/{id}/stop", code: 200 }),
+  ),
+).annotate({
+  identifier: "CreateExperimentStopRequest",
+}) as any as S.Schema<CreateExperimentStopRequest>;
+
+export interface CreateExperimentStopResponse {
+  experiment: ExperimentWithEnhancedStatus;
+}
+export const CreateExperimentStopResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    experiment: ExperimentWithEnhancedStatus,
+  }),
+).annotate({
+  identifier: "CreateExperimentStopResponse",
+}) as any as S.Schema<CreateExperimentStopResponse>;
+
 export type CreateExperimentTemplateRequestTemplateMetadata =
   BulkImportExperimentTemplatesRequestTemplatesItemDataTemplateMetadata;
 export const CreateExperimentTemplateRequestTemplateMetadata =
@@ -9540,6 +15363,517 @@ export const CreateExperimentTemplateResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "CreateExperimentTemplateResponse",
 }) as any as S.Schema<CreateExperimentTemplateResponse>;
+
+/** List of associated project ids */
+export type CreateFactTableRequestProjectsList = Array<string>;
+export const CreateFactTableRequestProjectsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateFactTableRequestProjectsList>;
+
+/** List of associated tags */
+export type CreateFactTableRequestTagsList = Array<string>;
+export const CreateFactTableRequestTagsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateFactTableRequestTagsList>;
+
+/** List of identifier columns in this table. For example, "id" or "anonymous_id" */
+export type CreateFactTableRequestUserIdTypesList = Array<string>;
+export const CreateFactTableRequestUserIdTypesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateFactTableRequestUserIdTypesList>;
+
+export type CreateFactTableRequestAggregatedFactTableSettingsIdTypesList =
+  Array<string>;
+export const CreateFactTableRequestAggregatedFactTableSettingsIdTypesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateFactTableRequestAggregatedFactTableSettingsIdTypesList>;
+
+export type CreateFactTableRequestAggregatedFactTableSettingsUpdateTime =
+  CreateBulkImportFactRequestFactTablesItemDataAggregatedFactTableSettingsUpdateTime;
+export const CreateFactTableRequestAggregatedFactTableSettingsUpdateTime =
+  CreateBulkImportFactRequestFactTablesItemDataAggregatedFactTableSettingsUpdateTime;
+
+/** Settings for maintaining shared daily aggregated tables (a subset of userIdTypes plus the daily update time and restate lookback window) used to speed up CUPED. Requires the data pipeline (pipeline-mode) feature. */
+export interface CreateFactTableRequestAggregatedFactTableSettings {
+  idTypes: CreateFactTableRequestAggregatedFactTableSettingsIdTypesList;
+  updateTime: CreateBulkImportFactRequestFactTablesItemDataAggregatedFactTableSettingsUpdateTime;
+  lookbackWindow: number;
+  restateChunkDays?: number;
+}
+export const CreateFactTableRequestAggregatedFactTableSettings =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      idTypes: CreateFactTableRequestAggregatedFactTableSettingsIdTypesList,
+      updateTime:
+        CreateBulkImportFactRequestFactTablesItemDataAggregatedFactTableSettingsUpdateTime,
+      lookbackWindow: S.Number,
+      restateChunkDays: S.optional(S.Number),
+    }),
+  ).annotate({
+    identifier: "CreateFactTableRequestAggregatedFactTableSettings",
+  }) as any as S.Schema<CreateFactTableRequestAggregatedFactTableSettings>;
+
+/** Optional array of column definitions to store for this fact table. Supplied columns are stored as-is. Omit `datatype` (or send "") on a column to have it auto-detected from the SQL. */
+export type CreateFactTableRequestColumnsList = Array<FactTableColumnInput>;
+export const CreateFactTableRequestColumnsList = /*@__PURE__*/ S.Array(
+  FactTableColumnInput,
+) as any as S.Schema<CreateFactTableRequestColumnsList>;
+
+/** Set this to "api" to disable editing in the GrowthBook UI */
+export type CreateFactTableRequestManagedBy = "" | "api" | "admin";
+export const CreateFactTableRequestManagedBy = /*@__PURE__*/ S.String;
+
+export interface CreateFactTableRequest {
+  name: string;
+  /** Description of the fact table */
+  description?: string;
+  /** The userId or email address of the owner. If an email address is provided, it will be used to look up the userId of the matching organization member. If an ID is provided, it will be validated as existing in the organization. */
+  owner?: string;
+  /** List of associated project ids */
+  projects?: CreateFactTableRequestProjectsList;
+  /** List of associated tags */
+  tags?: CreateFactTableRequestTagsList;
+  /** The datasource id */
+  datasource: string;
+  /** List of identifier columns in this table. For example, "id" or "anonymous_id" */
+  userIdTypes: CreateFactTableRequestUserIdTypesList;
+  /** Settings for maintaining shared daily aggregated tables (a subset of userIdTypes plus the daily update time and restate lookback window) used to speed up CUPED. Requires the data pipeline (pipeline-mode) feature. */
+  aggregatedFactTableSettings?: CreateFactTableRequestAggregatedFactTableSettings;
+  /** The SQL query for this fact table */
+  sql: string;
+  /** The event name used in SQL template variables */
+  eventName?: string;
+  /** Optional array of column definitions to store for this fact table. Supplied columns are stored as-is. Omit `datatype` (or send "") on a column to have it auto-detected from the SQL. */
+  columns?: CreateFactTableRequestColumnsList;
+  /** Set this to "api" to disable editing in the GrowthBook UI */
+  managedBy?: CreateFactTableRequestManagedBy | (string & {});
+}
+export const CreateFactTableRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    description: S.optional(S.String),
+    owner: S.optional(S.String),
+    projects: S.optional(CreateFactTableRequestProjectsList),
+    tags: S.optional(CreateFactTableRequestTagsList),
+    datasource: S.String,
+    userIdTypes: CreateFactTableRequestUserIdTypesList,
+    aggregatedFactTableSettings: S.optional(
+      CreateFactTableRequestAggregatedFactTableSettings,
+    ),
+    sql: S.String,
+    eventName: S.optional(S.String),
+    columns: S.optional(CreateFactTableRequestColumnsList),
+    managedBy: S.optional(CreateFactTableRequestManagedBy),
+  }).pipe(T.Http({ method: "POST", uri: "/v1/fact-tables", code: 200 })),
+).annotate({
+  identifier: "CreateFactTableRequest",
+}) as any as S.Schema<CreateFactTableRequest>;
+
+export type FactTableProjectsList = Array<string>;
+export const FactTableProjectsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<FactTableProjectsList>;
+
+export type FactTableTagsList = Array<string>;
+export const FactTableTagsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<FactTableTagsList>;
+
+export type FactTableUserIdTypesList = Array<string>;
+export const FactTableUserIdTypesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<FactTableUserIdTypesList>;
+
+export type FactTableAggregatedFactTableSettingsIdTypesList = Array<string>;
+export const FactTableAggregatedFactTableSettingsIdTypesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<FactTableAggregatedFactTableSettingsIdTypesList>;
+
+export type FactTableAggregatedFactTableSettingsUpdateTime =
+  CreateBulkImportFactRequestFactTablesItemDataAggregatedFactTableSettingsUpdateTime;
+export const FactTableAggregatedFactTableSettingsUpdateTime =
+  CreateBulkImportFactRequestFactTablesItemDataAggregatedFactTableSettingsUpdateTime;
+
+/** Settings for maintaining shared daily aggregated tables (a subset of userIdTypes plus the daily update time and restate lookback window) used to speed up CUPED. Requires the data pipeline (pipeline-mode) feature. */
+export interface FactTableAggregatedFactTableSettings {
+  idTypes: FactTableAggregatedFactTableSettingsIdTypesList;
+  updateTime: CreateBulkImportFactRequestFactTablesItemDataAggregatedFactTableSettingsUpdateTime;
+  lookbackWindow: number;
+  restateChunkDays?: number;
+}
+export const FactTableAggregatedFactTableSettings = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      idTypes: FactTableAggregatedFactTableSettingsIdTypesList,
+      updateTime:
+        CreateBulkImportFactRequestFactTablesItemDataAggregatedFactTableSettingsUpdateTime,
+      lookbackWindow: S.Number,
+      restateChunkDays: S.optional(S.Number),
+    }),
+).annotate({
+  identifier: "FactTableAggregatedFactTableSettings",
+}) as any as S.Schema<FactTableAggregatedFactTableSettings>;
+
+/** The column's data type (can be an override of the warehouse-reported datatype, for JSON string columns for example). */
+export type FactTableColumnDatatype =
+  | "number"
+  | "string"
+  | "date"
+  | "boolean"
+  | "json"
+  | "binary"
+  | "other"
+  | "";
+export const FactTableColumnDatatype = /*@__PURE__*/ S.String;
+
+/** The warehouse-reported datatype. */
+export type FactTableColumnDataTypeFromWarehouse =
+  | "number"
+  | "string"
+  | "date"
+  | "boolean"
+  | "json"
+  | "binary"
+  | "other"
+  | "";
+export const FactTableColumnDataTypeFromWarehouse = /*@__PURE__*/ S.String;
+
+export type FactTableColumnNumberFormat =
+  | ""
+  | "currency"
+  | "time:seconds"
+  | "memory:bytes"
+  | "memory:kilobytes";
+export const FactTableColumnNumberFormat = /*@__PURE__*/ S.String;
+
+export type FactTableColumnJsonFieldsValueDatatype =
+  | "number"
+  | "string"
+  | "date"
+  | "boolean"
+  | "json"
+  | "binary"
+  | "other"
+  | "";
+export const FactTableColumnJsonFieldsValueDatatype = /*@__PURE__*/ S.String;
+
+export interface FactTableColumnJsonFieldsValue {
+  datatype?: FactTableColumnJsonFieldsValueDatatype;
+}
+export const FactTableColumnJsonFieldsValue = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    datatype: S.optional(FactTableColumnJsonFieldsValueDatatype),
+  }),
+).annotate({
+  identifier: "FactTableColumnJsonFieldsValue",
+}) as any as S.Schema<FactTableColumnJsonFieldsValue>;
+
+/** For JSON columns, defines the structure of nested fields */
+export type FactTableColumnJsonFieldsMap = {
+  [key: string]: FactTableColumnJsonFieldsValue | undefined;
+};
+export const FactTableColumnJsonFieldsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  FactTableColumnJsonFieldsValue,
+) as any as S.Schema<FactTableColumnJsonFieldsMap>;
+
+/** Specific slices to automatically analyze for this column. */
+export type FactTableColumnAutoSlicesList = Array<string>;
+export const FactTableColumnAutoSlicesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<FactTableColumnAutoSlicesList>;
+
+/** Locked slices that are protected from automatic updates. These will always be included in the slice levels even if they're not in the top values query results. */
+export type FactTableColumnLockedAutoSlicesList = Array<string>;
+export const FactTableColumnLockedAutoSlicesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<FactTableColumnLockedAutoSlicesList>;
+
+/** The most common values for this column, sampled from the warehouse to populate filter pickers and auto slices. Read-only. */
+export type FactTableColumnTopValuesList = Array<string>;
+export const FactTableColumnTopValuesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<FactTableColumnTopValuesList>;
+
+export interface FactTableColumn {
+  /** The actual column name in the database/SQL query */
+  column: string;
+  /** The column's data type (can be an override of the warehouse-reported datatype, for JSON string columns for example). */
+  datatype: FactTableColumnDatatype;
+  /** The warehouse-reported datatype. */
+  dataTypeFromWarehouse?: FactTableColumnDataTypeFromWarehouse;
+  numberFormat?: FactTableColumnNumberFormat;
+  /** For JSON columns, defines the structure of nested fields */
+  jsonFields?: FactTableColumnJsonFieldsMap;
+  /** Display name for the column (can be different from the actual column name) */
+  name?: string;
+  description?: string;
+  /** Whether this column should always be included as an inline filter in queries */
+  alwaysInlineFilter?: boolean;
+  deleted?: boolean;
+  /** Whether this column can be used for auto slice analysis. This is an enterprise feature. */
+  isAutoSliceColumn?: boolean;
+  /** Specific slices to automatically analyze for this column. */
+  autoSlices?: FactTableColumnAutoSlicesList;
+  /** Locked slices that are protected from automatic updates. These will always be included in the slice levels even if they're not in the top values query results. */
+  lockedAutoSlices?: FactTableColumnLockedAutoSlicesList;
+  /** Whether this is a virtual (computed) column defined by a SQL expression rather than detected from the fact table SQL. Can be set when creating a column, but a column's origin cannot be changed afterwards — sending a value that contradicts an existing column is rejected. */
+  isVirtual?: boolean;
+  /** For virtual columns, the SQL expression that computes the column value. Only valid on a virtual column; when omitted from an update, the existing expression is preserved. */
+  sql?: string;
+  /** The most common values for this column, sampled from the warehouse to populate filter pickers and auto slices. Read-only. */
+  topValues?: FactTableColumnTopValuesList;
+  /** When topValues was last refreshed for this column. */
+  topValuesDate?: string;
+  dateCreated?: string;
+  dateUpdated?: string;
+}
+export const FactTableColumn = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    column: S.String,
+    datatype: FactTableColumnDatatype,
+    dataTypeFromWarehouse: S.optional(FactTableColumnDataTypeFromWarehouse),
+    numberFormat: S.optional(FactTableColumnNumberFormat),
+    jsonFields: S.optional(FactTableColumnJsonFieldsMap),
+    name: S.optional(S.String),
+    description: S.optional(S.String),
+    alwaysInlineFilter: S.optional(S.Boolean),
+    deleted: S.optional(S.Boolean),
+    isAutoSliceColumn: S.optional(S.Boolean),
+    autoSlices: S.optional(FactTableColumnAutoSlicesList),
+    lockedAutoSlices: S.optional(FactTableColumnLockedAutoSlicesList),
+    isVirtual: S.optional(S.Boolean),
+    sql: S.optional(S.String),
+    topValues: S.optional(FactTableColumnTopValuesList),
+    topValuesDate: S.optional(S.String),
+    dateCreated: S.optional(S.String),
+    dateUpdated: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "FactTableColumn",
+}) as any as S.Schema<FactTableColumn>;
+
+/** Array of column definitions for this fact table */
+export type FactTableColumnsList = Array<FactTableColumn>;
+export const FactTableColumnsList = /*@__PURE__*/ S.Array(
+  FactTableColumn,
+) as any as S.Schema<FactTableColumnsList>;
+
+/** Where this fact table must be managed from. If not set (empty string), it can be managed from anywhere. */
+export type FactTableManagedBy = "" | "api" | "admin";
+export const FactTableManagedBy = /*@__PURE__*/ S.String;
+
+export interface FactTable {
+  id: string;
+  name: string;
+  description: string;
+  /** The userId of the owner (or raw owner name/email for legacy records) */
+  owner: string;
+  /** The email address of the owner, when the owner can be resolved to a known user. */
+  ownerEmail?: string;
+  projects: FactTableProjectsList;
+  tags: FactTableTagsList;
+  datasource: string;
+  userIdTypes: FactTableUserIdTypesList;
+  /** Settings for maintaining shared daily aggregated tables (a subset of userIdTypes plus the daily update time and restate lookback window) used to speed up CUPED. Requires the data pipeline (pipeline-mode) feature. */
+  aggregatedFactTableSettings?: FactTableAggregatedFactTableSettings;
+  sql: string;
+  /** The event name used in SQL template variables */
+  eventName?: string;
+  /** Array of column definitions for this fact table */
+  columns?: FactTableColumnsList;
+  /** Error message if there was an issue parsing the SQL schema */
+  columnsError?: string | null;
+  /** True while the fact table's column schema is being detected in the background. While true, `columns` may be empty or incomplete and metrics referencing not-yet-detected columns cannot be created. */
+  columnRefreshPending?: boolean;
+  archived?: boolean;
+  /** Whether Auto Slice values for this fact table's columns are refreshed automatically in the background. */
+  autoSliceUpdatesEnabled?: boolean;
+  /** Where this fact table must be managed from. If not set (empty string), it can be managed from anywhere. */
+  managedBy: FactTableManagedBy;
+  dateCreated: string;
+  dateUpdated: string;
+}
+export const FactTable = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    name: S.String,
+    description: S.String,
+    owner: S.String,
+    ownerEmail: S.optional(S.String),
+    projects: FactTableProjectsList,
+    tags: FactTableTagsList,
+    datasource: S.String,
+    userIdTypes: FactTableUserIdTypesList,
+    aggregatedFactTableSettings: S.optional(
+      FactTableAggregatedFactTableSettings,
+    ),
+    sql: S.String,
+    eventName: S.optional(S.String),
+    columns: S.optional(FactTableColumnsList),
+    columnsError: S.optional(S.NullOr(S.String)),
+    columnRefreshPending: S.optional(S.Boolean),
+    archived: S.optional(S.Boolean),
+    autoSliceUpdatesEnabled: S.optional(S.Boolean),
+    managedBy: FactTableManagedBy,
+    dateCreated: S.String,
+    dateUpdated: S.String,
+  }),
+).annotate({ identifier: "FactTable" }) as any as S.Schema<FactTable>;
+
+export interface CreateFactTableResponse {
+  factTable: FactTable;
+}
+export const CreateFactTableResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    factTable: FactTable,
+  }),
+).annotate({
+  identifier: "CreateFactTableResponse",
+}) as any as S.Schema<CreateFactTableResponse>;
+
+/** Set this to "api" to disable editing in the GrowthBook UI. Before you do this, the Fact Table itself must also be marked as "api" */
+export type CreateFactTableFilterRequestManagedBy = "" | "api";
+export const CreateFactTableFilterRequestManagedBy = /*@__PURE__*/ S.String;
+
+export interface CreateFactTableFilterRequest {
+  /** Specify a specific fact table */
+  factTableId: string;
+  name: string;
+  /** Description of the fact table filter */
+  description?: string;
+  /** The SQL expression for this filter. */
+  value: string;
+  /** Set this to "api" to disable editing in the GrowthBook UI. Before you do this, the Fact Table itself must also be marked as "api" */
+  managedBy?: CreateFactTableFilterRequestManagedBy | (string & {});
+}
+export const CreateFactTableFilterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    factTableId: S.String.pipe(T.Label()),
+    name: S.String,
+    description: S.optional(S.String),
+    value: S.String,
+    managedBy: S.optional(CreateFactTableFilterRequestManagedBy),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/fact-tables/{factTableId}/filters",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateFactTableFilterRequest",
+}) as any as S.Schema<CreateFactTableFilterRequest>;
+
+/** Where this fact table filter must be managed from. If not set (empty string), it can be managed from anywhere. */
+export type FactTableFilterManagedBy = "" | "api";
+export const FactTableFilterManagedBy = /*@__PURE__*/ S.String;
+
+export interface FactTableFilter {
+  id: string;
+  name: string;
+  description: string;
+  value: string;
+  /** Where this fact table filter must be managed from. If not set (empty string), it can be managed from anywhere. */
+  managedBy: FactTableFilterManagedBy;
+  dateCreated: string;
+  dateUpdated: string;
+}
+export const FactTableFilter = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    name: S.String,
+    description: S.String,
+    value: S.String,
+    managedBy: FactTableFilterManagedBy,
+    dateCreated: S.String,
+    dateUpdated: S.String,
+  }),
+).annotate({
+  identifier: "FactTableFilter",
+}) as any as S.Schema<FactTableFilter>;
+
+export interface CreateFactTableFilterResponse {
+  factTableFilter: FactTableFilter;
+}
+export const CreateFactTableFilterResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    factTableFilter: FactTableFilter,
+  }),
+).annotate({
+  identifier: "CreateFactTableFilterResponse",
+}) as any as S.Schema<CreateFactTableFilterResponse>;
+
+export type CreateFactTableVirtualColumnRequestNumberFormat =
+  | ""
+  | "currency"
+  | "time:seconds"
+  | "memory:bytes"
+  | "memory:kilobytes";
+export const CreateFactTableVirtualColumnRequestNumberFormat =
+  /*@__PURE__*/ S.String;
+
+/** The data type of the computed column */
+export type CreateFactTableVirtualColumnRequestDatatype =
+  | "number"
+  | "string"
+  | "date"
+  | "boolean"
+  | "json"
+  | "binary"
+  | "other";
+export const CreateFactTableVirtualColumnRequestDatatype =
+  /*@__PURE__*/ S.String;
+
+export interface CreateFactTableVirtualColumnRequest {
+  /** Specify a specific fact table */
+  factTableId: string;
+  /** The column identifier used in generated SQL. Must contain only letters, numbers, and underscores and end with `_vc`. */
+  column: string;
+  /** Display name for the column */
+  name?: string;
+  description?: string;
+  numberFormat?:
+    | CreateFactTableVirtualColumnRequestNumberFormat
+    | (string & {});
+  /** The data type of the computed column */
+  datatype: CreateFactTableVirtualColumnRequestDatatype | (string & {});
+  /** The SQL expression that computes the column value */
+  sql: string;
+}
+export const CreateFactTableVirtualColumnRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    factTableId: S.String.pipe(T.Label()),
+    column: S.String,
+    name: S.optional(S.String),
+    description: S.optional(S.String),
+    numberFormat: S.optional(CreateFactTableVirtualColumnRequestNumberFormat),
+    datatype: CreateFactTableVirtualColumnRequestDatatype,
+    sql: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/fact-tables/{factTableId}/virtual-columns",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateFactTableVirtualColumnRequest",
+}) as any as S.Schema<CreateFactTableVirtualColumnRequest>;
+
+export interface CreateFactTableVirtualColumnResponse {
+  factTableColumn: FactTableColumn;
+}
+export const CreateFactTableVirtualColumnResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      factTableColumn: FactTableColumn,
+    }),
+).annotate({
+  identifier: "CreateFactTableVirtualColumnResponse",
+}) as any as S.Schema<CreateFactTableVirtualColumnResponse>;
 
 /** Project IDs this Holdout applies to. Omit or send an empty array for All Projects. */
 export type CreateHoldoutRequestProjectsList = Array<string>;
@@ -10167,6 +16501,798 @@ export const CreateMetricGroupResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "CreateMetricGroupResponse",
 }) as any as S.Schema<CreateMetricGroupResponse>;
+
+export type CreateNamespaceRequestStatus = "active" | "inactive";
+export const CreateNamespaceRequestStatus = /*@__PURE__*/ S.String;
+
+/** Namespace format. Defaults to 'multiRange', which supports multiple ranges per experiment and a configurable hash attribute. */
+export type CreateNamespaceRequestFormat = "legacy" | "multiRange";
+export const CreateNamespaceRequestFormat = /*@__PURE__*/ S.String;
+
+export interface CreateNamespaceRequest {
+  /** Human-readable display name. Must be unique within the organization. */
+  displayName: string;
+  description?: string;
+  status?: CreateNamespaceRequestStatus | (string & {});
+  /** Namespace format. Defaults to 'multiRange', which supports multiple ranges per experiment and a configurable hash attribute. */
+  format?: CreateNamespaceRequestFormat | (string & {});
+  /** Required when format is 'multiRange'. The user attribute (e.g. 'id', 'device_id') used to assign users to namespace buckets. */
+  hashAttribute?: string;
+}
+export const CreateNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    displayName: S.String,
+    description: S.optional(S.String),
+    status: S.optional(CreateNamespaceRequestStatus),
+    format: S.optional(CreateNamespaceRequestFormat),
+    hashAttribute: S.optional(S.String),
+  }).pipe(T.Http({ method: "POST", uri: "/v1/namespaces", code: 200 })),
+).annotate({
+  identifier: "CreateNamespaceRequest",
+}) as any as S.Schema<CreateNamespaceRequest>;
+
+export type NamespaceStatus = "active" | "inactive";
+export const NamespaceStatus = /*@__PURE__*/ S.String;
+
+/** Namespace format. 'multiRange' supports multiple ranges per experiment and a configurable hash attribute. */
+export type NamespaceFormat = "legacy" | "multiRange";
+export const NamespaceFormat = /*@__PURE__*/ S.String;
+
+export interface Namespace {
+  /** The unique internal identifier for the namespace (e.g. 'ns-abc123'). */
+  id: string;
+  /** Human-readable display name. */
+  displayName: string;
+  description: string;
+  status: NamespaceStatus;
+  /** Namespace format. 'multiRange' supports multiple ranges per experiment and a configurable hash attribute. */
+  format: NamespaceFormat;
+  /** The user attribute used to assign bucket membership. Only present on multiRange namespaces. */
+  hashAttribute?: string;
+  /** The seed used for bucket hashing. Changing this re-randomizes which traffic is eligible for which experiment. Use the rotateSeed endpoint to change it. */
+  seed?: string;
+}
+export const Namespace = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    displayName: S.String,
+    description: S.String,
+    status: NamespaceStatus,
+    format: NamespaceFormat,
+    hashAttribute: S.optional(S.String),
+    seed: S.optional(S.String),
+  }),
+).annotate({ identifier: "Namespace" }) as any as S.Schema<Namespace>;
+
+export interface CreateNamespaceResponse {
+  namespace: Namespace;
+}
+export const CreateNamespaceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    namespace: Namespace,
+  }),
+).annotate({
+  identifier: "CreateNamespaceResponse",
+}) as any as S.Schema<CreateNamespaceResponse>;
+
+export interface CreateNamespaceRotateSeedRequest {
+  /** The unique id of the namespace */
+  id: string;
+  /** A specific value to use as the new seed. If omitted, a random value is generated. */
+  seed?: string;
+}
+export const CreateNamespaceRotateSeedRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    seed: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/namespaces/{id}/rotateSeed",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateNamespaceRotateSeedRequest",
+}) as any as S.Schema<CreateNamespaceRotateSeedRequest>;
+
+export interface CreateNamespaceRotateSeedResponse {
+  namespace: Namespace;
+}
+export const CreateNamespaceRotateSeedResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    namespace: Namespace,
+  }),
+).annotate({
+  identifier: "CreateNamespaceRotateSeedResponse",
+}) as any as S.Schema<CreateNamespaceRotateSeedResponse>;
+
+export interface CreateOrganizationRequest {
+  /** The name of the organization */
+  name: string;
+  /** An optional identifier that you use within your company for the organization */
+  externalId?: string;
+}
+export const CreateOrganizationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    externalId: S.optional(S.String),
+  }).pipe(T.Http({ method: "POST", uri: "/v1/organizations", code: 200 })),
+).annotate({
+  identifier: "CreateOrganizationRequest",
+}) as any as S.Schema<CreateOrganizationRequest>;
+
+export interface Organization {
+  /** The Growthbook unique identifier for the organization */
+  id?: string;
+  /** An optional identifier that you use within your company for the organization */
+  externalId?: string;
+  /** The date the organization was created */
+  dateCreated?: string;
+  /** The name of the organization */
+  name?: string;
+  /** The email address of the organization owner */
+  ownerEmail?: string;
+}
+export const Organization = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    externalId: S.optional(S.String),
+    dateCreated: S.optional(S.String),
+    name: S.optional(S.String),
+    ownerEmail: S.optional(S.String),
+  }),
+).annotate({ identifier: "Organization" }) as any as S.Schema<Organization>;
+
+export interface CreateOrganizationResponse {
+  organization: Organization;
+}
+export const CreateOrganizationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    organization: Organization,
+  }),
+).annotate({
+  identifier: "CreateOrganizationResponse",
+}) as any as S.Schema<CreateOrganizationResponse>;
+
+/** Project stats settings that, when set, override the organization settings. */
+export interface CreateProjectRequestSettings {
+  /** Stats engine. */
+  statsEngine?: string;
+  /** Bayesian chance-to-win threshold (stored as decimal, e.g. 0.95). */
+  confidenceLevel?: number;
+  /** Frequentist p-value threshold (e.g. 0.05). */
+  pValueThreshold?: number;
+}
+export const CreateProjectRequestSettings = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    statsEngine: S.optional(S.String),
+    confidenceLevel: S.optional(S.Number),
+    pValueThreshold: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "CreateProjectRequestSettings",
+}) as any as S.Schema<CreateProjectRequestSettings>;
+
+export interface CreateProjectRequest {
+  name: string;
+  description?: string;
+  /** URL-safe slug (lowercase letters, numbers, dashes). Auto-generated from name if not provided. */
+  publicId?: string;
+  /** Project stats settings that, when set, override the organization settings. */
+  settings?: CreateProjectRequestSettings;
+}
+export const CreateProjectRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    description: S.optional(S.String),
+    publicId: S.optional(S.String),
+    settings: S.optional(CreateProjectRequestSettings),
+  }).pipe(T.Http({ method: "POST", uri: "/v1/projects", code: 200 })),
+).annotate({
+  identifier: "CreateProjectRequest",
+}) as any as S.Schema<CreateProjectRequest>;
+
+export interface ProjectSettings {
+  statsEngine?: string;
+  confidenceLevel?: number;
+  pValueThreshold?: number;
+}
+export const ProjectSettings = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    statsEngine: S.optional(S.String),
+    confidenceLevel: S.optional(S.Number),
+    pValueThreshold: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "ProjectSettings",
+}) as any as S.Schema<ProjectSettings>;
+
+export interface Project {
+  id: string;
+  name: string;
+  dateCreated: string;
+  dateUpdated: string;
+  description?: string;
+  /** URL-safe slug used in SDK payload metadata. Auto-generated from name if not provided. */
+  publicId?: string;
+  settings?: ProjectSettings;
+}
+export const Project = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    name: S.String,
+    dateCreated: S.String,
+    dateUpdated: S.String,
+    description: S.optional(S.String),
+    publicId: S.optional(S.String),
+    settings: S.optional(ProjectSettings),
+  }),
+).annotate({ identifier: "Project" }) as any as S.Schema<Project>;
+
+export interface CreateProjectResponse {
+  project: Project;
+}
+export const CreateProjectResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project: Project,
+  }),
+).annotate({
+  identifier: "CreateProjectResponse",
+}) as any as S.Schema<CreateProjectResponse>;
+
+export type CreateRampScheduleRequestStepsItemActionsItemPatchSavedGroupsItemMatch =
+  | "all"
+  | "none"
+  | "any";
+export const CreateRampScheduleRequestStepsItemActionsItemPatchSavedGroupsItemMatch =
+  /*@__PURE__*/ S.String;
+
+export type CreateRampScheduleRequestStepsItemActionsItemPatchSavedGroupsItemIdsList =
+  Array<string>;
+export const CreateRampScheduleRequestStepsItemActionsItemPatchSavedGroupsItemIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateRampScheduleRequestStepsItemActionsItemPatchSavedGroupsItemIdsList>;
+
+export interface CreateRampScheduleRequestStepsItemActionsItemPatchSavedGroupsItem {
+  match:
+    | CreateRampScheduleRequestStepsItemActionsItemPatchSavedGroupsItemMatch
+    | (string & {});
+  ids: CreateRampScheduleRequestStepsItemActionsItemPatchSavedGroupsItemIdsList;
+}
+export const CreateRampScheduleRequestStepsItemActionsItemPatchSavedGroupsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      match:
+        CreateRampScheduleRequestStepsItemActionsItemPatchSavedGroupsItemMatch,
+      ids: CreateRampScheduleRequestStepsItemActionsItemPatchSavedGroupsItemIdsList,
+    }),
+  ).annotate({
+    identifier:
+      "CreateRampScheduleRequestStepsItemActionsItemPatchSavedGroupsItem",
+  }) as any as S.Schema<CreateRampScheduleRequestStepsItemActionsItemPatchSavedGroupsItem>;
+
+export type CreateRampScheduleRequestStepsItemActionsItemPatchSavedGroupsList =
+  Array<CreateRampScheduleRequestStepsItemActionsItemPatchSavedGroupsItem>;
+export const CreateRampScheduleRequestStepsItemActionsItemPatchSavedGroupsList =
+  /*@__PURE__*/ S.Array(
+    CreateRampScheduleRequestStepsItemActionsItemPatchSavedGroupsItem,
+  ) as any as S.Schema<CreateRampScheduleRequestStepsItemActionsItemPatchSavedGroupsList>;
+
+export type CreateRampScheduleRequestStepsItemActionsItemPatchPrerequisitesItem =
+  RampScheduleStartActionsItemPatchPrerequisitesItem;
+export const CreateRampScheduleRequestStepsItemActionsItemPatchPrerequisitesItem =
+  RampScheduleStartActionsItemPatchPrerequisitesItem;
+
+export type CreateRampScheduleRequestStepsItemActionsItemPatchPrerequisitesList =
+  Array<RampScheduleStartActionsItemPatchPrerequisitesItem>;
+export const CreateRampScheduleRequestStepsItemActionsItemPatchPrerequisitesList =
+  /*@__PURE__*/ S.Array(
+    RampScheduleStartActionsItemPatchPrerequisitesItem,
+  ) as any as S.Schema<CreateRampScheduleRequestStepsItemActionsItemPatchPrerequisitesList>;
+
+export type CreateRampScheduleRequestStepsItemActionsItemPatchEnvironmentsList =
+  Array<string>;
+export const CreateRampScheduleRequestStepsItemActionsItemPatchEnvironmentsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateRampScheduleRequestStepsItemActionsItemPatchEnvironmentsList>;
+
+export interface CreateRampScheduleRequestStepsItemActionsItemPatch {
+  ruleId?: string;
+  /** Traffic fraction (0–1). For monitored steps the rollout rule is promoted to an experiment: treatment = [0, coverage), control = [0.5, 0.5+coverage). Both arms are equal-sized and non-adjacent, so a step-up only adds new users to each arm — no existing user changes group. The REST API enforces coverage ≤ 0.5 on monitored steps so control end never exceeds 1.0. The SDK uses explicit hash ranges on bucketingV2 clients to keep bucketing stable across monitored/unmonitored transitions. */
+  coverage?: number | null;
+  condition?: string | null;
+  savedGroups?: CreateRampScheduleRequestStepsItemActionsItemPatchSavedGroupsList | null;
+  prerequisites?: CreateRampScheduleRequestStepsItemActionsItemPatchPrerequisitesList | null;
+  allEnvironments?: boolean | null;
+  environments?: CreateRampScheduleRequestStepsItemActionsItemPatchEnvironmentsList | null;
+  /** Force value (any JSON type) */
+  force?: unknown;
+  enabled?: boolean | null;
+}
+export const CreateRampScheduleRequestStepsItemActionsItemPatch =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      ruleId: S.optional(S.String),
+      coverage: S.optional(S.NullOr(S.Number)),
+      condition: S.optional(S.NullOr(S.String)),
+      savedGroups: S.optional(
+        S.NullOr(
+          CreateRampScheduleRequestStepsItemActionsItemPatchSavedGroupsList,
+        ),
+      ),
+      prerequisites: S.optional(
+        S.NullOr(
+          CreateRampScheduleRequestStepsItemActionsItemPatchPrerequisitesList,
+        ),
+      ),
+      allEnvironments: S.optional(S.NullOr(S.Boolean)),
+      environments: S.optional(
+        S.NullOr(
+          CreateRampScheduleRequestStepsItemActionsItemPatchEnvironmentsList,
+        ),
+      ),
+      force: S.optional(S.Unknown),
+      enabled: S.optional(S.NullOr(S.Boolean)),
+    }),
+  ).annotate({
+    identifier: "CreateRampScheduleRequestStepsItemActionsItemPatch",
+  }) as any as S.Schema<CreateRampScheduleRequestStepsItemActionsItemPatch>;
+
+export interface CreateRampScheduleRequestStepsItemActionsItem {
+  targetType?: string;
+  targetId?: string;
+  patch: CreateRampScheduleRequestStepsItemActionsItemPatch;
+}
+export const CreateRampScheduleRequestStepsItemActionsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      targetType: S.optional(S.String),
+      targetId: S.optional(S.String),
+      patch: CreateRampScheduleRequestStepsItemActionsItemPatch,
+    }),
+  ).annotate({
+    identifier: "CreateRampScheduleRequestStepsItemActionsItem",
+  }) as any as S.Schema<CreateRampScheduleRequestStepsItemActionsItem>;
+
+export type CreateRampScheduleRequestStepsItemActionsList =
+  Array<CreateRampScheduleRequestStepsItemActionsItem>;
+export const CreateRampScheduleRequestStepsItemActionsList =
+  /*@__PURE__*/ S.Array(
+    CreateRampScheduleRequestStepsItemActionsItem,
+  ) as any as S.Schema<CreateRampScheduleRequestStepsItemActionsList>;
+
+export type CreateRampScheduleRequestStepsItemHoldConditions =
+  RampScheduleStepsItemHoldConditions;
+export const CreateRampScheduleRequestStepsItemHoldConditions =
+  RampScheduleStepsItemHoldConditions;
+
+export interface CreateRampScheduleRequestStepsItem {
+  interval: number | null;
+  actions?: CreateRampScheduleRequestStepsItemActionsList;
+  approvalNotes?: string | null;
+  monitored?: boolean;
+  holdConditions?: RampScheduleStepsItemHoldConditions;
+}
+export const CreateRampScheduleRequestStepsItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    interval: S.NullOr(S.Number),
+    actions: S.optional(CreateRampScheduleRequestStepsItemActionsList),
+    approvalNotes: S.optional(S.NullOr(S.String)),
+    monitored: S.optional(S.Boolean),
+    holdConditions: S.optional(RampScheduleStepsItemHoldConditions),
+  }),
+).annotate({
+  identifier: "CreateRampScheduleRequestStepsItem",
+}) as any as S.Schema<CreateRampScheduleRequestStepsItem>;
+
+export type CreateRampScheduleRequestStepsList =
+  Array<CreateRampScheduleRequestStepsItem>;
+export const CreateRampScheduleRequestStepsList = /*@__PURE__*/ S.Array(
+  CreateRampScheduleRequestStepsItem,
+) as any as S.Schema<CreateRampScheduleRequestStepsList>;
+
+export type CreateRampScheduleRequestStartActionsItemPatchSavedGroupsItemMatch =
+  | "all"
+  | "none"
+  | "any";
+export const CreateRampScheduleRequestStartActionsItemPatchSavedGroupsItemMatch =
+  /*@__PURE__*/ S.String;
+
+export type CreateRampScheduleRequestStartActionsItemPatchSavedGroupsItemIdsList =
+  Array<string>;
+export const CreateRampScheduleRequestStartActionsItemPatchSavedGroupsItemIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateRampScheduleRequestStartActionsItemPatchSavedGroupsItemIdsList>;
+
+export interface CreateRampScheduleRequestStartActionsItemPatchSavedGroupsItem {
+  match:
+    | CreateRampScheduleRequestStartActionsItemPatchSavedGroupsItemMatch
+    | (string & {});
+  ids: CreateRampScheduleRequestStartActionsItemPatchSavedGroupsItemIdsList;
+}
+export const CreateRampScheduleRequestStartActionsItemPatchSavedGroupsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      match: CreateRampScheduleRequestStartActionsItemPatchSavedGroupsItemMatch,
+      ids: CreateRampScheduleRequestStartActionsItemPatchSavedGroupsItemIdsList,
+    }),
+  ).annotate({
+    identifier: "CreateRampScheduleRequestStartActionsItemPatchSavedGroupsItem",
+  }) as any as S.Schema<CreateRampScheduleRequestStartActionsItemPatchSavedGroupsItem>;
+
+export type CreateRampScheduleRequestStartActionsItemPatchSavedGroupsList =
+  Array<CreateRampScheduleRequestStartActionsItemPatchSavedGroupsItem>;
+export const CreateRampScheduleRequestStartActionsItemPatchSavedGroupsList =
+  /*@__PURE__*/ S.Array(
+    CreateRampScheduleRequestStartActionsItemPatchSavedGroupsItem,
+  ) as any as S.Schema<CreateRampScheduleRequestStartActionsItemPatchSavedGroupsList>;
+
+export type CreateRampScheduleRequestStartActionsItemPatchPrerequisitesItem =
+  RampScheduleStartActionsItemPatchPrerequisitesItem;
+export const CreateRampScheduleRequestStartActionsItemPatchPrerequisitesItem =
+  RampScheduleStartActionsItemPatchPrerequisitesItem;
+
+export type CreateRampScheduleRequestStartActionsItemPatchPrerequisitesList =
+  Array<RampScheduleStartActionsItemPatchPrerequisitesItem>;
+export const CreateRampScheduleRequestStartActionsItemPatchPrerequisitesList =
+  /*@__PURE__*/ S.Array(
+    RampScheduleStartActionsItemPatchPrerequisitesItem,
+  ) as any as S.Schema<CreateRampScheduleRequestStartActionsItemPatchPrerequisitesList>;
+
+export type CreateRampScheduleRequestStartActionsItemPatchEnvironmentsList =
+  Array<string>;
+export const CreateRampScheduleRequestStartActionsItemPatchEnvironmentsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateRampScheduleRequestStartActionsItemPatchEnvironmentsList>;
+
+export interface CreateRampScheduleRequestStartActionsItemPatch {
+  ruleId?: string;
+  /** Traffic fraction (0–1). For monitored steps the rollout rule is promoted to an experiment: treatment = [0, coverage), control = [0.5, 0.5+coverage). Both arms are equal-sized and non-adjacent, so a step-up only adds new users to each arm — no existing user changes group. The REST API enforces coverage ≤ 0.5 on monitored steps so control end never exceeds 1.0. The SDK uses explicit hash ranges on bucketingV2 clients to keep bucketing stable across monitored/unmonitored transitions. */
+  coverage?: number | null;
+  condition?: string | null;
+  savedGroups?: CreateRampScheduleRequestStartActionsItemPatchSavedGroupsList | null;
+  prerequisites?: CreateRampScheduleRequestStartActionsItemPatchPrerequisitesList | null;
+  allEnvironments?: boolean | null;
+  environments?: CreateRampScheduleRequestStartActionsItemPatchEnvironmentsList | null;
+  /** Force value (any JSON type) */
+  force?: unknown;
+  enabled?: boolean | null;
+}
+export const CreateRampScheduleRequestStartActionsItemPatch =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      ruleId: S.optional(S.String),
+      coverage: S.optional(S.NullOr(S.Number)),
+      condition: S.optional(S.NullOr(S.String)),
+      savedGroups: S.optional(
+        S.NullOr(CreateRampScheduleRequestStartActionsItemPatchSavedGroupsList),
+      ),
+      prerequisites: S.optional(
+        S.NullOr(
+          CreateRampScheduleRequestStartActionsItemPatchPrerequisitesList,
+        ),
+      ),
+      allEnvironments: S.optional(S.NullOr(S.Boolean)),
+      environments: S.optional(
+        S.NullOr(
+          CreateRampScheduleRequestStartActionsItemPatchEnvironmentsList,
+        ),
+      ),
+      force: S.optional(S.Unknown),
+      enabled: S.optional(S.NullOr(S.Boolean)),
+    }),
+  ).annotate({
+    identifier: "CreateRampScheduleRequestStartActionsItemPatch",
+  }) as any as S.Schema<CreateRampScheduleRequestStartActionsItemPatch>;
+
+export interface CreateRampScheduleRequestStartActionsItem {
+  targetType?: string;
+  targetId?: string;
+  patch: CreateRampScheduleRequestStartActionsItemPatch;
+}
+export const CreateRampScheduleRequestStartActionsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      targetType: S.optional(S.String),
+      targetId: S.optional(S.String),
+      patch: CreateRampScheduleRequestStartActionsItemPatch,
+    }),
+  ).annotate({
+    identifier: "CreateRampScheduleRequestStartActionsItem",
+  }) as any as S.Schema<CreateRampScheduleRequestStartActionsItem>;
+
+export type CreateRampScheduleRequestStartActionsList =
+  Array<CreateRampScheduleRequestStartActionsItem>;
+export const CreateRampScheduleRequestStartActionsList = /*@__PURE__*/ S.Array(
+  CreateRampScheduleRequestStartActionsItem,
+) as any as S.Schema<CreateRampScheduleRequestStartActionsList>;
+
+export type CreateRampScheduleRequestEndActionsItemPatchSavedGroupsItemMatch =
+  | "all"
+  | "none"
+  | "any";
+export const CreateRampScheduleRequestEndActionsItemPatchSavedGroupsItemMatch =
+  /*@__PURE__*/ S.String;
+
+export type CreateRampScheduleRequestEndActionsItemPatchSavedGroupsItemIdsList =
+  Array<string>;
+export const CreateRampScheduleRequestEndActionsItemPatchSavedGroupsItemIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateRampScheduleRequestEndActionsItemPatchSavedGroupsItemIdsList>;
+
+export interface CreateRampScheduleRequestEndActionsItemPatchSavedGroupsItem {
+  match:
+    | CreateRampScheduleRequestEndActionsItemPatchSavedGroupsItemMatch
+    | (string & {});
+  ids: CreateRampScheduleRequestEndActionsItemPatchSavedGroupsItemIdsList;
+}
+export const CreateRampScheduleRequestEndActionsItemPatchSavedGroupsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      match: CreateRampScheduleRequestEndActionsItemPatchSavedGroupsItemMatch,
+      ids: CreateRampScheduleRequestEndActionsItemPatchSavedGroupsItemIdsList,
+    }),
+  ).annotate({
+    identifier: "CreateRampScheduleRequestEndActionsItemPatchSavedGroupsItem",
+  }) as any as S.Schema<CreateRampScheduleRequestEndActionsItemPatchSavedGroupsItem>;
+
+export type CreateRampScheduleRequestEndActionsItemPatchSavedGroupsList =
+  Array<CreateRampScheduleRequestEndActionsItemPatchSavedGroupsItem>;
+export const CreateRampScheduleRequestEndActionsItemPatchSavedGroupsList =
+  /*@__PURE__*/ S.Array(
+    CreateRampScheduleRequestEndActionsItemPatchSavedGroupsItem,
+  ) as any as S.Schema<CreateRampScheduleRequestEndActionsItemPatchSavedGroupsList>;
+
+export type CreateRampScheduleRequestEndActionsItemPatchPrerequisitesItem =
+  RampScheduleStartActionsItemPatchPrerequisitesItem;
+export const CreateRampScheduleRequestEndActionsItemPatchPrerequisitesItem =
+  RampScheduleStartActionsItemPatchPrerequisitesItem;
+
+export type CreateRampScheduleRequestEndActionsItemPatchPrerequisitesList =
+  Array<RampScheduleStartActionsItemPatchPrerequisitesItem>;
+export const CreateRampScheduleRequestEndActionsItemPatchPrerequisitesList =
+  /*@__PURE__*/ S.Array(
+    RampScheduleStartActionsItemPatchPrerequisitesItem,
+  ) as any as S.Schema<CreateRampScheduleRequestEndActionsItemPatchPrerequisitesList>;
+
+export type CreateRampScheduleRequestEndActionsItemPatchEnvironmentsList =
+  Array<string>;
+export const CreateRampScheduleRequestEndActionsItemPatchEnvironmentsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateRampScheduleRequestEndActionsItemPatchEnvironmentsList>;
+
+export interface CreateRampScheduleRequestEndActionsItemPatch {
+  ruleId?: string;
+  /** Traffic fraction (0–1). For monitored steps the rollout rule is promoted to an experiment: treatment = [0, coverage), control = [0.5, 0.5+coverage). Both arms are equal-sized and non-adjacent, so a step-up only adds new users to each arm — no existing user changes group. The REST API enforces coverage ≤ 0.5 on monitored steps so control end never exceeds 1.0. The SDK uses explicit hash ranges on bucketingV2 clients to keep bucketing stable across monitored/unmonitored transitions. */
+  coverage?: number | null;
+  condition?: string | null;
+  savedGroups?: CreateRampScheduleRequestEndActionsItemPatchSavedGroupsList | null;
+  prerequisites?: CreateRampScheduleRequestEndActionsItemPatchPrerequisitesList | null;
+  allEnvironments?: boolean | null;
+  environments?: CreateRampScheduleRequestEndActionsItemPatchEnvironmentsList | null;
+  /** Force value (any JSON type) */
+  force?: unknown;
+  enabled?: boolean | null;
+}
+export const CreateRampScheduleRequestEndActionsItemPatch =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      ruleId: S.optional(S.String),
+      coverage: S.optional(S.NullOr(S.Number)),
+      condition: S.optional(S.NullOr(S.String)),
+      savedGroups: S.optional(
+        S.NullOr(CreateRampScheduleRequestEndActionsItemPatchSavedGroupsList),
+      ),
+      prerequisites: S.optional(
+        S.NullOr(CreateRampScheduleRequestEndActionsItemPatchPrerequisitesList),
+      ),
+      allEnvironments: S.optional(S.NullOr(S.Boolean)),
+      environments: S.optional(
+        S.NullOr(CreateRampScheduleRequestEndActionsItemPatchEnvironmentsList),
+      ),
+      force: S.optional(S.Unknown),
+      enabled: S.optional(S.NullOr(S.Boolean)),
+    }),
+  ).annotate({
+    identifier: "CreateRampScheduleRequestEndActionsItemPatch",
+  }) as any as S.Schema<CreateRampScheduleRequestEndActionsItemPatch>;
+
+export interface CreateRampScheduleRequestEndActionsItem {
+  targetType?: string;
+  targetId?: string;
+  patch: CreateRampScheduleRequestEndActionsItemPatch;
+}
+export const CreateRampScheduleRequestEndActionsItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      targetType: S.optional(S.String),
+      targetId: S.optional(S.String),
+      patch: CreateRampScheduleRequestEndActionsItemPatch,
+    }),
+).annotate({
+  identifier: "CreateRampScheduleRequestEndActionsItem",
+}) as any as S.Schema<CreateRampScheduleRequestEndActionsItem>;
+
+export type CreateRampScheduleRequestEndActionsList =
+  Array<CreateRampScheduleRequestEndActionsItem>;
+export const CreateRampScheduleRequestEndActionsList = /*@__PURE__*/ S.Array(
+  CreateRampScheduleRequestEndActionsItem,
+) as any as S.Schema<CreateRampScheduleRequestEndActionsList>;
+
+export type CreateRampScheduleRequestMonitoringConfigGuardrailMetricIdsList =
+  Array<string>;
+export const CreateRampScheduleRequestMonitoringConfigGuardrailMetricIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateRampScheduleRequestMonitoringConfigGuardrailMetricIdsList>;
+
+export type CreateRampScheduleRequestMonitoringConfigSignalMetricIdsList =
+  Array<string>;
+export const CreateRampScheduleRequestMonitoringConfigSignalMetricIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateRampScheduleRequestMonitoringConfigSignalMetricIdsList>;
+
+export type CreateRampScheduleRequestMonitoringConfigMonitoringMode =
+  | "auto"
+  | "manual";
+export const CreateRampScheduleRequestMonitoringConfigMonitoringMode =
+  /*@__PURE__*/ S.String;
+
+export type CreateRampScheduleRequestMonitoringConfigSrmAction =
+  | "warn"
+  | "hold"
+  | "rollback";
+export const CreateRampScheduleRequestMonitoringConfigSrmAction =
+  /*@__PURE__*/ S.String;
+
+export type CreateRampScheduleRequestMonitoringConfigNoTrafficAction =
+  | "warn"
+  | "hold"
+  | "rollback";
+export const CreateRampScheduleRequestMonitoringConfigNoTrafficAction =
+  /*@__PURE__*/ S.String;
+
+export type CreateRampScheduleRequestMonitoringConfigMultipleExposureAction =
+  | "warn"
+  | "hold"
+  | "rollback";
+export const CreateRampScheduleRequestMonitoringConfigMultipleExposureAction =
+  /*@__PURE__*/ S.String;
+
+export interface CreateRampScheduleRequestMonitoringConfig {
+  datasourceId: string;
+  exposureQueryId: string;
+  guardrailMetricIds: CreateRampScheduleRequestMonitoringConfigGuardrailMetricIdsList;
+  signalMetricIds?: CreateRampScheduleRequestMonitoringConfigSignalMetricIdsList;
+  monitoringMode?:
+    | CreateRampScheduleRequestMonitoringConfigMonitoringMode
+    | (string & {});
+  autoUpdate?: boolean;
+  autoRollback?: boolean;
+  updateScheduleMinutes?: number | null;
+  srmAction?:
+    | CreateRampScheduleRequestMonitoringConfigSrmAction
+    | (string & {});
+  noTrafficAction?:
+    | CreateRampScheduleRequestMonitoringConfigNoTrafficAction
+    | (string & {});
+  multipleExposureAction?:
+    | CreateRampScheduleRequestMonitoringConfigMultipleExposureAction
+    | (string & {});
+}
+export const CreateRampScheduleRequestMonitoringConfig =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      datasourceId: S.String,
+      exposureQueryId: S.String,
+      guardrailMetricIds:
+        CreateRampScheduleRequestMonitoringConfigGuardrailMetricIdsList,
+      signalMetricIds: S.optional(
+        CreateRampScheduleRequestMonitoringConfigSignalMetricIdsList,
+      ),
+      monitoringMode: S.optional(
+        CreateRampScheduleRequestMonitoringConfigMonitoringMode,
+      ),
+      autoUpdate: S.optional(S.Boolean),
+      autoRollback: S.optional(S.Boolean),
+      updateScheduleMinutes: S.optional(S.NullOr(S.Number)),
+      srmAction: S.optional(CreateRampScheduleRequestMonitoringConfigSrmAction),
+      noTrafficAction: S.optional(
+        CreateRampScheduleRequestMonitoringConfigNoTrafficAction,
+      ),
+      multipleExposureAction: S.optional(
+        CreateRampScheduleRequestMonitoringConfigMultipleExposureAction,
+      ),
+    }),
+  ).annotate({
+    identifier: "CreateRampScheduleRequestMonitoringConfig",
+  }) as any as S.Schema<CreateRampScheduleRequestMonitoringConfig>;
+
+export type CreateRampScheduleRequestLockdownConfigMode = "none" | "locked";
+export const CreateRampScheduleRequestLockdownConfigMode =
+  /*@__PURE__*/ S.String;
+
+export interface CreateRampScheduleRequestLockdownConfig {
+  mode: CreateRampScheduleRequestLockdownConfigMode | (string & {});
+}
+export const CreateRampScheduleRequestLockdownConfig = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      mode: CreateRampScheduleRequestLockdownConfigMode,
+    }),
+).annotate({
+  identifier: "CreateRampScheduleRequestLockdownConfig",
+}) as any as S.Schema<CreateRampScheduleRequestLockdownConfig>;
+
+export type CreateRampScheduleRequestExperimentHealthAction =
+  | "rollback"
+  | "hold"
+  | "warn";
+export const CreateRampScheduleRequestExperimentHealthAction =
+  /*@__PURE__*/ S.String;
+
+export interface CreateRampScheduleRequest {
+  name?: string;
+  featureId?: string;
+  ruleId?: string;
+  environment?: string;
+  steps?: CreateRampScheduleRequestStepsList;
+  startActions?: CreateRampScheduleRequestStartActionsList;
+  endActions?: CreateRampScheduleRequestEndActionsList;
+  startDate?: string | null;
+  cutoffDate?: string | null;
+  /** When true, the ramp holds at step -1 with its rule disabled (zero traffic) until a human approves the start via /actions/approve-step. Composes with startDate. */
+  requiresStartApproval?: boolean | null;
+  monitoringConfig?: CreateRampScheduleRequestMonitoringConfig | null;
+  lockdownConfig?: CreateRampScheduleRequestLockdownConfig;
+  experimentHealthAction?:
+    | CreateRampScheduleRequestExperimentHealthAction
+    | (string & {});
+  templateId?: string;
+}
+export const CreateRampScheduleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    featureId: S.optional(S.String),
+    ruleId: S.optional(S.String),
+    environment: S.optional(S.String),
+    steps: S.optional(CreateRampScheduleRequestStepsList),
+    startActions: S.optional(CreateRampScheduleRequestStartActionsList),
+    endActions: S.optional(CreateRampScheduleRequestEndActionsList),
+    startDate: S.optional(S.NullOr(S.String)),
+    cutoffDate: S.optional(S.NullOr(S.String)),
+    requiresStartApproval: S.optional(S.NullOr(S.Boolean)),
+    monitoringConfig: S.optional(
+      S.NullOr(CreateRampScheduleRequestMonitoringConfig),
+    ),
+    lockdownConfig: S.optional(CreateRampScheduleRequestLockdownConfig),
+    experimentHealthAction: S.optional(
+      CreateRampScheduleRequestExperimentHealthAction,
+    ),
+    templateId: S.optional(S.String),
+  }).pipe(T.Http({ method: "POST", uri: "/v1/ramp-schedules", code: 200 })),
+).annotate({
+  identifier: "CreateRampScheduleRequest",
+}) as any as S.Schema<CreateRampScheduleRequest>;
+
+export interface CreateRampScheduleResponse {
+  rampSchedule: RampSchedule;
+}
+export const CreateRampScheduleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    rampSchedule: RampSchedule,
+  }),
+).annotate({
+  identifier: "CreateRampScheduleResponse",
+}) as any as S.Schema<CreateRampScheduleResponse>;
 
 export type CreateRampScheduleTemplateRequestStepsItemHoldConditions =
   RampScheduleStepsItemHoldConditions;
@@ -10900,6 +18026,2335 @@ export const CreateRampScheduleTemplateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateRampScheduleTemplateResponse",
 }) as any as S.Schema<CreateRampScheduleTemplateResponse>;
 
+export interface FeatureRevisionRef {
+  entityType: string;
+  /** Feature Flag id. */
+  id: string;
+  /** Revision version to publish. */
+  version: number;
+}
+export const FeatureRevisionRef = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    entityType: S.String,
+    id: S.String,
+    version: S.Number,
+  }),
+).annotate({
+  identifier: "FeatureRevisionRef",
+}) as any as S.Schema<FeatureRevisionRef>;
+
+export interface SavedGroupRevisionRef {
+  entityType: string;
+  /** Saved Group id. */
+  id: string;
+  /** Revision version to publish. */
+  version: number;
+}
+export const SavedGroupRevisionRef = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    entityType: S.String,
+    id: S.String,
+    version: S.Number,
+  }),
+).annotate({
+  identifier: "SavedGroupRevisionRef",
+}) as any as S.Schema<SavedGroupRevisionRef>;
+
+export interface ConfigRevisionRef {
+  entityType: string;
+  /** Config key. */
+  key: string;
+  /** Revision version to publish. */
+  version: number;
+}
+export const ConfigRevisionRef = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    entityType: S.String,
+    key: S.String,
+    version: S.Number,
+  }),
+).annotate({
+  identifier: "ConfigRevisionRef",
+}) as any as S.Schema<ConfigRevisionRef>;
+
+export interface ConstantRevisionRef {
+  entityType: string;
+  /** Constant key. */
+  key: string;
+  /** Revision version to publish. */
+  version: number;
+}
+export const ConstantRevisionRef = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    entityType: S.String,
+    key: S.String,
+    version: S.Number,
+  }),
+).annotate({
+  identifier: "ConstantRevisionRef",
+}) as any as S.Schema<ConstantRevisionRef>;
+
+export type RevisionIdRefEntityType =
+  | "feature"
+  | "saved-group"
+  | "config"
+  | "constant";
+export const RevisionIdRefEntityType = /*@__PURE__*/ S.String;
+
+export interface RevisionIdRef {
+  entityType: RevisionIdRefEntityType | (string & {});
+  /** A revision id from this API or the revision webhooks (`rev_…` / `frev_…`). Alternative to identifier + version. */
+  revisionId: string;
+}
+export const RevisionIdRef = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    entityType: RevisionIdRefEntityType,
+    revisionId: S.String,
+  }),
+).annotate({ identifier: "RevisionIdRef" }) as any as S.Schema<RevisionIdRef>;
+
+export type CreateReleasePublishRevisionRequestRevisionsItem =
+  | FeatureRevisionRef
+  | SavedGroupRevisionRef
+  | ConfigRevisionRef
+  | ConstantRevisionRef
+  | RevisionIdRef;
+export const CreateReleasePublishRevisionRequestRevisionsItem =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateReleasePublishRevisionRequestRevisionsItem>;
+
+/** The revisions to publish, at most one per entity. */
+export type CreateReleasePublishRevisionRequestRevisionsList =
+  Array<CreateReleasePublishRevisionRequestRevisionsItem>;
+export const CreateReleasePublishRevisionRequestRevisionsList =
+  /*@__PURE__*/ S.Array(
+    CreateReleasePublishRevisionRequestRevisionsItem,
+  ) as any as S.Schema<CreateReleasePublishRevisionRequestRevisionsList>;
+
+export interface CreateReleasePublishRevisionRequest {
+  /** The revisions to publish, at most one per entity. */
+  revisions: CreateReleasePublishRevisionRequestRevisionsList;
+  /** Report every gate and outcome without writing anything. */
+  dryRun?: boolean;
+  /** Set to true to acknowledge warnings from experiment guards, schema changes, or archives. It can also force-publish an out-of-date draft when the caller has Bypass draft approvals access for that resource. */
+  ignoreWarnings?: boolean;
+  /** Set to true to publish despite schema or invariant failures. Validation still runs and the response still reports each failure. The caller must have Bypass draft approvals access for Feature Flags, Configs, and Constants in every Project. */
+  skipSchemaValidation?: boolean;
+  /** Set to true to publish despite Custom Hook rejections. The caller must have Bypass draft approvals access for Feature Flags, Configs, and Constants in every Project. */
+  skipHooks?: boolean;
+  /** An optional publish comment recorded on every revision in this release — it appears in each entity's revision history and is passed to any custom validation hooks that run for the publish. */
+  comment?: string;
+}
+export const CreateReleasePublishRevisionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    revisions: CreateReleasePublishRevisionRequestRevisionsList,
+    dryRun: S.optional(S.Boolean),
+    ignoreWarnings: S.optional(S.Boolean),
+    skipSchemaValidation: S.optional(S.Boolean),
+    skipHooks: S.optional(S.Boolean),
+    comment: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/releases/publish-revisions",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateReleasePublishRevisionRequest",
+}) as any as S.Schema<CreateReleasePublishRevisionRequest>;
+
+export type ResultsEntityType =
+  | "feature"
+  | "saved-group"
+  | "config"
+  | "constant";
+export const ResultsEntityType = /*@__PURE__*/ S.String;
+
+export type ResultsStatus = "published" | "would-publish";
+export const ResultsStatus = /*@__PURE__*/ S.String;
+
+export interface Results {
+  entityType: ResultsEntityType;
+  /** The identifier used in the request. */
+  id: string;
+  version: number;
+  /** The revision's id (`rev_…` or `frev_…`). */
+  revisionId: string;
+  status: ResultsStatus;
+}
+export const Results = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    entityType: ResultsEntityType,
+    id: S.String,
+    version: S.Number,
+    revisionId: S.String,
+    status: ResultsStatus,
+  }),
+).annotate({ identifier: "Results" }) as any as S.Schema<Results>;
+
+export type CreateReleasePublishRevisionResponseResultsList = Array<Results>;
+export const CreateReleasePublishRevisionResponseResultsList =
+  /*@__PURE__*/ S.Array(
+    Results,
+  ) as any as S.Schema<CreateReleasePublishRevisionResponseResultsList>;
+
+export type GatesEntityType = "feature" | "saved-group" | "config" | "constant";
+export const GatesEntityType = /*@__PURE__*/ S.String;
+
+export type GatesSeverity = "blocker" | "warning";
+export const GatesSeverity = /*@__PURE__*/ S.String;
+
+export type GatesMessagesList = Array<string>;
+export const GatesMessagesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GatesMessagesList>;
+
+export interface GatesResolution {
+  action: string;
+  method: string;
+  path: string;
+}
+export const GatesResolution = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    action: S.String,
+    method: S.String,
+    path: S.String,
+  }),
+).annotate({
+  identifier: "GatesResolution",
+}) as any as S.Schema<GatesResolution>;
+
+export interface Gates {
+  entityType: GatesEntityType;
+  /** The identifier used in the request. */
+  id: string;
+  version: number;
+  /** Gate kind, e.g. "approval-required". */
+  type: string;
+  severity: GatesSeverity;
+  messages: GatesMessagesList;
+  /** Request flag that clears this gate on retry, if any. */
+  override: string | null;
+  requiresPermission: string | null;
+  /** A route that resolves the gate without an override flag. */
+  resolution: GatesResolution | null;
+}
+export const Gates = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    entityType: GatesEntityType,
+    id: S.String,
+    version: S.Number,
+    type: S.String,
+    severity: GatesSeverity,
+    messages: GatesMessagesList,
+    override: S.NullOr(S.String),
+    requiresPermission: S.NullOr(S.String),
+    resolution: S.NullOr(GatesResolution),
+  }),
+).annotate({ identifier: "Gates" }) as any as S.Schema<Gates>;
+
+/** Dry runs report every gate, cleared and blocking. Real publishes return an empty list — blocking gates fail with a 422 instead. */
+export type CreateReleasePublishRevisionResponseGatesList = Array<Gates>;
+export const CreateReleasePublishRevisionResponseGatesList =
+  /*@__PURE__*/ S.Array(
+    Gates,
+  ) as any as S.Schema<CreateReleasePublishRevisionResponseGatesList>;
+
+export type CreateReleasePublishRevisionResponseBypassedGatesItemEntityType =
+  | "feature"
+  | "saved-group"
+  | "config"
+  | "constant";
+export const CreateReleasePublishRevisionResponseBypassedGatesItemEntityType =
+  /*@__PURE__*/ S.String;
+
+export interface CreateReleasePublishRevisionResponseBypassedGatesItem {
+  entityType: CreateReleasePublishRevisionResponseBypassedGatesItemEntityType;
+  id: string;
+  version: number;
+  type: string;
+  /** How the gate was bypassed: a request field, the caller's permissions, or the organization's REST API approval-bypass setting. */
+  via: string;
+}
+export const CreateReleasePublishRevisionResponseBypassedGatesItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      entityType:
+        CreateReleasePublishRevisionResponseBypassedGatesItemEntityType,
+      id: S.String,
+      version: S.Number,
+      type: S.String,
+      via: S.String,
+    }),
+  ).annotate({
+    identifier: "CreateReleasePublishRevisionResponseBypassedGatesItem",
+  }) as any as S.Schema<CreateReleasePublishRevisionResponseBypassedGatesItem>;
+
+/** Gates bypassed by the caller's flags or authority — what this publish overrode. */
+export type CreateReleasePublishRevisionResponseBypassedGatesList =
+  Array<CreateReleasePublishRevisionResponseBypassedGatesItem>;
+export const CreateReleasePublishRevisionResponseBypassedGatesList =
+  /*@__PURE__*/ S.Array(
+    CreateReleasePublishRevisionResponseBypassedGatesItem,
+  ) as any as S.Schema<CreateReleasePublishRevisionResponseBypassedGatesList>;
+
+export type CreateReleasePublishRevisionResponseWarningsList = Array<string>;
+export const CreateReleasePublishRevisionResponseWarningsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateReleasePublishRevisionResponseWarningsList>;
+
+export interface CreateReleasePublishRevisionResponse {
+  dryRun: boolean;
+  /** Correlation token (`pub_…`) stamped on every event this publish emitted. Absent on dry runs. */
+  bulkPublishId?: string;
+  results: CreateReleasePublishRevisionResponseResultsList;
+  /** Dry runs report every gate, cleared and blocking. Real publishes return an empty list — blocking gates fail with a 422 instead. */
+  gates: CreateReleasePublishRevisionResponseGatesList;
+  /** Gates bypassed by the caller's flags or authority — what this publish overrode. */
+  bypassedGates: CreateReleasePublishRevisionResponseBypassedGatesList;
+  warnings: CreateReleasePublishRevisionResponseWarningsList;
+}
+export const CreateReleasePublishRevisionResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      dryRun: S.Boolean,
+      bulkPublishId: S.optional(S.String),
+      results: CreateReleasePublishRevisionResponseResultsList,
+      gates: CreateReleasePublishRevisionResponseGatesList,
+      bypassedGates: CreateReleasePublishRevisionResponseBypassedGatesList,
+      warnings: CreateReleasePublishRevisionResponseWarningsList,
+    }),
+).annotate({
+  identifier: "CreateReleasePublishRevisionResponse",
+}) as any as S.Schema<CreateReleasePublishRevisionResponse>;
+
+/** Stats engine override */
+export type CreateReportRequestStatsEngine = "bayesian" | "frequentist";
+export const CreateReportRequestStatsEngine = /*@__PURE__*/ S.String;
+
+/** Goal metric IDs (defaults to experiment's goal metrics) */
+export type CreateReportRequestGoalMetricsList = Array<string>;
+export const CreateReportRequestGoalMetricsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateReportRequestGoalMetricsList>;
+
+/** Secondary metric IDs (defaults to experiment's secondary metrics) */
+export type CreateReportRequestSecondaryMetricsList = Array<string>;
+export const CreateReportRequestSecondaryMetricsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateReportRequestSecondaryMetricsList>;
+
+/** Guardrail metric IDs (defaults to experiment's guardrail metrics) */
+export type CreateReportRequestGuardrailMetricsList = Array<string>;
+export const CreateReportRequestGuardrailMetricsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateReportRequestGuardrailMetricsList>;
+
+/** How lifts are expressed in results. Defaults to experiment setting. */
+export type CreateReportRequestDifferenceType =
+  | "relative"
+  | "absolute"
+  | "scaled";
+export const CreateReportRequestDifferenceType = /*@__PURE__*/ S.String;
+
+/** Metric conversion window attribution model. Defaults to experiment setting. */
+export type CreateReportRequestAttributionModel =
+  | "firstExposure"
+  | "experimentDuration"
+  | "lookbackOverride";
+export const CreateReportRequestAttributionModel = /*@__PURE__*/ S.String;
+
+export interface CreateReportRequestLookbackOverrideCase0 {
+  type: string;
+  value: unknown;
+}
+export const CreateReportRequestLookbackOverrideCase0 = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      type: S.String,
+      value: S.Unknown,
+    }),
+).annotate({
+  identifier: "CreateReportRequestLookbackOverrideCase0",
+}) as any as S.Schema<CreateReportRequestLookbackOverrideCase0>;
+
+export type CreateReportRequestLookbackOverrideCase1ValueUnit =
+  | "minutes"
+  | "hours"
+  | "days"
+  | "weeks";
+export const CreateReportRequestLookbackOverrideCase1ValueUnit =
+  /*@__PURE__*/ S.String;
+
+export interface CreateReportRequestLookbackOverrideCase1 {
+  type: string;
+  value: number;
+  valueUnit: CreateReportRequestLookbackOverrideCase1ValueUnit | (string & {});
+}
+export const CreateReportRequestLookbackOverrideCase1 = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      type: S.String,
+      value: S.Number,
+      valueUnit: CreateReportRequestLookbackOverrideCase1ValueUnit,
+    }),
+).annotate({
+  identifier: "CreateReportRequestLookbackOverrideCase1",
+}) as any as S.Schema<CreateReportRequestLookbackOverrideCase1>;
+
+/** Lookback window when `attributionModel` is `lookbackOverride` */
+export type CreateReportRequestLookbackOverride =
+  | CreateReportRequestLookbackOverrideCase0
+  | CreateReportRequestLookbackOverrideCase1;
+export const CreateReportRequestLookbackOverride =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateReportRequestLookbackOverride>;
+
+export type CreateReportRequestMetricOverridesItemWindowType =
+  | "conversion"
+  | "lookback"
+  | "";
+export const CreateReportRequestMetricOverridesItemWindowType =
+  /*@__PURE__*/ S.String;
+
+export interface CreateReportRequestMetricOverridesItem {
+  id: string;
+  windowType?: CreateReportRequestMetricOverridesItemWindowType | (string & {});
+  windowHours?: number;
+  delayHours?: number;
+  winRisk?: number;
+  loseRisk?: number;
+  properPriorOverride?: boolean;
+  properPriorEnabled?: boolean;
+  properPriorMean?: number;
+  properPriorStdDev?: number;
+  regressionAdjustmentOverride?: boolean;
+  regressionAdjustmentEnabled?: boolean;
+  regressionAdjustmentDays?: number;
+}
+export const CreateReportRequestMetricOverridesItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.String,
+      windowType: S.optional(CreateReportRequestMetricOverridesItemWindowType),
+      windowHours: S.optional(S.Number),
+      delayHours: S.optional(S.Number),
+      winRisk: S.optional(S.Number),
+      loseRisk: S.optional(S.Number),
+      properPriorOverride: S.optional(S.Boolean),
+      properPriorEnabled: S.optional(S.Boolean),
+      properPriorMean: S.optional(S.Number),
+      properPriorStdDev: S.optional(S.Number),
+      regressionAdjustmentOverride: S.optional(S.Boolean),
+      regressionAdjustmentEnabled: S.optional(S.Boolean),
+      regressionAdjustmentDays: S.optional(S.Number),
+    }),
+).annotate({
+  identifier: "CreateReportRequestMetricOverridesItem",
+}) as any as S.Schema<CreateReportRequestMetricOverridesItem>;
+
+/** Per-metric window, risk, and regression-adjustment overrides */
+export type CreateReportRequestMetricOverridesList =
+  Array<CreateReportRequestMetricOverridesItem>;
+export const CreateReportRequestMetricOverridesList = /*@__PURE__*/ S.Array(
+  CreateReportRequestMetricOverridesItem,
+) as any as S.Schema<CreateReportRequestMetricOverridesList>;
+
+export type CreateReportRequestCustomMetricSlicesItemSlicesItemLevelsList =
+  Array<string>;
+export const CreateReportRequestCustomMetricSlicesItemSlicesItemLevelsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateReportRequestCustomMetricSlicesItemSlicesItemLevelsList>;
+
+export interface CreateReportRequestCustomMetricSlicesItemSlicesItem {
+  column: string;
+  levels: CreateReportRequestCustomMetricSlicesItemSlicesItemLevelsList;
+}
+export const CreateReportRequestCustomMetricSlicesItemSlicesItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      column: S.String,
+      levels: CreateReportRequestCustomMetricSlicesItemSlicesItemLevelsList,
+    }),
+  ).annotate({
+    identifier: "CreateReportRequestCustomMetricSlicesItemSlicesItem",
+  }) as any as S.Schema<CreateReportRequestCustomMetricSlicesItemSlicesItem>;
+
+export type CreateReportRequestCustomMetricSlicesItemSlicesList =
+  Array<CreateReportRequestCustomMetricSlicesItemSlicesItem>;
+export const CreateReportRequestCustomMetricSlicesItemSlicesList =
+  /*@__PURE__*/ S.Array(
+    CreateReportRequestCustomMetricSlicesItemSlicesItem,
+  ) as any as S.Schema<CreateReportRequestCustomMetricSlicesItemSlicesList>;
+
+export interface CreateReportRequestCustomMetricSlicesItem {
+  slices: CreateReportRequestCustomMetricSlicesItemSlicesList;
+}
+export const CreateReportRequestCustomMetricSlicesItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      slices: CreateReportRequestCustomMetricSlicesItemSlicesList,
+    }),
+  ).annotate({
+    identifier: "CreateReportRequestCustomMetricSlicesItem",
+  }) as any as S.Schema<CreateReportRequestCustomMetricSlicesItem>;
+
+/** Custom metric slice definitions */
+export type CreateReportRequestCustomMetricSlicesList =
+  Array<CreateReportRequestCustomMetricSlicesItem>;
+export const CreateReportRequestCustomMetricSlicesList = /*@__PURE__*/ S.Array(
+  CreateReportRequestCustomMetricSlicesItem,
+) as any as S.Schema<CreateReportRequestCustomMetricSlicesList>;
+
+/** Visibility of the created report. Defaults to `private`. Set to `public` to receive a shareable `shareUrl` in the response. */
+export type CreateReportRequestShareLevel =
+  | "public"
+  | "organization"
+  | "private";
+export const CreateReportRequestShareLevel = /*@__PURE__*/ S.String;
+
+export interface CreateReportRequest {
+  /** The experiment to create a report for */
+  experimentId: string;
+  /** Report title (defaults to experiment name) */
+  title?: string;
+  /** Report description */
+  description?: string;
+  /** The userId or email address of the owner. If an email address is provided, it will be used to look up the userId of the matching organization member. If an ID is provided, it will be validated as existing in the organization. When omitted, it defaults to the user associated with the request's Personal Access Token (PAT), if one is being used. */
+  owner?: string;
+  /** Stats engine override */
+  statsEngine?: CreateReportRequestStatsEngine | (string & {});
+  /** Goal metric IDs (defaults to experiment's goal metrics) */
+  goalMetrics?: CreateReportRequestGoalMetricsList;
+  /** Secondary metric IDs (defaults to experiment's secondary metrics) */
+  secondaryMetrics?: CreateReportRequestSecondaryMetricsList;
+  /** Guardrail metric IDs (defaults to experiment's guardrail metrics) */
+  guardrailMetrics?: CreateReportRequestGuardrailMetricsList;
+  /** Activation metric ID */
+  activationMetric?: string;
+  /** Dimension to cut results by */
+  dimension?: string;
+  /** Analysis start date (ISO 8601) */
+  dateStarted?: string;
+  /** Analysis end date (ISO 8601) */
+  dateEnded?: string;
+  /** Enable CUPED regression adjustment */
+  regressionAdjustmentEnabled?: boolean;
+  /** Enable sequential testing */
+  sequentialTestingEnabled?: boolean;
+  /** Tuning parameter for sequential testing (frequentist only) */
+  sequentialTestingTuningParameter?: number;
+  /** How lifts are expressed in results. Defaults to experiment setting. */
+  differenceType?: CreateReportRequestDifferenceType | (string & {});
+  /** Metric conversion window attribution model. Defaults to experiment setting. */
+  attributionModel?: CreateReportRequestAttributionModel | (string & {});
+  /** Lookback window when `attributionModel` is `lookbackOverride` */
+  lookbackOverride?: CreateReportRequestLookbackOverride;
+  /** Per-metric window, risk, and regression-adjustment overrides */
+  metricOverrides?: CreateReportRequestMetricOverridesList;
+  /** Custom metric slice definitions */
+  customMetricSlices?: CreateReportRequestCustomMetricSlicesList;
+  /** Segment ID to filter users by. Defaults to experiment setting. */
+  segment?: string;
+  /** Raw SQL WHERE clause added to the exposure query. Defaults to experiment setting. */
+  queryFilter?: string;
+  /** When true, exclude users who have not completed the full conversion window. */
+  skipPartialData?: boolean;
+  /** Visibility of the created report. Defaults to `private`. Set to `public` to receive a shareable `shareUrl` in the response. */
+  shareLevel?: CreateReportRequestShareLevel | (string & {});
+}
+export const CreateReportRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    experimentId: S.String,
+    title: S.optional(S.String),
+    description: S.optional(S.String),
+    owner: S.optional(S.String),
+    statsEngine: S.optional(CreateReportRequestStatsEngine),
+    goalMetrics: S.optional(CreateReportRequestGoalMetricsList),
+    secondaryMetrics: S.optional(CreateReportRequestSecondaryMetricsList),
+    guardrailMetrics: S.optional(CreateReportRequestGuardrailMetricsList),
+    activationMetric: S.optional(S.String),
+    dimension: S.optional(S.String),
+    dateStarted: S.optional(S.String),
+    dateEnded: S.optional(S.String),
+    regressionAdjustmentEnabled: S.optional(S.Boolean),
+    sequentialTestingEnabled: S.optional(S.Boolean),
+    sequentialTestingTuningParameter: S.optional(S.Number),
+    differenceType: S.optional(CreateReportRequestDifferenceType),
+    attributionModel: S.optional(CreateReportRequestAttributionModel),
+    lookbackOverride: S.optional(CreateReportRequestLookbackOverride),
+    metricOverrides: S.optional(CreateReportRequestMetricOverridesList),
+    customMetricSlices: S.optional(CreateReportRequestCustomMetricSlicesList),
+    segment: S.optional(S.String),
+    queryFilter: S.optional(S.String),
+    skipPartialData: S.optional(S.Boolean),
+    shareLevel: S.optional(CreateReportRequestShareLevel),
+  }).pipe(T.Http({ method: "POST", uri: "/v1/reports", code: 200 })),
+).annotate({
+  identifier: "CreateReportRequest",
+}) as any as S.Schema<CreateReportRequest>;
+
+/** Report type. `experiment-snapshot` is the current shape and is what `POST /reports` always creates. `experiment` is a deprecated legacy shape that is read-only through this API; it cannot be created or refreshed and is preserved only for backward compatibility when reading reports created before the new shape existed. */
+export type ReportType = "experiment-snapshot" | "experiment";
+export const ReportType = /*@__PURE__*/ S.String;
+
+/** UI lifecycle marker. Note: this does NOT control public shareability — see `shareLevel` for visibility controls. */
+export type ReportStatus = "published" | "private";
+export const ReportStatus = /*@__PURE__*/ S.String;
+
+/** Visibility of the report. `private` (default) restricts access to the API caller and admins. `organization` makes it visible to all members of the organization in the GrowthBook UI. `public` additionally exposes it via a shareable URL (returned as `shareUrl`); anyone with the URL can view it without authentication. */
+export type ReportShareLevel = "public" | "organization" | "private";
+export const ReportShareLevel = /*@__PURE__*/ S.String;
+
+/** Status of the latest snapshot (poll this after refresh) */
+export type ReportSnapshotStatus = "running" | "success" | "error";
+export const ReportSnapshotStatus = /*@__PURE__*/ S.String;
+
+export type ReportAnalysisSettingsStatsEngine = "bayesian" | "frequentist";
+export const ReportAnalysisSettingsStatsEngine = /*@__PURE__*/ S.String;
+
+export type ReportAnalysisSettingsGoalMetricsList = Array<string>;
+export const ReportAnalysisSettingsGoalMetricsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ReportAnalysisSettingsGoalMetricsList>;
+
+export type ReportAnalysisSettingsSecondaryMetricsList = Array<string>;
+export const ReportAnalysisSettingsSecondaryMetricsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ReportAnalysisSettingsSecondaryMetricsList>;
+
+export type ReportAnalysisSettingsGuardrailMetricsList = Array<string>;
+export const ReportAnalysisSettingsGuardrailMetricsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ReportAnalysisSettingsGuardrailMetricsList>;
+
+export type ReportAnalysisSettingsMetricOverridesItemWindowType =
+  | "conversion"
+  | "lookback"
+  | "";
+export const ReportAnalysisSettingsMetricOverridesItemWindowType =
+  /*@__PURE__*/ S.String;
+
+export interface ReportAnalysisSettingsMetricOverridesItem {
+  id: string;
+  windowType?: ReportAnalysisSettingsMetricOverridesItemWindowType;
+  windowHours?: number;
+  delayHours?: number;
+  winRisk?: number;
+  loseRisk?: number;
+  properPriorOverride?: boolean;
+  properPriorEnabled?: boolean;
+  properPriorMean?: number;
+  properPriorStdDev?: number;
+  regressionAdjustmentOverride?: boolean;
+  regressionAdjustmentEnabled?: boolean;
+  regressionAdjustmentDays?: number;
+}
+export const ReportAnalysisSettingsMetricOverridesItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.String,
+      windowType: S.optional(
+        ReportAnalysisSettingsMetricOverridesItemWindowType,
+      ),
+      windowHours: S.optional(S.Number),
+      delayHours: S.optional(S.Number),
+      winRisk: S.optional(S.Number),
+      loseRisk: S.optional(S.Number),
+      properPriorOverride: S.optional(S.Boolean),
+      properPriorEnabled: S.optional(S.Boolean),
+      properPriorMean: S.optional(S.Number),
+      properPriorStdDev: S.optional(S.Number),
+      regressionAdjustmentOverride: S.optional(S.Boolean),
+      regressionAdjustmentEnabled: S.optional(S.Boolean),
+      regressionAdjustmentDays: S.optional(S.Number),
+    }),
+  ).annotate({
+    identifier: "ReportAnalysisSettingsMetricOverridesItem",
+  }) as any as S.Schema<ReportAnalysisSettingsMetricOverridesItem>;
+
+/** Per-metric window, risk, and regression-adjustment overrides */
+export type ReportAnalysisSettingsMetricOverridesList =
+  Array<ReportAnalysisSettingsMetricOverridesItem>;
+export const ReportAnalysisSettingsMetricOverridesList = /*@__PURE__*/ S.Array(
+  ReportAnalysisSettingsMetricOverridesItem,
+) as any as S.Schema<ReportAnalysisSettingsMetricOverridesList>;
+
+export type ReportAnalysisSettingsCustomMetricSlicesItemSlicesItemLevelsList =
+  Array<string>;
+export const ReportAnalysisSettingsCustomMetricSlicesItemSlicesItemLevelsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ReportAnalysisSettingsCustomMetricSlicesItemSlicesItemLevelsList>;
+
+export interface ReportAnalysisSettingsCustomMetricSlicesItemSlicesItem {
+  column: string;
+  levels: ReportAnalysisSettingsCustomMetricSlicesItemSlicesItemLevelsList;
+}
+export const ReportAnalysisSettingsCustomMetricSlicesItemSlicesItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      column: S.String,
+      levels: ReportAnalysisSettingsCustomMetricSlicesItemSlicesItemLevelsList,
+    }),
+  ).annotate({
+    identifier: "ReportAnalysisSettingsCustomMetricSlicesItemSlicesItem",
+  }) as any as S.Schema<ReportAnalysisSettingsCustomMetricSlicesItemSlicesItem>;
+
+export type ReportAnalysisSettingsCustomMetricSlicesItemSlicesList =
+  Array<ReportAnalysisSettingsCustomMetricSlicesItemSlicesItem>;
+export const ReportAnalysisSettingsCustomMetricSlicesItemSlicesList =
+  /*@__PURE__*/ S.Array(
+    ReportAnalysisSettingsCustomMetricSlicesItemSlicesItem,
+  ) as any as S.Schema<ReportAnalysisSettingsCustomMetricSlicesItemSlicesList>;
+
+export interface ReportAnalysisSettingsCustomMetricSlicesItem {
+  slices: ReportAnalysisSettingsCustomMetricSlicesItemSlicesList;
+}
+export const ReportAnalysisSettingsCustomMetricSlicesItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      slices: ReportAnalysisSettingsCustomMetricSlicesItemSlicesList,
+    }),
+  ).annotate({
+    identifier: "ReportAnalysisSettingsCustomMetricSlicesItem",
+  }) as any as S.Schema<ReportAnalysisSettingsCustomMetricSlicesItem>;
+
+/** Custom metric slice definitions */
+export type ReportAnalysisSettingsCustomMetricSlicesList =
+  Array<ReportAnalysisSettingsCustomMetricSlicesItem>;
+export const ReportAnalysisSettingsCustomMetricSlicesList =
+  /*@__PURE__*/ S.Array(
+    ReportAnalysisSettingsCustomMetricSlicesItem,
+  ) as any as S.Schema<ReportAnalysisSettingsCustomMetricSlicesList>;
+
+/** How lifts are expressed in results: `relative` (% change), `absolute` (raw difference), or `scaled` (scaled impact) */
+export type ReportAnalysisSettingsDifferenceType =
+  | "relative"
+  | "absolute"
+  | "scaled";
+export const ReportAnalysisSettingsDifferenceType = /*@__PURE__*/ S.String;
+
+/** Metric conversion window attribution model: `firstExposure`, `experimentDuration`, or `lookbackOverride` */
+export type ReportAnalysisSettingsAttributionModel =
+  | "firstExposure"
+  | "experimentDuration"
+  | "lookbackOverride";
+export const ReportAnalysisSettingsAttributionModel = /*@__PURE__*/ S.String;
+
+export type ReportAnalysisSettingsLookbackOverrideCase0 =
+  CreateReportRequestLookbackOverrideCase0;
+export const ReportAnalysisSettingsLookbackOverrideCase0 =
+  CreateReportRequestLookbackOverrideCase0;
+
+export type ReportAnalysisSettingsLookbackOverrideCase1ValueUnit =
+  | "minutes"
+  | "hours"
+  | "days"
+  | "weeks";
+export const ReportAnalysisSettingsLookbackOverrideCase1ValueUnit =
+  /*@__PURE__*/ S.String;
+
+export interface ReportAnalysisSettingsLookbackOverrideCase1 {
+  type: string;
+  value: number;
+  valueUnit: ReportAnalysisSettingsLookbackOverrideCase1ValueUnit;
+}
+export const ReportAnalysisSettingsLookbackOverrideCase1 =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: S.String,
+      value: S.Number,
+      valueUnit: ReportAnalysisSettingsLookbackOverrideCase1ValueUnit,
+    }),
+  ).annotate({
+    identifier: "ReportAnalysisSettingsLookbackOverrideCase1",
+  }) as any as S.Schema<ReportAnalysisSettingsLookbackOverrideCase1>;
+
+/** Lookback window used when `attributionModel` is `lookbackOverride` */
+export type ReportAnalysisSettingsLookbackOverride =
+  | CreateReportRequestLookbackOverrideCase0
+  | ReportAnalysisSettingsLookbackOverrideCase1;
+export const ReportAnalysisSettingsLookbackOverride =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<ReportAnalysisSettingsLookbackOverride>;
+
+export interface ReportAnalysisSettings {
+  statsEngine?: ReportAnalysisSettingsStatsEngine;
+  goalMetrics?: ReportAnalysisSettingsGoalMetricsList;
+  secondaryMetrics?: ReportAnalysisSettingsSecondaryMetricsList;
+  guardrailMetrics?: ReportAnalysisSettingsGuardrailMetricsList;
+  activationMetric?: string;
+  /** Per-metric window, risk, and regression-adjustment overrides */
+  metricOverrides?: ReportAnalysisSettingsMetricOverridesList;
+  /** Custom metric slice definitions */
+  customMetricSlices?: ReportAnalysisSettingsCustomMetricSlicesList;
+  dimension?: string;
+  /** How lifts are expressed in results: `relative` (% change), `absolute` (raw difference), or `scaled` (scaled impact) */
+  differenceType?: ReportAnalysisSettingsDifferenceType;
+  dateStarted?: string;
+  dateEnded?: string;
+  regressionAdjustmentEnabled?: boolean;
+  sequentialTestingEnabled?: boolean;
+  /** Tuning parameter for sequential testing (frequentist only) */
+  sequentialTestingTuningParameter?: number;
+  /** Metric conversion window attribution model: `firstExposure`, `experimentDuration`, or `lookbackOverride` */
+  attributionModel?: ReportAnalysisSettingsAttributionModel;
+  /** Lookback window used when `attributionModel` is `lookbackOverride` */
+  lookbackOverride?: ReportAnalysisSettingsLookbackOverride;
+  /** Tracking key used to identify experiment exposures */
+  trackingKey?: string;
+  /** Datasource exposure query ID (Assignment Table) */
+  exposureQueryId?: string;
+  /** Segment ID to filter users by */
+  segment?: string;
+  /** Raw SQL WHERE clause added to the exposure query */
+  queryFilter?: string;
+  /** When true, exclude users who have not completed the full conversion window */
+  skipPartialData?: boolean;
+}
+export const ReportAnalysisSettings = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    statsEngine: S.optional(ReportAnalysisSettingsStatsEngine),
+    goalMetrics: S.optional(ReportAnalysisSettingsGoalMetricsList),
+    secondaryMetrics: S.optional(ReportAnalysisSettingsSecondaryMetricsList),
+    guardrailMetrics: S.optional(ReportAnalysisSettingsGuardrailMetricsList),
+    activationMetric: S.optional(S.String),
+    metricOverrides: S.optional(ReportAnalysisSettingsMetricOverridesList),
+    customMetricSlices: S.optional(
+      ReportAnalysisSettingsCustomMetricSlicesList,
+    ),
+    dimension: S.optional(S.String),
+    differenceType: S.optional(ReportAnalysisSettingsDifferenceType),
+    dateStarted: S.optional(S.String),
+    dateEnded: S.optional(S.String),
+    regressionAdjustmentEnabled: S.optional(S.Boolean),
+    sequentialTestingEnabled: S.optional(S.Boolean),
+    sequentialTestingTuningParameter: S.optional(S.Number),
+    attributionModel: S.optional(ReportAnalysisSettingsAttributionModel),
+    lookbackOverride: S.optional(ReportAnalysisSettingsLookbackOverride),
+    trackingKey: S.optional(S.String),
+    exposureQueryId: S.optional(S.String),
+    segment: S.optional(S.String),
+    queryFilter: S.optional(S.String),
+    skipPartialData: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "ReportAnalysisSettings",
+}) as any as S.Schema<ReportAnalysisSettings>;
+
+/** Experiment type */
+export type ReportExperimentMetadataType =
+  | "standard"
+  | "multi-armed-bandit"
+  | "holdout";
+export const ReportExperimentMetadataType = /*@__PURE__*/ S.String;
+
+export interface ReportExperimentMetadataVariationsItem {
+  id: string;
+  name: string;
+  key: string;
+  /** Traffic weight (0–1) */
+  weight: number;
+}
+export const ReportExperimentMetadataVariationsItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.String,
+      name: S.String,
+      key: S.String,
+      weight: S.Number,
+    }),
+).annotate({
+  identifier: "ReportExperimentMetadataVariationsItem",
+}) as any as S.Schema<ReportExperimentMetadataVariationsItem>;
+
+/** Variation metadata with current traffic weights — use to label result columns */
+export type ReportExperimentMetadataVariationsList =
+  Array<ReportExperimentMetadataVariationsItem>;
+export const ReportExperimentMetadataVariationsList = /*@__PURE__*/ S.Array(
+  ReportExperimentMetadataVariationsItem,
+) as any as S.Schema<ReportExperimentMetadataVariationsList>;
+
+export interface ReportExperimentMetadataPhasesItem {
+  name?: string;
+  dateStarted?: string;
+  dateEnded?: string;
+  /** Traffic coverage (0–1) */
+  coverage?: number;
+}
+export const ReportExperimentMetadataPhasesItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    dateStarted: S.optional(S.String),
+    dateEnded: S.optional(S.String),
+    coverage: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "ReportExperimentMetadataPhasesItem",
+}) as any as S.Schema<ReportExperimentMetadataPhasesItem>;
+
+/** Experiment phases */
+export type ReportExperimentMetadataPhasesList =
+  Array<ReportExperimentMetadataPhasesItem>;
+export const ReportExperimentMetadataPhasesList = /*@__PURE__*/ S.Array(
+  ReportExperimentMetadataPhasesItem,
+) as any as S.Schema<ReportExperimentMetadataPhasesList>;
+
+export interface ReportExperimentMetadata {
+  /** Experiment type */
+  type?: ReportExperimentMetadataType;
+  /** Variation metadata with current traffic weights — use to label result columns */
+  variations?: ReportExperimentMetadataVariationsList;
+  /** Experiment phases */
+  phases?: ReportExperimentMetadataPhasesList;
+}
+export const ReportExperimentMetadata = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(ReportExperimentMetadataType),
+    variations: S.optional(ReportExperimentMetadataVariationsList),
+    phases: S.optional(ReportExperimentMetadataPhasesList),
+  }),
+).annotate({
+  identifier: "ReportExperimentMetadata",
+}) as any as S.Schema<ReportExperimentMetadata>;
+
+export interface ExperimentResultsDimension {
+  type: string;
+  id?: string;
+}
+export const ExperimentResultsDimension = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.String,
+    id: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ExperimentResultsDimension",
+}) as any as S.Schema<ExperimentResultsDimension>;
+
+export type ExperimentResultsQueryIdsList = Array<string>;
+export const ExperimentResultsQueryIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ExperimentResultsQueryIdsList>;
+
+export interface ExperimentResultsResultsItemChecks {
+  srm: number;
+}
+export const ExperimentResultsResultsItemChecks = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    srm: S.Number,
+  }),
+).annotate({
+  identifier: "ExperimentResultsResultsItemChecks",
+}) as any as S.Schema<ExperimentResultsResultsItemChecks>;
+
+export type ExperimentResultsResultsItemMetricsItemVariationsItemAnalysesItemEngine =
+  | "bayesian"
+  | "frequentist";
+export const ExperimentResultsResultsItemMetricsItemVariationsItemAnalysesItemEngine =
+  /*@__PURE__*/ S.String;
+
+export interface ExperimentResultsResultsItemMetricsItemVariationsItemAnalysesItem {
+  engine: ExperimentResultsResultsItemMetricsItemVariationsItemAnalysesItemEngine;
+  numerator: number;
+  denominator: number;
+  mean: number;
+  stddev: number;
+  percentChange: number;
+  /** Standard error of the estimated effect (`percentChange`). */
+  effectStandardError: number;
+  ciLow: number;
+  ciHigh: number;
+  pValue?: number;
+  risk?: number;
+  chanceToBeatControl?: number;
+  errorMessage?: string;
+}
+export const ExperimentResultsResultsItemMetricsItemVariationsItemAnalysesItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      engine:
+        ExperimentResultsResultsItemMetricsItemVariationsItemAnalysesItemEngine,
+      numerator: S.Number,
+      denominator: S.Number,
+      mean: S.Number,
+      stddev: S.Number,
+      percentChange: S.Number,
+      effectStandardError: S.Number,
+      ciLow: S.Number,
+      ciHigh: S.Number,
+      pValue: S.optional(S.Number),
+      risk: S.optional(S.Number),
+      chanceToBeatControl: S.optional(S.Number),
+      errorMessage: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier:
+      "ExperimentResultsResultsItemMetricsItemVariationsItemAnalysesItem",
+  }) as any as S.Schema<ExperimentResultsResultsItemMetricsItemVariationsItemAnalysesItem>;
+
+export type ExperimentResultsResultsItemMetricsItemVariationsItemAnalysesList =
+  Array<ExperimentResultsResultsItemMetricsItemVariationsItemAnalysesItem>;
+export const ExperimentResultsResultsItemMetricsItemVariationsItemAnalysesList =
+  /*@__PURE__*/ S.Array(
+    ExperimentResultsResultsItemMetricsItemVariationsItemAnalysesItem,
+  ) as any as S.Schema<ExperimentResultsResultsItemMetricsItemVariationsItemAnalysesList>;
+
+export interface ExperimentResultsResultsItemMetricsItemVariationsItem {
+  variationId: string;
+  variationName?: string;
+  users?: number;
+  analyses: ExperimentResultsResultsItemMetricsItemVariationsItemAnalysesList;
+}
+export const ExperimentResultsResultsItemMetricsItemVariationsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      variationId: S.String,
+      variationName: S.optional(S.String),
+      users: S.optional(S.Number),
+      analyses:
+        ExperimentResultsResultsItemMetricsItemVariationsItemAnalysesList,
+    }),
+  ).annotate({
+    identifier: "ExperimentResultsResultsItemMetricsItemVariationsItem",
+  }) as any as S.Schema<ExperimentResultsResultsItemMetricsItemVariationsItem>;
+
+export type ExperimentResultsResultsItemMetricsItemVariationsList =
+  Array<ExperimentResultsResultsItemMetricsItemVariationsItem>;
+export const ExperimentResultsResultsItemMetricsItemVariationsList =
+  /*@__PURE__*/ S.Array(
+    ExperimentResultsResultsItemMetricsItemVariationsItem,
+  ) as any as S.Schema<ExperimentResultsResultsItemMetricsItemVariationsList>;
+
+export interface ExperimentResultsResultsItemMetricsItem {
+  metricId: string;
+  metricName?: string;
+  variations: ExperimentResultsResultsItemMetricsItemVariationsList;
+}
+export const ExperimentResultsResultsItemMetricsItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      metricId: S.String,
+      metricName: S.optional(S.String),
+      variations: ExperimentResultsResultsItemMetricsItemVariationsList,
+    }),
+).annotate({
+  identifier: "ExperimentResultsResultsItemMetricsItem",
+}) as any as S.Schema<ExperimentResultsResultsItemMetricsItem>;
+
+export type ExperimentResultsResultsItemMetricsList =
+  Array<ExperimentResultsResultsItemMetricsItem>;
+export const ExperimentResultsResultsItemMetricsList = /*@__PURE__*/ S.Array(
+  ExperimentResultsResultsItemMetricsItem,
+) as any as S.Schema<ExperimentResultsResultsItemMetricsList>;
+
+export interface ExperimentResultsResultsItem {
+  dimension: string;
+  totalUsers: number;
+  checks: ExperimentResultsResultsItemChecks;
+  metrics: ExperimentResultsResultsItemMetricsList;
+}
+export const ExperimentResultsResultsItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    dimension: S.String,
+    totalUsers: S.Number,
+    checks: ExperimentResultsResultsItemChecks,
+    metrics: ExperimentResultsResultsItemMetricsList,
+  }),
+).annotate({
+  identifier: "ExperimentResultsResultsItem",
+}) as any as S.Schema<ExperimentResultsResultsItem>;
+
+export type ExperimentResultsResultsList = Array<ExperimentResultsResultsItem>;
+export const ExperimentResultsResultsList = /*@__PURE__*/ S.Array(
+  ExperimentResultsResultsItem,
+) as any as S.Schema<ExperimentResultsResultsList>;
+
+export interface ExperimentResults {
+  id: string;
+  dateUpdated: string;
+  experimentId: string;
+  phase: string;
+  dateStart: string;
+  dateEnd: string;
+  dimension: ExperimentResultsDimension;
+  settings: ExperimentAnalysisSettings;
+  queryIds: ExperimentResultsQueryIdsList;
+  results: ExperimentResultsResultsList;
+}
+export const ExperimentResults = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    dateUpdated: S.String,
+    experimentId: S.String,
+    phase: S.String,
+    dateStart: S.String,
+    dateEnd: S.String,
+    dimension: ExperimentResultsDimension,
+    settings: ExperimentAnalysisSettings,
+    queryIds: ExperimentResultsQueryIdsList,
+    results: ExperimentResultsResultsList,
+  }),
+).annotate({
+  identifier: "ExperimentResults",
+}) as any as S.Schema<ExperimentResults>;
+
+export interface Report {
+  id: string;
+  dateCreated: string;
+  dateUpdated: string;
+  title: string;
+  description: string;
+  /** Report type. `experiment-snapshot` is the current shape and is what `POST /reports` always creates. `experiment` is a deprecated legacy shape that is read-only through this API; it cannot be created or refreshed and is preserved only for backward compatibility when reading reports created before the new shape existed. */
+  type: ReportType;
+  /** UI lifecycle marker. Note: this does NOT control public shareability — see `shareLevel` for visibility controls. */
+  status?: ReportStatus;
+  /** Visibility of the report. `private` (default) restricts access to the API caller and admins. `organization` makes it visible to all members of the organization in the GrowthBook UI. `public` additionally exposes it via a shareable URL (returned as `shareUrl`); anyone with the URL can view it without authentication. */
+  shareLevel?: ReportShareLevel;
+  /** Public URL for viewing the report. Only present when `shareLevel` is `public`. */
+  shareUrl?: string;
+  experimentId?: string;
+  /** The userId of the report owner. Absent for reports created before owner attribution existed. */
+  owner?: string;
+  /** The email address of the owner, when the owner can be resolved to a known user. */
+  ownerEmail?: string;
+  /** Snapshot ID (experiment-snapshot type only) */
+  snapshotId?: string;
+  /** Status of the latest snapshot (poll this after refresh) */
+  snapshotStatus?: ReportSnapshotStatus;
+  /** Error message if snapshot failed */
+  snapshotError?: string;
+  analysisSettings?: ReportAnalysisSettings;
+  experimentMetadata?: ReportExperimentMetadata;
+  results?: ExperimentResults;
+}
+export const Report = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    dateCreated: S.String,
+    dateUpdated: S.String,
+    title: S.String,
+    description: S.String,
+    type: ReportType,
+    status: S.optional(ReportStatus),
+    shareLevel: S.optional(ReportShareLevel),
+    shareUrl: S.optional(S.String),
+    experimentId: S.optional(S.String),
+    owner: S.optional(S.String),
+    ownerEmail: S.optional(S.String),
+    snapshotId: S.optional(S.String),
+    snapshotStatus: S.optional(ReportSnapshotStatus),
+    snapshotError: S.optional(S.String),
+    analysisSettings: S.optional(ReportAnalysisSettings),
+    experimentMetadata: S.optional(ReportExperimentMetadata),
+    results: S.optional(ExperimentResults),
+  }),
+).annotate({ identifier: "Report" }) as any as S.Schema<Report>;
+
+export interface CreateReportResponse {
+  report: Report;
+}
+export const CreateReportResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    report: Report,
+  }),
+).annotate({
+  identifier: "CreateReportResponse",
+}) as any as S.Schema<CreateReportResponse>;
+
+export interface CreateReportRefreshRequest {
+  /** The id of the requested resource */
+  id: string;
+}
+export const CreateReportRefreshRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/v1/reports/{id}/refresh", code: 200 }),
+  ),
+).annotate({
+  identifier: "CreateReportRefreshRequest",
+}) as any as S.Schema<CreateReportRefreshRequest>;
+
+export interface CreateReportRefreshResponse {
+  report: Report;
+}
+export const CreateReportRefreshResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    report: Report,
+  }),
+).annotate({
+  identifier: "CreateReportRefreshResponse",
+}) as any as S.Schema<CreateReportRefreshResponse>;
+
+/** The type of Saved Group (inferred from other arguments if missing) */
+export type CreateSavedGroupRequestType = "condition" | "list";
+export const CreateSavedGroupRequestType = /*@__PURE__*/ S.String;
+
+/** When type = 'list', this is the list of values for the attribute key */
+export type CreateSavedGroupRequestValuesList = Array<string>;
+export const CreateSavedGroupRequestValuesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateSavedGroupRequestValuesList>;
+
+export type CreateSavedGroupRequestProjectsList = Array<string>;
+export const CreateSavedGroupRequestProjectsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateSavedGroupRequestProjectsList>;
+
+export interface CreateSavedGroupRequest {
+  /** The display name of the Saved Group */
+  name: string;
+  /** The type of Saved Group (inferred from other arguments if missing) */
+  type?: CreateSavedGroupRequestType | (string & {});
+  /** When type = 'condition', this is the JSON-encoded condition for the group */
+  condition?: string;
+  /** When type = 'list', this is the attribute key the group is based on */
+  attributeKey?: string;
+  /** When type = 'list', this is the list of values for the attribute key */
+  values?: CreateSavedGroupRequestValuesList;
+  /** The userId or email address of the owner. If an email address is provided, it will be used to look up the userId of the matching organization member. If an ID is provided, it will be validated as existing in the organization. When omitted, it defaults to the user associated with the request's Personal Access Token (PAT), if one is being used. */
+  owner?: string;
+  projects?: CreateSavedGroupRequestProjectsList;
+  /** Set to true to create the live Saved Group without approval. The caller must have Bypass draft approvals access in every assigned Project. This field has no effect when approval is not required. */
+  bypassApproval?: boolean;
+}
+export const CreateSavedGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    type: S.optional(CreateSavedGroupRequestType),
+    condition: S.optional(S.String),
+    attributeKey: S.optional(S.String),
+    values: S.optional(CreateSavedGroupRequestValuesList),
+    owner: S.optional(S.String),
+    projects: S.optional(CreateSavedGroupRequestProjectsList),
+    bypassApproval: S.optional(S.Boolean),
+  }).pipe(T.Http({ method: "POST", uri: "/v1/saved-groups", code: 200 })),
+).annotate({
+  identifier: "CreateSavedGroupRequest",
+}) as any as S.Schema<CreateSavedGroupRequest>;
+
+export interface CreateSavedGroupResponse {
+  savedGroup: SavedGroup;
+}
+export const CreateSavedGroupResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    savedGroup: SavedGroup,
+  }),
+).annotate({
+  identifier: "CreateSavedGroupResponse",
+}) as any as S.Schema<CreateSavedGroupResponse>;
+
+export interface CreateSavedGroupRevisionDiscardRequest {
+  savedGroupId: string;
+  version: number;
+  reason?: string;
+}
+export const CreateSavedGroupRevisionDiscardRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      savedGroupId: S.String.pipe(T.Label()),
+      version: S.Number.pipe(T.Label()),
+      reason: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/v1/saved-groups-revisions/{savedGroupId}/{version}/discard",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateSavedGroupRevisionDiscardRequest",
+}) as any as S.Schema<CreateSavedGroupRevisionDiscardRequest>;
+
+export type SavedGroupRevisionStatus =
+  | "draft"
+  | "pending-review"
+  | "approved"
+  | "changes-requested"
+  | "merged"
+  | "discarded";
+export const SavedGroupRevisionStatus = /*@__PURE__*/ S.String;
+
+export type SavedGroupRevisionContributorsList = Array<string>;
+export const SavedGroupRevisionContributorsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SavedGroupRevisionContributorsList>;
+
+export type SavedGroupRevisionReviewDecision =
+  | "approve"
+  | "request-changes"
+  | "comment";
+export const SavedGroupRevisionReviewDecision = /*@__PURE__*/ S.String;
+
+export interface SavedGroupRevisionReview {
+  id: string;
+  userId: string;
+  decision: SavedGroupRevisionReviewDecision;
+  comment?: string;
+  /** True if a later review cycle (re-submit, approval reset, recall, or reopen) superseded this verdict. Stale verdicts are kept for attribution but no longer count as an active approval or change-request. */
+  stale?: boolean;
+  dateCreated: string;
+}
+export const SavedGroupRevisionReview = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    userId: S.String,
+    decision: SavedGroupRevisionReviewDecision,
+    comment: S.optional(S.String),
+    stale: S.optional(S.Boolean),
+    dateCreated: S.String,
+  }),
+).annotate({
+  identifier: "SavedGroupRevisionReview",
+}) as any as S.Schema<SavedGroupRevisionReview>;
+
+export type SavedGroupRevisionReviewsList = Array<SavedGroupRevisionReview>;
+export const SavedGroupRevisionReviewsList = /*@__PURE__*/ S.Array(
+  SavedGroupRevisionReview,
+) as any as S.Schema<SavedGroupRevisionReviewsList>;
+
+export type SavedGroupRevisionActivityLogEntryAction =
+  | "created"
+  | "updated"
+  | "reviewed"
+  | "approved"
+  | "requested-changes"
+  | "commented"
+  | "review-requested"
+  | "review-retracted"
+  | "merged"
+  | "discarded"
+  | "reopened"
+  | "recalled"
+  | "scheduled-publish"
+  | "scheduled-publish-updated"
+  | "scheduled-publish-canceled"
+  | "merge-recovered";
+export const SavedGroupRevisionActivityLogEntryAction = /*@__PURE__*/ S.String;
+
+export type SavedGroupRevisionActivityLogEntryProposedChangesSnapshotItemCase0 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
+export const SavedGroupRevisionActivityLogEntryProposedChangesSnapshotItemCase0 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
+
+export type SavedGroupRevisionActivityLogEntryProposedChangesSnapshotItemCase1 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase1;
+export const SavedGroupRevisionActivityLogEntryProposedChangesSnapshotItemCase1 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase1;
+
+export type SavedGroupRevisionActivityLogEntryProposedChangesSnapshotItemCase2 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
+export const SavedGroupRevisionActivityLogEntryProposedChangesSnapshotItemCase2 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
+
+export type SavedGroupRevisionActivityLogEntryProposedChangesSnapshotItemCase3 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3;
+export const SavedGroupRevisionActivityLogEntryProposedChangesSnapshotItemCase3 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3;
+
+export type SavedGroupRevisionActivityLogEntryProposedChangesSnapshotItemCase4 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3;
+export const SavedGroupRevisionActivityLogEntryProposedChangesSnapshotItemCase4 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3;
+
+export type SavedGroupRevisionActivityLogEntryProposedChangesSnapshotItemCase5 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
+export const SavedGroupRevisionActivityLogEntryProposedChangesSnapshotItemCase5 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
+
+export type SavedGroupRevisionActivityLogEntryProposedChangesSnapshotItem =
+  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0
+  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase1
+  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0
+  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3
+  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3
+  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
+export const SavedGroupRevisionActivityLogEntryProposedChangesSnapshotItem =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<SavedGroupRevisionActivityLogEntryProposedChangesSnapshotItem>;
+
+export type SavedGroupRevisionActivityLogEntryProposedChangesSnapshotList =
+  Array<SavedGroupRevisionActivityLogEntryProposedChangesSnapshotItem>;
+export const SavedGroupRevisionActivityLogEntryProposedChangesSnapshotList =
+  /*@__PURE__*/ S.Array(
+    SavedGroupRevisionActivityLogEntryProposedChangesSnapshotItem,
+  ) as any as S.Schema<SavedGroupRevisionActivityLogEntryProposedChangesSnapshotList>;
+
+export interface SavedGroupRevisionActivityLogEntry {
+  id: string;
+  userId: string;
+  action: SavedGroupRevisionActivityLogEntryAction;
+  description?: string | null;
+  proposedChangesSnapshot?: SavedGroupRevisionActivityLogEntryProposedChangesSnapshotList;
+  targetSnapshot?: unknown;
+  dateCreated: string;
+}
+export const SavedGroupRevisionActivityLogEntry = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    userId: S.String,
+    action: SavedGroupRevisionActivityLogEntryAction,
+    description: S.optional(S.NullOr(S.String)),
+    proposedChangesSnapshot: S.optional(
+      SavedGroupRevisionActivityLogEntryProposedChangesSnapshotList,
+    ),
+    targetSnapshot: S.optional(S.Unknown),
+    dateCreated: S.String,
+  }),
+).annotate({
+  identifier: "SavedGroupRevisionActivityLogEntry",
+}) as any as S.Schema<SavedGroupRevisionActivityLogEntry>;
+
+export type SavedGroupRevisionActivityLogList =
+  Array<SavedGroupRevisionActivityLogEntry>;
+export const SavedGroupRevisionActivityLogList = /*@__PURE__*/ S.Array(
+  SavedGroupRevisionActivityLogEntry,
+) as any as S.Schema<SavedGroupRevisionActivityLogList>;
+
+export type SavedGroupRevisionResolutionAction = "merged" | "discarded";
+export const SavedGroupRevisionResolutionAction = /*@__PURE__*/ S.String;
+
+export interface SavedGroupRevisionResolution {
+  action: SavedGroupRevisionResolutionAction;
+  userId: string;
+  dateCreated: string;
+}
+export const SavedGroupRevisionResolution = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    action: SavedGroupRevisionResolutionAction,
+    userId: S.String,
+    dateCreated: S.String,
+  }),
+).annotate({
+  identifier: "SavedGroupRevisionResolution",
+}) as any as S.Schema<SavedGroupRevisionResolution>;
+
+export type SavedGroupRevisionProposedChangesItemCase0 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
+export const SavedGroupRevisionProposedChangesItemCase0 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
+
+export type SavedGroupRevisionProposedChangesItemCase1 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase1;
+export const SavedGroupRevisionProposedChangesItemCase1 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase1;
+
+export type SavedGroupRevisionProposedChangesItemCase2 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
+export const SavedGroupRevisionProposedChangesItemCase2 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
+
+export type SavedGroupRevisionProposedChangesItemCase3 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3;
+export const SavedGroupRevisionProposedChangesItemCase3 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3;
+
+export type SavedGroupRevisionProposedChangesItemCase4 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3;
+export const SavedGroupRevisionProposedChangesItemCase4 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3;
+
+export type SavedGroupRevisionProposedChangesItemCase5 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
+export const SavedGroupRevisionProposedChangesItemCase5 =
+  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
+
+export type SavedGroupRevisionProposedChangesItem =
+  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0
+  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase1
+  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0
+  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3
+  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3
+  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
+export const SavedGroupRevisionProposedChangesItem =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<SavedGroupRevisionProposedChangesItem>;
+
+export type SavedGroupRevisionProposedChangesList =
+  Array<SavedGroupRevisionProposedChangesItem>;
+export const SavedGroupRevisionProposedChangesList = /*@__PURE__*/ S.Array(
+  SavedGroupRevisionProposedChangesItem,
+) as any as S.Schema<SavedGroupRevisionProposedChangesList>;
+
+export interface SavedGroupRevision {
+  id: string;
+  version?: number;
+  title?: string;
+  status: SavedGroupRevisionStatus;
+  authorId: string;
+  authorEmail?: string;
+  contributors?: SavedGroupRevisionContributorsList;
+  revertedFrom?: string;
+  reviews: SavedGroupRevisionReviewsList;
+  activityLog: SavedGroupRevisionActivityLogList;
+  /** Publish automatically the moment this revision is approved. */
+  autoPublishOnApproval?: boolean;
+  /** User the deferred publish will run as. Its authority is re-checked when the publish fires. */
+  autoPublishEnabledBy?: string;
+  /** When the deferred publish fires. Absent when the revision publishes on approval instead, or is not armed at all. */
+  scheduledPublishAt?: string;
+  /** Content edits to this revision are frozen until it fires. */
+  scheduledPublishLockEdits?: boolean;
+  /** Other revisions of the same resource cannot publish until this one fires or is cancelled. */
+  scheduledPublishLockOthers?: boolean;
+  /** Armed by a caller who bypassed the approval requirement. Such a schedule must be cancelled and re-armed rather than edited. */
+  scheduledPublishBypassApproval?: boolean;
+  /** How many times the poller has tried to publish this revision. */
+  scheduledPublishAttempts?: number;
+  /** Why the most recent deferred-publish attempt failed. */
+  scheduledPublishLastError?: string;
+  /** When the poller stopped retrying. Giving up CLEARS the schedule and disarms auto-publish, so nothing fires again until the revision is re-armed. The draft is left open, with `scheduledPublishLastError` preserved for context. */
+  scheduledPublishGaveUpAt?: string;
+  resolution?: SavedGroupRevisionResolution;
+  dateCreated: string;
+  dateUpdated: string;
+  baseSavedGroup: SavedGroup;
+  proposedSavedGroup: SavedGroup;
+  proposedChanges: SavedGroupRevisionProposedChangesList;
+}
+export const SavedGroupRevision = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    version: S.optional(S.Number),
+    title: S.optional(S.String),
+    status: SavedGroupRevisionStatus,
+    authorId: S.String,
+    authorEmail: S.optional(S.String),
+    contributors: S.optional(SavedGroupRevisionContributorsList),
+    revertedFrom: S.optional(S.String),
+    reviews: SavedGroupRevisionReviewsList,
+    activityLog: SavedGroupRevisionActivityLogList,
+    autoPublishOnApproval: S.optional(S.Boolean),
+    autoPublishEnabledBy: S.optional(S.String),
+    scheduledPublishAt: S.optional(S.String),
+    scheduledPublishLockEdits: S.optional(S.Boolean),
+    scheduledPublishLockOthers: S.optional(S.Boolean),
+    scheduledPublishBypassApproval: S.optional(S.Boolean),
+    scheduledPublishAttempts: S.optional(S.Number),
+    scheduledPublishLastError: S.optional(S.String),
+    scheduledPublishGaveUpAt: S.optional(S.String),
+    resolution: S.optional(SavedGroupRevisionResolution),
+    dateCreated: S.String,
+    dateUpdated: S.String,
+    baseSavedGroup: SavedGroup,
+    proposedSavedGroup: SavedGroup,
+    proposedChanges: SavedGroupRevisionProposedChangesList,
+  }),
+).annotate({
+  identifier: "SavedGroupRevision",
+}) as any as S.Schema<SavedGroupRevision>;
+
+export interface CreateSavedGroupRevisionDiscardResponse {
+  revision: SavedGroupRevision;
+}
+export const CreateSavedGroupRevisionDiscardResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      revision: SavedGroupRevision,
+    }),
+).annotate({
+  identifier: "CreateSavedGroupRevisionDiscardResponse",
+}) as any as S.Schema<CreateSavedGroupRevisionDiscardResponse>;
+
+export type CreateSavedGroupRevisionItemsAddRequestItemsList = Array<string>;
+export const CreateSavedGroupRevisionItemsAddRequestItemsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateSavedGroupRevisionItemsAddRequestItemsList>;
+
+export interface CreateSavedGroupRevisionItemsAddRequest {
+  savedGroupId: string;
+  version: string;
+  revisionTitle?: string;
+  revisionComment?: string;
+  items: CreateSavedGroupRevisionItemsAddRequestItemsList;
+}
+export const CreateSavedGroupRevisionItemsAddRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      savedGroupId: S.String.pipe(T.Label()),
+      version: S.String.pipe(T.Label()),
+      revisionTitle: S.optional(S.String),
+      revisionComment: S.optional(S.String),
+      items: CreateSavedGroupRevisionItemsAddRequestItemsList,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/v1/saved-groups-revisions/{savedGroupId}/{version}/items/add",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateSavedGroupRevisionItemsAddRequest",
+}) as any as S.Schema<CreateSavedGroupRevisionItemsAddRequest>;
+
+export interface CreateSavedGroupRevisionItemsAddResponse {
+  revision: SavedGroupRevision;
+}
+export const CreateSavedGroupRevisionItemsAddResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      revision: SavedGroupRevision,
+    }),
+).annotate({
+  identifier: "CreateSavedGroupRevisionItemsAddResponse",
+}) as any as S.Schema<CreateSavedGroupRevisionItemsAddResponse>;
+
+export type CreateSavedGroupRevisionItemsRemoveRequestItemsList = Array<string>;
+export const CreateSavedGroupRevisionItemsRemoveRequestItemsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateSavedGroupRevisionItemsRemoveRequestItemsList>;
+
+export interface CreateSavedGroupRevisionItemsRemoveRequest {
+  savedGroupId: string;
+  version: string;
+  revisionTitle?: string;
+  revisionComment?: string;
+  items: CreateSavedGroupRevisionItemsRemoveRequestItemsList;
+}
+export const CreateSavedGroupRevisionItemsRemoveRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      savedGroupId: S.String.pipe(T.Label()),
+      version: S.String.pipe(T.Label()),
+      revisionTitle: S.optional(S.String),
+      revisionComment: S.optional(S.String),
+      items: CreateSavedGroupRevisionItemsRemoveRequestItemsList,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/v1/saved-groups-revisions/{savedGroupId}/{version}/items/remove",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateSavedGroupRevisionItemsRemoveRequest",
+  }) as any as S.Schema<CreateSavedGroupRevisionItemsRemoveRequest>;
+
+export interface CreateSavedGroupRevisionItemsRemoveResponse {
+  revision: SavedGroupRevision;
+}
+export const CreateSavedGroupRevisionItemsRemoveResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      revision: SavedGroupRevision,
+    }),
+  ).annotate({
+    identifier: "CreateSavedGroupRevisionItemsRemoveResponse",
+  }) as any as S.Schema<CreateSavedGroupRevisionItemsRemoveResponse>;
+
+export interface CreateSavedGroupRevisionPublishRequest {
+  savedGroupId: string;
+  version: number;
+  /** Deprecated and ignored. Approval is bypassed automatically when the caller has Bypass draft approvals access for this resource or when the organization enables the REST API approval bypass. Otherwise, the revision must be approved before it can be published. */
+  bypassApproval?: boolean;
+  /** Set to true to acknowledge the warnings listed in a blocked response and continue. This covers experiment guards, locked dependents, and references affected by an archive. When the organization treats schema failures as warnings, it also covers schema and invariant warnings. It never bypasses a rejected Custom Hook. On revision publish endpoints, it can also force-publish an out-of-date draft when the caller has Bypass draft approvals access. */
+  ignoreWarnings?: boolean;
+}
+export const CreateSavedGroupRevisionPublishRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      savedGroupId: S.String.pipe(T.Label()),
+      version: S.Number.pipe(T.Label()),
+      bypassApproval: S.optional(S.Boolean),
+      ignoreWarnings: S.optional(S.Boolean),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/v1/saved-groups-revisions/{savedGroupId}/{version}/publish",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateSavedGroupRevisionPublishRequest",
+}) as any as S.Schema<CreateSavedGroupRevisionPublishRequest>;
+
+/** Gates that would have blocked this publish but were bypassed by the caller's authority. Present only when at least one gate was bypassed. */
+export type CreateSavedGroupRevisionPublishResponseBypassedGatesList =
+  Array<BypassedGates>;
+export const CreateSavedGroupRevisionPublishResponseBypassedGatesList =
+  /*@__PURE__*/ S.Array(
+    BypassedGates,
+  ) as any as S.Schema<CreateSavedGroupRevisionPublishResponseBypassedGatesList>;
+
+export interface CreateSavedGroupRevisionPublishResponse {
+  revision: SavedGroupRevision;
+  /** Gates that would have blocked this publish but were bypassed by the caller's authority. Present only when at least one gate was bypassed. */
+  bypassedGates?: CreateSavedGroupRevisionPublishResponseBypassedGatesList;
+}
+export const CreateSavedGroupRevisionPublishResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      revision: SavedGroupRevision,
+      bypassedGates: S.optional(
+        CreateSavedGroupRevisionPublishResponseBypassedGatesList,
+      ),
+    }),
+).annotate({
+  identifier: "CreateSavedGroupRevisionPublishResponse",
+}) as any as S.Schema<CreateSavedGroupRevisionPublishResponse>;
+
+export type CreateSavedGroupRevisionRebaseRequestConflictResolutionsValue =
+  | "overwrite"
+  | "discard"
+  | "union";
+export const CreateSavedGroupRevisionRebaseRequestConflictResolutionsValue =
+  /*@__PURE__*/ S.String;
+
+export type CreateSavedGroupRevisionRebaseRequestConflictResolutionsMap = {
+  [key: string]:
+    | CreateSavedGroupRevisionRebaseRequestConflictResolutionsValue
+    | (string & {})
+    | undefined;
+};
+export const CreateSavedGroupRevisionRebaseRequestConflictResolutionsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    CreateSavedGroupRevisionRebaseRequestConflictResolutionsValue,
+  ) as any as S.Schema<CreateSavedGroupRevisionRebaseRequestConflictResolutionsMap>;
+
+export type CreateSavedGroupRevisionRebaseRequestCustomValuesValueList =
+  Array<unknown>;
+export const CreateSavedGroupRevisionRebaseRequestCustomValuesValueList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<CreateSavedGroupRevisionRebaseRequestCustomValuesValueList>;
+
+/** Custom values to use for `union` strategy fields. Keyed by field name. */
+export type CreateSavedGroupRevisionRebaseRequestCustomValuesMap = {
+  [key: string]:
+    | CreateSavedGroupRevisionRebaseRequestCustomValuesValueList
+    | undefined;
+};
+export const CreateSavedGroupRevisionRebaseRequestCustomValuesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    CreateSavedGroupRevisionRebaseRequestCustomValuesValueList,
+  ) as any as S.Schema<CreateSavedGroupRevisionRebaseRequestCustomValuesMap>;
+
+export interface CreateSavedGroupRevisionRebaseRequest {
+  savedGroupId: string;
+  version: number;
+  conflictResolutions?: CreateSavedGroupRevisionRebaseRequestConflictResolutionsMap;
+  /** Custom values to use for `union` strategy fields. Keyed by field name. */
+  customValues?: CreateSavedGroupRevisionRebaseRequestCustomValuesMap;
+}
+export const CreateSavedGroupRevisionRebaseRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      savedGroupId: S.String.pipe(T.Label()),
+      version: S.Number.pipe(T.Label()),
+      conflictResolutions: S.optional(
+        CreateSavedGroupRevisionRebaseRequestConflictResolutionsMap,
+      ),
+      customValues: S.optional(
+        CreateSavedGroupRevisionRebaseRequestCustomValuesMap,
+      ),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/v1/saved-groups-revisions/{savedGroupId}/{version}/rebase",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateSavedGroupRevisionRebaseRequest",
+}) as any as S.Schema<CreateSavedGroupRevisionRebaseRequest>;
+
+export interface CreateSavedGroupRevisionRebaseResponse {
+  revision: SavedGroupRevision;
+}
+export const CreateSavedGroupRevisionRebaseResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      revision: SavedGroupRevision,
+    }),
+).annotate({
+  identifier: "CreateSavedGroupRevisionRebaseResponse",
+}) as any as S.Schema<CreateSavedGroupRevisionRebaseResponse>;
+
+export interface CreateSavedGroupRevisionRecallReviewRequest {
+  savedGroupId: string;
+  version: number;
+}
+export const CreateSavedGroupRevisionRecallReviewRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      savedGroupId: S.String.pipe(T.Label()),
+      version: S.Number.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/v1/saved-groups-revisions/{savedGroupId}/{version}/recall-review",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateSavedGroupRevisionRecallReviewRequest",
+  }) as any as S.Schema<CreateSavedGroupRevisionRecallReviewRequest>;
+
+export interface CreateSavedGroupRevisionRecallReviewResponse {
+  revision: SavedGroupRevision;
+}
+export const CreateSavedGroupRevisionRecallReviewResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      revision: SavedGroupRevision,
+    }),
+  ).annotate({
+    identifier: "CreateSavedGroupRevisionRecallReviewResponse",
+  }) as any as S.Schema<CreateSavedGroupRevisionRecallReviewResponse>;
+
+export interface CreateSavedGroupRevisionReopenRequest {
+  savedGroupId: string;
+  version: number;
+}
+export const CreateSavedGroupRevisionReopenRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      savedGroupId: S.String.pipe(T.Label()),
+      version: S.Number.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/v1/saved-groups-revisions/{savedGroupId}/{version}/reopen",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateSavedGroupRevisionReopenRequest",
+}) as any as S.Schema<CreateSavedGroupRevisionReopenRequest>;
+
+export interface CreateSavedGroupRevisionReopenResponse {
+  revision: SavedGroupRevision;
+}
+export const CreateSavedGroupRevisionReopenResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      revision: SavedGroupRevision,
+    }),
+).annotate({
+  identifier: "CreateSavedGroupRevisionReopenResponse",
+}) as any as S.Schema<CreateSavedGroupRevisionReopenResponse>;
+
+export interface CreateSavedGroupRevisionRequestReviewRequest {
+  savedGroupId: string;
+  version: number;
+  autoPublishOnApproval?: boolean;
+  /** Set to true to acknowledge the warnings listed in a blocked response and continue. This covers experiment guards, locked dependents, and references affected by an archive. When the organization treats schema failures as warnings, it also covers schema and invariant warnings. It never bypasses a rejected Custom Hook. On revision publish endpoints, it can also force-publish an out-of-date draft when the caller has Bypass draft approvals access. */
+  ignoreWarnings?: boolean;
+}
+export const CreateSavedGroupRevisionRequestReviewRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      savedGroupId: S.String.pipe(T.Label()),
+      version: S.Number.pipe(T.Label()),
+      autoPublishOnApproval: S.optional(S.Boolean),
+      ignoreWarnings: S.optional(S.Boolean),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/v1/saved-groups-revisions/{savedGroupId}/{version}/request-review",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateSavedGroupRevisionRequestReviewRequest",
+  }) as any as S.Schema<CreateSavedGroupRevisionRequestReviewRequest>;
+
+export interface CreateSavedGroupRevisionRequestReviewResponse {
+  revision: SavedGroupRevision;
+}
+export const CreateSavedGroupRevisionRequestReviewResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      revision: SavedGroupRevision,
+    }),
+  ).annotate({
+    identifier: "CreateSavedGroupRevisionRequestReviewResponse",
+  }) as any as S.Schema<CreateSavedGroupRevisionRequestReviewResponse>;
+
+/** Whether to stage the revert as a draft or publish it immediately. Defaults to `draft`, or to `publish` when the org enables 'reverts bypass approval'. */
+export type CreateSavedGroupRevisionRevertRequestStrategy = "draft" | "publish";
+export const CreateSavedGroupRevisionRevertRequestStrategy =
+  /*@__PURE__*/ S.String;
+
+export interface CreateSavedGroupRevisionRevertRequest {
+  savedGroupId: string;
+  version: number;
+  /** Whether to stage the revert as a draft or publish it immediately. Defaults to `draft`, or to `publish` when the org enables 'reverts bypass approval'. */
+  strategy?: CreateSavedGroupRevisionRevertRequestStrategy | (string & {});
+  title?: string;
+  comment?: string;
+  /** Set to true to acknowledge the warnings listed in a blocked response and continue. This covers experiment guards, locked dependents, and references affected by an archive. When the organization treats schema failures as warnings, it also covers schema and invariant warnings. It never bypasses a rejected Custom Hook. On revision publish endpoints, it can also force-publish an out-of-date draft when the caller has Bypass draft approvals access. */
+  ignoreWarnings?: boolean;
+}
+export const CreateSavedGroupRevisionRevertRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      savedGroupId: S.String.pipe(T.Label()),
+      version: S.Number.pipe(T.Label()),
+      strategy: S.optional(CreateSavedGroupRevisionRevertRequestStrategy),
+      title: S.optional(S.String),
+      comment: S.optional(S.String),
+      ignoreWarnings: S.optional(S.Boolean),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/v1/saved-groups-revisions/{savedGroupId}/{version}/revert",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateSavedGroupRevisionRevertRequest",
+}) as any as S.Schema<CreateSavedGroupRevisionRevertRequest>;
+
+/** Gates that would have blocked this publish but were bypassed by the caller's authority. Present only when at least one gate was bypassed. */
+export type CreateSavedGroupRevisionRevertResponseBypassedGatesList =
+  Array<BypassedGates>;
+export const CreateSavedGroupRevisionRevertResponseBypassedGatesList =
+  /*@__PURE__*/ S.Array(
+    BypassedGates,
+  ) as any as S.Schema<CreateSavedGroupRevisionRevertResponseBypassedGatesList>;
+
+export interface CreateSavedGroupRevisionRevertResponse {
+  revision: SavedGroupRevision;
+  /** Gates that would have blocked this publish but were bypassed by the caller's authority. Present only when at least one gate was bypassed. */
+  bypassedGates?: CreateSavedGroupRevisionRevertResponseBypassedGatesList;
+}
+export const CreateSavedGroupRevisionRevertResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      revision: SavedGroupRevision,
+      bypassedGates: S.optional(
+        CreateSavedGroupRevisionRevertResponseBypassedGatesList,
+      ),
+    }),
+).annotate({
+  identifier: "CreateSavedGroupRevisionRevertResponse",
+}) as any as S.Schema<CreateSavedGroupRevisionRevertResponse>;
+
+export interface CreateSavedGroupRevisionSchedulePublishRequest {
+  savedGroupId: string;
+  version: number;
+  /** When to publish, as an RFC3339 timestamp (e.g. `2026-01-31T09:00:00Z` or `2026-01-31T02:00:00-07:00`), or `null` to cancel a pending schedule. */
+  scheduledPublishAt: string | null;
+  lockEdits?: boolean;
+  lockOthers?: boolean;
+  bypassApproval?: boolean;
+  /** Set to true to acknowledge the warnings listed in a blocked response and continue. This covers experiment guards, locked dependents, and references affected by an archive. When the organization treats schema failures as warnings, it also covers schema and invariant warnings. It never bypasses a rejected Custom Hook. On revision publish endpoints, it can also force-publish an out-of-date draft when the caller has Bypass draft approvals access. */
+  ignoreWarnings?: boolean;
+}
+export const CreateSavedGroupRevisionSchedulePublishRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      savedGroupId: S.String.pipe(T.Label()),
+      version: S.Number.pipe(T.Label()),
+      scheduledPublishAt: S.NullOr(S.String),
+      lockEdits: S.optional(S.Boolean),
+      lockOthers: S.optional(S.Boolean),
+      bypassApproval: S.optional(S.Boolean),
+      ignoreWarnings: S.optional(S.Boolean),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/v1/saved-groups-revisions/{savedGroupId}/{version}/schedule-publish",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateSavedGroupRevisionSchedulePublishRequest",
+  }) as any as S.Schema<CreateSavedGroupRevisionSchedulePublishRequest>;
+
+export interface CreateSavedGroupRevisionSchedulePublishResponse {
+  revision: SavedGroupRevision;
+}
+export const CreateSavedGroupRevisionSchedulePublishResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      revision: SavedGroupRevision,
+    }),
+  ).annotate({
+    identifier: "CreateSavedGroupRevisionSchedulePublishResponse",
+  }) as any as S.Schema<CreateSavedGroupRevisionSchedulePublishResponse>;
+
+export type CreateSavedGroupRevisionSubmitReviewRequestDecision =
+  | "approve"
+  | "request-changes"
+  | "comment";
+export const CreateSavedGroupRevisionSubmitReviewRequestDecision =
+  /*@__PURE__*/ S.String;
+
+export interface CreateSavedGroupRevisionSubmitReviewRequest {
+  savedGroupId: string;
+  version: number;
+  decision: CreateSavedGroupRevisionSubmitReviewRequestDecision | (string & {});
+  comment?: string;
+  skipAutoPublish?: boolean;
+}
+export const CreateSavedGroupRevisionSubmitReviewRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      savedGroupId: S.String.pipe(T.Label()),
+      version: S.Number.pipe(T.Label()),
+      decision: CreateSavedGroupRevisionSubmitReviewRequestDecision,
+      comment: S.optional(S.String),
+      skipAutoPublish: S.optional(S.Boolean),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/v1/saved-groups-revisions/{savedGroupId}/{version}/submit-review",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateSavedGroupRevisionSubmitReviewRequest",
+  }) as any as S.Schema<CreateSavedGroupRevisionSubmitReviewRequest>;
+
+export interface CreateSavedGroupRevisionSubmitReviewResponse {
+  revision: SavedGroupRevision;
+  autoPublished?: boolean;
+}
+export const CreateSavedGroupRevisionSubmitReviewResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      revision: SavedGroupRevision,
+      autoPublished: S.optional(S.Boolean),
+    }),
+  ).annotate({
+    identifier: "CreateSavedGroupRevisionSubmitReviewResponse",
+  }) as any as S.Schema<CreateSavedGroupRevisionSubmitReviewResponse>;
+
+export interface CreateSavedGroupRevisionUndoReviewRequest {
+  savedGroupId: string;
+  version: number;
+}
+export const CreateSavedGroupRevisionUndoReviewRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      savedGroupId: S.String.pipe(T.Label()),
+      version: S.Number.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/v1/saved-groups-revisions/{savedGroupId}/{version}/undo-review",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateSavedGroupRevisionUndoReviewRequest",
+  }) as any as S.Schema<CreateSavedGroupRevisionUndoReviewRequest>;
+
+export interface CreateSavedGroupRevisionUndoReviewResponse {
+  revision: SavedGroupRevision;
+}
+export const CreateSavedGroupRevisionUndoReviewResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      revision: SavedGroupRevision,
+    }),
+  ).annotate({
+    identifier: "CreateSavedGroupRevisionUndoReviewResponse",
+  }) as any as S.Schema<CreateSavedGroupRevisionUndoReviewResponse>;
+
+export type CreateSdkConnectionRequestProjectsList = Array<string>;
+export const CreateSdkConnectionRequestProjectsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateSdkConnectionRequestProjectsList>;
+
+export type CreateSdkConnectionRequestAllowedCustomFieldsInMetadataList =
+  Array<string>;
+export const CreateSdkConnectionRequestAllowedCustomFieldsInMetadataList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateSdkConnectionRequestAllowedCustomFieldsInMetadataList>;
+
+export interface CreateSdkConnectionRequest {
+  name: string;
+  language: string;
+  sdkVersion?: string;
+  environment: string;
+  projects?: CreateSdkConnectionRequestProjectsList;
+  encryptPayload?: boolean;
+  includeVisualExperiments?: boolean;
+  includeDraftExperiments?: boolean;
+  /** When true, experiment-ref rules linked to draft experiments are included in feature definitions. Off by default. */
+  includeDraftExperimentRefs?: boolean;
+  includeExperimentNames?: boolean;
+  includeRedirectExperiments?: boolean;
+  includeRuleIds?: boolean;
+  includeProjectIdInMetadata?: boolean;
+  includeCustomFieldsInMetadata?: boolean;
+  allowedCustomFieldsInMetadata?: CreateSdkConnectionRequestAllowedCustomFieldsInMetadataList;
+  includeTagsInMetadata?: boolean;
+  includeExperimentScheduleInMetadata?: boolean;
+  proxyEnabled?: boolean;
+  proxyHost?: string;
+  hashSecureAttributes?: boolean;
+  remoteEvalEnabled?: boolean;
+  savedGroupReferencesEnabled?: boolean;
+}
+export const CreateSdkConnectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    language: S.String,
+    sdkVersion: S.optional(S.String),
+    environment: S.String,
+    projects: S.optional(CreateSdkConnectionRequestProjectsList),
+    encryptPayload: S.optional(S.Boolean),
+    includeVisualExperiments: S.optional(S.Boolean),
+    includeDraftExperiments: S.optional(S.Boolean),
+    includeDraftExperimentRefs: S.optional(S.Boolean),
+    includeExperimentNames: S.optional(S.Boolean),
+    includeRedirectExperiments: S.optional(S.Boolean),
+    includeRuleIds: S.optional(S.Boolean),
+    includeProjectIdInMetadata: S.optional(S.Boolean),
+    includeCustomFieldsInMetadata: S.optional(S.Boolean),
+    allowedCustomFieldsInMetadata: S.optional(
+      CreateSdkConnectionRequestAllowedCustomFieldsInMetadataList,
+    ),
+    includeTagsInMetadata: S.optional(S.Boolean),
+    includeExperimentScheduleInMetadata: S.optional(S.Boolean),
+    proxyEnabled: S.optional(S.Boolean),
+    proxyHost: S.optional(S.String),
+    hashSecureAttributes: S.optional(S.Boolean),
+    remoteEvalEnabled: S.optional(S.Boolean),
+    savedGroupReferencesEnabled: S.optional(S.Boolean),
+  }).pipe(T.Http({ method: "POST", uri: "/v1/sdk-connections", code: 200 })),
+).annotate({
+  identifier: "CreateSdkConnectionRequest",
+}) as any as S.Schema<CreateSdkConnectionRequest>;
+
+export type SdkConnectionLanguagesList = Array<string>;
+export const SdkConnectionLanguagesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SdkConnectionLanguagesList>;
+
+export type SdkConnectionProjectsList = Array<string>;
+export const SdkConnectionProjectsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SdkConnectionProjectsList>;
+
+export type SdkConnectionAllowedCustomFieldsInMetadataList = Array<string>;
+export const SdkConnectionAllowedCustomFieldsInMetadataList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<SdkConnectionAllowedCustomFieldsInMetadataList>;
+
+export interface SdkConnection {
+  id: string;
+  dateCreated: string;
+  dateUpdated: string;
+  name: string;
+  organization: string;
+  languages: SdkConnectionLanguagesList;
+  sdkVersion?: string;
+  environment: string;
+  /** Use 'projects' instead. This is only for backwards compatibility and contains the first project only. */
+  project: string;
+  projects?: SdkConnectionProjectsList;
+  encryptPayload: boolean;
+  encryptionKey: string;
+  includeVisualExperiments?: boolean;
+  includeDraftExperiments?: boolean;
+  /** When true, experiment-ref rules linked to draft experiments are included in feature definitions. Off by default. */
+  includeDraftExperimentRefs?: boolean;
+  includeExperimentNames?: boolean;
+  includeRedirectExperiments?: boolean;
+  includeRuleIds?: boolean;
+  includeProjectIdInMetadata?: boolean;
+  includeCustomFieldsInMetadata?: boolean;
+  allowedCustomFieldsInMetadata?: SdkConnectionAllowedCustomFieldsInMetadataList;
+  includeTagsInMetadata?: boolean;
+  includeExperimentScheduleInMetadata?: boolean;
+  key: string;
+  proxyEnabled: boolean;
+  proxyHost: string;
+  proxySigningKey: string;
+  sseEnabled?: boolean;
+  hashSecureAttributes?: boolean;
+  remoteEvalEnabled?: boolean;
+  savedGroupReferencesEnabled?: boolean;
+}
+export const SdkConnection = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    dateCreated: S.String,
+    dateUpdated: S.String,
+    name: S.String,
+    organization: S.String,
+    languages: SdkConnectionLanguagesList,
+    sdkVersion: S.optional(S.String),
+    environment: S.String,
+    project: S.String,
+    projects: S.optional(SdkConnectionProjectsList),
+    encryptPayload: S.Boolean,
+    encryptionKey: S.String,
+    includeVisualExperiments: S.optional(S.Boolean),
+    includeDraftExperiments: S.optional(S.Boolean),
+    includeDraftExperimentRefs: S.optional(S.Boolean),
+    includeExperimentNames: S.optional(S.Boolean),
+    includeRedirectExperiments: S.optional(S.Boolean),
+    includeRuleIds: S.optional(S.Boolean),
+    includeProjectIdInMetadata: S.optional(S.Boolean),
+    includeCustomFieldsInMetadata: S.optional(S.Boolean),
+    allowedCustomFieldsInMetadata: S.optional(
+      SdkConnectionAllowedCustomFieldsInMetadataList,
+    ),
+    includeTagsInMetadata: S.optional(S.Boolean),
+    includeExperimentScheduleInMetadata: S.optional(S.Boolean),
+    key: S.String,
+    proxyEnabled: S.Boolean,
+    proxyHost: S.String,
+    proxySigningKey: S.String,
+    sseEnabled: S.optional(S.Boolean),
+    hashSecureAttributes: S.optional(S.Boolean),
+    remoteEvalEnabled: S.optional(S.Boolean),
+    savedGroupReferencesEnabled: S.optional(S.Boolean),
+  }),
+).annotate({ identifier: "SdkConnection" }) as any as S.Schema<SdkConnection>;
+
+export interface CreateSdkConnectionResponse {
+  sdkConnection: SdkConnection;
+}
+export const CreateSdkConnectionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    sdkConnection: SdkConnection,
+  }),
+).annotate({
+  identifier: "CreateSdkConnectionResponse",
+}) as any as S.Schema<CreateSdkConnectionResponse>;
+
+/** List of project IDs for projects that can access this segment */
+export type CreateSegmentRequestProjectsList = Array<string>;
+export const CreateSegmentRequestProjectsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateSegmentRequestProjectsList>;
+
+/** Where this Segment must be managed from. If not set (empty string), it can be managed from anywhere. */
+export type CreateSegmentRequestManagedBy = "" | "api";
+export const CreateSegmentRequestManagedBy = /*@__PURE__*/ S.String;
+
+/** GrowthBook supports two types of Segments, SQL and FACT. SQL segments are defined by a SQL query, and FACT segments are defined by a fact table and filters. */
+export type CreateSegmentRequestType = "SQL" | "FACT";
+export const CreateSegmentRequestType = /*@__PURE__*/ S.String;
+
+/** Optional array of fact table filter ids that can further define the Fact Table based Segment. */
+export type CreateSegmentRequestFiltersList = Array<string>;
+export const CreateSegmentRequestFiltersList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateSegmentRequestFiltersList>;
+
+export interface CreateSegmentRequest {
+  /** Name of the segment */
+  name: string;
+  /** The userId or email address of the owner. If an email address is provided, it will be used to look up the userId of the matching organization member. If an ID is provided, it will be validated as existing in the organization. */
+  owner?: string;
+  /** Description of the segment */
+  description?: string;
+  /** ID of the datasource this segment belongs to */
+  datasourceId: string;
+  /** Type of identifier (user, anonymous, etc.) */
+  identifierType: string;
+  /** List of project IDs for projects that can access this segment */
+  projects?: CreateSegmentRequestProjectsList;
+  /** Where this Segment must be managed from. If not set (empty string), it can be managed from anywhere. */
+  managedBy?: CreateSegmentRequestManagedBy | (string & {});
+  /** GrowthBook supports two types of Segments, SQL and FACT. SQL segments are defined by a SQL query, and FACT segments are defined by a fact table and filters. */
+  type: CreateSegmentRequestType | (string & {});
+  /** SQL query that defines the Segment. This is required for SQL segments. */
+  query?: string;
+  /** ID of the fact table this segment belongs to. This is required for FACT segments. */
+  factTableId?: string;
+  /** Optional array of fact table filter ids that can further define the Fact Table based Segment. */
+  filters?: CreateSegmentRequestFiltersList;
+}
+export const CreateSegmentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    owner: S.optional(S.String),
+    description: S.optional(S.String),
+    datasourceId: S.String,
+    identifierType: S.String,
+    projects: S.optional(CreateSegmentRequestProjectsList),
+    managedBy: S.optional(CreateSegmentRequestManagedBy),
+    type: CreateSegmentRequestType,
+    query: S.optional(S.String),
+    factTableId: S.optional(S.String),
+    filters: S.optional(CreateSegmentRequestFiltersList),
+  }).pipe(T.Http({ method: "POST", uri: "/v1/segments", code: 200 })),
+).annotate({
+  identifier: "CreateSegmentRequest",
+}) as any as S.Schema<CreateSegmentRequest>;
+
+/** Where this segment must be managed from. If not set (empty string), it can be managed from anywhere. */
+export type SegmentManagedBy = "" | "api" | "config";
+export const SegmentManagedBy = /*@__PURE__*/ S.String;
+
+export type SegmentType = "SQL" | "FACT";
+export const SegmentType = /*@__PURE__*/ S.String;
+
+export type SegmentFiltersList = Array<string>;
+export const SegmentFiltersList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SegmentFiltersList>;
+
+export type SegmentProjectsList = Array<string>;
+export const SegmentProjectsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SegmentProjectsList>;
+
+export interface Segment {
+  id: string;
+  /** The userId of the owner (or raw owner name/email for legacy records) */
+  owner: string;
+  /** The email address of the owner, when the owner can be resolved to a known user. */
+  ownerEmail?: string;
+  datasourceId: string;
+  identifierType: string;
+  name: string;
+  description?: string;
+  query?: string;
+  dateCreated: string;
+  dateUpdated: string;
+  /** Where this segment must be managed from. If not set (empty string), it can be managed from anywhere. */
+  managedBy?: SegmentManagedBy;
+  type?: SegmentType;
+  factTableId?: string;
+  filters?: SegmentFiltersList;
+  projects?: SegmentProjectsList;
+}
+export const Segment = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    owner: S.String,
+    ownerEmail: S.optional(S.String),
+    datasourceId: S.String,
+    identifierType: S.String,
+    name: S.String,
+    description: S.optional(S.String),
+    query: S.optional(S.String),
+    dateCreated: S.String,
+    dateUpdated: S.String,
+    managedBy: S.optional(SegmentManagedBy),
+    type: S.optional(SegmentType),
+    factTableId: S.optional(S.String),
+    filters: S.optional(SegmentFiltersList),
+    projects: S.optional(SegmentProjectsList),
+  }),
+).annotate({ identifier: "Segment" }) as any as S.Schema<Segment>;
+
+export interface CreateSegmentResponse {
+  segment: Segment;
+}
+export const CreateSegmentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    segment: Segment,
+  }),
+).annotate({
+  identifier: "CreateSegmentResponse",
+}) as any as S.Schema<CreateSegmentResponse>;
+
 /** An empty array means 'all environments' */
 export type CreateTeamRequestEnvironmentsList = Array<string>;
 export const CreateTeamRequestEnvironmentsList = /*@__PURE__*/ S.Array(
@@ -11236,314 +20691,6 @@ export const DeleteConfigRevisionProjectionRequest = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "DeleteConfigRevisionProjectionRequest",
 }) as any as S.Schema<DeleteConfigRevisionProjectionRequest>;
-
-export type ConfigRevisionStatus =
-  | "draft"
-  | "pending-review"
-  | "approved"
-  | "changes-requested"
-  | "merged"
-  | "discarded";
-export const ConfigRevisionStatus = /*@__PURE__*/ S.String;
-
-export type ConfigRevisionContributorsList = Array<string>;
-export const ConfigRevisionContributorsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ConfigRevisionContributorsList>;
-
-export type ConfigRevisionReviewDecision =
-  | "approve"
-  | "request-changes"
-  | "comment";
-export const ConfigRevisionReviewDecision = /*@__PURE__*/ S.String;
-
-export interface ConfigRevisionReview {
-  id: string;
-  userId: string;
-  decision: ConfigRevisionReviewDecision;
-  comment?: string;
-  /** True if a later review cycle (re-submit, approval reset, recall, or reopen) superseded this verdict. Stale verdicts are kept for attribution but no longer count as an active approval or change-request. */
-  stale?: boolean;
-  dateCreated: string;
-}
-export const ConfigRevisionReview = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    userId: S.String,
-    decision: ConfigRevisionReviewDecision,
-    comment: S.optional(S.String),
-    stale: S.optional(S.Boolean),
-    dateCreated: S.String,
-  }),
-).annotate({
-  identifier: "ConfigRevisionReview",
-}) as any as S.Schema<ConfigRevisionReview>;
-
-export type ConfigRevisionReviewsList = Array<ConfigRevisionReview>;
-export const ConfigRevisionReviewsList = /*@__PURE__*/ S.Array(
-  ConfigRevisionReview,
-) as any as S.Schema<ConfigRevisionReviewsList>;
-
-export type ConfigRevisionActivityLogEntryAction =
-  | "created"
-  | "updated"
-  | "reviewed"
-  | "approved"
-  | "requested-changes"
-  | "commented"
-  | "review-requested"
-  | "review-retracted"
-  | "merged"
-  | "discarded"
-  | "reopened"
-  | "recalled"
-  | "scheduled-publish"
-  | "scheduled-publish-updated"
-  | "scheduled-publish-canceled"
-  | "merge-recovered";
-export const ConfigRevisionActivityLogEntryAction = /*@__PURE__*/ S.String;
-
-export interface ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0 {
-  op: string;
-  path: string;
-  value: unknown;
-}
-export const ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0 =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      op: S.String,
-      path: S.String,
-      value: S.Unknown,
-    }),
-  ).annotate({
-    identifier:
-      "ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0",
-  }) as any as S.Schema<ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0>;
-
-export interface ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase1 {
-  op: string;
-  path: string;
-}
-export const ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase1 =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      op: S.String,
-      path: S.String,
-    }),
-  ).annotate({
-    identifier:
-      "ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase1",
-  }) as any as S.Schema<ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase1>;
-
-export type ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase2 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
-export const ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase2 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
-
-export interface ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3 {
-  op: string;
-  from: string;
-  path: string;
-}
-export const ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3 =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      op: S.String,
-      from: S.String,
-      path: S.String,
-    }),
-  ).annotate({
-    identifier:
-      "ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3",
-  }) as any as S.Schema<ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3>;
-
-export type ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase4 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3;
-export const ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase4 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3;
-
-export type ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase5 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
-export const ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase5 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
-
-export type ConfigRevisionActivityLogEntryProposedChangesSnapshotItem =
-  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0
-  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase1
-  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0
-  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3
-  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3
-  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
-export const ConfigRevisionActivityLogEntryProposedChangesSnapshotItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConfigRevisionActivityLogEntryProposedChangesSnapshotItem>;
-
-export type ConfigRevisionActivityLogEntryProposedChangesSnapshotList =
-  Array<ConfigRevisionActivityLogEntryProposedChangesSnapshotItem>;
-export const ConfigRevisionActivityLogEntryProposedChangesSnapshotList =
-  /*@__PURE__*/ S.Array(
-    ConfigRevisionActivityLogEntryProposedChangesSnapshotItem,
-  ) as any as S.Schema<ConfigRevisionActivityLogEntryProposedChangesSnapshotList>;
-
-export interface ConfigRevisionActivityLogEntry {
-  id: string;
-  userId: string;
-  action: ConfigRevisionActivityLogEntryAction;
-  description?: string | null;
-  proposedChangesSnapshot?: ConfigRevisionActivityLogEntryProposedChangesSnapshotList;
-  targetSnapshot?: unknown;
-  dateCreated: string;
-}
-export const ConfigRevisionActivityLogEntry = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    userId: S.String,
-    action: ConfigRevisionActivityLogEntryAction,
-    description: S.optional(S.NullOr(S.String)),
-    proposedChangesSnapshot: S.optional(
-      ConfigRevisionActivityLogEntryProposedChangesSnapshotList,
-    ),
-    targetSnapshot: S.optional(S.Unknown),
-    dateCreated: S.String,
-  }),
-).annotate({
-  identifier: "ConfigRevisionActivityLogEntry",
-}) as any as S.Schema<ConfigRevisionActivityLogEntry>;
-
-export type ConfigRevisionActivityLogList =
-  Array<ConfigRevisionActivityLogEntry>;
-export const ConfigRevisionActivityLogList = /*@__PURE__*/ S.Array(
-  ConfigRevisionActivityLogEntry,
-) as any as S.Schema<ConfigRevisionActivityLogList>;
-
-export type ConfigRevisionResolutionAction = "merged" | "discarded";
-export const ConfigRevisionResolutionAction = /*@__PURE__*/ S.String;
-
-export interface ConfigRevisionResolution {
-  action: ConfigRevisionResolutionAction;
-  userId: string;
-  dateCreated: string;
-}
-export const ConfigRevisionResolution = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    action: ConfigRevisionResolutionAction,
-    userId: S.String,
-    dateCreated: S.String,
-  }),
-).annotate({
-  identifier: "ConfigRevisionResolution",
-}) as any as S.Schema<ConfigRevisionResolution>;
-
-export type ConfigRevisionProposedChangesItemCase0 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
-export const ConfigRevisionProposedChangesItemCase0 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
-
-export type ConfigRevisionProposedChangesItemCase1 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase1;
-export const ConfigRevisionProposedChangesItemCase1 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase1;
-
-export type ConfigRevisionProposedChangesItemCase2 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
-export const ConfigRevisionProposedChangesItemCase2 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
-
-export type ConfigRevisionProposedChangesItemCase3 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3;
-export const ConfigRevisionProposedChangesItemCase3 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3;
-
-export type ConfigRevisionProposedChangesItemCase4 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3;
-export const ConfigRevisionProposedChangesItemCase4 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3;
-
-export type ConfigRevisionProposedChangesItemCase5 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
-export const ConfigRevisionProposedChangesItemCase5 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
-
-export type ConfigRevisionProposedChangesItem =
-  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0
-  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase1
-  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0
-  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3
-  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3
-  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
-export const ConfigRevisionProposedChangesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConfigRevisionProposedChangesItem>;
-
-export type ConfigRevisionProposedChangesList =
-  Array<ConfigRevisionProposedChangesItem>;
-export const ConfigRevisionProposedChangesList = /*@__PURE__*/ S.Array(
-  ConfigRevisionProposedChangesItem,
-) as any as S.Schema<ConfigRevisionProposedChangesList>;
-
-export interface ConfigRevision {
-  id: string;
-  version?: number;
-  title?: string;
-  status: ConfigRevisionStatus;
-  authorId: string;
-  authorEmail?: string;
-  contributors?: ConfigRevisionContributorsList;
-  revertedFrom?: string;
-  reviews: ConfigRevisionReviewsList;
-  activityLog: ConfigRevisionActivityLogList;
-  /** Publish automatically the moment this revision is approved. */
-  autoPublishOnApproval?: boolean;
-  /** User the deferred publish will run as. Its authority is re-checked when the publish fires. */
-  autoPublishEnabledBy?: string;
-  /** When the deferred publish fires. Absent when the revision publishes on approval instead, or is not armed at all. */
-  scheduledPublishAt?: string;
-  /** Content edits to this revision are frozen until it fires. */
-  scheduledPublishLockEdits?: boolean;
-  /** Other revisions of the same resource cannot publish until this one fires or is cancelled. */
-  scheduledPublishLockOthers?: boolean;
-  /** Armed by a caller who bypassed the approval requirement. Such a schedule must be cancelled and re-armed rather than edited. */
-  scheduledPublishBypassApproval?: boolean;
-  /** How many times the poller has tried to publish this revision. */
-  scheduledPublishAttempts?: number;
-  /** Why the most recent deferred-publish attempt failed. */
-  scheduledPublishLastError?: string;
-  /** When the poller stopped retrying. Giving up CLEARS the schedule and disarms auto-publish, so nothing fires again until the revision is re-armed. The draft is left open, with `scheduledPublishLastError` preserved for context. */
-  scheduledPublishGaveUpAt?: string;
-  resolution?: ConfigRevisionResolution;
-  dateCreated: string;
-  dateUpdated: string;
-  baseConfig: Config;
-  proposedConfig: Config;
-  proposedChanges: ConfigRevisionProposedChangesList;
-}
-export const ConfigRevision = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    version: S.optional(S.Number),
-    title: S.optional(S.String),
-    status: ConfigRevisionStatus,
-    authorId: S.String,
-    authorEmail: S.optional(S.String),
-    contributors: S.optional(ConfigRevisionContributorsList),
-    revertedFrom: S.optional(S.String),
-    reviews: ConfigRevisionReviewsList,
-    activityLog: ConfigRevisionActivityLogList,
-    autoPublishOnApproval: S.optional(S.Boolean),
-    autoPublishEnabledBy: S.optional(S.String),
-    scheduledPublishAt: S.optional(S.String),
-    scheduledPublishLockEdits: S.optional(S.Boolean),
-    scheduledPublishLockOthers: S.optional(S.Boolean),
-    scheduledPublishBypassApproval: S.optional(S.Boolean),
-    scheduledPublishAttempts: S.optional(S.Number),
-    scheduledPublishLastError: S.optional(S.String),
-    scheduledPublishGaveUpAt: S.optional(S.String),
-    resolution: S.optional(ConfigRevisionResolution),
-    dateCreated: S.String,
-    dateUpdated: S.String,
-    baseConfig: Config,
-    proposedConfig: Config,
-    proposedChanges: ConfigRevisionProposedChangesList,
-  }),
-).annotate({ identifier: "ConfigRevision" }) as any as S.Schema<ConfigRevision>;
 
 export interface DeleteConfigRevisionProjectionResponse {
   revision: ConfigRevision;
@@ -14366,57 +23513,6 @@ export const GetArchetypeRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetArchetypeRequest",
 }) as any as S.Schema<GetArchetypeRequest>;
 
-/** The attributes to set when using this Archetype */
-export type ArchetypeAttributesMap = { [key: string]: unknown | undefined };
-export const ArchetypeAttributesMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<ArchetypeAttributesMap>;
-
-export type ArchetypeProjectsList = Array<string>;
-export const ArchetypeProjectsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ArchetypeProjectsList>;
-
-/** Limit this Archetype to specific environments. Omit or leave empty to apply to all environments. */
-export type ArchetypeEnvironmentsList = Array<string>;
-export const ArchetypeEnvironmentsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ArchetypeEnvironmentsList>;
-
-export interface Archetype {
-  id: string;
-  dateCreated: string;
-  dateUpdated: string;
-  name: string;
-  description?: string;
-  /** The userId of the owner (or raw owner name/email for legacy records) */
-  owner: string;
-  /** The email address of the owner, when the owner can be resolved to a known user. */
-  ownerEmail?: string;
-  isPublic: boolean;
-  /** The attributes to set when using this Archetype */
-  attributes: ArchetypeAttributesMap;
-  projects?: ArchetypeProjectsList;
-  /** Limit this Archetype to specific environments. Omit or leave empty to apply to all environments. */
-  environments?: ArchetypeEnvironmentsList;
-}
-export const Archetype = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    dateCreated: S.String,
-    dateUpdated: S.String,
-    name: S.String,
-    description: S.optional(S.String),
-    owner: S.String,
-    ownerEmail: S.optional(S.String),
-    isPublic: S.Boolean,
-    attributes: ArchetypeAttributesMap,
-    projects: S.optional(ArchetypeProjectsList),
-    environments: S.optional(ArchetypeEnvironmentsList),
-  }),
-).annotate({ identifier: "Archetype" }) as any as S.Schema<Archetype>;
-
 export interface GetArchetypeResponse {
   archetype: Archetype;
 }
@@ -15048,109 +24144,6 @@ export const GetConfigSchemaRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetConfigSchemaRequest",
 }) as any as S.Schema<GetConfigSchemaRequest>;
 
-/** A JSON Schema document (an object). */
-export type ConfigSchemaSourceCase0ValueMap = {
-  [key: string]: unknown | undefined;
-};
-export const ConfigSchemaSourceCase0ValueMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<ConfigSchemaSourceCase0ValueMap>;
-
-export interface ConfigSchemaSourceCase0 {
-  type: string;
-  /** A JSON Schema document (an object). */
-  value: ConfigSchemaSourceCase0ValueMap;
-}
-export const ConfigSchemaSourceCase0 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.String,
-    value: ConfigSchemaSourceCase0ValueMap,
-  }),
-).annotate({
-  identifier: "ConfigSchemaSourceCase0",
-}) as any as S.Schema<ConfigSchemaSourceCase0>;
-
-export interface ConfigSchemaSourceCase1 {
-  type: string;
-  /** TypeScript source — an interface or object type. */
-  value: string;
-}
-export const ConfigSchemaSourceCase1 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.String,
-    value: S.String,
-  }),
-).annotate({
-  identifier: "ConfigSchemaSourceCase1",
-}) as any as S.Schema<ConfigSchemaSourceCase1>;
-
-export interface ConfigSchemaSourceCase2 {
-  type: string;
-  /** Protobuf (proto3) source — a `message` definition. */
-  value: string;
-}
-export const ConfigSchemaSourceCase2 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.String,
-    value: S.String,
-  }),
-).annotate({
-  identifier: "ConfigSchemaSourceCase2",
-}) as any as S.Schema<ConfigSchemaSourceCase2>;
-
-export interface ConfigSchemaSourceCase3 {
-  type: string;
-  /** Python source — a Pydantic `BaseModel` class. */
-  value: string;
-}
-export const ConfigSchemaSourceCase3 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.String,
-    value: S.String,
-  }),
-).annotate({
-  identifier: "ConfigSchemaSourceCase3",
-}) as any as S.Schema<ConfigSchemaSourceCase3>;
-
-export interface ConfigSchemaSourceCase4 {
-  type: string;
-  /** Go source — a `struct` definition. */
-  value: string;
-}
-export const ConfigSchemaSourceCase4 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.String,
-    value: S.String,
-  }),
-).annotate({
-  identifier: "ConfigSchemaSourceCase4",
-}) as any as S.Schema<ConfigSchemaSourceCase4>;
-
-export interface ConfigSchemaSourceCase5 {
-  type: string;
-  /** Rust source — a serde `struct` definition. */
-  value: string;
-}
-export const ConfigSchemaSourceCase5 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.String,
-    value: S.String,
-  }),
-).annotate({
-  identifier: "ConfigSchemaSourceCase5",
-}) as any as S.Schema<ConfigSchemaSourceCase5>;
-
-export type ConfigSchemaSource =
-  | ConfigSchemaSourceCase0
-  | ConfigSchemaSourceCase1
-  | ConfigSchemaSourceCase2
-  | ConfigSchemaSourceCase3
-  | ConfigSchemaSourceCase4
-  | ConfigSchemaSourceCase5;
-export const ConfigSchemaSource =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConfigSchemaSource>;
-
 export interface GetConfigSchemaResponse {
   /** The config's schema in the requested format: a JSON Schema document (`{ type: "json-schema", value }`) or rendered TypeScript source (`{ type: "typescript", value }`). */
   schema: ConfigSchemaSource;
@@ -15268,282 +24261,6 @@ export const GetConstantRevisionRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetConstantRevisionRequest",
 }) as any as S.Schema<GetConstantRevisionRequest>;
-
-export type ConstantRevisionStatus =
-  | "draft"
-  | "pending-review"
-  | "approved"
-  | "changes-requested"
-  | "merged"
-  | "discarded";
-export const ConstantRevisionStatus = /*@__PURE__*/ S.String;
-
-export type ConstantRevisionContributorsList = Array<string>;
-export const ConstantRevisionContributorsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ConstantRevisionContributorsList>;
-
-export type ConstantRevisionReviewDecision =
-  | "approve"
-  | "request-changes"
-  | "comment";
-export const ConstantRevisionReviewDecision = /*@__PURE__*/ S.String;
-
-export interface ConstantRevisionReview {
-  id: string;
-  userId: string;
-  decision: ConstantRevisionReviewDecision;
-  comment?: string;
-  /** True if a later review cycle (re-submit, approval reset, recall, or reopen) superseded this verdict. Stale verdicts are kept for attribution but no longer count as an active approval or change-request. */
-  stale?: boolean;
-  dateCreated: string;
-}
-export const ConstantRevisionReview = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    userId: S.String,
-    decision: ConstantRevisionReviewDecision,
-    comment: S.optional(S.String),
-    stale: S.optional(S.Boolean),
-    dateCreated: S.String,
-  }),
-).annotate({
-  identifier: "ConstantRevisionReview",
-}) as any as S.Schema<ConstantRevisionReview>;
-
-export type ConstantRevisionReviewsList = Array<ConstantRevisionReview>;
-export const ConstantRevisionReviewsList = /*@__PURE__*/ S.Array(
-  ConstantRevisionReview,
-) as any as S.Schema<ConstantRevisionReviewsList>;
-
-export type ConstantRevisionActivityLogEntryAction =
-  | "created"
-  | "updated"
-  | "reviewed"
-  | "approved"
-  | "requested-changes"
-  | "commented"
-  | "review-requested"
-  | "review-retracted"
-  | "merged"
-  | "discarded"
-  | "reopened"
-  | "recalled"
-  | "scheduled-publish"
-  | "scheduled-publish-updated"
-  | "scheduled-publish-canceled"
-  | "merge-recovered";
-export const ConstantRevisionActivityLogEntryAction = /*@__PURE__*/ S.String;
-
-export type ConstantRevisionActivityLogEntryProposedChangesSnapshotItemCase0 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
-export const ConstantRevisionActivityLogEntryProposedChangesSnapshotItemCase0 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
-
-export type ConstantRevisionActivityLogEntryProposedChangesSnapshotItemCase1 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase1;
-export const ConstantRevisionActivityLogEntryProposedChangesSnapshotItemCase1 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase1;
-
-export type ConstantRevisionActivityLogEntryProposedChangesSnapshotItemCase2 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
-export const ConstantRevisionActivityLogEntryProposedChangesSnapshotItemCase2 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
-
-export type ConstantRevisionActivityLogEntryProposedChangesSnapshotItemCase3 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3;
-export const ConstantRevisionActivityLogEntryProposedChangesSnapshotItemCase3 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3;
-
-export type ConstantRevisionActivityLogEntryProposedChangesSnapshotItemCase4 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3;
-export const ConstantRevisionActivityLogEntryProposedChangesSnapshotItemCase4 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3;
-
-export type ConstantRevisionActivityLogEntryProposedChangesSnapshotItemCase5 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
-export const ConstantRevisionActivityLogEntryProposedChangesSnapshotItemCase5 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
-
-export type ConstantRevisionActivityLogEntryProposedChangesSnapshotItem =
-  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0
-  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase1
-  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0
-  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3
-  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3
-  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
-export const ConstantRevisionActivityLogEntryProposedChangesSnapshotItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConstantRevisionActivityLogEntryProposedChangesSnapshotItem>;
-
-export type ConstantRevisionActivityLogEntryProposedChangesSnapshotList =
-  Array<ConstantRevisionActivityLogEntryProposedChangesSnapshotItem>;
-export const ConstantRevisionActivityLogEntryProposedChangesSnapshotList =
-  /*@__PURE__*/ S.Array(
-    ConstantRevisionActivityLogEntryProposedChangesSnapshotItem,
-  ) as any as S.Schema<ConstantRevisionActivityLogEntryProposedChangesSnapshotList>;
-
-export interface ConstantRevisionActivityLogEntry {
-  id: string;
-  userId: string;
-  action: ConstantRevisionActivityLogEntryAction;
-  description?: string | null;
-  proposedChangesSnapshot?: ConstantRevisionActivityLogEntryProposedChangesSnapshotList;
-  targetSnapshot?: unknown;
-  dateCreated: string;
-}
-export const ConstantRevisionActivityLogEntry = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    userId: S.String,
-    action: ConstantRevisionActivityLogEntryAction,
-    description: S.optional(S.NullOr(S.String)),
-    proposedChangesSnapshot: S.optional(
-      ConstantRevisionActivityLogEntryProposedChangesSnapshotList,
-    ),
-    targetSnapshot: S.optional(S.Unknown),
-    dateCreated: S.String,
-  }),
-).annotate({
-  identifier: "ConstantRevisionActivityLogEntry",
-}) as any as S.Schema<ConstantRevisionActivityLogEntry>;
-
-export type ConstantRevisionActivityLogList =
-  Array<ConstantRevisionActivityLogEntry>;
-export const ConstantRevisionActivityLogList = /*@__PURE__*/ S.Array(
-  ConstantRevisionActivityLogEntry,
-) as any as S.Schema<ConstantRevisionActivityLogList>;
-
-export type ConstantRevisionResolutionAction = "merged" | "discarded";
-export const ConstantRevisionResolutionAction = /*@__PURE__*/ S.String;
-
-export interface ConstantRevisionResolution {
-  action: ConstantRevisionResolutionAction;
-  userId: string;
-  dateCreated: string;
-}
-export const ConstantRevisionResolution = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    action: ConstantRevisionResolutionAction,
-    userId: S.String,
-    dateCreated: S.String,
-  }),
-).annotate({
-  identifier: "ConstantRevisionResolution",
-}) as any as S.Schema<ConstantRevisionResolution>;
-
-export type ConstantRevisionProposedChangesItemCase0 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
-export const ConstantRevisionProposedChangesItemCase0 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
-
-export type ConstantRevisionProposedChangesItemCase1 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase1;
-export const ConstantRevisionProposedChangesItemCase1 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase1;
-
-export type ConstantRevisionProposedChangesItemCase2 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
-export const ConstantRevisionProposedChangesItemCase2 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
-
-export type ConstantRevisionProposedChangesItemCase3 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3;
-export const ConstantRevisionProposedChangesItemCase3 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3;
-
-export type ConstantRevisionProposedChangesItemCase4 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3;
-export const ConstantRevisionProposedChangesItemCase4 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3;
-
-export type ConstantRevisionProposedChangesItemCase5 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
-export const ConstantRevisionProposedChangesItemCase5 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
-
-export type ConstantRevisionProposedChangesItem =
-  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0
-  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase1
-  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0
-  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3
-  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3
-  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
-export const ConstantRevisionProposedChangesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConstantRevisionProposedChangesItem>;
-
-export type ConstantRevisionProposedChangesList =
-  Array<ConstantRevisionProposedChangesItem>;
-export const ConstantRevisionProposedChangesList = /*@__PURE__*/ S.Array(
-  ConstantRevisionProposedChangesItem,
-) as any as S.Schema<ConstantRevisionProposedChangesList>;
-
-export interface ConstantRevision {
-  id: string;
-  version?: number;
-  title?: string;
-  status: ConstantRevisionStatus;
-  authorId: string;
-  authorEmail?: string;
-  contributors?: ConstantRevisionContributorsList;
-  revertedFrom?: string;
-  reviews: ConstantRevisionReviewsList;
-  activityLog: ConstantRevisionActivityLogList;
-  /** Publish automatically the moment this revision is approved. */
-  autoPublishOnApproval?: boolean;
-  /** User the deferred publish will run as. Its authority is re-checked when the publish fires. */
-  autoPublishEnabledBy?: string;
-  /** When the deferred publish fires. Absent when the revision publishes on approval instead, or is not armed at all. */
-  scheduledPublishAt?: string;
-  /** Content edits to this revision are frozen until it fires. */
-  scheduledPublishLockEdits?: boolean;
-  /** Other revisions of the same resource cannot publish until this one fires or is cancelled. */
-  scheduledPublishLockOthers?: boolean;
-  /** Armed by a caller who bypassed the approval requirement. Such a schedule must be cancelled and re-armed rather than edited. */
-  scheduledPublishBypassApproval?: boolean;
-  /** How many times the poller has tried to publish this revision. */
-  scheduledPublishAttempts?: number;
-  /** Why the most recent deferred-publish attempt failed. */
-  scheduledPublishLastError?: string;
-  /** When the poller stopped retrying. Giving up CLEARS the schedule and disarms auto-publish, so nothing fires again until the revision is re-armed. The draft is left open, with `scheduledPublishLastError` preserved for context. */
-  scheduledPublishGaveUpAt?: string;
-  resolution?: ConstantRevisionResolution;
-  dateCreated: string;
-  dateUpdated: string;
-  baseConstant: Constant;
-  proposedConstant: Constant;
-  proposedChanges: ConstantRevisionProposedChangesList;
-}
-export const ConstantRevision = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    version: S.optional(S.Number),
-    title: S.optional(S.String),
-    status: ConstantRevisionStatus,
-    authorId: S.String,
-    authorEmail: S.optional(S.String),
-    contributors: S.optional(ConstantRevisionContributorsList),
-    revertedFrom: S.optional(S.String),
-    reviews: ConstantRevisionReviewsList,
-    activityLog: ConstantRevisionActivityLogList,
-    autoPublishOnApproval: S.optional(S.Boolean),
-    autoPublishEnabledBy: S.optional(S.String),
-    scheduledPublishAt: S.optional(S.String),
-    scheduledPublishLockEdits: S.optional(S.Boolean),
-    scheduledPublishLockOthers: S.optional(S.Boolean),
-    scheduledPublishBypassApproval: S.optional(S.Boolean),
-    scheduledPublishAttempts: S.optional(S.Number),
-    scheduledPublishLastError: S.optional(S.String),
-    scheduledPublishGaveUpAt: S.optional(S.String),
-    resolution: S.optional(ConstantRevisionResolution),
-    dateCreated: S.String,
-    dateUpdated: S.String,
-    baseConstant: Constant,
-    proposedConstant: Constant,
-    proposedChanges: ConstantRevisionProposedChangesList,
-  }),
-).annotate({
-  identifier: "ConstantRevision",
-}) as any as S.Schema<ConstantRevision>;
 
 export interface GetConstantRevisionResponse {
   revision: ConstantRevision;
@@ -16482,64 +25199,6 @@ export const GetCustomHookRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetCustomHookRequest",
 }) as any as S.Schema<GetCustomHookRequest>;
 
-/** Which save/publish event runs the hook (and which entity type it validates) */
-export type CustomHookHook =
-  | "validateFeature"
-  | "validateFeatureRevision"
-  | "validateConfig"
-  | "validateConfigRevision"
-  | "validateExperiment";
-export const CustomHookHook = /*@__PURE__*/ S.String;
-
-/** Project ids the hook applies to (empty = all projects). Always empty for entity-scoped hooks. */
-export type CustomHookProjectsList = Array<string>;
-export const CustomHookProjectsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<CustomHookProjectsList>;
-
-/** Set (with entityId) to scope the hook to a single resource. */
-export type CustomHookEntityType = "feature" | "config" | "experiment";
-export const CustomHookEntityType = /*@__PURE__*/ S.String;
-
-export interface CustomHook {
-  id: string;
-  name: string;
-  /** Which save/publish event runs the hook (and which entity type it validates) */
-  hook: CustomHookHook;
-  /** JavaScript function body executed in the sandbox. Throw an Error to block the save; call `addWarning(msg)` for a soft warning. */
-  code: string;
-  enabled: boolean;
-  /** Project ids the hook applies to (empty = all projects). Always empty for entity-scoped hooks. */
-  projects: CustomHookProjectsList;
-  /** Set (with entityId) to scope the hook to a single resource. */
-  entityType?: CustomHookEntityType;
-  /** The scoped resource: a feature id, or a config key. A config-scoped hook always runs for that config and every config that inherits from it (via parent/extends, transitively). */
-  entityId?: string;
-  /** When true, errors/warnings that already existed before the change being validated are suppressed */
-  incrementalChangesOnly?: boolean;
-  lastSuccess?: string;
-  lastFailure?: string;
-  dateCreated: string;
-  dateUpdated: string;
-}
-export const CustomHook = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    name: S.String,
-    hook: CustomHookHook,
-    code: S.String,
-    enabled: S.Boolean,
-    projects: CustomHookProjectsList,
-    entityType: S.optional(CustomHookEntityType),
-    entityId: S.optional(S.String),
-    incrementalChangesOnly: S.optional(S.Boolean),
-    lastSuccess: S.optional(S.String),
-    lastFailure: S.optional(S.String),
-    dateCreated: S.String,
-    dateUpdated: S.String,
-  }),
-).annotate({ identifier: "CustomHook" }) as any as S.Schema<CustomHook>;
-
 export interface GetCustomHookResponse {
   customHook: CustomHook;
 }
@@ -16775,42 +25434,6 @@ export const GetDimensionRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetDimensionRequest",
 }) as any as S.Schema<GetDimensionRequest>;
 
-/** Where this dimension must be managed from. If not set (empty string), it can be managed from anywhere. */
-export type DimensionManagedBy = "" | "api" | "config";
-export const DimensionManagedBy = /*@__PURE__*/ S.String;
-
-export interface Dimension {
-  id: string;
-  dateCreated: string;
-  dateUpdated: string;
-  /** The userId of the owner (or raw owner name/email for legacy records) */
-  owner: string;
-  /** The email address of the owner, when the owner can be resolved to a known user. */
-  ownerEmail?: string;
-  datasourceId: string;
-  identifierType: string;
-  name: string;
-  description?: string;
-  query: string;
-  /** Where this dimension must be managed from. If not set (empty string), it can be managed from anywhere. */
-  managedBy?: DimensionManagedBy;
-}
-export const Dimension = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    dateCreated: S.String,
-    dateUpdated: S.String,
-    owner: S.String,
-    ownerEmail: S.optional(S.String),
-    datasourceId: S.String,
-    identifierType: S.String,
-    name: S.String,
-    description: S.optional(S.String),
-    query: S.String,
-    managedBy: S.optional(DimensionManagedBy),
-  }),
-).annotate({ identifier: "Dimension" }) as any as S.Schema<Dimension>;
-
 export interface GetDimensionResponse {
   dimension: Dimension;
 }
@@ -16833,791 +25456,6 @@ export const GetExperimentRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetExperimentRequest",
 }) as any as S.Schema<GetExperimentRequest>;
-
-export type ExperimentWithEnhancedStatusType =
-  | "standard"
-  | "multi-armed-bandit"
-  | "holdout";
-export const ExperimentWithEnhancedStatusType = /*@__PURE__*/ S.String;
-
-export type ExperimentWithEnhancedStatusTagsList = Array<string>;
-export const ExperimentWithEnhancedStatusTagsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ExperimentWithEnhancedStatusTagsList>;
-
-export type ExperimentWithEnhancedStatusVariationsItemScreenshotsList =
-  Array<string>;
-export const ExperimentWithEnhancedStatusVariationsItemScreenshotsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ExperimentWithEnhancedStatusVariationsItemScreenshotsList>;
-
-export interface ExperimentWithEnhancedStatusVariationsItem {
-  variationId: string;
-  key: string;
-  name: string;
-  description: string;
-  screenshots: ExperimentWithEnhancedStatusVariationsItemScreenshotsList;
-}
-export const ExperimentWithEnhancedStatusVariationsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      variationId: S.String,
-      key: S.String,
-      name: S.String,
-      description: S.String,
-      screenshots: ExperimentWithEnhancedStatusVariationsItemScreenshotsList,
-    }),
-  ).annotate({
-    identifier: "ExperimentWithEnhancedStatusVariationsItem",
-  }) as any as S.Schema<ExperimentWithEnhancedStatusVariationsItem>;
-
-export type ExperimentWithEnhancedStatusVariationsList =
-  Array<ExperimentWithEnhancedStatusVariationsItem>;
-export const ExperimentWithEnhancedStatusVariationsList = /*@__PURE__*/ S.Array(
-  ExperimentWithEnhancedStatusVariationsItem,
-) as any as S.Schema<ExperimentWithEnhancedStatusVariationsList>;
-
-export type ExperimentWithEnhancedStatusPhasesItemTrafficSplitItem =
-  ContextualBanditVariationWeightsItem;
-export const ExperimentWithEnhancedStatusPhasesItemTrafficSplitItem =
-  ContextualBanditVariationWeightsItem;
-
-export type ExperimentWithEnhancedStatusPhasesItemTrafficSplitList =
-  Array<ContextualBanditVariationWeightsItem>;
-export const ExperimentWithEnhancedStatusPhasesItemTrafficSplitList =
-  /*@__PURE__*/ S.Array(
-    ContextualBanditVariationWeightsItem,
-  ) as any as S.Schema<ExperimentWithEnhancedStatusPhasesItemTrafficSplitList>;
-
-export type ExperimentWithEnhancedStatusPhasesItemNamespaceRangeList =
-  Array<number>;
-export const ExperimentWithEnhancedStatusPhasesItemNamespaceRangeList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<ExperimentWithEnhancedStatusPhasesItemNamespaceRangeList>;
-
-export type ExperimentWithEnhancedStatusPhasesItemNamespaceRangesItemList =
-  Array<unknown>;
-export const ExperimentWithEnhancedStatusPhasesItemNamespaceRangesItemList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<ExperimentWithEnhancedStatusPhasesItemNamespaceRangesItemList>;
-
-export type ExperimentWithEnhancedStatusPhasesItemNamespaceRangesList =
-  Array<ExperimentWithEnhancedStatusPhasesItemNamespaceRangesItemList>;
-export const ExperimentWithEnhancedStatusPhasesItemNamespaceRangesList =
-  /*@__PURE__*/ S.Array(
-    ExperimentWithEnhancedStatusPhasesItemNamespaceRangesItemList,
-  ) as any as S.Schema<ExperimentWithEnhancedStatusPhasesItemNamespaceRangesList>;
-
-export interface ExperimentWithEnhancedStatusPhasesItemNamespace {
-  namespaceId: string;
-  enabled?: boolean;
-  range?: ExperimentWithEnhancedStatusPhasesItemNamespaceRangeList;
-  ranges?: ExperimentWithEnhancedStatusPhasesItemNamespaceRangesList;
-}
-export const ExperimentWithEnhancedStatusPhasesItemNamespace =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      namespaceId: S.String,
-      enabled: S.optional(S.Boolean),
-      range: S.optional(
-        ExperimentWithEnhancedStatusPhasesItemNamespaceRangeList,
-      ),
-      ranges: S.optional(
-        ExperimentWithEnhancedStatusPhasesItemNamespaceRangesList,
-      ),
-    }),
-  ).annotate({
-    identifier: "ExperimentWithEnhancedStatusPhasesItemNamespace",
-  }) as any as S.Schema<ExperimentWithEnhancedStatusPhasesItemNamespace>;
-
-export type ExperimentWithEnhancedStatusPhasesItemPrerequisitesItem =
-  RampScheduleStartActionsItemPatchPrerequisitesItem;
-export const ExperimentWithEnhancedStatusPhasesItemPrerequisitesItem =
-  RampScheduleStartActionsItemPatchPrerequisitesItem;
-
-export type ExperimentWithEnhancedStatusPhasesItemPrerequisitesList =
-  Array<RampScheduleStartActionsItemPatchPrerequisitesItem>;
-export const ExperimentWithEnhancedStatusPhasesItemPrerequisitesList =
-  /*@__PURE__*/ S.Array(
-    RampScheduleStartActionsItemPatchPrerequisitesItem,
-  ) as any as S.Schema<ExperimentWithEnhancedStatusPhasesItemPrerequisitesList>;
-
-export type ExperimentWithEnhancedStatusPhasesItemSavedGroupTargetingItemMatchType =
-  | "all"
-  | "any"
-  | "none";
-export const ExperimentWithEnhancedStatusPhasesItemSavedGroupTargetingItemMatchType =
-  /*@__PURE__*/ S.String;
-
-export type ExperimentWithEnhancedStatusPhasesItemSavedGroupTargetingItemSavedGroupsList =
-  Array<string>;
-export const ExperimentWithEnhancedStatusPhasesItemSavedGroupTargetingItemSavedGroupsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ExperimentWithEnhancedStatusPhasesItemSavedGroupTargetingItemSavedGroupsList>;
-
-export interface ExperimentWithEnhancedStatusPhasesItemSavedGroupTargetingItem {
-  matchType: ExperimentWithEnhancedStatusPhasesItemSavedGroupTargetingItemMatchType;
-  savedGroups: ExperimentWithEnhancedStatusPhasesItemSavedGroupTargetingItemSavedGroupsList;
-}
-export const ExperimentWithEnhancedStatusPhasesItemSavedGroupTargetingItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      matchType:
-        ExperimentWithEnhancedStatusPhasesItemSavedGroupTargetingItemMatchType,
-      savedGroups:
-        ExperimentWithEnhancedStatusPhasesItemSavedGroupTargetingItemSavedGroupsList,
-    }),
-  ).annotate({
-    identifier: "ExperimentWithEnhancedStatusPhasesItemSavedGroupTargetingItem",
-  }) as any as S.Schema<ExperimentWithEnhancedStatusPhasesItemSavedGroupTargetingItem>;
-
-export type ExperimentWithEnhancedStatusPhasesItemSavedGroupTargetingList =
-  Array<ExperimentWithEnhancedStatusPhasesItemSavedGroupTargetingItem>;
-export const ExperimentWithEnhancedStatusPhasesItemSavedGroupTargetingList =
-  /*@__PURE__*/ S.Array(
-    ExperimentWithEnhancedStatusPhasesItemSavedGroupTargetingItem,
-  ) as any as S.Schema<ExperimentWithEnhancedStatusPhasesItemSavedGroupTargetingList>;
-
-export interface ExperimentWithEnhancedStatusPhasesItem {
-  name: string;
-  dateStarted: string;
-  dateEnded: string;
-  reasonForStopping: string;
-  seed: string;
-  coverage: number;
-  trafficSplit: ExperimentWithEnhancedStatusPhasesItemTrafficSplitList;
-  namespace?: ExperimentWithEnhancedStatusPhasesItemNamespace;
-  targetingCondition: string;
-  prerequisites?: ExperimentWithEnhancedStatusPhasesItemPrerequisitesList;
-  savedGroupTargeting?: ExperimentWithEnhancedStatusPhasesItemSavedGroupTargetingList;
-}
-export const ExperimentWithEnhancedStatusPhasesItem = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      name: S.String,
-      dateStarted: S.String,
-      dateEnded: S.String,
-      reasonForStopping: S.String,
-      seed: S.String,
-      coverage: S.Number,
-      trafficSplit: ExperimentWithEnhancedStatusPhasesItemTrafficSplitList,
-      namespace: S.optional(ExperimentWithEnhancedStatusPhasesItemNamespace),
-      targetingCondition: S.String,
-      prerequisites: S.optional(
-        ExperimentWithEnhancedStatusPhasesItemPrerequisitesList,
-      ),
-      savedGroupTargeting: S.optional(
-        ExperimentWithEnhancedStatusPhasesItemSavedGroupTargetingList,
-      ),
-    }),
-).annotate({
-  identifier: "ExperimentWithEnhancedStatusPhasesItem",
-}) as any as S.Schema<ExperimentWithEnhancedStatusPhasesItem>;
-
-export type ExperimentWithEnhancedStatusPhasesList =
-  Array<ExperimentWithEnhancedStatusPhasesItem>;
-export const ExperimentWithEnhancedStatusPhasesList = /*@__PURE__*/ S.Array(
-  ExperimentWithEnhancedStatusPhasesItem,
-) as any as S.Schema<ExperimentWithEnhancedStatusPhasesList>;
-
-export type ExperimentAnalysisSettingsInProgressConversions =
-  | "include"
-  | "exclude";
-export const ExperimentAnalysisSettingsInProgressConversions =
-  /*@__PURE__*/ S.String;
-
-/** Setting attribution model to `"experimentDuration"` is the same as selecting "Ignore Conversion Windows" for the Conversion Window Override. Setting it to `"lookbackOverride"` requires a `lookbackOverride` object to be provided. */
-export type ExperimentAnalysisSettingsAttributionModel =
-  | "firstExposure"
-  | "experimentDuration"
-  | "lookbackOverride";
-export const ExperimentAnalysisSettingsAttributionModel =
-  /*@__PURE__*/ S.String;
-
-export type LookbackOverrideType = "date" | "window";
-export const LookbackOverrideType = /*@__PURE__*/ S.String;
-
-/** For "window" type - non-negative numeric value (e.g. 7 for 7 days). For "date" type a date string. */
-export type LookbackOverrideValue = number | string;
-export const LookbackOverrideValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LookbackOverrideValue>;
-
-/** Used when type is "window". Defaults to "days". */
-export type LookbackOverrideValueUnit = "minutes" | "hours" | "days" | "weeks";
-export const LookbackOverrideValueUnit = /*@__PURE__*/ S.String;
-
-/** Controls the lookback override for the experiment. For type "window", value must be a non-negative number and valueUnit is required. */
-export interface LookbackOverride {
-  type: LookbackOverrideType;
-  /** For "window" type - non-negative numeric value (e.g. 7 for 7 days). For "date" type a date string. */
-  value: LookbackOverrideValue;
-  /** Used when type is "window". Defaults to "days". */
-  valueUnit?: LookbackOverrideValueUnit;
-}
-export const LookbackOverride = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: LookbackOverrideType,
-    value: LookbackOverrideValue,
-    valueUnit: S.optional(LookbackOverrideValueUnit),
-  }),
-).annotate({
-  identifier: "LookbackOverride",
-}) as any as S.Schema<LookbackOverride>;
-
-export type ExperimentAnalysisSettingsStatsEngine = "bayesian" | "frequentist";
-export const ExperimentAnalysisSettingsStatsEngine = /*@__PURE__*/ S.String;
-
-export interface ExperimentDecisionFrameworkSettingsDecisionFrameworkMetricOverridesItem {
-  /** ID of the metric to override settings for. */
-  id: string;
-  /** The target relative MDE to use for the metric, expressed as proportions (e.g. use 0.1 for 10%). Must be greater than 0. */
-  targetMDE?: number;
-}
-export const ExperimentDecisionFrameworkSettingsDecisionFrameworkMetricOverridesItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.String,
-      targetMDE: S.optional(S.Number),
-    }),
-  ).annotate({
-    identifier:
-      "ExperimentDecisionFrameworkSettingsDecisionFrameworkMetricOverridesItem",
-  }) as any as S.Schema<ExperimentDecisionFrameworkSettingsDecisionFrameworkMetricOverridesItem>;
-
-export type ExperimentDecisionFrameworkSettingsDecisionFrameworkMetricOverridesList =
-  Array<ExperimentDecisionFrameworkSettingsDecisionFrameworkMetricOverridesItem>;
-export const ExperimentDecisionFrameworkSettingsDecisionFrameworkMetricOverridesList =
-  /*@__PURE__*/ S.Array(
-    ExperimentDecisionFrameworkSettingsDecisionFrameworkMetricOverridesItem,
-  ) as any as S.Schema<ExperimentDecisionFrameworkSettingsDecisionFrameworkMetricOverridesList>;
-
-/** Controls the decision framework and metric overrides for the experiment. Replaces the entire stored object on update (does not patch individual fields). */
-export interface ExperimentDecisionFrameworkSettings {
-  decisionCriteriaId?: string;
-  decisionFrameworkMetricOverrides?: ExperimentDecisionFrameworkSettingsDecisionFrameworkMetricOverridesList;
-}
-export const ExperimentDecisionFrameworkSettings = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    decisionCriteriaId: S.optional(S.String),
-    decisionFrameworkMetricOverrides: S.optional(
-      ExperimentDecisionFrameworkSettingsDecisionFrameworkMetricOverridesList,
-    ),
-  }),
-).annotate({
-  identifier: "ExperimentDecisionFrameworkSettings",
-}) as any as S.Schema<ExperimentDecisionFrameworkSettings>;
-
-export type ExperimentMetricOverrideEntryWindowType =
-  | "conversion"
-  | "lookback"
-  | "";
-export const ExperimentMetricOverrideEntryWindowType = /*@__PURE__*/ S.String;
-
-/** Per-metric analysis overrides stored on the experiment (matches internal metricOverrides). */
-export interface ExperimentMetricOverrideEntry {
-  /** ID of the metric to override settings for. */
-  id: string;
-  windowType?: ExperimentMetricOverrideEntryWindowType;
-  windowHours?: number;
-  delayHours?: number;
-  /** Must be true for the override to take effect. If true, the other proper prior settings in this object will be used if present. */
-  properPriorOverride?: boolean;
-  properPriorEnabled?: boolean;
-  properPriorMean?: number;
-  properPriorStdDev?: number;
-  /** Must be true for the override to take effect. If true, the other regression adjustment settings in this object will be used if present. */
-  regressionAdjustmentOverride?: boolean;
-  regressionAdjustmentEnabled?: boolean;
-  regressionAdjustmentDays?: number;
-}
-export const ExperimentMetricOverrideEntry = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    windowType: S.optional(ExperimentMetricOverrideEntryWindowType),
-    windowHours: S.optional(S.Number),
-    delayHours: S.optional(S.Number),
-    properPriorOverride: S.optional(S.Boolean),
-    properPriorEnabled: S.optional(S.Boolean),
-    properPriorMean: S.optional(S.Number),
-    properPriorStdDev: S.optional(S.Number),
-    regressionAdjustmentOverride: S.optional(S.Boolean),
-    regressionAdjustmentEnabled: S.optional(S.Boolean),
-    regressionAdjustmentDays: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ExperimentMetricOverrideEntry",
-}) as any as S.Schema<ExperimentMetricOverrideEntry>;
-
-/** Per-metric analysis overrides; also reflected in goals/secondaryMetrics/guardrails overrides when applicable. On create/update, this replaces the entire stored array (it does not patch individual entries). */
-export type ExperimentAnalysisSettingsMetricOverridesList =
-  Array<ExperimentMetricOverrideEntry>;
-export const ExperimentAnalysisSettingsMetricOverridesList =
-  /*@__PURE__*/ S.Array(
-    ExperimentMetricOverrideEntry,
-  ) as any as S.Schema<ExperimentAnalysisSettingsMetricOverridesList>;
-
-export type ExperimentMetricOverridesWindow = "conversion" | "lookback" | "";
-export const ExperimentMetricOverridesWindow = /*@__PURE__*/ S.String;
-
-export interface ExperimentMetricOverrides {
-  delayHours?: number;
-  windowHours?: number;
-  window?: ExperimentMetricOverridesWindow;
-  winRiskThreshold?: number;
-  loseRiskThreshold?: number;
-  properPriorOverride?: boolean;
-  properPriorEnabled?: boolean;
-  properPriorMean?: number;
-  properPriorStdDev?: number;
-  regressionAdjustmentOverride?: boolean;
-  regressionAdjustmentEnabled?: boolean;
-  regressionAdjustmentDays?: number;
-}
-export const ExperimentMetricOverrides = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    delayHours: S.optional(S.Number),
-    windowHours: S.optional(S.Number),
-    window: S.optional(ExperimentMetricOverridesWindow),
-    winRiskThreshold: S.optional(S.Number),
-    loseRiskThreshold: S.optional(S.Number),
-    properPriorOverride: S.optional(S.Boolean),
-    properPriorEnabled: S.optional(S.Boolean),
-    properPriorMean: S.optional(S.Number),
-    properPriorStdDev: S.optional(S.Number),
-    regressionAdjustmentOverride: S.optional(S.Boolean),
-    regressionAdjustmentEnabled: S.optional(S.Boolean),
-    regressionAdjustmentDays: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ExperimentMetricOverrides",
-}) as any as S.Schema<ExperimentMetricOverrides>;
-
-export interface ExperimentMetric {
-  metricId: string;
-  overrides: ExperimentMetricOverrides;
-}
-export const ExperimentMetric = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    metricId: S.String,
-    overrides: ExperimentMetricOverrides,
-  }),
-).annotate({
-  identifier: "ExperimentMetric",
-}) as any as S.Schema<ExperimentMetric>;
-
-export type ExperimentAnalysisSettingsGoalsList = Array<ExperimentMetric>;
-export const ExperimentAnalysisSettingsGoalsList = /*@__PURE__*/ S.Array(
-  ExperimentMetric,
-) as any as S.Schema<ExperimentAnalysisSettingsGoalsList>;
-
-export type ExperimentAnalysisSettingsSecondaryMetricsList =
-  Array<ExperimentMetric>;
-export const ExperimentAnalysisSettingsSecondaryMetricsList =
-  /*@__PURE__*/ S.Array(
-    ExperimentMetric,
-  ) as any as S.Schema<ExperimentAnalysisSettingsSecondaryMetricsList>;
-
-export type ExperimentAnalysisSettingsGuardrailsList = Array<ExperimentMetric>;
-export const ExperimentAnalysisSettingsGuardrailsList = /*@__PURE__*/ S.Array(
-  ExperimentMetric,
-) as any as S.Schema<ExperimentAnalysisSettingsGuardrailsList>;
-
-export interface ExperimentAnalysisSettings {
-  datasourceId: string;
-  assignmentQueryId: string;
-  experimentId: string;
-  segmentId: string;
-  queryFilter: string;
-  inProgressConversions: ExperimentAnalysisSettingsInProgressConversions;
-  /** Setting attribution model to `"experimentDuration"` is the same as selecting "Ignore Conversion Windows" for the Conversion Window Override. Setting it to `"lookbackOverride"` requires a `lookbackOverride` object to be provided. */
-  attributionModel: ExperimentAnalysisSettingsAttributionModel;
-  lookbackOverride?: LookbackOverride;
-  statsEngine: ExperimentAnalysisSettingsStatsEngine;
-  regressionAdjustmentEnabled?: boolean;
-  sequentialTestingEnabled?: boolean;
-  sequentialTestingTuningParameter?: number;
-  /** When null, the organization default is used. */
-  postStratificationEnabled?: boolean | null;
-  /** Controls the decision framework and metric overrides for the experiment. Replaces the entire stored object on update (does not patch individual fields). */
-  decisionFrameworkSettings?: ExperimentDecisionFrameworkSettings;
-  /** Per-metric analysis overrides; also reflected in goals/secondaryMetrics/guardrails overrides when applicable. On create/update, this replaces the entire stored array (it does not patch individual entries). */
-  metricOverrides?: ExperimentAnalysisSettingsMetricOverridesList;
-  goals: ExperimentAnalysisSettingsGoalsList;
-  secondaryMetrics: ExperimentAnalysisSettingsSecondaryMetricsList;
-  guardrails: ExperimentAnalysisSettingsGuardrailsList;
-  activationMetric?: ExperimentMetric;
-}
-export const ExperimentAnalysisSettings = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    datasourceId: S.String,
-    assignmentQueryId: S.String,
-    experimentId: S.String,
-    segmentId: S.String,
-    queryFilter: S.String,
-    inProgressConversions: ExperimentAnalysisSettingsInProgressConversions,
-    attributionModel: ExperimentAnalysisSettingsAttributionModel,
-    lookbackOverride: S.optional(LookbackOverride),
-    statsEngine: ExperimentAnalysisSettingsStatsEngine,
-    regressionAdjustmentEnabled: S.optional(S.Boolean),
-    sequentialTestingEnabled: S.optional(S.Boolean),
-    sequentialTestingTuningParameter: S.optional(S.Number),
-    postStratificationEnabled: S.optional(S.NullOr(S.Boolean)),
-    decisionFrameworkSettings: S.optional(ExperimentDecisionFrameworkSettings),
-    metricOverrides: S.optional(ExperimentAnalysisSettingsMetricOverridesList),
-    goals: ExperimentAnalysisSettingsGoalsList,
-    secondaryMetrics: ExperimentAnalysisSettingsSecondaryMetricsList,
-    guardrails: ExperimentAnalysisSettingsGuardrailsList,
-    activationMetric: S.optional(ExperimentMetric),
-  }),
-).annotate({
-  identifier: "ExperimentAnalysisSettings",
-}) as any as S.Schema<ExperimentAnalysisSettings>;
-
-export interface ExperimentWithEnhancedStatusResultSummary {
-  status: string;
-  winner: string;
-  conclusions: string;
-  releasedVariationId: string;
-  excludeFromPayload: boolean;
-}
-export const ExperimentWithEnhancedStatusResultSummary =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      status: S.String,
-      winner: S.String,
-      conclusions: S.String,
-      releasedVariationId: S.String,
-      excludeFromPayload: S.Boolean,
-    }),
-  ).annotate({
-    identifier: "ExperimentWithEnhancedStatusResultSummary",
-  }) as any as S.Schema<ExperimentWithEnhancedStatusResultSummary>;
-
-export type ExperimentWithEnhancedStatusShareLevel = "public" | "organization";
-export const ExperimentWithEnhancedStatusShareLevel = /*@__PURE__*/ S.String;
-
-export type ExperimentWithEnhancedStatusBanditScheduleUnit = "days" | "hours";
-export const ExperimentWithEnhancedStatusBanditScheduleUnit =
-  /*@__PURE__*/ S.String;
-
-export type ExperimentWithEnhancedStatusBanditBurnInUnit = "days" | "hours";
-export const ExperimentWithEnhancedStatusBanditBurnInUnit =
-  /*@__PURE__*/ S.String;
-
-export type ExperimentWithEnhancedStatusBanditConversionWindowUnit =
-  | "days"
-  | "hours";
-export const ExperimentWithEnhancedStatusBanditConversionWindowUnit =
-  /*@__PURE__*/ S.String;
-
-export type ExperimentWithEnhancedStatusLinkedFeaturesList = Array<string>;
-export const ExperimentWithEnhancedStatusLinkedFeaturesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ExperimentWithEnhancedStatusLinkedFeaturesList>;
-
-export type ExperimentWithEnhancedStatusCustomFieldsMap = {
-  [key: string]: unknown | undefined;
-};
-export const ExperimentWithEnhancedStatusCustomFieldsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<ExperimentWithEnhancedStatusCustomFieldsMap>;
-
-export type ExperimentWithEnhancedStatusCustomMetricSlicesItemSlicesItemLevelsList =
-  Array<string>;
-export const ExperimentWithEnhancedStatusCustomMetricSlicesItemSlicesItemLevelsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ExperimentWithEnhancedStatusCustomMetricSlicesItemSlicesItemLevelsList>;
-
-export interface ExperimentWithEnhancedStatusCustomMetricSlicesItemSlicesItem {
-  column: string;
-  levels: ExperimentWithEnhancedStatusCustomMetricSlicesItemSlicesItemLevelsList;
-}
-export const ExperimentWithEnhancedStatusCustomMetricSlicesItemSlicesItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      column: S.String,
-      levels:
-        ExperimentWithEnhancedStatusCustomMetricSlicesItemSlicesItemLevelsList,
-    }),
-  ).annotate({
-    identifier: "ExperimentWithEnhancedStatusCustomMetricSlicesItemSlicesItem",
-  }) as any as S.Schema<ExperimentWithEnhancedStatusCustomMetricSlicesItemSlicesItem>;
-
-export type ExperimentWithEnhancedStatusCustomMetricSlicesItemSlicesList =
-  Array<ExperimentWithEnhancedStatusCustomMetricSlicesItemSlicesItem>;
-export const ExperimentWithEnhancedStatusCustomMetricSlicesItemSlicesList =
-  /*@__PURE__*/ S.Array(
-    ExperimentWithEnhancedStatusCustomMetricSlicesItemSlicesItem,
-  ) as any as S.Schema<ExperimentWithEnhancedStatusCustomMetricSlicesItemSlicesList>;
-
-export interface ExperimentWithEnhancedStatusCustomMetricSlicesItem {
-  slices: ExperimentWithEnhancedStatusCustomMetricSlicesItemSlicesList;
-}
-export const ExperimentWithEnhancedStatusCustomMetricSlicesItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      slices: ExperimentWithEnhancedStatusCustomMetricSlicesItemSlicesList,
-    }),
-  ).annotate({
-    identifier: "ExperimentWithEnhancedStatusCustomMetricSlicesItem",
-  }) as any as S.Schema<ExperimentWithEnhancedStatusCustomMetricSlicesItem>;
-
-/** Custom slices that apply to ALL applicable metrics in the experiment */
-export type ExperimentWithEnhancedStatusCustomMetricSlicesList =
-  Array<ExperimentWithEnhancedStatusCustomMetricSlicesItem>;
-export const ExperimentWithEnhancedStatusCustomMetricSlicesList =
-  /*@__PURE__*/ S.Array(
-    ExperimentWithEnhancedStatusCustomMetricSlicesItem,
-  ) as any as S.Schema<ExperimentWithEnhancedStatusCustomMetricSlicesList>;
-
-export type ExperimentWithEnhancedStatusPrecomputedUnitDimensionIdsList =
-  Array<string>;
-export const ExperimentWithEnhancedStatusPrecomputedUnitDimensionIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ExperimentWithEnhancedStatusPrecomputedUnitDimensionIdsList>;
-
-export type ExperimentWithEnhancedStatusStatusUpdateScheduleStopAfterUnit =
-  | "hours"
-  | "days";
-export const ExperimentWithEnhancedStatusStatusUpdateScheduleStopAfterUnit =
-  /*@__PURE__*/ S.String;
-
-/** Relative end offset. Deferred: resolved to a concrete `stopAt` at the experiment's actual start (or off `dateStarted` when already running). */
-export interface ExperimentWithEnhancedStatusStatusUpdateScheduleStopAfter {
-  value: number;
-  unit: ExperimentWithEnhancedStatusStatusUpdateScheduleStopAfterUnit;
-}
-export const ExperimentWithEnhancedStatusStatusUpdateScheduleStopAfter =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      value: S.Number,
-      unit: ExperimentWithEnhancedStatusStatusUpdateScheduleStopAfterUnit,
-    }),
-  ).annotate({
-    identifier: "ExperimentWithEnhancedStatusStatusUpdateScheduleStopAfter",
-  }) as any as S.Schema<ExperimentWithEnhancedStatusStatusUpdateScheduleStopAfter>;
-
-export type ScheduledStopPlanMode =
-  | "notify"
-  | "auto-ship"
-  | "force-ship"
-  | "stop";
-export const ScheduledStopPlanMode = /*@__PURE__*/ S.String;
-
-/** What to do at the scheduled end when there is no clear winner. Required when `mode` is `"auto-ship"`; ignored for other modes. */
-export type ScheduledStopPlanFallback = "notify" | "force-ship";
-export const ScheduledStopPlanFallback = /*@__PURE__*/ S.String;
-
-/** What happens at the scheduled end date. `notify` keeps the experiment running and just notifies (soft). `auto-ship` (requires the Decision Framework) ships the winning variation and stops; multi-winner ties break on `tiebreakerMetricId` (higher lift); with no clear winner, `fallback` either keeps running (`notify`) or ships `fallbackVariationId`. `force-ship` stops and rolls out `fallbackVariationId`. `stop` is a hard deadline that stops with no rollout. For `force-ship` and `stop`, the Decision Framework verdict (won/lost/inconclusive) is recorded as metadata when available. */
-export interface ScheduledStopPlan {
-  mode: ScheduledStopPlanMode | (string & {});
-  tiebreakerMetricId?: string;
-  /** What to do at the scheduled end when there is no clear winner. Required when `mode` is `"auto-ship"`; ignored for other modes. */
-  fallback?: ScheduledStopPlanFallback | (string & {});
-  fallbackVariationId?: string;
-}
-export const ScheduledStopPlan = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    mode: ScheduledStopPlanMode,
-    tiebreakerMetricId: S.optional(S.String),
-    fallback: S.optional(ScheduledStopPlanFallback),
-    fallbackVariationId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ScheduledStopPlan",
-}) as any as S.Schema<ScheduledStopPlan>;
-
-/** Scheduled start/end for an experiment. All fields optional; the end may be an absolute `stopAt` or a deferred relative `stopAfter`, but not both. */
-export interface ExperimentWithEnhancedStatusStatusUpdateSchedule {
-  /** ISO datetime when the experiment should start. Must be in the future. Setting or clearing this field invalidates any existing staged start (`nextScheduledStatusUpdate`); call POST /experiments/{id}/start to stage the new schedule. */
-  startAt?: string;
-  /** ISO datetime when the experiment should stop. Resolved from `stopAfter` at start when a relative end was set. */
-  stopAt?: string;
-  /** Relative end offset. Deferred: resolved to a concrete `stopAt` at the experiment's actual start (or off `dateStarted` when already running). */
-  stopAfter?: ExperimentWithEnhancedStatusStatusUpdateScheduleStopAfter;
-  /** End-of-experiment automation applied at the scheduled end. Required whenever a `stopAt` or `stopAfter` is set (any mode, including `notify`). */
-  scheduledStopPlan?: ScheduledStopPlan;
-}
-export const ExperimentWithEnhancedStatusStatusUpdateSchedule =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      startAt: S.optional(S.String),
-      stopAt: S.optional(S.String),
-      stopAfter: S.optional(
-        ExperimentWithEnhancedStatusStatusUpdateScheduleStopAfter,
-      ),
-      scheduledStopPlan: S.optional(ScheduledStopPlan),
-    }),
-  ).annotate({
-    identifier: "ExperimentWithEnhancedStatusStatusUpdateSchedule",
-  }) as any as S.Schema<ExperimentWithEnhancedStatusStatusUpdateSchedule>;
-
-export type ExperimentWithEnhancedStatusNextScheduledStatusUpdateType =
-  | "start"
-  | "stop";
-export const ExperimentWithEnhancedStatusNextScheduledStatusUpdateType =
-  /*@__PURE__*/ S.String;
-
-export interface ExperimentWithEnhancedStatusNextScheduledStatusUpdate {
-  type: ExperimentWithEnhancedStatusNextScheduledStatusUpdateType;
-  date: string;
-}
-export const ExperimentWithEnhancedStatusNextScheduledStatusUpdate =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: ExperimentWithEnhancedStatusNextScheduledStatusUpdateType,
-      date: S.String,
-    }),
-  ).annotate({
-    identifier: "ExperimentWithEnhancedStatusNextScheduledStatusUpdate",
-  }) as any as S.Schema<ExperimentWithEnhancedStatusNextScheduledStatusUpdate>;
-
-export type ExperimentWithEnhancedStatusEnhancedStatusStatus =
-  | "Running"
-  | "Stopped"
-  | "Draft"
-  | "Scheduled"
-  | "Archived";
-export const ExperimentWithEnhancedStatusEnhancedStatusStatus =
-  /*@__PURE__*/ S.String;
-
-export interface ExperimentWithEnhancedStatusEnhancedStatus {
-  status: ExperimentWithEnhancedStatusEnhancedStatusStatus;
-  detailedStatus?: string;
-}
-export const ExperimentWithEnhancedStatusEnhancedStatus =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      status: ExperimentWithEnhancedStatusEnhancedStatusStatus,
-      detailedStatus: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "ExperimentWithEnhancedStatusEnhancedStatus",
-  }) as any as S.Schema<ExperimentWithEnhancedStatusEnhancedStatus>;
-
-export interface ExperimentWithEnhancedStatus {
-  id: string;
-  trackingKey: string;
-  dateCreated: string;
-  dateUpdated: string;
-  name: string;
-  type: ExperimentWithEnhancedStatusType;
-  project: string;
-  hypothesis: string;
-  description: string;
-  tags: ExperimentWithEnhancedStatusTagsList;
-  /** The userId of the owner (or raw owner name/email for legacy records) */
-  owner: string;
-  /** The email address of the owner, when the owner can be resolved to a known user. */
-  ownerEmail?: string;
-  archived: boolean;
-  status: string;
-  autoRefresh: boolean;
-  hashAttribute: string;
-  fallbackAttribute?: string;
-  hashVersion: number;
-  disableStickyBucketing?: boolean;
-  bucketVersion?: number;
-  minBucketVersion?: number;
-  variations: ExperimentWithEnhancedStatusVariationsList;
-  phases: ExperimentWithEnhancedStatusPhasesList;
-  settings: ExperimentAnalysisSettings;
-  resultSummary?: ExperimentWithEnhancedStatusResultSummary;
-  shareLevel?: ExperimentWithEnhancedStatusShareLevel;
-  publicUrl?: string;
-  banditScheduleValue?: number;
-  banditScheduleUnit?: ExperimentWithEnhancedStatusBanditScheduleUnit;
-  banditBurnInValue?: number;
-  banditBurnInUnit?: ExperimentWithEnhancedStatusBanditBurnInUnit;
-  banditConversionWindowValue?: number;
-  banditConversionWindowUnit?: ExperimentWithEnhancedStatusBanditConversionWindowUnit;
-  linkedFeatures?: ExperimentWithEnhancedStatusLinkedFeaturesList;
-  attributeScopeAllProjects?: boolean;
-  hasVisualChangesets?: boolean;
-  hasURLRedirects?: boolean;
-  customFields?: ExperimentWithEnhancedStatusCustomFieldsMap;
-  /** Custom slices that apply to ALL applicable metrics in the experiment */
-  customMetricSlices?: ExperimentWithEnhancedStatusCustomMetricSlicesList;
-  precomputedUnitDimensionIds?: ExperimentWithEnhancedStatusPrecomputedUnitDimensionIdsList;
-  /** ID of the default dashboard for this experiment. */
-  defaultDashboardId?: string;
-  templateId?: string;
-  statusUpdateSchedule?: ExperimentWithEnhancedStatusStatusUpdateSchedule | null;
-  nextScheduledStatusUpdate?: ExperimentWithEnhancedStatusNextScheduledStatusUpdate | null;
-  enhancedStatus?: ExperimentWithEnhancedStatusEnhancedStatus;
-}
-export const ExperimentWithEnhancedStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    trackingKey: S.String,
-    dateCreated: S.String,
-    dateUpdated: S.String,
-    name: S.String,
-    type: ExperimentWithEnhancedStatusType,
-    project: S.String,
-    hypothesis: S.String,
-    description: S.String,
-    tags: ExperimentWithEnhancedStatusTagsList,
-    owner: S.String,
-    ownerEmail: S.optional(S.String),
-    archived: S.Boolean,
-    status: S.String,
-    autoRefresh: S.Boolean,
-    hashAttribute: S.String,
-    fallbackAttribute: S.optional(S.String),
-    hashVersion: S.Number,
-    disableStickyBucketing: S.optional(S.Boolean),
-    bucketVersion: S.optional(S.Number),
-    minBucketVersion: S.optional(S.Number),
-    variations: ExperimentWithEnhancedStatusVariationsList,
-    phases: ExperimentWithEnhancedStatusPhasesList,
-    settings: ExperimentAnalysisSettings,
-    resultSummary: S.optional(ExperimentWithEnhancedStatusResultSummary),
-    shareLevel: S.optional(ExperimentWithEnhancedStatusShareLevel),
-    publicUrl: S.optional(S.String),
-    banditScheduleValue: S.optional(S.Number),
-    banditScheduleUnit: S.optional(
-      ExperimentWithEnhancedStatusBanditScheduleUnit,
-    ),
-    banditBurnInValue: S.optional(S.Number),
-    banditBurnInUnit: S.optional(ExperimentWithEnhancedStatusBanditBurnInUnit),
-    banditConversionWindowValue: S.optional(S.Number),
-    banditConversionWindowUnit: S.optional(
-      ExperimentWithEnhancedStatusBanditConversionWindowUnit,
-    ),
-    linkedFeatures: S.optional(ExperimentWithEnhancedStatusLinkedFeaturesList),
-    attributeScopeAllProjects: S.optional(S.Boolean),
-    hasVisualChangesets: S.optional(S.Boolean),
-    hasURLRedirects: S.optional(S.Boolean),
-    customFields: S.optional(ExperimentWithEnhancedStatusCustomFieldsMap),
-    customMetricSlices: S.optional(
-      ExperimentWithEnhancedStatusCustomMetricSlicesList,
-    ),
-    precomputedUnitDimensionIds: S.optional(
-      ExperimentWithEnhancedStatusPrecomputedUnitDimensionIdsList,
-    ),
-    defaultDashboardId: S.optional(S.String),
-    templateId: S.optional(S.String),
-    statusUpdateSchedule: S.optional(
-      S.NullOr(ExperimentWithEnhancedStatusStatusUpdateSchedule),
-    ),
-    nextScheduledStatusUpdate: S.optional(
-      S.NullOr(ExperimentWithEnhancedStatusNextScheduledStatusUpdate),
-    ),
-    enhancedStatus: S.optional(ExperimentWithEnhancedStatusEnhancedStatus),
-  }),
-).annotate({
-  identifier: "ExperimentWithEnhancedStatus",
-}) as any as S.Schema<ExperimentWithEnhancedStatus>;
 
 export interface GetExperimentResponse {
   experiment: ExperimentWithEnhancedStatus;
@@ -17687,591 +25525,6 @@ export const GetExperimentResultsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetExperimentResultsRequest",
 }) as any as S.Schema<GetExperimentResultsRequest>;
 
-export type ExperimentType = "standard" | "multi-armed-bandit" | "holdout";
-export const ExperimentType = /*@__PURE__*/ S.String;
-
-export type ExperimentTagsList = Array<string>;
-export const ExperimentTagsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ExperimentTagsList>;
-
-export type ExperimentVariationsItemScreenshotsList = Array<string>;
-export const ExperimentVariationsItemScreenshotsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ExperimentVariationsItemScreenshotsList>;
-
-export interface ExperimentVariationsItem {
-  variationId: string;
-  key: string;
-  name: string;
-  description: string;
-  screenshots: ExperimentVariationsItemScreenshotsList;
-}
-export const ExperimentVariationsItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    variationId: S.String,
-    key: S.String,
-    name: S.String,
-    description: S.String,
-    screenshots: ExperimentVariationsItemScreenshotsList,
-  }),
-).annotate({
-  identifier: "ExperimentVariationsItem",
-}) as any as S.Schema<ExperimentVariationsItem>;
-
-export type ExperimentVariationsList = Array<ExperimentVariationsItem>;
-export const ExperimentVariationsList = /*@__PURE__*/ S.Array(
-  ExperimentVariationsItem,
-) as any as S.Schema<ExperimentVariationsList>;
-
-export type ExperimentPhasesItemTrafficSplitItem =
-  ContextualBanditVariationWeightsItem;
-export const ExperimentPhasesItemTrafficSplitItem =
-  ContextualBanditVariationWeightsItem;
-
-export type ExperimentPhasesItemTrafficSplitList =
-  Array<ContextualBanditVariationWeightsItem>;
-export const ExperimentPhasesItemTrafficSplitList = /*@__PURE__*/ S.Array(
-  ContextualBanditVariationWeightsItem,
-) as any as S.Schema<ExperimentPhasesItemTrafficSplitList>;
-
-export type ExperimentPhasesItemNamespaceRangeList = Array<number>;
-export const ExperimentPhasesItemNamespaceRangeList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<ExperimentPhasesItemNamespaceRangeList>;
-
-export type ExperimentPhasesItemNamespaceRangesItemList = Array<unknown>;
-export const ExperimentPhasesItemNamespaceRangesItemList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<ExperimentPhasesItemNamespaceRangesItemList>;
-
-export type ExperimentPhasesItemNamespaceRangesList =
-  Array<ExperimentPhasesItemNamespaceRangesItemList>;
-export const ExperimentPhasesItemNamespaceRangesList = /*@__PURE__*/ S.Array(
-  ExperimentPhasesItemNamespaceRangesItemList,
-) as any as S.Schema<ExperimentPhasesItemNamespaceRangesList>;
-
-export interface ExperimentPhasesItemNamespace {
-  namespaceId: string;
-  enabled?: boolean;
-  range?: ExperimentPhasesItemNamespaceRangeList;
-  ranges?: ExperimentPhasesItemNamespaceRangesList;
-}
-export const ExperimentPhasesItemNamespace = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    namespaceId: S.String,
-    enabled: S.optional(S.Boolean),
-    range: S.optional(ExperimentPhasesItemNamespaceRangeList),
-    ranges: S.optional(ExperimentPhasesItemNamespaceRangesList),
-  }),
-).annotate({
-  identifier: "ExperimentPhasesItemNamespace",
-}) as any as S.Schema<ExperimentPhasesItemNamespace>;
-
-export type ExperimentPhasesItemPrerequisitesItem =
-  RampScheduleStartActionsItemPatchPrerequisitesItem;
-export const ExperimentPhasesItemPrerequisitesItem =
-  RampScheduleStartActionsItemPatchPrerequisitesItem;
-
-export type ExperimentPhasesItemPrerequisitesList =
-  Array<RampScheduleStartActionsItemPatchPrerequisitesItem>;
-export const ExperimentPhasesItemPrerequisitesList = /*@__PURE__*/ S.Array(
-  RampScheduleStartActionsItemPatchPrerequisitesItem,
-) as any as S.Schema<ExperimentPhasesItemPrerequisitesList>;
-
-export type ExperimentPhasesItemSavedGroupTargetingItemMatchType =
-  | "all"
-  | "any"
-  | "none";
-export const ExperimentPhasesItemSavedGroupTargetingItemMatchType =
-  /*@__PURE__*/ S.String;
-
-export type ExperimentPhasesItemSavedGroupTargetingItemSavedGroupsList =
-  Array<string>;
-export const ExperimentPhasesItemSavedGroupTargetingItemSavedGroupsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ExperimentPhasesItemSavedGroupTargetingItemSavedGroupsList>;
-
-export interface ExperimentPhasesItemSavedGroupTargetingItem {
-  matchType: ExperimentPhasesItemSavedGroupTargetingItemMatchType;
-  savedGroups: ExperimentPhasesItemSavedGroupTargetingItemSavedGroupsList;
-}
-export const ExperimentPhasesItemSavedGroupTargetingItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      matchType: ExperimentPhasesItemSavedGroupTargetingItemMatchType,
-      savedGroups: ExperimentPhasesItemSavedGroupTargetingItemSavedGroupsList,
-    }),
-  ).annotate({
-    identifier: "ExperimentPhasesItemSavedGroupTargetingItem",
-  }) as any as S.Schema<ExperimentPhasesItemSavedGroupTargetingItem>;
-
-export type ExperimentPhasesItemSavedGroupTargetingList =
-  Array<ExperimentPhasesItemSavedGroupTargetingItem>;
-export const ExperimentPhasesItemSavedGroupTargetingList =
-  /*@__PURE__*/ S.Array(
-    ExperimentPhasesItemSavedGroupTargetingItem,
-  ) as any as S.Schema<ExperimentPhasesItemSavedGroupTargetingList>;
-
-export interface ExperimentPhasesItem {
-  name: string;
-  dateStarted: string;
-  dateEnded: string;
-  reasonForStopping: string;
-  seed: string;
-  coverage: number;
-  trafficSplit: ExperimentPhasesItemTrafficSplitList;
-  namespace?: ExperimentPhasesItemNamespace;
-  targetingCondition: string;
-  prerequisites?: ExperimentPhasesItemPrerequisitesList;
-  savedGroupTargeting?: ExperimentPhasesItemSavedGroupTargetingList;
-}
-export const ExperimentPhasesItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    dateStarted: S.String,
-    dateEnded: S.String,
-    reasonForStopping: S.String,
-    seed: S.String,
-    coverage: S.Number,
-    trafficSplit: ExperimentPhasesItemTrafficSplitList,
-    namespace: S.optional(ExperimentPhasesItemNamespace),
-    targetingCondition: S.String,
-    prerequisites: S.optional(ExperimentPhasesItemPrerequisitesList),
-    savedGroupTargeting: S.optional(
-      ExperimentPhasesItemSavedGroupTargetingList,
-    ),
-  }),
-).annotate({
-  identifier: "ExperimentPhasesItem",
-}) as any as S.Schema<ExperimentPhasesItem>;
-
-export type ExperimentPhasesList = Array<ExperimentPhasesItem>;
-export const ExperimentPhasesList = /*@__PURE__*/ S.Array(
-  ExperimentPhasesItem,
-) as any as S.Schema<ExperimentPhasesList>;
-
-export type ExperimentResultSummary = ExperimentWithEnhancedStatusResultSummary;
-export const ExperimentResultSummary =
-  ExperimentWithEnhancedStatusResultSummary;
-
-export type ExperimentShareLevel = "public" | "organization";
-export const ExperimentShareLevel = /*@__PURE__*/ S.String;
-
-export type ExperimentBanditScheduleUnit = "days" | "hours";
-export const ExperimentBanditScheduleUnit = /*@__PURE__*/ S.String;
-
-export type ExperimentBanditBurnInUnit = "days" | "hours";
-export const ExperimentBanditBurnInUnit = /*@__PURE__*/ S.String;
-
-export type ExperimentBanditConversionWindowUnit = "days" | "hours";
-export const ExperimentBanditConversionWindowUnit = /*@__PURE__*/ S.String;
-
-export type ExperimentLinkedFeaturesList = Array<string>;
-export const ExperimentLinkedFeaturesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ExperimentLinkedFeaturesList>;
-
-export type ExperimentCustomFieldsMap = { [key: string]: unknown | undefined };
-export const ExperimentCustomFieldsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<ExperimentCustomFieldsMap>;
-
-export type ExperimentCustomMetricSlicesItemSlicesItemLevelsList =
-  Array<string>;
-export const ExperimentCustomMetricSlicesItemSlicesItemLevelsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ExperimentCustomMetricSlicesItemSlicesItemLevelsList>;
-
-export interface ExperimentCustomMetricSlicesItemSlicesItem {
-  column: string;
-  levels: ExperimentCustomMetricSlicesItemSlicesItemLevelsList;
-}
-export const ExperimentCustomMetricSlicesItemSlicesItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      column: S.String,
-      levels: ExperimentCustomMetricSlicesItemSlicesItemLevelsList,
-    }),
-  ).annotate({
-    identifier: "ExperimentCustomMetricSlicesItemSlicesItem",
-  }) as any as S.Schema<ExperimentCustomMetricSlicesItemSlicesItem>;
-
-export type ExperimentCustomMetricSlicesItemSlicesList =
-  Array<ExperimentCustomMetricSlicesItemSlicesItem>;
-export const ExperimentCustomMetricSlicesItemSlicesList = /*@__PURE__*/ S.Array(
-  ExperimentCustomMetricSlicesItemSlicesItem,
-) as any as S.Schema<ExperimentCustomMetricSlicesItemSlicesList>;
-
-export interface ExperimentCustomMetricSlicesItem {
-  slices: ExperimentCustomMetricSlicesItemSlicesList;
-}
-export const ExperimentCustomMetricSlicesItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    slices: ExperimentCustomMetricSlicesItemSlicesList,
-  }),
-).annotate({
-  identifier: "ExperimentCustomMetricSlicesItem",
-}) as any as S.Schema<ExperimentCustomMetricSlicesItem>;
-
-/** Custom slices that apply to ALL applicable metrics in the experiment */
-export type ExperimentCustomMetricSlicesList =
-  Array<ExperimentCustomMetricSlicesItem>;
-export const ExperimentCustomMetricSlicesList = /*@__PURE__*/ S.Array(
-  ExperimentCustomMetricSlicesItem,
-) as any as S.Schema<ExperimentCustomMetricSlicesList>;
-
-export type ExperimentPrecomputedUnitDimensionIdsList = Array<string>;
-export const ExperimentPrecomputedUnitDimensionIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ExperimentPrecomputedUnitDimensionIdsList>;
-
-export type ExperimentStatusUpdateScheduleStopAfterUnit = "hours" | "days";
-export const ExperimentStatusUpdateScheduleStopAfterUnit =
-  /*@__PURE__*/ S.String;
-
-/** Relative end offset. Deferred: resolved to a concrete `stopAt` at the experiment's actual start (or off `dateStarted` when already running). */
-export interface ExperimentStatusUpdateScheduleStopAfter {
-  value: number;
-  unit: ExperimentStatusUpdateScheduleStopAfterUnit;
-}
-export const ExperimentStatusUpdateScheduleStopAfter = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      value: S.Number,
-      unit: ExperimentStatusUpdateScheduleStopAfterUnit,
-    }),
-).annotate({
-  identifier: "ExperimentStatusUpdateScheduleStopAfter",
-}) as any as S.Schema<ExperimentStatusUpdateScheduleStopAfter>;
-
-/** Scheduled start/end for an experiment. All fields optional; the end may be an absolute `stopAt` or a deferred relative `stopAfter`, but not both. */
-export interface ExperimentStatusUpdateSchedule {
-  /** ISO datetime when the experiment should start. Must be in the future. Setting or clearing this field invalidates any existing staged start (`nextScheduledStatusUpdate`); call POST /experiments/{id}/start to stage the new schedule. */
-  startAt?: string;
-  /** ISO datetime when the experiment should stop. Resolved from `stopAfter` at start when a relative end was set. */
-  stopAt?: string;
-  /** Relative end offset. Deferred: resolved to a concrete `stopAt` at the experiment's actual start (or off `dateStarted` when already running). */
-  stopAfter?: ExperimentStatusUpdateScheduleStopAfter;
-  /** End-of-experiment automation applied at the scheduled end. Required whenever a `stopAt` or `stopAfter` is set (any mode, including `notify`). */
-  scheduledStopPlan?: ScheduledStopPlan;
-}
-export const ExperimentStatusUpdateSchedule = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    startAt: S.optional(S.String),
-    stopAt: S.optional(S.String),
-    stopAfter: S.optional(ExperimentStatusUpdateScheduleStopAfter),
-    scheduledStopPlan: S.optional(ScheduledStopPlan),
-  }),
-).annotate({
-  identifier: "ExperimentStatusUpdateSchedule",
-}) as any as S.Schema<ExperimentStatusUpdateSchedule>;
-
-export type ExperimentNextScheduledStatusUpdateType = "start" | "stop";
-export const ExperimentNextScheduledStatusUpdateType = /*@__PURE__*/ S.String;
-
-export interface ExperimentNextScheduledStatusUpdate {
-  type: ExperimentNextScheduledStatusUpdateType;
-  date: string;
-}
-export const ExperimentNextScheduledStatusUpdate = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: ExperimentNextScheduledStatusUpdateType,
-    date: S.String,
-  }),
-).annotate({
-  identifier: "ExperimentNextScheduledStatusUpdate",
-}) as any as S.Schema<ExperimentNextScheduledStatusUpdate>;
-
-export interface Experiment {
-  id: string;
-  trackingKey: string;
-  dateCreated: string;
-  dateUpdated: string;
-  name: string;
-  type: ExperimentType;
-  project: string;
-  hypothesis: string;
-  description: string;
-  tags: ExperimentTagsList;
-  /** The userId of the owner (or raw owner name/email for legacy records) */
-  owner: string;
-  /** The email address of the owner, when the owner can be resolved to a known user. */
-  ownerEmail?: string;
-  archived: boolean;
-  status: string;
-  autoRefresh: boolean;
-  hashAttribute: string;
-  fallbackAttribute?: string;
-  hashVersion: number;
-  disableStickyBucketing?: boolean;
-  bucketVersion?: number;
-  minBucketVersion?: number;
-  variations: ExperimentVariationsList;
-  phases: ExperimentPhasesList;
-  settings: ExperimentAnalysisSettings;
-  resultSummary?: ExperimentWithEnhancedStatusResultSummary;
-  shareLevel?: ExperimentShareLevel;
-  publicUrl?: string;
-  banditScheduleValue?: number;
-  banditScheduleUnit?: ExperimentBanditScheduleUnit;
-  banditBurnInValue?: number;
-  banditBurnInUnit?: ExperimentBanditBurnInUnit;
-  banditConversionWindowValue?: number;
-  banditConversionWindowUnit?: ExperimentBanditConversionWindowUnit;
-  linkedFeatures?: ExperimentLinkedFeaturesList;
-  attributeScopeAllProjects?: boolean;
-  hasVisualChangesets?: boolean;
-  hasURLRedirects?: boolean;
-  customFields?: ExperimentCustomFieldsMap;
-  /** Custom slices that apply to ALL applicable metrics in the experiment */
-  customMetricSlices?: ExperimentCustomMetricSlicesList;
-  precomputedUnitDimensionIds?: ExperimentPrecomputedUnitDimensionIdsList;
-  /** ID of the default dashboard for this experiment. */
-  defaultDashboardId?: string;
-  templateId?: string;
-  statusUpdateSchedule?: ExperimentStatusUpdateSchedule | null;
-  nextScheduledStatusUpdate?: ExperimentNextScheduledStatusUpdate | null;
-}
-export const Experiment = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    trackingKey: S.String,
-    dateCreated: S.String,
-    dateUpdated: S.String,
-    name: S.String,
-    type: ExperimentType,
-    project: S.String,
-    hypothesis: S.String,
-    description: S.String,
-    tags: ExperimentTagsList,
-    owner: S.String,
-    ownerEmail: S.optional(S.String),
-    archived: S.Boolean,
-    status: S.String,
-    autoRefresh: S.Boolean,
-    hashAttribute: S.String,
-    fallbackAttribute: S.optional(S.String),
-    hashVersion: S.Number,
-    disableStickyBucketing: S.optional(S.Boolean),
-    bucketVersion: S.optional(S.Number),
-    minBucketVersion: S.optional(S.Number),
-    variations: ExperimentVariationsList,
-    phases: ExperimentPhasesList,
-    settings: ExperimentAnalysisSettings,
-    resultSummary: S.optional(ExperimentWithEnhancedStatusResultSummary),
-    shareLevel: S.optional(ExperimentShareLevel),
-    publicUrl: S.optional(S.String),
-    banditScheduleValue: S.optional(S.Number),
-    banditScheduleUnit: S.optional(ExperimentBanditScheduleUnit),
-    banditBurnInValue: S.optional(S.Number),
-    banditBurnInUnit: S.optional(ExperimentBanditBurnInUnit),
-    banditConversionWindowValue: S.optional(S.Number),
-    banditConversionWindowUnit: S.optional(
-      ExperimentBanditConversionWindowUnit,
-    ),
-    linkedFeatures: S.optional(ExperimentLinkedFeaturesList),
-    attributeScopeAllProjects: S.optional(S.Boolean),
-    hasVisualChangesets: S.optional(S.Boolean),
-    hasURLRedirects: S.optional(S.Boolean),
-    customFields: S.optional(ExperimentCustomFieldsMap),
-    customMetricSlices: S.optional(ExperimentCustomMetricSlicesList),
-    precomputedUnitDimensionIds: S.optional(
-      ExperimentPrecomputedUnitDimensionIdsList,
-    ),
-    defaultDashboardId: S.optional(S.String),
-    templateId: S.optional(S.String),
-    statusUpdateSchedule: S.optional(S.NullOr(ExperimentStatusUpdateSchedule)),
-    nextScheduledStatusUpdate: S.optional(
-      S.NullOr(ExperimentNextScheduledStatusUpdate),
-    ),
-  }),
-).annotate({ identifier: "Experiment" }) as any as S.Schema<Experiment>;
-
-export interface ExperimentResultsDimension {
-  type: string;
-  id?: string;
-}
-export const ExperimentResultsDimension = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.String,
-    id: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ExperimentResultsDimension",
-}) as any as S.Schema<ExperimentResultsDimension>;
-
-export type ExperimentResultsQueryIdsList = Array<string>;
-export const ExperimentResultsQueryIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ExperimentResultsQueryIdsList>;
-
-export interface ExperimentResultsResultsItemChecks {
-  srm: number;
-}
-export const ExperimentResultsResultsItemChecks = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    srm: S.Number,
-  }),
-).annotate({
-  identifier: "ExperimentResultsResultsItemChecks",
-}) as any as S.Schema<ExperimentResultsResultsItemChecks>;
-
-export type ExperimentResultsResultsItemMetricsItemVariationsItemAnalysesItemEngine =
-  | "bayesian"
-  | "frequentist";
-export const ExperimentResultsResultsItemMetricsItemVariationsItemAnalysesItemEngine =
-  /*@__PURE__*/ S.String;
-
-export interface ExperimentResultsResultsItemMetricsItemVariationsItemAnalysesItem {
-  engine: ExperimentResultsResultsItemMetricsItemVariationsItemAnalysesItemEngine;
-  numerator: number;
-  denominator: number;
-  mean: number;
-  stddev: number;
-  percentChange: number;
-  /** Standard error of the estimated effect (`percentChange`). */
-  effectStandardError: number;
-  ciLow: number;
-  ciHigh: number;
-  pValue?: number;
-  risk?: number;
-  chanceToBeatControl?: number;
-  errorMessage?: string;
-}
-export const ExperimentResultsResultsItemMetricsItemVariationsItemAnalysesItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      engine:
-        ExperimentResultsResultsItemMetricsItemVariationsItemAnalysesItemEngine,
-      numerator: S.Number,
-      denominator: S.Number,
-      mean: S.Number,
-      stddev: S.Number,
-      percentChange: S.Number,
-      effectStandardError: S.Number,
-      ciLow: S.Number,
-      ciHigh: S.Number,
-      pValue: S.optional(S.Number),
-      risk: S.optional(S.Number),
-      chanceToBeatControl: S.optional(S.Number),
-      errorMessage: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier:
-      "ExperimentResultsResultsItemMetricsItemVariationsItemAnalysesItem",
-  }) as any as S.Schema<ExperimentResultsResultsItemMetricsItemVariationsItemAnalysesItem>;
-
-export type ExperimentResultsResultsItemMetricsItemVariationsItemAnalysesList =
-  Array<ExperimentResultsResultsItemMetricsItemVariationsItemAnalysesItem>;
-export const ExperimentResultsResultsItemMetricsItemVariationsItemAnalysesList =
-  /*@__PURE__*/ S.Array(
-    ExperimentResultsResultsItemMetricsItemVariationsItemAnalysesItem,
-  ) as any as S.Schema<ExperimentResultsResultsItemMetricsItemVariationsItemAnalysesList>;
-
-export interface ExperimentResultsResultsItemMetricsItemVariationsItem {
-  variationId: string;
-  variationName?: string;
-  users?: number;
-  analyses: ExperimentResultsResultsItemMetricsItemVariationsItemAnalysesList;
-}
-export const ExperimentResultsResultsItemMetricsItemVariationsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      variationId: S.String,
-      variationName: S.optional(S.String),
-      users: S.optional(S.Number),
-      analyses:
-        ExperimentResultsResultsItemMetricsItemVariationsItemAnalysesList,
-    }),
-  ).annotate({
-    identifier: "ExperimentResultsResultsItemMetricsItemVariationsItem",
-  }) as any as S.Schema<ExperimentResultsResultsItemMetricsItemVariationsItem>;
-
-export type ExperimentResultsResultsItemMetricsItemVariationsList =
-  Array<ExperimentResultsResultsItemMetricsItemVariationsItem>;
-export const ExperimentResultsResultsItemMetricsItemVariationsList =
-  /*@__PURE__*/ S.Array(
-    ExperimentResultsResultsItemMetricsItemVariationsItem,
-  ) as any as S.Schema<ExperimentResultsResultsItemMetricsItemVariationsList>;
-
-export interface ExperimentResultsResultsItemMetricsItem {
-  metricId: string;
-  metricName?: string;
-  variations: ExperimentResultsResultsItemMetricsItemVariationsList;
-}
-export const ExperimentResultsResultsItemMetricsItem = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      metricId: S.String,
-      metricName: S.optional(S.String),
-      variations: ExperimentResultsResultsItemMetricsItemVariationsList,
-    }),
-).annotate({
-  identifier: "ExperimentResultsResultsItemMetricsItem",
-}) as any as S.Schema<ExperimentResultsResultsItemMetricsItem>;
-
-export type ExperimentResultsResultsItemMetricsList =
-  Array<ExperimentResultsResultsItemMetricsItem>;
-export const ExperimentResultsResultsItemMetricsList = /*@__PURE__*/ S.Array(
-  ExperimentResultsResultsItemMetricsItem,
-) as any as S.Schema<ExperimentResultsResultsItemMetricsList>;
-
-export interface ExperimentResultsResultsItem {
-  dimension: string;
-  totalUsers: number;
-  checks: ExperimentResultsResultsItemChecks;
-  metrics: ExperimentResultsResultsItemMetricsList;
-}
-export const ExperimentResultsResultsItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    dimension: S.String,
-    totalUsers: S.Number,
-    checks: ExperimentResultsResultsItemChecks,
-    metrics: ExperimentResultsResultsItemMetricsList,
-  }),
-).annotate({
-  identifier: "ExperimentResultsResultsItem",
-}) as any as S.Schema<ExperimentResultsResultsItem>;
-
-export type ExperimentResultsResultsList = Array<ExperimentResultsResultsItem>;
-export const ExperimentResultsResultsList = /*@__PURE__*/ S.Array(
-  ExperimentResultsResultsItem,
-) as any as S.Schema<ExperimentResultsResultsList>;
-
-export interface ExperimentResults {
-  id: string;
-  dateUpdated: string;
-  experimentId: string;
-  phase: string;
-  dateStart: string;
-  dateEnd: string;
-  dimension: ExperimentResultsDimension;
-  settings: ExperimentAnalysisSettings;
-  queryIds: ExperimentResultsQueryIdsList;
-  results: ExperimentResultsResultsList;
-}
-export const ExperimentResults = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    dateUpdated: S.String,
-    experimentId: S.String,
-    phase: S.String,
-    dateStart: S.String,
-    dateEnd: S.String,
-    dimension: ExperimentResultsDimension,
-    settings: ExperimentAnalysisSettings,
-    queryIds: ExperimentResultsQueryIdsList,
-    results: ExperimentResultsResultsList,
-  }),
-).annotate({
-  identifier: "ExperimentResults",
-}) as any as S.Schema<ExperimentResults>;
-
 export interface GetExperimentResultsResponse {
   experiment: Experiment;
   result: ExperimentResults;
@@ -18296,19 +25549,6 @@ export const GetExperimentSnapshotRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetExperimentSnapshotRequest",
 }) as any as S.Schema<GetExperimentSnapshotRequest>;
-
-export interface Snapshot {
-  id: string;
-  experiment: string;
-  status: string;
-}
-export const Snapshot = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    experiment: S.String,
-    status: S.String,
-  }),
-).annotate({ identifier: "Snapshot" }) as any as S.Schema<Snapshot>;
 
 export interface GetExperimentSnapshotResponse {
   snapshot: Snapshot;
@@ -18338,29 +25578,6 @@ export const GetExperimentStartChecklistRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetExperimentStartChecklistRequest",
 }) as any as S.Schema<GetExperimentStartChecklistRequest>;
-
-export type ChecklistItemsStatus = "complete" | "incomplete";
-export const ChecklistItemsStatus = /*@__PURE__*/ S.String;
-
-export interface ChecklistItems {
-  key: string;
-  required: boolean;
-  status: ChecklistItemsStatus;
-  manual: boolean;
-  reason: string;
-  /** When true, this item cannot be bypassed with `skipChecklist` — the experiment cannot be started until it is resolved. */
-  hardBlock?: boolean;
-}
-export const ChecklistItems = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    key: S.String,
-    required: S.Boolean,
-    status: ChecklistItemsStatus,
-    manual: S.Boolean,
-    reason: S.String,
-    hardBlock: S.optional(S.Boolean),
-  }),
-).annotate({ identifier: "ChecklistItems" }) as any as S.Schema<ChecklistItems>;
 
 export type GetExperimentStartChecklistResponseChecklistItemsList =
   Array<ChecklistItems>;
@@ -18878,26 +26095,10 @@ export const FactMetricWindowSettings = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FactMetricWindowSettings>;
 
 /** Controls the bayesian prior for the metric */
-export interface FactMetricPriorSettings {
-  /** If false, the organization default settings will be used instead of the other settings in this object */
-  override: boolean;
-  /** If true, the `mean` and `stddev` will be used, otherwise we will use an improper flat prior. */
-  proper: boolean;
-  /** The mean of the prior distribution of relative effects in proportion terms (e.g. 0.01 is 1%) */
-  mean: number;
-  /** Must be > 0. The standard deviation of the prior distribution of relative effects in proportion terms. */
-  stddev: number;
-}
-export const FactMetricPriorSettings = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    override: S.Boolean,
-    proper: S.Boolean,
-    mean: S.Number,
-    stddev: S.Number,
-  }),
-).annotate({
-  identifier: "FactMetricPriorSettings",
-}) as any as S.Schema<FactMetricPriorSettings>;
+export type FactMetricPriorSettings =
+  CreateBulkImportFactRequestFactMetricsItemDataPriorSettings;
+export const FactMetricPriorSettings =
+  CreateBulkImportFactRequestFactMetricsItemDataPriorSettings;
 
 /** Controls the regression adjustment (CUPED) settings for the metric */
 export interface FactMetricRegressionAdjustmentSettings {
@@ -18960,7 +26161,7 @@ export interface FactMetric {
   /** Controls the conversion window for the metric */
   windowSettings: FactMetricWindowSettings;
   /** Controls the bayesian prior for the metric */
-  priorSettings: FactMetricPriorSettings;
+  priorSettings: CreateBulkImportFactRequestFactMetricsItemDataPriorSettings;
   /** Controls the regression adjustment (CUPED) settings for the metric */
   regressionAdjustmentSettings: FactMetricRegressionAdjustmentSettings;
   riskThresholdSuccess: number;
@@ -18999,7 +26200,7 @@ export const FactMetric = /*@__PURE__*/ S.suspend(() =>
     funnelSettings: S.optional(FactMetricFunnelSettings),
     cappingSettings: FactMetricCappingSettings,
     windowSettings: FactMetricWindowSettings,
-    priorSettings: FactMetricPriorSettings,
+    priorSettings: CreateBulkImportFactRequestFactMetricsItemDataPriorSettings,
     regressionAdjustmentSettings: FactMetricRegressionAdjustmentSettings,
     riskThresholdSuccess: S.Number,
     riskThresholdDanger: S.Number,
@@ -19040,267 +26241,6 @@ export const GetFactTableRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetFactTableRequest",
 }) as any as S.Schema<GetFactTableRequest>;
 
-export type FactTableProjectsList = Array<string>;
-export const FactTableProjectsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<FactTableProjectsList>;
-
-export type FactTableTagsList = Array<string>;
-export const FactTableTagsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<FactTableTagsList>;
-
-export type FactTableUserIdTypesList = Array<string>;
-export const FactTableUserIdTypesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<FactTableUserIdTypesList>;
-
-export type FactTableAggregatedFactTableSettingsIdTypesList = Array<string>;
-export const FactTableAggregatedFactTableSettingsIdTypesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<FactTableAggregatedFactTableSettingsIdTypesList>;
-
-export interface FactTableAggregatedFactTableSettingsUpdateTime {
-  time: string;
-  timezone: string;
-}
-export const FactTableAggregatedFactTableSettingsUpdateTime =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      time: S.String,
-      timezone: S.String,
-    }),
-  ).annotate({
-    identifier: "FactTableAggregatedFactTableSettingsUpdateTime",
-  }) as any as S.Schema<FactTableAggregatedFactTableSettingsUpdateTime>;
-
-/** Settings for maintaining shared daily aggregated tables (a subset of userIdTypes plus the daily update time and restate lookback window) used to speed up CUPED. Requires the data pipeline (pipeline-mode) feature. */
-export interface FactTableAggregatedFactTableSettings {
-  idTypes: FactTableAggregatedFactTableSettingsIdTypesList;
-  updateTime: FactTableAggregatedFactTableSettingsUpdateTime;
-  lookbackWindow: number;
-  restateChunkDays?: number;
-}
-export const FactTableAggregatedFactTableSettings = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      idTypes: FactTableAggregatedFactTableSettingsIdTypesList,
-      updateTime: FactTableAggregatedFactTableSettingsUpdateTime,
-      lookbackWindow: S.Number,
-      restateChunkDays: S.optional(S.Number),
-    }),
-).annotate({
-  identifier: "FactTableAggregatedFactTableSettings",
-}) as any as S.Schema<FactTableAggregatedFactTableSettings>;
-
-/** The column's data type (can be an override of the warehouse-reported datatype, for JSON string columns for example). */
-export type FactTableColumnDatatype =
-  | "number"
-  | "string"
-  | "date"
-  | "boolean"
-  | "json"
-  | "binary"
-  | "other"
-  | "";
-export const FactTableColumnDatatype = /*@__PURE__*/ S.String;
-
-/** The warehouse-reported datatype. */
-export type FactTableColumnDataTypeFromWarehouse =
-  | "number"
-  | "string"
-  | "date"
-  | "boolean"
-  | "json"
-  | "binary"
-  | "other"
-  | "";
-export const FactTableColumnDataTypeFromWarehouse = /*@__PURE__*/ S.String;
-
-export type FactTableColumnNumberFormat =
-  | ""
-  | "currency"
-  | "time:seconds"
-  | "memory:bytes"
-  | "memory:kilobytes";
-export const FactTableColumnNumberFormat = /*@__PURE__*/ S.String;
-
-export type FactTableColumnJsonFieldsValueDatatype =
-  | "number"
-  | "string"
-  | "date"
-  | "boolean"
-  | "json"
-  | "binary"
-  | "other"
-  | "";
-export const FactTableColumnJsonFieldsValueDatatype = /*@__PURE__*/ S.String;
-
-export interface FactTableColumnJsonFieldsValue {
-  datatype?: FactTableColumnJsonFieldsValueDatatype;
-}
-export const FactTableColumnJsonFieldsValue = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    datatype: S.optional(FactTableColumnJsonFieldsValueDatatype),
-  }),
-).annotate({
-  identifier: "FactTableColumnJsonFieldsValue",
-}) as any as S.Schema<FactTableColumnJsonFieldsValue>;
-
-/** For JSON columns, defines the structure of nested fields */
-export type FactTableColumnJsonFieldsMap = {
-  [key: string]: FactTableColumnJsonFieldsValue | undefined;
-};
-export const FactTableColumnJsonFieldsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  FactTableColumnJsonFieldsValue,
-) as any as S.Schema<FactTableColumnJsonFieldsMap>;
-
-/** Specific slices to automatically analyze for this column. */
-export type FactTableColumnAutoSlicesList = Array<string>;
-export const FactTableColumnAutoSlicesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<FactTableColumnAutoSlicesList>;
-
-/** Locked slices that are protected from automatic updates. These will always be included in the slice levels even if they're not in the top values query results. */
-export type FactTableColumnLockedAutoSlicesList = Array<string>;
-export const FactTableColumnLockedAutoSlicesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<FactTableColumnLockedAutoSlicesList>;
-
-/** The most common values for this column, sampled from the warehouse to populate filter pickers and auto slices. Read-only. */
-export type FactTableColumnTopValuesList = Array<string>;
-export const FactTableColumnTopValuesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<FactTableColumnTopValuesList>;
-
-export interface FactTableColumn {
-  /** The actual column name in the database/SQL query */
-  column: string;
-  /** The column's data type (can be an override of the warehouse-reported datatype, for JSON string columns for example). */
-  datatype: FactTableColumnDatatype;
-  /** The warehouse-reported datatype. */
-  dataTypeFromWarehouse?: FactTableColumnDataTypeFromWarehouse;
-  numberFormat?: FactTableColumnNumberFormat;
-  /** For JSON columns, defines the structure of nested fields */
-  jsonFields?: FactTableColumnJsonFieldsMap;
-  /** Display name for the column (can be different from the actual column name) */
-  name?: string;
-  description?: string;
-  /** Whether this column should always be included as an inline filter in queries */
-  alwaysInlineFilter?: boolean;
-  deleted?: boolean;
-  /** Whether this column can be used for auto slice analysis. This is an enterprise feature. */
-  isAutoSliceColumn?: boolean;
-  /** Specific slices to automatically analyze for this column. */
-  autoSlices?: FactTableColumnAutoSlicesList;
-  /** Locked slices that are protected from automatic updates. These will always be included in the slice levels even if they're not in the top values query results. */
-  lockedAutoSlices?: FactTableColumnLockedAutoSlicesList;
-  /** Whether this is a virtual (computed) column defined by a SQL expression rather than detected from the fact table SQL. Can be set when creating a column, but a column's origin cannot be changed afterwards — sending a value that contradicts an existing column is rejected. */
-  isVirtual?: boolean;
-  /** For virtual columns, the SQL expression that computes the column value. Only valid on a virtual column; when omitted from an update, the existing expression is preserved. */
-  sql?: string;
-  /** The most common values for this column, sampled from the warehouse to populate filter pickers and auto slices. Read-only. */
-  topValues?: FactTableColumnTopValuesList;
-  /** When topValues was last refreshed for this column. */
-  topValuesDate?: string;
-  dateCreated?: string;
-  dateUpdated?: string;
-}
-export const FactTableColumn = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    column: S.String,
-    datatype: FactTableColumnDatatype,
-    dataTypeFromWarehouse: S.optional(FactTableColumnDataTypeFromWarehouse),
-    numberFormat: S.optional(FactTableColumnNumberFormat),
-    jsonFields: S.optional(FactTableColumnJsonFieldsMap),
-    name: S.optional(S.String),
-    description: S.optional(S.String),
-    alwaysInlineFilter: S.optional(S.Boolean),
-    deleted: S.optional(S.Boolean),
-    isAutoSliceColumn: S.optional(S.Boolean),
-    autoSlices: S.optional(FactTableColumnAutoSlicesList),
-    lockedAutoSlices: S.optional(FactTableColumnLockedAutoSlicesList),
-    isVirtual: S.optional(S.Boolean),
-    sql: S.optional(S.String),
-    topValues: S.optional(FactTableColumnTopValuesList),
-    topValuesDate: S.optional(S.String),
-    dateCreated: S.optional(S.String),
-    dateUpdated: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "FactTableColumn",
-}) as any as S.Schema<FactTableColumn>;
-
-/** Array of column definitions for this fact table */
-export type FactTableColumnsList = Array<FactTableColumn>;
-export const FactTableColumnsList = /*@__PURE__*/ S.Array(
-  FactTableColumn,
-) as any as S.Schema<FactTableColumnsList>;
-
-/** Where this fact table must be managed from. If not set (empty string), it can be managed from anywhere. */
-export type FactTableManagedBy = "" | "api" | "admin";
-export const FactTableManagedBy = /*@__PURE__*/ S.String;
-
-export interface FactTable {
-  id: string;
-  name: string;
-  description: string;
-  /** The userId of the owner (or raw owner name/email for legacy records) */
-  owner: string;
-  /** The email address of the owner, when the owner can be resolved to a known user. */
-  ownerEmail?: string;
-  projects: FactTableProjectsList;
-  tags: FactTableTagsList;
-  datasource: string;
-  userIdTypes: FactTableUserIdTypesList;
-  /** Settings for maintaining shared daily aggregated tables (a subset of userIdTypes plus the daily update time and restate lookback window) used to speed up CUPED. Requires the data pipeline (pipeline-mode) feature. */
-  aggregatedFactTableSettings?: FactTableAggregatedFactTableSettings;
-  sql: string;
-  /** The event name used in SQL template variables */
-  eventName?: string;
-  /** Array of column definitions for this fact table */
-  columns?: FactTableColumnsList;
-  /** Error message if there was an issue parsing the SQL schema */
-  columnsError?: string | null;
-  /** True while the fact table's column schema is being detected in the background. While true, `columns` may be empty or incomplete and metrics referencing not-yet-detected columns cannot be created. */
-  columnRefreshPending?: boolean;
-  archived?: boolean;
-  /** Whether Auto Slice values for this fact table's columns are refreshed automatically in the background. */
-  autoSliceUpdatesEnabled?: boolean;
-  /** Where this fact table must be managed from. If not set (empty string), it can be managed from anywhere. */
-  managedBy: FactTableManagedBy;
-  dateCreated: string;
-  dateUpdated: string;
-}
-export const FactTable = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    name: S.String,
-    description: S.String,
-    owner: S.String,
-    ownerEmail: S.optional(S.String),
-    projects: FactTableProjectsList,
-    tags: FactTableTagsList,
-    datasource: S.String,
-    userIdTypes: FactTableUserIdTypesList,
-    aggregatedFactTableSettings: S.optional(
-      FactTableAggregatedFactTableSettings,
-    ),
-    sql: S.String,
-    eventName: S.optional(S.String),
-    columns: S.optional(FactTableColumnsList),
-    columnsError: S.optional(S.NullOr(S.String)),
-    columnRefreshPending: S.optional(S.Boolean),
-    archived: S.optional(S.Boolean),
-    autoSliceUpdatesEnabled: S.optional(S.Boolean),
-    managedBy: FactTableManagedBy,
-    dateCreated: S.String,
-    dateUpdated: S.String,
-  }),
-).annotate({ identifier: "FactTable" }) as any as S.Schema<FactTable>;
-
 export interface GetFactTableResponse {
   factTable: FactTable;
 }
@@ -19332,34 +26272,6 @@ export const GetFactTableFilterRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetFactTableFilterRequest",
 }) as any as S.Schema<GetFactTableFilterRequest>;
-
-/** Where this fact table filter must be managed from. If not set (empty string), it can be managed from anywhere. */
-export type FactTableFilterManagedBy = "" | "api";
-export const FactTableFilterManagedBy = /*@__PURE__*/ S.String;
-
-export interface FactTableFilter {
-  id: string;
-  name: string;
-  description: string;
-  value: string;
-  /** Where this fact table filter must be managed from. If not set (empty string), it can be managed from anywhere. */
-  managedBy: FactTableFilterManagedBy;
-  dateCreated: string;
-  dateUpdated: string;
-}
-export const FactTableFilter = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    name: S.String,
-    description: S.String,
-    value: S.String,
-    managedBy: FactTableFilterManagedBy,
-    dateCreated: S.String,
-    dateUpdated: S.String,
-  }),
-).annotate({
-  identifier: "FactTableFilter",
-}) as any as S.Schema<FactTableFilter>;
 
 export interface GetFactTableFilterResponse {
   factTableFilter: FactTableFilter;
@@ -20712,8 +27624,10 @@ export const MetricBehaviorWindowSettings = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<MetricBehaviorWindowSettings>;
 
 /** Controls the bayesian prior for the metric. */
-export type MetricBehaviorPriorSettings = FactMetricPriorSettings;
-export const MetricBehaviorPriorSettings = FactMetricPriorSettings;
+export type MetricBehaviorPriorSettings =
+  CreateBulkImportFactRequestFactMetricsItemDataPriorSettings;
+export const MetricBehaviorPriorSettings =
+  CreateBulkImportFactRequestFactMetricsItemDataPriorSettings;
 
 export interface MetricBehavior {
   goal: MetricBehaviorGoal;
@@ -20725,7 +27639,7 @@ export interface MetricBehavior {
   /** Controls the conversion window for the metric */
   windowSettings: MetricBehaviorWindowSettings;
   /** Controls the bayesian prior for the metric. */
-  priorSettings?: FactMetricPriorSettings;
+  priorSettings?: CreateBulkImportFactRequestFactMetricsItemDataPriorSettings;
   conversionWindowStart?: number;
   conversionWindowEnd?: number;
   riskThresholdSuccess: number;
@@ -20743,7 +27657,9 @@ export const MetricBehavior = /*@__PURE__*/ S.suspend(() =>
     capping: S.optional(S.NullOr(MetricBehaviorCapping)),
     capValue: S.optional(S.Number),
     windowSettings: MetricBehaviorWindowSettings,
-    priorSettings: S.optional(FactMetricPriorSettings),
+    priorSettings: S.optional(
+      CreateBulkImportFactRequestFactMetricsItemDataPriorSettings,
+    ),
     conversionWindowStart: S.optional(S.Number),
     conversionWindowEnd: S.optional(S.Number),
     riskThresholdSuccess: S.Number,
@@ -21038,39 +27954,6 @@ export const GetNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetNamespaceRequest",
 }) as any as S.Schema<GetNamespaceRequest>;
 
-export type NamespaceStatus = "active" | "inactive";
-export const NamespaceStatus = /*@__PURE__*/ S.String;
-
-/** Namespace format. 'multiRange' supports multiple ranges per experiment and a configurable hash attribute. */
-export type NamespaceFormat = "legacy" | "multiRange";
-export const NamespaceFormat = /*@__PURE__*/ S.String;
-
-export interface Namespace {
-  /** The unique internal identifier for the namespace (e.g. 'ns-abc123'). */
-  id: string;
-  /** Human-readable display name. */
-  displayName: string;
-  description: string;
-  status: NamespaceStatus;
-  /** Namespace format. 'multiRange' supports multiple ranges per experiment and a configurable hash attribute. */
-  format: NamespaceFormat;
-  /** The user attribute used to assign bucket membership. Only present on multiRange namespaces. */
-  hashAttribute?: string;
-  /** The seed used for bucket hashing. Changing this re-randomizes which traffic is eligible for which experiment. Use the rotateSeed endpoint to change it. */
-  seed?: string;
-}
-export const Namespace = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    displayName: S.String,
-    description: S.String,
-    status: NamespaceStatus,
-    format: NamespaceFormat,
-    hashAttribute: S.optional(S.String),
-    seed: S.optional(S.String),
-  }),
-).annotate({ identifier: "Namespace" }) as any as S.Schema<Namespace>;
-
 export interface GetNamespaceResponse {
   namespace: Namespace;
 }
@@ -21187,43 +28070,6 @@ export const GetProjectRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetProjectRequest",
 }) as any as S.Schema<GetProjectRequest>;
-
-export interface ProjectSettings {
-  statsEngine?: string;
-  confidenceLevel?: number;
-  pValueThreshold?: number;
-}
-export const ProjectSettings = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    statsEngine: S.optional(S.String),
-    confidenceLevel: S.optional(S.Number),
-    pValueThreshold: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ProjectSettings",
-}) as any as S.Schema<ProjectSettings>;
-
-export interface Project {
-  id: string;
-  name: string;
-  dateCreated: string;
-  dateUpdated: string;
-  description?: string;
-  /** URL-safe slug used in SDK payload metadata. Auto-generated from name if not provided. */
-  publicId?: string;
-  settings?: ProjectSettings;
-}
-export const Project = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    name: S.String,
-    dateCreated: S.String,
-    dateUpdated: S.String,
-    description: S.optional(S.String),
-    publicId: S.optional(S.String),
-    settings: S.optional(ProjectSettings),
-  }),
-).annotate({ identifier: "Project" }) as any as S.Schema<Project>;
 
 export interface GetProjectResponse {
   project: Project;
@@ -21604,391 +28450,6 @@ export const GetReportRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetReportRequest",
 }) as any as S.Schema<GetReportRequest>;
 
-/** Report type. `experiment-snapshot` is the current shape and is what `POST /reports` always creates. `experiment` is a deprecated legacy shape that is read-only through this API; it cannot be created or refreshed and is preserved only for backward compatibility when reading reports created before the new shape existed. */
-export type ReportType = "experiment-snapshot" | "experiment";
-export const ReportType = /*@__PURE__*/ S.String;
-
-/** UI lifecycle marker. Note: this does NOT control public shareability — see `shareLevel` for visibility controls. */
-export type ReportStatus = "published" | "private";
-export const ReportStatus = /*@__PURE__*/ S.String;
-
-/** Visibility of the report. `private` (default) restricts access to the API caller and admins. `organization` makes it visible to all members of the organization in the GrowthBook UI. `public` additionally exposes it via a shareable URL (returned as `shareUrl`); anyone with the URL can view it without authentication. */
-export type ReportShareLevel = "public" | "organization" | "private";
-export const ReportShareLevel = /*@__PURE__*/ S.String;
-
-/** Status of the latest snapshot (poll this after refresh) */
-export type ReportSnapshotStatus = "running" | "success" | "error";
-export const ReportSnapshotStatus = /*@__PURE__*/ S.String;
-
-export type ReportAnalysisSettingsStatsEngine = "bayesian" | "frequentist";
-export const ReportAnalysisSettingsStatsEngine = /*@__PURE__*/ S.String;
-
-export type ReportAnalysisSettingsGoalMetricsList = Array<string>;
-export const ReportAnalysisSettingsGoalMetricsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ReportAnalysisSettingsGoalMetricsList>;
-
-export type ReportAnalysisSettingsSecondaryMetricsList = Array<string>;
-export const ReportAnalysisSettingsSecondaryMetricsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ReportAnalysisSettingsSecondaryMetricsList>;
-
-export type ReportAnalysisSettingsGuardrailMetricsList = Array<string>;
-export const ReportAnalysisSettingsGuardrailMetricsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ReportAnalysisSettingsGuardrailMetricsList>;
-
-export type ReportAnalysisSettingsMetricOverridesItemWindowType =
-  | "conversion"
-  | "lookback"
-  | "";
-export const ReportAnalysisSettingsMetricOverridesItemWindowType =
-  /*@__PURE__*/ S.String;
-
-export interface ReportAnalysisSettingsMetricOverridesItem {
-  id: string;
-  windowType?: ReportAnalysisSettingsMetricOverridesItemWindowType;
-  windowHours?: number;
-  delayHours?: number;
-  winRisk?: number;
-  loseRisk?: number;
-  properPriorOverride?: boolean;
-  properPriorEnabled?: boolean;
-  properPriorMean?: number;
-  properPriorStdDev?: number;
-  regressionAdjustmentOverride?: boolean;
-  regressionAdjustmentEnabled?: boolean;
-  regressionAdjustmentDays?: number;
-}
-export const ReportAnalysisSettingsMetricOverridesItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.String,
-      windowType: S.optional(
-        ReportAnalysisSettingsMetricOverridesItemWindowType,
-      ),
-      windowHours: S.optional(S.Number),
-      delayHours: S.optional(S.Number),
-      winRisk: S.optional(S.Number),
-      loseRisk: S.optional(S.Number),
-      properPriorOverride: S.optional(S.Boolean),
-      properPriorEnabled: S.optional(S.Boolean),
-      properPriorMean: S.optional(S.Number),
-      properPriorStdDev: S.optional(S.Number),
-      regressionAdjustmentOverride: S.optional(S.Boolean),
-      regressionAdjustmentEnabled: S.optional(S.Boolean),
-      regressionAdjustmentDays: S.optional(S.Number),
-    }),
-  ).annotate({
-    identifier: "ReportAnalysisSettingsMetricOverridesItem",
-  }) as any as S.Schema<ReportAnalysisSettingsMetricOverridesItem>;
-
-/** Per-metric window, risk, and regression-adjustment overrides */
-export type ReportAnalysisSettingsMetricOverridesList =
-  Array<ReportAnalysisSettingsMetricOverridesItem>;
-export const ReportAnalysisSettingsMetricOverridesList = /*@__PURE__*/ S.Array(
-  ReportAnalysisSettingsMetricOverridesItem,
-) as any as S.Schema<ReportAnalysisSettingsMetricOverridesList>;
-
-export type ReportAnalysisSettingsCustomMetricSlicesItemSlicesItemLevelsList =
-  Array<string>;
-export const ReportAnalysisSettingsCustomMetricSlicesItemSlicesItemLevelsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ReportAnalysisSettingsCustomMetricSlicesItemSlicesItemLevelsList>;
-
-export interface ReportAnalysisSettingsCustomMetricSlicesItemSlicesItem {
-  column: string;
-  levels: ReportAnalysisSettingsCustomMetricSlicesItemSlicesItemLevelsList;
-}
-export const ReportAnalysisSettingsCustomMetricSlicesItemSlicesItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      column: S.String,
-      levels: ReportAnalysisSettingsCustomMetricSlicesItemSlicesItemLevelsList,
-    }),
-  ).annotate({
-    identifier: "ReportAnalysisSettingsCustomMetricSlicesItemSlicesItem",
-  }) as any as S.Schema<ReportAnalysisSettingsCustomMetricSlicesItemSlicesItem>;
-
-export type ReportAnalysisSettingsCustomMetricSlicesItemSlicesList =
-  Array<ReportAnalysisSettingsCustomMetricSlicesItemSlicesItem>;
-export const ReportAnalysisSettingsCustomMetricSlicesItemSlicesList =
-  /*@__PURE__*/ S.Array(
-    ReportAnalysisSettingsCustomMetricSlicesItemSlicesItem,
-  ) as any as S.Schema<ReportAnalysisSettingsCustomMetricSlicesItemSlicesList>;
-
-export interface ReportAnalysisSettingsCustomMetricSlicesItem {
-  slices: ReportAnalysisSettingsCustomMetricSlicesItemSlicesList;
-}
-export const ReportAnalysisSettingsCustomMetricSlicesItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      slices: ReportAnalysisSettingsCustomMetricSlicesItemSlicesList,
-    }),
-  ).annotate({
-    identifier: "ReportAnalysisSettingsCustomMetricSlicesItem",
-  }) as any as S.Schema<ReportAnalysisSettingsCustomMetricSlicesItem>;
-
-/** Custom metric slice definitions */
-export type ReportAnalysisSettingsCustomMetricSlicesList =
-  Array<ReportAnalysisSettingsCustomMetricSlicesItem>;
-export const ReportAnalysisSettingsCustomMetricSlicesList =
-  /*@__PURE__*/ S.Array(
-    ReportAnalysisSettingsCustomMetricSlicesItem,
-  ) as any as S.Schema<ReportAnalysisSettingsCustomMetricSlicesList>;
-
-/** How lifts are expressed in results: `relative` (% change), `absolute` (raw difference), or `scaled` (scaled impact) */
-export type ReportAnalysisSettingsDifferenceType =
-  | "relative"
-  | "absolute"
-  | "scaled";
-export const ReportAnalysisSettingsDifferenceType = /*@__PURE__*/ S.String;
-
-/** Metric conversion window attribution model: `firstExposure`, `experimentDuration`, or `lookbackOverride` */
-export type ReportAnalysisSettingsAttributionModel =
-  | "firstExposure"
-  | "experimentDuration"
-  | "lookbackOverride";
-export const ReportAnalysisSettingsAttributionModel = /*@__PURE__*/ S.String;
-
-export interface ReportAnalysisSettingsLookbackOverrideCase0 {
-  type: string;
-  value: unknown;
-}
-export const ReportAnalysisSettingsLookbackOverrideCase0 =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: S.String,
-      value: S.Unknown,
-    }),
-  ).annotate({
-    identifier: "ReportAnalysisSettingsLookbackOverrideCase0",
-  }) as any as S.Schema<ReportAnalysisSettingsLookbackOverrideCase0>;
-
-export type ReportAnalysisSettingsLookbackOverrideCase1ValueUnit =
-  | "minutes"
-  | "hours"
-  | "days"
-  | "weeks";
-export const ReportAnalysisSettingsLookbackOverrideCase1ValueUnit =
-  /*@__PURE__*/ S.String;
-
-export interface ReportAnalysisSettingsLookbackOverrideCase1 {
-  type: string;
-  value: number;
-  valueUnit: ReportAnalysisSettingsLookbackOverrideCase1ValueUnit;
-}
-export const ReportAnalysisSettingsLookbackOverrideCase1 =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: S.String,
-      value: S.Number,
-      valueUnit: ReportAnalysisSettingsLookbackOverrideCase1ValueUnit,
-    }),
-  ).annotate({
-    identifier: "ReportAnalysisSettingsLookbackOverrideCase1",
-  }) as any as S.Schema<ReportAnalysisSettingsLookbackOverrideCase1>;
-
-/** Lookback window used when `attributionModel` is `lookbackOverride` */
-export type ReportAnalysisSettingsLookbackOverride =
-  | ReportAnalysisSettingsLookbackOverrideCase0
-  | ReportAnalysisSettingsLookbackOverrideCase1;
-export const ReportAnalysisSettingsLookbackOverride =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ReportAnalysisSettingsLookbackOverride>;
-
-export interface ReportAnalysisSettings {
-  statsEngine?: ReportAnalysisSettingsStatsEngine;
-  goalMetrics?: ReportAnalysisSettingsGoalMetricsList;
-  secondaryMetrics?: ReportAnalysisSettingsSecondaryMetricsList;
-  guardrailMetrics?: ReportAnalysisSettingsGuardrailMetricsList;
-  activationMetric?: string;
-  /** Per-metric window, risk, and regression-adjustment overrides */
-  metricOverrides?: ReportAnalysisSettingsMetricOverridesList;
-  /** Custom metric slice definitions */
-  customMetricSlices?: ReportAnalysisSettingsCustomMetricSlicesList;
-  dimension?: string;
-  /** How lifts are expressed in results: `relative` (% change), `absolute` (raw difference), or `scaled` (scaled impact) */
-  differenceType?: ReportAnalysisSettingsDifferenceType;
-  dateStarted?: string;
-  dateEnded?: string;
-  regressionAdjustmentEnabled?: boolean;
-  sequentialTestingEnabled?: boolean;
-  /** Tuning parameter for sequential testing (frequentist only) */
-  sequentialTestingTuningParameter?: number;
-  /** Metric conversion window attribution model: `firstExposure`, `experimentDuration`, or `lookbackOverride` */
-  attributionModel?: ReportAnalysisSettingsAttributionModel;
-  /** Lookback window used when `attributionModel` is `lookbackOverride` */
-  lookbackOverride?: ReportAnalysisSettingsLookbackOverride;
-  /** Tracking key used to identify experiment exposures */
-  trackingKey?: string;
-  /** Datasource exposure query ID (Assignment Table) */
-  exposureQueryId?: string;
-  /** Segment ID to filter users by */
-  segment?: string;
-  /** Raw SQL WHERE clause added to the exposure query */
-  queryFilter?: string;
-  /** When true, exclude users who have not completed the full conversion window */
-  skipPartialData?: boolean;
-}
-export const ReportAnalysisSettings = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    statsEngine: S.optional(ReportAnalysisSettingsStatsEngine),
-    goalMetrics: S.optional(ReportAnalysisSettingsGoalMetricsList),
-    secondaryMetrics: S.optional(ReportAnalysisSettingsSecondaryMetricsList),
-    guardrailMetrics: S.optional(ReportAnalysisSettingsGuardrailMetricsList),
-    activationMetric: S.optional(S.String),
-    metricOverrides: S.optional(ReportAnalysisSettingsMetricOverridesList),
-    customMetricSlices: S.optional(
-      ReportAnalysisSettingsCustomMetricSlicesList,
-    ),
-    dimension: S.optional(S.String),
-    differenceType: S.optional(ReportAnalysisSettingsDifferenceType),
-    dateStarted: S.optional(S.String),
-    dateEnded: S.optional(S.String),
-    regressionAdjustmentEnabled: S.optional(S.Boolean),
-    sequentialTestingEnabled: S.optional(S.Boolean),
-    sequentialTestingTuningParameter: S.optional(S.Number),
-    attributionModel: S.optional(ReportAnalysisSettingsAttributionModel),
-    lookbackOverride: S.optional(ReportAnalysisSettingsLookbackOverride),
-    trackingKey: S.optional(S.String),
-    exposureQueryId: S.optional(S.String),
-    segment: S.optional(S.String),
-    queryFilter: S.optional(S.String),
-    skipPartialData: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "ReportAnalysisSettings",
-}) as any as S.Schema<ReportAnalysisSettings>;
-
-/** Experiment type */
-export type ReportExperimentMetadataType =
-  | "standard"
-  | "multi-armed-bandit"
-  | "holdout";
-export const ReportExperimentMetadataType = /*@__PURE__*/ S.String;
-
-export interface ReportExperimentMetadataVariationsItem {
-  id: string;
-  name: string;
-  key: string;
-  /** Traffic weight (0–1) */
-  weight: number;
-}
-export const ReportExperimentMetadataVariationsItem = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String,
-      name: S.String,
-      key: S.String,
-      weight: S.Number,
-    }),
-).annotate({
-  identifier: "ReportExperimentMetadataVariationsItem",
-}) as any as S.Schema<ReportExperimentMetadataVariationsItem>;
-
-/** Variation metadata with current traffic weights — use to label result columns */
-export type ReportExperimentMetadataVariationsList =
-  Array<ReportExperimentMetadataVariationsItem>;
-export const ReportExperimentMetadataVariationsList = /*@__PURE__*/ S.Array(
-  ReportExperimentMetadataVariationsItem,
-) as any as S.Schema<ReportExperimentMetadataVariationsList>;
-
-export interface ReportExperimentMetadataPhasesItem {
-  name?: string;
-  dateStarted?: string;
-  dateEnded?: string;
-  /** Traffic coverage (0–1) */
-  coverage?: number;
-}
-export const ReportExperimentMetadataPhasesItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    dateStarted: S.optional(S.String),
-    dateEnded: S.optional(S.String),
-    coverage: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ReportExperimentMetadataPhasesItem",
-}) as any as S.Schema<ReportExperimentMetadataPhasesItem>;
-
-/** Experiment phases */
-export type ReportExperimentMetadataPhasesList =
-  Array<ReportExperimentMetadataPhasesItem>;
-export const ReportExperimentMetadataPhasesList = /*@__PURE__*/ S.Array(
-  ReportExperimentMetadataPhasesItem,
-) as any as S.Schema<ReportExperimentMetadataPhasesList>;
-
-export interface ReportExperimentMetadata {
-  /** Experiment type */
-  type?: ReportExperimentMetadataType;
-  /** Variation metadata with current traffic weights — use to label result columns */
-  variations?: ReportExperimentMetadataVariationsList;
-  /** Experiment phases */
-  phases?: ReportExperimentMetadataPhasesList;
-}
-export const ReportExperimentMetadata = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(ReportExperimentMetadataType),
-    variations: S.optional(ReportExperimentMetadataVariationsList),
-    phases: S.optional(ReportExperimentMetadataPhasesList),
-  }),
-).annotate({
-  identifier: "ReportExperimentMetadata",
-}) as any as S.Schema<ReportExperimentMetadata>;
-
-export interface Report {
-  id: string;
-  dateCreated: string;
-  dateUpdated: string;
-  title: string;
-  description: string;
-  /** Report type. `experiment-snapshot` is the current shape and is what `POST /reports` always creates. `experiment` is a deprecated legacy shape that is read-only through this API; it cannot be created or refreshed and is preserved only for backward compatibility when reading reports created before the new shape existed. */
-  type: ReportType;
-  /** UI lifecycle marker. Note: this does NOT control public shareability — see `shareLevel` for visibility controls. */
-  status?: ReportStatus;
-  /** Visibility of the report. `private` (default) restricts access to the API caller and admins. `organization` makes it visible to all members of the organization in the GrowthBook UI. `public` additionally exposes it via a shareable URL (returned as `shareUrl`); anyone with the URL can view it without authentication. */
-  shareLevel?: ReportShareLevel;
-  /** Public URL for viewing the report. Only present when `shareLevel` is `public`. */
-  shareUrl?: string;
-  experimentId?: string;
-  /** The userId of the report owner. Absent for reports created before owner attribution existed. */
-  owner?: string;
-  /** The email address of the owner, when the owner can be resolved to a known user. */
-  ownerEmail?: string;
-  /** Snapshot ID (experiment-snapshot type only) */
-  snapshotId?: string;
-  /** Status of the latest snapshot (poll this after refresh) */
-  snapshotStatus?: ReportSnapshotStatus;
-  /** Error message if snapshot failed */
-  snapshotError?: string;
-  analysisSettings?: ReportAnalysisSettings;
-  experimentMetadata?: ReportExperimentMetadata;
-  results?: ExperimentResults;
-}
-export const Report = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    dateCreated: S.String,
-    dateUpdated: S.String,
-    title: S.String,
-    description: S.String,
-    type: ReportType,
-    status: S.optional(ReportStatus),
-    shareLevel: S.optional(ReportShareLevel),
-    shareUrl: S.optional(S.String),
-    experimentId: S.optional(S.String),
-    owner: S.optional(S.String),
-    ownerEmail: S.optional(S.String),
-    snapshotId: S.optional(S.String),
-    snapshotStatus: S.optional(ReportSnapshotStatus),
-    snapshotError: S.optional(S.String),
-    analysisSettings: S.optional(ReportAnalysisSettings),
-    experimentMetadata: S.optional(ReportExperimentMetadata),
-    results: S.optional(ExperimentResults),
-  }),
-).annotate({ identifier: "Report" }) as any as S.Schema<Report>;
-
 export interface GetReportResponse {
   report: Report;
 }
@@ -22144,282 +28605,6 @@ export const GetSavedGroupRevisionRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetSavedGroupRevisionRequest",
 }) as any as S.Schema<GetSavedGroupRevisionRequest>;
-
-export type SavedGroupRevisionStatus =
-  | "draft"
-  | "pending-review"
-  | "approved"
-  | "changes-requested"
-  | "merged"
-  | "discarded";
-export const SavedGroupRevisionStatus = /*@__PURE__*/ S.String;
-
-export type SavedGroupRevisionContributorsList = Array<string>;
-export const SavedGroupRevisionContributorsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<SavedGroupRevisionContributorsList>;
-
-export type SavedGroupRevisionReviewDecision =
-  | "approve"
-  | "request-changes"
-  | "comment";
-export const SavedGroupRevisionReviewDecision = /*@__PURE__*/ S.String;
-
-export interface SavedGroupRevisionReview {
-  id: string;
-  userId: string;
-  decision: SavedGroupRevisionReviewDecision;
-  comment?: string;
-  /** True if a later review cycle (re-submit, approval reset, recall, or reopen) superseded this verdict. Stale verdicts are kept for attribution but no longer count as an active approval or change-request. */
-  stale?: boolean;
-  dateCreated: string;
-}
-export const SavedGroupRevisionReview = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    userId: S.String,
-    decision: SavedGroupRevisionReviewDecision,
-    comment: S.optional(S.String),
-    stale: S.optional(S.Boolean),
-    dateCreated: S.String,
-  }),
-).annotate({
-  identifier: "SavedGroupRevisionReview",
-}) as any as S.Schema<SavedGroupRevisionReview>;
-
-export type SavedGroupRevisionReviewsList = Array<SavedGroupRevisionReview>;
-export const SavedGroupRevisionReviewsList = /*@__PURE__*/ S.Array(
-  SavedGroupRevisionReview,
-) as any as S.Schema<SavedGroupRevisionReviewsList>;
-
-export type SavedGroupRevisionActivityLogEntryAction =
-  | "created"
-  | "updated"
-  | "reviewed"
-  | "approved"
-  | "requested-changes"
-  | "commented"
-  | "review-requested"
-  | "review-retracted"
-  | "merged"
-  | "discarded"
-  | "reopened"
-  | "recalled"
-  | "scheduled-publish"
-  | "scheduled-publish-updated"
-  | "scheduled-publish-canceled"
-  | "merge-recovered";
-export const SavedGroupRevisionActivityLogEntryAction = /*@__PURE__*/ S.String;
-
-export type SavedGroupRevisionActivityLogEntryProposedChangesSnapshotItemCase0 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
-export const SavedGroupRevisionActivityLogEntryProposedChangesSnapshotItemCase0 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
-
-export type SavedGroupRevisionActivityLogEntryProposedChangesSnapshotItemCase1 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase1;
-export const SavedGroupRevisionActivityLogEntryProposedChangesSnapshotItemCase1 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase1;
-
-export type SavedGroupRevisionActivityLogEntryProposedChangesSnapshotItemCase2 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
-export const SavedGroupRevisionActivityLogEntryProposedChangesSnapshotItemCase2 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
-
-export type SavedGroupRevisionActivityLogEntryProposedChangesSnapshotItemCase3 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3;
-export const SavedGroupRevisionActivityLogEntryProposedChangesSnapshotItemCase3 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3;
-
-export type SavedGroupRevisionActivityLogEntryProposedChangesSnapshotItemCase4 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3;
-export const SavedGroupRevisionActivityLogEntryProposedChangesSnapshotItemCase4 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3;
-
-export type SavedGroupRevisionActivityLogEntryProposedChangesSnapshotItemCase5 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
-export const SavedGroupRevisionActivityLogEntryProposedChangesSnapshotItemCase5 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
-
-export type SavedGroupRevisionActivityLogEntryProposedChangesSnapshotItem =
-  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0
-  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase1
-  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0
-  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3
-  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3
-  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
-export const SavedGroupRevisionActivityLogEntryProposedChangesSnapshotItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SavedGroupRevisionActivityLogEntryProposedChangesSnapshotItem>;
-
-export type SavedGroupRevisionActivityLogEntryProposedChangesSnapshotList =
-  Array<SavedGroupRevisionActivityLogEntryProposedChangesSnapshotItem>;
-export const SavedGroupRevisionActivityLogEntryProposedChangesSnapshotList =
-  /*@__PURE__*/ S.Array(
-    SavedGroupRevisionActivityLogEntryProposedChangesSnapshotItem,
-  ) as any as S.Schema<SavedGroupRevisionActivityLogEntryProposedChangesSnapshotList>;
-
-export interface SavedGroupRevisionActivityLogEntry {
-  id: string;
-  userId: string;
-  action: SavedGroupRevisionActivityLogEntryAction;
-  description?: string | null;
-  proposedChangesSnapshot?: SavedGroupRevisionActivityLogEntryProposedChangesSnapshotList;
-  targetSnapshot?: unknown;
-  dateCreated: string;
-}
-export const SavedGroupRevisionActivityLogEntry = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    userId: S.String,
-    action: SavedGroupRevisionActivityLogEntryAction,
-    description: S.optional(S.NullOr(S.String)),
-    proposedChangesSnapshot: S.optional(
-      SavedGroupRevisionActivityLogEntryProposedChangesSnapshotList,
-    ),
-    targetSnapshot: S.optional(S.Unknown),
-    dateCreated: S.String,
-  }),
-).annotate({
-  identifier: "SavedGroupRevisionActivityLogEntry",
-}) as any as S.Schema<SavedGroupRevisionActivityLogEntry>;
-
-export type SavedGroupRevisionActivityLogList =
-  Array<SavedGroupRevisionActivityLogEntry>;
-export const SavedGroupRevisionActivityLogList = /*@__PURE__*/ S.Array(
-  SavedGroupRevisionActivityLogEntry,
-) as any as S.Schema<SavedGroupRevisionActivityLogList>;
-
-export type SavedGroupRevisionResolutionAction = "merged" | "discarded";
-export const SavedGroupRevisionResolutionAction = /*@__PURE__*/ S.String;
-
-export interface SavedGroupRevisionResolution {
-  action: SavedGroupRevisionResolutionAction;
-  userId: string;
-  dateCreated: string;
-}
-export const SavedGroupRevisionResolution = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    action: SavedGroupRevisionResolutionAction,
-    userId: S.String,
-    dateCreated: S.String,
-  }),
-).annotate({
-  identifier: "SavedGroupRevisionResolution",
-}) as any as S.Schema<SavedGroupRevisionResolution>;
-
-export type SavedGroupRevisionProposedChangesItemCase0 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
-export const SavedGroupRevisionProposedChangesItemCase0 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
-
-export type SavedGroupRevisionProposedChangesItemCase1 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase1;
-export const SavedGroupRevisionProposedChangesItemCase1 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase1;
-
-export type SavedGroupRevisionProposedChangesItemCase2 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
-export const SavedGroupRevisionProposedChangesItemCase2 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
-
-export type SavedGroupRevisionProposedChangesItemCase3 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3;
-export const SavedGroupRevisionProposedChangesItemCase3 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3;
-
-export type SavedGroupRevisionProposedChangesItemCase4 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3;
-export const SavedGroupRevisionProposedChangesItemCase4 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3;
-
-export type SavedGroupRevisionProposedChangesItemCase5 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
-export const SavedGroupRevisionProposedChangesItemCase5 =
-  ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
-
-export type SavedGroupRevisionProposedChangesItem =
-  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0
-  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase1
-  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0
-  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3
-  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3
-  | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
-export const SavedGroupRevisionProposedChangesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SavedGroupRevisionProposedChangesItem>;
-
-export type SavedGroupRevisionProposedChangesList =
-  Array<SavedGroupRevisionProposedChangesItem>;
-export const SavedGroupRevisionProposedChangesList = /*@__PURE__*/ S.Array(
-  SavedGroupRevisionProposedChangesItem,
-) as any as S.Schema<SavedGroupRevisionProposedChangesList>;
-
-export interface SavedGroupRevision {
-  id: string;
-  version?: number;
-  title?: string;
-  status: SavedGroupRevisionStatus;
-  authorId: string;
-  authorEmail?: string;
-  contributors?: SavedGroupRevisionContributorsList;
-  revertedFrom?: string;
-  reviews: SavedGroupRevisionReviewsList;
-  activityLog: SavedGroupRevisionActivityLogList;
-  /** Publish automatically the moment this revision is approved. */
-  autoPublishOnApproval?: boolean;
-  /** User the deferred publish will run as. Its authority is re-checked when the publish fires. */
-  autoPublishEnabledBy?: string;
-  /** When the deferred publish fires. Absent when the revision publishes on approval instead, or is not armed at all. */
-  scheduledPublishAt?: string;
-  /** Content edits to this revision are frozen until it fires. */
-  scheduledPublishLockEdits?: boolean;
-  /** Other revisions of the same resource cannot publish until this one fires or is cancelled. */
-  scheduledPublishLockOthers?: boolean;
-  /** Armed by a caller who bypassed the approval requirement. Such a schedule must be cancelled and re-armed rather than edited. */
-  scheduledPublishBypassApproval?: boolean;
-  /** How many times the poller has tried to publish this revision. */
-  scheduledPublishAttempts?: number;
-  /** Why the most recent deferred-publish attempt failed. */
-  scheduledPublishLastError?: string;
-  /** When the poller stopped retrying. Giving up CLEARS the schedule and disarms auto-publish, so nothing fires again until the revision is re-armed. The draft is left open, with `scheduledPublishLastError` preserved for context. */
-  scheduledPublishGaveUpAt?: string;
-  resolution?: SavedGroupRevisionResolution;
-  dateCreated: string;
-  dateUpdated: string;
-  baseSavedGroup: SavedGroup;
-  proposedSavedGroup: SavedGroup;
-  proposedChanges: SavedGroupRevisionProposedChangesList;
-}
-export const SavedGroupRevision = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    version: S.optional(S.Number),
-    title: S.optional(S.String),
-    status: SavedGroupRevisionStatus,
-    authorId: S.String,
-    authorEmail: S.optional(S.String),
-    contributors: S.optional(SavedGroupRevisionContributorsList),
-    revertedFrom: S.optional(S.String),
-    reviews: SavedGroupRevisionReviewsList,
-    activityLog: SavedGroupRevisionActivityLogList,
-    autoPublishOnApproval: S.optional(S.Boolean),
-    autoPublishEnabledBy: S.optional(S.String),
-    scheduledPublishAt: S.optional(S.String),
-    scheduledPublishLockEdits: S.optional(S.Boolean),
-    scheduledPublishLockOthers: S.optional(S.Boolean),
-    scheduledPublishBypassApproval: S.optional(S.Boolean),
-    scheduledPublishAttempts: S.optional(S.Number),
-    scheduledPublishLastError: S.optional(S.String),
-    scheduledPublishGaveUpAt: S.optional(S.String),
-    resolution: S.optional(SavedGroupRevisionResolution),
-    dateCreated: S.String,
-    dateUpdated: S.String,
-    baseSavedGroup: SavedGroup,
-    proposedSavedGroup: SavedGroup,
-    proposedChanges: SavedGroupRevisionProposedChangesList,
-  }),
-).annotate({
-  identifier: "SavedGroupRevision",
-}) as any as S.Schema<SavedGroupRevision>;
 
 export interface GetSavedGroupRevisionResponse {
   revision: SavedGroupRevision;
@@ -22608,95 +28793,6 @@ export const GetSdkConnectionRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetSdkConnectionRequest",
 }) as any as S.Schema<GetSdkConnectionRequest>;
 
-export type SdkConnectionLanguagesList = Array<string>;
-export const SdkConnectionLanguagesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<SdkConnectionLanguagesList>;
-
-export type SdkConnectionProjectsList = Array<string>;
-export const SdkConnectionProjectsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<SdkConnectionProjectsList>;
-
-export type SdkConnectionAllowedCustomFieldsInMetadataList = Array<string>;
-export const SdkConnectionAllowedCustomFieldsInMetadataList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SdkConnectionAllowedCustomFieldsInMetadataList>;
-
-export interface SdkConnection {
-  id: string;
-  dateCreated: string;
-  dateUpdated: string;
-  name: string;
-  organization: string;
-  languages: SdkConnectionLanguagesList;
-  sdkVersion?: string;
-  environment: string;
-  /** Use 'projects' instead. This is only for backwards compatibility and contains the first project only. */
-  project: string;
-  projects?: SdkConnectionProjectsList;
-  encryptPayload: boolean;
-  encryptionKey: string;
-  includeVisualExperiments?: boolean;
-  includeDraftExperiments?: boolean;
-  /** When true, experiment-ref rules linked to draft experiments are included in feature definitions. Off by default. */
-  includeDraftExperimentRefs?: boolean;
-  includeExperimentNames?: boolean;
-  includeRedirectExperiments?: boolean;
-  includeRuleIds?: boolean;
-  includeProjectIdInMetadata?: boolean;
-  includeCustomFieldsInMetadata?: boolean;
-  allowedCustomFieldsInMetadata?: SdkConnectionAllowedCustomFieldsInMetadataList;
-  includeTagsInMetadata?: boolean;
-  includeExperimentScheduleInMetadata?: boolean;
-  key: string;
-  proxyEnabled: boolean;
-  proxyHost: string;
-  proxySigningKey: string;
-  sseEnabled?: boolean;
-  hashSecureAttributes?: boolean;
-  remoteEvalEnabled?: boolean;
-  savedGroupReferencesEnabled?: boolean;
-}
-export const SdkConnection = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    dateCreated: S.String,
-    dateUpdated: S.String,
-    name: S.String,
-    organization: S.String,
-    languages: SdkConnectionLanguagesList,
-    sdkVersion: S.optional(S.String),
-    environment: S.String,
-    project: S.String,
-    projects: S.optional(SdkConnectionProjectsList),
-    encryptPayload: S.Boolean,
-    encryptionKey: S.String,
-    includeVisualExperiments: S.optional(S.Boolean),
-    includeDraftExperiments: S.optional(S.Boolean),
-    includeDraftExperimentRefs: S.optional(S.Boolean),
-    includeExperimentNames: S.optional(S.Boolean),
-    includeRedirectExperiments: S.optional(S.Boolean),
-    includeRuleIds: S.optional(S.Boolean),
-    includeProjectIdInMetadata: S.optional(S.Boolean),
-    includeCustomFieldsInMetadata: S.optional(S.Boolean),
-    allowedCustomFieldsInMetadata: S.optional(
-      SdkConnectionAllowedCustomFieldsInMetadataList,
-    ),
-    includeTagsInMetadata: S.optional(S.Boolean),
-    includeExperimentScheduleInMetadata: S.optional(S.Boolean),
-    key: S.String,
-    proxyEnabled: S.Boolean,
-    proxyHost: S.String,
-    proxySigningKey: S.String,
-    sseEnabled: S.optional(S.Boolean),
-    hashSecureAttributes: S.optional(S.Boolean),
-    remoteEvalEnabled: S.optional(S.Boolean),
-    savedGroupReferencesEnabled: S.optional(S.Boolean),
-  }),
-).annotate({ identifier: "SdkConnection" }) as any as S.Schema<SdkConnection>;
-
 export interface GetSdkConnectionResponse {
   sdkConnection: SdkConnection;
 }
@@ -22737,63 +28833,6 @@ export const GetSegmentRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetSegmentRequest",
 }) as any as S.Schema<GetSegmentRequest>;
-
-/** Where this segment must be managed from. If not set (empty string), it can be managed from anywhere. */
-export type SegmentManagedBy = "" | "api" | "config";
-export const SegmentManagedBy = /*@__PURE__*/ S.String;
-
-export type SegmentType = "SQL" | "FACT";
-export const SegmentType = /*@__PURE__*/ S.String;
-
-export type SegmentFiltersList = Array<string>;
-export const SegmentFiltersList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<SegmentFiltersList>;
-
-export type SegmentProjectsList = Array<string>;
-export const SegmentProjectsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<SegmentProjectsList>;
-
-export interface Segment {
-  id: string;
-  /** The userId of the owner (or raw owner name/email for legacy records) */
-  owner: string;
-  /** The email address of the owner, when the owner can be resolved to a known user. */
-  ownerEmail?: string;
-  datasourceId: string;
-  identifierType: string;
-  name: string;
-  description?: string;
-  query?: string;
-  dateCreated: string;
-  dateUpdated: string;
-  /** Where this segment must be managed from. If not set (empty string), it can be managed from anywhere. */
-  managedBy?: SegmentManagedBy;
-  type?: SegmentType;
-  factTableId?: string;
-  filters?: SegmentFiltersList;
-  projects?: SegmentProjectsList;
-}
-export const Segment = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    owner: S.String,
-    ownerEmail: S.optional(S.String),
-    datasourceId: S.String,
-    identifierType: S.String,
-    name: S.String,
-    description: S.optional(S.String),
-    query: S.optional(S.String),
-    dateCreated: S.String,
-    dateUpdated: S.String,
-    managedBy: S.optional(SegmentManagedBy),
-    type: S.optional(SegmentType),
-    factTableId: S.optional(S.String),
-    filters: S.optional(SegmentFiltersList),
-    projects: S.optional(SegmentProjectsList),
-  }),
-).annotate({ identifier: "Segment" }) as any as S.Schema<Segment>;
 
 export interface GetSegmentResponse {
   segment: Segment;
@@ -23516,56 +29555,6 @@ export const ListAttributesRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListAttributesRequest",
 }) as any as S.Schema<ListAttributesRequest>;
 
-export type AttributeDatatype =
-  | "boolean"
-  | "string"
-  | "number"
-  | "secureString"
-  | "enum"
-  | "string[]"
-  | "number[]"
-  | "secureString[]";
-export const AttributeDatatype = /*@__PURE__*/ S.String;
-
-export type AttributeFormat = "" | "version" | "date" | "isoCountryCode";
-export const AttributeFormat = /*@__PURE__*/ S.String;
-
-export type AttributeProjectsList = Array<string>;
-export const AttributeProjectsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<AttributeProjectsList>;
-
-export type AttributeTagsList = Array<string>;
-export const AttributeTagsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<AttributeTagsList>;
-
-export interface Attribute {
-  property: string;
-  datatype: AttributeDatatype;
-  description?: string;
-  hashAttribute?: boolean;
-  archived?: boolean;
-  /** Comma-separated list of allowed values. Required for the 'enum' datatype. For array datatypes (string[], number[], secureString[]) it optionally restricts the list to these values. Ignored for all other datatypes. */
-  enum?: string;
-  format?: AttributeFormat;
-  projects?: AttributeProjectsList;
-  tags?: AttributeTagsList;
-}
-export const Attribute = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    property: S.String,
-    datatype: AttributeDatatype,
-    description: S.optional(S.String),
-    hashAttribute: S.optional(S.Boolean),
-    archived: S.optional(S.Boolean),
-    enum: S.optional(S.String),
-    format: S.optional(AttributeFormat),
-    projects: S.optional(AttributeProjectsList),
-    tags: S.optional(AttributeTagsList),
-  }),
-).annotate({ identifier: "Attribute" }) as any as S.Schema<Attribute>;
-
 export type ListAttributesResponseAttributesList = Array<Attribute>;
 export const ListAttributesResponseAttributesList = /*@__PURE__*/ S.Array(
   Attribute,
@@ -24254,30 +30243,6 @@ export const ListEnvironmentsRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListEnvironmentsRequest",
 }) as any as S.Schema<ListEnvironmentsRequest>;
-
-export type EnvironmentProjectsList = Array<string>;
-export const EnvironmentProjectsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<EnvironmentProjectsList>;
-
-export interface Environment {
-  id: string;
-  description: string;
-  toggleOnList: boolean;
-  defaultState: boolean;
-  projects: EnvironmentProjectsList;
-  parent?: string;
-}
-export const Environment = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    description: S.String,
-    toggleOnList: S.Boolean,
-    defaultState: S.Boolean,
-    projects: EnvironmentProjectsList,
-    parent: S.optional(S.String),
-  }),
-).annotate({ identifier: "Environment" }) as any as S.Schema<Environment>;
 
 export type ListEnvironmentsResponseEnvironmentsList = Array<Environment>;
 export const ListEnvironmentsResponseEnvironmentsList = /*@__PURE__*/ S.Array(
@@ -25408,28 +31373,6 @@ export const ListOrganizationsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListOrganizationsRequest",
 }) as any as S.Schema<ListOrganizationsRequest>;
 
-export interface Organization {
-  /** The Growthbook unique identifier for the organization */
-  id?: string;
-  /** An optional identifier that you use within your company for the organization */
-  externalId?: string;
-  /** The date the organization was created */
-  dateCreated?: string;
-  /** The name of the organization */
-  name?: string;
-  /** The email address of the organization owner */
-  ownerEmail?: string;
-}
-export const Organization = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    externalId: S.optional(S.String),
-    dateCreated: S.optional(S.String),
-    name: S.optional(S.String),
-    ownerEmail: S.optional(S.String),
-  }),
-).annotate({ identifier: "Organization" }) as any as S.Schema<Organization>;
-
 export type ListOrganizationsResponseOrganizationsList = Array<Organization>;
 export const ListOrganizationsResponseOrganizationsList = /*@__PURE__*/ S.Array(
   Organization,
@@ -26075,2603 +32018,6 @@ export const PauseRampScheduleResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "PauseRampScheduleResponse",
 }) as any as S.Schema<PauseRampScheduleResponse>;
 
-/** The attributes to set when using this Archetype */
-export type PostArchetypeRequestAttributesMap = {
-  [key: string]: unknown | undefined;
-};
-export const PostArchetypeRequestAttributesMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<PostArchetypeRequestAttributesMap>;
-
-export type PostArchetypeRequestProjectsList = Array<string>;
-export const PostArchetypeRequestProjectsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PostArchetypeRequestProjectsList>;
-
-/** Limit this Archetype to specific environments. Omit or leave empty to apply to all environments. */
-export type PostArchetypeRequestEnvironmentsList = Array<string>;
-export const PostArchetypeRequestEnvironmentsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PostArchetypeRequestEnvironmentsList>;
-
-export interface PostArchetypeRequest {
-  name: string;
-  description?: string;
-  /** Whether to make this Archetype available to other team members */
-  isPublic: boolean;
-  /** The attributes to set when using this Archetype */
-  attributes?: PostArchetypeRequestAttributesMap;
-  projects?: PostArchetypeRequestProjectsList;
-  /** Limit this Archetype to specific environments. Omit or leave empty to apply to all environments. */
-  environments?: PostArchetypeRequestEnvironmentsList;
-}
-export const PostArchetypeRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    description: S.optional(S.String),
-    isPublic: S.Boolean,
-    attributes: S.optional(PostArchetypeRequestAttributesMap),
-    projects: S.optional(PostArchetypeRequestProjectsList),
-    environments: S.optional(PostArchetypeRequestEnvironmentsList),
-  }).pipe(T.Http({ method: "POST", uri: "/v1/archetypes", code: 200 })),
-).annotate({
-  identifier: "PostArchetypeRequest",
-}) as any as S.Schema<PostArchetypeRequest>;
-
-export interface PostArchetypeResponse {
-  archetype: Archetype;
-}
-export const PostArchetypeResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    archetype: Archetype,
-  }),
-).annotate({
-  identifier: "PostArchetypeResponse",
-}) as any as S.Schema<PostArchetypeResponse>;
-
-/** The attribute datatype */
-export type PostAttributeRequestDatatype =
-  | "boolean"
-  | "string"
-  | "number"
-  | "secureString"
-  | "enum"
-  | "string[]"
-  | "number[]"
-  | "secureString[]";
-export const PostAttributeRequestDatatype = /*@__PURE__*/ S.String;
-
-/** The attribute's format */
-export type PostAttributeRequestFormat =
-  | ""
-  | "version"
-  | "date"
-  | "isoCountryCode";
-export const PostAttributeRequestFormat = /*@__PURE__*/ S.String;
-
-export type PostAttributeRequestProjectsList = Array<string>;
-export const PostAttributeRequestProjectsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PostAttributeRequestProjectsList>;
-
-export type PostAttributeRequestTagsList = Array<string>;
-export const PostAttributeRequestTagsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PostAttributeRequestTagsList>;
-
-export interface PostAttributeRequest {
-  /** The attribute property */
-  property: string;
-  /** The attribute datatype */
-  datatype: PostAttributeRequestDatatype | (string & {});
-  /** The description of the new attribute */
-  description?: string;
-  /** The attribute is archived */
-  archived?: boolean;
-  /** Shall the attribute be hashed */
-  hashAttribute?: boolean;
-  /** Comma-separated list of allowed values. Required for the 'enum' datatype. For array datatypes (string[], number[], secureString[]) it optionally restricts the list to these values. Ignored for all other datatypes. */
-  enum?: string;
-  /** The attribute's format */
-  format?: PostAttributeRequestFormat | (string & {});
-  projects?: PostAttributeRequestProjectsList;
-  tags?: PostAttributeRequestTagsList;
-}
-export const PostAttributeRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    property: S.String,
-    datatype: PostAttributeRequestDatatype,
-    description: S.optional(S.String),
-    archived: S.optional(S.Boolean),
-    hashAttribute: S.optional(S.Boolean),
-    enum: S.optional(S.String),
-    format: S.optional(PostAttributeRequestFormat),
-    projects: S.optional(PostAttributeRequestProjectsList),
-    tags: S.optional(PostAttributeRequestTagsList),
-  }).pipe(T.Http({ method: "POST", uri: "/v1/attributes", code: 200 })),
-).annotate({
-  identifier: "PostAttributeRequest",
-}) as any as S.Schema<PostAttributeRequest>;
-
-export interface PostAttributeResponse {
-  attribute: Attribute;
-}
-export const PostAttributeResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    attribute: Attribute,
-  }),
-).annotate({
-  identifier: "PostAttributeResponse",
-}) as any as S.Schema<PostAttributeResponse>;
-
-/** Fallback `managedBy` for Fact Tables and Fact Metrics that omit the field. Defaults to `"api"`. Filters inherit `"api"` only when the parent Fact Table is api-managed. */
-export type PostBulkImportFactsRequestDefaultManagedBy = "" | "api" | "admin";
-export const PostBulkImportFactsRequestDefaultManagedBy =
-  /*@__PURE__*/ S.String;
-
-/** List of associated project ids */
-export type PostBulkImportFactsRequestFactTablesItemDataProjectsList =
-  Array<string>;
-export const PostBulkImportFactsRequestFactTablesItemDataProjectsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostBulkImportFactsRequestFactTablesItemDataProjectsList>;
-
-/** List of associated tags */
-export type PostBulkImportFactsRequestFactTablesItemDataTagsList =
-  Array<string>;
-export const PostBulkImportFactsRequestFactTablesItemDataTagsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostBulkImportFactsRequestFactTablesItemDataTagsList>;
-
-/** List of identifier columns in this table. For example, "id" or "anonymous_id" */
-export type PostBulkImportFactsRequestFactTablesItemDataUserIdTypesList =
-  Array<string>;
-export const PostBulkImportFactsRequestFactTablesItemDataUserIdTypesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostBulkImportFactsRequestFactTablesItemDataUserIdTypesList>;
-
-export type PostBulkImportFactsRequestFactTablesItemDataAggregatedFactTableSettingsIdTypesList =
-  Array<string>;
-export const PostBulkImportFactsRequestFactTablesItemDataAggregatedFactTableSettingsIdTypesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostBulkImportFactsRequestFactTablesItemDataAggregatedFactTableSettingsIdTypesList>;
-
-export type PostBulkImportFactsRequestFactTablesItemDataAggregatedFactTableSettingsUpdateTime =
-  FactTableAggregatedFactTableSettingsUpdateTime;
-export const PostBulkImportFactsRequestFactTablesItemDataAggregatedFactTableSettingsUpdateTime =
-  FactTableAggregatedFactTableSettingsUpdateTime;
-
-/** Settings for maintaining shared daily aggregated tables (a subset of userIdTypes plus the daily update time and restate lookback window) used to speed up CUPED. Requires the data pipeline (pipeline-mode) feature. */
-export interface PostBulkImportFactsRequestFactTablesItemDataAggregatedFactTableSettings {
-  idTypes: PostBulkImportFactsRequestFactTablesItemDataAggregatedFactTableSettingsIdTypesList;
-  updateTime: FactTableAggregatedFactTableSettingsUpdateTime;
-  lookbackWindow: number;
-  restateChunkDays?: number;
-}
-export const PostBulkImportFactsRequestFactTablesItemDataAggregatedFactTableSettings =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      idTypes:
-        PostBulkImportFactsRequestFactTablesItemDataAggregatedFactTableSettingsIdTypesList,
-      updateTime: FactTableAggregatedFactTableSettingsUpdateTime,
-      lookbackWindow: S.Number,
-      restateChunkDays: S.optional(S.Number),
-    }),
-  ).annotate({
-    identifier:
-      "PostBulkImportFactsRequestFactTablesItemDataAggregatedFactTableSettings",
-  }) as any as S.Schema<PostBulkImportFactsRequestFactTablesItemDataAggregatedFactTableSettings>;
-
-/** The column's data type. Omit (or send "") to have it auto-detected from the SQL. */
-export type FactTableColumnInputDatatype =
-  | "number"
-  | "string"
-  | "date"
-  | "boolean"
-  | "json"
-  | "binary"
-  | "other"
-  | "";
-export const FactTableColumnInputDatatype = /*@__PURE__*/ S.String;
-
-export type FactTableColumnInputNumberFormat =
-  | ""
-  | "currency"
-  | "time:seconds"
-  | "memory:bytes"
-  | "memory:kilobytes";
-export const FactTableColumnInputNumberFormat = /*@__PURE__*/ S.String;
-
-export type FactTableColumnInputJsonFieldsValueDatatype =
-  | "number"
-  | "string"
-  | "date"
-  | "boolean"
-  | "json"
-  | "binary"
-  | "other"
-  | "";
-export const FactTableColumnInputJsonFieldsValueDatatype =
-  /*@__PURE__*/ S.String;
-
-export interface FactTableColumnInputJsonFieldsValue {
-  datatype?: FactTableColumnInputJsonFieldsValueDatatype | (string & {});
-}
-export const FactTableColumnInputJsonFieldsValue = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    datatype: S.optional(FactTableColumnInputJsonFieldsValueDatatype),
-  }),
-).annotate({
-  identifier: "FactTableColumnInputJsonFieldsValue",
-}) as any as S.Schema<FactTableColumnInputJsonFieldsValue>;
-
-/** For JSON columns, defines the structure of nested fields */
-export type FactTableColumnInputJsonFieldsMap = {
-  [key: string]: FactTableColumnInputJsonFieldsValue | undefined;
-};
-export const FactTableColumnInputJsonFieldsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  FactTableColumnInputJsonFieldsValue,
-) as any as S.Schema<FactTableColumnInputJsonFieldsMap>;
-
-/** Specific slices to automatically analyze for this column. */
-export type FactTableColumnInputAutoSlicesList = Array<string>;
-export const FactTableColumnInputAutoSlicesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<FactTableColumnInputAutoSlicesList>;
-
-/** Locked slices that are protected from automatic updates. These will always be included in the slice levels even if they're not in the top values query results. */
-export type FactTableColumnInputLockedAutoSlicesList = Array<string>;
-export const FactTableColumnInputLockedAutoSlicesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<FactTableColumnInputLockedAutoSlicesList>;
-
-export interface FactTableColumnInput {
-  /** The actual column name in the database/SQL query */
-  column: string;
-  /** The column's data type. Omit (or send "") to have it auto-detected from the SQL. */
-  datatype?: FactTableColumnInputDatatype | (string & {});
-  numberFormat?: FactTableColumnInputNumberFormat | (string & {});
-  /** For JSON columns, defines the structure of nested fields */
-  jsonFields?: FactTableColumnInputJsonFieldsMap;
-  /** Display name for the column (can be different from the actual column name) */
-  name?: string;
-  description?: string;
-  /** Whether this column should always be included as an inline filter in queries */
-  alwaysInlineFilter?: boolean;
-  deleted?: boolean;
-  /** Whether this column can be used for auto slice analysis. This is an enterprise feature. */
-  isAutoSliceColumn?: boolean;
-  /** Specific slices to automatically analyze for this column. */
-  autoSlices?: FactTableColumnInputAutoSlicesList;
-  /** Locked slices that are protected from automatic updates. These will always be included in the slice levels even if they're not in the top values query results. */
-  lockedAutoSlices?: FactTableColumnInputLockedAutoSlicesList;
-  /** Whether this is a virtual (computed) column defined by a SQL expression rather than detected from the fact table SQL. Can be set when creating a column, but a column's origin cannot be changed afterwards — sending a value that contradicts an existing column is rejected. */
-  isVirtual?: boolean;
-  /** For virtual columns, the SQL expression that computes the column value. Only valid on a virtual column; when omitted from an update, the existing expression is preserved. */
-  sql?: string;
-}
-export const FactTableColumnInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    column: S.String,
-    datatype: S.optional(FactTableColumnInputDatatype),
-    numberFormat: S.optional(FactTableColumnInputNumberFormat),
-    jsonFields: S.optional(FactTableColumnInputJsonFieldsMap),
-    name: S.optional(S.String),
-    description: S.optional(S.String),
-    alwaysInlineFilter: S.optional(S.Boolean),
-    deleted: S.optional(S.Boolean),
-    isAutoSliceColumn: S.optional(S.Boolean),
-    autoSlices: S.optional(FactTableColumnInputAutoSlicesList),
-    lockedAutoSlices: S.optional(FactTableColumnInputLockedAutoSlicesList),
-    isVirtual: S.optional(S.Boolean),
-    sql: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "FactTableColumnInput",
-}) as any as S.Schema<FactTableColumnInput>;
-
-/** Optional array of column definitions for this fact table. On create, columns are stored as-is. On update, columns upsert by `column`: existing columns are patched, new columns are created, and columns not included are left unchanged. Omit `datatype` to leave an existing column's type untouched; send "" to reset it for auto-detection; new columns are auto-detected when `datatype` is omitted or "". Datatype-dependent properties (e.g. `alwaysInlineFilter`) are validated once the datatype is known. Slice-related properties require an enterprise license. */
-export type PostBulkImportFactsRequestFactTablesItemDataColumnsList =
-  Array<FactTableColumnInput>;
-export const PostBulkImportFactsRequestFactTablesItemDataColumnsList =
-  /*@__PURE__*/ S.Array(
-    FactTableColumnInput,
-  ) as any as S.Schema<PostBulkImportFactsRequestFactTablesItemDataColumnsList>;
-
-/** Set this to "api" to disable editing in the GrowthBook UI */
-export type PostBulkImportFactsRequestFactTablesItemDataManagedBy =
-  | ""
-  | "api"
-  | "admin";
-export const PostBulkImportFactsRequestFactTablesItemDataManagedBy =
-  /*@__PURE__*/ S.String;
-
-export interface PostBulkImportFactsRequestFactTablesItemData {
-  name: string;
-  /** Description of the fact table */
-  description?: string;
-  /** The userId or email address of the owner. If an email address is provided, it will be used to look up the userId of the matching organization member. If an ID is provided, it will be validated as existing in the organization. */
-  owner?: string;
-  /** List of associated project ids */
-  projects?: PostBulkImportFactsRequestFactTablesItemDataProjectsList;
-  /** List of associated tags */
-  tags?: PostBulkImportFactsRequestFactTablesItemDataTagsList;
-  /** The datasource id */
-  datasource: string;
-  /** List of identifier columns in this table. For example, "id" or "anonymous_id" */
-  userIdTypes: PostBulkImportFactsRequestFactTablesItemDataUserIdTypesList;
-  /** Settings for maintaining shared daily aggregated tables (a subset of userIdTypes plus the daily update time and restate lookback window) used to speed up CUPED. Requires the data pipeline (pipeline-mode) feature. */
-  aggregatedFactTableSettings?: PostBulkImportFactsRequestFactTablesItemDataAggregatedFactTableSettings;
-  /** The SQL query for this fact table */
-  sql: string;
-  /** The event name used in SQL template variables */
-  eventName?: string;
-  /** Optional array of column definitions for this fact table. On create, columns are stored as-is. On update, columns upsert by `column`: existing columns are patched, new columns are created, and columns not included are left unchanged. Omit `datatype` to leave an existing column's type untouched; send "" to reset it for auto-detection; new columns are auto-detected when `datatype` is omitted or "". Datatype-dependent properties (e.g. `alwaysInlineFilter`) are validated once the datatype is known. Slice-related properties require an enterprise license. */
-  columns?: PostBulkImportFactsRequestFactTablesItemDataColumnsList;
-  /** Set this to "api" to disable editing in the GrowthBook UI */
-  managedBy?:
-    | PostBulkImportFactsRequestFactTablesItemDataManagedBy
-    | (string & {});
-}
-export const PostBulkImportFactsRequestFactTablesItemData =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      name: S.String,
-      description: S.optional(S.String),
-      owner: S.optional(S.String),
-      projects: S.optional(
-        PostBulkImportFactsRequestFactTablesItemDataProjectsList,
-      ),
-      tags: S.optional(PostBulkImportFactsRequestFactTablesItemDataTagsList),
-      datasource: S.String,
-      userIdTypes: PostBulkImportFactsRequestFactTablesItemDataUserIdTypesList,
-      aggregatedFactTableSettings: S.optional(
-        PostBulkImportFactsRequestFactTablesItemDataAggregatedFactTableSettings,
-      ),
-      sql: S.String,
-      eventName: S.optional(S.String),
-      columns: S.optional(
-        PostBulkImportFactsRequestFactTablesItemDataColumnsList,
-      ),
-      managedBy: S.optional(
-        PostBulkImportFactsRequestFactTablesItemDataManagedBy,
-      ),
-    }),
-  ).annotate({
-    identifier: "PostBulkImportFactsRequestFactTablesItemData",
-  }) as any as S.Schema<PostBulkImportFactsRequestFactTablesItemData>;
-
-export interface PostBulkImportFactsRequestFactTablesItem {
-  id: string;
-  data: PostBulkImportFactsRequestFactTablesItemData;
-}
-export const PostBulkImportFactsRequestFactTablesItem = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String,
-      data: PostBulkImportFactsRequestFactTablesItemData,
-    }),
-).annotate({
-  identifier: "PostBulkImportFactsRequestFactTablesItem",
-}) as any as S.Schema<PostBulkImportFactsRequestFactTablesItem>;
-
-export type PostBulkImportFactsRequestFactTablesList =
-  Array<PostBulkImportFactsRequestFactTablesItem>;
-export const PostBulkImportFactsRequestFactTablesList = /*@__PURE__*/ S.Array(
-  PostBulkImportFactsRequestFactTablesItem,
-) as any as S.Schema<PostBulkImportFactsRequestFactTablesList>;
-
-/** Set this to "api" to disable editing in the GrowthBook UI. Before you do this, the Fact Table itself must also be marked as "api" */
-export type PostBulkImportFactsRequestFactTableFiltersItemDataManagedBy =
-  | ""
-  | "api";
-export const PostBulkImportFactsRequestFactTableFiltersItemDataManagedBy =
-  /*@__PURE__*/ S.String;
-
-export interface PostBulkImportFactsRequestFactTableFiltersItemData {
-  name: string;
-  /** Description of the fact table filter */
-  description?: string;
-  /** The SQL expression for this filter. */
-  value: string;
-  /** Set this to "api" to disable editing in the GrowthBook UI. Before you do this, the Fact Table itself must also be marked as "api" */
-  managedBy?:
-    | PostBulkImportFactsRequestFactTableFiltersItemDataManagedBy
-    | (string & {});
-}
-export const PostBulkImportFactsRequestFactTableFiltersItemData =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      name: S.String,
-      description: S.optional(S.String),
-      value: S.String,
-      managedBy: S.optional(
-        PostBulkImportFactsRequestFactTableFiltersItemDataManagedBy,
-      ),
-    }),
-  ).annotate({
-    identifier: "PostBulkImportFactsRequestFactTableFiltersItemData",
-  }) as any as S.Schema<PostBulkImportFactsRequestFactTableFiltersItemData>;
-
-export interface PostBulkImportFactsRequestFactTableFiltersItem {
-  factTableId: string;
-  id: string;
-  data: PostBulkImportFactsRequestFactTableFiltersItemData;
-}
-export const PostBulkImportFactsRequestFactTableFiltersItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      factTableId: S.String,
-      id: S.String,
-      data: PostBulkImportFactsRequestFactTableFiltersItemData,
-    }),
-  ).annotate({
-    identifier: "PostBulkImportFactsRequestFactTableFiltersItem",
-  }) as any as S.Schema<PostBulkImportFactsRequestFactTableFiltersItem>;
-
-export type PostBulkImportFactsRequestFactTableFiltersList =
-  Array<PostBulkImportFactsRequestFactTableFiltersItem>;
-export const PostBulkImportFactsRequestFactTableFiltersList =
-  /*@__PURE__*/ S.Array(
-    PostBulkImportFactsRequestFactTableFiltersItem,
-  ) as any as S.Schema<PostBulkImportFactsRequestFactTableFiltersList>;
-
-export type PostBulkImportFactsRequestFactMetricsItemDataProjectsList =
-  Array<string>;
-export const PostBulkImportFactsRequestFactMetricsItemDataProjectsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostBulkImportFactsRequestFactMetricsItemDataProjectsList>;
-
-export type PostBulkImportFactsRequestFactMetricsItemDataTagsList =
-  Array<string>;
-export const PostBulkImportFactsRequestFactMetricsItemDataTagsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostBulkImportFactsRequestFactMetricsItemDataTagsList>;
-
-export type PostBulkImportFactsRequestFactMetricsItemDataMetricType =
-  | "proportion"
-  | "retention"
-  | "mean"
-  | "quantile"
-  | "ratio"
-  | "dailyParticipation"
-  | "funnel";
-export const PostBulkImportFactsRequestFactMetricsItemDataMetricType =
-  /*@__PURE__*/ S.String;
-
-/** User aggregation of selected column. Either sum or max for numeric columns; count distinct for string columns; hll merge / kll merge for pre-built sketch columns (requires data-source support); ignored for special columns. Default: sum. If you specify a string column you must explicitly specify count distinct. Not used for proportion metrics; for event quantile metrics only kll merge is applicable. */
-export type PostBulkImportFactsRequestFactMetricsItemDataNumeratorAggregation =
-  | "sum"
-  | "max"
-  | "count distinct"
-  | "hll merge"
-  | "kll merge";
-export const PostBulkImportFactsRequestFactMetricsItemDataNumeratorAggregation =
-  /*@__PURE__*/ S.String;
-
-/** Array of Fact Table Filter Ids. Deprecated, use rowFilters instead. */
-export type PostBulkImportFactsRequestFactMetricsItemDataNumeratorFiltersList =
-  Array<string>;
-export const PostBulkImportFactsRequestFactMetricsItemDataNumeratorFiltersList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostBulkImportFactsRequestFactMetricsItemDataNumeratorFiltersList>;
-
-export type PostBulkImportFactsRequestFactMetricsItemDataNumeratorInlineFiltersValueList =
-  Array<string>;
-export const PostBulkImportFactsRequestFactMetricsItemDataNumeratorInlineFiltersValueList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostBulkImportFactsRequestFactMetricsItemDataNumeratorInlineFiltersValueList>;
-
-/** Inline filters to apply to the fact table. Keys are column names, values are arrays of values to filter by. Deprecated, use rowFilters instead. */
-export type PostBulkImportFactsRequestFactMetricsItemDataNumeratorInlineFiltersMap =
-  {
-    [key: string]:
-      | PostBulkImportFactsRequestFactMetricsItemDataNumeratorInlineFiltersValueList
-      | undefined;
-  };
-export const PostBulkImportFactsRequestFactMetricsItemDataNumeratorInlineFiltersMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    PostBulkImportFactsRequestFactMetricsItemDataNumeratorInlineFiltersValueList,
-  ) as any as S.Schema<PostBulkImportFactsRequestFactMetricsItemDataNumeratorInlineFiltersMap>;
-
-export type PostBulkImportFactsRequestFactMetricsItemDataNumeratorRowFiltersItemOperator =
-  | "="
-  | "!="
-  | ">"
-  | "<"
-  | ">="
-  | "<="
-  | "between"
-  | "not_between"
-  | "in"
-  | "not_in"
-  | "is_null"
-  | "not_null"
-  | "is_true"
-  | "is_false"
-  | "contains"
-  | "not_contains"
-  | "starts_with"
-  | "ends_with"
-  | "sql_expr"
-  | "saved_filter";
-export const PostBulkImportFactsRequestFactMetricsItemDataNumeratorRowFiltersItemOperator =
-  /*@__PURE__*/ S.String;
-
-/** Not required for is_null, not_null, is_true, is_false operators. The between and not_between operators take at most two values, a lower and an upper bound in that order; leave a bound as an empty string for an open-ended range. */
-export type PostBulkImportFactsRequestFactMetricsItemDataNumeratorRowFiltersItemValuesList =
-  Array<string>;
-export const PostBulkImportFactsRequestFactMetricsItemDataNumeratorRowFiltersItemValuesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostBulkImportFactsRequestFactMetricsItemDataNumeratorRowFiltersItemValuesList>;
-
-export interface PostBulkImportFactsRequestFactMetricsItemDataNumeratorRowFiltersItem {
-  operator:
-    | PostBulkImportFactsRequestFactMetricsItemDataNumeratorRowFiltersItemOperator
-    | (string & {});
-  /** Not required for is_null, not_null, is_true, is_false operators. The between and not_between operators take at most two values, a lower and an upper bound in that order; leave a bound as an empty string for an open-ended range. */
-  values?: PostBulkImportFactsRequestFactMetricsItemDataNumeratorRowFiltersItemValuesList;
-  /** Required for all operators except sql_expr and saved_filter. */
-  column?: string;
-}
-export const PostBulkImportFactsRequestFactMetricsItemDataNumeratorRowFiltersItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      operator:
-        PostBulkImportFactsRequestFactMetricsItemDataNumeratorRowFiltersItemOperator,
-      values: S.optional(
-        PostBulkImportFactsRequestFactMetricsItemDataNumeratorRowFiltersItemValuesList,
-      ),
-      column: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier:
-      "PostBulkImportFactsRequestFactMetricsItemDataNumeratorRowFiltersItem",
-  }) as any as S.Schema<PostBulkImportFactsRequestFactMetricsItemDataNumeratorRowFiltersItem>;
-
-/** Filters to apply to the rows of the fact table before aggregation. */
-export type PostBulkImportFactsRequestFactMetricsItemDataNumeratorRowFiltersList =
-  Array<PostBulkImportFactsRequestFactMetricsItemDataNumeratorRowFiltersItem>;
-export const PostBulkImportFactsRequestFactMetricsItemDataNumeratorRowFiltersList =
-  /*@__PURE__*/ S.Array(
-    PostBulkImportFactsRequestFactMetricsItemDataNumeratorRowFiltersItem,
-  ) as any as S.Schema<PostBulkImportFactsRequestFactMetricsItemDataNumeratorRowFiltersList>;
-
-export interface PostBulkImportFactsRequestFactMetricsItemDataNumerator {
-  factTableId: string;
-  /** Must be empty for proportion metrics and dailyParticipation metrics. Otherwise, the column name or one of the special values: '$$distinctUsers' or '$$count' (or '$$distinctDates' if metricType is 'mean' or 'ratio' or 'quantile' and quantileSettings.type is 'unit') */
-  column?: string;
-  /** User aggregation of selected column. Either sum or max for numeric columns; count distinct for string columns; hll merge / kll merge for pre-built sketch columns (requires data-source support); ignored for special columns. Default: sum. If you specify a string column you must explicitly specify count distinct. Not used for proportion metrics; for event quantile metrics only kll merge is applicable. */
-  aggregation?:
-    | PostBulkImportFactsRequestFactMetricsItemDataNumeratorAggregation
-    | (string & {});
-  /** Array of Fact Table Filter Ids. Deprecated, use rowFilters instead. */
-  filters?: PostBulkImportFactsRequestFactMetricsItemDataNumeratorFiltersList;
-  /** Inline filters to apply to the fact table. Keys are column names, values are arrays of values to filter by. Deprecated, use rowFilters instead. */
-  inlineFilters?: PostBulkImportFactsRequestFactMetricsItemDataNumeratorInlineFiltersMap;
-  /** Filters to apply to the rows of the fact table before aggregation. */
-  rowFilters?: PostBulkImportFactsRequestFactMetricsItemDataNumeratorRowFiltersList;
-  /** Column to use to filter users after aggregation. Either '$$count' of rows or the name of a numeric column that will be summed by user. Must specify `aggregateFilter` if using this. Only can be used with 'retention' and 'proportion' metrics. */
-  aggregateFilterColumn?: string;
-  /** Simple comparison operator and value to apply after aggregation (e.g. '= 10' or '>= 1'). Requires `aggregateFilterColumn`. */
-  aggregateFilter?: string;
-}
-export const PostBulkImportFactsRequestFactMetricsItemDataNumerator =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      factTableId: S.String,
-      column: S.optional(S.String),
-      aggregation: S.optional(
-        PostBulkImportFactsRequestFactMetricsItemDataNumeratorAggregation,
-      ),
-      filters: S.optional(
-        PostBulkImportFactsRequestFactMetricsItemDataNumeratorFiltersList,
-      ),
-      inlineFilters: S.optional(
-        PostBulkImportFactsRequestFactMetricsItemDataNumeratorInlineFiltersMap,
-      ),
-      rowFilters: S.optional(
-        PostBulkImportFactsRequestFactMetricsItemDataNumeratorRowFiltersList,
-      ),
-      aggregateFilterColumn: S.optional(S.String),
-      aggregateFilter: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "PostBulkImportFactsRequestFactMetricsItemDataNumerator",
-  }) as any as S.Schema<PostBulkImportFactsRequestFactMetricsItemDataNumerator>;
-
-/** User aggregation of selected column. Either sum or max for numeric columns; count distinct for string columns; hll merge / kll merge for pre-built sketch columns (requires data-source support); ignored for special columns. Default: sum. If you specify a string column you must explicitly specify count distinct. Not used for proportion metrics; for event quantile metrics only kll merge is applicable. */
-export type PostBulkImportFactsRequestFactMetricsItemDataDenominatorAggregation =
-  | "sum"
-  | "max"
-  | "count distinct"
-  | "hll merge"
-  | "kll merge";
-export const PostBulkImportFactsRequestFactMetricsItemDataDenominatorAggregation =
-  /*@__PURE__*/ S.String;
-
-/** Array of Fact Table Filter Ids. Deprecated, use rowFilters instead. */
-export type PostBulkImportFactsRequestFactMetricsItemDataDenominatorFiltersList =
-  Array<string>;
-export const PostBulkImportFactsRequestFactMetricsItemDataDenominatorFiltersList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostBulkImportFactsRequestFactMetricsItemDataDenominatorFiltersList>;
-
-export type PostBulkImportFactsRequestFactMetricsItemDataDenominatorInlineFiltersValueList =
-  Array<string>;
-export const PostBulkImportFactsRequestFactMetricsItemDataDenominatorInlineFiltersValueList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostBulkImportFactsRequestFactMetricsItemDataDenominatorInlineFiltersValueList>;
-
-/** Inline filters to apply to the fact table. Keys are column names, values are arrays of values to filter by. Deprecated, use rowFilters instead. */
-export type PostBulkImportFactsRequestFactMetricsItemDataDenominatorInlineFiltersMap =
-  {
-    [key: string]:
-      | PostBulkImportFactsRequestFactMetricsItemDataDenominatorInlineFiltersValueList
-      | undefined;
-  };
-export const PostBulkImportFactsRequestFactMetricsItemDataDenominatorInlineFiltersMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    PostBulkImportFactsRequestFactMetricsItemDataDenominatorInlineFiltersValueList,
-  ) as any as S.Schema<PostBulkImportFactsRequestFactMetricsItemDataDenominatorInlineFiltersMap>;
-
-export type PostBulkImportFactsRequestFactMetricsItemDataDenominatorRowFiltersItemOperator =
-  | "="
-  | "!="
-  | ">"
-  | "<"
-  | ">="
-  | "<="
-  | "between"
-  | "not_between"
-  | "in"
-  | "not_in"
-  | "is_null"
-  | "not_null"
-  | "is_true"
-  | "is_false"
-  | "contains"
-  | "not_contains"
-  | "starts_with"
-  | "ends_with"
-  | "sql_expr"
-  | "saved_filter";
-export const PostBulkImportFactsRequestFactMetricsItemDataDenominatorRowFiltersItemOperator =
-  /*@__PURE__*/ S.String;
-
-/** Not required for is_null, not_null, is_true, is_false operators. The between and not_between operators take at most two values, a lower and an upper bound in that order; leave a bound as an empty string for an open-ended range. */
-export type PostBulkImportFactsRequestFactMetricsItemDataDenominatorRowFiltersItemValuesList =
-  Array<string>;
-export const PostBulkImportFactsRequestFactMetricsItemDataDenominatorRowFiltersItemValuesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostBulkImportFactsRequestFactMetricsItemDataDenominatorRowFiltersItemValuesList>;
-
-export interface PostBulkImportFactsRequestFactMetricsItemDataDenominatorRowFiltersItem {
-  operator:
-    | PostBulkImportFactsRequestFactMetricsItemDataDenominatorRowFiltersItemOperator
-    | (string & {});
-  /** Not required for is_null, not_null, is_true, is_false operators. The between and not_between operators take at most two values, a lower and an upper bound in that order; leave a bound as an empty string for an open-ended range. */
-  values?: PostBulkImportFactsRequestFactMetricsItemDataDenominatorRowFiltersItemValuesList;
-  /** Required for all operators except sql_expr and saved_filter. */
-  column?: string;
-}
-export const PostBulkImportFactsRequestFactMetricsItemDataDenominatorRowFiltersItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      operator:
-        PostBulkImportFactsRequestFactMetricsItemDataDenominatorRowFiltersItemOperator,
-      values: S.optional(
-        PostBulkImportFactsRequestFactMetricsItemDataDenominatorRowFiltersItemValuesList,
-      ),
-      column: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier:
-      "PostBulkImportFactsRequestFactMetricsItemDataDenominatorRowFiltersItem",
-  }) as any as S.Schema<PostBulkImportFactsRequestFactMetricsItemDataDenominatorRowFiltersItem>;
-
-/** Filters to apply to the rows of the fact table before aggregation. */
-export type PostBulkImportFactsRequestFactMetricsItemDataDenominatorRowFiltersList =
-  Array<PostBulkImportFactsRequestFactMetricsItemDataDenominatorRowFiltersItem>;
-export const PostBulkImportFactsRequestFactMetricsItemDataDenominatorRowFiltersList =
-  /*@__PURE__*/ S.Array(
-    PostBulkImportFactsRequestFactMetricsItemDataDenominatorRowFiltersItem,
-  ) as any as S.Schema<PostBulkImportFactsRequestFactMetricsItemDataDenominatorRowFiltersList>;
-
-/** Only when metricType is 'ratio' */
-export interface PostBulkImportFactsRequestFactMetricsItemDataDenominator {
-  factTableId: string;
-  /** The column name or one of the special values: '$$distinctUsers' or '$$count' (or '$$distinctDates' if metricType is 'mean' or 'ratio' or 'quantile' and quantileSettings.type is 'unit') */
-  column: string;
-  /** User aggregation of selected column. Either sum or max for numeric columns; count distinct for string columns; hll merge / kll merge for pre-built sketch columns (requires data-source support); ignored for special columns. Default: sum. If you specify a string column you must explicitly specify count distinct. Not used for proportion metrics; for event quantile metrics only kll merge is applicable. */
-  aggregation?:
-    | PostBulkImportFactsRequestFactMetricsItemDataDenominatorAggregation
-    | (string & {});
-  /** Array of Fact Table Filter Ids. Deprecated, use rowFilters instead. */
-  filters?: PostBulkImportFactsRequestFactMetricsItemDataDenominatorFiltersList;
-  /** Inline filters to apply to the fact table. Keys are column names, values are arrays of values to filter by. Deprecated, use rowFilters instead. */
-  inlineFilters?: PostBulkImportFactsRequestFactMetricsItemDataDenominatorInlineFiltersMap;
-  /** Filters to apply to the rows of the fact table before aggregation. */
-  rowFilters?: PostBulkImportFactsRequestFactMetricsItemDataDenominatorRowFiltersList;
-}
-export const PostBulkImportFactsRequestFactMetricsItemDataDenominator =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      factTableId: S.String,
-      column: S.String,
-      aggregation: S.optional(
-        PostBulkImportFactsRequestFactMetricsItemDataDenominatorAggregation,
-      ),
-      filters: S.optional(
-        PostBulkImportFactsRequestFactMetricsItemDataDenominatorFiltersList,
-      ),
-      inlineFilters: S.optional(
-        PostBulkImportFactsRequestFactMetricsItemDataDenominatorInlineFiltersMap,
-      ),
-      rowFilters: S.optional(
-        PostBulkImportFactsRequestFactMetricsItemDataDenominatorRowFiltersList,
-      ),
-    }),
-  ).annotate({
-    identifier: "PostBulkImportFactsRequestFactMetricsItemDataDenominator",
-  }) as any as S.Schema<PostBulkImportFactsRequestFactMetricsItemDataDenominator>;
-
-/** Whether the quantile is over unit aggregations or raw event values */
-export type PostBulkImportFactsRequestFactMetricsItemDataQuantileSettingsType =
-  | "event"
-  | "unit";
-export const PostBulkImportFactsRequestFactMetricsItemDataQuantileSettingsType =
-  /*@__PURE__*/ S.String;
-
-/** Controls the settings for quantile metrics (mandatory if metricType is "quantile") */
-export interface PostBulkImportFactsRequestFactMetricsItemDataQuantileSettings {
-  /** Whether the quantile is over unit aggregations or raw event values */
-  type:
-    | PostBulkImportFactsRequestFactMetricsItemDataQuantileSettingsType
-    | (string & {});
-  /** If true, zero values will be ignored when calculating the quantile */
-  ignoreZeros: boolean;
-  /** The quantile value (from 0.001 to 0.999) */
-  quantile: number;
-  /** Optional override for the source-column name used to recover per-row event counts when numerator.aggregation is 'kll merge'. Defaults to '<numerator.column>_n_events'. Only valid for event-quantile metrics with a 'kll merge' numerator. */
-  quantileEventCountColumn?: string;
-}
-export const PostBulkImportFactsRequestFactMetricsItemDataQuantileSettings =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: PostBulkImportFactsRequestFactMetricsItemDataQuantileSettingsType,
-      ignoreZeros: S.Boolean,
-      quantile: S.Number,
-      quantileEventCountColumn: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "PostBulkImportFactsRequestFactMetricsItemDataQuantileSettings",
-  }) as any as S.Schema<PostBulkImportFactsRequestFactMetricsItemDataQuantileSettings>;
-
-export type PostBulkImportFactsRequestFactMetricsItemDataFunnelSettingsStepsItemRowFiltersItemOperator =
-  | "="
-  | "!="
-  | ">"
-  | "<"
-  | ">="
-  | "<="
-  | "between"
-  | "not_between"
-  | "in"
-  | "not_in"
-  | "is_null"
-  | "not_null"
-  | "is_true"
-  | "is_false"
-  | "contains"
-  | "not_contains"
-  | "starts_with"
-  | "ends_with"
-  | "sql_expr"
-  | "saved_filter";
-export const PostBulkImportFactsRequestFactMetricsItemDataFunnelSettingsStepsItemRowFiltersItemOperator =
-  /*@__PURE__*/ S.String;
-
-/** Not required for is_null, not_null, is_true, is_false operators. The between and not_between operators take at most two values, a lower and an upper bound in that order; leave a bound as an empty string for an open-ended range. */
-export type PostBulkImportFactsRequestFactMetricsItemDataFunnelSettingsStepsItemRowFiltersItemValuesList =
-  Array<string>;
-export const PostBulkImportFactsRequestFactMetricsItemDataFunnelSettingsStepsItemRowFiltersItemValuesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostBulkImportFactsRequestFactMetricsItemDataFunnelSettingsStepsItemRowFiltersItemValuesList>;
-
-export interface PostBulkImportFactsRequestFactMetricsItemDataFunnelSettingsStepsItemRowFiltersItem {
-  operator:
-    | PostBulkImportFactsRequestFactMetricsItemDataFunnelSettingsStepsItemRowFiltersItemOperator
-    | (string & {});
-  /** Not required for is_null, not_null, is_true, is_false operators. The between and not_between operators take at most two values, a lower and an upper bound in that order; leave a bound as an empty string for an open-ended range. */
-  values?: PostBulkImportFactsRequestFactMetricsItemDataFunnelSettingsStepsItemRowFiltersItemValuesList;
-  /** Required for all operators except sql_expr and saved_filter. */
-  column?: string;
-}
-export const PostBulkImportFactsRequestFactMetricsItemDataFunnelSettingsStepsItemRowFiltersItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      operator:
-        PostBulkImportFactsRequestFactMetricsItemDataFunnelSettingsStepsItemRowFiltersItemOperator,
-      values: S.optional(
-        PostBulkImportFactsRequestFactMetricsItemDataFunnelSettingsStepsItemRowFiltersItemValuesList,
-      ),
-      column: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier:
-      "PostBulkImportFactsRequestFactMetricsItemDataFunnelSettingsStepsItemRowFiltersItem",
-  }) as any as S.Schema<PostBulkImportFactsRequestFactMetricsItemDataFunnelSettingsStepsItemRowFiltersItem>;
-
-/** Filters that decide whether an event row counts as this step */
-export type PostBulkImportFactsRequestFactMetricsItemDataFunnelSettingsStepsItemRowFiltersList =
-  Array<PostBulkImportFactsRequestFactMetricsItemDataFunnelSettingsStepsItemRowFiltersItem>;
-export const PostBulkImportFactsRequestFactMetricsItemDataFunnelSettingsStepsItemRowFiltersList =
-  /*@__PURE__*/ S.Array(
-    PostBulkImportFactsRequestFactMetricsItemDataFunnelSettingsStepsItemRowFiltersItem,
-  ) as any as S.Schema<PostBulkImportFactsRequestFactMetricsItemDataFunnelSettingsStepsItemRowFiltersList>;
-
-export type PostBulkImportFactsRequestFactMetricsItemDataFunnelSettingsStepsItemConversionWindowUnit =
-  | "weeks"
-  | "days"
-  | "hours"
-  | "minutes";
-export const PostBulkImportFactsRequestFactMetricsItemDataFunnelSettingsStepsItemConversionWindowUnit =
-  /*@__PURE__*/ S.String;
-
-/** Bounds how long after the nearest prior required step (or exposure, for the first step / after only-optional priors of an experiment funnel metric) this step's event can occur. */
-export interface PostBulkImportFactsRequestFactMetricsItemDataFunnelSettingsStepsItemConversionWindow {
-  unit:
-    | PostBulkImportFactsRequestFactMetricsItemDataFunnelSettingsStepsItemConversionWindowUnit
-    | (string & {});
-  value: number;
-}
-export const PostBulkImportFactsRequestFactMetricsItemDataFunnelSettingsStepsItemConversionWindow =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      unit: PostBulkImportFactsRequestFactMetricsItemDataFunnelSettingsStepsItemConversionWindowUnit,
-      value: S.Number,
-    }),
-  ).annotate({
-    identifier:
-      "PostBulkImportFactsRequestFactMetricsItemDataFunnelSettingsStepsItemConversionWindow",
-  }) as any as S.Schema<PostBulkImportFactsRequestFactMetricsItemDataFunnelSettingsStepsItemConversionWindow>;
-
-export interface PostBulkImportFactsRequestFactMetricsItemDataFunnelSettingsStepsItem {
-  /** Display name for the funnel step */
-  name: string;
-  /** The fact table this step draws events from */
-  factTableId: string;
-  /** Filters that decide whether an event row counts as this step */
-  rowFilters: PostBulkImportFactsRequestFactMetricsItemDataFunnelSettingsStepsItemRowFiltersList;
-  /** When true, this step still counts for its own conversion but does not anchor later steps. Later steps window off the nearest prior required step (or exposure, for experiment funnel metrics, when every prior step is optional). */
-  optional: boolean;
-  conversionWindow?: PostBulkImportFactsRequestFactMetricsItemDataFunnelSettingsStepsItemConversionWindow | null;
-}
-export const PostBulkImportFactsRequestFactMetricsItemDataFunnelSettingsStepsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      name: S.String,
-      factTableId: S.String,
-      rowFilters:
-        PostBulkImportFactsRequestFactMetricsItemDataFunnelSettingsStepsItemRowFiltersList,
-      optional: S.Boolean,
-      conversionWindow: S.optional(
-        S.NullOr(
-          PostBulkImportFactsRequestFactMetricsItemDataFunnelSettingsStepsItemConversionWindow,
-        ),
-      ),
-    }),
-  ).annotate({
-    identifier:
-      "PostBulkImportFactsRequestFactMetricsItemDataFunnelSettingsStepsItem",
-  }) as any as S.Schema<PostBulkImportFactsRequestFactMetricsItemDataFunnelSettingsStepsItem>;
-
-/** Ordered list of funnel steps. Minimum 2 steps required. */
-export type PostBulkImportFactsRequestFactMetricsItemDataFunnelSettingsStepsList =
-  Array<PostBulkImportFactsRequestFactMetricsItemDataFunnelSettingsStepsItem>;
-export const PostBulkImportFactsRequestFactMetricsItemDataFunnelSettingsStepsList =
-  /*@__PURE__*/ S.Array(
-    PostBulkImportFactsRequestFactMetricsItemDataFunnelSettingsStepsItem,
-  ) as any as S.Schema<PostBulkImportFactsRequestFactMetricsItemDataFunnelSettingsStepsList>;
-
-/** Step ordering mode. Only 'sequential' is supported in v1. */
-export type PostBulkImportFactsRequestFactMetricsItemDataFunnelSettingsOrdering =
-  "sequential";
-export const PostBulkImportFactsRequestFactMetricsItemDataFunnelSettingsOrdering =
-  /*@__PURE__*/ S.String;
-
-/** Funnel metric settings (required when metricType is "funnel") */
-export interface PostBulkImportFactsRequestFactMetricsItemDataFunnelSettings {
-  /** Ordered list of funnel steps. Minimum 2 steps required. */
-  steps: PostBulkImportFactsRequestFactMetricsItemDataFunnelSettingsStepsList;
-  /** Step ordering mode. Only 'sequential' is supported in v1. */
-  ordering?:
-    | PostBulkImportFactsRequestFactMetricsItemDataFunnelSettingsOrdering
-    | (string & {});
-  /** Out-of-order tolerance between adjacent steps in seconds. Defaults to 0. */
-  concurrencyWindowSeconds?: number;
-}
-export const PostBulkImportFactsRequestFactMetricsItemDataFunnelSettings =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      steps:
-        PostBulkImportFactsRequestFactMetricsItemDataFunnelSettingsStepsList,
-      ordering: S.optional(
-        PostBulkImportFactsRequestFactMetricsItemDataFunnelSettingsOrdering,
-      ),
-      concurrencyWindowSeconds: S.optional(S.Number),
-    }),
-  ).annotate({
-    identifier: "PostBulkImportFactsRequestFactMetricsItemDataFunnelSettings",
-  }) as any as S.Schema<PostBulkImportFactsRequestFactMetricsItemDataFunnelSettings>;
-
-export type PostBulkImportFactsRequestFactMetricsItemDataCappingSettingsType =
-  | "none"
-  | "absolute"
-  | "percentile";
-export const PostBulkImportFactsRequestFactMetricsItemDataCappingSettingsType =
-  /*@__PURE__*/ S.String;
-
-/** Controls how outliers are handled */
-export interface PostBulkImportFactsRequestFactMetricsItemDataCappingSettings {
-  type:
-    | PostBulkImportFactsRequestFactMetricsItemDataCappingSettingsType
-    | (string & {});
-  /** When type is absolute, this is the absolute value. When type is percentile, this is the percentile value (from 0.0 to 1.0). */
-  value?: number;
-  /** If true and capping is `percentile`, zeros will be ignored when calculating the percentile. */
-  ignoreZeros?: boolean;
-}
-export const PostBulkImportFactsRequestFactMetricsItemDataCappingSettings =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: PostBulkImportFactsRequestFactMetricsItemDataCappingSettingsType,
-      value: S.optional(S.Number),
-      ignoreZeros: S.optional(S.Boolean),
-    }),
-  ).annotate({
-    identifier: "PostBulkImportFactsRequestFactMetricsItemDataCappingSettings",
-  }) as any as S.Schema<PostBulkImportFactsRequestFactMetricsItemDataCappingSettings>;
-
-export type PostBulkImportFactsRequestFactMetricsItemDataWindowSettingsType =
-  | "none"
-  | "conversion"
-  | "lookback";
-export const PostBulkImportFactsRequestFactMetricsItemDataWindowSettingsType =
-  /*@__PURE__*/ S.String;
-
-/** Default `hours`. */
-export type PostBulkImportFactsRequestFactMetricsItemDataWindowSettingsDelayUnit =
-  | "minutes"
-  | "hours"
-  | "days"
-  | "weeks";
-export const PostBulkImportFactsRequestFactMetricsItemDataWindowSettingsDelayUnit =
-  /*@__PURE__*/ S.String;
-
-/** Default `hours`. */
-export type PostBulkImportFactsRequestFactMetricsItemDataWindowSettingsWindowUnit =
-  | "minutes"
-  | "hours"
-  | "days"
-  | "weeks";
-export const PostBulkImportFactsRequestFactMetricsItemDataWindowSettingsWindowUnit =
-  /*@__PURE__*/ S.String;
-
-/** Controls the conversion window for the metric */
-export interface PostBulkImportFactsRequestFactMetricsItemDataWindowSettings {
-  type:
-    | PostBulkImportFactsRequestFactMetricsItemDataWindowSettingsType
-    | (string & {});
-  /** Wait this many hours after experiment exposure before counting conversions. Ignored if delayValue is set. */
-  delayHours?: number;
-  /** Wait this long after experiment exposure before counting conversions. */
-  delayValue?: number;
-  /** Default `hours`. */
-  delayUnit?:
-    | PostBulkImportFactsRequestFactMetricsItemDataWindowSettingsDelayUnit
-    | (string & {});
-  windowValue?: number;
-  /** Default `hours`. */
-  windowUnit?:
-    | PostBulkImportFactsRequestFactMetricsItemDataWindowSettingsWindowUnit
-    | (string & {});
-}
-export const PostBulkImportFactsRequestFactMetricsItemDataWindowSettings =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: PostBulkImportFactsRequestFactMetricsItemDataWindowSettingsType,
-      delayHours: S.optional(S.Number),
-      delayValue: S.optional(S.Number),
-      delayUnit: S.optional(
-        PostBulkImportFactsRequestFactMetricsItemDataWindowSettingsDelayUnit,
-      ),
-      windowValue: S.optional(S.Number),
-      windowUnit: S.optional(
-        PostBulkImportFactsRequestFactMetricsItemDataWindowSettingsWindowUnit,
-      ),
-    }),
-  ).annotate({
-    identifier: "PostBulkImportFactsRequestFactMetricsItemDataWindowSettings",
-  }) as any as S.Schema<PostBulkImportFactsRequestFactMetricsItemDataWindowSettings>;
-
-/** Controls the bayesian prior for the metric. If omitted, organization defaults will be used. */
-export type PostBulkImportFactsRequestFactMetricsItemDataPriorSettings =
-  FactMetricPriorSettings;
-export const PostBulkImportFactsRequestFactMetricsItemDataPriorSettings =
-  FactMetricPriorSettings;
-
-/** Controls the regression adjustment (CUPED) settings for the metric */
-export interface PostBulkImportFactsRequestFactMetricsItemDataRegressionAdjustmentSettings {
-  /** If false, the organization default settings will be used */
-  override: boolean;
-  /** Controls whether or not regression adjustment is applied to the metric */
-  enabled?: boolean;
-  /** Number of pre-exposure days to use for the regression adjustment */
-  days?: number;
-}
-export const PostBulkImportFactsRequestFactMetricsItemDataRegressionAdjustmentSettings =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      override: S.Boolean,
-      enabled: S.optional(S.Boolean),
-      days: S.optional(S.Number),
-    }),
-  ).annotate({
-    identifier:
-      "PostBulkImportFactsRequestFactMetricsItemDataRegressionAdjustmentSettings",
-  }) as any as S.Schema<PostBulkImportFactsRequestFactMetricsItemDataRegressionAdjustmentSettings>;
-
-/** Set this to "api" to disable editing in the GrowthBook UI */
-export type PostBulkImportFactsRequestFactMetricsItemDataManagedBy =
-  | ""
-  | "api"
-  | "admin";
-export const PostBulkImportFactsRequestFactMetricsItemDataManagedBy =
-  /*@__PURE__*/ S.String;
-
-/** Array of slice column names that will be automatically included in metric analysis. This is an enterprise feature. */
-export type PostBulkImportFactsRequestFactMetricsItemDataMetricAutoSlicesList =
-  Array<string>;
-export const PostBulkImportFactsRequestFactMetricsItemDataMetricAutoSlicesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostBulkImportFactsRequestFactMetricsItemDataMetricAutoSlicesList>;
-
-/** Ids of older metrics (legacy or fact) that this metric supersedes, for example the legacy metric it was migrated from. Cannot include this metric's own id. Informational only - GrowthBook uses it to link the old and new definitions in the UI and to keep showing results from a snapshot that was created before an experiment switched to this metric. This field can only be set through the API. */
-export type PostBulkImportFactsRequestFactMetricsItemDataReplacesList =
-  Array<string>;
-export const PostBulkImportFactsRequestFactMetricsItemDataReplacesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostBulkImportFactsRequestFactMetricsItemDataReplacesList>;
-
-export interface PostBulkImportFactsRequestFactMetricsItemData {
-  name: string;
-  description?: string;
-  /** The userId or email address of the owner. If an email address is provided, it will be used to look up the userId of the matching organization member. If an ID is provided, it will be validated as existing in the organization. */
-  owner?: string;
-  projects?: PostBulkImportFactsRequestFactMetricsItemDataProjectsList;
-  tags?: PostBulkImportFactsRequestFactMetricsItemDataTagsList;
-  metricType:
-    | PostBulkImportFactsRequestFactMetricsItemDataMetricType
-    | (string & {});
-  numerator?: PostBulkImportFactsRequestFactMetricsItemDataNumerator | null;
-  /** Only when metricType is 'ratio' */
-  denominator?: PostBulkImportFactsRequestFactMetricsItemDataDenominator;
-  /** Set to true for things like Bounce Rate, where you want the metric to decrease */
-  inverse?: boolean;
-  /** Controls the settings for quantile metrics (mandatory if metricType is "quantile") */
-  quantileSettings?: PostBulkImportFactsRequestFactMetricsItemDataQuantileSettings;
-  /** Funnel metric settings (required when metricType is "funnel") */
-  funnelSettings?: PostBulkImportFactsRequestFactMetricsItemDataFunnelSettings;
-  /** Controls how outliers are handled */
-  cappingSettings?: PostBulkImportFactsRequestFactMetricsItemDataCappingSettings;
-  /** Controls the conversion window for the metric */
-  windowSettings?: PostBulkImportFactsRequestFactMetricsItemDataWindowSettings;
-  /** Controls the bayesian prior for the metric. If omitted, organization defaults will be used. */
-  priorSettings?: FactMetricPriorSettings;
-  /** Controls the regression adjustment (CUPED) settings for the metric */
-  regressionAdjustmentSettings?: PostBulkImportFactsRequestFactMetricsItemDataRegressionAdjustmentSettings;
-  /** No longer used. Threshold for Risk to be considered low enough, as a proportion (e.g. put 0.0025 for 0.25%). <br/> Must be a non-negative number and must not be higher than `riskThresholdDanger`. */
-  riskThresholdSuccess?: number;
-  /** No longer used. Threshold for Risk to be considered too high, as a proportion (e.g. put 0.0125 for 1.25%). <br/> Must be a non-negative number. */
-  riskThresholdDanger?: number;
-  /** If true and the metric is a ratio or dailyParticipation metric, variation means will be displayed as a percentage. Defaults to true for dailyParticipation metrics and false for ratio metrics. */
-  displayAsPercentage?: boolean;
-  /** Minimum percent change to consider uplift significant, as a proportion (e.g. put 0.005 for 0.5%) */
-  minPercentChange?: number;
-  /** Maximum percent change to consider uplift significant, as a proportion (e.g. put 0.5 for 50%) */
-  maxPercentChange?: number;
-  minSampleSize?: number;
-  /** The percentage change that you want to reliably detect before ending an experiment, as a proportion (e.g. put 0.1 for 10%). This is used to estimate the "Days Left" for running experiments. */
-  targetMDE?: number;
-  /** Set this to "api" to disable editing in the GrowthBook UI */
-  managedBy?:
-    | PostBulkImportFactsRequestFactMetricsItemDataManagedBy
-    | (string & {});
-  /** Array of slice column names that will be automatically included in metric analysis. This is an enterprise feature. */
-  metricAutoSlices?: PostBulkImportFactsRequestFactMetricsItemDataMetricAutoSlicesList;
-  /** Ids of older metrics (legacy or fact) that this metric supersedes, for example the legacy metric it was migrated from. Cannot include this metric's own id. Informational only - GrowthBook uses it to link the old and new definitions in the UI and to keep showing results from a snapshot that was created before an experiment switched to this metric. This field can only be set through the API. */
-  replaces?: PostBulkImportFactsRequestFactMetricsItemDataReplacesList;
-  /** Set to true to archive the metric. Archived metrics are hidden by default in the UI and excluded from new experiments. */
-  archived?: boolean;
-}
-export const PostBulkImportFactsRequestFactMetricsItemData =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      name: S.String,
-      description: S.optional(S.String),
-      owner: S.optional(S.String),
-      projects: S.optional(
-        PostBulkImportFactsRequestFactMetricsItemDataProjectsList,
-      ),
-      tags: S.optional(PostBulkImportFactsRequestFactMetricsItemDataTagsList),
-      metricType: PostBulkImportFactsRequestFactMetricsItemDataMetricType,
-      numerator: S.optional(
-        S.NullOr(PostBulkImportFactsRequestFactMetricsItemDataNumerator),
-      ),
-      denominator: S.optional(
-        PostBulkImportFactsRequestFactMetricsItemDataDenominator,
-      ),
-      inverse: S.optional(S.Boolean),
-      quantileSettings: S.optional(
-        PostBulkImportFactsRequestFactMetricsItemDataQuantileSettings,
-      ),
-      funnelSettings: S.optional(
-        PostBulkImportFactsRequestFactMetricsItemDataFunnelSettings,
-      ),
-      cappingSettings: S.optional(
-        PostBulkImportFactsRequestFactMetricsItemDataCappingSettings,
-      ),
-      windowSettings: S.optional(
-        PostBulkImportFactsRequestFactMetricsItemDataWindowSettings,
-      ),
-      priorSettings: S.optional(FactMetricPriorSettings),
-      regressionAdjustmentSettings: S.optional(
-        PostBulkImportFactsRequestFactMetricsItemDataRegressionAdjustmentSettings,
-      ),
-      riskThresholdSuccess: S.optional(S.Number),
-      riskThresholdDanger: S.optional(S.Number),
-      displayAsPercentage: S.optional(S.Boolean),
-      minPercentChange: S.optional(S.Number),
-      maxPercentChange: S.optional(S.Number),
-      minSampleSize: S.optional(S.Number),
-      targetMDE: S.optional(S.Number),
-      managedBy: S.optional(
-        PostBulkImportFactsRequestFactMetricsItemDataManagedBy,
-      ),
-      metricAutoSlices: S.optional(
-        PostBulkImportFactsRequestFactMetricsItemDataMetricAutoSlicesList,
-      ),
-      replaces: S.optional(
-        PostBulkImportFactsRequestFactMetricsItemDataReplacesList,
-      ),
-      archived: S.optional(S.Boolean),
-    }),
-  ).annotate({
-    identifier: "PostBulkImportFactsRequestFactMetricsItemData",
-  }) as any as S.Schema<PostBulkImportFactsRequestFactMetricsItemData>;
-
-export interface PostBulkImportFactsRequestFactMetricsItem {
-  id: string;
-  data: PostBulkImportFactsRequestFactMetricsItemData;
-}
-export const PostBulkImportFactsRequestFactMetricsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.String,
-      data: PostBulkImportFactsRequestFactMetricsItemData,
-    }),
-  ).annotate({
-    identifier: "PostBulkImportFactsRequestFactMetricsItem",
-  }) as any as S.Schema<PostBulkImportFactsRequestFactMetricsItem>;
-
-export type PostBulkImportFactsRequestFactMetricsList =
-  Array<PostBulkImportFactsRequestFactMetricsItem>;
-export const PostBulkImportFactsRequestFactMetricsList = /*@__PURE__*/ S.Array(
-  PostBulkImportFactsRequestFactMetricsItem,
-) as any as S.Schema<PostBulkImportFactsRequestFactMetricsList>;
-
-export interface PostBulkImportFactsRequest {
-  /** Fallback `managedBy` for Fact Tables and Fact Metrics that omit the field. Defaults to `"api"`. Filters inherit `"api"` only when the parent Fact Table is api-managed. */
-  defaultManagedBy?: PostBulkImportFactsRequestDefaultManagedBy | (string & {});
-  /** Validate with zero writes. */
-  dryRun?: boolean;
-  factTables?: PostBulkImportFactsRequestFactTablesList;
-  factTableFilters?: PostBulkImportFactsRequestFactTableFiltersList;
-  factMetrics?: PostBulkImportFactsRequestFactMetricsList;
-}
-export const PostBulkImportFactsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    defaultManagedBy: S.optional(PostBulkImportFactsRequestDefaultManagedBy),
-    dryRun: S.optional(S.Boolean),
-    factTables: S.optional(PostBulkImportFactsRequestFactTablesList),
-    factTableFilters: S.optional(
-      PostBulkImportFactsRequestFactTableFiltersList,
-    ),
-    factMetrics: S.optional(PostBulkImportFactsRequestFactMetricsList),
-  }).pipe(T.Http({ method: "POST", uri: "/v1/bulk-import/facts", code: 200 })),
-).annotate({
-  identifier: "PostBulkImportFactsRequest",
-}) as any as S.Schema<PostBulkImportFactsRequest>;
-
-export type BulkImportErrorResourceType =
-  | "factTable"
-  | "factTableFilter"
-  | "factMetric";
-export const BulkImportErrorResourceType = /*@__PURE__*/ S.String;
-
-export interface BulkImportError {
-  resourceType: BulkImportErrorResourceType;
-  id: string;
-  message: string;
-}
-export const BulkImportError = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceType: BulkImportErrorResourceType,
-    id: S.String,
-    message: S.String,
-  }),
-).annotate({
-  identifier: "BulkImportError",
-}) as any as S.Schema<BulkImportError>;
-
-export type PostBulkImportFactsResponseErrorsList = Array<BulkImportError>;
-export const PostBulkImportFactsResponseErrorsList = /*@__PURE__*/ S.Array(
-  BulkImportError,
-) as any as S.Schema<PostBulkImportFactsResponseErrorsList>;
-
-export interface PostBulkImportFactsResponse {
-  success: boolean;
-  dryRun: boolean;
-  factTablesAdded: number;
-  factTablesUpdated: number;
-  factTableFiltersAdded: number;
-  factTableFiltersUpdated: number;
-  factMetricsAdded: number;
-  factMetricsUpdated: number;
-  errors: PostBulkImportFactsResponseErrorsList;
-}
-export const PostBulkImportFactsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    success: S.Boolean,
-    dryRun: S.Boolean,
-    factTablesAdded: S.Number,
-    factTablesUpdated: S.Number,
-    factTableFiltersAdded: S.Number,
-    factTableFiltersUpdated: S.Number,
-    factMetricsAdded: S.Number,
-    factMetricsUpdated: S.Number,
-    errors: PostBulkImportFactsResponseErrorsList,
-  }),
-).annotate({
-  identifier: "PostBulkImportFactsResponse",
-}) as any as S.Schema<PostBulkImportFactsResponse>;
-
-/** Whether to delete code references that are no longer present in the submitted data */
-export type PostCodeRefsRequestDeleteMissing = "true" | "false";
-export const PostCodeRefsRequestDeleteMissing = /*@__PURE__*/ S.String;
-
-export interface PostCodeRefsRequestRefsItem {
-  filePath: string;
-  startingLineNumber: number;
-  lines: string;
-  flagKey: string;
-  contentHash: string;
-}
-export const PostCodeRefsRequestRefsItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    filePath: S.String,
-    startingLineNumber: S.Number,
-    lines: S.String,
-    flagKey: S.String,
-    contentHash: S.String,
-  }),
-).annotate({
-  identifier: "PostCodeRefsRequestRefsItem",
-}) as any as S.Schema<PostCodeRefsRequestRefsItem>;
-
-export type PostCodeRefsRequestRefsList = Array<PostCodeRefsRequestRefsItem>;
-export const PostCodeRefsRequestRefsList = /*@__PURE__*/ S.Array(
-  PostCodeRefsRequestRefsItem,
-) as any as S.Schema<PostCodeRefsRequestRefsList>;
-
-export interface PostCodeRefsRequest {
-  /** Whether to delete code references that are no longer present in the submitted data */
-  deleteMissing?: PostCodeRefsRequestDeleteMissing | (string & {});
-  branch: string;
-  repoName: string;
-  refs: PostCodeRefsRequestRefsList;
-}
-export const PostCodeRefsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    deleteMissing: S.optional(PostCodeRefsRequestDeleteMissing.pipe(T.Query())),
-    branch: S.String,
-    repoName: S.String,
-    refs: PostCodeRefsRequestRefsList,
-  }).pipe(T.Http({ method: "POST", uri: "/v1/code-refs", code: 200 })),
-).annotate({
-  identifier: "PostCodeRefsRequest",
-}) as any as S.Schema<PostCodeRefsRequest>;
-
-export type PostCodeRefsResponseFeaturesUpdatedList = Array<string>;
-export const PostCodeRefsResponseFeaturesUpdatedList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PostCodeRefsResponseFeaturesUpdatedList>;
-
-export interface PostCodeRefsResponse {
-  featuresUpdated?: PostCodeRefsResponseFeaturesUpdatedList;
-}
-export const PostCodeRefsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    featuresUpdated: S.optional(PostCodeRefsResponseFeaturesUpdatedList),
-  }),
-).annotate({
-  identifier: "PostCodeRefsResponse",
-}) as any as S.Schema<PostCodeRefsResponse>;
-
-/** Deprecated — pass `skipSchemaValidation` in the request body instead. */
-export type PostConfigRequestSkipSchemaValidation = string | boolean;
-export const PostConfigRequestSkipSchemaValidation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PostConfigRequestSkipSchemaValidation>;
-
-/** Deprecated — pass `ignoreWarnings` in the request body instead. */
-export type PostConfigRequestIgnoreWarnings = string | boolean;
-export const PostConfigRequestIgnoreWarnings =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PostConfigRequestIgnoreWarnings>;
-
-/** Additional composition bases (config `key`s) layered on top of `parent`, in precedence order (later overrides earlier; all override `parent`; own keys win last). Set inheritance here, never via a `@config:` entry in `value`. */
-export type PostConfigRequestExtendsList = Array<string>;
-export const PostConfigRequestExtendsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PostConfigRequestExtendsList>;
-
-/** This config's base value as a JSON object. Per-environment/project variants are expressed via `scopedOverrides`. */
-export type PostConfigRequestValueMap = { [key: string]: unknown | undefined };
-export const PostConfigRequestValueMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<PostConfigRequestValueMap>;
-
-/** Environment ids this entry applies to. Empty/omitted = any environment. */
-export type PostConfigRequestScopedOverridesItemEnvironmentsList =
-  Array<string>;
-export const PostConfigRequestScopedOverridesItemEnvironmentsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostConfigRequestScopedOverridesItemEnvironmentsList>;
-
-/** Project ids this entry applies to. Empty/omitted = any project. */
-export type PostConfigRequestScopedOverridesItemProjectsList = Array<string>;
-export const PostConfigRequestScopedOverridesItemProjectsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostConfigRequestScopedOverridesItemProjectsList>;
-
-export interface PostConfigRequestScopedOverridesItem {
-  /** The `key` of the flavor config (a child config) whose value patches this config when the scope matches. */
-  config: string;
-  /** Environment ids this entry applies to. Empty/omitted = any environment. */
-  environments?: PostConfigRequestScopedOverridesItemEnvironmentsList;
-  /** Project ids this entry applies to. Empty/omitted = any project. */
-  projects?: PostConfigRequestScopedOverridesItemProjectsList;
-}
-export const PostConfigRequestScopedOverridesItem = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      config: S.String,
-      environments: S.optional(
-        PostConfigRequestScopedOverridesItemEnvironmentsList,
-      ),
-      projects: S.optional(PostConfigRequestScopedOverridesItemProjectsList),
-    }),
-).annotate({
-  identifier: "PostConfigRequestScopedOverridesItem",
-}) as any as S.Schema<PostConfigRequestScopedOverridesItem>;
-
-/** Ordered, first-match-wins environment/project-scoped variant selection. Each entry points at a flavor config (a child config, by `key`) whose value is deep-merged onto this config's resolved value when the (environment, project) scope matches — resolved at build time, per layer. This is how you create an environment-scoped override (as opposed to a plain child config): make a child config for the override value, then add it here with its scope. Send the complete list to replace it; an empty array clears all overrides. Entries must reference existing configs, may not reference this config itself, and may not be unreachable (fully subsumed by an earlier entry). */
-export type PostConfigRequestScopedOverridesList =
-  Array<PostConfigRequestScopedOverridesItem>;
-export const PostConfigRequestScopedOverridesList = /*@__PURE__*/ S.Array(
-  PostConfigRequestScopedOverridesItem,
-) as any as S.Schema<PostConfigRequestScopedOverridesList>;
-
-/** The rule expression, as a mongo condition (mongrule) — the same condition syntax as feature targeting, extended with `{ "$ref": "otherField" }` to compare against another field, e.g. `{ "min_replicas": { "$lte": { "$ref": "max_replicas" } } }`. */
-export type PostConfigRequestInvariantsItemRuleMap = {
-  [key: string]: unknown | undefined;
-};
-export const PostConfigRequestInvariantsItemRuleMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<PostConfigRequestInvariantsItemRuleMap>;
-
-export interface PostConfigRequestInvariantsItem {
-  name: string;
-  /** The rule expression, as a mongo condition (mongrule) — the same condition syntax as feature targeting, extended with `{ "$ref": "otherField" }` to compare against another field, e.g. `{ "min_replicas": { "$lte": { "$ref": "max_replicas" } } }`. */
-  rule: PostConfigRequestInvariantsItemRuleMap;
-  /** Shown to editors when the rule is violated. Optional — defaults to a generic message naming the rule. */
-  message?: string;
-}
-export const PostConfigRequestInvariantsItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    rule: PostConfigRequestInvariantsItemRuleMap,
-    message: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PostConfigRequestInvariantsItem",
-}) as any as S.Schema<PostConfigRequestInvariantsItem>;
-
-/** Cross-field validation rules. Each rule's expression is a mongo condition (mongrule). Stored on the config schema and enforced at publish. */
-export type PostConfigRequestInvariantsList =
-  Array<PostConfigRequestInvariantsItem>;
-export const PostConfigRequestInvariantsList = /*@__PURE__*/ S.Array(
-  PostConfigRequestInvariantsItem,
-) as any as S.Schema<PostConfigRequestInvariantsList>;
-
-export interface PostConfigRequest {
-  /** Deprecated — pass `skipSchemaValidation` in the request body instead. */
-  skipSchemaValidation?: PostConfigRequestSkipSchemaValidation;
-  /** Deprecated — pass `ignoreWarnings` in the request body instead. */
-  ignoreWarnings?: PostConfigRequestIgnoreWarnings;
-  /** Stable reference handle (lowercase slug, unique per org), referenced as `@config:key` */
-  key: string;
-  /** The display name of the config */
-  name: string;
-  /** The `key` of the config to inherit from (the primary lineage spine). Express inheritance via `parent`/`extends`, NEVER via a `@config:` entry in `value` (which is rejected). */
-  parent?: string;
-  /** Additional composition bases (config `key`s) layered on top of `parent`, in precedence order (later overrides earlier; all override `parent`; own keys win last). Set inheritance here, never via a `@config:` entry in `value`. */
-  extends?: PostConfigRequestExtendsList;
-  /** This config's base value as a JSON object. Per-environment/project variants are expressed via `scopedOverrides`. */
-  value?: PostConfigRequestValueMap;
-  /** Ordered, first-match-wins environment/project-scoped variant selection. Each entry points at a flavor config (a child config, by `key`) whose value is deep-merged onto this config's resolved value when the (environment, project) scope matches — resolved at build time, per layer. This is how you create an environment-scoped override (as opposed to a plain child config): make a child config for the override value, then add it here with its scope. Send the complete list to replace it; an empty array clears all overrides. Entries must reference existing configs, may not reference this config itself, and may not be unreachable (fully subsumed by an earlier entry). */
-  scopedOverrides?: PostConfigRequestScopedOverridesList;
-  description?: string;
-  project?: string;
-  /** The userId or email address of the owner. If an email address is provided, it will be used to look up the userId of the matching organization member. If an ID is provided, it will be validated as existing in the organization. When omitted, it defaults to the user associated with the request's Personal Access Token (PAT), if one is being used. */
-  owner?: string;
-  /** Field definitions for this config, as a JSON Schema document (`{ type: "json-schema", value }`) or typed-code source (`{ type: "typescript" | "protobuf" | "python" | "go" | "rust", value }`) — converted server-side in one call. Fields whose key an ancestor (via `parent`/`extends`) already owns follow "base wins": an identical re-declaration is stripped with a `redundant-declaration` warning; one with a differing definition is rejected. A field owned by two sibling bases is a conflict and is rejected. Omit to leave the config schema-less. Conversion warnings are returned in `warnings`. */
-  schema?: ConfigSchemaSource;
-  /** Optional identifier of the consuming codebase/service. When a typed-code schema (`typescript`/`protobuf`/`python`/`go`/`rust`) is supplied, its named-type structure is captured under this source so `GET /configs/:key/schema?source=<id>&format=<lang>` can reproduce those names. */
-  source?: string;
-  extensible?: boolean;
-  /** Enable the experiment guard on this config: publishing a change served to a running experiment soft-blocks unless overridden. Omit to inherit the org default. */
-  experimentGuard?: boolean;
-  /** Cross-field validation rules. Each rule's expression is a mongo condition (mongrule). Stored on the config schema and enforced at publish. */
-  invariants?: PostConfigRequestInvariantsList;
-  /** Set to true to publish despite a Custom Hook rejection. This does not bypass schema validation; use `skipSchemaValidation` for that. The caller must have Bypass draft approvals access for Feature Flags, Configs, and Constants in every Project. Otherwise, this field is ignored. */
-  skipHooks?: boolean;
-}
-export const PostConfigRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    skipSchemaValidation: S.optional(
-      PostConfigRequestSkipSchemaValidation.pipe(T.Query()),
-    ),
-    ignoreWarnings: S.optional(PostConfigRequestIgnoreWarnings.pipe(T.Query())),
-    key: S.String,
-    name: S.String,
-    parent: S.optional(S.String),
-    extends: S.optional(PostConfigRequestExtendsList),
-    value: S.optional(PostConfigRequestValueMap),
-    scopedOverrides: S.optional(PostConfigRequestScopedOverridesList),
-    description: S.optional(S.String),
-    project: S.optional(S.String),
-    owner: S.optional(S.String),
-    schema: S.optional(ConfigSchemaSource),
-    source: S.optional(S.String),
-    extensible: S.optional(S.Boolean),
-    experimentGuard: S.optional(S.Boolean),
-    invariants: S.optional(PostConfigRequestInvariantsList),
-    skipHooks: S.optional(S.Boolean),
-  }).pipe(T.Http({ method: "POST", uri: "/v1/configs", code: 200 })),
-).annotate({
-  identifier: "PostConfigRequest",
-}) as any as S.Schema<PostConfigRequest>;
-
-export type ConfigSchemaWarningCode =
-  | "dropped-declaration"
-  | "non-object-root"
-  | "unresolved-type"
-  | "unsupported-member"
-  | "redundant-declaration"
-  | "undeclared-rule-field";
-export const ConfigSchemaWarningCode = /*@__PURE__*/ S.String;
-
-export interface ConfigSchemaWarning {
-  code: ConfigSchemaWarningCode;
-  message: string;
-  path?: string;
-}
-export const ConfigSchemaWarning = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    code: ConfigSchemaWarningCode,
-    message: S.String,
-    path: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ConfigSchemaWarning",
-}) as any as S.Schema<ConfigSchemaWarning>;
-
-export type PostConfigResponseWarningsList = Array<ConfigSchemaWarning>;
-export const PostConfigResponseWarningsList = /*@__PURE__*/ S.Array(
-  ConfigSchemaWarning,
-) as any as S.Schema<PostConfigResponseWarningsList>;
-
-/** Steps that failed AFTER the value publish committed (e.g. an experiment-guard toggle in the same request). The publish stands; retry only the named step. */
-export type PostConfigResponsePostPublishWarningsList = Array<string>;
-export const PostConfigResponsePostPublishWarningsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PostConfigResponsePostPublishWarningsList>;
-
-export interface PostConfigResponse {
-  config: Config;
-  warnings?: PostConfigResponseWarningsList;
-  /** Steps that failed AFTER the value publish committed (e.g. an experiment-guard toggle in the same request). The publish stands; retry only the named step. */
-  postPublishWarnings?: PostConfigResponsePostPublishWarningsList;
-}
-export const PostConfigResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    config: Config,
-    warnings: S.optional(PostConfigResponseWarningsList),
-    postPublishWarnings: S.optional(PostConfigResponsePostPublishWarningsList),
-  }),
-).annotate({
-  identifier: "PostConfigResponse",
-}) as any as S.Schema<PostConfigResponse>;
-
-export interface PostConfigRevisionRequest {
-  key: string;
-  title?: string;
-  comment?: string;
-}
-export const PostConfigRevisionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    key: S.String.pipe(T.Label()),
-    title: S.optional(S.String),
-    comment: S.optional(S.String),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/v1/configs-revisions/{key}", code: 200 }),
-  ),
-).annotate({
-  identifier: "PostConfigRevisionRequest",
-}) as any as S.Schema<PostConfigRevisionRequest>;
-
-export interface PostConfigRevisionResponse {
-  revision: ConfigRevision;
-}
-export const PostConfigRevisionResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    revision: ConfigRevision,
-  }),
-).annotate({
-  identifier: "PostConfigRevisionResponse",
-}) as any as S.Schema<PostConfigRevisionResponse>;
-
-export interface PostConfigRevisionDiscardRequest {
-  key: string;
-  version: number;
-  reason?: string;
-}
-export const PostConfigRevisionDiscardRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    key: S.String.pipe(T.Label()),
-    version: S.Number.pipe(T.Label()),
-    reason: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/configs-revisions/{key}/{version}/discard",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PostConfigRevisionDiscardRequest",
-}) as any as S.Schema<PostConfigRevisionDiscardRequest>;
-
-export interface PostConfigRevisionDiscardResponse {
-  revision: ConfigRevision;
-}
-export const PostConfigRevisionDiscardResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    revision: ConfigRevision,
-  }),
-).annotate({
-  identifier: "PostConfigRevisionDiscardResponse",
-}) as any as S.Schema<PostConfigRevisionDiscardResponse>;
-
-/** Deprecated — pass `skipSchemaValidation` in the request body instead. */
-export type PostConfigRevisionPublishRequestSkipSchemaValidation =
-  | string
-  | boolean;
-export const PostConfigRevisionPublishRequestSkipSchemaValidation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PostConfigRevisionPublishRequestSkipSchemaValidation>;
-
-/** Deprecated — pass `ignoreWarnings` in the request body instead. */
-export type PostConfigRevisionPublishRequestIgnoreWarnings = string | boolean;
-export const PostConfigRevisionPublishRequestIgnoreWarnings =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PostConfigRevisionPublishRequestIgnoreWarnings>;
-
-export interface PostConfigRevisionPublishRequest {
-  key: string;
-  version: number;
-  /** Deprecated — pass `skipSchemaValidation` in the request body instead. */
-  skipSchemaValidation?: PostConfigRevisionPublishRequestSkipSchemaValidation;
-  /** Deprecated — pass `ignoreWarnings` in the request body instead. */
-  ignoreWarnings?: PostConfigRevisionPublishRequestIgnoreWarnings;
-  /** Deprecated and ignored. Approval is bypassed automatically when the caller has Bypass draft approvals access for this resource or when the organization enables the REST API approval bypass. Otherwise, the revision must be approved before it can be published. */
-  bypassApproval?: boolean;
-  /** Set to true to publish despite a Custom Hook rejection. This does not bypass schema validation; use `skipSchemaValidation` for that. The caller must have Bypass draft approvals access for Feature Flags, Configs, and Constants in every Project. Otherwise, this field is ignored. */
-  skipHooks?: boolean;
-}
-export const PostConfigRevisionPublishRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    key: S.String.pipe(T.Label()),
-    version: S.Number.pipe(T.Label()),
-    skipSchemaValidation: S.optional(
-      PostConfigRevisionPublishRequestSkipSchemaValidation.pipe(T.Query()),
-    ),
-    ignoreWarnings: S.optional(
-      PostConfigRevisionPublishRequestIgnoreWarnings.pipe(T.Query()),
-    ),
-    bypassApproval: S.optional(S.Boolean),
-    skipHooks: S.optional(S.Boolean),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/configs-revisions/{key}/{version}/publish",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PostConfigRevisionPublishRequest",
-}) as any as S.Schema<PostConfigRevisionPublishRequest>;
-
-/** Gates that would have blocked this publish but were bypassed by the caller's authority. Present only when at least one gate was bypassed. */
-export type PostConfigRevisionPublishResponseBypassedGatesList =
-  Array<BypassedGates>;
-export const PostConfigRevisionPublishResponseBypassedGatesList =
-  /*@__PURE__*/ S.Array(
-    BypassedGates,
-  ) as any as S.Schema<PostConfigRevisionPublishResponseBypassedGatesList>;
-
-export interface PostConfigRevisionPublishResponse {
-  revision: ConfigRevision;
-  /** Gates that would have blocked this publish but were bypassed by the caller's authority. Present only when at least one gate was bypassed. */
-  bypassedGates?: PostConfigRevisionPublishResponseBypassedGatesList;
-}
-export const PostConfigRevisionPublishResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    revision: ConfigRevision,
-    bypassedGates: S.optional(
-      PostConfigRevisionPublishResponseBypassedGatesList,
-    ),
-  }),
-).annotate({
-  identifier: "PostConfigRevisionPublishResponse",
-}) as any as S.Schema<PostConfigRevisionPublishResponse>;
-
-export type PostConfigRevisionRebaseRequestConflictResolutionsValue =
-  | "overwrite"
-  | "discard"
-  | "union";
-export const PostConfigRevisionRebaseRequestConflictResolutionsValue =
-  /*@__PURE__*/ S.String;
-
-export type PostConfigRevisionRebaseRequestConflictResolutionsMap = {
-  [key: string]:
-    | PostConfigRevisionRebaseRequestConflictResolutionsValue
-    | (string & {})
-    | undefined;
-};
-export const PostConfigRevisionRebaseRequestConflictResolutionsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    PostConfigRevisionRebaseRequestConflictResolutionsValue,
-  ) as any as S.Schema<PostConfigRevisionRebaseRequestConflictResolutionsMap>;
-
-export type PostConfigRevisionRebaseRequestCustomValuesValueList =
-  Array<unknown>;
-export const PostConfigRevisionRebaseRequestCustomValuesValueList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<PostConfigRevisionRebaseRequestCustomValuesValueList>;
-
-/** Custom values to use for `union` strategy fields. Keyed by field name. */
-export type PostConfigRevisionRebaseRequestCustomValuesMap = {
-  [key: string]:
-    | PostConfigRevisionRebaseRequestCustomValuesValueList
-    | undefined;
-};
-export const PostConfigRevisionRebaseRequestCustomValuesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    PostConfigRevisionRebaseRequestCustomValuesValueList,
-  ) as any as S.Schema<PostConfigRevisionRebaseRequestCustomValuesMap>;
-
-export interface PostConfigRevisionRebaseRequest {
-  key: string;
-  version: number;
-  conflictResolutions?: PostConfigRevisionRebaseRequestConflictResolutionsMap;
-  /** Custom values to use for `union` strategy fields. Keyed by field name. */
-  customValues?: PostConfigRevisionRebaseRequestCustomValuesMap;
-}
-export const PostConfigRevisionRebaseRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    key: S.String.pipe(T.Label()),
-    version: S.Number.pipe(T.Label()),
-    conflictResolutions: S.optional(
-      PostConfigRevisionRebaseRequestConflictResolutionsMap,
-    ),
-    customValues: S.optional(PostConfigRevisionRebaseRequestCustomValuesMap),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/configs-revisions/{key}/{version}/rebase",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PostConfigRevisionRebaseRequest",
-}) as any as S.Schema<PostConfigRevisionRebaseRequest>;
-
-export interface PostConfigRevisionRebaseResponse {
-  revision: ConfigRevision;
-}
-export const PostConfigRevisionRebaseResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    revision: ConfigRevision,
-  }),
-).annotate({
-  identifier: "PostConfigRevisionRebaseResponse",
-}) as any as S.Schema<PostConfigRevisionRebaseResponse>;
-
-export interface PostConfigRevisionRecallReviewRequest {
-  key: string;
-  version: number;
-}
-export const PostConfigRevisionRecallReviewRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      key: S.String.pipe(T.Label()),
-      version: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/configs-revisions/{key}/{version}/recall-review",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "PostConfigRevisionRecallReviewRequest",
-}) as any as S.Schema<PostConfigRevisionRecallReviewRequest>;
-
-export interface PostConfigRevisionRecallReviewResponse {
-  revision: ConfigRevision;
-}
-export const PostConfigRevisionRecallReviewResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      revision: ConfigRevision,
-    }),
-).annotate({
-  identifier: "PostConfigRevisionRecallReviewResponse",
-}) as any as S.Schema<PostConfigRevisionRecallReviewResponse>;
-
-export interface PostConfigRevisionReopenRequest {
-  key: string;
-  version: number;
-}
-export const PostConfigRevisionReopenRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    key: S.String.pipe(T.Label()),
-    version: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/configs-revisions/{key}/{version}/reopen",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PostConfigRevisionReopenRequest",
-}) as any as S.Schema<PostConfigRevisionReopenRequest>;
-
-export interface PostConfigRevisionReopenResponse {
-  revision: ConfigRevision;
-}
-export const PostConfigRevisionReopenResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    revision: ConfigRevision,
-  }),
-).annotate({
-  identifier: "PostConfigRevisionReopenResponse",
-}) as any as S.Schema<PostConfigRevisionReopenResponse>;
-
-export interface PostConfigRevisionRequestReviewRequest {
-  key: string;
-  version: number;
-  autoPublishOnApproval?: boolean;
-  /** Set to true to acknowledge the warnings listed in a blocked response and continue. This covers experiment guards, locked dependents, and references affected by an archive. When the organization treats schema failures as warnings, it also covers schema and invariant warnings. It never bypasses a rejected Custom Hook. On revision publish endpoints, it can also force-publish an out-of-date draft when the caller has Bypass draft approvals access. */
-  ignoreWarnings?: boolean;
-  /** Set to true to publish despite schema validation errors, failed invariants, or schema changes that invalidate dependent resources. This does not bypass a rejected Custom Hook; use `skipHooks` for that. The caller must have Bypass draft approvals access for Feature Flags, Configs, and Constants in every Project. Otherwise, this field is ignored. */
-  skipSchemaValidation?: boolean;
-  /** Set to true to publish despite a Custom Hook rejection. This does not bypass schema validation; use `skipSchemaValidation` for that. The caller must have Bypass draft approvals access for Feature Flags, Configs, and Constants in every Project. Otherwise, this field is ignored. */
-  skipHooks?: boolean;
-}
-export const PostConfigRevisionRequestReviewRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      key: S.String.pipe(T.Label()),
-      version: S.Number.pipe(T.Label()),
-      autoPublishOnApproval: S.optional(S.Boolean),
-      ignoreWarnings: S.optional(S.Boolean),
-      skipSchemaValidation: S.optional(S.Boolean),
-      skipHooks: S.optional(S.Boolean),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/configs-revisions/{key}/{version}/request-review",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "PostConfigRevisionRequestReviewRequest",
-}) as any as S.Schema<PostConfigRevisionRequestReviewRequest>;
-
-export interface PostConfigRevisionRequestReviewResponse {
-  revision: ConfigRevision;
-}
-export const PostConfigRevisionRequestReviewResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      revision: ConfigRevision,
-    }),
-).annotate({
-  identifier: "PostConfigRevisionRequestReviewResponse",
-}) as any as S.Schema<PostConfigRevisionRequestReviewResponse>;
-
-/** Deprecated — pass `skipSchemaValidation` in the request body instead. */
-export type PostConfigRevisionRevertRequestSkipSchemaValidation =
-  | string
-  | boolean;
-export const PostConfigRevisionRevertRequestSkipSchemaValidation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PostConfigRevisionRevertRequestSkipSchemaValidation>;
-
-/** Deprecated — pass `ignoreWarnings` in the request body instead. */
-export type PostConfigRevisionRevertRequestIgnoreWarnings = string | boolean;
-export const PostConfigRevisionRevertRequestIgnoreWarnings =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PostConfigRevisionRevertRequestIgnoreWarnings>;
-
-/** Whether to stage the revert as a draft or publish it immediately. Defaults to `draft`, or to `publish` when the org enables 'reverts bypass approval'. */
-export type PostConfigRevisionRevertRequestStrategy = "draft" | "publish";
-export const PostConfigRevisionRevertRequestStrategy = /*@__PURE__*/ S.String;
-
-export interface PostConfigRevisionRevertRequest {
-  key: string;
-  version: number;
-  /** Deprecated — pass `skipSchemaValidation` in the request body instead. */
-  skipSchemaValidation?: PostConfigRevisionRevertRequestSkipSchemaValidation;
-  /** Deprecated — pass `ignoreWarnings` in the request body instead. */
-  ignoreWarnings?: PostConfigRevisionRevertRequestIgnoreWarnings;
-  /** Whether to stage the revert as a draft or publish it immediately. Defaults to `draft`, or to `publish` when the org enables 'reverts bypass approval'. */
-  strategy?: PostConfigRevisionRevertRequestStrategy | (string & {});
-  title?: string;
-  comment?: string;
-  /** Set to true to publish despite a Custom Hook rejection. This does not bypass schema validation; use `skipSchemaValidation` for that. The caller must have Bypass draft approvals access for Feature Flags, Configs, and Constants in every Project. Otherwise, this field is ignored. */
-  skipHooks?: boolean;
-}
-export const PostConfigRevisionRevertRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    key: S.String.pipe(T.Label()),
-    version: S.Number.pipe(T.Label()),
-    skipSchemaValidation: S.optional(
-      PostConfigRevisionRevertRequestSkipSchemaValidation.pipe(T.Query()),
-    ),
-    ignoreWarnings: S.optional(
-      PostConfigRevisionRevertRequestIgnoreWarnings.pipe(T.Query()),
-    ),
-    strategy: S.optional(PostConfigRevisionRevertRequestStrategy),
-    title: S.optional(S.String),
-    comment: S.optional(S.String),
-    skipHooks: S.optional(S.Boolean),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/configs-revisions/{key}/{version}/revert",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PostConfigRevisionRevertRequest",
-}) as any as S.Schema<PostConfigRevisionRevertRequest>;
-
-/** Gates that would have blocked this publish but were bypassed by the caller's authority. Present only when at least one gate was bypassed. */
-export type PostConfigRevisionRevertResponseBypassedGatesList =
-  Array<BypassedGates>;
-export const PostConfigRevisionRevertResponseBypassedGatesList =
-  /*@__PURE__*/ S.Array(
-    BypassedGates,
-  ) as any as S.Schema<PostConfigRevisionRevertResponseBypassedGatesList>;
-
-export interface PostConfigRevisionRevertResponse {
-  revision: ConfigRevision;
-  /** Gates that would have blocked this publish but were bypassed by the caller's authority. Present only when at least one gate was bypassed. */
-  bypassedGates?: PostConfigRevisionRevertResponseBypassedGatesList;
-}
-export const PostConfigRevisionRevertResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    revision: ConfigRevision,
-    bypassedGates: S.optional(
-      PostConfigRevisionRevertResponseBypassedGatesList,
-    ),
-  }),
-).annotate({
-  identifier: "PostConfigRevisionRevertResponse",
-}) as any as S.Schema<PostConfigRevisionRevertResponse>;
-
-export interface PostConfigRevisionSchedulePublishRequest {
-  key: string;
-  version: number;
-  /** When to publish, as an RFC3339 timestamp (e.g. `2026-01-31T09:00:00Z` or `2026-01-31T02:00:00-07:00`), or `null` to cancel a pending schedule. */
-  scheduledPublishAt: string | null;
-  lockEdits?: boolean;
-  lockOthers?: boolean;
-  bypassApproval?: boolean;
-  /** Set to true to acknowledge the warnings listed in a blocked response and continue. This covers experiment guards, locked dependents, and references affected by an archive. When the organization treats schema failures as warnings, it also covers schema and invariant warnings. It never bypasses a rejected Custom Hook. On revision publish endpoints, it can also force-publish an out-of-date draft when the caller has Bypass draft approvals access. */
-  ignoreWarnings?: boolean;
-  /** Set to true to publish despite schema validation errors, failed invariants, or schema changes that invalidate dependent resources. This does not bypass a rejected Custom Hook; use `skipHooks` for that. The caller must have Bypass draft approvals access for Feature Flags, Configs, and Constants in every Project. Otherwise, this field is ignored. */
-  skipSchemaValidation?: boolean;
-  /** Set to true to publish despite a Custom Hook rejection. This does not bypass schema validation; use `skipSchemaValidation` for that. The caller must have Bypass draft approvals access for Feature Flags, Configs, and Constants in every Project. Otherwise, this field is ignored. */
-  skipHooks?: boolean;
-}
-export const PostConfigRevisionSchedulePublishRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      key: S.String.pipe(T.Label()),
-      version: S.Number.pipe(T.Label()),
-      scheduledPublishAt: S.NullOr(S.String),
-      lockEdits: S.optional(S.Boolean),
-      lockOthers: S.optional(S.Boolean),
-      bypassApproval: S.optional(S.Boolean),
-      ignoreWarnings: S.optional(S.Boolean),
-      skipSchemaValidation: S.optional(S.Boolean),
-      skipHooks: S.optional(S.Boolean),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/configs-revisions/{key}/{version}/schedule-publish",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "PostConfigRevisionSchedulePublishRequest",
-}) as any as S.Schema<PostConfigRevisionSchedulePublishRequest>;
-
-export interface PostConfigRevisionSchedulePublishResponse {
-  revision: ConfigRevision;
-}
-export const PostConfigRevisionSchedulePublishResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      revision: ConfigRevision,
-    }),
-  ).annotate({
-    identifier: "PostConfigRevisionSchedulePublishResponse",
-  }) as any as S.Schema<PostConfigRevisionSchedulePublishResponse>;
-
-export type PostConfigRevisionSubmitReviewRequestDecision =
-  | "approve"
-  | "request-changes"
-  | "comment";
-export const PostConfigRevisionSubmitReviewRequestDecision =
-  /*@__PURE__*/ S.String;
-
-export interface PostConfigRevisionSubmitReviewRequest {
-  key: string;
-  version: number;
-  decision: PostConfigRevisionSubmitReviewRequestDecision | (string & {});
-  comment?: string;
-  skipAutoPublish?: boolean;
-}
-export const PostConfigRevisionSubmitReviewRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      key: S.String.pipe(T.Label()),
-      version: S.Number.pipe(T.Label()),
-      decision: PostConfigRevisionSubmitReviewRequestDecision,
-      comment: S.optional(S.String),
-      skipAutoPublish: S.optional(S.Boolean),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/configs-revisions/{key}/{version}/submit-review",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "PostConfigRevisionSubmitReviewRequest",
-}) as any as S.Schema<PostConfigRevisionSubmitReviewRequest>;
-
-export interface PostConfigRevisionSubmitReviewResponse {
-  revision: ConfigRevision;
-  autoPublished?: boolean;
-}
-export const PostConfigRevisionSubmitReviewResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      revision: ConfigRevision,
-      autoPublished: S.optional(S.Boolean),
-    }),
-).annotate({
-  identifier: "PostConfigRevisionSubmitReviewResponse",
-}) as any as S.Schema<PostConfigRevisionSubmitReviewResponse>;
-
-export interface PostConfigRevisionUndoReviewRequest {
-  key: string;
-  version: number;
-}
-export const PostConfigRevisionUndoReviewRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    key: S.String.pipe(T.Label()),
-    version: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/configs-revisions/{key}/{version}/undo-review",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PostConfigRevisionUndoReviewRequest",
-}) as any as S.Schema<PostConfigRevisionUndoReviewRequest>;
-
-export interface PostConfigRevisionUndoReviewResponse {
-  revision: ConfigRevision;
-}
-export const PostConfigRevisionUndoReviewResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      revision: ConfigRevision,
-    }),
-).annotate({
-  identifier: "PostConfigRevisionUndoReviewResponse",
-}) as any as S.Schema<PostConfigRevisionUndoReviewResponse>;
-
-/** `string` (interpolated as `{{ @const:key }}`) or `json` (substituted as a whole value) */
-export type PostConstantRequestType = "string" | "json";
-export const PostConstantRequestType = /*@__PURE__*/ S.String;
-
-export type PostConstantRequestEnvironmentValuesMap = {
-  [key: string]: string | undefined;
-};
-export const PostConstantRequestEnvironmentValuesMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<PostConstantRequestEnvironmentValuesMap>;
-
-export interface PostConstantRequest {
-  /** Stable reference handle (lowercase slug, unique per org), referenced as `@const:key` */
-  key: string;
-  /** The display name of the constant */
-  name: string;
-  /** `string` (interpolated as `{{ @const:key }}`) or `json` (substituted as a whole value) */
-  type: PostConstantRequestType | (string & {});
-  value?: string;
-  environmentValues?: PostConstantRequestEnvironmentValuesMap;
-  description?: string;
-  project?: string;
-  /** The userId or email address of the owner. If an email address is provided, it will be used to look up the userId of the matching organization member. If an ID is provided, it will be validated as existing in the organization. When omitted, it defaults to the user associated with the request's Personal Access Token (PAT), if one is being used. */
-  owner?: string;
-}
-export const PostConstantRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    key: S.String,
-    name: S.String,
-    type: PostConstantRequestType,
-    value: S.optional(S.String),
-    environmentValues: S.optional(PostConstantRequestEnvironmentValuesMap),
-    description: S.optional(S.String),
-    project: S.optional(S.String),
-    owner: S.optional(S.String),
-  }).pipe(T.Http({ method: "POST", uri: "/v1/constants", code: 200 })),
-).annotate({
-  identifier: "PostConstantRequest",
-}) as any as S.Schema<PostConstantRequest>;
-
-export interface PostConstantResponse {
-  constant: Constant;
-}
-export const PostConstantResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    constant: Constant,
-  }),
-).annotate({
-  identifier: "PostConstantResponse",
-}) as any as S.Schema<PostConstantResponse>;
-
-export interface PostConstantRevisionRequest {
-  key: string;
-  title?: string;
-  comment?: string;
-}
-export const PostConstantRevisionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    key: S.String.pipe(T.Label()),
-    title: S.optional(S.String),
-    comment: S.optional(S.String),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/v1/constants-revisions/{key}", code: 200 }),
-  ),
-).annotate({
-  identifier: "PostConstantRevisionRequest",
-}) as any as S.Schema<PostConstantRevisionRequest>;
-
-export interface PostConstantRevisionResponse {
-  revision: ConstantRevision;
-}
-export const PostConstantRevisionResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    revision: ConstantRevision,
-  }),
-).annotate({
-  identifier: "PostConstantRevisionResponse",
-}) as any as S.Schema<PostConstantRevisionResponse>;
-
-export interface PostConstantRevisionDiscardRequest {
-  key: string;
-  version: number;
-  reason?: string;
-}
-export const PostConstantRevisionDiscardRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    key: S.String.pipe(T.Label()),
-    version: S.Number.pipe(T.Label()),
-    reason: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/constants-revisions/{key}/{version}/discard",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PostConstantRevisionDiscardRequest",
-}) as any as S.Schema<PostConstantRevisionDiscardRequest>;
-
-export interface PostConstantRevisionDiscardResponse {
-  revision: ConstantRevision;
-}
-export const PostConstantRevisionDiscardResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    revision: ConstantRevision,
-  }),
-).annotate({
-  identifier: "PostConstantRevisionDiscardResponse",
-}) as any as S.Schema<PostConstantRevisionDiscardResponse>;
-
-export interface PostConstantRevisionPublishRequest {
-  key: string;
-  version: number;
-  /** Deprecated and ignored. Approval is bypassed automatically when the caller has Bypass draft approvals access for this resource or when the organization enables the REST API approval bypass. Otherwise, the revision must be approved before it can be published. */
-  bypassApproval?: boolean;
-  /** Set to true to acknowledge the warnings listed in a blocked response and continue. This covers experiment guards, locked dependents, and references affected by an archive. When the organization treats schema failures as warnings, it also covers schema and invariant warnings. It never bypasses a rejected Custom Hook. On revision publish endpoints, it can also force-publish an out-of-date draft when the caller has Bypass draft approvals access. */
-  ignoreWarnings?: boolean;
-  /** Set to true to publish despite schema validation errors, failed invariants, or schema changes that invalidate dependent resources. This does not bypass a rejected Custom Hook; use `skipHooks` for that. The caller must have Bypass draft approvals access for Feature Flags, Configs, and Constants in every Project. Otherwise, this field is ignored. */
-  skipSchemaValidation?: boolean;
-  /** Set to true to publish despite a Custom Hook rejection. This does not bypass schema validation; use `skipSchemaValidation` for that. The caller must have Bypass draft approvals access for Feature Flags, Configs, and Constants in every Project. Otherwise, this field is ignored. */
-  skipHooks?: boolean;
-}
-export const PostConstantRevisionPublishRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    key: S.String.pipe(T.Label()),
-    version: S.Number.pipe(T.Label()),
-    bypassApproval: S.optional(S.Boolean),
-    ignoreWarnings: S.optional(S.Boolean),
-    skipSchemaValidation: S.optional(S.Boolean),
-    skipHooks: S.optional(S.Boolean),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/constants-revisions/{key}/{version}/publish",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PostConstantRevisionPublishRequest",
-}) as any as S.Schema<PostConstantRevisionPublishRequest>;
-
-/** Gates that would have blocked this publish but were bypassed by the caller's authority. Present only when at least one gate was bypassed. */
-export type PostConstantRevisionPublishResponseBypassedGatesList =
-  Array<BypassedGates>;
-export const PostConstantRevisionPublishResponseBypassedGatesList =
-  /*@__PURE__*/ S.Array(
-    BypassedGates,
-  ) as any as S.Schema<PostConstantRevisionPublishResponseBypassedGatesList>;
-
-export interface PostConstantRevisionPublishResponse {
-  revision: ConstantRevision;
-  /** Gates that would have blocked this publish but were bypassed by the caller's authority. Present only when at least one gate was bypassed. */
-  bypassedGates?: PostConstantRevisionPublishResponseBypassedGatesList;
-}
-export const PostConstantRevisionPublishResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    revision: ConstantRevision,
-    bypassedGates: S.optional(
-      PostConstantRevisionPublishResponseBypassedGatesList,
-    ),
-  }),
-).annotate({
-  identifier: "PostConstantRevisionPublishResponse",
-}) as any as S.Schema<PostConstantRevisionPublishResponse>;
-
-export type PostConstantRevisionRebaseRequestConflictResolutionsValue =
-  | "overwrite"
-  | "discard";
-export const PostConstantRevisionRebaseRequestConflictResolutionsValue =
-  /*@__PURE__*/ S.String;
-
-export type PostConstantRevisionRebaseRequestConflictResolutionsMap = {
-  [key: string]:
-    | PostConstantRevisionRebaseRequestConflictResolutionsValue
-    | (string & {})
-    | undefined;
-};
-export const PostConstantRevisionRebaseRequestConflictResolutionsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    PostConstantRevisionRebaseRequestConflictResolutionsValue,
-  ) as any as S.Schema<PostConstantRevisionRebaseRequestConflictResolutionsMap>;
-
-export interface PostConstantRevisionRebaseRequest {
-  key: string;
-  version: number;
-  conflictResolutions?: PostConstantRevisionRebaseRequestConflictResolutionsMap;
-}
-export const PostConstantRevisionRebaseRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    key: S.String.pipe(T.Label()),
-    version: S.Number.pipe(T.Label()),
-    conflictResolutions: S.optional(
-      PostConstantRevisionRebaseRequestConflictResolutionsMap,
-    ),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/constants-revisions/{key}/{version}/rebase",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PostConstantRevisionRebaseRequest",
-}) as any as S.Schema<PostConstantRevisionRebaseRequest>;
-
-export interface PostConstantRevisionRebaseResponse {
-  revision: ConstantRevision;
-}
-export const PostConstantRevisionRebaseResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    revision: ConstantRevision,
-  }),
-).annotate({
-  identifier: "PostConstantRevisionRebaseResponse",
-}) as any as S.Schema<PostConstantRevisionRebaseResponse>;
-
-export interface PostConstantRevisionRecallReviewRequest {
-  key: string;
-  version: number;
-}
-export const PostConstantRevisionRecallReviewRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      key: S.String.pipe(T.Label()),
-      version: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/constants-revisions/{key}/{version}/recall-review",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "PostConstantRevisionRecallReviewRequest",
-}) as any as S.Schema<PostConstantRevisionRecallReviewRequest>;
-
-export interface PostConstantRevisionRecallReviewResponse {
-  revision: ConstantRevision;
-}
-export const PostConstantRevisionRecallReviewResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      revision: ConstantRevision,
-    }),
-).annotate({
-  identifier: "PostConstantRevisionRecallReviewResponse",
-}) as any as S.Schema<PostConstantRevisionRecallReviewResponse>;
-
-export interface PostConstantRevisionReopenRequest {
-  key: string;
-  version: number;
-}
-export const PostConstantRevisionReopenRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    key: S.String.pipe(T.Label()),
-    version: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/constants-revisions/{key}/{version}/reopen",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PostConstantRevisionReopenRequest",
-}) as any as S.Schema<PostConstantRevisionReopenRequest>;
-
-export interface PostConstantRevisionReopenResponse {
-  revision: ConstantRevision;
-}
-export const PostConstantRevisionReopenResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    revision: ConstantRevision,
-  }),
-).annotate({
-  identifier: "PostConstantRevisionReopenResponse",
-}) as any as S.Schema<PostConstantRevisionReopenResponse>;
-
-export interface PostConstantRevisionRequestReviewRequest {
-  key: string;
-  version: number;
-  autoPublishOnApproval?: boolean;
-  /** Set to true to acknowledge the warnings listed in a blocked response and continue. This covers experiment guards, locked dependents, and references affected by an archive. When the organization treats schema failures as warnings, it also covers schema and invariant warnings. It never bypasses a rejected Custom Hook. On revision publish endpoints, it can also force-publish an out-of-date draft when the caller has Bypass draft approvals access. */
-  ignoreWarnings?: boolean;
-  /** Set to true to publish despite schema validation errors, failed invariants, or schema changes that invalidate dependent resources. This does not bypass a rejected Custom Hook; use `skipHooks` for that. The caller must have Bypass draft approvals access for Feature Flags, Configs, and Constants in every Project. Otherwise, this field is ignored. */
-  skipSchemaValidation?: boolean;
-  /** Set to true to publish despite a Custom Hook rejection. This does not bypass schema validation; use `skipSchemaValidation` for that. The caller must have Bypass draft approvals access for Feature Flags, Configs, and Constants in every Project. Otherwise, this field is ignored. */
-  skipHooks?: boolean;
-}
-export const PostConstantRevisionRequestReviewRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      key: S.String.pipe(T.Label()),
-      version: S.Number.pipe(T.Label()),
-      autoPublishOnApproval: S.optional(S.Boolean),
-      ignoreWarnings: S.optional(S.Boolean),
-      skipSchemaValidation: S.optional(S.Boolean),
-      skipHooks: S.optional(S.Boolean),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/constants-revisions/{key}/{version}/request-review",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "PostConstantRevisionRequestReviewRequest",
-}) as any as S.Schema<PostConstantRevisionRequestReviewRequest>;
-
-export interface PostConstantRevisionRequestReviewResponse {
-  revision: ConstantRevision;
-}
-export const PostConstantRevisionRequestReviewResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      revision: ConstantRevision,
-    }),
-  ).annotate({
-    identifier: "PostConstantRevisionRequestReviewResponse",
-  }) as any as S.Schema<PostConstantRevisionRequestReviewResponse>;
-
-/** Whether to stage the revert as a draft or publish it immediately. Defaults to `draft`, or to `publish` when the org enables 'reverts bypass approval'. */
-export type PostConstantRevisionRevertRequestStrategy = "draft" | "publish";
-export const PostConstantRevisionRevertRequestStrategy = /*@__PURE__*/ S.String;
-
-export interface PostConstantRevisionRevertRequest {
-  key: string;
-  version: number;
-  /** Whether to stage the revert as a draft or publish it immediately. Defaults to `draft`, or to `publish` when the org enables 'reverts bypass approval'. */
-  strategy?: PostConstantRevisionRevertRequestStrategy | (string & {});
-  title?: string;
-  comment?: string;
-  /** Set to true to acknowledge the warnings listed in a blocked response and continue. This covers experiment guards, locked dependents, and references affected by an archive. When the organization treats schema failures as warnings, it also covers schema and invariant warnings. It never bypasses a rejected Custom Hook. On revision publish endpoints, it can also force-publish an out-of-date draft when the caller has Bypass draft approvals access. */
-  ignoreWarnings?: boolean;
-  /** Set to true to publish despite schema validation errors, failed invariants, or schema changes that invalidate dependent resources. This does not bypass a rejected Custom Hook; use `skipHooks` for that. The caller must have Bypass draft approvals access for Feature Flags, Configs, and Constants in every Project. Otherwise, this field is ignored. */
-  skipSchemaValidation?: boolean;
-  /** Set to true to publish despite a Custom Hook rejection. This does not bypass schema validation; use `skipSchemaValidation` for that. The caller must have Bypass draft approvals access for Feature Flags, Configs, and Constants in every Project. Otherwise, this field is ignored. */
-  skipHooks?: boolean;
-}
-export const PostConstantRevisionRevertRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    key: S.String.pipe(T.Label()),
-    version: S.Number.pipe(T.Label()),
-    strategy: S.optional(PostConstantRevisionRevertRequestStrategy),
-    title: S.optional(S.String),
-    comment: S.optional(S.String),
-    ignoreWarnings: S.optional(S.Boolean),
-    skipSchemaValidation: S.optional(S.Boolean),
-    skipHooks: S.optional(S.Boolean),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/constants-revisions/{key}/{version}/revert",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PostConstantRevisionRevertRequest",
-}) as any as S.Schema<PostConstantRevisionRevertRequest>;
-
-/** Gates that would have blocked this publish but were bypassed by the caller's authority. Present only when at least one gate was bypassed. */
-export type PostConstantRevisionRevertResponseBypassedGatesList =
-  Array<BypassedGates>;
-export const PostConstantRevisionRevertResponseBypassedGatesList =
-  /*@__PURE__*/ S.Array(
-    BypassedGates,
-  ) as any as S.Schema<PostConstantRevisionRevertResponseBypassedGatesList>;
-
-export interface PostConstantRevisionRevertResponse {
-  revision: ConstantRevision;
-  /** Gates that would have blocked this publish but were bypassed by the caller's authority. Present only when at least one gate was bypassed. */
-  bypassedGates?: PostConstantRevisionRevertResponseBypassedGatesList;
-}
-export const PostConstantRevisionRevertResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    revision: ConstantRevision,
-    bypassedGates: S.optional(
-      PostConstantRevisionRevertResponseBypassedGatesList,
-    ),
-  }),
-).annotate({
-  identifier: "PostConstantRevisionRevertResponse",
-}) as any as S.Schema<PostConstantRevisionRevertResponse>;
-
-export interface PostConstantRevisionSchedulePublishRequest {
-  key: string;
-  version: number;
-  /** When to publish, as an RFC3339 timestamp (e.g. `2026-01-31T09:00:00Z` or `2026-01-31T02:00:00-07:00`), or `null` to cancel a pending schedule. */
-  scheduledPublishAt: string | null;
-  lockEdits?: boolean;
-  lockOthers?: boolean;
-  bypassApproval?: boolean;
-  /** Set to true to acknowledge the warnings listed in a blocked response and continue. This covers experiment guards, locked dependents, and references affected by an archive. When the organization treats schema failures as warnings, it also covers schema and invariant warnings. It never bypasses a rejected Custom Hook. On revision publish endpoints, it can also force-publish an out-of-date draft when the caller has Bypass draft approvals access. */
-  ignoreWarnings?: boolean;
-  /** Set to true to publish despite schema validation errors, failed invariants, or schema changes that invalidate dependent resources. This does not bypass a rejected Custom Hook; use `skipHooks` for that. The caller must have Bypass draft approvals access for Feature Flags, Configs, and Constants in every Project. Otherwise, this field is ignored. */
-  skipSchemaValidation?: boolean;
-  /** Set to true to publish despite a Custom Hook rejection. This does not bypass schema validation; use `skipSchemaValidation` for that. The caller must have Bypass draft approvals access for Feature Flags, Configs, and Constants in every Project. Otherwise, this field is ignored. */
-  skipHooks?: boolean;
-}
-export const PostConstantRevisionSchedulePublishRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      key: S.String.pipe(T.Label()),
-      version: S.Number.pipe(T.Label()),
-      scheduledPublishAt: S.NullOr(S.String),
-      lockEdits: S.optional(S.Boolean),
-      lockOthers: S.optional(S.Boolean),
-      bypassApproval: S.optional(S.Boolean),
-      ignoreWarnings: S.optional(S.Boolean),
-      skipSchemaValidation: S.optional(S.Boolean),
-      skipHooks: S.optional(S.Boolean),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/constants-revisions/{key}/{version}/schedule-publish",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostConstantRevisionSchedulePublishRequest",
-  }) as any as S.Schema<PostConstantRevisionSchedulePublishRequest>;
-
-export interface PostConstantRevisionSchedulePublishResponse {
-  revision: ConstantRevision;
-}
-export const PostConstantRevisionSchedulePublishResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      revision: ConstantRevision,
-    }),
-  ).annotate({
-    identifier: "PostConstantRevisionSchedulePublishResponse",
-  }) as any as S.Schema<PostConstantRevisionSchedulePublishResponse>;
-
-export type PostConstantRevisionSubmitReviewRequestDecision =
-  | "approve"
-  | "request-changes"
-  | "comment";
-export const PostConstantRevisionSubmitReviewRequestDecision =
-  /*@__PURE__*/ S.String;
-
-export interface PostConstantRevisionSubmitReviewRequest {
-  key: string;
-  version: number;
-  decision: PostConstantRevisionSubmitReviewRequestDecision | (string & {});
-  comment?: string;
-  skipAutoPublish?: boolean;
-}
-export const PostConstantRevisionSubmitReviewRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      key: S.String.pipe(T.Label()),
-      version: S.Number.pipe(T.Label()),
-      decision: PostConstantRevisionSubmitReviewRequestDecision,
-      comment: S.optional(S.String),
-      skipAutoPublish: S.optional(S.Boolean),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/constants-revisions/{key}/{version}/submit-review",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "PostConstantRevisionSubmitReviewRequest",
-}) as any as S.Schema<PostConstantRevisionSubmitReviewRequest>;
-
-export interface PostConstantRevisionSubmitReviewResponse {
-  revision: ConstantRevision;
-  autoPublished?: boolean;
-}
-export const PostConstantRevisionSubmitReviewResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      revision: ConstantRevision,
-      autoPublished: S.optional(S.Boolean),
-    }),
-).annotate({
-  identifier: "PostConstantRevisionSubmitReviewResponse",
-}) as any as S.Schema<PostConstantRevisionSubmitReviewResponse>;
-
-export interface PostConstantRevisionUndoReviewRequest {
-  key: string;
-  version: number;
-}
-export const PostConstantRevisionUndoReviewRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      key: S.String.pipe(T.Label()),
-      version: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/constants-revisions/{key}/{version}/undo-review",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "PostConstantRevisionUndoReviewRequest",
-}) as any as S.Schema<PostConstantRevisionUndoReviewRequest>;
-
-export interface PostConstantRevisionUndoReviewResponse {
-  revision: ConstantRevision;
-}
-export const PostConstantRevisionUndoReviewResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      revision: ConstantRevision,
-    }),
-).annotate({
-  identifier: "PostConstantRevisionUndoReviewResponse",
-}) as any as S.Schema<PostConstantRevisionUndoReviewResponse>;
-
 export type PostCopyTransformRequestMode = "energetic" | "concise" | "humorous";
 export const PostCopyTransformRequestMode = /*@__PURE__*/ S.String;
 
@@ -28696,64 +32042,6 @@ export const PostCopyTransformResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "PostCopyTransformResponse",
 }) as any as S.Schema<PostCopyTransformResponse>;
-
-export type PostCustomHookRequestHook =
-  | "validateFeature"
-  | "validateFeatureRevision"
-  | "validateConfig"
-  | "validateConfigRevision"
-  | "validateExperiment";
-export const PostCustomHookRequestHook = /*@__PURE__*/ S.String;
-
-/** Project ids the hook applies to (empty/omitted = all) */
-export type PostCustomHookRequestProjectsList = Array<string>;
-export const PostCustomHookRequestProjectsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PostCustomHookRequestProjectsList>;
-
-export type PostCustomHookRequestEntityType =
-  | "feature"
-  | "config"
-  | "experiment";
-export const PostCustomHookRequestEntityType = /*@__PURE__*/ S.String;
-
-export interface PostCustomHookRequest {
-  /** The display name of the custom hook */
-  name: string;
-  hook: PostCustomHookRequestHook | (string & {});
-  code: string;
-  enabled?: boolean;
-  /** Project ids the hook applies to (empty/omitted = all) */
-  projects?: PostCustomHookRequestProjectsList;
-  entityType?: PostCustomHookRequestEntityType | (string & {});
-  entityId?: string;
-  incrementalChangesOnly?: boolean;
-}
-export const PostCustomHookRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    hook: PostCustomHookRequestHook,
-    code: S.String,
-    enabled: S.optional(S.Boolean),
-    projects: S.optional(PostCustomHookRequestProjectsList),
-    entityType: S.optional(PostCustomHookRequestEntityType),
-    entityId: S.optional(S.String),
-    incrementalChangesOnly: S.optional(S.Boolean),
-  }).pipe(T.Http({ method: "POST", uri: "/v1/custom-hooks", code: 200 })),
-).annotate({
-  identifier: "PostCustomHookRequest",
-}) as any as S.Schema<PostCustomHookRequest>;
-
-export interface PostCustomHookResponse {
-  customHook: CustomHook;
-}
-export const PostCustomHookResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    customHook: CustomHook,
-  }),
-).annotate({
-  identifier: "PostCustomHookResponse",
-}) as any as S.Schema<PostCustomHookResponse>;
 
 /** Controls cache behavior for this exploration: `preferred` (default) returns a cached result if one exists, otherwise runs a new query; `never` always runs a new query, ignoring any cached results; `required` only returns a cached result, if none exists returns exploration: null with a message */
 export type PostDataSourceExplorationRequestCache =
@@ -29724,1026 +33012,6 @@ export const PostDataSourceExplorationResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "PostDataSourceExplorationResponse",
 }) as any as S.Schema<PostDataSourceExplorationResponse>;
 
-/** Where this dimension must be managed from. If not set (empty string), it can be managed from anywhere. */
-export type PostDimensionRequestManagedBy = "" | "api";
-export const PostDimensionRequestManagedBy = /*@__PURE__*/ S.String;
-
-export interface PostDimensionRequest {
-  /** Name of the dimension */
-  name: string;
-  /** Description of the dimension */
-  description?: string;
-  /** The userId or email address of the owner. If an email address is provided, it will be used to look up the userId of the matching organization member. If an ID is provided, it will be validated as existing in the organization. */
-  owner?: string;
-  /** ID of the datasource this dimension belongs to */
-  datasourceId: string;
-  /** Type of identifier (user, anonymous, etc.) */
-  identifierType: string;
-  /** SQL query or equivalent for the dimension */
-  query: string;
-  /** Where this dimension must be managed from. If not set (empty string), it can be managed from anywhere. */
-  managedBy?: PostDimensionRequestManagedBy | (string & {});
-}
-export const PostDimensionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    description: S.optional(S.String),
-    owner: S.optional(S.String),
-    datasourceId: S.String,
-    identifierType: S.String,
-    query: S.String,
-    managedBy: S.optional(PostDimensionRequestManagedBy),
-  }).pipe(T.Http({ method: "POST", uri: "/v1/dimensions", code: 200 })),
-).annotate({
-  identifier: "PostDimensionRequest",
-}) as any as S.Schema<PostDimensionRequest>;
-
-export interface PostDimensionResponse {
-  dimension: Dimension;
-}
-export const PostDimensionResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    dimension: Dimension,
-  }),
-).annotate({
-  identifier: "PostDimensionResponse",
-}) as any as S.Schema<PostDimensionResponse>;
-
-export type PostEnvironmentRequestProjectsList = Array<string>;
-export const PostEnvironmentRequestProjectsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PostEnvironmentRequestProjectsList>;
-
-export interface PostEnvironmentRequest {
-  /** The ID of the new environment */
-  id: string;
-  /** The description of the new environment */
-  description?: string;
-  /** Show on feature list page */
-  toggleOnList?: boolean;
-  /** Default state for new features */
-  defaultState?: boolean;
-  projects?: PostEnvironmentRequestProjectsList;
-  /** An environment that the new environment should inherit feature rules from. Requires an enterprise license */
-  parent?: string;
-}
-export const PostEnvironmentRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    description: S.optional(S.String),
-    toggleOnList: S.optional(S.Boolean),
-    defaultState: S.optional(S.Boolean),
-    projects: S.optional(PostEnvironmentRequestProjectsList),
-    parent: S.optional(S.String),
-  }).pipe(T.Http({ method: "POST", uri: "/v1/environments", code: 200 })),
-).annotate({
-  identifier: "PostEnvironmentRequest",
-}) as any as S.Schema<PostEnvironmentRequest>;
-
-export interface PostEnvironmentResponse {
-  environment: Environment;
-}
-export const PostEnvironmentResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    environment: Environment,
-  }),
-).annotate({
-  identifier: "PostEnvironmentResponse",
-}) as any as S.Schema<PostEnvironmentResponse>;
-
-export type PostExperimentRequestType = "standard" | "multi-armed-bandit";
-export const PostExperimentRequestType = /*@__PURE__*/ S.String;
-
-export type PostExperimentRequestTagsList = Array<string>;
-export const PostExperimentRequestTagsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PostExperimentRequestTagsList>;
-
-export type PostExperimentRequestMetricsList = Array<string>;
-export const PostExperimentRequestMetricsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PostExperimentRequestMetricsList>;
-
-export type PostExperimentRequestSecondaryMetricsList = Array<string>;
-export const PostExperimentRequestSecondaryMetricsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PostExperimentRequestSecondaryMetricsList>;
-
-export type PostExperimentRequestGuardrailMetricsList = Array<string>;
-export const PostExperimentRequestGuardrailMetricsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PostExperimentRequestGuardrailMetricsList>;
-
-export type PostExperimentRequestStatus = "draft" | "running" | "stopped";
-export const PostExperimentRequestStatus = /*@__PURE__*/ S.String;
-
-export type PostExperimentRequestInProgressConversions = "loose" | "strict";
-export const PostExperimentRequestInProgressConversions =
-  /*@__PURE__*/ S.String;
-
-/** Setting attribution model to `"experimentDuration"` is the same as selecting "Ignore Conversion Windows" for the Conversion Window Override. Setting it to `"lookbackOverride"` requires a `lookbackOverride` object to be provided. */
-export type PostExperimentRequestAttributionModel =
-  | "firstExposure"
-  | "experimentDuration"
-  | "lookbackOverride";
-export const PostExperimentRequestAttributionModel = /*@__PURE__*/ S.String;
-
-export type PostExperimentRequestLookbackOverrideType = "date" | "window";
-export const PostExperimentRequestLookbackOverrideType = /*@__PURE__*/ S.String;
-
-/** For "window" type - non-negative numeric value (e.g. 7 for 7 days). For "date" type a date string. */
-export type PostExperimentRequestLookbackOverrideValue = number | string;
-export const PostExperimentRequestLookbackOverrideValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PostExperimentRequestLookbackOverrideValue>;
-
-/** Used when type is "window". Defaults to "days". */
-export type PostExperimentRequestLookbackOverrideValueUnit =
-  | "minutes"
-  | "hours"
-  | "days"
-  | "weeks";
-export const PostExperimentRequestLookbackOverrideValueUnit =
-  /*@__PURE__*/ S.String;
-
-/** Controls the lookback override for the experiment. For type "window", value must be a non-negative number and valueUnit is required. */
-export interface PostExperimentRequestLookbackOverride {
-  type: PostExperimentRequestLookbackOverrideType | (string & {});
-  /** For "window" type - non-negative numeric value (e.g. 7 for 7 days). For "date" type a date string. */
-  value: PostExperimentRequestLookbackOverrideValue;
-  /** Used when type is "window". Defaults to "days". */
-  valueUnit?: PostExperimentRequestLookbackOverrideValueUnit | (string & {});
-}
-export const PostExperimentRequestLookbackOverride = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      type: PostExperimentRequestLookbackOverrideType,
-      value: PostExperimentRequestLookbackOverrideValue,
-      valueUnit: S.optional(PostExperimentRequestLookbackOverrideValueUnit),
-    }),
-).annotate({
-  identifier: "PostExperimentRequestLookbackOverride",
-}) as any as S.Schema<PostExperimentRequestLookbackOverride>;
-
-export type PostExperimentRequestStatsEngine = "bayesian" | "frequentist";
-export const PostExperimentRequestStatsEngine = /*@__PURE__*/ S.String;
-
-export interface PostExperimentRequestVariationsItemScreenshotsItem {
-  path: string;
-  width?: number;
-  height?: number;
-  description?: string;
-}
-export const PostExperimentRequestVariationsItemScreenshotsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      path: S.String,
-      width: S.optional(S.Number),
-      height: S.optional(S.Number),
-      description: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "PostExperimentRequestVariationsItemScreenshotsItem",
-  }) as any as S.Schema<PostExperimentRequestVariationsItemScreenshotsItem>;
-
-export type PostExperimentRequestVariationsItemScreenshotsList =
-  Array<PostExperimentRequestVariationsItemScreenshotsItem>;
-export const PostExperimentRequestVariationsItemScreenshotsList =
-  /*@__PURE__*/ S.Array(
-    PostExperimentRequestVariationsItemScreenshotsItem,
-  ) as any as S.Schema<PostExperimentRequestVariationsItemScreenshotsList>;
-
-export interface PostExperimentRequestVariationsItem {
-  id?: string;
-  /** Alias for `id`. Mirrors the GET response. `id` takes precedence. */
-  variationId?: string;
-  key: string;
-  name: string;
-  description?: string;
-  screenshots?: PostExperimentRequestVariationsItemScreenshotsList;
-}
-export const PostExperimentRequestVariationsItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    variationId: S.optional(S.String),
-    key: S.String,
-    name: S.String,
-    description: S.optional(S.String),
-    screenshots: S.optional(PostExperimentRequestVariationsItemScreenshotsList),
-  }),
-).annotate({
-  identifier: "PostExperimentRequestVariationsItem",
-}) as any as S.Schema<PostExperimentRequestVariationsItem>;
-
-export type PostExperimentRequestVariationsList =
-  Array<PostExperimentRequestVariationsItem>;
-export const PostExperimentRequestVariationsList = /*@__PURE__*/ S.Array(
-  PostExperimentRequestVariationsItem,
-) as any as S.Schema<PostExperimentRequestVariationsList>;
-
-export type PostExperimentRequestPhasesItemNamespaceRangeList = Array<number>;
-export const PostExperimentRequestPhasesItemNamespaceRangeList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<PostExperimentRequestPhasesItemNamespaceRangeList>;
-
-export type PostExperimentRequestPhasesItemNamespaceRangesItemList =
-  Array<unknown>;
-export const PostExperimentRequestPhasesItemNamespaceRangesItemList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<PostExperimentRequestPhasesItemNamespaceRangesItemList>;
-
-export type PostExperimentRequestPhasesItemNamespaceRangesList =
-  Array<PostExperimentRequestPhasesItemNamespaceRangesItemList>;
-export const PostExperimentRequestPhasesItemNamespaceRangesList =
-  /*@__PURE__*/ S.Array(
-    PostExperimentRequestPhasesItemNamespaceRangesItemList,
-  ) as any as S.Schema<PostExperimentRequestPhasesItemNamespaceRangesList>;
-
-export interface PostExperimentRequestPhasesItemNamespace {
-  namespaceId: string;
-  enabled?: boolean;
-  range?: PostExperimentRequestPhasesItemNamespaceRangeList;
-  ranges?: PostExperimentRequestPhasesItemNamespaceRangesList;
-}
-export const PostExperimentRequestPhasesItemNamespace = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      namespaceId: S.String,
-      enabled: S.optional(S.Boolean),
-      range: S.optional(PostExperimentRequestPhasesItemNamespaceRangeList),
-      ranges: S.optional(PostExperimentRequestPhasesItemNamespaceRangesList),
-    }),
-).annotate({
-  identifier: "PostExperimentRequestPhasesItemNamespace",
-}) as any as S.Schema<PostExperimentRequestPhasesItemNamespace>;
-
-export interface PostExperimentRequestPhasesItemPrerequisitesItem {
-  /** Feature ID */
-  id: string;
-  condition: string;
-}
-export const PostExperimentRequestPhasesItemPrerequisitesItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.String,
-      condition: S.String,
-    }),
-  ).annotate({
-    identifier: "PostExperimentRequestPhasesItemPrerequisitesItem",
-  }) as any as S.Schema<PostExperimentRequestPhasesItemPrerequisitesItem>;
-
-export type PostExperimentRequestPhasesItemPrerequisitesList =
-  Array<PostExperimentRequestPhasesItemPrerequisitesItem>;
-export const PostExperimentRequestPhasesItemPrerequisitesList =
-  /*@__PURE__*/ S.Array(
-    PostExperimentRequestPhasesItemPrerequisitesItem,
-  ) as any as S.Schema<PostExperimentRequestPhasesItemPrerequisitesList>;
-
-export type PostExperimentRequestPhasesItemSavedGroupsItemMatch =
-  | "all"
-  | "none"
-  | "any";
-export const PostExperimentRequestPhasesItemSavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
-
-export type PostExperimentRequestPhasesItemSavedGroupsItemIdsList =
-  Array<string>;
-export const PostExperimentRequestPhasesItemSavedGroupsItemIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostExperimentRequestPhasesItemSavedGroupsItemIdsList>;
-
-export interface PostExperimentRequestPhasesItemSavedGroupsItem {
-  match: PostExperimentRequestPhasesItemSavedGroupsItemMatch | (string & {});
-  ids: PostExperimentRequestPhasesItemSavedGroupsItemIdsList;
-}
-export const PostExperimentRequestPhasesItemSavedGroupsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      match: PostExperimentRequestPhasesItemSavedGroupsItemMatch,
-      ids: PostExperimentRequestPhasesItemSavedGroupsItemIdsList,
-    }),
-  ).annotate({
-    identifier: "PostExperimentRequestPhasesItemSavedGroupsItem",
-  }) as any as S.Schema<PostExperimentRequestPhasesItemSavedGroupsItem>;
-
-export type PostExperimentRequestPhasesItemSavedGroupsList =
-  Array<PostExperimentRequestPhasesItemSavedGroupsItem>;
-export const PostExperimentRequestPhasesItemSavedGroupsList =
-  /*@__PURE__*/ S.Array(
-    PostExperimentRequestPhasesItemSavedGroupsItem,
-  ) as any as S.Schema<PostExperimentRequestPhasesItemSavedGroupsList>;
-
-export type PostExperimentRequestPhasesItemSavedGroupTargetingItemMatchType =
-  | "all"
-  | "any"
-  | "none";
-export const PostExperimentRequestPhasesItemSavedGroupTargetingItemMatchType =
-  /*@__PURE__*/ S.String;
-
-export type PostExperimentRequestPhasesItemSavedGroupTargetingItemSavedGroupsList =
-  Array<string>;
-export const PostExperimentRequestPhasesItemSavedGroupTargetingItemSavedGroupsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostExperimentRequestPhasesItemSavedGroupTargetingItemSavedGroupsList>;
-
-export interface PostExperimentRequestPhasesItemSavedGroupTargetingItem {
-  matchType:
-    | PostExperimentRequestPhasesItemSavedGroupTargetingItemMatchType
-    | (string & {});
-  savedGroups: PostExperimentRequestPhasesItemSavedGroupTargetingItemSavedGroupsList;
-}
-export const PostExperimentRequestPhasesItemSavedGroupTargetingItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      matchType:
-        PostExperimentRequestPhasesItemSavedGroupTargetingItemMatchType,
-      savedGroups:
-        PostExperimentRequestPhasesItemSavedGroupTargetingItemSavedGroupsList,
-    }),
-  ).annotate({
-    identifier: "PostExperimentRequestPhasesItemSavedGroupTargetingItem",
-  }) as any as S.Schema<PostExperimentRequestPhasesItemSavedGroupTargetingItem>;
-
-/** Deprecated — use `savedGroups`. Accepted so a GET response can be posted back unchanged; `savedGroups` takes precedence if both are sent. */
-export type PostExperimentRequestPhasesItemSavedGroupTargetingList =
-  Array<PostExperimentRequestPhasesItemSavedGroupTargetingItem>;
-export const PostExperimentRequestPhasesItemSavedGroupTargetingList =
-  /*@__PURE__*/ S.Array(
-    PostExperimentRequestPhasesItemSavedGroupTargetingItem,
-  ) as any as S.Schema<PostExperimentRequestPhasesItemSavedGroupTargetingList>;
-
-/** Deprecated: use `trafficSplit`. Takes precedence if set. */
-export type PostExperimentRequestPhasesItemVariationWeightsList = Array<number>;
-export const PostExperimentRequestPhasesItemVariationWeightsList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<PostExperimentRequestPhasesItemVariationWeightsList>;
-
-export type PostExperimentRequestPhasesItemTrafficSplitItem =
-  ContextualBanditVariationWeightsItem;
-export const PostExperimentRequestPhasesItemTrafficSplitItem =
-  ContextualBanditVariationWeightsItem;
-
-/** Per-variation weights. Mirrors the GET response. */
-export type PostExperimentRequestPhasesItemTrafficSplitList =
-  Array<ContextualBanditVariationWeightsItem>;
-export const PostExperimentRequestPhasesItemTrafficSplitList =
-  /*@__PURE__*/ S.Array(
-    ContextualBanditVariationWeightsItem,
-  ) as any as S.Schema<PostExperimentRequestPhasesItemTrafficSplitList>;
-
-export interface PostExperimentRequestPhasesItem {
-  name: string;
-  dateStarted: string;
-  dateEnded?: string;
-  reasonForStopping?: string;
-  seed?: string;
-  coverage?: number;
-  namespace?: PostExperimentRequestPhasesItemNamespace;
-  prerequisites?: PostExperimentRequestPhasesItemPrerequisitesList;
-  /** Deprecated: use `reasonForStopping`. Takes precedence if set. */
-  reason?: string;
-  /** Deprecated: use `targetingCondition`. Takes precedence if set. */
-  condition?: string;
-  /** Targeting condition as a JSON string. Mirrors the GET response. */
-  targetingCondition?: string;
-  savedGroups?: PostExperimentRequestPhasesItemSavedGroupsList;
-  /** Deprecated — use `savedGroups`. Accepted so a GET response can be posted back unchanged; `savedGroups` takes precedence if both are sent. */
-  savedGroupTargeting?: PostExperimentRequestPhasesItemSavedGroupTargetingList;
-  /** Deprecated: use `trafficSplit`. Takes precedence if set. */
-  variationWeights?: PostExperimentRequestPhasesItemVariationWeightsList;
-  /** Per-variation weights. Mirrors the GET response. */
-  trafficSplit?: PostExperimentRequestPhasesItemTrafficSplitList;
-}
-export const PostExperimentRequestPhasesItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    dateStarted: S.String,
-    dateEnded: S.optional(S.String),
-    reasonForStopping: S.optional(S.String),
-    seed: S.optional(S.String),
-    coverage: S.optional(S.Number),
-    namespace: S.optional(PostExperimentRequestPhasesItemNamespace),
-    prerequisites: S.optional(PostExperimentRequestPhasesItemPrerequisitesList),
-    reason: S.optional(S.String),
-    condition: S.optional(S.String),
-    targetingCondition: S.optional(S.String),
-    savedGroups: S.optional(PostExperimentRequestPhasesItemSavedGroupsList),
-    savedGroupTargeting: S.optional(
-      PostExperimentRequestPhasesItemSavedGroupTargetingList,
-    ),
-    variationWeights: S.optional(
-      PostExperimentRequestPhasesItemVariationWeightsList,
-    ),
-    trafficSplit: S.optional(PostExperimentRequestPhasesItemTrafficSplitList),
-  }),
-).annotate({
-  identifier: "PostExperimentRequestPhasesItem",
-}) as any as S.Schema<PostExperimentRequestPhasesItem>;
-
-export type PostExperimentRequestPhasesList =
-  Array<PostExperimentRequestPhasesItem>;
-export const PostExperimentRequestPhasesList = /*@__PURE__*/ S.Array(
-  PostExperimentRequestPhasesItem,
-) as any as S.Schema<PostExperimentRequestPhasesList>;
-
-export type PostExperimentRequestShareLevel = "public" | "organization";
-export const PostExperimentRequestShareLevel = /*@__PURE__*/ S.String;
-
-export type PostExperimentRequestBanditScheduleUnit = "days" | "hours";
-export const PostExperimentRequestBanditScheduleUnit = /*@__PURE__*/ S.String;
-
-export type PostExperimentRequestBanditBurnInUnit = "days" | "hours";
-export const PostExperimentRequestBanditBurnInUnit = /*@__PURE__*/ S.String;
-
-export type PostExperimentRequestBanditConversionWindowUnit = "days" | "hours";
-export const PostExperimentRequestBanditConversionWindowUnit =
-  /*@__PURE__*/ S.String;
-
-export type PostExperimentRequestDecisionFrameworkSettingsDecisionFrameworkMetricOverridesItem =
-  ExperimentDecisionFrameworkSettingsDecisionFrameworkMetricOverridesItem;
-export const PostExperimentRequestDecisionFrameworkSettingsDecisionFrameworkMetricOverridesItem =
-  ExperimentDecisionFrameworkSettingsDecisionFrameworkMetricOverridesItem;
-
-export type PostExperimentRequestDecisionFrameworkSettingsDecisionFrameworkMetricOverridesList =
-  Array<ExperimentDecisionFrameworkSettingsDecisionFrameworkMetricOverridesItem>;
-export const PostExperimentRequestDecisionFrameworkSettingsDecisionFrameworkMetricOverridesList =
-  /*@__PURE__*/ S.Array(
-    ExperimentDecisionFrameworkSettingsDecisionFrameworkMetricOverridesItem,
-  ) as any as S.Schema<PostExperimentRequestDecisionFrameworkSettingsDecisionFrameworkMetricOverridesList>;
-
-/** Controls the decision framework and metric overrides for the experiment. Replaces the entire stored object on update (does not patch individual fields). */
-export interface PostExperimentRequestDecisionFrameworkSettings {
-  decisionCriteriaId?: string;
-  decisionFrameworkMetricOverrides?: PostExperimentRequestDecisionFrameworkSettingsDecisionFrameworkMetricOverridesList;
-}
-export const PostExperimentRequestDecisionFrameworkSettings =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      decisionCriteriaId: S.optional(S.String),
-      decisionFrameworkMetricOverrides: S.optional(
-        PostExperimentRequestDecisionFrameworkSettingsDecisionFrameworkMetricOverridesList,
-      ),
-    }),
-  ).annotate({
-    identifier: "PostExperimentRequestDecisionFrameworkSettings",
-  }) as any as S.Schema<PostExperimentRequestDecisionFrameworkSettings>;
-
-export type PostExperimentRequestMetricOverridesItemWindowType =
-  | "conversion"
-  | "lookback"
-  | "";
-export const PostExperimentRequestMetricOverridesItemWindowType =
-  /*@__PURE__*/ S.String;
-
-/** Per-metric analysis overrides stored on the experiment (matches internal metricOverrides). */
-export interface PostExperimentRequestMetricOverridesItem {
-  /** ID of the metric to override settings for. */
-  id: string;
-  windowType?:
-    | PostExperimentRequestMetricOverridesItemWindowType
-    | (string & {});
-  windowHours?: number;
-  delayHours?: number;
-  /** Must be true for the override to take effect. If true, the other proper prior settings in this object will be used if present. */
-  properPriorOverride?: boolean;
-  properPriorEnabled?: boolean;
-  properPriorMean?: number;
-  properPriorStdDev?: number;
-  /** Must be true for the override to take effect. If true, the other regression adjustment settings in this object will be used if present. */
-  regressionAdjustmentOverride?: boolean;
-  regressionAdjustmentEnabled?: boolean;
-  regressionAdjustmentDays?: number;
-}
-export const PostExperimentRequestMetricOverridesItem = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String,
-      windowType: S.optional(
-        PostExperimentRequestMetricOverridesItemWindowType,
-      ),
-      windowHours: S.optional(S.Number),
-      delayHours: S.optional(S.Number),
-      properPriorOverride: S.optional(S.Boolean),
-      properPriorEnabled: S.optional(S.Boolean),
-      properPriorMean: S.optional(S.Number),
-      properPriorStdDev: S.optional(S.Number),
-      regressionAdjustmentOverride: S.optional(S.Boolean),
-      regressionAdjustmentEnabled: S.optional(S.Boolean),
-      regressionAdjustmentDays: S.optional(S.Number),
-    }),
-).annotate({
-  identifier: "PostExperimentRequestMetricOverridesItem",
-}) as any as S.Schema<PostExperimentRequestMetricOverridesItem>;
-
-/** Per-metric analysis overrides for this experiment. Replaces the entire stored array (does not patch individual entries). */
-export type PostExperimentRequestMetricOverridesList =
-  Array<PostExperimentRequestMetricOverridesItem>;
-export const PostExperimentRequestMetricOverridesList = /*@__PURE__*/ S.Array(
-  PostExperimentRequestMetricOverridesItem,
-) as any as S.Schema<PostExperimentRequestMetricOverridesList>;
-
-export type PostExperimentRequestCustomFieldsMap = {
-  [key: string]: string | undefined;
-};
-export const PostExperimentRequestCustomFieldsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<PostExperimentRequestCustomFieldsMap>;
-
-export type PostExperimentRequestCustomMetricSlicesItemSlicesItemLevelsList =
-  Array<string>;
-export const PostExperimentRequestCustomMetricSlicesItemSlicesItemLevelsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostExperimentRequestCustomMetricSlicesItemSlicesItemLevelsList>;
-
-export interface PostExperimentRequestCustomMetricSlicesItemSlicesItem {
-  column: string;
-  levels: PostExperimentRequestCustomMetricSlicesItemSlicesItemLevelsList;
-}
-export const PostExperimentRequestCustomMetricSlicesItemSlicesItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      column: S.String,
-      levels: PostExperimentRequestCustomMetricSlicesItemSlicesItemLevelsList,
-    }),
-  ).annotate({
-    identifier: "PostExperimentRequestCustomMetricSlicesItemSlicesItem",
-  }) as any as S.Schema<PostExperimentRequestCustomMetricSlicesItemSlicesItem>;
-
-export type PostExperimentRequestCustomMetricSlicesItemSlicesList =
-  Array<PostExperimentRequestCustomMetricSlicesItemSlicesItem>;
-export const PostExperimentRequestCustomMetricSlicesItemSlicesList =
-  /*@__PURE__*/ S.Array(
-    PostExperimentRequestCustomMetricSlicesItemSlicesItem,
-  ) as any as S.Schema<PostExperimentRequestCustomMetricSlicesItemSlicesList>;
-
-export interface PostExperimentRequestCustomMetricSlicesItem {
-  slices: PostExperimentRequestCustomMetricSlicesItemSlicesList;
-}
-export const PostExperimentRequestCustomMetricSlicesItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      slices: PostExperimentRequestCustomMetricSlicesItemSlicesList,
-    }),
-  ).annotate({
-    identifier: "PostExperimentRequestCustomMetricSlicesItem",
-  }) as any as S.Schema<PostExperimentRequestCustomMetricSlicesItem>;
-
-/** Custom slices that apply to ALL applicable metrics in the experiment */
-export type PostExperimentRequestCustomMetricSlicesList =
-  Array<PostExperimentRequestCustomMetricSlicesItem>;
-export const PostExperimentRequestCustomMetricSlicesList =
-  /*@__PURE__*/ S.Array(
-    PostExperimentRequestCustomMetricSlicesItem,
-  ) as any as S.Schema<PostExperimentRequestCustomMetricSlicesList>;
-
-export type PostExperimentRequestPrecomputedUnitDimensionIdsList =
-  Array<string>;
-export const PostExperimentRequestPrecomputedUnitDimensionIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostExperimentRequestPrecomputedUnitDimensionIdsList>;
-
-export type PostExperimentRequestStatusUpdateScheduleStopAfterUnit =
-  | "hours"
-  | "days";
-export const PostExperimentRequestStatusUpdateScheduleStopAfterUnit =
-  /*@__PURE__*/ S.String;
-
-/** Relative end offset. Deferred: resolved to a concrete `stopAt` at the experiment's actual start (or off `dateStarted` when already running). */
-export interface PostExperimentRequestStatusUpdateScheduleStopAfter {
-  value: number;
-  unit: PostExperimentRequestStatusUpdateScheduleStopAfterUnit | (string & {});
-}
-export const PostExperimentRequestStatusUpdateScheduleStopAfter =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      value: S.Number,
-      unit: PostExperimentRequestStatusUpdateScheduleStopAfterUnit,
-    }),
-  ).annotate({
-    identifier: "PostExperimentRequestStatusUpdateScheduleStopAfter",
-  }) as any as S.Schema<PostExperimentRequestStatusUpdateScheduleStopAfter>;
-
-export interface PostExperimentRequestStatusUpdateSchedule {
-  /** ISO datetime when the experiment should start. Must be in the future. Setting or clearing this field invalidates any existing staged start (`nextScheduledStatusUpdate`); call POST /experiments/{id}/start to stage the new schedule. */
-  startAt?: string;
-  /** ISO datetime when the experiment should stop. Resolved from `stopAfter` at start when a relative end was set. */
-  stopAt?: string;
-  /** Relative end offset. Deferred: resolved to a concrete `stopAt` at the experiment's actual start (or off `dateStarted` when already running). */
-  stopAfter?: PostExperimentRequestStatusUpdateScheduleStopAfter;
-  /** End-of-experiment automation applied at the scheduled end. Required whenever a `stopAt` or `stopAfter` is set (any mode, including `notify`). */
-  scheduledStopPlan?: ScheduledStopPlan;
-}
-export const PostExperimentRequestStatusUpdateSchedule =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      startAt: S.optional(S.String),
-      stopAt: S.optional(S.String),
-      stopAfter: S.optional(PostExperimentRequestStatusUpdateScheduleStopAfter),
-      scheduledStopPlan: S.optional(ScheduledStopPlan),
-    }),
-  ).annotate({
-    identifier: "PostExperimentRequestStatusUpdateSchedule",
-  }) as any as S.Schema<PostExperimentRequestStatusUpdateSchedule>;
-
-export interface PostExperimentRequest {
-  /** ID for the [DataSource](#tag/DataSource_model). Can only be set if a templateId is not provided. */
-  datasourceId?: string;
-  /** The ID property of one of the assignment query objects associated with the datasource. Can only be set if a templateId is not provided. */
-  assignmentQueryId?: string;
-  trackingKey: string;
-  /** If true, allow creating an experiment even if another experiment with the same tracking key already exists. This is ignored if the organization requires unique tracking keys as a rule. */
-  bypassDuplicateKeyCheck?: boolean;
-  /** Name of the experiment */
-  name: string;
-  type?: PostExperimentRequestType | (string & {});
-  /** Project ID which the experiment belongs to */
-  project?: string;
-  /** ID of the [ExperimentTemplate](#tag/ExperimentTemplate_model) this experiment was created from. Template fields are applied by default and overridden by explicitly provided payload fields. */
-  templateId?: string;
-  /** Hypothesis of the experiment */
-  hypothesis?: string;
-  /** Description of the experiment */
-  description?: string;
-  tags?: PostExperimentRequestTagsList;
-  metrics?: PostExperimentRequestMetricsList;
-  secondaryMetrics?: PostExperimentRequestSecondaryMetricsList;
-  guardrailMetrics?: PostExperimentRequestGuardrailMetricsList;
-  /** Users must convert on this metric before being included */
-  activationMetric?: string;
-  /** Only users in this segment will be included */
-  segmentId?: string;
-  /** WHERE clause to add to the default experiment query */
-  queryFilter?: string;
-  /** The userId or email address of the owner. If an email address is provided, it will be used to look up the userId of the matching organization member. If an ID is provided, it will be validated as existing in the organization. When omitted, it defaults to the user associated with the request's Personal Access Token (PAT), if one is being used. */
-  owner?: string;
-  archived?: boolean;
-  status?: PostExperimentRequestStatus | (string & {});
-  autoRefresh?: boolean;
-  hashAttribute?: string;
-  fallbackAttribute?: string;
-  /** Picker preference: show attributes from all projects in this experiment's targeting UI instead of only those in scope for its project and linked features. Does not loosen enforcement — when the organization requires registered attributes with project scoping, out-of-scope attributes are still rejected. */
-  attributeScopeAllProjects?: boolean;
-  hashVersion?: number;
-  disableStickyBucketing?: boolean;
-  bucketVersion?: number;
-  minBucketVersion?: number;
-  releasedVariationId?: string;
-  excludeFromPayload?: boolean;
-  inProgressConversions?:
-    | PostExperimentRequestInProgressConversions
-    | (string & {});
-  /** Setting attribution model to `"experimentDuration"` is the same as selecting "Ignore Conversion Windows" for the Conversion Window Override. Setting it to `"lookbackOverride"` requires a `lookbackOverride` object to be provided. */
-  attributionModel?: PostExperimentRequestAttributionModel | (string & {});
-  /** Controls the lookback override for the experiment. For type "window", value must be a non-negative number and valueUnit is required. */
-  lookbackOverride?: PostExperimentRequestLookbackOverride;
-  statsEngine?: PostExperimentRequestStatsEngine | (string & {});
-  variations: PostExperimentRequestVariationsList;
-  phases?: PostExperimentRequestPhasesList;
-  /** Controls whether regression adjustment (CUPED) is enabled for experiment analyses */
-  regressionAdjustmentEnabled?: boolean;
-  /** Only applicable to frequentist analyses */
-  sequentialTestingEnabled?: boolean;
-  sequentialTestingTuningParameter?: number;
-  shareLevel?: PostExperimentRequestShareLevel | (string & {});
-  banditScheduleValue?: number;
-  banditScheduleUnit?: PostExperimentRequestBanditScheduleUnit | (string & {});
-  banditBurnInValue?: number;
-  banditBurnInUnit?: PostExperimentRequestBanditBurnInUnit | (string & {});
-  banditConversionWindowValue?: number;
-  banditConversionWindowUnit?:
-    | PostExperimentRequestBanditConversionWindowUnit
-    | (string & {});
-  /** When null, the organization default is used. */
-  postStratificationEnabled?: boolean | null;
-  /** Controls the decision framework and metric overrides for the experiment. Replaces the entire stored object on update (does not patch individual fields). */
-  decisionFrameworkSettings?: PostExperimentRequestDecisionFrameworkSettings;
-  /** Per-metric analysis overrides for this experiment. Replaces the entire stored array (does not patch individual entries). */
-  metricOverrides?: PostExperimentRequestMetricOverridesList;
-  /** ID of the default dashboard for this experiment. */
-  defaultDashboardId?: string;
-  customFields?: PostExperimentRequestCustomFieldsMap;
-  /** Custom slices that apply to ALL applicable metrics in the experiment */
-  customMetricSlices?: PostExperimentRequestCustomMetricSlicesList;
-  precomputedUnitDimensionIds?: PostExperimentRequestPrecomputedUnitDimensionIdsList;
-  statusUpdateSchedule?: PostExperimentRequestStatusUpdateSchedule;
-  /** Set to true to acknowledge the warnings listed in a blocked response and continue. This covers experiment guards, locked dependents, and references affected by an archive. When the organization treats schema failures as warnings, it also covers schema and invariant warnings. It never bypasses a rejected Custom Hook. On revision publish endpoints, it can also force-publish an out-of-date draft when the caller has Bypass draft approvals access. */
-  ignoreWarnings?: boolean;
-}
-export const PostExperimentRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    datasourceId: S.optional(S.String),
-    assignmentQueryId: S.optional(S.String),
-    trackingKey: S.String,
-    bypassDuplicateKeyCheck: S.optional(S.Boolean),
-    name: S.String,
-    type: S.optional(PostExperimentRequestType),
-    project: S.optional(S.String),
-    templateId: S.optional(S.String),
-    hypothesis: S.optional(S.String),
-    description: S.optional(S.String),
-    tags: S.optional(PostExperimentRequestTagsList),
-    metrics: S.optional(PostExperimentRequestMetricsList),
-    secondaryMetrics: S.optional(PostExperimentRequestSecondaryMetricsList),
-    guardrailMetrics: S.optional(PostExperimentRequestGuardrailMetricsList),
-    activationMetric: S.optional(S.String),
-    segmentId: S.optional(S.String),
-    queryFilter: S.optional(S.String),
-    owner: S.optional(S.String),
-    archived: S.optional(S.Boolean),
-    status: S.optional(PostExperimentRequestStatus),
-    autoRefresh: S.optional(S.Boolean),
-    hashAttribute: S.optional(S.String),
-    fallbackAttribute: S.optional(S.String),
-    attributeScopeAllProjects: S.optional(S.Boolean),
-    hashVersion: S.optional(S.Number),
-    disableStickyBucketing: S.optional(S.Boolean),
-    bucketVersion: S.optional(S.Number),
-    minBucketVersion: S.optional(S.Number),
-    releasedVariationId: S.optional(S.String),
-    excludeFromPayload: S.optional(S.Boolean),
-    inProgressConversions: S.optional(
-      PostExperimentRequestInProgressConversions,
-    ),
-    attributionModel: S.optional(PostExperimentRequestAttributionModel),
-    lookbackOverride: S.optional(PostExperimentRequestLookbackOverride),
-    statsEngine: S.optional(PostExperimentRequestStatsEngine),
-    variations: PostExperimentRequestVariationsList,
-    phases: S.optional(PostExperimentRequestPhasesList),
-    regressionAdjustmentEnabled: S.optional(S.Boolean),
-    sequentialTestingEnabled: S.optional(S.Boolean),
-    sequentialTestingTuningParameter: S.optional(S.Number),
-    shareLevel: S.optional(PostExperimentRequestShareLevel),
-    banditScheduleValue: S.optional(S.Number),
-    banditScheduleUnit: S.optional(PostExperimentRequestBanditScheduleUnit),
-    banditBurnInValue: S.optional(S.Number),
-    banditBurnInUnit: S.optional(PostExperimentRequestBanditBurnInUnit),
-    banditConversionWindowValue: S.optional(S.Number),
-    banditConversionWindowUnit: S.optional(
-      PostExperimentRequestBanditConversionWindowUnit,
-    ),
-    postStratificationEnabled: S.optional(S.NullOr(S.Boolean)),
-    decisionFrameworkSettings: S.optional(
-      PostExperimentRequestDecisionFrameworkSettings,
-    ),
-    metricOverrides: S.optional(PostExperimentRequestMetricOverridesList),
-    defaultDashboardId: S.optional(S.String),
-    customFields: S.optional(PostExperimentRequestCustomFieldsMap),
-    customMetricSlices: S.optional(PostExperimentRequestCustomMetricSlicesList),
-    precomputedUnitDimensionIds: S.optional(
-      PostExperimentRequestPrecomputedUnitDimensionIdsList,
-    ),
-    statusUpdateSchedule: S.optional(PostExperimentRequestStatusUpdateSchedule),
-    ignoreWarnings: S.optional(S.Boolean),
-  }).pipe(T.Http({ method: "POST", uri: "/v1/experiments", code: 200 })),
-).annotate({
-  identifier: "PostExperimentRequest",
-}) as any as S.Schema<PostExperimentRequest>;
-
-export interface PostExperimentResponse {
-  experiment: Experiment;
-}
-export const PostExperimentResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    experiment: Experiment,
-  }),
-).annotate({
-  identifier: "PostExperimentResponse",
-}) as any as S.Schema<PostExperimentResponse>;
-
-export interface PostExperimentModifyTemporaryRolloutRequest {
-  /** The id of the requested resource */
-  id: string;
-  /** If true, keep the stopped experiment in SDK payload and force traffic to the winner variation. If false, end temporary rollout and remove from SDK payload. */
-  enableTemporaryRollout: boolean;
-  /** Variation ID (e.g. var_abc123) to release to 100% of traffic eligible for this experiment. Required if enableTemporaryRollout is true. */
-  releasedVariationId?: string;
-  /** Set to true to acknowledge the warnings listed in a blocked response and continue. This covers experiment guards, locked dependents, and references affected by an archive. When the organization treats schema failures as warnings, it also covers schema and invariant warnings. It never bypasses a rejected Custom Hook. On revision publish endpoints, it can also force-publish an out-of-date draft when the caller has Bypass draft approvals access. */
-  ignoreWarnings?: boolean;
-}
-export const PostExperimentModifyTemporaryRolloutRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.String.pipe(T.Label()),
-      enableTemporaryRollout: S.Boolean,
-      releasedVariationId: S.optional(S.String),
-      ignoreWarnings: S.optional(S.Boolean),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/experiments/{id}/modify-temporary-rollout",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostExperimentModifyTemporaryRolloutRequest",
-  }) as any as S.Schema<PostExperimentModifyTemporaryRolloutRequest>;
-
-export interface PostExperimentModifyTemporaryRolloutResponse {
-  experiment: ExperimentWithEnhancedStatus;
-}
-export const PostExperimentModifyTemporaryRolloutResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      experiment: ExperimentWithEnhancedStatus,
-    }),
-  ).annotate({
-    identifier: "PostExperimentModifyTemporaryRolloutResponse",
-  }) as any as S.Schema<PostExperimentModifyTemporaryRolloutResponse>;
-
-/** Set to "schedule" if you want this request to trigger notifications and other events as it if were a scheduled update. Defaults to manual. */
-export type PostExperimentSnapshotRequestTriggeredBy = "manual" | "schedule";
-export const PostExperimentSnapshotRequestTriggeredBy = /*@__PURE__*/ S.String;
-
-export interface PostExperimentSnapshotRequest {
-  /** The experiment id of the experiment to update */
-  id: string;
-  /** Set to "schedule" if you want this request to trigger notifications and other events as it if were a scheduled update. Defaults to manual. */
-  triggeredBy?: PostExperimentSnapshotRequestTriggeredBy | (string & {});
-  /** Dimension to break results down by. For Unit Dimensions, use the dimension id (e.g. "dim_abc123"). For Experiment Dimensions, use "exp:<dimensionName>" (e.g. "exp:country"). Built-in pre-exposure dimensions include "pre:date" and, when configured, "pre:activation". Omit this field to create a standard snapshot. */
-  dimension?: string;
-  /** Zero-based phase index to snapshot, where 0 is the first experiment phase. Defaults to the latest phase. */
-  phase?: number;
-}
-export const PostExperimentSnapshotRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    triggeredBy: S.optional(PostExperimentSnapshotRequestTriggeredBy),
-    dimension: S.optional(S.String),
-    phase: S.optional(S.Number),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/v1/experiments/{id}/snapshot", code: 200 }),
-  ),
-).annotate({
-  identifier: "PostExperimentSnapshotRequest",
-}) as any as S.Schema<PostExperimentSnapshotRequest>;
-
-export interface PostExperimentSnapshotResponse {
-  snapshot: Snapshot;
-}
-export const PostExperimentSnapshotResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    snapshot: Snapshot,
-  }),
-).annotate({
-  identifier: "PostExperimentSnapshotResponse",
-}) as any as S.Schema<PostExperimentSnapshotResponse>;
-
-export interface PostExperimentStartRequest {
-  /** The id of the requested resource */
-  id: string;
-  /** If true, skips validating the experiment satisifies all pre-launch checklist items */
-  skipChecklist?: boolean;
-  /** Set to true to acknowledge the warnings listed in a blocked response and continue. This covers experiment guards, locked dependents, and references affected by an archive. When the organization treats schema failures as warnings, it also covers schema and invariant warnings. It never bypasses a rejected Custom Hook. On revision publish endpoints, it can also force-publish an out-of-date draft when the caller has Bypass draft approvals access. */
-  ignoreWarnings?: boolean;
-}
-export const PostExperimentStartRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    skipChecklist: S.optional(S.Boolean),
-    ignoreWarnings: S.optional(S.Boolean),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/v1/experiments/{id}/start", code: 200 }),
-  ),
-).annotate({
-  identifier: "PostExperimentStartRequest",
-}) as any as S.Schema<PostExperimentStartRequest>;
-
-export interface PostExperimentStartResponse {
-  experiment: ExperimentWithEnhancedStatus;
-  /** Present only when the request staged a future scheduled start instead of starting the experiment immediately. */
-  message?: string;
-}
-export const PostExperimentStartResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    experiment: ExperimentWithEnhancedStatus,
-    message: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PostExperimentStartResponse",
-}) as any as S.Schema<PostExperimentStartResponse>;
-
-/** Manual pre-launch checklist item keys to mark as complete (auto-computed items cannot be updated via this endpoint). */
-export type PostExperimentStartChecklistManualCompleteRequestKeysList =
-  Array<string>;
-export const PostExperimentStartChecklistManualCompleteRequestKeysList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostExperimentStartChecklistManualCompleteRequestKeysList>;
-
-export interface PostExperimentStartChecklistManualCompleteRequest {
-  /** The id of the requested resource */
-  id: string;
-  /** Manual pre-launch checklist item keys to mark as complete (auto-computed items cannot be updated via this endpoint). */
-  keys: PostExperimentStartChecklistManualCompleteRequestKeysList;
-}
-export const PostExperimentStartChecklistManualCompleteRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.String.pipe(T.Label()),
-      keys: PostExperimentStartChecklistManualCompleteRequestKeysList,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/experiments/{id}/start-checklist/manual/complete",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostExperimentStartChecklistManualCompleteRequest",
-  }) as any as S.Schema<PostExperimentStartChecklistManualCompleteRequest>;
-
-export type PostExperimentStartChecklistManualCompleteResponseChecklistItemsList =
-  Array<ChecklistItems>;
-export const PostExperimentStartChecklistManualCompleteResponseChecklistItemsList =
-  /*@__PURE__*/ S.Array(
-    ChecklistItems,
-  ) as any as S.Schema<PostExperimentStartChecklistManualCompleteResponseChecklistItemsList>;
-
-export type PostExperimentStartChecklistManualCompleteResponseStatus =
-  | "ready"
-  | "notReady";
-export const PostExperimentStartChecklistManualCompleteResponseStatus =
-  /*@__PURE__*/ S.String;
-
-export interface PostExperimentStartChecklistManualCompleteResponse {
-  checklistItems: PostExperimentStartChecklistManualCompleteResponseChecklistItemsList;
-  status: PostExperimentStartChecklistManualCompleteResponseStatus;
-}
-export const PostExperimentStartChecklistManualCompleteResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      checklistItems:
-        PostExperimentStartChecklistManualCompleteResponseChecklistItemsList,
-      status: PostExperimentStartChecklistManualCompleteResponseStatus,
-    }),
-  ).annotate({
-    identifier: "PostExperimentStartChecklistManualCompleteResponse",
-  }) as any as S.Schema<PostExperimentStartChecklistManualCompleteResponse>;
-
-/** The experiment conclusion status. */
-export type PostExperimentStopRequestResults =
-  | "dnf"
-  | "won"
-  | "lost"
-  | "inconclusive";
-export const PostExperimentStopRequestResults = /*@__PURE__*/ S.String;
-
-export interface PostExperimentStopRequest {
-  /** The id of the requested resource */
-  id: string;
-  /** The experiment conclusion status. */
-  results: PostExperimentStopRequestResults | (string & {});
-  /** If true, include this stopped experiment in SDK payload and force the release variation (`releasedVariationId`) to all traffic. */
-  enableTemporaryRollout?: boolean;
-  /** Required if enableTemporaryRollout is true. Variation ID (e.g. var_abc123) to release to 100% of traffic eligible for this experiment. */
-  releasedVariationId?: string;
-  /** Variation ID (e.g. var_abc123) of the winning variation. Used only as metadata. Required if results is 'won' and there are multiple test variations. Otherwise, defaults to the test variation when results is 'won' and to the baseline variation for other results. */
-  winnerVariationId?: string;
-  /** Optional markdown summary displayed on the experiment results page. */
-  analysis?: string;
-  /** Optional reason for ending the phase stored on the latest phase metadata. */
-  reason?: string;
-  /** Optional ISO datetime for ending the latest phase. Defaults to the current date and time. */
-  dateEnded?: string;
-  /** Set to true to acknowledge the warnings listed in a blocked response and continue. This covers experiment guards, locked dependents, and references affected by an archive. When the organization treats schema failures as warnings, it also covers schema and invariant warnings. It never bypasses a rejected Custom Hook. On revision publish endpoints, it can also force-publish an out-of-date draft when the caller has Bypass draft approvals access. */
-  ignoreWarnings?: boolean;
-}
-export const PostExperimentStopRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    results: PostExperimentStopRequestResults,
-    enableTemporaryRollout: S.optional(S.Boolean),
-    releasedVariationId: S.optional(S.String),
-    winnerVariationId: S.optional(S.String),
-    analysis: S.optional(S.String),
-    reason: S.optional(S.String),
-    dateEnded: S.optional(S.String),
-    ignoreWarnings: S.optional(S.Boolean),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/v1/experiments/{id}/stop", code: 200 }),
-  ),
-).annotate({
-  identifier: "PostExperimentStopRequest",
-}) as any as S.Schema<PostExperimentStopRequest>;
-
-export interface PostExperimentStopResponse {
-  experiment: ExperimentWithEnhancedStatus;
-}
-export const PostExperimentStopResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    experiment: ExperimentWithEnhancedStatus,
-  }),
-).annotate({
-  identifier: "PostExperimentStopResponse",
-}) as any as S.Schema<PostExperimentStopResponse>;
-
 export type PostFactMetricRequestProjectsList = Array<string>;
 export const PostFactMetricRequestProjectsList = /*@__PURE__*/ S.Array(
   S.String,
@@ -31266,14 +33534,16 @@ export const PostFactMetricRequestWindowSettings = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PostFactMetricRequestWindowSettings>;
 
 /** Controls the bayesian prior for the metric. If omitted, organization defaults will be used. */
-export type PostFactMetricRequestPriorSettings = FactMetricPriorSettings;
-export const PostFactMetricRequestPriorSettings = FactMetricPriorSettings;
+export type PostFactMetricRequestPriorSettings =
+  CreateBulkImportFactRequestFactMetricsItemDataPriorSettings;
+export const PostFactMetricRequestPriorSettings =
+  CreateBulkImportFactRequestFactMetricsItemDataPriorSettings;
 
 /** Controls the regression adjustment (CUPED) settings for the metric */
 export type PostFactMetricRequestRegressionAdjustmentSettings =
-  PostBulkImportFactsRequestFactMetricsItemDataRegressionAdjustmentSettings;
+  CreateBulkImportFactRequestFactMetricsItemDataRegressionAdjustmentSettings;
 export const PostFactMetricRequestRegressionAdjustmentSettings =
-  PostBulkImportFactsRequestFactMetricsItemDataRegressionAdjustmentSettings;
+  CreateBulkImportFactRequestFactMetricsItemDataRegressionAdjustmentSettings;
 
 /** Set this to "api" to disable editing in the GrowthBook UI */
 export type PostFactMetricRequestManagedBy = "" | "api" | "admin";
@@ -31313,9 +33583,9 @@ export interface PostFactMetricRequest {
   /** Controls the conversion window for the metric */
   windowSettings?: PostFactMetricRequestWindowSettings;
   /** Controls the bayesian prior for the metric. If omitted, organization defaults will be used. */
-  priorSettings?: FactMetricPriorSettings;
+  priorSettings?: CreateBulkImportFactRequestFactMetricsItemDataPriorSettings;
   /** Controls the regression adjustment (CUPED) settings for the metric */
-  regressionAdjustmentSettings?: PostBulkImportFactsRequestFactMetricsItemDataRegressionAdjustmentSettings;
+  regressionAdjustmentSettings?: CreateBulkImportFactRequestFactMetricsItemDataRegressionAdjustmentSettings;
   /** No longer used. Threshold for Risk to be considered low enough, as a proportion (e.g. put 0.0025 for 0.25%). <br/> Must be a non-negative number and must not be higher than `riskThresholdDanger`. */
   riskThresholdSuccess?: number;
   /** No longer used. Threshold for Risk to be considered too high, as a proportion (e.g. put 0.0125 for 1.25%). <br/> Must be a non-negative number. */
@@ -31351,9 +33621,11 @@ export const PostFactMetricRequest = /*@__PURE__*/ S.suspend(() =>
     funnelSettings: S.optional(PostFactMetricRequestFunnelSettings),
     cappingSettings: S.optional(PostFactMetricRequestCappingSettings),
     windowSettings: S.optional(PostFactMetricRequestWindowSettings),
-    priorSettings: S.optional(FactMetricPriorSettings),
+    priorSettings: S.optional(
+      CreateBulkImportFactRequestFactMetricsItemDataPriorSettings,
+    ),
     regressionAdjustmentSettings: S.optional(
-      PostBulkImportFactsRequestFactMetricsItemDataRegressionAdjustmentSettings,
+      CreateBulkImportFactRequestFactMetricsItemDataRegressionAdjustmentSettings,
     ),
     riskThresholdSuccess: S.optional(S.Number),
     riskThresholdDanger: S.optional(S.Number),
@@ -31478,122 +33750,6 @@ export const PostFactMetricAnalysisResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "PostFactMetricAnalysisResponse",
 }) as any as S.Schema<PostFactMetricAnalysisResponse>;
-
-/** List of associated project ids */
-export type PostFactTableRequestProjectsList = Array<string>;
-export const PostFactTableRequestProjectsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PostFactTableRequestProjectsList>;
-
-/** List of associated tags */
-export type PostFactTableRequestTagsList = Array<string>;
-export const PostFactTableRequestTagsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PostFactTableRequestTagsList>;
-
-/** List of identifier columns in this table. For example, "id" or "anonymous_id" */
-export type PostFactTableRequestUserIdTypesList = Array<string>;
-export const PostFactTableRequestUserIdTypesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PostFactTableRequestUserIdTypesList>;
-
-export type PostFactTableRequestAggregatedFactTableSettingsIdTypesList =
-  Array<string>;
-export const PostFactTableRequestAggregatedFactTableSettingsIdTypesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostFactTableRequestAggregatedFactTableSettingsIdTypesList>;
-
-export type PostFactTableRequestAggregatedFactTableSettingsUpdateTime =
-  FactTableAggregatedFactTableSettingsUpdateTime;
-export const PostFactTableRequestAggregatedFactTableSettingsUpdateTime =
-  FactTableAggregatedFactTableSettingsUpdateTime;
-
-/** Settings for maintaining shared daily aggregated tables (a subset of userIdTypes plus the daily update time and restate lookback window) used to speed up CUPED. Requires the data pipeline (pipeline-mode) feature. */
-export interface PostFactTableRequestAggregatedFactTableSettings {
-  idTypes: PostFactTableRequestAggregatedFactTableSettingsIdTypesList;
-  updateTime: FactTableAggregatedFactTableSettingsUpdateTime;
-  lookbackWindow: number;
-  restateChunkDays?: number;
-}
-export const PostFactTableRequestAggregatedFactTableSettings =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      idTypes: PostFactTableRequestAggregatedFactTableSettingsIdTypesList,
-      updateTime: FactTableAggregatedFactTableSettingsUpdateTime,
-      lookbackWindow: S.Number,
-      restateChunkDays: S.optional(S.Number),
-    }),
-  ).annotate({
-    identifier: "PostFactTableRequestAggregatedFactTableSettings",
-  }) as any as S.Schema<PostFactTableRequestAggregatedFactTableSettings>;
-
-/** Optional array of column definitions to store for this fact table. Supplied columns are stored as-is. Omit `datatype` (or send "") on a column to have it auto-detected from the SQL. */
-export type PostFactTableRequestColumnsList = Array<FactTableColumnInput>;
-export const PostFactTableRequestColumnsList = /*@__PURE__*/ S.Array(
-  FactTableColumnInput,
-) as any as S.Schema<PostFactTableRequestColumnsList>;
-
-/** Set this to "api" to disable editing in the GrowthBook UI */
-export type PostFactTableRequestManagedBy = "" | "api" | "admin";
-export const PostFactTableRequestManagedBy = /*@__PURE__*/ S.String;
-
-export interface PostFactTableRequest {
-  name: string;
-  /** Description of the fact table */
-  description?: string;
-  /** The userId or email address of the owner. If an email address is provided, it will be used to look up the userId of the matching organization member. If an ID is provided, it will be validated as existing in the organization. */
-  owner?: string;
-  /** List of associated project ids */
-  projects?: PostFactTableRequestProjectsList;
-  /** List of associated tags */
-  tags?: PostFactTableRequestTagsList;
-  /** The datasource id */
-  datasource: string;
-  /** List of identifier columns in this table. For example, "id" or "anonymous_id" */
-  userIdTypes: PostFactTableRequestUserIdTypesList;
-  /** Settings for maintaining shared daily aggregated tables (a subset of userIdTypes plus the daily update time and restate lookback window) used to speed up CUPED. Requires the data pipeline (pipeline-mode) feature. */
-  aggregatedFactTableSettings?: PostFactTableRequestAggregatedFactTableSettings;
-  /** The SQL query for this fact table */
-  sql: string;
-  /** The event name used in SQL template variables */
-  eventName?: string;
-  /** Optional array of column definitions to store for this fact table. Supplied columns are stored as-is. Omit `datatype` (or send "") on a column to have it auto-detected from the SQL. */
-  columns?: PostFactTableRequestColumnsList;
-  /** Set this to "api" to disable editing in the GrowthBook UI */
-  managedBy?: PostFactTableRequestManagedBy | (string & {});
-}
-export const PostFactTableRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    description: S.optional(S.String),
-    owner: S.optional(S.String),
-    projects: S.optional(PostFactTableRequestProjectsList),
-    tags: S.optional(PostFactTableRequestTagsList),
-    datasource: S.String,
-    userIdTypes: PostFactTableRequestUserIdTypesList,
-    aggregatedFactTableSettings: S.optional(
-      PostFactTableRequestAggregatedFactTableSettings,
-    ),
-    sql: S.String,
-    eventName: S.optional(S.String),
-    columns: S.optional(PostFactTableRequestColumnsList),
-    managedBy: S.optional(PostFactTableRequestManagedBy),
-  }).pipe(T.Http({ method: "POST", uri: "/v1/fact-tables", code: 200 })),
-).annotate({
-  identifier: "PostFactTableRequest",
-}) as any as S.Schema<PostFactTableRequest>;
-
-export interface PostFactTableResponse {
-  factTable: FactTable;
-}
-export const PostFactTableResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    factTable: FactTable,
-  }),
-).annotate({
-  identifier: "PostFactTableResponse",
-}) as any as S.Schema<PostFactTableResponse>;
 
 /** Controls cache behavior for this exploration: `preferred` (default) returns a cached result if one exists, otherwise runs a new query; `never` always runs a new query, ignoring any cached results; `required` only returns a cached result, if none exists returns exploration: null with a message */
 export type PostFactTableExplorationRequestCache =
@@ -32484,115 +34640,6 @@ export const PostFactTableExplorationResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "PostFactTableExplorationResponse",
 }) as any as S.Schema<PostFactTableExplorationResponse>;
-
-/** Set this to "api" to disable editing in the GrowthBook UI. Before you do this, the Fact Table itself must also be marked as "api" */
-export type PostFactTableFilterRequestManagedBy = "" | "api";
-export const PostFactTableFilterRequestManagedBy = /*@__PURE__*/ S.String;
-
-export interface PostFactTableFilterRequest {
-  /** Specify a specific fact table */
-  factTableId: string;
-  name: string;
-  /** Description of the fact table filter */
-  description?: string;
-  /** The SQL expression for this filter. */
-  value: string;
-  /** Set this to "api" to disable editing in the GrowthBook UI. Before you do this, the Fact Table itself must also be marked as "api" */
-  managedBy?: PostFactTableFilterRequestManagedBy | (string & {});
-}
-export const PostFactTableFilterRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    factTableId: S.String.pipe(T.Label()),
-    name: S.String,
-    description: S.optional(S.String),
-    value: S.String,
-    managedBy: S.optional(PostFactTableFilterRequestManagedBy),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/fact-tables/{factTableId}/filters",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PostFactTableFilterRequest",
-}) as any as S.Schema<PostFactTableFilterRequest>;
-
-export interface PostFactTableFilterResponse {
-  factTableFilter: FactTableFilter;
-}
-export const PostFactTableFilterResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    factTableFilter: FactTableFilter,
-  }),
-).annotate({
-  identifier: "PostFactTableFilterResponse",
-}) as any as S.Schema<PostFactTableFilterResponse>;
-
-export type PostFactTableVirtualColumnRequestNumberFormat =
-  | ""
-  | "currency"
-  | "time:seconds"
-  | "memory:bytes"
-  | "memory:kilobytes";
-export const PostFactTableVirtualColumnRequestNumberFormat =
-  /*@__PURE__*/ S.String;
-
-/** The data type of the computed column */
-export type PostFactTableVirtualColumnRequestDatatype =
-  | "number"
-  | "string"
-  | "date"
-  | "boolean"
-  | "json"
-  | "binary"
-  | "other";
-export const PostFactTableVirtualColumnRequestDatatype = /*@__PURE__*/ S.String;
-
-export interface PostFactTableVirtualColumnRequest {
-  /** Specify a specific fact table */
-  factTableId: string;
-  /** The column identifier used in generated SQL. Must contain only letters, numbers, and underscores and end with `_vc`. */
-  column: string;
-  /** Display name for the column */
-  name?: string;
-  description?: string;
-  numberFormat?: PostFactTableVirtualColumnRequestNumberFormat | (string & {});
-  /** The data type of the computed column */
-  datatype: PostFactTableVirtualColumnRequestDatatype | (string & {});
-  /** The SQL expression that computes the column value */
-  sql: string;
-}
-export const PostFactTableVirtualColumnRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    factTableId: S.String.pipe(T.Label()),
-    column: S.String,
-    name: S.optional(S.String),
-    description: S.optional(S.String),
-    numberFormat: S.optional(PostFactTableVirtualColumnRequestNumberFormat),
-    datatype: PostFactTableVirtualColumnRequestDatatype,
-    sql: S.String,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/fact-tables/{factTableId}/virtual-columns",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PostFactTableVirtualColumnRequest",
-}) as any as S.Schema<PostFactTableVirtualColumnRequest>;
-
-export interface PostFactTableVirtualColumnResponse {
-  factTableColumn: FactTableColumn;
-}
-export const PostFactTableVirtualColumnResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    factTableColumn: FactTableColumn,
-  }),
-).annotate({
-  identifier: "PostFactTableVirtualColumnResponse",
-}) as any as S.Schema<PostFactTableVirtualColumnResponse>;
 
 export interface PostFeatureRevisionDiscardV2Request {
   id: string;
@@ -34478,15 +36525,15 @@ export const PostFeatureV2RequestRulesItemCase0SavedGroupTargetingList =
   ) as any as S.Schema<PostFeatureV2RequestRulesItemCase0SavedGroupTargetingList>;
 
 export type PostFeatureV2RequestRulesItemCase0PrerequisitesItem =
-  PostExperimentRequestPhasesItemPrerequisitesItem;
+  CreateExperimentRequestPhasesItemPrerequisitesItem;
 export const PostFeatureV2RequestRulesItemCase0PrerequisitesItem =
-  PostExperimentRequestPhasesItemPrerequisitesItem;
+  CreateExperimentRequestPhasesItemPrerequisitesItem;
 
 export type PostFeatureV2RequestRulesItemCase0PrerequisitesList =
-  Array<PostExperimentRequestPhasesItemPrerequisitesItem>;
+  Array<CreateExperimentRequestPhasesItemPrerequisitesItem>;
 export const PostFeatureV2RequestRulesItemCase0PrerequisitesList =
   /*@__PURE__*/ S.Array(
-    PostExperimentRequestPhasesItemPrerequisitesItem,
+    CreateExperimentRequestPhasesItemPrerequisitesItem,
   ) as any as S.Schema<PostFeatureV2RequestRulesItemCase0PrerequisitesList>;
 
 export interface PostFeatureV2RequestRulesItemCase0ScheduleRulesItem {
@@ -34657,15 +36704,15 @@ export const PostFeatureV2RequestRulesItemCase1SavedGroupTargetingList =
   ) as any as S.Schema<PostFeatureV2RequestRulesItemCase1SavedGroupTargetingList>;
 
 export type PostFeatureV2RequestRulesItemCase1PrerequisitesItem =
-  PostExperimentRequestPhasesItemPrerequisitesItem;
+  CreateExperimentRequestPhasesItemPrerequisitesItem;
 export const PostFeatureV2RequestRulesItemCase1PrerequisitesItem =
-  PostExperimentRequestPhasesItemPrerequisitesItem;
+  CreateExperimentRequestPhasesItemPrerequisitesItem;
 
 export type PostFeatureV2RequestRulesItemCase1PrerequisitesList =
-  Array<PostExperimentRequestPhasesItemPrerequisitesItem>;
+  Array<CreateExperimentRequestPhasesItemPrerequisitesItem>;
 export const PostFeatureV2RequestRulesItemCase1PrerequisitesList =
   /*@__PURE__*/ S.Array(
-    PostExperimentRequestPhasesItemPrerequisitesItem,
+    CreateExperimentRequestPhasesItemPrerequisitesItem,
   ) as any as S.Schema<PostFeatureV2RequestRulesItemCase1PrerequisitesList>;
 
 export type PostFeatureV2RequestRulesItemCase1ScheduleRulesItem =
@@ -34835,15 +36882,15 @@ export const PostFeatureV2RequestRulesItemCase2SavedGroupTargetingList =
   ) as any as S.Schema<PostFeatureV2RequestRulesItemCase2SavedGroupTargetingList>;
 
 export type PostFeatureV2RequestRulesItemCase2PrerequisitesItem =
-  PostExperimentRequestPhasesItemPrerequisitesItem;
+  CreateExperimentRequestPhasesItemPrerequisitesItem;
 export const PostFeatureV2RequestRulesItemCase2PrerequisitesItem =
-  PostExperimentRequestPhasesItemPrerequisitesItem;
+  CreateExperimentRequestPhasesItemPrerequisitesItem;
 
 export type PostFeatureV2RequestRulesItemCase2PrerequisitesList =
-  Array<PostExperimentRequestPhasesItemPrerequisitesItem>;
+  Array<CreateExperimentRequestPhasesItemPrerequisitesItem>;
 export const PostFeatureV2RequestRulesItemCase2PrerequisitesList =
   /*@__PURE__*/ S.Array(
-    PostExperimentRequestPhasesItemPrerequisitesItem,
+    CreateExperimentRequestPhasesItemPrerequisitesItem,
   ) as any as S.Schema<PostFeatureV2RequestRulesItemCase2PrerequisitesList>;
 
 export type PostFeatureV2RequestRulesItemCase2ScheduleRulesItem =
@@ -35027,15 +37074,15 @@ export const PostFeatureV2RequestRulesItemCase3SavedGroupTargetingList =
   ) as any as S.Schema<PostFeatureV2RequestRulesItemCase3SavedGroupTargetingList>;
 
 export type PostFeatureV2RequestRulesItemCase3PrerequisitesItem =
-  PostExperimentRequestPhasesItemPrerequisitesItem;
+  CreateExperimentRequestPhasesItemPrerequisitesItem;
 export const PostFeatureV2RequestRulesItemCase3PrerequisitesItem =
-  PostExperimentRequestPhasesItemPrerequisitesItem;
+  CreateExperimentRequestPhasesItemPrerequisitesItem;
 
 export type PostFeatureV2RequestRulesItemCase3PrerequisitesList =
-  Array<PostExperimentRequestPhasesItemPrerequisitesItem>;
+  Array<CreateExperimentRequestPhasesItemPrerequisitesItem>;
 export const PostFeatureV2RequestRulesItemCase3PrerequisitesList =
   /*@__PURE__*/ S.Array(
-    PostExperimentRequestPhasesItemPrerequisitesItem,
+    CreateExperimentRequestPhasesItemPrerequisitesItem,
   ) as any as S.Schema<PostFeatureV2RequestRulesItemCase3PrerequisitesList>;
 
 export type PostFeatureV2RequestRulesItemCase3ScheduleRulesItem =
@@ -36307,8 +38354,10 @@ export const PostMetricRequestBehaviorWindowSettings = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<PostMetricRequestBehaviorWindowSettings>;
 
 /** Controls the bayesian prior for the metric. If omitted, organization defaults will be used. */
-export type PostMetricRequestBehaviorPriorSettings = FactMetricPriorSettings;
-export const PostMetricRequestBehaviorPriorSettings = FactMetricPriorSettings;
+export type PostMetricRequestBehaviorPriorSettings =
+  CreateBulkImportFactRequestFactMetricsItemDataPriorSettings;
+export const PostMetricRequestBehaviorPriorSettings =
+  CreateBulkImportFactRequestFactMetricsItemDataPriorSettings;
 
 export interface PostMetricRequestBehavior {
   goal?: PostMetricRequestBehaviorGoal | (string & {});
@@ -36327,7 +38376,7 @@ export interface PostMetricRequestBehavior {
   /** The end of a [Conversion Window](/app/metrics/legacy/#conversion-window) relative to the exposure date, in hours. This is equivalent to the [Conversion Delay](/app/metrics/legacy/#conversion-delay) + Conversion Window Hours settings in the UI. In other words, if you want a 48 hour window starting after 24 hours, you would set conversionWindowStart to 24 and conversionWindowEnd to 72 (24+48). <br/> Must specify both `behavior.conversionWindowStart` and `behavior.conversionWindowEnd` or neither. */
   conversionWindowEnd?: number;
   /** Controls the bayesian prior for the metric. If omitted, organization defaults will be used. */
-  priorSettings?: FactMetricPriorSettings;
+  priorSettings?: CreateBulkImportFactRequestFactMetricsItemDataPriorSettings;
   /** No longer used. Threshold for Risk to be considered low enough, as a proportion (e.g. put 0.0025 for 0.25%). <br/> Must be a non-negative number and must not be higher than `riskThresholdDanger`. */
   riskThresholdSuccess?: number;
   /** No longer used. Threshold for Risk to be considered too high, as a proportion (e.g. put 0.0125 for 1.25%). <br/> Must be a non-negative number. */
@@ -36350,7 +38399,9 @@ export const PostMetricRequestBehavior = /*@__PURE__*/ S.suspend(() =>
     windowSettings: S.optional(PostMetricRequestBehaviorWindowSettings),
     conversionWindowStart: S.optional(S.Number),
     conversionWindowEnd: S.optional(S.Number),
-    priorSettings: S.optional(FactMetricPriorSettings),
+    priorSettings: S.optional(
+      CreateBulkImportFactRequestFactMetricsItemDataPriorSettings,
+    ),
     riskThresholdSuccess: S.optional(S.Number),
     riskThresholdDanger: S.optional(S.Number),
     minPercentChange: S.optional(S.Number),
@@ -37374,2066 +39425,6 @@ export const PostMetricExplorationResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "PostMetricExplorationResponse",
 }) as any as S.Schema<PostMetricExplorationResponse>;
-
-export type PostNamespaceRequestStatus = "active" | "inactive";
-export const PostNamespaceRequestStatus = /*@__PURE__*/ S.String;
-
-/** Namespace format. Defaults to 'multiRange', which supports multiple ranges per experiment and a configurable hash attribute. */
-export type PostNamespaceRequestFormat = "legacy" | "multiRange";
-export const PostNamespaceRequestFormat = /*@__PURE__*/ S.String;
-
-export interface PostNamespaceRequest {
-  /** Human-readable display name. Must be unique within the organization. */
-  displayName: string;
-  description?: string;
-  status?: PostNamespaceRequestStatus | (string & {});
-  /** Namespace format. Defaults to 'multiRange', which supports multiple ranges per experiment and a configurable hash attribute. */
-  format?: PostNamespaceRequestFormat | (string & {});
-  /** Required when format is 'multiRange'. The user attribute (e.g. 'id', 'device_id') used to assign users to namespace buckets. */
-  hashAttribute?: string;
-}
-export const PostNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    displayName: S.String,
-    description: S.optional(S.String),
-    status: S.optional(PostNamespaceRequestStatus),
-    format: S.optional(PostNamespaceRequestFormat),
-    hashAttribute: S.optional(S.String),
-  }).pipe(T.Http({ method: "POST", uri: "/v1/namespaces", code: 200 })),
-).annotate({
-  identifier: "PostNamespaceRequest",
-}) as any as S.Schema<PostNamespaceRequest>;
-
-export interface PostNamespaceResponse {
-  namespace: Namespace;
-}
-export const PostNamespaceResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    namespace: Namespace,
-  }),
-).annotate({
-  identifier: "PostNamespaceResponse",
-}) as any as S.Schema<PostNamespaceResponse>;
-
-export interface PostNamespaceRotateSeedRequest {
-  /** The unique id of the namespace */
-  id: string;
-  /** A specific value to use as the new seed. If omitted, a random value is generated. */
-  seed?: string;
-}
-export const PostNamespaceRotateSeedRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    seed: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/namespaces/{id}/rotateSeed",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PostNamespaceRotateSeedRequest",
-}) as any as S.Schema<PostNamespaceRotateSeedRequest>;
-
-export interface PostNamespaceRotateSeedResponse {
-  namespace: Namespace;
-}
-export const PostNamespaceRotateSeedResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    namespace: Namespace,
-  }),
-).annotate({
-  identifier: "PostNamespaceRotateSeedResponse",
-}) as any as S.Schema<PostNamespaceRotateSeedResponse>;
-
-export interface PostOrganizationRequest {
-  /** The name of the organization */
-  name: string;
-  /** An optional identifier that you use within your company for the organization */
-  externalId?: string;
-}
-export const PostOrganizationRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    externalId: S.optional(S.String),
-  }).pipe(T.Http({ method: "POST", uri: "/v1/organizations", code: 200 })),
-).annotate({
-  identifier: "PostOrganizationRequest",
-}) as any as S.Schema<PostOrganizationRequest>;
-
-export interface PostOrganizationResponse {
-  organization: Organization;
-}
-export const PostOrganizationResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    organization: Organization,
-  }),
-).annotate({
-  identifier: "PostOrganizationResponse",
-}) as any as S.Schema<PostOrganizationResponse>;
-
-/** Project stats settings that, when set, override the organization settings. */
-export interface PostProjectRequestSettings {
-  /** Stats engine. */
-  statsEngine?: string;
-  /** Bayesian chance-to-win threshold (stored as decimal, e.g. 0.95). */
-  confidenceLevel?: number;
-  /** Frequentist p-value threshold (e.g. 0.05). */
-  pValueThreshold?: number;
-}
-export const PostProjectRequestSettings = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    statsEngine: S.optional(S.String),
-    confidenceLevel: S.optional(S.Number),
-    pValueThreshold: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "PostProjectRequestSettings",
-}) as any as S.Schema<PostProjectRequestSettings>;
-
-export interface PostProjectRequest {
-  name: string;
-  description?: string;
-  /** URL-safe slug (lowercase letters, numbers, dashes). Auto-generated from name if not provided. */
-  publicId?: string;
-  /** Project stats settings that, when set, override the organization settings. */
-  settings?: PostProjectRequestSettings;
-}
-export const PostProjectRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    description: S.optional(S.String),
-    publicId: S.optional(S.String),
-    settings: S.optional(PostProjectRequestSettings),
-  }).pipe(T.Http({ method: "POST", uri: "/v1/projects", code: 200 })),
-).annotate({
-  identifier: "PostProjectRequest",
-}) as any as S.Schema<PostProjectRequest>;
-
-export interface PostProjectResponse {
-  project: Project;
-}
-export const PostProjectResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project: Project,
-  }),
-).annotate({
-  identifier: "PostProjectResponse",
-}) as any as S.Schema<PostProjectResponse>;
-
-export type PostRampScheduleRequestStepsItemActionsItemPatchSavedGroupsItemMatch =
-  | "all"
-  | "none"
-  | "any";
-export const PostRampScheduleRequestStepsItemActionsItemPatchSavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
-
-export type PostRampScheduleRequestStepsItemActionsItemPatchSavedGroupsItemIdsList =
-  Array<string>;
-export const PostRampScheduleRequestStepsItemActionsItemPatchSavedGroupsItemIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostRampScheduleRequestStepsItemActionsItemPatchSavedGroupsItemIdsList>;
-
-export interface PostRampScheduleRequestStepsItemActionsItemPatchSavedGroupsItem {
-  match:
-    | PostRampScheduleRequestStepsItemActionsItemPatchSavedGroupsItemMatch
-    | (string & {});
-  ids: PostRampScheduleRequestStepsItemActionsItemPatchSavedGroupsItemIdsList;
-}
-export const PostRampScheduleRequestStepsItemActionsItemPatchSavedGroupsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      match:
-        PostRampScheduleRequestStepsItemActionsItemPatchSavedGroupsItemMatch,
-      ids: PostRampScheduleRequestStepsItemActionsItemPatchSavedGroupsItemIdsList,
-    }),
-  ).annotate({
-    identifier:
-      "PostRampScheduleRequestStepsItemActionsItemPatchSavedGroupsItem",
-  }) as any as S.Schema<PostRampScheduleRequestStepsItemActionsItemPatchSavedGroupsItem>;
-
-export type PostRampScheduleRequestStepsItemActionsItemPatchSavedGroupsList =
-  Array<PostRampScheduleRequestStepsItemActionsItemPatchSavedGroupsItem>;
-export const PostRampScheduleRequestStepsItemActionsItemPatchSavedGroupsList =
-  /*@__PURE__*/ S.Array(
-    PostRampScheduleRequestStepsItemActionsItemPatchSavedGroupsItem,
-  ) as any as S.Schema<PostRampScheduleRequestStepsItemActionsItemPatchSavedGroupsList>;
-
-export type PostRampScheduleRequestStepsItemActionsItemPatchPrerequisitesItem =
-  RampScheduleStartActionsItemPatchPrerequisitesItem;
-export const PostRampScheduleRequestStepsItemActionsItemPatchPrerequisitesItem =
-  RampScheduleStartActionsItemPatchPrerequisitesItem;
-
-export type PostRampScheduleRequestStepsItemActionsItemPatchPrerequisitesList =
-  Array<RampScheduleStartActionsItemPatchPrerequisitesItem>;
-export const PostRampScheduleRequestStepsItemActionsItemPatchPrerequisitesList =
-  /*@__PURE__*/ S.Array(
-    RampScheduleStartActionsItemPatchPrerequisitesItem,
-  ) as any as S.Schema<PostRampScheduleRequestStepsItemActionsItemPatchPrerequisitesList>;
-
-export type PostRampScheduleRequestStepsItemActionsItemPatchEnvironmentsList =
-  Array<string>;
-export const PostRampScheduleRequestStepsItemActionsItemPatchEnvironmentsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostRampScheduleRequestStepsItemActionsItemPatchEnvironmentsList>;
-
-export interface PostRampScheduleRequestStepsItemActionsItemPatch {
-  ruleId?: string;
-  /** Traffic fraction (0–1). For monitored steps the rollout rule is promoted to an experiment: treatment = [0, coverage), control = [0.5, 0.5+coverage). Both arms are equal-sized and non-adjacent, so a step-up only adds new users to each arm — no existing user changes group. The REST API enforces coverage ≤ 0.5 on monitored steps so control end never exceeds 1.0. The SDK uses explicit hash ranges on bucketingV2 clients to keep bucketing stable across monitored/unmonitored transitions. */
-  coverage?: number | null;
-  condition?: string | null;
-  savedGroups?: PostRampScheduleRequestStepsItemActionsItemPatchSavedGroupsList | null;
-  prerequisites?: PostRampScheduleRequestStepsItemActionsItemPatchPrerequisitesList | null;
-  allEnvironments?: boolean | null;
-  environments?: PostRampScheduleRequestStepsItemActionsItemPatchEnvironmentsList | null;
-  /** Force value (any JSON type) */
-  force?: unknown;
-  enabled?: boolean | null;
-}
-export const PostRampScheduleRequestStepsItemActionsItemPatch =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      ruleId: S.optional(S.String),
-      coverage: S.optional(S.NullOr(S.Number)),
-      condition: S.optional(S.NullOr(S.String)),
-      savedGroups: S.optional(
-        S.NullOr(
-          PostRampScheduleRequestStepsItemActionsItemPatchSavedGroupsList,
-        ),
-      ),
-      prerequisites: S.optional(
-        S.NullOr(
-          PostRampScheduleRequestStepsItemActionsItemPatchPrerequisitesList,
-        ),
-      ),
-      allEnvironments: S.optional(S.NullOr(S.Boolean)),
-      environments: S.optional(
-        S.NullOr(
-          PostRampScheduleRequestStepsItemActionsItemPatchEnvironmentsList,
-        ),
-      ),
-      force: S.optional(S.Unknown),
-      enabled: S.optional(S.NullOr(S.Boolean)),
-    }),
-  ).annotate({
-    identifier: "PostRampScheduleRequestStepsItemActionsItemPatch",
-  }) as any as S.Schema<PostRampScheduleRequestStepsItemActionsItemPatch>;
-
-export interface PostRampScheduleRequestStepsItemActionsItem {
-  targetType?: string;
-  targetId?: string;
-  patch: PostRampScheduleRequestStepsItemActionsItemPatch;
-}
-export const PostRampScheduleRequestStepsItemActionsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      targetType: S.optional(S.String),
-      targetId: S.optional(S.String),
-      patch: PostRampScheduleRequestStepsItemActionsItemPatch,
-    }),
-  ).annotate({
-    identifier: "PostRampScheduleRequestStepsItemActionsItem",
-  }) as any as S.Schema<PostRampScheduleRequestStepsItemActionsItem>;
-
-export type PostRampScheduleRequestStepsItemActionsList =
-  Array<PostRampScheduleRequestStepsItemActionsItem>;
-export const PostRampScheduleRequestStepsItemActionsList =
-  /*@__PURE__*/ S.Array(
-    PostRampScheduleRequestStepsItemActionsItem,
-  ) as any as S.Schema<PostRampScheduleRequestStepsItemActionsList>;
-
-export type PostRampScheduleRequestStepsItemHoldConditions =
-  RampScheduleStepsItemHoldConditions;
-export const PostRampScheduleRequestStepsItemHoldConditions =
-  RampScheduleStepsItemHoldConditions;
-
-export interface PostRampScheduleRequestStepsItem {
-  interval: number | null;
-  actions?: PostRampScheduleRequestStepsItemActionsList;
-  approvalNotes?: string | null;
-  monitored?: boolean;
-  holdConditions?: RampScheduleStepsItemHoldConditions;
-}
-export const PostRampScheduleRequestStepsItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    interval: S.NullOr(S.Number),
-    actions: S.optional(PostRampScheduleRequestStepsItemActionsList),
-    approvalNotes: S.optional(S.NullOr(S.String)),
-    monitored: S.optional(S.Boolean),
-    holdConditions: S.optional(RampScheduleStepsItemHoldConditions),
-  }),
-).annotate({
-  identifier: "PostRampScheduleRequestStepsItem",
-}) as any as S.Schema<PostRampScheduleRequestStepsItem>;
-
-export type PostRampScheduleRequestStepsList =
-  Array<PostRampScheduleRequestStepsItem>;
-export const PostRampScheduleRequestStepsList = /*@__PURE__*/ S.Array(
-  PostRampScheduleRequestStepsItem,
-) as any as S.Schema<PostRampScheduleRequestStepsList>;
-
-export type PostRampScheduleRequestStartActionsItemPatchSavedGroupsItemMatch =
-  | "all"
-  | "none"
-  | "any";
-export const PostRampScheduleRequestStartActionsItemPatchSavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
-
-export type PostRampScheduleRequestStartActionsItemPatchSavedGroupsItemIdsList =
-  Array<string>;
-export const PostRampScheduleRequestStartActionsItemPatchSavedGroupsItemIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostRampScheduleRequestStartActionsItemPatchSavedGroupsItemIdsList>;
-
-export interface PostRampScheduleRequestStartActionsItemPatchSavedGroupsItem {
-  match:
-    | PostRampScheduleRequestStartActionsItemPatchSavedGroupsItemMatch
-    | (string & {});
-  ids: PostRampScheduleRequestStartActionsItemPatchSavedGroupsItemIdsList;
-}
-export const PostRampScheduleRequestStartActionsItemPatchSavedGroupsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      match: PostRampScheduleRequestStartActionsItemPatchSavedGroupsItemMatch,
-      ids: PostRampScheduleRequestStartActionsItemPatchSavedGroupsItemIdsList,
-    }),
-  ).annotate({
-    identifier: "PostRampScheduleRequestStartActionsItemPatchSavedGroupsItem",
-  }) as any as S.Schema<PostRampScheduleRequestStartActionsItemPatchSavedGroupsItem>;
-
-export type PostRampScheduleRequestStartActionsItemPatchSavedGroupsList =
-  Array<PostRampScheduleRequestStartActionsItemPatchSavedGroupsItem>;
-export const PostRampScheduleRequestStartActionsItemPatchSavedGroupsList =
-  /*@__PURE__*/ S.Array(
-    PostRampScheduleRequestStartActionsItemPatchSavedGroupsItem,
-  ) as any as S.Schema<PostRampScheduleRequestStartActionsItemPatchSavedGroupsList>;
-
-export type PostRampScheduleRequestStartActionsItemPatchPrerequisitesItem =
-  RampScheduleStartActionsItemPatchPrerequisitesItem;
-export const PostRampScheduleRequestStartActionsItemPatchPrerequisitesItem =
-  RampScheduleStartActionsItemPatchPrerequisitesItem;
-
-export type PostRampScheduleRequestStartActionsItemPatchPrerequisitesList =
-  Array<RampScheduleStartActionsItemPatchPrerequisitesItem>;
-export const PostRampScheduleRequestStartActionsItemPatchPrerequisitesList =
-  /*@__PURE__*/ S.Array(
-    RampScheduleStartActionsItemPatchPrerequisitesItem,
-  ) as any as S.Schema<PostRampScheduleRequestStartActionsItemPatchPrerequisitesList>;
-
-export type PostRampScheduleRequestStartActionsItemPatchEnvironmentsList =
-  Array<string>;
-export const PostRampScheduleRequestStartActionsItemPatchEnvironmentsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostRampScheduleRequestStartActionsItemPatchEnvironmentsList>;
-
-export interface PostRampScheduleRequestStartActionsItemPatch {
-  ruleId?: string;
-  /** Traffic fraction (0–1). For monitored steps the rollout rule is promoted to an experiment: treatment = [0, coverage), control = [0.5, 0.5+coverage). Both arms are equal-sized and non-adjacent, so a step-up only adds new users to each arm — no existing user changes group. The REST API enforces coverage ≤ 0.5 on monitored steps so control end never exceeds 1.0. The SDK uses explicit hash ranges on bucketingV2 clients to keep bucketing stable across monitored/unmonitored transitions. */
-  coverage?: number | null;
-  condition?: string | null;
-  savedGroups?: PostRampScheduleRequestStartActionsItemPatchSavedGroupsList | null;
-  prerequisites?: PostRampScheduleRequestStartActionsItemPatchPrerequisitesList | null;
-  allEnvironments?: boolean | null;
-  environments?: PostRampScheduleRequestStartActionsItemPatchEnvironmentsList | null;
-  /** Force value (any JSON type) */
-  force?: unknown;
-  enabled?: boolean | null;
-}
-export const PostRampScheduleRequestStartActionsItemPatch =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      ruleId: S.optional(S.String),
-      coverage: S.optional(S.NullOr(S.Number)),
-      condition: S.optional(S.NullOr(S.String)),
-      savedGroups: S.optional(
-        S.NullOr(PostRampScheduleRequestStartActionsItemPatchSavedGroupsList),
-      ),
-      prerequisites: S.optional(
-        S.NullOr(PostRampScheduleRequestStartActionsItemPatchPrerequisitesList),
-      ),
-      allEnvironments: S.optional(S.NullOr(S.Boolean)),
-      environments: S.optional(
-        S.NullOr(PostRampScheduleRequestStartActionsItemPatchEnvironmentsList),
-      ),
-      force: S.optional(S.Unknown),
-      enabled: S.optional(S.NullOr(S.Boolean)),
-    }),
-  ).annotate({
-    identifier: "PostRampScheduleRequestStartActionsItemPatch",
-  }) as any as S.Schema<PostRampScheduleRequestStartActionsItemPatch>;
-
-export interface PostRampScheduleRequestStartActionsItem {
-  targetType?: string;
-  targetId?: string;
-  patch: PostRampScheduleRequestStartActionsItemPatch;
-}
-export const PostRampScheduleRequestStartActionsItem = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      targetType: S.optional(S.String),
-      targetId: S.optional(S.String),
-      patch: PostRampScheduleRequestStartActionsItemPatch,
-    }),
-).annotate({
-  identifier: "PostRampScheduleRequestStartActionsItem",
-}) as any as S.Schema<PostRampScheduleRequestStartActionsItem>;
-
-export type PostRampScheduleRequestStartActionsList =
-  Array<PostRampScheduleRequestStartActionsItem>;
-export const PostRampScheduleRequestStartActionsList = /*@__PURE__*/ S.Array(
-  PostRampScheduleRequestStartActionsItem,
-) as any as S.Schema<PostRampScheduleRequestStartActionsList>;
-
-export type PostRampScheduleRequestEndActionsItemPatchSavedGroupsItemMatch =
-  | "all"
-  | "none"
-  | "any";
-export const PostRampScheduleRequestEndActionsItemPatchSavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
-
-export type PostRampScheduleRequestEndActionsItemPatchSavedGroupsItemIdsList =
-  Array<string>;
-export const PostRampScheduleRequestEndActionsItemPatchSavedGroupsItemIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostRampScheduleRequestEndActionsItemPatchSavedGroupsItemIdsList>;
-
-export interface PostRampScheduleRequestEndActionsItemPatchSavedGroupsItem {
-  match:
-    | PostRampScheduleRequestEndActionsItemPatchSavedGroupsItemMatch
-    | (string & {});
-  ids: PostRampScheduleRequestEndActionsItemPatchSavedGroupsItemIdsList;
-}
-export const PostRampScheduleRequestEndActionsItemPatchSavedGroupsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      match: PostRampScheduleRequestEndActionsItemPatchSavedGroupsItemMatch,
-      ids: PostRampScheduleRequestEndActionsItemPatchSavedGroupsItemIdsList,
-    }),
-  ).annotate({
-    identifier: "PostRampScheduleRequestEndActionsItemPatchSavedGroupsItem",
-  }) as any as S.Schema<PostRampScheduleRequestEndActionsItemPatchSavedGroupsItem>;
-
-export type PostRampScheduleRequestEndActionsItemPatchSavedGroupsList =
-  Array<PostRampScheduleRequestEndActionsItemPatchSavedGroupsItem>;
-export const PostRampScheduleRequestEndActionsItemPatchSavedGroupsList =
-  /*@__PURE__*/ S.Array(
-    PostRampScheduleRequestEndActionsItemPatchSavedGroupsItem,
-  ) as any as S.Schema<PostRampScheduleRequestEndActionsItemPatchSavedGroupsList>;
-
-export type PostRampScheduleRequestEndActionsItemPatchPrerequisitesItem =
-  RampScheduleStartActionsItemPatchPrerequisitesItem;
-export const PostRampScheduleRequestEndActionsItemPatchPrerequisitesItem =
-  RampScheduleStartActionsItemPatchPrerequisitesItem;
-
-export type PostRampScheduleRequestEndActionsItemPatchPrerequisitesList =
-  Array<RampScheduleStartActionsItemPatchPrerequisitesItem>;
-export const PostRampScheduleRequestEndActionsItemPatchPrerequisitesList =
-  /*@__PURE__*/ S.Array(
-    RampScheduleStartActionsItemPatchPrerequisitesItem,
-  ) as any as S.Schema<PostRampScheduleRequestEndActionsItemPatchPrerequisitesList>;
-
-export type PostRampScheduleRequestEndActionsItemPatchEnvironmentsList =
-  Array<string>;
-export const PostRampScheduleRequestEndActionsItemPatchEnvironmentsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostRampScheduleRequestEndActionsItemPatchEnvironmentsList>;
-
-export interface PostRampScheduleRequestEndActionsItemPatch {
-  ruleId?: string;
-  /** Traffic fraction (0–1). For monitored steps the rollout rule is promoted to an experiment: treatment = [0, coverage), control = [0.5, 0.5+coverage). Both arms are equal-sized and non-adjacent, so a step-up only adds new users to each arm — no existing user changes group. The REST API enforces coverage ≤ 0.5 on monitored steps so control end never exceeds 1.0. The SDK uses explicit hash ranges on bucketingV2 clients to keep bucketing stable across monitored/unmonitored transitions. */
-  coverage?: number | null;
-  condition?: string | null;
-  savedGroups?: PostRampScheduleRequestEndActionsItemPatchSavedGroupsList | null;
-  prerequisites?: PostRampScheduleRequestEndActionsItemPatchPrerequisitesList | null;
-  allEnvironments?: boolean | null;
-  environments?: PostRampScheduleRequestEndActionsItemPatchEnvironmentsList | null;
-  /** Force value (any JSON type) */
-  force?: unknown;
-  enabled?: boolean | null;
-}
-export const PostRampScheduleRequestEndActionsItemPatch =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      ruleId: S.optional(S.String),
-      coverage: S.optional(S.NullOr(S.Number)),
-      condition: S.optional(S.NullOr(S.String)),
-      savedGroups: S.optional(
-        S.NullOr(PostRampScheduleRequestEndActionsItemPatchSavedGroupsList),
-      ),
-      prerequisites: S.optional(
-        S.NullOr(PostRampScheduleRequestEndActionsItemPatchPrerequisitesList),
-      ),
-      allEnvironments: S.optional(S.NullOr(S.Boolean)),
-      environments: S.optional(
-        S.NullOr(PostRampScheduleRequestEndActionsItemPatchEnvironmentsList),
-      ),
-      force: S.optional(S.Unknown),
-      enabled: S.optional(S.NullOr(S.Boolean)),
-    }),
-  ).annotate({
-    identifier: "PostRampScheduleRequestEndActionsItemPatch",
-  }) as any as S.Schema<PostRampScheduleRequestEndActionsItemPatch>;
-
-export interface PostRampScheduleRequestEndActionsItem {
-  targetType?: string;
-  targetId?: string;
-  patch: PostRampScheduleRequestEndActionsItemPatch;
-}
-export const PostRampScheduleRequestEndActionsItem = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      targetType: S.optional(S.String),
-      targetId: S.optional(S.String),
-      patch: PostRampScheduleRequestEndActionsItemPatch,
-    }),
-).annotate({
-  identifier: "PostRampScheduleRequestEndActionsItem",
-}) as any as S.Schema<PostRampScheduleRequestEndActionsItem>;
-
-export type PostRampScheduleRequestEndActionsList =
-  Array<PostRampScheduleRequestEndActionsItem>;
-export const PostRampScheduleRequestEndActionsList = /*@__PURE__*/ S.Array(
-  PostRampScheduleRequestEndActionsItem,
-) as any as S.Schema<PostRampScheduleRequestEndActionsList>;
-
-export type PostRampScheduleRequestMonitoringConfigGuardrailMetricIdsList =
-  Array<string>;
-export const PostRampScheduleRequestMonitoringConfigGuardrailMetricIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostRampScheduleRequestMonitoringConfigGuardrailMetricIdsList>;
-
-export type PostRampScheduleRequestMonitoringConfigSignalMetricIdsList =
-  Array<string>;
-export const PostRampScheduleRequestMonitoringConfigSignalMetricIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostRampScheduleRequestMonitoringConfigSignalMetricIdsList>;
-
-export type PostRampScheduleRequestMonitoringConfigMonitoringMode =
-  | "auto"
-  | "manual";
-export const PostRampScheduleRequestMonitoringConfigMonitoringMode =
-  /*@__PURE__*/ S.String;
-
-export type PostRampScheduleRequestMonitoringConfigSrmAction =
-  | "warn"
-  | "hold"
-  | "rollback";
-export const PostRampScheduleRequestMonitoringConfigSrmAction =
-  /*@__PURE__*/ S.String;
-
-export type PostRampScheduleRequestMonitoringConfigNoTrafficAction =
-  | "warn"
-  | "hold"
-  | "rollback";
-export const PostRampScheduleRequestMonitoringConfigNoTrafficAction =
-  /*@__PURE__*/ S.String;
-
-export type PostRampScheduleRequestMonitoringConfigMultipleExposureAction =
-  | "warn"
-  | "hold"
-  | "rollback";
-export const PostRampScheduleRequestMonitoringConfigMultipleExposureAction =
-  /*@__PURE__*/ S.String;
-
-export interface PostRampScheduleRequestMonitoringConfig {
-  datasourceId: string;
-  exposureQueryId: string;
-  guardrailMetricIds: PostRampScheduleRequestMonitoringConfigGuardrailMetricIdsList;
-  signalMetricIds?: PostRampScheduleRequestMonitoringConfigSignalMetricIdsList;
-  monitoringMode?:
-    | PostRampScheduleRequestMonitoringConfigMonitoringMode
-    | (string & {});
-  autoUpdate?: boolean;
-  autoRollback?: boolean;
-  updateScheduleMinutes?: number | null;
-  srmAction?: PostRampScheduleRequestMonitoringConfigSrmAction | (string & {});
-  noTrafficAction?:
-    | PostRampScheduleRequestMonitoringConfigNoTrafficAction
-    | (string & {});
-  multipleExposureAction?:
-    | PostRampScheduleRequestMonitoringConfigMultipleExposureAction
-    | (string & {});
-}
-export const PostRampScheduleRequestMonitoringConfig = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      datasourceId: S.String,
-      exposureQueryId: S.String,
-      guardrailMetricIds:
-        PostRampScheduleRequestMonitoringConfigGuardrailMetricIdsList,
-      signalMetricIds: S.optional(
-        PostRampScheduleRequestMonitoringConfigSignalMetricIdsList,
-      ),
-      monitoringMode: S.optional(
-        PostRampScheduleRequestMonitoringConfigMonitoringMode,
-      ),
-      autoUpdate: S.optional(S.Boolean),
-      autoRollback: S.optional(S.Boolean),
-      updateScheduleMinutes: S.optional(S.NullOr(S.Number)),
-      srmAction: S.optional(PostRampScheduleRequestMonitoringConfigSrmAction),
-      noTrafficAction: S.optional(
-        PostRampScheduleRequestMonitoringConfigNoTrafficAction,
-      ),
-      multipleExposureAction: S.optional(
-        PostRampScheduleRequestMonitoringConfigMultipleExposureAction,
-      ),
-    }),
-).annotate({
-  identifier: "PostRampScheduleRequestMonitoringConfig",
-}) as any as S.Schema<PostRampScheduleRequestMonitoringConfig>;
-
-export type PostRampScheduleRequestLockdownConfigMode = "none" | "locked";
-export const PostRampScheduleRequestLockdownConfigMode = /*@__PURE__*/ S.String;
-
-export interface PostRampScheduleRequestLockdownConfig {
-  mode: PostRampScheduleRequestLockdownConfigMode | (string & {});
-}
-export const PostRampScheduleRequestLockdownConfig = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      mode: PostRampScheduleRequestLockdownConfigMode,
-    }),
-).annotate({
-  identifier: "PostRampScheduleRequestLockdownConfig",
-}) as any as S.Schema<PostRampScheduleRequestLockdownConfig>;
-
-export type PostRampScheduleRequestExperimentHealthAction =
-  | "rollback"
-  | "hold"
-  | "warn";
-export const PostRampScheduleRequestExperimentHealthAction =
-  /*@__PURE__*/ S.String;
-
-export interface PostRampScheduleRequest {
-  name?: string;
-  featureId?: string;
-  ruleId?: string;
-  environment?: string;
-  steps?: PostRampScheduleRequestStepsList;
-  startActions?: PostRampScheduleRequestStartActionsList;
-  endActions?: PostRampScheduleRequestEndActionsList;
-  startDate?: string | null;
-  cutoffDate?: string | null;
-  /** When true, the ramp holds at step -1 with its rule disabled (zero traffic) until a human approves the start via /actions/approve-step. Composes with startDate. */
-  requiresStartApproval?: boolean | null;
-  monitoringConfig?: PostRampScheduleRequestMonitoringConfig | null;
-  lockdownConfig?: PostRampScheduleRequestLockdownConfig;
-  experimentHealthAction?:
-    | PostRampScheduleRequestExperimentHealthAction
-    | (string & {});
-  templateId?: string;
-}
-export const PostRampScheduleRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    featureId: S.optional(S.String),
-    ruleId: S.optional(S.String),
-    environment: S.optional(S.String),
-    steps: S.optional(PostRampScheduleRequestStepsList),
-    startActions: S.optional(PostRampScheduleRequestStartActionsList),
-    endActions: S.optional(PostRampScheduleRequestEndActionsList),
-    startDate: S.optional(S.NullOr(S.String)),
-    cutoffDate: S.optional(S.NullOr(S.String)),
-    requiresStartApproval: S.optional(S.NullOr(S.Boolean)),
-    monitoringConfig: S.optional(
-      S.NullOr(PostRampScheduleRequestMonitoringConfig),
-    ),
-    lockdownConfig: S.optional(PostRampScheduleRequestLockdownConfig),
-    experimentHealthAction: S.optional(
-      PostRampScheduleRequestExperimentHealthAction,
-    ),
-    templateId: S.optional(S.String),
-  }).pipe(T.Http({ method: "POST", uri: "/v1/ramp-schedules", code: 200 })),
-).annotate({
-  identifier: "PostRampScheduleRequest",
-}) as any as S.Schema<PostRampScheduleRequest>;
-
-export interface PostRampScheduleResponse {
-  rampSchedule: RampSchedule;
-}
-export const PostRampScheduleResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    rampSchedule: RampSchedule,
-  }),
-).annotate({
-  identifier: "PostRampScheduleResponse",
-}) as any as S.Schema<PostRampScheduleResponse>;
-
-export interface FeatureRevisionRef {
-  entityType: string;
-  /** Feature Flag id. */
-  id: string;
-  /** Revision version to publish. */
-  version: number;
-}
-export const FeatureRevisionRef = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    entityType: S.String,
-    id: S.String,
-    version: S.Number,
-  }),
-).annotate({
-  identifier: "FeatureRevisionRef",
-}) as any as S.Schema<FeatureRevisionRef>;
-
-export interface SavedGroupRevisionRef {
-  entityType: string;
-  /** Saved Group id. */
-  id: string;
-  /** Revision version to publish. */
-  version: number;
-}
-export const SavedGroupRevisionRef = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    entityType: S.String,
-    id: S.String,
-    version: S.Number,
-  }),
-).annotate({
-  identifier: "SavedGroupRevisionRef",
-}) as any as S.Schema<SavedGroupRevisionRef>;
-
-export interface ConfigRevisionRef {
-  entityType: string;
-  /** Config key. */
-  key: string;
-  /** Revision version to publish. */
-  version: number;
-}
-export const ConfigRevisionRef = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    entityType: S.String,
-    key: S.String,
-    version: S.Number,
-  }),
-).annotate({
-  identifier: "ConfigRevisionRef",
-}) as any as S.Schema<ConfigRevisionRef>;
-
-export interface ConstantRevisionRef {
-  entityType: string;
-  /** Constant key. */
-  key: string;
-  /** Revision version to publish. */
-  version: number;
-}
-export const ConstantRevisionRef = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    entityType: S.String,
-    key: S.String,
-    version: S.Number,
-  }),
-).annotate({
-  identifier: "ConstantRevisionRef",
-}) as any as S.Schema<ConstantRevisionRef>;
-
-export type RevisionIdRefEntityType =
-  | "feature"
-  | "saved-group"
-  | "config"
-  | "constant";
-export const RevisionIdRefEntityType = /*@__PURE__*/ S.String;
-
-export interface RevisionIdRef {
-  entityType: RevisionIdRefEntityType | (string & {});
-  /** A revision id from this API or the revision webhooks (`rev_…` / `frev_…`). Alternative to identifier + version. */
-  revisionId: string;
-}
-export const RevisionIdRef = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    entityType: RevisionIdRefEntityType,
-    revisionId: S.String,
-  }),
-).annotate({ identifier: "RevisionIdRef" }) as any as S.Schema<RevisionIdRef>;
-
-export type PostReleasePublishRevisionsRequestRevisionsItem =
-  | FeatureRevisionRef
-  | SavedGroupRevisionRef
-  | ConfigRevisionRef
-  | ConstantRevisionRef
-  | RevisionIdRef;
-export const PostReleasePublishRevisionsRequestRevisionsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PostReleasePublishRevisionsRequestRevisionsItem>;
-
-/** The revisions to publish, at most one per entity. */
-export type PostReleasePublishRevisionsRequestRevisionsList =
-  Array<PostReleasePublishRevisionsRequestRevisionsItem>;
-export const PostReleasePublishRevisionsRequestRevisionsList =
-  /*@__PURE__*/ S.Array(
-    PostReleasePublishRevisionsRequestRevisionsItem,
-  ) as any as S.Schema<PostReleasePublishRevisionsRequestRevisionsList>;
-
-export interface PostReleasePublishRevisionsRequest {
-  /** The revisions to publish, at most one per entity. */
-  revisions: PostReleasePublishRevisionsRequestRevisionsList;
-  /** Report every gate and outcome without writing anything. */
-  dryRun?: boolean;
-  /** Set to true to acknowledge warnings from experiment guards, schema changes, or archives. It can also force-publish an out-of-date draft when the caller has Bypass draft approvals access for that resource. */
-  ignoreWarnings?: boolean;
-  /** Set to true to publish despite schema or invariant failures. Validation still runs and the response still reports each failure. The caller must have Bypass draft approvals access for Feature Flags, Configs, and Constants in every Project. */
-  skipSchemaValidation?: boolean;
-  /** Set to true to publish despite Custom Hook rejections. The caller must have Bypass draft approvals access for Feature Flags, Configs, and Constants in every Project. */
-  skipHooks?: boolean;
-  /** An optional publish comment recorded on every revision in this release — it appears in each entity's revision history and is passed to any custom validation hooks that run for the publish. */
-  comment?: string;
-}
-export const PostReleasePublishRevisionsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    revisions: PostReleasePublishRevisionsRequestRevisionsList,
-    dryRun: S.optional(S.Boolean),
-    ignoreWarnings: S.optional(S.Boolean),
-    skipSchemaValidation: S.optional(S.Boolean),
-    skipHooks: S.optional(S.Boolean),
-    comment: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/releases/publish-revisions",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PostReleasePublishRevisionsRequest",
-}) as any as S.Schema<PostReleasePublishRevisionsRequest>;
-
-export type ResultsEntityType =
-  | "feature"
-  | "saved-group"
-  | "config"
-  | "constant";
-export const ResultsEntityType = /*@__PURE__*/ S.String;
-
-export type ResultsStatus = "published" | "would-publish";
-export const ResultsStatus = /*@__PURE__*/ S.String;
-
-export interface Results {
-  entityType: ResultsEntityType;
-  /** The identifier used in the request. */
-  id: string;
-  version: number;
-  /** The revision's id (`rev_…` or `frev_…`). */
-  revisionId: string;
-  status: ResultsStatus;
-}
-export const Results = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    entityType: ResultsEntityType,
-    id: S.String,
-    version: S.Number,
-    revisionId: S.String,
-    status: ResultsStatus,
-  }),
-).annotate({ identifier: "Results" }) as any as S.Schema<Results>;
-
-export type PostReleasePublishRevisionsResponseResultsList = Array<Results>;
-export const PostReleasePublishRevisionsResponseResultsList =
-  /*@__PURE__*/ S.Array(
-    Results,
-  ) as any as S.Schema<PostReleasePublishRevisionsResponseResultsList>;
-
-export type GatesEntityType = "feature" | "saved-group" | "config" | "constant";
-export const GatesEntityType = /*@__PURE__*/ S.String;
-
-export type GatesSeverity = "blocker" | "warning";
-export const GatesSeverity = /*@__PURE__*/ S.String;
-
-export type GatesMessagesList = Array<string>;
-export const GatesMessagesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<GatesMessagesList>;
-
-export interface GatesResolution {
-  action: string;
-  method: string;
-  path: string;
-}
-export const GatesResolution = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    action: S.String,
-    method: S.String,
-    path: S.String,
-  }),
-).annotate({
-  identifier: "GatesResolution",
-}) as any as S.Schema<GatesResolution>;
-
-export interface Gates {
-  entityType: GatesEntityType;
-  /** The identifier used in the request. */
-  id: string;
-  version: number;
-  /** Gate kind, e.g. "approval-required". */
-  type: string;
-  severity: GatesSeverity;
-  messages: GatesMessagesList;
-  /** Request flag that clears this gate on retry, if any. */
-  override: string | null;
-  requiresPermission: string | null;
-  /** A route that resolves the gate without an override flag. */
-  resolution: GatesResolution | null;
-}
-export const Gates = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    entityType: GatesEntityType,
-    id: S.String,
-    version: S.Number,
-    type: S.String,
-    severity: GatesSeverity,
-    messages: GatesMessagesList,
-    override: S.NullOr(S.String),
-    requiresPermission: S.NullOr(S.String),
-    resolution: S.NullOr(GatesResolution),
-  }),
-).annotate({ identifier: "Gates" }) as any as S.Schema<Gates>;
-
-/** Dry runs report every gate, cleared and blocking. Real publishes return an empty list — blocking gates fail with a 422 instead. */
-export type PostReleasePublishRevisionsResponseGatesList = Array<Gates>;
-export const PostReleasePublishRevisionsResponseGatesList =
-  /*@__PURE__*/ S.Array(
-    Gates,
-  ) as any as S.Schema<PostReleasePublishRevisionsResponseGatesList>;
-
-export type PostReleasePublishRevisionsResponseBypassedGatesItemEntityType =
-  | "feature"
-  | "saved-group"
-  | "config"
-  | "constant";
-export const PostReleasePublishRevisionsResponseBypassedGatesItemEntityType =
-  /*@__PURE__*/ S.String;
-
-export interface PostReleasePublishRevisionsResponseBypassedGatesItem {
-  entityType: PostReleasePublishRevisionsResponseBypassedGatesItemEntityType;
-  id: string;
-  version: number;
-  type: string;
-  /** How the gate was bypassed: a request field, the caller's permissions, or the organization's REST API approval-bypass setting. */
-  via: string;
-}
-export const PostReleasePublishRevisionsResponseBypassedGatesItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      entityType:
-        PostReleasePublishRevisionsResponseBypassedGatesItemEntityType,
-      id: S.String,
-      version: S.Number,
-      type: S.String,
-      via: S.String,
-    }),
-  ).annotate({
-    identifier: "PostReleasePublishRevisionsResponseBypassedGatesItem",
-  }) as any as S.Schema<PostReleasePublishRevisionsResponseBypassedGatesItem>;
-
-/** Gates bypassed by the caller's flags or authority — what this publish overrode. */
-export type PostReleasePublishRevisionsResponseBypassedGatesList =
-  Array<PostReleasePublishRevisionsResponseBypassedGatesItem>;
-export const PostReleasePublishRevisionsResponseBypassedGatesList =
-  /*@__PURE__*/ S.Array(
-    PostReleasePublishRevisionsResponseBypassedGatesItem,
-  ) as any as S.Schema<PostReleasePublishRevisionsResponseBypassedGatesList>;
-
-export type PostReleasePublishRevisionsResponseWarningsList = Array<string>;
-export const PostReleasePublishRevisionsResponseWarningsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostReleasePublishRevisionsResponseWarningsList>;
-
-export interface PostReleasePublishRevisionsResponse {
-  dryRun: boolean;
-  /** Correlation token (`pub_…`) stamped on every event this publish emitted. Absent on dry runs. */
-  bulkPublishId?: string;
-  results: PostReleasePublishRevisionsResponseResultsList;
-  /** Dry runs report every gate, cleared and blocking. Real publishes return an empty list — blocking gates fail with a 422 instead. */
-  gates: PostReleasePublishRevisionsResponseGatesList;
-  /** Gates bypassed by the caller's flags or authority — what this publish overrode. */
-  bypassedGates: PostReleasePublishRevisionsResponseBypassedGatesList;
-  warnings: PostReleasePublishRevisionsResponseWarningsList;
-}
-export const PostReleasePublishRevisionsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    dryRun: S.Boolean,
-    bulkPublishId: S.optional(S.String),
-    results: PostReleasePublishRevisionsResponseResultsList,
-    gates: PostReleasePublishRevisionsResponseGatesList,
-    bypassedGates: PostReleasePublishRevisionsResponseBypassedGatesList,
-    warnings: PostReleasePublishRevisionsResponseWarningsList,
-  }),
-).annotate({
-  identifier: "PostReleasePublishRevisionsResponse",
-}) as any as S.Schema<PostReleasePublishRevisionsResponse>;
-
-/** Stats engine override */
-export type PostReportRequestStatsEngine = "bayesian" | "frequentist";
-export const PostReportRequestStatsEngine = /*@__PURE__*/ S.String;
-
-/** Goal metric IDs (defaults to experiment's goal metrics) */
-export type PostReportRequestGoalMetricsList = Array<string>;
-export const PostReportRequestGoalMetricsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PostReportRequestGoalMetricsList>;
-
-/** Secondary metric IDs (defaults to experiment's secondary metrics) */
-export type PostReportRequestSecondaryMetricsList = Array<string>;
-export const PostReportRequestSecondaryMetricsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PostReportRequestSecondaryMetricsList>;
-
-/** Guardrail metric IDs (defaults to experiment's guardrail metrics) */
-export type PostReportRequestGuardrailMetricsList = Array<string>;
-export const PostReportRequestGuardrailMetricsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PostReportRequestGuardrailMetricsList>;
-
-/** How lifts are expressed in results. Defaults to experiment setting. */
-export type PostReportRequestDifferenceType =
-  | "relative"
-  | "absolute"
-  | "scaled";
-export const PostReportRequestDifferenceType = /*@__PURE__*/ S.String;
-
-/** Metric conversion window attribution model. Defaults to experiment setting. */
-export type PostReportRequestAttributionModel =
-  | "firstExposure"
-  | "experimentDuration"
-  | "lookbackOverride";
-export const PostReportRequestAttributionModel = /*@__PURE__*/ S.String;
-
-export type PostReportRequestLookbackOverrideCase0 =
-  ReportAnalysisSettingsLookbackOverrideCase0;
-export const PostReportRequestLookbackOverrideCase0 =
-  ReportAnalysisSettingsLookbackOverrideCase0;
-
-export type PostReportRequestLookbackOverrideCase1ValueUnit =
-  | "minutes"
-  | "hours"
-  | "days"
-  | "weeks";
-export const PostReportRequestLookbackOverrideCase1ValueUnit =
-  /*@__PURE__*/ S.String;
-
-export interface PostReportRequestLookbackOverrideCase1 {
-  type: string;
-  value: number;
-  valueUnit: PostReportRequestLookbackOverrideCase1ValueUnit | (string & {});
-}
-export const PostReportRequestLookbackOverrideCase1 = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      type: S.String,
-      value: S.Number,
-      valueUnit: PostReportRequestLookbackOverrideCase1ValueUnit,
-    }),
-).annotate({
-  identifier: "PostReportRequestLookbackOverrideCase1",
-}) as any as S.Schema<PostReportRequestLookbackOverrideCase1>;
-
-/** Lookback window when `attributionModel` is `lookbackOverride` */
-export type PostReportRequestLookbackOverride =
-  | ReportAnalysisSettingsLookbackOverrideCase0
-  | PostReportRequestLookbackOverrideCase1;
-export const PostReportRequestLookbackOverride =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PostReportRequestLookbackOverride>;
-
-export type PostReportRequestMetricOverridesItemWindowType =
-  | "conversion"
-  | "lookback"
-  | "";
-export const PostReportRequestMetricOverridesItemWindowType =
-  /*@__PURE__*/ S.String;
-
-export interface PostReportRequestMetricOverridesItem {
-  id: string;
-  windowType?: PostReportRequestMetricOverridesItemWindowType | (string & {});
-  windowHours?: number;
-  delayHours?: number;
-  winRisk?: number;
-  loseRisk?: number;
-  properPriorOverride?: boolean;
-  properPriorEnabled?: boolean;
-  properPriorMean?: number;
-  properPriorStdDev?: number;
-  regressionAdjustmentOverride?: boolean;
-  regressionAdjustmentEnabled?: boolean;
-  regressionAdjustmentDays?: number;
-}
-export const PostReportRequestMetricOverridesItem = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String,
-      windowType: S.optional(PostReportRequestMetricOverridesItemWindowType),
-      windowHours: S.optional(S.Number),
-      delayHours: S.optional(S.Number),
-      winRisk: S.optional(S.Number),
-      loseRisk: S.optional(S.Number),
-      properPriorOverride: S.optional(S.Boolean),
-      properPriorEnabled: S.optional(S.Boolean),
-      properPriorMean: S.optional(S.Number),
-      properPriorStdDev: S.optional(S.Number),
-      regressionAdjustmentOverride: S.optional(S.Boolean),
-      regressionAdjustmentEnabled: S.optional(S.Boolean),
-      regressionAdjustmentDays: S.optional(S.Number),
-    }),
-).annotate({
-  identifier: "PostReportRequestMetricOverridesItem",
-}) as any as S.Schema<PostReportRequestMetricOverridesItem>;
-
-/** Per-metric window, risk, and regression-adjustment overrides */
-export type PostReportRequestMetricOverridesList =
-  Array<PostReportRequestMetricOverridesItem>;
-export const PostReportRequestMetricOverridesList = /*@__PURE__*/ S.Array(
-  PostReportRequestMetricOverridesItem,
-) as any as S.Schema<PostReportRequestMetricOverridesList>;
-
-export type PostReportRequestCustomMetricSlicesItemSlicesItemLevelsList =
-  Array<string>;
-export const PostReportRequestCustomMetricSlicesItemSlicesItemLevelsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostReportRequestCustomMetricSlicesItemSlicesItemLevelsList>;
-
-export interface PostReportRequestCustomMetricSlicesItemSlicesItem {
-  column: string;
-  levels: PostReportRequestCustomMetricSlicesItemSlicesItemLevelsList;
-}
-export const PostReportRequestCustomMetricSlicesItemSlicesItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      column: S.String,
-      levels: PostReportRequestCustomMetricSlicesItemSlicesItemLevelsList,
-    }),
-  ).annotate({
-    identifier: "PostReportRequestCustomMetricSlicesItemSlicesItem",
-  }) as any as S.Schema<PostReportRequestCustomMetricSlicesItemSlicesItem>;
-
-export type PostReportRequestCustomMetricSlicesItemSlicesList =
-  Array<PostReportRequestCustomMetricSlicesItemSlicesItem>;
-export const PostReportRequestCustomMetricSlicesItemSlicesList =
-  /*@__PURE__*/ S.Array(
-    PostReportRequestCustomMetricSlicesItemSlicesItem,
-  ) as any as S.Schema<PostReportRequestCustomMetricSlicesItemSlicesList>;
-
-export interface PostReportRequestCustomMetricSlicesItem {
-  slices: PostReportRequestCustomMetricSlicesItemSlicesList;
-}
-export const PostReportRequestCustomMetricSlicesItem = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      slices: PostReportRequestCustomMetricSlicesItemSlicesList,
-    }),
-).annotate({
-  identifier: "PostReportRequestCustomMetricSlicesItem",
-}) as any as S.Schema<PostReportRequestCustomMetricSlicesItem>;
-
-/** Custom metric slice definitions */
-export type PostReportRequestCustomMetricSlicesList =
-  Array<PostReportRequestCustomMetricSlicesItem>;
-export const PostReportRequestCustomMetricSlicesList = /*@__PURE__*/ S.Array(
-  PostReportRequestCustomMetricSlicesItem,
-) as any as S.Schema<PostReportRequestCustomMetricSlicesList>;
-
-/** Visibility of the created report. Defaults to `private`. Set to `public` to receive a shareable `shareUrl` in the response. */
-export type PostReportRequestShareLevel = "public" | "organization" | "private";
-export const PostReportRequestShareLevel = /*@__PURE__*/ S.String;
-
-export interface PostReportRequest {
-  /** The experiment to create a report for */
-  experimentId: string;
-  /** Report title (defaults to experiment name) */
-  title?: string;
-  /** Report description */
-  description?: string;
-  /** The userId or email address of the owner. If an email address is provided, it will be used to look up the userId of the matching organization member. If an ID is provided, it will be validated as existing in the organization. When omitted, it defaults to the user associated with the request's Personal Access Token (PAT), if one is being used. */
-  owner?: string;
-  /** Stats engine override */
-  statsEngine?: PostReportRequestStatsEngine | (string & {});
-  /** Goal metric IDs (defaults to experiment's goal metrics) */
-  goalMetrics?: PostReportRequestGoalMetricsList;
-  /** Secondary metric IDs (defaults to experiment's secondary metrics) */
-  secondaryMetrics?: PostReportRequestSecondaryMetricsList;
-  /** Guardrail metric IDs (defaults to experiment's guardrail metrics) */
-  guardrailMetrics?: PostReportRequestGuardrailMetricsList;
-  /** Activation metric ID */
-  activationMetric?: string;
-  /** Dimension to cut results by */
-  dimension?: string;
-  /** Analysis start date (ISO 8601) */
-  dateStarted?: string;
-  /** Analysis end date (ISO 8601) */
-  dateEnded?: string;
-  /** Enable CUPED regression adjustment */
-  regressionAdjustmentEnabled?: boolean;
-  /** Enable sequential testing */
-  sequentialTestingEnabled?: boolean;
-  /** Tuning parameter for sequential testing (frequentist only) */
-  sequentialTestingTuningParameter?: number;
-  /** How lifts are expressed in results. Defaults to experiment setting. */
-  differenceType?: PostReportRequestDifferenceType | (string & {});
-  /** Metric conversion window attribution model. Defaults to experiment setting. */
-  attributionModel?: PostReportRequestAttributionModel | (string & {});
-  /** Lookback window when `attributionModel` is `lookbackOverride` */
-  lookbackOverride?: PostReportRequestLookbackOverride;
-  /** Per-metric window, risk, and regression-adjustment overrides */
-  metricOverrides?: PostReportRequestMetricOverridesList;
-  /** Custom metric slice definitions */
-  customMetricSlices?: PostReportRequestCustomMetricSlicesList;
-  /** Segment ID to filter users by. Defaults to experiment setting. */
-  segment?: string;
-  /** Raw SQL WHERE clause added to the exposure query. Defaults to experiment setting. */
-  queryFilter?: string;
-  /** When true, exclude users who have not completed the full conversion window. */
-  skipPartialData?: boolean;
-  /** Visibility of the created report. Defaults to `private`. Set to `public` to receive a shareable `shareUrl` in the response. */
-  shareLevel?: PostReportRequestShareLevel | (string & {});
-}
-export const PostReportRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    experimentId: S.String,
-    title: S.optional(S.String),
-    description: S.optional(S.String),
-    owner: S.optional(S.String),
-    statsEngine: S.optional(PostReportRequestStatsEngine),
-    goalMetrics: S.optional(PostReportRequestGoalMetricsList),
-    secondaryMetrics: S.optional(PostReportRequestSecondaryMetricsList),
-    guardrailMetrics: S.optional(PostReportRequestGuardrailMetricsList),
-    activationMetric: S.optional(S.String),
-    dimension: S.optional(S.String),
-    dateStarted: S.optional(S.String),
-    dateEnded: S.optional(S.String),
-    regressionAdjustmentEnabled: S.optional(S.Boolean),
-    sequentialTestingEnabled: S.optional(S.Boolean),
-    sequentialTestingTuningParameter: S.optional(S.Number),
-    differenceType: S.optional(PostReportRequestDifferenceType),
-    attributionModel: S.optional(PostReportRequestAttributionModel),
-    lookbackOverride: S.optional(PostReportRequestLookbackOverride),
-    metricOverrides: S.optional(PostReportRequestMetricOverridesList),
-    customMetricSlices: S.optional(PostReportRequestCustomMetricSlicesList),
-    segment: S.optional(S.String),
-    queryFilter: S.optional(S.String),
-    skipPartialData: S.optional(S.Boolean),
-    shareLevel: S.optional(PostReportRequestShareLevel),
-  }).pipe(T.Http({ method: "POST", uri: "/v1/reports", code: 200 })),
-).annotate({
-  identifier: "PostReportRequest",
-}) as any as S.Schema<PostReportRequest>;
-
-export interface PostReportResponse {
-  report: Report;
-}
-export const PostReportResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    report: Report,
-  }),
-).annotate({
-  identifier: "PostReportResponse",
-}) as any as S.Schema<PostReportResponse>;
-
-export interface PostReportRefreshRequest {
-  /** The id of the requested resource */
-  id: string;
-}
-export const PostReportRefreshRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/v1/reports/{id}/refresh", code: 200 }),
-  ),
-).annotate({
-  identifier: "PostReportRefreshRequest",
-}) as any as S.Schema<PostReportRefreshRequest>;
-
-export interface PostReportRefreshResponse {
-  report: Report;
-}
-export const PostReportRefreshResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    report: Report,
-  }),
-).annotate({
-  identifier: "PostReportRefreshResponse",
-}) as any as S.Schema<PostReportRefreshResponse>;
-
-/** The type of Saved Group (inferred from other arguments if missing) */
-export type PostSavedGroupRequestType = "condition" | "list";
-export const PostSavedGroupRequestType = /*@__PURE__*/ S.String;
-
-/** When type = 'list', this is the list of values for the attribute key */
-export type PostSavedGroupRequestValuesList = Array<string>;
-export const PostSavedGroupRequestValuesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PostSavedGroupRequestValuesList>;
-
-export type PostSavedGroupRequestProjectsList = Array<string>;
-export const PostSavedGroupRequestProjectsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PostSavedGroupRequestProjectsList>;
-
-export interface PostSavedGroupRequest {
-  /** The display name of the Saved Group */
-  name: string;
-  /** The type of Saved Group (inferred from other arguments if missing) */
-  type?: PostSavedGroupRequestType | (string & {});
-  /** When type = 'condition', this is the JSON-encoded condition for the group */
-  condition?: string;
-  /** When type = 'list', this is the attribute key the group is based on */
-  attributeKey?: string;
-  /** When type = 'list', this is the list of values for the attribute key */
-  values?: PostSavedGroupRequestValuesList;
-  /** The userId or email address of the owner. If an email address is provided, it will be used to look up the userId of the matching organization member. If an ID is provided, it will be validated as existing in the organization. When omitted, it defaults to the user associated with the request's Personal Access Token (PAT), if one is being used. */
-  owner?: string;
-  projects?: PostSavedGroupRequestProjectsList;
-  /** Set to true to create the live Saved Group without approval. The caller must have Bypass draft approvals access in every assigned Project. This field has no effect when approval is not required. */
-  bypassApproval?: boolean;
-}
-export const PostSavedGroupRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    type: S.optional(PostSavedGroupRequestType),
-    condition: S.optional(S.String),
-    attributeKey: S.optional(S.String),
-    values: S.optional(PostSavedGroupRequestValuesList),
-    owner: S.optional(S.String),
-    projects: S.optional(PostSavedGroupRequestProjectsList),
-    bypassApproval: S.optional(S.Boolean),
-  }).pipe(T.Http({ method: "POST", uri: "/v1/saved-groups", code: 200 })),
-).annotate({
-  identifier: "PostSavedGroupRequest",
-}) as any as S.Schema<PostSavedGroupRequest>;
-
-export interface PostSavedGroupResponse {
-  savedGroup: SavedGroup;
-}
-export const PostSavedGroupResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    savedGroup: SavedGroup,
-  }),
-).annotate({
-  identifier: "PostSavedGroupResponse",
-}) as any as S.Schema<PostSavedGroupResponse>;
-
-export interface PostSavedGroupRevisionRequest {
-  savedGroupId: string;
-  title?: string;
-  comment?: string;
-}
-export const PostSavedGroupRevisionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    savedGroupId: S.String.pipe(T.Label()),
-    title: S.optional(S.String),
-    comment: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/saved-groups-revisions/{savedGroupId}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PostSavedGroupRevisionRequest",
-}) as any as S.Schema<PostSavedGroupRevisionRequest>;
-
-export interface PostSavedGroupRevisionResponse {
-  revision: SavedGroupRevision;
-}
-export const PostSavedGroupRevisionResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    revision: SavedGroupRevision,
-  }),
-).annotate({
-  identifier: "PostSavedGroupRevisionResponse",
-}) as any as S.Schema<PostSavedGroupRevisionResponse>;
-
-export interface PostSavedGroupRevisionDiscardRequest {
-  savedGroupId: string;
-  version: number;
-  reason?: string;
-}
-export const PostSavedGroupRevisionDiscardRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      savedGroupId: S.String.pipe(T.Label()),
-      version: S.Number.pipe(T.Label()),
-      reason: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/saved-groups-revisions/{savedGroupId}/{version}/discard",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "PostSavedGroupRevisionDiscardRequest",
-}) as any as S.Schema<PostSavedGroupRevisionDiscardRequest>;
-
-export interface PostSavedGroupRevisionDiscardResponse {
-  revision: SavedGroupRevision;
-}
-export const PostSavedGroupRevisionDiscardResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      revision: SavedGroupRevision,
-    }),
-).annotate({
-  identifier: "PostSavedGroupRevisionDiscardResponse",
-}) as any as S.Schema<PostSavedGroupRevisionDiscardResponse>;
-
-export type PostSavedGroupRevisionItemsAddRequestItemsList = Array<string>;
-export const PostSavedGroupRevisionItemsAddRequestItemsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostSavedGroupRevisionItemsAddRequestItemsList>;
-
-export interface PostSavedGroupRevisionItemsAddRequest {
-  savedGroupId: string;
-  version: string;
-  revisionTitle?: string;
-  revisionComment?: string;
-  items: PostSavedGroupRevisionItemsAddRequestItemsList;
-}
-export const PostSavedGroupRevisionItemsAddRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      savedGroupId: S.String.pipe(T.Label()),
-      version: S.String.pipe(T.Label()),
-      revisionTitle: S.optional(S.String),
-      revisionComment: S.optional(S.String),
-      items: PostSavedGroupRevisionItemsAddRequestItemsList,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/saved-groups-revisions/{savedGroupId}/{version}/items/add",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "PostSavedGroupRevisionItemsAddRequest",
-}) as any as S.Schema<PostSavedGroupRevisionItemsAddRequest>;
-
-export interface PostSavedGroupRevisionItemsAddResponse {
-  revision: SavedGroupRevision;
-}
-export const PostSavedGroupRevisionItemsAddResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      revision: SavedGroupRevision,
-    }),
-).annotate({
-  identifier: "PostSavedGroupRevisionItemsAddResponse",
-}) as any as S.Schema<PostSavedGroupRevisionItemsAddResponse>;
-
-export type PostSavedGroupRevisionItemsRemoveRequestItemsList = Array<string>;
-export const PostSavedGroupRevisionItemsRemoveRequestItemsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostSavedGroupRevisionItemsRemoveRequestItemsList>;
-
-export interface PostSavedGroupRevisionItemsRemoveRequest {
-  savedGroupId: string;
-  version: string;
-  revisionTitle?: string;
-  revisionComment?: string;
-  items: PostSavedGroupRevisionItemsRemoveRequestItemsList;
-}
-export const PostSavedGroupRevisionItemsRemoveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      savedGroupId: S.String.pipe(T.Label()),
-      version: S.String.pipe(T.Label()),
-      revisionTitle: S.optional(S.String),
-      revisionComment: S.optional(S.String),
-      items: PostSavedGroupRevisionItemsRemoveRequestItemsList,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/saved-groups-revisions/{savedGroupId}/{version}/items/remove",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "PostSavedGroupRevisionItemsRemoveRequest",
-}) as any as S.Schema<PostSavedGroupRevisionItemsRemoveRequest>;
-
-export interface PostSavedGroupRevisionItemsRemoveResponse {
-  revision: SavedGroupRevision;
-}
-export const PostSavedGroupRevisionItemsRemoveResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      revision: SavedGroupRevision,
-    }),
-  ).annotate({
-    identifier: "PostSavedGroupRevisionItemsRemoveResponse",
-  }) as any as S.Schema<PostSavedGroupRevisionItemsRemoveResponse>;
-
-export interface PostSavedGroupRevisionPublishRequest {
-  savedGroupId: string;
-  version: number;
-  /** Deprecated and ignored. Approval is bypassed automatically when the caller has Bypass draft approvals access for this resource or when the organization enables the REST API approval bypass. Otherwise, the revision must be approved before it can be published. */
-  bypassApproval?: boolean;
-  /** Set to true to acknowledge the warnings listed in a blocked response and continue. This covers experiment guards, locked dependents, and references affected by an archive. When the organization treats schema failures as warnings, it also covers schema and invariant warnings. It never bypasses a rejected Custom Hook. On revision publish endpoints, it can also force-publish an out-of-date draft when the caller has Bypass draft approvals access. */
-  ignoreWarnings?: boolean;
-}
-export const PostSavedGroupRevisionPublishRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      savedGroupId: S.String.pipe(T.Label()),
-      version: S.Number.pipe(T.Label()),
-      bypassApproval: S.optional(S.Boolean),
-      ignoreWarnings: S.optional(S.Boolean),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/saved-groups-revisions/{savedGroupId}/{version}/publish",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "PostSavedGroupRevisionPublishRequest",
-}) as any as S.Schema<PostSavedGroupRevisionPublishRequest>;
-
-/** Gates that would have blocked this publish but were bypassed by the caller's authority. Present only when at least one gate was bypassed. */
-export type PostSavedGroupRevisionPublishResponseBypassedGatesList =
-  Array<BypassedGates>;
-export const PostSavedGroupRevisionPublishResponseBypassedGatesList =
-  /*@__PURE__*/ S.Array(
-    BypassedGates,
-  ) as any as S.Schema<PostSavedGroupRevisionPublishResponseBypassedGatesList>;
-
-export interface PostSavedGroupRevisionPublishResponse {
-  revision: SavedGroupRevision;
-  /** Gates that would have blocked this publish but were bypassed by the caller's authority. Present only when at least one gate was bypassed. */
-  bypassedGates?: PostSavedGroupRevisionPublishResponseBypassedGatesList;
-}
-export const PostSavedGroupRevisionPublishResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      revision: SavedGroupRevision,
-      bypassedGates: S.optional(
-        PostSavedGroupRevisionPublishResponseBypassedGatesList,
-      ),
-    }),
-).annotate({
-  identifier: "PostSavedGroupRevisionPublishResponse",
-}) as any as S.Schema<PostSavedGroupRevisionPublishResponse>;
-
-export type PostSavedGroupRevisionRebaseRequestConflictResolutionsValue =
-  | "overwrite"
-  | "discard"
-  | "union";
-export const PostSavedGroupRevisionRebaseRequestConflictResolutionsValue =
-  /*@__PURE__*/ S.String;
-
-export type PostSavedGroupRevisionRebaseRequestConflictResolutionsMap = {
-  [key: string]:
-    | PostSavedGroupRevisionRebaseRequestConflictResolutionsValue
-    | (string & {})
-    | undefined;
-};
-export const PostSavedGroupRevisionRebaseRequestConflictResolutionsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    PostSavedGroupRevisionRebaseRequestConflictResolutionsValue,
-  ) as any as S.Schema<PostSavedGroupRevisionRebaseRequestConflictResolutionsMap>;
-
-export type PostSavedGroupRevisionRebaseRequestCustomValuesValueList =
-  Array<unknown>;
-export const PostSavedGroupRevisionRebaseRequestCustomValuesValueList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<PostSavedGroupRevisionRebaseRequestCustomValuesValueList>;
-
-/** Custom values to use for `union` strategy fields. Keyed by field name. */
-export type PostSavedGroupRevisionRebaseRequestCustomValuesMap = {
-  [key: string]:
-    | PostSavedGroupRevisionRebaseRequestCustomValuesValueList
-    | undefined;
-};
-export const PostSavedGroupRevisionRebaseRequestCustomValuesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    PostSavedGroupRevisionRebaseRequestCustomValuesValueList,
-  ) as any as S.Schema<PostSavedGroupRevisionRebaseRequestCustomValuesMap>;
-
-export interface PostSavedGroupRevisionRebaseRequest {
-  savedGroupId: string;
-  version: number;
-  conflictResolutions?: PostSavedGroupRevisionRebaseRequestConflictResolutionsMap;
-  /** Custom values to use for `union` strategy fields. Keyed by field name. */
-  customValues?: PostSavedGroupRevisionRebaseRequestCustomValuesMap;
-}
-export const PostSavedGroupRevisionRebaseRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    savedGroupId: S.String.pipe(T.Label()),
-    version: S.Number.pipe(T.Label()),
-    conflictResolutions: S.optional(
-      PostSavedGroupRevisionRebaseRequestConflictResolutionsMap,
-    ),
-    customValues: S.optional(
-      PostSavedGroupRevisionRebaseRequestCustomValuesMap,
-    ),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/saved-groups-revisions/{savedGroupId}/{version}/rebase",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PostSavedGroupRevisionRebaseRequest",
-}) as any as S.Schema<PostSavedGroupRevisionRebaseRequest>;
-
-export interface PostSavedGroupRevisionRebaseResponse {
-  revision: SavedGroupRevision;
-}
-export const PostSavedGroupRevisionRebaseResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      revision: SavedGroupRevision,
-    }),
-).annotate({
-  identifier: "PostSavedGroupRevisionRebaseResponse",
-}) as any as S.Schema<PostSavedGroupRevisionRebaseResponse>;
-
-export interface PostSavedGroupRevisionRecallReviewRequest {
-  savedGroupId: string;
-  version: number;
-}
-export const PostSavedGroupRevisionRecallReviewRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      savedGroupId: S.String.pipe(T.Label()),
-      version: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/saved-groups-revisions/{savedGroupId}/{version}/recall-review",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostSavedGroupRevisionRecallReviewRequest",
-  }) as any as S.Schema<PostSavedGroupRevisionRecallReviewRequest>;
-
-export interface PostSavedGroupRevisionRecallReviewResponse {
-  revision: SavedGroupRevision;
-}
-export const PostSavedGroupRevisionRecallReviewResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      revision: SavedGroupRevision,
-    }),
-  ).annotate({
-    identifier: "PostSavedGroupRevisionRecallReviewResponse",
-  }) as any as S.Schema<PostSavedGroupRevisionRecallReviewResponse>;
-
-export interface PostSavedGroupRevisionReopenRequest {
-  savedGroupId: string;
-  version: number;
-}
-export const PostSavedGroupRevisionReopenRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    savedGroupId: S.String.pipe(T.Label()),
-    version: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/saved-groups-revisions/{savedGroupId}/{version}/reopen",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PostSavedGroupRevisionReopenRequest",
-}) as any as S.Schema<PostSavedGroupRevisionReopenRequest>;
-
-export interface PostSavedGroupRevisionReopenResponse {
-  revision: SavedGroupRevision;
-}
-export const PostSavedGroupRevisionReopenResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      revision: SavedGroupRevision,
-    }),
-).annotate({
-  identifier: "PostSavedGroupRevisionReopenResponse",
-}) as any as S.Schema<PostSavedGroupRevisionReopenResponse>;
-
-export interface PostSavedGroupRevisionRequestReviewRequest {
-  savedGroupId: string;
-  version: number;
-  autoPublishOnApproval?: boolean;
-  /** Set to true to acknowledge the warnings listed in a blocked response and continue. This covers experiment guards, locked dependents, and references affected by an archive. When the organization treats schema failures as warnings, it also covers schema and invariant warnings. It never bypasses a rejected Custom Hook. On revision publish endpoints, it can also force-publish an out-of-date draft when the caller has Bypass draft approvals access. */
-  ignoreWarnings?: boolean;
-}
-export const PostSavedGroupRevisionRequestReviewRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      savedGroupId: S.String.pipe(T.Label()),
-      version: S.Number.pipe(T.Label()),
-      autoPublishOnApproval: S.optional(S.Boolean),
-      ignoreWarnings: S.optional(S.Boolean),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/saved-groups-revisions/{savedGroupId}/{version}/request-review",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostSavedGroupRevisionRequestReviewRequest",
-  }) as any as S.Schema<PostSavedGroupRevisionRequestReviewRequest>;
-
-export interface PostSavedGroupRevisionRequestReviewResponse {
-  revision: SavedGroupRevision;
-}
-export const PostSavedGroupRevisionRequestReviewResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      revision: SavedGroupRevision,
-    }),
-  ).annotate({
-    identifier: "PostSavedGroupRevisionRequestReviewResponse",
-  }) as any as S.Schema<PostSavedGroupRevisionRequestReviewResponse>;
-
-/** Whether to stage the revert as a draft or publish it immediately. Defaults to `draft`, or to `publish` when the org enables 'reverts bypass approval'. */
-export type PostSavedGroupRevisionRevertRequestStrategy = "draft" | "publish";
-export const PostSavedGroupRevisionRevertRequestStrategy =
-  /*@__PURE__*/ S.String;
-
-export interface PostSavedGroupRevisionRevertRequest {
-  savedGroupId: string;
-  version: number;
-  /** Whether to stage the revert as a draft or publish it immediately. Defaults to `draft`, or to `publish` when the org enables 'reverts bypass approval'. */
-  strategy?: PostSavedGroupRevisionRevertRequestStrategy | (string & {});
-  title?: string;
-  comment?: string;
-  /** Set to true to acknowledge the warnings listed in a blocked response and continue. This covers experiment guards, locked dependents, and references affected by an archive. When the organization treats schema failures as warnings, it also covers schema and invariant warnings. It never bypasses a rejected Custom Hook. On revision publish endpoints, it can also force-publish an out-of-date draft when the caller has Bypass draft approvals access. */
-  ignoreWarnings?: boolean;
-}
-export const PostSavedGroupRevisionRevertRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    savedGroupId: S.String.pipe(T.Label()),
-    version: S.Number.pipe(T.Label()),
-    strategy: S.optional(PostSavedGroupRevisionRevertRequestStrategy),
-    title: S.optional(S.String),
-    comment: S.optional(S.String),
-    ignoreWarnings: S.optional(S.Boolean),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/saved-groups-revisions/{savedGroupId}/{version}/revert",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PostSavedGroupRevisionRevertRequest",
-}) as any as S.Schema<PostSavedGroupRevisionRevertRequest>;
-
-/** Gates that would have blocked this publish but were bypassed by the caller's authority. Present only when at least one gate was bypassed. */
-export type PostSavedGroupRevisionRevertResponseBypassedGatesList =
-  Array<BypassedGates>;
-export const PostSavedGroupRevisionRevertResponseBypassedGatesList =
-  /*@__PURE__*/ S.Array(
-    BypassedGates,
-  ) as any as S.Schema<PostSavedGroupRevisionRevertResponseBypassedGatesList>;
-
-export interface PostSavedGroupRevisionRevertResponse {
-  revision: SavedGroupRevision;
-  /** Gates that would have blocked this publish but were bypassed by the caller's authority. Present only when at least one gate was bypassed. */
-  bypassedGates?: PostSavedGroupRevisionRevertResponseBypassedGatesList;
-}
-export const PostSavedGroupRevisionRevertResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      revision: SavedGroupRevision,
-      bypassedGates: S.optional(
-        PostSavedGroupRevisionRevertResponseBypassedGatesList,
-      ),
-    }),
-).annotate({
-  identifier: "PostSavedGroupRevisionRevertResponse",
-}) as any as S.Schema<PostSavedGroupRevisionRevertResponse>;
-
-export interface PostSavedGroupRevisionSchedulePublishRequest {
-  savedGroupId: string;
-  version: number;
-  /** When to publish, as an RFC3339 timestamp (e.g. `2026-01-31T09:00:00Z` or `2026-01-31T02:00:00-07:00`), or `null` to cancel a pending schedule. */
-  scheduledPublishAt: string | null;
-  lockEdits?: boolean;
-  lockOthers?: boolean;
-  bypassApproval?: boolean;
-  /** Set to true to acknowledge the warnings listed in a blocked response and continue. This covers experiment guards, locked dependents, and references affected by an archive. When the organization treats schema failures as warnings, it also covers schema and invariant warnings. It never bypasses a rejected Custom Hook. On revision publish endpoints, it can also force-publish an out-of-date draft when the caller has Bypass draft approvals access. */
-  ignoreWarnings?: boolean;
-}
-export const PostSavedGroupRevisionSchedulePublishRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      savedGroupId: S.String.pipe(T.Label()),
-      version: S.Number.pipe(T.Label()),
-      scheduledPublishAt: S.NullOr(S.String),
-      lockEdits: S.optional(S.Boolean),
-      lockOthers: S.optional(S.Boolean),
-      bypassApproval: S.optional(S.Boolean),
-      ignoreWarnings: S.optional(S.Boolean),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/saved-groups-revisions/{savedGroupId}/{version}/schedule-publish",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostSavedGroupRevisionSchedulePublishRequest",
-  }) as any as S.Schema<PostSavedGroupRevisionSchedulePublishRequest>;
-
-export interface PostSavedGroupRevisionSchedulePublishResponse {
-  revision: SavedGroupRevision;
-}
-export const PostSavedGroupRevisionSchedulePublishResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      revision: SavedGroupRevision,
-    }),
-  ).annotate({
-    identifier: "PostSavedGroupRevisionSchedulePublishResponse",
-  }) as any as S.Schema<PostSavedGroupRevisionSchedulePublishResponse>;
-
-export type PostSavedGroupRevisionSubmitReviewRequestDecision =
-  | "approve"
-  | "request-changes"
-  | "comment";
-export const PostSavedGroupRevisionSubmitReviewRequestDecision =
-  /*@__PURE__*/ S.String;
-
-export interface PostSavedGroupRevisionSubmitReviewRequest {
-  savedGroupId: string;
-  version: number;
-  decision: PostSavedGroupRevisionSubmitReviewRequestDecision | (string & {});
-  comment?: string;
-  skipAutoPublish?: boolean;
-}
-export const PostSavedGroupRevisionSubmitReviewRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      savedGroupId: S.String.pipe(T.Label()),
-      version: S.Number.pipe(T.Label()),
-      decision: PostSavedGroupRevisionSubmitReviewRequestDecision,
-      comment: S.optional(S.String),
-      skipAutoPublish: S.optional(S.Boolean),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/saved-groups-revisions/{savedGroupId}/{version}/submit-review",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostSavedGroupRevisionSubmitReviewRequest",
-  }) as any as S.Schema<PostSavedGroupRevisionSubmitReviewRequest>;
-
-export interface PostSavedGroupRevisionSubmitReviewResponse {
-  revision: SavedGroupRevision;
-  autoPublished?: boolean;
-}
-export const PostSavedGroupRevisionSubmitReviewResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      revision: SavedGroupRevision,
-      autoPublished: S.optional(S.Boolean),
-    }),
-  ).annotate({
-    identifier: "PostSavedGroupRevisionSubmitReviewResponse",
-  }) as any as S.Schema<PostSavedGroupRevisionSubmitReviewResponse>;
-
-export interface PostSavedGroupRevisionUndoReviewRequest {
-  savedGroupId: string;
-  version: number;
-}
-export const PostSavedGroupRevisionUndoReviewRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      savedGroupId: S.String.pipe(T.Label()),
-      version: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/saved-groups-revisions/{savedGroupId}/{version}/undo-review",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "PostSavedGroupRevisionUndoReviewRequest",
-}) as any as S.Schema<PostSavedGroupRevisionUndoReviewRequest>;
-
-export interface PostSavedGroupRevisionUndoReviewResponse {
-  revision: SavedGroupRevision;
-}
-export const PostSavedGroupRevisionUndoReviewResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      revision: SavedGroupRevision,
-    }),
-).annotate({
-  identifier: "PostSavedGroupRevisionUndoReviewResponse",
-}) as any as S.Schema<PostSavedGroupRevisionUndoReviewResponse>;
-
-export type PostSdkConnectionRequestProjectsList = Array<string>;
-export const PostSdkConnectionRequestProjectsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PostSdkConnectionRequestProjectsList>;
-
-export type PostSdkConnectionRequestAllowedCustomFieldsInMetadataList =
-  Array<string>;
-export const PostSdkConnectionRequestAllowedCustomFieldsInMetadataList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostSdkConnectionRequestAllowedCustomFieldsInMetadataList>;
-
-export interface PostSdkConnectionRequest {
-  name: string;
-  language: string;
-  sdkVersion?: string;
-  environment: string;
-  projects?: PostSdkConnectionRequestProjectsList;
-  encryptPayload?: boolean;
-  includeVisualExperiments?: boolean;
-  includeDraftExperiments?: boolean;
-  /** When true, experiment-ref rules linked to draft experiments are included in feature definitions. Off by default. */
-  includeDraftExperimentRefs?: boolean;
-  includeExperimentNames?: boolean;
-  includeRedirectExperiments?: boolean;
-  includeRuleIds?: boolean;
-  includeProjectIdInMetadata?: boolean;
-  includeCustomFieldsInMetadata?: boolean;
-  allowedCustomFieldsInMetadata?: PostSdkConnectionRequestAllowedCustomFieldsInMetadataList;
-  includeTagsInMetadata?: boolean;
-  includeExperimentScheduleInMetadata?: boolean;
-  proxyEnabled?: boolean;
-  proxyHost?: string;
-  hashSecureAttributes?: boolean;
-  remoteEvalEnabled?: boolean;
-  savedGroupReferencesEnabled?: boolean;
-}
-export const PostSdkConnectionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    language: S.String,
-    sdkVersion: S.optional(S.String),
-    environment: S.String,
-    projects: S.optional(PostSdkConnectionRequestProjectsList),
-    encryptPayload: S.optional(S.Boolean),
-    includeVisualExperiments: S.optional(S.Boolean),
-    includeDraftExperiments: S.optional(S.Boolean),
-    includeDraftExperimentRefs: S.optional(S.Boolean),
-    includeExperimentNames: S.optional(S.Boolean),
-    includeRedirectExperiments: S.optional(S.Boolean),
-    includeRuleIds: S.optional(S.Boolean),
-    includeProjectIdInMetadata: S.optional(S.Boolean),
-    includeCustomFieldsInMetadata: S.optional(S.Boolean),
-    allowedCustomFieldsInMetadata: S.optional(
-      PostSdkConnectionRequestAllowedCustomFieldsInMetadataList,
-    ),
-    includeTagsInMetadata: S.optional(S.Boolean),
-    includeExperimentScheduleInMetadata: S.optional(S.Boolean),
-    proxyEnabled: S.optional(S.Boolean),
-    proxyHost: S.optional(S.String),
-    hashSecureAttributes: S.optional(S.Boolean),
-    remoteEvalEnabled: S.optional(S.Boolean),
-    savedGroupReferencesEnabled: S.optional(S.Boolean),
-  }).pipe(T.Http({ method: "POST", uri: "/v1/sdk-connections", code: 200 })),
-).annotate({
-  identifier: "PostSdkConnectionRequest",
-}) as any as S.Schema<PostSdkConnectionRequest>;
-
-export interface PostSdkConnectionResponse {
-  sdkConnection: SdkConnection;
-}
-export const PostSdkConnectionResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    sdkConnection: SdkConnection,
-  }),
-).annotate({
-  identifier: "PostSdkConnectionResponse",
-}) as any as S.Schema<PostSdkConnectionResponse>;
-
-/** List of project IDs for projects that can access this segment */
-export type PostSegmentRequestProjectsList = Array<string>;
-export const PostSegmentRequestProjectsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PostSegmentRequestProjectsList>;
-
-/** Where this Segment must be managed from. If not set (empty string), it can be managed from anywhere. */
-export type PostSegmentRequestManagedBy = "" | "api";
-export const PostSegmentRequestManagedBy = /*@__PURE__*/ S.String;
-
-/** GrowthBook supports two types of Segments, SQL and FACT. SQL segments are defined by a SQL query, and FACT segments are defined by a fact table and filters. */
-export type PostSegmentRequestType = "SQL" | "FACT";
-export const PostSegmentRequestType = /*@__PURE__*/ S.String;
-
-/** Optional array of fact table filter ids that can further define the Fact Table based Segment. */
-export type PostSegmentRequestFiltersList = Array<string>;
-export const PostSegmentRequestFiltersList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PostSegmentRequestFiltersList>;
-
-export interface PostSegmentRequest {
-  /** Name of the segment */
-  name: string;
-  /** The userId or email address of the owner. If an email address is provided, it will be used to look up the userId of the matching organization member. If an ID is provided, it will be validated as existing in the organization. */
-  owner?: string;
-  /** Description of the segment */
-  description?: string;
-  /** ID of the datasource this segment belongs to */
-  datasourceId: string;
-  /** Type of identifier (user, anonymous, etc.) */
-  identifierType: string;
-  /** List of project IDs for projects that can access this segment */
-  projects?: PostSegmentRequestProjectsList;
-  /** Where this Segment must be managed from. If not set (empty string), it can be managed from anywhere. */
-  managedBy?: PostSegmentRequestManagedBy | (string & {});
-  /** GrowthBook supports two types of Segments, SQL and FACT. SQL segments are defined by a SQL query, and FACT segments are defined by a fact table and filters. */
-  type: PostSegmentRequestType | (string & {});
-  /** SQL query that defines the Segment. This is required for SQL segments. */
-  query?: string;
-  /** ID of the fact table this segment belongs to. This is required for FACT segments. */
-  factTableId?: string;
-  /** Optional array of fact table filter ids that can further define the Fact Table based Segment. */
-  filters?: PostSegmentRequestFiltersList;
-}
-export const PostSegmentRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    owner: S.optional(S.String),
-    description: S.optional(S.String),
-    datasourceId: S.String,
-    identifierType: S.String,
-    projects: S.optional(PostSegmentRequestProjectsList),
-    managedBy: S.optional(PostSegmentRequestManagedBy),
-    type: PostSegmentRequestType,
-    query: S.optional(S.String),
-    factTableId: S.optional(S.String),
-    filters: S.optional(PostSegmentRequestFiltersList),
-  }).pipe(T.Http({ method: "POST", uri: "/v1/segments", code: 200 })),
-).annotate({
-  identifier: "PostSegmentRequest",
-}) as any as S.Schema<PostSegmentRequest>;
-
-export interface PostSegmentResponse {
-  segment: Segment;
-}
-export const PostSegmentResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    segment: Segment,
-  }),
-).annotate({
-  identifier: "PostSegmentResponse",
-}) as any as S.Schema<PostSegmentResponse>;
 
 /** MIME type of the screenshot */
 export type PostVariationImageUploadRequestContentType =
@@ -42636,8 +42627,10 @@ export const PutMetricRequestBehaviorWindowSettings = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<PutMetricRequestBehaviorWindowSettings>;
 
 /** Controls the bayesian prior for the metric. If omitted, organization defaults will be used. */
-export type PutMetricRequestBehaviorPriorSettings = FactMetricPriorSettings;
-export const PutMetricRequestBehaviorPriorSettings = FactMetricPriorSettings;
+export type PutMetricRequestBehaviorPriorSettings =
+  CreateBulkImportFactRequestFactMetricsItemDataPriorSettings;
+export const PutMetricRequestBehaviorPriorSettings =
+  CreateBulkImportFactRequestFactMetricsItemDataPriorSettings;
 
 export interface PutMetricRequestBehavior {
   goal?: PutMetricRequestBehaviorGoal | (string & {});
@@ -42656,7 +42649,7 @@ export interface PutMetricRequestBehavior {
   /** The end of a [Conversion Window](/app/metrics/legacy/#conversion-window) relative to the exposure date, in hours. This is equivalent to the [Conversion Delay](/app/metrics/legacy/#conversion-delay) + Conversion Window Hours settings in the UI. In other words, if you want a 48 hour window starting after 24 hours, you would set conversionWindowStart to 24 and conversionWindowEnd to 72 (24+48). <br/> Must specify both `behavior.conversionWindowStart` and `behavior.conversionWindowEnd` or neither. */
   conversionWindowEnd?: number;
   /** Controls the bayesian prior for the metric. If omitted, organization defaults will be used. */
-  priorSettings?: FactMetricPriorSettings;
+  priorSettings?: CreateBulkImportFactRequestFactMetricsItemDataPriorSettings;
   /** No longer used. Threshold for Risk to be considered low enough, as a proportion (e.g. put 0.0025 for 0.25%). <br/> Must be a non-negative number and must not be higher than `riskThresholdDanger`. */
   riskThresholdSuccess?: number;
   /** No longer used. Threshold for Risk to be considered too high, as a proportion (e.g. put 0.0125 for 1.25%). <br/> Must be a non-negative number. */
@@ -42679,7 +42672,9 @@ export const PutMetricRequestBehavior = /*@__PURE__*/ S.suspend(() =>
     windowSettings: S.optional(PutMetricRequestBehaviorWindowSettings),
     conversionWindowStart: S.optional(S.Number),
     conversionWindowEnd: S.optional(S.Number),
-    priorSettings: S.optional(FactMetricPriorSettings),
+    priorSettings: S.optional(
+      CreateBulkImportFactRequestFactMetricsItemDataPriorSettings,
+    ),
     riskThresholdSuccess: S.optional(S.Number),
     riskThresholdDanger: S.optional(S.Number),
     minPercentChange: S.optional(S.Number),
@@ -42916,8 +42911,8 @@ export const PutOrganizationResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutOrganizationResponse>;
 
 /** Project stats settings that, when set, override the organization settings. */
-export type PutProjectRequestSettings = PostProjectRequestSettings;
-export const PutProjectRequestSettings = PostProjectRequestSettings;
+export type PutProjectRequestSettings = CreateProjectRequestSettings;
+export const PutProjectRequestSettings = CreateProjectRequestSettings;
 
 export interface PutProjectRequest {
   /** The id of the requested resource */
@@ -42929,7 +42924,7 @@ export interface PutProjectRequest {
   /** URL-safe slug (lowercase letters, numbers, dashes). */
   publicId?: string;
   /** Project stats settings that, when set, override the organization settings. */
-  settings?: PostProjectRequestSettings;
+  settings?: CreateProjectRequestSettings;
 }
 export const PutProjectRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -42937,7 +42932,7 @@ export const PutProjectRequest = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     description: S.optional(S.String),
     publicId: S.optional(S.String),
-    settings: S.optional(PostProjectRequestSettings),
+    settings: S.optional(CreateProjectRequestSettings),
   }).pipe(T.Http({ method: "PUT", uri: "/v1/projects/{id}", code: 200 })),
 ).annotate({
   identifier: "PutProjectRequest",
@@ -43152,9 +43147,9 @@ export type PutReportSettingsRequestAttributionModel =
 export const PutReportSettingsRequestAttributionModel = /*@__PURE__*/ S.String;
 
 export type PutReportSettingsRequestLookbackOverrideCase0 =
-  ReportAnalysisSettingsLookbackOverrideCase0;
+  CreateReportRequestLookbackOverrideCase0;
 export const PutReportSettingsRequestLookbackOverrideCase0 =
-  ReportAnalysisSettingsLookbackOverrideCase0;
+  CreateReportRequestLookbackOverrideCase0;
 
 export type PutReportSettingsRequestLookbackOverrideCase1ValueUnit =
   | "minutes"
@@ -43184,7 +43179,7 @@ export const PutReportSettingsRequestLookbackOverrideCase1 =
 
 /** Lookback window when `attributionModel` is `lookbackOverride` */
 export type PutReportSettingsRequestLookbackOverride =
-  | ReportAnalysisSettingsLookbackOverrideCase0
+  | CreateReportRequestLookbackOverrideCase0
   | PutReportSettingsRequestLookbackOverrideCase1;
 export const PutReportSettingsRequestLookbackOverride =
   /*@__PURE__*/ S.Unknown as any as S.Schema<PutReportSettingsRequestLookbackOverride>;
@@ -45755,6 +45750,34 @@ export const UpdateConfigResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateConfigResponse",
 }) as any as S.Schema<UpdateConfigResponse>;
 
+export interface UpdateConfigRevisionRequest {
+  key: string;
+  title?: string;
+  comment?: string;
+}
+export const UpdateConfigRevisionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    key: S.String.pipe(T.Label()),
+    title: S.optional(S.String),
+    comment: S.optional(S.String),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/v1/configs-revisions/{key}", code: 200 }),
+  ),
+).annotate({
+  identifier: "UpdateConfigRevisionRequest",
+}) as any as S.Schema<UpdateConfigRevisionRequest>;
+
+export interface UpdateConfigRevisionResponse {
+  revision: ConfigRevision;
+}
+export const UpdateConfigRevisionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    revision: ConfigRevision,
+  }),
+).annotate({
+  identifier: "UpdateConfigRevisionResponse",
+}) as any as S.Schema<UpdateConfigRevisionResponse>;
+
 /** Per-environment value overrides (environment id → value). When provided, this REPLACES the entire override map — send the complete set, not just the environments you want to change (omit the field to leave overrides unchanged). */
 export type UpdateConstantRequestEnvironmentValuesMap = {
   [key: string]: string | undefined;
@@ -45822,21 +45845,49 @@ export const UpdateConstantResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateConstantResponse",
 }) as any as S.Schema<UpdateConstantResponse>;
 
+export interface UpdateConstantRevisionRequest {
+  key: string;
+  title?: string;
+  comment?: string;
+}
+export const UpdateConstantRevisionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    key: S.String.pipe(T.Label()),
+    title: S.optional(S.String),
+    comment: S.optional(S.String),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/v1/constants-revisions/{key}", code: 200 }),
+  ),
+).annotate({
+  identifier: "UpdateConstantRevisionRequest",
+}) as any as S.Schema<UpdateConstantRevisionRequest>;
+
+export interface UpdateConstantRevisionResponse {
+  revision: ConstantRevision;
+}
+export const UpdateConstantRevisionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    revision: ConstantRevision,
+  }),
+).annotate({
+  identifier: "UpdateConstantRevisionResponse",
+}) as any as S.Schema<UpdateConstantRevisionResponse>;
+
 export type UpdateContextualBanditRequestTagsList = Array<string>;
 export const UpdateContextualBanditRequestTagsList = /*@__PURE__*/ S.Array(
   S.String,
 ) as any as S.Schema<UpdateContextualBanditRequestTagsList>;
 
 export type UpdateContextualBanditRequestVariationsItemScreenshotsItem =
-  PostExperimentRequestVariationsItemScreenshotsItem;
+  CreateExperimentRequestVariationsItemScreenshotsItem;
 export const UpdateContextualBanditRequestVariationsItemScreenshotsItem =
-  PostExperimentRequestVariationsItemScreenshotsItem;
+  CreateExperimentRequestVariationsItemScreenshotsItem;
 
 export type UpdateContextualBanditRequestVariationsItemScreenshotsList =
-  Array<PostExperimentRequestVariationsItemScreenshotsItem>;
+  Array<CreateExperimentRequestVariationsItemScreenshotsItem>;
 export const UpdateContextualBanditRequestVariationsItemScreenshotsList =
   /*@__PURE__*/ S.Array(
-    PostExperimentRequestVariationsItemScreenshotsItem,
+    CreateExperimentRequestVariationsItemScreenshotsItem,
   ) as any as S.Schema<UpdateContextualBanditRequestVariationsItemScreenshotsList>;
 
 export interface UpdateContextualBanditRequestVariationsItem {
@@ -53324,15 +53375,15 @@ export type UpdateExperimentRequestStatsEngine = "bayesian" | "frequentist";
 export const UpdateExperimentRequestStatsEngine = /*@__PURE__*/ S.String;
 
 export type UpdateExperimentRequestVariationsItemScreenshotsItem =
-  PostExperimentRequestVariationsItemScreenshotsItem;
+  CreateExperimentRequestVariationsItemScreenshotsItem;
 export const UpdateExperimentRequestVariationsItemScreenshotsItem =
-  PostExperimentRequestVariationsItemScreenshotsItem;
+  CreateExperimentRequestVariationsItemScreenshotsItem;
 
 export type UpdateExperimentRequestVariationsItemScreenshotsList =
-  Array<PostExperimentRequestVariationsItemScreenshotsItem>;
+  Array<CreateExperimentRequestVariationsItemScreenshotsItem>;
 export const UpdateExperimentRequestVariationsItemScreenshotsList =
   /*@__PURE__*/ S.Array(
-    PostExperimentRequestVariationsItemScreenshotsItem,
+    CreateExperimentRequestVariationsItemScreenshotsItem,
   ) as any as S.Schema<UpdateExperimentRequestVariationsItemScreenshotsList>;
 
 export interface UpdateExperimentRequestVariationsItem {
@@ -53389,15 +53440,15 @@ export const UpdateExperimentRequestPhasesItemNamespace =
   }) as any as S.Schema<UpdateExperimentRequestPhasesItemNamespace>;
 
 export type UpdateExperimentRequestPhasesItemPrerequisitesItem =
-  PostExperimentRequestPhasesItemPrerequisitesItem;
+  CreateExperimentRequestPhasesItemPrerequisitesItem;
 export const UpdateExperimentRequestPhasesItemPrerequisitesItem =
-  PostExperimentRequestPhasesItemPrerequisitesItem;
+  CreateExperimentRequestPhasesItemPrerequisitesItem;
 
 export type UpdateExperimentRequestPhasesItemPrerequisitesList =
-  Array<PostExperimentRequestPhasesItemPrerequisitesItem>;
+  Array<CreateExperimentRequestPhasesItemPrerequisitesItem>;
 export const UpdateExperimentRequestPhasesItemPrerequisitesList =
   /*@__PURE__*/ S.Array(
-    PostExperimentRequestPhasesItemPrerequisitesItem,
+    CreateExperimentRequestPhasesItemPrerequisitesItem,
   ) as any as S.Schema<UpdateExperimentRequestPhasesItemPrerequisitesList>;
 
 export type UpdateExperimentRequestPhasesItemSavedGroupsItemMatch =
@@ -53569,15 +53620,15 @@ export const UpdateExperimentRequestBanditConversionWindowUnit =
   /*@__PURE__*/ S.String;
 
 export type UpdateExperimentRequestDecisionFrameworkSettingsDecisionFrameworkMetricOverridesItem =
-  ExperimentDecisionFrameworkSettingsDecisionFrameworkMetricOverridesItem;
+  CreateExperimentRequestDecisionFrameworkSettingsDecisionFrameworkMetricOverridesItem;
 export const UpdateExperimentRequestDecisionFrameworkSettingsDecisionFrameworkMetricOverridesItem =
-  ExperimentDecisionFrameworkSettingsDecisionFrameworkMetricOverridesItem;
+  CreateExperimentRequestDecisionFrameworkSettingsDecisionFrameworkMetricOverridesItem;
 
 export type UpdateExperimentRequestDecisionFrameworkSettingsDecisionFrameworkMetricOverridesList =
-  Array<ExperimentDecisionFrameworkSettingsDecisionFrameworkMetricOverridesItem>;
+  Array<CreateExperimentRequestDecisionFrameworkSettingsDecisionFrameworkMetricOverridesItem>;
 export const UpdateExperimentRequestDecisionFrameworkSettingsDecisionFrameworkMetricOverridesList =
   /*@__PURE__*/ S.Array(
-    ExperimentDecisionFrameworkSettingsDecisionFrameworkMetricOverridesItem,
+    CreateExperimentRequestDecisionFrameworkSettingsDecisionFrameworkMetricOverridesItem,
   ) as any as S.Schema<UpdateExperimentRequestDecisionFrameworkSettingsDecisionFrameworkMetricOverridesList>;
 
 /** Controls the decision framework and metric overrides for the experiment. Replaces the entire stored object on update (does not patch individual fields). */
@@ -54716,14 +54767,16 @@ export const UpdateFactMetricRequestWindowSettings = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateFactMetricRequestWindowSettings>;
 
 /** Controls the bayesian prior for the metric. If omitted, organization defaults will be used. */
-export type UpdateFactMetricRequestPriorSettings = FactMetricPriorSettings;
-export const UpdateFactMetricRequestPriorSettings = FactMetricPriorSettings;
+export type UpdateFactMetricRequestPriorSettings =
+  CreateBulkImportFactRequestFactMetricsItemDataPriorSettings;
+export const UpdateFactMetricRequestPriorSettings =
+  CreateBulkImportFactRequestFactMetricsItemDataPriorSettings;
 
 /** Controls the regression adjustment (CUPED) settings for the metric */
 export type UpdateFactMetricRequestRegressionAdjustmentSettings =
-  PostBulkImportFactsRequestFactMetricsItemDataRegressionAdjustmentSettings;
+  CreateBulkImportFactRequestFactMetricsItemDataRegressionAdjustmentSettings;
 export const UpdateFactMetricRequestRegressionAdjustmentSettings =
-  PostBulkImportFactsRequestFactMetricsItemDataRegressionAdjustmentSettings;
+  CreateBulkImportFactRequestFactMetricsItemDataRegressionAdjustmentSettings;
 
 /** Set this to "api" to disable editing in the GrowthBook UI */
 export type UpdateFactMetricRequestManagedBy = "" | "api" | "admin";
@@ -54766,9 +54819,9 @@ export interface UpdateFactMetricRequest {
   /** Controls the conversion window for the metric */
   windowSettings?: UpdateFactMetricRequestWindowSettings;
   /** Controls the bayesian prior for the metric. If omitted, organization defaults will be used. */
-  priorSettings?: FactMetricPriorSettings;
+  priorSettings?: CreateBulkImportFactRequestFactMetricsItemDataPriorSettings;
   /** Controls the regression adjustment (CUPED) settings for the metric */
-  regressionAdjustmentSettings?: PostBulkImportFactsRequestFactMetricsItemDataRegressionAdjustmentSettings;
+  regressionAdjustmentSettings?: CreateBulkImportFactRequestFactMetricsItemDataRegressionAdjustmentSettings;
   /** No longer used. Threshold for Risk to be considered low enough, as a proportion (e.g. put 0.0025 for 0.25%). <br/> Must be a non-negative number and must not be higher than `riskThresholdDanger`. */
   riskThresholdSuccess?: number;
   /** No longer used. Threshold for Risk to be considered too high, as a proportion (e.g. put 0.0125 for 1.25%). <br/> Must be a non-negative number. */
@@ -54807,9 +54860,11 @@ export const UpdateFactMetricRequest = /*@__PURE__*/ S.suspend(() =>
     funnelSettings: S.optional(UpdateFactMetricRequestFunnelSettings),
     cappingSettings: S.optional(UpdateFactMetricRequestCappingSettings),
     windowSettings: S.optional(UpdateFactMetricRequestWindowSettings),
-    priorSettings: S.optional(FactMetricPriorSettings),
+    priorSettings: S.optional(
+      CreateBulkImportFactRequestFactMetricsItemDataPriorSettings,
+    ),
     regressionAdjustmentSettings: S.optional(
-      PostBulkImportFactsRequestFactMetricsItemDataRegressionAdjustmentSettings,
+      CreateBulkImportFactRequestFactMetricsItemDataRegressionAdjustmentSettings,
     ),
     riskThresholdSuccess: S.optional(S.Number),
     riskThresholdDanger: S.optional(S.Number),
@@ -54864,14 +54919,14 @@ export const UpdateFactTableRequestAggregatedFactTableSettingsIdTypesList =
   ) as any as S.Schema<UpdateFactTableRequestAggregatedFactTableSettingsIdTypesList>;
 
 export type UpdateFactTableRequestAggregatedFactTableSettingsUpdateTime =
-  FactTableAggregatedFactTableSettingsUpdateTime;
+  CreateBulkImportFactRequestFactTablesItemDataAggregatedFactTableSettingsUpdateTime;
 export const UpdateFactTableRequestAggregatedFactTableSettingsUpdateTime =
-  FactTableAggregatedFactTableSettingsUpdateTime;
+  CreateBulkImportFactRequestFactTablesItemDataAggregatedFactTableSettingsUpdateTime;
 
 /** Settings for maintaining shared daily aggregated tables (a subset of userIdTypes plus the daily update time and restate lookback window) used to speed up CUPED. Requires the data pipeline (pipeline-mode) feature. */
 export interface UpdateFactTableRequestAggregatedFactTableSettings {
   idTypes: UpdateFactTableRequestAggregatedFactTableSettingsIdTypesList;
-  updateTime: FactTableAggregatedFactTableSettingsUpdateTime;
+  updateTime: CreateBulkImportFactRequestFactTablesItemDataAggregatedFactTableSettingsUpdateTime;
   lookbackWindow: number;
   restateChunkDays?: number;
 }
@@ -54879,7 +54934,8 @@ export const UpdateFactTableRequestAggregatedFactTableSettings =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       idTypes: UpdateFactTableRequestAggregatedFactTableSettingsIdTypesList,
-      updateTime: FactTableAggregatedFactTableSettingsUpdateTime,
+      updateTime:
+        CreateBulkImportFactRequestFactTablesItemDataAggregatedFactTableSettingsUpdateTime,
       lookbackWindow: S.Number,
       restateChunkDays: S.optional(S.Number),
     }),
@@ -55173,15 +55229,15 @@ export const UpdateFeatureV2RequestRulesItemCase0SavedGroupTargetingList =
   ) as any as S.Schema<UpdateFeatureV2RequestRulesItemCase0SavedGroupTargetingList>;
 
 export type UpdateFeatureV2RequestRulesItemCase0PrerequisitesItem =
-  PostExperimentRequestPhasesItemPrerequisitesItem;
+  CreateExperimentRequestPhasesItemPrerequisitesItem;
 export const UpdateFeatureV2RequestRulesItemCase0PrerequisitesItem =
-  PostExperimentRequestPhasesItemPrerequisitesItem;
+  CreateExperimentRequestPhasesItemPrerequisitesItem;
 
 export type UpdateFeatureV2RequestRulesItemCase0PrerequisitesList =
-  Array<PostExperimentRequestPhasesItemPrerequisitesItem>;
+  Array<CreateExperimentRequestPhasesItemPrerequisitesItem>;
 export const UpdateFeatureV2RequestRulesItemCase0PrerequisitesList =
   /*@__PURE__*/ S.Array(
-    PostExperimentRequestPhasesItemPrerequisitesItem,
+    CreateExperimentRequestPhasesItemPrerequisitesItem,
   ) as any as S.Schema<UpdateFeatureV2RequestRulesItemCase0PrerequisitesList>;
 
 export type UpdateFeatureV2RequestRulesItemCase0ScheduleRulesItem =
@@ -55348,15 +55404,15 @@ export const UpdateFeatureV2RequestRulesItemCase1SavedGroupTargetingList =
   ) as any as S.Schema<UpdateFeatureV2RequestRulesItemCase1SavedGroupTargetingList>;
 
 export type UpdateFeatureV2RequestRulesItemCase1PrerequisitesItem =
-  PostExperimentRequestPhasesItemPrerequisitesItem;
+  CreateExperimentRequestPhasesItemPrerequisitesItem;
 export const UpdateFeatureV2RequestRulesItemCase1PrerequisitesItem =
-  PostExperimentRequestPhasesItemPrerequisitesItem;
+  CreateExperimentRequestPhasesItemPrerequisitesItem;
 
 export type UpdateFeatureV2RequestRulesItemCase1PrerequisitesList =
-  Array<PostExperimentRequestPhasesItemPrerequisitesItem>;
+  Array<CreateExperimentRequestPhasesItemPrerequisitesItem>;
 export const UpdateFeatureV2RequestRulesItemCase1PrerequisitesList =
   /*@__PURE__*/ S.Array(
-    PostExperimentRequestPhasesItemPrerequisitesItem,
+    CreateExperimentRequestPhasesItemPrerequisitesItem,
   ) as any as S.Schema<UpdateFeatureV2RequestRulesItemCase1PrerequisitesList>;
 
 export type UpdateFeatureV2RequestRulesItemCase1ScheduleRulesItem =
@@ -55532,15 +55588,15 @@ export const UpdateFeatureV2RequestRulesItemCase2SavedGroupTargetingList =
   ) as any as S.Schema<UpdateFeatureV2RequestRulesItemCase2SavedGroupTargetingList>;
 
 export type UpdateFeatureV2RequestRulesItemCase2PrerequisitesItem =
-  PostExperimentRequestPhasesItemPrerequisitesItem;
+  CreateExperimentRequestPhasesItemPrerequisitesItem;
 export const UpdateFeatureV2RequestRulesItemCase2PrerequisitesItem =
-  PostExperimentRequestPhasesItemPrerequisitesItem;
+  CreateExperimentRequestPhasesItemPrerequisitesItem;
 
 export type UpdateFeatureV2RequestRulesItemCase2PrerequisitesList =
-  Array<PostExperimentRequestPhasesItemPrerequisitesItem>;
+  Array<CreateExperimentRequestPhasesItemPrerequisitesItem>;
 export const UpdateFeatureV2RequestRulesItemCase2PrerequisitesList =
   /*@__PURE__*/ S.Array(
-    PostExperimentRequestPhasesItemPrerequisitesItem,
+    CreateExperimentRequestPhasesItemPrerequisitesItem,
   ) as any as S.Schema<UpdateFeatureV2RequestRulesItemCase2PrerequisitesList>;
 
 export type UpdateFeatureV2RequestRulesItemCase2ScheduleRulesItem =
@@ -55718,15 +55774,15 @@ export const UpdateFeatureV2RequestRulesItemCase3SavedGroupTargetingList =
   ) as any as S.Schema<UpdateFeatureV2RequestRulesItemCase3SavedGroupTargetingList>;
 
 export type UpdateFeatureV2RequestRulesItemCase3PrerequisitesItem =
-  PostExperimentRequestPhasesItemPrerequisitesItem;
+  CreateExperimentRequestPhasesItemPrerequisitesItem;
 export const UpdateFeatureV2RequestRulesItemCase3PrerequisitesItem =
-  PostExperimentRequestPhasesItemPrerequisitesItem;
+  CreateExperimentRequestPhasesItemPrerequisitesItem;
 
 export type UpdateFeatureV2RequestRulesItemCase3PrerequisitesList =
-  Array<PostExperimentRequestPhasesItemPrerequisitesItem>;
+  Array<CreateExperimentRequestPhasesItemPrerequisitesItem>;
 export const UpdateFeatureV2RequestRulesItemCase3PrerequisitesList =
   /*@__PURE__*/ S.Array(
-    PostExperimentRequestPhasesItemPrerequisitesItem,
+    CreateExperimentRequestPhasesItemPrerequisitesItem,
   ) as any as S.Schema<UpdateFeatureV2RequestRulesItemCase3PrerequisitesList>;
 
 export type UpdateFeatureV2RequestRulesItemCase3ScheduleRulesItem =
@@ -58291,6 +58347,38 @@ export const UpdateSavedGroupResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateSavedGroupResponse",
 }) as any as S.Schema<UpdateSavedGroupResponse>;
 
+export interface UpdateSavedGroupRevisionRequest {
+  savedGroupId: string;
+  title?: string;
+  comment?: string;
+}
+export const UpdateSavedGroupRevisionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    savedGroupId: S.String.pipe(T.Label()),
+    title: S.optional(S.String),
+    comment: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/saved-groups-revisions/{savedGroupId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateSavedGroupRevisionRequest",
+}) as any as S.Schema<UpdateSavedGroupRevisionRequest>;
+
+export interface UpdateSavedGroupRevisionResponse {
+  revision: SavedGroupRevision;
+}
+export const UpdateSavedGroupRevisionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    revision: SavedGroupRevision,
+  }),
+).annotate({
+  identifier: "UpdateSavedGroupRevisionResponse",
+}) as any as S.Schema<UpdateSavedGroupRevisionResponse>;
+
 /** List of project IDs for projects that can access this segment */
 export type UpdateSegmentRequestProjectsList = Array<string>;
 export const UpdateSegmentRequestProjectsList = /*@__PURE__*/ S.Array(
@@ -58788,6 +58876,396 @@ export const completeRampSchedule: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type CreateArchetypeError = GrowthBookOpError;
+/** Create a single archetype */
+export const createArchetype: API.OperationMethod<
+  CreateArchetypeRequest,
+  CreateArchetypeResponse,
+  CreateArchetypeError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateArchetypeRequest,
+  output: CreateArchetypeResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateAttributeError = GrowthBookOpError;
+/** Create a new attribute */
+export const createAttribute: API.OperationMethod<
+  CreateAttributeRequest,
+  CreateAttributeResponse,
+  CreateAttributeError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateAttributeRequest,
+  output: CreateAttributeResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateBulkImportFactError = GrowthBookOpError;
+/** Bulk import fact tables, filters, and metrics Creates or updates Fact Tables, Fact Table filters, and Fact Metrics. Resources upsert by `id`. Pass `dryRun: true` to validate with zero writes. Not transactional: a live mid-loop failure returns HTTP 400 (403 for a permission failure) with write counts and `errors`. */
+export const createBulkImportFact: API.OperationMethod<
+  CreateBulkImportFactRequest,
+  CreateBulkImportFactResponse,
+  CreateBulkImportFactError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateBulkImportFactRequest,
+  output: CreateBulkImportFactResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateCodeRefError = GrowthBookOpError;
+/** Submit list of code references */
+export const createCodeRef: API.OperationMethod<
+  CreateCodeRefRequest,
+  CreateCodeRefResponse,
+  CreateCodeRefError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateCodeRefRequest,
+  output: CreateCodeRefResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateConfigError = GrowthBookOpError;
+/** Create a single config */
+export const createConfig: API.OperationMethod<
+  CreateConfigRequest,
+  CreateConfigResponse,
+  CreateConfigError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateConfigRequest,
+  output: CreateConfigResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateConfigRevisionDiscardError = GrowthBookOpError;
+/** Discard a draft revision Permanently discards a draft revision. Only open revisions (not merged or already-discarded) can be discarded. */
+export const createConfigRevisionDiscard: API.OperationMethod<
+  CreateConfigRevisionDiscardRequest,
+  CreateConfigRevisionDiscardResponse,
+  CreateConfigRevisionDiscardError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateConfigRevisionDiscardRequest,
+  output: CreateConfigRevisionDiscardResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateConfigRevisionPublishError = GrowthBookOpError;
+/** Publish a draft revision Publishes the draft and makes its changes live. The caller needs Publish access for the affected environments. When approval is required, the draft must be approved unless the caller has Bypass draft approvals access. If the organization requires rebasing, an out-of-date draft must be rebased first; an authorized caller can instead send `ignoreWarnings: true` to force-publish it. A locked Config cannot be published. A 422 response lists every blocking gate and the available resolution. Publishing a schema change also normalizes descendant Configs according to their inheritance rules. */
+export const createConfigRevisionPublish: API.OperationMethod<
+  CreateConfigRevisionPublishRequest,
+  CreateConfigRevisionPublishResponse,
+  CreateConfigRevisionPublishError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateConfigRevisionPublishRequest,
+  output: CreateConfigRevisionPublishResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateConfigRevisionRebaseError = GrowthBookOpError;
+/** Rebase a draft revision onto the current live config Updates the draft's base snapshot to the current live state, applying the draft's changes on top. Supply `conflictResolutions` to resolve any conflicting fields. Strategies are `overwrite` (use the draft's value), `discard` (keep the live value), or `union` (merge arrays without duplicates — for array fields like `extends`; pass a `customValues` entry to supply the resolved array yourself). */
+export const createConfigRevisionRebase: API.OperationMethod<
+  CreateConfigRevisionRebaseRequest,
+  CreateConfigRevisionRebaseResponse,
+  CreateConfigRevisionRebaseError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateConfigRevisionRebaseRequest,
+  output: CreateConfigRevisionRebaseResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateConfigRevisionRecallReviewError = GrowthBookOpError;
+/** Recall a review request Pulls a revision in review (`pending-review`, `changes-requested`, or `approved`) back to `draft`, clearing existing reviews and disarming any auto-publish-on-approval. */
+export const createConfigRevisionRecallReview: API.OperationMethod<
+  CreateConfigRevisionRecallReviewRequest,
+  CreateConfigRevisionRecallReviewResponse,
+  CreateConfigRevisionRecallReviewError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateConfigRevisionRecallReviewRequest,
+  output: CreateConfigRevisionRecallReviewResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateConfigRevisionReopenError = GrowthBookOpError;
+/** Reopen a discarded revision Returns a previously discarded revision to `draft` status so it can be edited and published again. Only discarded revisions can be reopened. */
+export const createConfigRevisionReopen: API.OperationMethod<
+  CreateConfigRevisionReopenRequest,
+  CreateConfigRevisionReopenResponse,
+  CreateConfigRevisionReopenError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateConfigRevisionReopenRequest,
+  output: CreateConfigRevisionReopenResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateConfigRevisionRequestReviewError = GrowthBookOpError;
+/** Request review for a draft revision Moves the draft from `draft` into `pending-review`. Notifies reviewers per the org's approval-flow settings. Set `autoPublishOnApproval` to `true` to publish the revision automatically the moment it is approved. This requires the org to have auto-publish-on-approval enabled and the caller to have publish permission on the config. */
+export const createConfigRevisionRequestReview: API.OperationMethod<
+  CreateConfigRevisionRequestReviewRequest,
+  CreateConfigRevisionRequestReviewResponse,
+  CreateConfigRevisionRequestReviewError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateConfigRevisionRequestReviewRequest,
+  output: CreateConfigRevisionRequestReviewResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateConfigRevisionRevertError = GrowthBookOpError;
+/** Revert the config to a prior revision Creates a new draft (or immediately publishes) whose content matches the specified historical revision. Defaults to creating a draft; when the org enables 'reverts bypass approval' it defaults to publishing immediately. Pass `strategy` to override. */
+export const createConfigRevisionRevert: API.OperationMethod<
+  CreateConfigRevisionRevertRequest,
+  CreateConfigRevisionRevertResponse,
+  CreateConfigRevisionRevertError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateConfigRevisionRevertRequest,
+  output: CreateConfigRevisionRevertResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateConfigRevisionSchedulePublishError = GrowthBookOpError;
+/** Schedule (or cancel) a deferred publish Arms a revision to publish automatically at a future time. Pass `scheduledPublishAt` as an RFC3339 timestamp in the future to arm, or `null` to cancel a pending schedule. Requires the `scheduled-revisions` commercial feature and publish permission on the config. A draft that still requires approval must request review first (or be armed with `bypassApproval` by a caller who can bypass). */
+export const createConfigRevisionSchedulePublish: API.OperationMethod<
+  CreateConfigRevisionSchedulePublishRequest,
+  CreateConfigRevisionSchedulePublishResponse,
+  CreateConfigRevisionSchedulePublishError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateConfigRevisionSchedulePublishRequest,
+  output: CreateConfigRevisionSchedulePublishResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateConfigRevisionSubmitReviewError = GrowthBookOpError;
+/** Submit a review on a draft revision Submits an `approve`, `request-changes`, or `comment` review on the revision. Submitting `approve` or `request-changes` needs Review access. A `comment` is participation rather than a verdict, so it is also open to the Comments permission or draft authority on the entity. Authors and contributors cannot submit `approve` reviews on their own drafts when the org has `blockSelfApproval` enabled. When `decision` is `approve` and the revision has `autoPublishOnApproval` enabled, the revision is automatically published after approval. The response includes `autoPublished: true` when this happens. Pass `skipAutoPublish: true` to approve without triggering auto-publish. */
+export const createConfigRevisionSubmitReview: API.OperationMethod<
+  CreateConfigRevisionSubmitReviewRequest,
+  CreateConfigRevisionSubmitReviewResponse,
+  CreateConfigRevisionSubmitReviewError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateConfigRevisionSubmitReviewRequest,
+  output: CreateConfigRevisionSubmitReviewResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateConfigRevisionUndoReviewError = GrowthBookOpError;
+/** Retract your own review verdict Retracts the calling user's own active `approve` or `request-changes` verdict, returning the revision to `pending-review`. Review comments stay in the log. Retracting a `request-changes` can leave the revision approved by someone else, in which case an armed auto-publish fires. */
+export const createConfigRevisionUndoReview: API.OperationMethod<
+  CreateConfigRevisionUndoReviewRequest,
+  CreateConfigRevisionUndoReviewResponse,
+  CreateConfigRevisionUndoReviewError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateConfigRevisionUndoReviewRequest,
+  output: CreateConfigRevisionUndoReviewResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateConstantError = GrowthBookOpError;
+/** Create a single constant */
+export const createConstant: API.OperationMethod<
+  CreateConstantRequest,
+  CreateConstantResponse,
+  CreateConstantError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateConstantRequest,
+  output: CreateConstantResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateConstantRevisionDiscardError = GrowthBookOpError;
+/** Discard a draft revision Permanently discards a draft revision. Only open revisions (not merged or already-discarded) can be discarded. */
+export const createConstantRevisionDiscard: API.OperationMethod<
+  CreateConstantRevisionDiscardRequest,
+  CreateConstantRevisionDiscardResponse,
+  CreateConstantRevisionDiscardError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateConstantRevisionDiscardRequest,
+  output: CreateConstantRevisionDiscardResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateConstantRevisionPublishError = GrowthBookOpError;
+/** Publish a draft revision Publishes the draft and makes its changes live. The caller needs Publish access for the affected environments. When approval is required, the draft must be approved unless the caller has Bypass draft approvals access. If the organization requires rebasing, an out-of-date draft must be rebased first; an authorized caller can instead send `ignoreWarnings: true` to force-publish it. A 422 response lists every blocking gate and the available resolution. */
+export const createConstantRevisionPublish: API.OperationMethod<
+  CreateConstantRevisionPublishRequest,
+  CreateConstantRevisionPublishResponse,
+  CreateConstantRevisionPublishError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateConstantRevisionPublishRequest,
+  output: CreateConstantRevisionPublishResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateConstantRevisionRebaseError = GrowthBookOpError;
+/** Rebase a draft revision onto the current live constant Updates the draft's base snapshot to the current live state, applying the draft's changes on top. Supply `conflictResolutions` to resolve any conflicting fields. Strategies are `overwrite` (use the draft's value) or `discard` (keep the live value). */
+export const createConstantRevisionRebase: API.OperationMethod<
+  CreateConstantRevisionRebaseRequest,
+  CreateConstantRevisionRebaseResponse,
+  CreateConstantRevisionRebaseError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateConstantRevisionRebaseRequest,
+  output: CreateConstantRevisionRebaseResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateConstantRevisionRecallReviewError = GrowthBookOpError;
+/** Recall a review request Pulls a revision in review (`pending-review`, `changes-requested`, or `approved`) back to `draft`, clearing existing reviews and disarming any auto-publish-on-approval. */
+export const createConstantRevisionRecallReview: API.OperationMethod<
+  CreateConstantRevisionRecallReviewRequest,
+  CreateConstantRevisionRecallReviewResponse,
+  CreateConstantRevisionRecallReviewError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateConstantRevisionRecallReviewRequest,
+  output: CreateConstantRevisionRecallReviewResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateConstantRevisionReopenError = GrowthBookOpError;
+/** Reopen a discarded revision Returns a previously discarded revision to `draft` status so it can be edited and published again. Only discarded revisions can be reopened. */
+export const createConstantRevisionReopen: API.OperationMethod<
+  CreateConstantRevisionReopenRequest,
+  CreateConstantRevisionReopenResponse,
+  CreateConstantRevisionReopenError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateConstantRevisionReopenRequest,
+  output: CreateConstantRevisionReopenResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateConstantRevisionRequestReviewError = GrowthBookOpError;
+/** Request review for a draft revision Moves the draft from `draft` into `pending-review`. Notifies reviewers per the org's approval-flow settings. Set `autoPublishOnApproval` to `true` to publish the revision automatically the moment it is approved. This requires the org to have auto-publish-on-approval enabled and the caller to have publish permission on the constant. */
+export const createConstantRevisionRequestReview: API.OperationMethod<
+  CreateConstantRevisionRequestReviewRequest,
+  CreateConstantRevisionRequestReviewResponse,
+  CreateConstantRevisionRequestReviewError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateConstantRevisionRequestReviewRequest,
+  output: CreateConstantRevisionRequestReviewResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateConstantRevisionRevertError = GrowthBookOpError;
+/** Revert the constant to a prior revision Creates a new draft (or immediately publishes) whose content matches the specified historical revision. Defaults to creating a draft; when the org enables 'reverts bypass approval' it defaults to publishing immediately. Pass `strategy` to override. */
+export const createConstantRevisionRevert: API.OperationMethod<
+  CreateConstantRevisionRevertRequest,
+  CreateConstantRevisionRevertResponse,
+  CreateConstantRevisionRevertError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateConstantRevisionRevertRequest,
+  output: CreateConstantRevisionRevertResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateConstantRevisionSchedulePublishError = GrowthBookOpError;
+/** Schedule (or cancel) a deferred publish Arms a revision to publish automatically at a future time. Pass `scheduledPublishAt` as an RFC3339 timestamp in the future to arm, or `null` to cancel a pending schedule. Requires the `scheduled-revisions` commercial feature and publish permission on the Constant. A draft that still requires approval must request review first (or be armed with `bypassApproval` by a caller who can bypass). */
+export const createConstantRevisionSchedulePublish: API.OperationMethod<
+  CreateConstantRevisionSchedulePublishRequest,
+  CreateConstantRevisionSchedulePublishResponse,
+  CreateConstantRevisionSchedulePublishError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateConstantRevisionSchedulePublishRequest,
+  output: CreateConstantRevisionSchedulePublishResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateConstantRevisionSubmitReviewError = GrowthBookOpError;
+/** Submit a review on a draft revision Submits an `approve`, `request-changes`, or `comment` review on the revision. Submitting `approve` or `request-changes` needs Review access. A `comment` is participation rather than a verdict, so it is also open to the Comments permission or draft authority on the entity. Authors and contributors cannot submit `approve` reviews on their own drafts when the org has `blockSelfApproval` enabled. When `decision` is `approve` and the revision has `autoPublishOnApproval` enabled, the revision is automatically published after approval. The response includes `autoPublished: true` when this happens. Pass `skipAutoPublish: true` to approve without triggering auto-publish. */
+export const createConstantRevisionSubmitReview: API.OperationMethod<
+  CreateConstantRevisionSubmitReviewRequest,
+  CreateConstantRevisionSubmitReviewResponse,
+  CreateConstantRevisionSubmitReviewError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateConstantRevisionSubmitReviewRequest,
+  output: CreateConstantRevisionSubmitReviewResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateConstantRevisionUndoReviewError = GrowthBookOpError;
+/** Retract your own review verdict Retracts the calling user's own active `approve` or `request-changes` verdict, returning the revision to `pending-review`. Review comments stay in the log. Retracting a `request-changes` can leave the revision approved by someone else, in which case an armed auto-publish fires. */
+export const createConstantRevisionUndoReview: API.OperationMethod<
+  CreateConstantRevisionUndoReviewRequest,
+  CreateConstantRevisionUndoReviewResponse,
+  CreateConstantRevisionUndoReviewError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateConstantRevisionUndoReviewRequest,
+  output: CreateConstantRevisionUndoReviewResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
 export type CreateContextualBanditError = GrowthBookOpError;
 /** Create a single contextualBandit */
 export const createContextualBandit: API.OperationMethod<
@@ -58833,6 +59311,21 @@ export const createCustomField: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type CreateCustomHookError = GrowthBookOpError;
+/** Create a single custom hook */
+export const createCustomHook: API.OperationMethod<
+  CreateCustomHookRequest,
+  CreateCustomHookResponse,
+  CreateCustomHookError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateCustomHookRequest,
+  output: CreateCustomHookResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
 export type CreateDashboardError = GrowthBookOpError;
 /** Create a single dashboard */
 export const createDashboard: API.OperationMethod<
@@ -58848,6 +59341,129 @@ export const createDashboard: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type CreateDimensionError = GrowthBookOpError;
+/** Create a single dimension */
+export const createDimension: API.OperationMethod<
+  CreateDimensionRequest,
+  CreateDimensionResponse,
+  CreateDimensionError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateDimensionRequest,
+  output: CreateDimensionResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateEnvironmentError = GrowthBookOpError;
+/** Create a new environment */
+export const createEnvironment: API.OperationMethod<
+  CreateEnvironmentRequest,
+  CreateEnvironmentResponse,
+  CreateEnvironmentError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateEnvironmentRequest,
+  output: CreateEnvironmentResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateExperimentError = GrowthBookOpError;
+/** Create a single experiment */
+export const createExperiment: API.OperationMethod<
+  CreateExperimentRequest,
+  CreateExperimentResponse,
+  CreateExperimentError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateExperimentRequest,
+  output: CreateExperimentResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateExperimentModifyTemporaryRolloutError =
+  | Conflict
+  | GrowthBookOpError;
+/** Modify temporary rollout status for a stopped experiment */
+export const createExperimentModifyTemporaryRollout: API.OperationMethod<
+  CreateExperimentModifyTemporaryRolloutRequest,
+  CreateExperimentModifyTemporaryRolloutResponse,
+  CreateExperimentModifyTemporaryRolloutError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateExperimentModifyTemporaryRolloutRequest,
+  output: CreateExperimentModifyTemporaryRolloutResponse,
+  errors: [Conflict, UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateExperimentSnapshotError = Conflict | GrowthBookOpError;
+/** Create Experiment Snapshot */
+export const createExperimentSnapshot: API.OperationMethod<
+  CreateExperimentSnapshotRequest,
+  CreateExperimentSnapshotResponse,
+  CreateExperimentSnapshotError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateExperimentSnapshotRequest,
+  output: CreateExperimentSnapshotResponse,
+  errors: [Conflict, UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateExperimentStartError = Conflict | GrowthBookOpError;
+/** Start/Stage an experiment Starts an experiment or stages it for a future start if a `statusUpdateSchedule` is set on the experiment. */
+export const createExperimentStart: API.OperationMethod<
+  CreateExperimentStartRequest,
+  CreateExperimentStartResponse,
+  CreateExperimentStartError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateExperimentStartRequest,
+  output: CreateExperimentStartResponse,
+  errors: [Conflict, UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateExperimentStartChecklistManualCompleteError =
+  GrowthBookOpError;
+/** Mark manual pre-launch checklist items complete */
+export const createExperimentStartChecklistManualComplete: API.OperationMethod<
+  CreateExperimentStartChecklistManualCompleteRequest,
+  CreateExperimentStartChecklistManualCompleteResponse,
+  CreateExperimentStartChecklistManualCompleteError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateExperimentStartChecklistManualCompleteRequest,
+  output: CreateExperimentStartChecklistManualCompleteResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateExperimentStopError = Conflict | GrowthBookOpError;
+/** Stop an experiment */
+export const createExperimentStop: API.OperationMethod<
+  CreateExperimentStopRequest,
+  CreateExperimentStopResponse,
+  CreateExperimentStopError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateExperimentStopRequest,
+  output: CreateExperimentStopResponse,
+  errors: [Conflict, UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
 export type CreateExperimentTemplateError = GrowthBookOpError;
 /** Create a single experimentTemplate */
 export const createExperimentTemplate: API.OperationMethod<
@@ -58858,6 +59474,51 @@ export const createExperimentTemplate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: CreateExperimentTemplateRequest,
   output: CreateExperimentTemplateResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateFactTableError = GrowthBookOpError;
+/** Create a single fact table */
+export const createFactTable: API.OperationMethod<
+  CreateFactTableRequest,
+  CreateFactTableResponse,
+  CreateFactTableError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateFactTableRequest,
+  output: CreateFactTableResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateFactTableFilterError = GrowthBookOpError;
+/** Create a single fact table filter */
+export const createFactTableFilter: API.OperationMethod<
+  CreateFactTableFilterRequest,
+  CreateFactTableFilterResponse,
+  CreateFactTableFilterError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateFactTableFilterRequest,
+  output: CreateFactTableFilterResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateFactTableVirtualColumnError = GrowthBookOpError;
+/** Create a virtual (computed) column on a fact table */
+export const createFactTableVirtualColumn: API.OperationMethod<
+  CreateFactTableVirtualColumnRequest,
+  CreateFactTableVirtualColumnResponse,
+  CreateFactTableVirtualColumnError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateFactTableVirtualColumnRequest,
+  output: CreateFactTableVirtualColumnResponse,
   errors: [UnknownGrowthBookError],
   protocol: GrowthBookProtocol,
   retry: Retry.Retry,
@@ -58908,6 +59569,81 @@ export const createMetricGroup: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type CreateNamespaceError = GrowthBookOpError;
+/** Create a namespace */
+export const createNamespace: API.OperationMethod<
+  CreateNamespaceRequest,
+  CreateNamespaceResponse,
+  CreateNamespaceError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateNamespaceRequest,
+  output: CreateNamespaceResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateNamespaceRotateSeedError = GrowthBookOpError;
+/** Rotate namespace seed ⚠️ Dangerous: sets a new seed for a multiRange namespace. Every user's bucket position within the namespace is re-computed immediately, which re-randomizes traffic eligibility for **all** experiments currently using this namespace. Only do this if you intentionally want to reshuffle all allocations across experiments. This could be useful when re-using a namespace for a new set of experiments. */
+export const createNamespaceRotateSeed: API.OperationMethod<
+  CreateNamespaceRotateSeedRequest,
+  CreateNamespaceRotateSeedResponse,
+  CreateNamespaceRotateSeedError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateNamespaceRotateSeedRequest,
+  output: CreateNamespaceRotateSeedResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateOrganizationError = GrowthBookOpError;
+/** Create a single organization (only for super admins on multi-org Enterprise Plan only) */
+export const createOrganization: API.OperationMethod<
+  CreateOrganizationRequest,
+  CreateOrganizationResponse,
+  CreateOrganizationError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateOrganizationRequest,
+  output: CreateOrganizationResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateProjectError = GrowthBookOpError;
+/** Create a single project */
+export const createProject: API.OperationMethod<
+  CreateProjectRequest,
+  CreateProjectResponse,
+  CreateProjectError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateProjectRequest,
+  output: CreateProjectResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateRampScheduleError = GrowthBookOpError;
+/** Create a ramp schedule */
+export const createRampSchedule: API.OperationMethod<
+  CreateRampScheduleRequest,
+  CreateRampScheduleResponse,
+  CreateRampScheduleError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateRampScheduleRequest,
+  output: CreateRampScheduleResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
 export type CreateRampScheduleTemplateError = GrowthBookOpError;
 /** Create a single rampScheduleTemplate */
 export const createRampScheduleTemplate: API.OperationMethod<
@@ -58918,6 +59654,276 @@ export const createRampScheduleTemplate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: CreateRampScheduleTemplateRequest,
   output: CreateRampScheduleTemplateResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateReleasePublishRevisionError = GrowthBookOpError;
+/** Atomically publish revisions across multiple entities Publishes a set of revisions — at most one per entity — across Feature Flags, Saved Groups, configs, and constants as a single all-or-nothing operation. Validation, guards, and custom hooks run against the combined end-state of the whole set, so interdependent changes (e.g. a config schema change plus the values that depend on it) publish together even when the in-between states would be invalid. A blocked publish returns one 422 listing every gate across every item and the flag that clears each. A concurrent change to any target aborts with a 409 and nothing publishes. A failure after the commit starts rolls everything back and emits `revision.publishFailed` for each revision in the set. SDK payloads refresh once per request. Pass `dryRun: true` for the full gate report with zero writes. Requires the `releases` commercial feature. */
+export const createReleasePublishRevision: API.OperationMethod<
+  CreateReleasePublishRevisionRequest,
+  CreateReleasePublishRevisionResponse,
+  CreateReleasePublishRevisionError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateReleasePublishRevisionRequest,
+  output: CreateReleasePublishRevisionResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateReportError = GrowthBookOpError;
+/** Create a new report */
+export const createReport: API.OperationMethod<
+  CreateReportRequest,
+  CreateReportResponse,
+  CreateReportError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateReportRequest,
+  output: CreateReportResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateReportRefreshError = GrowthBookOpError;
+/** Refresh a report by re-running its analysis */
+export const createReportRefresh: API.OperationMethod<
+  CreateReportRefreshRequest,
+  CreateReportRefreshResponse,
+  CreateReportRefreshError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateReportRefreshRequest,
+  output: CreateReportRefreshResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateSavedGroupError = GrowthBookOpError;
+/** Create a single saved group */
+export const createSavedGroup: API.OperationMethod<
+  CreateSavedGroupRequest,
+  CreateSavedGroupResponse,
+  CreateSavedGroupError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateSavedGroupRequest,
+  output: CreateSavedGroupResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateSavedGroupRevisionDiscardError = GrowthBookOpError;
+/** Discard a draft revision Permanently discards a draft revision. Only open revisions (not merged or already-discarded) can be discarded. */
+export const createSavedGroupRevisionDiscard: API.OperationMethod<
+  CreateSavedGroupRevisionDiscardRequest,
+  CreateSavedGroupRevisionDiscardResponse,
+  CreateSavedGroupRevisionDiscardError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateSavedGroupRevisionDiscardRequest,
+  output: CreateSavedGroupRevisionDiscardResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateSavedGroupRevisionItemsAddError = GrowthBookOpError;
+/** Append items to a list saved group draft revision Appends the provided items (deduplicated) to the draft's `values` array. Only valid for `list` saved groups. Pass `version: "new"` to auto-create a draft. Duplicate items are merged on top of any existing draft, so multiple successive add/remove calls accumulate. */
+export const createSavedGroupRevisionItemsAdd: API.OperationMethod<
+  CreateSavedGroupRevisionItemsAddRequest,
+  CreateSavedGroupRevisionItemsAddResponse,
+  CreateSavedGroupRevisionItemsAddError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateSavedGroupRevisionItemsAddRequest,
+  output: CreateSavedGroupRevisionItemsAddResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateSavedGroupRevisionItemsRemoveError = GrowthBookOpError;
+/** Remove items from a list saved group draft revision Removes the provided items from the draft's `values` array. Only valid for `list` saved groups. Pass `version: "new"` to auto-create a draft. */
+export const createSavedGroupRevisionItemsRemove: API.OperationMethod<
+  CreateSavedGroupRevisionItemsRemoveRequest,
+  CreateSavedGroupRevisionItemsRemoveResponse,
+  CreateSavedGroupRevisionItemsRemoveError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateSavedGroupRevisionItemsRemoveRequest,
+  output: CreateSavedGroupRevisionItemsRemoveResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateSavedGroupRevisionPublishError = GrowthBookOpError;
+/** Publish a draft revision Publishes the draft and applies its changes to the live Saved Group. The caller needs Publish access in every assigned Project. When approval is required, the draft must be approved unless the caller has Bypass draft approvals access. If the organization requires rebasing, an out-of-date draft must be rebased first; an authorized caller can instead send `ignoreWarnings: true` to force-publish it. A 422 response lists every blocking gate and the available resolution. */
+export const createSavedGroupRevisionPublish: API.OperationMethod<
+  CreateSavedGroupRevisionPublishRequest,
+  CreateSavedGroupRevisionPublishResponse,
+  CreateSavedGroupRevisionPublishError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateSavedGroupRevisionPublishRequest,
+  output: CreateSavedGroupRevisionPublishResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateSavedGroupRevisionRebaseError = GrowthBookOpError;
+/** Rebase a draft revision onto the current live saved group Updates the draft's base snapshot to the current live state, applying the draft's changes on top. Supply `conflictResolutions` to resolve any conflicting fields. Strategies are `overwrite` (use the draft's value), `discard` (keep the live value), or `union` (merge arrays — use only on `values`). Optimistic locking is not enforced by this endpoint; callers who need strict locking should call `merge-status` before and after. */
+export const createSavedGroupRevisionRebase: API.OperationMethod<
+  CreateSavedGroupRevisionRebaseRequest,
+  CreateSavedGroupRevisionRebaseResponse,
+  CreateSavedGroupRevisionRebaseError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateSavedGroupRevisionRebaseRequest,
+  output: CreateSavedGroupRevisionRebaseResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateSavedGroupRevisionRecallReviewError = GrowthBookOpError;
+/** Recall a review request Pulls a revision in review (`pending-review`, `changes-requested`, or `approved`) back to `draft`, clearing existing reviews and disarming any auto-publish-on-approval. */
+export const createSavedGroupRevisionRecallReview: API.OperationMethod<
+  CreateSavedGroupRevisionRecallReviewRequest,
+  CreateSavedGroupRevisionRecallReviewResponse,
+  CreateSavedGroupRevisionRecallReviewError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateSavedGroupRevisionRecallReviewRequest,
+  output: CreateSavedGroupRevisionRecallReviewResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateSavedGroupRevisionReopenError = GrowthBookOpError;
+/** Reopen a discarded revision Returns a previously discarded revision to `draft` status so it can be edited and published again. Only discarded revisions can be reopened. */
+export const createSavedGroupRevisionReopen: API.OperationMethod<
+  CreateSavedGroupRevisionReopenRequest,
+  CreateSavedGroupRevisionReopenResponse,
+  CreateSavedGroupRevisionReopenError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateSavedGroupRevisionReopenRequest,
+  output: CreateSavedGroupRevisionReopenResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateSavedGroupRevisionRequestReviewError = GrowthBookOpError;
+/** Request review for a draft revision Moves the draft from `draft` into `pending-review`. Notifies reviewers per the org's approval-flow settings. Set `autoPublishOnApproval` to `true` to publish the revision automatically the moment it is approved (GitHub auto-merge model). This requires the org to have auto-publish-on-approval enabled and the caller to have publish permission on the saved group; the auto-publish then executes with the caller's authority. */
+export const createSavedGroupRevisionRequestReview: API.OperationMethod<
+  CreateSavedGroupRevisionRequestReviewRequest,
+  CreateSavedGroupRevisionRequestReviewResponse,
+  CreateSavedGroupRevisionRequestReviewError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateSavedGroupRevisionRequestReviewRequest,
+  output: CreateSavedGroupRevisionRequestReviewResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateSavedGroupRevisionRevertError = GrowthBookOpError;
+/** Revert the saved group to a prior revision Creates a new draft (or immediately publishes) whose content matches the specified historical revision. Defaults to creating a draft; when the org enables 'reverts bypass approval' it defaults to publishing immediately. Pass `strategy` to override. */
+export const createSavedGroupRevisionRevert: API.OperationMethod<
+  CreateSavedGroupRevisionRevertRequest,
+  CreateSavedGroupRevisionRevertResponse,
+  CreateSavedGroupRevisionRevertError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateSavedGroupRevisionRevertRequest,
+  output: CreateSavedGroupRevisionRevertResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateSavedGroupRevisionSchedulePublishError = GrowthBookOpError;
+/** Schedule (or cancel) a deferred publish Arms a revision to publish automatically at a future time. Pass `scheduledPublishAt` as an RFC3339 timestamp in the future to arm, or `null` to cancel a pending schedule. Requires the `scheduled-revisions` commercial feature and publish permission on the Saved Group. A draft that still requires approval must request review first (or be armed with `bypassApproval` by a caller who can bypass). */
+export const createSavedGroupRevisionSchedulePublish: API.OperationMethod<
+  CreateSavedGroupRevisionSchedulePublishRequest,
+  CreateSavedGroupRevisionSchedulePublishResponse,
+  CreateSavedGroupRevisionSchedulePublishError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateSavedGroupRevisionSchedulePublishRequest,
+  output: CreateSavedGroupRevisionSchedulePublishResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateSavedGroupRevisionSubmitReviewError = GrowthBookOpError;
+/** Submit a review on a draft revision Submits an `approve`, `request-changes`, or `comment` review on the revision. Submitting `approve` or `request-changes` needs Review access. A `comment` is participation rather than a verdict, so it is also open to the Comments permission or draft authority on the entity. Authors and contributors cannot submit `approve` reviews on their own drafts when the org has `blockSelfApproval` enabled. When `decision` is `approve` and the revision has `autoPublishOnApproval` enabled, the revision is automatically published after approval. The response includes `autoPublished: true` when this happens. Pass `skipAutoPublish: true` to approve without triggering auto-publish. */
+export const createSavedGroupRevisionSubmitReview: API.OperationMethod<
+  CreateSavedGroupRevisionSubmitReviewRequest,
+  CreateSavedGroupRevisionSubmitReviewResponse,
+  CreateSavedGroupRevisionSubmitReviewError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateSavedGroupRevisionSubmitReviewRequest,
+  output: CreateSavedGroupRevisionSubmitReviewResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateSavedGroupRevisionUndoReviewError = GrowthBookOpError;
+/** Retract your own review verdict Retracts the calling user's own active `approve` or `request-changes` verdict, returning the revision to `pending-review`. Review comments stay in the log. Retracting a `request-changes` can leave the revision approved by someone else, in which case an armed auto-publish fires. */
+export const createSavedGroupRevisionUndoReview: API.OperationMethod<
+  CreateSavedGroupRevisionUndoReviewRequest,
+  CreateSavedGroupRevisionUndoReviewResponse,
+  CreateSavedGroupRevisionUndoReviewError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateSavedGroupRevisionUndoReviewRequest,
+  output: CreateSavedGroupRevisionUndoReviewResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateSdkConnectionError = GrowthBookOpError;
+/** Create a single sdk connection */
+export const createSdkConnection: API.OperationMethod<
+  CreateSdkConnectionRequest,
+  CreateSdkConnectionResponse,
+  CreateSdkConnectionError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateSdkConnectionRequest,
+  output: CreateSdkConnectionResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateSegmentError = GrowthBookOpError;
+/** Create a single segment */
+export const createSegment: API.OperationMethod<
+  CreateSegmentRequest,
+  CreateSegmentResponse,
+  CreateSegmentError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateSegmentRequest,
+  output: CreateSegmentResponse,
   errors: [UnknownGrowthBookError],
   protocol: GrowthBookProtocol,
   retry: Retry.Retry,
@@ -59659,7 +60665,7 @@ export const getConfigRevisions: API.PaginatedOperationMethod<
     protocol: GrowthBookProtocol,
     retry: Retry.Retry,
     pagination: {
-      mode: "offset",
+      mode: "token",
       inputToken: "offset",
       outputToken: "nextOffset",
       items: "revisions",
@@ -59775,7 +60781,7 @@ export const getConstantRevisions: API.PaginatedOperationMethod<
     protocol: GrowthBookProtocol,
     retry: Retry.Retry,
     pagination: {
-      mode: "offset",
+      mode: "token",
       inputToken: "offset",
       outputToken: "nextOffset",
       items: "revisions",
@@ -60206,7 +61212,7 @@ export const getFeatureRevisionsV2: API.PaginatedOperationMethod<
     protocol: GrowthBookProtocol,
     retry: Retry.Retry,
     pagination: {
-      mode: "offset",
+      mode: "token",
       inputToken: "offset",
       outputToken: "nextOffset",
       items: "revisions",
@@ -60397,7 +61403,7 @@ export const getNamespaceMemberships: API.PaginatedOperationMethod<
     protocol: GrowthBookProtocol,
     retry: Retry.Retry,
     pagination: {
-      mode: "offset",
+      mode: "token",
       inputToken: "offset",
       outputToken: "nextOffset",
       items: "experiments",
@@ -60588,7 +61594,7 @@ export const getSavedGroupRevisions: API.PaginatedOperationMethod<
     protocol: GrowthBookProtocol,
     retry: Retry.Retry,
     pagination: {
-      mode: "offset",
+      mode: "token",
       inputToken: "offset",
       outputToken: "nextOffset",
       items: "revisions",
@@ -60734,7 +61740,7 @@ export const listAggregatedTableRuns: API.PaginatedOperationMethod<
     protocol: GrowthBookProtocol,
     retry: Retry.Retry,
     pagination: {
-      mode: "offset",
+      mode: "token",
       inputToken: "offset",
       outputToken: "nextOffset",
       items: "runs",
@@ -60790,7 +61796,7 @@ export const listCodeRefs: API.PaginatedOperationMethod<
     protocol: GrowthBookProtocol,
     retry: Retry.Retry,
     pagination: {
-      mode: "offset",
+      mode: "token",
       inputToken: "offset",
       outputToken: "nextOffset",
       items: "codeRefs",
@@ -60816,7 +61822,7 @@ export const listConfigRevisions: API.PaginatedOperationMethod<
     protocol: GrowthBookProtocol,
     retry: Retry.Retry,
     pagination: {
-      mode: "offset",
+      mode: "token",
       inputToken: "offset",
       outputToken: "nextOffset",
       items: "revisions",
@@ -60842,7 +61848,7 @@ export const listConfigs: API.PaginatedOperationMethod<
     protocol: GrowthBookProtocol,
     retry: Retry.Retry,
     pagination: {
-      mode: "offset",
+      mode: "token",
       inputToken: "offset",
       outputToken: "nextOffset",
       items: "configs",
@@ -60868,7 +61874,7 @@ export const listConstantRevisions: API.PaginatedOperationMethod<
     protocol: GrowthBookProtocol,
     retry: Retry.Retry,
     pagination: {
-      mode: "offset",
+      mode: "token",
       inputToken: "offset",
       outputToken: "nextOffset",
       items: "revisions",
@@ -60894,7 +61900,7 @@ export const listConstants: API.PaginatedOperationMethod<
     protocol: GrowthBookProtocol,
     retry: Retry.Retry,
     pagination: {
-      mode: "offset",
+      mode: "token",
       inputToken: "offset",
       outputToken: "nextOffset",
       items: "constants",
@@ -60995,7 +62001,7 @@ export const listCustomHookHistory: API.PaginatedOperationMethod<
     protocol: GrowthBookProtocol,
     retry: Retry.Retry,
     pagination: {
-      mode: "offset",
+      mode: "token",
       inputToken: "offset",
       outputToken: "nextOffset",
       items: "versions",
@@ -61021,7 +62027,7 @@ export const listCustomHooks: API.PaginatedOperationMethod<
     protocol: GrowthBookProtocol,
     retry: Retry.Retry,
     pagination: {
-      mode: "offset",
+      mode: "token",
       inputToken: "offset",
       outputToken: "nextOffset",
       items: "customHooks",
@@ -61062,7 +62068,7 @@ export const listDataSources: API.PaginatedOperationMethod<
     protocol: GrowthBookProtocol,
     retry: Retry.Retry,
     pagination: {
-      mode: "offset",
+      mode: "token",
       inputToken: "offset",
       outputToken: "nextOffset",
       items: "dataSources",
@@ -61088,7 +62094,7 @@ export const listDimensions: API.PaginatedOperationMethod<
     protocol: GrowthBookProtocol,
     retry: Retry.Retry,
     pagination: {
-      mode: "offset",
+      mode: "token",
       inputToken: "offset",
       outputToken: "nextOffset",
       items: "dimensions",
@@ -61129,7 +62135,7 @@ export const listExperimentResults: API.PaginatedOperationMethod<
     protocol: GrowthBookProtocol,
     retry: Retry.Retry,
     pagination: {
-      mode: "offset",
+      mode: "token",
       inputToken: "offset",
       outputToken: "nextOffset",
       items: "experimentResults",
@@ -61155,7 +62161,7 @@ export const listExperiments: API.PaginatedOperationMethod<
     protocol: GrowthBookProtocol,
     retry: Retry.Retry,
     pagination: {
-      mode: "offset",
+      mode: "token",
       inputToken: "offset",
       outputToken: "nextOffset",
       items: "experiments",
@@ -61196,7 +62202,7 @@ export const listFactMetrics: API.PaginatedOperationMethod<
     protocol: GrowthBookProtocol,
     retry: Retry.Retry,
     pagination: {
-      mode: "offset",
+      mode: "token",
       inputToken: "offset",
       outputToken: "nextOffset",
       items: "factMetrics",
@@ -61222,7 +62228,7 @@ export const listFactTableFilters: API.PaginatedOperationMethod<
     protocol: GrowthBookProtocol,
     retry: Retry.Retry,
     pagination: {
-      mode: "offset",
+      mode: "token",
       inputToken: "offset",
       outputToken: "nextOffset",
       items: "factTableFilters",
@@ -61248,7 +62254,7 @@ export const listFactTables: API.PaginatedOperationMethod<
     protocol: GrowthBookProtocol,
     retry: Retry.Retry,
     pagination: {
-      mode: "offset",
+      mode: "token",
       inputToken: "offset",
       outputToken: "nextOffset",
       items: "factTables",
@@ -61274,7 +62280,7 @@ export const listFeaturesV2: API.PaginatedOperationMethod<
     protocol: GrowthBookProtocol,
     retry: Retry.Retry,
     pagination: {
-      mode: "offset",
+      mode: "token",
       inputToken: "offset",
       outputToken: "nextOffset",
       items: "features",
@@ -61330,7 +62336,7 @@ export const listMembers: API.PaginatedOperationMethod<
     protocol: GrowthBookProtocol,
     retry: Retry.Retry,
     pagination: {
-      mode: "offset",
+      mode: "token",
       inputToken: "offset",
       outputToken: "nextOffset",
       items: "members",
@@ -61356,7 +62362,7 @@ export const listMetricExperiments: API.PaginatedOperationMethod<
     protocol: GrowthBookProtocol,
     retry: Retry.Retry,
     pagination: {
-      mode: "offset",
+      mode: "token",
       inputToken: "offset",
       outputToken: "nextOffset",
       items: "experimentResults",
@@ -61397,7 +62403,7 @@ export const listMetrics: API.PaginatedOperationMethod<
     protocol: GrowthBookProtocol,
     retry: Retry.Retry,
     pagination: {
-      mode: "offset",
+      mode: "token",
       inputToken: "offset",
       outputToken: "nextOffset",
       items: "metrics",
@@ -61423,7 +62429,7 @@ export const listNamespaces: API.PaginatedOperationMethod<
     protocol: GrowthBookProtocol,
     retry: Retry.Retry,
     pagination: {
-      mode: "offset",
+      mode: "token",
       inputToken: "offset",
       outputToken: "nextOffset",
       items: "namespaces",
@@ -61449,7 +62455,7 @@ export const listOrganizations: API.PaginatedOperationMethod<
     protocol: GrowthBookProtocol,
     retry: Retry.Retry,
     pagination: {
-      mode: "offset",
+      mode: "token",
       inputToken: "offset",
       outputToken: "nextOffset",
       items: "organizations",
@@ -61475,7 +62481,7 @@ export const listProjects: API.PaginatedOperationMethod<
     protocol: GrowthBookProtocol,
     retry: Retry.Retry,
     pagination: {
-      mode: "offset",
+      mode: "token",
       inputToken: "offset",
       outputToken: "nextOffset",
       items: "projects",
@@ -61501,7 +62507,7 @@ export const listRampSchedules: API.PaginatedOperationMethod<
     protocol: GrowthBookProtocol,
     retry: Retry.Retry,
     pagination: {
-      mode: "offset",
+      mode: "token",
       inputToken: "offset",
       outputToken: "nextOffset",
       items: "rampSchedules",
@@ -61542,7 +62548,7 @@ export const listReports: API.PaginatedOperationMethod<
     protocol: GrowthBookProtocol,
     retry: Retry.Retry,
     pagination: {
-      mode: "offset",
+      mode: "token",
       inputToken: "offset",
       outputToken: "nextOffset",
       items: "reports",
@@ -61568,7 +62574,7 @@ export const listRevisionsV2: API.PaginatedOperationMethod<
     protocol: GrowthBookProtocol,
     retry: Retry.Retry,
     pagination: {
-      mode: "offset",
+      mode: "token",
       inputToken: "offset",
       outputToken: "nextOffset",
       items: "revisions",
@@ -61594,7 +62600,7 @@ export const listSavedGroupRevisions: API.PaginatedOperationMethod<
     protocol: GrowthBookProtocol,
     retry: Retry.Retry,
     pagination: {
-      mode: "offset",
+      mode: "token",
       inputToken: "offset",
       outputToken: "nextOffset",
       items: "revisions",
@@ -61620,7 +62626,7 @@ export const listSavedGroups: API.PaginatedOperationMethod<
     protocol: GrowthBookProtocol,
     retry: Retry.Retry,
     pagination: {
-      mode: "offset",
+      mode: "token",
       inputToken: "offset",
       outputToken: "nextOffset",
       items: "savedGroups",
@@ -61646,7 +62652,7 @@ export const listSdkConnections: API.PaginatedOperationMethod<
     protocol: GrowthBookProtocol,
     retry: Retry.Retry,
     pagination: {
-      mode: "offset",
+      mode: "token",
       inputToken: "offset",
       outputToken: "nextOffset",
       items: "connections",
@@ -61672,7 +62678,7 @@ export const listSegments: API.PaginatedOperationMethod<
     protocol: GrowthBookProtocol,
     retry: Retry.Retry,
     pagination: {
-      mode: "offset",
+      mode: "token",
       inputToken: "offset",
       outputToken: "nextOffset",
       items: "segments",
@@ -61757,426 +62763,6 @@ export const pauseRampSchedule: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PostArchetypeError = GrowthBookOpError;
-/** Create a single archetype */
-export const postArchetype: API.OperationMethod<
-  PostArchetypeRequest,
-  PostArchetypeResponse,
-  PostArchetypeError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostArchetypeRequest,
-  output: PostArchetypeResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostAttributeError = GrowthBookOpError;
-/** Create a new attribute */
-export const postAttribute: API.OperationMethod<
-  PostAttributeRequest,
-  PostAttributeResponse,
-  PostAttributeError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostAttributeRequest,
-  output: PostAttributeResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostBulkImportFactsError = GrowthBookOpError;
-/** Bulk import fact tables, filters, and metrics Creates or updates Fact Tables, Fact Table filters, and Fact Metrics. Resources upsert by `id`. Pass `dryRun: true` to validate with zero writes. Not transactional: a live mid-loop failure returns HTTP 400 (403 for a permission failure) with write counts and `errors`. */
-export const postBulkImportFacts: API.OperationMethod<
-  PostBulkImportFactsRequest,
-  PostBulkImportFactsResponse,
-  PostBulkImportFactsError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostBulkImportFactsRequest,
-  output: PostBulkImportFactsResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostCodeRefsError = GrowthBookOpError;
-/** Submit list of code references */
-export const postCodeRefs: API.OperationMethod<
-  PostCodeRefsRequest,
-  PostCodeRefsResponse,
-  PostCodeRefsError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostCodeRefsRequest,
-  output: PostCodeRefsResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostConfigError = GrowthBookOpError;
-/** Create a single config */
-export const postConfig: API.OperationMethod<
-  PostConfigRequest,
-  PostConfigResponse,
-  PostConfigError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostConfigRequest,
-  output: PostConfigResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostConfigRevisionError = GrowthBookOpError;
-/** Create a draft revision Creates a new draft revision branched from the current live config. A config can have multiple concurrent drafts; use this to start an isolated line of edits. */
-export const postConfigRevision: API.OperationMethod<
-  PostConfigRevisionRequest,
-  PostConfigRevisionResponse,
-  PostConfigRevisionError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostConfigRevisionRequest,
-  output: PostConfigRevisionResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostConfigRevisionDiscardError = GrowthBookOpError;
-/** Discard a draft revision Permanently discards a draft revision. Only open revisions (not merged or already-discarded) can be discarded. */
-export const postConfigRevisionDiscard: API.OperationMethod<
-  PostConfigRevisionDiscardRequest,
-  PostConfigRevisionDiscardResponse,
-  PostConfigRevisionDiscardError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostConfigRevisionDiscardRequest,
-  output: PostConfigRevisionDiscardResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostConfigRevisionPublishError = GrowthBookOpError;
-/** Publish a draft revision Publishes the draft and makes its changes live. The caller needs Publish access for the affected environments. When approval is required, the draft must be approved unless the caller has Bypass draft approvals access. If the organization requires rebasing, an out-of-date draft must be rebased first; an authorized caller can instead send `ignoreWarnings: true` to force-publish it. A locked Config cannot be published. A 422 response lists every blocking gate and the available resolution. Publishing a schema change also normalizes descendant Configs according to their inheritance rules. */
-export const postConfigRevisionPublish: API.OperationMethod<
-  PostConfigRevisionPublishRequest,
-  PostConfigRevisionPublishResponse,
-  PostConfigRevisionPublishError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostConfigRevisionPublishRequest,
-  output: PostConfigRevisionPublishResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostConfigRevisionRebaseError = GrowthBookOpError;
-/** Rebase a draft revision onto the current live config Updates the draft's base snapshot to the current live state, applying the draft's changes on top. Supply `conflictResolutions` to resolve any conflicting fields. Strategies are `overwrite` (use the draft's value), `discard` (keep the live value), or `union` (merge arrays without duplicates — for array fields like `extends`; pass a `customValues` entry to supply the resolved array yourself). */
-export const postConfigRevisionRebase: API.OperationMethod<
-  PostConfigRevisionRebaseRequest,
-  PostConfigRevisionRebaseResponse,
-  PostConfigRevisionRebaseError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostConfigRevisionRebaseRequest,
-  output: PostConfigRevisionRebaseResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostConfigRevisionRecallReviewError = GrowthBookOpError;
-/** Recall a review request Pulls a revision in review (`pending-review`, `changes-requested`, or `approved`) back to `draft`, clearing existing reviews and disarming any auto-publish-on-approval. */
-export const postConfigRevisionRecallReview: API.OperationMethod<
-  PostConfigRevisionRecallReviewRequest,
-  PostConfigRevisionRecallReviewResponse,
-  PostConfigRevisionRecallReviewError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostConfigRevisionRecallReviewRequest,
-  output: PostConfigRevisionRecallReviewResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostConfigRevisionReopenError = GrowthBookOpError;
-/** Reopen a discarded revision Returns a previously discarded revision to `draft` status so it can be edited and published again. Only discarded revisions can be reopened. */
-export const postConfigRevisionReopen: API.OperationMethod<
-  PostConfigRevisionReopenRequest,
-  PostConfigRevisionReopenResponse,
-  PostConfigRevisionReopenError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostConfigRevisionReopenRequest,
-  output: PostConfigRevisionReopenResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostConfigRevisionRequestReviewError = GrowthBookOpError;
-/** Request review for a draft revision Moves the draft from `draft` into `pending-review`. Notifies reviewers per the org's approval-flow settings. Set `autoPublishOnApproval` to `true` to publish the revision automatically the moment it is approved. This requires the org to have auto-publish-on-approval enabled and the caller to have publish permission on the config. */
-export const postConfigRevisionRequestReview: API.OperationMethod<
-  PostConfigRevisionRequestReviewRequest,
-  PostConfigRevisionRequestReviewResponse,
-  PostConfigRevisionRequestReviewError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostConfigRevisionRequestReviewRequest,
-  output: PostConfigRevisionRequestReviewResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostConfigRevisionRevertError = GrowthBookOpError;
-/** Revert the config to a prior revision Creates a new draft (or immediately publishes) whose content matches the specified historical revision. Defaults to creating a draft; when the org enables 'reverts bypass approval' it defaults to publishing immediately. Pass `strategy` to override. */
-export const postConfigRevisionRevert: API.OperationMethod<
-  PostConfigRevisionRevertRequest,
-  PostConfigRevisionRevertResponse,
-  PostConfigRevisionRevertError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostConfigRevisionRevertRequest,
-  output: PostConfigRevisionRevertResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostConfigRevisionSchedulePublishError = GrowthBookOpError;
-/** Schedule (or cancel) a deferred publish Arms a revision to publish automatically at a future time. Pass `scheduledPublishAt` as an RFC3339 timestamp in the future to arm, or `null` to cancel a pending schedule. Requires the `scheduled-revisions` commercial feature and publish permission on the config. A draft that still requires approval must request review first (or be armed with `bypassApproval` by a caller who can bypass). */
-export const postConfigRevisionSchedulePublish: API.OperationMethod<
-  PostConfigRevisionSchedulePublishRequest,
-  PostConfigRevisionSchedulePublishResponse,
-  PostConfigRevisionSchedulePublishError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostConfigRevisionSchedulePublishRequest,
-  output: PostConfigRevisionSchedulePublishResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostConfigRevisionSubmitReviewError = GrowthBookOpError;
-/** Submit a review on a draft revision Submits an `approve`, `request-changes`, or `comment` review on the revision. Submitting `approve` or `request-changes` needs Review access. A `comment` is participation rather than a verdict, so it is also open to the Comments permission or draft authority on the entity. Authors and contributors cannot submit `approve` reviews on their own drafts when the org has `blockSelfApproval` enabled. When `decision` is `approve` and the revision has `autoPublishOnApproval` enabled, the revision is automatically published after approval. The response includes `autoPublished: true` when this happens. Pass `skipAutoPublish: true` to approve without triggering auto-publish. */
-export const postConfigRevisionSubmitReview: API.OperationMethod<
-  PostConfigRevisionSubmitReviewRequest,
-  PostConfigRevisionSubmitReviewResponse,
-  PostConfigRevisionSubmitReviewError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostConfigRevisionSubmitReviewRequest,
-  output: PostConfigRevisionSubmitReviewResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostConfigRevisionUndoReviewError = GrowthBookOpError;
-/** Retract your own review verdict Retracts the calling user's own active `approve` or `request-changes` verdict, returning the revision to `pending-review`. Review comments stay in the log. Retracting a `request-changes` can leave the revision approved by someone else, in which case an armed auto-publish fires. */
-export const postConfigRevisionUndoReview: API.OperationMethod<
-  PostConfigRevisionUndoReviewRequest,
-  PostConfigRevisionUndoReviewResponse,
-  PostConfigRevisionUndoReviewError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostConfigRevisionUndoReviewRequest,
-  output: PostConfigRevisionUndoReviewResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostConstantError = GrowthBookOpError;
-/** Create a single constant */
-export const postConstant: API.OperationMethod<
-  PostConstantRequest,
-  PostConstantResponse,
-  PostConstantError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostConstantRequest,
-  output: PostConstantResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostConstantRevisionError = GrowthBookOpError;
-/** Create a draft revision Creates a new draft revision branched from the current live constant. A constant can have multiple concurrent drafts; use this to start an isolated line of edits. */
-export const postConstantRevision: API.OperationMethod<
-  PostConstantRevisionRequest,
-  PostConstantRevisionResponse,
-  PostConstantRevisionError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostConstantRevisionRequest,
-  output: PostConstantRevisionResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostConstantRevisionDiscardError = GrowthBookOpError;
-/** Discard a draft revision Permanently discards a draft revision. Only open revisions (not merged or already-discarded) can be discarded. */
-export const postConstantRevisionDiscard: API.OperationMethod<
-  PostConstantRevisionDiscardRequest,
-  PostConstantRevisionDiscardResponse,
-  PostConstantRevisionDiscardError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostConstantRevisionDiscardRequest,
-  output: PostConstantRevisionDiscardResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostConstantRevisionPublishError = GrowthBookOpError;
-/** Publish a draft revision Publishes the draft and makes its changes live. The caller needs Publish access for the affected environments. When approval is required, the draft must be approved unless the caller has Bypass draft approvals access. If the organization requires rebasing, an out-of-date draft must be rebased first; an authorized caller can instead send `ignoreWarnings: true` to force-publish it. A 422 response lists every blocking gate and the available resolution. */
-export const postConstantRevisionPublish: API.OperationMethod<
-  PostConstantRevisionPublishRequest,
-  PostConstantRevisionPublishResponse,
-  PostConstantRevisionPublishError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostConstantRevisionPublishRequest,
-  output: PostConstantRevisionPublishResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostConstantRevisionRebaseError = GrowthBookOpError;
-/** Rebase a draft revision onto the current live constant Updates the draft's base snapshot to the current live state, applying the draft's changes on top. Supply `conflictResolutions` to resolve any conflicting fields. Strategies are `overwrite` (use the draft's value) or `discard` (keep the live value). */
-export const postConstantRevisionRebase: API.OperationMethod<
-  PostConstantRevisionRebaseRequest,
-  PostConstantRevisionRebaseResponse,
-  PostConstantRevisionRebaseError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostConstantRevisionRebaseRequest,
-  output: PostConstantRevisionRebaseResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostConstantRevisionRecallReviewError = GrowthBookOpError;
-/** Recall a review request Pulls a revision in review (`pending-review`, `changes-requested`, or `approved`) back to `draft`, clearing existing reviews and disarming any auto-publish-on-approval. */
-export const postConstantRevisionRecallReview: API.OperationMethod<
-  PostConstantRevisionRecallReviewRequest,
-  PostConstantRevisionRecallReviewResponse,
-  PostConstantRevisionRecallReviewError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostConstantRevisionRecallReviewRequest,
-  output: PostConstantRevisionRecallReviewResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostConstantRevisionReopenError = GrowthBookOpError;
-/** Reopen a discarded revision Returns a previously discarded revision to `draft` status so it can be edited and published again. Only discarded revisions can be reopened. */
-export const postConstantRevisionReopen: API.OperationMethod<
-  PostConstantRevisionReopenRequest,
-  PostConstantRevisionReopenResponse,
-  PostConstantRevisionReopenError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostConstantRevisionReopenRequest,
-  output: PostConstantRevisionReopenResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostConstantRevisionRequestReviewError = GrowthBookOpError;
-/** Request review for a draft revision Moves the draft from `draft` into `pending-review`. Notifies reviewers per the org's approval-flow settings. Set `autoPublishOnApproval` to `true` to publish the revision automatically the moment it is approved. This requires the org to have auto-publish-on-approval enabled and the caller to have publish permission on the constant. */
-export const postConstantRevisionRequestReview: API.OperationMethod<
-  PostConstantRevisionRequestReviewRequest,
-  PostConstantRevisionRequestReviewResponse,
-  PostConstantRevisionRequestReviewError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostConstantRevisionRequestReviewRequest,
-  output: PostConstantRevisionRequestReviewResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostConstantRevisionRevertError = GrowthBookOpError;
-/** Revert the constant to a prior revision Creates a new draft (or immediately publishes) whose content matches the specified historical revision. Defaults to creating a draft; when the org enables 'reverts bypass approval' it defaults to publishing immediately. Pass `strategy` to override. */
-export const postConstantRevisionRevert: API.OperationMethod<
-  PostConstantRevisionRevertRequest,
-  PostConstantRevisionRevertResponse,
-  PostConstantRevisionRevertError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostConstantRevisionRevertRequest,
-  output: PostConstantRevisionRevertResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostConstantRevisionSchedulePublishError = GrowthBookOpError;
-/** Schedule (or cancel) a deferred publish Arms a revision to publish automatically at a future time. Pass `scheduledPublishAt` as an RFC3339 timestamp in the future to arm, or `null` to cancel a pending schedule. Requires the `scheduled-revisions` commercial feature and publish permission on the Constant. A draft that still requires approval must request review first (or be armed with `bypassApproval` by a caller who can bypass). */
-export const postConstantRevisionSchedulePublish: API.OperationMethod<
-  PostConstantRevisionSchedulePublishRequest,
-  PostConstantRevisionSchedulePublishResponse,
-  PostConstantRevisionSchedulePublishError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostConstantRevisionSchedulePublishRequest,
-  output: PostConstantRevisionSchedulePublishResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostConstantRevisionSubmitReviewError = GrowthBookOpError;
-/** Submit a review on a draft revision Submits an `approve`, `request-changes`, or `comment` review on the revision. Submitting `approve` or `request-changes` needs Review access. A `comment` is participation rather than a verdict, so it is also open to the Comments permission or draft authority on the entity. Authors and contributors cannot submit `approve` reviews on their own drafts when the org has `blockSelfApproval` enabled. When `decision` is `approve` and the revision has `autoPublishOnApproval` enabled, the revision is automatically published after approval. The response includes `autoPublished: true` when this happens. Pass `skipAutoPublish: true` to approve without triggering auto-publish. */
-export const postConstantRevisionSubmitReview: API.OperationMethod<
-  PostConstantRevisionSubmitReviewRequest,
-  PostConstantRevisionSubmitReviewResponse,
-  PostConstantRevisionSubmitReviewError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostConstantRevisionSubmitReviewRequest,
-  output: PostConstantRevisionSubmitReviewResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostConstantRevisionUndoReviewError = GrowthBookOpError;
-/** Retract your own review verdict Retracts the calling user's own active `approve` or `request-changes` verdict, returning the revision to `pending-review`. Review comments stay in the log. Retracting a `request-changes` can leave the revision approved by someone else, in which case an armed auto-publish fires. */
-export const postConstantRevisionUndoReview: API.OperationMethod<
-  PostConstantRevisionUndoReviewRequest,
-  PostConstantRevisionUndoReviewResponse,
-  PostConstantRevisionUndoReviewError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostConstantRevisionUndoReviewRequest,
-  output: PostConstantRevisionUndoReviewResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
 export type PostCopyTransformError = GrowthBookOpError;
 export const postCopyTransform: API.OperationMethod<
   PostCopyTransformRequest,
@@ -62186,21 +62772,6 @@ export const postCopyTransform: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: PostCopyTransformRequest,
   output: PostCopyTransformResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostCustomHookError = GrowthBookOpError;
-/** Create a single custom hook */
-export const postCustomHook: API.OperationMethod<
-  PostCustomHookRequest,
-  PostCustomHookResponse,
-  PostCustomHookError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostCustomHookRequest,
-  output: PostCustomHookResponse,
   errors: [UnknownGrowthBookError],
   protocol: GrowthBookProtocol,
   retry: Retry.Retry,
@@ -62217,128 +62788,6 @@ export const postDataSourceExploration: API.OperationMethod<
   input: PostDataSourceExplorationRequest,
   output: PostDataSourceExplorationResponse,
   errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostDimensionError = GrowthBookOpError;
-/** Create a single dimension */
-export const postDimension: API.OperationMethod<
-  PostDimensionRequest,
-  PostDimensionResponse,
-  PostDimensionError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostDimensionRequest,
-  output: PostDimensionResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostEnvironmentError = GrowthBookOpError;
-/** Create a new environment */
-export const postEnvironment: API.OperationMethod<
-  PostEnvironmentRequest,
-  PostEnvironmentResponse,
-  PostEnvironmentError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostEnvironmentRequest,
-  output: PostEnvironmentResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostExperimentError = GrowthBookOpError;
-/** Create a single experiment */
-export const postExperiment: API.OperationMethod<
-  PostExperimentRequest,
-  PostExperimentResponse,
-  PostExperimentError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostExperimentRequest,
-  output: PostExperimentResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostExperimentModifyTemporaryRolloutError =
-  | Conflict
-  | GrowthBookOpError;
-/** Modify temporary rollout status for a stopped experiment */
-export const postExperimentModifyTemporaryRollout: API.OperationMethod<
-  PostExperimentModifyTemporaryRolloutRequest,
-  PostExperimentModifyTemporaryRolloutResponse,
-  PostExperimentModifyTemporaryRolloutError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostExperimentModifyTemporaryRolloutRequest,
-  output: PostExperimentModifyTemporaryRolloutResponse,
-  errors: [Conflict, UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostExperimentSnapshotError = Conflict | GrowthBookOpError;
-/** Create Experiment Snapshot */
-export const postExperimentSnapshot: API.OperationMethod<
-  PostExperimentSnapshotRequest,
-  PostExperimentSnapshotResponse,
-  PostExperimentSnapshotError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostExperimentSnapshotRequest,
-  output: PostExperimentSnapshotResponse,
-  errors: [Conflict, UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostExperimentStartError = Conflict | GrowthBookOpError;
-/** Start/Stage an experiment Starts an experiment or stages it for a future start if a `statusUpdateSchedule` is set on the experiment. */
-export const postExperimentStart: API.OperationMethod<
-  PostExperimentStartRequest,
-  PostExperimentStartResponse,
-  PostExperimentStartError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostExperimentStartRequest,
-  output: PostExperimentStartResponse,
-  errors: [Conflict, UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostExperimentStartChecklistManualCompleteError = GrowthBookOpError;
-/** Mark manual pre-launch checklist items complete */
-export const postExperimentStartChecklistManualComplete: API.OperationMethod<
-  PostExperimentStartChecklistManualCompleteRequest,
-  PostExperimentStartChecklistManualCompleteResponse,
-  PostExperimentStartChecklistManualCompleteError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostExperimentStartChecklistManualCompleteRequest,
-  output: PostExperimentStartChecklistManualCompleteResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostExperimentStopError = Conflict | GrowthBookOpError;
-/** Stop an experiment */
-export const postExperimentStop: API.OperationMethod<
-  PostExperimentStopRequest,
-  PostExperimentStopResponse,
-  PostExperimentStopError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostExperimentStopRequest,
-  output: PostExperimentStopResponse,
-  errors: [Conflict, UnknownGrowthBookError],
   protocol: GrowthBookProtocol,
   retry: Retry.Retry,
 }));
@@ -62373,21 +62822,6 @@ export const postFactMetricAnalysis: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PostFactTableError = GrowthBookOpError;
-/** Create a single fact table */
-export const postFactTable: API.OperationMethod<
-  PostFactTableRequest,
-  PostFactTableResponse,
-  PostFactTableError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostFactTableRequest,
-  output: PostFactTableResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
 export type PostFactTableExplorationError = GrowthBookOpError;
 /** Run a Fact Table based visualization */
 export const postFactTableExploration: API.OperationMethod<
@@ -62398,36 +62832,6 @@ export const postFactTableExploration: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: PostFactTableExplorationRequest,
   output: PostFactTableExplorationResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostFactTableFilterError = GrowthBookOpError;
-/** Create a single fact table filter */
-export const postFactTableFilter: API.OperationMethod<
-  PostFactTableFilterRequest,
-  PostFactTableFilterResponse,
-  PostFactTableFilterError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostFactTableFilterRequest,
-  output: PostFactTableFilterResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostFactTableVirtualColumnError = GrowthBookOpError;
-/** Create a virtual (computed) column on a fact table */
-export const postFactTableVirtualColumn: API.OperationMethod<
-  PostFactTableVirtualColumnRequest,
-  PostFactTableVirtualColumnResponse,
-  PostFactTableVirtualColumnError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostFactTableVirtualColumnRequest,
-  output: PostFactTableVirtualColumnResponse,
   errors: [UnknownGrowthBookError],
   protocol: GrowthBookProtocol,
   retry: Retry.Retry,
@@ -62713,366 +63117,6 @@ export const postMetricExploration: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: PostMetricExplorationRequest,
   output: PostMetricExplorationResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostNamespaceError = GrowthBookOpError;
-/** Create a namespace */
-export const postNamespace: API.OperationMethod<
-  PostNamespaceRequest,
-  PostNamespaceResponse,
-  PostNamespaceError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostNamespaceRequest,
-  output: PostNamespaceResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostNamespaceRotateSeedError = GrowthBookOpError;
-/** Rotate namespace seed ⚠️ Dangerous: sets a new seed for a multiRange namespace. Every user's bucket position within the namespace is re-computed immediately, which re-randomizes traffic eligibility for **all** experiments currently using this namespace. Only do this if you intentionally want to reshuffle all allocations across experiments. This could be useful when re-using a namespace for a new set of experiments. */
-export const postNamespaceRotateSeed: API.OperationMethod<
-  PostNamespaceRotateSeedRequest,
-  PostNamespaceRotateSeedResponse,
-  PostNamespaceRotateSeedError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostNamespaceRotateSeedRequest,
-  output: PostNamespaceRotateSeedResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostOrganizationError = GrowthBookOpError;
-/** Create a single organization (only for super admins on multi-org Enterprise Plan only) */
-export const postOrganization: API.OperationMethod<
-  PostOrganizationRequest,
-  PostOrganizationResponse,
-  PostOrganizationError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostOrganizationRequest,
-  output: PostOrganizationResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostProjectError = GrowthBookOpError;
-/** Create a single project */
-export const postProject: API.OperationMethod<
-  PostProjectRequest,
-  PostProjectResponse,
-  PostProjectError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostProjectRequest,
-  output: PostProjectResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostRampScheduleError = GrowthBookOpError;
-/** Create a ramp schedule */
-export const postRampSchedule: API.OperationMethod<
-  PostRampScheduleRequest,
-  PostRampScheduleResponse,
-  PostRampScheduleError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostRampScheduleRequest,
-  output: PostRampScheduleResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostReleasePublishRevisionsError = GrowthBookOpError;
-/** Atomically publish revisions across multiple entities Publishes a set of revisions — at most one per entity — across Feature Flags, Saved Groups, configs, and constants as a single all-or-nothing operation. Validation, guards, and custom hooks run against the combined end-state of the whole set, so interdependent changes (e.g. a config schema change plus the values that depend on it) publish together even when the in-between states would be invalid. A blocked publish returns one 422 listing every gate across every item and the flag that clears each. A concurrent change to any target aborts with a 409 and nothing publishes. A failure after the commit starts rolls everything back and emits `revision.publishFailed` for each revision in the set. SDK payloads refresh once per request. Pass `dryRun: true` for the full gate report with zero writes. Requires the `releases` commercial feature. */
-export const postReleasePublishRevisions: API.OperationMethod<
-  PostReleasePublishRevisionsRequest,
-  PostReleasePublishRevisionsResponse,
-  PostReleasePublishRevisionsError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostReleasePublishRevisionsRequest,
-  output: PostReleasePublishRevisionsResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostReportError = GrowthBookOpError;
-/** Create a new report */
-export const postReport: API.OperationMethod<
-  PostReportRequest,
-  PostReportResponse,
-  PostReportError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostReportRequest,
-  output: PostReportResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostReportRefreshError = GrowthBookOpError;
-/** Refresh a report by re-running its analysis */
-export const postReportRefresh: API.OperationMethod<
-  PostReportRefreshRequest,
-  PostReportRefreshResponse,
-  PostReportRefreshError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostReportRefreshRequest,
-  output: PostReportRefreshResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostSavedGroupError = GrowthBookOpError;
-/** Create a single saved group */
-export const postSavedGroup: API.OperationMethod<
-  PostSavedGroupRequest,
-  PostSavedGroupResponse,
-  PostSavedGroupError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostSavedGroupRequest,
-  output: PostSavedGroupResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostSavedGroupRevisionError = GrowthBookOpError;
-/** Create a draft revision Creates a new draft revision branched from the current live saved group. A saved group can have multiple concurrent drafts; use this to start an isolated line of edits. */
-export const postSavedGroupRevision: API.OperationMethod<
-  PostSavedGroupRevisionRequest,
-  PostSavedGroupRevisionResponse,
-  PostSavedGroupRevisionError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostSavedGroupRevisionRequest,
-  output: PostSavedGroupRevisionResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostSavedGroupRevisionDiscardError = GrowthBookOpError;
-/** Discard a draft revision Permanently discards a draft revision. Only open revisions (not merged or already-discarded) can be discarded. */
-export const postSavedGroupRevisionDiscard: API.OperationMethod<
-  PostSavedGroupRevisionDiscardRequest,
-  PostSavedGroupRevisionDiscardResponse,
-  PostSavedGroupRevisionDiscardError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostSavedGroupRevisionDiscardRequest,
-  output: PostSavedGroupRevisionDiscardResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostSavedGroupRevisionItemsAddError = GrowthBookOpError;
-/** Append items to a list saved group draft revision Appends the provided items (deduplicated) to the draft's `values` array. Only valid for `list` saved groups. Pass `version: "new"` to auto-create a draft. Duplicate items are merged on top of any existing draft, so multiple successive add/remove calls accumulate. */
-export const postSavedGroupRevisionItemsAdd: API.OperationMethod<
-  PostSavedGroupRevisionItemsAddRequest,
-  PostSavedGroupRevisionItemsAddResponse,
-  PostSavedGroupRevisionItemsAddError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostSavedGroupRevisionItemsAddRequest,
-  output: PostSavedGroupRevisionItemsAddResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostSavedGroupRevisionItemsRemoveError = GrowthBookOpError;
-/** Remove items from a list saved group draft revision Removes the provided items from the draft's `values` array. Only valid for `list` saved groups. Pass `version: "new"` to auto-create a draft. */
-export const postSavedGroupRevisionItemsRemove: API.OperationMethod<
-  PostSavedGroupRevisionItemsRemoveRequest,
-  PostSavedGroupRevisionItemsRemoveResponse,
-  PostSavedGroupRevisionItemsRemoveError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostSavedGroupRevisionItemsRemoveRequest,
-  output: PostSavedGroupRevisionItemsRemoveResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostSavedGroupRevisionPublishError = GrowthBookOpError;
-/** Publish a draft revision Publishes the draft and applies its changes to the live Saved Group. The caller needs Publish access in every assigned Project. When approval is required, the draft must be approved unless the caller has Bypass draft approvals access. If the organization requires rebasing, an out-of-date draft must be rebased first; an authorized caller can instead send `ignoreWarnings: true` to force-publish it. A 422 response lists every blocking gate and the available resolution. */
-export const postSavedGroupRevisionPublish: API.OperationMethod<
-  PostSavedGroupRevisionPublishRequest,
-  PostSavedGroupRevisionPublishResponse,
-  PostSavedGroupRevisionPublishError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostSavedGroupRevisionPublishRequest,
-  output: PostSavedGroupRevisionPublishResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostSavedGroupRevisionRebaseError = GrowthBookOpError;
-/** Rebase a draft revision onto the current live saved group Updates the draft's base snapshot to the current live state, applying the draft's changes on top. Supply `conflictResolutions` to resolve any conflicting fields. Strategies are `overwrite` (use the draft's value), `discard` (keep the live value), or `union` (merge arrays — use only on `values`). Optimistic locking is not enforced by this endpoint; callers who need strict locking should call `merge-status` before and after. */
-export const postSavedGroupRevisionRebase: API.OperationMethod<
-  PostSavedGroupRevisionRebaseRequest,
-  PostSavedGroupRevisionRebaseResponse,
-  PostSavedGroupRevisionRebaseError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostSavedGroupRevisionRebaseRequest,
-  output: PostSavedGroupRevisionRebaseResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostSavedGroupRevisionRecallReviewError = GrowthBookOpError;
-/** Recall a review request Pulls a revision in review (`pending-review`, `changes-requested`, or `approved`) back to `draft`, clearing existing reviews and disarming any auto-publish-on-approval. */
-export const postSavedGroupRevisionRecallReview: API.OperationMethod<
-  PostSavedGroupRevisionRecallReviewRequest,
-  PostSavedGroupRevisionRecallReviewResponse,
-  PostSavedGroupRevisionRecallReviewError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostSavedGroupRevisionRecallReviewRequest,
-  output: PostSavedGroupRevisionRecallReviewResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostSavedGroupRevisionReopenError = GrowthBookOpError;
-/** Reopen a discarded revision Returns a previously discarded revision to `draft` status so it can be edited and published again. Only discarded revisions can be reopened. */
-export const postSavedGroupRevisionReopen: API.OperationMethod<
-  PostSavedGroupRevisionReopenRequest,
-  PostSavedGroupRevisionReopenResponse,
-  PostSavedGroupRevisionReopenError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostSavedGroupRevisionReopenRequest,
-  output: PostSavedGroupRevisionReopenResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostSavedGroupRevisionRequestReviewError = GrowthBookOpError;
-/** Request review for a draft revision Moves the draft from `draft` into `pending-review`. Notifies reviewers per the org's approval-flow settings. Set `autoPublishOnApproval` to `true` to publish the revision automatically the moment it is approved (GitHub auto-merge model). This requires the org to have auto-publish-on-approval enabled and the caller to have publish permission on the saved group; the auto-publish then executes with the caller's authority. */
-export const postSavedGroupRevisionRequestReview: API.OperationMethod<
-  PostSavedGroupRevisionRequestReviewRequest,
-  PostSavedGroupRevisionRequestReviewResponse,
-  PostSavedGroupRevisionRequestReviewError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostSavedGroupRevisionRequestReviewRequest,
-  output: PostSavedGroupRevisionRequestReviewResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostSavedGroupRevisionRevertError = GrowthBookOpError;
-/** Revert the saved group to a prior revision Creates a new draft (or immediately publishes) whose content matches the specified historical revision. Defaults to creating a draft; when the org enables 'reverts bypass approval' it defaults to publishing immediately. Pass `strategy` to override. */
-export const postSavedGroupRevisionRevert: API.OperationMethod<
-  PostSavedGroupRevisionRevertRequest,
-  PostSavedGroupRevisionRevertResponse,
-  PostSavedGroupRevisionRevertError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostSavedGroupRevisionRevertRequest,
-  output: PostSavedGroupRevisionRevertResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostSavedGroupRevisionSchedulePublishError = GrowthBookOpError;
-/** Schedule (or cancel) a deferred publish Arms a revision to publish automatically at a future time. Pass `scheduledPublishAt` as an RFC3339 timestamp in the future to arm, or `null` to cancel a pending schedule. Requires the `scheduled-revisions` commercial feature and publish permission on the Saved Group. A draft that still requires approval must request review first (or be armed with `bypassApproval` by a caller who can bypass). */
-export const postSavedGroupRevisionSchedulePublish: API.OperationMethod<
-  PostSavedGroupRevisionSchedulePublishRequest,
-  PostSavedGroupRevisionSchedulePublishResponse,
-  PostSavedGroupRevisionSchedulePublishError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostSavedGroupRevisionSchedulePublishRequest,
-  output: PostSavedGroupRevisionSchedulePublishResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostSavedGroupRevisionSubmitReviewError = GrowthBookOpError;
-/** Submit a review on a draft revision Submits an `approve`, `request-changes`, or `comment` review on the revision. Submitting `approve` or `request-changes` needs Review access. A `comment` is participation rather than a verdict, so it is also open to the Comments permission or draft authority on the entity. Authors and contributors cannot submit `approve` reviews on their own drafts when the org has `blockSelfApproval` enabled. When `decision` is `approve` and the revision has `autoPublishOnApproval` enabled, the revision is automatically published after approval. The response includes `autoPublished: true` when this happens. Pass `skipAutoPublish: true` to approve without triggering auto-publish. */
-export const postSavedGroupRevisionSubmitReview: API.OperationMethod<
-  PostSavedGroupRevisionSubmitReviewRequest,
-  PostSavedGroupRevisionSubmitReviewResponse,
-  PostSavedGroupRevisionSubmitReviewError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostSavedGroupRevisionSubmitReviewRequest,
-  output: PostSavedGroupRevisionSubmitReviewResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostSavedGroupRevisionUndoReviewError = GrowthBookOpError;
-/** Retract your own review verdict Retracts the calling user's own active `approve` or `request-changes` verdict, returning the revision to `pending-review`. Review comments stay in the log. Retracting a `request-changes` can leave the revision approved by someone else, in which case an armed auto-publish fires. */
-export const postSavedGroupRevisionUndoReview: API.OperationMethod<
-  PostSavedGroupRevisionUndoReviewRequest,
-  PostSavedGroupRevisionUndoReviewResponse,
-  PostSavedGroupRevisionUndoReviewError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostSavedGroupRevisionUndoReviewRequest,
-  output: PostSavedGroupRevisionUndoReviewResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostSdkConnectionError = GrowthBookOpError;
-/** Create a single sdk connection */
-export const postSdkConnection: API.OperationMethod<
-  PostSdkConnectionRequest,
-  PostSdkConnectionResponse,
-  PostSdkConnectionError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostSdkConnectionRequest,
-  output: PostSdkConnectionResponse,
-  errors: [UnknownGrowthBookError],
-  protocol: GrowthBookProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostSegmentError = GrowthBookOpError;
-/** Create a single segment */
-export const postSegment: API.OperationMethod<
-  PostSegmentRequest,
-  PostSegmentResponse,
-  PostSegmentError,
-  GrowthBookOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostSegmentRequest,
-  output: PostSegmentResponse,
   errors: [UnknownGrowthBookError],
   protocol: GrowthBookProtocol,
   retry: Retry.Retry,
@@ -64023,6 +64067,21 @@ export const updateConfig: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type UpdateConfigRevisionError = GrowthBookOpError;
+/** Create a draft revision Creates a new draft revision branched from the current live config. A config can have multiple concurrent drafts; use this to start an isolated line of edits. */
+export const updateConfigRevision: API.OperationMethod<
+  UpdateConfigRevisionRequest,
+  UpdateConfigRevisionResponse,
+  UpdateConfigRevisionError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateConfigRevisionRequest,
+  output: UpdateConfigRevisionResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
 export type UpdateConstantError = GrowthBookOpError;
 /** Partially update a single constant Applies the change immediately and records it as a published revision, so it appears in history and fires revision webhooks. When the organization requires approvals, open a draft instead or pass `bypassApproval` with the bypass permission. */
 export const updateConstant: API.OperationMethod<
@@ -64033,6 +64092,21 @@ export const updateConstant: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: UpdateConstantRequest,
   output: UpdateConstantResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateConstantRevisionError = GrowthBookOpError;
+/** Create a draft revision Creates a new draft revision branched from the current live constant. A constant can have multiple concurrent drafts; use this to start an isolated line of edits. */
+export const updateConstantRevision: API.OperationMethod<
+  UpdateConstantRevisionRequest,
+  UpdateConstantRevisionResponse,
+  UpdateConstantRevisionError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateConstantRevisionRequest,
+  output: UpdateConstantRevisionResponse,
   errors: [UnknownGrowthBookError],
   protocol: GrowthBookProtocol,
   retry: Retry.Retry,
@@ -64393,6 +64467,21 @@ export const updateSavedGroup: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: UpdateSavedGroupRequest,
   output: UpdateSavedGroupResponse,
+  errors: [UnknownGrowthBookError],
+  protocol: GrowthBookProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateSavedGroupRevisionError = GrowthBookOpError;
+/** Create a draft revision Creates a new draft revision branched from the current live saved group. A saved group can have multiple concurrent drafts; use this to start an isolated line of edits. */
+export const updateSavedGroupRevision: API.OperationMethod<
+  UpdateSavedGroupRevisionRequest,
+  UpdateSavedGroupRevisionResponse,
+  UpdateSavedGroupRevisionError,
+  GrowthBookOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateSavedGroupRevisionRequest,
+  output: UpdateSavedGroupRevisionResponse,
   errors: [UnknownGrowthBookError],
   protocol: GrowthBookProtocol,
   retry: Retry.Retry,

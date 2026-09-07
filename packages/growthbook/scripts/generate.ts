@@ -124,8 +124,9 @@ runGeneratorCli({
       )?.[0];
       if (!items) continue;
       shape.traits ??= {};
+      // `nextOffset` is fed back as `offset` verbatim — token semantics.
       shape.traits[PAGINATED_TRAIT] = {
-        mode: "offset",
+        mode: "token",
         inputToken: "offset",
         outputToken: "nextOffset",
         items,
