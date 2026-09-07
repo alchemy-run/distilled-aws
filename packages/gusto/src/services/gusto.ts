@@ -41,442 +41,633 @@ export class UnprocessableEntity
     [{ status: 422 }],
   ) {}
 
-export interface DeleteDepartmentRequest {
-  /** The UUID of the department */
-  department_uuid: string;
+export type CreateCompanyCompanyBenefitRequestCatchUpType =
+  | "elective"
+  | "deemed";
+export const CreateCompanyCompanyBenefitRequestCatchUpType =
+  /*@__PURE__*/ S.String;
+
+export interface CreateCompanyCompanyBenefitRequest {
+  /** The UUID of the company */
+  company_id: string;
+  /** Whether this benefit is active for employee participation. */
+  active?: boolean;
+  /** The ID of the benefit to which the company benefit belongs. */
+  benefit_type?: number;
+  /** The type of catch-up contribution for this benefit, as required by Section 603 of the SECURE 2.0 Act. Only applicable to pre-tax 401(k) and 403(b) benefits. */
+  catch_up_type?:
+    | CreateCompanyCompanyBenefitRequestCatchUpType
+    | (string & {})
+    | null;
+  /** The description of the company benefit.For example, a company may offer multiple benefits with an ID of 1 (for Medical Insurance). The description would show something more specific like "Kaiser Permanente" or "Blue Cross/ Blue Shield". */
+  description: string;
+  /** Whether the employer is subject to file W-2 forms for an employee on leave. Only applicable to third party sick pay benefits. */
+  responsible_for_employee_w2?: boolean;
+  /** Whether the employer is subject to pay employer taxes when an employee is on leave. Only applicable to third party sick pay benefits. */
+  responsible_for_employer_taxes?: boolean;
 }
-export const DeleteDepartmentRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateCompanyCompanyBenefitRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    department_uuid: S.String.pipe(T.Label()),
+    company_id: S.String.pipe(T.Label()),
+    active: S.optional(S.Boolean),
+    benefit_type: S.optional(S.Number),
+    catch_up_type: S.optional(
+      S.NullOr(CreateCompanyCompanyBenefitRequestCatchUpType),
+    ),
+    description: S.String,
+    responsible_for_employee_w2: S.optional(S.Boolean),
+    responsible_for_employer_taxes: S.optional(S.Boolean),
   }).pipe(
     T.Http({
-      method: "DELETE",
-      uri: "/v1/departments/{department_uuid}",
+      method: "POST",
+      uri: "/v1/companies/{company_id}/company_benefits",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "DeleteDepartmentRequest",
-}) as any as S.Schema<DeleteDepartmentRequest>;
+  identifier: "CreateCompanyCompanyBenefitRequest",
+}) as any as S.Schema<CreateCompanyCompanyBenefitRequest>;
 
-export interface DeleteDepartmentResponse {}
-export const DeleteDepartmentResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DeleteDepartmentResponse",
-}) as any as S.Schema<DeleteDepartmentResponse>;
+export type CompanyBenefitCatchUpType = "elective" | "deemed";
+export const CompanyBenefitCatchUpType = /*@__PURE__*/ S.String;
 
-export interface DeleteTimeTrackingTimeSheetsTimeSheetUuidRequest {
-  /** UUID of the time sheet */
-  time_sheet_uuid: string;
+/** The source of the company benefit. This can be "internal", "external", or "partnered". Company benefits created via the API default to "external". Certain partners can create company benefits with a source of "partnered". */
+export type CompanyBenefitSource = "internal" | "external" | "partnered";
+export const CompanyBenefitSource = /*@__PURE__*/ S.String;
+
+/** The representation of a company benefit. */
+export interface CompanyBenefit {
+  /** Whether this benefit is active for employee participation. Company benefits may only be deactivated if no employees are actively participating. */
+  active?: boolean;
+  /** The type of the benefit to which the company benefit belongs. */
+  benefit_type?: number;
+  /** The type of catch-up contribution for this benefit, as required by Section 603 of the SECURE 2.0 Act. Only applicable to pre-tax 401(k) and 403(b) benefits. */
+  catch_up_type?: CompanyBenefitCatchUpType | null;
+  /** The UUID of the company. */
+  company_uuid?: string;
+  /** Whether this company benefit can be deleted. Deletable will be set to true if the benefit has not been used in payroll, has no employee benefits associated, and the benefit is not owned by Gusto or a Partner */
+  deletable?: boolean;
+  /** The description of the company benefit. For example, a company may offer multiple benefits with an ID of 1 (for Medical Insurance). The description would show something more specific like “Kaiser Permanente” or “Blue Cross/ Blue Shield”. */
+  description?: string;
+  /** The number of employees enrolled in the benefit, only returned when enrollment_count query param is set to true. */
+  enrollment_count?: number;
+  /** The partner name of the partner that created the company benefit. For example, "XYZ Corp". */
+  partner_name?: string | null;
+  /** Whether the employer is subject to file W-2 forms for an employee on leave. Only applicable to third party sick pay benefits. */
+  responsible_for_employee_w2?: boolean;
+  /** Whether the employer is subject to pay employer taxes when an employee is on leave. Only applicable to third party sick pay benefits. */
+  responsible_for_employer_taxes?: boolean;
+  /** The source of the company benefit. This can be "internal", "external", or "partnered". Company benefits created via the API default to "external". Certain partners can create company benefits with a source of "partnered". */
+  source?: CompanyBenefitSource;
+  /** Whether employee deductions and company contributions can be set as percentages of payroll for an individual employee. This is determined by the type of benefit and is not configurable by the company. */
+  supports_percentage_amounts?: boolean;
+  /** The UUID of the company benefit. */
+  uuid: string;
   /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
-  version: string;
+  version?: string;
 }
-export const DeleteTimeTrackingTimeSheetsTimeSheetUuidRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      time_sheet_uuid: S.String.pipe(T.Label()),
-      version: S.String.pipe(T.Query()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/v1/time_tracking/time_sheets/{time_sheet_uuid}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "DeleteTimeTrackingTimeSheetsTimeSheetUuidRequest",
-  }) as any as S.Schema<DeleteTimeTrackingTimeSheetsTimeSheetUuidRequest>;
-
-export interface DeleteTimeTrackingTimeSheetsTimeSheetUuidResponse {}
-export const DeleteTimeTrackingTimeSheetsTimeSheetUuidResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteTimeTrackingTimeSheetsTimeSheetUuidResponse",
-  }) as any as S.Schema<DeleteTimeTrackingTimeSheetsTimeSheetUuidResponse>;
-
-export interface DeleteV1CompaniesCompanyIdEarningTypesEarningTypeUuidRequest {
-  /** The UUID of the company */
-  company_id: string;
-  /** The UUID of the earning type */
-  earning_type_uuid: string;
-}
-export const DeleteV1CompaniesCompanyIdEarningTypesEarningTypeUuidRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      company_id: S.String.pipe(T.Label()),
-      earning_type_uuid: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/v1/companies/{company_id}/earning_types/{earning_type_uuid}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "DeleteV1CompaniesCompanyIdEarningTypesEarningTypeUuidRequest",
-  }) as any as S.Schema<DeleteV1CompaniesCompanyIdEarningTypesEarningTypeUuidRequest>;
-
-export interface DeleteV1CompaniesCompanyIdEarningTypesEarningTypeUuidResponse {}
-export const DeleteV1CompaniesCompanyIdEarningTypesEarningTypeUuidResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteV1CompaniesCompanyIdEarningTypesEarningTypeUuidResponse",
-  }) as any as S.Schema<DeleteV1CompaniesCompanyIdEarningTypesEarningTypeUuidResponse>;
-
-export interface DeleteV1CompanyBenefitsCompanyBenefitIdRequest {
-  /** The UUID of the company benefit */
-  company_benefit_id: string;
-}
-export const DeleteV1CompanyBenefitsCompanyBenefitIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      company_benefit_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/v1/company_benefits/{company_benefit_id}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "DeleteV1CompanyBenefitsCompanyBenefitIdRequest",
-  }) as any as S.Schema<DeleteV1CompanyBenefitsCompanyBenefitIdRequest>;
-
-export interface DeleteV1CompanyBenefitsCompanyBenefitIdResponse {}
-export const DeleteV1CompanyBenefitsCompanyBenefitIdResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteV1CompanyBenefitsCompanyBenefitIdResponse",
-  }) as any as S.Schema<DeleteV1CompanyBenefitsCompanyBenefitIdResponse>;
-
-export interface DeleteV1CompensationsCompensationIdRequest {
-  /** The UUID of the compensation */
-  compensation_id: string;
-}
-export const DeleteV1CompensationsCompensationIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      compensation_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/v1/compensations/{compensation_id}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "DeleteV1CompensationsCompensationIdRequest",
-  }) as any as S.Schema<DeleteV1CompensationsCompensationIdRequest>;
-
-export interface DeleteV1CompensationsCompensationIdResponse {}
-export const DeleteV1CompensationsCompensationIdResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteV1CompensationsCompensationIdResponse",
-  }) as any as S.Schema<DeleteV1CompensationsCompensationIdResponse>;
-
-export interface DeleteV1EmployeeRequest {
-  /** The UUID of the employee */
-  employee_id: string;
-}
-export const DeleteV1EmployeeRequest = /*@__PURE__*/ S.suspend(() =>
+export const CompanyBenefit = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    employee_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "DELETE", uri: "/v1/employees/{employee_id}", code: 200 }),
-  ),
-).annotate({
-  identifier: "DeleteV1EmployeeRequest",
-}) as any as S.Schema<DeleteV1EmployeeRequest>;
+    active: S.optional(S.Boolean),
+    benefit_type: S.optional(S.Number),
+    catch_up_type: S.optional(S.NullOr(CompanyBenefitCatchUpType)),
+    company_uuid: S.optional(S.String),
+    deletable: S.optional(S.Boolean),
+    description: S.optional(S.String),
+    enrollment_count: S.optional(S.Number),
+    partner_name: S.optional(S.NullOr(S.String)),
+    responsible_for_employee_w2: S.optional(S.Boolean),
+    responsible_for_employer_taxes: S.optional(S.Boolean),
+    source: S.optional(CompanyBenefitSource),
+    supports_percentage_amounts: S.optional(S.Boolean),
+    uuid: S.String,
+    version: S.optional(S.String),
+  }),
+).annotate({ identifier: "CompanyBenefit" }) as any as S.Schema<CompanyBenefit>;
 
-export interface DeleteV1EmployeeResponse {}
-export const DeleteV1EmployeeResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DeleteV1EmployeeResponse",
-}) as any as S.Schema<DeleteV1EmployeeResponse>;
+/** The contractor type. */
+export type CreateCompanyContractorRequestType = "Individual" | "Business";
+export const CreateCompanyContractorRequestType = /*@__PURE__*/ S.String;
 
-export interface DeleteV1EmployeeBenefitsEmployeeBenefitIdRequest {
-  /** The UUID of the employee benefit. */
-  employee_benefit_id: string;
-}
-export const DeleteV1EmployeeBenefitsEmployeeBenefitIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      employee_benefit_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/v1/employee_benefits/{employee_benefit_id}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "DeleteV1EmployeeBenefitsEmployeeBenefitIdRequest",
-  }) as any as S.Schema<DeleteV1EmployeeBenefitsEmployeeBenefitIdRequest>;
+/** The contractor’s wage type. */
+export type CreateCompanyContractorRequestWageType = "Fixed" | "Hourly";
+export const CreateCompanyContractorRequestWageType = /*@__PURE__*/ S.String;
 
-export interface DeleteV1EmployeeBenefitsEmployeeBenefitIdResponse {}
-export const DeleteV1EmployeeBenefitsEmployeeBenefitIdResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteV1EmployeeBenefitsEmployeeBenefitIdResponse",
-  }) as any as S.Schema<DeleteV1EmployeeBenefitsEmployeeBenefitIdResponse>;
-
-export interface DeleteV1EmployeesEmployeeIdRehireRequest {
-  /** The UUID of the employee */
-  employee_id: string;
-}
-export const DeleteV1EmployeesEmployeeIdRehireRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      employee_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/v1/employees/{employee_id}/rehire",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "DeleteV1EmployeesEmployeeIdRehireRequest",
-}) as any as S.Schema<DeleteV1EmployeesEmployeeIdRehireRequest>;
-
-export interface DeleteV1EmployeesEmployeeIdRehireResponse {}
-export const DeleteV1EmployeesEmployeeIdRehireResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteV1EmployeesEmployeeIdRehireResponse",
-  }) as any as S.Schema<DeleteV1EmployeesEmployeeIdRehireResponse>;
-
-export interface DeleteV1EmployeesEmployeeIdTerminationsRequest {
-  /** The UUID of the employee */
-  employee_id: string;
-}
-export const DeleteV1EmployeesEmployeeIdTerminationsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      employee_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/v1/employees/{employee_id}/terminations",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "DeleteV1EmployeesEmployeeIdTerminationsRequest",
-  }) as any as S.Schema<DeleteV1EmployeesEmployeeIdTerminationsRequest>;
-
-export interface DeleteV1EmployeesEmployeeIdTerminationsResponse {}
-export const DeleteV1EmployeesEmployeeIdTerminationsResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteV1EmployeesEmployeeIdTerminationsResponse",
-  }) as any as S.Schema<DeleteV1EmployeesEmployeeIdTerminationsResponse>;
-
-export interface DeleteV1HomeAddressesHomeAddressUuidRequest {
-  /** The UUID of the home address */
-  home_address_uuid: string;
-}
-export const DeleteV1HomeAddressesHomeAddressUuidRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      home_address_uuid: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/v1/home_addresses/{home_address_uuid}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "DeleteV1HomeAddressesHomeAddressUuidRequest",
-  }) as any as S.Schema<DeleteV1HomeAddressesHomeAddressUuidRequest>;
-
-export interface DeleteV1HomeAddressesHomeAddressUuidResponse {}
-export const DeleteV1HomeAddressesHomeAddressUuidResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteV1HomeAddressesHomeAddressUuidResponse",
-  }) as any as S.Schema<DeleteV1HomeAddressesHomeAddressUuidResponse>;
-
-export interface DeleteV1RecurringReimbursementsRequest {
-  /** The UUID of the reimbursement */
-  id: string;
-}
-export const DeleteV1RecurringReimbursementsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/v1/recurring_reimbursements/{id}",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "DeleteV1RecurringReimbursementsRequest",
-}) as any as S.Schema<DeleteV1RecurringReimbursementsRequest>;
-
-export interface DeleteV1RecurringReimbursementsResponse {}
-export const DeleteV1RecurringReimbursementsResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "DeleteV1RecurringReimbursementsResponse",
-}) as any as S.Schema<DeleteV1RecurringReimbursementsResponse>;
-
-export interface DeleteV1WebhookSubscriptionUuidRequest {
-  /** The webhook subscription UUID. */
-  webhook_subscription_uuid: string;
-}
-export const DeleteV1WebhookSubscriptionUuidRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      webhook_subscription_uuid: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/v1/webhook_subscriptions/{webhook_subscription_uuid}",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "DeleteV1WebhookSubscriptionUuidRequest",
-}) as any as S.Schema<DeleteV1WebhookSubscriptionUuidRequest>;
-
-export interface DeleteV1WebhookSubscriptionUuidResponse {}
-export const DeleteV1WebhookSubscriptionUuidResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "DeleteV1WebhookSubscriptionUuidResponse",
-}) as any as S.Schema<DeleteV1WebhookSubscriptionUuidResponse>;
-
-export interface DeleteV1WorkAddressesWorkAddressUuidRequest {
-  /** The UUID of the work address */
-  work_address_uuid: string;
-}
-export const DeleteV1WorkAddressesWorkAddressUuidRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      work_address_uuid: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/v1/work_addresses/{work_address_uuid}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "DeleteV1WorkAddressesWorkAddressUuidRequest",
-  }) as any as S.Schema<DeleteV1WorkAddressesWorkAddressUuidRequest>;
-
-export interface DeleteV1WorkAddressesWorkAddressUuidResponse {}
-export const DeleteV1WorkAddressesWorkAddressUuidResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteV1WorkAddressesWorkAddressUuidResponse",
-  }) as any as S.Schema<DeleteV1WorkAddressesWorkAddressUuidResponse>;
-
-export type GetCompaniesCompanyUuidTimeTrackingTimeSheetsRequestEntityUuidsList =
-  Array<string>;
-export const GetCompaniesCompanyUuidTimeTrackingTimeSheetsRequestEntityUuidsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetCompaniesCompanyUuidTimeTrackingTimeSheetsRequestEntityUuidsList>;
-
-export type GetCompaniesCompanyUuidTimeTrackingTimeSheetsRequestEntityType =
-  | "Employee"
-  | "Contractor";
-export const GetCompaniesCompanyUuidTimeTrackingTimeSheetsRequestEntityType =
-  /*@__PURE__*/ S.String;
-
-export type GetCompaniesCompanyUuidTimeTrackingTimeSheetsRequestStatus =
-  | "approved"
-  | "pending"
-  | "rejected";
-export const GetCompaniesCompanyUuidTimeTrackingTimeSheetsRequestStatus =
-  /*@__PURE__*/ S.String;
-
-export type GetCompaniesCompanyUuidTimeTrackingTimeSheetsRequestSortBy =
-  | "created_at"
-  | "updated_at"
-  | "shift_started_at"
-  | "shift_ended_at";
-export const GetCompaniesCompanyUuidTimeTrackingTimeSheetsRequestSortBy =
-  /*@__PURE__*/ S.String;
-
-export type GetCompaniesCompanyUuidTimeTrackingTimeSheetsRequestSortOrder =
-  | "asc"
-  | "desc";
-export const GetCompaniesCompanyUuidTimeTrackingTimeSheetsRequestSortOrder =
-  /*@__PURE__*/ S.String;
-
-export interface GetCompaniesCompanyUuidTimeTrackingTimeSheetsRequest {
+export interface CreateCompanyContractorRequest {
   /** The UUID of the company */
   company_uuid: string;
-  /** Entity UUIDs that reported time sheets */
-  entity_uuids?: GetCompaniesCompanyUuidTimeTrackingTimeSheetsRequestEntityUuidsList;
-  /** Type of entities to filter. One of: "Employee", "Contractor" */
-  entity_type?:
-    | GetCompaniesCompanyUuidTimeTrackingTimeSheetsRequestEntityType
-    | (string & {});
-  /** Status of time sheets. One of: "approved", "pending", "rejected" */
-  status?:
-    | GetCompaniesCompanyUuidTimeTrackingTimeSheetsRequestStatus
-    | (string & {});
-  /** Field to sort by. One of: "created_at", "updated_at", "shift_started_at", "shift_ended_at" */
-  sort_by?:
-    | GetCompaniesCompanyUuidTimeTrackingTimeSheetsRequestSortBy
-    | (string & {});
-  /** Sorting order. One of: "asc", "desc" */
-  sort_order?:
-    | GetCompaniesCompanyUuidTimeTrackingTimeSheetsRequestSortOrder
-    | (string & {});
-  /** time sheets that were created before ISO 8601 timestamp. Filtering by "created_at" */
-  before?: string;
-  /** time sheets that were created after ISO 8601 timestamp. Filtering by "created_at" */
-  after?: string;
-  /** The page that is requested. When unspecified, will load all objects unless endpoint forces pagination. */
-  page?: number;
-  /** Number of objects per page. For majority of endpoints will default to 25 */
-  per?: number;
+  /** The name of the contractor business. This attribute is required for `Business` contractors and will be ignored for `Individual` contractors. */
+  business_name?: string;
+  /** The employer identification number of the contractor business. This attribute is optional for `Business` contractors and will be ignored for `Individual` contractors. */
+  ein?: string;
+  /** The contractor’s email address. */
+  email?: string;
+  /** The boolean flag indicating whether Gusto will file a new hire report for the contractor. This attribute is optional for `Individual` contractors and will be ignored for `Business` contractors. */
+  file_new_hire_report?: boolean;
+  /** The contractor’s first name. This attribute is required for `Individual` contractors and will be ignored for `Business` contractors. */
+  first_name?: string;
+  /** The contractor’s hourly rate. This attribute is required if the wage_type is `Hourly`. */
+  hourly_rate?: string;
+  /** The status of the contractor. If the contractor's start date is in the future, updating this field to true means we are setting the start date to today. Attempting to deactivate a contractor while a dismissal is already scheduled, or reactivate while a rehire is already scheduled, will return a 422 error. Cancel the pending transition first using the appropriate cancel endpoint. */
+  is_active?: boolean;
+  /** The contractor’s last name. This attribute is required for `Individual` contractors and will be ignored for `Business` contractors. */
+  last_name?: string;
+  /** The contractor’s middle initial. This attribute is optional for `Individual` contractors and will be ignored for `Business` contractors. */
+  middle_initial?: string;
+  /** Whether the contractor or the payroll admin will complete onboarding in Gusto. Self-onboarding is recommended so that contractors receive Gusto accounts. If self_onboarding is true, then email is required. */
+  self_onboarding?: boolean;
+  /** This attribute is optional for `Individual` contractors and will be ignored for `Business` contractors. Social security number is needed to file the annual 1099 tax form. */
+  ssn?: string;
+  /** The day when the contractor will start working for the company. */
+  start_date: string;
+  /** The contractor type. */
+  type: CreateCompanyContractorRequestType | (string & {});
+  /** The contractor’s wage type. */
+  wage_type: CreateCompanyContractorRequestWageType | (string & {});
+  /** The work email address of the contractor. This is provided to support syncing users between our system and yours. You may not use this email address for any other purpose (e.g. marketing). */
+  work_email?: string;
+  /** State where the contractor will be conducting the majority of their work for the company. This value is used when generating the new hire report. This attribute is required for `Individual` contractors if `file_new_hire_report` is true and will be ignored for `Business` contractors. */
+  work_state?: string | null;
 }
-export const GetCompaniesCompanyUuidTimeTrackingTimeSheetsRequest =
+export const CreateCompanyContractorRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    company_uuid: S.String.pipe(T.Label()),
+    business_name: S.optional(S.String),
+    ein: S.optional(S.String),
+    email: S.optional(S.String),
+    file_new_hire_report: S.optional(S.Boolean),
+    first_name: S.optional(S.String),
+    hourly_rate: S.optional(S.String),
+    is_active: S.optional(S.Boolean),
+    last_name: S.optional(S.String),
+    middle_initial: S.optional(S.String),
+    self_onboarding: S.optional(S.Boolean),
+    ssn: S.optional(S.String),
+    start_date: S.String,
+    type: CreateCompanyContractorRequestType,
+    wage_type: CreateCompanyContractorRequestWageType,
+    work_email: S.optional(S.String),
+    work_state: S.optional(S.NullOr(S.String)),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/companies/{company_uuid}/contractors",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateCompanyContractorRequest",
+}) as any as S.Schema<CreateCompanyContractorRequest>;
+
+/** The contractor’s home address. */
+export interface ContractorAddress {
+  city?: string;
+  country?: string;
+  state?: string;
+  street_1?: string;
+  street_2?: string | null;
+  zip?: string;
+}
+export const ContractorAddress = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    city: S.optional(S.String),
+    country: S.optional(S.String),
+    state: S.optional(S.String),
+    street_1: S.optional(S.String),
+    street_2: S.optional(S.NullOr(S.String)),
+    zip: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ContractorAddress",
+}) as any as S.Schema<ContractorAddress>;
+
+/** The current status of the member portal invitation. */
+export type ContractorMemberPortalInvitationStatusStatus =
+  | "pending"
+  | "sent"
+  | "verified"
+  | "complete"
+  | "cancelled";
+export const ContractorMemberPortalInvitationStatusStatus =
+  /*@__PURE__*/ S.String;
+
+/** Member portal invitation status information. Only included when the include param has the portal_invitations value set. */
+export interface ContractorMemberPortalInvitationStatus {
+  /** The date and time when the password reset was last resent. */
+  last_password_resent_at?: string | Redacted.Redacted<string> | null;
+  /** The current status of the member portal invitation. */
+  status?: ContractorMemberPortalInvitationStatusStatus;
+  /** Whether the invitation token has expired. */
+  token_expired?: boolean | null;
+  /** The date and time when the welcome email was sent. */
+  welcome_email_sent_at?: string | null;
+}
+export const ContractorMemberPortalInvitationStatus = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      last_password_resent_at: S.optional(
+        S.NullOr(S.String).pipe(T.SensitiveValue({})),
+      ),
+      status: S.optional(ContractorMemberPortalInvitationStatusStatus),
+      token_expired: S.optional(S.NullOr(S.Boolean)),
+      welcome_email_sent_at: S.optional(S.NullOr(S.String)),
+    }),
+).annotate({
+  identifier: "ContractorMemberPortalInvitationStatus",
+}) as any as S.Schema<ContractorMemberPortalInvitationStatus>;
+
+/** One of the "onboarding_status" enum values. */
+export type ContractorOnboardingStatus =
+  | "admin_onboarding_incomplete"
+  | "admin_onboarding_review"
+  | "self_onboarding_not_invited"
+  | "self_onboarding_invited"
+  | "self_onboarding_started"
+  | "self_onboarding_review"
+  | "onboarding_completed";
+export const ContractorOnboardingStatus = /*@__PURE__*/ S.String;
+
+export type ContractorPaymentMethod = "Direct Deposit" | "Check";
+export const ContractorPaymentMethod = /*@__PURE__*/ S.String;
+
+/** The contractor's type, either "Individual" or "Business". */
+export type ContractorType = "Individual" | "Business";
+export const ContractorType = /*@__PURE__*/ S.String;
+
+/** The contractor's upcoming employment details, if a rehire is scheduled. */
+export interface ContractorUpcomingEmployment {
+  /** The setup status of the upcoming employment. */
+  setup_status?: string | null;
+  /** The start date of the upcoming employment. */
+  start_date?: string;
+}
+export const ContractorUpcomingEmployment = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    setup_status: S.optional(S.NullOr(S.String)),
+    start_date: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ContractorUpcomingEmployment",
+}) as any as S.Schema<ContractorUpcomingEmployment>;
+
+/** The contractor's wage type, either "Fixed" or "Hourly". */
+export type ContractorWageType = "Fixed" | "Hourly";
+export const ContractorWageType = /*@__PURE__*/ S.String;
+
+/** The representation of a contractor (individual or business) in Gusto. */
+export interface Contractor {
+  /** The contractor’s home address. */
+  address?: ContractorAddress | null;
+  /** The name of the contractor business. This attribute is required for “Business” contractors and will be ignored for “Individual” contractors. */
+  business_name?: string | null;
+  /** The UUID of the company the contractor is employed by. */
+  company_uuid?: string;
+  /** The contractor's department in the company. */
+  department?: string | null;
+  /** The title of the contractor's department. */
+  department_title?: string | null;
+  /** The UUID of the department the contractor is under */
+  department_uuid?: string | null;
+  /** Whether the contractor's pending dismissal can be cancelled. */
+  dismissal_cancellation_eligible?: boolean;
+  /** The contractor's dismissal date. */
+  dismissal_date?: string | null;
+  /** The Federal Employer Identification Number of the contractor business. This attribute is optional for “Business” contractors and will be ignored for “Individual” contractors. */
+  ein?: string | null;
+  /** The contractor’s email address. This attribute is optional for “Individual” contractors and will be ignored for “Business” contractors. */
+  email?: string | null;
+  /** The boolean flag indicating whether Gusto will file a new hire report for the contractor */
+  file_new_hire_report?: boolean | null;
+  /** The contractor’s first name. This attribute is required for “Individual” contractors and will be ignored for “Business” contractors. */
+  first_name?: string | null;
+  /** Whether company's Employer Identification Number (EIN) is present */
+  has_ein?: boolean | null;
+  /** Indicates whether the contractor has an SSN in Gusto. */
+  has_ssn?: boolean;
+  /** The contractor’s hourly rate. This attribute is required if the wage_type is “Hourly”. */
+  hourly_rate?: string;
+  /** The status of the contractor with the company. */
+  is_active?: boolean;
+  /** The contractor’s last name. This attribute is required for “Individual” contractors and will be ignored for “Business” contractors. */
+  last_name?: string | null;
+  /** Member portal invitation status information. Only included when the include param has the portal_invitations value set. */
+  member_portal_invitation_status?: ContractorMemberPortalInvitationStatus | null;
+  /** The contractor’s middle initial. This attribute is optional for “Individual” contractors and will be ignored for “Business” contractors. */
+  middle_initial?: string | null;
+  /** The updated onboarding status for the contractor */
+  onboarded?: boolean;
+  /** One of the "onboarding_status" enum values. */
+  onboarding_status?: ContractorOnboardingStatus;
+  /** Whether an external partner portal invitation webhook has been sent for this contractor. Only included when the include param has the portal_invitations value set. */
+  partner_portal_invitation_sent?: boolean | null;
+  /** The contractor's payment method. */
+  payment_method?: ContractorPaymentMethod | null;
+  /** Whether the contractor's pending rehire can be cancelled. */
+  rehire_cancellation_eligible?: boolean;
+  /** The contractor's start date. */
+  start_date?: string;
+  /** The contractor's type, either "Individual" or "Business". */
+  type?: ContractorType;
+  /** The contractor's upcoming employment details, if a rehire is scheduled. */
+  upcoming_employment?: ContractorUpcomingEmployment | null;
+  /** The UUID of the contractor in Gusto. */
+  uuid: string;
+  /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
+  version?: string;
+  /** The contractor's wage type, either "Fixed" or "Hourly". */
+  wage_type?: ContractorWageType;
+  /** The work email address of the contractor. This is provided to support syncing users between our system and yours. You may not use this email address for any other purpose (e.g. marketing). */
+  work_email?: string | null;
+  /** State where the contractor will be conducting the majority of their work for the company. This value is used when generating the new hire report. */
+  work_state?: string | null;
+}
+export const Contractor = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    address: S.optional(S.NullOr(ContractorAddress)),
+    business_name: S.optional(S.NullOr(S.String)),
+    company_uuid: S.optional(S.String),
+    department: S.optional(S.NullOr(S.String)),
+    department_title: S.optional(S.NullOr(S.String)),
+    department_uuid: S.optional(S.NullOr(S.String)),
+    dismissal_cancellation_eligible: S.optional(S.Boolean),
+    dismissal_date: S.optional(S.NullOr(S.String)),
+    ein: S.optional(S.NullOr(S.String)),
+    email: S.optional(S.NullOr(S.String)),
+    file_new_hire_report: S.optional(S.NullOr(S.Boolean)),
+    first_name: S.optional(S.NullOr(S.String)),
+    has_ein: S.optional(S.NullOr(S.Boolean)),
+    has_ssn: S.optional(S.Boolean),
+    hourly_rate: S.optional(S.String),
+    is_active: S.optional(S.Boolean),
+    last_name: S.optional(S.NullOr(S.String)),
+    member_portal_invitation_status: S.optional(
+      S.NullOr(ContractorMemberPortalInvitationStatus),
+    ),
+    middle_initial: S.optional(S.NullOr(S.String)),
+    onboarded: S.optional(S.Boolean),
+    onboarding_status: S.optional(ContractorOnboardingStatus),
+    partner_portal_invitation_sent: S.optional(S.NullOr(S.Boolean)),
+    payment_method: S.optional(S.NullOr(ContractorPaymentMethod)),
+    rehire_cancellation_eligible: S.optional(S.Boolean),
+    start_date: S.optional(S.String),
+    type: S.optional(ContractorType),
+    upcoming_employment: S.optional(S.NullOr(ContractorUpcomingEmployment)),
+    uuid: S.String,
+    version: S.optional(S.String),
+    wage_type: S.optional(ContractorWageType),
+    work_email: S.optional(S.NullOr(S.String)),
+    work_state: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({ identifier: "Contractor" }) as any as S.Schema<Contractor>;
+
+export interface CreateCompanyEarningTypeRequest {
+  /** The UUID of the company */
+  company_id: string;
+  /** The name of the custom earning type. */
+  name: string;
+}
+export const CreateCompanyEarningTypeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    company_id: S.String.pipe(T.Label()),
+    name: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/companies/{company_id}/earning_types",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateCompanyEarningTypeRequest",
+}) as any as S.Schema<CreateCompanyEarningTypeRequest>;
+
+/** The representation of an earning type in Gusto. */
+export interface EarningType {
+  /** Whether the earning type is active. */
+  active?: boolean;
+  /** The name of the earning type. */
+  name?: string;
+  /** The ID of the earning type. */
+  uuid: string;
+}
+export const EarningType = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    active: S.optional(S.Boolean),
+    name: S.optional(S.String),
+    uuid: S.String,
+  }),
+).annotate({ identifier: "EarningType" }) as any as S.Schema<EarningType>;
+
+export interface CreateCompanyLocationRequest {
+  /** The UUID of the company */
+  company_id: string;
+  /** City. */
+  city: string;
+  /** Country code. Defaults to USA. */
+  country?: string;
+  /** Specify if this location is the company's filing address. */
+  filing_address?: boolean;
+  /** Specify if this location is the company's mailing address. */
+  mailing_address?: boolean;
+  /** Phone number. Must be 10 digits. */
+  phone_number: string;
+  /** State code (e.g. CA). Must be a valid two-letter state code. */
+  state: string;
+  /** Street address line 1. */
+  street_1: string;
+  /** Street address line 2. */
+  street_2?: string | null;
+  /** ZIP code. Must be a valid US zip (e.g. 12345 or 12345-6789). */
+  zip: string;
+}
+export const CreateCompanyLocationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    company_id: S.String.pipe(T.Label()),
+    city: S.String,
+    country: S.optional(S.String),
+    filing_address: S.optional(S.Boolean),
+    mailing_address: S.optional(S.Boolean),
+    phone_number: S.String,
+    state: S.String,
+    street_1: S.String,
+    street_2: S.optional(S.NullOr(S.String)),
+    zip: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/companies/{company_id}/locations",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateCompanyLocationRequest",
+}) as any as S.Schema<CreateCompanyLocationRequest>;
+
+export interface WarningObject {
+  /** Specifies the type of warning. Can be used to build custom warning handling. */
+  category?: string;
+  /** Specifies where the warning occurs. Typically identifies the attribute or parameter related to the warning. */
+  error_key?: string;
+  /** Provides details about the warning. The message can be surfaced directly to the end user. */
+  message?: string;
+}
+export const WarningObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    category: S.optional(S.String),
+    error_key: S.optional(S.String),
+    message: S.optional(S.String),
+  }),
+).annotate({ identifier: "WarningObject" }) as any as S.Schema<WarningObject>;
+
+/** An array of warning objects that provide additional information about the address. Warnings do not prevent the address from being saved. */
+export type LocationWarningsList = Array<WarningObject>;
+export const LocationWarningsList = /*@__PURE__*/ S.Array(
+  WarningObject,
+) as any as S.Schema<LocationWarningsList>;
+
+/** The representation of an address in Gusto. */
+export interface Location {
+  /** The status of the location. Inactive locations have been deleted, but may still have historical data associated with them. */
+  active?: boolean;
+  city?: string;
+  /** The UUID for the company to which the location belongs. Only included if the location belongs to a company. */
+  company_uuid?: string;
+  country?: string;
+  /** Datetime for when location is created */
+  created_at?: string;
+  /** Specifies if the location is the company's filing address. Only included if the location belongs to a company. */
+  filing_address?: boolean;
+  /** The status of the location. Inactive locations have been deleted, but may still have historical data associated with them. */
+  inactive?: boolean;
+  /** Specifies if the location is the company's mailing address. Only included if the location belongs to a company. */
+  mailing_address?: boolean;
+  /** The phone number for the location. Required for company locations. Optional for employee locations. */
+  phone_number?: string;
+  state?: string;
+  street_1?: string;
+  street_2?: string | null;
+  /** Datetime for when location is updated */
+  updated_at?: string;
+  /** The UUID of the location object. */
+  uuid: string;
+  /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
+  version?: string;
+  /** An array of warning objects that provide additional information about the address. Warnings do not prevent the address from being saved. */
+  warnings?: LocationWarningsList;
+  zip?: string;
+}
+export const Location = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    active: S.optional(S.Boolean),
+    city: S.optional(S.String),
+    company_uuid: S.optional(S.String),
+    country: S.optional(S.String),
+    created_at: S.optional(S.String),
+    filing_address: S.optional(S.Boolean),
+    inactive: S.optional(S.Boolean),
+    mailing_address: S.optional(S.Boolean),
+    phone_number: S.optional(S.String),
+    state: S.optional(S.String),
+    street_1: S.optional(S.String),
+    street_2: S.optional(S.NullOr(S.String)),
+    updated_at: S.optional(S.String),
+    uuid: S.String,
+    version: S.optional(S.String),
+    warnings: S.optional(LocationWarningsList),
+    zip: S.optional(S.String),
+  }),
+).annotate({ identifier: "Location" }) as any as S.Schema<Location>;
+
+/** Pay classification for the entry. */
+export type CreateCompanyTimeTrackingTimeSheetRequestEntriesItemPayClassification =
+  | "Regular"
+  | "Overtime"
+  | "Double overtime";
+export const CreateCompanyTimeTrackingTimeSheetRequestEntriesItemPayClassification =
+  /*@__PURE__*/ S.String;
+
+export interface CreateCompanyTimeTrackingTimeSheetRequestEntriesItem {
+  /** Hours worked for this pay classification. Should be passed as number with up to 3 decimal places. */
+  hours_worked?: number;
+  /** Pay classification for the entry. */
+  pay_classification?:
+    | CreateCompanyTimeTrackingTimeSheetRequestEntriesItemPayClassification
+    | (string & {});
+}
+export const CreateCompanyTimeTrackingTimeSheetRequestEntriesItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      hours_worked: S.optional(S.Number),
+      pay_classification: S.optional(
+        CreateCompanyTimeTrackingTimeSheetRequestEntriesItemPayClassification,
+      ),
+    }),
+  ).annotate({
+    identifier: "CreateCompanyTimeTrackingTimeSheetRequestEntriesItem",
+  }) as any as S.Schema<CreateCompanyTimeTrackingTimeSheetRequestEntriesItem>;
+
+/** Entries associated with the time sheet. */
+export type CreateCompanyTimeTrackingTimeSheetRequestEntriesList =
+  Array<CreateCompanyTimeTrackingTimeSheetRequestEntriesItem>;
+export const CreateCompanyTimeTrackingTimeSheetRequestEntriesList =
+  /*@__PURE__*/ S.Array(
+    CreateCompanyTimeTrackingTimeSheetRequestEntriesItem,
+  ) as any as S.Schema<CreateCompanyTimeTrackingTimeSheetRequestEntriesList>;
+
+/** Metadata associated with the time sheet. Key-value pairs of arbitrary data. Both keys and values must be strings. */
+export type CreateCompanyTimeTrackingTimeSheetRequestMetadataMap = {
+  [key: string]: string | undefined;
+};
+export const CreateCompanyTimeTrackingTimeSheetRequestMetadataMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<CreateCompanyTimeTrackingTimeSheetRequestMetadataMap>;
+
+export interface CreateCompanyTimeTrackingTimeSheetRequest {
+  /** The UUID of the company */
+  company_uuid: string;
+  /** Type of entity associated with the time sheet. */
+  entity_type: string;
+  /** Unique identifier of the entity associated with the time sheet. */
+  entity_uuid: string;
+  /** Entries associated with the time sheet. */
+  entries?: CreateCompanyTimeTrackingTimeSheetRequestEntriesList;
+  /** Unique identifier of the job for which time is tracked. */
+  job_uuid?: string;
+  /** Metadata associated with the time sheet. Key-value pairs of arbitrary data. Both keys and values must be strings. */
+  metadata?: CreateCompanyTimeTrackingTimeSheetRequestMetadataMap;
+  /** ISO 8601 timestamp of when the shift was ended. If the shift is still ongoing you can omit this field. */
+  shift_ended_at?: string;
+  /** ISO 8601 timestamp of when the shift was started. */
+  shift_started_at: string;
+  /** Time zone of where the time is tracked. */
+  time_zone: string;
+}
+export const CreateCompanyTimeTrackingTimeSheetRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       company_uuid: S.String.pipe(T.Label()),
-      entity_uuids: S.optional(
-        GetCompaniesCompanyUuidTimeTrackingTimeSheetsRequestEntityUuidsList.pipe(
-          T.Query(),
-        ),
+      entity_type: S.String,
+      entity_uuid: S.String,
+      entries: S.optional(CreateCompanyTimeTrackingTimeSheetRequestEntriesList),
+      job_uuid: S.optional(S.String),
+      metadata: S.optional(
+        CreateCompanyTimeTrackingTimeSheetRequestMetadataMap,
       ),
-      entity_type: S.optional(
-        GetCompaniesCompanyUuidTimeTrackingTimeSheetsRequestEntityType.pipe(
-          T.Query(),
-        ),
-      ),
-      status: S.optional(
-        GetCompaniesCompanyUuidTimeTrackingTimeSheetsRequestStatus.pipe(
-          T.Query(),
-        ),
-      ),
-      sort_by: S.optional(
-        GetCompaniesCompanyUuidTimeTrackingTimeSheetsRequestSortBy.pipe(
-          T.Query(),
-        ),
-      ),
-      sort_order: S.optional(
-        GetCompaniesCompanyUuidTimeTrackingTimeSheetsRequestSortOrder.pipe(
-          T.Query(),
-        ),
-      ),
-      before: S.optional(S.String.pipe(T.Query())),
-      after: S.optional(S.String.pipe(T.Query())),
-      page: S.optional(S.Number.pipe(T.Query())),
-      per: S.optional(S.Number.pipe(T.Query())),
+      shift_ended_at: S.optional(S.String),
+      shift_started_at: S.String,
+      time_zone: S.String,
     }).pipe(
       T.Http({
-        method: "GET",
+        method: "POST",
         uri: "/v1/companies/{company_uuid}/time_tracking/time_sheets",
         code: 200,
       }),
     ),
   ).annotate({
-    identifier: "GetCompaniesCompanyUuidTimeTrackingTimeSheetsRequest",
-  }) as any as S.Schema<GetCompaniesCompanyUuidTimeTrackingTimeSheetsRequest>;
+    identifier: "CreateCompanyTimeTrackingTimeSheetRequest",
+  }) as any as S.Schema<CreateCompanyTimeTrackingTimeSheetRequest>;
 
 /** Type of entity associated with the time sheet. */
 export type TimeSheetEntityType = "Employee" | "Contractor";
@@ -577,507 +768,1711 @@ export const TimeSheet = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "TimeSheet" }) as any as S.Schema<TimeSheet>;
 
-export type GetCompaniesCompanyUuidTimeTrackingTimeSheetsResponseBodyList =
-  Array<TimeSheet>;
-export const GetCompaniesCompanyUuidTimeTrackingTimeSheetsResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    TimeSheet,
-  ) as any as S.Schema<GetCompaniesCompanyUuidTimeTrackingTimeSheetsResponseBodyList>;
+/** The company contribution scheme. `amount`: The company contributes a fixed amount per payroll. If elective is true, the contribution is matching, dollar-for-dollar. `percentage`: The company contributes a percentage of the payroll amount per payroll period. If elective is true, the contribution is matching, dollar-for-dollar. `tiered`: The size of the company contribution corresponds to the size of the employee deduction relative to a tiered matching scheme. */
+export type CreateEmployeeEmployeeBenefitRequestContributionType =
+  | "tiered"
+  | "percentage"
+  | "amount";
+export const CreateEmployeeEmployeeBenefitRequestContributionType =
+  /*@__PURE__*/ S.String;
 
-export type GetCompaniesCompanyUuidTimeTrackingTimeSheetsResponse =
-  GetCompaniesCompanyUuidTimeTrackingTimeSheetsResponseBodyList;
-export const GetCompaniesCompanyUuidTimeTrackingTimeSheetsResponse =
+/** A single tier of a tiered matching scheme. */
+export interface CreateEmployeeEmployeeBenefitRequestContributionValueCase1Item {
+  /** The percentage of employee deduction within this tier the company contribution will match. */
+  rate?: string;
+  /** Specifies the upper limit (inclusive) percentage of the employee contribution that this tier applies to. Use threshold to define each tier's end point, with tiers applied cumulatively from 0% upwards. For example: If the first tier has a threshold of "3", and rate of "100", the company will match 100% of employee contributions from 0% up to and including 3% of payroll. If the next tier has a threshold of "5" and a rate of "50", the company will match 50% of contributions from above 3% up to and including 5% of payroll. */
+  threshold?: string;
+}
+export const CreateEmployeeEmployeeBenefitRequestContributionValueCase1Item =
   /*@__PURE__*/ S.suspend(() =>
-    GetCompaniesCompanyUuidTimeTrackingTimeSheetsResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
+    S.Struct({
+      rate: S.optional(S.String),
+      threshold: S.optional(S.String),
+    }),
   ).annotate({
-    identifier: "GetCompaniesCompanyUuidTimeTrackingTimeSheetsResponse",
-  }) as any as S.Schema<GetCompaniesCompanyUuidTimeTrackingTimeSheetsResponse>;
+    identifier:
+      "CreateEmployeeEmployeeBenefitRequestContributionValueCase1Item",
+  }) as any as S.Schema<CreateEmployeeEmployeeBenefitRequestContributionValueCase1Item>;
 
-export interface GetCompaniesDepartmentsRequest {
-  /** The UUID of the company */
-  company_uuid: string;
+/** For `tiered` contribution types, an array of tiers. */
+export type CreateEmployeeEmployeeBenefitRequestContributionValueCase1List =
+  Array<CreateEmployeeEmployeeBenefitRequestContributionValueCase1Item>;
+export const CreateEmployeeEmployeeBenefitRequestContributionValueCase1List =
+  /*@__PURE__*/ S.Array(
+    CreateEmployeeEmployeeBenefitRequestContributionValueCase1Item,
+  ) as any as S.Schema<CreateEmployeeEmployeeBenefitRequestContributionValueCase1List>;
+
+/** For the `amount` and `percentage` contribution types, the value of the corresponding amount or percentage. For the `tiered` contribution type, an array of tiers. */
+export type CreateEmployeeEmployeeBenefitRequestContributionValue =
+  | string
+  | CreateEmployeeEmployeeBenefitRequestContributionValueCase1List;
+export const CreateEmployeeEmployeeBenefitRequestContributionValue =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateEmployeeEmployeeBenefitRequestContributionValue>;
+
+/** An object representing the company contribution type and value. */
+export interface CreateEmployeeEmployeeBenefitRequestContribution {
+  /** The company contribution scheme. `amount`: The company contributes a fixed amount per payroll. If elective is true, the contribution is matching, dollar-for-dollar. `percentage`: The company contributes a percentage of the payroll amount per payroll period. If elective is true, the contribution is matching, dollar-for-dollar. `tiered`: The size of the company contribution corresponds to the size of the employee deduction relative to a tiered matching scheme. */
+  type?: CreateEmployeeEmployeeBenefitRequestContributionType | (string & {});
+  /** For the `amount` and `percentage` contribution types, the value of the corresponding amount or percentage. For the `tiered` contribution type, an array of tiers. */
+  value?: CreateEmployeeEmployeeBenefitRequestContributionValue;
 }
-export const GetCompaniesDepartmentsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    company_uuid: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/v1/companies/{company_uuid}/departments",
-      code: 200,
+export const CreateEmployeeEmployeeBenefitRequestContribution =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: S.optional(CreateEmployeeEmployeeBenefitRequestContributionType),
+      value: S.optional(CreateEmployeeEmployeeBenefitRequestContributionValue),
     }),
-  ),
-).annotate({
-  identifier: "GetCompaniesDepartmentsRequest",
-}) as any as S.Schema<GetCompaniesDepartmentsRequest>;
+  ).annotate({
+    identifier: "CreateEmployeeEmployeeBenefitRequestContribution",
+  }) as any as S.Schema<CreateEmployeeEmployeeBenefitRequestContribution>;
 
-export interface DepartmentContractorsItem {
-  uuid?: string;
-}
-export const DepartmentContractorsItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    uuid: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DepartmentContractorsItem",
-}) as any as S.Schema<DepartmentContractorsItem>;
+export type CreateEmployeeEmployeeBenefitRequestDeductionReducesTaxableIncome =
+  | "unset"
+  | "reduces_taxable_income"
+  | "does_not_reduce_taxable_income";
+export const CreateEmployeeEmployeeBenefitRequestDeductionReducesTaxableIncome =
+  /*@__PURE__*/ S.String;
 
-/** Array of contractors assigned to the department. */
-export type DepartmentContractorsList = Array<DepartmentContractorsItem>;
-export const DepartmentContractorsList = /*@__PURE__*/ S.Array(
-  DepartmentContractorsItem,
-) as any as S.Schema<DepartmentContractorsList>;
+export type CreateEmployeeEmployeeBenefitRequestLimitOption =
+  | "Family"
+  | "Individual"
+  | "Joint Filing or Single"
+  | "Married and Filing Separately";
+export const CreateEmployeeEmployeeBenefitRequestLimitOption =
+  /*@__PURE__*/ S.String;
 
-export type DepartmentEmployeesItem = DepartmentContractorsItem;
-export const DepartmentEmployeesItem = DepartmentContractorsItem;
-
-/** Array of employees assigned to the department. */
-export type DepartmentEmployeesList = Array<DepartmentContractorsItem>;
-export const DepartmentEmployeesList = /*@__PURE__*/ S.Array(
-  DepartmentContractorsItem,
-) as any as S.Schema<DepartmentEmployeesList>;
-
-export interface Department {
-  /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
-  version?: string;
-  /** The UUID of the company */
-  company_uuid?: string;
-  /** Array of contractors assigned to the department. */
-  contractors?: DepartmentContractorsList;
-  /** Array of employees assigned to the department. */
-  employees?: DepartmentEmployeesList;
-  /** Name of the department */
-  title?: string;
-  /** The UUID of the department */
-  uuid?: string;
-}
-export const Department = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    version: S.optional(S.String),
-    company_uuid: S.optional(S.String),
-    contractors: S.optional(DepartmentContractorsList),
-    employees: S.optional(DepartmentEmployeesList),
-    title: S.optional(S.String),
-    uuid: S.optional(S.String),
-  }),
-).annotate({ identifier: "Department" }) as any as S.Schema<Department>;
-
-export type DepartmentList = Array<Department>;
-export const DepartmentList = /*@__PURE__*/ S.Array(
-  Department,
-) as any as S.Schema<DepartmentList>;
-
-export type GetCompaniesDepartmentsResponse = DepartmentList;
-export const GetCompaniesDepartmentsResponse = /*@__PURE__*/ S.suspend(() =>
-  DepartmentList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetCompaniesDepartmentsResponse",
-}) as any as S.Schema<GetCompaniesDepartmentsResponse>;
-
-export type GetCompanyNotificationsRequestStatus =
-  | "open"
-  | "expired"
-  | "resolved";
-export const GetCompanyNotificationsRequestStatus = /*@__PURE__*/ S.String;
-
-export interface GetCompanyNotificationsRequest {
-  /** The UUID of the company for which you would like to return notifications */
-  company_uuid: string;
-  status?: GetCompanyNotificationsRequestStatus | (string & {});
-  /** The page that is requested. When unspecified, will load all objects unless endpoint forces pagination. */
-  page?: number;
-  /** Number of objects per page. For majority of endpoints will default to 25 */
-  per?: number;
-}
-export const GetCompanyNotificationsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    company_uuid: S.String.pipe(T.Label()),
-    status: S.optional(GetCompanyNotificationsRequestStatus.pipe(T.Query())),
-    page: S.optional(S.Number.pipe(T.Query())),
-    per: S.optional(S.Number.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/v1/companies/{company_uuid}/notifications",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "GetCompanyNotificationsRequest",
-}) as any as S.Schema<GetCompanyNotificationsRequest>;
-
-/** The type of entity being described. */
-export type NotificationResourcesItemEntityType =
-  | "BankAccount"
-  | "Contractor"
-  | "ContractorPayment"
-  | "Employee"
-  | "Payroll"
-  | "PaySchedule"
-  | "RecoveryCase"
-  | "Signatory"
-  | "Wire In Request";
-export const NotificationResourcesItemEntityType = /*@__PURE__*/ S.String;
-
-export interface NotificationResourcesItem {
-  /** The type of entity being described. */
-  entity_type: NotificationResourcesItemEntityType;
-  /** Unique identifier of the entity */
-  entity_uuid: string;
-  /** Optional. The type of a resource that is related to the one described by entity_type and entity_uuid. For instance, if the entity_type is “BankAccount”, the reference_type could be the “Employee” or “Contractor” to whom the bank account belongs. */
-  reference_type?: string;
-  /** Optional. Unique identifier of the reference. */
-  reference_uuid?: string;
-}
-export const NotificationResourcesItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    entity_type: NotificationResourcesItemEntityType,
-    entity_uuid: S.String,
-    reference_type: S.optional(S.String),
-    reference_uuid: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "NotificationResourcesItem",
-}) as any as S.Schema<NotificationResourcesItem>;
-
-/** An array of entities relevant to the notification */
-export type NotificationResourcesList = Array<NotificationResourcesItem>;
-export const NotificationResourcesList = /*@__PURE__*/ S.Array(
-  NotificationResourcesItem,
-) as any as S.Schema<NotificationResourcesList>;
-
-/** Represents the notification's status as managed by our system. It is updated based on observable system events and internal business logic, and does not reflect resolution steps taken outside our system. This field is read-only and cannot be modified via the API. */
-export type NotificationStatus = "open" | "resolved" | "expired";
-export const NotificationStatus = /*@__PURE__*/ S.String;
-
-/** An object containing template variables used to render the notification. The structure of this object depends on the notification category. Each category defines a fixed set of variable names (keys), which are always present. The values of these variables can vary depending on the specific notification instance. */
-export type NotificationTemplateVariablesMap = {
-  [key: string]: string | undefined;
-};
-export const NotificationTemplateVariablesMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<NotificationTemplateVariablesMap>;
-
-export interface Notification {
-  /** Indicates whether a notification requires action or not. If false, the notification provides critical information only. */
-  actionable: boolean;
-  /** Indicates whether a notification may block ability to run payroll. If true, we suggest that these notifications are prioritized to your end users. */
-  can_block_payroll: boolean;
-  /** The notification's category. */
-  category: string;
-  /** Unique identifier of the company to which the notification belongs. */
-  company_uuid: string;
-  /** Timestamp of when the notification is due. If the notification has no due date, this field will be null. */
-  due_at: string | null;
-  /** The message of the notification. This provides additional context for the user and recommends a specific action to resolve the notification. */
-  message: string;
-  /** Timestamp of when the notification was published. */
-  published_at: string;
-  /** An array of entities relevant to the notification */
-  resources: NotificationResourcesList;
-  /** Represents the notification's status as managed by our system. It is updated based on observable system events and internal business logic, and does not reflect resolution steps taken outside our system. This field is read-only and cannot be modified via the API. */
-  status: NotificationStatus;
-  /** An object containing template variables used to render the notification. The structure of this object depends on the notification category. Each category defines a fixed set of variable names (keys), which are always present. The values of these variables can vary depending on the specific notification instance. */
-  template_variables?: NotificationTemplateVariablesMap;
-  /** The title of the notification. This highlights the actionable component of the notification. */
-  title: string;
-  /** Unique identifier of a notification. */
-  uuid: string;
-}
-export const Notification = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    actionable: S.Boolean,
-    can_block_payroll: S.Boolean,
-    category: S.String,
-    company_uuid: S.String,
-    due_at: S.NullOr(S.String),
-    message: S.String,
-    published_at: S.String,
-    resources: NotificationResourcesList,
-    status: NotificationStatus,
-    template_variables: S.optional(NotificationTemplateVariablesMap),
-    title: S.String,
-    uuid: S.String,
-  }),
-).annotate({ identifier: "Notification" }) as any as S.Schema<Notification>;
-
-export type NotificationsList = Array<Notification>;
-export const NotificationsList = /*@__PURE__*/ S.Array(
-  Notification,
-) as any as S.Schema<NotificationsList>;
-
-export type GetCompanyNotificationsResponse = NotificationsList;
-export const GetCompanyNotificationsResponse = /*@__PURE__*/ S.suspend(() =>
-  NotificationsList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetCompanyNotificationsResponse",
-}) as any as S.Schema<GetCompanyNotificationsResponse>;
-
-export interface GetDepartmentRequest {
-  /** The UUID of the department */
-  department_uuid: string;
-}
-export const GetDepartmentRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    department_uuid: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/v1/departments/{department_uuid}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "GetDepartmentRequest",
-}) as any as S.Schema<GetDepartmentRequest>;
-
-export type GetDepartmentResponseContractorsItem = DepartmentContractorsItem;
-export const GetDepartmentResponseContractorsItem = DepartmentContractorsItem;
-
-/** Array of contractors assigned to the department. */
-export type GetDepartmentResponseContractorsList =
-  Array<DepartmentContractorsItem>;
-export const GetDepartmentResponseContractorsList = /*@__PURE__*/ S.Array(
-  DepartmentContractorsItem,
-) as any as S.Schema<GetDepartmentResponseContractorsList>;
-
-export type GetDepartmentResponseEmployeesItem = DepartmentContractorsItem;
-export const GetDepartmentResponseEmployeesItem = DepartmentContractorsItem;
-
-/** Array of employees assigned to the department. */
-export type GetDepartmentResponseEmployeesList =
-  Array<DepartmentContractorsItem>;
-export const GetDepartmentResponseEmployeesList = /*@__PURE__*/ S.Array(
-  DepartmentContractorsItem,
-) as any as S.Schema<GetDepartmentResponseEmployeesList>;
-
-export interface GetDepartmentResponse {
-  /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
-  version?: string;
-  /** The UUID of the company */
-  company_uuid?: string;
-  /** Array of contractors assigned to the department. */
-  contractors?: GetDepartmentResponseContractorsList;
-  /** Array of employees assigned to the department. */
-  employees?: GetDepartmentResponseEmployeesList;
-  /** Name of the department */
-  title?: string;
-  /** The UUID of the department */
-  uuid?: string;
-}
-export const GetDepartmentResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    version: S.optional(S.String),
-    company_uuid: S.optional(S.String),
-    contractors: S.optional(GetDepartmentResponseContractorsList),
-    employees: S.optional(GetDepartmentResponseEmployeesList),
-    title: S.optional(S.String),
-    uuid: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "GetDepartmentResponse",
-}) as any as S.Schema<GetDepartmentResponse>;
-
-export interface GetEmployeeYtdBenefitAmountsFromDifferentCompanyRequest {
+export interface CreateEmployeeEmployeeBenefitRequest {
   /** The UUID of the employee */
   employee_id: string;
-  /** The tax year for which to retrieve YTD benefit amounts. Defaults to current year if not specified. */
-  tax_year?: number;
+  /** Whether the employee benefit is active. */
+  active?: boolean;
+  /** Whether the employee should use a benefit's "catch up" rate. Only Roth 401k and 401k benefits use this value for employees over 50. */
+  catch_up?: boolean;
+  /** The UUID of the company benefit. */
+  company_benefit_uuid: string;
+  /** The amount to be paid, per pay period, by the company. */
+  company_contribution?: string;
+  /** The maximum company contribution amount per year. A null value signifies no limit. */
+  company_contribution_annual_maximum?: string | null;
+  /** Whether the company contribution amount should be treated as a percentage to be deducted from each payroll. */
+  contribute_as_percentage?: boolean;
+  /** An object representing the company contribution type and value. */
+  contribution?: CreateEmployeeEmployeeBenefitRequestContribution;
+  /** The amount that the employee is insured for. Note: company contribution cannot be present if coverage amount is set. */
+  coverage_amount?: string | null;
+  /** The coverage amount as a multiple of the employee's salary. Only applicable for Group Term Life benefits. Note: cannot be set if coverage amount is also set. */
+  coverage_salary_multiplier?: string;
+  /** Whether the employee deduction amount should be treated as a percentage to be deducted from each payroll. */
+  deduct_as_percentage?: boolean;
+  /** Whether the employee deduction reduces taxable income or not. Only valid for Group Term Life benefits. Note: when the value is not "unset", coverage amount and coverage salary multiplier are ignored. */
+  deduction_reduces_taxable_income?:
+    | CreateEmployeeEmployeeBenefitRequestDeductionReducesTaxableIncome
+    | (string & {})
+    | null;
+  /** The date the employee benefit will start. If not provided, the benefit will be effective from 1970-01-01 (unix epoch). */
+  effective_date?: string;
+  /** Whether the company contribution is elective (aka "matching"). For `tiered`, `elective_amount`, and `elective_percentage` contribution types this is ignored and assumed to be `true`. */
+  elective?: boolean;
+  /** The amount to be deducted, per pay period, from the employee's pay. */
+  employee_deduction?: string;
+  /** The maximum employee deduction amount per year. A null value signifies no limit. */
+  employee_deduction_annual_maximum?: string | null;
+  /** The date the employee benefit will expire. A null value indicates the benefit will not expire. */
+  expiration_date?: string | null;
+  /** Some benefits require additional information to determine their limit. `Family` or `Individual`: Applicable to HSA benefit. `Joint Filing or Single` or `Married and Filing Separately`: Applicable to Dependent Care FSA benefit. */
+  limit_option?:
+    | CreateEmployeeEmployeeBenefitRequestLimitOption
+    | (string & {})
+    | null;
 }
-export const GetEmployeeYtdBenefitAmountsFromDifferentCompanyRequest =
+export const CreateEmployeeEmployeeBenefitRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      employee_id: S.String.pipe(T.Label()),
+      active: S.optional(S.Boolean),
+      catch_up: S.optional(S.Boolean),
+      company_benefit_uuid: S.String,
+      company_contribution: S.optional(S.String),
+      company_contribution_annual_maximum: S.optional(S.NullOr(S.String)),
+      contribute_as_percentage: S.optional(S.Boolean),
+      contribution: S.optional(
+        CreateEmployeeEmployeeBenefitRequestContribution,
+      ),
+      coverage_amount: S.optional(S.NullOr(S.String)),
+      coverage_salary_multiplier: S.optional(S.String),
+      deduct_as_percentage: S.optional(S.Boolean),
+      deduction_reduces_taxable_income: S.optional(
+        S.NullOr(
+          CreateEmployeeEmployeeBenefitRequestDeductionReducesTaxableIncome,
+        ),
+      ),
+      effective_date: S.optional(S.String),
+      elective: S.optional(S.Boolean),
+      employee_deduction: S.optional(S.String),
+      employee_deduction_annual_maximum: S.optional(S.NullOr(S.String)),
+      expiration_date: S.optional(S.NullOr(S.String)),
+      limit_option: S.optional(
+        S.NullOr(CreateEmployeeEmployeeBenefitRequestLimitOption),
+      ),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/v1/employees/{employee_id}/employee_benefits",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateEmployeeEmployeeBenefitRequest",
+}) as any as S.Schema<CreateEmployeeEmployeeBenefitRequest>;
+
+/** A single tier of a tiered matching scheme. */
+export interface CreateEmployeeEmployeeBenefitResponseContributionValueCase1TiersItem {
+  /** The percentage of employee deduction within this tier the company contribution will match. */
+  rate?: string;
+  /** Specifies the upper limit (inclusive) percentage of the employee contribution that this tier applies to. Use threshold to define each tier's end point, with tiers applied cumulatively from 0% upwards. For example: If the first tier has a threshold of "3", and `rate` of "100", the company will match 100% of employee contributions from 0% up to and including 3% of payroll. If the next tier has a threshold of "5" and a rate of "50", the company will match 50% of contributions from above 3% up to and including 5% of payroll. */
+  threshold?: string;
+  /** The step up difference between this tier's threshold and the previous tier's threshold. In the first tier, this is equivalent to threshold. */
+  threshold_delta?: string;
+}
+export const CreateEmployeeEmployeeBenefitResponseContributionValueCase1TiersItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      rate: S.optional(S.String),
+      threshold: S.optional(S.String),
+      threshold_delta: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier:
+      "CreateEmployeeEmployeeBenefitResponseContributionValueCase1TiersItem",
+  }) as any as S.Schema<CreateEmployeeEmployeeBenefitResponseContributionValueCase1TiersItem>;
+
+export type CreateEmployeeEmployeeBenefitResponseContributionValueCase1TiersList =
+  Array<CreateEmployeeEmployeeBenefitResponseContributionValueCase1TiersItem>;
+export const CreateEmployeeEmployeeBenefitResponseContributionValueCase1TiersList =
+  /*@__PURE__*/ S.Array(
+    CreateEmployeeEmployeeBenefitResponseContributionValueCase1TiersItem,
+  ) as any as S.Schema<CreateEmployeeEmployeeBenefitResponseContributionValueCase1TiersList>;
+
+export interface CreateEmployeeEmployeeBenefitResponseContributionValueCase1 {
+  tiers?: CreateEmployeeEmployeeBenefitResponseContributionValueCase1TiersList;
+}
+export const CreateEmployeeEmployeeBenefitResponseContributionValueCase1 =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      tiers: S.optional(
+        CreateEmployeeEmployeeBenefitResponseContributionValueCase1TiersList,
+      ),
+    }),
+  ).annotate({
+    identifier: "CreateEmployeeEmployeeBenefitResponseContributionValueCase1",
+  }) as any as S.Schema<CreateEmployeeEmployeeBenefitResponseContributionValueCase1>;
+
+/** For the `amount` and `percentage` contribution types, the value of the corresponding amount or percentage. For the `tiered` contribution type, an array of tiers. */
+export type CreateEmployeeEmployeeBenefitResponseContributionValue =
+  | string
+  | CreateEmployeeEmployeeBenefitResponseContributionValueCase1;
+export const CreateEmployeeEmployeeBenefitResponseContributionValue =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateEmployeeEmployeeBenefitResponseContributionValue>;
+
+/** An object representing the type and value of the company contribution. */
+export interface CreateEmployeeEmployeeBenefitResponseContribution {
+  /** The company contribution scheme. "amount": The company contributes a fixed amount per payroll. If elective is true, the contribution is matching, dollar-for-dollar. "percentage": The company contributes a percentage of the payroll amount per payroll period. If elective is true, the contribution is matching, dollar-for-dollar. "tiered": The company contribution varies according to the size of the employee deduction. */
+  type?: string;
+  /** For the `amount` and `percentage` contribution types, the value of the corresponding amount or percentage. For the `tiered` contribution type, an array of tiers. */
+  value?: CreateEmployeeEmployeeBenefitResponseContributionValue;
+}
+export const CreateEmployeeEmployeeBenefitResponseContribution =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: S.optional(S.String),
+      value: S.optional(CreateEmployeeEmployeeBenefitResponseContributionValue),
+    }),
+  ).annotate({
+    identifier: "CreateEmployeeEmployeeBenefitResponseContribution",
+  }) as any as S.Schema<CreateEmployeeEmployeeBenefitResponseContribution>;
+
+export type CreateEmployeeEmployeeBenefitResponseDeductionReducesTaxableIncome =
+  | "unset"
+  | "reduces_taxable_income"
+  | "does_not_reduce_taxable_income";
+export const CreateEmployeeEmployeeBenefitResponseDeductionReducesTaxableIncome =
+  /*@__PURE__*/ S.String;
+
+export interface CreateEmployeeEmployeeBenefitResponse {
+  /** Whether the employee benefit is active. */
+  active?: boolean;
+  /** Whether the employee should use a benefit's "catch up" rate. Only Roth 401k and 401k benefits use this value for employees over 50. */
+  catch_up?: boolean | null;
+  /** The amount to be paid, per pay period, by the company. This field will not appear for tiered contribution types. */
+  company_contribution?: string;
+  /** The maximum company contribution amount per year. A null value signifies no limit. */
+  company_contribution_annual_maximum?: string | null;
+  /** Whether the company_contribution value should be treated as a percentage to be added to each payroll. This field will not appear for tiered contribution types. */
+  contribute_as_percentage?: boolean;
+  /** An object representing the type and value of the company contribution. */
+  contribution?: CreateEmployeeEmployeeBenefitResponseContribution;
+  /** The amount that the employee is insured for. Note: company contribution cannot be present if coverage amount is set. */
+  coverage_amount?: string | null;
+  /** The coverage amount as a multiple of the employee's salary. Only applicable for Group Term Life benefits. Note: cannot be set if coverage amount is also set. */
+  coverage_salary_multiplier?: string | null;
+  /** Whether the employee deduction amount should be treated as a percentage to be deducted from each payroll. */
+  deduct_as_percentage?: boolean;
+  /** Whether the employee deduction reduces taxable income or not. Only valid for Group Term Life benefits. Note: when the value is not "unset", coverage amount and coverage salary multiplier are ignored. */
+  deduction_reduces_taxable_income?: CreateEmployeeEmployeeBenefitResponseDeductionReducesTaxableIncome | null;
+  /** The date the employee benefit will start. */
+  effective_date?: string;
+  /** Whether the company contribution is elective (aka matching). For "tiered" contribution types, this is always true. */
+  elective?: boolean;
+  /** The amount to be deducted, per pay period, from the employee's pay. */
+  employee_deduction?: string;
+  /** The maximum employee deduction amount per year. A null value signifies no limit. */
+  employee_deduction_annual_maximum?: string | null;
+  /** The date the employee benefit will expire. A null value indicates the benefit will not expire. */
+  expiration_date?: string | null;
+  /** Some benefits require additional information to determine their limit. `Family` and `Individual` are applicable to HSA benefit. `Joint Filing or Single` and `Married and Filing Separately` are applicable to Dependent Care FSA benefit. */
+  limit_option?: string | null;
+  /** Identifier for a 401(k) loan assigned by the 401(k) provider */
+  retirement_loan_identifier?: string | null;
+  /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
+  version?: string;
+  /** The UUID of the company benefit. */
+  company_benefit_uuid?: string;
+  /** The UUID of the employee to which the benefit belongs. */
+  employee_uuid?: string;
+  /** The UUID of the employee benefit. */
+  uuid: string;
+}
+export const CreateEmployeeEmployeeBenefitResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      active: S.optional(S.Boolean),
+      catch_up: S.optional(S.NullOr(S.Boolean)),
+      company_contribution: S.optional(S.String),
+      company_contribution_annual_maximum: S.optional(S.NullOr(S.String)),
+      contribute_as_percentage: S.optional(S.Boolean),
+      contribution: S.optional(
+        CreateEmployeeEmployeeBenefitResponseContribution,
+      ),
+      coverage_amount: S.optional(S.NullOr(S.String)),
+      coverage_salary_multiplier: S.optional(S.NullOr(S.String)),
+      deduct_as_percentage: S.optional(S.Boolean),
+      deduction_reduces_taxable_income: S.optional(
+        S.NullOr(
+          CreateEmployeeEmployeeBenefitResponseDeductionReducesTaxableIncome,
+        ),
+      ),
+      effective_date: S.optional(S.String),
+      elective: S.optional(S.Boolean),
+      employee_deduction: S.optional(S.String),
+      employee_deduction_annual_maximum: S.optional(S.NullOr(S.String)),
+      expiration_date: S.optional(S.NullOr(S.String)),
+      limit_option: S.optional(S.NullOr(S.String)),
+      retirement_loan_identifier: S.optional(S.NullOr(S.String)),
+      version: S.optional(S.String),
+      company_benefit_uuid: S.optional(S.String),
+      employee_uuid: S.optional(S.String),
+      uuid: S.String,
+    }),
+).annotate({
+  identifier: "CreateEmployeeEmployeeBenefitResponse",
+}) as any as S.Schema<CreateEmployeeEmployeeBenefitResponse>;
+
+/** How often the agency collects the withholding amount. e.g. $500 monthly -> `Monthly`. */
+export type GarnishmentChildSupportPaymentPeriod =
+  | "Every week"
+  | "Every other week"
+  | "Twice per month"
+  | "Monthly";
+export const GarnishmentChildSupportPaymentPeriod = /*@__PURE__*/ S.String;
+
+/** Additional child support order details */
+export interface GarnishmentChildSupport {
+  /** Child Support Enforcement Case Number associated with this child support obligation - required for most states. Agency specific requirements are available in the `GET /v1/garnishments/child_support` API. */
+  case_number?: string | null;
+  /** The FIPS code associated with the state or county agency issuing the child support order. Agency data is available in the `GET /v1/garnishments/child_support` API. */
+  fips_code?: string;
+  /** Order Identifier or Order ID associated with this child support obligation - required for some states. Agency specific requirements are available in the `GET /v1/garnishments/child_support` API. */
+  order_number?: string | null;
+  /** How often the agency collects the withholding amount. e.g. $500 monthly -> `Monthly`. */
+  payment_period?: GarnishmentChildSupportPaymentPeriod | (string & {});
+  /** Child Support Enforcement Remittance ID associated with this child support obligation - required for some states. Agency specific requirements are available in the `GET /v1/garnishments/child_support` API. */
+  remittance_number?: string | null;
+  /** The two letter state abbreviation for the state issuing the child support order. Agency data is available in the `GET /v1/garnishments/child_support` API. */
+  state?: string;
+}
+export const GarnishmentChildSupport = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    case_number: S.optional(S.NullOr(S.String)),
+    fips_code: S.optional(S.String),
+    order_number: S.optional(S.NullOr(S.String)),
+    payment_period: S.optional(GarnishmentChildSupportPaymentPeriod),
+    remittance_number: S.optional(S.NullOr(S.String)),
+    state: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GarnishmentChildSupport",
+}) as any as S.Schema<GarnishmentChildSupport>;
+
+export type CreateEmployeeGarnishmentRequestGarnishmentType =
+  | "child_support"
+  | "federal_tax_lien"
+  | "state_tax_lien"
+  | "student_loan"
+  | "creditor_garnishment"
+  | "federal_loan"
+  | "other_garnishment";
+export const CreateEmployeeGarnishmentRequestGarnishmentType =
+  /*@__PURE__*/ S.String;
+
+export interface CreateEmployeeGarnishmentRequest {
+  /** The UUID of the employee */
+  employee_id: string;
+  /** Whether or not this garnishment is currently active. */
+  active?: boolean;
+  /** The amount of the garnishment. Either a percentage or a fixed dollar amount. Represented as a float, e.g. "8.00". */
+  amount: string;
+  /** The maximum deduction per annum. A null value indicates no maximum. Represented as a float, e.g. "200.00". */
+  annual_maximum?: string | null;
+  child_support?: GarnishmentChildSupport | null;
+  /** Whether the garnishment is court ordered. */
+  court_ordered: boolean;
+  /** Whether the amount should be treated as a percentage to be deducted per pay period. */
+  deduct_as_percentage?: boolean;
+  /** The description of the garnishment. */
+  description?: string;
+  /** The specific type of garnishment for court ordered garnishments. */
+  garnishment_type?:
+    | CreateEmployeeGarnishmentRequestGarnishmentType
+    | (string & {})
+    | null;
+  /** The maximum deduction per pay period. A null value indicates no maximum. Represented as a float, e.g. "16.00". */
+  pay_period_maximum?: string | null;
+  /** Whether the garnishment should recur indefinitely. */
+  recurring?: boolean;
+  /** The number of times to apply the garnishment. Ignored if recurring is true. */
+  times?: number | null;
+  /** A maximum total deduction for the lifetime of this garnishment. A null value indicates no maximum. */
+  total_amount?: string | null;
+}
+export const CreateEmployeeGarnishmentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    employee_id: S.String.pipe(T.Label()),
+    active: S.optional(S.Boolean),
+    amount: S.String,
+    annual_maximum: S.optional(S.NullOr(S.String)),
+    child_support: S.optional(S.NullOr(GarnishmentChildSupport)),
+    court_ordered: S.Boolean,
+    deduct_as_percentage: S.optional(S.Boolean),
+    description: S.optional(S.String),
+    garnishment_type: S.optional(
+      S.NullOr(CreateEmployeeGarnishmentRequestGarnishmentType),
+    ),
+    pay_period_maximum: S.optional(S.NullOr(S.String)),
+    recurring: S.optional(S.Boolean),
+    times: S.optional(S.NullOr(S.Number)),
+    total_amount: S.optional(S.NullOr(S.String)),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/employees/{employee_id}/garnishments",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateEmployeeGarnishmentRequest",
+}) as any as S.Schema<CreateEmployeeGarnishmentRequest>;
+
+export type GarnishmentGarnishmentType =
+  | "child_support"
+  | "federal_tax_lien"
+  | "state_tax_lien"
+  | "student_loan"
+  | "creditor_garnishment"
+  | "federal_loan"
+  | "other_garnishment";
+export const GarnishmentGarnishmentType = /*@__PURE__*/ S.String;
+
+/** Garnishments, or employee deductions, are fixed amounts or percentages deducted from an employee’s pay. They can be deducted a specific number of times or on a recurring basis. Garnishments can also have maximum deductions on a yearly or per-pay-period bases. Common uses for garnishments are court-ordered payments for child support or back taxes. Some companies provide loans to their employees that are repaid via garnishments. */
+export interface Garnishment {
+  /** Whether or not this garnishment is currently active. */
+  active?: boolean;
+  /** The amount of the garnishment. Either a percentage or a fixed dollar amount. Represented as a float, e.g. "8.00". */
+  amount?: string;
+  /** The maximum deduction per annum. A null value indicates no maximum. Represented as a float, e.g. "200.00". */
+  annual_maximum?: string | null;
+  child_support?: GarnishmentChildSupport | null;
+  /** Whether the garnishment is court ordered. */
+  court_ordered?: boolean;
+  /** Whether the amount should be treated as a percentage to be deducted per pay period. */
+  deduct_as_percentage?: boolean;
+  /** The description of the garnishment. */
+  description?: string;
+  /** The UUID of the employee to which this garnishment belongs. */
+  employee_uuid?: string;
+  /** The specific type of garnishment for court ordered garnishments. */
+  garnishment_type?: GarnishmentGarnishmentType | null;
+  /** The maximum deduction per pay period. A null value indicates no maximum. Represented as a float, e.g. "16.00". */
+  pay_period_maximum?: string | null;
+  /** Whether the garnishment should recur indefinitely. */
+  recurring?: boolean;
+  /** The number of times to apply the garnishment. Ignored if recurring is true. */
+  times?: number | null;
+  /** A maximum total deduction for the lifetime of this garnishment. A null value indicates no maximum. */
+  total_amount?: string | null;
+  /** The UUID of the garnishment in Gusto. */
+  uuid: string;
+  /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
+  version?: string;
+}
+export const Garnishment = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    active: S.optional(S.Boolean),
+    amount: S.optional(S.String),
+    annual_maximum: S.optional(S.NullOr(S.String)),
+    child_support: S.optional(S.NullOr(GarnishmentChildSupport)),
+    court_ordered: S.optional(S.Boolean),
+    deduct_as_percentage: S.optional(S.Boolean),
+    description: S.optional(S.String),
+    employee_uuid: S.optional(S.String),
+    garnishment_type: S.optional(S.NullOr(GarnishmentGarnishmentType)),
+    pay_period_maximum: S.optional(S.NullOr(S.String)),
+    recurring: S.optional(S.Boolean),
+    times: S.optional(S.NullOr(S.Number)),
+    total_amount: S.optional(S.NullOr(S.String)),
+    uuid: S.String,
+    version: S.optional(S.String),
+  }),
+).annotate({ identifier: "Garnishment" }) as any as S.Schema<Garnishment>;
+
+export interface CreateEmployeeHomeAddressRequest {
+  /** The UUID of the employee */
+  employee_id: string;
+  city?: string;
+  courtesy_withholding?: boolean;
+  effective_date?: string | null;
+  state?: string;
+  street_1?: string;
+  street_2?: string | null;
+  zip?: string;
+}
+export const CreateEmployeeHomeAddressRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    employee_id: S.String.pipe(T.Label()),
+    city: S.optional(S.String),
+    courtesy_withholding: S.optional(S.Boolean),
+    effective_date: S.optional(S.NullOr(S.String)),
+    state: S.optional(S.String),
+    street_1: S.optional(S.String),
+    street_2: S.optional(S.NullOr(S.String)),
+    zip: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/employees/{employee_id}/home_addresses",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateEmployeeHomeAddressRequest",
+}) as any as S.Schema<CreateEmployeeHomeAddressRequest>;
+
+/** An array of warning objects that provide additional information about the address. Warnings do not prevent the address from being saved. */
+export type EmployeeAddressWarningsList = Array<WarningObject>;
+export const EmployeeAddressWarningsList = /*@__PURE__*/ S.Array(
+  WarningObject,
+) as any as S.Schema<EmployeeAddressWarningsList>;
+
+export interface EmployeeAddress {
+  /** The status of the location. Inactive locations have been deleted, but may still have historical data associated with them. */
+  active?: boolean;
+  city?: string;
+  country?: string;
+  /** Determines if home taxes should be withheld and paid for employee. */
+  courtesy_withholding?: boolean;
+  /** The date the employee started living at the address. */
+  effective_date?: string;
+  /** The UUID of the employee */
+  employee_uuid?: string;
+  state?: string;
+  street_1?: string;
+  street_2?: string | null;
+  /** The UUID of the employee address */
+  uuid: string;
+  /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
+  version: string;
+  /** An array of warning objects that provide additional information about the address. Warnings do not prevent the address from being saved. */
+  warnings?: EmployeeAddressWarningsList;
+  zip?: string;
+}
+export const EmployeeAddress = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    active: S.optional(S.Boolean),
+    city: S.optional(S.String),
+    country: S.optional(S.String),
+    courtesy_withholding: S.optional(S.Boolean),
+    effective_date: S.optional(S.String),
+    employee_uuid: S.optional(S.String),
+    state: S.optional(S.String),
+    street_1: S.optional(S.String),
+    street_2: S.optional(S.NullOr(S.String)),
+    uuid: S.String,
+    version: S.String,
+    warnings: S.optional(EmployeeAddressWarningsList),
+    zip: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "EmployeeAddress",
+}) as any as S.Schema<EmployeeAddress>;
+
+export interface CreateEmployeeRecurringReimbursementRequest {
+  /** The UUID of the employee */
+  employee_id: string;
+  /** The dollar amount of the reimbursement */
+  amount: number;
+  /** The description of the reimbursement */
+  description: string;
+}
+export const CreateEmployeeRecurringReimbursementRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       employee_id: S.String.pipe(T.Label()),
-      tax_year: S.optional(S.Number.pipe(T.Query())),
+      amount: S.Number,
+      description: S.String,
     }).pipe(
       T.Http({
-        method: "GET",
-        uri: "/v1/employees/{employee_id}/ytd_benefit_amounts_from_different_company",
+        method: "POST",
+        uri: "/v1/employees/{employee_id}/recurring_reimbursements",
         code: 200,
       }),
     ),
   ).annotate({
-    identifier: "GetEmployeeYtdBenefitAmountsFromDifferentCompanyRequest",
-  }) as any as S.Schema<GetEmployeeYtdBenefitAmountsFromDifferentCompanyRequest>;
+    identifier: "CreateEmployeeRecurringReimbursementRequest",
+  }) as any as S.Schema<CreateEmployeeRecurringReimbursementRequest>;
 
-/** Ytd Benefit Amounts From Different Company */
-export interface YtdBenefitAmountsFromDifferentCompany {
-  /** The benefit type supported by Gusto. See [Benefit Types](https://docs.gusto.com/embedded-payroll/reference/get-v1-benefits) for more information. */
-  benefit_type: number;
-  /** The unique identifier for this benefit amount record. */
+export interface RecurringReimbursement {
+  /** The dollar amount of the reimbursement. */
+  amount: string;
+  /** The timestamp when this reimbursement was created. */
+  created_at?: string;
+  /** The description of the reimbursement. */
+  description: string;
+  /** The UUID of the employee. */
+  employee_uuid: string;
+  /** The timestamp when this reimbursement was last updated. */
+  updated_at?: string;
+  /** The unique identifier of this recurring reimbursement. */
   uuid: string;
+  /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
+  version: string;
+}
+export const RecurringReimbursement = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    amount: S.String,
+    created_at: S.optional(S.String),
+    description: S.String,
+    employee_uuid: S.String,
+    updated_at: S.optional(S.String),
+    uuid: S.String,
+    version: S.String,
+  }),
+).annotate({
+  identifier: "RecurringReimbursement",
+}) as any as S.Schema<RecurringReimbursement>;
+
+/** The employee's employment status. Supplying an invalid option will set the employment_status to *not_set*. */
+export type CreateEmployeeRehireRequestEmploymentStatus =
+  | "part_time"
+  | "full_time"
+  | "part_time_eligible"
+  | "variable"
+  | "seasonal"
+  | "not_set";
+export const CreateEmployeeRehireRequestEmploymentStatus =
+  /*@__PURE__*/ S.String;
+
+export interface CreateEmployeeRehireRequest {
+  /** The UUID of the employee */
+  employee_id: string;
+  /** The day when the employee returns to work. */
+  effective_date: string;
+  /** The employee's employment status. Supplying an invalid option will set the employment_status to *not_set*. */
+  employment_status?:
+    | CreateEmployeeRehireRequestEmploymentStatus
+    | (string & {});
+  /** The boolean flag indicating whether Gusto will file a new hire report for the employee. */
+  file_new_hire_report: boolean;
+  /** Whether the employee is a two percent shareholder of the company. This field only applies to companies with an S-Corp entity type. */
+  two_percent_shareholder?: boolean;
+  /** The uuid of the employee's work location. */
+  work_location_uuid: string;
+}
+export const CreateEmployeeRehireRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    employee_id: S.String.pipe(T.Label()),
+    effective_date: S.String,
+    employment_status: S.optional(CreateEmployeeRehireRequestEmploymentStatus),
+    file_new_hire_report: S.Boolean,
+    two_percent_shareholder: S.optional(S.Boolean),
+    work_location_uuid: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/employees/{employee_id}/rehire",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateEmployeeRehireRequest",
+}) as any as S.Schema<CreateEmployeeRehireRequest>;
+
+/** The employee's employment status. Supplying an invalid option will set the employment_status to *not_set*. */
+export type RehireEmploymentStatus =
+  | "part_time"
+  | "full_time"
+  | "part_time_eligible"
+  | "variable"
+  | "seasonal"
+  | "not_set";
+export const RehireEmploymentStatus = /*@__PURE__*/ S.String;
+
+export interface Rehire {
+  /** Whether the employee's rehire has gone into effect. */
+  active?: boolean;
+  /** The day when the employee returns to work. */
+  effective_date?: string;
+  /** The UUID of the employee. */
+  employee_uuid?: string;
+  /** The employee's employment status. Supplying an invalid option will set the employment_status to *not_set*. */
+  employment_status?: RehireEmploymentStatus;
+  /** The boolean flag indicating whether Gusto will file a new hire report for the employee. */
+  file_new_hire_report?: boolean;
+  /** Whether the employee is a two percent shareholder of the company. This field only applies to companies with an S-Corp entity type. */
+  two_percent_shareholder?: boolean;
+  /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/versioning#object-layer) for information on how to use this field. */
+  version?: string;
+  /** The uuid of the employee's work location. */
+  work_location_uuid?: string;
+}
+export const Rehire = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    active: S.optional(S.Boolean),
+    effective_date: S.optional(S.String),
+    employee_uuid: S.optional(S.String),
+    employment_status: S.optional(RehireEmploymentStatus),
+    file_new_hire_report: S.optional(S.Boolean),
+    two_percent_shareholder: S.optional(S.Boolean),
+    version: S.optional(S.String),
+    work_location_uuid: S.optional(S.String),
+  }),
+).annotate({ identifier: "Rehire" }) as any as S.Schema<Rehire>;
+
+/** Experience level for this occupation */
+export type CreateEmployeeSalaryEstimateRequestOccupationsItemExperienceLevel =
+  | "novice"
+  | "intermediate"
+  | "average"
+  | "skilled"
+  | "expert";
+export const CreateEmployeeSalaryEstimateRequestOccupationsItemExperienceLevel =
+  /*@__PURE__*/ S.String;
+
+export interface CreateEmployeeSalaryEstimateRequestOccupationsItem {
+  /** Bureau of Labor Statistics (BLS) occupation code */
+  code: string;
+  /** Experience level for this occupation */
+  experience_level:
+    | CreateEmployeeSalaryEstimateRequestOccupationsItemExperienceLevel
+    | (string & {});
+  /** Whether this is the primary occupation */
+  primary?: boolean;
+  /** Percentage of time spent in this occupation (as decimal, e.g., 1.0 = 100%) */
+  time_percentage: string;
+}
+export const CreateEmployeeSalaryEstimateRequestOccupationsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      code: S.String,
+      experience_level:
+        CreateEmployeeSalaryEstimateRequestOccupationsItemExperienceLevel,
+      primary: S.optional(S.Boolean),
+      time_percentage: S.String,
+    }),
+  ).annotate({
+    identifier: "CreateEmployeeSalaryEstimateRequestOccupationsItem",
+  }) as any as S.Schema<CreateEmployeeSalaryEstimateRequestOccupationsItem>;
+
+/** Array of occupations. Time percentages must sum to 100%. */
+export type CreateEmployeeSalaryEstimateRequestOccupationsList =
+  Array<CreateEmployeeSalaryEstimateRequestOccupationsItem>;
+export const CreateEmployeeSalaryEstimateRequestOccupationsList =
+  /*@__PURE__*/ S.Array(
+    CreateEmployeeSalaryEstimateRequestOccupationsItem,
+  ) as any as S.Schema<CreateEmployeeSalaryEstimateRequestOccupationsList>;
+
+export interface CreateEmployeeSalaryEstimateRequest {
+  /** The UUID of the employee */
+  employee_id: string;
+  /** The annual net revenue of the business (must be greater than 0) */
+  annual_net_revenue?: number | null;
+  /** Array of occupations. Time percentages must sum to 100%. */
+  occupations: CreateEmployeeSalaryEstimateRequestOccupationsList;
+  /** The ZIP code for location-based salary calculations */
+  zip_code: string;
+}
+export const CreateEmployeeSalaryEstimateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    employee_id: S.String.pipe(T.Label()),
+    annual_net_revenue: S.optional(S.NullOr(S.Number)),
+    occupations: CreateEmployeeSalaryEstimateRequestOccupationsList,
+    zip_code: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/employees/{employee_id}/salary_estimates",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateEmployeeSalaryEstimateRequest",
+}) as any as S.Schema<CreateEmployeeSalaryEstimateRequest>;
+
+/** Experience level for this occupation. */
+export type SalaryEstimateOccupationsItemExperienceLevel =
+  | "novice"
+  | "intermediate"
+  | "average"
+  | "skilled"
+  | "expert";
+export const SalaryEstimateOccupationsItemExperienceLevel =
+  /*@__PURE__*/ S.String;
+
+export interface SalaryEstimateOccupationsItem {
+  /** Bureau of Labor Statistics (BLS) occupation code. */
+  code: string;
+  /** Occupation description. */
+  description?: string;
+  /** Experience level for this occupation. */
+  experience_level: SalaryEstimateOccupationsItemExperienceLevel;
+  /** Occupation name. */
+  name?: string;
+  /** Whether this is the primary occupation. */
+  primary?: boolean;
+  /** Percentage of time spent in this occupation (as decimal string, 0-1). */
+  time_percentage: string;
+}
+export const SalaryEstimateOccupationsItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    code: S.String,
+    description: S.optional(S.String),
+    experience_level: SalaryEstimateOccupationsItemExperienceLevel,
+    name: S.optional(S.String),
+    primary: S.optional(S.Boolean),
+    time_percentage: S.String,
+  }),
+).annotate({
+  identifier: "SalaryEstimateOccupationsItem",
+}) as any as S.Schema<SalaryEstimateOccupationsItem>;
+
+/** Array of occupations with their experience levels and time allocations. */
+export type SalaryEstimateOccupationsList =
+  Array<SalaryEstimateOccupationsItem>;
+export const SalaryEstimateOccupationsList = /*@__PURE__*/ S.Array(
+  SalaryEstimateOccupationsItem,
+) as any as S.Schema<SalaryEstimateOccupationsList>;
+
+/** A salary estimate calculation for an S-Corp owner based on occupation, experience level, location, and business revenue. */
+export interface SalaryEstimate {
+  /** The timestamp when this salary estimate was accepted and finalized. */
+  accepted_at?: string | null;
+  /** The annual net revenue of the business used for salary calculations. */
+  annual_net_revenue: string | null;
+  /** The timestamp when this salary estimate was created. */
+  created_at: string;
+  /** The UUID of the employee job this salary estimate is associated with (once accepted). */
+  employee_job_uuid?: string | null;
+  /** The UUID of the employee this salary estimate is for. */
+  employee_uuid: string | null;
+  /** Array of occupations with their experience levels and time allocations. */
+  occupations: SalaryEstimateOccupationsList;
+  /** The calculated reasonable salary estimate in cents. Null if not yet calculated. */
+  result?: number | null;
+  /** The timestamp when this salary estimate was last updated. */
+  updated_at: string;
+  /** The UUID of the salary estimate. */
+  uuid: string;
+  /** The ZIP code used for location-based salary calculations. */
+  zip_code: string | null;
+}
+export const SalaryEstimate = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accepted_at: S.optional(S.NullOr(S.String)),
+    annual_net_revenue: S.NullOr(S.String),
+    created_at: S.String,
+    employee_job_uuid: S.optional(S.NullOr(S.String)),
+    employee_uuid: S.NullOr(S.String),
+    occupations: SalaryEstimateOccupationsList,
+    result: S.optional(S.NullOr(S.Number)),
+    updated_at: S.String,
+    uuid: S.String,
+    zip_code: S.NullOr(S.String),
+  }),
+).annotate({ identifier: "SalaryEstimate" }) as any as S.Schema<SalaryEstimate>;
+
+export interface CreateEmployeeSection603HighEarnerStatusRequest {
+  /** The UUID of the employee */
+  employee_uuid: string;
+  /** The year for which this high earner status applies */
+  effective_year: number;
+  /** Whether the employee is classified as a high earner for Section 603 purposes */
+  is_high_earner: boolean;
+}
+export const CreateEmployeeSection603HighEarnerStatusRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      employee_uuid: S.String.pipe(T.Label()),
+      effective_year: S.Number,
+      is_high_earner: S.Boolean,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/v1/employees/{employee_uuid}/section603_high_earner_statuses",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateEmployeeSection603HighEarnerStatusRequest",
+  }) as any as S.Schema<CreateEmployeeSection603HighEarnerStatusRequest>;
+
+/** The representation of an employee's Section 603 high earner status for a specific year. Section 603 of the SECURE 2.0 Act requires employees aged 50 or older whose prior-year FICA wages exceed the IRS threshold to have their catch-up contributions to pre-tax retirement benefits designated as post-tax contributions. */
+export interface EmployeeSection603HighEarnerStatus {
+  /** The year for which this high earner status applies */
+  effective_year: number;
+  /** The unique identifier of the Section 603 high earner status record */
+  id: string;
+  /** Whether the employee is classified as a high earner for Section 603 purposes. Can be null if the status has not yet been determined. */
+  is_high_earner: boolean | null;
+}
+export const EmployeeSection603HighEarnerStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    effective_year: S.Number,
+    id: S.String,
+    is_high_earner: S.NullOr(S.Boolean),
+  }),
+).annotate({
+  identifier: "EmployeeSection603HighEarnerStatus",
+}) as any as S.Schema<EmployeeSection603HighEarnerStatus>;
+
+export interface CreateEmployeeTerminationRequest {
+  /** The UUID of the employee */
+  employee_id: string;
+  /** The employee's last day of work. */
+  effective_date: string;
+  /** If true, the employee should receive their final wages via an off-cycle payroll. If false, they should receive their final wages on their current pay schedule. */
+  run_termination_payroll?: boolean;
+}
+export const CreateEmployeeTerminationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    employee_id: S.String.pipe(T.Label()),
+    effective_date: S.String,
+    run_termination_payroll: S.optional(S.Boolean),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/employees/{employee_id}/terminations",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateEmployeeTerminationRequest",
+}) as any as S.Schema<CreateEmployeeTerminationRequest>;
+
+/** The representation of a termination in Gusto. */
+export interface Termination {
+  /** Whether the employee's termination has gone into effect. */
+  active?: boolean;
+  /** Whether the employee's termination is cancelable. Cancelable is true if `run_termination_payroll` is false and `effective_date` is in the future. */
+  cancelable?: boolean;
+  /** The employee's last day of work. */
+  effective_date?: string;
+  /** The UUID of the employee to which this termination is attached. */
+  employee_uuid?: string;
+  /** If true, the employee should receive their final wages via an off-cycle payroll. If false, they should receive their final wages on their current pay schedule. */
+  run_termination_payroll?: boolean;
+  /** The UUID of the termination object. */
+  uuid: string;
+  /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
+  version?: string;
+}
+export const Termination = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    active: S.optional(S.Boolean),
+    cancelable: S.optional(S.Boolean),
+    effective_date: S.optional(S.String),
+    employee_uuid: S.optional(S.String),
+    run_termination_payroll: S.optional(S.Boolean),
+    uuid: S.String,
+    version: S.optional(S.String),
+  }),
+).annotate({ identifier: "Termination" }) as any as S.Schema<Termination>;
+
+export interface CreateEmployeeWorkAddressRequest {
+  /** The UUID of the employee */
+  employee_id: string;
+  /** Date the employee began working at the company location */
+  effective_date?: string;
+  /** Reference to a company location */
+  location_uuid?: string;
+}
+export const CreateEmployeeWorkAddressRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    employee_id: S.String.pipe(T.Label()),
+    effective_date: S.optional(S.String),
+    location_uuid: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/employees/{employee_id}/work_addresses",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateEmployeeWorkAddressRequest",
+}) as any as S.Schema<CreateEmployeeWorkAddressRequest>;
+
+export interface EmployeeWorkAddress {
+  /** Signifies if this address is the active work address for the current date */
+  active?: boolean;
+  city?: string;
+  country?: string;
+  /** The date the employee began working at this location. */
+  effective_date?: string;
+  /** UUID reference to the employee for this work address. */
+  employee_uuid?: string;
+  /** UUID reference to the company location for this work address. */
+  location_uuid?: string;
+  state?: string;
+  street_1?: string;
+  street_2?: string | null;
+  /** The unique identifier of this work address. */
+  uuid: string;
+  /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
+  version: string;
+  zip?: string;
+}
+export const EmployeeWorkAddress = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    active: S.optional(S.Boolean),
+    city: S.optional(S.String),
+    country: S.optional(S.String),
+    effective_date: S.optional(S.String),
+    employee_uuid: S.optional(S.String),
+    location_uuid: S.optional(S.String),
+    state: S.optional(S.String),
+    street_1: S.optional(S.String),
+    street_2: S.optional(S.NullOr(S.String)),
+    uuid: S.String,
+    version: S.String,
+    zip: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "EmployeeWorkAddress",
+}) as any as S.Schema<EmployeeWorkAddress>;
+
+export interface CreateEmployeeYtdBenefitAmountsFromDifferentCompanyRequest {
+  /** The UUID of the employee */
+  employee_id: string;
+  /** The benefit type supported by Gusto. */
+  benefit_type: number;
+  /** The tax year for which this amount applies. */
+  tax_year: number;
   /** The year-to-date company contribution made outside the current company. */
   ytd_company_contribution_amount: string;
   /** The year-to-date employee deduction made outside the current company. */
   ytd_employee_deduction_amount: string;
 }
-export const YtdBenefitAmountsFromDifferentCompany = /*@__PURE__*/ S.suspend(
-  () =>
+export const CreateEmployeeYtdBenefitAmountsFromDifferentCompanyRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
+      employee_id: S.String.pipe(T.Label()),
       benefit_type: S.Number,
-      uuid: S.String,
+      tax_year: S.Number,
       ytd_company_contribution_amount: S.String,
       ytd_employee_deduction_amount: S.String,
-    }),
-).annotate({
-  identifier: "YtdBenefitAmountsFromDifferentCompany",
-}) as any as S.Schema<YtdBenefitAmountsFromDifferentCompany>;
-
-export type GetEmployeeYtdBenefitAmountsFromDifferentCompanyResponseBodyList =
-  Array<YtdBenefitAmountsFromDifferentCompany>;
-export const GetEmployeeYtdBenefitAmountsFromDifferentCompanyResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    YtdBenefitAmountsFromDifferentCompany,
-  ) as any as S.Schema<GetEmployeeYtdBenefitAmountsFromDifferentCompanyResponseBodyList>;
-
-export type GetEmployeeYtdBenefitAmountsFromDifferentCompanyResponse =
-  GetEmployeeYtdBenefitAmountsFromDifferentCompanyResponseBodyList;
-export const GetEmployeeYtdBenefitAmountsFromDifferentCompanyResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetEmployeeYtdBenefitAmountsFromDifferentCompanyResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetEmployeeYtdBenefitAmountsFromDifferentCompanyResponse",
-  }) as any as S.Schema<GetEmployeeYtdBenefitAmountsFromDifferentCompanyResponse>;
-
-export type GetEventsRequestSortOrder = "asc" | "desc";
-export const GetEventsRequestSortOrder = /*@__PURE__*/ S.String;
-
-export interface GetEventsRequest {
-  /** A cursor for pagination. Returns all events occuring after the specified UUID (exclusive). Events are sorted according to the provided sort_order param. */
-  starting_after_uuid?: string;
-  /** The UUID of the company. If not specified, will return all events for all companies. */
-  resource_uuid?: string;
-  /** Limits the number of objects returned in a single response, between 1 and 100. The default is 25 */
-  limit?: string;
-  /** A string containing the exact event name (e.g. `employee.created`), or use a wildcard match to filter for a group of events (e.g. `employee.*`, `*.created`, `notification.*.created` etc.) */
-  event_type?: string;
-  /** A string indicating whether to sort resulting events in ascending (asc) or descending (desc) chronological order. Events are sorted by their `timestamp`. Defaults to asc if left empty. */
-  sort_order?: GetEventsRequestSortOrder | (string & {});
-}
-export const GetEventsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    starting_after_uuid: S.optional(S.String.pipe(T.Query())),
-    resource_uuid: S.optional(S.String.pipe(T.Query())),
-    limit: S.optional(S.String.pipe(T.Query())),
-    event_type: S.optional(S.String.pipe(T.Query())),
-    sort_order: S.optional(GetEventsRequestSortOrder.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/v1/events", code: 200 })),
-).annotate({
-  identifier: "GetEventsRequest",
-}) as any as S.Schema<GetEventsRequest>;
-
-/** Name of the parent resource of the described entity. */
-export type EventResourceType = "Company";
-export const EventResourceType = /*@__PURE__*/ S.String;
-
-/** Representation of an Event */
-export interface Event {
-  /** Name of the entity that the event corresponds to. */
-  entity_type?: string;
-  /** Unique identifier for the entity. */
-  entity_uuid?: string;
-  /** Description of the event (e.g., payroll.submitted, or company.form.signed). */
-  event_type?: string;
-  /** Name of the parent resource of the described entity. */
-  resource_type?: EventResourceType;
-  /** Unique identifier for the parent resource. */
-  resource_uuid?: string;
-  /** Time at which this event was created. Measured in seconds since the Unix epoch. */
-  timestamp?: number;
-  /** Unique identifier for the event. */
-  uuid: string;
-}
-export const Event = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    entity_type: S.optional(S.String),
-    entity_uuid: S.optional(S.String),
-    event_type: S.optional(S.String),
-    resource_type: S.optional(EventResourceType),
-    resource_uuid: S.optional(S.String),
-    timestamp: S.optional(S.Number),
-    uuid: S.String,
-  }),
-).annotate({ identifier: "Event" }) as any as S.Schema<Event>;
-
-/** A list of events */
-export type EventList = Array<Event>;
-export const EventList = /*@__PURE__*/ S.Array(
-  Event,
-) as any as S.Schema<EventList>;
-
-export type GetEventsResponse = EventList;
-export const GetEventsResponse = /*@__PURE__*/ S.suspend(() =>
-  EventList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetEventsResponse",
-}) as any as S.Schema<GetEventsResponse>;
-
-export interface GetReportsRequestUuidRequest {
-  /** The UUID of the request to generate a document. Generate document endpoints return request_uuids to be used with the GET generated document endpoint. */
-  request_uuid: string;
-}
-export const GetReportsRequestUuidRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    request_uuid: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/v1/reports/{request_uuid}", code: 200 }),
-  ),
-).annotate({
-  identifier: "GetReportsRequestUuidRequest",
-}) as any as S.Schema<GetReportsRequestUuidRequest>;
-
-/** The array of urls to access the report */
-export type ReportReportUrlsList = Array<string>;
-export const ReportReportUrlsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ReportReportUrlsList>;
-
-export interface Report {
-  /** The array of urls to access the report */
-  report_urls?: ReportReportUrlsList;
-  /** A unique identifier of the report request */
-  request_uuid?: string;
-  /** Current status of the report, possible values are 'succeeded', 'pending', or 'failed' */
-  status?: string;
-}
-export const Report = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    report_urls: S.optional(ReportReportUrlsList),
-    request_uuid: S.optional(S.String),
-    status: S.optional(S.String),
-  }),
-).annotate({ identifier: "Report" }) as any as S.Schema<Report>;
-
-export interface GetTimeTrackingTimeSheetsTimeSheetUuidRequest {
-  /** UUID of the time sheet */
-  time_sheet_uuid: string;
-}
-export const GetTimeTrackingTimeSheetsTimeSheetUuidRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      time_sheet_uuid: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
-        method: "GET",
-        uri: "/v1/time_tracking/time_sheets/{time_sheet_uuid}",
+        method: "POST",
+        uri: "/v1/employees/{employee_id}/ytd_benefit_amounts_from_different_company",
         code: 200,
       }),
     ),
   ).annotate({
-    identifier: "GetTimeTrackingTimeSheetsTimeSheetUuidRequest",
-  }) as any as S.Schema<GetTimeTrackingTimeSheetsTimeSheetUuidRequest>;
+    identifier: "CreateEmployeeYtdBenefitAmountsFromDifferentCompanyRequest",
+  }) as any as S.Schema<CreateEmployeeYtdBenefitAmountsFromDifferentCompanyRequest>;
 
-export interface GetV1BenefitsRequest {}
-export const GetV1BenefitsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(T.Http({ method: "GET", uri: "/v1/benefits", code: 200 })),
+export interface CreateEmployeeYtdBenefitAmountsFromDifferentCompanyResponse {}
+export const CreateEmployeeYtdBenefitAmountsFromDifferentCompanyResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "CreateEmployeeYtdBenefitAmountsFromDifferentCompanyResponse",
+  }) as any as S.Schema<CreateEmployeeYtdBenefitAmountsFromDifferentCompanyResponse>;
+
+/** The breakdown of the report. Use 'default' for no split. */
+export type CreatePayrollReportsGeneralLedgerRequestAggregation =
+  | "default"
+  | "job"
+  | "department"
+  | "integration";
+export const CreatePayrollReportsGeneralLedgerRequestAggregation =
+  /*@__PURE__*/ S.String;
+
+export type CreatePayrollReportsGeneralLedgerRequestIntegrationType =
+  | "xero"
+  | "qbo";
+export const CreatePayrollReportsGeneralLedgerRequestIntegrationType =
+  /*@__PURE__*/ S.String;
+
+export interface CreatePayrollReportsGeneralLedgerRequest {
+  /** The UUID of the payroll */
+  payroll_uuid: string;
+  /** The breakdown of the report. Use 'default' for no split. */
+  aggregation:
+    | CreatePayrollReportsGeneralLedgerRequestAggregation
+    | (string & {});
+  /** The kind of integration set up for the company. Required when `aggregation` is 'integration'. Must be null if `aggregation` is not 'integration'. */
+  integration_type?:
+    | CreatePayrollReportsGeneralLedgerRequestIntegrationType
+    | (string & {})
+    | null;
+}
+export const CreatePayrollReportsGeneralLedgerRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      payroll_uuid: S.String.pipe(T.Label()),
+      aggregation: CreatePayrollReportsGeneralLedgerRequestAggregation,
+      integration_type: S.optional(
+        S.NullOr(CreatePayrollReportsGeneralLedgerRequestIntegrationType),
+      ),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/v1/payrolls/{payroll_uuid}/reports/general_ledger",
+        code: 200,
+      }),
+    ),
 ).annotate({
-  identifier: "GetV1BenefitsRequest",
-}) as any as S.Schema<GetV1BenefitsRequest>;
+  identifier: "CreatePayrollReportsGeneralLedgerRequest",
+}) as any as S.Schema<CreatePayrollReportsGeneralLedgerRequest>;
+
+/** The breakdown level used for the report. */
+export type GeneralLedgerReportAggregation =
+  | "default"
+  | "job"
+  | "department"
+  | "integration";
+export const GeneralLedgerReportAggregation = /*@__PURE__*/ S.String;
+
+/** A request for a general ledger report. The report is generated asynchronously and the URL is available via the report GET endpoint using the returned `request_uuid`. */
+export interface GeneralLedgerReport {
+  /** The breakdown level used for the report. */
+  aggregation?: GeneralLedgerReportAggregation;
+  /** The `integration_type` used for the report when `aggregation` is 'integration' (e.g., `xero`, `qbo`). Otherwise, this will be null or an empty string. */
+  integration_type?: string | null;
+  /** The UUID of the payroll record for which the report was generated. */
+  payroll_uuid?: string;
+  /** UUID to use for polling the report status. */
+  request_uuid?: string;
+}
+export const GeneralLedgerReport = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    aggregation: S.optional(GeneralLedgerReportAggregation),
+    integration_type: S.optional(S.NullOr(S.String)),
+    payroll_uuid: S.optional(S.String),
+    request_uuid: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GeneralLedgerReport",
+}) as any as S.Schema<GeneralLedgerReport>;
+
+export interface CreateProvisionRequestCompanyAddressesItem {
+  city?: string;
+  /** Whether or not this is a primary address for the company. If set to true, the address will be used as the mailing and filing address for the company and will be added as a work location. If set to false or not included, the address will only be added as a work location for the company. If multiple addresses are included, only one should be marked as primary. */
+  is_primary?: string;
+  phone?: string;
+  state?: string;
+  street_1?: string;
+  street_2?: string | null;
+  zip?: string;
+}
+export const CreateProvisionRequestCompanyAddressesItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      city: S.optional(S.String),
+      is_primary: S.optional(S.String),
+      phone: S.optional(S.String),
+      state: S.optional(S.String),
+      street_1: S.optional(S.String),
+      street_2: S.optional(S.NullOr(S.String)),
+      zip: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "CreateProvisionRequestCompanyAddressesItem",
+  }) as any as S.Schema<CreateProvisionRequestCompanyAddressesItem>;
+
+/** The locations for the company. This includes mailing, work, and filing addresses. */
+export type CreateProvisionRequestCompanyAddressesList =
+  Array<CreateProvisionRequestCompanyAddressesItem>;
+export const CreateProvisionRequestCompanyAddressesList = /*@__PURE__*/ S.Array(
+  CreateProvisionRequestCompanyAddressesItem,
+) as any as S.Schema<CreateProvisionRequestCompanyAddressesList>;
+
+/** The states in which the company operates. States should be included by their two letter code, i.e. NY for New York. */
+export type CreateProvisionRequestCompanyStatesList = Array<string>;
+export const CreateProvisionRequestCompanyStatesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateProvisionRequestCompanyStatesList>;
+
+export interface CreateProvisionRequestCompany {
+  /** The locations for the company. This includes mailing, work, and filing addresses. */
+  addresses?: CreateProvisionRequestCompanyAddressesList;
+  /** The employer identification number (EIN) of the company. */
+  ein?: string;
+  /** The legal name of the company. */
+  name: string;
+  /** The number of employees in the company. */
+  number_employees?: number;
+  /** The states in which the company operates. States should be included by their two letter code, i.e. NY for New York. */
+  states?: CreateProvisionRequestCompanyStatesList;
+  /** The name of the company. */
+  trade_name?: string;
+}
+export const CreateProvisionRequestCompany = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    addresses: S.optional(CreateProvisionRequestCompanyAddressesList),
+    ein: S.optional(S.String),
+    name: S.String,
+    number_employees: S.optional(S.Number),
+    states: S.optional(CreateProvisionRequestCompanyStatesList),
+    trade_name: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CreateProvisionRequestCompany",
+}) as any as S.Schema<CreateProvisionRequestCompany>;
+
+/** Information for the user who will be the primary payroll administrator for the new company. */
+export interface CreateProvisionRequestUser {
+  /** The email of the user who will be the primary payroll admin. */
+  email: string;
+  /** The first name of the user who will be the primary payroll admin. */
+  first_name: string;
+  /** The last name of the user who will be the primary payroll admin. */
+  last_name: string;
+  /** The phone number of the user who will be the primary payroll admin. */
+  phone?: string;
+}
+export const CreateProvisionRequestUser = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    email: S.String,
+    first_name: S.String,
+    last_name: S.String,
+    phone: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CreateProvisionRequestUser",
+}) as any as S.Schema<CreateProvisionRequestUser>;
+
+export interface CreateProvisionRequest {
+  company: CreateProvisionRequestCompany;
+  /** Information for the user who will be the primary payroll administrator for the new company. */
+  user: CreateProvisionRequestUser;
+}
+export const CreateProvisionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    company: CreateProvisionRequestCompany,
+    user: CreateProvisionRequestUser,
+  }).pipe(T.Http({ method: "POST", uri: "/v1/provision", code: 200 })),
+).annotate({
+  identifier: "CreateProvisionRequest",
+}) as any as S.Schema<CreateProvisionRequest>;
+
+export interface ProvisionCreated {
+  /** A URL where the user should be redirected to complete their account setup inside of Gusto. */
+  account_claim_url?: string;
+}
+export const ProvisionCreated = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    account_claim_url: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ProvisionCreated",
+}) as any as S.Schema<ProvisionCreated>;
+
+export interface CreateSalaryEstimateAcceptRequest {
+  /** The UUID of the salary estimate */
+  uuid: string;
+  /** The UUID of the employee job to associate with this salary estimate */
+  employee_job_uuid: string;
+}
+export const CreateSalaryEstimateAcceptRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    uuid: S.String.pipe(T.Label()),
+    employee_job_uuid: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/salary_estimates/{uuid}/accept",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateSalaryEstimateAcceptRequest",
+}) as any as S.Schema<CreateSalaryEstimateAcceptRequest>;
+
+export type CreateWebhookSubscriptionRequestSubscriptionTypesItem =
+  | "BankAccount"
+  | "Company"
+  | "CompanyBenefit"
+  | "Contractor"
+  | "ContractorPayment"
+  | "Employee"
+  | "EmployeeBenefit"
+  | "EmployeeJobCompensation"
+  | "ExternalPayroll"
+  | "Form"
+  | "Location"
+  | "Notification"
+  | "Payroll"
+  | "PayrollSync"
+  | "PaySchedule"
+  | "PeopleBatch"
+  | "Signatory"
+  | "TimeOffRequest";
+export const CreateWebhookSubscriptionRequestSubscriptionTypesItem =
+  /*@__PURE__*/ S.String;
+
+/** The types of events to subscribe to. */
+export type CreateWebhookSubscriptionRequestSubscriptionTypesList = Array<
+  CreateWebhookSubscriptionRequestSubscriptionTypesItem | (string & {})
+>;
+export const CreateWebhookSubscriptionRequestSubscriptionTypesList =
+  /*@__PURE__*/ S.Array(
+    CreateWebhookSubscriptionRequestSubscriptionTypesItem,
+  ) as any as S.Schema<CreateWebhookSubscriptionRequestSubscriptionTypesList>;
+
+export interface CreateWebhookSubscriptionRequest {
+  /** The types of events to subscribe to. */
+  subscription_types: CreateWebhookSubscriptionRequestSubscriptionTypesList;
+  /** The URL where webhook events will be POSTed. */
+  url: string;
+}
+export const CreateWebhookSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscription_types: CreateWebhookSubscriptionRequestSubscriptionTypesList,
+    url: S.String,
+  }).pipe(
+    T.Http({ method: "POST", uri: "/v1/webhook_subscriptions", code: 200 }),
+  ),
+).annotate({
+  identifier: "CreateWebhookSubscriptionRequest",
+}) as any as S.Schema<CreateWebhookSubscriptionRequest>;
+
+/** The status of the webhook subscription. */
+export type WebhookSubscriptionStatus =
+  | "pending"
+  | "verified"
+  | "removed"
+  | "unreachable";
+export const WebhookSubscriptionStatus = /*@__PURE__*/ S.String;
+
+export type WebhookSubscriptionSubscriptionTypesItem =
+  | "BankAccount"
+  | "Company"
+  | "CompanyBenefit"
+  | "Contractor"
+  | "ContractorPayment"
+  | "Employee"
+  | "EmployeeBenefit"
+  | "EmployeeJobCompensation"
+  | "ExternalPayroll"
+  | "Form"
+  | "Location"
+  | "Notification"
+  | "Payroll"
+  | "PayrollSync"
+  | "PaySchedule"
+  | "Signatory"
+  | "TimeOffRequest";
+export const WebhookSubscriptionSubscriptionTypesItem = /*@__PURE__*/ S.String;
+
+/** Receive updates for these types. */
+export type WebhookSubscriptionSubscriptionTypesList =
+  Array<WebhookSubscriptionSubscriptionTypesItem>;
+export const WebhookSubscriptionSubscriptionTypesList = /*@__PURE__*/ S.Array(
+  WebhookSubscriptionSubscriptionTypesItem,
+) as any as S.Schema<WebhookSubscriptionSubscriptionTypesList>;
+
+/** The representation of webhook subscription. */
+export interface WebhookSubscription {
+  /** The status of the webhook subscription. */
+  status?: WebhookSubscriptionStatus;
+  /** Receive updates for these types. */
+  subscription_types?: WebhookSubscriptionSubscriptionTypesList;
+  /** The webhook subscriber URL. Updates will be POSTed to this URL. */
+  url?: string;
+  /** The UUID of the webhook subscription. */
+  uuid: string;
+}
+export const WebhookSubscription = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(WebhookSubscriptionStatus),
+    subscription_types: S.optional(WebhookSubscriptionSubscriptionTypesList),
+    url: S.optional(S.String),
+    uuid: S.String,
+  }),
+).annotate({
+  identifier: "WebhookSubscription",
+}) as any as S.Schema<WebhookSubscription>;
+
+export interface DeleteCompanyBenefitRequest {
+  /** The UUID of the company benefit */
+  company_benefit_id: string;
+}
+export const DeleteCompanyBenefitRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    company_benefit_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/v1/company_benefits/{company_benefit_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteCompanyBenefitRequest",
+}) as any as S.Schema<DeleteCompanyBenefitRequest>;
+
+export interface DeleteCompanyBenefitResponse {}
+export const DeleteCompanyBenefitResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteCompanyBenefitResponse",
+}) as any as S.Schema<DeleteCompanyBenefitResponse>;
+
+export interface DeleteCompanyEarningTypeRequest {
+  /** The UUID of the company */
+  company_id: string;
+  /** The UUID of the earning type */
+  earning_type_uuid: string;
+}
+export const DeleteCompanyEarningTypeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    company_id: S.String.pipe(T.Label()),
+    earning_type_uuid: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/v1/companies/{company_id}/earning_types/{earning_type_uuid}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteCompanyEarningTypeRequest",
+}) as any as S.Schema<DeleteCompanyEarningTypeRequest>;
+
+export interface DeleteCompanyEarningTypeResponse {}
+export const DeleteCompanyEarningTypeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteCompanyEarningTypeResponse",
+}) as any as S.Schema<DeleteCompanyEarningTypeResponse>;
+
+export interface DeleteCompensationRequest {
+  /** The UUID of the compensation */
+  compensation_id: string;
+}
+export const DeleteCompensationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    compensation_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/v1/compensations/{compensation_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteCompensationRequest",
+}) as any as S.Schema<DeleteCompensationRequest>;
+
+export interface DeleteCompensationResponse {}
+export const DeleteCompensationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteCompensationResponse",
+}) as any as S.Schema<DeleteCompensationResponse>;
+
+export interface DeleteDepartmentRequest {
+  /** The UUID of the department */
+  department_uuid: string;
+}
+export const DeleteDepartmentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    department_uuid: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/v1/departments/{department_uuid}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteDepartmentRequest",
+}) as any as S.Schema<DeleteDepartmentRequest>;
+
+export interface DeleteDepartmentResponse {}
+export const DeleteDepartmentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteDepartmentResponse",
+}) as any as S.Schema<DeleteDepartmentResponse>;
+
+export interface DeleteEmployeeRequest {
+  /** The UUID of the employee */
+  employee_id: string;
+}
+export const DeleteEmployeeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    employee_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "DELETE", uri: "/v1/employees/{employee_id}", code: 200 }),
+  ),
+).annotate({
+  identifier: "DeleteEmployeeRequest",
+}) as any as S.Schema<DeleteEmployeeRequest>;
+
+export interface DeleteEmployeeResponse {}
+export const DeleteEmployeeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteEmployeeResponse",
+}) as any as S.Schema<DeleteEmployeeResponse>;
+
+export interface DeleteEmployeeBenefitRequest {
+  /** The UUID of the employee benefit. */
+  employee_benefit_id: string;
+}
+export const DeleteEmployeeBenefitRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    employee_benefit_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/v1/employee_benefits/{employee_benefit_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteEmployeeBenefitRequest",
+}) as any as S.Schema<DeleteEmployeeBenefitRequest>;
+
+export interface DeleteEmployeeBenefitResponse {}
+export const DeleteEmployeeBenefitResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteEmployeeBenefitResponse",
+}) as any as S.Schema<DeleteEmployeeBenefitResponse>;
+
+export interface DeleteEmployeeRehireRequest {
+  /** The UUID of the employee */
+  employee_id: string;
+}
+export const DeleteEmployeeRehireRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    employee_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/v1/employees/{employee_id}/rehire",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteEmployeeRehireRequest",
+}) as any as S.Schema<DeleteEmployeeRehireRequest>;
+
+export interface DeleteEmployeeRehireResponse {}
+export const DeleteEmployeeRehireResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteEmployeeRehireResponse",
+}) as any as S.Schema<DeleteEmployeeRehireResponse>;
+
+export interface DeleteEmployeeTerminationsRequest {
+  /** The UUID of the employee */
+  employee_id: string;
+}
+export const DeleteEmployeeTerminationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    employee_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/v1/employees/{employee_id}/terminations",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteEmployeeTerminationsRequest",
+}) as any as S.Schema<DeleteEmployeeTerminationsRequest>;
+
+export interface DeleteEmployeeTerminationsResponse {}
+export const DeleteEmployeeTerminationsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteEmployeeTerminationsResponse",
+}) as any as S.Schema<DeleteEmployeeTerminationsResponse>;
+
+export interface DeleteHomeAddressRequest {
+  /** The UUID of the home address */
+  home_address_uuid: string;
+}
+export const DeleteHomeAddressRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    home_address_uuid: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/v1/home_addresses/{home_address_uuid}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteHomeAddressRequest",
+}) as any as S.Schema<DeleteHomeAddressRequest>;
+
+export interface DeleteHomeAddressResponse {}
+export const DeleteHomeAddressResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteHomeAddressResponse",
+}) as any as S.Schema<DeleteHomeAddressResponse>;
+
+export interface DeleteRecurringReimbursementsRequest {
+  /** The UUID of the reimbursement */
+  id: string;
+}
+export const DeleteRecurringReimbursementsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/v1/recurring_reimbursements/{id}",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "DeleteRecurringReimbursementsRequest",
+}) as any as S.Schema<DeleteRecurringReimbursementsRequest>;
+
+export interface DeleteRecurringReimbursementsResponse {}
+export const DeleteRecurringReimbursementsResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteRecurringReimbursementsResponse",
+}) as any as S.Schema<DeleteRecurringReimbursementsResponse>;
+
+export interface DeleteTimeTrackingTimeSheetRequest {
+  /** UUID of the time sheet */
+  time_sheet_uuid: string;
+  /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
+  version: string;
+}
+export const DeleteTimeTrackingTimeSheetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    time_sheet_uuid: S.String.pipe(T.Label()),
+    version: S.String.pipe(T.Query()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/v1/time_tracking/time_sheets/{time_sheet_uuid}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteTimeTrackingTimeSheetRequest",
+}) as any as S.Schema<DeleteTimeTrackingTimeSheetRequest>;
+
+export interface DeleteTimeTrackingTimeSheetResponse {}
+export const DeleteTimeTrackingTimeSheetResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteTimeTrackingTimeSheetResponse",
+}) as any as S.Schema<DeleteTimeTrackingTimeSheetResponse>;
+
+export interface DeleteWebhookSubscriptionUuidRequest {
+  /** The webhook subscription UUID. */
+  webhook_subscription_uuid: string;
+}
+export const DeleteWebhookSubscriptionUuidRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      webhook_subscription_uuid: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/v1/webhook_subscriptions/{webhook_subscription_uuid}",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "DeleteWebhookSubscriptionUuidRequest",
+}) as any as S.Schema<DeleteWebhookSubscriptionUuidRequest>;
+
+export interface DeleteWebhookSubscriptionUuidResponse {}
+export const DeleteWebhookSubscriptionUuidResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteWebhookSubscriptionUuidResponse",
+}) as any as S.Schema<DeleteWebhookSubscriptionUuidResponse>;
+
+export interface DeleteWorkAddressRequest {
+  /** The UUID of the work address */
+  work_address_uuid: string;
+}
+export const DeleteWorkAddressRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    work_address_uuid: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/v1/work_addresses/{work_address_uuid}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteWorkAddressRequest",
+}) as any as S.Schema<DeleteWorkAddressRequest>;
+
+export interface DeleteWorkAddressResponse {}
+export const DeleteWorkAddressResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteWorkAddressResponse",
+}) as any as S.Schema<DeleteWorkAddressResponse>;
+
+export interface GetBenefitRequest {
+  /** The benefit type in Gusto. */
+  benefit_id: string;
+}
+export const GetBenefitRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    benefit_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/v1/benefits/{benefit_id}", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetBenefitRequest",
+}) as any as S.Schema<GetBenefitRequest>;
 
 export interface SupportedBenefit {
   /** The benefit type in Gusto. */
@@ -1121,38 +2516,31 @@ export const SupportedBenefit = /*@__PURE__*/ S.suspend(() =>
   identifier: "SupportedBenefit",
 }) as any as S.Schema<SupportedBenefit>;
 
+export interface GetBenefitsRequest {}
+export const GetBenefitsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(T.Http({ method: "GET", uri: "/v1/benefits", code: 200 })),
+).annotate({
+  identifier: "GetBenefitsRequest",
+}) as any as S.Schema<GetBenefitsRequest>;
+
 export type SupportedBenefitList = Array<SupportedBenefit>;
 export const SupportedBenefitList = /*@__PURE__*/ S.Array(
   SupportedBenefit,
 ) as any as S.Schema<SupportedBenefitList>;
 
-export type GetV1BenefitsResponse = SupportedBenefitList;
-export const GetV1BenefitsResponse = /*@__PURE__*/ S.suspend(() =>
+export type GetBenefitsResponse = SupportedBenefitList;
+export const GetBenefitsResponse = /*@__PURE__*/ S.suspend(() =>
   SupportedBenefitList.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "GetV1BenefitsResponse",
-}) as any as S.Schema<GetV1BenefitsResponse>;
+  identifier: "GetBenefitsResponse",
+}) as any as S.Schema<GetBenefitsResponse>;
 
-export interface GetV1BenefitsBenefitIdRequest {
+export interface GetBenefitsBenefitRequirementsRequest {
   /** The benefit type in Gusto. */
   benefit_id: string;
 }
-export const GetV1BenefitsBenefitIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    benefit_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/v1/benefits/{benefit_id}", code: 200 }),
-  ),
-).annotate({
-  identifier: "GetV1BenefitsBenefitIdRequest",
-}) as any as S.Schema<GetV1BenefitsBenefitIdRequest>;
-
-export interface GetV1BenefitsBenefitsIdRequirementsRequest {
-  /** The benefit type in Gusto. */
-  benefit_id: string;
-}
-export const GetV1BenefitsBenefitsIdRequirementsRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetBenefitsBenefitRequirementsRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       benefit_id: S.String.pipe(T.Label()),
     }).pipe(
@@ -1162,9 +2550,9 @@ export const GetV1BenefitsBenefitsIdRequirementsRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "GetV1BenefitsBenefitsIdRequirementsRequest",
-  }) as any as S.Schema<GetV1BenefitsBenefitsIdRequirementsRequest>;
+).annotate({
+  identifier: "GetBenefitsBenefitRequirementsRequest",
+}) as any as S.Schema<GetBenefitsBenefitRequirementsRequest>;
 
 export type BenefitTypeRequirementsCatchUpChoicesList = Array<string>;
 export const BenefitTypeRequirementsCatchUpChoicesList = /*@__PURE__*/ S.Array(
@@ -1483,167 +2871,19 @@ export const BenefitTypeRequirements = /*@__PURE__*/ S.suspend(() =>
   identifier: "BenefitTypeRequirements",
 }) as any as S.Schema<BenefitTypeRequirements>;
 
-export interface GetV1BenefitsCompanyBenefitIdSummaryRequest {
-  /** The UUID of the company benefit */
-  company_benefit_id: string;
-  /** The start date for which to retrieve company benefit summary */
-  start_date?: string;
-  /** The end date for which to retrieve company benefit summary. If left empty, defaults to today's date. */
-  end_date?: string;
-  /** Display employee payroll item summary */
-  detailed?: boolean;
-}
-export const GetV1BenefitsCompanyBenefitIdSummaryRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      company_benefit_id: S.String.pipe(T.Label()),
-      start_date: S.optional(S.String.pipe(T.Query())),
-      end_date: S.optional(S.String.pipe(T.Query())),
-      detailed: S.optional(S.Boolean.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/company_benefits/{company_benefit_id}/summary",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetV1BenefitsCompanyBenefitIdSummaryRequest",
-  }) as any as S.Schema<GetV1BenefitsCompanyBenefitIdSummaryRequest>;
-
-export interface BenefitSummaryEmployeesItemPayrollBenefitsItemPayPeriod {
-  /** The end of the payroll's pay period. */
-  end_date?: string | null;
-  /** The beginning of the payroll's pay period. */
-  start_date?: string | null;
-}
-export const BenefitSummaryEmployeesItemPayrollBenefitsItemPayPeriod =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      end_date: S.optional(S.NullOr(S.String)),
-      start_date: S.optional(S.NullOr(S.String)),
-    }),
-  ).annotate({
-    identifier: "BenefitSummaryEmployeesItemPayrollBenefitsItemPayPeriod",
-  }) as any as S.Schema<BenefitSummaryEmployeesItemPayrollBenefitsItemPayPeriod>;
-
-export interface BenefitSummaryEmployeesItemPayrollBenefitsItem {
-  /** Check date of this payroll. */
-  check_date?: string;
-  /** The company contribution amount for this employee on the payroll. */
-  company_benefit_contribution?: string;
-  /** The employee benefit deduction amount for this employee on the payroll. */
-  company_benefit_deduction?: string;
-  /** Gross pay for this employee on the payroll. */
-  gross_pay?: string;
-  /** Total imputed pay for this employee on the payroll. */
-  imputed_pay?: string;
-  pay_period?: BenefitSummaryEmployeesItemPayrollBenefitsItemPayPeriod;
-  /** Whether it is regular or bonus payroll */
-  payroll_type?: string;
-  payroll_uuid?: string;
-}
-export const BenefitSummaryEmployeesItemPayrollBenefitsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      check_date: S.optional(S.String),
-      company_benefit_contribution: S.optional(S.String),
-      company_benefit_deduction: S.optional(S.String),
-      gross_pay: S.optional(S.String),
-      imputed_pay: S.optional(S.String),
-      pay_period: S.optional(
-        BenefitSummaryEmployeesItemPayrollBenefitsItemPayPeriod,
-      ),
-      payroll_type: S.optional(S.String),
-      payroll_uuid: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "BenefitSummaryEmployeesItemPayrollBenefitsItem",
-  }) as any as S.Schema<BenefitSummaryEmployeesItemPayrollBenefitsItem>;
-
-export type BenefitSummaryEmployeesItemPayrollBenefitsList =
-  Array<BenefitSummaryEmployeesItemPayrollBenefitsItem>;
-export const BenefitSummaryEmployeesItemPayrollBenefitsList =
-  /*@__PURE__*/ S.Array(
-    BenefitSummaryEmployeesItemPayrollBenefitsItem,
-  ) as any as S.Schema<BenefitSummaryEmployeesItemPayrollBenefitsList>;
-
-export interface BenefitSummaryEmployeesItem {
-  /** The sum of company contribution for this employee given the period of time and the benefit type. */
-  benefit_contribution?: string;
-  /** The sum of employee benefit deduction for this employee given the period of time and the benefit type. */
-  benefit_deduction?: string;
-  /** The sum of company contribution for this employee given the period of time and the specific company benefit. */
-  company_benefit_contribution?: string;
-  /** The sum of employee deduction for this employee given the period of time and the specific company benefit. */
-  company_benefit_deduction?: string;
-  /** Gross pay for this employee given the period of time. */
-  gross_pay?: string;
-  /** Total imputed pay for this employee given the period of time (not scoped to a benefit type). */
-  imputed_pay?: string;
-  payroll_benefits?: BenefitSummaryEmployeesItemPayrollBenefitsList;
-  /** The UUID of the employee */
-  uuid?: string;
-}
-export const BenefitSummaryEmployeesItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    benefit_contribution: S.optional(S.String),
-    benefit_deduction: S.optional(S.String),
-    company_benefit_contribution: S.optional(S.String),
-    company_benefit_deduction: S.optional(S.String),
-    gross_pay: S.optional(S.String),
-    imputed_pay: S.optional(S.String),
-    payroll_benefits: S.optional(
-      BenefitSummaryEmployeesItemPayrollBenefitsList,
-    ),
-    uuid: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "BenefitSummaryEmployeesItem",
-}) as any as S.Schema<BenefitSummaryEmployeesItem>;
-
-export type BenefitSummaryEmployeesList = Array<BenefitSummaryEmployeesItem>;
-export const BenefitSummaryEmployeesList = /*@__PURE__*/ S.Array(
-  BenefitSummaryEmployeesItem,
-) as any as S.Schema<BenefitSummaryEmployeesList>;
-
-export interface BenefitSummary {
-  /** The aggregate of company contribution for all employees given the period of time and the specific company benefit. */
-  company_benefit_contribution?: string;
-  /** The aggregate of employee deduction for all employees given the period of time and the specific company benefit. */
-  company_benefit_deduction?: string;
-  /** Description of the benefit. */
-  description?: string;
-  employees?: BenefitSummaryEmployeesList;
-  /** The end date of benefit summary. */
-  end_date?: string;
-  /** The start date of benefit summary. */
-  start_date?: string;
-}
-export const BenefitSummary = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    company_benefit_contribution: S.optional(S.String),
-    company_benefit_deduction: S.optional(S.String),
-    description: S.optional(S.String),
-    employees: S.optional(BenefitSummaryEmployeesList),
-    end_date: S.optional(S.String),
-    start_date: S.optional(S.String),
-  }),
-).annotate({ identifier: "BenefitSummary" }) as any as S.Schema<BenefitSummary>;
-
-export interface GetV1CompaniesRequest {
+export interface GetCompaniesRequest {
   /** The UUID of the company */
   company_id: string;
 }
-export const GetV1CompaniesRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetCompaniesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     company_id: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({ method: "GET", uri: "/v1/companies/{company_id}", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetV1CompaniesRequest",
-}) as any as S.Schema<GetV1CompaniesRequest>;
+  identifier: "GetCompaniesRequest",
+}) as any as S.Schema<GetCompaniesRequest>;
 
 /** The status of the company in Gusto. "Approved" companies are approved to run payroll from a risk and compliance perspective. However, an approved company may still need to resolve other [payroll blockers](https://docs.gusto.com/embedded-payroll/docs/payroll-blockers) to be able to run payroll. "Not Approved" companies may not yet run payroll with Gusto and may need to complete onboarding or contact support. "Suspended" companies may not run payroll with Gusto. In order to unsuspend their account, the company must contact support. */
 export type CompanyCompanyStatus = "Approved" | "Not Approved" | "Suspended";
@@ -1823,26 +3063,8 @@ export const CompanyPrimaryPayrollAdmin = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CompanyPrimaryPayrollAdmin>;
 
 /** The company's primary signatory's home address. */
-export interface CompanyPrimarySignatoryHomeAddress {
-  city?: string;
-  country?: string;
-  state?: string;
-  street_1?: string;
-  street_2?: string | null;
-  zip?: string;
-}
-export const CompanyPrimarySignatoryHomeAddress = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    city: S.optional(S.String),
-    country: S.optional(S.String),
-    state: S.optional(S.String),
-    street_1: S.optional(S.String),
-    street_2: S.optional(S.NullOr(S.String)),
-    zip: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CompanyPrimarySignatoryHomeAddress",
-}) as any as S.Schema<CompanyPrimarySignatoryHomeAddress>;
+export type CompanyPrimarySignatoryHomeAddress = ContractorAddress;
+export const CompanyPrimarySignatoryHomeAddress = ContractorAddress;
 
 /** The primary signatory of the company. */
 export interface CompanyPrimarySignatory {
@@ -1851,7 +3073,7 @@ export interface CompanyPrimarySignatory {
   /** The company's primary signatory's first name. */
   first_name?: string;
   /** The company's primary signatory's home address. */
-  home_address?: CompanyPrimarySignatoryHomeAddress;
+  home_address?: ContractorAddress;
   /** The company's primary signatory's last name. */
   last_name?: string;
   /** The company's primary signatory's middle initial. */
@@ -1865,7 +3087,7 @@ export const CompanyPrimarySignatory = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     email: S.optional(S.String),
     first_name: S.optional(S.String),
-    home_address: S.optional(CompanyPrimarySignatoryHomeAddress),
+    home_address: S.optional(ContractorAddress),
     last_name: S.optional(S.String),
     middle_initial: S.optional(S.NullOr(S.String)),
     phone: S.optional(S.String),
@@ -1955,7 +3177,88 @@ export const Company = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Company" }) as any as S.Schema<Company>;
 
-export interface GetV1CompaniesCompanyIdAdminsRequest {
+export interface GetCompaniesDepartmentsRequest {
+  /** The UUID of the company */
+  company_uuid: string;
+}
+export const GetCompaniesDepartmentsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    company_uuid: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/companies/{company_uuid}/departments",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetCompaniesDepartmentsRequest",
+}) as any as S.Schema<GetCompaniesDepartmentsRequest>;
+
+export interface DepartmentContractorsItem {
+  uuid?: string;
+}
+export const DepartmentContractorsItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    uuid: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DepartmentContractorsItem",
+}) as any as S.Schema<DepartmentContractorsItem>;
+
+/** Array of contractors assigned to the department. */
+export type DepartmentContractorsList = Array<DepartmentContractorsItem>;
+export const DepartmentContractorsList = /*@__PURE__*/ S.Array(
+  DepartmentContractorsItem,
+) as any as S.Schema<DepartmentContractorsList>;
+
+export type DepartmentEmployeesItem = DepartmentContractorsItem;
+export const DepartmentEmployeesItem = DepartmentContractorsItem;
+
+/** Array of employees assigned to the department. */
+export type DepartmentEmployeesList = Array<DepartmentContractorsItem>;
+export const DepartmentEmployeesList = /*@__PURE__*/ S.Array(
+  DepartmentContractorsItem,
+) as any as S.Schema<DepartmentEmployeesList>;
+
+export interface Department {
+  /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
+  version?: string;
+  /** The UUID of the company */
+  company_uuid?: string;
+  /** Array of contractors assigned to the department. */
+  contractors?: DepartmentContractorsList;
+  /** Array of employees assigned to the department. */
+  employees?: DepartmentEmployeesList;
+  /** Name of the department */
+  title?: string;
+  /** The UUID of the department */
+  uuid?: string;
+}
+export const Department = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    version: S.optional(S.String),
+    company_uuid: S.optional(S.String),
+    contractors: S.optional(DepartmentContractorsList),
+    employees: S.optional(DepartmentEmployeesList),
+    title: S.optional(S.String),
+    uuid: S.optional(S.String),
+  }),
+).annotate({ identifier: "Department" }) as any as S.Schema<Department>;
+
+export type DepartmentList = Array<Department>;
+export const DepartmentList = /*@__PURE__*/ S.Array(
+  Department,
+) as any as S.Schema<DepartmentList>;
+
+export type GetCompaniesDepartmentsResponse = DepartmentList;
+export const GetCompaniesDepartmentsResponse = /*@__PURE__*/ S.suspend(() =>
+  DepartmentList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "GetCompaniesDepartmentsResponse",
+}) as any as S.Schema<GetCompaniesDepartmentsResponse>;
+
+export interface GetCompanyAdminsRequest {
   /** The UUID of the company */
   company_id: string;
   /** The page that is requested. When unspecified, will load all objects unless endpoint forces pagination. */
@@ -1963,22 +3266,21 @@ export interface GetV1CompaniesCompanyIdAdminsRequest {
   /** Number of objects per page. For majority of endpoints will default to 25 */
   per?: number;
 }
-export const GetV1CompaniesCompanyIdAdminsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      company_id: S.String.pipe(T.Label()),
-      page: S.optional(S.Number.pipe(T.Query())),
-      per: S.optional(S.Number.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/companies/{company_id}/admins",
-        code: 200,
-      }),
-    ),
+export const GetCompanyAdminsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    company_id: S.String.pipe(T.Label()),
+    page: S.optional(S.Number.pipe(T.Query())),
+    per: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/companies/{company_id}/admins",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "GetV1CompaniesCompanyIdAdminsRequest",
-}) as any as S.Schema<GetV1CompaniesCompanyIdAdminsRequest>;
+  identifier: "GetCompanyAdminsRequest",
+}) as any as S.Schema<GetCompanyAdminsRequest>;
 
 /** The representation of an admin user in Gusto. */
 export interface Admin {
@@ -2003,21 +3305,451 @@ export const Admin = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Admin" }) as any as S.Schema<Admin>;
 
-export type GetV1CompaniesCompanyIdAdminsResponseBodyList = Array<Admin>;
-export const GetV1CompaniesCompanyIdAdminsResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    Admin,
-  ) as any as S.Schema<GetV1CompaniesCompanyIdAdminsResponseBodyList>;
+export type GetCompanyAdminsResponseBodyList = Array<Admin>;
+export const GetCompanyAdminsResponseBodyList = /*@__PURE__*/ S.Array(
+  Admin,
+) as any as S.Schema<GetCompanyAdminsResponseBodyList>;
 
-export type GetV1CompaniesCompanyIdAdminsResponse =
-  GetV1CompaniesCompanyIdAdminsResponseBodyList;
-export const GetV1CompaniesCompanyIdAdminsResponse = /*@__PURE__*/ S.suspend(
-  () => GetV1CompaniesCompanyIdAdminsResponseBodyList.pipe(T.RawResponseRoot()),
+export type GetCompanyAdminsResponse = GetCompanyAdminsResponseBodyList;
+export const GetCompanyAdminsResponse = /*@__PURE__*/ S.suspend(() =>
+  GetCompanyAdminsResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "GetV1CompaniesCompanyIdAdminsResponse",
-}) as any as S.Schema<GetV1CompaniesCompanyIdAdminsResponse>;
+  identifier: "GetCompanyAdminsResponse",
+}) as any as S.Schema<GetCompanyAdminsResponse>;
 
-export interface GetV1CompaniesCompanyIdCompanyBenefitsRequest {
+export type GetCompanyBenefitRequestInclude = "all_benefits";
+export const GetCompanyBenefitRequestInclude = /*@__PURE__*/ S.String;
+
+export interface GetCompanyBenefitRequest {
+  /** The UUID of the company benefit */
+  company_benefit_id: string;
+  /** Whether to return employee benefits associated with the benefit */
+  with_employee_benefits?: boolean;
+  /** Available options: - all_benefits: If with_employee_benefits=true, include all effective dated benefits for each employee instead of only the current benefits. */
+  include?: GetCompanyBenefitRequestInclude | (string & {});
+}
+export const GetCompanyBenefitRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    company_benefit_id: S.String.pipe(T.Label()),
+    with_employee_benefits: S.optional(S.Boolean.pipe(T.Query())),
+    include: S.optional(GetCompanyBenefitRequestInclude.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/company_benefits/{company_benefit_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetCompanyBenefitRequest",
+}) as any as S.Schema<GetCompanyBenefitRequest>;
+
+export type CompanyBenefitWithEmployeeBenefitsCatchUpType =
+  | "elective"
+  | "deemed";
+export const CompanyBenefitWithEmployeeBenefitsCatchUpType =
+  /*@__PURE__*/ S.String;
+
+/** A single tier of a tiered matching scheme. */
+export type CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1TiersItem =
+  CreateEmployeeEmployeeBenefitResponseContributionValueCase1TiersItem;
+export const CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1TiersItem =
+  CreateEmployeeEmployeeBenefitResponseContributionValueCase1TiersItem;
+
+export type CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1TiersList =
+  Array<CreateEmployeeEmployeeBenefitResponseContributionValueCase1TiersItem>;
+export const CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1TiersList =
+  /*@__PURE__*/ S.Array(
+    CreateEmployeeEmployeeBenefitResponseContributionValueCase1TiersItem,
+  ) as any as S.Schema<CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1TiersList>;
+
+export interface CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1 {
+  tiers?: CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1TiersList;
+}
+export const CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1 =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      tiers: S.optional(
+        CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1TiersList,
+      ),
+    }),
+  ).annotate({
+    identifier:
+      "CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1",
+  }) as any as S.Schema<CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1>;
+
+/** For the `amount` and `percentage` contribution types, the value of the corresponding amount or percentage. For the `tiered` contribution type, an array of tiers. */
+export type CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValue =
+  | string
+  | CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1;
+export const CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValue =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValue>;
+
+/** An object representing the type and value of the company contribution. */
+export interface CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContribution {
+  /** The company contribution scheme. "amount": The company contributes a fixed amount per payroll. If elective is true, the contribution is matching, dollar-for-dollar. "percentage": The company contributes a percentage of the payroll amount per payroll period. If elective is true, the contribution is matching, dollar-for-dollar. "tiered": The company contribution varies according to the size of the employee deduction. */
+  type?: string;
+  /** For the `amount` and `percentage` contribution types, the value of the corresponding amount or percentage. For the `tiered` contribution type, an array of tiers. */
+  value?: CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValue;
+}
+export const CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContribution =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: S.optional(S.String),
+      value: S.optional(
+        CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValue,
+      ),
+    }),
+  ).annotate({
+    identifier:
+      "CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContribution",
+  }) as any as S.Schema<CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContribution>;
+
+export interface CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItem {
+  /** Whether the employee benefit is active. */
+  active?: boolean;
+  /** The UUID of the company benefit. */
+  company_benefit_uuid?: string;
+  /** The value of the company contribution */
+  company_contribution?: string;
+  /** An object representing the type and value of the company contribution. */
+  contribution?: CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContribution;
+  /** Whether the employee deduction amount should be treated as a percentage to be deducted from each payroll. */
+  deduct_as_percentage?: boolean;
+  /** The date when the employee benefit becomes effective. If not provided, the benefit will be effective from 1970-01-01 (unix epoch). */
+  effective_date?: string;
+  /** The amount to be deducted, per pay period, from the employee's pay. */
+  employee_deduction?: string;
+  /** The UUID of the employee to which the benefit belongs. */
+  employee_uuid?: string;
+  /** The date when the employee benefit expires. If not provided, the benefit will have no expiration date. */
+  expiration_date?: string;
+}
+export const CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      active: S.optional(S.Boolean),
+      company_benefit_uuid: S.optional(S.String),
+      company_contribution: S.optional(S.String),
+      contribution: S.optional(
+        CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContribution,
+      ),
+      deduct_as_percentage: S.optional(S.Boolean),
+      effective_date: S.optional(S.String),
+      employee_deduction: S.optional(S.String),
+      employee_uuid: S.optional(S.String),
+      expiration_date: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItem",
+  }) as any as S.Schema<CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItem>;
+
+export type CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsList =
+  Array<CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItem>;
+export const CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsList =
+  /*@__PURE__*/ S.Array(
+    CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItem,
+  ) as any as S.Schema<CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsList>;
+
+/** The source of the company benefit. This can be "internal", "external", or "partnered". Company benefits created via the API default to "external". Certain partners can create company benefits with a source of "partnered". */
+export type CompanyBenefitWithEmployeeBenefitsSource =
+  | "internal"
+  | "external"
+  | "partnered";
+export const CompanyBenefitWithEmployeeBenefitsSource = /*@__PURE__*/ S.String;
+
+/** The representation of a company benefit. */
+export interface CompanyBenefitWithEmployeeBenefits {
+  /** Whether this benefit is active for employee participation. Company benefits may only be deactivated if no employees are actively participating. */
+  active?: boolean;
+  /** The type of the benefit to which the company benefit belongs (same as benefit_id). */
+  benefit_type?: number;
+  /** The type of catch-up contribution for this benefit, as required by Section 603 of the SECURE 2.0 Act. Only applicable to pre-tax 401(k) and 403(b) benefits. */
+  catch_up_type?: CompanyBenefitWithEmployeeBenefitsCatchUpType | null;
+  /** The UUID of the company. */
+  company_uuid?: string;
+  /** Whether this company benefit can be deleted. Deletable will be set to true if the benefit has not been used in payroll, has no employee benefits associated, and the benefit is not owned by Gusto or a Partner */
+  deletable?: boolean;
+  /** The description of the company benefit. For example, a company may offer multiple benefits with an ID of 1 (for Medical Insurance). The description would show something more specific like “Kaiser Permanente” or “Blue Cross/ Blue Shield”. */
+  description?: string;
+  employee_benefits?: CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsList;
+  /** The partner name of the partner that created the company benefit. For example, "XYZ Corp". */
+  partner_name?: string | null;
+  /** Whether the employer is subject to file W-2 forms for an employee on leave. Only applicable to third party sick pay benefits. */
+  responsible_for_employee_w2?: boolean;
+  /** Whether the employer is subject to pay employer taxes when an employee is on leave. Only applicable to third party sick pay benefits. */
+  responsible_for_employer_taxes?: boolean;
+  /** The source of the company benefit. This can be "internal", "external", or "partnered". Company benefits created via the API default to "external". Certain partners can create company benefits with a source of "partnered". */
+  source?: CompanyBenefitWithEmployeeBenefitsSource;
+  /** Whether employee deductions and company contributions can be set as percentages of payroll for an individual employee. This is determined by the type of benefit and is not configurable by the company. */
+  supports_percentage_amounts?: boolean;
+  /** The UUID of the company benefit. */
+  uuid: string;
+  /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
+  version?: string;
+}
+export const CompanyBenefitWithEmployeeBenefits = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    active: S.optional(S.Boolean),
+    benefit_type: S.optional(S.Number),
+    catch_up_type: S.optional(
+      S.NullOr(CompanyBenefitWithEmployeeBenefitsCatchUpType),
+    ),
+    company_uuid: S.optional(S.String),
+    deletable: S.optional(S.Boolean),
+    description: S.optional(S.String),
+    employee_benefits: S.optional(
+      CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsList,
+    ),
+    partner_name: S.optional(S.NullOr(S.String)),
+    responsible_for_employee_w2: S.optional(S.Boolean),
+    responsible_for_employer_taxes: S.optional(S.Boolean),
+    source: S.optional(CompanyBenefitWithEmployeeBenefitsSource),
+    supports_percentage_amounts: S.optional(S.Boolean),
+    uuid: S.String,
+    version: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CompanyBenefitWithEmployeeBenefits",
+}) as any as S.Schema<CompanyBenefitWithEmployeeBenefits>;
+
+export interface GetCompanyBenefitContributionExclusionsRequest {
+  /** The UUID of the company benefit */
+  company_benefit_id: string;
+}
+export const GetCompanyBenefitContributionExclusionsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      company_benefit_id: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/v1/company_benefits/{company_benefit_id}/contribution_exclusions",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "GetCompanyBenefitContributionExclusionsRequest",
+  }) as any as S.Schema<GetCompanyBenefitContributionExclusionsRequest>;
+
+/** The representation of a contribution exclusion for a company benefit. */
+export interface ContributionExclusion {
+  /** The name of the contribution type. */
+  contribution_type: string;
+  /** The UUID of the contribution type. */
+  contribution_uuid: string;
+  /** Whether this contribution type is excluded from the benefit. */
+  excluded: boolean;
+}
+export const ContributionExclusion = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    contribution_type: S.String,
+    contribution_uuid: S.String,
+    excluded: S.Boolean,
+  }),
+).annotate({
+  identifier: "ContributionExclusion",
+}) as any as S.Schema<ContributionExclusion>;
+
+export type GetCompanyBenefitContributionExclusionsResponseBodyList =
+  Array<ContributionExclusion>;
+export const GetCompanyBenefitContributionExclusionsResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    ContributionExclusion,
+  ) as any as S.Schema<GetCompanyBenefitContributionExclusionsResponseBodyList>;
+
+export type GetCompanyBenefitContributionExclusionsResponse =
+  GetCompanyBenefitContributionExclusionsResponseBodyList;
+export const GetCompanyBenefitContributionExclusionsResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    GetCompanyBenefitContributionExclusionsResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "GetCompanyBenefitContributionExclusionsResponse",
+  }) as any as S.Schema<GetCompanyBenefitContributionExclusionsResponse>;
+
+export type GetCompanyBenefitEmployeeBenefitsRequestInclude = "all_benefits";
+export const GetCompanyBenefitEmployeeBenefitsRequestInclude =
+  /*@__PURE__*/ S.String;
+
+export interface GetCompanyBenefitEmployeeBenefitsRequest {
+  /** The UUID of the company benefit */
+  company_benefit_id: string;
+  /** The page that is requested. When unspecified, will load all objects unless endpoint forces pagination. */
+  page?: number;
+  /** Number of objects per page. For majority of endpoints will default to 25 */
+  per?: number;
+  /** Available options: - all_benefits: Include all effective dated benefits for each employee instead of only the current benefits. */
+  include?: GetCompanyBenefitEmployeeBenefitsRequestInclude | (string & {});
+}
+export const GetCompanyBenefitEmployeeBenefitsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      company_benefit_id: S.String.pipe(T.Label()),
+      page: S.optional(S.Number.pipe(T.Query())),
+      per: S.optional(S.Number.pipe(T.Query())),
+      include: S.optional(
+        GetCompanyBenefitEmployeeBenefitsRequestInclude.pipe(T.Query()),
+      ),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/v1/company_benefits/{company_benefit_id}/employee_benefits",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "GetCompanyBenefitEmployeeBenefitsRequest",
+}) as any as S.Schema<GetCompanyBenefitEmployeeBenefitsRequest>;
+
+/** A single tier of a tiered matching scheme. */
+export type EmployeeBenefitContributionValueCase1TiersItem =
+  CreateEmployeeEmployeeBenefitResponseContributionValueCase1TiersItem;
+export const EmployeeBenefitContributionValueCase1TiersItem =
+  CreateEmployeeEmployeeBenefitResponseContributionValueCase1TiersItem;
+
+export type EmployeeBenefitContributionValueCase1TiersList =
+  Array<CreateEmployeeEmployeeBenefitResponseContributionValueCase1TiersItem>;
+export const EmployeeBenefitContributionValueCase1TiersList =
+  /*@__PURE__*/ S.Array(
+    CreateEmployeeEmployeeBenefitResponseContributionValueCase1TiersItem,
+  ) as any as S.Schema<EmployeeBenefitContributionValueCase1TiersList>;
+
+export interface EmployeeBenefitContributionValueCase1 {
+  tiers?: EmployeeBenefitContributionValueCase1TiersList;
+}
+export const EmployeeBenefitContributionValueCase1 = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      tiers: S.optional(EmployeeBenefitContributionValueCase1TiersList),
+    }),
+).annotate({
+  identifier: "EmployeeBenefitContributionValueCase1",
+}) as any as S.Schema<EmployeeBenefitContributionValueCase1>;
+
+/** For the `amount` and `percentage` contribution types, the value of the corresponding amount or percentage. For the `tiered` contribution type, an array of tiers. */
+export type EmployeeBenefitContributionValue =
+  | string
+  | EmployeeBenefitContributionValueCase1;
+export const EmployeeBenefitContributionValue =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<EmployeeBenefitContributionValue>;
+
+/** An object representing the type and value of the company contribution. */
+export interface EmployeeBenefitContribution {
+  /** The company contribution scheme. "amount": The company contributes a fixed amount per payroll. If elective is true, the contribution is matching, dollar-for-dollar. "percentage": The company contributes a percentage of the payroll amount per payroll period. If elective is true, the contribution is matching, dollar-for-dollar. "tiered": The company contribution varies according to the size of the employee deduction. */
+  type?: string;
+  /** For the `amount` and `percentage` contribution types, the value of the corresponding amount or percentage. For the `tiered` contribution type, an array of tiers. */
+  value?: EmployeeBenefitContributionValue;
+}
+export const EmployeeBenefitContribution = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(S.String),
+    value: S.optional(EmployeeBenefitContributionValue),
+  }),
+).annotate({
+  identifier: "EmployeeBenefitContribution",
+}) as any as S.Schema<EmployeeBenefitContribution>;
+
+export type EmployeeBenefitDeductionReducesTaxableIncome =
+  | "unset"
+  | "reduces_taxable_income"
+  | "does_not_reduce_taxable_income";
+export const EmployeeBenefitDeductionReducesTaxableIncome =
+  /*@__PURE__*/ S.String;
+
+/** The representation of an employee benefit. */
+export interface EmployeeBenefit {
+  /** Whether the employee benefit is active. */
+  active?: boolean;
+  /** Whether the employee should use a benefit's "catch up" rate. Only Roth 401k and 401k benefits use this value for employees over 50. */
+  catch_up?: boolean | null;
+  /** The amount to be paid, per pay period, by the company. This field will not appear for tiered contribution types. */
+  company_contribution?: string;
+  /** The maximum company contribution amount per year. A null value signifies no limit. */
+  company_contribution_annual_maximum?: string | null;
+  /** Whether the company_contribution value should be treated as a percentage to be added to each payroll. This field will not appear for tiered contribution types. */
+  contribute_as_percentage?: boolean;
+  /** An object representing the type and value of the company contribution. */
+  contribution?: EmployeeBenefitContribution;
+  /** The amount that the employee is insured for. Note: company contribution cannot be present if coverage amount is set. */
+  coverage_amount?: string | null;
+  /** The coverage amount as a multiple of the employee's salary. Only applicable for Group Term Life benefits. Note: cannot be set if coverage amount is also set. */
+  coverage_salary_multiplier?: string | null;
+  /** Whether the employee deduction amount should be treated as a percentage to be deducted from each payroll. */
+  deduct_as_percentage?: boolean;
+  /** Whether the employee deduction reduces taxable income or not. Only valid for Group Term Life benefits. Note: when the value is not "unset", coverage amount and coverage salary multiplier are ignored. */
+  deduction_reduces_taxable_income?: EmployeeBenefitDeductionReducesTaxableIncome | null;
+  /** The date the employee benefit will start. */
+  effective_date?: string;
+  /** Whether the company contribution is elective (aka matching). For "tiered" contribution types, this is always true. */
+  elective?: boolean;
+  /** The amount to be deducted, per pay period, from the employee's pay. */
+  employee_deduction?: string;
+  /** The maximum employee deduction amount per year. A null value signifies no limit. */
+  employee_deduction_annual_maximum?: string | null;
+  /** The date the employee benefit will expire. A null value indicates the benefit will not expire. */
+  expiration_date?: string | null;
+  /** Some benefits require additional information to determine their limit. `Family` and `Individual` are applicable to HSA benefit. `Joint Filing or Single` and `Married and Filing Separately` are applicable to Dependent Care FSA benefit. */
+  limit_option?: string | null;
+  /** Identifier for a 401(k) loan assigned by the 401(k) provider */
+  retirement_loan_identifier?: string | null;
+  /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
+  version?: string;
+  /** The UUID of the company benefit. */
+  company_benefit_uuid?: string;
+  /** The UUID of the employee to which the benefit belongs. */
+  employee_uuid?: string;
+  /** The UUID of the employee benefit. */
+  uuid: string;
+}
+export const EmployeeBenefit = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    active: S.optional(S.Boolean),
+    catch_up: S.optional(S.NullOr(S.Boolean)),
+    company_contribution: S.optional(S.String),
+    company_contribution_annual_maximum: S.optional(S.NullOr(S.String)),
+    contribute_as_percentage: S.optional(S.Boolean),
+    contribution: S.optional(EmployeeBenefitContribution),
+    coverage_amount: S.optional(S.NullOr(S.String)),
+    coverage_salary_multiplier: S.optional(S.NullOr(S.String)),
+    deduct_as_percentage: S.optional(S.Boolean),
+    deduction_reduces_taxable_income: S.optional(
+      S.NullOr(EmployeeBenefitDeductionReducesTaxableIncome),
+    ),
+    effective_date: S.optional(S.String),
+    elective: S.optional(S.Boolean),
+    employee_deduction: S.optional(S.String),
+    employee_deduction_annual_maximum: S.optional(S.NullOr(S.String)),
+    expiration_date: S.optional(S.NullOr(S.String)),
+    limit_option: S.optional(S.NullOr(S.String)),
+    retirement_loan_identifier: S.optional(S.NullOr(S.String)),
+    version: S.optional(S.String),
+    company_benefit_uuid: S.optional(S.String),
+    employee_uuid: S.optional(S.String),
+    uuid: S.String,
+  }),
+).annotate({
+  identifier: "EmployeeBenefit",
+}) as any as S.Schema<EmployeeBenefit>;
+
+export type GetCompanyBenefitEmployeeBenefitsResponseBodyList =
+  Array<EmployeeBenefit>;
+export const GetCompanyBenefitEmployeeBenefitsResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    EmployeeBenefit,
+  ) as any as S.Schema<GetCompanyBenefitEmployeeBenefitsResponseBodyList>;
+
+export type GetCompanyBenefitEmployeeBenefitsResponse =
+  GetCompanyBenefitEmployeeBenefitsResponseBodyList;
+export const GetCompanyBenefitEmployeeBenefitsResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    GetCompanyBenefitEmployeeBenefitsResponseBodyList.pipe(T.RawResponseRoot()),
+  ).annotate({
+    identifier: "GetCompanyBenefitEmployeeBenefitsResponse",
+  }) as any as S.Schema<GetCompanyBenefitEmployeeBenefitsResponse>;
+
+export interface GetCompanyCompanyBenefitsRequest {
   /** The UUID of the company */
   company_id: string;
   /** Whether the benefit is currently active */
@@ -2027,106 +3759,43 @@ export interface GetV1CompaniesCompanyIdCompanyBenefitsRequest {
   /** Filter by benefit type. Comma-separated list of benefit type IDs, i.e. `?benefit_type=5,105` */
   benefit_type?: string;
 }
-export const GetV1CompaniesCompanyIdCompanyBenefitsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      company_id: S.String.pipe(T.Label()),
-      active: S.optional(S.Boolean.pipe(T.Query())),
-      enrollment_count: S.optional(S.Boolean.pipe(T.Query())),
-      benefit_type: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/companies/{company_id}/company_benefits",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetV1CompaniesCompanyIdCompanyBenefitsRequest",
-  }) as any as S.Schema<GetV1CompaniesCompanyIdCompanyBenefitsRequest>;
-
-export type CompanyBenefitCatchUpType = "elective" | "deemed";
-export const CompanyBenefitCatchUpType = /*@__PURE__*/ S.String;
-
-/** The source of the company benefit. This can be "internal", "external", or "partnered". Company benefits created via the API default to "external". Certain partners can create company benefits with a source of "partnered". */
-export type CompanyBenefitSource = "internal" | "external" | "partnered";
-export const CompanyBenefitSource = /*@__PURE__*/ S.String;
-
-/** The representation of a company benefit. */
-export interface CompanyBenefit {
-  /** Whether this benefit is active for employee participation. Company benefits may only be deactivated if no employees are actively participating. */
-  active?: boolean;
-  /** The type of the benefit to which the company benefit belongs. */
-  benefit_type?: number;
-  /** The type of catch-up contribution for this benefit, as required by Section 603 of the SECURE 2.0 Act. Only applicable to pre-tax 401(k) and 403(b) benefits. */
-  catch_up_type?: CompanyBenefitCatchUpType | null;
-  /** The UUID of the company. */
-  company_uuid?: string;
-  /** Whether this company benefit can be deleted. Deletable will be set to true if the benefit has not been used in payroll, has no employee benefits associated, and the benefit is not owned by Gusto or a Partner */
-  deletable?: boolean;
-  /** The description of the company benefit. For example, a company may offer multiple benefits with an ID of 1 (for Medical Insurance). The description would show something more specific like “Kaiser Permanente” or “Blue Cross/ Blue Shield”. */
-  description?: string;
-  /** The number of employees enrolled in the benefit, only returned when enrollment_count query param is set to true. */
-  enrollment_count?: number;
-  /** The partner name of the partner that created the company benefit. For example, "XYZ Corp". */
-  partner_name?: string | null;
-  /** Whether the employer is subject to file W-2 forms for an employee on leave. Only applicable to third party sick pay benefits. */
-  responsible_for_employee_w2?: boolean;
-  /** Whether the employer is subject to pay employer taxes when an employee is on leave. Only applicable to third party sick pay benefits. */
-  responsible_for_employer_taxes?: boolean;
-  /** The source of the company benefit. This can be "internal", "external", or "partnered". Company benefits created via the API default to "external". Certain partners can create company benefits with a source of "partnered". */
-  source?: CompanyBenefitSource;
-  /** Whether employee deductions and company contributions can be set as percentages of payroll for an individual employee. This is determined by the type of benefit and is not configurable by the company. */
-  supports_percentage_amounts?: boolean;
-  /** The UUID of the company benefit. */
-  uuid: string;
-  /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
-  version?: string;
-}
-export const CompanyBenefit = /*@__PURE__*/ S.suspend(() =>
+export const GetCompanyCompanyBenefitsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    active: S.optional(S.Boolean),
-    benefit_type: S.optional(S.Number),
-    catch_up_type: S.optional(S.NullOr(CompanyBenefitCatchUpType)),
-    company_uuid: S.optional(S.String),
-    deletable: S.optional(S.Boolean),
-    description: S.optional(S.String),
-    enrollment_count: S.optional(S.Number),
-    partner_name: S.optional(S.NullOr(S.String)),
-    responsible_for_employee_w2: S.optional(S.Boolean),
-    responsible_for_employer_taxes: S.optional(S.Boolean),
-    source: S.optional(CompanyBenefitSource),
-    supports_percentage_amounts: S.optional(S.Boolean),
-    uuid: S.String,
-    version: S.optional(S.String),
-  }),
-).annotate({ identifier: "CompanyBenefit" }) as any as S.Schema<CompanyBenefit>;
+    company_id: S.String.pipe(T.Label()),
+    active: S.optional(S.Boolean.pipe(T.Query())),
+    enrollment_count: S.optional(S.Boolean.pipe(T.Query())),
+    benefit_type: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/companies/{company_id}/company_benefits",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetCompanyCompanyBenefitsRequest",
+}) as any as S.Schema<GetCompanyCompanyBenefitsRequest>;
 
-export type GetV1CompaniesCompanyIdCompanyBenefitsResponseBodyList =
-  Array<CompanyBenefit>;
-export const GetV1CompaniesCompanyIdCompanyBenefitsResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    CompanyBenefit,
-  ) as any as S.Schema<GetV1CompaniesCompanyIdCompanyBenefitsResponseBodyList>;
+export type GetCompanyCompanyBenefitsResponseBodyList = Array<CompanyBenefit>;
+export const GetCompanyCompanyBenefitsResponseBodyList = /*@__PURE__*/ S.Array(
+  CompanyBenefit,
+) as any as S.Schema<GetCompanyCompanyBenefitsResponseBodyList>;
 
-export type GetV1CompaniesCompanyIdCompanyBenefitsResponse =
-  GetV1CompaniesCompanyIdCompanyBenefitsResponseBodyList;
-export const GetV1CompaniesCompanyIdCompanyBenefitsResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetV1CompaniesCompanyIdCompanyBenefitsResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetV1CompaniesCompanyIdCompanyBenefitsResponse",
-  }) as any as S.Schema<GetV1CompaniesCompanyIdCompanyBenefitsResponse>;
+export type GetCompanyCompanyBenefitsResponse =
+  GetCompanyCompanyBenefitsResponseBodyList;
+export const GetCompanyCompanyBenefitsResponse = /*@__PURE__*/ S.suspend(() =>
+  GetCompanyCompanyBenefitsResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "GetCompanyCompanyBenefitsResponse",
+}) as any as S.Schema<GetCompanyCompanyBenefitsResponse>;
 
-export interface GetV1CompaniesCompanyIdContractorPaymentContractorPaymentRequest {
+export interface GetCompanyContractorPaymentContractorPaymentRequest {
   /** The UUID of the company */
   company_id: string;
   /** The UUID of the contractor payment */
   contractor_payment_id: string;
 }
-export const GetV1CompaniesCompanyIdContractorPaymentContractorPaymentRequest =
+export const GetCompanyContractorPaymentContractorPaymentRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       company_id: S.String.pipe(T.Label()),
@@ -2139,9 +3808,8 @@ export const GetV1CompaniesCompanyIdContractorPaymentContractorPaymentRequest =
       }),
     ),
   ).annotate({
-    identifier:
-      "GetV1CompaniesCompanyIdContractorPaymentContractorPaymentRequest",
-  }) as any as S.Schema<GetV1CompaniesCompanyIdContractorPaymentContractorPaymentRequest>;
+    identifier: "GetCompanyContractorPaymentContractorPaymentRequest",
+  }) as any as S.Schema<GetCompanyContractorPaymentContractorPaymentRequest>;
 
 /** The payment method. */
 export type ContractorPaymentPaymentMethod =
@@ -2214,7 +3882,7 @@ export const ContractorPayment = /*@__PURE__*/ S.suspend(() =>
   identifier: "ContractorPayment",
 }) as any as S.Schema<ContractorPayment>;
 
-export interface GetV1CompaniesCompanyIdContractorPaymentsRequest {
+export interface GetCompanyContractorPaymentsRequest {
   /** The UUID of the company */
   company_id: string;
   /** The time period for which to retrieve contractor payments */
@@ -2230,26 +3898,25 @@ export interface GetV1CompaniesCompanyIdContractorPaymentsRequest {
   /** Number of objects per page. For majority of endpoints will default to 25 */
   per?: number;
 }
-export const GetV1CompaniesCompanyIdContractorPaymentsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      company_id: S.String.pipe(T.Label()),
-      start_date: S.String.pipe(T.Query()),
-      end_date: S.String.pipe(T.Query()),
-      contractor_uuid: S.optional(S.String.pipe(T.Query())),
-      group_by_date: S.optional(S.Boolean.pipe(T.Query())),
-      page: S.optional(S.Number.pipe(T.Query())),
-      per: S.optional(S.Number.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/companies/{company_id}/contractor_payments",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetV1CompaniesCompanyIdContractorPaymentsRequest",
-  }) as any as S.Schema<GetV1CompaniesCompanyIdContractorPaymentsRequest>;
+export const GetCompanyContractorPaymentsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    company_id: S.String.pipe(T.Label()),
+    start_date: S.String.pipe(T.Query()),
+    end_date: S.String.pipe(T.Query()),
+    contractor_uuid: S.optional(S.String.pipe(T.Query())),
+    group_by_date: S.optional(S.Boolean.pipe(T.Query())),
+    page: S.optional(S.Number.pipe(T.Query())),
+    per: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/companies/{company_id}/contractor_payments",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetCompanyContractorPaymentsRequest",
+}) as any as S.Schema<GetCompanyContractorPaymentsRequest>;
 
 /** The contractor's payments within a given time period. */
 export type ContractorPaymentSummaryContractorPaymentsItemPaymentsList =
@@ -2392,24 +4059,93 @@ export const ContractorPaymentSummaryByDates = /*@__PURE__*/ S.suspend(() =>
   identifier: "ContractorPaymentSummaryByDates",
 }) as any as S.Schema<ContractorPaymentSummaryByDates>;
 
-export type GetV1CompaniesCompanyIdContractorPaymentsResponseBody =
+export type GetCompanyContractorPaymentsResponseBody =
   | ContractorPaymentSummary
   | ContractorPaymentSummaryByDates;
-export const GetV1CompaniesCompanyIdContractorPaymentsResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetV1CompaniesCompanyIdContractorPaymentsResponseBody>;
+export const GetCompanyContractorPaymentsResponseBody =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<GetCompanyContractorPaymentsResponseBody>;
 
-export type GetV1CompaniesCompanyIdContractorPaymentsResponse =
-  GetV1CompaniesCompanyIdContractorPaymentsResponseBody;
-export const GetV1CompaniesCompanyIdContractorPaymentsResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetV1CompaniesCompanyIdContractorPaymentsResponseBody.pipe(
-      T.RawResponseRoot(),
+export type GetCompanyContractorPaymentsResponse =
+  GetCompanyContractorPaymentsResponseBody;
+export const GetCompanyContractorPaymentsResponse = /*@__PURE__*/ S.suspend(
+  () => GetCompanyContractorPaymentsResponseBody.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "GetCompanyContractorPaymentsResponse",
+}) as any as S.Schema<GetCompanyContractorPaymentsResponse>;
+
+export type GetCompanyContractorsRequestIncludeItem =
+  | "company_name"
+  | "portal_invitations";
+export const GetCompanyContractorsRequestIncludeItem = /*@__PURE__*/ S.String;
+
+export type GetCompanyContractorsRequestIncludeList = Array<
+  GetCompanyContractorsRequestIncludeItem | (string & {})
+>;
+export const GetCompanyContractorsRequestIncludeList = /*@__PURE__*/ S.Array(
+  GetCompanyContractorsRequestIncludeItem,
+) as any as S.Schema<GetCompanyContractorsRequestIncludeList>;
+
+export interface GetCompanyContractorsRequest {
+  /** The UUID of the company */
+  company_uuid: string;
+  /** A string to search for in the object's names */
+  search_term?: string;
+  /** Sort by one or more fields. Options: created_at, type, onboarding_status, name. Append `:asc` or `:desc` to specify direction (e.g., `created_at:asc`). Defaults to ascending. */
+  sort_by?: string;
+  /** Filters contractors by those who have completed onboarding */
+  onboarded?: boolean;
+  /** Filters contractors who are ready to work (onboarded AND active today) */
+  onboarded_active?: boolean;
+  /** Filters contractors by those who have been or are scheduled to be dismissed */
+  terminated?: boolean;
+  /** Filters contractors by those who have been dismissed and whose dismissal is in effect today (excludes active and scheduled to be dismissed) */
+  terminated_today?: boolean;
+  /** Include the requested attribute(s) in each contractor response. Multiple options are comma separated. */
+  include?: GetCompanyContractorsRequestIncludeList;
+  /** The page that is requested. When unspecified, will load all objects unless endpoint forces pagination. */
+  page?: number;
+  /** Number of objects per page. For majority of endpoints will default to 25 */
+  per?: number;
+}
+export const GetCompanyContractorsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    company_uuid: S.String.pipe(T.Label()),
+    search_term: S.optional(S.String.pipe(T.Query())),
+    sort_by: S.optional(S.String.pipe(T.Query())),
+    onboarded: S.optional(S.Boolean.pipe(T.Query())),
+    onboarded_active: S.optional(S.Boolean.pipe(T.Query())),
+    terminated: S.optional(S.Boolean.pipe(T.Query())),
+    terminated_today: S.optional(S.Boolean.pipe(T.Query())),
+    include: S.optional(
+      GetCompanyContractorsRequestIncludeList.pipe(T.Query()),
     ),
-  ).annotate({
-    identifier: "GetV1CompaniesCompanyIdContractorPaymentsResponse",
-  }) as any as S.Schema<GetV1CompaniesCompanyIdContractorPaymentsResponse>;
+    page: S.optional(S.Number.pipe(T.Query())),
+    per: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/companies/{company_uuid}/contractors",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetCompanyContractorsRequest",
+}) as any as S.Schema<GetCompanyContractorsRequest>;
 
-export interface GetV1CompaniesCompanyIdCustomFieldsRequest {
+export type GetCompanyContractorsResponseBodyList = Array<Contractor>;
+export const GetCompanyContractorsResponseBodyList = /*@__PURE__*/ S.Array(
+  Contractor,
+) as any as S.Schema<GetCompanyContractorsResponseBodyList>;
+
+export type GetCompanyContractorsResponse =
+  GetCompanyContractorsResponseBodyList;
+export const GetCompanyContractorsResponse = /*@__PURE__*/ S.suspend(() =>
+  GetCompanyContractorsResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "GetCompanyContractorsResponse",
+}) as any as S.Schema<GetCompanyContractorsResponse>;
+
+export interface GetCompanyCustomFieldsRequest {
   /** The UUID of the company */
   company_id: string;
   /** The page that is requested. When unspecified, will load all objects unless endpoint forces pagination. */
@@ -2417,22 +4153,21 @@ export interface GetV1CompaniesCompanyIdCustomFieldsRequest {
   /** Number of objects per page. For majority of endpoints will default to 25 */
   per?: number;
 }
-export const GetV1CompaniesCompanyIdCustomFieldsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      company_id: S.String.pipe(T.Label()),
-      page: S.optional(S.Number.pipe(T.Query())),
-      per: S.optional(S.Number.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/companies/{company_id}/custom_fields",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetV1CompaniesCompanyIdCustomFieldsRequest",
-  }) as any as S.Schema<GetV1CompaniesCompanyIdCustomFieldsRequest>;
+export const GetCompanyCustomFieldsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    company_id: S.String.pipe(T.Label()),
+    page: S.optional(S.Number.pipe(T.Query())),
+    per: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/companies/{company_id}/custom_fields",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetCompanyCustomFieldsRequest",
+}) as any as S.Schema<GetCompanyCustomFieldsRequest>;
 
 /** An array of options for fields of type radio. Otherwise, null. */
 export type CompanyCustomFieldSelectionOptionsList = Array<string>;
@@ -2486,41 +4221,23 @@ export const CompanyCustomFieldList = /*@__PURE__*/ S.suspend(() =>
   identifier: "CompanyCustomFieldList",
 }) as any as S.Schema<CompanyCustomFieldList>;
 
-export interface GetV1CompaniesCompanyIdEarningTypesRequest {
+export interface GetCompanyEarningTypesRequest {
   /** The UUID of the company */
   company_id: string;
 }
-export const GetV1CompaniesCompanyIdEarningTypesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      company_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/companies/{company_id}/earning_types",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetV1CompaniesCompanyIdEarningTypesRequest",
-  }) as any as S.Schema<GetV1CompaniesCompanyIdEarningTypesRequest>;
-
-/** The representation of an earning type in Gusto. */
-export interface EarningType {
-  /** Whether the earning type is active. */
-  active?: boolean;
-  /** The name of the earning type. */
-  name?: string;
-  /** The ID of the earning type. */
-  uuid: string;
-}
-export const EarningType = /*@__PURE__*/ S.suspend(() =>
+export const GetCompanyEarningTypesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    active: S.optional(S.Boolean),
-    name: S.optional(S.String),
-    uuid: S.String,
-  }),
-).annotate({ identifier: "EarningType" }) as any as S.Schema<EarningType>;
+    company_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/companies/{company_id}/earning_types",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetCompanyEarningTypesRequest",
+}) as any as S.Schema<GetCompanyEarningTypesRequest>;
 
 /** The custom earning types for the company. */
 export type EarningTypeListCustomList = Array<EarningType>;
@@ -2550,31 +4267,28 @@ export const EarningTypeList = /*@__PURE__*/ S.suspend(() =>
   identifier: "EarningTypeList",
 }) as any as S.Schema<EarningTypeList>;
 
-export type GetV1CompaniesCompanyIdEmployeesRequestIncludeItem =
+export type GetCompanyEmployeesRequestIncludeItem =
   | "all_compensations"
   | "all_home_addresses"
   | "company_name"
   | "current_home_address"
   | "custom_fields"
   | "portal_invitations";
-export const GetV1CompaniesCompanyIdEmployeesRequestIncludeItem =
-  /*@__PURE__*/ S.String;
+export const GetCompanyEmployeesRequestIncludeItem = /*@__PURE__*/ S.String;
 
-export type GetV1CompaniesCompanyIdEmployeesRequestIncludeList = Array<
-  GetV1CompaniesCompanyIdEmployeesRequestIncludeItem | (string & {})
+export type GetCompanyEmployeesRequestIncludeList = Array<
+  GetCompanyEmployeesRequestIncludeItem | (string & {})
 >;
-export const GetV1CompaniesCompanyIdEmployeesRequestIncludeList =
-  /*@__PURE__*/ S.Array(
-    GetV1CompaniesCompanyIdEmployeesRequestIncludeItem,
-  ) as any as S.Schema<GetV1CompaniesCompanyIdEmployeesRequestIncludeList>;
+export const GetCompanyEmployeesRequestIncludeList = /*@__PURE__*/ S.Array(
+  GetCompanyEmployeesRequestIncludeItem,
+) as any as S.Schema<GetCompanyEmployeesRequestIncludeList>;
 
-export type GetV1CompaniesCompanyIdEmployeesRequestUuidsList = Array<string>;
-export const GetV1CompaniesCompanyIdEmployeesRequestUuidsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GetV1CompaniesCompanyIdEmployeesRequestUuidsList>;
+export type GetCompanyEmployeesRequestUuidsList = Array<string>;
+export const GetCompanyEmployeesRequestUuidsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GetCompanyEmployeesRequestUuidsList>;
 
-export interface GetV1CompaniesCompanyIdEmployeesRequest {
+export interface GetCompanyEmployeesRequest {
   /** The UUID of the company */
   company_id: string;
   /** Filter employees by a specific primary work location */
@@ -2586,7 +4300,7 @@ export interface GetV1CompaniesCompanyIdEmployeesRequest {
   /** Sort employees by a given field. Cannot be used with search_term. Append `:asc` or `:desc` to specify direction (e.g., `name:desc`). Defaults to ascending. */
   sort_by?: string;
   /** Include the requested attribute(s) in each employee response. Multiple options are comma separated. */
-  include?: GetV1CompaniesCompanyIdEmployeesRequestIncludeList;
+  include?: GetCompanyEmployeesRequestIncludeList;
   /** Filters employees by those who have completed onboarding */
   onboarded?: boolean;
   /** Filters employees who are ready to work (onboarded AND active today) */
@@ -2596,42 +4310,37 @@ export interface GetV1CompaniesCompanyIdEmployeesRequest {
   /** Filters employees by those who have been terminated and whose termination is in effect today (excludes active and scheduled to be terminated) */
   terminated_today?: boolean;
   /** Optional subset of employees to fetch. */
-  uuids?: GetV1CompaniesCompanyIdEmployeesRequestUuidsList;
+  uuids?: GetCompanyEmployeesRequestUuidsList;
   /** The page that is requested. When unspecified, will load all objects unless endpoint forces pagination. */
   page?: number;
   /** Number of objects per page. For majority of endpoints will default to 25 */
   per?: number;
 }
-export const GetV1CompaniesCompanyIdEmployeesRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      company_id: S.String.pipe(T.Label()),
-      location_uuid: S.optional(S.String.pipe(T.Query())),
-      payroll_uuid: S.optional(S.String.pipe(T.Query())),
-      search_term: S.optional(S.String.pipe(T.Query())),
-      sort_by: S.optional(S.String.pipe(T.Query())),
-      include: S.optional(
-        GetV1CompaniesCompanyIdEmployeesRequestIncludeList.pipe(T.Query()),
-      ),
-      onboarded: S.optional(S.Boolean.pipe(T.Query())),
-      onboarded_active: S.optional(S.Boolean.pipe(T.Query())),
-      terminated: S.optional(S.Boolean.pipe(T.Query())),
-      terminated_today: S.optional(S.Boolean.pipe(T.Query())),
-      uuids: S.optional(
-        GetV1CompaniesCompanyIdEmployeesRequestUuidsList.pipe(T.Query()),
-      ),
-      page: S.optional(S.Number.pipe(T.Query())),
-      per: S.optional(S.Number.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/companies/{company_id}/employees",
-        code: 200,
-      }),
-    ),
+export const GetCompanyEmployeesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    company_id: S.String.pipe(T.Label()),
+    location_uuid: S.optional(S.String.pipe(T.Query())),
+    payroll_uuid: S.optional(S.String.pipe(T.Query())),
+    search_term: S.optional(S.String.pipe(T.Query())),
+    sort_by: S.optional(S.String.pipe(T.Query())),
+    include: S.optional(GetCompanyEmployeesRequestIncludeList.pipe(T.Query())),
+    onboarded: S.optional(S.Boolean.pipe(T.Query())),
+    onboarded_active: S.optional(S.Boolean.pipe(T.Query())),
+    terminated: S.optional(S.Boolean.pipe(T.Query())),
+    terminated_today: S.optional(S.Boolean.pipe(T.Query())),
+    uuids: S.optional(GetCompanyEmployeesRequestUuidsList.pipe(T.Query())),
+    page: S.optional(S.Number.pipe(T.Query())),
+    per: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/companies/{company_id}/employees",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "GetV1CompaniesCompanyIdEmployeesRequest",
-}) as any as S.Schema<GetV1CompaniesCompanyIdEmployeesRequest>;
+  identifier: "GetCompanyEmployeesRequest",
+}) as any as S.Schema<GetCompanyEmployeesRequest>;
 
 export type ShowEmployeesItemApplicableTaxIdsList = Array<number>;
 export const ShowEmployeesItemApplicableTaxIdsList = /*@__PURE__*/ S.Array(
@@ -2742,104 +4451,6 @@ export type FlsaStatusType =
   | "Commission Only Nonexempt";
 export const FlsaStatusType = /*@__PURE__*/ S.String;
 
-/** How often the agency collects the withholding amount. e.g. $500 monthly -> `Monthly`. */
-export type GarnishmentChildSupportPaymentPeriod =
-  | "Every week"
-  | "Every other week"
-  | "Twice per month"
-  | "Monthly";
-export const GarnishmentChildSupportPaymentPeriod = /*@__PURE__*/ S.String;
-
-/** Additional child support order details */
-export interface GarnishmentChildSupport {
-  /** Child Support Enforcement Case Number associated with this child support obligation - required for most states. Agency specific requirements are available in the `GET /v1/garnishments/child_support` API. */
-  case_number?: string | null;
-  /** The FIPS code associated with the state or county agency issuing the child support order. Agency data is available in the `GET /v1/garnishments/child_support` API. */
-  fips_code?: string;
-  /** Order Identifier or Order ID associated with this child support obligation - required for some states. Agency specific requirements are available in the `GET /v1/garnishments/child_support` API. */
-  order_number?: string | null;
-  /** How often the agency collects the withholding amount. e.g. $500 monthly -> `Monthly`. */
-  payment_period?: GarnishmentChildSupportPaymentPeriod | (string & {});
-  /** Child Support Enforcement Remittance ID associated with this child support obligation - required for some states. Agency specific requirements are available in the `GET /v1/garnishments/child_support` API. */
-  remittance_number?: string | null;
-  /** The two letter state abbreviation for the state issuing the child support order. Agency data is available in the `GET /v1/garnishments/child_support` API. */
-  state?: string;
-}
-export const GarnishmentChildSupport = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    case_number: S.optional(S.NullOr(S.String)),
-    fips_code: S.optional(S.String),
-    order_number: S.optional(S.NullOr(S.String)),
-    payment_period: S.optional(GarnishmentChildSupportPaymentPeriod),
-    remittance_number: S.optional(S.NullOr(S.String)),
-    state: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "GarnishmentChildSupport",
-}) as any as S.Schema<GarnishmentChildSupport>;
-
-export type GarnishmentGarnishmentType =
-  | "child_support"
-  | "federal_tax_lien"
-  | "state_tax_lien"
-  | "student_loan"
-  | "creditor_garnishment"
-  | "federal_loan"
-  | "other_garnishment";
-export const GarnishmentGarnishmentType = /*@__PURE__*/ S.String;
-
-/** Garnishments, or employee deductions, are fixed amounts or percentages deducted from an employee’s pay. They can be deducted a specific number of times or on a recurring basis. Garnishments can also have maximum deductions on a yearly or per-pay-period bases. Common uses for garnishments are court-ordered payments for child support or back taxes. Some companies provide loans to their employees that are repaid via garnishments. */
-export interface Garnishment {
-  /** Whether or not this garnishment is currently active. */
-  active?: boolean;
-  /** The amount of the garnishment. Either a percentage or a fixed dollar amount. Represented as a float, e.g. "8.00". */
-  amount?: string;
-  /** The maximum deduction per annum. A null value indicates no maximum. Represented as a float, e.g. "200.00". */
-  annual_maximum?: string | null;
-  child_support?: GarnishmentChildSupport | null;
-  /** Whether the garnishment is court ordered. */
-  court_ordered?: boolean;
-  /** Whether the amount should be treated as a percentage to be deducted per pay period. */
-  deduct_as_percentage?: boolean;
-  /** The description of the garnishment. */
-  description?: string;
-  /** The UUID of the employee to which this garnishment belongs. */
-  employee_uuid?: string;
-  /** The specific type of garnishment for court ordered garnishments. */
-  garnishment_type?: GarnishmentGarnishmentType | null;
-  /** The maximum deduction per pay period. A null value indicates no maximum. Represented as a float, e.g. "16.00". */
-  pay_period_maximum?: string | null;
-  /** Whether the garnishment should recur indefinitely. */
-  recurring?: boolean;
-  /** The number of times to apply the garnishment. Ignored if recurring is true. */
-  times?: number | null;
-  /** A maximum total deduction for the lifetime of this garnishment. A null value indicates no maximum. */
-  total_amount?: string | null;
-  /** The UUID of the garnishment in Gusto. */
-  uuid: string;
-  /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
-  version?: string;
-}
-export const Garnishment = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    active: S.optional(S.Boolean),
-    amount: S.optional(S.String),
-    annual_maximum: S.optional(S.NullOr(S.String)),
-    child_support: S.optional(S.NullOr(GarnishmentChildSupport)),
-    court_ordered: S.optional(S.Boolean),
-    deduct_as_percentage: S.optional(S.Boolean),
-    description: S.optional(S.String),
-    employee_uuid: S.optional(S.String),
-    garnishment_type: S.optional(S.NullOr(GarnishmentGarnishmentType)),
-    pay_period_maximum: S.optional(S.NullOr(S.String)),
-    recurring: S.optional(S.Boolean),
-    times: S.optional(S.NullOr(S.Number)),
-    total_amount: S.optional(S.NullOr(S.String)),
-    uuid: S.String,
-    version: S.optional(S.String),
-  }),
-).annotate({ identifier: "Garnishment" }) as any as S.Schema<Garnishment>;
-
 export type ShowEmployeesItemGarnishmentsList = Array<Garnishment>;
 export const ShowEmployeesItemGarnishmentsList = /*@__PURE__*/ S.Array(
   Garnishment,
@@ -2923,81 +4534,6 @@ export type JobCompensationsList = Array<Compensation>;
 export const JobCompensationsList = /*@__PURE__*/ S.Array(
   Compensation,
 ) as any as S.Schema<JobCompensationsList>;
-
-export interface WarningObject {
-  /** Specifies the type of warning. Can be used to build custom warning handling. */
-  category?: string;
-  /** Specifies where the warning occurs. Typically identifies the attribute or parameter related to the warning. */
-  error_key?: string;
-  /** Provides details about the warning. The message can be surfaced directly to the end user. */
-  message?: string;
-}
-export const WarningObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    category: S.optional(S.String),
-    error_key: S.optional(S.String),
-    message: S.optional(S.String),
-  }),
-).annotate({ identifier: "WarningObject" }) as any as S.Schema<WarningObject>;
-
-/** An array of warning objects that provide additional information about the address. Warnings do not prevent the address from being saved. */
-export type LocationWarningsList = Array<WarningObject>;
-export const LocationWarningsList = /*@__PURE__*/ S.Array(
-  WarningObject,
-) as any as S.Schema<LocationWarningsList>;
-
-/** The representation of an address in Gusto. */
-export interface Location {
-  /** The status of the location. Inactive locations have been deleted, but may still have historical data associated with them. */
-  active?: boolean;
-  city?: string;
-  /** The UUID for the company to which the location belongs. Only included if the location belongs to a company. */
-  company_uuid?: string;
-  country?: string;
-  /** Datetime for when location is created */
-  created_at?: string;
-  /** Specifies if the location is the company's filing address. Only included if the location belongs to a company. */
-  filing_address?: boolean;
-  /** The status of the location. Inactive locations have been deleted, but may still have historical data associated with them. */
-  inactive?: boolean;
-  /** Specifies if the location is the company's mailing address. Only included if the location belongs to a company. */
-  mailing_address?: boolean;
-  /** The phone number for the location. Required for company locations. Optional for employee locations. */
-  phone_number?: string;
-  state?: string;
-  street_1?: string;
-  street_2?: string | null;
-  /** Datetime for when location is updated */
-  updated_at?: string;
-  /** The UUID of the location object. */
-  uuid: string;
-  /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
-  version?: string;
-  /** An array of warning objects that provide additional information about the address. Warnings do not prevent the address from being saved. */
-  warnings?: LocationWarningsList;
-  zip?: string;
-}
-export const Location = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    active: S.optional(S.Boolean),
-    city: S.optional(S.String),
-    company_uuid: S.optional(S.String),
-    country: S.optional(S.String),
-    created_at: S.optional(S.String),
-    filing_address: S.optional(S.Boolean),
-    inactive: S.optional(S.Boolean),
-    mailing_address: S.optional(S.Boolean),
-    phone_number: S.optional(S.String),
-    state: S.optional(S.String),
-    street_1: S.optional(S.String),
-    street_2: S.optional(S.NullOr(S.String)),
-    updated_at: S.optional(S.String),
-    uuid: S.String,
-    version: S.optional(S.String),
-    warnings: S.optional(LocationWarningsList),
-    zip: S.optional(S.String),
-  }),
-).annotate({ identifier: "Location" }) as any as S.Schema<Location>;
 
 /** The representation of a job in Gusto. */
 export interface Job {
@@ -3122,35 +4658,6 @@ export const ShowEmployeesItemOnboardingStatus = /*@__PURE__*/ S.String;
 /** The employee's payment method */
 export type ShowEmployeesItemPaymentMethod = "Direct Deposit" | "Check";
 export const ShowEmployeesItemPaymentMethod = /*@__PURE__*/ S.String;
-
-/** The representation of a termination in Gusto. */
-export interface Termination {
-  /** Whether the employee's termination has gone into effect. */
-  active?: boolean;
-  /** Whether the employee's termination is cancelable. Cancelable is true if `run_termination_payroll` is false and `effective_date` is in the future. */
-  cancelable?: boolean;
-  /** The employee's last day of work. */
-  effective_date?: string;
-  /** The UUID of the employee to which this termination is attached. */
-  employee_uuid?: string;
-  /** If true, the employee should receive their final wages via an off-cycle payroll. If false, they should receive their final wages on their current pay schedule. */
-  run_termination_payroll?: boolean;
-  /** The UUID of the termination object. */
-  uuid: string;
-  /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
-  version?: string;
-}
-export const Termination = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    active: S.optional(S.Boolean),
-    cancelable: S.optional(S.Boolean),
-    effective_date: S.optional(S.String),
-    employee_uuid: S.optional(S.String),
-    run_termination_payroll: S.optional(S.Boolean),
-    uuid: S.String,
-    version: S.optional(S.String),
-  }),
-).annotate({ identifier: "Termination" }) as any as S.Schema<Termination>;
 
 export type ShowEmployeesItemTerminationsList = Array<Termination>;
 export const ShowEmployeesItemTerminationsList = /*@__PURE__*/ S.Array(
@@ -3343,14 +4850,14 @@ export const ShowEmployees = /*@__PURE__*/ S.Array(
   ShowEmployeesItem,
 ) as any as S.Schema<ShowEmployees>;
 
-export type GetV1CompaniesCompanyIdEmployeesResponse = ShowEmployees;
-export const GetV1CompaniesCompanyIdEmployeesResponse = /*@__PURE__*/ S.suspend(
-  () => ShowEmployees.pipe(T.RawResponseRoot()),
+export type GetCompanyEmployeesResponse = ShowEmployees;
+export const GetCompanyEmployeesResponse = /*@__PURE__*/ S.suspend(() =>
+  ShowEmployees.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "GetV1CompaniesCompanyIdEmployeesResponse",
-}) as any as S.Schema<GetV1CompaniesCompanyIdEmployeesResponse>;
+  identifier: "GetCompanyEmployeesResponse",
+}) as any as S.Schema<GetCompanyEmployeesResponse>;
 
-export interface GetV1CompaniesCompanyIdLocationsRequest {
+export interface GetCompanyLocationsRequest {
   /** The UUID of the company */
   company_id: string;
   /** The page that is requested. When unspecified, will load all objects unless endpoint forces pagination. */
@@ -3358,73 +4865,208 @@ export interface GetV1CompaniesCompanyIdLocationsRequest {
   /** Number of objects per page. For majority of endpoints will default to 25 */
   per?: number;
 }
-export const GetV1CompaniesCompanyIdLocationsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      company_id: S.String.pipe(T.Label()),
-      page: S.optional(S.Number.pipe(T.Query())),
-      per: S.optional(S.Number.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/companies/{company_id}/locations",
-        code: 200,
-      }),
-    ),
+export const GetCompanyLocationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    company_id: S.String.pipe(T.Label()),
+    page: S.optional(S.Number.pipe(T.Query())),
+    per: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/companies/{company_id}/locations",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "GetV1CompaniesCompanyIdLocationsRequest",
-}) as any as S.Schema<GetV1CompaniesCompanyIdLocationsRequest>;
+  identifier: "GetCompanyLocationsRequest",
+}) as any as S.Schema<GetCompanyLocationsRequest>;
 
 export type CompanyLocationsList2 = Array<Location>;
 export const CompanyLocationsList2 = /*@__PURE__*/ S.Array(
   Location,
 ) as any as S.Schema<CompanyLocationsList2>;
 
-export type GetV1CompaniesCompanyIdLocationsResponse = CompanyLocationsList2;
-export const GetV1CompaniesCompanyIdLocationsResponse = /*@__PURE__*/ S.suspend(
-  () => CompanyLocationsList2.pipe(T.RawResponseRoot()),
+export type GetCompanyLocationsResponse = CompanyLocationsList2;
+export const GetCompanyLocationsResponse = /*@__PURE__*/ S.suspend(() =>
+  CompanyLocationsList2.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "GetV1CompaniesCompanyIdLocationsResponse",
-}) as any as S.Schema<GetV1CompaniesCompanyIdLocationsResponse>;
+  identifier: "GetCompanyLocationsResponse",
+}) as any as S.Schema<GetCompanyLocationsResponse>;
+
+export type GetCompanyNotificationsRequestStatus =
+  | "open"
+  | "expired"
+  | "resolved";
+export const GetCompanyNotificationsRequestStatus = /*@__PURE__*/ S.String;
+
+export interface GetCompanyNotificationsRequest {
+  /** The UUID of the company for which you would like to return notifications */
+  company_uuid: string;
+  status?: GetCompanyNotificationsRequestStatus | (string & {});
+  /** The page that is requested. When unspecified, will load all objects unless endpoint forces pagination. */
+  page?: number;
+  /** Number of objects per page. For majority of endpoints will default to 25 */
+  per?: number;
+}
+export const GetCompanyNotificationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    company_uuid: S.String.pipe(T.Label()),
+    status: S.optional(GetCompanyNotificationsRequestStatus.pipe(T.Query())),
+    page: S.optional(S.Number.pipe(T.Query())),
+    per: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/companies/{company_uuid}/notifications",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetCompanyNotificationsRequest",
+}) as any as S.Schema<GetCompanyNotificationsRequest>;
+
+/** The type of entity being described. */
+export type NotificationResourcesItemEntityType =
+  | "BankAccount"
+  | "Contractor"
+  | "ContractorPayment"
+  | "Employee"
+  | "Payroll"
+  | "PaySchedule"
+  | "RecoveryCase"
+  | "Signatory"
+  | "Wire In Request";
+export const NotificationResourcesItemEntityType = /*@__PURE__*/ S.String;
+
+export interface NotificationResourcesItem {
+  /** The type of entity being described. */
+  entity_type: NotificationResourcesItemEntityType;
+  /** Unique identifier of the entity */
+  entity_uuid: string;
+  /** Optional. The type of a resource that is related to the one described by entity_type and entity_uuid. For instance, if the entity_type is “BankAccount”, the reference_type could be the “Employee” or “Contractor” to whom the bank account belongs. */
+  reference_type?: string;
+  /** Optional. Unique identifier of the reference. */
+  reference_uuid?: string;
+}
+export const NotificationResourcesItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    entity_type: NotificationResourcesItemEntityType,
+    entity_uuid: S.String,
+    reference_type: S.optional(S.String),
+    reference_uuid: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "NotificationResourcesItem",
+}) as any as S.Schema<NotificationResourcesItem>;
+
+/** An array of entities relevant to the notification */
+export type NotificationResourcesList = Array<NotificationResourcesItem>;
+export const NotificationResourcesList = /*@__PURE__*/ S.Array(
+  NotificationResourcesItem,
+) as any as S.Schema<NotificationResourcesList>;
+
+/** Represents the notification's status as managed by our system. It is updated based on observable system events and internal business logic, and does not reflect resolution steps taken outside our system. This field is read-only and cannot be modified via the API. */
+export type NotificationStatus = "open" | "resolved" | "expired";
+export const NotificationStatus = /*@__PURE__*/ S.String;
+
+/** An object containing template variables used to render the notification. The structure of this object depends on the notification category. Each category defines a fixed set of variable names (keys), which are always present. The values of these variables can vary depending on the specific notification instance. */
+export type NotificationTemplateVariablesMap = {
+  [key: string]: string | undefined;
+};
+export const NotificationTemplateVariablesMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<NotificationTemplateVariablesMap>;
+
+export interface Notification {
+  /** Indicates whether a notification requires action or not. If false, the notification provides critical information only. */
+  actionable: boolean;
+  /** Indicates whether a notification may block ability to run payroll. If true, we suggest that these notifications are prioritized to your end users. */
+  can_block_payroll: boolean;
+  /** The notification's category. */
+  category: string;
+  /** Unique identifier of the company to which the notification belongs. */
+  company_uuid: string;
+  /** Timestamp of when the notification is due. If the notification has no due date, this field will be null. */
+  due_at: string | null;
+  /** The message of the notification. This provides additional context for the user and recommends a specific action to resolve the notification. */
+  message: string;
+  /** Timestamp of when the notification was published. */
+  published_at: string;
+  /** An array of entities relevant to the notification */
+  resources: NotificationResourcesList;
+  /** Represents the notification's status as managed by our system. It is updated based on observable system events and internal business logic, and does not reflect resolution steps taken outside our system. This field is read-only and cannot be modified via the API. */
+  status: NotificationStatus;
+  /** An object containing template variables used to render the notification. The structure of this object depends on the notification category. Each category defines a fixed set of variable names (keys), which are always present. The values of these variables can vary depending on the specific notification instance. */
+  template_variables?: NotificationTemplateVariablesMap;
+  /** The title of the notification. This highlights the actionable component of the notification. */
+  title: string;
+  /** Unique identifier of a notification. */
+  uuid: string;
+}
+export const Notification = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    actionable: S.Boolean,
+    can_block_payroll: S.Boolean,
+    category: S.String,
+    company_uuid: S.String,
+    due_at: S.NullOr(S.String),
+    message: S.String,
+    published_at: S.String,
+    resources: NotificationResourcesList,
+    status: NotificationStatus,
+    template_variables: S.optional(NotificationTemplateVariablesMap),
+    title: S.String,
+    uuid: S.String,
+  }),
+).annotate({ identifier: "Notification" }) as any as S.Schema<Notification>;
+
+export type NotificationsList = Array<Notification>;
+export const NotificationsList = /*@__PURE__*/ S.Array(
+  Notification,
+) as any as S.Schema<NotificationsList>;
+
+export type GetCompanyNotificationsResponse = NotificationsList;
+export const GetCompanyNotificationsResponse = /*@__PURE__*/ S.suspend(() =>
+  NotificationsList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "GetCompanyNotificationsResponse",
+}) as any as S.Schema<GetCompanyNotificationsResponse>;
 
 /** Comma-separated list of payroll types to include (regular, transition). Defaults to regular only. */
-export type GetV1CompaniesCompanyIdPayPeriodsRequestPayrollTypes =
+export type GetCompanyPayPeriodsRequestPayrollTypes =
   | "regular"
   | "transition"
   | "regular,transition";
-export const GetV1CompaniesCompanyIdPayPeriodsRequestPayrollTypes =
-  /*@__PURE__*/ S.String;
+export const GetCompanyPayPeriodsRequestPayrollTypes = /*@__PURE__*/ S.String;
 
-export interface GetV1CompaniesCompanyIdPayPeriodsRequest {
+export interface GetCompanyPayPeriodsRequest {
   /** The UUID of the company */
   company_id: string;
   /** Start date (YYYY-MM-DD) for the pay periods range. Defaults to 6 months ago. */
   start_date?: string;
   /** End date (YYYY-MM-DD) for the pay periods range. Cannot be more than 3 months in the future. Defaults to today. */
   end_date?: string;
-  payroll_types?:
-    | GetV1CompaniesCompanyIdPayPeriodsRequestPayrollTypes
-    | (string & {});
+  payroll_types?: GetCompanyPayPeriodsRequestPayrollTypes | (string & {});
 }
-export const GetV1CompaniesCompanyIdPayPeriodsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      company_id: S.String.pipe(T.Label()),
-      start_date: S.optional(S.String.pipe(T.Query())),
-      end_date: S.optional(S.String.pipe(T.Query())),
-      payroll_types: S.optional(
-        GetV1CompaniesCompanyIdPayPeriodsRequestPayrollTypes.pipe(T.Query()),
-      ),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/companies/{company_id}/pay_periods",
-        code: 200,
-      }),
+export const GetCompanyPayPeriodsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    company_id: S.String.pipe(T.Label()),
+    start_date: S.optional(S.String.pipe(T.Query())),
+    end_date: S.optional(S.String.pipe(T.Query())),
+    payroll_types: S.optional(
+      GetCompanyPayPeriodsRequestPayrollTypes.pipe(T.Query()),
     ),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/companies/{company_id}/pay_periods",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "GetV1CompaniesCompanyIdPayPeriodsRequest",
-}) as any as S.Schema<GetV1CompaniesCompanyIdPayPeriodsRequest>;
+  identifier: "GetCompanyPayPeriodsRequest",
+}) as any as S.Schema<GetCompanyPayPeriodsRequest>;
 
 /** Whether it is regular pay period or transition pay period. */
 export type PayPeriodPayrollPayrollType = "regular" | "transition";
@@ -3475,142 +5117,68 @@ export const PayPeriod = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "PayPeriod" }) as any as S.Schema<PayPeriod>;
 
-export type GetV1CompaniesCompanyIdPayPeriodsResponseBodyList =
-  Array<PayPeriod>;
-export const GetV1CompaniesCompanyIdPayPeriodsResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    PayPeriod,
-  ) as any as S.Schema<GetV1CompaniesCompanyIdPayPeriodsResponseBodyList>;
+export type GetCompanyPayPeriodsResponseBodyList = Array<PayPeriod>;
+export const GetCompanyPayPeriodsResponseBodyList = /*@__PURE__*/ S.Array(
+  PayPeriod,
+) as any as S.Schema<GetCompanyPayPeriodsResponseBodyList>;
 
-export type GetV1CompaniesCompanyIdPayPeriodsResponse =
-  GetV1CompaniesCompanyIdPayPeriodsResponseBodyList;
-export const GetV1CompaniesCompanyIdPayPeriodsResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetV1CompaniesCompanyIdPayPeriodsResponseBodyList.pipe(T.RawResponseRoot()),
-  ).annotate({
-    identifier: "GetV1CompaniesCompanyIdPayPeriodsResponse",
-  }) as any as S.Schema<GetV1CompaniesCompanyIdPayPeriodsResponse>;
+export type GetCompanyPayPeriodsResponse = GetCompanyPayPeriodsResponseBodyList;
+export const GetCompanyPayPeriodsResponse = /*@__PURE__*/ S.suspend(() =>
+  GetCompanyPayPeriodsResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "GetCompanyPayPeriodsResponse",
+}) as any as S.Schema<GetCompanyPayPeriodsResponse>;
 
-export type GetV1CompaniesCompanyIdPayrollsRequestProcessingStatusesItem =
-  | "processed"
-  | "unprocessed";
-export const GetV1CompaniesCompanyIdPayrollsRequestProcessingStatusesItem =
-  /*@__PURE__*/ S.String;
-
-export type GetV1CompaniesCompanyIdPayrollsRequestProcessingStatusesList =
-  Array<
-    GetV1CompaniesCompanyIdPayrollsRequestProcessingStatusesItem | (string & {})
-  >;
-export const GetV1CompaniesCompanyIdPayrollsRequestProcessingStatusesList =
-  /*@__PURE__*/ S.Array(
-    GetV1CompaniesCompanyIdPayrollsRequestProcessingStatusesItem,
-  ) as any as S.Schema<GetV1CompaniesCompanyIdPayrollsRequestProcessingStatusesList>;
-
-export type GetV1CompaniesCompanyIdPayrollsRequestPayrollTypesItem =
-  | "regular"
-  | "off_cycle"
-  | "external";
-export const GetV1CompaniesCompanyIdPayrollsRequestPayrollTypesItem =
-  /*@__PURE__*/ S.String;
-
-export type GetV1CompaniesCompanyIdPayrollsRequestPayrollTypesList = Array<
-  GetV1CompaniesCompanyIdPayrollsRequestPayrollTypesItem | (string & {})
->;
-export const GetV1CompaniesCompanyIdPayrollsRequestPayrollTypesList =
-  /*@__PURE__*/ S.Array(
-    GetV1CompaniesCompanyIdPayrollsRequestPayrollTypesItem,
-  ) as any as S.Schema<GetV1CompaniesCompanyIdPayrollsRequestPayrollTypesList>;
-
-export type GetV1CompaniesCompanyIdPayrollsRequestIncludeItem =
+export type GetCompanyPayrollRequestIncludeItem =
+  | "benefits"
+  | "deductions"
   | "taxes"
   | "payroll_status_meta"
   | "totals"
   | "risk_blockers"
-  | "reversals";
-export const GetV1CompaniesCompanyIdPayrollsRequestIncludeItem =
-  /*@__PURE__*/ S.String;
+  | "reversals"
+  | "payroll_taxes";
+export const GetCompanyPayrollRequestIncludeItem = /*@__PURE__*/ S.String;
 
-export type GetV1CompaniesCompanyIdPayrollsRequestIncludeList = Array<
-  GetV1CompaniesCompanyIdPayrollsRequestIncludeItem | (string & {})
+export type GetCompanyPayrollRequestIncludeList = Array<
+  GetCompanyPayrollRequestIncludeItem | (string & {})
 >;
-export const GetV1CompaniesCompanyIdPayrollsRequestIncludeList =
-  /*@__PURE__*/ S.Array(
-    GetV1CompaniesCompanyIdPayrollsRequestIncludeItem,
-  ) as any as S.Schema<GetV1CompaniesCompanyIdPayrollsRequestIncludeList>;
+export const GetCompanyPayrollRequestIncludeList = /*@__PURE__*/ S.Array(
+  GetCompanyPayrollRequestIncludeItem,
+) as any as S.Schema<GetCompanyPayrollRequestIncludeList>;
 
-export type GetV1CompaniesCompanyIdPayrollsRequestDateFilterBy = "check_date";
-export const GetV1CompaniesCompanyIdPayrollsRequestDateFilterBy =
-  /*@__PURE__*/ S.String;
-
-export type GetV1CompaniesCompanyIdPayrollsRequestSortOrder = "asc" | "desc";
-export const GetV1CompaniesCompanyIdPayrollsRequestSortOrder =
-  /*@__PURE__*/ S.String;
-
-export interface GetV1CompaniesCompanyIdPayrollsRequest {
+export interface GetCompanyPayrollRequest {
   /** The UUID of the company */
   company_id: string;
-  /** Whether to include processed and/or unprocessed payrolls in the response, defaults to processed, for multiple attributes comma separate the values, i.e. `?processing_statuses=processed,unprocessed` */
-  processing_statuses?: GetV1CompaniesCompanyIdPayrollsRequestProcessingStatusesList;
-  /** Whether to include regular and/or off_cycle payrolls in the response, defaults to regular, for multiple attributes comma separate the values, i.e. `?payroll_types=regular,off_cycle` */
-  payroll_types?: GetV1CompaniesCompanyIdPayrollsRequestPayrollTypesList;
-  /** Whether to return processed or unprocessed payrolls */
-  processed?: boolean;
-  /** Whether to include off cycle payrolls in the response */
-  include_off_cycle?: boolean;
+  /** The UUID of the payroll */
+  payroll_id: string;
   /** Include the requested attribute in the response, for multiple attributes comma separate the values, i.e. `?include=benefits,deductions,taxes` */
-  include?: GetV1CompaniesCompanyIdPayrollsRequestIncludeList;
-  /** Return payrolls whose pay period is after the start date */
-  start_date?: string;
-  /** Return payrolls whose pay period is before the end date. If left empty, defaults to today's date. */
-  end_date?: string;
-  /** Specifies which date field to use when filtering payrolls with start_date and end_date. This field applies only to regular processed payrolls and defaults to pay period if not provided. */
-  date_filter_by?:
-    | GetV1CompaniesCompanyIdPayrollsRequestDateFilterBy
-    | (string & {});
+  include?: GetCompanyPayrollRequestIncludeList;
   /** The page that is requested. When unspecified, will load all objects unless endpoint forces pagination. */
   page?: number;
   /** Number of objects per page. For majority of endpoints will default to 25 */
   per?: number;
-  /** A string indicating whether to sort resulting events in ascending (asc) or descending (desc) chronological order. Events are sorted by their `timestamp`. Defaults to asc if left empty. */
-  sort_order?: GetV1CompaniesCompanyIdPayrollsRequestSortOrder | (string & {});
+  /** Sort employee compensations by one or more fields. Options: first_name, last_name. Append `:asc` or `:desc` to specify direction (e.g., `last_name:asc` or `last_name:asc,first_name:asc`). Defaults to ascending. */
+  sort_by?: string;
 }
-export const GetV1CompaniesCompanyIdPayrollsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      company_id: S.String.pipe(T.Label()),
-      processing_statuses: S.optional(
-        GetV1CompaniesCompanyIdPayrollsRequestProcessingStatusesList.pipe(
-          T.Query(),
-        ),
-      ),
-      payroll_types: S.optional(
-        GetV1CompaniesCompanyIdPayrollsRequestPayrollTypesList.pipe(T.Query()),
-      ),
-      processed: S.optional(S.Boolean.pipe(T.Query())),
-      include_off_cycle: S.optional(S.Boolean.pipe(T.Query())),
-      include: S.optional(
-        GetV1CompaniesCompanyIdPayrollsRequestIncludeList.pipe(T.Query()),
-      ),
-      start_date: S.optional(S.String.pipe(T.Query())),
-      end_date: S.optional(S.String.pipe(T.Query())),
-      date_filter_by: S.optional(
-        GetV1CompaniesCompanyIdPayrollsRequestDateFilterBy.pipe(T.Query()),
-      ),
-      page: S.optional(S.Number.pipe(T.Query())),
-      per: S.optional(S.Number.pipe(T.Query())),
-      sort_order: S.optional(
-        GetV1CompaniesCompanyIdPayrollsRequestSortOrder.pipe(T.Query()),
-      ),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/companies/{company_id}/payrolls",
-        code: 200,
-      }),
-    ),
+export const GetCompanyPayrollRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    company_id: S.String.pipe(T.Label()),
+    payroll_id: S.String.pipe(T.Label()),
+    include: S.optional(GetCompanyPayrollRequestIncludeList.pipe(T.Query())),
+    page: S.optional(S.Number.pipe(T.Query())),
+    per: S.optional(S.Number.pipe(T.Query())),
+    sort_by: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/companies/{company_id}/payrolls/{payroll_id}",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "GetV1CompaniesCompanyIdPayrollsRequest",
-}) as any as S.Schema<GetV1CompaniesCompanyIdPayrollsRequest>;
+  identifier: "GetCompanyPayrollRequest",
+}) as any as S.Schema<GetCompanyPayrollRequest>;
 
 export interface PayrollCompanyTaxesTypeItem {
   /** The amount of this tax for the payroll */
@@ -3842,539 +5410,6 @@ export type PayrollCreditBlockersType = Array<PayrollCreditBlockerType>;
 export const PayrollCreditBlockersType = /*@__PURE__*/ S.Array(
   PayrollCreditBlockerType,
 ) as any as S.Schema<PayrollCreditBlockersType>;
-
-export type OffCycleReasonType =
-  | "Adhoc"
-  | "Benefit reversal"
-  | "Bonus"
-  | "Correction"
-  | "Dismissed employee"
-  | "Hired employee"
-  | "Wage correction"
-  | "Tax reconciliation"
-  | "Reversal"
-  | "Disability insurance distribution"
-  | "Transition from old pay schedule";
-export const OffCycleReasonType = /*@__PURE__*/ S.String;
-
-export interface PayrollPayPeriodType {
-  /** The start date, inclusive, of the pay period. */
-  end_date?: string;
-  /** The UUID of the pay schedule for the payroll. */
-  pay_schedule_uuid?: string | null;
-  /** The start date, inclusive, of the pay period. */
-  start_date?: string;
-}
-export const PayrollPayPeriodType = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    end_date: S.optional(S.String),
-    pay_schedule_uuid: S.optional(S.NullOr(S.String)),
-    start_date: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PayrollPayPeriodType",
-}) as any as S.Schema<PayrollPayPeriodType>;
-
-/** Only applicable when a payroll is moved to four day processing instead of fast ach. */
-export interface PayrollPaymentSpeedChangedType {
-  /** Current check date. */
-  current_check_date?: string;
-  /** Current debit date. */
-  current_debit_date?: string;
-  /** Original check date when fast ach applies. */
-  original_check_date?: string;
-  /** Original debit date when fast ach applies. */
-  original_debit_date?: string;
-  /** The reason why the payroll is moved to four day. */
-  reason?: string;
-}
-export const PayrollPaymentSpeedChangedType = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    current_check_date: S.optional(S.String),
-    current_debit_date: S.optional(S.String),
-    original_check_date: S.optional(S.String),
-    original_debit_date: S.optional(S.String),
-    reason: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PayrollPaymentSpeedChangedType",
-}) as any as S.Schema<PayrollPaymentSpeedChangedType>;
-
-/** Information about the payroll's status and expected dates */
-export interface PayrollPayrollStatusMetaType {
-  /** true if the payroll may be cancelled. */
-  cancellable?: boolean;
-  /** The date an employee will be paid if the payroll is submitted now. */
-  expected_check_date?: string;
-  /** The time the employer's account will be debited if the payroll is submitted now. */
-  expected_debit_time?: string;
-  /** The normal check date for the associated pay period. Returns `null` for off-cycle payrolls (not meaningful for off-cycle). */
-  initial_check_date?: string | null;
-  /** Payroll must be submitted at or before this time to avoid late payroll. */
-  initial_debit_cutoff_time?: string;
-  /** expected_check_date > initial_check_date. Returns `null` for off-cycle payrolls (not meaningful for off-cycle). */
-  payroll_late?: boolean | null;
-}
-export const PayrollPayrollStatusMetaType = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    cancellable: S.optional(S.Boolean),
-    expected_check_date: S.optional(S.String),
-    expected_debit_time: S.optional(S.String),
-    initial_check_date: S.optional(S.NullOr(S.String)),
-    initial_debit_cutoff_time: S.optional(S.String),
-    payroll_late: S.optional(S.NullOr(S.Boolean)),
-  }),
-).annotate({
-  identifier: "PayrollPayrollStatusMetaType",
-}) as any as S.Schema<PayrollPayrollStatusMetaType>;
-
-export interface PayrollTaxesTypeItem {
-  /** The total tax for the payroll */
-  amount?: number;
-  /** Whether this tax is an employer or employee tax */
-  employer?: boolean;
-  /** The tax name */
-  name?: string;
-}
-export const PayrollTaxesTypeItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    amount: S.optional(S.Number),
-    employer: S.optional(S.Boolean),
-    name: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PayrollTaxesTypeItem",
-}) as any as S.Schema<PayrollTaxesTypeItem>;
-
-/** An array of tax totals applicable to this payroll. Only included for processed or calculated payrolls when `payroll_taxes` is present in the `include` parameter. */
-export type PayrollTaxesType = Array<PayrollTaxesTypeItem>;
-export const PayrollTaxesType = /*@__PURE__*/ S.Array(
-  PayrollTaxesTypeItem,
-) as any as S.Schema<PayrollTaxesType>;
-
-export interface EntityErrorObjectErrorsItem {
-  /** Specifies the type of error. The category provides error groupings and can be used to build custom error handling in your integration. If category is `nested_errors`, the object will contain a nested `errors` property with entity errors. */
-  category?: string;
-  /** Specifies where the error occurs. Typically this key identifies the attribute/parameter related to the error. */
-  error_key?: string;
-  /** Provides details about the error - generally this message can be surfaced to an end user. */
-  message?: string;
-  /** Contains relevant data to identify the resource in question when applicable. For example, to identify an entity `entity_type` and `entity_uuid` will be provided. */
-  metadata?: unknown;
-}
-export const EntityErrorObjectErrorsItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    category: S.optional(S.String),
-    error_key: S.optional(S.String),
-    message: S.optional(S.String),
-    metadata: S.optional(S.Unknown),
-  }),
-).annotate({
-  identifier: "EntityErrorObjectErrorsItem",
-}) as any as S.Schema<EntityErrorObjectErrorsItem>;
-
-/** Will only exist if category is `nested_errors`. It is possible to have multiple levels of nested errors. */
-export type EntityErrorObjectErrorsList = Array<EntityErrorObjectErrorsItem>;
-export const EntityErrorObjectErrorsList = /*@__PURE__*/ S.Array(
-  EntityErrorObjectErrorsItem,
-) as any as S.Schema<EntityErrorObjectErrorsList>;
-
-/** single entity */
-export interface MetadataWithOneEntity {
-  /** Name of the entity that the error corresponds to. */
-  entity_type?: string;
-  /** Unique identifier for the entity. */
-  entity_uuid?: string;
-  key?: string | null;
-  state?: string | null;
-  valid_from?: string | null;
-  valid_up_to?: string | null;
-}
-export const MetadataWithOneEntity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    entity_type: S.optional(S.String),
-    entity_uuid: S.optional(S.String),
-    key: S.optional(S.NullOr(S.String)),
-    state: S.optional(S.NullOr(S.String)),
-    valid_from: S.optional(S.NullOr(S.String)),
-    valid_up_to: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "MetadataWithOneEntity",
-}) as any as S.Schema<MetadataWithOneEntity>;
-
-export type MetadataWithMultipleEntitiesEntitiesList =
-  Array<MetadataWithOneEntity>;
-export const MetadataWithMultipleEntitiesEntitiesList = /*@__PURE__*/ S.Array(
-  MetadataWithOneEntity,
-) as any as S.Schema<MetadataWithMultipleEntitiesEntitiesList>;
-
-/** multiple entities */
-export interface MetadataWithMultipleEntities {
-  entities: MetadataWithMultipleEntitiesEntitiesList;
-}
-export const MetadataWithMultipleEntities = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    entities: MetadataWithMultipleEntitiesEntitiesList,
-  }),
-).annotate({
-  identifier: "MetadataWithMultipleEntities",
-}) as any as S.Schema<MetadataWithMultipleEntities>;
-
-/** Contains relevant data to identify the resource in question when applicable. For example, to identify an entity `entity_type` and `entity_uuid` will be provided. */
-export type EntityErrorObjectMetadata =
-  | MetadataWithMultipleEntities
-  | MetadataWithOneEntity;
-export const EntityErrorObjectMetadata =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EntityErrorObjectMetadata>;
-
-export interface EntityErrorObject {
-  /** Specifies the type of error. The category provides error groupings and can be used to build custom error handling in your integration. If category is `nested_errors`, the object will contain a nested `errors` property with entity errors. */
-  category: string;
-  /** Specifies where the error occurs. Typically this key identifies the attribute/parameter related to the error. */
-  error_key: string;
-  /** Will only exist if category is `nested_errors`. It is possible to have multiple levels of nested errors. */
-  errors?: EntityErrorObjectErrorsList;
-  /** Provides details about the error - generally this message can be surfaced to an end user. */
-  message?: string;
-  /** Contains relevant data to identify the resource in question when applicable. For example, to identify an entity `entity_type` and `entity_uuid` will be provided. */
-  metadata?: EntityErrorObjectMetadata;
-}
-export const EntityErrorObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    category: S.String,
-    error_key: S.String,
-    errors: S.optional(EntityErrorObjectErrorsList),
-    message: S.optional(S.String),
-    metadata: S.optional(EntityErrorObjectMetadata),
-  }),
-).annotate({
-  identifier: "EntityErrorObject",
-}) as any as S.Schema<EntityErrorObject>;
-
-/** Errors that occurred during async payroll processing */
-export type PayrollProcessingRequestErrorsList = Array<EntityErrorObject>;
-export const PayrollProcessingRequestErrorsList = /*@__PURE__*/ S.Array(
-  EntityErrorObject,
-) as any as S.Schema<PayrollProcessingRequestErrorsList>;
-
-/** The status of the payroll processing request */
-export type PayrollProcessingRequestStatus =
-  | "calculating"
-  | "calculate_success"
-  | "submitting"
-  | "submit_success"
-  | "processing_failed";
-export const PayrollProcessingRequestStatus = /*@__PURE__*/ S.String;
-
-export interface PayrollProcessingRequest {
-  /** Errors that occurred during async payroll processing */
-  errors?: PayrollProcessingRequestErrorsList;
-  /** The status of the payroll processing request */
-  status?: PayrollProcessingRequestStatus;
-}
-export const PayrollProcessingRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    errors: S.optional(PayrollProcessingRequestErrorsList),
-    status: S.optional(PayrollProcessingRequestStatus),
-  }),
-).annotate({
-  identifier: "PayrollProcessingRequest",
-}) as any as S.Schema<PayrollProcessingRequest>;
-
-/** The status of the submission blocker. */
-export type PayrollSubmissionBlockerTypeStatus = "unresolved" | "resolved";
-export const PayrollSubmissionBlockerTypeStatus = /*@__PURE__*/ S.String;
-
-/** Additional data associated with the unblock option. */
-export type PayrollSubmissionBlockerTypeUnblockOptionsItemMetadataMap = {
-  [key: string]: unknown | undefined;
-};
-export const PayrollSubmissionBlockerTypeUnblockOptionsItemMetadataMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<PayrollSubmissionBlockerTypeUnblockOptionsItemMetadataMap>;
-
-export interface PayrollSubmissionBlockerTypeUnblockOptionsItem {
-  /** The payment check date associated with the unblock option. */
-  check_date?: string;
-  /** Additional data associated with the unblock option. */
-  metadata?: PayrollSubmissionBlockerTypeUnblockOptionsItemMetadataMap;
-  /** The type of unblock option for the submission blocker. */
-  unblock_type?: string;
-}
-export const PayrollSubmissionBlockerTypeUnblockOptionsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      check_date: S.optional(S.String),
-      metadata: S.optional(
-        PayrollSubmissionBlockerTypeUnblockOptionsItemMetadataMap,
-      ),
-      unblock_type: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "PayrollSubmissionBlockerTypeUnblockOptionsItem",
-  }) as any as S.Schema<PayrollSubmissionBlockerTypeUnblockOptionsItem>;
-
-/** The available options to unblock a submission blocker. */
-export type PayrollSubmissionBlockerTypeUnblockOptionsList =
-  Array<PayrollSubmissionBlockerTypeUnblockOptionsItem>;
-export const PayrollSubmissionBlockerTypeUnblockOptionsList =
-  /*@__PURE__*/ S.Array(
-    PayrollSubmissionBlockerTypeUnblockOptionsItem,
-  ) as any as S.Schema<PayrollSubmissionBlockerTypeUnblockOptionsList>;
-
-/** A blocker that prevents payment submission. */
-export interface PayrollSubmissionBlockerType {
-  /** The name of the submission blocker. */
-  blocker_name?: string;
-  /** The type of blocker that's blocking the payment submission. */
-  blocker_type?: string;
-  /** The unblock option that's been selected to resolve the submission blocker. */
-  selected_option?: string | null;
-  /** The status of the submission blocker. */
-  status?: PayrollSubmissionBlockerTypeStatus;
-  /** The available options to unblock a submission blocker. */
-  unblock_options?: PayrollSubmissionBlockerTypeUnblockOptionsList;
-}
-export const PayrollSubmissionBlockerType = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    blocker_name: S.optional(S.String),
-    blocker_type: S.optional(S.String),
-    selected_option: S.optional(S.NullOr(S.String)),
-    status: S.optional(PayrollSubmissionBlockerTypeStatus),
-    unblock_options: S.optional(PayrollSubmissionBlockerTypeUnblockOptionsList),
-  }),
-).annotate({
-  identifier: "PayrollSubmissionBlockerType",
-}) as any as S.Schema<PayrollSubmissionBlockerType>;
-
-/** Only included for processed or calculated payrolls */
-export type PayrollSubmissionBlockersType = Array<PayrollSubmissionBlockerType>;
-export const PayrollSubmissionBlockersType = /*@__PURE__*/ S.Array(
-  PayrollSubmissionBlockerType,
-) as any as S.Schema<PayrollSubmissionBlockersType>;
-
-/** The subtotals for the payroll. */
-export interface PayrollTotalsType {
-  /** The total additional earnings amount for the payroll. */
-  additional_earnings?: string;
-  /** The total amount of company contributed benefits for the payroll. */
-  benefits?: string;
-  /** The total check amount for the payroll. */
-  check_amount?: string;
-  /** The total child support debit for the payroll. */
-  child_support_debit?: string;
-  /** The total company debit for the payroll. */
-  company_debit?: string;
-  /** The total amount of payroll taxes deferred for the payroll, such as allowed by the CARES act. */
-  deferred_payroll_taxes?: string;
-  /** The total amount of employee deducted benefits for the payroll. */
-  employee_benefits_deductions?: string;
-  /** The total employee bonuses amount for the payroll. */
-  employee_bonuses?: string;
-  /** The total employee cash tips amount for the payroll. */
-  employee_cash_tips?: string;
-  /** The total employee commissions amount for the payroll. */
-  employee_commissions?: string;
-  /** The total employee paycheck tips amount for the payroll. */
-  employee_paycheck_tips?: string;
-  /** The total amount of employee paid taxes for the payroll. */
-  employee_taxes?: string;
-  /** The total amount of employer paid taxes for the payroll. */
-  employer_taxes?: string;
-  /** The gross pay amount for the payroll. */
-  gross_pay?: string;
-  /** The total amount of imputed pay for the payroll. */
-  imputed_pay?: string;
-  /** The net pay amount for the payroll. */
-  net_pay?: string;
-  /** The total company net pay for the payroll. */
-  net_pay_debit?: string;
-  /** The total amount of deductions for the payroll. */
-  other_deductions?: string;
-  /** The total owner's draw for the payroll. */
-  owners_draw?: string;
-  /** The total reimbursement debit for the payroll. */
-  reimbursement_debit?: string;
-  /** The total reimbursements for the payroll. */
-  reimbursements?: string;
-  /** The total tax debit for the payroll. */
-  tax_debit?: string;
-}
-export const PayrollTotalsType = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    additional_earnings: S.optional(S.String),
-    benefits: S.optional(S.String),
-    check_amount: S.optional(S.String),
-    child_support_debit: S.optional(S.String),
-    company_debit: S.optional(S.String),
-    deferred_payroll_taxes: S.optional(S.String),
-    employee_benefits_deductions: S.optional(S.String),
-    employee_bonuses: S.optional(S.String),
-    employee_cash_tips: S.optional(S.String),
-    employee_commissions: S.optional(S.String),
-    employee_paycheck_tips: S.optional(S.String),
-    employee_taxes: S.optional(S.String),
-    employer_taxes: S.optional(S.String),
-    gross_pay: S.optional(S.String),
-    imputed_pay: S.optional(S.String),
-    net_pay: S.optional(S.String),
-    net_pay_debit: S.optional(S.String),
-    other_deductions: S.optional(S.String),
-    owners_draw: S.optional(S.String),
-    reimbursement_debit: S.optional(S.String),
-    reimbursements: S.optional(S.String),
-    tax_debit: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PayrollTotalsType",
-}) as any as S.Schema<PayrollTotalsType>;
-
-export type PayrollWithholdingPayPeriodType =
-  | "Every week"
-  | "Every other week"
-  | "Twice per month"
-  | "Monthly"
-  | "Quarterly"
-  | "Semiannually"
-  | "Annually";
-export const PayrollWithholdingPayPeriodType = /*@__PURE__*/ S.String;
-
-export interface Payroll {
-  auto_payroll?: boolean;
-  calculated_at?: string | null;
-  check_date?: string;
-  company_taxes?: PayrollCompanyTaxesType;
-  company_uuid?: string;
-  created_at?: string;
-  credit_blockers?: PayrollCreditBlockersType;
-  external?: boolean;
-  final_termination_payroll?: boolean;
-  fixed_withholding_rate?: boolean | null;
-  off_cycle?: boolean;
-  off_cycle_reason?: OffCycleReasonType | null;
-  partner_owned_disbursement?: boolean | null;
-  pay_period?: PayrollPayPeriodType;
-  payment_speed_changed?: PayrollPaymentSpeedChangedType;
-  payroll_deadline?: string;
-  payroll_status_meta?: PayrollPayrollStatusMetaType;
-  payroll_taxes?: PayrollTaxesType;
-  payroll_uuid?: string;
-  processed?: boolean;
-  processed_date?: string | null;
-  processing_request?: PayrollProcessingRequest | null;
-  skip_regular_deductions?: boolean | null;
-  submission_blockers?: PayrollSubmissionBlockersType;
-  totals?: PayrollTotalsType;
-  uuid?: string;
-  withholding_pay_period?: PayrollWithholdingPayPeriodType | null;
-}
-export const Payroll = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    auto_payroll: S.optional(S.Boolean),
-    calculated_at: S.optional(S.NullOr(S.String)),
-    check_date: S.optional(S.String),
-    company_taxes: S.optional(PayrollCompanyTaxesType),
-    company_uuid: S.optional(S.String),
-    created_at: S.optional(S.String),
-    credit_blockers: S.optional(PayrollCreditBlockersType),
-    external: S.optional(S.Boolean),
-    final_termination_payroll: S.optional(S.Boolean),
-    fixed_withholding_rate: S.optional(S.NullOr(S.Boolean)),
-    off_cycle: S.optional(S.Boolean),
-    off_cycle_reason: S.optional(S.NullOr(OffCycleReasonType)),
-    partner_owned_disbursement: S.optional(S.NullOr(S.Boolean)),
-    pay_period: S.optional(PayrollPayPeriodType),
-    payment_speed_changed: S.optional(PayrollPaymentSpeedChangedType),
-    payroll_deadline: S.optional(S.String),
-    payroll_status_meta: S.optional(PayrollPayrollStatusMetaType),
-    payroll_taxes: S.optional(PayrollTaxesType),
-    payroll_uuid: S.optional(S.String),
-    processed: S.optional(S.Boolean),
-    processed_date: S.optional(S.NullOr(S.String)),
-    processing_request: S.optional(S.NullOr(PayrollProcessingRequest)),
-    skip_regular_deductions: S.optional(S.NullOr(S.Boolean)),
-    submission_blockers: S.optional(PayrollSubmissionBlockersType),
-    totals: S.optional(PayrollTotalsType),
-    uuid: S.optional(S.String),
-    withholding_pay_period: S.optional(
-      S.NullOr(PayrollWithholdingPayPeriodType),
-    ),
-  }),
-).annotate({ identifier: "Payroll" }) as any as S.Schema<Payroll>;
-
-/** A list of payrolls for a company. */
-export type PayrollList = Array<Payroll>;
-export const PayrollList = /*@__PURE__*/ S.Array(
-  Payroll,
-) as any as S.Schema<PayrollList>;
-
-export type GetV1CompaniesCompanyIdPayrollsResponse = PayrollList;
-export const GetV1CompaniesCompanyIdPayrollsResponse = /*@__PURE__*/ S.suspend(
-  () => PayrollList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetV1CompaniesCompanyIdPayrollsResponse",
-}) as any as S.Schema<GetV1CompaniesCompanyIdPayrollsResponse>;
-
-export type GetV1CompaniesCompanyIdPayrollsPayrollIdRequestIncludeItem =
-  | "benefits"
-  | "deductions"
-  | "taxes"
-  | "payroll_status_meta"
-  | "totals"
-  | "risk_blockers"
-  | "reversals"
-  | "payroll_taxes";
-export const GetV1CompaniesCompanyIdPayrollsPayrollIdRequestIncludeItem =
-  /*@__PURE__*/ S.String;
-
-export type GetV1CompaniesCompanyIdPayrollsPayrollIdRequestIncludeList = Array<
-  GetV1CompaniesCompanyIdPayrollsPayrollIdRequestIncludeItem | (string & {})
->;
-export const GetV1CompaniesCompanyIdPayrollsPayrollIdRequestIncludeList =
-  /*@__PURE__*/ S.Array(
-    GetV1CompaniesCompanyIdPayrollsPayrollIdRequestIncludeItem,
-  ) as any as S.Schema<GetV1CompaniesCompanyIdPayrollsPayrollIdRequestIncludeList>;
-
-export interface GetV1CompaniesCompanyIdPayrollsPayrollIdRequest {
-  /** The UUID of the company */
-  company_id: string;
-  /** The UUID of the payroll */
-  payroll_id: string;
-  /** Include the requested attribute in the response, for multiple attributes comma separate the values, i.e. `?include=benefits,deductions,taxes` */
-  include?: GetV1CompaniesCompanyIdPayrollsPayrollIdRequestIncludeList;
-  /** The page that is requested. When unspecified, will load all objects unless endpoint forces pagination. */
-  page?: number;
-  /** Number of objects per page. For majority of endpoints will default to 25 */
-  per?: number;
-  /** Sort employee compensations by one or more fields. Options: first_name, last_name. Append `:asc` or `:desc` to specify direction (e.g., `last_name:asc` or `last_name:asc,first_name:asc`). Defaults to ascending. */
-  sort_by?: string;
-}
-export const GetV1CompaniesCompanyIdPayrollsPayrollIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      company_id: S.String.pipe(T.Label()),
-      payroll_id: S.String.pipe(T.Label()),
-      include: S.optional(
-        GetV1CompaniesCompanyIdPayrollsPayrollIdRequestIncludeList.pipe(
-          T.Query(),
-        ),
-      ),
-      page: S.optional(S.Number.pipe(T.Query())),
-      per: S.optional(S.Number.pipe(T.Query())),
-      sort_by: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/companies/{company_id}/payrolls/{payroll_id}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetV1CompaniesCompanyIdPayrollsPayrollIdRequest",
-  }) as any as S.Schema<GetV1CompaniesCompanyIdPayrollsPayrollIdRequest>;
 
 /** How to interpret the amount. */
 export type PayrollShowEmployeeCompensationsItemCustomWithholdingsFederalAmountType =
@@ -4791,6 +5826,405 @@ export const PayrollShowEmployeeCompensationsList = /*@__PURE__*/ S.Array(
   PayrollShowEmployeeCompensationsItem,
 ) as any as S.Schema<PayrollShowEmployeeCompensationsList>;
 
+export type OffCycleReasonType =
+  | "Adhoc"
+  | "Benefit reversal"
+  | "Bonus"
+  | "Correction"
+  | "Dismissed employee"
+  | "Hired employee"
+  | "Wage correction"
+  | "Tax reconciliation"
+  | "Reversal"
+  | "Disability insurance distribution"
+  | "Transition from old pay schedule";
+export const OffCycleReasonType = /*@__PURE__*/ S.String;
+
+export interface PayrollPayPeriodType {
+  /** The start date, inclusive, of the pay period. */
+  end_date?: string;
+  /** The UUID of the pay schedule for the payroll. */
+  pay_schedule_uuid?: string | null;
+  /** The start date, inclusive, of the pay period. */
+  start_date?: string;
+}
+export const PayrollPayPeriodType = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    end_date: S.optional(S.String),
+    pay_schedule_uuid: S.optional(S.NullOr(S.String)),
+    start_date: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PayrollPayPeriodType",
+}) as any as S.Schema<PayrollPayPeriodType>;
+
+/** Only applicable when a payroll is moved to four day processing instead of fast ach. */
+export interface PayrollPaymentSpeedChangedType {
+  /** Current check date. */
+  current_check_date?: string;
+  /** Current debit date. */
+  current_debit_date?: string;
+  /** Original check date when fast ach applies. */
+  original_check_date?: string;
+  /** Original debit date when fast ach applies. */
+  original_debit_date?: string;
+  /** The reason why the payroll is moved to four day. */
+  reason?: string;
+}
+export const PayrollPaymentSpeedChangedType = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    current_check_date: S.optional(S.String),
+    current_debit_date: S.optional(S.String),
+    original_check_date: S.optional(S.String),
+    original_debit_date: S.optional(S.String),
+    reason: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PayrollPaymentSpeedChangedType",
+}) as any as S.Schema<PayrollPaymentSpeedChangedType>;
+
+/** Information about the payroll's status and expected dates */
+export interface PayrollPayrollStatusMetaType {
+  /** true if the payroll may be cancelled. */
+  cancellable?: boolean;
+  /** The date an employee will be paid if the payroll is submitted now. */
+  expected_check_date?: string;
+  /** The time the employer's account will be debited if the payroll is submitted now. */
+  expected_debit_time?: string;
+  /** The normal check date for the associated pay period. Returns `null` for off-cycle payrolls (not meaningful for off-cycle). */
+  initial_check_date?: string | null;
+  /** Payroll must be submitted at or before this time to avoid late payroll. */
+  initial_debit_cutoff_time?: string;
+  /** expected_check_date > initial_check_date. Returns `null` for off-cycle payrolls (not meaningful for off-cycle). */
+  payroll_late?: boolean | null;
+}
+export const PayrollPayrollStatusMetaType = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    cancellable: S.optional(S.Boolean),
+    expected_check_date: S.optional(S.String),
+    expected_debit_time: S.optional(S.String),
+    initial_check_date: S.optional(S.NullOr(S.String)),
+    initial_debit_cutoff_time: S.optional(S.String),
+    payroll_late: S.optional(S.NullOr(S.Boolean)),
+  }),
+).annotate({
+  identifier: "PayrollPayrollStatusMetaType",
+}) as any as S.Schema<PayrollPayrollStatusMetaType>;
+
+export interface PayrollTaxesTypeItem {
+  /** The total tax for the payroll */
+  amount?: number;
+  /** Whether this tax is an employer or employee tax */
+  employer?: boolean;
+  /** The tax name */
+  name?: string;
+}
+export const PayrollTaxesTypeItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    amount: S.optional(S.Number),
+    employer: S.optional(S.Boolean),
+    name: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PayrollTaxesTypeItem",
+}) as any as S.Schema<PayrollTaxesTypeItem>;
+
+/** An array of tax totals applicable to this payroll. Only included for processed or calculated payrolls when `payroll_taxes` is present in the `include` parameter. */
+export type PayrollTaxesType = Array<PayrollTaxesTypeItem>;
+export const PayrollTaxesType = /*@__PURE__*/ S.Array(
+  PayrollTaxesTypeItem,
+) as any as S.Schema<PayrollTaxesType>;
+
+export interface EntityErrorObjectErrorsItem {
+  /** Specifies the type of error. The category provides error groupings and can be used to build custom error handling in your integration. If category is `nested_errors`, the object will contain a nested `errors` property with entity errors. */
+  category?: string;
+  /** Specifies where the error occurs. Typically this key identifies the attribute/parameter related to the error. */
+  error_key?: string;
+  /** Provides details about the error - generally this message can be surfaced to an end user. */
+  message?: string;
+  /** Contains relevant data to identify the resource in question when applicable. For example, to identify an entity `entity_type` and `entity_uuid` will be provided. */
+  metadata?: unknown;
+}
+export const EntityErrorObjectErrorsItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    category: S.optional(S.String),
+    error_key: S.optional(S.String),
+    message: S.optional(S.String),
+    metadata: S.optional(S.Unknown),
+  }),
+).annotate({
+  identifier: "EntityErrorObjectErrorsItem",
+}) as any as S.Schema<EntityErrorObjectErrorsItem>;
+
+/** Will only exist if category is `nested_errors`. It is possible to have multiple levels of nested errors. */
+export type EntityErrorObjectErrorsList = Array<EntityErrorObjectErrorsItem>;
+export const EntityErrorObjectErrorsList = /*@__PURE__*/ S.Array(
+  EntityErrorObjectErrorsItem,
+) as any as S.Schema<EntityErrorObjectErrorsList>;
+
+/** single entity */
+export interface MetadataWithOneEntity {
+  /** Name of the entity that the error corresponds to. */
+  entity_type?: string;
+  /** Unique identifier for the entity. */
+  entity_uuid?: string;
+  key?: string | null;
+  state?: string | null;
+  valid_from?: string | null;
+  valid_up_to?: string | null;
+}
+export const MetadataWithOneEntity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    entity_type: S.optional(S.String),
+    entity_uuid: S.optional(S.String),
+    key: S.optional(S.NullOr(S.String)),
+    state: S.optional(S.NullOr(S.String)),
+    valid_from: S.optional(S.NullOr(S.String)),
+    valid_up_to: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "MetadataWithOneEntity",
+}) as any as S.Schema<MetadataWithOneEntity>;
+
+export type MetadataWithMultipleEntitiesEntitiesList =
+  Array<MetadataWithOneEntity>;
+export const MetadataWithMultipleEntitiesEntitiesList = /*@__PURE__*/ S.Array(
+  MetadataWithOneEntity,
+) as any as S.Schema<MetadataWithMultipleEntitiesEntitiesList>;
+
+/** multiple entities */
+export interface MetadataWithMultipleEntities {
+  entities: MetadataWithMultipleEntitiesEntitiesList;
+}
+export const MetadataWithMultipleEntities = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    entities: MetadataWithMultipleEntitiesEntitiesList,
+  }),
+).annotate({
+  identifier: "MetadataWithMultipleEntities",
+}) as any as S.Schema<MetadataWithMultipleEntities>;
+
+/** Contains relevant data to identify the resource in question when applicable. For example, to identify an entity `entity_type` and `entity_uuid` will be provided. */
+export type EntityErrorObjectMetadata =
+  | MetadataWithMultipleEntities
+  | MetadataWithOneEntity;
+export const EntityErrorObjectMetadata =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<EntityErrorObjectMetadata>;
+
+export interface EntityErrorObject {
+  /** Specifies the type of error. The category provides error groupings and can be used to build custom error handling in your integration. If category is `nested_errors`, the object will contain a nested `errors` property with entity errors. */
+  category: string;
+  /** Specifies where the error occurs. Typically this key identifies the attribute/parameter related to the error. */
+  error_key: string;
+  /** Will only exist if category is `nested_errors`. It is possible to have multiple levels of nested errors. */
+  errors?: EntityErrorObjectErrorsList;
+  /** Provides details about the error - generally this message can be surfaced to an end user. */
+  message?: string;
+  /** Contains relevant data to identify the resource in question when applicable. For example, to identify an entity `entity_type` and `entity_uuid` will be provided. */
+  metadata?: EntityErrorObjectMetadata;
+}
+export const EntityErrorObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    category: S.String,
+    error_key: S.String,
+    errors: S.optional(EntityErrorObjectErrorsList),
+    message: S.optional(S.String),
+    metadata: S.optional(EntityErrorObjectMetadata),
+  }),
+).annotate({
+  identifier: "EntityErrorObject",
+}) as any as S.Schema<EntityErrorObject>;
+
+/** Errors that occurred during async payroll processing */
+export type PayrollProcessingRequestErrorsList = Array<EntityErrorObject>;
+export const PayrollProcessingRequestErrorsList = /*@__PURE__*/ S.Array(
+  EntityErrorObject,
+) as any as S.Schema<PayrollProcessingRequestErrorsList>;
+
+/** The status of the payroll processing request */
+export type PayrollProcessingRequestStatus =
+  | "calculating"
+  | "calculate_success"
+  | "submitting"
+  | "submit_success"
+  | "processing_failed";
+export const PayrollProcessingRequestStatus = /*@__PURE__*/ S.String;
+
+export interface PayrollProcessingRequest {
+  /** Errors that occurred during async payroll processing */
+  errors?: PayrollProcessingRequestErrorsList;
+  /** The status of the payroll processing request */
+  status?: PayrollProcessingRequestStatus;
+}
+export const PayrollProcessingRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    errors: S.optional(PayrollProcessingRequestErrorsList),
+    status: S.optional(PayrollProcessingRequestStatus),
+  }),
+).annotate({
+  identifier: "PayrollProcessingRequest",
+}) as any as S.Schema<PayrollProcessingRequest>;
+
+/** The status of the submission blocker. */
+export type PayrollSubmissionBlockerTypeStatus = "unresolved" | "resolved";
+export const PayrollSubmissionBlockerTypeStatus = /*@__PURE__*/ S.String;
+
+/** Additional data associated with the unblock option. */
+export type PayrollSubmissionBlockerTypeUnblockOptionsItemMetadataMap = {
+  [key: string]: unknown | undefined;
+};
+export const PayrollSubmissionBlockerTypeUnblockOptionsItemMetadataMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<PayrollSubmissionBlockerTypeUnblockOptionsItemMetadataMap>;
+
+export interface PayrollSubmissionBlockerTypeUnblockOptionsItem {
+  /** The payment check date associated with the unblock option. */
+  check_date?: string;
+  /** Additional data associated with the unblock option. */
+  metadata?: PayrollSubmissionBlockerTypeUnblockOptionsItemMetadataMap;
+  /** The type of unblock option for the submission blocker. */
+  unblock_type?: string;
+}
+export const PayrollSubmissionBlockerTypeUnblockOptionsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      check_date: S.optional(S.String),
+      metadata: S.optional(
+        PayrollSubmissionBlockerTypeUnblockOptionsItemMetadataMap,
+      ),
+      unblock_type: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "PayrollSubmissionBlockerTypeUnblockOptionsItem",
+  }) as any as S.Schema<PayrollSubmissionBlockerTypeUnblockOptionsItem>;
+
+/** The available options to unblock a submission blocker. */
+export type PayrollSubmissionBlockerTypeUnblockOptionsList =
+  Array<PayrollSubmissionBlockerTypeUnblockOptionsItem>;
+export const PayrollSubmissionBlockerTypeUnblockOptionsList =
+  /*@__PURE__*/ S.Array(
+    PayrollSubmissionBlockerTypeUnblockOptionsItem,
+  ) as any as S.Schema<PayrollSubmissionBlockerTypeUnblockOptionsList>;
+
+/** A blocker that prevents payment submission. */
+export interface PayrollSubmissionBlockerType {
+  /** The name of the submission blocker. */
+  blocker_name?: string;
+  /** The type of blocker that's blocking the payment submission. */
+  blocker_type?: string;
+  /** The unblock option that's been selected to resolve the submission blocker. */
+  selected_option?: string | null;
+  /** The status of the submission blocker. */
+  status?: PayrollSubmissionBlockerTypeStatus;
+  /** The available options to unblock a submission blocker. */
+  unblock_options?: PayrollSubmissionBlockerTypeUnblockOptionsList;
+}
+export const PayrollSubmissionBlockerType = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    blocker_name: S.optional(S.String),
+    blocker_type: S.optional(S.String),
+    selected_option: S.optional(S.NullOr(S.String)),
+    status: S.optional(PayrollSubmissionBlockerTypeStatus),
+    unblock_options: S.optional(PayrollSubmissionBlockerTypeUnblockOptionsList),
+  }),
+).annotate({
+  identifier: "PayrollSubmissionBlockerType",
+}) as any as S.Schema<PayrollSubmissionBlockerType>;
+
+/** Only included for processed or calculated payrolls */
+export type PayrollSubmissionBlockersType = Array<PayrollSubmissionBlockerType>;
+export const PayrollSubmissionBlockersType = /*@__PURE__*/ S.Array(
+  PayrollSubmissionBlockerType,
+) as any as S.Schema<PayrollSubmissionBlockersType>;
+
+/** The subtotals for the payroll. */
+export interface PayrollTotalsType {
+  /** The total additional earnings amount for the payroll. */
+  additional_earnings?: string;
+  /** The total amount of company contributed benefits for the payroll. */
+  benefits?: string;
+  /** The total check amount for the payroll. */
+  check_amount?: string;
+  /** The total child support debit for the payroll. */
+  child_support_debit?: string;
+  /** The total company debit for the payroll. */
+  company_debit?: string;
+  /** The total amount of payroll taxes deferred for the payroll, such as allowed by the CARES act. */
+  deferred_payroll_taxes?: string;
+  /** The total amount of employee deducted benefits for the payroll. */
+  employee_benefits_deductions?: string;
+  /** The total employee bonuses amount for the payroll. */
+  employee_bonuses?: string;
+  /** The total employee cash tips amount for the payroll. */
+  employee_cash_tips?: string;
+  /** The total employee commissions amount for the payroll. */
+  employee_commissions?: string;
+  /** The total employee paycheck tips amount for the payroll. */
+  employee_paycheck_tips?: string;
+  /** The total amount of employee paid taxes for the payroll. */
+  employee_taxes?: string;
+  /** The total amount of employer paid taxes for the payroll. */
+  employer_taxes?: string;
+  /** The gross pay amount for the payroll. */
+  gross_pay?: string;
+  /** The total amount of imputed pay for the payroll. */
+  imputed_pay?: string;
+  /** The net pay amount for the payroll. */
+  net_pay?: string;
+  /** The total company net pay for the payroll. */
+  net_pay_debit?: string;
+  /** The total amount of deductions for the payroll. */
+  other_deductions?: string;
+  /** The total owner's draw for the payroll. */
+  owners_draw?: string;
+  /** The total reimbursement debit for the payroll. */
+  reimbursement_debit?: string;
+  /** The total reimbursements for the payroll. */
+  reimbursements?: string;
+  /** The total tax debit for the payroll. */
+  tax_debit?: string;
+}
+export const PayrollTotalsType = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    additional_earnings: S.optional(S.String),
+    benefits: S.optional(S.String),
+    check_amount: S.optional(S.String),
+    child_support_debit: S.optional(S.String),
+    company_debit: S.optional(S.String),
+    deferred_payroll_taxes: S.optional(S.String),
+    employee_benefits_deductions: S.optional(S.String),
+    employee_bonuses: S.optional(S.String),
+    employee_cash_tips: S.optional(S.String),
+    employee_commissions: S.optional(S.String),
+    employee_paycheck_tips: S.optional(S.String),
+    employee_taxes: S.optional(S.String),
+    employer_taxes: S.optional(S.String),
+    gross_pay: S.optional(S.String),
+    imputed_pay: S.optional(S.String),
+    net_pay: S.optional(S.String),
+    net_pay_debit: S.optional(S.String),
+    other_deductions: S.optional(S.String),
+    owners_draw: S.optional(S.String),
+    reimbursement_debit: S.optional(S.String),
+    reimbursements: S.optional(S.String),
+    tax_debit: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PayrollTotalsType",
+}) as any as S.Schema<PayrollTotalsType>;
+
+export type PayrollWithholdingPayPeriodType =
+  | "Every week"
+  | "Every other week"
+  | "Twice per month"
+  | "Monthly"
+  | "Quarterly"
+  | "Semiannually"
+  | "Annually";
+export const PayrollWithholdingPayPeriodType = /*@__PURE__*/ S.String;
+
 export interface PayrollShow {
   auto_payroll?: boolean;
   calculated_at?: string | null;
@@ -4856,30 +6290,207 @@ export const PayrollShow = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "PayrollShow" }) as any as S.Schema<PayrollShow>;
 
-export interface GetV1CompaniesCompanyIdPaySchedulesRequest {
+export type GetCompanyPayrollsRequestProcessingStatusesItem =
+  | "processed"
+  | "unprocessed";
+export const GetCompanyPayrollsRequestProcessingStatusesItem =
+  /*@__PURE__*/ S.String;
+
+export type GetCompanyPayrollsRequestProcessingStatusesList = Array<
+  GetCompanyPayrollsRequestProcessingStatusesItem | (string & {})
+>;
+export const GetCompanyPayrollsRequestProcessingStatusesList =
+  /*@__PURE__*/ S.Array(
+    GetCompanyPayrollsRequestProcessingStatusesItem,
+  ) as any as S.Schema<GetCompanyPayrollsRequestProcessingStatusesList>;
+
+export type GetCompanyPayrollsRequestPayrollTypesItem =
+  | "regular"
+  | "off_cycle"
+  | "external";
+export const GetCompanyPayrollsRequestPayrollTypesItem = /*@__PURE__*/ S.String;
+
+export type GetCompanyPayrollsRequestPayrollTypesList = Array<
+  GetCompanyPayrollsRequestPayrollTypesItem | (string & {})
+>;
+export const GetCompanyPayrollsRequestPayrollTypesList = /*@__PURE__*/ S.Array(
+  GetCompanyPayrollsRequestPayrollTypesItem,
+) as any as S.Schema<GetCompanyPayrollsRequestPayrollTypesList>;
+
+export type GetCompanyPayrollsRequestIncludeItem =
+  | "taxes"
+  | "payroll_status_meta"
+  | "totals"
+  | "risk_blockers"
+  | "reversals";
+export const GetCompanyPayrollsRequestIncludeItem = /*@__PURE__*/ S.String;
+
+export type GetCompanyPayrollsRequestIncludeList = Array<
+  GetCompanyPayrollsRequestIncludeItem | (string & {})
+>;
+export const GetCompanyPayrollsRequestIncludeList = /*@__PURE__*/ S.Array(
+  GetCompanyPayrollsRequestIncludeItem,
+) as any as S.Schema<GetCompanyPayrollsRequestIncludeList>;
+
+export type GetCompanyPayrollsRequestDateFilterBy = "check_date";
+export const GetCompanyPayrollsRequestDateFilterBy = /*@__PURE__*/ S.String;
+
+export type GetCompanyPayrollsRequestSortOrder = "asc" | "desc";
+export const GetCompanyPayrollsRequestSortOrder = /*@__PURE__*/ S.String;
+
+export interface GetCompanyPayrollsRequest {
   /** The UUID of the company */
   company_id: string;
+  /** Whether to include processed and/or unprocessed payrolls in the response, defaults to processed, for multiple attributes comma separate the values, i.e. `?processing_statuses=processed,unprocessed` */
+  processing_statuses?: GetCompanyPayrollsRequestProcessingStatusesList;
+  /** Whether to include regular and/or off_cycle payrolls in the response, defaults to regular, for multiple attributes comma separate the values, i.e. `?payroll_types=regular,off_cycle` */
+  payroll_types?: GetCompanyPayrollsRequestPayrollTypesList;
+  /** Whether to return processed or unprocessed payrolls */
+  processed?: boolean;
+  /** Whether to include off cycle payrolls in the response */
+  include_off_cycle?: boolean;
+  /** Include the requested attribute in the response, for multiple attributes comma separate the values, i.e. `?include=benefits,deductions,taxes` */
+  include?: GetCompanyPayrollsRequestIncludeList;
+  /** Return payrolls whose pay period is after the start date */
+  start_date?: string;
+  /** Return payrolls whose pay period is before the end date. If left empty, defaults to today's date. */
+  end_date?: string;
+  /** Specifies which date field to use when filtering payrolls with start_date and end_date. This field applies only to regular processed payrolls and defaults to pay period if not provided. */
+  date_filter_by?: GetCompanyPayrollsRequestDateFilterBy | (string & {});
   /** The page that is requested. When unspecified, will load all objects unless endpoint forces pagination. */
   page?: number;
   /** Number of objects per page. For majority of endpoints will default to 25 */
   per?: number;
+  /** A string indicating whether to sort resulting events in ascending (asc) or descending (desc) chronological order. Events are sorted by their `timestamp`. Defaults to asc if left empty. */
+  sort_order?: GetCompanyPayrollsRequestSortOrder | (string & {});
 }
-export const GetV1CompaniesCompanyIdPaySchedulesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      company_id: S.String.pipe(T.Label()),
-      page: S.optional(S.Number.pipe(T.Query())),
-      per: S.optional(S.Number.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/companies/{company_id}/pay_schedules",
-        code: 200,
-      }),
+export const GetCompanyPayrollsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    company_id: S.String.pipe(T.Label()),
+    processing_statuses: S.optional(
+      GetCompanyPayrollsRequestProcessingStatusesList.pipe(T.Query()),
     ),
-  ).annotate({
-    identifier: "GetV1CompaniesCompanyIdPaySchedulesRequest",
-  }) as any as S.Schema<GetV1CompaniesCompanyIdPaySchedulesRequest>;
+    payroll_types: S.optional(
+      GetCompanyPayrollsRequestPayrollTypesList.pipe(T.Query()),
+    ),
+    processed: S.optional(S.Boolean.pipe(T.Query())),
+    include_off_cycle: S.optional(S.Boolean.pipe(T.Query())),
+    include: S.optional(GetCompanyPayrollsRequestIncludeList.pipe(T.Query())),
+    start_date: S.optional(S.String.pipe(T.Query())),
+    end_date: S.optional(S.String.pipe(T.Query())),
+    date_filter_by: S.optional(
+      GetCompanyPayrollsRequestDateFilterBy.pipe(T.Query()),
+    ),
+    page: S.optional(S.Number.pipe(T.Query())),
+    per: S.optional(S.Number.pipe(T.Query())),
+    sort_order: S.optional(GetCompanyPayrollsRequestSortOrder.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/companies/{company_id}/payrolls",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetCompanyPayrollsRequest",
+}) as any as S.Schema<GetCompanyPayrollsRequest>;
+
+export interface Payroll {
+  auto_payroll?: boolean;
+  calculated_at?: string | null;
+  check_date?: string;
+  company_taxes?: PayrollCompanyTaxesType;
+  company_uuid?: string;
+  created_at?: string;
+  credit_blockers?: PayrollCreditBlockersType;
+  external?: boolean;
+  final_termination_payroll?: boolean;
+  fixed_withholding_rate?: boolean | null;
+  off_cycle?: boolean;
+  off_cycle_reason?: OffCycleReasonType | null;
+  partner_owned_disbursement?: boolean | null;
+  pay_period?: PayrollPayPeriodType;
+  payment_speed_changed?: PayrollPaymentSpeedChangedType;
+  payroll_deadline?: string;
+  payroll_status_meta?: PayrollPayrollStatusMetaType;
+  payroll_taxes?: PayrollTaxesType;
+  payroll_uuid?: string;
+  processed?: boolean;
+  processed_date?: string | null;
+  processing_request?: PayrollProcessingRequest | null;
+  skip_regular_deductions?: boolean | null;
+  submission_blockers?: PayrollSubmissionBlockersType;
+  totals?: PayrollTotalsType;
+  uuid?: string;
+  withholding_pay_period?: PayrollWithholdingPayPeriodType | null;
+}
+export const Payroll = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    auto_payroll: S.optional(S.Boolean),
+    calculated_at: S.optional(S.NullOr(S.String)),
+    check_date: S.optional(S.String),
+    company_taxes: S.optional(PayrollCompanyTaxesType),
+    company_uuid: S.optional(S.String),
+    created_at: S.optional(S.String),
+    credit_blockers: S.optional(PayrollCreditBlockersType),
+    external: S.optional(S.Boolean),
+    final_termination_payroll: S.optional(S.Boolean),
+    fixed_withholding_rate: S.optional(S.NullOr(S.Boolean)),
+    off_cycle: S.optional(S.Boolean),
+    off_cycle_reason: S.optional(S.NullOr(OffCycleReasonType)),
+    partner_owned_disbursement: S.optional(S.NullOr(S.Boolean)),
+    pay_period: S.optional(PayrollPayPeriodType),
+    payment_speed_changed: S.optional(PayrollPaymentSpeedChangedType),
+    payroll_deadline: S.optional(S.String),
+    payroll_status_meta: S.optional(PayrollPayrollStatusMetaType),
+    payroll_taxes: S.optional(PayrollTaxesType),
+    payroll_uuid: S.optional(S.String),
+    processed: S.optional(S.Boolean),
+    processed_date: S.optional(S.NullOr(S.String)),
+    processing_request: S.optional(S.NullOr(PayrollProcessingRequest)),
+    skip_regular_deductions: S.optional(S.NullOr(S.Boolean)),
+    submission_blockers: S.optional(PayrollSubmissionBlockersType),
+    totals: S.optional(PayrollTotalsType),
+    uuid: S.optional(S.String),
+    withholding_pay_period: S.optional(
+      S.NullOr(PayrollWithholdingPayPeriodType),
+    ),
+  }),
+).annotate({ identifier: "Payroll" }) as any as S.Schema<Payroll>;
+
+/** A list of payrolls for a company. */
+export type PayrollList = Array<Payroll>;
+export const PayrollList = /*@__PURE__*/ S.Array(
+  Payroll,
+) as any as S.Schema<PayrollList>;
+
+export type GetCompanyPayrollsResponse = PayrollList;
+export const GetCompanyPayrollsResponse = /*@__PURE__*/ S.suspend(() =>
+  PayrollList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "GetCompanyPayrollsResponse",
+}) as any as S.Schema<GetCompanyPayrollsResponse>;
+
+export interface GetCompanyPayScheduleRequest {
+  /** The UUID of the company */
+  company_id: string;
+  /** The UUID of the pay schedule */
+  pay_schedule_id: string;
+}
+export const GetCompanyPayScheduleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    company_id: S.String.pipe(T.Label()),
+    pay_schedule_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/companies/{company_id}/pay_schedules/{pay_schedule_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetCompanyPayScheduleRequest",
+}) as any as S.Schema<GetCompanyPayScheduleRequest>;
 
 /** A single blocker preventing Autopayroll enablement. */
 export interface PayScheduleAutoPayrollEnablementBlocker {
@@ -4951,27 +6562,49 @@ export const PayScheduleShow = /*@__PURE__*/ S.suspend(() =>
   identifier: "PayScheduleShow",
 }) as any as S.Schema<PayScheduleShow>;
 
+export interface GetCompanyPaySchedulesRequest {
+  /** The UUID of the company */
+  company_id: string;
+  /** The page that is requested. When unspecified, will load all objects unless endpoint forces pagination. */
+  page?: number;
+  /** Number of objects per page. For majority of endpoints will default to 25 */
+  per?: number;
+}
+export const GetCompanyPaySchedulesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    company_id: S.String.pipe(T.Label()),
+    page: S.optional(S.Number.pipe(T.Query())),
+    per: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/companies/{company_id}/pay_schedules",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetCompanyPaySchedulesRequest",
+}) as any as S.Schema<GetCompanyPaySchedulesRequest>;
+
 /** List of pay schedules for a company, as returned from [GET /v1/companies/{company_id}/pay_schedules](https://docs.gusto.com/app-integrations/reference/get-v1-companies-company_id-pay_schedules). Each entry matches Pay-Schedule-Show (includes `version`). */
 export type PayScheduleShowResponse = Array<PayScheduleShow>;
 export const PayScheduleShowResponse = /*@__PURE__*/ S.Array(
   PayScheduleShow,
 ) as any as S.Schema<PayScheduleShowResponse>;
 
-export type GetV1CompaniesCompanyIdPaySchedulesResponse =
-  PayScheduleShowResponse;
-export const GetV1CompaniesCompanyIdPaySchedulesResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    PayScheduleShowResponse.pipe(T.RawResponseRoot()),
-  ).annotate({
-    identifier: "GetV1CompaniesCompanyIdPaySchedulesResponse",
-  }) as any as S.Schema<GetV1CompaniesCompanyIdPaySchedulesResponse>;
+export type GetCompanyPaySchedulesResponse = PayScheduleShowResponse;
+export const GetCompanyPaySchedulesResponse = /*@__PURE__*/ S.suspend(() =>
+  PayScheduleShowResponse.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "GetCompanyPaySchedulesResponse",
+}) as any as S.Schema<GetCompanyPaySchedulesResponse>;
 
-export interface GetV1CompaniesCompanyIdPaySchedulesAssignmentsRequest {
+export interface GetCompanyPaySchedulesAssignmentsRequest {
   /** The UUID of the company */
   company_id: string;
 }
-export const GetV1CompaniesCompanyIdPaySchedulesAssignmentsRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetCompanyPaySchedulesAssignmentsRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       company_id: S.String.pipe(T.Label()),
     }).pipe(
@@ -4981,9 +6614,9 @@ export const GetV1CompaniesCompanyIdPaySchedulesAssignmentsRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "GetV1CompaniesCompanyIdPaySchedulesAssignmentsRequest",
-  }) as any as S.Schema<GetV1CompaniesCompanyIdPaySchedulesAssignmentsRequest>;
+).annotate({
+  identifier: "GetCompanyPaySchedulesAssignmentsRequest",
+}) as any as S.Schema<GetCompanyPaySchedulesAssignmentsRequest>;
 
 export interface PayScheduleAssignmentDepartment {
   /** The UUID of the department. */
@@ -5064,29 +6697,132 @@ export const PayScheduleAssignment = /*@__PURE__*/ S.suspend(() =>
   identifier: "PayScheduleAssignment",
 }) as any as S.Schema<PayScheduleAssignment>;
 
-export interface GetV1CompaniesCompanyIdPaySchedulesPayScheduleIdRequest {
+export interface GetCompanyTimeOffPoliciesRequest {
   /** The UUID of the company */
-  company_id: string;
-  /** The UUID of the pay schedule */
-  pay_schedule_id: string;
+  company_uuid: string;
 }
-export const GetV1CompaniesCompanyIdPaySchedulesPayScheduleIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      company_id: S.String.pipe(T.Label()),
-      pay_schedule_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/companies/{company_id}/pay_schedules/{pay_schedule_id}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetV1CompaniesCompanyIdPaySchedulesPayScheduleIdRequest",
-  }) as any as S.Schema<GetV1CompaniesCompanyIdPaySchedulesPayScheduleIdRequest>;
+export const GetCompanyTimeOffPoliciesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    company_uuid: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/companies/{company_uuid}/time_off_policies",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetCompanyTimeOffPoliciesRequest",
+}) as any as S.Schema<GetCompanyTimeOffPoliciesRequest>;
 
-export interface GetV1CompaniesCompanyIdTimeOffRequestsRequest {
+export interface TimeOffPolicyEmployeesItem {
+  /** The time off balance for the employee */
+  balance?: string;
+  uuid?: string;
+}
+export const TimeOffPolicyEmployeesItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    balance: S.optional(S.String),
+    uuid: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "TimeOffPolicyEmployeesItem",
+}) as any as S.Schema<TimeOffPolicyEmployeesItem>;
+
+/** List of employee UUIDs under a time off policy */
+export type TimeOffPolicyEmployeesList = Array<TimeOffPolicyEmployeesItem>;
+export const TimeOffPolicyEmployeesList = /*@__PURE__*/ S.Array(
+  TimeOffPolicyEmployeesItem,
+) as any as S.Schema<TimeOffPolicyEmployeesList>;
+
+/** Type of the time off policy. Only "vacation" and "sick" can be created through the API, but other types may be present if the company was previously a Gusto.com customer. */
+export type TimeOffPolicyPolicyType =
+  | "vacation"
+  | "sick"
+  | "bereavement"
+  | "custom"
+  | "floating_holiday"
+  | "jury_duty"
+  | "learning_and_development"
+  | "parental_leave"
+  | "personal_day"
+  | "volunteer"
+  | "weather";
+export const TimeOffPolicyPolicyType = /*@__PURE__*/ S.String;
+
+/** Representation of a Time Off Policy */
+export interface TimeOffPolicy {
+  /** Policy time off accrual method */
+  accrual_method: string;
+  /** The rate at which the time off hours will accrue for an employee on the policy. Represented as a float, e.g. "40.0". */
+  accrual_rate?: string | null;
+  /** The number of hours an employee has to work or be paid for to accrue the number of hours set in the accrual rate. Only used for hourly policies (per_hour_paid, per_hour_paid_no_overtime, per_hour_work, per_hour_worked_no_overtime). Represented as a float, e.g. "40.0". */
+  accrual_rate_unit?: string | null;
+  /** Number of days before an employee on the policy will begin accruing time off hours */
+  accrual_waiting_period_days?: number | null;
+  /** The max number of hours an employee can carryover from one year to the next */
+  carryover_limit_hours?: string | null;
+  /** Unique identifier for the company owning the time off policy */
+  company_uuid: string;
+  /** boolean representing if a policy has completed configuration */
+  complete?: boolean;
+  /** List of employee UUIDs under a time off policy */
+  employees: TimeOffPolicyEmployeesList;
+  /** boolean representing if a policy is active or not */
+  is_active: boolean;
+  /** The max number of hours an employee can accrue in a year */
+  max_accrual_hours_per_year?: string | null;
+  /** The max number of hours an employee can accrue */
+  max_hours?: string | null;
+  /** Name of the time off policy */
+  name: string;
+  /** Boolean representing if an employee's accrued time off hours will be paid out on termination */
+  paid_out_on_termination?: boolean;
+  /** The date the policy resets. Format MM-DD */
+  policy_reset_date?: string | null;
+  /** Type of the time off policy. Only "vacation" and "sick" can be created through the API, but other types may be present if the company was previously a Gusto.com customer. */
+  policy_type: TimeOffPolicyPolicyType;
+  /** Unique identifier of a time off policy */
+  uuid: string;
+  /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/versioning#object-layer) for information on how to use this field. The version will be null if the policy is no longer active. */
+  version?: string | null;
+}
+export const TimeOffPolicy = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accrual_method: S.String,
+    accrual_rate: S.optional(S.NullOr(S.String)),
+    accrual_rate_unit: S.optional(S.NullOr(S.String)),
+    accrual_waiting_period_days: S.optional(S.NullOr(S.Number)),
+    carryover_limit_hours: S.optional(S.NullOr(S.String)),
+    company_uuid: S.String,
+    complete: S.optional(S.Boolean),
+    employees: TimeOffPolicyEmployeesList,
+    is_active: S.Boolean,
+    max_accrual_hours_per_year: S.optional(S.NullOr(S.String)),
+    max_hours: S.optional(S.NullOr(S.String)),
+    name: S.String,
+    paid_out_on_termination: S.optional(S.Boolean),
+    policy_reset_date: S.optional(S.NullOr(S.String)),
+    policy_type: TimeOffPolicyPolicyType,
+    uuid: S.String,
+    version: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({ identifier: "TimeOffPolicy" }) as any as S.Schema<TimeOffPolicy>;
+
+export type GetCompanyTimeOffPoliciesResponseBodyList = Array<TimeOffPolicy>;
+export const GetCompanyTimeOffPoliciesResponseBodyList = /*@__PURE__*/ S.Array(
+  TimeOffPolicy,
+) as any as S.Schema<GetCompanyTimeOffPoliciesResponseBodyList>;
+
+export type GetCompanyTimeOffPoliciesResponse =
+  GetCompanyTimeOffPoliciesResponseBodyList;
+export const GetCompanyTimeOffPoliciesResponse = /*@__PURE__*/ S.suspend(() =>
+  GetCompanyTimeOffPoliciesResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "GetCompanyTimeOffPoliciesResponse",
+}) as any as S.Schema<GetCompanyTimeOffPoliciesResponse>;
+
+export interface GetCompanyTimeOffRequestsRequest {
   /** The company UUID */
   company_id: string;
   /** Filter time off requests starting on or after this date */
@@ -5094,22 +6830,21 @@ export interface GetV1CompaniesCompanyIdTimeOffRequestsRequest {
   /** Filter time off requests ending on or before this date */
   end_date?: string;
 }
-export const GetV1CompaniesCompanyIdTimeOffRequestsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      company_id: S.String.pipe(T.Label()),
-      start_date: S.optional(S.String.pipe(T.Query())),
-      end_date: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/companies/{company_id}/time_off_requests",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetV1CompaniesCompanyIdTimeOffRequestsRequest",
-  }) as any as S.Schema<GetV1CompaniesCompanyIdTimeOffRequestsRequest>;
+export const GetCompanyTimeOffRequestsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    company_id: S.String.pipe(T.Label()),
+    start_date: S.optional(S.String.pipe(T.Query())),
+    end_date: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/companies/{company_id}/time_off_requests",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetCompanyTimeOffRequestsRequest",
+}) as any as S.Schema<GetCompanyTimeOffRequestsRequest>;
 
 /** This value will be null if the request has not been approved. */
 export interface TimeOffRequestApprover {
@@ -5213,847 +6948,311 @@ export const TimeOffRequestList = /*@__PURE__*/ S.Array(
   TimeOffRequest,
 ) as any as S.Schema<TimeOffRequestList>;
 
-export type GetV1CompaniesCompanyIdTimeOffRequestsResponse = TimeOffRequestList;
-export const GetV1CompaniesCompanyIdTimeOffRequestsResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    TimeOffRequestList.pipe(T.RawResponseRoot()),
-  ).annotate({
-    identifier: "GetV1CompaniesCompanyIdTimeOffRequestsResponse",
-  }) as any as S.Schema<GetV1CompaniesCompanyIdTimeOffRequestsResponse>;
-
-export interface GetV1CompaniesCompanyIdUnprocessedTerminationPayPeriodsRequest {
-  /** The UUID of the company */
-  company_id: string;
-}
-export const GetV1CompaniesCompanyIdUnprocessedTerminationPayPeriodsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      company_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/companies/{company_id}/pay_periods/unprocessed_termination_pay_periods",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "GetV1CompaniesCompanyIdUnprocessedTerminationPayPeriodsRequest",
-  }) as any as S.Schema<GetV1CompaniesCompanyIdUnprocessedTerminationPayPeriodsRequest>;
-
-/** The representation of an unprocessed termination pay period. */
-export interface UnprocessedTerminationPayPeriod {
-  /** The check date of the pay period. */
-  check_date?: string;
-  /** The debit date of the pay period. */
-  debit_date?: string;
-  /** The full name of the employee. */
-  employee_name?: string;
-  /** A unique identifier of the employee. */
-  employee_uuid?: string;
-  /** The end date of the pay period. */
-  end_date?: string;
-  /** A unique identifier of the pay schedule to which the pay period belongs. */
-  pay_schedule_uuid?: string;
-  /** The start date of the pay period. */
-  start_date?: string;
-}
-export const UnprocessedTerminationPayPeriod = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    check_date: S.optional(S.String),
-    debit_date: S.optional(S.String),
-    employee_name: S.optional(S.String),
-    employee_uuid: S.optional(S.String),
-    end_date: S.optional(S.String),
-    pay_schedule_uuid: S.optional(S.String),
-    start_date: S.optional(S.String),
-  }),
+export type GetCompanyTimeOffRequestsResponse = TimeOffRequestList;
+export const GetCompanyTimeOffRequestsResponse = /*@__PURE__*/ S.suspend(() =>
+  TimeOffRequestList.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "UnprocessedTerminationPayPeriod",
-}) as any as S.Schema<UnprocessedTerminationPayPeriod>;
+  identifier: "GetCompanyTimeOffRequestsResponse",
+}) as any as S.Schema<GetCompanyTimeOffRequestsResponse>;
 
-export type GetV1CompaniesCompanyIdUnprocessedTerminationPayPeriodsResponseBodyList =
-  Array<UnprocessedTerminationPayPeriod>;
-export const GetV1CompaniesCompanyIdUnprocessedTerminationPayPeriodsResponseBodyList =
+export type GetCompanyTimeTrackingTimeSheetsRequestEntityUuidsList =
+  Array<string>;
+export const GetCompanyTimeTrackingTimeSheetsRequestEntityUuidsList =
   /*@__PURE__*/ S.Array(
-    UnprocessedTerminationPayPeriod,
-  ) as any as S.Schema<GetV1CompaniesCompanyIdUnprocessedTerminationPayPeriodsResponseBodyList>;
+    S.String,
+  ) as any as S.Schema<GetCompanyTimeTrackingTimeSheetsRequestEntityUuidsList>;
 
-export type GetV1CompaniesCompanyIdUnprocessedTerminationPayPeriodsResponse =
-  GetV1CompaniesCompanyIdUnprocessedTerminationPayPeriodsResponseBodyList;
-export const GetV1CompaniesCompanyIdUnprocessedTerminationPayPeriodsResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetV1CompaniesCompanyIdUnprocessedTerminationPayPeriodsResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier:
-      "GetV1CompaniesCompanyIdUnprocessedTerminationPayPeriodsResponse",
-  }) as any as S.Schema<GetV1CompaniesCompanyIdUnprocessedTerminationPayPeriodsResponse>;
-
-export type GetV1CompaniesCompanyUuidContractorsRequestIncludeItem =
-  | "company_name"
-  | "portal_invitations";
-export const GetV1CompaniesCompanyUuidContractorsRequestIncludeItem =
+export type GetCompanyTimeTrackingTimeSheetsRequestEntityType =
+  | "Employee"
+  | "Contractor";
+export const GetCompanyTimeTrackingTimeSheetsRequestEntityType =
   /*@__PURE__*/ S.String;
 
-export type GetV1CompaniesCompanyUuidContractorsRequestIncludeList = Array<
-  GetV1CompaniesCompanyUuidContractorsRequestIncludeItem | (string & {})
->;
-export const GetV1CompaniesCompanyUuidContractorsRequestIncludeList =
-  /*@__PURE__*/ S.Array(
-    GetV1CompaniesCompanyUuidContractorsRequestIncludeItem,
-  ) as any as S.Schema<GetV1CompaniesCompanyUuidContractorsRequestIncludeList>;
+export type GetCompanyTimeTrackingTimeSheetsRequestStatus =
+  | "approved"
+  | "pending"
+  | "rejected";
+export const GetCompanyTimeTrackingTimeSheetsRequestStatus =
+  /*@__PURE__*/ S.String;
 
-export interface GetV1CompaniesCompanyUuidContractorsRequest {
+export type GetCompanyTimeTrackingTimeSheetsRequestSortBy =
+  | "created_at"
+  | "updated_at"
+  | "shift_started_at"
+  | "shift_ended_at";
+export const GetCompanyTimeTrackingTimeSheetsRequestSortBy =
+  /*@__PURE__*/ S.String;
+
+export type GetCompanyTimeTrackingTimeSheetsRequestSortOrder = "asc" | "desc";
+export const GetCompanyTimeTrackingTimeSheetsRequestSortOrder =
+  /*@__PURE__*/ S.String;
+
+export interface GetCompanyTimeTrackingTimeSheetsRequest {
   /** The UUID of the company */
   company_uuid: string;
-  /** A string to search for in the object's names */
-  search_term?: string;
-  /** Sort by one or more fields. Options: created_at, type, onboarding_status, name. Append `:asc` or `:desc` to specify direction (e.g., `created_at:asc`). Defaults to ascending. */
-  sort_by?: string;
-  /** Filters contractors by those who have completed onboarding */
-  onboarded?: boolean;
-  /** Filters contractors who are ready to work (onboarded AND active today) */
-  onboarded_active?: boolean;
-  /** Filters contractors by those who have been or are scheduled to be dismissed */
-  terminated?: boolean;
-  /** Filters contractors by those who have been dismissed and whose dismissal is in effect today (excludes active and scheduled to be dismissed) */
-  terminated_today?: boolean;
-  /** Include the requested attribute(s) in each contractor response. Multiple options are comma separated. */
-  include?: GetV1CompaniesCompanyUuidContractorsRequestIncludeList;
+  /** Entity UUIDs that reported time sheets */
+  entity_uuids?: GetCompanyTimeTrackingTimeSheetsRequestEntityUuidsList;
+  /** Type of entities to filter. One of: "Employee", "Contractor" */
+  entity_type?:
+    | GetCompanyTimeTrackingTimeSheetsRequestEntityType
+    | (string & {});
+  /** Status of time sheets. One of: "approved", "pending", "rejected" */
+  status?: GetCompanyTimeTrackingTimeSheetsRequestStatus | (string & {});
+  /** Field to sort by. One of: "created_at", "updated_at", "shift_started_at", "shift_ended_at" */
+  sort_by?: GetCompanyTimeTrackingTimeSheetsRequestSortBy | (string & {});
+  /** Sorting order. One of: "asc", "desc" */
+  sort_order?: GetCompanyTimeTrackingTimeSheetsRequestSortOrder | (string & {});
+  /** time sheets that were created before ISO 8601 timestamp. Filtering by "created_at" */
+  before?: string;
+  /** time sheets that were created after ISO 8601 timestamp. Filtering by "created_at" */
+  after?: string;
   /** The page that is requested. When unspecified, will load all objects unless endpoint forces pagination. */
   page?: number;
   /** Number of objects per page. For majority of endpoints will default to 25 */
   per?: number;
 }
-export const GetV1CompaniesCompanyUuidContractorsRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetCompanyTimeTrackingTimeSheetsRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       company_uuid: S.String.pipe(T.Label()),
-      search_term: S.optional(S.String.pipe(T.Query())),
-      sort_by: S.optional(S.String.pipe(T.Query())),
-      onboarded: S.optional(S.Boolean.pipe(T.Query())),
-      onboarded_active: S.optional(S.Boolean.pipe(T.Query())),
-      terminated: S.optional(S.Boolean.pipe(T.Query())),
-      terminated_today: S.optional(S.Boolean.pipe(T.Query())),
-      include: S.optional(
-        GetV1CompaniesCompanyUuidContractorsRequestIncludeList.pipe(T.Query()),
+      entity_uuids: S.optional(
+        GetCompanyTimeTrackingTimeSheetsRequestEntityUuidsList.pipe(T.Query()),
       ),
+      entity_type: S.optional(
+        GetCompanyTimeTrackingTimeSheetsRequestEntityType.pipe(T.Query()),
+      ),
+      status: S.optional(
+        GetCompanyTimeTrackingTimeSheetsRequestStatus.pipe(T.Query()),
+      ),
+      sort_by: S.optional(
+        GetCompanyTimeTrackingTimeSheetsRequestSortBy.pipe(T.Query()),
+      ),
+      sort_order: S.optional(
+        GetCompanyTimeTrackingTimeSheetsRequestSortOrder.pipe(T.Query()),
+      ),
+      before: S.optional(S.String.pipe(T.Query())),
+      after: S.optional(S.String.pipe(T.Query())),
       page: S.optional(S.Number.pipe(T.Query())),
       per: S.optional(S.Number.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
-        uri: "/v1/companies/{company_uuid}/contractors",
+        uri: "/v1/companies/{company_uuid}/time_tracking/time_sheets",
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "GetV1CompaniesCompanyUuidContractorsRequest",
-  }) as any as S.Schema<GetV1CompaniesCompanyUuidContractorsRequest>;
+).annotate({
+  identifier: "GetCompanyTimeTrackingTimeSheetsRequest",
+}) as any as S.Schema<GetCompanyTimeTrackingTimeSheetsRequest>;
 
-/** The contractor’s home address. */
-export type ContractorAddress = CompanyPrimarySignatoryHomeAddress;
-export const ContractorAddress = CompanyPrimarySignatoryHomeAddress;
+export type GetCompanyTimeTrackingTimeSheetsResponseBodyList = Array<TimeSheet>;
+export const GetCompanyTimeTrackingTimeSheetsResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    TimeSheet,
+  ) as any as S.Schema<GetCompanyTimeTrackingTimeSheetsResponseBodyList>;
 
-/** The current status of the member portal invitation. */
-export type ContractorMemberPortalInvitationStatusStatus =
-  | "pending"
-  | "sent"
-  | "verified"
-  | "complete"
-  | "cancelled";
-export const ContractorMemberPortalInvitationStatusStatus =
-  /*@__PURE__*/ S.String;
-
-/** Member portal invitation status information. Only included when the include param has the portal_invitations value set. */
-export interface ContractorMemberPortalInvitationStatus {
-  /** The date and time when the password reset was last resent. */
-  last_password_resent_at?: string | Redacted.Redacted<string> | null;
-  /** The current status of the member portal invitation. */
-  status?: ContractorMemberPortalInvitationStatusStatus;
-  /** Whether the invitation token has expired. */
-  token_expired?: boolean | null;
-  /** The date and time when the welcome email was sent. */
-  welcome_email_sent_at?: string | null;
-}
-export const ContractorMemberPortalInvitationStatus = /*@__PURE__*/ S.suspend(
+export type GetCompanyTimeTrackingTimeSheetsResponse =
+  GetCompanyTimeTrackingTimeSheetsResponseBodyList;
+export const GetCompanyTimeTrackingTimeSheetsResponse = /*@__PURE__*/ S.suspend(
   () =>
-    S.Struct({
-      last_password_resent_at: S.optional(
-        S.NullOr(S.String).pipe(T.SensitiveValue({})),
-      ),
-      status: S.optional(ContractorMemberPortalInvitationStatusStatus),
-      token_expired: S.optional(S.NullOr(S.Boolean)),
-      welcome_email_sent_at: S.optional(S.NullOr(S.String)),
-    }),
+    GetCompanyTimeTrackingTimeSheetsResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "ContractorMemberPortalInvitationStatus",
-}) as any as S.Schema<ContractorMemberPortalInvitationStatus>;
+  identifier: "GetCompanyTimeTrackingTimeSheetsResponse",
+}) as any as S.Schema<GetCompanyTimeTrackingTimeSheetsResponse>;
 
-/** One of the "onboarding_status" enum values. */
-export type ContractorOnboardingStatus =
-  | "admin_onboarding_incomplete"
-  | "admin_onboarding_review"
-  | "self_onboarding_not_invited"
-  | "self_onboarding_invited"
-  | "self_onboarding_started"
-  | "self_onboarding_review"
-  | "onboarding_completed";
-export const ContractorOnboardingStatus = /*@__PURE__*/ S.String;
-
-export type ContractorPaymentMethod = "Direct Deposit" | "Check";
-export const ContractorPaymentMethod = /*@__PURE__*/ S.String;
-
-/** The contractor's type, either "Individual" or "Business". */
-export type ContractorType = "Individual" | "Business";
-export const ContractorType = /*@__PURE__*/ S.String;
-
-/** The contractor's upcoming employment details, if a rehire is scheduled. */
-export interface ContractorUpcomingEmployment {
-  /** The setup status of the upcoming employment. */
-  setup_status?: string | null;
-  /** The start date of the upcoming employment. */
-  start_date?: string;
+export interface GetCompensationRequest {
+  /** The UUID of the compensation */
+  compensation_id: string;
 }
-export const ContractorUpcomingEmployment = /*@__PURE__*/ S.suspend(() =>
+export const GetCompensationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    setup_status: S.optional(S.NullOr(S.String)),
-    start_date: S.optional(S.String),
-  }),
+    compensation_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/compensations/{compensation_id}",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "ContractorUpcomingEmployment",
-}) as any as S.Schema<ContractorUpcomingEmployment>;
+  identifier: "GetCompensationRequest",
+}) as any as S.Schema<GetCompensationRequest>;
 
-/** The contractor's wage type, either "Fixed" or "Hourly". */
-export type ContractorWageType = "Fixed" | "Hourly";
-export const ContractorWageType = /*@__PURE__*/ S.String;
+export type GetContractorRequestIncludeItem =
+  | "company_name"
+  | "portal_invitations";
+export const GetContractorRequestIncludeItem = /*@__PURE__*/ S.String;
 
-/** The representation of a contractor (individual or business) in Gusto. */
-export interface Contractor {
-  /** The contractor’s home address. */
-  address?: CompanyPrimarySignatoryHomeAddress | null;
-  /** The name of the contractor business. This attribute is required for “Business” contractors and will be ignored for “Individual” contractors. */
-  business_name?: string | null;
-  /** The UUID of the company the contractor is employed by. */
-  company_uuid?: string;
-  /** The contractor's department in the company. */
-  department?: string | null;
-  /** The title of the contractor's department. */
-  department_title?: string | null;
-  /** The UUID of the department the contractor is under */
-  department_uuid?: string | null;
-  /** Whether the contractor's pending dismissal can be cancelled. */
-  dismissal_cancellation_eligible?: boolean;
-  /** The contractor's dismissal date. */
-  dismissal_date?: string | null;
-  /** The Federal Employer Identification Number of the contractor business. This attribute is optional for “Business” contractors and will be ignored for “Individual” contractors. */
-  ein?: string | null;
-  /** The contractor’s email address. This attribute is optional for “Individual” contractors and will be ignored for “Business” contractors. */
-  email?: string | null;
-  /** The boolean flag indicating whether Gusto will file a new hire report for the contractor */
-  file_new_hire_report?: boolean | null;
-  /** The contractor’s first name. This attribute is required for “Individual” contractors and will be ignored for “Business” contractors. */
-  first_name?: string | null;
-  /** Whether company's Employer Identification Number (EIN) is present */
-  has_ein?: boolean | null;
-  /** Indicates whether the contractor has an SSN in Gusto. */
-  has_ssn?: boolean;
-  /** The contractor’s hourly rate. This attribute is required if the wage_type is “Hourly”. */
-  hourly_rate?: string;
-  /** The status of the contractor with the company. */
-  is_active?: boolean;
-  /** The contractor’s last name. This attribute is required for “Individual” contractors and will be ignored for “Business” contractors. */
-  last_name?: string | null;
-  /** Member portal invitation status information. Only included when the include param has the portal_invitations value set. */
-  member_portal_invitation_status?: ContractorMemberPortalInvitationStatus | null;
-  /** The contractor’s middle initial. This attribute is optional for “Individual” contractors and will be ignored for “Business” contractors. */
-  middle_initial?: string | null;
-  /** The updated onboarding status for the contractor */
-  onboarded?: boolean;
-  /** One of the "onboarding_status" enum values. */
-  onboarding_status?: ContractorOnboardingStatus;
-  /** Whether an external partner portal invitation webhook has been sent for this contractor. Only included when the include param has the portal_invitations value set. */
-  partner_portal_invitation_sent?: boolean | null;
-  /** The contractor's payment method. */
-  payment_method?: ContractorPaymentMethod | null;
-  /** Whether the contractor's pending rehire can be cancelled. */
-  rehire_cancellation_eligible?: boolean;
-  /** The contractor's start date. */
-  start_date?: string;
-  /** The contractor's type, either "Individual" or "Business". */
-  type?: ContractorType;
-  /** The contractor's upcoming employment details, if a rehire is scheduled. */
-  upcoming_employment?: ContractorUpcomingEmployment | null;
-  /** The UUID of the contractor in Gusto. */
-  uuid: string;
+export type GetContractorRequestIncludeList = Array<
+  GetContractorRequestIncludeItem | (string & {})
+>;
+export const GetContractorRequestIncludeList = /*@__PURE__*/ S.Array(
+  GetContractorRequestIncludeItem,
+) as any as S.Schema<GetContractorRequestIncludeList>;
+
+export interface GetContractorRequest {
+  /** The UUID of the contractor */
+  contractor_uuid: string;
+  /** Include the requested attribute(s) in each contractor response. Multiple options are comma separated. */
+  include?: GetContractorRequestIncludeList;
+}
+export const GetContractorRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    contractor_uuid: S.String.pipe(T.Label()),
+    include: S.optional(GetContractorRequestIncludeList.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/contractors/{contractor_uuid}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetContractorRequest",
+}) as any as S.Schema<GetContractorRequest>;
+
+export interface GetDepartmentRequest {
+  /** The UUID of the department */
+  department_uuid: string;
+}
+export const GetDepartmentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    department_uuid: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/departments/{department_uuid}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetDepartmentRequest",
+}) as any as S.Schema<GetDepartmentRequest>;
+
+export type GetDepartmentResponseContractorsItem = DepartmentContractorsItem;
+export const GetDepartmentResponseContractorsItem = DepartmentContractorsItem;
+
+/** Array of contractors assigned to the department. */
+export type GetDepartmentResponseContractorsList =
+  Array<DepartmentContractorsItem>;
+export const GetDepartmentResponseContractorsList = /*@__PURE__*/ S.Array(
+  DepartmentContractorsItem,
+) as any as S.Schema<GetDepartmentResponseContractorsList>;
+
+export type GetDepartmentResponseEmployeesItem = DepartmentContractorsItem;
+export const GetDepartmentResponseEmployeesItem = DepartmentContractorsItem;
+
+/** Array of employees assigned to the department. */
+export type GetDepartmentResponseEmployeesList =
+  Array<DepartmentContractorsItem>;
+export const GetDepartmentResponseEmployeesList = /*@__PURE__*/ S.Array(
+  DepartmentContractorsItem,
+) as any as S.Schema<GetDepartmentResponseEmployeesList>;
+
+export interface GetDepartmentResponse {
   /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
   version?: string;
-  /** The contractor's wage type, either "Fixed" or "Hourly". */
-  wage_type?: ContractorWageType;
-  /** The work email address of the contractor. This is provided to support syncing users between our system and yours. You may not use this email address for any other purpose (e.g. marketing). */
-  work_email?: string | null;
-  /** State where the contractor will be conducting the majority of their work for the company. This value is used when generating the new hire report. */
-  work_state?: string | null;
-}
-export const Contractor = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    address: S.optional(S.NullOr(CompanyPrimarySignatoryHomeAddress)),
-    business_name: S.optional(S.NullOr(S.String)),
-    company_uuid: S.optional(S.String),
-    department: S.optional(S.NullOr(S.String)),
-    department_title: S.optional(S.NullOr(S.String)),
-    department_uuid: S.optional(S.NullOr(S.String)),
-    dismissal_cancellation_eligible: S.optional(S.Boolean),
-    dismissal_date: S.optional(S.NullOr(S.String)),
-    ein: S.optional(S.NullOr(S.String)),
-    email: S.optional(S.NullOr(S.String)),
-    file_new_hire_report: S.optional(S.NullOr(S.Boolean)),
-    first_name: S.optional(S.NullOr(S.String)),
-    has_ein: S.optional(S.NullOr(S.Boolean)),
-    has_ssn: S.optional(S.Boolean),
-    hourly_rate: S.optional(S.String),
-    is_active: S.optional(S.Boolean),
-    last_name: S.optional(S.NullOr(S.String)),
-    member_portal_invitation_status: S.optional(
-      S.NullOr(ContractorMemberPortalInvitationStatus),
-    ),
-    middle_initial: S.optional(S.NullOr(S.String)),
-    onboarded: S.optional(S.Boolean),
-    onboarding_status: S.optional(ContractorOnboardingStatus),
-    partner_portal_invitation_sent: S.optional(S.NullOr(S.Boolean)),
-    payment_method: S.optional(S.NullOr(ContractorPaymentMethod)),
-    rehire_cancellation_eligible: S.optional(S.Boolean),
-    start_date: S.optional(S.String),
-    type: S.optional(ContractorType),
-    upcoming_employment: S.optional(S.NullOr(ContractorUpcomingEmployment)),
-    uuid: S.String,
-    version: S.optional(S.String),
-    wage_type: S.optional(ContractorWageType),
-    work_email: S.optional(S.NullOr(S.String)),
-    work_state: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({ identifier: "Contractor" }) as any as S.Schema<Contractor>;
-
-export type GetV1CompaniesCompanyUuidContractorsResponseBodyList =
-  Array<Contractor>;
-export const GetV1CompaniesCompanyUuidContractorsResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    Contractor,
-  ) as any as S.Schema<GetV1CompaniesCompanyUuidContractorsResponseBodyList>;
-
-export type GetV1CompaniesCompanyUuidContractorsResponse =
-  GetV1CompaniesCompanyUuidContractorsResponseBodyList;
-export const GetV1CompaniesCompanyUuidContractorsResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetV1CompaniesCompanyUuidContractorsResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetV1CompaniesCompanyUuidContractorsResponse",
-  }) as any as S.Schema<GetV1CompaniesCompanyUuidContractorsResponse>;
-
-export interface GetV1CompaniesCompanyUuidTimeOffPoliciesRequest {
   /** The UUID of the company */
-  company_uuid: string;
-}
-export const GetV1CompaniesCompanyUuidTimeOffPoliciesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      company_uuid: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/companies/{company_uuid}/time_off_policies",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetV1CompaniesCompanyUuidTimeOffPoliciesRequest",
-  }) as any as S.Schema<GetV1CompaniesCompanyUuidTimeOffPoliciesRequest>;
-
-export interface TimeOffPolicyEmployeesItem {
-  /** The time off balance for the employee */
-  balance?: string;
+  company_uuid?: string;
+  /** Array of contractors assigned to the department. */
+  contractors?: GetDepartmentResponseContractorsList;
+  /** Array of employees assigned to the department. */
+  employees?: GetDepartmentResponseEmployeesList;
+  /** Name of the department */
+  title?: string;
+  /** The UUID of the department */
   uuid?: string;
 }
-export const TimeOffPolicyEmployeesItem = /*@__PURE__*/ S.suspend(() =>
+export const GetDepartmentResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    balance: S.optional(S.String),
+    version: S.optional(S.String),
+    company_uuid: S.optional(S.String),
+    contractors: S.optional(GetDepartmentResponseContractorsList),
+    employees: S.optional(GetDepartmentResponseEmployeesList),
+    title: S.optional(S.String),
     uuid: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "TimeOffPolicyEmployeesItem",
-}) as any as S.Schema<TimeOffPolicyEmployeesItem>;
+  identifier: "GetDepartmentResponse",
+}) as any as S.Schema<GetDepartmentResponse>;
 
-/** List of employee UUIDs under a time off policy */
-export type TimeOffPolicyEmployeesList = Array<TimeOffPolicyEmployeesItem>;
-export const TimeOffPolicyEmployeesList = /*@__PURE__*/ S.Array(
-  TimeOffPolicyEmployeesItem,
-) as any as S.Schema<TimeOffPolicyEmployeesList>;
-
-/** Type of the time off policy. Only "vacation" and "sick" can be created through the API, but other types may be present if the company was previously a Gusto.com customer. */
-export type TimeOffPolicyPolicyType =
-  | "vacation"
-  | "sick"
-  | "bereavement"
-  | "custom"
-  | "floating_holiday"
-  | "jury_duty"
-  | "learning_and_development"
-  | "parental_leave"
-  | "personal_day"
-  | "volunteer"
-  | "weather";
-export const TimeOffPolicyPolicyType = /*@__PURE__*/ S.String;
-
-/** Representation of a Time Off Policy */
-export interface TimeOffPolicy {
-  /** Policy time off accrual method */
-  accrual_method: string;
-  /** The rate at which the time off hours will accrue for an employee on the policy. Represented as a float, e.g. "40.0". */
-  accrual_rate?: string | null;
-  /** The number of hours an employee has to work or be paid for to accrue the number of hours set in the accrual rate. Only used for hourly policies (per_hour_paid, per_hour_paid_no_overtime, per_hour_work, per_hour_worked_no_overtime). Represented as a float, e.g. "40.0". */
-  accrual_rate_unit?: string | null;
-  /** Number of days before an employee on the policy will begin accruing time off hours */
-  accrual_waiting_period_days?: number | null;
-  /** The max number of hours an employee can carryover from one year to the next */
-  carryover_limit_hours?: string | null;
-  /** Unique identifier for the company owning the time off policy */
-  company_uuid: string;
-  /** boolean representing if a policy has completed configuration */
-  complete?: boolean;
-  /** List of employee UUIDs under a time off policy */
-  employees: TimeOffPolicyEmployeesList;
-  /** boolean representing if a policy is active or not */
-  is_active: boolean;
-  /** The max number of hours an employee can accrue in a year */
-  max_accrual_hours_per_year?: string | null;
-  /** The max number of hours an employee can accrue */
-  max_hours?: string | null;
-  /** Name of the time off policy */
-  name: string;
-  /** Boolean representing if an employee's accrued time off hours will be paid out on termination */
-  paid_out_on_termination?: boolean;
-  /** The date the policy resets. Format MM-DD */
-  policy_reset_date?: string | null;
-  /** Type of the time off policy. Only "vacation" and "sick" can be created through the API, but other types may be present if the company was previously a Gusto.com customer. */
-  policy_type: TimeOffPolicyPolicyType;
-  /** Unique identifier of a time off policy */
-  uuid: string;
-  /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/versioning#object-layer) for information on how to use this field. The version will be null if the policy is no longer active. */
-  version?: string | null;
+export interface GetEmployeeBenefitRequest {
+  /** The UUID of the employee benefit. */
+  employee_benefit_id: string;
 }
-export const TimeOffPolicy = /*@__PURE__*/ S.suspend(() =>
+export const GetEmployeeBenefitRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    accrual_method: S.String,
-    accrual_rate: S.optional(S.NullOr(S.String)),
-    accrual_rate_unit: S.optional(S.NullOr(S.String)),
-    accrual_waiting_period_days: S.optional(S.NullOr(S.Number)),
-    carryover_limit_hours: S.optional(S.NullOr(S.String)),
-    company_uuid: S.String,
-    complete: S.optional(S.Boolean),
-    employees: TimeOffPolicyEmployeesList,
-    is_active: S.Boolean,
-    max_accrual_hours_per_year: S.optional(S.NullOr(S.String)),
-    max_hours: S.optional(S.NullOr(S.String)),
-    name: S.String,
-    paid_out_on_termination: S.optional(S.Boolean),
-    policy_reset_date: S.optional(S.NullOr(S.String)),
-    policy_type: TimeOffPolicyPolicyType,
-    uuid: S.String,
-    version: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({ identifier: "TimeOffPolicy" }) as any as S.Schema<TimeOffPolicy>;
-
-export type GetV1CompaniesCompanyUuidTimeOffPoliciesResponseBodyList =
-  Array<TimeOffPolicy>;
-export const GetV1CompaniesCompanyUuidTimeOffPoliciesResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    TimeOffPolicy,
-  ) as any as S.Schema<GetV1CompaniesCompanyUuidTimeOffPoliciesResponseBodyList>;
-
-export type GetV1CompaniesCompanyUuidTimeOffPoliciesResponse =
-  GetV1CompaniesCompanyUuidTimeOffPoliciesResponseBodyList;
-export const GetV1CompaniesCompanyUuidTimeOffPoliciesResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetV1CompaniesCompanyUuidTimeOffPoliciesResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetV1CompaniesCompanyUuidTimeOffPoliciesResponse",
-  }) as any as S.Schema<GetV1CompaniesCompanyUuidTimeOffPoliciesResponse>;
-
-export type GetV1CompanyBenefitsCompanyBenefitIdRequestInclude = "all_benefits";
-export const GetV1CompanyBenefitsCompanyBenefitIdRequestInclude =
-  /*@__PURE__*/ S.String;
-
-export interface GetV1CompanyBenefitsCompanyBenefitIdRequest {
-  /** The UUID of the company benefit */
-  company_benefit_id: string;
-  /** Whether to return employee benefits associated with the benefit */
-  with_employee_benefits?: boolean;
-  /** Available options: - all_benefits: If with_employee_benefits=true, include all effective dated benefits for each employee instead of only the current benefits. */
-  include?: GetV1CompanyBenefitsCompanyBenefitIdRequestInclude | (string & {});
-}
-export const GetV1CompanyBenefitsCompanyBenefitIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      company_benefit_id: S.String.pipe(T.Label()),
-      with_employee_benefits: S.optional(S.Boolean.pipe(T.Query())),
-      include: S.optional(
-        GetV1CompanyBenefitsCompanyBenefitIdRequestInclude.pipe(T.Query()),
-      ),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/company_benefits/{company_benefit_id}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetV1CompanyBenefitsCompanyBenefitIdRequest",
-  }) as any as S.Schema<GetV1CompanyBenefitsCompanyBenefitIdRequest>;
-
-export type CompanyBenefitWithEmployeeBenefitsCatchUpType =
-  | "elective"
-  | "deemed";
-export const CompanyBenefitWithEmployeeBenefitsCatchUpType =
-  /*@__PURE__*/ S.String;
+    employee_benefit_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/employee_benefits/{employee_benefit_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetEmployeeBenefitRequest",
+}) as any as S.Schema<GetEmployeeBenefitRequest>;
 
 /** A single tier of a tiered matching scheme. */
-export interface CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1TiersItem {
-  /** The percentage of employee deduction within this tier the company contribution will match. */
-  rate?: string;
-  /** Specifies the upper limit (inclusive) percentage of the employee contribution that this tier applies to. Use threshold to define each tier's end point, with tiers applied cumulatively from 0% upwards. For example: If the first tier has a threshold of "3", and `rate` of "100", the company will match 100% of employee contributions from 0% up to and including 3% of payroll. If the next tier has a threshold of "5" and a rate of "50", the company will match 50% of contributions from above 3% up to and including 5% of payroll. */
-  threshold?: string;
-  /** The step up difference between this tier's threshold and the previous tier's threshold. In the first tier, this is equivalent to threshold. */
-  threshold_delta?: string;
-}
-export const CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1TiersItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      rate: S.optional(S.String),
-      threshold: S.optional(S.String),
-      threshold_delta: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier:
-      "CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1TiersItem",
-  }) as any as S.Schema<CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1TiersItem>;
+export type GetEmployeeBenefitResponseContributionValueCase1TiersItem =
+  CreateEmployeeEmployeeBenefitResponseContributionValueCase1TiersItem;
+export const GetEmployeeBenefitResponseContributionValueCase1TiersItem =
+  CreateEmployeeEmployeeBenefitResponseContributionValueCase1TiersItem;
 
-export type CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1TiersList =
-  Array<CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1TiersItem>;
-export const CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1TiersList =
+export type GetEmployeeBenefitResponseContributionValueCase1TiersList =
+  Array<CreateEmployeeEmployeeBenefitResponseContributionValueCase1TiersItem>;
+export const GetEmployeeBenefitResponseContributionValueCase1TiersList =
   /*@__PURE__*/ S.Array(
-    CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1TiersItem,
-  ) as any as S.Schema<CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1TiersList>;
+    CreateEmployeeEmployeeBenefitResponseContributionValueCase1TiersItem,
+  ) as any as S.Schema<GetEmployeeBenefitResponseContributionValueCase1TiersList>;
 
-export interface CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1 {
-  tiers?: CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1TiersList;
+export interface GetEmployeeBenefitResponseContributionValueCase1 {
+  tiers?: GetEmployeeBenefitResponseContributionValueCase1TiersList;
 }
-export const CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1 =
+export const GetEmployeeBenefitResponseContributionValueCase1 =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       tiers: S.optional(
-        CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1TiersList,
+        GetEmployeeBenefitResponseContributionValueCase1TiersList,
       ),
     }),
   ).annotate({
-    identifier:
-      "CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1",
-  }) as any as S.Schema<CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1>;
+    identifier: "GetEmployeeBenefitResponseContributionValueCase1",
+  }) as any as S.Schema<GetEmployeeBenefitResponseContributionValueCase1>;
 
 /** For the `amount` and `percentage` contribution types, the value of the corresponding amount or percentage. For the `tiered` contribution type, an array of tiers. */
-export type CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValue =
+export type GetEmployeeBenefitResponseContributionValue =
   | string
-  | CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1;
-export const CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValue>;
+  | GetEmployeeBenefitResponseContributionValueCase1;
+export const GetEmployeeBenefitResponseContributionValue =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<GetEmployeeBenefitResponseContributionValue>;
 
 /** An object representing the type and value of the company contribution. */
-export interface CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContribution {
+export interface GetEmployeeBenefitResponseContribution {
   /** The company contribution scheme. "amount": The company contributes a fixed amount per payroll. If elective is true, the contribution is matching, dollar-for-dollar. "percentage": The company contributes a percentage of the payroll amount per payroll period. If elective is true, the contribution is matching, dollar-for-dollar. "tiered": The company contribution varies according to the size of the employee deduction. */
   type?: string;
   /** For the `amount` and `percentage` contribution types, the value of the corresponding amount or percentage. For the `tiered` contribution type, an array of tiers. */
-  value?: CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValue;
+  value?: GetEmployeeBenefitResponseContributionValue;
 }
-export const CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContribution =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: S.optional(S.String),
-      value: S.optional(
-        CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValue,
-      ),
-    }),
-  ).annotate({
-    identifier:
-      "CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContribution",
-  }) as any as S.Schema<CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContribution>;
-
-export interface CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItem {
-  /** Whether the employee benefit is active. */
-  active?: boolean;
-  /** The UUID of the company benefit. */
-  company_benefit_uuid?: string;
-  /** The value of the company contribution */
-  company_contribution?: string;
-  /** An object representing the type and value of the company contribution. */
-  contribution?: CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContribution;
-  /** Whether the employee deduction amount should be treated as a percentage to be deducted from each payroll. */
-  deduct_as_percentage?: boolean;
-  /** The date when the employee benefit becomes effective. If not provided, the benefit will be effective from 1970-01-01 (unix epoch). */
-  effective_date?: string;
-  /** The amount to be deducted, per pay period, from the employee's pay. */
-  employee_deduction?: string;
-  /** The UUID of the employee to which the benefit belongs. */
-  employee_uuid?: string;
-  /** The date when the employee benefit expires. If not provided, the benefit will have no expiration date. */
-  expiration_date?: string;
-}
-export const CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      active: S.optional(S.Boolean),
-      company_benefit_uuid: S.optional(S.String),
-      company_contribution: S.optional(S.String),
-      contribution: S.optional(
-        CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContribution,
-      ),
-      deduct_as_percentage: S.optional(S.Boolean),
-      effective_date: S.optional(S.String),
-      employee_deduction: S.optional(S.String),
-      employee_uuid: S.optional(S.String),
-      expiration_date: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItem",
-  }) as any as S.Schema<CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItem>;
-
-export type CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsList =
-  Array<CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItem>;
-export const CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsList =
-  /*@__PURE__*/ S.Array(
-    CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItem,
-  ) as any as S.Schema<CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsList>;
-
-/** The source of the company benefit. This can be "internal", "external", or "partnered". Company benefits created via the API default to "external". Certain partners can create company benefits with a source of "partnered". */
-export type CompanyBenefitWithEmployeeBenefitsSource =
-  | "internal"
-  | "external"
-  | "partnered";
-export const CompanyBenefitWithEmployeeBenefitsSource = /*@__PURE__*/ S.String;
-
-/** The representation of a company benefit. */
-export interface CompanyBenefitWithEmployeeBenefits {
-  /** Whether this benefit is active for employee participation. Company benefits may only be deactivated if no employees are actively participating. */
-  active?: boolean;
-  /** The type of the benefit to which the company benefit belongs (same as benefit_id). */
-  benefit_type?: number;
-  /** The type of catch-up contribution for this benefit, as required by Section 603 of the SECURE 2.0 Act. Only applicable to pre-tax 401(k) and 403(b) benefits. */
-  catch_up_type?: CompanyBenefitWithEmployeeBenefitsCatchUpType | null;
-  /** The UUID of the company. */
-  company_uuid?: string;
-  /** Whether this company benefit can be deleted. Deletable will be set to true if the benefit has not been used in payroll, has no employee benefits associated, and the benefit is not owned by Gusto or a Partner */
-  deletable?: boolean;
-  /** The description of the company benefit. For example, a company may offer multiple benefits with an ID of 1 (for Medical Insurance). The description would show something more specific like “Kaiser Permanente” or “Blue Cross/ Blue Shield”. */
-  description?: string;
-  employee_benefits?: CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsList;
-  /** The partner name of the partner that created the company benefit. For example, "XYZ Corp". */
-  partner_name?: string | null;
-  /** Whether the employer is subject to file W-2 forms for an employee on leave. Only applicable to third party sick pay benefits. */
-  responsible_for_employee_w2?: boolean;
-  /** Whether the employer is subject to pay employer taxes when an employee is on leave. Only applicable to third party sick pay benefits. */
-  responsible_for_employer_taxes?: boolean;
-  /** The source of the company benefit. This can be "internal", "external", or "partnered". Company benefits created via the API default to "external". Certain partners can create company benefits with a source of "partnered". */
-  source?: CompanyBenefitWithEmployeeBenefitsSource;
-  /** Whether employee deductions and company contributions can be set as percentages of payroll for an individual employee. This is determined by the type of benefit and is not configurable by the company. */
-  supports_percentage_amounts?: boolean;
-  /** The UUID of the company benefit. */
-  uuid: string;
-  /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
-  version?: string;
-}
-export const CompanyBenefitWithEmployeeBenefits = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    active: S.optional(S.Boolean),
-    benefit_type: S.optional(S.Number),
-    catch_up_type: S.optional(
-      S.NullOr(CompanyBenefitWithEmployeeBenefitsCatchUpType),
-    ),
-    company_uuid: S.optional(S.String),
-    deletable: S.optional(S.Boolean),
-    description: S.optional(S.String),
-    employee_benefits: S.optional(
-      CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsList,
-    ),
-    partner_name: S.optional(S.NullOr(S.String)),
-    responsible_for_employee_w2: S.optional(S.Boolean),
-    responsible_for_employer_taxes: S.optional(S.Boolean),
-    source: S.optional(CompanyBenefitWithEmployeeBenefitsSource),
-    supports_percentage_amounts: S.optional(S.Boolean),
-    uuid: S.String,
-    version: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CompanyBenefitWithEmployeeBenefits",
-}) as any as S.Schema<CompanyBenefitWithEmployeeBenefits>;
-
-export interface GetV1CompanyBenefitsCompanyBenefitIdContributionExclusionsRequest {
-  /** The UUID of the company benefit */
-  company_benefit_id: string;
-}
-export const GetV1CompanyBenefitsCompanyBenefitIdContributionExclusionsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      company_benefit_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/company_benefits/{company_benefit_id}/contribution_exclusions",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "GetV1CompanyBenefitsCompanyBenefitIdContributionExclusionsRequest",
-  }) as any as S.Schema<GetV1CompanyBenefitsCompanyBenefitIdContributionExclusionsRequest>;
-
-/** The representation of a contribution exclusion for a company benefit. */
-export interface ContributionExclusion {
-  /** The name of the contribution type. */
-  contribution_type: string;
-  /** The UUID of the contribution type. */
-  contribution_uuid: string;
-  /** Whether this contribution type is excluded from the benefit. */
-  excluded: boolean;
-}
-export const ContributionExclusion = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    contribution_type: S.String,
-    contribution_uuid: S.String,
-    excluded: S.Boolean,
-  }),
-).annotate({
-  identifier: "ContributionExclusion",
-}) as any as S.Schema<ContributionExclusion>;
-
-export type GetV1CompanyBenefitsCompanyBenefitIdContributionExclusionsResponseBodyList =
-  Array<ContributionExclusion>;
-export const GetV1CompanyBenefitsCompanyBenefitIdContributionExclusionsResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    ContributionExclusion,
-  ) as any as S.Schema<GetV1CompanyBenefitsCompanyBenefitIdContributionExclusionsResponseBodyList>;
-
-export type GetV1CompanyBenefitsCompanyBenefitIdContributionExclusionsResponse =
-  GetV1CompanyBenefitsCompanyBenefitIdContributionExclusionsResponseBodyList;
-export const GetV1CompanyBenefitsCompanyBenefitIdContributionExclusionsResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetV1CompanyBenefitsCompanyBenefitIdContributionExclusionsResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier:
-      "GetV1CompanyBenefitsCompanyBenefitIdContributionExclusionsResponse",
-  }) as any as S.Schema<GetV1CompanyBenefitsCompanyBenefitIdContributionExclusionsResponse>;
-
-export type GetV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsRequestInclude =
-  "all_benefits";
-export const GetV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsRequestInclude =
-  /*@__PURE__*/ S.String;
-
-export interface GetV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsRequest {
-  /** The UUID of the company benefit */
-  company_benefit_id: string;
-  /** The page that is requested. When unspecified, will load all objects unless endpoint forces pagination. */
-  page?: number;
-  /** Number of objects per page. For majority of endpoints will default to 25 */
-  per?: number;
-  /** Available options: - all_benefits: Include all effective dated benefits for each employee instead of only the current benefits. */
-  include?:
-    | GetV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsRequestInclude
-    | (string & {});
-}
-export const GetV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      company_benefit_id: S.String.pipe(T.Label()),
-      page: S.optional(S.Number.pipe(T.Query())),
-      per: S.optional(S.Number.pipe(T.Query())),
-      include: S.optional(
-        GetV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsRequestInclude.pipe(
-          T.Query(),
-        ),
-      ),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/company_benefits/{company_benefit_id}/employee_benefits",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsRequest",
-  }) as any as S.Schema<GetV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsRequest>;
-
-/** A single tier of a tiered matching scheme. */
-export type EmployeeBenefitContributionValueCase1TiersItem =
-  CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1TiersItem;
-export const EmployeeBenefitContributionValueCase1TiersItem =
-  CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1TiersItem;
-
-export type EmployeeBenefitContributionValueCase1TiersList =
-  Array<CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1TiersItem>;
-export const EmployeeBenefitContributionValueCase1TiersList =
-  /*@__PURE__*/ S.Array(
-    CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1TiersItem,
-  ) as any as S.Schema<EmployeeBenefitContributionValueCase1TiersList>;
-
-export interface EmployeeBenefitContributionValueCase1 {
-  tiers?: EmployeeBenefitContributionValueCase1TiersList;
-}
-export const EmployeeBenefitContributionValueCase1 = /*@__PURE__*/ S.suspend(
+export const GetEmployeeBenefitResponseContribution = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      tiers: S.optional(EmployeeBenefitContributionValueCase1TiersList),
+      type: S.optional(S.String),
+      value: S.optional(GetEmployeeBenefitResponseContributionValue),
     }),
 ).annotate({
-  identifier: "EmployeeBenefitContributionValueCase1",
-}) as any as S.Schema<EmployeeBenefitContributionValueCase1>;
+  identifier: "GetEmployeeBenefitResponseContribution",
+}) as any as S.Schema<GetEmployeeBenefitResponseContribution>;
 
-/** For the `amount` and `percentage` contribution types, the value of the corresponding amount or percentage. For the `tiered` contribution type, an array of tiers. */
-export type EmployeeBenefitContributionValue =
-  | string
-  | EmployeeBenefitContributionValueCase1;
-export const EmployeeBenefitContributionValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EmployeeBenefitContributionValue>;
-
-/** An object representing the type and value of the company contribution. */
-export interface EmployeeBenefitContribution {
-  /** The company contribution scheme. "amount": The company contributes a fixed amount per payroll. If elective is true, the contribution is matching, dollar-for-dollar. "percentage": The company contributes a percentage of the payroll amount per payroll period. If elective is true, the contribution is matching, dollar-for-dollar. "tiered": The company contribution varies according to the size of the employee deduction. */
-  type?: string;
-  /** For the `amount` and `percentage` contribution types, the value of the corresponding amount or percentage. For the `tiered` contribution type, an array of tiers. */
-  value?: EmployeeBenefitContributionValue;
-}
-export const EmployeeBenefitContribution = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(S.String),
-    value: S.optional(EmployeeBenefitContributionValue),
-  }),
-).annotate({
-  identifier: "EmployeeBenefitContribution",
-}) as any as S.Schema<EmployeeBenefitContribution>;
-
-export type EmployeeBenefitDeductionReducesTaxableIncome =
+export type GetEmployeeBenefitResponseDeductionReducesTaxableIncome =
   | "unset"
   | "reduces_taxable_income"
   | "does_not_reduce_taxable_income";
-export const EmployeeBenefitDeductionReducesTaxableIncome =
+export const GetEmployeeBenefitResponseDeductionReducesTaxableIncome =
   /*@__PURE__*/ S.String;
 
-/** The representation of an employee benefit. */
-export interface EmployeeBenefit {
+export interface GetEmployeeBenefitResponse {
   /** Whether the employee benefit is active. */
   active?: boolean;
   /** Whether the employee should use a benefit's "catch up" rate. Only Roth 401k and 401k benefits use this value for employees over 50. */
@@ -6065,7 +7264,7 @@ export interface EmployeeBenefit {
   /** Whether the company_contribution value should be treated as a percentage to be added to each payroll. This field will not appear for tiered contribution types. */
   contribute_as_percentage?: boolean;
   /** An object representing the type and value of the company contribution. */
-  contribution?: EmployeeBenefitContribution;
+  contribution?: GetEmployeeBenefitResponseContribution;
   /** The amount that the employee is insured for. Note: company contribution cannot be present if coverage amount is set. */
   coverage_amount?: string | null;
   /** The coverage amount as a multiple of the employee's salary. Only applicable for Group Term Life benefits. Note: cannot be set if coverage amount is also set. */
@@ -6073,7 +7272,7 @@ export interface EmployeeBenefit {
   /** Whether the employee deduction amount should be treated as a percentage to be deducted from each payroll. */
   deduct_as_percentage?: boolean;
   /** Whether the employee deduction reduces taxable income or not. Only valid for Group Term Life benefits. Note: when the value is not "unset", coverage amount and coverage salary multiplier are ignored. */
-  deduction_reduces_taxable_income?: EmployeeBenefitDeductionReducesTaxableIncome | null;
+  deduction_reduces_taxable_income?: GetEmployeeBenefitResponseDeductionReducesTaxableIncome | null;
   /** The date the employee benefit will start. */
   effective_date?: string;
   /** Whether the company contribution is elective (aka matching). For "tiered" contribution types, this is always true. */
@@ -6097,19 +7296,19 @@ export interface EmployeeBenefit {
   /** The UUID of the employee benefit. */
   uuid: string;
 }
-export const EmployeeBenefit = /*@__PURE__*/ S.suspend(() =>
+export const GetEmployeeBenefitResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     active: S.optional(S.Boolean),
     catch_up: S.optional(S.NullOr(S.Boolean)),
     company_contribution: S.optional(S.String),
     company_contribution_annual_maximum: S.optional(S.NullOr(S.String)),
     contribute_as_percentage: S.optional(S.Boolean),
-    contribution: S.optional(EmployeeBenefitContribution),
+    contribution: S.optional(GetEmployeeBenefitResponseContribution),
     coverage_amount: S.optional(S.NullOr(S.String)),
     coverage_salary_multiplier: S.optional(S.NullOr(S.String)),
     deduct_as_percentage: S.optional(S.Boolean),
     deduction_reduces_taxable_income: S.optional(
-      S.NullOr(EmployeeBenefitDeductionReducesTaxableIncome),
+      S.NullOr(GetEmployeeBenefitResponseDeductionReducesTaxableIncome),
     ),
     effective_date: S.optional(S.String),
     elective: S.optional(S.Boolean),
@@ -6124,275 +7323,318 @@ export const EmployeeBenefit = /*@__PURE__*/ S.suspend(() =>
     uuid: S.String,
   }),
 ).annotate({
-  identifier: "EmployeeBenefit",
-}) as any as S.Schema<EmployeeBenefit>;
+  identifier: "GetEmployeeBenefitResponse",
+}) as any as S.Schema<GetEmployeeBenefitResponse>;
 
-export type GetV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsResponseBodyList =
+export interface GetEmployeeCustomFieldsRequest {
+  /** The UUID of the employee */
+  employee_id: string;
+  /** The page that is requested. When unspecified, will load all objects unless endpoint forces pagination. */
+  page?: number;
+  /** Number of objects per page. For majority of endpoints will default to 25 */
+  per?: number;
+}
+export const GetEmployeeCustomFieldsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    employee_id: S.String.pipe(T.Label()),
+    page: S.optional(S.Number.pipe(T.Query())),
+    per: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/employees/{employee_id}/custom_fields",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetEmployeeCustomFieldsRequest",
+}) as any as S.Schema<GetEmployeeCustomFieldsRequest>;
+
+export type EmployeeCustomFieldListCustomFieldsList =
+  Array<EmployeeCustomField>;
+export const EmployeeCustomFieldListCustomFieldsList = /*@__PURE__*/ S.Array(
+  EmployeeCustomField,
+) as any as S.Schema<EmployeeCustomFieldListCustomFieldsList>;
+
+/** A list of an employee's custom fields */
+export interface EmployeeCustomFieldList {
+  custom_fields?: EmployeeCustomFieldListCustomFieldsList;
+}
+export const EmployeeCustomFieldList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    custom_fields: S.optional(EmployeeCustomFieldListCustomFieldsList),
+  }),
+).annotate({
+  identifier: "EmployeeCustomFieldList",
+}) as any as S.Schema<EmployeeCustomFieldList>;
+
+export type GetEmployeeEmployeeBenefitsRequestInclude = "all_benefits";
+export const GetEmployeeEmployeeBenefitsRequestInclude = /*@__PURE__*/ S.String;
+
+export interface GetEmployeeEmployeeBenefitsRequest {
+  /** The UUID of the employee */
+  employee_id: string;
+  /** The page that is requested. When unspecified, will load all objects unless endpoint forces pagination. */
+  page?: number;
+  /** Number of objects per page. For majority of endpoints will default to 25 */
+  per?: number;
+  /** Available options: - all_benefits: Include all effective dated benefits for each employee instead of only the current benefits. */
+  include?: GetEmployeeEmployeeBenefitsRequestInclude | (string & {});
+}
+export const GetEmployeeEmployeeBenefitsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    employee_id: S.String.pipe(T.Label()),
+    page: S.optional(S.Number.pipe(T.Query())),
+    per: S.optional(S.Number.pipe(T.Query())),
+    include: S.optional(
+      GetEmployeeEmployeeBenefitsRequestInclude.pipe(T.Query()),
+    ),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/employees/{employee_id}/employee_benefits",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetEmployeeEmployeeBenefitsRequest",
+}) as any as S.Schema<GetEmployeeEmployeeBenefitsRequest>;
+
+export type GetEmployeeEmployeeBenefitsResponseBodyList =
   Array<EmployeeBenefit>;
-export const GetV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsResponseBodyList =
+export const GetEmployeeEmployeeBenefitsResponseBodyList =
   /*@__PURE__*/ S.Array(
     EmployeeBenefit,
-  ) as any as S.Schema<GetV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsResponseBodyList>;
+  ) as any as S.Schema<GetEmployeeEmployeeBenefitsResponseBodyList>;
 
-export type GetV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsResponse =
-  GetV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsResponseBodyList;
-export const GetV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsResponse",
-  }) as any as S.Schema<GetV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsResponse>;
-
-export interface GetV1CompensationsCompensationIdRequest {
-  /** The UUID of the compensation */
-  compensation_id: string;
-}
-export const GetV1CompensationsCompensationIdRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      compensation_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/compensations/{compensation_id}",
-        code: 200,
-      }),
-    ),
+export type GetEmployeeEmployeeBenefitsResponse =
+  GetEmployeeEmployeeBenefitsResponseBodyList;
+export const GetEmployeeEmployeeBenefitsResponse = /*@__PURE__*/ S.suspend(() =>
+  GetEmployeeEmployeeBenefitsResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "GetV1CompensationsCompensationIdRequest",
-}) as any as S.Schema<GetV1CompensationsCompensationIdRequest>;
+  identifier: "GetEmployeeEmployeeBenefitsResponse",
+}) as any as S.Schema<GetEmployeeEmployeeBenefitsResponse>;
 
-export type GetV1ContractorsContractorUuidRequestIncludeItem =
-  | "company_name"
-  | "portal_invitations";
-export const GetV1ContractorsContractorUuidRequestIncludeItem =
-  /*@__PURE__*/ S.String;
-
-export type GetV1ContractorsContractorUuidRequestIncludeList = Array<
-  GetV1ContractorsContractorUuidRequestIncludeItem | (string & {})
->;
-export const GetV1ContractorsContractorUuidRequestIncludeList =
-  /*@__PURE__*/ S.Array(
-    GetV1ContractorsContractorUuidRequestIncludeItem,
-  ) as any as S.Schema<GetV1ContractorsContractorUuidRequestIncludeList>;
-
-export interface GetV1ContractorsContractorUuidRequest {
-  /** The UUID of the contractor */
-  contractor_uuid: string;
-  /** Include the requested attribute(s) in each contractor response. Multiple options are comma separated. */
-  include?: GetV1ContractorsContractorUuidRequestIncludeList;
+export interface GetEmployeeEmploymentHistoryRequest {
+  /** The UUID of the employee */
+  employee_id: string;
 }
-export const GetV1ContractorsContractorUuidRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      contractor_uuid: S.String.pipe(T.Label()),
-      include: S.optional(
-        GetV1ContractorsContractorUuidRequestIncludeList.pipe(T.Query()),
-      ),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/contractors/{contractor_uuid}",
-        code: 200,
-      }),
-    ),
+export const GetEmployeeEmploymentHistoryRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    employee_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/employees/{employee_id}/employment_history",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "GetV1ContractorsContractorUuidRequest",
-}) as any as S.Schema<GetV1ContractorsContractorUuidRequest>;
+  identifier: "GetEmployeeEmploymentHistoryRequest",
+}) as any as S.Schema<GetEmployeeEmploymentHistoryRequest>;
 
-export interface GetV1EmployeeBenefitsEmployeeBenefitIdRequest {
-  /** The UUID of the employee benefit. */
-  employee_benefit_id: string;
+/** The employee's employment status. Supplying an invalid option will set the employment_status to *not_set*. */
+export type EmploymentHistoryListItemEmploymentStatus =
+  | "part_time"
+  | "full_time"
+  | "part_time_eligible"
+  | "variable"
+  | "seasonal - not_set";
+export const EmploymentHistoryListItemEmploymentStatus = /*@__PURE__*/ S.String;
+
+/** The representation of an employee's individual employements. */
+export interface EmploymentHistoryListItem {
+  /** The employee's employment status. Supplying an invalid option will set the employment_status to *not_set*. */
+  employment_status?: EmploymentHistoryListItemEmploymentStatus;
+  /** The boolean flag indicating whether Gusto will file a new hire report for the employee. */
+  file_new_hire_report?: boolean;
+  /** The employee's start day of work for an employment. */
+  hire_date?: string;
+  /** The employee's last day of work for an employment. */
+  termination_date?: string | null;
+  /** Whether the employee is a two percent shareholder of the company. This field only applies to companies with an S-Corp entity type. */
+  two_percent_shareholder?: boolean;
 }
-export const GetV1EmployeeBenefitsEmployeeBenefitIdRequest =
+export const EmploymentHistoryListItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    employment_status: S.optional(EmploymentHistoryListItemEmploymentStatus),
+    file_new_hire_report: S.optional(S.Boolean),
+    hire_date: S.optional(S.String),
+    termination_date: S.optional(S.NullOr(S.String)),
+    two_percent_shareholder: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "EmploymentHistoryListItem",
+}) as any as S.Schema<EmploymentHistoryListItem>;
+
+export type EmploymentHistoryList = Array<EmploymentHistoryListItem>;
+export const EmploymentHistoryList = /*@__PURE__*/ S.Array(
+  EmploymentHistoryListItem,
+) as any as S.Schema<EmploymentHistoryList>;
+
+export type GetEmployeeEmploymentHistoryResponse = EmploymentHistoryList;
+export const GetEmployeeEmploymentHistoryResponse = /*@__PURE__*/ S.suspend(
+  () => EmploymentHistoryList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "GetEmployeeEmploymentHistoryResponse",
+}) as any as S.Schema<GetEmployeeEmploymentHistoryResponse>;
+
+export interface GetEmployeeGarnishmentsRequest {
+  /** The UUID of the employee */
+  employee_id: string;
+  /** The page that is requested. When unspecified, will load all objects unless endpoint forces pagination. */
+  page?: number;
+  /** Number of objects per page. For majority of endpoints will default to 25 */
+  per?: number;
+}
+export const GetEmployeeGarnishmentsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    employee_id: S.String.pipe(T.Label()),
+    page: S.optional(S.Number.pipe(T.Query())),
+    per: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/employees/{employee_id}/garnishments",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetEmployeeGarnishmentsRequest",
+}) as any as S.Schema<GetEmployeeGarnishmentsRequest>;
+
+export type GetEmployeeGarnishmentsResponseBodyList = Array<Garnishment>;
+export const GetEmployeeGarnishmentsResponseBodyList = /*@__PURE__*/ S.Array(
+  Garnishment,
+) as any as S.Schema<GetEmployeeGarnishmentsResponseBodyList>;
+
+export type GetEmployeeGarnishmentsResponse =
+  GetEmployeeGarnishmentsResponseBodyList;
+export const GetEmployeeGarnishmentsResponse = /*@__PURE__*/ S.suspend(() =>
+  GetEmployeeGarnishmentsResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "GetEmployeeGarnishmentsResponse",
+}) as any as S.Schema<GetEmployeeGarnishmentsResponse>;
+
+export interface GetEmployeeHomeAddressesRequest {
+  /** The UUID of the employee */
+  employee_id: string;
+}
+export const GetEmployeeHomeAddressesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    employee_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/employees/{employee_id}/home_addresses",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetEmployeeHomeAddressesRequest",
+}) as any as S.Schema<GetEmployeeHomeAddressesRequest>;
+
+export type EmployeeAddressList = Array<EmployeeAddress>;
+export const EmployeeAddressList = /*@__PURE__*/ S.Array(
+  EmployeeAddress,
+) as any as S.Schema<EmployeeAddressList>;
+
+export type GetEmployeeHomeAddressesResponse = EmployeeAddressList;
+export const GetEmployeeHomeAddressesResponse = /*@__PURE__*/ S.suspend(() =>
+  EmployeeAddressList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "GetEmployeeHomeAddressesResponse",
+}) as any as S.Schema<GetEmployeeHomeAddressesResponse>;
+
+export interface GetEmployeeRecurringReimbursementsRequest {
+  /** The UUID of the employee */
+  employee_id: string;
+  /** The page that is requested. When unspecified, will load all objects unless endpoint forces pagination. */
+  page?: number;
+  /** Number of objects per page. For majority of endpoints will default to 25 */
+  per?: number;
+}
+export const GetEmployeeRecurringReimbursementsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      employee_benefit_id: S.String.pipe(T.Label()),
+      employee_id: S.String.pipe(T.Label()),
+      page: S.optional(S.Number.pipe(T.Query())),
+      per: S.optional(S.Number.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
-        uri: "/v1/employee_benefits/{employee_benefit_id}",
+        uri: "/v1/employees/{employee_id}/recurring_reimbursements",
         code: 200,
       }),
     ),
   ).annotate({
-    identifier: "GetV1EmployeeBenefitsEmployeeBenefitIdRequest",
-  }) as any as S.Schema<GetV1EmployeeBenefitsEmployeeBenefitIdRequest>;
+    identifier: "GetEmployeeRecurringReimbursementsRequest",
+  }) as any as S.Schema<GetEmployeeRecurringReimbursementsRequest>;
 
-/** A single tier of a tiered matching scheme. */
-export type GetV1EmployeeBenefitsEmployeeBenefitIdResponseContributionValueCase1TiersItem =
-  CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1TiersItem;
-export const GetV1EmployeeBenefitsEmployeeBenefitIdResponseContributionValueCase1TiersItem =
-  CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1TiersItem;
+export type RecurringReimbursementList = Array<RecurringReimbursement>;
+export const RecurringReimbursementList = /*@__PURE__*/ S.Array(
+  RecurringReimbursement,
+) as any as S.Schema<RecurringReimbursementList>;
 
-export type GetV1EmployeeBenefitsEmployeeBenefitIdResponseContributionValueCase1TiersList =
-  Array<CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1TiersItem>;
-export const GetV1EmployeeBenefitsEmployeeBenefitIdResponseContributionValueCase1TiersList =
-  /*@__PURE__*/ S.Array(
-    CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1TiersItem,
-  ) as any as S.Schema<GetV1EmployeeBenefitsEmployeeBenefitIdResponseContributionValueCase1TiersList>;
-
-export interface GetV1EmployeeBenefitsEmployeeBenefitIdResponseContributionValueCase1 {
-  tiers?: GetV1EmployeeBenefitsEmployeeBenefitIdResponseContributionValueCase1TiersList;
-}
-export const GetV1EmployeeBenefitsEmployeeBenefitIdResponseContributionValueCase1 =
+export type GetEmployeeRecurringReimbursementsResponse =
+  RecurringReimbursementList;
+export const GetEmployeeRecurringReimbursementsResponse =
   /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      tiers: S.optional(
-        GetV1EmployeeBenefitsEmployeeBenefitIdResponseContributionValueCase1TiersList,
-      ),
-    }),
+    RecurringReimbursementList.pipe(T.RawResponseRoot()),
   ).annotate({
-    identifier:
-      "GetV1EmployeeBenefitsEmployeeBenefitIdResponseContributionValueCase1",
-  }) as any as S.Schema<GetV1EmployeeBenefitsEmployeeBenefitIdResponseContributionValueCase1>;
+    identifier: "GetEmployeeRecurringReimbursementsResponse",
+  }) as any as S.Schema<GetEmployeeRecurringReimbursementsResponse>;
 
-/** For the `amount` and `percentage` contribution types, the value of the corresponding amount or percentage. For the `tiered` contribution type, an array of tiers. */
-export type GetV1EmployeeBenefitsEmployeeBenefitIdResponseContributionValue =
-  | string
-  | GetV1EmployeeBenefitsEmployeeBenefitIdResponseContributionValueCase1;
-export const GetV1EmployeeBenefitsEmployeeBenefitIdResponseContributionValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetV1EmployeeBenefitsEmployeeBenefitIdResponseContributionValue>;
-
-/** An object representing the type and value of the company contribution. */
-export interface GetV1EmployeeBenefitsEmployeeBenefitIdResponseContribution {
-  /** The company contribution scheme. "amount": The company contributes a fixed amount per payroll. If elective is true, the contribution is matching, dollar-for-dollar. "percentage": The company contributes a percentage of the payroll amount per payroll period. If elective is true, the contribution is matching, dollar-for-dollar. "tiered": The company contribution varies according to the size of the employee deduction. */
-  type?: string;
-  /** For the `amount` and `percentage` contribution types, the value of the corresponding amount or percentage. For the `tiered` contribution type, an array of tiers. */
-  value?: GetV1EmployeeBenefitsEmployeeBenefitIdResponseContributionValue;
+export interface GetEmployeeRehireRequest {
+  /** The UUID of the employee */
+  employee_id: string;
 }
-export const GetV1EmployeeBenefitsEmployeeBenefitIdResponseContribution =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: S.optional(S.String),
-      value: S.optional(
-        GetV1EmployeeBenefitsEmployeeBenefitIdResponseContributionValue,
-      ),
+export const GetEmployeeRehireRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    employee_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/employees/{employee_id}/rehire",
+      code: 200,
     }),
-  ).annotate({
-    identifier: "GetV1EmployeeBenefitsEmployeeBenefitIdResponseContribution",
-  }) as any as S.Schema<GetV1EmployeeBenefitsEmployeeBenefitIdResponseContribution>;
+  ),
+).annotate({
+  identifier: "GetEmployeeRehireRequest",
+}) as any as S.Schema<GetEmployeeRehireRequest>;
 
-export type GetV1EmployeeBenefitsEmployeeBenefitIdResponseDeductionReducesTaxableIncome =
-  | "unset"
-  | "reduces_taxable_income"
-  | "does_not_reduce_taxable_income";
-export const GetV1EmployeeBenefitsEmployeeBenefitIdResponseDeductionReducesTaxableIncome =
-  /*@__PURE__*/ S.String;
-
-export interface GetV1EmployeeBenefitsEmployeeBenefitIdResponse {
-  /** Whether the employee benefit is active. */
-  active?: boolean;
-  /** Whether the employee should use a benefit's "catch up" rate. Only Roth 401k and 401k benefits use this value for employees over 50. */
-  catch_up?: boolean | null;
-  /** The amount to be paid, per pay period, by the company. This field will not appear for tiered contribution types. */
-  company_contribution?: string;
-  /** The maximum company contribution amount per year. A null value signifies no limit. */
-  company_contribution_annual_maximum?: string | null;
-  /** Whether the company_contribution value should be treated as a percentage to be added to each payroll. This field will not appear for tiered contribution types. */
-  contribute_as_percentage?: boolean;
-  /** An object representing the type and value of the company contribution. */
-  contribution?: GetV1EmployeeBenefitsEmployeeBenefitIdResponseContribution;
-  /** The amount that the employee is insured for. Note: company contribution cannot be present if coverage amount is set. */
-  coverage_amount?: string | null;
-  /** The coverage amount as a multiple of the employee's salary. Only applicable for Group Term Life benefits. Note: cannot be set if coverage amount is also set. */
-  coverage_salary_multiplier?: string | null;
-  /** Whether the employee deduction amount should be treated as a percentage to be deducted from each payroll. */
-  deduct_as_percentage?: boolean;
-  /** Whether the employee deduction reduces taxable income or not. Only valid for Group Term Life benefits. Note: when the value is not "unset", coverage amount and coverage salary multiplier are ignored. */
-  deduction_reduces_taxable_income?: GetV1EmployeeBenefitsEmployeeBenefitIdResponseDeductionReducesTaxableIncome | null;
-  /** The date the employee benefit will start. */
-  effective_date?: string;
-  /** Whether the company contribution is elective (aka matching). For "tiered" contribution types, this is always true. */
-  elective?: boolean;
-  /** The amount to be deducted, per pay period, from the employee's pay. */
-  employee_deduction?: string;
-  /** The maximum employee deduction amount per year. A null value signifies no limit. */
-  employee_deduction_annual_maximum?: string | null;
-  /** The date the employee benefit will expire. A null value indicates the benefit will not expire. */
-  expiration_date?: string | null;
-  /** Some benefits require additional information to determine their limit. `Family` and `Individual` are applicable to HSA benefit. `Joint Filing or Single` and `Married and Filing Separately` are applicable to Dependent Care FSA benefit. */
-  limit_option?: string | null;
-  /** Identifier for a 401(k) loan assigned by the 401(k) provider */
-  retirement_loan_identifier?: string | null;
-  /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
-  version?: string;
-  /** The UUID of the company benefit. */
-  company_benefit_uuid?: string;
-  /** The UUID of the employee to which the benefit belongs. */
-  employee_uuid?: string;
-  /** The UUID of the employee benefit. */
-  uuid: string;
-}
-export const GetV1EmployeeBenefitsEmployeeBenefitIdResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      active: S.optional(S.Boolean),
-      catch_up: S.optional(S.NullOr(S.Boolean)),
-      company_contribution: S.optional(S.String),
-      company_contribution_annual_maximum: S.optional(S.NullOr(S.String)),
-      contribute_as_percentage: S.optional(S.Boolean),
-      contribution: S.optional(
-        GetV1EmployeeBenefitsEmployeeBenefitIdResponseContribution,
-      ),
-      coverage_amount: S.optional(S.NullOr(S.String)),
-      coverage_salary_multiplier: S.optional(S.NullOr(S.String)),
-      deduct_as_percentage: S.optional(S.Boolean),
-      deduction_reduces_taxable_income: S.optional(
-        S.NullOr(
-          GetV1EmployeeBenefitsEmployeeBenefitIdResponseDeductionReducesTaxableIncome,
-        ),
-      ),
-      effective_date: S.optional(S.String),
-      elective: S.optional(S.Boolean),
-      employee_deduction: S.optional(S.String),
-      employee_deduction_annual_maximum: S.optional(S.NullOr(S.String)),
-      expiration_date: S.optional(S.NullOr(S.String)),
-      limit_option: S.optional(S.NullOr(S.String)),
-      retirement_loan_identifier: S.optional(S.NullOr(S.String)),
-      version: S.optional(S.String),
-      company_benefit_uuid: S.optional(S.String),
-      employee_uuid: S.optional(S.String),
-      uuid: S.String,
-    }),
-  ).annotate({
-    identifier: "GetV1EmployeeBenefitsEmployeeBenefitIdResponse",
-  }) as any as S.Schema<GetV1EmployeeBenefitsEmployeeBenefitIdResponse>;
-
-export type GetV1EmployeesRequestIncludeItem =
+export type GetEmployeesRequestIncludeItem =
   | "all_compensations"
   | "all_home_addresses"
   | "company_name"
   | "current_home_address"
   | "custom_fields"
   | "portal_invitations";
-export const GetV1EmployeesRequestIncludeItem = /*@__PURE__*/ S.String;
+export const GetEmployeesRequestIncludeItem = /*@__PURE__*/ S.String;
 
-export type GetV1EmployeesRequestIncludeList = Array<
-  GetV1EmployeesRequestIncludeItem | (string & {})
+export type GetEmployeesRequestIncludeList = Array<
+  GetEmployeesRequestIncludeItem | (string & {})
 >;
-export const GetV1EmployeesRequestIncludeList = /*@__PURE__*/ S.Array(
-  GetV1EmployeesRequestIncludeItem,
-) as any as S.Schema<GetV1EmployeesRequestIncludeList>;
+export const GetEmployeesRequestIncludeList = /*@__PURE__*/ S.Array(
+  GetEmployeesRequestIncludeItem,
+) as any as S.Schema<GetEmployeesRequestIncludeList>;
 
-export interface GetV1EmployeesRequest {
+export interface GetEmployeesRequest {
   /** The UUID of the employee */
   employee_id: string;
   /** Include the requested attribute(s) in each employee response. Multiple options are comma separated. */
-  include?: GetV1EmployeesRequestIncludeList;
+  include?: GetEmployeesRequestIncludeList;
 }
-export const GetV1EmployeesRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetEmployeesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     employee_id: S.String.pipe(T.Label()),
-    include: S.optional(GetV1EmployeesRequestIncludeList.pipe(T.Query())),
+    include: S.optional(GetEmployeesRequestIncludeList.pipe(T.Query())),
   }).pipe(
     T.Http({ method: "GET", uri: "/v1/employees/{employee_id}", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetV1EmployeesRequest",
-}) as any as S.Schema<GetV1EmployeesRequest>;
+  identifier: "GetEmployeesRequest",
+}) as any as S.Schema<GetEmployeesRequest>;
 
 export type EmployeeApplicableTaxIdsList = Array<number>;
 export const EmployeeApplicableTaxIdsList = /*@__PURE__*/ S.Array(
@@ -6599,593 +7841,13 @@ export const Employee = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Employee" }) as any as S.Schema<Employee>;
 
-export interface GetV1EmployeesEmployeeIdCustomFieldsRequest {
-  /** The UUID of the employee */
-  employee_id: string;
-  /** The page that is requested. When unspecified, will load all objects unless endpoint forces pagination. */
-  page?: number;
-  /** Number of objects per page. For majority of endpoints will default to 25 */
-  per?: number;
-}
-export const GetV1EmployeesEmployeeIdCustomFieldsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      employee_id: S.String.pipe(T.Label()),
-      page: S.optional(S.Number.pipe(T.Query())),
-      per: S.optional(S.Number.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/employees/{employee_id}/custom_fields",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetV1EmployeesEmployeeIdCustomFieldsRequest",
-  }) as any as S.Schema<GetV1EmployeesEmployeeIdCustomFieldsRequest>;
-
-export type EmployeeCustomFieldListCustomFieldsList =
-  Array<EmployeeCustomField>;
-export const EmployeeCustomFieldListCustomFieldsList = /*@__PURE__*/ S.Array(
-  EmployeeCustomField,
-) as any as S.Schema<EmployeeCustomFieldListCustomFieldsList>;
-
-/** A list of an employee's custom fields */
-export interface EmployeeCustomFieldList {
-  custom_fields?: EmployeeCustomFieldListCustomFieldsList;
-}
-export const EmployeeCustomFieldList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    custom_fields: S.optional(EmployeeCustomFieldListCustomFieldsList),
-  }),
-).annotate({
-  identifier: "EmployeeCustomFieldList",
-}) as any as S.Schema<EmployeeCustomFieldList>;
-
-export type GetV1EmployeesEmployeeIdEmployeeBenefitsRequestInclude =
-  "all_benefits";
-export const GetV1EmployeesEmployeeIdEmployeeBenefitsRequestInclude =
-  /*@__PURE__*/ S.String;
-
-export interface GetV1EmployeesEmployeeIdEmployeeBenefitsRequest {
-  /** The UUID of the employee */
-  employee_id: string;
-  /** The page that is requested. When unspecified, will load all objects unless endpoint forces pagination. */
-  page?: number;
-  /** Number of objects per page. For majority of endpoints will default to 25 */
-  per?: number;
-  /** Available options: - all_benefits: Include all effective dated benefits for each employee instead of only the current benefits. */
-  include?:
-    | GetV1EmployeesEmployeeIdEmployeeBenefitsRequestInclude
-    | (string & {});
-}
-export const GetV1EmployeesEmployeeIdEmployeeBenefitsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      employee_id: S.String.pipe(T.Label()),
-      page: S.optional(S.Number.pipe(T.Query())),
-      per: S.optional(S.Number.pipe(T.Query())),
-      include: S.optional(
-        GetV1EmployeesEmployeeIdEmployeeBenefitsRequestInclude.pipe(T.Query()),
-      ),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/employees/{employee_id}/employee_benefits",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetV1EmployeesEmployeeIdEmployeeBenefitsRequest",
-  }) as any as S.Schema<GetV1EmployeesEmployeeIdEmployeeBenefitsRequest>;
-
-export type GetV1EmployeesEmployeeIdEmployeeBenefitsResponseBodyList =
-  Array<EmployeeBenefit>;
-export const GetV1EmployeesEmployeeIdEmployeeBenefitsResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    EmployeeBenefit,
-  ) as any as S.Schema<GetV1EmployeesEmployeeIdEmployeeBenefitsResponseBodyList>;
-
-export type GetV1EmployeesEmployeeIdEmployeeBenefitsResponse =
-  GetV1EmployeesEmployeeIdEmployeeBenefitsResponseBodyList;
-export const GetV1EmployeesEmployeeIdEmployeeBenefitsResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetV1EmployeesEmployeeIdEmployeeBenefitsResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetV1EmployeesEmployeeIdEmployeeBenefitsResponse",
-  }) as any as S.Schema<GetV1EmployeesEmployeeIdEmployeeBenefitsResponse>;
-
-export interface GetV1EmployeesEmployeeIdEmploymentHistoryRequest {
-  /** The UUID of the employee */
-  employee_id: string;
-}
-export const GetV1EmployeesEmployeeIdEmploymentHistoryRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      employee_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/employees/{employee_id}/employment_history",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetV1EmployeesEmployeeIdEmploymentHistoryRequest",
-  }) as any as S.Schema<GetV1EmployeesEmployeeIdEmploymentHistoryRequest>;
-
-/** The employee's employment status. Supplying an invalid option will set the employment_status to *not_set*. */
-export type EmploymentHistoryListItemEmploymentStatus =
-  | "part_time"
-  | "full_time"
-  | "part_time_eligible"
-  | "variable"
-  | "seasonal - not_set";
-export const EmploymentHistoryListItemEmploymentStatus = /*@__PURE__*/ S.String;
-
-/** The representation of an employee's individual employements. */
-export interface EmploymentHistoryListItem {
-  /** The employee's employment status. Supplying an invalid option will set the employment_status to *not_set*. */
-  employment_status?: EmploymentHistoryListItemEmploymentStatus;
-  /** The boolean flag indicating whether Gusto will file a new hire report for the employee. */
-  file_new_hire_report?: boolean;
-  /** The employee's start day of work for an employment. */
-  hire_date?: string;
-  /** The employee's last day of work for an employment. */
-  termination_date?: string | null;
-  /** Whether the employee is a two percent shareholder of the company. This field only applies to companies with an S-Corp entity type. */
-  two_percent_shareholder?: boolean;
-}
-export const EmploymentHistoryListItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    employment_status: S.optional(EmploymentHistoryListItemEmploymentStatus),
-    file_new_hire_report: S.optional(S.Boolean),
-    hire_date: S.optional(S.String),
-    termination_date: S.optional(S.NullOr(S.String)),
-    two_percent_shareholder: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "EmploymentHistoryListItem",
-}) as any as S.Schema<EmploymentHistoryListItem>;
-
-export type EmploymentHistoryList = Array<EmploymentHistoryListItem>;
-export const EmploymentHistoryList = /*@__PURE__*/ S.Array(
-  EmploymentHistoryListItem,
-) as any as S.Schema<EmploymentHistoryList>;
-
-export type GetV1EmployeesEmployeeIdEmploymentHistoryResponse =
-  EmploymentHistoryList;
-export const GetV1EmployeesEmployeeIdEmploymentHistoryResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    EmploymentHistoryList.pipe(T.RawResponseRoot()),
-  ).annotate({
-    identifier: "GetV1EmployeesEmployeeIdEmploymentHistoryResponse",
-  }) as any as S.Schema<GetV1EmployeesEmployeeIdEmploymentHistoryResponse>;
-
-export interface GetV1EmployeesEmployeeIdGarnishmentsRequest {
-  /** The UUID of the employee */
-  employee_id: string;
-  /** The page that is requested. When unspecified, will load all objects unless endpoint forces pagination. */
-  page?: number;
-  /** Number of objects per page. For majority of endpoints will default to 25 */
-  per?: number;
-}
-export const GetV1EmployeesEmployeeIdGarnishmentsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      employee_id: S.String.pipe(T.Label()),
-      page: S.optional(S.Number.pipe(T.Query())),
-      per: S.optional(S.Number.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/employees/{employee_id}/garnishments",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetV1EmployeesEmployeeIdGarnishmentsRequest",
-  }) as any as S.Schema<GetV1EmployeesEmployeeIdGarnishmentsRequest>;
-
-export type GetV1EmployeesEmployeeIdGarnishmentsResponseBodyList =
-  Array<Garnishment>;
-export const GetV1EmployeesEmployeeIdGarnishmentsResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    Garnishment,
-  ) as any as S.Schema<GetV1EmployeesEmployeeIdGarnishmentsResponseBodyList>;
-
-export type GetV1EmployeesEmployeeIdGarnishmentsResponse =
-  GetV1EmployeesEmployeeIdGarnishmentsResponseBodyList;
-export const GetV1EmployeesEmployeeIdGarnishmentsResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetV1EmployeesEmployeeIdGarnishmentsResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetV1EmployeesEmployeeIdGarnishmentsResponse",
-  }) as any as S.Schema<GetV1EmployeesEmployeeIdGarnishmentsResponse>;
-
-export interface GetV1EmployeesEmployeeIdHomeAddressesRequest {
-  /** The UUID of the employee */
-  employee_id: string;
-}
-export const GetV1EmployeesEmployeeIdHomeAddressesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      employee_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/employees/{employee_id}/home_addresses",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetV1EmployeesEmployeeIdHomeAddressesRequest",
-  }) as any as S.Schema<GetV1EmployeesEmployeeIdHomeAddressesRequest>;
-
-/** An array of warning objects that provide additional information about the address. Warnings do not prevent the address from being saved. */
-export type EmployeeAddressWarningsList = Array<WarningObject>;
-export const EmployeeAddressWarningsList = /*@__PURE__*/ S.Array(
-  WarningObject,
-) as any as S.Schema<EmployeeAddressWarningsList>;
-
-export interface EmployeeAddress {
-  /** The status of the location. Inactive locations have been deleted, but may still have historical data associated with them. */
-  active?: boolean;
-  city?: string;
-  country?: string;
-  /** Determines if home taxes should be withheld and paid for employee. */
-  courtesy_withholding?: boolean;
-  /** The date the employee started living at the address. */
-  effective_date?: string;
-  /** The UUID of the employee */
-  employee_uuid?: string;
-  state?: string;
-  street_1?: string;
-  street_2?: string | null;
-  /** The UUID of the employee address */
-  uuid: string;
-  /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
-  version: string;
-  /** An array of warning objects that provide additional information about the address. Warnings do not prevent the address from being saved. */
-  warnings?: EmployeeAddressWarningsList;
-  zip?: string;
-}
-export const EmployeeAddress = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    active: S.optional(S.Boolean),
-    city: S.optional(S.String),
-    country: S.optional(S.String),
-    courtesy_withholding: S.optional(S.Boolean),
-    effective_date: S.optional(S.String),
-    employee_uuid: S.optional(S.String),
-    state: S.optional(S.String),
-    street_1: S.optional(S.String),
-    street_2: S.optional(S.NullOr(S.String)),
-    uuid: S.String,
-    version: S.String,
-    warnings: S.optional(EmployeeAddressWarningsList),
-    zip: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "EmployeeAddress",
-}) as any as S.Schema<EmployeeAddress>;
-
-export type EmployeeAddressList = Array<EmployeeAddress>;
-export const EmployeeAddressList = /*@__PURE__*/ S.Array(
-  EmployeeAddress,
-) as any as S.Schema<EmployeeAddressList>;
-
-export type GetV1EmployeesEmployeeIdHomeAddressesResponse = EmployeeAddressList;
-export const GetV1EmployeesEmployeeIdHomeAddressesResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    EmployeeAddressList.pipe(T.RawResponseRoot()),
-  ).annotate({
-    identifier: "GetV1EmployeesEmployeeIdHomeAddressesResponse",
-  }) as any as S.Schema<GetV1EmployeesEmployeeIdHomeAddressesResponse>;
-
-export interface GetV1EmployeesEmployeeIdRecurringReimbursementsRequest {
-  /** The UUID of the employee */
-  employee_id: string;
-  /** The page that is requested. When unspecified, will load all objects unless endpoint forces pagination. */
-  page?: number;
-  /** Number of objects per page. For majority of endpoints will default to 25 */
-  per?: number;
-}
-export const GetV1EmployeesEmployeeIdRecurringReimbursementsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      employee_id: S.String.pipe(T.Label()),
-      page: S.optional(S.Number.pipe(T.Query())),
-      per: S.optional(S.Number.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/employees/{employee_id}/recurring_reimbursements",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetV1EmployeesEmployeeIdRecurringReimbursementsRequest",
-  }) as any as S.Schema<GetV1EmployeesEmployeeIdRecurringReimbursementsRequest>;
-
-export interface RecurringReimbursement {
-  /** The dollar amount of the reimbursement. */
-  amount: string;
-  /** The timestamp when this reimbursement was created. */
-  created_at?: string;
-  /** The description of the reimbursement. */
-  description: string;
-  /** The UUID of the employee. */
-  employee_uuid: string;
-  /** The timestamp when this reimbursement was last updated. */
-  updated_at?: string;
-  /** The unique identifier of this recurring reimbursement. */
-  uuid: string;
-  /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
-  version: string;
-}
-export const RecurringReimbursement = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    amount: S.String,
-    created_at: S.optional(S.String),
-    description: S.String,
-    employee_uuid: S.String,
-    updated_at: S.optional(S.String),
-    uuid: S.String,
-    version: S.String,
-  }),
-).annotate({
-  identifier: "RecurringReimbursement",
-}) as any as S.Schema<RecurringReimbursement>;
-
-export type RecurringReimbursementList = Array<RecurringReimbursement>;
-export const RecurringReimbursementList = /*@__PURE__*/ S.Array(
-  RecurringReimbursement,
-) as any as S.Schema<RecurringReimbursementList>;
-
-export type GetV1EmployeesEmployeeIdRecurringReimbursementsResponse =
-  RecurringReimbursementList;
-export const GetV1EmployeesEmployeeIdRecurringReimbursementsResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    RecurringReimbursementList.pipe(T.RawResponseRoot()),
-  ).annotate({
-    identifier: "GetV1EmployeesEmployeeIdRecurringReimbursementsResponse",
-  }) as any as S.Schema<GetV1EmployeesEmployeeIdRecurringReimbursementsResponse>;
-
-export interface GetV1EmployeesEmployeeIdRehireRequest {
-  /** The UUID of the employee */
-  employee_id: string;
-}
-export const GetV1EmployeesEmployeeIdRehireRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      employee_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/employees/{employee_id}/rehire",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "GetV1EmployeesEmployeeIdRehireRequest",
-}) as any as S.Schema<GetV1EmployeesEmployeeIdRehireRequest>;
-
-/** The employee's employment status. Supplying an invalid option will set the employment_status to *not_set*. */
-export type RehireEmploymentStatus =
-  | "part_time"
-  | "full_time"
-  | "part_time_eligible"
-  | "variable"
-  | "seasonal"
-  | "not_set";
-export const RehireEmploymentStatus = /*@__PURE__*/ S.String;
-
-export interface Rehire {
-  /** Whether the employee's rehire has gone into effect. */
-  active?: boolean;
-  /** The day when the employee returns to work. */
-  effective_date?: string;
-  /** The UUID of the employee. */
-  employee_uuid?: string;
-  /** The employee's employment status. Supplying an invalid option will set the employment_status to *not_set*. */
-  employment_status?: RehireEmploymentStatus;
-  /** The boolean flag indicating whether Gusto will file a new hire report for the employee. */
-  file_new_hire_report?: boolean;
-  /** Whether the employee is a two percent shareholder of the company. This field only applies to companies with an S-Corp entity type. */
-  two_percent_shareholder?: boolean;
-  /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/versioning#object-layer) for information on how to use this field. */
-  version?: string;
-  /** The uuid of the employee's work location. */
-  work_location_uuid?: string;
-}
-export const Rehire = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    active: S.optional(S.Boolean),
-    effective_date: S.optional(S.String),
-    employee_uuid: S.optional(S.String),
-    employment_status: S.optional(RehireEmploymentStatus),
-    file_new_hire_report: S.optional(S.Boolean),
-    two_percent_shareholder: S.optional(S.Boolean),
-    version: S.optional(S.String),
-    work_location_uuid: S.optional(S.String),
-  }),
-).annotate({ identifier: "Rehire" }) as any as S.Schema<Rehire>;
-
-export interface GetV1EmployeesEmployeeIdTerminationsRequest {
-  /** The UUID of the employee */
-  employee_id: string;
-}
-export const GetV1EmployeesEmployeeIdTerminationsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      employee_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/employees/{employee_id}/terminations",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetV1EmployeesEmployeeIdTerminationsRequest",
-  }) as any as S.Schema<GetV1EmployeesEmployeeIdTerminationsRequest>;
-
-export type GetV1EmployeesEmployeeIdTerminationsResponseBodyList =
-  Array<Termination>;
-export const GetV1EmployeesEmployeeIdTerminationsResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    Termination,
-  ) as any as S.Schema<GetV1EmployeesEmployeeIdTerminationsResponseBodyList>;
-
-export type GetV1EmployeesEmployeeIdTerminationsResponse =
-  GetV1EmployeesEmployeeIdTerminationsResponseBodyList;
-export const GetV1EmployeesEmployeeIdTerminationsResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    GetV1EmployeesEmployeeIdTerminationsResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetV1EmployeesEmployeeIdTerminationsResponse",
-  }) as any as S.Schema<GetV1EmployeesEmployeeIdTerminationsResponse>;
-
-export interface GetV1EmployeesEmployeeIdWorkAddressesRequest {
-  /** The UUID of the employee */
-  employee_id: string;
-}
-export const GetV1EmployeesEmployeeIdWorkAddressesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      employee_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/employees/{employee_id}/work_addresses",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetV1EmployeesEmployeeIdWorkAddressesRequest",
-  }) as any as S.Schema<GetV1EmployeesEmployeeIdWorkAddressesRequest>;
-
-export interface EmployeeWorkAddress {
-  /** Signifies if this address is the active work address for the current date */
-  active?: boolean;
-  city?: string;
-  country?: string;
-  /** The date the employee began working at this location. */
-  effective_date?: string;
-  /** UUID reference to the employee for this work address. */
-  employee_uuid?: string;
-  /** UUID reference to the company location for this work address. */
-  location_uuid?: string;
-  state?: string;
-  street_1?: string;
-  street_2?: string | null;
-  /** The unique identifier of this work address. */
-  uuid: string;
-  /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
-  version: string;
-  zip?: string;
-}
-export const EmployeeWorkAddress = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    active: S.optional(S.Boolean),
-    city: S.optional(S.String),
-    country: S.optional(S.String),
-    effective_date: S.optional(S.String),
-    employee_uuid: S.optional(S.String),
-    location_uuid: S.optional(S.String),
-    state: S.optional(S.String),
-    street_1: S.optional(S.String),
-    street_2: S.optional(S.NullOr(S.String)),
-    uuid: S.String,
-    version: S.String,
-    zip: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "EmployeeWorkAddress",
-}) as any as S.Schema<EmployeeWorkAddress>;
-
-export type EmployeeWorkAddressesList = Array<EmployeeWorkAddress>;
-export const EmployeeWorkAddressesList = /*@__PURE__*/ S.Array(
-  EmployeeWorkAddress,
-) as any as S.Schema<EmployeeWorkAddressesList>;
-
-export type GetV1EmployeesEmployeeIdWorkAddressesResponse =
-  EmployeeWorkAddressesList;
-export const GetV1EmployeesEmployeeIdWorkAddressesResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    EmployeeWorkAddressesList.pipe(T.RawResponseRoot()),
-  ).annotate({
-    identifier: "GetV1EmployeesEmployeeIdWorkAddressesResponse",
-  }) as any as S.Schema<GetV1EmployeesEmployeeIdWorkAddressesResponse>;
-
-export interface GetV1EmployeesEmployeeUuidSection603HighEarnerStatusesRequest {
-  /** The UUID of the employee */
-  employee_uuid: string;
-}
-export const GetV1EmployeesEmployeeUuidSection603HighEarnerStatusesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      employee_uuid: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/employees/{employee_uuid}/section603_high_earner_statuses",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetV1EmployeesEmployeeUuidSection603HighEarnerStatusesRequest",
-  }) as any as S.Schema<GetV1EmployeesEmployeeUuidSection603HighEarnerStatusesRequest>;
-
-/** The representation of an employee's Section 603 high earner status for a specific year. Section 603 of the SECURE 2.0 Act requires employees aged 50 or older whose prior-year FICA wages exceed the IRS threshold to have their catch-up contributions to pre-tax retirement benefits designated as post-tax contributions. */
-export interface EmployeeSection603HighEarnerStatus {
-  /** The year for which this high earner status applies */
-  effective_year: number;
-  /** The unique identifier of the Section 603 high earner status record */
-  id: string;
-  /** Whether the employee is classified as a high earner for Section 603 purposes. Can be null if the status has not yet been determined. */
-  is_high_earner: boolean | null;
-}
-export const EmployeeSection603HighEarnerStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    effective_year: S.Number,
-    id: S.String,
-    is_high_earner: S.NullOr(S.Boolean),
-  }),
-).annotate({
-  identifier: "EmployeeSection603HighEarnerStatus",
-}) as any as S.Schema<EmployeeSection603HighEarnerStatus>;
-
-export type EmployeeSection603HighEarnerStatusList =
-  Array<EmployeeSection603HighEarnerStatus>;
-export const EmployeeSection603HighEarnerStatusList = /*@__PURE__*/ S.Array(
-  EmployeeSection603HighEarnerStatus,
-) as any as S.Schema<EmployeeSection603HighEarnerStatusList>;
-
-export type GetV1EmployeesEmployeeUuidSection603HighEarnerStatusesResponse =
-  EmployeeSection603HighEarnerStatusList;
-export const GetV1EmployeesEmployeeUuidSection603HighEarnerStatusesResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    EmployeeSection603HighEarnerStatusList.pipe(T.RawResponseRoot()),
-  ).annotate({
-    identifier:
-      "GetV1EmployeesEmployeeUuidSection603HighEarnerStatusesResponse",
-  }) as any as S.Schema<GetV1EmployeesEmployeeUuidSection603HighEarnerStatusesResponse>;
-
-export interface GetV1EmployeesEmployeeUuidSection603HighEarnerStatusesEffectiveYearRequest {
+export interface GetEmployeeSection603HighEarnerStatusRequest {
   /** The UUID of the employee */
   employee_uuid: string;
   /** The effective year for the Section 603 status */
   effective_year: number;
 }
-export const GetV1EmployeesEmployeeUuidSection603HighEarnerStatusesEffectiveYearRequest =
+export const GetEmployeeSection603HighEarnerStatusRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       employee_uuid: S.String.pipe(T.Label()),
@@ -7198,23 +7860,266 @@ export const GetV1EmployeesEmployeeUuidSection603HighEarnerStatusesEffectiveYear
       }),
     ),
   ).annotate({
-    identifier:
-      "GetV1EmployeesEmployeeUuidSection603HighEarnerStatusesEffectiveYearRequest",
-  }) as any as S.Schema<GetV1EmployeesEmployeeUuidSection603HighEarnerStatusesEffectiveYearRequest>;
+    identifier: "GetEmployeeSection603HighEarnerStatusRequest",
+  }) as any as S.Schema<GetEmployeeSection603HighEarnerStatusRequest>;
 
-export interface GetV1GarnishmentsChildSupportRequest {}
-export const GetV1GarnishmentsChildSupportRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({}).pipe(
+export interface GetEmployeeSection603HighEarnerStatusesRequest {
+  /** The UUID of the employee */
+  employee_uuid: string;
+}
+export const GetEmployeeSection603HighEarnerStatusesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      employee_uuid: S.String.pipe(T.Label()),
+    }).pipe(
       T.Http({
         method: "GET",
-        uri: "/v1/garnishments/child_support",
+        uri: "/v1/employees/{employee_uuid}/section603_high_earner_statuses",
         code: 200,
       }),
     ),
+  ).annotate({
+    identifier: "GetEmployeeSection603HighEarnerStatusesRequest",
+  }) as any as S.Schema<GetEmployeeSection603HighEarnerStatusesRequest>;
+
+export type EmployeeSection603HighEarnerStatusList =
+  Array<EmployeeSection603HighEarnerStatus>;
+export const EmployeeSection603HighEarnerStatusList = /*@__PURE__*/ S.Array(
+  EmployeeSection603HighEarnerStatus,
+) as any as S.Schema<EmployeeSection603HighEarnerStatusList>;
+
+export type GetEmployeeSection603HighEarnerStatusesResponse =
+  EmployeeSection603HighEarnerStatusList;
+export const GetEmployeeSection603HighEarnerStatusesResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    EmployeeSection603HighEarnerStatusList.pipe(T.RawResponseRoot()),
+  ).annotate({
+    identifier: "GetEmployeeSection603HighEarnerStatusesResponse",
+  }) as any as S.Schema<GetEmployeeSection603HighEarnerStatusesResponse>;
+
+export interface GetEmployeeTerminationsRequest {
+  /** The UUID of the employee */
+  employee_id: string;
+}
+export const GetEmployeeTerminationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    employee_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/employees/{employee_id}/terminations",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "GetV1GarnishmentsChildSupportRequest",
-}) as any as S.Schema<GetV1GarnishmentsChildSupportRequest>;
+  identifier: "GetEmployeeTerminationsRequest",
+}) as any as S.Schema<GetEmployeeTerminationsRequest>;
+
+export type GetEmployeeTerminationsResponseBodyList = Array<Termination>;
+export const GetEmployeeTerminationsResponseBodyList = /*@__PURE__*/ S.Array(
+  Termination,
+) as any as S.Schema<GetEmployeeTerminationsResponseBodyList>;
+
+export type GetEmployeeTerminationsResponse =
+  GetEmployeeTerminationsResponseBodyList;
+export const GetEmployeeTerminationsResponse = /*@__PURE__*/ S.suspend(() =>
+  GetEmployeeTerminationsResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "GetEmployeeTerminationsResponse",
+}) as any as S.Schema<GetEmployeeTerminationsResponse>;
+
+export interface GetEmployeeWorkAddressesRequest {
+  /** The UUID of the employee */
+  employee_id: string;
+}
+export const GetEmployeeWorkAddressesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    employee_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/employees/{employee_id}/work_addresses",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetEmployeeWorkAddressesRequest",
+}) as any as S.Schema<GetEmployeeWorkAddressesRequest>;
+
+export type EmployeeWorkAddressesList = Array<EmployeeWorkAddress>;
+export const EmployeeWorkAddressesList = /*@__PURE__*/ S.Array(
+  EmployeeWorkAddress,
+) as any as S.Schema<EmployeeWorkAddressesList>;
+
+export type GetEmployeeWorkAddressesResponse = EmployeeWorkAddressesList;
+export const GetEmployeeWorkAddressesResponse = /*@__PURE__*/ S.suspend(() =>
+  EmployeeWorkAddressesList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "GetEmployeeWorkAddressesResponse",
+}) as any as S.Schema<GetEmployeeWorkAddressesResponse>;
+
+export interface GetEmployeeYtdBenefitAmountsFromDifferentCompanyRequest {
+  /** The UUID of the employee */
+  employee_id: string;
+  /** The tax year for which to retrieve YTD benefit amounts. Defaults to current year if not specified. */
+  tax_year?: number;
+}
+export const GetEmployeeYtdBenefitAmountsFromDifferentCompanyRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      employee_id: S.String.pipe(T.Label()),
+      tax_year: S.optional(S.Number.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/v1/employees/{employee_id}/ytd_benefit_amounts_from_different_company",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "GetEmployeeYtdBenefitAmountsFromDifferentCompanyRequest",
+  }) as any as S.Schema<GetEmployeeYtdBenefitAmountsFromDifferentCompanyRequest>;
+
+/** Ytd Benefit Amounts From Different Company */
+export interface YtdBenefitAmountsFromDifferentCompany {
+  /** The benefit type supported by Gusto. See [Benefit Types](https://docs.gusto.com/embedded-payroll/reference/get-v1-benefits) for more information. */
+  benefit_type: number;
+  /** The unique identifier for this benefit amount record. */
+  uuid: string;
+  /** The year-to-date company contribution made outside the current company. */
+  ytd_company_contribution_amount: string;
+  /** The year-to-date employee deduction made outside the current company. */
+  ytd_employee_deduction_amount: string;
+}
+export const YtdBenefitAmountsFromDifferentCompany = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      benefit_type: S.Number,
+      uuid: S.String,
+      ytd_company_contribution_amount: S.String,
+      ytd_employee_deduction_amount: S.String,
+    }),
+).annotate({
+  identifier: "YtdBenefitAmountsFromDifferentCompany",
+}) as any as S.Schema<YtdBenefitAmountsFromDifferentCompany>;
+
+export type GetEmployeeYtdBenefitAmountsFromDifferentCompanyResponseBodyList =
+  Array<YtdBenefitAmountsFromDifferentCompany>;
+export const GetEmployeeYtdBenefitAmountsFromDifferentCompanyResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    YtdBenefitAmountsFromDifferentCompany,
+  ) as any as S.Schema<GetEmployeeYtdBenefitAmountsFromDifferentCompanyResponseBodyList>;
+
+export type GetEmployeeYtdBenefitAmountsFromDifferentCompanyResponse =
+  GetEmployeeYtdBenefitAmountsFromDifferentCompanyResponseBodyList;
+export const GetEmployeeYtdBenefitAmountsFromDifferentCompanyResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    GetEmployeeYtdBenefitAmountsFromDifferentCompanyResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "GetEmployeeYtdBenefitAmountsFromDifferentCompanyResponse",
+  }) as any as S.Schema<GetEmployeeYtdBenefitAmountsFromDifferentCompanyResponse>;
+
+export type GetEventsRequestSortOrder = "asc" | "desc";
+export const GetEventsRequestSortOrder = /*@__PURE__*/ S.String;
+
+export interface GetEventsRequest {
+  /** A cursor for pagination. Returns all events occuring after the specified UUID (exclusive). Events are sorted according to the provided sort_order param. */
+  starting_after_uuid?: string;
+  /** The UUID of the company. If not specified, will return all events for all companies. */
+  resource_uuid?: string;
+  /** Limits the number of objects returned in a single response, between 1 and 100. The default is 25 */
+  limit?: string;
+  /** A string containing the exact event name (e.g. `employee.created`), or use a wildcard match to filter for a group of events (e.g. `employee.*`, `*.created`, `notification.*.created` etc.) */
+  event_type?: string;
+  /** A string indicating whether to sort resulting events in ascending (asc) or descending (desc) chronological order. Events are sorted by their `timestamp`. Defaults to asc if left empty. */
+  sort_order?: GetEventsRequestSortOrder | (string & {});
+}
+export const GetEventsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    starting_after_uuid: S.optional(S.String.pipe(T.Query())),
+    resource_uuid: S.optional(S.String.pipe(T.Query())),
+    limit: S.optional(S.String.pipe(T.Query())),
+    event_type: S.optional(S.String.pipe(T.Query())),
+    sort_order: S.optional(GetEventsRequestSortOrder.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/v1/events", code: 200 })),
+).annotate({
+  identifier: "GetEventsRequest",
+}) as any as S.Schema<GetEventsRequest>;
+
+/** Name of the parent resource of the described entity. */
+export type EventResourceType = "Company";
+export const EventResourceType = /*@__PURE__*/ S.String;
+
+/** Representation of an Event */
+export interface Event {
+  /** Name of the entity that the event corresponds to. */
+  entity_type?: string;
+  /** Unique identifier for the entity. */
+  entity_uuid?: string;
+  /** Description of the event (e.g., payroll.submitted, or company.form.signed). */
+  event_type?: string;
+  /** Name of the parent resource of the described entity. */
+  resource_type?: EventResourceType;
+  /** Unique identifier for the parent resource. */
+  resource_uuid?: string;
+  /** Time at which this event was created. Measured in seconds since the Unix epoch. */
+  timestamp?: number;
+  /** Unique identifier for the event. */
+  uuid: string;
+}
+export const Event = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    entity_type: S.optional(S.String),
+    entity_uuid: S.optional(S.String),
+    event_type: S.optional(S.String),
+    resource_type: S.optional(EventResourceType),
+    resource_uuid: S.optional(S.String),
+    timestamp: S.optional(S.Number),
+    uuid: S.String,
+  }),
+).annotate({ identifier: "Event" }) as any as S.Schema<Event>;
+
+/** A list of events */
+export type EventList = Array<Event>;
+export const EventList = /*@__PURE__*/ S.Array(
+  Event,
+) as any as S.Schema<EventList>;
+
+export type GetEventsResponse = EventList;
+export const GetEventsResponse = /*@__PURE__*/ S.suspend(() =>
+  EventList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "GetEventsResponse",
+}) as any as S.Schema<GetEventsResponse>;
+
+export interface GetGarnishmentRequest {
+  /** The UUID of the garnishment */
+  garnishment_id: string;
+}
+export const GetGarnishmentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    garnishment_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/garnishments/{garnishment_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetGarnishmentRequest",
+}) as any as S.Schema<GetGarnishmentRequest>;
+
+export interface GetGarnishmentsChildSupportRequest {}
+export const GetGarnishmentsChildSupportRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({ method: "GET", uri: "/v1/garnishments/child_support", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetGarnishmentsChildSupportRequest",
+}) as any as S.Schema<GetGarnishmentsChildSupportRequest>;
 
 export interface ChildSupportDataAgenciesItemFipsCodesItem {
   /** FIPS code for state or county */
@@ -7316,48 +8221,28 @@ export const ChildSupportData = /*@__PURE__*/ S.suspend(() =>
   identifier: "ChildSupportData",
 }) as any as S.Schema<ChildSupportData>;
 
-export interface GetV1GarnishmentsGarnishmentIdRequest {
-  /** The UUID of the garnishment */
-  garnishment_id: string;
-}
-export const GetV1GarnishmentsGarnishmentIdRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      garnishment_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/garnishments/{garnishment_id}",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "GetV1GarnishmentsGarnishmentIdRequest",
-}) as any as S.Schema<GetV1GarnishmentsGarnishmentIdRequest>;
-
-export interface GetV1HomeAddressesHomeAddressUuidRequest {
+export interface GetHomeAddressRequest {
   /** The UUID of the home address */
   home_address_uuid: string;
 }
-export const GetV1HomeAddressesHomeAddressUuidRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      home_address_uuid: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/home_addresses/{home_address_uuid}",
-        code: 200,
-      }),
-    ),
+export const GetHomeAddressRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    home_address_uuid: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/home_addresses/{home_address_uuid}",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "GetV1HomeAddressesHomeAddressUuidRequest",
-}) as any as S.Schema<GetV1HomeAddressesHomeAddressUuidRequest>;
+  identifier: "GetHomeAddressRequest",
+}) as any as S.Schema<GetHomeAddressRequest>;
 
-export type GetV1JobsJobIdCompensationsRequestInclude = "all_compensations";
-export const GetV1JobsJobIdCompensationsRequestInclude = /*@__PURE__*/ S.String;
+export type GetJobCompensationsRequestInclude = "all_compensations";
+export const GetJobCompensationsRequestInclude = /*@__PURE__*/ S.String;
 
-export interface GetV1JobsJobIdCompensationsRequest {
+export interface GetJobCompensationsRequest {
   /** The UUID of the job */
   job_id: string;
   /** The page that is requested. When unspecified, will load all objects unless endpoint forces pagination. */
@@ -7365,16 +8250,14 @@ export interface GetV1JobsJobIdCompensationsRequest {
   /** Number of objects per page. For majority of endpoints will default to 25 */
   per?: number;
   /** Available options: - all_compensations: Include all effective dated compensations for each job instead of only the current compensation */
-  include?: GetV1JobsJobIdCompensationsRequestInclude | (string & {});
+  include?: GetJobCompensationsRequestInclude | (string & {});
 }
-export const GetV1JobsJobIdCompensationsRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetJobCompensationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     job_id: S.String.pipe(T.Label()),
     page: S.optional(S.Number.pipe(T.Query())),
     per: S.optional(S.Number.pipe(T.Query())),
-    include: S.optional(
-      GetV1JobsJobIdCompensationsRequestInclude.pipe(T.Query()),
-    ),
+    include: S.optional(GetJobCompensationsRequestInclude.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -7383,57 +8266,54 @@ export const GetV1JobsJobIdCompensationsRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetV1JobsJobIdCompensationsRequest",
-}) as any as S.Schema<GetV1JobsJobIdCompensationsRequest>;
+  identifier: "GetJobCompensationsRequest",
+}) as any as S.Schema<GetJobCompensationsRequest>;
 
-export type GetV1JobsJobIdCompensationsResponseBodyList = Array<Compensation>;
-export const GetV1JobsJobIdCompensationsResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    Compensation,
-  ) as any as S.Schema<GetV1JobsJobIdCompensationsResponseBodyList>;
+export type GetJobCompensationsResponseBodyList = Array<Compensation>;
+export const GetJobCompensationsResponseBodyList = /*@__PURE__*/ S.Array(
+  Compensation,
+) as any as S.Schema<GetJobCompensationsResponseBodyList>;
 
-export type GetV1JobsJobIdCompensationsResponse =
-  GetV1JobsJobIdCompensationsResponseBodyList;
-export const GetV1JobsJobIdCompensationsResponse = /*@__PURE__*/ S.suspend(() =>
-  GetV1JobsJobIdCompensationsResponseBodyList.pipe(T.RawResponseRoot()),
+export type GetJobCompensationsResponse = GetJobCompensationsResponseBodyList;
+export const GetJobCompensationsResponse = /*@__PURE__*/ S.suspend(() =>
+  GetJobCompensationsResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "GetV1JobsJobIdCompensationsResponse",
-}) as any as S.Schema<GetV1JobsJobIdCompensationsResponse>;
+  identifier: "GetJobCompensationsResponse",
+}) as any as S.Schema<GetJobCompensationsResponse>;
 
-export interface GetV1LocationsLocationIdRequest {
+export interface GetLocationRequest {
   /** The UUID of the location */
   location_id: string;
 }
-export const GetV1LocationsLocationIdRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetLocationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     location_id: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({ method: "GET", uri: "/v1/locations/{location_id}", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetV1LocationsLocationIdRequest",
-}) as any as S.Schema<GetV1LocationsLocationIdRequest>;
+  identifier: "GetLocationRequest",
+}) as any as S.Schema<GetLocationRequest>;
 
-export interface GetV1LocationsLocationUuidMinimumWagesRequest {
+export interface GetLocationMinimumWagesRequest {
   /** The UUID of the location */
   location_uuid: string;
   effective_date?: string;
 }
-export const GetV1LocationsLocationUuidMinimumWagesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      location_uuid: S.String.pipe(T.Label()),
-      effective_date: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/locations/{location_uuid}/minimum_wages",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetV1LocationsLocationUuidMinimumWagesRequest",
-  }) as any as S.Schema<GetV1LocationsLocationUuidMinimumWagesRequest>;
+export const GetLocationMinimumWagesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    location_uuid: S.String.pipe(T.Label()),
+    effective_date: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/locations/{location_uuid}/minimum_wages",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetLocationMinimumWagesRequest",
+}) as any as S.Schema<GetLocationMinimumWagesRequest>;
 
 /** Representation of a Minimum Wage */
 export interface MinimumWage {
@@ -7466,19 +8346,18 @@ export const MinimumWageList = /*@__PURE__*/ S.Array(
   MinimumWage,
 ) as any as S.Schema<MinimumWageList>;
 
-export type GetV1LocationsLocationUuidMinimumWagesResponse = MinimumWageList;
-export const GetV1LocationsLocationUuidMinimumWagesResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    MinimumWageList.pipe(T.RawResponseRoot()),
-  ).annotate({
-    identifier: "GetV1LocationsLocationUuidMinimumWagesResponse",
-  }) as any as S.Schema<GetV1LocationsLocationUuidMinimumWagesResponse>;
+export type GetLocationMinimumWagesResponse = MinimumWageList;
+export const GetLocationMinimumWagesResponse = /*@__PURE__*/ S.suspend(() =>
+  MinimumWageList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "GetLocationMinimumWagesResponse",
+}) as any as S.Schema<GetLocationMinimumWagesResponse>;
 
-export interface GetV1RecurringReimbursementsRequest {
+export interface GetRecurringReimbursementsRequest {
   /** The UUID of the reimbursement */
   id: string;
 }
-export const GetV1RecurringReimbursementsRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetRecurringReimbursementsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String.pipe(T.Label()),
   }).pipe(
@@ -7489,110 +8368,50 @@ export const GetV1RecurringReimbursementsRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetV1RecurringReimbursementsRequest",
-}) as any as S.Schema<GetV1RecurringReimbursementsRequest>;
+  identifier: "GetRecurringReimbursementsRequest",
+}) as any as S.Schema<GetRecurringReimbursementsRequest>;
 
-export interface GetV1SalaryEstimatesIdRequest {
-  /** The UUID of the salary estimate */
-  uuid: string;
+export interface GetReportRequest {
+  /** The UUID of the request to generate a document. Generate document endpoints return request_uuids to be used with the GET generated document endpoint. */
+  request_uuid: string;
 }
-export const GetV1SalaryEstimatesIdRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetReportRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    uuid: S.String.pipe(T.Label()),
+    request_uuid: S.String.pipe(T.Label()),
   }).pipe(
-    T.Http({ method: "GET", uri: "/v1/salary_estimates/{uuid}", code: 200 }),
+    T.Http({ method: "GET", uri: "/v1/reports/{request_uuid}", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetV1SalaryEstimatesIdRequest",
-}) as any as S.Schema<GetV1SalaryEstimatesIdRequest>;
+  identifier: "GetReportRequest",
+}) as any as S.Schema<GetReportRequest>;
 
-/** Experience level for this occupation. */
-export type SalaryEstimateOccupationsItemExperienceLevel =
-  | "novice"
-  | "intermediate"
-  | "average"
-  | "skilled"
-  | "expert";
-export const SalaryEstimateOccupationsItemExperienceLevel =
-  /*@__PURE__*/ S.String;
+/** The array of urls to access the report */
+export type ReportReportUrlsList = Array<string>;
+export const ReportReportUrlsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ReportReportUrlsList>;
 
-export interface SalaryEstimateOccupationsItem {
-  /** Bureau of Labor Statistics (BLS) occupation code. */
-  code: string;
-  /** Occupation description. */
-  description?: string;
-  /** Experience level for this occupation. */
-  experience_level: SalaryEstimateOccupationsItemExperienceLevel;
-  /** Occupation name. */
-  name?: string;
-  /** Whether this is the primary occupation. */
-  primary?: boolean;
-  /** Percentage of time spent in this occupation (as decimal string, 0-1). */
-  time_percentage: string;
+export interface Report {
+  /** The array of urls to access the report */
+  report_urls?: ReportReportUrlsList;
+  /** A unique identifier of the report request */
+  request_uuid?: string;
+  /** Current status of the report, possible values are 'succeeded', 'pending', or 'failed' */
+  status?: string;
 }
-export const SalaryEstimateOccupationsItem = /*@__PURE__*/ S.suspend(() =>
+export const Report = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    code: S.String,
-    description: S.optional(S.String),
-    experience_level: SalaryEstimateOccupationsItemExperienceLevel,
-    name: S.optional(S.String),
-    primary: S.optional(S.Boolean),
-    time_percentage: S.String,
+    report_urls: S.optional(ReportReportUrlsList),
+    request_uuid: S.optional(S.String),
+    status: S.optional(S.String),
   }),
-).annotate({
-  identifier: "SalaryEstimateOccupationsItem",
-}) as any as S.Schema<SalaryEstimateOccupationsItem>;
+).annotate({ identifier: "Report" }) as any as S.Schema<Report>;
 
-/** Array of occupations with their experience levels and time allocations. */
-export type SalaryEstimateOccupationsList =
-  Array<SalaryEstimateOccupationsItem>;
-export const SalaryEstimateOccupationsList = /*@__PURE__*/ S.Array(
-  SalaryEstimateOccupationsItem,
-) as any as S.Schema<SalaryEstimateOccupationsList>;
-
-/** A salary estimate calculation for an S-Corp owner based on occupation, experience level, location, and business revenue. */
-export interface SalaryEstimate {
-  /** The timestamp when this salary estimate was accepted and finalized. */
-  accepted_at?: string | null;
-  /** The annual net revenue of the business used for salary calculations. */
-  annual_net_revenue: string | null;
-  /** The timestamp when this salary estimate was created. */
-  created_at: string;
-  /** The UUID of the employee job this salary estimate is associated with (once accepted). */
-  employee_job_uuid?: string | null;
-  /** The UUID of the employee this salary estimate is for. */
-  employee_uuid: string | null;
-  /** Array of occupations with their experience levels and time allocations. */
-  occupations: SalaryEstimateOccupationsList;
-  /** The calculated reasonable salary estimate in cents. Null if not yet calculated. */
-  result?: number | null;
-  /** The timestamp when this salary estimate was last updated. */
-  updated_at: string;
-  /** The UUID of the salary estimate. */
-  uuid: string;
-  /** The ZIP code used for location-based salary calculations. */
-  zip_code: string | null;
-}
-export const SalaryEstimate = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accepted_at: S.optional(S.NullOr(S.String)),
-    annual_net_revenue: S.NullOr(S.String),
-    created_at: S.String,
-    employee_job_uuid: S.optional(S.NullOr(S.String)),
-    employee_uuid: S.NullOr(S.String),
-    occupations: SalaryEstimateOccupationsList,
-    result: S.optional(S.NullOr(S.Number)),
-    updated_at: S.String,
-    uuid: S.String,
-    zip_code: S.NullOr(S.String),
-  }),
-).annotate({ identifier: "SalaryEstimate" }) as any as S.Schema<SalaryEstimate>;
-
-export interface GetV1SalaryEstimatesOccupationsRequest {
+export interface GetSalaryEstimatesOccupationsRequest {
   /** Search term for occupation (minimum 3 characters) */
   search: string;
 }
-export const GetV1SalaryEstimatesOccupationsRequest = /*@__PURE__*/ S.suspend(
+export const GetSalaryEstimatesOccupationsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       search: S.String.pipe(T.Query()),
@@ -7604,8 +8423,8 @@ export const GetV1SalaryEstimatesOccupationsRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GetV1SalaryEstimatesOccupationsRequest",
-}) as any as S.Schema<GetV1SalaryEstimatesOccupationsRequest>;
+  identifier: "GetSalaryEstimatesOccupationsRequest",
+}) as any as S.Schema<GetSalaryEstimatesOccupationsRequest>;
 
 /** A Bureau of Labor Statistics occupation code with its title and description, used for salary estimate calculations. */
 export interface BLSOccupation {
@@ -7624,63 +8443,79 @@ export const BLSOccupation = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "BLSOccupation" }) as any as S.Schema<BLSOccupation>;
 
-export type GetV1SalaryEstimatesOccupationsResponseBodyList =
+export type GetSalaryEstimatesOccupationsResponseBodyList =
   Array<BLSOccupation>;
-export const GetV1SalaryEstimatesOccupationsResponseBodyList =
+export const GetSalaryEstimatesOccupationsResponseBodyList =
   /*@__PURE__*/ S.Array(
     BLSOccupation,
-  ) as any as S.Schema<GetV1SalaryEstimatesOccupationsResponseBodyList>;
+  ) as any as S.Schema<GetSalaryEstimatesOccupationsResponseBodyList>;
 
-export type GetV1SalaryEstimatesOccupationsResponse =
-  GetV1SalaryEstimatesOccupationsResponseBodyList;
-export const GetV1SalaryEstimatesOccupationsResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    GetV1SalaryEstimatesOccupationsResponseBodyList.pipe(T.RawResponseRoot()),
+export type GetSalaryEstimatesOccupationsResponse =
+  GetSalaryEstimatesOccupationsResponseBodyList;
+export const GetSalaryEstimatesOccupationsResponse = /*@__PURE__*/ S.suspend(
+  () => GetSalaryEstimatesOccupationsResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "GetV1SalaryEstimatesOccupationsResponse",
-}) as any as S.Schema<GetV1SalaryEstimatesOccupationsResponse>;
+  identifier: "GetSalaryEstimatesOccupationsResponse",
+}) as any as S.Schema<GetSalaryEstimatesOccupationsResponse>;
 
-export interface GetV1TerminationsEmployeeIdRequest {
+export interface GetTerminationRequest {
   /** The UUID of the employee */
   employee_id: string;
 }
-export const GetV1TerminationsEmployeeIdRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetTerminationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     employee_id: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({ method: "GET", uri: "/v1/terminations/{employee_id}", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetV1TerminationsEmployeeIdRequest",
-}) as any as S.Schema<GetV1TerminationsEmployeeIdRequest>;
+  identifier: "GetTerminationRequest",
+}) as any as S.Schema<GetTerminationRequest>;
 
-export interface GetV1TimeOffPoliciesTimeOffPolicyUuidRequest {
+export interface GetTimeOffPolicyRequest {
   /** The UUID of the time off policy */
   time_off_policy_uuid: string;
 }
-export const GetV1TimeOffPoliciesTimeOffPolicyUuidRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      time_off_policy_uuid: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/time_off_policies/{time_off_policy_uuid}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetV1TimeOffPoliciesTimeOffPolicyUuidRequest",
-  }) as any as S.Schema<GetV1TimeOffPoliciesTimeOffPolicyUuidRequest>;
+export const GetTimeOffPolicyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    time_off_policy_uuid: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/time_off_policies/{time_off_policy_uuid}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetTimeOffPolicyRequest",
+}) as any as S.Schema<GetTimeOffPolicyRequest>;
 
-export interface GetV1TokenInfoRequest {}
-export const GetV1TokenInfoRequest = /*@__PURE__*/ S.suspend(() =>
+export interface GetTimeTrackingTimeSheetRequest {
+  /** UUID of the time sheet */
+  time_sheet_uuid: string;
+}
+export const GetTimeTrackingTimeSheetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    time_sheet_uuid: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/time_tracking/time_sheets/{time_sheet_uuid}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetTimeTrackingTimeSheetRequest",
+}) as any as S.Schema<GetTimeTrackingTimeSheetRequest>;
+
+export interface GetTokenInfoRequest {}
+export const GetTokenInfoRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({ method: "GET", uri: "/v1/token_info", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetV1TokenInfoRequest",
-}) as any as S.Schema<GetV1TokenInfoRequest>;
+  identifier: "GetTokenInfoRequest",
+}) as any as S.Schema<GetTokenInfoRequest>;
 
 /** The resource associated with this access token. Null when the token has no associated resource. */
 export interface TokenInfoResource {
@@ -7737,135 +8572,237 @@ export const TokenInfo = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "TokenInfo" }) as any as S.Schema<TokenInfo>;
 
-export interface GetV1WebhooksHealthCheckRequest {}
-export const GetV1WebhooksHealthCheckRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({ method: "GET", uri: "/v1/webhooks/health_check", code: 200 }),
-  ),
-).annotate({
-  identifier: "GetV1WebhooksHealthCheckRequest",
-}) as any as S.Schema<GetV1WebhooksHealthCheckRequest>;
-
-/** Latest health status of the webhooks system */
-export type WebhooksHealthCheckStatusStatus =
-  | "healthy"
-  | "unhealthy"
-  | "unknown";
-export const WebhooksHealthCheckStatusStatus = /*@__PURE__*/ S.String;
-
-/** The representation of a webhooks health check response */
-export interface WebhooksHealthCheckStatus {
-  /** ISO8601 timestamp of the last successful health check with millisecond precision */
-  last_checked_at?: string;
-  /** Latest health status of the webhooks system */
-  status?: WebhooksHealthCheckStatusStatus;
+export interface GetV1BenefitsCompanyBenefitIdSummaryRequest {
+  /** The UUID of the company benefit */
+  company_benefit_id: string;
+  /** The start date for which to retrieve company benefit summary */
+  start_date?: string;
+  /** The end date for which to retrieve company benefit summary. If left empty, defaults to today's date. */
+  end_date?: string;
+  /** Display employee payroll item summary */
+  detailed?: boolean;
 }
-export const WebhooksHealthCheckStatus = /*@__PURE__*/ S.suspend(() =>
+export const GetV1BenefitsCompanyBenefitIdSummaryRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      company_benefit_id: S.String.pipe(T.Label()),
+      start_date: S.optional(S.String.pipe(T.Query())),
+      end_date: S.optional(S.String.pipe(T.Query())),
+      detailed: S.optional(S.Boolean.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/v1/company_benefits/{company_benefit_id}/summary",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "GetV1BenefitsCompanyBenefitIdSummaryRequest",
+  }) as any as S.Schema<GetV1BenefitsCompanyBenefitIdSummaryRequest>;
+
+export interface BenefitSummaryEmployeesItemPayrollBenefitsItemPayPeriod {
+  /** The end of the payroll's pay period. */
+  end_date?: string | null;
+  /** The beginning of the payroll's pay period. */
+  start_date?: string | null;
+}
+export const BenefitSummaryEmployeesItemPayrollBenefitsItemPayPeriod =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      end_date: S.optional(S.NullOr(S.String)),
+      start_date: S.optional(S.NullOr(S.String)),
+    }),
+  ).annotate({
+    identifier: "BenefitSummaryEmployeesItemPayrollBenefitsItemPayPeriod",
+  }) as any as S.Schema<BenefitSummaryEmployeesItemPayrollBenefitsItemPayPeriod>;
+
+export interface BenefitSummaryEmployeesItemPayrollBenefitsItem {
+  /** Check date of this payroll. */
+  check_date?: string;
+  /** The company contribution amount for this employee on the payroll. */
+  company_benefit_contribution?: string;
+  /** The employee benefit deduction amount for this employee on the payroll. */
+  company_benefit_deduction?: string;
+  /** Gross pay for this employee on the payroll. */
+  gross_pay?: string;
+  /** Total imputed pay for this employee on the payroll. */
+  imputed_pay?: string;
+  pay_period?: BenefitSummaryEmployeesItemPayrollBenefitsItemPayPeriod;
+  /** Whether it is regular or bonus payroll */
+  payroll_type?: string;
+  payroll_uuid?: string;
+}
+export const BenefitSummaryEmployeesItemPayrollBenefitsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      check_date: S.optional(S.String),
+      company_benefit_contribution: S.optional(S.String),
+      company_benefit_deduction: S.optional(S.String),
+      gross_pay: S.optional(S.String),
+      imputed_pay: S.optional(S.String),
+      pay_period: S.optional(
+        BenefitSummaryEmployeesItemPayrollBenefitsItemPayPeriod,
+      ),
+      payroll_type: S.optional(S.String),
+      payroll_uuid: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "BenefitSummaryEmployeesItemPayrollBenefitsItem",
+  }) as any as S.Schema<BenefitSummaryEmployeesItemPayrollBenefitsItem>;
+
+export type BenefitSummaryEmployeesItemPayrollBenefitsList =
+  Array<BenefitSummaryEmployeesItemPayrollBenefitsItem>;
+export const BenefitSummaryEmployeesItemPayrollBenefitsList =
+  /*@__PURE__*/ S.Array(
+    BenefitSummaryEmployeesItemPayrollBenefitsItem,
+  ) as any as S.Schema<BenefitSummaryEmployeesItemPayrollBenefitsList>;
+
+export interface BenefitSummaryEmployeesItem {
+  /** The sum of company contribution for this employee given the period of time and the benefit type. */
+  benefit_contribution?: string;
+  /** The sum of employee benefit deduction for this employee given the period of time and the benefit type. */
+  benefit_deduction?: string;
+  /** The sum of company contribution for this employee given the period of time and the specific company benefit. */
+  company_benefit_contribution?: string;
+  /** The sum of employee deduction for this employee given the period of time and the specific company benefit. */
+  company_benefit_deduction?: string;
+  /** Gross pay for this employee given the period of time. */
+  gross_pay?: string;
+  /** Total imputed pay for this employee given the period of time (not scoped to a benefit type). */
+  imputed_pay?: string;
+  payroll_benefits?: BenefitSummaryEmployeesItemPayrollBenefitsList;
+  /** The UUID of the employee */
+  uuid?: string;
+}
+export const BenefitSummaryEmployeesItem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    last_checked_at: S.optional(S.String),
-    status: S.optional(WebhooksHealthCheckStatusStatus),
+    benefit_contribution: S.optional(S.String),
+    benefit_deduction: S.optional(S.String),
+    company_benefit_contribution: S.optional(S.String),
+    company_benefit_deduction: S.optional(S.String),
+    gross_pay: S.optional(S.String),
+    imputed_pay: S.optional(S.String),
+    payroll_benefits: S.optional(
+      BenefitSummaryEmployeesItemPayrollBenefitsList,
+    ),
+    uuid: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "WebhooksHealthCheckStatus",
-}) as any as S.Schema<WebhooksHealthCheckStatus>;
+  identifier: "BenefitSummaryEmployeesItem",
+}) as any as S.Schema<BenefitSummaryEmployeesItem>;
 
-export interface GetV1WebhookSubscriptionsRequest {}
-export const GetV1WebhookSubscriptionsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({ method: "GET", uri: "/v1/webhook_subscriptions", code: 200 }),
-  ),
+export type BenefitSummaryEmployeesList = Array<BenefitSummaryEmployeesItem>;
+export const BenefitSummaryEmployeesList = /*@__PURE__*/ S.Array(
+  BenefitSummaryEmployeesItem,
+) as any as S.Schema<BenefitSummaryEmployeesList>;
+
+export interface BenefitSummary {
+  /** The aggregate of company contribution for all employees given the period of time and the specific company benefit. */
+  company_benefit_contribution?: string;
+  /** The aggregate of employee deduction for all employees given the period of time and the specific company benefit. */
+  company_benefit_deduction?: string;
+  /** Description of the benefit. */
+  description?: string;
+  employees?: BenefitSummaryEmployeesList;
+  /** The end date of benefit summary. */
+  end_date?: string;
+  /** The start date of benefit summary. */
+  start_date?: string;
+}
+export const BenefitSummary = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    company_benefit_contribution: S.optional(S.String),
+    company_benefit_deduction: S.optional(S.String),
+    description: S.optional(S.String),
+    employees: S.optional(BenefitSummaryEmployeesList),
+    end_date: S.optional(S.String),
+    start_date: S.optional(S.String),
+  }),
+).annotate({ identifier: "BenefitSummary" }) as any as S.Schema<BenefitSummary>;
+
+export interface GetV1CompaniesCompanyIdUnprocessedTerminationPayPeriodsRequest {
+  /** The UUID of the company */
+  company_id: string;
+}
+export const GetV1CompaniesCompanyIdUnprocessedTerminationPayPeriodsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      company_id: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/v1/companies/{company_id}/pay_periods/unprocessed_termination_pay_periods",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier:
+      "GetV1CompaniesCompanyIdUnprocessedTerminationPayPeriodsRequest",
+  }) as any as S.Schema<GetV1CompaniesCompanyIdUnprocessedTerminationPayPeriodsRequest>;
+
+/** The representation of an unprocessed termination pay period. */
+export interface UnprocessedTerminationPayPeriod {
+  /** The check date of the pay period. */
+  check_date?: string;
+  /** The debit date of the pay period. */
+  debit_date?: string;
+  /** The full name of the employee. */
+  employee_name?: string;
+  /** A unique identifier of the employee. */
+  employee_uuid?: string;
+  /** The end date of the pay period. */
+  end_date?: string;
+  /** A unique identifier of the pay schedule to which the pay period belongs. */
+  pay_schedule_uuid?: string;
+  /** The start date of the pay period. */
+  start_date?: string;
+}
+export const UnprocessedTerminationPayPeriod = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    check_date: S.optional(S.String),
+    debit_date: S.optional(S.String),
+    employee_name: S.optional(S.String),
+    employee_uuid: S.optional(S.String),
+    end_date: S.optional(S.String),
+    pay_schedule_uuid: S.optional(S.String),
+    start_date: S.optional(S.String),
+  }),
 ).annotate({
-  identifier: "GetV1WebhookSubscriptionsRequest",
-}) as any as S.Schema<GetV1WebhookSubscriptionsRequest>;
+  identifier: "UnprocessedTerminationPayPeriod",
+}) as any as S.Schema<UnprocessedTerminationPayPeriod>;
 
-/** The status of the webhook subscription. */
-export type WebhookSubscriptionStatus =
-  | "pending"
-  | "verified"
-  | "removed"
-  | "unreachable";
-export const WebhookSubscriptionStatus = /*@__PURE__*/ S.String;
+export type GetV1CompaniesCompanyIdUnprocessedTerminationPayPeriodsResponseBodyList =
+  Array<UnprocessedTerminationPayPeriod>;
+export const GetV1CompaniesCompanyIdUnprocessedTerminationPayPeriodsResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    UnprocessedTerminationPayPeriod,
+  ) as any as S.Schema<GetV1CompaniesCompanyIdUnprocessedTerminationPayPeriodsResponseBodyList>;
 
-export type WebhookSubscriptionSubscriptionTypesItem =
-  | "BankAccount"
-  | "Company"
-  | "CompanyBenefit"
-  | "Contractor"
-  | "ContractorPayment"
-  | "Employee"
-  | "EmployeeBenefit"
-  | "EmployeeJobCompensation"
-  | "ExternalPayroll"
-  | "Form"
-  | "Location"
-  | "Notification"
-  | "Payroll"
-  | "PayrollSync"
-  | "PaySchedule"
-  | "Signatory"
-  | "TimeOffRequest";
-export const WebhookSubscriptionSubscriptionTypesItem = /*@__PURE__*/ S.String;
+export type GetV1CompaniesCompanyIdUnprocessedTerminationPayPeriodsResponse =
+  GetV1CompaniesCompanyIdUnprocessedTerminationPayPeriodsResponseBodyList;
+export const GetV1CompaniesCompanyIdUnprocessedTerminationPayPeriodsResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    GetV1CompaniesCompanyIdUnprocessedTerminationPayPeriodsResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier:
+      "GetV1CompaniesCompanyIdUnprocessedTerminationPayPeriodsResponse",
+  }) as any as S.Schema<GetV1CompaniesCompanyIdUnprocessedTerminationPayPeriodsResponse>;
 
-/** Receive updates for these types. */
-export type WebhookSubscriptionSubscriptionTypesList =
-  Array<WebhookSubscriptionSubscriptionTypesItem>;
-export const WebhookSubscriptionSubscriptionTypesList = /*@__PURE__*/ S.Array(
-  WebhookSubscriptionSubscriptionTypesItem,
-) as any as S.Schema<WebhookSubscriptionSubscriptionTypesList>;
-
-/** The representation of webhook subscription. */
-export interface WebhookSubscription {
-  /** The status of the webhook subscription. */
-  status?: WebhookSubscriptionStatus;
-  /** Receive updates for these types. */
-  subscription_types?: WebhookSubscriptionSubscriptionTypesList;
-  /** The webhook subscriber URL. Updates will be POSTed to this URL. */
-  url?: string;
-  /** The UUID of the webhook subscription. */
+export interface GetV1SalaryEstimatesIdRequest {
+  /** The UUID of the salary estimate */
   uuid: string;
 }
-export const WebhookSubscription = /*@__PURE__*/ S.suspend(() =>
+export const GetV1SalaryEstimatesIdRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    status: S.optional(WebhookSubscriptionStatus),
-    subscription_types: S.optional(WebhookSubscriptionSubscriptionTypesList),
-    url: S.optional(S.String),
-    uuid: S.String,
-  }),
-).annotate({
-  identifier: "WebhookSubscription",
-}) as any as S.Schema<WebhookSubscription>;
-
-export type GetV1WebhookSubscriptionsResponseBodyList =
-  Array<WebhookSubscription>;
-export const GetV1WebhookSubscriptionsResponseBodyList = /*@__PURE__*/ S.Array(
-  WebhookSubscription,
-) as any as S.Schema<GetV1WebhookSubscriptionsResponseBodyList>;
-
-export type GetV1WebhookSubscriptionsResponse =
-  GetV1WebhookSubscriptionsResponseBodyList;
-export const GetV1WebhookSubscriptionsResponse = /*@__PURE__*/ S.suspend(() =>
-  GetV1WebhookSubscriptionsResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetV1WebhookSubscriptionsResponse",
-}) as any as S.Schema<GetV1WebhookSubscriptionsResponse>;
-
-export interface GetV1WebhookSubscriptionUuidRequest {
-  /** The webhook subscription UUID. */
-  webhook_subscription_uuid: string;
-}
-export const GetV1WebhookSubscriptionUuidRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    webhook_subscription_uuid: S.String.pipe(T.Label()),
+    uuid: S.String.pipe(T.Label()),
   }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/v1/webhook_subscriptions/{webhook_subscription_uuid}",
-      code: 200,
-    }),
+    T.Http({ method: "GET", uri: "/v1/salary_estimates/{uuid}", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetV1WebhookSubscriptionUuidRequest",
-}) as any as S.Schema<GetV1WebhookSubscriptionUuidRequest>;
+  identifier: "GetV1SalaryEstimatesIdRequest",
+}) as any as S.Schema<GetV1SalaryEstimatesIdRequest>;
 
 export interface GetV1WebhookSubscriptionVerificationTokenUuidRequest {
   /** The webhook subscription UUID. */
@@ -7898,25 +8835,6 @@ export const WebhookVerificationTokenResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "WebhookVerificationTokenResponse",
 }) as any as S.Schema<WebhookVerificationTokenResponse>;
-
-export interface GetV1WorkAddressesWorkAddressUuidRequest {
-  /** The UUID of the work address */
-  work_address_uuid: string;
-}
-export const GetV1WorkAddressesWorkAddressUuidRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      work_address_uuid: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/work_addresses/{work_address_uuid}",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "GetV1WorkAddressesWorkAddressUuidRequest",
-}) as any as S.Schema<GetV1WorkAddressesWorkAddressUuidRequest>;
 
 export interface GetVersionEmployeesTimeOffActivitiesRequest {
   /** The UUID of the employee */
@@ -7991,6 +8909,97 @@ export const GetVersionEmployeesTimeOffActivitiesResponse =
   ).annotate({
     identifier: "GetVersionEmployeesTimeOffActivitiesResponse",
   }) as any as S.Schema<GetVersionEmployeesTimeOffActivitiesResponse>;
+
+export interface GetWebhooksHealthCheckRequest {}
+export const GetWebhooksHealthCheckRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({ method: "GET", uri: "/v1/webhooks/health_check", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetWebhooksHealthCheckRequest",
+}) as any as S.Schema<GetWebhooksHealthCheckRequest>;
+
+/** Latest health status of the webhooks system */
+export type WebhooksHealthCheckStatusStatus =
+  | "healthy"
+  | "unhealthy"
+  | "unknown";
+export const WebhooksHealthCheckStatusStatus = /*@__PURE__*/ S.String;
+
+/** The representation of a webhooks health check response */
+export interface WebhooksHealthCheckStatus {
+  /** ISO8601 timestamp of the last successful health check with millisecond precision */
+  last_checked_at?: string;
+  /** Latest health status of the webhooks system */
+  status?: WebhooksHealthCheckStatusStatus;
+}
+export const WebhooksHealthCheckStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    last_checked_at: S.optional(S.String),
+    status: S.optional(WebhooksHealthCheckStatusStatus),
+  }),
+).annotate({
+  identifier: "WebhooksHealthCheckStatus",
+}) as any as S.Schema<WebhooksHealthCheckStatus>;
+
+export interface GetWebhookSubscriptionsRequest {}
+export const GetWebhookSubscriptionsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({ method: "GET", uri: "/v1/webhook_subscriptions", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetWebhookSubscriptionsRequest",
+}) as any as S.Schema<GetWebhookSubscriptionsRequest>;
+
+export type GetWebhookSubscriptionsResponseBodyList =
+  Array<WebhookSubscription>;
+export const GetWebhookSubscriptionsResponseBodyList = /*@__PURE__*/ S.Array(
+  WebhookSubscription,
+) as any as S.Schema<GetWebhookSubscriptionsResponseBodyList>;
+
+export type GetWebhookSubscriptionsResponse =
+  GetWebhookSubscriptionsResponseBodyList;
+export const GetWebhookSubscriptionsResponse = /*@__PURE__*/ S.suspend(() =>
+  GetWebhookSubscriptionsResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "GetWebhookSubscriptionsResponse",
+}) as any as S.Schema<GetWebhookSubscriptionsResponse>;
+
+export interface GetWebhookSubscriptionUuidRequest {
+  /** The webhook subscription UUID. */
+  webhook_subscription_uuid: string;
+}
+export const GetWebhookSubscriptionUuidRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    webhook_subscription_uuid: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/webhook_subscriptions/{webhook_subscription_uuid}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetWebhookSubscriptionUuidRequest",
+}) as any as S.Schema<GetWebhookSubscriptionUuidRequest>;
+
+export interface GetWorkAddressRequest {
+  /** The UUID of the work address */
+  work_address_uuid: string;
+}
+export const GetWorkAddressRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    work_address_uuid: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/work_addresses/{work_address_uuid}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetWorkAddressRequest",
+}) as any as S.Schema<GetWorkAddressRequest>;
 
 /** Set system_access to create a system access token, refresh_token to refresh an existing token */
 export type OauthAccessTokenRequestBodyCase0GrantType = "refresh_token";
@@ -8122,126 +9131,6 @@ export const OauthAccessTokenResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "OauthAccessTokenResponse",
 }) as any as S.Schema<OauthAccessTokenResponse>;
 
-export interface PatchV1EmployeesEmployeeUuidSection603HighEarnerStatusesEffectiveYearRequest {
-  /** The UUID of the employee */
-  employee_uuid: string;
-  /** The effective year for the Section 603 status */
-  effective_year: number;
-  /** Whether the employee is classified as a high earner for Section 603 purposes */
-  is_high_earner: boolean;
-}
-export const PatchV1EmployeesEmployeeUuidSection603HighEarnerStatusesEffectiveYearRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      employee_uuid: S.String.pipe(T.Label()),
-      effective_year: S.Number.pipe(T.Label()),
-      is_high_earner: S.Boolean,
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/v1/employees/{employee_uuid}/section603_high_earner_statuses/{effective_year}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "PatchV1EmployeesEmployeeUuidSection603HighEarnerStatusesEffectiveYearRequest",
-  }) as any as S.Schema<PatchV1EmployeesEmployeeUuidSection603HighEarnerStatusesEffectiveYearRequest>;
-
-/** Pay classification for the entry. */
-export type PostCompaniesCompanyUuidTimeTrackingTimeSheetsRequestEntriesItemPayClassification =
-  | "Regular"
-  | "Overtime"
-  | "Double overtime";
-export const PostCompaniesCompanyUuidTimeTrackingTimeSheetsRequestEntriesItemPayClassification =
-  /*@__PURE__*/ S.String;
-
-export interface PostCompaniesCompanyUuidTimeTrackingTimeSheetsRequestEntriesItem {
-  /** Hours worked for this pay classification. Should be passed as number with up to 3 decimal places. */
-  hours_worked?: number;
-  /** Pay classification for the entry. */
-  pay_classification?:
-    | PostCompaniesCompanyUuidTimeTrackingTimeSheetsRequestEntriesItemPayClassification
-    | (string & {});
-}
-export const PostCompaniesCompanyUuidTimeTrackingTimeSheetsRequestEntriesItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      hours_worked: S.optional(S.Number),
-      pay_classification: S.optional(
-        PostCompaniesCompanyUuidTimeTrackingTimeSheetsRequestEntriesItemPayClassification,
-      ),
-    }),
-  ).annotate({
-    identifier:
-      "PostCompaniesCompanyUuidTimeTrackingTimeSheetsRequestEntriesItem",
-  }) as any as S.Schema<PostCompaniesCompanyUuidTimeTrackingTimeSheetsRequestEntriesItem>;
-
-/** Entries associated with the time sheet. */
-export type PostCompaniesCompanyUuidTimeTrackingTimeSheetsRequestEntriesList =
-  Array<PostCompaniesCompanyUuidTimeTrackingTimeSheetsRequestEntriesItem>;
-export const PostCompaniesCompanyUuidTimeTrackingTimeSheetsRequestEntriesList =
-  /*@__PURE__*/ S.Array(
-    PostCompaniesCompanyUuidTimeTrackingTimeSheetsRequestEntriesItem,
-  ) as any as S.Schema<PostCompaniesCompanyUuidTimeTrackingTimeSheetsRequestEntriesList>;
-
-/** Metadata associated with the time sheet. Key-value pairs of arbitrary data. Both keys and values must be strings. */
-export type PostCompaniesCompanyUuidTimeTrackingTimeSheetsRequestMetadataMap = {
-  [key: string]: string | undefined;
-};
-export const PostCompaniesCompanyUuidTimeTrackingTimeSheetsRequestMetadataMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<PostCompaniesCompanyUuidTimeTrackingTimeSheetsRequestMetadataMap>;
-
-export interface PostCompaniesCompanyUuidTimeTrackingTimeSheetsRequest {
-  /** The UUID of the company */
-  company_uuid: string;
-  /** Type of entity associated with the time sheet. */
-  entity_type: string;
-  /** Unique identifier of the entity associated with the time sheet. */
-  entity_uuid: string;
-  /** Entries associated with the time sheet. */
-  entries?: PostCompaniesCompanyUuidTimeTrackingTimeSheetsRequestEntriesList;
-  /** Unique identifier of the job for which time is tracked. */
-  job_uuid?: string;
-  /** Metadata associated with the time sheet. Key-value pairs of arbitrary data. Both keys and values must be strings. */
-  metadata?: PostCompaniesCompanyUuidTimeTrackingTimeSheetsRequestMetadataMap;
-  /** ISO 8601 timestamp of when the shift was ended. If the shift is still ongoing you can omit this field. */
-  shift_ended_at?: string;
-  /** ISO 8601 timestamp of when the shift was started. */
-  shift_started_at: string;
-  /** Time zone of where the time is tracked. */
-  time_zone: string;
-}
-export const PostCompaniesCompanyUuidTimeTrackingTimeSheetsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      company_uuid: S.String.pipe(T.Label()),
-      entity_type: S.String,
-      entity_uuid: S.String,
-      entries: S.optional(
-        PostCompaniesCompanyUuidTimeTrackingTimeSheetsRequestEntriesList,
-      ),
-      job_uuid: S.optional(S.String),
-      metadata: S.optional(
-        PostCompaniesCompanyUuidTimeTrackingTimeSheetsRequestMetadataMap,
-      ),
-      shift_ended_at: S.optional(S.String),
-      shift_started_at: S.String,
-      time_zone: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/companies/{company_uuid}/time_tracking/time_sheets",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostCompaniesCompanyUuidTimeTrackingTimeSheetsRequest",
-  }) as any as S.Schema<PostCompaniesCompanyUuidTimeTrackingTimeSheetsRequest>;
-
 export interface PostDepartmentsRequest {
   /** The UUID of the company */
   company_uuid: string;
@@ -8309,322 +9198,6 @@ export const PostDepartmentsResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "PostDepartmentsResponse",
 }) as any as S.Schema<PostDepartmentsResponse>;
-
-export interface PostEmployeeYtdBenefitAmountsFromDifferentCompanyRequest {
-  /** The UUID of the employee */
-  employee_id: string;
-  /** The benefit type supported by Gusto. */
-  benefit_type: number;
-  /** The tax year for which this amount applies. */
-  tax_year: number;
-  /** The year-to-date company contribution made outside the current company. */
-  ytd_company_contribution_amount: string;
-  /** The year-to-date employee deduction made outside the current company. */
-  ytd_employee_deduction_amount: string;
-}
-export const PostEmployeeYtdBenefitAmountsFromDifferentCompanyRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      employee_id: S.String.pipe(T.Label()),
-      benefit_type: S.Number,
-      tax_year: S.Number,
-      ytd_company_contribution_amount: S.String,
-      ytd_employee_deduction_amount: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/employees/{employee_id}/ytd_benefit_amounts_from_different_company",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostEmployeeYtdBenefitAmountsFromDifferentCompanyRequest",
-  }) as any as S.Schema<PostEmployeeYtdBenefitAmountsFromDifferentCompanyRequest>;
-
-export interface PostEmployeeYtdBenefitAmountsFromDifferentCompanyResponse {}
-export const PostEmployeeYtdBenefitAmountsFromDifferentCompanyResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PostEmployeeYtdBenefitAmountsFromDifferentCompanyResponse",
-  }) as any as S.Schema<PostEmployeeYtdBenefitAmountsFromDifferentCompanyResponse>;
-
-/** The breakdown of the report. Use 'default' for no split. */
-export type PostPayrollsPayrollUuidReportsGeneralLedgerRequestAggregation =
-  | "default"
-  | "job"
-  | "department"
-  | "integration";
-export const PostPayrollsPayrollUuidReportsGeneralLedgerRequestAggregation =
-  /*@__PURE__*/ S.String;
-
-export type PostPayrollsPayrollUuidReportsGeneralLedgerRequestIntegrationType =
-  | "xero"
-  | "qbo";
-export const PostPayrollsPayrollUuidReportsGeneralLedgerRequestIntegrationType =
-  /*@__PURE__*/ S.String;
-
-export interface PostPayrollsPayrollUuidReportsGeneralLedgerRequest {
-  /** The UUID of the payroll */
-  payroll_uuid: string;
-  /** The breakdown of the report. Use 'default' for no split. */
-  aggregation:
-    | PostPayrollsPayrollUuidReportsGeneralLedgerRequestAggregation
-    | (string & {});
-  /** The kind of integration set up for the company. Required when `aggregation` is 'integration'. Must be null if `aggregation` is not 'integration'. */
-  integration_type?:
-    | PostPayrollsPayrollUuidReportsGeneralLedgerRequestIntegrationType
-    | (string & {})
-    | null;
-}
-export const PostPayrollsPayrollUuidReportsGeneralLedgerRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      payroll_uuid: S.String.pipe(T.Label()),
-      aggregation:
-        PostPayrollsPayrollUuidReportsGeneralLedgerRequestAggregation,
-      integration_type: S.optional(
-        S.NullOr(
-          PostPayrollsPayrollUuidReportsGeneralLedgerRequestIntegrationType,
-        ),
-      ),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/payrolls/{payroll_uuid}/reports/general_ledger",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostPayrollsPayrollUuidReportsGeneralLedgerRequest",
-  }) as any as S.Schema<PostPayrollsPayrollUuidReportsGeneralLedgerRequest>;
-
-/** The breakdown level used for the report. */
-export type GeneralLedgerReportAggregation =
-  | "default"
-  | "job"
-  | "department"
-  | "integration";
-export const GeneralLedgerReportAggregation = /*@__PURE__*/ S.String;
-
-/** A request for a general ledger report. The report is generated asynchronously and the URL is available via the report GET endpoint using the returned `request_uuid`. */
-export interface GeneralLedgerReport {
-  /** The breakdown level used for the report. */
-  aggregation?: GeneralLedgerReportAggregation;
-  /** The `integration_type` used for the report when `aggregation` is 'integration' (e.g., `xero`, `qbo`). Otherwise, this will be null or an empty string. */
-  integration_type?: string | null;
-  /** The UUID of the payroll record for which the report was generated. */
-  payroll_uuid?: string;
-  /** UUID to use for polling the report status. */
-  request_uuid?: string;
-}
-export const GeneralLedgerReport = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    aggregation: S.optional(GeneralLedgerReportAggregation),
-    integration_type: S.optional(S.NullOr(S.String)),
-    payroll_uuid: S.optional(S.String),
-    request_uuid: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "GeneralLedgerReport",
-}) as any as S.Schema<GeneralLedgerReport>;
-
-export type PostV1CompaniesCompanyIdCompanyBenefitsRequestCatchUpType =
-  | "elective"
-  | "deemed";
-export const PostV1CompaniesCompanyIdCompanyBenefitsRequestCatchUpType =
-  /*@__PURE__*/ S.String;
-
-export interface PostV1CompaniesCompanyIdCompanyBenefitsRequest {
-  /** The UUID of the company */
-  company_id: string;
-  /** Whether this benefit is active for employee participation. */
-  active?: boolean;
-  /** The ID of the benefit to which the company benefit belongs. */
-  benefit_type?: number;
-  /** The type of catch-up contribution for this benefit, as required by Section 603 of the SECURE 2.0 Act. Only applicable to pre-tax 401(k) and 403(b) benefits. */
-  catch_up_type?:
-    | PostV1CompaniesCompanyIdCompanyBenefitsRequestCatchUpType
-    | (string & {})
-    | null;
-  /** The description of the company benefit.For example, a company may offer multiple benefits with an ID of 1 (for Medical Insurance). The description would show something more specific like "Kaiser Permanente" or "Blue Cross/ Blue Shield". */
-  description: string;
-  /** Whether the employer is subject to file W-2 forms for an employee on leave. Only applicable to third party sick pay benefits. */
-  responsible_for_employee_w2?: boolean;
-  /** Whether the employer is subject to pay employer taxes when an employee is on leave. Only applicable to third party sick pay benefits. */
-  responsible_for_employer_taxes?: boolean;
-}
-export const PostV1CompaniesCompanyIdCompanyBenefitsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      company_id: S.String.pipe(T.Label()),
-      active: S.optional(S.Boolean),
-      benefit_type: S.optional(S.Number),
-      catch_up_type: S.optional(
-        S.NullOr(PostV1CompaniesCompanyIdCompanyBenefitsRequestCatchUpType),
-      ),
-      description: S.String,
-      responsible_for_employee_w2: S.optional(S.Boolean),
-      responsible_for_employer_taxes: S.optional(S.Boolean),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/companies/{company_id}/company_benefits",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostV1CompaniesCompanyIdCompanyBenefitsRequest",
-  }) as any as S.Schema<PostV1CompaniesCompanyIdCompanyBenefitsRequest>;
-
-export interface PostV1CompaniesCompanyIdEarningTypesRequest {
-  /** The UUID of the company */
-  company_id: string;
-  /** The name of the custom earning type. */
-  name: string;
-}
-export const PostV1CompaniesCompanyIdEarningTypesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      company_id: S.String.pipe(T.Label()),
-      name: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/companies/{company_id}/earning_types",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostV1CompaniesCompanyIdEarningTypesRequest",
-  }) as any as S.Schema<PostV1CompaniesCompanyIdEarningTypesRequest>;
-
-export interface PostV1CompaniesCompanyIdLocationsRequest {
-  /** The UUID of the company */
-  company_id: string;
-  /** City. */
-  city: string;
-  /** Country code. Defaults to USA. */
-  country?: string;
-  /** Specify if this location is the company's filing address. */
-  filing_address?: boolean;
-  /** Specify if this location is the company's mailing address. */
-  mailing_address?: boolean;
-  /** Phone number. Must be 10 digits. */
-  phone_number: string;
-  /** State code (e.g. CA). Must be a valid two-letter state code. */
-  state: string;
-  /** Street address line 1. */
-  street_1: string;
-  /** Street address line 2. */
-  street_2?: string | null;
-  /** ZIP code. Must be a valid US zip (e.g. 12345 or 12345-6789). */
-  zip: string;
-}
-export const PostV1CompaniesCompanyIdLocationsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      company_id: S.String.pipe(T.Label()),
-      city: S.String,
-      country: S.optional(S.String),
-      filing_address: S.optional(S.Boolean),
-      mailing_address: S.optional(S.Boolean),
-      phone_number: S.String,
-      state: S.String,
-      street_1: S.String,
-      street_2: S.optional(S.NullOr(S.String)),
-      zip: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/companies/{company_id}/locations",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "PostV1CompaniesCompanyIdLocationsRequest",
-}) as any as S.Schema<PostV1CompaniesCompanyIdLocationsRequest>;
-
-/** The contractor type. */
-export type PostV1CompaniesCompanyUuidContractorsRequestType =
-  | "Individual"
-  | "Business";
-export const PostV1CompaniesCompanyUuidContractorsRequestType =
-  /*@__PURE__*/ S.String;
-
-/** The contractor’s wage type. */
-export type PostV1CompaniesCompanyUuidContractorsRequestWageType =
-  | "Fixed"
-  | "Hourly";
-export const PostV1CompaniesCompanyUuidContractorsRequestWageType =
-  /*@__PURE__*/ S.String;
-
-export interface PostV1CompaniesCompanyUuidContractorsRequest {
-  /** The UUID of the company */
-  company_uuid: string;
-  /** The name of the contractor business. This attribute is required for `Business` contractors and will be ignored for `Individual` contractors. */
-  business_name?: string;
-  /** The employer identification number of the contractor business. This attribute is optional for `Business` contractors and will be ignored for `Individual` contractors. */
-  ein?: string;
-  /** The contractor’s email address. */
-  email?: string;
-  /** The boolean flag indicating whether Gusto will file a new hire report for the contractor. This attribute is optional for `Individual` contractors and will be ignored for `Business` contractors. */
-  file_new_hire_report?: boolean;
-  /** The contractor’s first name. This attribute is required for `Individual` contractors and will be ignored for `Business` contractors. */
-  first_name?: string;
-  /** The contractor’s hourly rate. This attribute is required if the wage_type is `Hourly`. */
-  hourly_rate?: string;
-  /** The status of the contractor. If the contractor's start date is in the future, updating this field to true means we are setting the start date to today. Attempting to deactivate a contractor while a dismissal is already scheduled, or reactivate while a rehire is already scheduled, will return a 422 error. Cancel the pending transition first using the appropriate cancel endpoint. */
-  is_active?: boolean;
-  /** The contractor’s last name. This attribute is required for `Individual` contractors and will be ignored for `Business` contractors. */
-  last_name?: string;
-  /** The contractor’s middle initial. This attribute is optional for `Individual` contractors and will be ignored for `Business` contractors. */
-  middle_initial?: string;
-  /** Whether the contractor or the payroll admin will complete onboarding in Gusto. Self-onboarding is recommended so that contractors receive Gusto accounts. If self_onboarding is true, then email is required. */
-  self_onboarding?: boolean;
-  /** This attribute is optional for `Individual` contractors and will be ignored for `Business` contractors. Social security number is needed to file the annual 1099 tax form. */
-  ssn?: string;
-  /** The day when the contractor will start working for the company. */
-  start_date: string;
-  /** The contractor type. */
-  type: PostV1CompaniesCompanyUuidContractorsRequestType | (string & {});
-  /** The contractor’s wage type. */
-  wage_type:
-    | PostV1CompaniesCompanyUuidContractorsRequestWageType
-    | (string & {});
-  /** The work email address of the contractor. This is provided to support syncing users between our system and yours. You may not use this email address for any other purpose (e.g. marketing). */
-  work_email?: string;
-  /** State where the contractor will be conducting the majority of their work for the company. This value is used when generating the new hire report. This attribute is required for `Individual` contractors if `file_new_hire_report` is true and will be ignored for `Business` contractors. */
-  work_state?: string | null;
-}
-export const PostV1CompaniesCompanyUuidContractorsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      company_uuid: S.String.pipe(T.Label()),
-      business_name: S.optional(S.String),
-      ein: S.optional(S.String),
-      email: S.optional(S.String),
-      file_new_hire_report: S.optional(S.Boolean),
-      first_name: S.optional(S.String),
-      hourly_rate: S.optional(S.String),
-      is_active: S.optional(S.Boolean),
-      last_name: S.optional(S.String),
-      middle_initial: S.optional(S.String),
-      self_onboarding: S.optional(S.Boolean),
-      ssn: S.optional(S.String),
-      start_date: S.String,
-      type: PostV1CompaniesCompanyUuidContractorsRequestType,
-      wage_type: PostV1CompaniesCompanyUuidContractorsRequestWageType,
-      work_email: S.optional(S.String),
-      work_state: S.optional(S.NullOr(S.String)),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/companies/{company_uuid}/contractors",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostV1CompaniesCompanyUuidContractorsRequest",
-  }) as any as S.Schema<PostV1CompaniesCompanyUuidContractorsRequest>;
 
 export interface PostV1CompensationsCompensationIdRequestMinimumWagesItem {
   /** The UUID of the minimum wage. */
@@ -8763,635 +9336,6 @@ export const PostV1EmployeesRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "PostV1EmployeesRequest",
 }) as any as S.Schema<PostV1EmployeesRequest>;
 
-/** The company contribution scheme. `amount`: The company contributes a fixed amount per payroll. If elective is true, the contribution is matching, dollar-for-dollar. `percentage`: The company contributes a percentage of the payroll amount per payroll period. If elective is true, the contribution is matching, dollar-for-dollar. `tiered`: The size of the company contribution corresponds to the size of the employee deduction relative to a tiered matching scheme. */
-export type PostV1EmployeesEmployeeIdEmployeeBenefitsRequestContributionType =
-  | "tiered"
-  | "percentage"
-  | "amount";
-export const PostV1EmployeesEmployeeIdEmployeeBenefitsRequestContributionType =
-  /*@__PURE__*/ S.String;
-
-/** A single tier of a tiered matching scheme. */
-export interface PostV1EmployeesEmployeeIdEmployeeBenefitsRequestContributionValueCase1Item {
-  /** The percentage of employee deduction within this tier the company contribution will match. */
-  rate?: string;
-  /** Specifies the upper limit (inclusive) percentage of the employee contribution that this tier applies to. Use threshold to define each tier's end point, with tiers applied cumulatively from 0% upwards. For example: If the first tier has a threshold of "3", and rate of "100", the company will match 100% of employee contributions from 0% up to and including 3% of payroll. If the next tier has a threshold of "5" and a rate of "50", the company will match 50% of contributions from above 3% up to and including 5% of payroll. */
-  threshold?: string;
-}
-export const PostV1EmployeesEmployeeIdEmployeeBenefitsRequestContributionValueCase1Item =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      rate: S.optional(S.String),
-      threshold: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier:
-      "PostV1EmployeesEmployeeIdEmployeeBenefitsRequestContributionValueCase1Item",
-  }) as any as S.Schema<PostV1EmployeesEmployeeIdEmployeeBenefitsRequestContributionValueCase1Item>;
-
-/** For `tiered` contribution types, an array of tiers. */
-export type PostV1EmployeesEmployeeIdEmployeeBenefitsRequestContributionValueCase1List =
-  Array<PostV1EmployeesEmployeeIdEmployeeBenefitsRequestContributionValueCase1Item>;
-export const PostV1EmployeesEmployeeIdEmployeeBenefitsRequestContributionValueCase1List =
-  /*@__PURE__*/ S.Array(
-    PostV1EmployeesEmployeeIdEmployeeBenefitsRequestContributionValueCase1Item,
-  ) as any as S.Schema<PostV1EmployeesEmployeeIdEmployeeBenefitsRequestContributionValueCase1List>;
-
-/** For the `amount` and `percentage` contribution types, the value of the corresponding amount or percentage. For the `tiered` contribution type, an array of tiers. */
-export type PostV1EmployeesEmployeeIdEmployeeBenefitsRequestContributionValue =
-  | string
-  | PostV1EmployeesEmployeeIdEmployeeBenefitsRequestContributionValueCase1List;
-export const PostV1EmployeesEmployeeIdEmployeeBenefitsRequestContributionValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PostV1EmployeesEmployeeIdEmployeeBenefitsRequestContributionValue>;
-
-/** An object representing the company contribution type and value. */
-export interface PostV1EmployeesEmployeeIdEmployeeBenefitsRequestContribution {
-  /** The company contribution scheme. `amount`: The company contributes a fixed amount per payroll. If elective is true, the contribution is matching, dollar-for-dollar. `percentage`: The company contributes a percentage of the payroll amount per payroll period. If elective is true, the contribution is matching, dollar-for-dollar. `tiered`: The size of the company contribution corresponds to the size of the employee deduction relative to a tiered matching scheme. */
-  type?:
-    | PostV1EmployeesEmployeeIdEmployeeBenefitsRequestContributionType
-    | (string & {});
-  /** For the `amount` and `percentage` contribution types, the value of the corresponding amount or percentage. For the `tiered` contribution type, an array of tiers. */
-  value?: PostV1EmployeesEmployeeIdEmployeeBenefitsRequestContributionValue;
-}
-export const PostV1EmployeesEmployeeIdEmployeeBenefitsRequestContribution =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: S.optional(
-        PostV1EmployeesEmployeeIdEmployeeBenefitsRequestContributionType,
-      ),
-      value: S.optional(
-        PostV1EmployeesEmployeeIdEmployeeBenefitsRequestContributionValue,
-      ),
-    }),
-  ).annotate({
-    identifier: "PostV1EmployeesEmployeeIdEmployeeBenefitsRequestContribution",
-  }) as any as S.Schema<PostV1EmployeesEmployeeIdEmployeeBenefitsRequestContribution>;
-
-export type PostV1EmployeesEmployeeIdEmployeeBenefitsRequestDeductionReducesTaxableIncome =
-  | "unset"
-  | "reduces_taxable_income"
-  | "does_not_reduce_taxable_income";
-export const PostV1EmployeesEmployeeIdEmployeeBenefitsRequestDeductionReducesTaxableIncome =
-  /*@__PURE__*/ S.String;
-
-export type PostV1EmployeesEmployeeIdEmployeeBenefitsRequestLimitOption =
-  | "Family"
-  | "Individual"
-  | "Joint Filing or Single"
-  | "Married and Filing Separately";
-export const PostV1EmployeesEmployeeIdEmployeeBenefitsRequestLimitOption =
-  /*@__PURE__*/ S.String;
-
-export interface PostV1EmployeesEmployeeIdEmployeeBenefitsRequest {
-  /** The UUID of the employee */
-  employee_id: string;
-  /** Whether the employee benefit is active. */
-  active?: boolean;
-  /** Whether the employee should use a benefit's "catch up" rate. Only Roth 401k and 401k benefits use this value for employees over 50. */
-  catch_up?: boolean;
-  /** The UUID of the company benefit. */
-  company_benefit_uuid: string;
-  /** The amount to be paid, per pay period, by the company. */
-  company_contribution?: string;
-  /** The maximum company contribution amount per year. A null value signifies no limit. */
-  company_contribution_annual_maximum?: string | null;
-  /** Whether the company contribution amount should be treated as a percentage to be deducted from each payroll. */
-  contribute_as_percentage?: boolean;
-  /** An object representing the company contribution type and value. */
-  contribution?: PostV1EmployeesEmployeeIdEmployeeBenefitsRequestContribution;
-  /** The amount that the employee is insured for. Note: company contribution cannot be present if coverage amount is set. */
-  coverage_amount?: string | null;
-  /** The coverage amount as a multiple of the employee's salary. Only applicable for Group Term Life benefits. Note: cannot be set if coverage amount is also set. */
-  coverage_salary_multiplier?: string;
-  /** Whether the employee deduction amount should be treated as a percentage to be deducted from each payroll. */
-  deduct_as_percentage?: boolean;
-  /** Whether the employee deduction reduces taxable income or not. Only valid for Group Term Life benefits. Note: when the value is not "unset", coverage amount and coverage salary multiplier are ignored. */
-  deduction_reduces_taxable_income?:
-    | PostV1EmployeesEmployeeIdEmployeeBenefitsRequestDeductionReducesTaxableIncome
-    | (string & {})
-    | null;
-  /** The date the employee benefit will start. If not provided, the benefit will be effective from 1970-01-01 (unix epoch). */
-  effective_date?: string;
-  /** Whether the company contribution is elective (aka "matching"). For `tiered`, `elective_amount`, and `elective_percentage` contribution types this is ignored and assumed to be `true`. */
-  elective?: boolean;
-  /** The amount to be deducted, per pay period, from the employee's pay. */
-  employee_deduction?: string;
-  /** The maximum employee deduction amount per year. A null value signifies no limit. */
-  employee_deduction_annual_maximum?: string | null;
-  /** The date the employee benefit will expire. A null value indicates the benefit will not expire. */
-  expiration_date?: string | null;
-  /** Some benefits require additional information to determine their limit. `Family` or `Individual`: Applicable to HSA benefit. `Joint Filing or Single` or `Married and Filing Separately`: Applicable to Dependent Care FSA benefit. */
-  limit_option?:
-    | PostV1EmployeesEmployeeIdEmployeeBenefitsRequestLimitOption
-    | (string & {})
-    | null;
-}
-export const PostV1EmployeesEmployeeIdEmployeeBenefitsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      employee_id: S.String.pipe(T.Label()),
-      active: S.optional(S.Boolean),
-      catch_up: S.optional(S.Boolean),
-      company_benefit_uuid: S.String,
-      company_contribution: S.optional(S.String),
-      company_contribution_annual_maximum: S.optional(S.NullOr(S.String)),
-      contribute_as_percentage: S.optional(S.Boolean),
-      contribution: S.optional(
-        PostV1EmployeesEmployeeIdEmployeeBenefitsRequestContribution,
-      ),
-      coverage_amount: S.optional(S.NullOr(S.String)),
-      coverage_salary_multiplier: S.optional(S.String),
-      deduct_as_percentage: S.optional(S.Boolean),
-      deduction_reduces_taxable_income: S.optional(
-        S.NullOr(
-          PostV1EmployeesEmployeeIdEmployeeBenefitsRequestDeductionReducesTaxableIncome,
-        ),
-      ),
-      effective_date: S.optional(S.String),
-      elective: S.optional(S.Boolean),
-      employee_deduction: S.optional(S.String),
-      employee_deduction_annual_maximum: S.optional(S.NullOr(S.String)),
-      expiration_date: S.optional(S.NullOr(S.String)),
-      limit_option: S.optional(
-        S.NullOr(PostV1EmployeesEmployeeIdEmployeeBenefitsRequestLimitOption),
-      ),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/employees/{employee_id}/employee_benefits",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostV1EmployeesEmployeeIdEmployeeBenefitsRequest",
-  }) as any as S.Schema<PostV1EmployeesEmployeeIdEmployeeBenefitsRequest>;
-
-/** A single tier of a tiered matching scheme. */
-export type PostV1EmployeesEmployeeIdEmployeeBenefitsResponseContributionValueCase1TiersItem =
-  CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1TiersItem;
-export const PostV1EmployeesEmployeeIdEmployeeBenefitsResponseContributionValueCase1TiersItem =
-  CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1TiersItem;
-
-export type PostV1EmployeesEmployeeIdEmployeeBenefitsResponseContributionValueCase1TiersList =
-  Array<CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1TiersItem>;
-export const PostV1EmployeesEmployeeIdEmployeeBenefitsResponseContributionValueCase1TiersList =
-  /*@__PURE__*/ S.Array(
-    CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1TiersItem,
-  ) as any as S.Schema<PostV1EmployeesEmployeeIdEmployeeBenefitsResponseContributionValueCase1TiersList>;
-
-export interface PostV1EmployeesEmployeeIdEmployeeBenefitsResponseContributionValueCase1 {
-  tiers?: PostV1EmployeesEmployeeIdEmployeeBenefitsResponseContributionValueCase1TiersList;
-}
-export const PostV1EmployeesEmployeeIdEmployeeBenefitsResponseContributionValueCase1 =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      tiers: S.optional(
-        PostV1EmployeesEmployeeIdEmployeeBenefitsResponseContributionValueCase1TiersList,
-      ),
-    }),
-  ).annotate({
-    identifier:
-      "PostV1EmployeesEmployeeIdEmployeeBenefitsResponseContributionValueCase1",
-  }) as any as S.Schema<PostV1EmployeesEmployeeIdEmployeeBenefitsResponseContributionValueCase1>;
-
-/** For the `amount` and `percentage` contribution types, the value of the corresponding amount or percentage. For the `tiered` contribution type, an array of tiers. */
-export type PostV1EmployeesEmployeeIdEmployeeBenefitsResponseContributionValue =
-  | string
-  | PostV1EmployeesEmployeeIdEmployeeBenefitsResponseContributionValueCase1;
-export const PostV1EmployeesEmployeeIdEmployeeBenefitsResponseContributionValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PostV1EmployeesEmployeeIdEmployeeBenefitsResponseContributionValue>;
-
-/** An object representing the type and value of the company contribution. */
-export interface PostV1EmployeesEmployeeIdEmployeeBenefitsResponseContribution {
-  /** The company contribution scheme. "amount": The company contributes a fixed amount per payroll. If elective is true, the contribution is matching, dollar-for-dollar. "percentage": The company contributes a percentage of the payroll amount per payroll period. If elective is true, the contribution is matching, dollar-for-dollar. "tiered": The company contribution varies according to the size of the employee deduction. */
-  type?: string;
-  /** For the `amount` and `percentage` contribution types, the value of the corresponding amount or percentage. For the `tiered` contribution type, an array of tiers. */
-  value?: PostV1EmployeesEmployeeIdEmployeeBenefitsResponseContributionValue;
-}
-export const PostV1EmployeesEmployeeIdEmployeeBenefitsResponseContribution =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: S.optional(S.String),
-      value: S.optional(
-        PostV1EmployeesEmployeeIdEmployeeBenefitsResponseContributionValue,
-      ),
-    }),
-  ).annotate({
-    identifier: "PostV1EmployeesEmployeeIdEmployeeBenefitsResponseContribution",
-  }) as any as S.Schema<PostV1EmployeesEmployeeIdEmployeeBenefitsResponseContribution>;
-
-export type PostV1EmployeesEmployeeIdEmployeeBenefitsResponseDeductionReducesTaxableIncome =
-  | "unset"
-  | "reduces_taxable_income"
-  | "does_not_reduce_taxable_income";
-export const PostV1EmployeesEmployeeIdEmployeeBenefitsResponseDeductionReducesTaxableIncome =
-  /*@__PURE__*/ S.String;
-
-export interface PostV1EmployeesEmployeeIdEmployeeBenefitsResponse {
-  /** Whether the employee benefit is active. */
-  active?: boolean;
-  /** Whether the employee should use a benefit's "catch up" rate. Only Roth 401k and 401k benefits use this value for employees over 50. */
-  catch_up?: boolean | null;
-  /** The amount to be paid, per pay period, by the company. This field will not appear for tiered contribution types. */
-  company_contribution?: string;
-  /** The maximum company contribution amount per year. A null value signifies no limit. */
-  company_contribution_annual_maximum?: string | null;
-  /** Whether the company_contribution value should be treated as a percentage to be added to each payroll. This field will not appear for tiered contribution types. */
-  contribute_as_percentage?: boolean;
-  /** An object representing the type and value of the company contribution. */
-  contribution?: PostV1EmployeesEmployeeIdEmployeeBenefitsResponseContribution;
-  /** The amount that the employee is insured for. Note: company contribution cannot be present if coverage amount is set. */
-  coverage_amount?: string | null;
-  /** The coverage amount as a multiple of the employee's salary. Only applicable for Group Term Life benefits. Note: cannot be set if coverage amount is also set. */
-  coverage_salary_multiplier?: string | null;
-  /** Whether the employee deduction amount should be treated as a percentage to be deducted from each payroll. */
-  deduct_as_percentage?: boolean;
-  /** Whether the employee deduction reduces taxable income or not. Only valid for Group Term Life benefits. Note: when the value is not "unset", coverage amount and coverage salary multiplier are ignored. */
-  deduction_reduces_taxable_income?: PostV1EmployeesEmployeeIdEmployeeBenefitsResponseDeductionReducesTaxableIncome | null;
-  /** The date the employee benefit will start. */
-  effective_date?: string;
-  /** Whether the company contribution is elective (aka matching). For "tiered" contribution types, this is always true. */
-  elective?: boolean;
-  /** The amount to be deducted, per pay period, from the employee's pay. */
-  employee_deduction?: string;
-  /** The maximum employee deduction amount per year. A null value signifies no limit. */
-  employee_deduction_annual_maximum?: string | null;
-  /** The date the employee benefit will expire. A null value indicates the benefit will not expire. */
-  expiration_date?: string | null;
-  /** Some benefits require additional information to determine their limit. `Family` and `Individual` are applicable to HSA benefit. `Joint Filing or Single` and `Married and Filing Separately` are applicable to Dependent Care FSA benefit. */
-  limit_option?: string | null;
-  /** Identifier for a 401(k) loan assigned by the 401(k) provider */
-  retirement_loan_identifier?: string | null;
-  /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
-  version?: string;
-  /** The UUID of the company benefit. */
-  company_benefit_uuid?: string;
-  /** The UUID of the employee to which the benefit belongs. */
-  employee_uuid?: string;
-  /** The UUID of the employee benefit. */
-  uuid: string;
-}
-export const PostV1EmployeesEmployeeIdEmployeeBenefitsResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      active: S.optional(S.Boolean),
-      catch_up: S.optional(S.NullOr(S.Boolean)),
-      company_contribution: S.optional(S.String),
-      company_contribution_annual_maximum: S.optional(S.NullOr(S.String)),
-      contribute_as_percentage: S.optional(S.Boolean),
-      contribution: S.optional(
-        PostV1EmployeesEmployeeIdEmployeeBenefitsResponseContribution,
-      ),
-      coverage_amount: S.optional(S.NullOr(S.String)),
-      coverage_salary_multiplier: S.optional(S.NullOr(S.String)),
-      deduct_as_percentage: S.optional(S.Boolean),
-      deduction_reduces_taxable_income: S.optional(
-        S.NullOr(
-          PostV1EmployeesEmployeeIdEmployeeBenefitsResponseDeductionReducesTaxableIncome,
-        ),
-      ),
-      effective_date: S.optional(S.String),
-      elective: S.optional(S.Boolean),
-      employee_deduction: S.optional(S.String),
-      employee_deduction_annual_maximum: S.optional(S.NullOr(S.String)),
-      expiration_date: S.optional(S.NullOr(S.String)),
-      limit_option: S.optional(S.NullOr(S.String)),
-      retirement_loan_identifier: S.optional(S.NullOr(S.String)),
-      version: S.optional(S.String),
-      company_benefit_uuid: S.optional(S.String),
-      employee_uuid: S.optional(S.String),
-      uuid: S.String,
-    }),
-  ).annotate({
-    identifier: "PostV1EmployeesEmployeeIdEmployeeBenefitsResponse",
-  }) as any as S.Schema<PostV1EmployeesEmployeeIdEmployeeBenefitsResponse>;
-
-export type PostV1EmployeesEmployeeIdGarnishmentsRequestGarnishmentType =
-  | "child_support"
-  | "federal_tax_lien"
-  | "state_tax_lien"
-  | "student_loan"
-  | "creditor_garnishment"
-  | "federal_loan"
-  | "other_garnishment";
-export const PostV1EmployeesEmployeeIdGarnishmentsRequestGarnishmentType =
-  /*@__PURE__*/ S.String;
-
-export interface PostV1EmployeesEmployeeIdGarnishmentsRequest {
-  /** The UUID of the employee */
-  employee_id: string;
-  /** Whether or not this garnishment is currently active. */
-  active?: boolean;
-  /** The amount of the garnishment. Either a percentage or a fixed dollar amount. Represented as a float, e.g. "8.00". */
-  amount: string;
-  /** The maximum deduction per annum. A null value indicates no maximum. Represented as a float, e.g. "200.00". */
-  annual_maximum?: string | null;
-  child_support?: GarnishmentChildSupport | null;
-  /** Whether the garnishment is court ordered. */
-  court_ordered: boolean;
-  /** Whether the amount should be treated as a percentage to be deducted per pay period. */
-  deduct_as_percentage?: boolean;
-  /** The description of the garnishment. */
-  description?: string;
-  /** The specific type of garnishment for court ordered garnishments. */
-  garnishment_type?:
-    | PostV1EmployeesEmployeeIdGarnishmentsRequestGarnishmentType
-    | (string & {})
-    | null;
-  /** The maximum deduction per pay period. A null value indicates no maximum. Represented as a float, e.g. "16.00". */
-  pay_period_maximum?: string | null;
-  /** Whether the garnishment should recur indefinitely. */
-  recurring?: boolean;
-  /** The number of times to apply the garnishment. Ignored if recurring is true. */
-  times?: number | null;
-  /** A maximum total deduction for the lifetime of this garnishment. A null value indicates no maximum. */
-  total_amount?: string | null;
-}
-export const PostV1EmployeesEmployeeIdGarnishmentsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      employee_id: S.String.pipe(T.Label()),
-      active: S.optional(S.Boolean),
-      amount: S.String,
-      annual_maximum: S.optional(S.NullOr(S.String)),
-      child_support: S.optional(S.NullOr(GarnishmentChildSupport)),
-      court_ordered: S.Boolean,
-      deduct_as_percentage: S.optional(S.Boolean),
-      description: S.optional(S.String),
-      garnishment_type: S.optional(
-        S.NullOr(PostV1EmployeesEmployeeIdGarnishmentsRequestGarnishmentType),
-      ),
-      pay_period_maximum: S.optional(S.NullOr(S.String)),
-      recurring: S.optional(S.Boolean),
-      times: S.optional(S.NullOr(S.Number)),
-      total_amount: S.optional(S.NullOr(S.String)),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/employees/{employee_id}/garnishments",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostV1EmployeesEmployeeIdGarnishmentsRequest",
-  }) as any as S.Schema<PostV1EmployeesEmployeeIdGarnishmentsRequest>;
-
-export interface PostV1EmployeesEmployeeIdHomeAddressesRequest {
-  /** The UUID of the employee */
-  employee_id: string;
-  city?: string;
-  courtesy_withholding?: boolean;
-  effective_date?: string | null;
-  state?: string;
-  street_1?: string;
-  street_2?: string | null;
-  zip?: string;
-}
-export const PostV1EmployeesEmployeeIdHomeAddressesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      employee_id: S.String.pipe(T.Label()),
-      city: S.optional(S.String),
-      courtesy_withholding: S.optional(S.Boolean),
-      effective_date: S.optional(S.NullOr(S.String)),
-      state: S.optional(S.String),
-      street_1: S.optional(S.String),
-      street_2: S.optional(S.NullOr(S.String)),
-      zip: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/employees/{employee_id}/home_addresses",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostV1EmployeesEmployeeIdHomeAddressesRequest",
-  }) as any as S.Schema<PostV1EmployeesEmployeeIdHomeAddressesRequest>;
-
-export interface PostV1EmployeesEmployeeIdRecurringReimbursementsRequest {
-  /** The UUID of the employee */
-  employee_id: string;
-  /** The dollar amount of the reimbursement */
-  amount: number;
-  /** The description of the reimbursement */
-  description: string;
-}
-export const PostV1EmployeesEmployeeIdRecurringReimbursementsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      employee_id: S.String.pipe(T.Label()),
-      amount: S.Number,
-      description: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/employees/{employee_id}/recurring_reimbursements",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostV1EmployeesEmployeeIdRecurringReimbursementsRequest",
-  }) as any as S.Schema<PostV1EmployeesEmployeeIdRecurringReimbursementsRequest>;
-
-/** The employee's employment status. Supplying an invalid option will set the employment_status to *not_set*. */
-export type PostV1EmployeesEmployeeIdRehireRequestEmploymentStatus =
-  | "part_time"
-  | "full_time"
-  | "part_time_eligible"
-  | "variable"
-  | "seasonal"
-  | "not_set";
-export const PostV1EmployeesEmployeeIdRehireRequestEmploymentStatus =
-  /*@__PURE__*/ S.String;
-
-export interface PostV1EmployeesEmployeeIdRehireRequest {
-  /** The UUID of the employee */
-  employee_id: string;
-  /** The day when the employee returns to work. */
-  effective_date: string;
-  /** The employee's employment status. Supplying an invalid option will set the employment_status to *not_set*. */
-  employment_status?:
-    | PostV1EmployeesEmployeeIdRehireRequestEmploymentStatus
-    | (string & {});
-  /** The boolean flag indicating whether Gusto will file a new hire report for the employee. */
-  file_new_hire_report: boolean;
-  /** Whether the employee is a two percent shareholder of the company. This field only applies to companies with an S-Corp entity type. */
-  two_percent_shareholder?: boolean;
-  /** The uuid of the employee's work location. */
-  work_location_uuid: string;
-}
-export const PostV1EmployeesEmployeeIdRehireRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      employee_id: S.String.pipe(T.Label()),
-      effective_date: S.String,
-      employment_status: S.optional(
-        PostV1EmployeesEmployeeIdRehireRequestEmploymentStatus,
-      ),
-      file_new_hire_report: S.Boolean,
-      two_percent_shareholder: S.optional(S.Boolean),
-      work_location_uuid: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/employees/{employee_id}/rehire",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "PostV1EmployeesEmployeeIdRehireRequest",
-}) as any as S.Schema<PostV1EmployeesEmployeeIdRehireRequest>;
-
-/** Experience level for this occupation */
-export type PostV1EmployeesEmployeeIdSalaryEstimatesRequestOccupationsItemExperienceLevel =
-  | "novice"
-  | "intermediate"
-  | "average"
-  | "skilled"
-  | "expert";
-export const PostV1EmployeesEmployeeIdSalaryEstimatesRequestOccupationsItemExperienceLevel =
-  /*@__PURE__*/ S.String;
-
-export interface PostV1EmployeesEmployeeIdSalaryEstimatesRequestOccupationsItem {
-  /** Bureau of Labor Statistics (BLS) occupation code */
-  code: string;
-  /** Experience level for this occupation */
-  experience_level:
-    | PostV1EmployeesEmployeeIdSalaryEstimatesRequestOccupationsItemExperienceLevel
-    | (string & {});
-  /** Whether this is the primary occupation */
-  primary?: boolean;
-  /** Percentage of time spent in this occupation (as decimal, e.g., 1.0 = 100%) */
-  time_percentage: string;
-}
-export const PostV1EmployeesEmployeeIdSalaryEstimatesRequestOccupationsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      code: S.String,
-      experience_level:
-        PostV1EmployeesEmployeeIdSalaryEstimatesRequestOccupationsItemExperienceLevel,
-      primary: S.optional(S.Boolean),
-      time_percentage: S.String,
-    }),
-  ).annotate({
-    identifier:
-      "PostV1EmployeesEmployeeIdSalaryEstimatesRequestOccupationsItem",
-  }) as any as S.Schema<PostV1EmployeesEmployeeIdSalaryEstimatesRequestOccupationsItem>;
-
-/** Array of occupations. Time percentages must sum to 100%. */
-export type PostV1EmployeesEmployeeIdSalaryEstimatesRequestOccupationsList =
-  Array<PostV1EmployeesEmployeeIdSalaryEstimatesRequestOccupationsItem>;
-export const PostV1EmployeesEmployeeIdSalaryEstimatesRequestOccupationsList =
-  /*@__PURE__*/ S.Array(
-    PostV1EmployeesEmployeeIdSalaryEstimatesRequestOccupationsItem,
-  ) as any as S.Schema<PostV1EmployeesEmployeeIdSalaryEstimatesRequestOccupationsList>;
-
-export interface PostV1EmployeesEmployeeIdSalaryEstimatesRequest {
-  /** The UUID of the employee */
-  employee_id: string;
-  /** The annual net revenue of the business (must be greater than 0) */
-  annual_net_revenue?: number | null;
-  /** Array of occupations. Time percentages must sum to 100%. */
-  occupations: PostV1EmployeesEmployeeIdSalaryEstimatesRequestOccupationsList;
-  /** The ZIP code for location-based salary calculations */
-  zip_code: string;
-}
-export const PostV1EmployeesEmployeeIdSalaryEstimatesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      employee_id: S.String.pipe(T.Label()),
-      annual_net_revenue: S.optional(S.NullOr(S.Number)),
-      occupations:
-        PostV1EmployeesEmployeeIdSalaryEstimatesRequestOccupationsList,
-      zip_code: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/employees/{employee_id}/salary_estimates",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostV1EmployeesEmployeeIdSalaryEstimatesRequest",
-  }) as any as S.Schema<PostV1EmployeesEmployeeIdSalaryEstimatesRequest>;
-
-export interface PostV1EmployeesEmployeeIdTerminationsRequest {
-  /** The UUID of the employee */
-  employee_id: string;
-  /** The employee's last day of work. */
-  effective_date: string;
-  /** If true, the employee should receive their final wages via an off-cycle payroll. If false, they should receive their final wages on their current pay schedule. */
-  run_termination_payroll?: boolean;
-}
-export const PostV1EmployeesEmployeeIdTerminationsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      employee_id: S.String.pipe(T.Label()),
-      effective_date: S.String,
-      run_termination_payroll: S.optional(S.Boolean),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/employees/{employee_id}/terminations",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostV1EmployeesEmployeeIdTerminationsRequest",
-  }) as any as S.Schema<PostV1EmployeesEmployeeIdTerminationsRequest>;
-
-export interface PostV1EmployeesEmployeeIdWorkAddressesRequest {
-  /** The UUID of the employee */
-  employee_id: string;
-  /** Date the employee began working at the company location */
-  effective_date?: string;
-  /** Reference to a company location */
-  location_uuid?: string;
-}
-export const PostV1EmployeesEmployeeIdWorkAddressesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      employee_id: S.String.pipe(T.Label()),
-      effective_date: S.optional(S.String),
-      location_uuid: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/employees/{employee_id}/work_addresses",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostV1EmployeesEmployeeIdWorkAddressesRequest",
-  }) as any as S.Schema<PostV1EmployeesEmployeeIdWorkAddressesRequest>;
-
-export interface PostV1EmployeesEmployeeUuidSection603HighEarnerStatusesRequest {
-  /** The UUID of the employee */
-  employee_uuid: string;
-  /** The year for which this high earner status applies */
-  effective_year: number;
-  /** Whether the employee is classified as a high earner for Section 603 purposes */
-  is_high_earner: boolean;
-}
-export const PostV1EmployeesEmployeeUuidSection603HighEarnerStatusesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      employee_uuid: S.String.pipe(T.Label()),
-      effective_year: S.Number,
-      is_high_earner: S.Boolean,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/employees/{employee_uuid}/section603_high_earner_statuses",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "PostV1EmployeesEmployeeUuidSection603HighEarnerStatusesRequest",
-  }) as any as S.Schema<PostV1EmployeesEmployeeUuidSection603HighEarnerStatusesRequest>;
-
 export interface PostV1PayrollsPayrollIdCalculateAccruingTimeOffHoursRequest {
   /** The UUID of the payroll */
   payroll_id: string;
@@ -9466,189 +9410,6 @@ export const PayrollCalculateAccruingTimeOffHoursResponse =
   ).annotate({
     identifier: "PayrollCalculateAccruingTimeOffHoursResponse",
   }) as any as S.Schema<PayrollCalculateAccruingTimeOffHoursResponse>;
-
-export interface PostV1ProvisionRequestCompanyAddressesItem {
-  city?: string;
-  /** Whether or not this is a primary address for the company. If set to true, the address will be used as the mailing and filing address for the company and will be added as a work location. If set to false or not included, the address will only be added as a work location for the company. If multiple addresses are included, only one should be marked as primary. */
-  is_primary?: string;
-  phone?: string;
-  state?: string;
-  street_1?: string;
-  street_2?: string | null;
-  zip?: string;
-}
-export const PostV1ProvisionRequestCompanyAddressesItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      city: S.optional(S.String),
-      is_primary: S.optional(S.String),
-      phone: S.optional(S.String),
-      state: S.optional(S.String),
-      street_1: S.optional(S.String),
-      street_2: S.optional(S.NullOr(S.String)),
-      zip: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "PostV1ProvisionRequestCompanyAddressesItem",
-  }) as any as S.Schema<PostV1ProvisionRequestCompanyAddressesItem>;
-
-/** The locations for the company. This includes mailing, work, and filing addresses. */
-export type PostV1ProvisionRequestCompanyAddressesList =
-  Array<PostV1ProvisionRequestCompanyAddressesItem>;
-export const PostV1ProvisionRequestCompanyAddressesList = /*@__PURE__*/ S.Array(
-  PostV1ProvisionRequestCompanyAddressesItem,
-) as any as S.Schema<PostV1ProvisionRequestCompanyAddressesList>;
-
-/** The states in which the company operates. States should be included by their two letter code, i.e. NY for New York. */
-export type PostV1ProvisionRequestCompanyStatesList = Array<string>;
-export const PostV1ProvisionRequestCompanyStatesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PostV1ProvisionRequestCompanyStatesList>;
-
-export interface PostV1ProvisionRequestCompany {
-  /** The locations for the company. This includes mailing, work, and filing addresses. */
-  addresses?: PostV1ProvisionRequestCompanyAddressesList;
-  /** The employer identification number (EIN) of the company. */
-  ein?: string;
-  /** The legal name of the company. */
-  name: string;
-  /** The number of employees in the company. */
-  number_employees?: number;
-  /** The states in which the company operates. States should be included by their two letter code, i.e. NY for New York. */
-  states?: PostV1ProvisionRequestCompanyStatesList;
-  /** The name of the company. */
-  trade_name?: string;
-}
-export const PostV1ProvisionRequestCompany = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    addresses: S.optional(PostV1ProvisionRequestCompanyAddressesList),
-    ein: S.optional(S.String),
-    name: S.String,
-    number_employees: S.optional(S.Number),
-    states: S.optional(PostV1ProvisionRequestCompanyStatesList),
-    trade_name: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PostV1ProvisionRequestCompany",
-}) as any as S.Schema<PostV1ProvisionRequestCompany>;
-
-/** Information for the user who will be the primary payroll administrator for the new company. */
-export interface PostV1ProvisionRequestUser {
-  /** The email of the user who will be the primary payroll admin. */
-  email: string;
-  /** The first name of the user who will be the primary payroll admin. */
-  first_name: string;
-  /** The last name of the user who will be the primary payroll admin. */
-  last_name: string;
-  /** The phone number of the user who will be the primary payroll admin. */
-  phone?: string;
-}
-export const PostV1ProvisionRequestUser = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    email: S.String,
-    first_name: S.String,
-    last_name: S.String,
-    phone: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PostV1ProvisionRequestUser",
-}) as any as S.Schema<PostV1ProvisionRequestUser>;
-
-export interface PostV1ProvisionRequest {
-  company: PostV1ProvisionRequestCompany;
-  /** Information for the user who will be the primary payroll administrator for the new company. */
-  user: PostV1ProvisionRequestUser;
-}
-export const PostV1ProvisionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    company: PostV1ProvisionRequestCompany,
-    user: PostV1ProvisionRequestUser,
-  }).pipe(T.Http({ method: "POST", uri: "/v1/provision", code: 200 })),
-).annotate({
-  identifier: "PostV1ProvisionRequest",
-}) as any as S.Schema<PostV1ProvisionRequest>;
-
-export interface ProvisionCreated {
-  /** A URL where the user should be redirected to complete their account setup inside of Gusto. */
-  account_claim_url?: string;
-}
-export const ProvisionCreated = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    account_claim_url: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ProvisionCreated",
-}) as any as S.Schema<ProvisionCreated>;
-
-export interface PostV1SalaryEstimatesUuidAcceptRequest {
-  /** The UUID of the salary estimate */
-  uuid: string;
-  /** The UUID of the employee job to associate with this salary estimate */
-  employee_job_uuid: string;
-}
-export const PostV1SalaryEstimatesUuidAcceptRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      uuid: S.String.pipe(T.Label()),
-      employee_job_uuid: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/salary_estimates/{uuid}/accept",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "PostV1SalaryEstimatesUuidAcceptRequest",
-}) as any as S.Schema<PostV1SalaryEstimatesUuidAcceptRequest>;
-
-export type PostV1WebhookSubscriptionRequestSubscriptionTypesItem =
-  | "BankAccount"
-  | "Company"
-  | "CompanyBenefit"
-  | "Contractor"
-  | "ContractorPayment"
-  | "Employee"
-  | "EmployeeBenefit"
-  | "EmployeeJobCompensation"
-  | "ExternalPayroll"
-  | "Form"
-  | "Location"
-  | "Notification"
-  | "Payroll"
-  | "PayrollSync"
-  | "PaySchedule"
-  | "PeopleBatch"
-  | "Signatory"
-  | "TimeOffRequest";
-export const PostV1WebhookSubscriptionRequestSubscriptionTypesItem =
-  /*@__PURE__*/ S.String;
-
-/** The types of events to subscribe to. */
-export type PostV1WebhookSubscriptionRequestSubscriptionTypesList = Array<
-  PostV1WebhookSubscriptionRequestSubscriptionTypesItem | (string & {})
->;
-export const PostV1WebhookSubscriptionRequestSubscriptionTypesList =
-  /*@__PURE__*/ S.Array(
-    PostV1WebhookSubscriptionRequestSubscriptionTypesItem,
-  ) as any as S.Schema<PostV1WebhookSubscriptionRequestSubscriptionTypesList>;
-
-export interface PostV1WebhookSubscriptionRequest {
-  /** The types of events to subscribe to. */
-  subscription_types: PostV1WebhookSubscriptionRequestSubscriptionTypesList;
-  /** The URL where webhook events will be POSTed. */
-  url: string;
-}
-export const PostV1WebhookSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscription_types: PostV1WebhookSubscriptionRequestSubscriptionTypesList,
-    url: S.String,
-  }).pipe(
-    T.Http({ method: "POST", uri: "/v1/webhook_subscriptions", code: 200 }),
-  ),
-).annotate({
-  identifier: "PostV1WebhookSubscriptionRequest",
-}) as any as S.Schema<PostV1WebhookSubscriptionRequest>;
 
 export type PutAddPeopleToDepartmentRequestContractorsItem =
   DepartmentContractorsItem;
@@ -9756,295 +9517,13 @@ export const PutAddPeopleToDepartmentResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "PutAddPeopleToDepartmentResponse",
 }) as any as S.Schema<PutAddPeopleToDepartmentResponse>;
 
-export interface PutDepartmentsRequest {
-  /** The UUID of the department */
-  department_uuid: string;
-  /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
-  version: string;
-  /** Name of the department */
-  title: string;
-}
-export const PutDepartmentsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    department_uuid: S.String.pipe(T.Label()),
-    version: S.String,
-    title: S.String,
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/v1/departments/{department_uuid}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PutDepartmentsRequest",
-}) as any as S.Schema<PutDepartmentsRequest>;
-
-export type PutDepartmentsResponseContractorsItem = DepartmentContractorsItem;
-export const PutDepartmentsResponseContractorsItem = DepartmentContractorsItem;
-
-/** Array of contractors assigned to the department. */
-export type PutDepartmentsResponseContractorsList =
-  Array<DepartmentContractorsItem>;
-export const PutDepartmentsResponseContractorsList = /*@__PURE__*/ S.Array(
-  DepartmentContractorsItem,
-) as any as S.Schema<PutDepartmentsResponseContractorsList>;
-
-export type PutDepartmentsResponseEmployeesItem = DepartmentContractorsItem;
-export const PutDepartmentsResponseEmployeesItem = DepartmentContractorsItem;
-
-/** Array of employees assigned to the department. */
-export type PutDepartmentsResponseEmployeesList =
-  Array<DepartmentContractorsItem>;
-export const PutDepartmentsResponseEmployeesList = /*@__PURE__*/ S.Array(
-  DepartmentContractorsItem,
-) as any as S.Schema<PutDepartmentsResponseEmployeesList>;
-
-export interface PutDepartmentsResponse {
-  /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
-  version?: string;
-  /** The UUID of the company */
-  company_uuid?: string;
-  /** Array of contractors assigned to the department. */
-  contractors?: PutDepartmentsResponseContractorsList;
-  /** Array of employees assigned to the department. */
-  employees?: PutDepartmentsResponseEmployeesList;
-  /** Name of the department */
-  title?: string;
-  /** The UUID of the department */
-  uuid?: string;
-}
-export const PutDepartmentsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    version: S.optional(S.String),
-    company_uuid: S.optional(S.String),
-    contractors: S.optional(PutDepartmentsResponseContractorsList),
-    employees: S.optional(PutDepartmentsResponseEmployeesList),
-    title: S.optional(S.String),
-    uuid: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PutDepartmentsResponse",
-}) as any as S.Schema<PutDepartmentsResponse>;
-
-export type PutRemovePeopleFromDepartmentRequestContractorsItem =
-  DepartmentContractorsItem;
-export const PutRemovePeopleFromDepartmentRequestContractorsItem =
-  DepartmentContractorsItem;
-
-/** Array of contractors to add or remove from the department */
-export type PutRemovePeopleFromDepartmentRequestContractorsList =
-  Array<DepartmentContractorsItem>;
-export const PutRemovePeopleFromDepartmentRequestContractorsList =
-  /*@__PURE__*/ S.Array(
-    DepartmentContractorsItem,
-  ) as any as S.Schema<PutRemovePeopleFromDepartmentRequestContractorsList>;
-
-export type PutRemovePeopleFromDepartmentRequestEmployeesItem =
-  DepartmentContractorsItem;
-export const PutRemovePeopleFromDepartmentRequestEmployeesItem =
-  DepartmentContractorsItem;
-
-/** Array of employees to add or remove from the department */
-export type PutRemovePeopleFromDepartmentRequestEmployeesList =
-  Array<DepartmentContractorsItem>;
-export const PutRemovePeopleFromDepartmentRequestEmployeesList =
-  /*@__PURE__*/ S.Array(
-    DepartmentContractorsItem,
-  ) as any as S.Schema<PutRemovePeopleFromDepartmentRequestEmployeesList>;
-
-export interface PutRemovePeopleFromDepartmentRequest {
-  /** The UUID of the department */
-  department_uuid: string;
-  /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
-  version: string;
-  /** Array of contractors to add or remove from the department */
-  contractors?: PutRemovePeopleFromDepartmentRequestContractorsList;
-  /** Array of employees to add or remove from the department */
-  employees?: PutRemovePeopleFromDepartmentRequestEmployeesList;
-}
-export const PutRemovePeopleFromDepartmentRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      department_uuid: S.String.pipe(T.Label()),
-      version: S.String,
-      contractors: S.optional(
-        PutRemovePeopleFromDepartmentRequestContractorsList,
-      ),
-      employees: S.optional(PutRemovePeopleFromDepartmentRequestEmployeesList),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/v1/departments/{department_uuid}/remove",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "PutRemovePeopleFromDepartmentRequest",
-}) as any as S.Schema<PutRemovePeopleFromDepartmentRequest>;
-
-export type PutRemovePeopleFromDepartmentResponseContractorsItem =
-  DepartmentContractorsItem;
-export const PutRemovePeopleFromDepartmentResponseContractorsItem =
-  DepartmentContractorsItem;
-
-/** Array of contractors assigned to the department. */
-export type PutRemovePeopleFromDepartmentResponseContractorsList =
-  Array<DepartmentContractorsItem>;
-export const PutRemovePeopleFromDepartmentResponseContractorsList =
-  /*@__PURE__*/ S.Array(
-    DepartmentContractorsItem,
-  ) as any as S.Schema<PutRemovePeopleFromDepartmentResponseContractorsList>;
-
-export type PutRemovePeopleFromDepartmentResponseEmployeesItem =
-  DepartmentContractorsItem;
-export const PutRemovePeopleFromDepartmentResponseEmployeesItem =
-  DepartmentContractorsItem;
-
-/** Array of employees assigned to the department. */
-export type PutRemovePeopleFromDepartmentResponseEmployeesList =
-  Array<DepartmentContractorsItem>;
-export const PutRemovePeopleFromDepartmentResponseEmployeesList =
-  /*@__PURE__*/ S.Array(
-    DepartmentContractorsItem,
-  ) as any as S.Schema<PutRemovePeopleFromDepartmentResponseEmployeesList>;
-
-export interface PutRemovePeopleFromDepartmentResponse {
-  /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
-  version?: string;
-  /** The UUID of the company */
-  company_uuid?: string;
-  /** Array of contractors assigned to the department. */
-  contractors?: PutRemovePeopleFromDepartmentResponseContractorsList;
-  /** Array of employees assigned to the department. */
-  employees?: PutRemovePeopleFromDepartmentResponseEmployeesList;
-  /** Name of the department */
-  title?: string;
-  /** The UUID of the department */
-  uuid?: string;
-}
-export const PutRemovePeopleFromDepartmentResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      version: S.optional(S.String),
-      company_uuid: S.optional(S.String),
-      contractors: S.optional(
-        PutRemovePeopleFromDepartmentResponseContractorsList,
-      ),
-      employees: S.optional(PutRemovePeopleFromDepartmentResponseEmployeesList),
-      title: S.optional(S.String),
-      uuid: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "PutRemovePeopleFromDepartmentResponse",
-}) as any as S.Schema<PutRemovePeopleFromDepartmentResponse>;
-
-/** Pay classification for the entry. */
-export type PutTimeTrackingTimeSheetsTimeSheetUuidRequestEntriesItemPayClassification =
-  | "Regular"
-  | "Overtime"
-  | "Double overtime";
-export const PutTimeTrackingTimeSheetsTimeSheetUuidRequestEntriesItemPayClassification =
-  /*@__PURE__*/ S.String;
-
-export interface PutTimeTrackingTimeSheetsTimeSheetUuidRequestEntriesItem {
-  /** Hours worked for this pay classification. Should be passed as number with up to 3 decimal places. */
-  hours_worked?: number;
-  /** Pay classification for the entry. */
-  pay_classification?:
-    | PutTimeTrackingTimeSheetsTimeSheetUuidRequestEntriesItemPayClassification
-    | (string & {});
-  /** Unique identifier of the entry. */
-  uuid?: string;
-}
-export const PutTimeTrackingTimeSheetsTimeSheetUuidRequestEntriesItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      hours_worked: S.optional(S.Number),
-      pay_classification: S.optional(
-        PutTimeTrackingTimeSheetsTimeSheetUuidRequestEntriesItemPayClassification,
-      ),
-      uuid: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "PutTimeTrackingTimeSheetsTimeSheetUuidRequestEntriesItem",
-  }) as any as S.Schema<PutTimeTrackingTimeSheetsTimeSheetUuidRequestEntriesItem>;
-
-/** Entries associated with the time sheet. */
-export type PutTimeTrackingTimeSheetsTimeSheetUuidRequestEntriesList =
-  Array<PutTimeTrackingTimeSheetsTimeSheetUuidRequestEntriesItem>;
-export const PutTimeTrackingTimeSheetsTimeSheetUuidRequestEntriesList =
-  /*@__PURE__*/ S.Array(
-    PutTimeTrackingTimeSheetsTimeSheetUuidRequestEntriesItem,
-  ) as any as S.Schema<PutTimeTrackingTimeSheetsTimeSheetUuidRequestEntriesList>;
-
-/** Metadata associated with the time sheet. Key-value pairs of arbitrary data. Both keys and values must be strings. */
-export type PutTimeTrackingTimeSheetsTimeSheetUuidRequestMetadataMap = {
-  [key: string]: string | undefined;
-};
-export const PutTimeTrackingTimeSheetsTimeSheetUuidRequestMetadataMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<PutTimeTrackingTimeSheetsTimeSheetUuidRequestMetadataMap>;
-
-export interface PutTimeTrackingTimeSheetsTimeSheetUuidRequest {
-  /** UUID of the time sheet */
-  time_sheet_uuid: string;
-  /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
-  version: string;
-  /** Type of entity associated with the time sheet. */
-  entity_type?: string;
-  /** Unique identifier of the entity associated with the time sheet. */
-  entity_uuid?: string;
-  /** Entries associated with the time sheet. */
-  entries?: PutTimeTrackingTimeSheetsTimeSheetUuidRequestEntriesList;
-  /** Unique identifier of the job for which time was tracked. Currently is only supported for employees. */
-  job_uuid?: string;
-  /** Metadata associated with the time sheet. Key-value pairs of arbitrary data. Both keys and values must be strings. */
-  metadata?: PutTimeTrackingTimeSheetsTimeSheetUuidRequestMetadataMap;
-  /** The end time of the shift. If the shift is still ongoing this will be null. */
-  shift_ended_at?: string;
-  /** The start time of the shift. Timestamp should be in ISO8601 */
-  shift_started_at?: string;
-  /** Time zone of where the time was tracked. */
-  time_zone?: string;
-}
-export const PutTimeTrackingTimeSheetsTimeSheetUuidRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      time_sheet_uuid: S.String.pipe(T.Label()),
-      version: S.String,
-      entity_type: S.optional(S.String),
-      entity_uuid: S.optional(S.String),
-      entries: S.optional(
-        PutTimeTrackingTimeSheetsTimeSheetUuidRequestEntriesList,
-      ),
-      job_uuid: S.optional(S.String),
-      metadata: S.optional(
-        PutTimeTrackingTimeSheetsTimeSheetUuidRequestMetadataMap,
-      ),
-      shift_ended_at: S.optional(S.String),
-      shift_started_at: S.optional(S.String),
-      time_zone: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/v1/time_tracking/time_sheets/{time_sheet_uuid}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PutTimeTrackingTimeSheetsTimeSheetUuidRequest",
-  }) as any as S.Schema<PutTimeTrackingTimeSheetsTimeSheetUuidRequest>;
-
-export interface PutV1CompaniesRequest {
+export interface PutCompaniesRequest {
   /** The UUID of the company */
   company_id: string;
   /** Whether the company only supports contractors. Must be updated in order for the company to start supporting W-2 employees. Can only be updated from true to false. Note that updating this value will require additional onboarding steps to be completed in order for the company to support W-2 employees. */
   contractor_only: boolean;
 }
-export const PutV1CompaniesRequest = /*@__PURE__*/ S.suspend(() =>
+export const PutCompaniesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     company_id: S.String.pipe(T.Label()),
     contractor_only: S.Boolean,
@@ -10052,10 +9531,291 @@ export const PutV1CompaniesRequest = /*@__PURE__*/ S.suspend(() =>
     T.Http({ method: "PUT", uri: "/v1/companies/{company_id}", code: 200 }),
   ),
 ).annotate({
-  identifier: "PutV1CompaniesRequest",
-}) as any as S.Schema<PutV1CompaniesRequest>;
+  identifier: "PutCompaniesRequest",
+}) as any as S.Schema<PutCompaniesRequest>;
 
-export interface PutV1CompaniesCompanyIdEarningTypesEarningTypeUuidRequest {
+export type PutCompanyBenefitRequestCatchUpType = "elective" | "deemed";
+export const PutCompanyBenefitRequestCatchUpType = /*@__PURE__*/ S.String;
+
+export interface PutCompanyBenefitRequest {
+  /** The UUID of the company benefit */
+  company_benefit_id: string;
+  /** Whether this benefit is active for employee participation. Company benefits may only be deactivated if no employees are actively participating. */
+  active?: boolean;
+  /** The type of catch-up contribution for this benefit, as required by Section 603 of the SECURE 2.0 Act. Only applicable to pre-tax 401(k) and 403(b) benefits. */
+  catch_up_type?: PutCompanyBenefitRequestCatchUpType | (string & {}) | null;
+  /** The description of the company benefit.For example, a company may offer multiple benefits with an ID of 1 (for Medical Insurance). The description would show something more specific like "Kaiser Permanente" or "Blue Cross/ Blue Shield". */
+  description?: string;
+  /** Whether the employer is subject to file W-2 forms for an employee on leave. Only applicable to short-term and long-term disability benefits (different from voluntary disability). */
+  responsible_for_employee_w2?: boolean;
+  /** Whether the employer is subject to pay employer taxes when an employee is on leave. Only applicable to short-term and long-term disability benefits (different from voluntary disability). */
+  responsible_for_employer_taxes?: boolean;
+  /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/versioning#object-layer) for information on how to use this field. */
+  version: string;
+}
+export const PutCompanyBenefitRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    company_benefit_id: S.String.pipe(T.Label()),
+    active: S.optional(S.Boolean),
+    catch_up_type: S.optional(S.NullOr(PutCompanyBenefitRequestCatchUpType)),
+    description: S.optional(S.String),
+    responsible_for_employee_w2: S.optional(S.Boolean),
+    responsible_for_employer_taxes: S.optional(S.Boolean),
+    version: S.String,
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/v1/company_benefits/{company_benefit_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "PutCompanyBenefitRequest",
+}) as any as S.Schema<PutCompanyBenefitRequest>;
+
+/** The list of contribution exclusions to update */
+export type PutCompanyBenefitContributionExclusionsRequestContributionExclusionsList =
+  Array<ContributionExclusion>;
+export const PutCompanyBenefitContributionExclusionsRequestContributionExclusionsList =
+  /*@__PURE__*/ S.Array(
+    ContributionExclusion,
+  ) as any as S.Schema<PutCompanyBenefitContributionExclusionsRequestContributionExclusionsList>;
+
+export interface PutCompanyBenefitContributionExclusionsRequest {
+  /** The UUID of the company benefit */
+  company_benefit_id: string;
+  /** The list of contribution exclusions to update */
+  contribution_exclusions: PutCompanyBenefitContributionExclusionsRequestContributionExclusionsList;
+}
+export const PutCompanyBenefitContributionExclusionsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      company_benefit_id: S.String.pipe(T.Label()),
+      contribution_exclusions:
+        PutCompanyBenefitContributionExclusionsRequestContributionExclusionsList,
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/v1/company_benefits/{company_benefit_id}/contribution_exclusions",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "PutCompanyBenefitContributionExclusionsRequest",
+  }) as any as S.Schema<PutCompanyBenefitContributionExclusionsRequest>;
+
+export type PutCompanyBenefitContributionExclusionsResponseBodyList =
+  Array<ContributionExclusion>;
+export const PutCompanyBenefitContributionExclusionsResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    ContributionExclusion,
+  ) as any as S.Schema<PutCompanyBenefitContributionExclusionsResponseBodyList>;
+
+export type PutCompanyBenefitContributionExclusionsResponse =
+  PutCompanyBenefitContributionExclusionsResponseBodyList;
+export const PutCompanyBenefitContributionExclusionsResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    PutCompanyBenefitContributionExclusionsResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "PutCompanyBenefitContributionExclusionsResponse",
+  }) as any as S.Schema<PutCompanyBenefitContributionExclusionsResponse>;
+
+/** A single tier of a tiered matching scheme. */
+export type EmployeeBenefitForCompanyBenefitInputContributionValueCase1TiersItem =
+  CreateEmployeeEmployeeBenefitResponseContributionValueCase1TiersItem;
+export const EmployeeBenefitForCompanyBenefitInputContributionValueCase1TiersItem =
+  CreateEmployeeEmployeeBenefitResponseContributionValueCase1TiersItem;
+
+export type EmployeeBenefitForCompanyBenefitInputContributionValueCase1TiersList =
+  Array<CreateEmployeeEmployeeBenefitResponseContributionValueCase1TiersItem>;
+export const EmployeeBenefitForCompanyBenefitInputContributionValueCase1TiersList =
+  /*@__PURE__*/ S.Array(
+    CreateEmployeeEmployeeBenefitResponseContributionValueCase1TiersItem,
+  ) as any as S.Schema<EmployeeBenefitForCompanyBenefitInputContributionValueCase1TiersList>;
+
+export interface EmployeeBenefitForCompanyBenefitInputContributionValueCase1 {
+  tiers?: EmployeeBenefitForCompanyBenefitInputContributionValueCase1TiersList;
+}
+export const EmployeeBenefitForCompanyBenefitInputContributionValueCase1 =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      tiers: S.optional(
+        EmployeeBenefitForCompanyBenefitInputContributionValueCase1TiersList,
+      ),
+    }),
+  ).annotate({
+    identifier: "EmployeeBenefitForCompanyBenefitInputContributionValueCase1",
+  }) as any as S.Schema<EmployeeBenefitForCompanyBenefitInputContributionValueCase1>;
+
+/** For the `amount` and `percentage` contribution types, the value of the corresponding amount or percentage. For the `tiered` contribution type, an array of tiers. */
+export type EmployeeBenefitForCompanyBenefitInputContributionValue =
+  | string
+  | EmployeeBenefitForCompanyBenefitInputContributionValueCase1;
+export const EmployeeBenefitForCompanyBenefitInputContributionValue =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<EmployeeBenefitForCompanyBenefitInputContributionValue>;
+
+/** An object representing the type and value of the company contribution. */
+export interface EmployeeBenefitForCompanyBenefitInputContribution {
+  /** The company contribution scheme. "amount": The company contributes a fixed amount per payroll. If elective is true, the contribution is matching, dollar-for-dollar. "percentage": The company contributes a percentage of the payroll amount per payroll period. If elective is true, the contribution is matching, dollar-for-dollar. "tiered": The company contribution varies according to the size of the employee deduction. */
+  type?: string;
+  /** For the `amount` and `percentage` contribution types, the value of the corresponding amount or percentage. For the `tiered` contribution type, an array of tiers. */
+  value?: EmployeeBenefitForCompanyBenefitInputContributionValue;
+}
+export const EmployeeBenefitForCompanyBenefitInputContribution =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: S.optional(S.String),
+      value: S.optional(EmployeeBenefitForCompanyBenefitInputContributionValue),
+    }),
+  ).annotate({
+    identifier: "EmployeeBenefitForCompanyBenefitInputContribution",
+  }) as any as S.Schema<EmployeeBenefitForCompanyBenefitInputContribution>;
+
+export type EmployeeBenefitForCompanyBenefitInputDeductionReducesTaxableIncome =
+  | "unset"
+  | "reduces_taxable_income"
+  | "does_not_reduce_taxable_income";
+export const EmployeeBenefitForCompanyBenefitInputDeductionReducesTaxableIncome =
+  /*@__PURE__*/ S.String;
+
+/** The action to perform on the employee benefit. Required for creating/updating an effective dated employee benefit. */
+export type EmployeeBenefitForCompanyBenefitInputAction = "create" | "update";
+export const EmployeeBenefitForCompanyBenefitInputAction =
+  /*@__PURE__*/ S.String;
+
+/** The representation of an employee benefit for a company benefit. */
+export interface EmployeeBenefitForCompanyBenefitInput {
+  /** Whether the employee benefit is active. */
+  active?: boolean;
+  /** Whether the employee should use a benefit's "catch up" rate. Only Roth 401k and 401k benefits use this value for employees over 50. */
+  catch_up?: boolean | null;
+  /** The amount to be paid, per pay period, by the company. This field will not appear for tiered contribution types. */
+  company_contribution?: string;
+  /** The maximum company contribution amount per year. A null value signifies no limit. */
+  company_contribution_annual_maximum?: string | null;
+  /** Whether the company_contribution value should be treated as a percentage to be added to each payroll. This field will not appear for tiered contribution types. */
+  contribute_as_percentage?: boolean;
+  /** An object representing the type and value of the company contribution. */
+  contribution?: EmployeeBenefitForCompanyBenefitInputContribution;
+  /** The amount that the employee is insured for. Note: company contribution cannot be present if coverage amount is set. */
+  coverage_amount?: string | null;
+  /** The coverage amount as a multiple of the employee's salary. Only applicable for Group Term Life benefits. Note: cannot be set if coverage amount is also set. */
+  coverage_salary_multiplier?: string | null;
+  /** Whether the employee deduction amount should be treated as a percentage to be deducted from each payroll. */
+  deduct_as_percentage?: boolean;
+  /** Whether the employee deduction reduces taxable income or not. Only valid for Group Term Life benefits. Note: when the value is not "unset", coverage amount and coverage salary multiplier are ignored. */
+  deduction_reduces_taxable_income?:
+    | EmployeeBenefitForCompanyBenefitInputDeductionReducesTaxableIncome
+    | (string & {})
+    | null;
+  /** The date the employee benefit will start. */
+  effective_date?: string;
+  /** Whether the company contribution is elective (aka matching). For "tiered" contribution types, this is always true. */
+  elective?: boolean;
+  /** The amount to be deducted, per pay period, from the employee's pay. */
+  employee_deduction?: string;
+  /** The maximum employee deduction amount per year. A null value signifies no limit. */
+  employee_deduction_annual_maximum?: string | null;
+  /** The date the employee benefit will expire. A null value indicates the benefit will not expire. */
+  expiration_date?: string | null;
+  /** Some benefits require additional information to determine their limit. `Family` and `Individual` are applicable to HSA benefit. `Joint Filing or Single` and `Married and Filing Separately` are applicable to Dependent Care FSA benefit. */
+  limit_option?: string | null;
+  /** Identifier for a 401(k) loan assigned by the 401(k) provider */
+  retirement_loan_identifier?: string | null;
+  /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
+  version?: string;
+  /** The action to perform on the employee benefit. Required for creating/updating an effective dated employee benefit. */
+  action?: EmployeeBenefitForCompanyBenefitInputAction | (string & {});
+  /** The UUID of the employee to which the benefit belongs. */
+  employee_uuid: string;
+  /** The UUID of the employee benefit. Required for updating an effective dated employee benefit. */
+  uuid?: string;
+}
+export const EmployeeBenefitForCompanyBenefitInput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      active: S.optional(S.Boolean),
+      catch_up: S.optional(S.NullOr(S.Boolean)),
+      company_contribution: S.optional(S.String),
+      company_contribution_annual_maximum: S.optional(S.NullOr(S.String)),
+      contribute_as_percentage: S.optional(S.Boolean),
+      contribution: S.optional(
+        EmployeeBenefitForCompanyBenefitInputContribution,
+      ),
+      coverage_amount: S.optional(S.NullOr(S.String)),
+      coverage_salary_multiplier: S.optional(S.NullOr(S.String)),
+      deduct_as_percentage: S.optional(S.Boolean),
+      deduction_reduces_taxable_income: S.optional(
+        S.NullOr(
+          EmployeeBenefitForCompanyBenefitInputDeductionReducesTaxableIncome,
+        ),
+      ),
+      effective_date: S.optional(S.String),
+      elective: S.optional(S.Boolean),
+      employee_deduction: S.optional(S.String),
+      employee_deduction_annual_maximum: S.optional(S.NullOr(S.String)),
+      expiration_date: S.optional(S.NullOr(S.String)),
+      limit_option: S.optional(S.NullOr(S.String)),
+      retirement_loan_identifier: S.optional(S.NullOr(S.String)),
+      version: S.optional(S.String),
+      action: S.optional(EmployeeBenefitForCompanyBenefitInputAction),
+      employee_uuid: S.String,
+      uuid: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "EmployeeBenefitForCompanyBenefitInput",
+}) as any as S.Schema<EmployeeBenefitForCompanyBenefitInput>;
+
+/** The list of employee benefits to create or update */
+export type PutCompanyBenefitEmployeeBenefitsRequestEmployeeBenefitsList =
+  Array<EmployeeBenefitForCompanyBenefitInput>;
+export const PutCompanyBenefitEmployeeBenefitsRequestEmployeeBenefitsList =
+  /*@__PURE__*/ S.Array(
+    EmployeeBenefitForCompanyBenefitInput,
+  ) as any as S.Schema<PutCompanyBenefitEmployeeBenefitsRequestEmployeeBenefitsList>;
+
+export interface PutCompanyBenefitEmployeeBenefitsRequest {
+  /** The UUID of the company benefit */
+  company_benefit_id: string;
+  /** The list of employee benefits to create or update */
+  employee_benefits: PutCompanyBenefitEmployeeBenefitsRequestEmployeeBenefitsList;
+}
+export const PutCompanyBenefitEmployeeBenefitsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      company_benefit_id: S.String.pipe(T.Label()),
+      employee_benefits:
+        PutCompanyBenefitEmployeeBenefitsRequestEmployeeBenefitsList,
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/v1/company_benefits/{company_benefit_id}/employee_benefits",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "PutCompanyBenefitEmployeeBenefitsRequest",
+}) as any as S.Schema<PutCompanyBenefitEmployeeBenefitsRequest>;
+
+export type PutCompanyBenefitEmployeeBenefitsResponseBodyList =
+  Array<EmployeeBenefit>;
+export const PutCompanyBenefitEmployeeBenefitsResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    EmployeeBenefit,
+  ) as any as S.Schema<PutCompanyBenefitEmployeeBenefitsResponseBodyList>;
+
+export type PutCompanyBenefitEmployeeBenefitsResponse =
+  PutCompanyBenefitEmployeeBenefitsResponseBodyList;
+export const PutCompanyBenefitEmployeeBenefitsResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    PutCompanyBenefitEmployeeBenefitsResponseBodyList.pipe(T.RawResponseRoot()),
+  ).annotate({
+    identifier: "PutCompanyBenefitEmployeeBenefitsResponse",
+  }) as any as S.Schema<PutCompanyBenefitEmployeeBenefitsResponse>;
+
+export interface PutCompanyEarningTypeRequest {
   /** The UUID of the company */
   company_id: string;
   /** The UUID of the earning type */
@@ -10063,401 +9823,63 @@ export interface PutV1CompaniesCompanyIdEarningTypesEarningTypeUuidRequest {
   /** The name of the custom earning type. */
   name?: string;
 }
-export const PutV1CompaniesCompanyIdEarningTypesEarningTypeUuidRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      company_id: S.String.pipe(T.Label()),
-      earning_type_uuid: S.String.pipe(T.Label()),
-      name: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/v1/companies/{company_id}/earning_types/{earning_type_uuid}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PutV1CompaniesCompanyIdEarningTypesEarningTypeUuidRequest",
-  }) as any as S.Schema<PutV1CompaniesCompanyIdEarningTypesEarningTypeUuidRequest>;
-
-/** How to interpret the amount. */
-export type PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemCustomWithholdingsFederalAmountType =
-  | "fixed"
-  | "percent";
-export const PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemCustomWithholdingsFederalAmountType =
-  /*@__PURE__*/ S.String;
-
-/** Override mode. Only `one_time` is currently supported. */
-export type PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemCustomWithholdingsFederalOverrideType =
-  "one_time";
-export const PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemCustomWithholdingsFederalOverrideType =
-  /*@__PURE__*/ S.String;
-
-/** Federal one-time custom withholding override. */
-export interface PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemCustomWithholdingsFederal {
-  /** The amount to be withheld for this payroll. */
-  amount?: string;
-  /** How to interpret the amount. */
-  amount_type?:
-    | PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemCustomWithholdingsFederalAmountType
-    | (string & {});
-  /** Override mode. Only `one_time` is currently supported. */
-  override_type?:
-    | PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemCustomWithholdingsFederalOverrideType
-    | (string & {});
-}
-export const PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemCustomWithholdingsFederal =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      amount: S.optional(S.String),
-      amount_type: S.optional(
-        PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemCustomWithholdingsFederalAmountType,
-      ),
-      override_type: S.optional(
-        PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemCustomWithholdingsFederalOverrideType,
-      ),
+export const PutCompanyEarningTypeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    company_id: S.String.pipe(T.Label()),
+    earning_type_uuid: S.String.pipe(T.Label()),
+    name: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/v1/companies/{company_id}/earning_types/{earning_type_uuid}",
+      code: 200,
     }),
-  ).annotate({
-    identifier:
-      "PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemCustomWithholdingsFederal",
-  }) as any as S.Schema<PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemCustomWithholdingsFederal>;
+  ),
+).annotate({
+  identifier: "PutCompanyEarningTypeRequest",
+}) as any as S.Schema<PutCompanyEarningTypeRequest>;
 
-/** How to interpret the amount. */
-export type PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemCustomWithholdingsStateItemAmountType =
-  | "fixed"
-  | "percent";
-export const PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemCustomWithholdingsStateItemAmountType =
-  /*@__PURE__*/ S.String;
-
-/** Override mode. Only `one_time` is currently supported. */
-export type PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemCustomWithholdingsStateItemOverrideType =
-  "one_time";
-export const PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemCustomWithholdingsStateItemOverrideType =
-  /*@__PURE__*/ S.String;
-
-export interface PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemCustomWithholdingsStateItem {
-  /** The amount to be withheld for this payroll. */
-  amount?: string;
-  /** How to interpret the amount. */
-  amount_type?:
-    | PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemCustomWithholdingsStateItemAmountType
-    | (string & {});
-  /** The UUID of the EmployeeStateField this withholding applies to. */
-  employee_state_field_uuid?: string;
-  /** Override mode. Only `one_time` is currently supported. */
-  override_type?:
-    | PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemCustomWithholdingsStateItemOverrideType
-    | (string & {});
-}
-export const PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemCustomWithholdingsStateItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      amount: S.optional(S.String),
-      amount_type: S.optional(
-        PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemCustomWithholdingsStateItemAmountType,
-      ),
-      employee_state_field_uuid: S.optional(S.String),
-      override_type: S.optional(
-        PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemCustomWithholdingsStateItemOverrideType,
-      ),
-    }),
-  ).annotate({
-    identifier:
-      "PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemCustomWithholdingsStateItem",
-  }) as any as S.Schema<PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemCustomWithholdingsStateItem>;
-
-/** State one-time custom withholding overrides, one entry per state field. */
-export type PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemCustomWithholdingsStateList =
-  Array<PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemCustomWithholdingsStateItem>;
-export const PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemCustomWithholdingsStateList =
+/** The employees to prepare, identified by UUID. If omitted, every employee currently on the payroll is prepared. **Off-cycle payrolls that support multiple employees (`Bonus`, `Correction`, `Adhoc`):** passing `employee_uuids` also adds eligible employees who aren't yet on the payroll - a listed employee not on the payroll is added, while one already on it is simply prepared. A request may include up to 100 UUIDs, of which at most 25 may be employees not already on the payroll; an ineligible or unknown UUID, or more than 25 new employees, is rejected with a 422. **All other payrolls:** `employee_uuids` selects which of the payroll's existing employees to prepare; a UUID for an employee not on the payroll is rejected with a 422. */
+export type PutCompanyPayrollPrepareRequestEmployeeUuidsList = Array<string>;
+export const PutCompanyPayrollPrepareRequestEmployeeUuidsList =
   /*@__PURE__*/ S.Array(
-    PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemCustomWithholdingsStateItem,
-  ) as any as S.Schema<PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemCustomWithholdingsStateList>;
+    S.String,
+  ) as any as S.Schema<PutCompanyPayrollPrepareRequestEmployeeUuidsList>;
 
-/** Optional per-payroll one-time custom withholdings for federal and/or state income tax. When provided, the supplied override takes precedence over any persistent withholding schedule for this run. This field is in limited release; if your application does not have access, requests including it are silently ignored. */
-export interface PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemCustomWithholdings {
-  /** Federal one-time custom withholding override. */
-  federal?: PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemCustomWithholdingsFederal;
-  /** State one-time custom withholding overrides, one entry per state field. */
-  state?: PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemCustomWithholdingsStateList;
-}
-export const PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemCustomWithholdings =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      federal: S.optional(
-        PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemCustomWithholdingsFederal,
-      ),
-      state: S.optional(
-        PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemCustomWithholdingsStateList,
-      ),
-    }),
-  ).annotate({
-    identifier:
-      "PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemCustomWithholdings",
-  }) as any as S.Schema<PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemCustomWithholdings>;
-
-/** The amount type of the deduction for the pay period. */
-export type PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemDeductionsItemAmountType =
-  | "fixed"
-  | "percent";
-export const PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemDeductionsItemAmountType =
-  /*@__PURE__*/ S.String;
-
-/** An array of deductions for the employee. */
-export interface PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemDeductionsItem {
-  /** The amount of the deduction for the pay period. */
-  amount?: number;
-  /** The amount type of the deduction for the pay period. */
-  amount_type?:
-    | PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemDeductionsItemAmountType
-    | (string & {});
-  /** The name of the deduction. */
-  name?: string;
-  /** The UUID of the deduction. This parameter is optional and can be provided in order to update an existing deduction. */
-  uuid?: string;
-}
-export const PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemDeductionsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      amount: S.optional(S.Number),
-      amount_type: S.optional(
-        PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemDeductionsItemAmountType,
-      ),
-      name: S.optional(S.String),
-      uuid: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier:
-      "PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemDeductionsItem",
-  }) as any as S.Schema<PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemDeductionsItem>;
-
-export type PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemDeductionsList =
-  Array<PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemDeductionsItem>;
-export const PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemDeductionsList =
-  /*@__PURE__*/ S.Array(
-    PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemDeductionsItem,
-  ) as any as S.Schema<PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemDeductionsList>;
-
-/** An array of fixed compensations for the employee. Fixed compensations include tips, bonuses, and one time reimbursements. */
-export type PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemFixedCompensationsItem =
-  PayrollShowEmployeeCompensationsItemFixedCompensationsItem;
-export const PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemFixedCompensationsItem =
-  PayrollShowEmployeeCompensationsItemFixedCompensationsItem;
-
-export type PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemFixedCompensationsList =
-  Array<PayrollShowEmployeeCompensationsItemFixedCompensationsItem>;
-export const PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemFixedCompensationsList =
-  /*@__PURE__*/ S.Array(
-    PayrollShowEmployeeCompensationsItemFixedCompensationsItem,
-  ) as any as S.Schema<PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemFixedCompensationsList>;
-
-/** An array of hourly compensations for the employee. Hourly compensations include regular, overtime, and double overtime hours. */
-export interface PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemHourlyCompensationsItem {
-  /** The number of hours to be compensated for this pay period. */
-  hours?: string;
-  /** The UUIDs of the job for the compensation. */
-  job_uuid?: string;
-  /** The name of the compensation. This also serves as the unique, immutable identifier for this compensation. */
-  name?: string;
-}
-export const PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemHourlyCompensationsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      hours: S.optional(S.String),
-      job_uuid: S.optional(S.String),
-      name: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier:
-      "PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemHourlyCompensationsItem",
-  }) as any as S.Schema<PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemHourlyCompensationsItem>;
-
-export type PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemHourlyCompensationsList =
-  Array<PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemHourlyCompensationsItem>;
-export const PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemHourlyCompensationsList =
-  /*@__PURE__*/ S.Array(
-    PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemHourlyCompensationsItem,
-  ) as any as S.Schema<PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemHourlyCompensationsList>;
-
-export interface PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemPaidTimeOffItem {
-  /** The outstanding hours paid upon termination. This field is only applicable for termination payrolls. */
-  final_payout_unused_hours_input?: string | null;
-  /** The hours of this PTO taken during the pay period. */
-  hours?: string;
-  /** The name of the PTO. This also serves as the unique, immutable identifier for the PTO. Must pass in name or policy_uuid but not both. */
-  name?: string;
-  /** The uuid of the PTO policy. Must pass in name or policy_uuid but not both. */
-  policy_uuid?: string;
-}
-export const PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemPaidTimeOffItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      final_payout_unused_hours_input: S.optional(S.NullOr(S.String)),
-      hours: S.optional(S.String),
-      name: S.optional(S.String),
-      policy_uuid: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier:
-      "PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemPaidTimeOffItem",
-  }) as any as S.Schema<PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemPaidTimeOffItem>;
-
-/** An array of all paid time off the employee is eligible for this pay period. Each paid time off object can be the name or the specific policy_uuid. */
-export type PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemPaidTimeOffList =
-  Array<PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemPaidTimeOffItem>;
-export const PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemPaidTimeOffList =
-  /*@__PURE__*/ S.Array(
-    PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemPaidTimeOffItem,
-  ) as any as S.Schema<PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemPaidTimeOffList>;
-
-/** The employee's compensation payment method. Invalid values will be ignored. */
-export type PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemPaymentMethod =
-  | "Direct Deposit"
-  | "Check";
-export const PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemPaymentMethod =
-  /*@__PURE__*/ S.String;
-
-export interface PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemReimbursementsItem {
-  /** The dollar amount of the reimbursement for the pay period. */
-  amount?: string;
-  /** The description of the reimbursement. If not provided, the reimbursement will be unnamed. */
-  description?: string;
-  /** The UUID of an existing reimbursement. This parameter is optional and can be provided in order to update an existing reimbursement. */
-  uuid?: string;
-}
-export const PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemReimbursementsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      amount: S.optional(S.String),
-      description: S.optional(S.String),
-      uuid: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier:
-      "PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemReimbursementsItem",
-  }) as any as S.Schema<PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemReimbursementsItem>;
-
-/** An array of reimbursements for the employee. */
-export type PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemReimbursementsList =
-  Array<PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemReimbursementsItem>;
-export const PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemReimbursementsList =
-  /*@__PURE__*/ S.Array(
-    PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemReimbursementsItem,
-  ) as any as S.Schema<PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemReimbursementsList>;
-
-export interface PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItem {
-  /** Optional per-payroll one-time custom withholdings for federal and/or state income tax. When provided, the supplied override takes precedence over any persistent withholding schedule for this run. This field is in limited release; if your application does not have access, requests including it are silently ignored. */
-  custom_withholdings?: PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemCustomWithholdings;
-  deductions?: PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemDeductionsList;
-  /** The UUID of the employee. */
-  employee_uuid?: string;
-  /** This employee will be excluded from payroll calculation and will not be paid for the payroll. */
-  excluded?: boolean;
-  fixed_compensations?: PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemFixedCompensationsList;
-  hourly_compensations?: PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemHourlyCompensationsList;
-  /** Custom text that will be printed as a personal note to the employee on a paystub. */
-  memo?: string;
-  /** An array of all paid time off the employee is eligible for this pay period. Each paid time off object can be the name or the specific policy_uuid. */
-  paid_time_off?: PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemPaidTimeOffList;
-  /** The employee's compensation payment method. Invalid values will be ignored. */
-  payment_method?:
-    | PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemPaymentMethod
-    | (string & {});
-  /** An array of reimbursements for the employee. */
-  reimbursements?: PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemReimbursementsList;
-  /** The current version of this employee compensation from the prepared payroll. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
-  version?: string;
-}
-export const PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      custom_withholdings: S.optional(
-        PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemCustomWithholdings,
-      ),
-      deductions: S.optional(
-        PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemDeductionsList,
-      ),
-      employee_uuid: S.optional(S.String),
-      excluded: S.optional(S.Boolean),
-      fixed_compensations: S.optional(
-        PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemFixedCompensationsList,
-      ),
-      hourly_compensations: S.optional(
-        PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemHourlyCompensationsList,
-      ),
-      memo: S.optional(S.String),
-      paid_time_off: S.optional(
-        PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemPaidTimeOffList,
-      ),
-      payment_method: S.optional(
-        PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemPaymentMethod,
-      ),
-      reimbursements: S.optional(
-        PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItemReimbursementsList,
-      ),
-      version: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier:
-      "PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItem",
-  }) as any as S.Schema<PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItem>;
-
-export type PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsList =
-  Array<PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItem>;
-export const PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsList =
-  /*@__PURE__*/ S.Array(
-    PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsItem,
-  ) as any as S.Schema<PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsList>;
-
-/** The payment schedule tax rate the payroll is based on. Only relevant for off-cycle payrolls. */
-export type PutV1CompaniesCompanyIdPayrollsRequestWithholdingPayPeriod =
-  | "Every week"
-  | "Every other week"
-  | "Twice per month"
-  | "Monthly"
-  | "Quarterly"
-  | "Semiannually"
-  | "Annually";
-export const PutV1CompaniesCompanyIdPayrollsRequestWithholdingPayPeriod =
-  /*@__PURE__*/ S.String;
-
-export interface PutV1CompaniesCompanyIdPayrollsRequest {
+export interface PutCompanyPayrollPrepareRequest {
   /** The UUID of the company */
   company_id: string;
   /** The UUID of the payroll */
   payroll_id: string;
-  employee_compensations: PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsList;
-  /** Enable taxes to be withheld at the IRS's required rate of 22% for federal income taxes. State income taxes will be taxed at the state's supplemental tax rate. Otherwise, we'll sum the entirety of the employee's wages and withhold taxes on the entire amount at the rate for regular wages. Only relevant for off-cycle payrolls. */
-  fixed_withholding_rate?: boolean;
-  /** Block regular deductions and contributions for this payroll. Only relevant for off-cycle payrolls. */
-  skip_regular_deductions?: boolean;
-  /** The payment schedule tax rate the payroll is based on. Only relevant for off-cycle payrolls. */
-  withholding_pay_period?:
-    | PutV1CompaniesCompanyIdPayrollsRequestWithholdingPayPeriod
-    | (string & {});
+  /** The page that is requested. When unspecified, will load all objects unless endpoint forces pagination. */
+  page?: number;
+  /** Number of objects per page. For majority of endpoints will default to 25 */
+  per?: number;
+  /** Sort employee compensations by one or more fields. Options: first_name, last_name. Append `:asc` or `:desc` to specify direction (e.g., `last_name:asc` or `last_name:asc,first_name:asc`). Defaults to ascending. */
+  sort_by?: string;
+  /** The employees to prepare, identified by UUID. If omitted, every employee currently on the payroll is prepared. **Off-cycle payrolls that support multiple employees (`Bonus`, `Correction`, `Adhoc`):** passing `employee_uuids` also adds eligible employees who aren't yet on the payroll - a listed employee not on the payroll is added, while one already on it is simply prepared. A request may include up to 100 UUIDs, of which at most 25 may be employees not already on the payroll; an ineligible or unknown UUID, or more than 25 new employees, is rejected with a 422. **All other payrolls:** `employee_uuids` selects which of the payroll's existing employees to prepare; a UUID for an employee not on the payroll is rejected with a 422. */
+  employee_uuids?: PutCompanyPayrollPrepareRequestEmployeeUuidsList | null;
 }
-export const PutV1CompaniesCompanyIdPayrollsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      company_id: S.String.pipe(T.Label()),
-      payroll_id: S.String.pipe(T.Label()),
-      employee_compensations:
-        PutV1CompaniesCompanyIdPayrollsRequestEmployeeCompensationsList,
-      fixed_withholding_rate: S.optional(S.Boolean),
-      skip_regular_deductions: S.optional(S.Boolean),
-      withholding_pay_period: S.optional(
-        PutV1CompaniesCompanyIdPayrollsRequestWithholdingPayPeriod,
-      ),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/v1/companies/{company_id}/payrolls/{payroll_id}",
-        code: 200,
-      }),
+export const PutCompanyPayrollPrepareRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    company_id: S.String.pipe(T.Label()),
+    payroll_id: S.String.pipe(T.Label()),
+    page: S.optional(S.Number.pipe(T.Query())),
+    per: S.optional(S.Number.pipe(T.Query())),
+    sort_by: S.optional(S.String.pipe(T.Query())),
+    employee_uuids: S.optional(
+      S.NullOr(PutCompanyPayrollPrepareRequestEmployeeUuidsList),
     ),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/v1/companies/{company_id}/payrolls/{payroll_id}/prepare",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "PutV1CompaniesCompanyIdPayrollsRequest",
-}) as any as S.Schema<PutV1CompaniesCompanyIdPayrollsRequest>;
+  identifier: "PutCompanyPayrollPrepareRequest",
+}) as any as S.Schema<PutCompanyPayrollPrepareRequest>;
 
 /** How to interpret the amount. */
 export type PayrollEmployeeCompensationsTypeCustomWithholdingsFederalAmountType =
@@ -10822,369 +10244,403 @@ export const PayrollPrepared = /*@__PURE__*/ S.suspend(() =>
   identifier: "PayrollPrepared",
 }) as any as S.Schema<PayrollPrepared>;
 
-/** The employees to prepare, identified by UUID. If omitted, every employee currently on the payroll is prepared. **Off-cycle payrolls that support multiple employees (`Bonus`, `Correction`, `Adhoc`):** passing `employee_uuids` also adds eligible employees who aren't yet on the payroll - a listed employee not on the payroll is added, while one already on it is simply prepared. A request may include up to 100 UUIDs, of which at most 25 may be employees not already on the payroll; an ineligible or unknown UUID, or more than 25 new employees, is rejected with a 422. **All other payrolls:** `employee_uuids` selects which of the payroll's existing employees to prepare; a UUID for an employee not on the payroll is rejected with a 422. */
-export type PutV1CompaniesCompanyIdPayrollsPayrollIdPrepareRequestEmployeeUuidsList =
-  Array<string>;
-export const PutV1CompaniesCompanyIdPayrollsPayrollIdPrepareRequestEmployeeUuidsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PutV1CompaniesCompanyIdPayrollsPayrollIdPrepareRequestEmployeeUuidsList>;
+/** How to interpret the amount. */
+export type PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdingsFederalAmountType =
+  | "fixed"
+  | "percent";
+export const PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdingsFederalAmountType =
+  /*@__PURE__*/ S.String;
 
-export interface PutV1CompaniesCompanyIdPayrollsPayrollIdPrepareRequest {
+/** Override mode. Only `one_time` is currently supported. */
+export type PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdingsFederalOverrideType =
+  "one_time";
+export const PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdingsFederalOverrideType =
+  /*@__PURE__*/ S.String;
+
+/** Federal one-time custom withholding override. */
+export interface PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdingsFederal {
+  /** The amount to be withheld for this payroll. */
+  amount?: string;
+  /** How to interpret the amount. */
+  amount_type?:
+    | PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdingsFederalAmountType
+    | (string & {});
+  /** Override mode. Only `one_time` is currently supported. */
+  override_type?:
+    | PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdingsFederalOverrideType
+    | (string & {});
+}
+export const PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdingsFederal =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      amount: S.optional(S.String),
+      amount_type: S.optional(
+        PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdingsFederalAmountType,
+      ),
+      override_type: S.optional(
+        PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdingsFederalOverrideType,
+      ),
+    }),
+  ).annotate({
+    identifier:
+      "PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdingsFederal",
+  }) as any as S.Schema<PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdingsFederal>;
+
+/** How to interpret the amount. */
+export type PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdingsStateItemAmountType =
+  | "fixed"
+  | "percent";
+export const PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdingsStateItemAmountType =
+  /*@__PURE__*/ S.String;
+
+/** Override mode. Only `one_time` is currently supported. */
+export type PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdingsStateItemOverrideType =
+  "one_time";
+export const PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdingsStateItemOverrideType =
+  /*@__PURE__*/ S.String;
+
+export interface PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdingsStateItem {
+  /** The amount to be withheld for this payroll. */
+  amount?: string;
+  /** How to interpret the amount. */
+  amount_type?:
+    | PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdingsStateItemAmountType
+    | (string & {});
+  /** The UUID of the EmployeeStateField this withholding applies to. */
+  employee_state_field_uuid?: string;
+  /** Override mode. Only `one_time` is currently supported. */
+  override_type?:
+    | PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdingsStateItemOverrideType
+    | (string & {});
+}
+export const PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdingsStateItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      amount: S.optional(S.String),
+      amount_type: S.optional(
+        PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdingsStateItemAmountType,
+      ),
+      employee_state_field_uuid: S.optional(S.String),
+      override_type: S.optional(
+        PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdingsStateItemOverrideType,
+      ),
+    }),
+  ).annotate({
+    identifier:
+      "PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdingsStateItem",
+  }) as any as S.Schema<PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdingsStateItem>;
+
+/** State one-time custom withholding overrides, one entry per state field. */
+export type PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdingsStateList =
+  Array<PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdingsStateItem>;
+export const PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdingsStateList =
+  /*@__PURE__*/ S.Array(
+    PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdingsStateItem,
+  ) as any as S.Schema<PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdingsStateList>;
+
+/** Optional per-payroll one-time custom withholdings for federal and/or state income tax. When provided, the supplied override takes precedence over any persistent withholding schedule for this run. This field is in limited release; if your application does not have access, requests including it are silently ignored. */
+export interface PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdings {
+  /** Federal one-time custom withholding override. */
+  federal?: PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdingsFederal;
+  /** State one-time custom withholding overrides, one entry per state field. */
+  state?: PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdingsStateList;
+}
+export const PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdings =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      federal: S.optional(
+        PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdingsFederal,
+      ),
+      state: S.optional(
+        PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdingsStateList,
+      ),
+    }),
+  ).annotate({
+    identifier:
+      "PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdings",
+  }) as any as S.Schema<PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdings>;
+
+/** The amount type of the deduction for the pay period. */
+export type PutCompanyPayrollsRequestEmployeeCompensationsItemDeductionsItemAmountType =
+  | "fixed"
+  | "percent";
+export const PutCompanyPayrollsRequestEmployeeCompensationsItemDeductionsItemAmountType =
+  /*@__PURE__*/ S.String;
+
+/** An array of deductions for the employee. */
+export interface PutCompanyPayrollsRequestEmployeeCompensationsItemDeductionsItem {
+  /** The amount of the deduction for the pay period. */
+  amount?: number;
+  /** The amount type of the deduction for the pay period. */
+  amount_type?:
+    | PutCompanyPayrollsRequestEmployeeCompensationsItemDeductionsItemAmountType
+    | (string & {});
+  /** The name of the deduction. */
+  name?: string;
+  /** The UUID of the deduction. This parameter is optional and can be provided in order to update an existing deduction. */
+  uuid?: string;
+}
+export const PutCompanyPayrollsRequestEmployeeCompensationsItemDeductionsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      amount: S.optional(S.Number),
+      amount_type: S.optional(
+        PutCompanyPayrollsRequestEmployeeCompensationsItemDeductionsItemAmountType,
+      ),
+      name: S.optional(S.String),
+      uuid: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier:
+      "PutCompanyPayrollsRequestEmployeeCompensationsItemDeductionsItem",
+  }) as any as S.Schema<PutCompanyPayrollsRequestEmployeeCompensationsItemDeductionsItem>;
+
+export type PutCompanyPayrollsRequestEmployeeCompensationsItemDeductionsList =
+  Array<PutCompanyPayrollsRequestEmployeeCompensationsItemDeductionsItem>;
+export const PutCompanyPayrollsRequestEmployeeCompensationsItemDeductionsList =
+  /*@__PURE__*/ S.Array(
+    PutCompanyPayrollsRequestEmployeeCompensationsItemDeductionsItem,
+  ) as any as S.Schema<PutCompanyPayrollsRequestEmployeeCompensationsItemDeductionsList>;
+
+/** An array of fixed compensations for the employee. Fixed compensations include tips, bonuses, and one time reimbursements. */
+export type PutCompanyPayrollsRequestEmployeeCompensationsItemFixedCompensationsItem =
+  PayrollShowEmployeeCompensationsItemFixedCompensationsItem;
+export const PutCompanyPayrollsRequestEmployeeCompensationsItemFixedCompensationsItem =
+  PayrollShowEmployeeCompensationsItemFixedCompensationsItem;
+
+export type PutCompanyPayrollsRequestEmployeeCompensationsItemFixedCompensationsList =
+  Array<PayrollShowEmployeeCompensationsItemFixedCompensationsItem>;
+export const PutCompanyPayrollsRequestEmployeeCompensationsItemFixedCompensationsList =
+  /*@__PURE__*/ S.Array(
+    PayrollShowEmployeeCompensationsItemFixedCompensationsItem,
+  ) as any as S.Schema<PutCompanyPayrollsRequestEmployeeCompensationsItemFixedCompensationsList>;
+
+/** An array of hourly compensations for the employee. Hourly compensations include regular, overtime, and double overtime hours. */
+export interface PutCompanyPayrollsRequestEmployeeCompensationsItemHourlyCompensationsItem {
+  /** The number of hours to be compensated for this pay period. */
+  hours?: string;
+  /** The UUIDs of the job for the compensation. */
+  job_uuid?: string;
+  /** The name of the compensation. This also serves as the unique, immutable identifier for this compensation. */
+  name?: string;
+}
+export const PutCompanyPayrollsRequestEmployeeCompensationsItemHourlyCompensationsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      hours: S.optional(S.String),
+      job_uuid: S.optional(S.String),
+      name: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier:
+      "PutCompanyPayrollsRequestEmployeeCompensationsItemHourlyCompensationsItem",
+  }) as any as S.Schema<PutCompanyPayrollsRequestEmployeeCompensationsItemHourlyCompensationsItem>;
+
+export type PutCompanyPayrollsRequestEmployeeCompensationsItemHourlyCompensationsList =
+  Array<PutCompanyPayrollsRequestEmployeeCompensationsItemHourlyCompensationsItem>;
+export const PutCompanyPayrollsRequestEmployeeCompensationsItemHourlyCompensationsList =
+  /*@__PURE__*/ S.Array(
+    PutCompanyPayrollsRequestEmployeeCompensationsItemHourlyCompensationsItem,
+  ) as any as S.Schema<PutCompanyPayrollsRequestEmployeeCompensationsItemHourlyCompensationsList>;
+
+export interface PutCompanyPayrollsRequestEmployeeCompensationsItemPaidTimeOffItem {
+  /** The outstanding hours paid upon termination. This field is only applicable for termination payrolls. */
+  final_payout_unused_hours_input?: string | null;
+  /** The hours of this PTO taken during the pay period. */
+  hours?: string;
+  /** The name of the PTO. This also serves as the unique, immutable identifier for the PTO. Must pass in name or policy_uuid but not both. */
+  name?: string;
+  /** The uuid of the PTO policy. Must pass in name or policy_uuid but not both. */
+  policy_uuid?: string;
+}
+export const PutCompanyPayrollsRequestEmployeeCompensationsItemPaidTimeOffItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      final_payout_unused_hours_input: S.optional(S.NullOr(S.String)),
+      hours: S.optional(S.String),
+      name: S.optional(S.String),
+      policy_uuid: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier:
+      "PutCompanyPayrollsRequestEmployeeCompensationsItemPaidTimeOffItem",
+  }) as any as S.Schema<PutCompanyPayrollsRequestEmployeeCompensationsItemPaidTimeOffItem>;
+
+/** An array of all paid time off the employee is eligible for this pay period. Each paid time off object can be the name or the specific policy_uuid. */
+export type PutCompanyPayrollsRequestEmployeeCompensationsItemPaidTimeOffList =
+  Array<PutCompanyPayrollsRequestEmployeeCompensationsItemPaidTimeOffItem>;
+export const PutCompanyPayrollsRequestEmployeeCompensationsItemPaidTimeOffList =
+  /*@__PURE__*/ S.Array(
+    PutCompanyPayrollsRequestEmployeeCompensationsItemPaidTimeOffItem,
+  ) as any as S.Schema<PutCompanyPayrollsRequestEmployeeCompensationsItemPaidTimeOffList>;
+
+/** The employee's compensation payment method. Invalid values will be ignored. */
+export type PutCompanyPayrollsRequestEmployeeCompensationsItemPaymentMethod =
+  | "Direct Deposit"
+  | "Check";
+export const PutCompanyPayrollsRequestEmployeeCompensationsItemPaymentMethod =
+  /*@__PURE__*/ S.String;
+
+export interface PutCompanyPayrollsRequestEmployeeCompensationsItemReimbursementsItem {
+  /** The dollar amount of the reimbursement for the pay period. */
+  amount?: string;
+  /** The description of the reimbursement. If not provided, the reimbursement will be unnamed. */
+  description?: string;
+  /** The UUID of an existing reimbursement. This parameter is optional and can be provided in order to update an existing reimbursement. */
+  uuid?: string;
+}
+export const PutCompanyPayrollsRequestEmployeeCompensationsItemReimbursementsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      amount: S.optional(S.String),
+      description: S.optional(S.String),
+      uuid: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier:
+      "PutCompanyPayrollsRequestEmployeeCompensationsItemReimbursementsItem",
+  }) as any as S.Schema<PutCompanyPayrollsRequestEmployeeCompensationsItemReimbursementsItem>;
+
+/** An array of reimbursements for the employee. */
+export type PutCompanyPayrollsRequestEmployeeCompensationsItemReimbursementsList =
+  Array<PutCompanyPayrollsRequestEmployeeCompensationsItemReimbursementsItem>;
+export const PutCompanyPayrollsRequestEmployeeCompensationsItemReimbursementsList =
+  /*@__PURE__*/ S.Array(
+    PutCompanyPayrollsRequestEmployeeCompensationsItemReimbursementsItem,
+  ) as any as S.Schema<PutCompanyPayrollsRequestEmployeeCompensationsItemReimbursementsList>;
+
+export interface PutCompanyPayrollsRequestEmployeeCompensationsItem {
+  /** Optional per-payroll one-time custom withholdings for federal and/or state income tax. When provided, the supplied override takes precedence over any persistent withholding schedule for this run. This field is in limited release; if your application does not have access, requests including it are silently ignored. */
+  custom_withholdings?: PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdings;
+  deductions?: PutCompanyPayrollsRequestEmployeeCompensationsItemDeductionsList;
+  /** The UUID of the employee. */
+  employee_uuid?: string;
+  /** This employee will be excluded from payroll calculation and will not be paid for the payroll. */
+  excluded?: boolean;
+  fixed_compensations?: PutCompanyPayrollsRequestEmployeeCompensationsItemFixedCompensationsList;
+  hourly_compensations?: PutCompanyPayrollsRequestEmployeeCompensationsItemHourlyCompensationsList;
+  /** Custom text that will be printed as a personal note to the employee on a paystub. */
+  memo?: string;
+  /** An array of all paid time off the employee is eligible for this pay period. Each paid time off object can be the name or the specific policy_uuid. */
+  paid_time_off?: PutCompanyPayrollsRequestEmployeeCompensationsItemPaidTimeOffList;
+  /** The employee's compensation payment method. Invalid values will be ignored. */
+  payment_method?:
+    | PutCompanyPayrollsRequestEmployeeCompensationsItemPaymentMethod
+    | (string & {});
+  /** An array of reimbursements for the employee. */
+  reimbursements?: PutCompanyPayrollsRequestEmployeeCompensationsItemReimbursementsList;
+  /** The current version of this employee compensation from the prepared payroll. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
+  version?: string;
+}
+export const PutCompanyPayrollsRequestEmployeeCompensationsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      custom_withholdings: S.optional(
+        PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdings,
+      ),
+      deductions: S.optional(
+        PutCompanyPayrollsRequestEmployeeCompensationsItemDeductionsList,
+      ),
+      employee_uuid: S.optional(S.String),
+      excluded: S.optional(S.Boolean),
+      fixed_compensations: S.optional(
+        PutCompanyPayrollsRequestEmployeeCompensationsItemFixedCompensationsList,
+      ),
+      hourly_compensations: S.optional(
+        PutCompanyPayrollsRequestEmployeeCompensationsItemHourlyCompensationsList,
+      ),
+      memo: S.optional(S.String),
+      paid_time_off: S.optional(
+        PutCompanyPayrollsRequestEmployeeCompensationsItemPaidTimeOffList,
+      ),
+      payment_method: S.optional(
+        PutCompanyPayrollsRequestEmployeeCompensationsItemPaymentMethod,
+      ),
+      reimbursements: S.optional(
+        PutCompanyPayrollsRequestEmployeeCompensationsItemReimbursementsList,
+      ),
+      version: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "PutCompanyPayrollsRequestEmployeeCompensationsItem",
+  }) as any as S.Schema<PutCompanyPayrollsRequestEmployeeCompensationsItem>;
+
+export type PutCompanyPayrollsRequestEmployeeCompensationsList =
+  Array<PutCompanyPayrollsRequestEmployeeCompensationsItem>;
+export const PutCompanyPayrollsRequestEmployeeCompensationsList =
+  /*@__PURE__*/ S.Array(
+    PutCompanyPayrollsRequestEmployeeCompensationsItem,
+  ) as any as S.Schema<PutCompanyPayrollsRequestEmployeeCompensationsList>;
+
+/** The payment schedule tax rate the payroll is based on. Only relevant for off-cycle payrolls. */
+export type PutCompanyPayrollsRequestWithholdingPayPeriod =
+  | "Every week"
+  | "Every other week"
+  | "Twice per month"
+  | "Monthly"
+  | "Quarterly"
+  | "Semiannually"
+  | "Annually";
+export const PutCompanyPayrollsRequestWithholdingPayPeriod =
+  /*@__PURE__*/ S.String;
+
+export interface PutCompanyPayrollsRequest {
   /** The UUID of the company */
   company_id: string;
   /** The UUID of the payroll */
   payroll_id: string;
-  /** The page that is requested. When unspecified, will load all objects unless endpoint forces pagination. */
-  page?: number;
-  /** Number of objects per page. For majority of endpoints will default to 25 */
-  per?: number;
-  /** Sort employee compensations by one or more fields. Options: first_name, last_name. Append `:asc` or `:desc` to specify direction (e.g., `last_name:asc` or `last_name:asc,first_name:asc`). Defaults to ascending. */
-  sort_by?: string;
-  /** The employees to prepare, identified by UUID. If omitted, every employee currently on the payroll is prepared. **Off-cycle payrolls that support multiple employees (`Bonus`, `Correction`, `Adhoc`):** passing `employee_uuids` also adds eligible employees who aren't yet on the payroll - a listed employee not on the payroll is added, while one already on it is simply prepared. A request may include up to 100 UUIDs, of which at most 25 may be employees not already on the payroll; an ineligible or unknown UUID, or more than 25 new employees, is rejected with a 422. **All other payrolls:** `employee_uuids` selects which of the payroll's existing employees to prepare; a UUID for an employee not on the payroll is rejected with a 422. */
-  employee_uuids?: PutV1CompaniesCompanyIdPayrollsPayrollIdPrepareRequestEmployeeUuidsList | null;
+  employee_compensations: PutCompanyPayrollsRequestEmployeeCompensationsList;
+  /** Enable taxes to be withheld at the IRS's required rate of 22% for federal income taxes. State income taxes will be taxed at the state's supplemental tax rate. Otherwise, we'll sum the entirety of the employee's wages and withhold taxes on the entire amount at the rate for regular wages. Only relevant for off-cycle payrolls. */
+  fixed_withholding_rate?: boolean;
+  /** Block regular deductions and contributions for this payroll. Only relevant for off-cycle payrolls. */
+  skip_regular_deductions?: boolean;
+  /** The payment schedule tax rate the payroll is based on. Only relevant for off-cycle payrolls. */
+  withholding_pay_period?:
+    | PutCompanyPayrollsRequestWithholdingPayPeriod
+    | (string & {});
 }
-export const PutV1CompaniesCompanyIdPayrollsPayrollIdPrepareRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      company_id: S.String.pipe(T.Label()),
-      payroll_id: S.String.pipe(T.Label()),
-      page: S.optional(S.Number.pipe(T.Query())),
-      per: S.optional(S.Number.pipe(T.Query())),
-      sort_by: S.optional(S.String.pipe(T.Query())),
-      employee_uuids: S.optional(
-        S.NullOr(
-          PutV1CompaniesCompanyIdPayrollsPayrollIdPrepareRequestEmployeeUuidsList,
-        ),
-      ),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/v1/companies/{company_id}/payrolls/{payroll_id}/prepare",
-        code: 200,
-      }),
+export const PutCompanyPayrollsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    company_id: S.String.pipe(T.Label()),
+    payroll_id: S.String.pipe(T.Label()),
+    employee_compensations: PutCompanyPayrollsRequestEmployeeCompensationsList,
+    fixed_withholding_rate: S.optional(S.Boolean),
+    skip_regular_deductions: S.optional(S.Boolean),
+    withholding_pay_period: S.optional(
+      PutCompanyPayrollsRequestWithholdingPayPeriod,
     ),
-  ).annotate({
-    identifier: "PutV1CompaniesCompanyIdPayrollsPayrollIdPrepareRequest",
-  }) as any as S.Schema<PutV1CompaniesCompanyIdPayrollsPayrollIdPrepareRequest>;
-
-export type PutV1CompanyBenefitsCompanyBenefitIdRequestCatchUpType =
-  | "elective"
-  | "deemed";
-export const PutV1CompanyBenefitsCompanyBenefitIdRequestCatchUpType =
-  /*@__PURE__*/ S.String;
-
-export interface PutV1CompanyBenefitsCompanyBenefitIdRequest {
-  /** The UUID of the company benefit */
-  company_benefit_id: string;
-  /** Whether this benefit is active for employee participation. Company benefits may only be deactivated if no employees are actively participating. */
-  active?: boolean;
-  /** The type of catch-up contribution for this benefit, as required by Section 603 of the SECURE 2.0 Act. Only applicable to pre-tax 401(k) and 403(b) benefits. */
-  catch_up_type?:
-    | PutV1CompanyBenefitsCompanyBenefitIdRequestCatchUpType
-    | (string & {})
-    | null;
-  /** The description of the company benefit.For example, a company may offer multiple benefits with an ID of 1 (for Medical Insurance). The description would show something more specific like "Kaiser Permanente" or "Blue Cross/ Blue Shield". */
-  description?: string;
-  /** Whether the employer is subject to file W-2 forms for an employee on leave. Only applicable to short-term and long-term disability benefits (different from voluntary disability). */
-  responsible_for_employee_w2?: boolean;
-  /** Whether the employer is subject to pay employer taxes when an employee is on leave. Only applicable to short-term and long-term disability benefits (different from voluntary disability). */
-  responsible_for_employer_taxes?: boolean;
-  /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/versioning#object-layer) for information on how to use this field. */
-  version: string;
-}
-export const PutV1CompanyBenefitsCompanyBenefitIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      company_benefit_id: S.String.pipe(T.Label()),
-      active: S.optional(S.Boolean),
-      catch_up_type: S.optional(
-        S.NullOr(PutV1CompanyBenefitsCompanyBenefitIdRequestCatchUpType),
-      ),
-      description: S.optional(S.String),
-      responsible_for_employee_w2: S.optional(S.Boolean),
-      responsible_for_employer_taxes: S.optional(S.Boolean),
-      version: S.String,
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/v1/company_benefits/{company_benefit_id}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PutV1CompanyBenefitsCompanyBenefitIdRequest",
-  }) as any as S.Schema<PutV1CompanyBenefitsCompanyBenefitIdRequest>;
-
-/** The list of contribution exclusions to update */
-export type PutV1CompanyBenefitsCompanyBenefitIdContributionExclusionsRequestContributionExclusionsList =
-  Array<ContributionExclusion>;
-export const PutV1CompanyBenefitsCompanyBenefitIdContributionExclusionsRequestContributionExclusionsList =
-  /*@__PURE__*/ S.Array(
-    ContributionExclusion,
-  ) as any as S.Schema<PutV1CompanyBenefitsCompanyBenefitIdContributionExclusionsRequestContributionExclusionsList>;
-
-export interface PutV1CompanyBenefitsCompanyBenefitIdContributionExclusionsRequest {
-  /** The UUID of the company benefit */
-  company_benefit_id: string;
-  /** The list of contribution exclusions to update */
-  contribution_exclusions: PutV1CompanyBenefitsCompanyBenefitIdContributionExclusionsRequestContributionExclusionsList;
-}
-export const PutV1CompanyBenefitsCompanyBenefitIdContributionExclusionsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      company_benefit_id: S.String.pipe(T.Label()),
-      contribution_exclusions:
-        PutV1CompanyBenefitsCompanyBenefitIdContributionExclusionsRequestContributionExclusionsList,
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/v1/company_benefits/{company_benefit_id}/contribution_exclusions",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "PutV1CompanyBenefitsCompanyBenefitIdContributionExclusionsRequest",
-  }) as any as S.Schema<PutV1CompanyBenefitsCompanyBenefitIdContributionExclusionsRequest>;
-
-export type PutV1CompanyBenefitsCompanyBenefitIdContributionExclusionsResponseBodyList =
-  Array<ContributionExclusion>;
-export const PutV1CompanyBenefitsCompanyBenefitIdContributionExclusionsResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    ContributionExclusion,
-  ) as any as S.Schema<PutV1CompanyBenefitsCompanyBenefitIdContributionExclusionsResponseBodyList>;
-
-export type PutV1CompanyBenefitsCompanyBenefitIdContributionExclusionsResponse =
-  PutV1CompanyBenefitsCompanyBenefitIdContributionExclusionsResponseBodyList;
-export const PutV1CompanyBenefitsCompanyBenefitIdContributionExclusionsResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    PutV1CompanyBenefitsCompanyBenefitIdContributionExclusionsResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier:
-      "PutV1CompanyBenefitsCompanyBenefitIdContributionExclusionsResponse",
-  }) as any as S.Schema<PutV1CompanyBenefitsCompanyBenefitIdContributionExclusionsResponse>;
-
-/** A single tier of a tiered matching scheme. */
-export type EmployeeBenefitForCompanyBenefitInputContributionValueCase1TiersItem =
-  CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1TiersItem;
-export const EmployeeBenefitForCompanyBenefitInputContributionValueCase1TiersItem =
-  CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1TiersItem;
-
-export type EmployeeBenefitForCompanyBenefitInputContributionValueCase1TiersList =
-  Array<CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1TiersItem>;
-export const EmployeeBenefitForCompanyBenefitInputContributionValueCase1TiersList =
-  /*@__PURE__*/ S.Array(
-    CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1TiersItem,
-  ) as any as S.Schema<EmployeeBenefitForCompanyBenefitInputContributionValueCase1TiersList>;
-
-export interface EmployeeBenefitForCompanyBenefitInputContributionValueCase1 {
-  tiers?: EmployeeBenefitForCompanyBenefitInputContributionValueCase1TiersList;
-}
-export const EmployeeBenefitForCompanyBenefitInputContributionValueCase1 =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      tiers: S.optional(
-        EmployeeBenefitForCompanyBenefitInputContributionValueCase1TiersList,
-      ),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/v1/companies/{company_id}/payrolls/{payroll_id}",
+      code: 200,
     }),
-  ).annotate({
-    identifier: "EmployeeBenefitForCompanyBenefitInputContributionValueCase1",
-  }) as any as S.Schema<EmployeeBenefitForCompanyBenefitInputContributionValueCase1>;
-
-/** For the `amount` and `percentage` contribution types, the value of the corresponding amount or percentage. For the `tiered` contribution type, an array of tiers. */
-export type EmployeeBenefitForCompanyBenefitInputContributionValue =
-  | string
-  | EmployeeBenefitForCompanyBenefitInputContributionValueCase1;
-export const EmployeeBenefitForCompanyBenefitInputContributionValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EmployeeBenefitForCompanyBenefitInputContributionValue>;
-
-/** An object representing the type and value of the company contribution. */
-export interface EmployeeBenefitForCompanyBenefitInputContribution {
-  /** The company contribution scheme. "amount": The company contributes a fixed amount per payroll. If elective is true, the contribution is matching, dollar-for-dollar. "percentage": The company contributes a percentage of the payroll amount per payroll period. If elective is true, the contribution is matching, dollar-for-dollar. "tiered": The company contribution varies according to the size of the employee deduction. */
-  type?: string;
-  /** For the `amount` and `percentage` contribution types, the value of the corresponding amount or percentage. For the `tiered` contribution type, an array of tiers. */
-  value?: EmployeeBenefitForCompanyBenefitInputContributionValue;
-}
-export const EmployeeBenefitForCompanyBenefitInputContribution =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: S.optional(S.String),
-      value: S.optional(EmployeeBenefitForCompanyBenefitInputContributionValue),
-    }),
-  ).annotate({
-    identifier: "EmployeeBenefitForCompanyBenefitInputContribution",
-  }) as any as S.Schema<EmployeeBenefitForCompanyBenefitInputContribution>;
-
-export type EmployeeBenefitForCompanyBenefitInputDeductionReducesTaxableIncome =
-  | "unset"
-  | "reduces_taxable_income"
-  | "does_not_reduce_taxable_income";
-export const EmployeeBenefitForCompanyBenefitInputDeductionReducesTaxableIncome =
-  /*@__PURE__*/ S.String;
-
-/** The action to perform on the employee benefit. Required for creating/updating an effective dated employee benefit. */
-export type EmployeeBenefitForCompanyBenefitInputAction = "create" | "update";
-export const EmployeeBenefitForCompanyBenefitInputAction =
-  /*@__PURE__*/ S.String;
-
-/** The representation of an employee benefit for a company benefit. */
-export interface EmployeeBenefitForCompanyBenefitInput {
-  /** Whether the employee benefit is active. */
-  active?: boolean;
-  /** Whether the employee should use a benefit's "catch up" rate. Only Roth 401k and 401k benefits use this value for employees over 50. */
-  catch_up?: boolean | null;
-  /** The amount to be paid, per pay period, by the company. This field will not appear for tiered contribution types. */
-  company_contribution?: string;
-  /** The maximum company contribution amount per year. A null value signifies no limit. */
-  company_contribution_annual_maximum?: string | null;
-  /** Whether the company_contribution value should be treated as a percentage to be added to each payroll. This field will not appear for tiered contribution types. */
-  contribute_as_percentage?: boolean;
-  /** An object representing the type and value of the company contribution. */
-  contribution?: EmployeeBenefitForCompanyBenefitInputContribution;
-  /** The amount that the employee is insured for. Note: company contribution cannot be present if coverage amount is set. */
-  coverage_amount?: string | null;
-  /** The coverage amount as a multiple of the employee's salary. Only applicable for Group Term Life benefits. Note: cannot be set if coverage amount is also set. */
-  coverage_salary_multiplier?: string | null;
-  /** Whether the employee deduction amount should be treated as a percentage to be deducted from each payroll. */
-  deduct_as_percentage?: boolean;
-  /** Whether the employee deduction reduces taxable income or not. Only valid for Group Term Life benefits. Note: when the value is not "unset", coverage amount and coverage salary multiplier are ignored. */
-  deduction_reduces_taxable_income?:
-    | EmployeeBenefitForCompanyBenefitInputDeductionReducesTaxableIncome
-    | (string & {})
-    | null;
-  /** The date the employee benefit will start. */
-  effective_date?: string;
-  /** Whether the company contribution is elective (aka matching). For "tiered" contribution types, this is always true. */
-  elective?: boolean;
-  /** The amount to be deducted, per pay period, from the employee's pay. */
-  employee_deduction?: string;
-  /** The maximum employee deduction amount per year. A null value signifies no limit. */
-  employee_deduction_annual_maximum?: string | null;
-  /** The date the employee benefit will expire. A null value indicates the benefit will not expire. */
-  expiration_date?: string | null;
-  /** Some benefits require additional information to determine their limit. `Family` and `Individual` are applicable to HSA benefit. `Joint Filing or Single` and `Married and Filing Separately` are applicable to Dependent Care FSA benefit. */
-  limit_option?: string | null;
-  /** Identifier for a 401(k) loan assigned by the 401(k) provider */
-  retirement_loan_identifier?: string | null;
-  /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
-  version?: string;
-  /** The action to perform on the employee benefit. Required for creating/updating an effective dated employee benefit. */
-  action?: EmployeeBenefitForCompanyBenefitInputAction | (string & {});
-  /** The UUID of the employee to which the benefit belongs. */
-  employee_uuid: string;
-  /** The UUID of the employee benefit. Required for updating an effective dated employee benefit. */
-  uuid?: string;
-}
-export const EmployeeBenefitForCompanyBenefitInput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      active: S.optional(S.Boolean),
-      catch_up: S.optional(S.NullOr(S.Boolean)),
-      company_contribution: S.optional(S.String),
-      company_contribution_annual_maximum: S.optional(S.NullOr(S.String)),
-      contribute_as_percentage: S.optional(S.Boolean),
-      contribution: S.optional(
-        EmployeeBenefitForCompanyBenefitInputContribution,
-      ),
-      coverage_amount: S.optional(S.NullOr(S.String)),
-      coverage_salary_multiplier: S.optional(S.NullOr(S.String)),
-      deduct_as_percentage: S.optional(S.Boolean),
-      deduction_reduces_taxable_income: S.optional(
-        S.NullOr(
-          EmployeeBenefitForCompanyBenefitInputDeductionReducesTaxableIncome,
-        ),
-      ),
-      effective_date: S.optional(S.String),
-      elective: S.optional(S.Boolean),
-      employee_deduction: S.optional(S.String),
-      employee_deduction_annual_maximum: S.optional(S.NullOr(S.String)),
-      expiration_date: S.optional(S.NullOr(S.String)),
-      limit_option: S.optional(S.NullOr(S.String)),
-      retirement_loan_identifier: S.optional(S.NullOr(S.String)),
-      version: S.optional(S.String),
-      action: S.optional(EmployeeBenefitForCompanyBenefitInputAction),
-      employee_uuid: S.String,
-      uuid: S.optional(S.String),
-    }),
+  ),
 ).annotate({
-  identifier: "EmployeeBenefitForCompanyBenefitInput",
-}) as any as S.Schema<EmployeeBenefitForCompanyBenefitInput>;
+  identifier: "PutCompanyPayrollsRequest",
+}) as any as S.Schema<PutCompanyPayrollsRequest>;
 
-/** The list of employee benefits to create or update */
-export type PutV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsRequestEmployeeBenefitsList =
-  Array<EmployeeBenefitForCompanyBenefitInput>;
-export const PutV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsRequestEmployeeBenefitsList =
-  /*@__PURE__*/ S.Array(
-    EmployeeBenefitForCompanyBenefitInput,
-  ) as any as S.Schema<PutV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsRequestEmployeeBenefitsList>;
-
-export interface PutV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsRequest {
-  /** The UUID of the company benefit */
-  company_benefit_id: string;
-  /** The list of employee benefits to create or update */
-  employee_benefits: PutV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsRequestEmployeeBenefitsList;
-}
-export const PutV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      company_benefit_id: S.String.pipe(T.Label()),
-      employee_benefits:
-        PutV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsRequestEmployeeBenefitsList,
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/v1/company_benefits/{company_benefit_id}/employee_benefits",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PutV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsRequest",
-  }) as any as S.Schema<PutV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsRequest>;
-
-export type PutV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsResponseBodyList =
-  Array<EmployeeBenefit>;
-export const PutV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    EmployeeBenefit,
-  ) as any as S.Schema<PutV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsResponseBodyList>;
-
-export type PutV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsResponse =
-  PutV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsResponseBodyList;
-export const PutV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    PutV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "PutV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsResponse",
-  }) as any as S.Schema<PutV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsResponse>;
-
-export type PutV1CompensationsCompensationIdRequestMinimumWagesItem =
+export type PutCompensationRequestMinimumWagesItem =
   PostV1CompensationsCompensationIdRequestMinimumWagesItem;
-export const PutV1CompensationsCompensationIdRequestMinimumWagesItem =
+export const PutCompensationRequestMinimumWagesItem =
   PostV1CompensationsCompensationIdRequestMinimumWagesItem;
 
-export type PutV1CompensationsCompensationIdRequestMinimumWagesList =
+export type PutCompensationRequestMinimumWagesList =
   Array<PostV1CompensationsCompensationIdRequestMinimumWagesItem>;
-export const PutV1CompensationsCompensationIdRequestMinimumWagesList =
-  /*@__PURE__*/ S.Array(
-    PostV1CompensationsCompensationIdRequestMinimumWagesItem,
-  ) as any as S.Schema<PutV1CompensationsCompensationIdRequestMinimumWagesList>;
+export const PutCompensationRequestMinimumWagesList = /*@__PURE__*/ S.Array(
+  PostV1CompensationsCompensationIdRequestMinimumWagesItem,
+) as any as S.Schema<PutCompensationRequestMinimumWagesList>;
 
 /** The unit accompanying the compensation rate. If the employee is an owner, rate should be 'Paycheck'. */
-export type PutV1CompensationsCompensationIdRequestPaymentUnit =
+export type PutCompensationRequestPaymentUnit =
   | "Hour"
   | "Week"
   | "Month"
   | "Year"
   | "Paycheck";
-export const PutV1CompensationsCompensationIdRequestPaymentUnit =
-  /*@__PURE__*/ S.String;
+export const PutCompensationRequestPaymentUnit = /*@__PURE__*/ S.String;
 
-export interface PutV1CompensationsCompensationIdRequest {
+export interface PutCompensationRequest {
   /** The UUID of the compensation */
   compensation_id: string;
   /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
@@ -11194,55 +10650,45 @@ export interface PutV1CompensationsCompensationIdRequest {
   /** The effective date for this compensation. */
   effective_date?: string;
   flsa_status?: FlsaStatusType | (string & {});
-  minimum_wages?: PutV1CompensationsCompensationIdRequestMinimumWagesList;
+  minimum_wages?: PutCompensationRequestMinimumWagesList;
   /** The unit accompanying the compensation rate. If the employee is an owner, rate should be 'Paycheck'. */
-  payment_unit?:
-    | PutV1CompensationsCompensationIdRequestPaymentUnit
-    | (string & {});
+  payment_unit?: PutCompensationRequestPaymentUnit | (string & {});
   /** The dollar amount paid per payment unit. */
   rate?: string;
   /** The job title for this compensation. */
   title?: string;
 }
-export const PutV1CompensationsCompensationIdRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      compensation_id: S.String.pipe(T.Label()),
-      version: S.String,
-      adjust_for_minimum_wage: S.optional(S.Boolean),
-      effective_date: S.optional(S.String),
-      flsa_status: S.optional(FlsaStatusType),
-      minimum_wages: S.optional(
-        PutV1CompensationsCompensationIdRequestMinimumWagesList,
-      ),
-      payment_unit: S.optional(
-        PutV1CompensationsCompensationIdRequestPaymentUnit,
-      ),
-      rate: S.optional(S.String),
-      title: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/v1/compensations/{compensation_id}",
-        code: 200,
-      }),
-    ),
+export const PutCompensationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    compensation_id: S.String.pipe(T.Label()),
+    version: S.String,
+    adjust_for_minimum_wage: S.optional(S.Boolean),
+    effective_date: S.optional(S.String),
+    flsa_status: S.optional(FlsaStatusType),
+    minimum_wages: S.optional(PutCompensationRequestMinimumWagesList),
+    payment_unit: S.optional(PutCompensationRequestPaymentUnit),
+    rate: S.optional(S.String),
+    title: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/v1/compensations/{compensation_id}",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "PutV1CompensationsCompensationIdRequest",
-}) as any as S.Schema<PutV1CompensationsCompensationIdRequest>;
+  identifier: "PutCompensationRequest",
+}) as any as S.Schema<PutCompensationRequest>;
 
 /** The contractor type. */
-export type PutV1ContractorsContractorUuidRequestType =
-  | "Individual"
-  | "Business";
-export const PutV1ContractorsContractorUuidRequestType = /*@__PURE__*/ S.String;
+export type PutContractorRequestType = "Individual" | "Business";
+export const PutContractorRequestType = /*@__PURE__*/ S.String;
 
 /** The contractor’s wage type. */
-export type PutV1ContractorsContractorUuidRequestWageType = "Fixed" | "Hourly";
-export const PutV1ContractorsContractorUuidRequestWageType =
-  /*@__PURE__*/ S.String;
+export type PutContractorRequestWageType = "Fixed" | "Hourly";
+export const PutContractorRequestWageType = /*@__PURE__*/ S.String;
 
-export interface PutV1ContractorsContractorUuidRequest {
+export interface PutContractorRequest {
   /** The UUID of the contractor */
   contractor_uuid: string;
   /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
@@ -11272,114 +10718,176 @@ export interface PutV1ContractorsContractorUuidRequest {
   /** The day when the contractor will start working for the company. */
   start_date?: string;
   /** The contractor type. */
-  type?: PutV1ContractorsContractorUuidRequestType | (string & {});
+  type?: PutContractorRequestType | (string & {});
   /** The contractor’s wage type. */
-  wage_type?: PutV1ContractorsContractorUuidRequestWageType | (string & {});
+  wage_type?: PutContractorRequestWageType | (string & {});
   /** The work email address of the contractor. This is provided to support syncing users between our system and yours. You may not use this email address for any other purpose (e.g. marketing). */
   work_email?: string;
   /** State where the contractor will be conducting the majority of their work for the company. This value is used when generating the new hire report. This attribute is required for `Individual` contractors if `file_new_hire_report` is true and will be ignored for `Business` contractors. */
   work_state?: string | null;
 }
-export const PutV1ContractorsContractorUuidRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      contractor_uuid: S.String.pipe(T.Label()),
-      version: S.String,
-      business_name: S.optional(S.String),
-      ein: S.optional(S.String),
-      email: S.optional(S.String),
-      file_new_hire_report: S.optional(S.Boolean),
-      first_name: S.optional(S.String),
-      hourly_rate: S.optional(S.String),
-      is_active: S.optional(S.Boolean),
-      last_name: S.optional(S.String),
-      middle_initial: S.optional(S.String),
-      self_onboarding: S.optional(S.Boolean),
-      ssn: S.optional(S.String),
-      start_date: S.optional(S.String),
-      type: S.optional(PutV1ContractorsContractorUuidRequestType),
-      wage_type: S.optional(PutV1ContractorsContractorUuidRequestWageType),
-      work_email: S.optional(S.String),
-      work_state: S.optional(S.NullOr(S.String)),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/v1/contractors/{contractor_uuid}",
-        code: 200,
-      }),
-    ),
+export const PutContractorRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    contractor_uuid: S.String.pipe(T.Label()),
+    version: S.String,
+    business_name: S.optional(S.String),
+    ein: S.optional(S.String),
+    email: S.optional(S.String),
+    file_new_hire_report: S.optional(S.Boolean),
+    first_name: S.optional(S.String),
+    hourly_rate: S.optional(S.String),
+    is_active: S.optional(S.Boolean),
+    last_name: S.optional(S.String),
+    middle_initial: S.optional(S.String),
+    self_onboarding: S.optional(S.Boolean),
+    ssn: S.optional(S.String),
+    start_date: S.optional(S.String),
+    type: S.optional(PutContractorRequestType),
+    wage_type: S.optional(PutContractorRequestWageType),
+    work_email: S.optional(S.String),
+    work_state: S.optional(S.NullOr(S.String)),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/v1/contractors/{contractor_uuid}",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "PutV1ContractorsContractorUuidRequest",
-}) as any as S.Schema<PutV1ContractorsContractorUuidRequest>;
+  identifier: "PutContractorRequest",
+}) as any as S.Schema<PutContractorRequest>;
+
+export interface PutDepartmentsRequest {
+  /** The UUID of the department */
+  department_uuid: string;
+  /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
+  version: string;
+  /** Name of the department */
+  title: string;
+}
+export const PutDepartmentsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    department_uuid: S.String.pipe(T.Label()),
+    version: S.String,
+    title: S.String,
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/v1/departments/{department_uuid}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "PutDepartmentsRequest",
+}) as any as S.Schema<PutDepartmentsRequest>;
+
+export type PutDepartmentsResponseContractorsItem = DepartmentContractorsItem;
+export const PutDepartmentsResponseContractorsItem = DepartmentContractorsItem;
+
+/** Array of contractors assigned to the department. */
+export type PutDepartmentsResponseContractorsList =
+  Array<DepartmentContractorsItem>;
+export const PutDepartmentsResponseContractorsList = /*@__PURE__*/ S.Array(
+  DepartmentContractorsItem,
+) as any as S.Schema<PutDepartmentsResponseContractorsList>;
+
+export type PutDepartmentsResponseEmployeesItem = DepartmentContractorsItem;
+export const PutDepartmentsResponseEmployeesItem = DepartmentContractorsItem;
+
+/** Array of employees assigned to the department. */
+export type PutDepartmentsResponseEmployeesList =
+  Array<DepartmentContractorsItem>;
+export const PutDepartmentsResponseEmployeesList = /*@__PURE__*/ S.Array(
+  DepartmentContractorsItem,
+) as any as S.Schema<PutDepartmentsResponseEmployeesList>;
+
+export interface PutDepartmentsResponse {
+  /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
+  version?: string;
+  /** The UUID of the company */
+  company_uuid?: string;
+  /** Array of contractors assigned to the department. */
+  contractors?: PutDepartmentsResponseContractorsList;
+  /** Array of employees assigned to the department. */
+  employees?: PutDepartmentsResponseEmployeesList;
+  /** Name of the department */
+  title?: string;
+  /** The UUID of the department */
+  uuid?: string;
+}
+export const PutDepartmentsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    version: S.optional(S.String),
+    company_uuid: S.optional(S.String),
+    contractors: S.optional(PutDepartmentsResponseContractorsList),
+    employees: S.optional(PutDepartmentsResponseEmployeesList),
+    title: S.optional(S.String),
+    uuid: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PutDepartmentsResponse",
+}) as any as S.Schema<PutDepartmentsResponse>;
 
 /** The company contribution scheme. `amount`: The company contributes a fixed amount per payroll. If elective is true, the contribution is matching, dollar-for-dollar. `percentage`: The company contributes a percentage of the payroll amount per payroll period. If elective is true, the contribution is matching, dollar-for-dollar. `tiered`: The size of the company contribution corresponds to the size of the employee deduction relative to a tiered matching scheme. */
-export type PutV1EmployeeBenefitsEmployeeBenefitIdRequestContributionType =
+export type PutEmployeeBenefitRequestContributionType =
   | "amount"
   | "percentage"
   | "tiered";
-export const PutV1EmployeeBenefitsEmployeeBenefitIdRequestContributionType =
-  /*@__PURE__*/ S.String;
+export const PutEmployeeBenefitRequestContributionType = /*@__PURE__*/ S.String;
 
 /** A single tier of a tiered matching scheme. */
-export type PutV1EmployeeBenefitsEmployeeBenefitIdRequestContributionValueCase1Item =
-  PostV1EmployeesEmployeeIdEmployeeBenefitsRequestContributionValueCase1Item;
-export const PutV1EmployeeBenefitsEmployeeBenefitIdRequestContributionValueCase1Item =
-  PostV1EmployeesEmployeeIdEmployeeBenefitsRequestContributionValueCase1Item;
+export type PutEmployeeBenefitRequestContributionValueCase1Item =
+  CreateEmployeeEmployeeBenefitRequestContributionValueCase1Item;
+export const PutEmployeeBenefitRequestContributionValueCase1Item =
+  CreateEmployeeEmployeeBenefitRequestContributionValueCase1Item;
 
 /** For `tiered` contribution types, an array of tiers. */
-export type PutV1EmployeeBenefitsEmployeeBenefitIdRequestContributionValueCase1List =
-  Array<PostV1EmployeesEmployeeIdEmployeeBenefitsRequestContributionValueCase1Item>;
-export const PutV1EmployeeBenefitsEmployeeBenefitIdRequestContributionValueCase1List =
+export type PutEmployeeBenefitRequestContributionValueCase1List =
+  Array<CreateEmployeeEmployeeBenefitRequestContributionValueCase1Item>;
+export const PutEmployeeBenefitRequestContributionValueCase1List =
   /*@__PURE__*/ S.Array(
-    PostV1EmployeesEmployeeIdEmployeeBenefitsRequestContributionValueCase1Item,
-  ) as any as S.Schema<PutV1EmployeeBenefitsEmployeeBenefitIdRequestContributionValueCase1List>;
+    CreateEmployeeEmployeeBenefitRequestContributionValueCase1Item,
+  ) as any as S.Schema<PutEmployeeBenefitRequestContributionValueCase1List>;
 
 /** For the `amount` and `percentage` contribution types, the value of the corresponding amount or percentage. For the `tiered` contribution type, an array of tiers. */
-export type PutV1EmployeeBenefitsEmployeeBenefitIdRequestContributionValue =
+export type PutEmployeeBenefitRequestContributionValue =
   | string
-  | PutV1EmployeeBenefitsEmployeeBenefitIdRequestContributionValueCase1List;
-export const PutV1EmployeeBenefitsEmployeeBenefitIdRequestContributionValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PutV1EmployeeBenefitsEmployeeBenefitIdRequestContributionValue>;
+  | PutEmployeeBenefitRequestContributionValueCase1List;
+export const PutEmployeeBenefitRequestContributionValue =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<PutEmployeeBenefitRequestContributionValue>;
 
 /** An object representing the type and value of the company contribution. */
-export interface PutV1EmployeeBenefitsEmployeeBenefitIdRequestContribution {
+export interface PutEmployeeBenefitRequestContribution {
   /** The company contribution scheme. `amount`: The company contributes a fixed amount per payroll. If elective is true, the contribution is matching, dollar-for-dollar. `percentage`: The company contributes a percentage of the payroll amount per payroll period. If elective is true, the contribution is matching, dollar-for-dollar. `tiered`: The size of the company contribution corresponds to the size of the employee deduction relative to a tiered matching scheme. */
-  type?:
-    | PutV1EmployeeBenefitsEmployeeBenefitIdRequestContributionType
-    | (string & {});
+  type?: PutEmployeeBenefitRequestContributionType | (string & {});
   /** For the `amount` and `percentage` contribution types, the value of the corresponding amount or percentage. For the `tiered` contribution type, an array of tiers. */
-  value?: PutV1EmployeeBenefitsEmployeeBenefitIdRequestContributionValue;
+  value?: PutEmployeeBenefitRequestContributionValue;
 }
-export const PutV1EmployeeBenefitsEmployeeBenefitIdRequestContribution =
-  /*@__PURE__*/ S.suspend(() =>
+export const PutEmployeeBenefitRequestContribution = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
-      type: S.optional(
-        PutV1EmployeeBenefitsEmployeeBenefitIdRequestContributionType,
-      ),
-      value: S.optional(
-        PutV1EmployeeBenefitsEmployeeBenefitIdRequestContributionValue,
-      ),
+      type: S.optional(PutEmployeeBenefitRequestContributionType),
+      value: S.optional(PutEmployeeBenefitRequestContributionValue),
     }),
-  ).annotate({
-    identifier: "PutV1EmployeeBenefitsEmployeeBenefitIdRequestContribution",
-  }) as any as S.Schema<PutV1EmployeeBenefitsEmployeeBenefitIdRequestContribution>;
+).annotate({
+  identifier: "PutEmployeeBenefitRequestContribution",
+}) as any as S.Schema<PutEmployeeBenefitRequestContribution>;
 
-export type PutV1EmployeeBenefitsEmployeeBenefitIdRequestDeductionReducesTaxableIncome =
+export type PutEmployeeBenefitRequestDeductionReducesTaxableIncome =
   | "unset"
   | "reduces_taxable_income"
   | "does_not_reduce_taxable_income";
-export const PutV1EmployeeBenefitsEmployeeBenefitIdRequestDeductionReducesTaxableIncome =
+export const PutEmployeeBenefitRequestDeductionReducesTaxableIncome =
   /*@__PURE__*/ S.String;
 
-export type PutV1EmployeeBenefitsEmployeeBenefitIdRequestLimitOption =
+export type PutEmployeeBenefitRequestLimitOption =
   | "Family"
   | "Individual"
   | "Joint Filing or Single"
   | "Married and Filing Separately";
-export const PutV1EmployeeBenefitsEmployeeBenefitIdRequestLimitOption =
-  /*@__PURE__*/ S.String;
+export const PutEmployeeBenefitRequestLimitOption = /*@__PURE__*/ S.String;
 
-export interface PutV1EmployeeBenefitsEmployeeBenefitIdRequest {
+export interface PutEmployeeBenefitRequest {
   /** The UUID of the employee benefit. */
   employee_benefit_id: string;
   /** Whether the employee benefit is active. */
@@ -11393,7 +10901,7 @@ export interface PutV1EmployeeBenefitsEmployeeBenefitIdRequest {
   /** Whether the company contribution amount should be treated as a percentage to be deducted from each payroll. */
   contribute_as_percentage?: boolean;
   /** An object representing the type and value of the company contribution. */
-  contribution?: PutV1EmployeeBenefitsEmployeeBenefitIdRequestContribution;
+  contribution?: PutEmployeeBenefitRequestContribution;
   /** The amount that the employee is insured for. Note: company contribution cannot be present if coverage amount is set. */
   coverage_amount?: string | null;
   /** The coverage amount as a multiple of the employee's salary. Only applicable for Group Term Life benefits. Note: cannot be set if coverage amount is also set. */
@@ -11402,7 +10910,7 @@ export interface PutV1EmployeeBenefitsEmployeeBenefitIdRequest {
   deduct_as_percentage?: boolean;
   /** Whether the employee deduction reduces taxable income or not. Only valid for Group Term Life benefits. Note: when the value is not "unset", coverage amount and coverage salary multiplier are ignored. */
   deduction_reduces_taxable_income?:
-    | PutV1EmployeeBenefitsEmployeeBenefitIdRequestDeductionReducesTaxableIncome
+    | PutEmployeeBenefitRequestDeductionReducesTaxableIncome
     | (string & {})
     | null;
   /** The date the employee benefit will start. */
@@ -11416,115 +10924,102 @@ export interface PutV1EmployeeBenefitsEmployeeBenefitIdRequest {
   /** The date the employee benefit will expire. A null value indicates the benefit will not expire. */
   expiration_date?: string | null;
   /** Some benefits require additional information to determine their limit. `Family` or `Individual`: Applicable to HSA benefit. `Joint Filing or Single` or `Married and Filing Separately`: Applicable to Dependent Care FSA benefit. */
-  limit_option?:
-    | PutV1EmployeeBenefitsEmployeeBenefitIdRequestLimitOption
-    | (string & {})
-    | null;
+  limit_option?: PutEmployeeBenefitRequestLimitOption | (string & {}) | null;
   /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/versioning#object-layer) for information on how to use this field. */
   version: string;
 }
-export const PutV1EmployeeBenefitsEmployeeBenefitIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      employee_benefit_id: S.String.pipe(T.Label()),
-      active: S.optional(S.Boolean),
-      catch_up: S.optional(S.Boolean),
-      company_contribution: S.optional(S.String),
-      company_contribution_annual_maximum: S.optional(S.NullOr(S.String)),
-      contribute_as_percentage: S.optional(S.Boolean),
-      contribution: S.optional(
-        PutV1EmployeeBenefitsEmployeeBenefitIdRequestContribution,
-      ),
-      coverage_amount: S.optional(S.NullOr(S.String)),
-      coverage_salary_multiplier: S.optional(S.String),
-      deduct_as_percentage: S.optional(S.Boolean),
-      deduction_reduces_taxable_income: S.optional(
-        S.NullOr(
-          PutV1EmployeeBenefitsEmployeeBenefitIdRequestDeductionReducesTaxableIncome,
-        ),
-      ),
-      effective_date: S.optional(S.String),
-      elective: S.optional(S.Boolean),
-      employee_deduction: S.optional(S.String),
-      employee_deduction_annual_maximum: S.optional(S.NullOr(S.String)),
-      expiration_date: S.optional(S.NullOr(S.String)),
-      limit_option: S.optional(
-        S.NullOr(PutV1EmployeeBenefitsEmployeeBenefitIdRequestLimitOption),
-      ),
-      version: S.String,
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/v1/employee_benefits/{employee_benefit_id}",
-        code: 200,
-      }),
+export const PutEmployeeBenefitRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    employee_benefit_id: S.String.pipe(T.Label()),
+    active: S.optional(S.Boolean),
+    catch_up: S.optional(S.Boolean),
+    company_contribution: S.optional(S.String),
+    company_contribution_annual_maximum: S.optional(S.NullOr(S.String)),
+    contribute_as_percentage: S.optional(S.Boolean),
+    contribution: S.optional(PutEmployeeBenefitRequestContribution),
+    coverage_amount: S.optional(S.NullOr(S.String)),
+    coverage_salary_multiplier: S.optional(S.String),
+    deduct_as_percentage: S.optional(S.Boolean),
+    deduction_reduces_taxable_income: S.optional(
+      S.NullOr(PutEmployeeBenefitRequestDeductionReducesTaxableIncome),
     ),
-  ).annotate({
-    identifier: "PutV1EmployeeBenefitsEmployeeBenefitIdRequest",
-  }) as any as S.Schema<PutV1EmployeeBenefitsEmployeeBenefitIdRequest>;
+    effective_date: S.optional(S.String),
+    elective: S.optional(S.Boolean),
+    employee_deduction: S.optional(S.String),
+    employee_deduction_annual_maximum: S.optional(S.NullOr(S.String)),
+    expiration_date: S.optional(S.NullOr(S.String)),
+    limit_option: S.optional(S.NullOr(PutEmployeeBenefitRequestLimitOption)),
+    version: S.String,
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/v1/employee_benefits/{employee_benefit_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "PutEmployeeBenefitRequest",
+}) as any as S.Schema<PutEmployeeBenefitRequest>;
 
 /** A single tier of a tiered matching scheme. */
-export type PutV1EmployeeBenefitsEmployeeBenefitIdResponseContributionValueCase1TiersItem =
-  CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1TiersItem;
-export const PutV1EmployeeBenefitsEmployeeBenefitIdResponseContributionValueCase1TiersItem =
-  CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1TiersItem;
+export type PutEmployeeBenefitResponseContributionValueCase1TiersItem =
+  CreateEmployeeEmployeeBenefitResponseContributionValueCase1TiersItem;
+export const PutEmployeeBenefitResponseContributionValueCase1TiersItem =
+  CreateEmployeeEmployeeBenefitResponseContributionValueCase1TiersItem;
 
-export type PutV1EmployeeBenefitsEmployeeBenefitIdResponseContributionValueCase1TiersList =
-  Array<CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1TiersItem>;
-export const PutV1EmployeeBenefitsEmployeeBenefitIdResponseContributionValueCase1TiersList =
+export type PutEmployeeBenefitResponseContributionValueCase1TiersList =
+  Array<CreateEmployeeEmployeeBenefitResponseContributionValueCase1TiersItem>;
+export const PutEmployeeBenefitResponseContributionValueCase1TiersList =
   /*@__PURE__*/ S.Array(
-    CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1TiersItem,
-  ) as any as S.Schema<PutV1EmployeeBenefitsEmployeeBenefitIdResponseContributionValueCase1TiersList>;
+    CreateEmployeeEmployeeBenefitResponseContributionValueCase1TiersItem,
+  ) as any as S.Schema<PutEmployeeBenefitResponseContributionValueCase1TiersList>;
 
-export interface PutV1EmployeeBenefitsEmployeeBenefitIdResponseContributionValueCase1 {
-  tiers?: PutV1EmployeeBenefitsEmployeeBenefitIdResponseContributionValueCase1TiersList;
+export interface PutEmployeeBenefitResponseContributionValueCase1 {
+  tiers?: PutEmployeeBenefitResponseContributionValueCase1TiersList;
 }
-export const PutV1EmployeeBenefitsEmployeeBenefitIdResponseContributionValueCase1 =
+export const PutEmployeeBenefitResponseContributionValueCase1 =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       tiers: S.optional(
-        PutV1EmployeeBenefitsEmployeeBenefitIdResponseContributionValueCase1TiersList,
+        PutEmployeeBenefitResponseContributionValueCase1TiersList,
       ),
     }),
   ).annotate({
-    identifier:
-      "PutV1EmployeeBenefitsEmployeeBenefitIdResponseContributionValueCase1",
-  }) as any as S.Schema<PutV1EmployeeBenefitsEmployeeBenefitIdResponseContributionValueCase1>;
+    identifier: "PutEmployeeBenefitResponseContributionValueCase1",
+  }) as any as S.Schema<PutEmployeeBenefitResponseContributionValueCase1>;
 
 /** For the `amount` and `percentage` contribution types, the value of the corresponding amount or percentage. For the `tiered` contribution type, an array of tiers. */
-export type PutV1EmployeeBenefitsEmployeeBenefitIdResponseContributionValue =
+export type PutEmployeeBenefitResponseContributionValue =
   | string
-  | PutV1EmployeeBenefitsEmployeeBenefitIdResponseContributionValueCase1;
-export const PutV1EmployeeBenefitsEmployeeBenefitIdResponseContributionValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PutV1EmployeeBenefitsEmployeeBenefitIdResponseContributionValue>;
+  | PutEmployeeBenefitResponseContributionValueCase1;
+export const PutEmployeeBenefitResponseContributionValue =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<PutEmployeeBenefitResponseContributionValue>;
 
 /** An object representing the type and value of the company contribution. */
-export interface PutV1EmployeeBenefitsEmployeeBenefitIdResponseContribution {
+export interface PutEmployeeBenefitResponseContribution {
   /** The company contribution scheme. "amount": The company contributes a fixed amount per payroll. If elective is true, the contribution is matching, dollar-for-dollar. "percentage": The company contributes a percentage of the payroll amount per payroll period. If elective is true, the contribution is matching, dollar-for-dollar. "tiered": The company contribution varies according to the size of the employee deduction. */
   type?: string;
   /** For the `amount` and `percentage` contribution types, the value of the corresponding amount or percentage. For the `tiered` contribution type, an array of tiers. */
-  value?: PutV1EmployeeBenefitsEmployeeBenefitIdResponseContributionValue;
+  value?: PutEmployeeBenefitResponseContributionValue;
 }
-export const PutV1EmployeeBenefitsEmployeeBenefitIdResponseContribution =
-  /*@__PURE__*/ S.suspend(() =>
+export const PutEmployeeBenefitResponseContribution = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       type: S.optional(S.String),
-      value: S.optional(
-        PutV1EmployeeBenefitsEmployeeBenefitIdResponseContributionValue,
-      ),
+      value: S.optional(PutEmployeeBenefitResponseContributionValue),
     }),
-  ).annotate({
-    identifier: "PutV1EmployeeBenefitsEmployeeBenefitIdResponseContribution",
-  }) as any as S.Schema<PutV1EmployeeBenefitsEmployeeBenefitIdResponseContribution>;
+).annotate({
+  identifier: "PutEmployeeBenefitResponseContribution",
+}) as any as S.Schema<PutEmployeeBenefitResponseContribution>;
 
-export type PutV1EmployeeBenefitsEmployeeBenefitIdResponseDeductionReducesTaxableIncome =
+export type PutEmployeeBenefitResponseDeductionReducesTaxableIncome =
   | "unset"
   | "reduces_taxable_income"
   | "does_not_reduce_taxable_income";
-export const PutV1EmployeeBenefitsEmployeeBenefitIdResponseDeductionReducesTaxableIncome =
+export const PutEmployeeBenefitResponseDeductionReducesTaxableIncome =
   /*@__PURE__*/ S.String;
 
-export interface PutV1EmployeeBenefitsEmployeeBenefitIdResponse {
+export interface PutEmployeeBenefitResponse {
   /** Whether the employee benefit is active. */
   active?: boolean;
   /** Whether the employee should use a benefit's "catch up" rate. Only Roth 401k and 401k benefits use this value for employees over 50. */
@@ -11536,7 +11031,7 @@ export interface PutV1EmployeeBenefitsEmployeeBenefitIdResponse {
   /** Whether the company_contribution value should be treated as a percentage to be added to each payroll. This field will not appear for tiered contribution types. */
   contribute_as_percentage?: boolean;
   /** An object representing the type and value of the company contribution. */
-  contribution?: PutV1EmployeeBenefitsEmployeeBenefitIdResponseContribution;
+  contribution?: PutEmployeeBenefitResponseContribution;
   /** The amount that the employee is insured for. Note: company contribution cannot be present if coverage amount is set. */
   coverage_amount?: string | null;
   /** The coverage amount as a multiple of the employee's salary. Only applicable for Group Term Life benefits. Note: cannot be set if coverage amount is also set. */
@@ -11544,7 +11039,7 @@ export interface PutV1EmployeeBenefitsEmployeeBenefitIdResponse {
   /** Whether the employee deduction amount should be treated as a percentage to be deducted from each payroll. */
   deduct_as_percentage?: boolean;
   /** Whether the employee deduction reduces taxable income or not. Only valid for Group Term Life benefits. Note: when the value is not "unset", coverage amount and coverage salary multiplier are ignored. */
-  deduction_reduces_taxable_income?: PutV1EmployeeBenefitsEmployeeBenefitIdResponseDeductionReducesTaxableIncome | null;
+  deduction_reduces_taxable_income?: PutEmployeeBenefitResponseDeductionReducesTaxableIncome | null;
   /** The date the employee benefit will start. */
   effective_date?: string;
   /** Whether the company contribution is elective (aka matching). For "tiered" contribution types, this is always true. */
@@ -11568,42 +11063,83 @@ export interface PutV1EmployeeBenefitsEmployeeBenefitIdResponse {
   /** The UUID of the employee benefit. */
   uuid: string;
 }
-export const PutV1EmployeeBenefitsEmployeeBenefitIdResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      active: S.optional(S.Boolean),
-      catch_up: S.optional(S.NullOr(S.Boolean)),
-      company_contribution: S.optional(S.String),
-      company_contribution_annual_maximum: S.optional(S.NullOr(S.String)),
-      contribute_as_percentage: S.optional(S.Boolean),
-      contribution: S.optional(
-        PutV1EmployeeBenefitsEmployeeBenefitIdResponseContribution,
-      ),
-      coverage_amount: S.optional(S.NullOr(S.String)),
-      coverage_salary_multiplier: S.optional(S.NullOr(S.String)),
-      deduct_as_percentage: S.optional(S.Boolean),
-      deduction_reduces_taxable_income: S.optional(
-        S.NullOr(
-          PutV1EmployeeBenefitsEmployeeBenefitIdResponseDeductionReducesTaxableIncome,
-        ),
-      ),
-      effective_date: S.optional(S.String),
-      elective: S.optional(S.Boolean),
-      employee_deduction: S.optional(S.String),
-      employee_deduction_annual_maximum: S.optional(S.NullOr(S.String)),
-      expiration_date: S.optional(S.NullOr(S.String)),
-      limit_option: S.optional(S.NullOr(S.String)),
-      retirement_loan_identifier: S.optional(S.NullOr(S.String)),
-      version: S.optional(S.String),
-      company_benefit_uuid: S.optional(S.String),
-      employee_uuid: S.optional(S.String),
-      uuid: S.String,
-    }),
-  ).annotate({
-    identifier: "PutV1EmployeeBenefitsEmployeeBenefitIdResponse",
-  }) as any as S.Schema<PutV1EmployeeBenefitsEmployeeBenefitIdResponse>;
+export const PutEmployeeBenefitResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    active: S.optional(S.Boolean),
+    catch_up: S.optional(S.NullOr(S.Boolean)),
+    company_contribution: S.optional(S.String),
+    company_contribution_annual_maximum: S.optional(S.NullOr(S.String)),
+    contribute_as_percentage: S.optional(S.Boolean),
+    contribution: S.optional(PutEmployeeBenefitResponseContribution),
+    coverage_amount: S.optional(S.NullOr(S.String)),
+    coverage_salary_multiplier: S.optional(S.NullOr(S.String)),
+    deduct_as_percentage: S.optional(S.Boolean),
+    deduction_reduces_taxable_income: S.optional(
+      S.NullOr(PutEmployeeBenefitResponseDeductionReducesTaxableIncome),
+    ),
+    effective_date: S.optional(S.String),
+    elective: S.optional(S.Boolean),
+    employee_deduction: S.optional(S.String),
+    employee_deduction_annual_maximum: S.optional(S.NullOr(S.String)),
+    expiration_date: S.optional(S.NullOr(S.String)),
+    limit_option: S.optional(S.NullOr(S.String)),
+    retirement_loan_identifier: S.optional(S.NullOr(S.String)),
+    version: S.optional(S.String),
+    company_benefit_uuid: S.optional(S.String),
+    employee_uuid: S.optional(S.String),
+    uuid: S.String,
+  }),
+).annotate({
+  identifier: "PutEmployeeBenefitResponse",
+}) as any as S.Schema<PutEmployeeBenefitResponse>;
 
-export interface PutV1EmployeesRequest {
+/** The employee's employment status. Supplying an invalid option will set the employment_status to *not_set*. */
+export type PutEmployeeRehireRequestEmploymentStatus =
+  | "part_time"
+  | "full_time"
+  | "part_time_eligible"
+  | "variable"
+  | "seasonal"
+  | "not_set";
+export const PutEmployeeRehireRequestEmploymentStatus = /*@__PURE__*/ S.String;
+
+export interface PutEmployeeRehireRequest {
+  /** The UUID of the employee */
+  employee_id: string;
+  /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
+  version: string;
+  /** The day when the employee returns to work. */
+  effective_date: string;
+  /** The employee's employment status. Supplying an invalid option will set the employment_status to *not_set*. */
+  employment_status?: PutEmployeeRehireRequestEmploymentStatus | (string & {});
+  /** The boolean flag indicating whether Gusto will file a new hire report for the employee. */
+  file_new_hire_report: boolean;
+  /** Whether the employee is a two percent shareholder of the company. This field only applies to companies with an S-Corp entity type. */
+  two_percent_shareholder?: boolean;
+  /** The uuid of the employee's work location. */
+  work_location_uuid: string;
+}
+export const PutEmployeeRehireRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    employee_id: S.String.pipe(T.Label()),
+    version: S.String,
+    effective_date: S.String,
+    employment_status: S.optional(PutEmployeeRehireRequestEmploymentStatus),
+    file_new_hire_report: S.Boolean,
+    two_percent_shareholder: S.optional(S.Boolean),
+    work_location_uuid: S.String,
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/v1/employees/{employee_id}/rehire",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "PutEmployeeRehireRequest",
+}) as any as S.Schema<PutEmployeeRehireRequest>;
+
+export interface PutEmployeesRequest {
   /** The UUID of the employee */
   employee_id: string;
   /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
@@ -11619,7 +11155,7 @@ export interface PutV1EmployeesRequest {
   two_percent_shareholder?: boolean;
   work_email?: string;
 }
-export const PutV1EmployeesRequest = /*@__PURE__*/ S.suspend(() =>
+export const PutEmployeesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     employee_id: S.String.pipe(T.Label()),
     version: S.String,
@@ -11636,62 +11172,10 @@ export const PutV1EmployeesRequest = /*@__PURE__*/ S.suspend(() =>
     T.Http({ method: "PUT", uri: "/v1/employees/{employee_id}", code: 200 }),
   ),
 ).annotate({
-  identifier: "PutV1EmployeesRequest",
-}) as any as S.Schema<PutV1EmployeesRequest>;
+  identifier: "PutEmployeesRequest",
+}) as any as S.Schema<PutEmployeesRequest>;
 
-/** The employee's employment status. Supplying an invalid option will set the employment_status to *not_set*. */
-export type PutV1EmployeesEmployeeIdRehireRequestEmploymentStatus =
-  | "part_time"
-  | "full_time"
-  | "part_time_eligible"
-  | "variable"
-  | "seasonal"
-  | "not_set";
-export const PutV1EmployeesEmployeeIdRehireRequestEmploymentStatus =
-  /*@__PURE__*/ S.String;
-
-export interface PutV1EmployeesEmployeeIdRehireRequest {
-  /** The UUID of the employee */
-  employee_id: string;
-  /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
-  version: string;
-  /** The day when the employee returns to work. */
-  effective_date: string;
-  /** The employee's employment status. Supplying an invalid option will set the employment_status to *not_set*. */
-  employment_status?:
-    | PutV1EmployeesEmployeeIdRehireRequestEmploymentStatus
-    | (string & {});
-  /** The boolean flag indicating whether Gusto will file a new hire report for the employee. */
-  file_new_hire_report: boolean;
-  /** Whether the employee is a two percent shareholder of the company. This field only applies to companies with an S-Corp entity type. */
-  two_percent_shareholder?: boolean;
-  /** The uuid of the employee's work location. */
-  work_location_uuid: string;
-}
-export const PutV1EmployeesEmployeeIdRehireRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      employee_id: S.String.pipe(T.Label()),
-      version: S.String,
-      effective_date: S.String,
-      employment_status: S.optional(
-        PutV1EmployeesEmployeeIdRehireRequestEmploymentStatus,
-      ),
-      file_new_hire_report: S.Boolean,
-      two_percent_shareholder: S.optional(S.Boolean),
-      work_location_uuid: S.String,
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/v1/employees/{employee_id}/rehire",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "PutV1EmployeesEmployeeIdRehireRequest",
-}) as any as S.Schema<PutV1EmployeesEmployeeIdRehireRequest>;
-
-export type PutV1GarnishmentsGarnishmentIdRequestGarnishmentType =
+export type PutGarnishmentRequestGarnishmentType =
   | "child_support"
   | "federal_tax_lien"
   | "state_tax_lien"
@@ -11699,10 +11183,9 @@ export type PutV1GarnishmentsGarnishmentIdRequestGarnishmentType =
   | "creditor_garnishment"
   | "federal_loan"
   | "other_garnishment";
-export const PutV1GarnishmentsGarnishmentIdRequestGarnishmentType =
-  /*@__PURE__*/ S.String;
+export const PutGarnishmentRequestGarnishmentType = /*@__PURE__*/ S.String;
 
-export interface PutV1GarnishmentsGarnishmentIdRequest {
+export interface PutGarnishmentRequest {
   /** The UUID of the garnishment */
   garnishment_id: string;
   /** Whether or not this garnishment is currently active. */
@@ -11720,7 +11203,7 @@ export interface PutV1GarnishmentsGarnishmentIdRequest {
   description?: string;
   /** The specific type of garnishment for court ordered garnishments. */
   garnishment_type?:
-    | PutV1GarnishmentsGarnishmentIdRequestGarnishmentType
+    | PutGarnishmentRequestGarnishmentType
     | (string & {})
     | null;
   /** The maximum deduction per pay period. A null value indicates no maximum. Represented as a float, e.g. "16.00". */
@@ -11734,37 +11217,36 @@ export interface PutV1GarnishmentsGarnishmentIdRequest {
   /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
   version: string;
 }
-export const PutV1GarnishmentsGarnishmentIdRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      garnishment_id: S.String.pipe(T.Label()),
-      active: S.optional(S.Boolean),
-      amount: S.optional(S.String),
-      annual_maximum: S.optional(S.NullOr(S.String)),
-      child_support: S.optional(S.NullOr(GarnishmentChildSupport)),
-      court_ordered: S.optional(S.Boolean),
-      deduct_as_percentage: S.optional(S.Boolean),
-      description: S.optional(S.String),
-      garnishment_type: S.optional(
-        S.NullOr(PutV1GarnishmentsGarnishmentIdRequestGarnishmentType),
-      ),
-      pay_period_maximum: S.optional(S.NullOr(S.String)),
-      recurring: S.optional(S.Boolean),
-      times: S.optional(S.NullOr(S.Number)),
-      total_amount: S.optional(S.NullOr(S.String)),
-      version: S.String,
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/v1/garnishments/{garnishment_id}",
-        code: 200,
-      }),
+export const PutGarnishmentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    garnishment_id: S.String.pipe(T.Label()),
+    active: S.optional(S.Boolean),
+    amount: S.optional(S.String),
+    annual_maximum: S.optional(S.NullOr(S.String)),
+    child_support: S.optional(S.NullOr(GarnishmentChildSupport)),
+    court_ordered: S.optional(S.Boolean),
+    deduct_as_percentage: S.optional(S.Boolean),
+    description: S.optional(S.String),
+    garnishment_type: S.optional(
+      S.NullOr(PutGarnishmentRequestGarnishmentType),
     ),
+    pay_period_maximum: S.optional(S.NullOr(S.String)),
+    recurring: S.optional(S.Boolean),
+    times: S.optional(S.NullOr(S.Number)),
+    total_amount: S.optional(S.NullOr(S.String)),
+    version: S.String,
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/v1/garnishments/{garnishment_id}",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "PutV1GarnishmentsGarnishmentIdRequest",
-}) as any as S.Schema<PutV1GarnishmentsGarnishmentIdRequest>;
+  identifier: "PutGarnishmentRequest",
+}) as any as S.Schema<PutGarnishmentRequest>;
 
-export interface PutV1HomeAddressesHomeAddressUuidRequest {
+export interface PutHomeAddressRequest {
   /** The UUID of the home address */
   home_address_uuid: string;
   /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
@@ -11777,30 +11259,29 @@ export interface PutV1HomeAddressesHomeAddressUuidRequest {
   street_2?: string | null;
   zip?: string;
 }
-export const PutV1HomeAddressesHomeAddressUuidRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      home_address_uuid: S.String.pipe(T.Label()),
-      version: S.String,
-      city: S.optional(S.String),
-      courtesy_withholding: S.optional(S.Boolean),
-      effective_date: S.optional(S.NullOr(S.String)),
-      state: S.optional(S.String),
-      street_1: S.optional(S.String),
-      street_2: S.optional(S.NullOr(S.String)),
-      zip: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/v1/home_addresses/{home_address_uuid}",
-        code: 200,
-      }),
-    ),
+export const PutHomeAddressRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    home_address_uuid: S.String.pipe(T.Label()),
+    version: S.String,
+    city: S.optional(S.String),
+    courtesy_withholding: S.optional(S.Boolean),
+    effective_date: S.optional(S.NullOr(S.String)),
+    state: S.optional(S.String),
+    street_1: S.optional(S.String),
+    street_2: S.optional(S.NullOr(S.String)),
+    zip: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/v1/home_addresses/{home_address_uuid}",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "PutV1HomeAddressesHomeAddressUuidRequest",
-}) as any as S.Schema<PutV1HomeAddressesHomeAddressUuidRequest>;
+  identifier: "PutHomeAddressRequest",
+}) as any as S.Schema<PutHomeAddressRequest>;
 
-export interface PutV1LocationsLocationIdRequest {
+export interface PutLocationRequest {
   /** The UUID of the location */
   location_id: string;
   /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
@@ -11817,7 +11298,7 @@ export interface PutV1LocationsLocationIdRequest {
   street_2?: string | null;
   zip?: string;
 }
-export const PutV1LocationsLocationIdRequest = /*@__PURE__*/ S.suspend(() =>
+export const PutLocationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     location_id: S.String.pipe(T.Label()),
     version: S.String,
@@ -11834,10 +11315,10 @@ export const PutV1LocationsLocationIdRequest = /*@__PURE__*/ S.suspend(() =>
     T.Http({ method: "PUT", uri: "/v1/locations/{location_id}", code: 200 }),
   ),
 ).annotate({
-  identifier: "PutV1LocationsLocationIdRequest",
-}) as any as S.Schema<PutV1LocationsLocationIdRequest>;
+  identifier: "PutLocationRequest",
+}) as any as S.Schema<PutLocationRequest>;
 
-export interface PutV1RecurringReimbursementsRequest {
+export interface PutRecurringReimbursementsRequest {
   /** The UUID of the reimbursement */
   id: string;
   /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
@@ -11847,7 +11328,7 @@ export interface PutV1RecurringReimbursementsRequest {
   /** The description of the reimbursement */
   description?: string;
 }
-export const PutV1RecurringReimbursementsRequest = /*@__PURE__*/ S.suspend(() =>
+export const PutRecurringReimbursementsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String.pipe(T.Label()),
     version: S.String,
@@ -11861,8 +11342,279 @@ export const PutV1RecurringReimbursementsRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "PutV1RecurringReimbursementsRequest",
-}) as any as S.Schema<PutV1RecurringReimbursementsRequest>;
+  identifier: "PutRecurringReimbursementsRequest",
+}) as any as S.Schema<PutRecurringReimbursementsRequest>;
+
+export type PutRemovePeopleFromDepartmentRequestContractorsItem =
+  DepartmentContractorsItem;
+export const PutRemovePeopleFromDepartmentRequestContractorsItem =
+  DepartmentContractorsItem;
+
+/** Array of contractors to add or remove from the department */
+export type PutRemovePeopleFromDepartmentRequestContractorsList =
+  Array<DepartmentContractorsItem>;
+export const PutRemovePeopleFromDepartmentRequestContractorsList =
+  /*@__PURE__*/ S.Array(
+    DepartmentContractorsItem,
+  ) as any as S.Schema<PutRemovePeopleFromDepartmentRequestContractorsList>;
+
+export type PutRemovePeopleFromDepartmentRequestEmployeesItem =
+  DepartmentContractorsItem;
+export const PutRemovePeopleFromDepartmentRequestEmployeesItem =
+  DepartmentContractorsItem;
+
+/** Array of employees to add or remove from the department */
+export type PutRemovePeopleFromDepartmentRequestEmployeesList =
+  Array<DepartmentContractorsItem>;
+export const PutRemovePeopleFromDepartmentRequestEmployeesList =
+  /*@__PURE__*/ S.Array(
+    DepartmentContractorsItem,
+  ) as any as S.Schema<PutRemovePeopleFromDepartmentRequestEmployeesList>;
+
+export interface PutRemovePeopleFromDepartmentRequest {
+  /** The UUID of the department */
+  department_uuid: string;
+  /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
+  version: string;
+  /** Array of contractors to add or remove from the department */
+  contractors?: PutRemovePeopleFromDepartmentRequestContractorsList;
+  /** Array of employees to add or remove from the department */
+  employees?: PutRemovePeopleFromDepartmentRequestEmployeesList;
+}
+export const PutRemovePeopleFromDepartmentRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      department_uuid: S.String.pipe(T.Label()),
+      version: S.String,
+      contractors: S.optional(
+        PutRemovePeopleFromDepartmentRequestContractorsList,
+      ),
+      employees: S.optional(PutRemovePeopleFromDepartmentRequestEmployeesList),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/v1/departments/{department_uuid}/remove",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "PutRemovePeopleFromDepartmentRequest",
+}) as any as S.Schema<PutRemovePeopleFromDepartmentRequest>;
+
+export type PutRemovePeopleFromDepartmentResponseContractorsItem =
+  DepartmentContractorsItem;
+export const PutRemovePeopleFromDepartmentResponseContractorsItem =
+  DepartmentContractorsItem;
+
+/** Array of contractors assigned to the department. */
+export type PutRemovePeopleFromDepartmentResponseContractorsList =
+  Array<DepartmentContractorsItem>;
+export const PutRemovePeopleFromDepartmentResponseContractorsList =
+  /*@__PURE__*/ S.Array(
+    DepartmentContractorsItem,
+  ) as any as S.Schema<PutRemovePeopleFromDepartmentResponseContractorsList>;
+
+export type PutRemovePeopleFromDepartmentResponseEmployeesItem =
+  DepartmentContractorsItem;
+export const PutRemovePeopleFromDepartmentResponseEmployeesItem =
+  DepartmentContractorsItem;
+
+/** Array of employees assigned to the department. */
+export type PutRemovePeopleFromDepartmentResponseEmployeesList =
+  Array<DepartmentContractorsItem>;
+export const PutRemovePeopleFromDepartmentResponseEmployeesList =
+  /*@__PURE__*/ S.Array(
+    DepartmentContractorsItem,
+  ) as any as S.Schema<PutRemovePeopleFromDepartmentResponseEmployeesList>;
+
+export interface PutRemovePeopleFromDepartmentResponse {
+  /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
+  version?: string;
+  /** The UUID of the company */
+  company_uuid?: string;
+  /** Array of contractors assigned to the department. */
+  contractors?: PutRemovePeopleFromDepartmentResponseContractorsList;
+  /** Array of employees assigned to the department. */
+  employees?: PutRemovePeopleFromDepartmentResponseEmployeesList;
+  /** Name of the department */
+  title?: string;
+  /** The UUID of the department */
+  uuid?: string;
+}
+export const PutRemovePeopleFromDepartmentResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      version: S.optional(S.String),
+      company_uuid: S.optional(S.String),
+      contractors: S.optional(
+        PutRemovePeopleFromDepartmentResponseContractorsList,
+      ),
+      employees: S.optional(PutRemovePeopleFromDepartmentResponseEmployeesList),
+      title: S.optional(S.String),
+      uuid: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "PutRemovePeopleFromDepartmentResponse",
+}) as any as S.Schema<PutRemovePeopleFromDepartmentResponse>;
+
+export interface PutTerminationRequest {
+  /** The UUID of the employee */
+  employee_id: string;
+  /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
+  version: string;
+  /** The employee's last day of work. */
+  effective_date: string;
+  /** If true, the employee should receive their final wages via an off-cycle payroll. If false, they should receive their final wages on their current pay schedule. */
+  run_termination_payroll?: boolean;
+}
+export const PutTerminationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    employee_id: S.String.pipe(T.Label()),
+    version: S.String,
+    effective_date: S.String,
+    run_termination_payroll: S.optional(S.Boolean),
+  }).pipe(
+    T.Http({ method: "PUT", uri: "/v1/terminations/{employee_id}", code: 200 }),
+  ),
+).annotate({
+  identifier: "PutTerminationRequest",
+}) as any as S.Schema<PutTerminationRequest>;
+
+export interface PutTimeOffPolicyAddEmployeesRequestEmployeesItem {
+  /** The starting balance for the employee */
+  balance?: string | null;
+  /** The UUID of the employee */
+  uuid: string;
+}
+export const PutTimeOffPolicyAddEmployeesRequestEmployeesItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      balance: S.optional(S.NullOr(S.String)),
+      uuid: S.String,
+    }),
+  ).annotate({
+    identifier: "PutTimeOffPolicyAddEmployeesRequestEmployeesItem",
+  }) as any as S.Schema<PutTimeOffPolicyAddEmployeesRequestEmployeesItem>;
+
+export type PutTimeOffPolicyAddEmployeesRequestEmployeesList =
+  Array<PutTimeOffPolicyAddEmployeesRequestEmployeesItem>;
+export const PutTimeOffPolicyAddEmployeesRequestEmployeesList =
+  /*@__PURE__*/ S.Array(
+    PutTimeOffPolicyAddEmployeesRequestEmployeesItem,
+  ) as any as S.Schema<PutTimeOffPolicyAddEmployeesRequestEmployeesList>;
+
+export interface PutTimeOffPolicyAddEmployeesRequest {
+  /** The UUID of the time off policy */
+  time_off_policy_uuid: string;
+  employees: PutTimeOffPolicyAddEmployeesRequestEmployeesList;
+}
+export const PutTimeOffPolicyAddEmployeesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    time_off_policy_uuid: S.String.pipe(T.Label()),
+    employees: PutTimeOffPolicyAddEmployeesRequestEmployeesList,
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/v1/time_off_policies/{time_off_policy_uuid}/add_employees",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "PutTimeOffPolicyAddEmployeesRequest",
+}) as any as S.Schema<PutTimeOffPolicyAddEmployeesRequest>;
+
+/** Pay classification for the entry. */
+export type PutTimeTrackingTimeSheetRequestEntriesItemPayClassification =
+  | "Regular"
+  | "Overtime"
+  | "Double overtime";
+export const PutTimeTrackingTimeSheetRequestEntriesItemPayClassification =
+  /*@__PURE__*/ S.String;
+
+export interface PutTimeTrackingTimeSheetRequestEntriesItem {
+  /** Hours worked for this pay classification. Should be passed as number with up to 3 decimal places. */
+  hours_worked?: number;
+  /** Pay classification for the entry. */
+  pay_classification?:
+    | PutTimeTrackingTimeSheetRequestEntriesItemPayClassification
+    | (string & {});
+  /** Unique identifier of the entry. */
+  uuid?: string;
+}
+export const PutTimeTrackingTimeSheetRequestEntriesItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      hours_worked: S.optional(S.Number),
+      pay_classification: S.optional(
+        PutTimeTrackingTimeSheetRequestEntriesItemPayClassification,
+      ),
+      uuid: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "PutTimeTrackingTimeSheetRequestEntriesItem",
+  }) as any as S.Schema<PutTimeTrackingTimeSheetRequestEntriesItem>;
+
+/** Entries associated with the time sheet. */
+export type PutTimeTrackingTimeSheetRequestEntriesList =
+  Array<PutTimeTrackingTimeSheetRequestEntriesItem>;
+export const PutTimeTrackingTimeSheetRequestEntriesList = /*@__PURE__*/ S.Array(
+  PutTimeTrackingTimeSheetRequestEntriesItem,
+) as any as S.Schema<PutTimeTrackingTimeSheetRequestEntriesList>;
+
+/** Metadata associated with the time sheet. Key-value pairs of arbitrary data. Both keys and values must be strings. */
+export type PutTimeTrackingTimeSheetRequestMetadataMap = {
+  [key: string]: string | undefined;
+};
+export const PutTimeTrackingTimeSheetRequestMetadataMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<PutTimeTrackingTimeSheetRequestMetadataMap>;
+
+export interface PutTimeTrackingTimeSheetRequest {
+  /** UUID of the time sheet */
+  time_sheet_uuid: string;
+  /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
+  version: string;
+  /** Type of entity associated with the time sheet. */
+  entity_type?: string;
+  /** Unique identifier of the entity associated with the time sheet. */
+  entity_uuid?: string;
+  /** Entries associated with the time sheet. */
+  entries?: PutTimeTrackingTimeSheetRequestEntriesList;
+  /** Unique identifier of the job for which time was tracked. Currently is only supported for employees. */
+  job_uuid?: string;
+  /** Metadata associated with the time sheet. Key-value pairs of arbitrary data. Both keys and values must be strings. */
+  metadata?: PutTimeTrackingTimeSheetRequestMetadataMap;
+  /** The end time of the shift. If the shift is still ongoing this will be null. */
+  shift_ended_at?: string;
+  /** The start time of the shift. Timestamp should be in ISO8601 */
+  shift_started_at?: string;
+  /** Time zone of where the time was tracked. */
+  time_zone?: string;
+}
+export const PutTimeTrackingTimeSheetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    time_sheet_uuid: S.String.pipe(T.Label()),
+    version: S.String,
+    entity_type: S.optional(S.String),
+    entity_uuid: S.optional(S.String),
+    entries: S.optional(PutTimeTrackingTimeSheetRequestEntriesList),
+    job_uuid: S.optional(S.String),
+    metadata: S.optional(PutTimeTrackingTimeSheetRequestMetadataMap),
+    shift_ended_at: S.optional(S.String),
+    shift_started_at: S.optional(S.String),
+    time_zone: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/v1/time_tracking/time_sheets/{time_sheet_uuid}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "PutTimeTrackingTimeSheetRequest",
+}) as any as S.Schema<PutTimeTrackingTimeSheetRequest>;
 
 /** Experience level for this occupation */
 export type PutV1SalaryEstimatesIdRequestOccupationsItemExperienceLevel =
@@ -11930,75 +11682,6 @@ export const PutV1SalaryEstimatesIdRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "PutV1SalaryEstimatesIdRequest",
 }) as any as S.Schema<PutV1SalaryEstimatesIdRequest>;
 
-export interface PutV1TerminationsEmployeeIdRequest {
-  /** The UUID of the employee */
-  employee_id: string;
-  /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
-  version: string;
-  /** The employee's last day of work. */
-  effective_date: string;
-  /** If true, the employee should receive their final wages via an off-cycle payroll. If false, they should receive their final wages on their current pay schedule. */
-  run_termination_payroll?: boolean;
-}
-export const PutV1TerminationsEmployeeIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    employee_id: S.String.pipe(T.Label()),
-    version: S.String,
-    effective_date: S.String,
-    run_termination_payroll: S.optional(S.Boolean),
-  }).pipe(
-    T.Http({ method: "PUT", uri: "/v1/terminations/{employee_id}", code: 200 }),
-  ),
-).annotate({
-  identifier: "PutV1TerminationsEmployeeIdRequest",
-}) as any as S.Schema<PutV1TerminationsEmployeeIdRequest>;
-
-export interface PutV1TimeOffPoliciesTimeOffPolicyUuidAddEmployeesRequestEmployeesItem {
-  /** The starting balance for the employee */
-  balance?: string | null;
-  /** The UUID of the employee */
-  uuid: string;
-}
-export const PutV1TimeOffPoliciesTimeOffPolicyUuidAddEmployeesRequestEmployeesItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      balance: S.optional(S.NullOr(S.String)),
-      uuid: S.String,
-    }),
-  ).annotate({
-    identifier:
-      "PutV1TimeOffPoliciesTimeOffPolicyUuidAddEmployeesRequestEmployeesItem",
-  }) as any as S.Schema<PutV1TimeOffPoliciesTimeOffPolicyUuidAddEmployeesRequestEmployeesItem>;
-
-export type PutV1TimeOffPoliciesTimeOffPolicyUuidAddEmployeesRequestEmployeesList =
-  Array<PutV1TimeOffPoliciesTimeOffPolicyUuidAddEmployeesRequestEmployeesItem>;
-export const PutV1TimeOffPoliciesTimeOffPolicyUuidAddEmployeesRequestEmployeesList =
-  /*@__PURE__*/ S.Array(
-    PutV1TimeOffPoliciesTimeOffPolicyUuidAddEmployeesRequestEmployeesItem,
-  ) as any as S.Schema<PutV1TimeOffPoliciesTimeOffPolicyUuidAddEmployeesRequestEmployeesList>;
-
-export interface PutV1TimeOffPoliciesTimeOffPolicyUuidAddEmployeesRequest {
-  /** The UUID of the time off policy */
-  time_off_policy_uuid: string;
-  employees: PutV1TimeOffPoliciesTimeOffPolicyUuidAddEmployeesRequestEmployeesList;
-}
-export const PutV1TimeOffPoliciesTimeOffPolicyUuidAddEmployeesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      time_off_policy_uuid: S.String.pipe(T.Label()),
-      employees:
-        PutV1TimeOffPoliciesTimeOffPolicyUuidAddEmployeesRequestEmployeesList,
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/v1/time_off_policies/{time_off_policy_uuid}/add_employees",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PutV1TimeOffPoliciesTimeOffPolicyUuidAddEmployeesRequest",
-  }) as any as S.Schema<PutV1TimeOffPoliciesTimeOffPolicyUuidAddEmployeesRequest>;
-
 export interface PutV1VerifyWebhookSubscriptionUuidRequest {
   /** The webhook subscription UUID. */
   webhook_subscription_uuid: string;
@@ -12021,7 +11704,7 @@ export const PutV1VerifyWebhookSubscriptionUuidRequest =
     identifier: "PutV1VerifyWebhookSubscriptionUuidRequest",
   }) as any as S.Schema<PutV1VerifyWebhookSubscriptionUuidRequest>;
 
-export type PutV1WebhookSubscriptionUuidRequestSubscriptionTypesItem =
+export type PutWebhookSubscriptionUuidRequestSubscriptionTypesItem =
   | "BankAccount"
   | "Company"
   | "CompanyBenefit"
@@ -12040,29 +11723,28 @@ export type PutV1WebhookSubscriptionUuidRequestSubscriptionTypesItem =
   | "PeopleBatch"
   | "Signatory"
   | "TimeOffRequest";
-export const PutV1WebhookSubscriptionUuidRequestSubscriptionTypesItem =
+export const PutWebhookSubscriptionUuidRequestSubscriptionTypesItem =
   /*@__PURE__*/ S.String;
 
 /** The types of events to subscribe to. */
-export type PutV1WebhookSubscriptionUuidRequestSubscriptionTypesList = Array<
-  PutV1WebhookSubscriptionUuidRequestSubscriptionTypesItem | (string & {})
+export type PutWebhookSubscriptionUuidRequestSubscriptionTypesList = Array<
+  PutWebhookSubscriptionUuidRequestSubscriptionTypesItem | (string & {})
 >;
-export const PutV1WebhookSubscriptionUuidRequestSubscriptionTypesList =
+export const PutWebhookSubscriptionUuidRequestSubscriptionTypesList =
   /*@__PURE__*/ S.Array(
-    PutV1WebhookSubscriptionUuidRequestSubscriptionTypesItem,
-  ) as any as S.Schema<PutV1WebhookSubscriptionUuidRequestSubscriptionTypesList>;
+    PutWebhookSubscriptionUuidRequestSubscriptionTypesItem,
+  ) as any as S.Schema<PutWebhookSubscriptionUuidRequestSubscriptionTypesList>;
 
-export interface PutV1WebhookSubscriptionUuidRequest {
+export interface PutWebhookSubscriptionUuidRequest {
   /** The webhook subscription UUID. */
   webhook_subscription_uuid: string;
   /** The types of events to subscribe to. */
-  subscription_types: PutV1WebhookSubscriptionUuidRequestSubscriptionTypesList;
+  subscription_types: PutWebhookSubscriptionUuidRequestSubscriptionTypesList;
 }
-export const PutV1WebhookSubscriptionUuidRequest = /*@__PURE__*/ S.suspend(() =>
+export const PutWebhookSubscriptionUuidRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     webhook_subscription_uuid: S.String.pipe(T.Label()),
-    subscription_types:
-      PutV1WebhookSubscriptionUuidRequestSubscriptionTypesList,
+    subscription_types: PutWebhookSubscriptionUuidRequestSubscriptionTypesList,
   }).pipe(
     T.Http({
       method: "PUT",
@@ -12071,10 +11753,10 @@ export const PutV1WebhookSubscriptionUuidRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "PutV1WebhookSubscriptionUuidRequest",
-}) as any as S.Schema<PutV1WebhookSubscriptionUuidRequest>;
+  identifier: "PutWebhookSubscriptionUuidRequest",
+}) as any as S.Schema<PutWebhookSubscriptionUuidRequest>;
 
-export interface PutV1WorkAddressesWorkAddressUuidRequest {
+export interface PutWorkAddressRequest {
   /** The UUID of the work address */
   work_address_uuid: string;
   /** The current version of the object. See the [versioning guide](https://docs.gusto.com/embedded-payroll/docs/idempotency) for information on how to use this field. */
@@ -12083,23 +11765,22 @@ export interface PutV1WorkAddressesWorkAddressUuidRequest {
   /** Reference to a company location */
   location_uuid?: string;
 }
-export const PutV1WorkAddressesWorkAddressUuidRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      work_address_uuid: S.String.pipe(T.Label()),
-      version: S.String,
-      effective_date: S.optional(S.String),
-      location_uuid: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/v1/work_addresses/{work_address_uuid}",
-        code: 200,
-      }),
-    ),
+export const PutWorkAddressRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    work_address_uuid: S.String.pipe(T.Label()),
+    version: S.String,
+    effective_date: S.optional(S.String),
+    location_uuid: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/v1/work_addresses/{work_address_uuid}",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "PutV1WorkAddressesWorkAddressUuidRequest",
-}) as any as S.Schema<PutV1WorkAddressesWorkAddressUuidRequest>;
+  identifier: "PutWorkAddressRequest",
+}) as any as S.Schema<PutWorkAddressRequest>;
 
 export interface RevokeAccessTokenRequest {
   /** Your client id */
@@ -12126,6 +11807,419 @@ export const RevokeAccessTokenResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "RevokeAccessTokenResponse",
 }) as any as S.Schema<RevokeAccessTokenResponse>;
 
+export interface UpdateEmployeeSection603HighEarnerStatusRequest {
+  /** The UUID of the employee */
+  employee_uuid: string;
+  /** The effective year for the Section 603 status */
+  effective_year: number;
+  /** Whether the employee is classified as a high earner for Section 603 purposes */
+  is_high_earner: boolean;
+}
+export const UpdateEmployeeSection603HighEarnerStatusRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      employee_uuid: S.String.pipe(T.Label()),
+      effective_year: S.Number.pipe(T.Label()),
+      is_high_earner: S.Boolean,
+    }).pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/v1/employees/{employee_uuid}/section603_high_earner_statuses/{effective_year}",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "UpdateEmployeeSection603HighEarnerStatusRequest",
+  }) as any as S.Schema<UpdateEmployeeSection603HighEarnerStatusRequest>;
+
+export type CreateCompanyCompanyBenefitError =
+  | NotFound
+  | UnprocessableEntity
+  | GustoOpError;
+/** Create a company benefit Company benefits represent the benefits that a company is offering to employees. This ties together a particular supported benefit with the company-specific information for the offering of that benefit. Note that company benefits can be deactivated only when no employees are enrolled. When the application has the `company_benefits:write:benefit_type_limited` data scope, the application can only create company benefits for benefit types that are permitted for the application. scope: `company_benefits:write` */
+export const createCompanyCompanyBenefit: API.OperationMethod<
+  CreateCompanyCompanyBenefitRequest,
+  CompanyBenefit,
+  CreateCompanyCompanyBenefitError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateCompanyCompanyBenefitRequest,
+  output: CompanyBenefit,
+  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateCompanyContractorError =
+  | NotFound
+  | UnprocessableEntity
+  | GustoOpError;
+/** Create a contractor Create an individual or business contractor. scope: `contractors:manage` */
+export const createCompanyContractor: API.OperationMethod<
+  CreateCompanyContractorRequest,
+  Contractor,
+  CreateCompanyContractorError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateCompanyContractorRequest,
+  output: Contractor,
+  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateCompanyEarningTypeError =
+  | NotFound
+  | UnprocessableEntity
+  | GustoOpError;
+/** Create a custom earning type Create a custom earning type. If an inactive earning type exists with the same name, this will reactivate it instead of creating a new one. scope: `payrolls:write` */
+export const createCompanyEarningType: API.OperationMethod<
+  CreateCompanyEarningTypeRequest,
+  EarningType,
+  CreateCompanyEarningTypeError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateCompanyEarningTypeRequest,
+  output: EarningType,
+  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateCompanyLocationError =
+  | NotFound
+  | UnprocessableEntity
+  | GustoOpError;
+/** Create a company location Create a company location, which represents any address associated with a company: mailing addresses, filing addresses, or work locations. A single address may serve multiple, or all, purposes. Since all company locations are subsets of locations, use the Locations endpoints to [get](https://docs.gusto.com/app-integrations/reference/get-v1-locations-location_id) or [update](https://docs.gusto.com/app-integrations/reference/put-v1-locations-location_id) an individual record. scope: `companies:write` */
+export const createCompanyLocation: API.OperationMethod<
+  CreateCompanyLocationRequest,
+  Location,
+  CreateCompanyLocationError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateCompanyLocationRequest,
+  output: Location,
+  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateCompanyTimeTrackingTimeSheetError =
+  | NotFound
+  | UnprocessableEntity
+  | GustoOpError;
+/** Create a time sheet Create a time sheet for a company. Time sheets represent the time worked by an employee or contractor for a given time range. Hours are classified by pay classification, and can be regular, overtime, or double overtime. scope: `time_sheet:write` */
+export const createCompanyTimeTrackingTimeSheet: API.OperationMethod<
+  CreateCompanyTimeTrackingTimeSheetRequest,
+  TimeSheet,
+  CreateCompanyTimeTrackingTimeSheetError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateCompanyTimeTrackingTimeSheetRequest,
+  output: TimeSheet,
+  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateEmployeeEmployeeBenefitError =
+  | NotFound
+  | UnprocessableEntity
+  | GustoOpError;
+/** Create an employee benefit Employee benefits represent an employee enrolled in a particular company benefit. It includes information specific to that employee's enrollment. When the application has the `employee_benefits:write:benefit_type_limited` data scope, the application can only create employee benefits for benefit types that are permitted for the application. scope: `employee_benefits:write` */
+export const createEmployeeEmployeeBenefit: API.OperationMethod<
+  CreateEmployeeEmployeeBenefitRequest,
+  CreateEmployeeEmployeeBenefitResponse,
+  CreateEmployeeEmployeeBenefitError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateEmployeeEmployeeBenefitRequest,
+  output: CreateEmployeeEmployeeBenefitResponse,
+  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateEmployeeGarnishmentError =
+  | NotFound
+  | UnprocessableEntity
+  | GustoOpError;
+/** Create a garnishment Garnishments, or employee deductions, are fixed amounts or percentages deducted from an employee’s pay. They can be deducted a specific number of times or on a recurring basis. Garnishments can also have maximum deductions on a yearly or per-pay-period bases. Common uses for garnishments are court-ordered payments for child support or back taxes. Some companies provide loans to their employees that are repaid via garnishments. scope: `garnishments:write` */
+export const createEmployeeGarnishment: API.OperationMethod<
+  CreateEmployeeGarnishmentRequest,
+  Garnishment,
+  CreateEmployeeGarnishmentError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateEmployeeGarnishmentRequest,
+  output: Garnishment,
+  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateEmployeeHomeAddressError =
+  | NotFound
+  | UnprocessableEntity
+  | GustoOpError;
+/** Create an employee's home address The home address of an employee is used to determine certain tax information about them. Addresses are geocoded on create and update to ensure validity. Supports home address effective dating and courtesy withholding. scope: `employees:write` */
+export const createEmployeeHomeAddress: API.OperationMethod<
+  CreateEmployeeHomeAddressRequest,
+  EmployeeAddress,
+  CreateEmployeeHomeAddressError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateEmployeeHomeAddressRequest,
+  output: EmployeeAddress,
+  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateEmployeeRecurringReimbursementError =
+  | NotFound
+  | UnprocessableEntity
+  | GustoOpError;
+/** Create a recurring reimbursement Create a recurring reimbursement for an employee. scope: `reimbursements:write` */
+export const createEmployeeRecurringReimbursement: API.OperationMethod<
+  CreateEmployeeRecurringReimbursementRequest,
+  RecurringReimbursement,
+  CreateEmployeeRecurringReimbursementError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateEmployeeRecurringReimbursementRequest,
+  output: RecurringReimbursement,
+  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateEmployeeRehireError =
+  | NotFound
+  | UnprocessableEntity
+  | GustoOpError;
+/** Create an employee rehire Rehire is created whenever an employee is scheduled to return to the company. scope: `employments:write` */
+export const createEmployeeRehire: API.OperationMethod<
+  CreateEmployeeRehireRequest,
+  Rehire,
+  CreateEmployeeRehireError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateEmployeeRehireRequest,
+  output: Rehire,
+  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateEmployeeSalaryEstimateError =
+  | NotFound
+  | UnprocessableEntity
+  | GustoOpError;
+/** Create a salary estimate for an employee Create a salary estimate for an employee. This endpoint helps calculate a reasonable salary for S Corp owners based on their occupation, experience level, location, and business revenue. A salary estimate must include: - Annual net revenue of the business - ZIP code for location-based salary data - One or more occupations with experience levels and time percentages (must sum to 100%) Only one in-progress salary estimate can exist per employee at a time. If an in-progress estimate already exists, you must either accept it or use the update endpoint. scope: `salary_estimates:write` */
+export const createEmployeeSalaryEstimate: API.OperationMethod<
+  CreateEmployeeSalaryEstimateRequest,
+  SalaryEstimate,
+  CreateEmployeeSalaryEstimateError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateEmployeeSalaryEstimateRequest,
+  output: SalaryEstimate,
+  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateEmployeeSection603HighEarnerStatusError =
+  | NotFound
+  | Conflict
+  | UnprocessableEntity
+  | GustoOpError;
+/** Create a Section 603 high earner status Create a Section 603 high earner status for an employee for a specific year. Section 603 of the SECURE 2.0 Act applies to employees aged 50 or older whose prior-year FICA wages exceed the IRS threshold. These employees are classified as high earners, and their catch-up contributions to pre-tax retirement benefits must be designated as post-tax contributions. scope: `employee_benefits:write` */
+export const createEmployeeSection603HighEarnerStatus: API.OperationMethod<
+  CreateEmployeeSection603HighEarnerStatusRequest,
+  EmployeeSection603HighEarnerStatus,
+  CreateEmployeeSection603HighEarnerStatusError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateEmployeeSection603HighEarnerStatusRequest,
+  output: EmployeeSection603HighEarnerStatus,
+  errors: [NotFound, Conflict, UnprocessableEntity, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateEmployeeTerminationError =
+  | NotFound
+  | UnprocessableEntity
+  | GustoOpError;
+/** Create an employee termination Create a termination for an employee. The only things required are an effective date (their last day of work) and whether they should receive their wages in a one-off termination payroll or with the rest of the company. Note that some states require employees to receive their final wages within 24 hours (unless they consent otherwise,) in which case running a one-off payroll may be the only option. scope: `employments:write` */
+export const createEmployeeTermination: API.OperationMethod<
+  CreateEmployeeTerminationRequest,
+  Termination,
+  CreateEmployeeTerminationError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateEmployeeTerminationRequest,
+  output: Termination,
+  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateEmployeeWorkAddressError =
+  | NotFound
+  | UnprocessableEntity
+  | GustoOpError;
+/** Create an employee work address The work address of an employee describes when an employee began working at an associated company location. scope: `employees:manage` */
+export const createEmployeeWorkAddress: API.OperationMethod<
+  CreateEmployeeWorkAddressRequest,
+  EmployeeWorkAddress,
+  CreateEmployeeWorkAddressError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateEmployeeWorkAddressRequest,
+  output: EmployeeWorkAddress,
+  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateEmployeeYtdBenefitAmountsFromDifferentCompanyError =
+  | NotFound
+  | UnprocessableEntity
+  | GustoOpError;
+/** Create year-to-date benefit amounts from a different company Year-to-date benefit amounts from a different company represents the amount of money added to an employee's plan during a current year, made outside of the current contribution when they were employed at a different company. This endpoint only supports passing outside contributions for 401(k) benefits. scope: `employee_benefits:write` */
+export const createEmployeeYtdBenefitAmountsFromDifferentCompany: API.OperationMethod<
+  CreateEmployeeYtdBenefitAmountsFromDifferentCompanyRequest,
+  CreateEmployeeYtdBenefitAmountsFromDifferentCompanyResponse,
+  CreateEmployeeYtdBenefitAmountsFromDifferentCompanyError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateEmployeeYtdBenefitAmountsFromDifferentCompanyRequest,
+  output: CreateEmployeeYtdBenefitAmountsFromDifferentCompanyResponse,
+  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreatePayrollReportsGeneralLedgerError =
+  | NotFound
+  | UnprocessableEntity
+  | GustoOpError;
+/** Create a general ledger report Create a general ledger report for a payroll. The report can be aggregated by different dimensions such as job or department. Use the `request_uuid` in the response with the [report GET endpoint](../reference/get-reports-request_uuid) to poll for the status and report URL upon completion. The retrieved report will be generated in a JSON format. scope: `company_reports:write` */
+export const createPayrollReportsGeneralLedger: API.OperationMethod<
+  CreatePayrollReportsGeneralLedgerRequest,
+  GeneralLedgerReport,
+  CreatePayrollReportsGeneralLedgerError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreatePayrollReportsGeneralLedgerRequest,
+  output: GeneralLedgerReport,
+  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateProvisionError = UnprocessableEntity | GustoOpError;
+/** Create a company ### Overview The company provisioning API provides a way to create a Gusto company as part of your integration. When you successfully call the API, the API does the following: * Creates a new company in Gusto. * Creates a new user in Gusto. * Makes the new user the primary payroll administrator of the new company. * Sends a welcome email to the new user. In the response, you will receive an account claim URL. Redirect the user to this URL to complete their account setup inside of Gusto > 📘 System Access Authentication > > This endpoint uses the [Bearer Auth scheme with the system-level access token in the HTTP Authorization header](https://docs.gusto.com/embedded-payroll/docs/system-access). 📘 System Access Authentication This endpoint uses the [Bearer Auth scheme with the system-level access token in the HTTP Authorization header](https://docs.gusto.com/embedded-payroll/docs/system-access) scope: `accounts:write` */
+export const createProvision: API.OperationMethod<
+  CreateProvisionRequest,
+  ProvisionCreated,
+  CreateProvisionError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateProvisionRequest,
+  output: ProvisionCreated,
+  errors: [UnprocessableEntity, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateSalaryEstimateAcceptError =
+  | NotFound
+  | UnprocessableEntity
+  | GustoOpError;
+/** Accept a salary estimate Accept and finalize a salary estimate. This associates the estimate with an employee job and marks it as accepted. Once accepted, the salary estimate becomes read-only for record-keeping purposes. The accepted salary can then be used to set up compensation for the employee. scope: `salary_estimates:write` */
+export const createSalaryEstimateAccept: API.OperationMethod<
+  CreateSalaryEstimateAcceptRequest,
+  SalaryEstimate,
+  CreateSalaryEstimateAcceptError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateSalaryEstimateAcceptRequest,
+  output: SalaryEstimate,
+  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateWebhookSubscriptionError = UnprocessableEntity | GustoOpError;
+/** Create a webhook subscription Create a webhook subscription to receive events of the specified subscription_types whenever there is a state change. 📘 System Access Authentication This endpoint uses the [Bearer Auth scheme with the system-level access token in the HTTP Authorization header](https://docs.gusto.com/embedded-payroll/docs/system-access) scope: `webhook_subscriptions:write` */
+export const createWebhookSubscription: API.OperationMethod<
+  CreateWebhookSubscriptionRequest,
+  WebhookSubscription,
+  CreateWebhookSubscriptionError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateWebhookSubscriptionRequest,
+  output: WebhookSubscription,
+  errors: [UnprocessableEntity, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteCompanyBenefitError =
+  | NotFound
+  | UnprocessableEntity
+  | GustoOpError;
+/** Delete a company benefit The following must be true in order to delete a company benefit - There are no employee benefits associated with the company benefit - There are no payroll items associated with the company benefit - The benefit is not managed by a Partner or by Gusto (type must be 'External') When the application has the `company_benefits:write:benefit_type_limited` data scope, the application can only delete company benefits for benefit types that are permitted for the application. scope: `company_benefits:write` */
+export const deleteCompanyBenefit: API.OperationMethod<
+  DeleteCompanyBenefitRequest,
+  DeleteCompanyBenefitResponse,
+  DeleteCompanyBenefitError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteCompanyBenefitRequest,
+  output: DeleteCompanyBenefitResponse,
+  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteCompanyEarningTypeError = NotFound | GustoOpError;
+/** Deactivate an earning type Deactivate an earning type. scope: `payrolls:write` */
+export const deleteCompanyEarningType: API.OperationMethod<
+  DeleteCompanyEarningTypeRequest,
+  DeleteCompanyEarningTypeResponse,
+  DeleteCompanyEarningTypeError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteCompanyEarningTypeRequest,
+  output: DeleteCompanyEarningTypeResponse,
+  errors: [NotFound, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteCompensationError =
+  | NotFound
+  | UnprocessableEntity
+  | GustoOpError;
+/** Delete a compensation Compensations contain information on how much is paid out for a job. Jobs may have many compensations, but only one that is active. The current compensation is the one with the most recent `effective_date`. This endpoint deletes a compensation for a job that hasn't been processed on payroll. ### Webhooks - `employee_job_compensation.destroyed`: Fires when a compensation is successfully deleted scope: `compensations:write` */
+export const deleteCompensation: API.OperationMethod<
+  DeleteCompensationRequest,
+  DeleteCompensationResponse,
+  DeleteCompensationError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteCompensationRequest,
+  output: DeleteCompensationResponse,
+  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
 export type DeleteDepartmentError =
   | NotFound
   | UnprocessableEntity
@@ -12144,227 +12238,214 @@ export const deleteDepartment: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteTimeTrackingTimeSheetsTimeSheetUuidError =
-  | NotFound
-  | UnprocessableEntity
-  | GustoOpError;
-/** Delete a time sheet Delete a company's time sheet. Time sheets represent the time worked by an employee or contractor for a given time range. Hours are classified by pay classification, and can be regular, overtime, or double overtime. scope: `time_sheet:write` */
-export const deleteTimeTrackingTimeSheetsTimeSheetUuid: API.OperationMethod<
-  DeleteTimeTrackingTimeSheetsTimeSheetUuidRequest,
-  DeleteTimeTrackingTimeSheetsTimeSheetUuidResponse,
-  DeleteTimeTrackingTimeSheetsTimeSheetUuidError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteTimeTrackingTimeSheetsTimeSheetUuidRequest,
-  output: DeleteTimeTrackingTimeSheetsTimeSheetUuidResponse,
-  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteV1CompaniesCompanyIdEarningTypesEarningTypeUuidError =
-  | NotFound
-  | GustoOpError;
-/** Deactivate an earning type Deactivate an earning type. scope: `payrolls:write` */
-export const deleteV1CompaniesCompanyIdEarningTypesEarningTypeUuid: API.OperationMethod<
-  DeleteV1CompaniesCompanyIdEarningTypesEarningTypeUuidRequest,
-  DeleteV1CompaniesCompanyIdEarningTypesEarningTypeUuidResponse,
-  DeleteV1CompaniesCompanyIdEarningTypesEarningTypeUuidError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteV1CompaniesCompanyIdEarningTypesEarningTypeUuidRequest,
-  output: DeleteV1CompaniesCompanyIdEarningTypesEarningTypeUuidResponse,
-  errors: [NotFound, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteV1CompanyBenefitsCompanyBenefitIdError =
-  | NotFound
-  | UnprocessableEntity
-  | GustoOpError;
-/** Delete a company benefit The following must be true in order to delete a company benefit - There are no employee benefits associated with the company benefit - There are no payroll items associated with the company benefit - The benefit is not managed by a Partner or by Gusto (type must be 'External') When the application has the `company_benefits:write:benefit_type_limited` data scope, the application can only delete company benefits for benefit types that are permitted for the application. scope: `company_benefits:write` */
-export const deleteV1CompanyBenefitsCompanyBenefitId: API.OperationMethod<
-  DeleteV1CompanyBenefitsCompanyBenefitIdRequest,
-  DeleteV1CompanyBenefitsCompanyBenefitIdResponse,
-  DeleteV1CompanyBenefitsCompanyBenefitIdError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteV1CompanyBenefitsCompanyBenefitIdRequest,
-  output: DeleteV1CompanyBenefitsCompanyBenefitIdResponse,
-  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteV1CompensationsCompensationIdError =
-  | NotFound
-  | UnprocessableEntity
-  | GustoOpError;
-/** Delete a compensation Compensations contain information on how much is paid out for a job. Jobs may have many compensations, but only one that is active. The current compensation is the one with the most recent `effective_date`. This endpoint deletes a compensation for a job that hasn't been processed on payroll. ### Webhooks - `employee_job_compensation.destroyed`: Fires when a compensation is successfully deleted scope: `compensations:write` */
-export const deleteV1CompensationsCompensationId: API.OperationMethod<
-  DeleteV1CompensationsCompensationIdRequest,
-  DeleteV1CompensationsCompensationIdResponse,
-  DeleteV1CompensationsCompensationIdError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteV1CompensationsCompensationIdRequest,
-  output: DeleteV1CompensationsCompensationIdResponse,
-  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteV1EmployeeError =
-  | NotFound
-  | UnprocessableEntity
-  | GustoOpError;
+export type DeleteEmployeeError = NotFound | UnprocessableEntity | GustoOpError;
 /** Delete an onboarding employee Use this endpoint to delete an employee who is in onboarding. Deleting an onboarded employee is not allowed and will return a 422 response. Please check out the Terminations api if you need to terminate an onboarded employee. scope: `employees:manage` */
-export const deleteV1Employee: API.OperationMethod<
-  DeleteV1EmployeeRequest,
-  DeleteV1EmployeeResponse,
-  DeleteV1EmployeeError,
+export const deleteEmployee: API.OperationMethod<
+  DeleteEmployeeRequest,
+  DeleteEmployeeResponse,
+  DeleteEmployeeError,
   GustoOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteV1EmployeeRequest,
-  output: DeleteV1EmployeeResponse,
+  input: DeleteEmployeeRequest,
+  output: DeleteEmployeeResponse,
   errors: [NotFound, UnprocessableEntity, UnknownGustoError],
   protocol: GustoProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteV1EmployeeBenefitsEmployeeBenefitIdError =
+export type DeleteEmployeeBenefitError =
   | NotFound
   | UnprocessableEntity
   | GustoOpError;
 /** Delete an employee benefit Employee benefits represent an employee enrolled in a particular company benefit. It includes information specific to that employee's enrollment. When the application has the `employee_benefits:write:benefit_type_limited` data scope, the application can only delete employee benefits for benefit types that are permitted for the application. scope: `employee_benefits:write` */
-export const deleteV1EmployeeBenefitsEmployeeBenefitId: API.OperationMethod<
-  DeleteV1EmployeeBenefitsEmployeeBenefitIdRequest,
-  DeleteV1EmployeeBenefitsEmployeeBenefitIdResponse,
-  DeleteV1EmployeeBenefitsEmployeeBenefitIdError,
+export const deleteEmployeeBenefit: API.OperationMethod<
+  DeleteEmployeeBenefitRequest,
+  DeleteEmployeeBenefitResponse,
+  DeleteEmployeeBenefitError,
   GustoOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteV1EmployeeBenefitsEmployeeBenefitIdRequest,
-  output: DeleteV1EmployeeBenefitsEmployeeBenefitIdResponse,
+  input: DeleteEmployeeBenefitRequest,
+  output: DeleteEmployeeBenefitResponse,
   errors: [NotFound, UnprocessableEntity, UnknownGustoError],
   protocol: GustoProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteV1EmployeesEmployeeIdRehireError =
+export type DeleteEmployeeRehireError =
   | NotFound
   | UnprocessableEntity
   | GustoOpError;
 /** Delete an employee rehire Delete an employee rehire. An employee rehire cannot be deleted if it's active (past effective date). scope: `employments:write` */
-export const deleteV1EmployeesEmployeeIdRehire: API.OperationMethod<
-  DeleteV1EmployeesEmployeeIdRehireRequest,
-  DeleteV1EmployeesEmployeeIdRehireResponse,
-  DeleteV1EmployeesEmployeeIdRehireError,
+export const deleteEmployeeRehire: API.OperationMethod<
+  DeleteEmployeeRehireRequest,
+  DeleteEmployeeRehireResponse,
+  DeleteEmployeeRehireError,
   GustoOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteV1EmployeesEmployeeIdRehireRequest,
-  output: DeleteV1EmployeesEmployeeIdRehireResponse,
+  input: DeleteEmployeeRehireRequest,
+  output: DeleteEmployeeRehireResponse,
   errors: [NotFound, UnprocessableEntity, UnknownGustoError],
   protocol: GustoProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteV1EmployeesEmployeeIdTerminationsError =
+export type DeleteEmployeeTerminationsError =
   | NotFound
   | UnprocessableEntity
   | GustoOpError;
 /** Delete an employee termination Delete an employee termination. scope: `employments:write` */
-export const deleteV1EmployeesEmployeeIdTerminations: API.OperationMethod<
-  DeleteV1EmployeesEmployeeIdTerminationsRequest,
-  DeleteV1EmployeesEmployeeIdTerminationsResponse,
-  DeleteV1EmployeesEmployeeIdTerminationsError,
+export const deleteEmployeeTerminations: API.OperationMethod<
+  DeleteEmployeeTerminationsRequest,
+  DeleteEmployeeTerminationsResponse,
+  DeleteEmployeeTerminationsError,
   GustoOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteV1EmployeesEmployeeIdTerminationsRequest,
-  output: DeleteV1EmployeesEmployeeIdTerminationsResponse,
+  input: DeleteEmployeeTerminationsRequest,
+  output: DeleteEmployeeTerminationsResponse,
   errors: [NotFound, UnprocessableEntity, UnknownGustoError],
   protocol: GustoProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteV1HomeAddressesHomeAddressUuidError =
+export type DeleteHomeAddressError =
   | NotFound
   | UnprocessableEntity
   | GustoOpError;
 /** Delete an employee's home address Used for deleting an employee's home address. Cannot delete the employee's active home address. scope: `employees:write` */
-export const deleteV1HomeAddressesHomeAddressUuid: API.OperationMethod<
-  DeleteV1HomeAddressesHomeAddressUuidRequest,
-  DeleteV1HomeAddressesHomeAddressUuidResponse,
-  DeleteV1HomeAddressesHomeAddressUuidError,
+export const deleteHomeAddress: API.OperationMethod<
+  DeleteHomeAddressRequest,
+  DeleteHomeAddressResponse,
+  DeleteHomeAddressError,
   GustoOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteV1HomeAddressesHomeAddressUuidRequest,
-  output: DeleteV1HomeAddressesHomeAddressUuidResponse,
+  input: DeleteHomeAddressRequest,
+  output: DeleteHomeAddressResponse,
   errors: [NotFound, UnprocessableEntity, UnknownGustoError],
   protocol: GustoProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteV1RecurringReimbursementsError = NotFound | GustoOpError;
+export type DeleteRecurringReimbursementsError = NotFound | GustoOpError;
 /** Delete a recurring reimbursement Delete (soft delete) a recurring reimbursement for an employee. scope: `reimbursements:write` */
-export const deleteV1RecurringReimbursements: API.OperationMethod<
-  DeleteV1RecurringReimbursementsRequest,
-  DeleteV1RecurringReimbursementsResponse,
-  DeleteV1RecurringReimbursementsError,
+export const deleteRecurringReimbursements: API.OperationMethod<
+  DeleteRecurringReimbursementsRequest,
+  DeleteRecurringReimbursementsResponse,
+  DeleteRecurringReimbursementsError,
   GustoOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteV1RecurringReimbursementsRequest,
-  output: DeleteV1RecurringReimbursementsResponse,
+  input: DeleteRecurringReimbursementsRequest,
+  output: DeleteRecurringReimbursementsResponse,
   errors: [NotFound, UnknownGustoError],
   protocol: GustoProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteV1WebhookSubscriptionUuidError = NotFound | GustoOpError;
+export type DeleteTimeTrackingTimeSheetError =
+  | NotFound
+  | UnprocessableEntity
+  | GustoOpError;
+/** Delete a time sheet Delete a company's time sheet. Time sheets represent the time worked by an employee or contractor for a given time range. Hours are classified by pay classification, and can be regular, overtime, or double overtime. scope: `time_sheet:write` */
+export const deleteTimeTrackingTimeSheet: API.OperationMethod<
+  DeleteTimeTrackingTimeSheetRequest,
+  DeleteTimeTrackingTimeSheetResponse,
+  DeleteTimeTrackingTimeSheetError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteTimeTrackingTimeSheetRequest,
+  output: DeleteTimeTrackingTimeSheetResponse,
+  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteWebhookSubscriptionUuidError = NotFound | GustoOpError;
 /** Delete a webhook subscription Deletes the Webhook Subscription associated with the provided UUID. 📘 System Access Authentication This endpoint uses the [Bearer Auth scheme with the system-level access token in the HTTP Authorization header](https://docs.gusto.com/embedded-payroll/docs/system-access) scope: `webhook_subscriptions:write` */
-export const deleteV1WebhookSubscriptionUuid: API.OperationMethod<
-  DeleteV1WebhookSubscriptionUuidRequest,
-  DeleteV1WebhookSubscriptionUuidResponse,
-  DeleteV1WebhookSubscriptionUuidError,
+export const deleteWebhookSubscriptionUuid: API.OperationMethod<
+  DeleteWebhookSubscriptionUuidRequest,
+  DeleteWebhookSubscriptionUuidResponse,
+  DeleteWebhookSubscriptionUuidError,
   GustoOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteV1WebhookSubscriptionUuidRequest,
-  output: DeleteV1WebhookSubscriptionUuidResponse,
+  input: DeleteWebhookSubscriptionUuidRequest,
+  output: DeleteWebhookSubscriptionUuidResponse,
   errors: [NotFound, UnknownGustoError],
   protocol: GustoProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteV1WorkAddressesWorkAddressUuidError =
+export type DeleteWorkAddressError =
   | NotFound
   | UnprocessableEntity
   | GustoOpError;
 /** Delete an employee's work address Used for deleting an employee's work address. Cannot delete the employee's active work address. scope: `employees:manage` */
-export const deleteV1WorkAddressesWorkAddressUuid: API.OperationMethod<
-  DeleteV1WorkAddressesWorkAddressUuidRequest,
-  DeleteV1WorkAddressesWorkAddressUuidResponse,
-  DeleteV1WorkAddressesWorkAddressUuidError,
+export const deleteWorkAddress: API.OperationMethod<
+  DeleteWorkAddressRequest,
+  DeleteWorkAddressResponse,
+  DeleteWorkAddressError,
   GustoOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteV1WorkAddressesWorkAddressUuidRequest,
-  output: DeleteV1WorkAddressesWorkAddressUuidResponse,
+  input: DeleteWorkAddressRequest,
+  output: DeleteWorkAddressResponse,
   errors: [NotFound, UnprocessableEntity, UnknownGustoError],
   protocol: GustoProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetCompaniesCompanyUuidTimeTrackingTimeSheetsError =
-  | NotFound
-  | GustoOpError;
-/** Get all time sheets for a company Fetch all company's time sheets. Time sheets represent the time worked by an employee or contractor for a given time range. Hours are classified by pay classification, and can be regular, overtime, or double overtime. scope: `time_sheet:read` */
-export const getCompaniesCompanyUuidTimeTrackingTimeSheets: API.OperationMethod<
-  GetCompaniesCompanyUuidTimeTrackingTimeSheetsRequest,
-  GetCompaniesCompanyUuidTimeTrackingTimeSheetsResponse,
-  GetCompaniesCompanyUuidTimeTrackingTimeSheetsError,
+export type GetBenefitError = GustoOpError;
+/** Get a supported benefit Returns a benefit supported by Gusto. The benefit object in Gusto contains high level information about a particular benefit type and its tax considerations. When companies choose to offer a benefit, they are creating a Company Benefit object associated with a particular benefit. scope: `benefits:read` */
+export const getBenefit: API.OperationMethod<
+  GetBenefitRequest,
+  SupportedBenefit,
+  GetBenefitError,
   GustoOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetCompaniesCompanyUuidTimeTrackingTimeSheetsRequest,
-  output: GetCompaniesCompanyUuidTimeTrackingTimeSheetsResponse,
+  input: GetBenefitRequest,
+  output: SupportedBenefit,
+  errors: [UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBenefitsError = GustoOpError;
+/** Get all supported benefits Returns all benefits supported by Gusto. The benefit object in Gusto contains high level information about a particular benefit type and its tax considerations. When companies choose to offer a benefit, they are creating a Company Benefit object associated with a particular benefit. scope: `benefits:read` */
+export const getBenefits: API.OperationMethod<
+  GetBenefitsRequest,
+  GetBenefitsResponse,
+  GetBenefitsError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBenefitsRequest,
+  output: GetBenefitsResponse,
+  errors: [UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBenefitsBenefitRequirementsError = NotFound | GustoOpError;
+/** Get benefit fields requirements by benefit type Returns the field requirements for a given benefit type. scope: `benefits:read` */
+export const getBenefitsBenefitRequirements: API.OperationMethod<
+  GetBenefitsBenefitRequirementsRequest,
+  BenefitTypeRequirements,
+  GetBenefitsBenefitRequirementsError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBenefitsBenefitRequirementsRequest,
+  output: BenefitTypeRequirements,
+  errors: [NotFound, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCompaniesError = NotFound | GustoOpError;
+/** Get a company Get a company. The employees:read scope is required to return home_address and non-work locations. The company_admin:read scope is required to return primary_payroll_admin. The signatories:read scope is required to return primary_signatory. scope: `companies:read` */
+export const getCompanies: API.OperationMethod<
+  GetCompaniesRequest,
+  Company,
+  GetCompaniesError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCompaniesRequest,
+  output: Company,
   errors: [NotFound, UnknownGustoError],
   protocol: GustoProtocol,
   retry: Retry.Retry,
@@ -12385,6 +12466,190 @@ export const getCompaniesDepartments: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetCompanyAdminsError = NotFound | GustoOpError;
+/** Get all the admins at a company Returns a list of all the admins at a company scope: `company_admin:read` */
+export const getCompanyAdmins: API.OperationMethod<
+  GetCompanyAdminsRequest,
+  GetCompanyAdminsResponse,
+  GetCompanyAdminsError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCompanyAdminsRequest,
+  output: GetCompanyAdminsResponse,
+  errors: [NotFound, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCompanyBenefitError = NotFound | GustoOpError;
+/** Get a company benefit Company benefits represent the benefits that a company is offering to employees. This ties together a particular supported benefit with the company-specific information for the offering of that benefit. Note that company benefits can be deactivated only when no employees are enrolled. When with_employee_benefits parameter with true value is passed, employee_benefits:read scope is required to return employee_benefits. scope: `company_benefits:read` */
+export const getCompanyBenefit: API.OperationMethod<
+  GetCompanyBenefitRequest,
+  CompanyBenefitWithEmployeeBenefits,
+  GetCompanyBenefitError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCompanyBenefitRequest,
+  output: CompanyBenefitWithEmployeeBenefits,
+  errors: [NotFound, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCompanyBenefitContributionExclusionsError =
+  | NotFound
+  | GustoOpError;
+/** Get contribution exclusions for a company benefit Returns all contributions for a given company benefit and whether they are excluded or not. Currently this endpoint only works for 401-k and Roth 401-k benefit types. scope: `company_benefits:read` */
+export const getCompanyBenefitContributionExclusions: API.OperationMethod<
+  GetCompanyBenefitContributionExclusionsRequest,
+  GetCompanyBenefitContributionExclusionsResponse,
+  GetCompanyBenefitContributionExclusionsError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCompanyBenefitContributionExclusionsRequest,
+  output: GetCompanyBenefitContributionExclusionsResponse,
+  errors: [NotFound, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCompanyBenefitEmployeeBenefitsError = NotFound | GustoOpError;
+/** Get all employee benefits for a company benefit Employee benefits represent an employee enrolled in a particular company benefit. It includes information specific to that employee's enrollment. Returns an array of all employee benefits enrolled for this company benefit. Benefits containing PHI are only visible to applications with the `employee_benefits:read:phi` scope. scope: `employee_benefits:read` */
+export const getCompanyBenefitEmployeeBenefits: API.OperationMethod<
+  GetCompanyBenefitEmployeeBenefitsRequest,
+  GetCompanyBenefitEmployeeBenefitsResponse,
+  GetCompanyBenefitEmployeeBenefitsError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCompanyBenefitEmployeeBenefitsRequest,
+  output: GetCompanyBenefitEmployeeBenefitsResponse,
+  errors: [NotFound, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCompanyCompanyBenefitsError = NotFound | GustoOpError;
+/** Get benefits for a company Company benefits represent the benefits that a company is offering to employees. This ties together a particular supported benefit with the company-specific information for the offering of that benefit. Note that company benefits can be deactivated only when no employees are enrolled. Benefits containing PHI are only visible to applications with the `company_benefits:read:phi` scope. scope: `company_benefits:read` */
+export const getCompanyCompanyBenefits: API.OperationMethod<
+  GetCompanyCompanyBenefitsRequest,
+  GetCompanyCompanyBenefitsResponse,
+  GetCompanyCompanyBenefitsError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCompanyCompanyBenefitsRequest,
+  output: GetCompanyCompanyBenefitsResponse,
+  errors: [NotFound, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCompanyContractorPaymentContractorPaymentError =
+  | NotFound
+  | GustoOpError;
+/** Get a single contractor payment Returns a single contractor payment. scope: `payrolls:read` */
+export const getCompanyContractorPaymentContractorPayment: API.OperationMethod<
+  GetCompanyContractorPaymentContractorPaymentRequest,
+  ContractorPayment,
+  GetCompanyContractorPaymentContractorPaymentError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCompanyContractorPaymentContractorPaymentRequest,
+  output: ContractorPayment,
+  errors: [NotFound, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCompanyContractorPaymentsError = NotFound | GustoOpError;
+/** Get contractor payments for a company Returns an object containing individual contractor payments, within a given time period, including totals. Results are returned in reverse chronological order (newest first). scope: `payrolls:read` */
+export const getCompanyContractorPayments: API.OperationMethod<
+  GetCompanyContractorPaymentsRequest,
+  GetCompanyContractorPaymentsResponse,
+  GetCompanyContractorPaymentsError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCompanyContractorPaymentsRequest,
+  output: GetCompanyContractorPaymentsResponse,
+  errors: [NotFound, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCompanyContractorsError = NotFound | GustoOpError;
+/** Get contractors of a company Get all contractors, active and inactive, individual and business, for a company. scope: `contractors:read` */
+export const getCompanyContractors: API.OperationMethod<
+  GetCompanyContractorsRequest,
+  GetCompanyContractorsResponse,
+  GetCompanyContractorsError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCompanyContractorsRequest,
+  output: GetCompanyContractorsResponse,
+  errors: [NotFound, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCompanyCustomFieldsError = NotFound | GustoOpError;
+/** Get the custom fields of a company Returns a list of the custom fields of the company. Useful when you need to know the schema of custom fields for an entire company. scope: `companies:read` */
+export const getCompanyCustomFields: API.OperationMethod<
+  GetCompanyCustomFieldsRequest,
+  CompanyCustomFieldList,
+  GetCompanyCustomFieldsError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCompanyCustomFieldsRequest,
+  output: CompanyCustomFieldList,
+  errors: [NotFound, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCompanyEarningTypesError = NotFound | GustoOpError;
+/** Get all earning types for a company A payroll item in Gusto is associated to an earning type to name the type of earning described by the payroll item. #### Default Earning Type Certain earning types are special because they have tax considerations. Those earning types are mostly the same for every company depending on its legal structure (LLC, Corporation, etc.) #### Custom Earning Type Custom earning types are all the other earning types added specifically for a company. scope: `payrolls:read` */
+export const getCompanyEarningTypes: API.OperationMethod<
+  GetCompanyEarningTypesRequest,
+  EarningTypeList,
+  GetCompanyEarningTypesError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCompanyEarningTypesRequest,
+  output: EarningTypeList,
+  errors: [NotFound, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCompanyEmployeesError = NotFound | GustoOpError;
+/** Get employees of a company Get all of the employees, onboarding, active and terminated, for a given company. Note: Compensation data (pay rate, payment unit, and related fields) represents sensitive employee pay information. When retrieving employee job data, these fields (`rate`, `payment_unit`, `current_compensation_uuid`, `compensations`) are only returned when the `compensations:read` scope is included. This allows you to access employee and job metadata without exposing pay rates. scope: `employees:read` */
+export const getCompanyEmployees: API.OperationMethod<
+  GetCompanyEmployeesRequest,
+  GetCompanyEmployeesResponse,
+  GetCompanyEmployeesError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCompanyEmployeesRequest,
+  output: GetCompanyEmployeesResponse,
+  errors: [NotFound, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCompanyLocationsError = NotFound | GustoOpError;
+/** Get all company locations Retrieves all company locations (addresses) associated with a company: mailing addresses, filing addresses, or work locations. A single address may serve multiple, or all, purposes. Since all company locations are subsets of locations, use the Locations endpoints to [get](https://docs.gusto.com/app-integrations/reference/get-v1-locations-location_id) or [update](https://docs.gusto.com/app-integrations/reference/put-v1-locations-location_id) an individual record. scope: `companies:read` */
+export const getCompanyLocations: API.OperationMethod<
+  GetCompanyLocationsRequest,
+  GetCompanyLocationsResponse,
+  GetCompanyLocationsError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCompanyLocationsRequest,
+  output: GetCompanyLocationsResponse,
+  errors: [NotFound, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetCompanyNotificationsError = GustoOpError;
 /** Get notifications for company Returns all notifications relevant for the given company. scope: `notifications:read` */
 export const getCompanyNotifications: API.OperationMethod<
@@ -12400,6 +12665,174 @@ export const getCompanyNotifications: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetCompanyPayPeriodsError =
+  | NotFound
+  | UnprocessableEntity
+  | GustoOpError;
+/** Get pay periods for a company Pay periods are the foundation of payroll. Compensation, time & attendance, taxes, and expense reports all rely on when they happened. To begin submitting information for a given payroll, we need to agree on the time period. By default, this endpoint returns pay periods starting from 6 months ago to the date today. Use the `start_date` and `end_date` parameters to change the scope of the response. End dates can be up to 3 months in the future and there is no limit on start dates. Starting in version 2023-04-01, the `eligible_employees` attribute was removed from the response. The eligible employees for a payroll are determined by the employee_compensations returned from the [PUT /v1/companies/{company_id}/payrolls/{payroll_id}/prepare](https://docs.gusto.com/app-integrations/reference/put-v1-companies-company_id-payrolls-payroll_id-prepare) endpoint. scope: `payrolls:read` */
+export const getCompanyPayPeriods: API.OperationMethod<
+  GetCompanyPayPeriodsRequest,
+  GetCompanyPayPeriodsResponse,
+  GetCompanyPayPeriodsError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCompanyPayPeriodsRequest,
+  output: GetCompanyPayPeriodsResponse,
+  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCompanyPayrollError = NotFound | GustoOpError;
+/** Get a single payroll Returns a payroll. If payroll is calculated or processed, will return employee_compensations and totals. Results are paginated, with a maximum page size of 100 employee_compensations. Notes: * Hour and dollar amounts are returned as string representations of numeric decimals. * Hours are represented to the thousands place; dollar amounts are represented to the cent. * Every eligible compensation is returned for each employee. If no data has yet be inserted for a given field, it defaults to "0.00" (for fixed amounts) or "0.000" (for hours ). * When include parameter with benefits value is passed, employee_benefits:read scope is required to return benefits * Benefits containing PHI are only visible with the `employee_benefits:read:phi` scope scope: `payrolls:read` */
+export const getCompanyPayroll: API.OperationMethod<
+  GetCompanyPayrollRequest,
+  PayrollShow,
+  GetCompanyPayrollError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCompanyPayrollRequest,
+  output: PayrollShow,
+  errors: [NotFound, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCompanyPayrollsError = NotFound | GustoOpError;
+/** Get all payrolls for a company Returns a list of payrolls for a company. You can change the payrolls returned by updating the processing_status, payroll_types, start_date, & end_date params. By default, will return processed, regular payrolls for the past 6 months. Notes: * Dollar amounts are returned as string representations of numeric decimals, are represented to the cent. * end_date can be at most 3 months in the future and start_date and end_date can't be more than 1 year apart. * Results are paginated. Maximum page size is 100 payrolls per request; the default page size is 25. scope: `payrolls:read` */
+export const getCompanyPayrolls: API.OperationMethod<
+  GetCompanyPayrollsRequest,
+  GetCompanyPayrollsResponse,
+  GetCompanyPayrollsError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCompanyPayrollsRequest,
+  output: GetCompanyPayrollsResponse,
+  errors: [NotFound, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCompanyPayScheduleError = NotFound | GustoOpError;
+/** Get a pay schedule Returns a single pay schedule by UUID. The pay schedule object in Gusto captures the details of when employees work and when they should be paid. A company can have multiple pay schedules. scope: `pay_schedules:read` */
+export const getCompanyPaySchedule: API.OperationMethod<
+  GetCompanyPayScheduleRequest,
+  PayScheduleShow,
+  GetCompanyPayScheduleError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCompanyPayScheduleRequest,
+  output: PayScheduleShow,
+  errors: [NotFound, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCompanyPaySchedulesError = NotFound | GustoOpError;
+/** Get the pay schedules for a company Returns all pay schedules for a company. The pay schedule object captures the details of when employees work and when they should be paid. A company can have multiple pay schedules. scope: `pay_schedules:read` */
+export const getCompanyPaySchedules: API.OperationMethod<
+  GetCompanyPaySchedulesRequest,
+  GetCompanyPaySchedulesResponse,
+  GetCompanyPaySchedulesError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCompanyPaySchedulesRequest,
+  output: GetCompanyPaySchedulesResponse,
+  errors: [NotFound, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCompanyPaySchedulesAssignmentsError = NotFound | GustoOpError;
+/** Get pay schedule assignments for a company This endpoint returns the current pay schedule assignment for a company, with pay schedule and employee/department mappings depending on the pay schedule type. scope: `pay_schedules:read` */
+export const getCompanyPaySchedulesAssignments: API.OperationMethod<
+  GetCompanyPaySchedulesAssignmentsRequest,
+  PayScheduleAssignment,
+  GetCompanyPaySchedulesAssignmentsError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCompanyPaySchedulesAssignmentsRequest,
+  output: PayScheduleAssignment,
+  errors: [NotFound, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCompanyTimeOffPoliciesError = NotFound | GustoOpError;
+/** Get all time off policies for a company Get all time off policies for a company scope: `time_off_policies:read` */
+export const getCompanyTimeOffPolicies: API.OperationMethod<
+  GetCompanyTimeOffPoliciesRequest,
+  GetCompanyTimeOffPoliciesResponse,
+  GetCompanyTimeOffPoliciesError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCompanyTimeOffPoliciesRequest,
+  output: GetCompanyTimeOffPoliciesResponse,
+  errors: [NotFound, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCompanyTimeOffRequestsError = GustoOpError;
+/** Get time off requests for a company Get all time off requests, past and present, for a company. In order to reduce the number of time off requests returned in a single response, or to retrieve time off requests from a time period of interest, you may use the `start_date` and `end_date` parameters. You may provide both or either parameters to scope the returned data. For example: `?start_date=2019-01-01` Returns all time off requests where the request start date is equal to or after January 1, 2019. `?end_date=2019-01-01` Returns all time off requests where the request end date is equal to or before January 1, 2019. `?start_date=2019-05-01&end_date=2019-08-31` Returns all time off requests where the request start date is equal to or after May 1, 2019 and the request end date is equal to or before August 31, 2019. `scope: time_off_requests:read` scope: `time_off_requests:read` */
+export const getCompanyTimeOffRequests: API.OperationMethod<
+  GetCompanyTimeOffRequestsRequest,
+  GetCompanyTimeOffRequestsResponse,
+  GetCompanyTimeOffRequestsError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCompanyTimeOffRequestsRequest,
+  output: GetCompanyTimeOffRequestsResponse,
+  errors: [UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCompanyTimeTrackingTimeSheetsError = NotFound | GustoOpError;
+/** Get all time sheets for a company Fetch all company's time sheets. Time sheets represent the time worked by an employee or contractor for a given time range. Hours are classified by pay classification, and can be regular, overtime, or double overtime. scope: `time_sheet:read` */
+export const getCompanyTimeTrackingTimeSheets: API.OperationMethod<
+  GetCompanyTimeTrackingTimeSheetsRequest,
+  GetCompanyTimeTrackingTimeSheetsResponse,
+  GetCompanyTimeTrackingTimeSheetsError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCompanyTimeTrackingTimeSheetsRequest,
+  output: GetCompanyTimeTrackingTimeSheetsResponse,
+  errors: [NotFound, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCompensationError = NotFound | GustoOpError;
+/** Get a compensation Compensations contain information on how much is paid out for a job. Jobs may have many compensations, but only one that is active. The current compensation is the one with the most recent `effective_date`. scope: `compensations:read` */
+export const getCompensation: API.OperationMethod<
+  GetCompensationRequest,
+  Compensation,
+  GetCompensationError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCompensationRequest,
+  output: Compensation,
+  errors: [NotFound, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetContractorError = NotFound | GustoOpError;
+/** Get a contractor Get a contractor. scope: `contractors:read` */
+export const getContractor: API.OperationMethod<
+  GetContractorRequest,
+  Contractor,
+  GetContractorError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetContractorRequest,
+  output: Contractor,
+  errors: [NotFound, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetDepartmentError = NotFound | GustoOpError;
 /** Get a department Get a department given the UUID scope: `departments:read` */
 export const getDepartment: API.OperationMethod<
@@ -12410,6 +12843,206 @@ export const getDepartment: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetDepartmentRequest,
   output: GetDepartmentResponse,
+  errors: [NotFound, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEmployeeBenefitError = NotFound | GustoOpError;
+/** Get an employee benefit Employee benefits represent an employee enrolled in a particular company benefit. It includes information specific to that employee’s enrollment. Benefits containing PHI are only visible to applications with the `employee_benefits:read:phi` scope. scope: `employee_benefits:read` */
+export const getEmployeeBenefit: API.OperationMethod<
+  GetEmployeeBenefitRequest,
+  GetEmployeeBenefitResponse,
+  GetEmployeeBenefitError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEmployeeBenefitRequest,
+  output: GetEmployeeBenefitResponse,
+  errors: [NotFound, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEmployeeCustomFieldsError = NotFound | GustoOpError;
+/** Get an employee's custom fields Returns a list of the employee's custom fields. scope: `employees:read` */
+export const getEmployeeCustomFields: API.OperationMethod<
+  GetEmployeeCustomFieldsRequest,
+  EmployeeCustomFieldList,
+  GetEmployeeCustomFieldsError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEmployeeCustomFieldsRequest,
+  output: EmployeeCustomFieldList,
+  errors: [NotFound, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEmployeeEmployeeBenefitsError = NotFound | GustoOpError;
+/** Get all benefits for an employee Employee benefits represent an employee enrolled in a particular company benefit. It includes information specific to that employee’s enrollment. Returns an array of all employee benefits for this employee Benefits containing PHI are only visible to applications with the `employee_benefits:read:phi` scope. scope: `employee_benefits:read` */
+export const getEmployeeEmployeeBenefits: API.OperationMethod<
+  GetEmployeeEmployeeBenefitsRequest,
+  GetEmployeeEmployeeBenefitsResponse,
+  GetEmployeeEmployeeBenefitsError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEmployeeEmployeeBenefitsRequest,
+  output: GetEmployeeEmployeeBenefitsResponse,
+  errors: [NotFound, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEmployeeEmploymentHistoryError = NotFound | GustoOpError;
+/** Get employment history for an employee Retrieve the employment history for a given employee, which includes termination and rehire. scope: `employments:read` */
+export const getEmployeeEmploymentHistory: API.OperationMethod<
+  GetEmployeeEmploymentHistoryRequest,
+  GetEmployeeEmploymentHistoryResponse,
+  GetEmployeeEmploymentHistoryError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEmployeeEmploymentHistoryRequest,
+  output: GetEmployeeEmploymentHistoryResponse,
+  errors: [NotFound, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEmployeeGarnishmentsError = NotFound | GustoOpError;
+/** Get garnishments for an employee Garnishments, or employee deductions, are fixed amounts or percentages deducted from an employee’s pay. They can be deducted a specific number of times or on a recurring basis. Garnishments can also have maximum deductions on a yearly or per-pay-period bases. Common uses for garnishments are court-ordered payments for child support or back taxes. Some companies provide loans to their employees that are repaid via garnishments. scope: `garnishments:read` */
+export const getEmployeeGarnishments: API.OperationMethod<
+  GetEmployeeGarnishmentsRequest,
+  GetEmployeeGarnishmentsResponse,
+  GetEmployeeGarnishmentsError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEmployeeGarnishmentsRequest,
+  output: GetEmployeeGarnishmentsResponse,
+  errors: [NotFound, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEmployeeHomeAddressesError = NotFound | GustoOpError;
+/** Get an employee's home addresses The home address of an employee is used to determine certain tax information about them. Addresses are geocoded on create and update to ensure validity. Supports home address effective dating and courtesy withholding. scope: `employees:read` */
+export const getEmployeeHomeAddresses: API.OperationMethod<
+  GetEmployeeHomeAddressesRequest,
+  GetEmployeeHomeAddressesResponse,
+  GetEmployeeHomeAddressesError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEmployeeHomeAddressesRequest,
+  output: GetEmployeeHomeAddressesResponse,
+  errors: [NotFound, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEmployeeRecurringReimbursementsError = NotFound | GustoOpError;
+/** Get recurring reimbursements for an employee Get all active recurring reimbursements for an employee. scope: `reimbursements:read` */
+export const getEmployeeRecurringReimbursements: API.OperationMethod<
+  GetEmployeeRecurringReimbursementsRequest,
+  GetEmployeeRecurringReimbursementsResponse,
+  GetEmployeeRecurringReimbursementsError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEmployeeRecurringReimbursementsRequest,
+  output: GetEmployeeRecurringReimbursementsResponse,
+  errors: [NotFound, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEmployeeRehireError = NotFound | GustoOpError;
+/** Get an employee rehire Retrieve an employee's rehire, which contains information on when the employee returns to work. scope: `employments:read` */
+export const getEmployeeRehire: API.OperationMethod<
+  GetEmployeeRehireRequest,
+  Rehire,
+  GetEmployeeRehireError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEmployeeRehireRequest,
+  output: Rehire,
+  errors: [NotFound, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEmployeesError = NotFound | GustoOpError;
+/** Get an employee Get an employee. Note: Compensation data (pay rate, payment unit, and related fields) represents sensitive employee pay information. When retrieving employee job data, these fields (`rate`, `payment_unit`, `current_compensation_uuid`, `compensations`) are only returned when the `compensations:read` scope is included. This allows you to access employee and job metadata without exposing pay rates. scope: `employees:read` */
+export const getEmployees: API.OperationMethod<
+  GetEmployeesRequest,
+  Employee,
+  GetEmployeesError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEmployeesRequest,
+  output: Employee,
+  errors: [NotFound, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEmployeeSection603HighEarnerStatusError =
+  | NotFound
+  | UnprocessableEntity
+  | GustoOpError;
+/** Get a Section 603 high earner status for a specific year Get a Section 603 high earner status for an employee for a specific year. Section 603 of the SECURE 2.0 Act applies to employees aged 50 or older whose prior-year FICA wages exceed the IRS threshold. These employees are classified as high earners, and their catch-up contributions to pre-tax retirement benefits must be designated as post-tax contributions. scope: `employee_benefits:read` */
+export const getEmployeeSection603HighEarnerStatus: API.OperationMethod<
+  GetEmployeeSection603HighEarnerStatusRequest,
+  EmployeeSection603HighEarnerStatus,
+  GetEmployeeSection603HighEarnerStatusError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEmployeeSection603HighEarnerStatusRequest,
+  output: EmployeeSection603HighEarnerStatus,
+  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEmployeeSection603HighEarnerStatusesError =
+  | NotFound
+  | GustoOpError;
+/** Get all Section 603 high earner statuses for an employee Get all Section 603 high earner statuses for an employee across all years. Section 603 of the SECURE 2.0 Act applies to employees aged 50 or older whose prior-year FICA wages exceed the IRS threshold. These employees are classified as high earners, and their catch-up contributions to pre-tax retirement benefits must be designated as post-tax contributions. scope: `employee_benefits:read` */
+export const getEmployeeSection603HighEarnerStatuses: API.OperationMethod<
+  GetEmployeeSection603HighEarnerStatusesRequest,
+  GetEmployeeSection603HighEarnerStatusesResponse,
+  GetEmployeeSection603HighEarnerStatusesError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEmployeeSection603HighEarnerStatusesRequest,
+  output: GetEmployeeSection603HighEarnerStatusesResponse,
+  errors: [NotFound, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEmployeeTerminationsError = NotFound | GustoOpError;
+/** Get terminations for an employee Terminations are created whenever an employee is scheduled to leave the company. The only things required are an effective date (their last day of work) and whether they should receive their wages in a one-off termination payroll or with the rest of the company. Note that some states require employees to receive their final wages within 24 hours (unless they consent otherwise,) in which case running a one-off payroll may be the only option. scope: `employments:read` */
+export const getEmployeeTerminations: API.OperationMethod<
+  GetEmployeeTerminationsRequest,
+  GetEmployeeTerminationsResponse,
+  GetEmployeeTerminationsError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEmployeeTerminationsRequest,
+  output: GetEmployeeTerminationsResponse,
+  errors: [NotFound, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEmployeeWorkAddressesError = NotFound | GustoOpError;
+/** Get an employee's work addresses Returns a list of an employee's work addresses. Each address includes its effective date and a boolean signifying if it is the currently active work address. scope: `employees:read` */
+export const getEmployeeWorkAddresses: API.OperationMethod<
+  GetEmployeeWorkAddressesRequest,
+  GetEmployeeWorkAddressesResponse,
+  GetEmployeeWorkAddressesError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEmployeeWorkAddressesRequest,
+  output: GetEmployeeWorkAddressesResponse,
   errors: [NotFound, UnknownGustoError],
   protocol: GustoProtocol,
   retry: Retry.Retry,
@@ -12447,79 +13080,199 @@ export const getEvents: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetReportsRequestUuidError = NotFound | GustoOpError;
-/** Get a report Get a company's report given the `request_uuid`. The response will include the report request's status and, if complete, the report URL. Reports containing PHI are inaccessible with `company_reports:read:tier_2_only` data scope scope: `company_reports:read` */
-export const getReportsRequestUuid: API.OperationMethod<
-  GetReportsRequestUuidRequest,
-  Report,
-  GetReportsRequestUuidError,
+export type GetGarnishmentError = NotFound | GustoOpError;
+/** Get a garnishment Garnishments, or employee deductions, are fixed amounts or percentages deducted from an employee’s pay. They can be deducted a specific number of times or on a recurring basis. Garnishments can also have maximum deductions on a yearly or per-pay-period bases. Common uses for garnishments are court-ordered payments for child support or back taxes. Some companies provide loans to their employees that are repaid via garnishments. scope: `garnishments:read` */
+export const getGarnishment: API.OperationMethod<
+  GetGarnishmentRequest,
+  Garnishment,
+  GetGarnishmentError,
   GustoOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetReportsRequestUuidRequest,
+  input: GetGarnishmentRequest,
+  output: Garnishment,
+  errors: [NotFound, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetGarnishmentsChildSupportError = GustoOpError;
+/** Get child support garnishment data Agency data and requirements to be used for creating child support garnishments scope: `garnishments:read` */
+export const getGarnishmentsChildSupport: API.OperationMethod<
+  GetGarnishmentsChildSupportRequest,
+  ChildSupportData,
+  GetGarnishmentsChildSupportError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetGarnishmentsChildSupportRequest,
+  output: ChildSupportData,
+  errors: [UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetHomeAddressError = NotFound | GustoOpError;
+/** Get an employee's home address The home address of an employee is used to determine certain tax information about them. Addresses are geocoded on create and update to ensure validity. Supports home address effective dating and courtesy withholding. scope: `employees:read` */
+export const getHomeAddress: API.OperationMethod<
+  GetHomeAddressRequest,
+  EmployeeAddress,
+  GetHomeAddressError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetHomeAddressRequest,
+  output: EmployeeAddress,
+  errors: [NotFound, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetJobCompensationsError = NotFound | GustoOpError;
+/** Get compensations for a job Compensations contain information on how much is paid out for a job. Jobs may have many compensations, but only one that is active. The current compensation is the one with the most recent `effective_date`. *Note: Currently the API does not support creating multiple compensations per job - creating a compensation with the same job_uuid as another will fail with a relevant error.* Use `flsa_status` to determine if an employee is eligible for overtime By default the API returns only the current compensation - use the `include` parameter to return all compensations. scope: `compensations:read` */
+export const getJobCompensations: API.OperationMethod<
+  GetJobCompensationsRequest,
+  GetJobCompensationsResponse,
+  GetJobCompensationsError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetJobCompensationsRequest,
+  output: GetJobCompensationsResponse,
+  errors: [NotFound, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetLocationError = NotFound | GustoOpError;
+/** Get a location Get a location. scope: `companies:read` */
+export const getLocation: API.OperationMethod<
+  GetLocationRequest,
+  Location,
+  GetLocationError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetLocationRequest,
+  output: Location,
+  errors: [NotFound, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetLocationMinimumWagesError = NotFound | GustoOpError;
+/** Get minimum wages for a location Get minimum wages for a location scope: `companies:read` */
+export const getLocationMinimumWages: API.OperationMethod<
+  GetLocationMinimumWagesRequest,
+  GetLocationMinimumWagesResponse,
+  GetLocationMinimumWagesError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetLocationMinimumWagesRequest,
+  output: GetLocationMinimumWagesResponse,
+  errors: [NotFound, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetRecurringReimbursementsError = NotFound | GustoOpError;
+/** Get a recurring reimbursement Get a specific recurring reimbursement. scope: `reimbursements:read` */
+export const getRecurringReimbursements: API.OperationMethod<
+  GetRecurringReimbursementsRequest,
+  RecurringReimbursement,
+  GetRecurringReimbursementsError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetRecurringReimbursementsRequest,
+  output: RecurringReimbursement,
+  errors: [NotFound, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetReportError = NotFound | GustoOpError;
+/** Get a report Get a company's report given the `request_uuid`. The response will include the report request's status and, if complete, the report URL. Reports containing PHI are inaccessible with `company_reports:read:tier_2_only` data scope scope: `company_reports:read` */
+export const getReport: API.OperationMethod<
+  GetReportRequest,
+  Report,
+  GetReportError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetReportRequest,
   output: Report,
   errors: [NotFound, UnknownGustoError],
   protocol: GustoProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetTimeTrackingTimeSheetsTimeSheetUuidError =
-  | NotFound
+export type GetSalaryEstimatesOccupationsError =
+  | UnprocessableEntity
   | GustoOpError;
-/** Get a time sheet Fetch a time sheet. Time sheets represent the time worked by an employee or contractor for a given time range. Hours are classified by pay classification, and can be regular, overtime, or double overtime. scope: `time_sheet:read` */
-export const getTimeTrackingTimeSheetsTimeSheetUuid: API.OperationMethod<
-  GetTimeTrackingTimeSheetsTimeSheetUuidRequest,
-  TimeSheet,
-  GetTimeTrackingTimeSheetsTimeSheetUuidError,
+/** Search for BLS occupations Search for Bureau of Labor Statistics (BLS) occupations by name or keyword. This endpoint helps users find the appropriate occupation codes to use when creating or updating salary estimates. Returns a list of matching occupations with their codes, titles, and descriptions. 📘 System Access Authentication This endpoint uses the [Bearer Auth scheme with the system-level access token in the HTTP Authorization header](https://docs.gusto.com/embedded-payroll/docs/system-access) scope: `salary_estimates:read` */
+export const getSalaryEstimatesOccupations: API.OperationMethod<
+  GetSalaryEstimatesOccupationsRequest,
+  GetSalaryEstimatesOccupationsResponse,
+  GetSalaryEstimatesOccupationsError,
   GustoOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetTimeTrackingTimeSheetsTimeSheetUuidRequest,
+  input: GetSalaryEstimatesOccupationsRequest,
+  output: GetSalaryEstimatesOccupationsResponse,
+  errors: [UnprocessableEntity, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTerminationError = NotFound | GustoOpError;
+/** Get an employee termination Terminations are created whenever an employee is scheduled to leave the company. The only things required are an effective date (their last day of work) and whether they should receive their wages in a one-off termination payroll or with the rest of the company. Note that some states require employees to receive their final wages within 24 hours (unless they consent otherwise,) in which case running a one-off payroll may be the only option. scope: `employments:read` */
+export const getTermination: API.OperationMethod<
+  GetTerminationRequest,
+  Termination,
+  GetTerminationError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTerminationRequest,
+  output: Termination,
+  errors: [NotFound, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTimeOffPolicyError = NotFound | GustoOpError;
+/** Get a time off policy Get a time off policy scope: `time_off_policies:read` */
+export const getTimeOffPolicy: API.OperationMethod<
+  GetTimeOffPolicyRequest,
+  TimeOffPolicy,
+  GetTimeOffPolicyError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTimeOffPolicyRequest,
+  output: TimeOffPolicy,
+  errors: [NotFound, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTimeTrackingTimeSheetError = NotFound | GustoOpError;
+/** Get a time sheet Fetch a time sheet. Time sheets represent the time worked by an employee or contractor for a given time range. Hours are classified by pay classification, and can be regular, overtime, or double overtime. scope: `time_sheet:read` */
+export const getTimeTrackingTimeSheet: API.OperationMethod<
+  GetTimeTrackingTimeSheetRequest,
+  TimeSheet,
+  GetTimeTrackingTimeSheetError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTimeTrackingTimeSheetRequest,
   output: TimeSheet,
   errors: [NotFound, UnknownGustoError],
   protocol: GustoProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetV1BenefitsError = GustoOpError;
-/** Get all supported benefits Returns all benefits supported by Gusto. The benefit object in Gusto contains high level information about a particular benefit type and its tax considerations. When companies choose to offer a benefit, they are creating a Company Benefit object associated with a particular benefit. scope: `benefits:read` */
-export const getV1Benefits: API.OperationMethod<
-  GetV1BenefitsRequest,
-  GetV1BenefitsResponse,
-  GetV1BenefitsError,
+export type GetTokenInfoError = GustoOpError;
+/** Get info about the current access token Returns scope and resource information associated with the current access token. Use this endpoint to verify the following for the current access token: * Resource (company, employee, contractor, or application) and resource owner * Access level */
+export const getTokenInfo: API.OperationMethod<
+  GetTokenInfoRequest,
+  TokenInfo,
+  GetTokenInfoError,
   GustoOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetV1BenefitsRequest,
-  output: GetV1BenefitsResponse,
+  input: GetTokenInfoRequest,
+  output: TokenInfo,
   errors: [UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1BenefitsBenefitIdError = GustoOpError;
-/** Get a supported benefit Returns a benefit supported by Gusto. The benefit object in Gusto contains high level information about a particular benefit type and its tax considerations. When companies choose to offer a benefit, they are creating a Company Benefit object associated with a particular benefit. scope: `benefits:read` */
-export const getV1BenefitsBenefitId: API.OperationMethod<
-  GetV1BenefitsBenefitIdRequest,
-  SupportedBenefit,
-  GetV1BenefitsBenefitIdError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1BenefitsBenefitIdRequest,
-  output: SupportedBenefit,
-  errors: [UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1BenefitsBenefitsIdRequirementsError = NotFound | GustoOpError;
-/** Get benefit fields requirements by benefit type Returns the field requirements for a given benefit type. scope: `benefits:read` */
-export const getV1BenefitsBenefitsIdRequirements: API.OperationMethod<
-  GetV1BenefitsBenefitsIdRequirementsRequest,
-  BenefitTypeRequirements,
-  GetV1BenefitsBenefitsIdRequirementsError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1BenefitsBenefitsIdRequirementsRequest,
-  output: BenefitTypeRequirements,
-  errors: [NotFound, UnknownGustoError],
   protocol: GustoProtocol,
   retry: Retry.Retry,
 }));
@@ -12535,261 +13288,6 @@ export const getV1BenefitsCompanyBenefitIdSummary: API.OperationMethod<
   input: GetV1BenefitsCompanyBenefitIdSummaryRequest,
   output: BenefitSummary,
   errors: [NotFound, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1CompaniesError = NotFound | GustoOpError;
-/** Get a company Get a company. The employees:read scope is required to return home_address and non-work locations. The company_admin:read scope is required to return primary_payroll_admin. The signatories:read scope is required to return primary_signatory. scope: `companies:read` */
-export const getV1Companies: API.OperationMethod<
-  GetV1CompaniesRequest,
-  Company,
-  GetV1CompaniesError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1CompaniesRequest,
-  output: Company,
-  errors: [NotFound, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1CompaniesCompanyIdAdminsError = NotFound | GustoOpError;
-/** Get all the admins at a company Returns a list of all the admins at a company scope: `company_admin:read` */
-export const getV1CompaniesCompanyIdAdmins: API.OperationMethod<
-  GetV1CompaniesCompanyIdAdminsRequest,
-  GetV1CompaniesCompanyIdAdminsResponse,
-  GetV1CompaniesCompanyIdAdminsError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1CompaniesCompanyIdAdminsRequest,
-  output: GetV1CompaniesCompanyIdAdminsResponse,
-  errors: [NotFound, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1CompaniesCompanyIdCompanyBenefitsError =
-  | NotFound
-  | GustoOpError;
-/** Get benefits for a company Company benefits represent the benefits that a company is offering to employees. This ties together a particular supported benefit with the company-specific information for the offering of that benefit. Note that company benefits can be deactivated only when no employees are enrolled. Benefits containing PHI are only visible to applications with the `company_benefits:read:phi` scope. scope: `company_benefits:read` */
-export const getV1CompaniesCompanyIdCompanyBenefits: API.OperationMethod<
-  GetV1CompaniesCompanyIdCompanyBenefitsRequest,
-  GetV1CompaniesCompanyIdCompanyBenefitsResponse,
-  GetV1CompaniesCompanyIdCompanyBenefitsError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1CompaniesCompanyIdCompanyBenefitsRequest,
-  output: GetV1CompaniesCompanyIdCompanyBenefitsResponse,
-  errors: [NotFound, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1CompaniesCompanyIdContractorPaymentContractorPaymentError =
-  | NotFound
-  | GustoOpError;
-/** Get a single contractor payment Returns a single contractor payment. scope: `payrolls:read` */
-export const getV1CompaniesCompanyIdContractorPaymentContractorPayment: API.OperationMethod<
-  GetV1CompaniesCompanyIdContractorPaymentContractorPaymentRequest,
-  ContractorPayment,
-  GetV1CompaniesCompanyIdContractorPaymentContractorPaymentError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1CompaniesCompanyIdContractorPaymentContractorPaymentRequest,
-  output: ContractorPayment,
-  errors: [NotFound, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1CompaniesCompanyIdContractorPaymentsError =
-  | NotFound
-  | GustoOpError;
-/** Get contractor payments for a company Returns an object containing individual contractor payments, within a given time period, including totals. Results are returned in reverse chronological order (newest first). scope: `payrolls:read` */
-export const getV1CompaniesCompanyIdContractorPayments: API.OperationMethod<
-  GetV1CompaniesCompanyIdContractorPaymentsRequest,
-  GetV1CompaniesCompanyIdContractorPaymentsResponse,
-  GetV1CompaniesCompanyIdContractorPaymentsError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1CompaniesCompanyIdContractorPaymentsRequest,
-  output: GetV1CompaniesCompanyIdContractorPaymentsResponse,
-  errors: [NotFound, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1CompaniesCompanyIdCustomFieldsError = NotFound | GustoOpError;
-/** Get the custom fields of a company Returns a list of the custom fields of the company. Useful when you need to know the schema of custom fields for an entire company. scope: `companies:read` */
-export const getV1CompaniesCompanyIdCustomFields: API.OperationMethod<
-  GetV1CompaniesCompanyIdCustomFieldsRequest,
-  CompanyCustomFieldList,
-  GetV1CompaniesCompanyIdCustomFieldsError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1CompaniesCompanyIdCustomFieldsRequest,
-  output: CompanyCustomFieldList,
-  errors: [NotFound, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1CompaniesCompanyIdEarningTypesError = NotFound | GustoOpError;
-/** Get all earning types for a company A payroll item in Gusto is associated to an earning type to name the type of earning described by the payroll item. #### Default Earning Type Certain earning types are special because they have tax considerations. Those earning types are mostly the same for every company depending on its legal structure (LLC, Corporation, etc.) #### Custom Earning Type Custom earning types are all the other earning types added specifically for a company. scope: `payrolls:read` */
-export const getV1CompaniesCompanyIdEarningTypes: API.OperationMethod<
-  GetV1CompaniesCompanyIdEarningTypesRequest,
-  EarningTypeList,
-  GetV1CompaniesCompanyIdEarningTypesError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1CompaniesCompanyIdEarningTypesRequest,
-  output: EarningTypeList,
-  errors: [NotFound, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1CompaniesCompanyIdEmployeesError = NotFound | GustoOpError;
-/** Get employees of a company Get all of the employees, onboarding, active and terminated, for a given company. Note: Compensation data (pay rate, payment unit, and related fields) represents sensitive employee pay information. When retrieving employee job data, these fields (`rate`, `payment_unit`, `current_compensation_uuid`, `compensations`) are only returned when the `compensations:read` scope is included. This allows you to access employee and job metadata without exposing pay rates. scope: `employees:read` */
-export const getV1CompaniesCompanyIdEmployees: API.OperationMethod<
-  GetV1CompaniesCompanyIdEmployeesRequest,
-  GetV1CompaniesCompanyIdEmployeesResponse,
-  GetV1CompaniesCompanyIdEmployeesError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1CompaniesCompanyIdEmployeesRequest,
-  output: GetV1CompaniesCompanyIdEmployeesResponse,
-  errors: [NotFound, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1CompaniesCompanyIdLocationsError = NotFound | GustoOpError;
-/** Get all company locations Retrieves all company locations (addresses) associated with a company: mailing addresses, filing addresses, or work locations. A single address may serve multiple, or all, purposes. Since all company locations are subsets of locations, use the Locations endpoints to [get](https://docs.gusto.com/app-integrations/reference/get-v1-locations-location_id) or [update](https://docs.gusto.com/app-integrations/reference/put-v1-locations-location_id) an individual record. scope: `companies:read` */
-export const getV1CompaniesCompanyIdLocations: API.OperationMethod<
-  GetV1CompaniesCompanyIdLocationsRequest,
-  GetV1CompaniesCompanyIdLocationsResponse,
-  GetV1CompaniesCompanyIdLocationsError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1CompaniesCompanyIdLocationsRequest,
-  output: GetV1CompaniesCompanyIdLocationsResponse,
-  errors: [NotFound, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1CompaniesCompanyIdPayPeriodsError =
-  | NotFound
-  | UnprocessableEntity
-  | GustoOpError;
-/** Get pay periods for a company Pay periods are the foundation of payroll. Compensation, time & attendance, taxes, and expense reports all rely on when they happened. To begin submitting information for a given payroll, we need to agree on the time period. By default, this endpoint returns pay periods starting from 6 months ago to the date today. Use the `start_date` and `end_date` parameters to change the scope of the response. End dates can be up to 3 months in the future and there is no limit on start dates. Starting in version 2023-04-01, the `eligible_employees` attribute was removed from the response. The eligible employees for a payroll are determined by the employee_compensations returned from the [PUT /v1/companies/{company_id}/payrolls/{payroll_id}/prepare](https://docs.gusto.com/app-integrations/reference/put-v1-companies-company_id-payrolls-payroll_id-prepare) endpoint. scope: `payrolls:read` */
-export const getV1CompaniesCompanyIdPayPeriods: API.OperationMethod<
-  GetV1CompaniesCompanyIdPayPeriodsRequest,
-  GetV1CompaniesCompanyIdPayPeriodsResponse,
-  GetV1CompaniesCompanyIdPayPeriodsError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1CompaniesCompanyIdPayPeriodsRequest,
-  output: GetV1CompaniesCompanyIdPayPeriodsResponse,
-  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1CompaniesCompanyIdPayrollsError = NotFound | GustoOpError;
-/** Get all payrolls for a company Returns a list of payrolls for a company. You can change the payrolls returned by updating the processing_status, payroll_types, start_date, & end_date params. By default, will return processed, regular payrolls for the past 6 months. Notes: * Dollar amounts are returned as string representations of numeric decimals, are represented to the cent. * end_date can be at most 3 months in the future and start_date and end_date can't be more than 1 year apart. * Results are paginated. Maximum page size is 100 payrolls per request; the default page size is 25. scope: `payrolls:read` */
-export const getV1CompaniesCompanyIdPayrolls: API.OperationMethod<
-  GetV1CompaniesCompanyIdPayrollsRequest,
-  GetV1CompaniesCompanyIdPayrollsResponse,
-  GetV1CompaniesCompanyIdPayrollsError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1CompaniesCompanyIdPayrollsRequest,
-  output: GetV1CompaniesCompanyIdPayrollsResponse,
-  errors: [NotFound, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1CompaniesCompanyIdPayrollsPayrollIdError =
-  | NotFound
-  | GustoOpError;
-/** Get a single payroll Returns a payroll. If payroll is calculated or processed, will return employee_compensations and totals. Results are paginated, with a maximum page size of 100 employee_compensations. Notes: * Hour and dollar amounts are returned as string representations of numeric decimals. * Hours are represented to the thousands place; dollar amounts are represented to the cent. * Every eligible compensation is returned for each employee. If no data has yet be inserted for a given field, it defaults to "0.00" (for fixed amounts) or "0.000" (for hours ). * When include parameter with benefits value is passed, employee_benefits:read scope is required to return benefits * Benefits containing PHI are only visible with the `employee_benefits:read:phi` scope scope: `payrolls:read` */
-export const getV1CompaniesCompanyIdPayrollsPayrollId: API.OperationMethod<
-  GetV1CompaniesCompanyIdPayrollsPayrollIdRequest,
-  PayrollShow,
-  GetV1CompaniesCompanyIdPayrollsPayrollIdError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1CompaniesCompanyIdPayrollsPayrollIdRequest,
-  output: PayrollShow,
-  errors: [NotFound, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1CompaniesCompanyIdPaySchedulesError = NotFound | GustoOpError;
-/** Get the pay schedules for a company Returns all pay schedules for a company. The pay schedule object captures the details of when employees work and when they should be paid. A company can have multiple pay schedules. scope: `pay_schedules:read` */
-export const getV1CompaniesCompanyIdPaySchedules: API.OperationMethod<
-  GetV1CompaniesCompanyIdPaySchedulesRequest,
-  GetV1CompaniesCompanyIdPaySchedulesResponse,
-  GetV1CompaniesCompanyIdPaySchedulesError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1CompaniesCompanyIdPaySchedulesRequest,
-  output: GetV1CompaniesCompanyIdPaySchedulesResponse,
-  errors: [NotFound, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1CompaniesCompanyIdPaySchedulesAssignmentsError =
-  | NotFound
-  | GustoOpError;
-/** Get pay schedule assignments for a company This endpoint returns the current pay schedule assignment for a company, with pay schedule and employee/department mappings depending on the pay schedule type. scope: `pay_schedules:read` */
-export const getV1CompaniesCompanyIdPaySchedulesAssignments: API.OperationMethod<
-  GetV1CompaniesCompanyIdPaySchedulesAssignmentsRequest,
-  PayScheduleAssignment,
-  GetV1CompaniesCompanyIdPaySchedulesAssignmentsError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1CompaniesCompanyIdPaySchedulesAssignmentsRequest,
-  output: PayScheduleAssignment,
-  errors: [NotFound, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1CompaniesCompanyIdPaySchedulesPayScheduleIdError =
-  | NotFound
-  | GustoOpError;
-/** Get a pay schedule Returns a single pay schedule by UUID. The pay schedule object in Gusto captures the details of when employees work and when they should be paid. A company can have multiple pay schedules. scope: `pay_schedules:read` */
-export const getV1CompaniesCompanyIdPaySchedulesPayScheduleId: API.OperationMethod<
-  GetV1CompaniesCompanyIdPaySchedulesPayScheduleIdRequest,
-  PayScheduleShow,
-  GetV1CompaniesCompanyIdPaySchedulesPayScheduleIdError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1CompaniesCompanyIdPaySchedulesPayScheduleIdRequest,
-  output: PayScheduleShow,
-  errors: [NotFound, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1CompaniesCompanyIdTimeOffRequestsError = GustoOpError;
-/** Get time off requests for a company Get all time off requests, past and present, for a company. In order to reduce the number of time off requests returned in a single response, or to retrieve time off requests from a time period of interest, you may use the `start_date` and `end_date` parameters. You may provide both or either parameters to scope the returned data. For example: `?start_date=2019-01-01` Returns all time off requests where the request start date is equal to or after January 1, 2019. `?end_date=2019-01-01` Returns all time off requests where the request end date is equal to or before January 1, 2019. `?start_date=2019-05-01&end_date=2019-08-31` Returns all time off requests where the request start date is equal to or after May 1, 2019 and the request end date is equal to or before August 31, 2019. `scope: time_off_requests:read` scope: `time_off_requests:read` */
-export const getV1CompaniesCompanyIdTimeOffRequests: API.OperationMethod<
-  GetV1CompaniesCompanyIdTimeOffRequestsRequest,
-  GetV1CompaniesCompanyIdTimeOffRequestsResponse,
-  GetV1CompaniesCompanyIdTimeOffRequestsError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1CompaniesCompanyIdTimeOffRequestsRequest,
-  output: GetV1CompaniesCompanyIdTimeOffRequestsResponse,
-  errors: [UnknownGustoError],
   protocol: GustoProtocol,
   retry: Retry.Retry,
 }));
@@ -12811,437 +13309,6 @@ export const getV1CompaniesCompanyIdUnprocessedTerminationPayPeriods: API.Operat
   retry: Retry.Retry,
 }));
 
-export type GetV1CompaniesCompanyUuidContractorsError = NotFound | GustoOpError;
-/** Get contractors of a company Get all contractors, active and inactive, individual and business, for a company. scope: `contractors:read` */
-export const getV1CompaniesCompanyUuidContractors: API.OperationMethod<
-  GetV1CompaniesCompanyUuidContractorsRequest,
-  GetV1CompaniesCompanyUuidContractorsResponse,
-  GetV1CompaniesCompanyUuidContractorsError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1CompaniesCompanyUuidContractorsRequest,
-  output: GetV1CompaniesCompanyUuidContractorsResponse,
-  errors: [NotFound, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1CompaniesCompanyUuidTimeOffPoliciesError =
-  | NotFound
-  | GustoOpError;
-/** Get all time off policies for a company Get all time off policies for a company scope: `time_off_policies:read` */
-export const getV1CompaniesCompanyUuidTimeOffPolicies: API.OperationMethod<
-  GetV1CompaniesCompanyUuidTimeOffPoliciesRequest,
-  GetV1CompaniesCompanyUuidTimeOffPoliciesResponse,
-  GetV1CompaniesCompanyUuidTimeOffPoliciesError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1CompaniesCompanyUuidTimeOffPoliciesRequest,
-  output: GetV1CompaniesCompanyUuidTimeOffPoliciesResponse,
-  errors: [NotFound, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1CompanyBenefitsCompanyBenefitIdError = NotFound | GustoOpError;
-/** Get a company benefit Company benefits represent the benefits that a company is offering to employees. This ties together a particular supported benefit with the company-specific information for the offering of that benefit. Note that company benefits can be deactivated only when no employees are enrolled. When with_employee_benefits parameter with true value is passed, employee_benefits:read scope is required to return employee_benefits. scope: `company_benefits:read` */
-export const getV1CompanyBenefitsCompanyBenefitId: API.OperationMethod<
-  GetV1CompanyBenefitsCompanyBenefitIdRequest,
-  CompanyBenefitWithEmployeeBenefits,
-  GetV1CompanyBenefitsCompanyBenefitIdError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1CompanyBenefitsCompanyBenefitIdRequest,
-  output: CompanyBenefitWithEmployeeBenefits,
-  errors: [NotFound, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1CompanyBenefitsCompanyBenefitIdContributionExclusionsError =
-  | NotFound
-  | GustoOpError;
-/** Get contribution exclusions for a company benefit Returns all contributions for a given company benefit and whether they are excluded or not. Currently this endpoint only works for 401-k and Roth 401-k benefit types. scope: `company_benefits:read` */
-export const getV1CompanyBenefitsCompanyBenefitIdContributionExclusions: API.OperationMethod<
-  GetV1CompanyBenefitsCompanyBenefitIdContributionExclusionsRequest,
-  GetV1CompanyBenefitsCompanyBenefitIdContributionExclusionsResponse,
-  GetV1CompanyBenefitsCompanyBenefitIdContributionExclusionsError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1CompanyBenefitsCompanyBenefitIdContributionExclusionsRequest,
-  output: GetV1CompanyBenefitsCompanyBenefitIdContributionExclusionsResponse,
-  errors: [NotFound, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsError =
-  | NotFound
-  | GustoOpError;
-/** Get all employee benefits for a company benefit Employee benefits represent an employee enrolled in a particular company benefit. It includes information specific to that employee's enrollment. Returns an array of all employee benefits enrolled for this company benefit. Benefits containing PHI are only visible to applications with the `employee_benefits:read:phi` scope. scope: `employee_benefits:read` */
-export const getV1CompanyBenefitsCompanyBenefitIdEmployeeBenefits: API.OperationMethod<
-  GetV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsRequest,
-  GetV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsResponse,
-  GetV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsRequest,
-  output: GetV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsResponse,
-  errors: [NotFound, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1CompensationsCompensationIdError = NotFound | GustoOpError;
-/** Get a compensation Compensations contain information on how much is paid out for a job. Jobs may have many compensations, but only one that is active. The current compensation is the one with the most recent `effective_date`. scope: `compensations:read` */
-export const getV1CompensationsCompensationId: API.OperationMethod<
-  GetV1CompensationsCompensationIdRequest,
-  Compensation,
-  GetV1CompensationsCompensationIdError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1CompensationsCompensationIdRequest,
-  output: Compensation,
-  errors: [NotFound, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1ContractorsContractorUuidError = NotFound | GustoOpError;
-/** Get a contractor Get a contractor. scope: `contractors:read` */
-export const getV1ContractorsContractorUuid: API.OperationMethod<
-  GetV1ContractorsContractorUuidRequest,
-  Contractor,
-  GetV1ContractorsContractorUuidError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1ContractorsContractorUuidRequest,
-  output: Contractor,
-  errors: [NotFound, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1EmployeeBenefitsEmployeeBenefitIdError =
-  | NotFound
-  | GustoOpError;
-/** Get an employee benefit Employee benefits represent an employee enrolled in a particular company benefit. It includes information specific to that employee’s enrollment. Benefits containing PHI are only visible to applications with the `employee_benefits:read:phi` scope. scope: `employee_benefits:read` */
-export const getV1EmployeeBenefitsEmployeeBenefitId: API.OperationMethod<
-  GetV1EmployeeBenefitsEmployeeBenefitIdRequest,
-  GetV1EmployeeBenefitsEmployeeBenefitIdResponse,
-  GetV1EmployeeBenefitsEmployeeBenefitIdError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1EmployeeBenefitsEmployeeBenefitIdRequest,
-  output: GetV1EmployeeBenefitsEmployeeBenefitIdResponse,
-  errors: [NotFound, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1EmployeesError = NotFound | GustoOpError;
-/** Get an employee Get an employee. Note: Compensation data (pay rate, payment unit, and related fields) represents sensitive employee pay information. When retrieving employee job data, these fields (`rate`, `payment_unit`, `current_compensation_uuid`, `compensations`) are only returned when the `compensations:read` scope is included. This allows you to access employee and job metadata without exposing pay rates. scope: `employees:read` */
-export const getV1Employees: API.OperationMethod<
-  GetV1EmployeesRequest,
-  Employee,
-  GetV1EmployeesError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1EmployeesRequest,
-  output: Employee,
-  errors: [NotFound, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1EmployeesEmployeeIdCustomFieldsError = NotFound | GustoOpError;
-/** Get an employee's custom fields Returns a list of the employee's custom fields. scope: `employees:read` */
-export const getV1EmployeesEmployeeIdCustomFields: API.OperationMethod<
-  GetV1EmployeesEmployeeIdCustomFieldsRequest,
-  EmployeeCustomFieldList,
-  GetV1EmployeesEmployeeIdCustomFieldsError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1EmployeesEmployeeIdCustomFieldsRequest,
-  output: EmployeeCustomFieldList,
-  errors: [NotFound, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1EmployeesEmployeeIdEmployeeBenefitsError =
-  | NotFound
-  | GustoOpError;
-/** Get all benefits for an employee Employee benefits represent an employee enrolled in a particular company benefit. It includes information specific to that employee’s enrollment. Returns an array of all employee benefits for this employee Benefits containing PHI are only visible to applications with the `employee_benefits:read:phi` scope. scope: `employee_benefits:read` */
-export const getV1EmployeesEmployeeIdEmployeeBenefits: API.OperationMethod<
-  GetV1EmployeesEmployeeIdEmployeeBenefitsRequest,
-  GetV1EmployeesEmployeeIdEmployeeBenefitsResponse,
-  GetV1EmployeesEmployeeIdEmployeeBenefitsError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1EmployeesEmployeeIdEmployeeBenefitsRequest,
-  output: GetV1EmployeesEmployeeIdEmployeeBenefitsResponse,
-  errors: [NotFound, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1EmployeesEmployeeIdEmploymentHistoryError =
-  | NotFound
-  | GustoOpError;
-/** Get employment history for an employee Retrieve the employment history for a given employee, which includes termination and rehire. scope: `employments:read` */
-export const getV1EmployeesEmployeeIdEmploymentHistory: API.OperationMethod<
-  GetV1EmployeesEmployeeIdEmploymentHistoryRequest,
-  GetV1EmployeesEmployeeIdEmploymentHistoryResponse,
-  GetV1EmployeesEmployeeIdEmploymentHistoryError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1EmployeesEmployeeIdEmploymentHistoryRequest,
-  output: GetV1EmployeesEmployeeIdEmploymentHistoryResponse,
-  errors: [NotFound, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1EmployeesEmployeeIdGarnishmentsError = NotFound | GustoOpError;
-/** Get garnishments for an employee Garnishments, or employee deductions, are fixed amounts or percentages deducted from an employee’s pay. They can be deducted a specific number of times or on a recurring basis. Garnishments can also have maximum deductions on a yearly or per-pay-period bases. Common uses for garnishments are court-ordered payments for child support or back taxes. Some companies provide loans to their employees that are repaid via garnishments. scope: `garnishments:read` */
-export const getV1EmployeesEmployeeIdGarnishments: API.OperationMethod<
-  GetV1EmployeesEmployeeIdGarnishmentsRequest,
-  GetV1EmployeesEmployeeIdGarnishmentsResponse,
-  GetV1EmployeesEmployeeIdGarnishmentsError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1EmployeesEmployeeIdGarnishmentsRequest,
-  output: GetV1EmployeesEmployeeIdGarnishmentsResponse,
-  errors: [NotFound, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1EmployeesEmployeeIdHomeAddressesError =
-  | NotFound
-  | GustoOpError;
-/** Get an employee's home addresses The home address of an employee is used to determine certain tax information about them. Addresses are geocoded on create and update to ensure validity. Supports home address effective dating and courtesy withholding. scope: `employees:read` */
-export const getV1EmployeesEmployeeIdHomeAddresses: API.OperationMethod<
-  GetV1EmployeesEmployeeIdHomeAddressesRequest,
-  GetV1EmployeesEmployeeIdHomeAddressesResponse,
-  GetV1EmployeesEmployeeIdHomeAddressesError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1EmployeesEmployeeIdHomeAddressesRequest,
-  output: GetV1EmployeesEmployeeIdHomeAddressesResponse,
-  errors: [NotFound, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1EmployeesEmployeeIdRecurringReimbursementsError =
-  | NotFound
-  | GustoOpError;
-/** Get recurring reimbursements for an employee Get all active recurring reimbursements for an employee. scope: `reimbursements:read` */
-export const getV1EmployeesEmployeeIdRecurringReimbursements: API.OperationMethod<
-  GetV1EmployeesEmployeeIdRecurringReimbursementsRequest,
-  GetV1EmployeesEmployeeIdRecurringReimbursementsResponse,
-  GetV1EmployeesEmployeeIdRecurringReimbursementsError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1EmployeesEmployeeIdRecurringReimbursementsRequest,
-  output: GetV1EmployeesEmployeeIdRecurringReimbursementsResponse,
-  errors: [NotFound, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1EmployeesEmployeeIdRehireError = NotFound | GustoOpError;
-/** Get an employee rehire Retrieve an employee's rehire, which contains information on when the employee returns to work. scope: `employments:read` */
-export const getV1EmployeesEmployeeIdRehire: API.OperationMethod<
-  GetV1EmployeesEmployeeIdRehireRequest,
-  Rehire,
-  GetV1EmployeesEmployeeIdRehireError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1EmployeesEmployeeIdRehireRequest,
-  output: Rehire,
-  errors: [NotFound, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1EmployeesEmployeeIdTerminationsError = NotFound | GustoOpError;
-/** Get terminations for an employee Terminations are created whenever an employee is scheduled to leave the company. The only things required are an effective date (their last day of work) and whether they should receive their wages in a one-off termination payroll or with the rest of the company. Note that some states require employees to receive their final wages within 24 hours (unless they consent otherwise,) in which case running a one-off payroll may be the only option. scope: `employments:read` */
-export const getV1EmployeesEmployeeIdTerminations: API.OperationMethod<
-  GetV1EmployeesEmployeeIdTerminationsRequest,
-  GetV1EmployeesEmployeeIdTerminationsResponse,
-  GetV1EmployeesEmployeeIdTerminationsError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1EmployeesEmployeeIdTerminationsRequest,
-  output: GetV1EmployeesEmployeeIdTerminationsResponse,
-  errors: [NotFound, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1EmployeesEmployeeIdWorkAddressesError =
-  | NotFound
-  | GustoOpError;
-/** Get an employee's work addresses Returns a list of an employee's work addresses. Each address includes its effective date and a boolean signifying if it is the currently active work address. scope: `employees:read` */
-export const getV1EmployeesEmployeeIdWorkAddresses: API.OperationMethod<
-  GetV1EmployeesEmployeeIdWorkAddressesRequest,
-  GetV1EmployeesEmployeeIdWorkAddressesResponse,
-  GetV1EmployeesEmployeeIdWorkAddressesError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1EmployeesEmployeeIdWorkAddressesRequest,
-  output: GetV1EmployeesEmployeeIdWorkAddressesResponse,
-  errors: [NotFound, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1EmployeesEmployeeUuidSection603HighEarnerStatusesError =
-  | NotFound
-  | GustoOpError;
-/** Get all Section 603 high earner statuses for an employee Get all Section 603 high earner statuses for an employee across all years. Section 603 of the SECURE 2.0 Act applies to employees aged 50 or older whose prior-year FICA wages exceed the IRS threshold. These employees are classified as high earners, and their catch-up contributions to pre-tax retirement benefits must be designated as post-tax contributions. scope: `employee_benefits:read` */
-export const getV1EmployeesEmployeeUuidSection603HighEarnerStatuses: API.OperationMethod<
-  GetV1EmployeesEmployeeUuidSection603HighEarnerStatusesRequest,
-  GetV1EmployeesEmployeeUuidSection603HighEarnerStatusesResponse,
-  GetV1EmployeesEmployeeUuidSection603HighEarnerStatusesError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1EmployeesEmployeeUuidSection603HighEarnerStatusesRequest,
-  output: GetV1EmployeesEmployeeUuidSection603HighEarnerStatusesResponse,
-  errors: [NotFound, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1EmployeesEmployeeUuidSection603HighEarnerStatusesEffectiveYearError =
-  | NotFound
-  | UnprocessableEntity
-  | GustoOpError;
-/** Get a Section 603 high earner status for a specific year Get a Section 603 high earner status for an employee for a specific year. Section 603 of the SECURE 2.0 Act applies to employees aged 50 or older whose prior-year FICA wages exceed the IRS threshold. These employees are classified as high earners, and their catch-up contributions to pre-tax retirement benefits must be designated as post-tax contributions. scope: `employee_benefits:read` */
-export const getV1EmployeesEmployeeUuidSection603HighEarnerStatusesEffectiveYear: API.OperationMethod<
-  GetV1EmployeesEmployeeUuidSection603HighEarnerStatusesEffectiveYearRequest,
-  EmployeeSection603HighEarnerStatus,
-  GetV1EmployeesEmployeeUuidSection603HighEarnerStatusesEffectiveYearError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    GetV1EmployeesEmployeeUuidSection603HighEarnerStatusesEffectiveYearRequest,
-  output: EmployeeSection603HighEarnerStatus,
-  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1GarnishmentsChildSupportError = GustoOpError;
-/** Get child support garnishment data Agency data and requirements to be used for creating child support garnishments scope: `garnishments:read` */
-export const getV1GarnishmentsChildSupport: API.OperationMethod<
-  GetV1GarnishmentsChildSupportRequest,
-  ChildSupportData,
-  GetV1GarnishmentsChildSupportError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1GarnishmentsChildSupportRequest,
-  output: ChildSupportData,
-  errors: [UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1GarnishmentsGarnishmentIdError = NotFound | GustoOpError;
-/** Get a garnishment Garnishments, or employee deductions, are fixed amounts or percentages deducted from an employee’s pay. They can be deducted a specific number of times or on a recurring basis. Garnishments can also have maximum deductions on a yearly or per-pay-period bases. Common uses for garnishments are court-ordered payments for child support or back taxes. Some companies provide loans to their employees that are repaid via garnishments. scope: `garnishments:read` */
-export const getV1GarnishmentsGarnishmentId: API.OperationMethod<
-  GetV1GarnishmentsGarnishmentIdRequest,
-  Garnishment,
-  GetV1GarnishmentsGarnishmentIdError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1GarnishmentsGarnishmentIdRequest,
-  output: Garnishment,
-  errors: [NotFound, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1HomeAddressesHomeAddressUuidError = NotFound | GustoOpError;
-/** Get an employee's home address The home address of an employee is used to determine certain tax information about them. Addresses are geocoded on create and update to ensure validity. Supports home address effective dating and courtesy withholding. scope: `employees:read` */
-export const getV1HomeAddressesHomeAddressUuid: API.OperationMethod<
-  GetV1HomeAddressesHomeAddressUuidRequest,
-  EmployeeAddress,
-  GetV1HomeAddressesHomeAddressUuidError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1HomeAddressesHomeAddressUuidRequest,
-  output: EmployeeAddress,
-  errors: [NotFound, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1JobsJobIdCompensationsError = NotFound | GustoOpError;
-/** Get compensations for a job Compensations contain information on how much is paid out for a job. Jobs may have many compensations, but only one that is active. The current compensation is the one with the most recent `effective_date`. *Note: Currently the API does not support creating multiple compensations per job - creating a compensation with the same job_uuid as another will fail with a relevant error.* Use `flsa_status` to determine if an employee is eligible for overtime By default the API returns only the current compensation - use the `include` parameter to return all compensations. scope: `compensations:read` */
-export const getV1JobsJobIdCompensations: API.OperationMethod<
-  GetV1JobsJobIdCompensationsRequest,
-  GetV1JobsJobIdCompensationsResponse,
-  GetV1JobsJobIdCompensationsError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1JobsJobIdCompensationsRequest,
-  output: GetV1JobsJobIdCompensationsResponse,
-  errors: [NotFound, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1LocationsLocationIdError = NotFound | GustoOpError;
-/** Get a location Get a location. scope: `companies:read` */
-export const getV1LocationsLocationId: API.OperationMethod<
-  GetV1LocationsLocationIdRequest,
-  Location,
-  GetV1LocationsLocationIdError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1LocationsLocationIdRequest,
-  output: Location,
-  errors: [NotFound, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1LocationsLocationUuidMinimumWagesError =
-  | NotFound
-  | GustoOpError;
-/** Get minimum wages for a location Get minimum wages for a location scope: `companies:read` */
-export const getV1LocationsLocationUuidMinimumWages: API.OperationMethod<
-  GetV1LocationsLocationUuidMinimumWagesRequest,
-  GetV1LocationsLocationUuidMinimumWagesResponse,
-  GetV1LocationsLocationUuidMinimumWagesError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1LocationsLocationUuidMinimumWagesRequest,
-  output: GetV1LocationsLocationUuidMinimumWagesResponse,
-  errors: [NotFound, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1RecurringReimbursementsError = NotFound | GustoOpError;
-/** Get a recurring reimbursement Get a specific recurring reimbursement. scope: `reimbursements:read` */
-export const getV1RecurringReimbursements: API.OperationMethod<
-  GetV1RecurringReimbursementsRequest,
-  RecurringReimbursement,
-  GetV1RecurringReimbursementsError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1RecurringReimbursementsRequest,
-  output: RecurringReimbursement,
-  errors: [NotFound, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
 export type GetV1SalaryEstimatesIdError = NotFound | GustoOpError;
 /** Get a salary estimate Retrieve a salary estimate by its UUID. Returns the estimated salary calculation along with all occupation details, revenue, and location information. scope: `salary_estimates:read` */
 export const getV1SalaryEstimatesId: API.OperationMethod<
@@ -13252,115 +13319,6 @@ export const getV1SalaryEstimatesId: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetV1SalaryEstimatesIdRequest,
   output: SalaryEstimate,
-  errors: [NotFound, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1SalaryEstimatesOccupationsError =
-  | UnprocessableEntity
-  | GustoOpError;
-/** Search for BLS occupations Search for Bureau of Labor Statistics (BLS) occupations by name or keyword. This endpoint helps users find the appropriate occupation codes to use when creating or updating salary estimates. Returns a list of matching occupations with their codes, titles, and descriptions. 📘 System Access Authentication This endpoint uses the [Bearer Auth scheme with the system-level access token in the HTTP Authorization header](https://docs.gusto.com/embedded-payroll/docs/system-access) scope: `salary_estimates:read` */
-export const getV1SalaryEstimatesOccupations: API.OperationMethod<
-  GetV1SalaryEstimatesOccupationsRequest,
-  GetV1SalaryEstimatesOccupationsResponse,
-  GetV1SalaryEstimatesOccupationsError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1SalaryEstimatesOccupationsRequest,
-  output: GetV1SalaryEstimatesOccupationsResponse,
-  errors: [UnprocessableEntity, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1TerminationsEmployeeIdError = NotFound | GustoOpError;
-/** Get an employee termination Terminations are created whenever an employee is scheduled to leave the company. The only things required are an effective date (their last day of work) and whether they should receive their wages in a one-off termination payroll or with the rest of the company. Note that some states require employees to receive their final wages within 24 hours (unless they consent otherwise,) in which case running a one-off payroll may be the only option. scope: `employments:read` */
-export const getV1TerminationsEmployeeId: API.OperationMethod<
-  GetV1TerminationsEmployeeIdRequest,
-  Termination,
-  GetV1TerminationsEmployeeIdError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1TerminationsEmployeeIdRequest,
-  output: Termination,
-  errors: [NotFound, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1TimeOffPoliciesTimeOffPolicyUuidError =
-  | NotFound
-  | GustoOpError;
-/** Get a time off policy Get a time off policy scope: `time_off_policies:read` */
-export const getV1TimeOffPoliciesTimeOffPolicyUuid: API.OperationMethod<
-  GetV1TimeOffPoliciesTimeOffPolicyUuidRequest,
-  TimeOffPolicy,
-  GetV1TimeOffPoliciesTimeOffPolicyUuidError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1TimeOffPoliciesTimeOffPolicyUuidRequest,
-  output: TimeOffPolicy,
-  errors: [NotFound, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1TokenInfoError = GustoOpError;
-/** Get info about the current access token Returns scope and resource information associated with the current access token. Use this endpoint to verify the following for the current access token: * Resource (company, employee, contractor, or application) and resource owner * Access level */
-export const getV1TokenInfo: API.OperationMethod<
-  GetV1TokenInfoRequest,
-  TokenInfo,
-  GetV1TokenInfoError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1TokenInfoRequest,
-  output: TokenInfo,
-  errors: [UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1WebhooksHealthCheckError = GustoOpError;
-/** Get the webhooks health status Returns the health status (`healthy`, `unhealthy`, or `unknown`) of the webhooks system based on the last ten minutes of activity. 📘 System Access Authentication This endpoint uses the [Bearer Auth scheme with the system-level access token in the HTTP Authorization header](https://docs.gusto.com/embedded-payroll/docs/system-access) scope: `webhook_subscriptions:read` */
-export const getV1WebhooksHealthCheck: API.OperationMethod<
-  GetV1WebhooksHealthCheckRequest,
-  WebhooksHealthCheckStatus,
-  GetV1WebhooksHealthCheckError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1WebhooksHealthCheckRequest,
-  output: WebhooksHealthCheckStatus,
-  errors: [UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1WebhookSubscriptionsError = GustoOpError;
-/** List webhook subscriptions Returns all webhook subscriptions associated with the provided Partner API token. 📘 System Access Authentication This endpoint uses the [Bearer Auth scheme with the system-level access token in the HTTP Authorization header](https://docs.gusto.com/embedded-payroll/docs/system-access) scope: `webhook_subscriptions:read` */
-export const getV1WebhookSubscriptions: API.OperationMethod<
-  GetV1WebhookSubscriptionsRequest,
-  GetV1WebhookSubscriptionsResponse,
-  GetV1WebhookSubscriptionsError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1WebhookSubscriptionsRequest,
-  output: GetV1WebhookSubscriptionsResponse,
-  errors: [UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1WebhookSubscriptionUuidError = NotFound | GustoOpError;
-/** Get a webhook subscription Returns the Webhook Subscription associated with the provided UUID. 📘 System Access Authentication This endpoint uses the [Bearer Auth scheme with the system-level access token in the HTTP Authorization header](https://docs.gusto.com/embedded-payroll/docs/system-access) scope: `webhook_subscriptions:read` */
-export const getV1WebhookSubscriptionUuid: API.OperationMethod<
-  GetV1WebhookSubscriptionUuidRequest,
-  WebhookSubscription,
-  GetV1WebhookSubscriptionUuidError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1WebhookSubscriptionUuidRequest,
-  output: WebhookSubscription,
   errors: [NotFound, UnknownGustoError],
   protocol: GustoProtocol,
   retry: Retry.Retry,
@@ -13378,21 +13336,6 @@ export const getV1WebhookSubscriptionVerificationTokenUuid: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetV1WebhookSubscriptionVerificationTokenUuidRequest,
   output: WebhookVerificationTokenResponse,
-  errors: [NotFound, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV1WorkAddressesWorkAddressUuidError = NotFound | GustoOpError;
-/** Get an employee work address The work address of an employee is used for payroll tax purposes. scope: `employees:read` */
-export const getV1WorkAddressesWorkAddressUuid: API.OperationMethod<
-  GetV1WorkAddressesWorkAddressUuidRequest,
-  EmployeeWorkAddress,
-  GetV1WorkAddressesWorkAddressUuidError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1WorkAddressesWorkAddressUuidRequest,
-  output: EmployeeWorkAddress,
   errors: [NotFound, UnknownGustoError],
   protocol: GustoProtocol,
   retry: Retry.Retry,
@@ -13416,6 +13359,66 @@ export const getVersionEmployeesTimeOffActivities: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetWebhooksHealthCheckError = GustoOpError;
+/** Get the webhooks health status Returns the health status (`healthy`, `unhealthy`, or `unknown`) of the webhooks system based on the last ten minutes of activity. 📘 System Access Authentication This endpoint uses the [Bearer Auth scheme with the system-level access token in the HTTP Authorization header](https://docs.gusto.com/embedded-payroll/docs/system-access) scope: `webhook_subscriptions:read` */
+export const getWebhooksHealthCheck: API.OperationMethod<
+  GetWebhooksHealthCheckRequest,
+  WebhooksHealthCheckStatus,
+  GetWebhooksHealthCheckError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWebhooksHealthCheckRequest,
+  output: WebhooksHealthCheckStatus,
+  errors: [UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWebhookSubscriptionsError = GustoOpError;
+/** List webhook subscriptions Returns all webhook subscriptions associated with the provided Partner API token. 📘 System Access Authentication This endpoint uses the [Bearer Auth scheme with the system-level access token in the HTTP Authorization header](https://docs.gusto.com/embedded-payroll/docs/system-access) scope: `webhook_subscriptions:read` */
+export const getWebhookSubscriptions: API.OperationMethod<
+  GetWebhookSubscriptionsRequest,
+  GetWebhookSubscriptionsResponse,
+  GetWebhookSubscriptionsError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWebhookSubscriptionsRequest,
+  output: GetWebhookSubscriptionsResponse,
+  errors: [UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWebhookSubscriptionUuidError = NotFound | GustoOpError;
+/** Get a webhook subscription Returns the Webhook Subscription associated with the provided UUID. 📘 System Access Authentication This endpoint uses the [Bearer Auth scheme with the system-level access token in the HTTP Authorization header](https://docs.gusto.com/embedded-payroll/docs/system-access) scope: `webhook_subscriptions:read` */
+export const getWebhookSubscriptionUuid: API.OperationMethod<
+  GetWebhookSubscriptionUuidRequest,
+  WebhookSubscription,
+  GetWebhookSubscriptionUuidError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWebhookSubscriptionUuidRequest,
+  output: WebhookSubscription,
+  errors: [NotFound, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWorkAddressError = NotFound | GustoOpError;
+/** Get an employee work address The work address of an employee is used for payroll tax purposes. scope: `employees:read` */
+export const getWorkAddress: API.OperationMethod<
+  GetWorkAddressRequest,
+  EmployeeWorkAddress,
+  GetWorkAddressError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWorkAddressRequest,
+  output: EmployeeWorkAddress,
+  errors: [NotFound, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
 export type OauthAccessTokenError = GustoOpError;
 /** Create a System Access Token or Refresh an Access Token Creates a system access token or refreshes an oauth access token */
 export const oauthAccessToken: API.OperationMethod<
@@ -13427,43 +13430,6 @@ export const oauthAccessToken: API.OperationMethod<
   input: OauthAccessTokenRequest,
   output: OauthAccessTokenResponse,
   errors: [UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PatchV1EmployeesEmployeeUuidSection603HighEarnerStatusesEffectiveYearError =
-  | NotFound
-  | UnprocessableEntity
-  | GustoOpError;
-/** Update a Section 603 high earner status Update a Section 603 high earner status for an employee for a specific year. Section 603 of the SECURE 2.0 Act applies to employees aged 50 or older whose prior-year FICA wages exceed the IRS threshold. These employees are classified as high earners, and their catch-up contributions to pre-tax retirement benefits must be designated as post-tax contributions. scope: `employee_benefits:write` */
-export const patchV1EmployeesEmployeeUuidSection603HighEarnerStatusesEffectiveYear: API.OperationMethod<
-  PatchV1EmployeesEmployeeUuidSection603HighEarnerStatusesEffectiveYearRequest,
-  EmployeeSection603HighEarnerStatus,
-  PatchV1EmployeesEmployeeUuidSection603HighEarnerStatusesEffectiveYearError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    PatchV1EmployeesEmployeeUuidSection603HighEarnerStatusesEffectiveYearRequest,
-  output: EmployeeSection603HighEarnerStatus,
-  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostCompaniesCompanyUuidTimeTrackingTimeSheetsError =
-  | NotFound
-  | UnprocessableEntity
-  | GustoOpError;
-/** Create a time sheet Create a time sheet for a company. Time sheets represent the time worked by an employee or contractor for a given time range. Hours are classified by pay classification, and can be regular, overtime, or double overtime. scope: `time_sheet:write` */
-export const postCompaniesCompanyUuidTimeTrackingTimeSheets: API.OperationMethod<
-  PostCompaniesCompanyUuidTimeTrackingTimeSheetsRequest,
-  TimeSheet,
-  PostCompaniesCompanyUuidTimeTrackingTimeSheetsError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostCompaniesCompanyUuidTimeTrackingTimeSheetsRequest,
-  output: TimeSheet,
-  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
   protocol: GustoProtocol,
   retry: Retry.Retry,
 }));
@@ -13481,114 +13447,6 @@ export const postDepartments: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: PostDepartmentsRequest,
   output: PostDepartmentsResponse,
-  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostEmployeeYtdBenefitAmountsFromDifferentCompanyError =
-  | NotFound
-  | UnprocessableEntity
-  | GustoOpError;
-/** Create year-to-date benefit amounts from a different company Year-to-date benefit amounts from a different company represents the amount of money added to an employee's plan during a current year, made outside of the current contribution when they were employed at a different company. This endpoint only supports passing outside contributions for 401(k) benefits. scope: `employee_benefits:write` */
-export const postEmployeeYtdBenefitAmountsFromDifferentCompany: API.OperationMethod<
-  PostEmployeeYtdBenefitAmountsFromDifferentCompanyRequest,
-  PostEmployeeYtdBenefitAmountsFromDifferentCompanyResponse,
-  PostEmployeeYtdBenefitAmountsFromDifferentCompanyError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostEmployeeYtdBenefitAmountsFromDifferentCompanyRequest,
-  output: PostEmployeeYtdBenefitAmountsFromDifferentCompanyResponse,
-  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostPayrollsPayrollUuidReportsGeneralLedgerError =
-  | NotFound
-  | UnprocessableEntity
-  | GustoOpError;
-/** Create a general ledger report Create a general ledger report for a payroll. The report can be aggregated by different dimensions such as job or department. Use the `request_uuid` in the response with the [report GET endpoint](../reference/get-reports-request_uuid) to poll for the status and report URL upon completion. The retrieved report will be generated in a JSON format. scope: `company_reports:write` */
-export const postPayrollsPayrollUuidReportsGeneralLedger: API.OperationMethod<
-  PostPayrollsPayrollUuidReportsGeneralLedgerRequest,
-  GeneralLedgerReport,
-  PostPayrollsPayrollUuidReportsGeneralLedgerError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostPayrollsPayrollUuidReportsGeneralLedgerRequest,
-  output: GeneralLedgerReport,
-  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostV1CompaniesCompanyIdCompanyBenefitsError =
-  | NotFound
-  | UnprocessableEntity
-  | GustoOpError;
-/** Create a company benefit Company benefits represent the benefits that a company is offering to employees. This ties together a particular supported benefit with the company-specific information for the offering of that benefit. Note that company benefits can be deactivated only when no employees are enrolled. When the application has the `company_benefits:write:benefit_type_limited` data scope, the application can only create company benefits for benefit types that are permitted for the application. scope: `company_benefits:write` */
-export const postV1CompaniesCompanyIdCompanyBenefits: API.OperationMethod<
-  PostV1CompaniesCompanyIdCompanyBenefitsRequest,
-  CompanyBenefit,
-  PostV1CompaniesCompanyIdCompanyBenefitsError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostV1CompaniesCompanyIdCompanyBenefitsRequest,
-  output: CompanyBenefit,
-  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostV1CompaniesCompanyIdEarningTypesError =
-  | NotFound
-  | UnprocessableEntity
-  | GustoOpError;
-/** Create a custom earning type Create a custom earning type. If an inactive earning type exists with the same name, this will reactivate it instead of creating a new one. scope: `payrolls:write` */
-export const postV1CompaniesCompanyIdEarningTypes: API.OperationMethod<
-  PostV1CompaniesCompanyIdEarningTypesRequest,
-  EarningType,
-  PostV1CompaniesCompanyIdEarningTypesError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostV1CompaniesCompanyIdEarningTypesRequest,
-  output: EarningType,
-  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostV1CompaniesCompanyIdLocationsError =
-  | NotFound
-  | UnprocessableEntity
-  | GustoOpError;
-/** Create a company location Create a company location, which represents any address associated with a company: mailing addresses, filing addresses, or work locations. A single address may serve multiple, or all, purposes. Since all company locations are subsets of locations, use the Locations endpoints to [get](https://docs.gusto.com/app-integrations/reference/get-v1-locations-location_id) or [update](https://docs.gusto.com/app-integrations/reference/put-v1-locations-location_id) an individual record. scope: `companies:write` */
-export const postV1CompaniesCompanyIdLocations: API.OperationMethod<
-  PostV1CompaniesCompanyIdLocationsRequest,
-  Location,
-  PostV1CompaniesCompanyIdLocationsError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostV1CompaniesCompanyIdLocationsRequest,
-  output: Location,
-  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostV1CompaniesCompanyUuidContractorsError =
-  | NotFound
-  | UnprocessableEntity
-  | GustoOpError;
-/** Create a contractor Create an individual or business contractor. scope: `contractors:manage` */
-export const postV1CompaniesCompanyUuidContractors: API.OperationMethod<
-  PostV1CompaniesCompanyUuidContractorsRequest,
-  Contractor,
-  PostV1CompaniesCompanyUuidContractorsError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostV1CompaniesCompanyUuidContractorsRequest,
-  output: Contractor,
   errors: [NotFound, UnprocessableEntity, UnknownGustoError],
   protocol: GustoProtocol,
   retry: Retry.Retry,
@@ -13645,169 +13503,6 @@ export const postV1Employees: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PostV1EmployeesEmployeeIdEmployeeBenefitsError =
-  | NotFound
-  | UnprocessableEntity
-  | GustoOpError;
-/** Create an employee benefit Employee benefits represent an employee enrolled in a particular company benefit. It includes information specific to that employee's enrollment. When the application has the `employee_benefits:write:benefit_type_limited` data scope, the application can only create employee benefits for benefit types that are permitted for the application. scope: `employee_benefits:write` */
-export const postV1EmployeesEmployeeIdEmployeeBenefits: API.OperationMethod<
-  PostV1EmployeesEmployeeIdEmployeeBenefitsRequest,
-  PostV1EmployeesEmployeeIdEmployeeBenefitsResponse,
-  PostV1EmployeesEmployeeIdEmployeeBenefitsError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostV1EmployeesEmployeeIdEmployeeBenefitsRequest,
-  output: PostV1EmployeesEmployeeIdEmployeeBenefitsResponse,
-  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostV1EmployeesEmployeeIdGarnishmentsError =
-  | NotFound
-  | UnprocessableEntity
-  | GustoOpError;
-/** Create a garnishment Garnishments, or employee deductions, are fixed amounts or percentages deducted from an employee’s pay. They can be deducted a specific number of times or on a recurring basis. Garnishments can also have maximum deductions on a yearly or per-pay-period bases. Common uses for garnishments are court-ordered payments for child support or back taxes. Some companies provide loans to their employees that are repaid via garnishments. scope: `garnishments:write` */
-export const postV1EmployeesEmployeeIdGarnishments: API.OperationMethod<
-  PostV1EmployeesEmployeeIdGarnishmentsRequest,
-  Garnishment,
-  PostV1EmployeesEmployeeIdGarnishmentsError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostV1EmployeesEmployeeIdGarnishmentsRequest,
-  output: Garnishment,
-  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostV1EmployeesEmployeeIdHomeAddressesError =
-  | NotFound
-  | UnprocessableEntity
-  | GustoOpError;
-/** Create an employee's home address The home address of an employee is used to determine certain tax information about them. Addresses are geocoded on create and update to ensure validity. Supports home address effective dating and courtesy withholding. scope: `employees:write` */
-export const postV1EmployeesEmployeeIdHomeAddresses: API.OperationMethod<
-  PostV1EmployeesEmployeeIdHomeAddressesRequest,
-  EmployeeAddress,
-  PostV1EmployeesEmployeeIdHomeAddressesError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostV1EmployeesEmployeeIdHomeAddressesRequest,
-  output: EmployeeAddress,
-  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostV1EmployeesEmployeeIdRecurringReimbursementsError =
-  | NotFound
-  | UnprocessableEntity
-  | GustoOpError;
-/** Create a recurring reimbursement Create a recurring reimbursement for an employee. scope: `reimbursements:write` */
-export const postV1EmployeesEmployeeIdRecurringReimbursements: API.OperationMethod<
-  PostV1EmployeesEmployeeIdRecurringReimbursementsRequest,
-  RecurringReimbursement,
-  PostV1EmployeesEmployeeIdRecurringReimbursementsError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostV1EmployeesEmployeeIdRecurringReimbursementsRequest,
-  output: RecurringReimbursement,
-  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostV1EmployeesEmployeeIdRehireError =
-  | NotFound
-  | UnprocessableEntity
-  | GustoOpError;
-/** Create an employee rehire Rehire is created whenever an employee is scheduled to return to the company. scope: `employments:write` */
-export const postV1EmployeesEmployeeIdRehire: API.OperationMethod<
-  PostV1EmployeesEmployeeIdRehireRequest,
-  Rehire,
-  PostV1EmployeesEmployeeIdRehireError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostV1EmployeesEmployeeIdRehireRequest,
-  output: Rehire,
-  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostV1EmployeesEmployeeIdSalaryEstimatesError =
-  | NotFound
-  | UnprocessableEntity
-  | GustoOpError;
-/** Create a salary estimate for an employee Create a salary estimate for an employee. This endpoint helps calculate a reasonable salary for S Corp owners based on their occupation, experience level, location, and business revenue. A salary estimate must include: - Annual net revenue of the business - ZIP code for location-based salary data - One or more occupations with experience levels and time percentages (must sum to 100%) Only one in-progress salary estimate can exist per employee at a time. If an in-progress estimate already exists, you must either accept it or use the update endpoint. scope: `salary_estimates:write` */
-export const postV1EmployeesEmployeeIdSalaryEstimates: API.OperationMethod<
-  PostV1EmployeesEmployeeIdSalaryEstimatesRequest,
-  SalaryEstimate,
-  PostV1EmployeesEmployeeIdSalaryEstimatesError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostV1EmployeesEmployeeIdSalaryEstimatesRequest,
-  output: SalaryEstimate,
-  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostV1EmployeesEmployeeIdTerminationsError =
-  | NotFound
-  | UnprocessableEntity
-  | GustoOpError;
-/** Create an employee termination Create a termination for an employee. The only things required are an effective date (their last day of work) and whether they should receive their wages in a one-off termination payroll or with the rest of the company. Note that some states require employees to receive their final wages within 24 hours (unless they consent otherwise,) in which case running a one-off payroll may be the only option. scope: `employments:write` */
-export const postV1EmployeesEmployeeIdTerminations: API.OperationMethod<
-  PostV1EmployeesEmployeeIdTerminationsRequest,
-  Termination,
-  PostV1EmployeesEmployeeIdTerminationsError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostV1EmployeesEmployeeIdTerminationsRequest,
-  output: Termination,
-  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostV1EmployeesEmployeeIdWorkAddressesError =
-  | NotFound
-  | UnprocessableEntity
-  | GustoOpError;
-/** Create an employee work address The work address of an employee describes when an employee began working at an associated company location. scope: `employees:manage` */
-export const postV1EmployeesEmployeeIdWorkAddresses: API.OperationMethod<
-  PostV1EmployeesEmployeeIdWorkAddressesRequest,
-  EmployeeWorkAddress,
-  PostV1EmployeesEmployeeIdWorkAddressesError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostV1EmployeesEmployeeIdWorkAddressesRequest,
-  output: EmployeeWorkAddress,
-  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostV1EmployeesEmployeeUuidSection603HighEarnerStatusesError =
-  | NotFound
-  | Conflict
-  | UnprocessableEntity
-  | GustoOpError;
-/** Create a Section 603 high earner status Create a Section 603 high earner status for an employee for a specific year. Section 603 of the SECURE 2.0 Act applies to employees aged 50 or older whose prior-year FICA wages exceed the IRS threshold. These employees are classified as high earners, and their catch-up contributions to pre-tax retirement benefits must be designated as post-tax contributions. scope: `employee_benefits:write` */
-export const postV1EmployeesEmployeeUuidSection603HighEarnerStatuses: API.OperationMethod<
-  PostV1EmployeesEmployeeUuidSection603HighEarnerStatusesRequest,
-  EmployeeSection603HighEarnerStatus,
-  PostV1EmployeesEmployeeUuidSection603HighEarnerStatusesError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostV1EmployeesEmployeeUuidSection603HighEarnerStatusesRequest,
-  output: EmployeeSection603HighEarnerStatus,
-  errors: [NotFound, Conflict, UnprocessableEntity, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
 export type PostV1PayrollsPayrollIdCalculateAccruingTimeOffHoursError =
   | NotFound
   | UnprocessableEntity
@@ -13826,54 +13521,6 @@ export const postV1PayrollsPayrollIdCalculateAccruingTimeOffHours: API.Operation
   retry: Retry.Retry,
 }));
 
-export type PostV1ProvisionError = UnprocessableEntity | GustoOpError;
-/** Create a company ### Overview The company provisioning API provides a way to create a Gusto company as part of your integration. When you successfully call the API, the API does the following: * Creates a new company in Gusto. * Creates a new user in Gusto. * Makes the new user the primary payroll administrator of the new company. * Sends a welcome email to the new user. In the response, you will receive an account claim URL. Redirect the user to this URL to complete their account setup inside of Gusto > 📘 System Access Authentication > > This endpoint uses the [Bearer Auth scheme with the system-level access token in the HTTP Authorization header](https://docs.gusto.com/embedded-payroll/docs/system-access). 📘 System Access Authentication This endpoint uses the [Bearer Auth scheme with the system-level access token in the HTTP Authorization header](https://docs.gusto.com/embedded-payroll/docs/system-access) scope: `accounts:write` */
-export const postV1Provision: API.OperationMethod<
-  PostV1ProvisionRequest,
-  ProvisionCreated,
-  PostV1ProvisionError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostV1ProvisionRequest,
-  output: ProvisionCreated,
-  errors: [UnprocessableEntity, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostV1SalaryEstimatesUuidAcceptError =
-  | NotFound
-  | UnprocessableEntity
-  | GustoOpError;
-/** Accept a salary estimate Accept and finalize a salary estimate. This associates the estimate with an employee job and marks it as accepted. Once accepted, the salary estimate becomes read-only for record-keeping purposes. The accepted salary can then be used to set up compensation for the employee. scope: `salary_estimates:write` */
-export const postV1SalaryEstimatesUuidAccept: API.OperationMethod<
-  PostV1SalaryEstimatesUuidAcceptRequest,
-  SalaryEstimate,
-  PostV1SalaryEstimatesUuidAcceptError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostV1SalaryEstimatesUuidAcceptRequest,
-  output: SalaryEstimate,
-  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostV1WebhookSubscriptionError = UnprocessableEntity | GustoOpError;
-/** Create a webhook subscription Create a webhook subscription to receive events of the specified subscription_types whenever there is a state change. 📘 System Access Authentication This endpoint uses the [Bearer Auth scheme with the system-level access token in the HTTP Authorization header](https://docs.gusto.com/embedded-payroll/docs/system-access) scope: `webhook_subscriptions:write` */
-export const postV1WebhookSubscription: API.OperationMethod<
-  PostV1WebhookSubscriptionRequest,
-  WebhookSubscription,
-  PostV1WebhookSubscriptionError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostV1WebhookSubscriptionRequest,
-  output: WebhookSubscription,
-  errors: [UnprocessableEntity, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
 export type PutAddPeopleToDepartmentError =
   | NotFound
   | UnprocessableEntity
@@ -13888,6 +13535,167 @@ export const putAddPeopleToDepartment: API.OperationMethod<
   input: PutAddPeopleToDepartmentRequest,
   output: PutAddPeopleToDepartmentResponse,
   errors: [NotFound, UnprocessableEntity, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutCompaniesError = NotFound | UnprocessableEntity | GustoOpError;
+/** Update a company Update a company. scope: `companies:write` */
+export const putCompanies: API.OperationMethod<
+  PutCompaniesRequest,
+  Company,
+  PutCompaniesError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutCompaniesRequest,
+  output: Company,
+  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutCompanyBenefitError =
+  | NotFound
+  | UnprocessableEntity
+  | GustoOpError;
+/** Update a company benefit Company benefits represent the benefits that a company is offering to employees. This ties together a particular supported benefit with the company-specific information for the offering of that benefit. Note that company benefits can be deactivated only when no employees are enrolled. When the application has the `company_benefits:write:benefit_type_limited` data scope, the application can only update company benefits for benefit types that are permitted for the application. scope: `company_benefits:write` */
+export const putCompanyBenefit: API.OperationMethod<
+  PutCompanyBenefitRequest,
+  CompanyBenefit,
+  PutCompanyBenefitError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutCompanyBenefitRequest,
+  output: CompanyBenefit,
+  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutCompanyBenefitContributionExclusionsError =
+  | NotFound
+  | UnprocessableEntity
+  | GustoOpError;
+/** Update contribution exclusions for a company benefit Updates contribution exclusions for a given company benefit. Currently this endpoint only works for 401-k and Roth 401-k benefit types. scope: `company_benefits:write` */
+export const putCompanyBenefitContributionExclusions: API.OperationMethod<
+  PutCompanyBenefitContributionExclusionsRequest,
+  PutCompanyBenefitContributionExclusionsResponse,
+  PutCompanyBenefitContributionExclusionsError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutCompanyBenefitContributionExclusionsRequest,
+  output: PutCompanyBenefitContributionExclusionsResponse,
+  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutCompanyBenefitEmployeeBenefitsError =
+  | NotFound
+  | UnprocessableEntity
+  | GustoOpError;
+/** Bulk update employee benefits for a company benefit Employee benefits represent an employee enrolled in a particular company benefit. It includes information specific to that employee's enrollment. Create or update(if the employee is already enrolled in the company benefit previously) an employee benefit for the company benefit. Benefits containing PHI are only visible to applications with the `employee_benefits:read:phi` scope. When the application has the `employee_benefits:write:benefit_type_limited` data scope, the application can only create or update employee benefits for benefit types that are permitted for the application. scope: `employee_benefits:write` */
+export const putCompanyBenefitEmployeeBenefits: API.OperationMethod<
+  PutCompanyBenefitEmployeeBenefitsRequest,
+  PutCompanyBenefitEmployeeBenefitsResponse,
+  PutCompanyBenefitEmployeeBenefitsError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutCompanyBenefitEmployeeBenefitsRequest,
+  output: PutCompanyBenefitEmployeeBenefitsResponse,
+  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutCompanyEarningTypeError =
+  | NotFound
+  | UnprocessableEntity
+  | GustoOpError;
+/** Update an earning type Update an earning type. scope: `payrolls:write` */
+export const putCompanyEarningType: API.OperationMethod<
+  PutCompanyEarningTypeRequest,
+  EarningType,
+  PutCompanyEarningTypeError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutCompanyEarningTypeRequest,
+  output: EarningType,
+  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutCompanyPayrollPrepareError =
+  | NotFound
+  | UnprocessableEntity
+  | GustoOpError;
+/** Prepare a payroll for update Prepares an unprocessed payroll for update, including: adding eligible employees to off-cycle payrolls that support multiple employees (`Bonus`, `Correction`, and `Adhoc`), and updating `check_date`, `payroll_deadline`, and `payroll_status_meta` dates and times. Use this endpoint before calling [PUT /v1/companies/{company_id}/payrolls/{payroll_id}](https://docs.gusto.com/app-integrations/reference/put-v1-companies-company_id-payrolls). ### Notes * Nullifies `calculated_at` and `totals` if the payroll was previously calculated * Returns the `version` parameter required for [updating the payroll](https://docs.gusto.com/app-integrations/reference/put-v1-companies-company_id-payrolls) * `employees:read` scope is required to include employee compensations data in the response. * Results are paginated, with a maximum page size of 100 employee compensations. scope: `payrolls:write employees:read` */
+export const putCompanyPayrollPrepare: API.OperationMethod<
+  PutCompanyPayrollPrepareRequest,
+  PayrollPrepared,
+  PutCompanyPayrollPrepareError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutCompanyPayrollPrepareRequest,
+  output: PayrollPrepared,
+  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutCompanyPayrollsError =
+  | NotFound
+  | Conflict
+  | UnprocessableEntity
+  | GustoOpError;
+/** Update a payroll by ID This endpoint allows you to update information for one or more employees for a specific **unprocessed** payroll. You can think of the **unprocessed** payroll object as a template of fields that you can update. You cannot modify the structure of the payroll object through this endpoint, only values of the fields included in the payroll. If you do not include specific employee compensations, fixed/hourly compensations, or deductions in your request body, they will not be removed from the payroll. A maximum of 100 employee_compensations can be updated at a time. Only the employee compensation objects that were inputted will be returned. scope: `payrolls:write` */
+export const putCompanyPayrolls: API.OperationMethod<
+  PutCompanyPayrollsRequest,
+  PayrollPrepared,
+  PutCompanyPayrollsError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutCompanyPayrollsRequest,
+  output: PayrollPrepared,
+  errors: [NotFound, Conflict, UnprocessableEntity, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutCompensationError =
+  | NotFound
+  | UnprocessableEntity
+  | GustoOpError;
+/** Update a compensation Compensations contain information on how much is paid out for a job. Jobs may have many compensations, but only one that is active. The current compensation is the one with the most recent `effective_date`. ### Webhooks - `employee_job_compensation.updated`: Fires when a compensation is successfully updated scope: `compensations:write` */
+export const putCompensation: API.OperationMethod<
+  PutCompensationRequest,
+  Compensation,
+  PutCompensationError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutCompensationRequest,
+  output: Compensation,
+  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutContractorError =
+  | NotFound
+  | Conflict
+  | UnprocessableEntity
+  | GustoOpError;
+/** Update a contractor Update a contractor. > 🚧 Warning > > Watch out when changing a contractor's type (when the contractor is finished onboarding). Specifically, changing contractor type can be dangerous since Gusto won't recognize and file two separate 1099s if they simply change from business to individual scope: `contractors:write` */
+export const putContractor: API.OperationMethod<
+  PutContractorRequest,
+  Contractor,
+  PutContractorError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutContractorRequest,
+  output: Contractor,
+  errors: [NotFound, Conflict, UnprocessableEntity, UnknownGustoError],
   protocol: GustoProtocol,
   retry: Retry.Retry,
 }));
@@ -13911,6 +13719,129 @@ export const putDepartments: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type PutEmployeeBenefitError =
+  | NotFound
+  | UnprocessableEntity
+  | GustoOpError;
+/** Update an employee benefit Employee benefits represent an employee enrolled in a particular company benefit. It includes information specific to that employee's enrollment. When the application has the `employee_benefits:write:benefit_type_limited` data scope, the application can only update employee benefits for benefit types that are permitted for the application. scope: `employee_benefits:write` */
+export const putEmployeeBenefit: API.OperationMethod<
+  PutEmployeeBenefitRequest,
+  PutEmployeeBenefitResponse,
+  PutEmployeeBenefitError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutEmployeeBenefitRequest,
+  output: PutEmployeeBenefitResponse,
+  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutEmployeeRehireError =
+  | NotFound
+  | UnprocessableEntity
+  | GustoOpError;
+/** Update an employee rehire Update an employee's rehire. scope: `employments:write` */
+export const putEmployeeRehire: API.OperationMethod<
+  PutEmployeeRehireRequest,
+  Rehire,
+  PutEmployeeRehireError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutEmployeeRehireRequest,
+  output: Rehire,
+  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutEmployeesError =
+  | NotFound
+  | Conflict
+  | UnprocessableEntity
+  | GustoOpError;
+/** Update an employee. Update an employee. scope: `employees:write` */
+export const putEmployees: API.OperationMethod<
+  PutEmployeesRequest,
+  Employee,
+  PutEmployeesError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutEmployeesRequest,
+  output: Employee,
+  errors: [NotFound, Conflict, UnprocessableEntity, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutGarnishmentError = NotFound | UnprocessableEntity | GustoOpError;
+/** Update a garnishment Garnishments, or employee deductions, are fixed amounts or percentages deducted from an employee’s pay. They can be deducted a specific number of times or on a recurring basis. Garnishments can also have maximum deductions on a yearly or per-pay-period bases. Common uses for garnishments are court-ordered payments for child support or back taxes. Some companies provide loans to their employees that are repaid via garnishments. scope: `garnishments:write` */
+export const putGarnishment: API.OperationMethod<
+  PutGarnishmentRequest,
+  Garnishment,
+  PutGarnishmentError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutGarnishmentRequest,
+  output: Garnishment,
+  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutHomeAddressError = NotFound | UnprocessableEntity | GustoOpError;
+/** Update an employee's home address The home address of an employee is used to determine certain tax information about them. Addresses are geocoded on create and update to ensure validity. Supports home address effective dating and courtesy withholding. scope: `employees:write` */
+export const putHomeAddress: API.OperationMethod<
+  PutHomeAddressRequest,
+  EmployeeAddress,
+  PutHomeAddressError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutHomeAddressRequest,
+  output: EmployeeAddress,
+  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutLocationError =
+  | NotFound
+  | Conflict
+  | UnprocessableEntity
+  | GustoOpError;
+/** Update a location Update a location. scope: `companies:write` */
+export const putLocation: API.OperationMethod<
+  PutLocationRequest,
+  Location,
+  PutLocationError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutLocationRequest,
+  output: Location,
+  errors: [NotFound, Conflict, UnprocessableEntity, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutRecurringReimbursementsError =
+  | NotFound
+  | Conflict
+  | UnprocessableEntity
+  | GustoOpError;
+/** Update a recurring reimbursement Update a recurring reimbursement. scope: `reimbursements:write` */
+export const putRecurringReimbursements: API.OperationMethod<
+  PutRecurringReimbursementsRequest,
+  RecurringReimbursement,
+  PutRecurringReimbursementsError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutRecurringReimbursementsRequest,
+  output: RecurringReimbursement,
+  errors: [NotFound, Conflict, UnprocessableEntity, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
 export type PutRemovePeopleFromDepartmentError =
   | NotFound
   | UnprocessableEntity
@@ -13929,310 +13860,53 @@ export const putRemovePeopleFromDepartment: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PutTimeTrackingTimeSheetsTimeSheetUuidError =
+export type PutTerminationError = NotFound | UnprocessableEntity | GustoOpError;
+/** Update an employee termination Terminations are created whenever an employee is scheduled to leave the company. The only things required are an effective date (their last day of work) and whether they should receive their wages in a one-off termination payroll or with the rest of the company. Note that some states require employees to receive their final wages within 24 hours (unless they consent otherwise,) in which case running a one-off payroll may be the only option. scope: `employments:write` */
+export const putTermination: API.OperationMethod<
+  PutTerminationRequest,
+  Termination,
+  PutTerminationError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutTerminationRequest,
+  output: Termination,
+  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutTimeOffPolicyAddEmployeesError =
+  | NotFound
+  | UnprocessableEntity
+  | GustoOpError;
+/** Add employees to a time off policy Add employees to a time off policy. Employees are required to have at least one job to be added to a time off policy. Accepts starting balances for non-unlimited policies scope: `time_off_policies:write` */
+export const putTimeOffPolicyAddEmployees: API.OperationMethod<
+  PutTimeOffPolicyAddEmployeesRequest,
+  TimeOffPolicy,
+  PutTimeOffPolicyAddEmployeesError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutTimeOffPolicyAddEmployeesRequest,
+  output: TimeOffPolicy,
+  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutTimeTrackingTimeSheetError =
   | NotFound
   | UnprocessableEntity
   | GustoOpError;
 /** Update a time sheet Update a time sheet. Time sheets represent the time worked by an employee or contractor for a given time range. Hours are classified by pay classification, and can be regular, overtime, or double overtime. scope: `time_sheet:write` */
-export const putTimeTrackingTimeSheetsTimeSheetUuid: API.OperationMethod<
-  PutTimeTrackingTimeSheetsTimeSheetUuidRequest,
+export const putTimeTrackingTimeSheet: API.OperationMethod<
+  PutTimeTrackingTimeSheetRequest,
   TimeSheet,
-  PutTimeTrackingTimeSheetsTimeSheetUuidError,
+  PutTimeTrackingTimeSheetError,
   GustoOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutTimeTrackingTimeSheetsTimeSheetUuidRequest,
+  input: PutTimeTrackingTimeSheetRequest,
   output: TimeSheet,
   errors: [NotFound, UnprocessableEntity, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PutV1CompaniesError = NotFound | UnprocessableEntity | GustoOpError;
-/** Update a company Update a company. scope: `companies:write` */
-export const putV1Companies: API.OperationMethod<
-  PutV1CompaniesRequest,
-  Company,
-  PutV1CompaniesError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PutV1CompaniesRequest,
-  output: Company,
-  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PutV1CompaniesCompanyIdEarningTypesEarningTypeUuidError =
-  | NotFound
-  | UnprocessableEntity
-  | GustoOpError;
-/** Update an earning type Update an earning type. scope: `payrolls:write` */
-export const putV1CompaniesCompanyIdEarningTypesEarningTypeUuid: API.OperationMethod<
-  PutV1CompaniesCompanyIdEarningTypesEarningTypeUuidRequest,
-  EarningType,
-  PutV1CompaniesCompanyIdEarningTypesEarningTypeUuidError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PutV1CompaniesCompanyIdEarningTypesEarningTypeUuidRequest,
-  output: EarningType,
-  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PutV1CompaniesCompanyIdPayrollsError =
-  | NotFound
-  | Conflict
-  | UnprocessableEntity
-  | GustoOpError;
-/** Update a payroll by ID This endpoint allows you to update information for one or more employees for a specific **unprocessed** payroll. You can think of the **unprocessed** payroll object as a template of fields that you can update. You cannot modify the structure of the payroll object through this endpoint, only values of the fields included in the payroll. If you do not include specific employee compensations, fixed/hourly compensations, or deductions in your request body, they will not be removed from the payroll. A maximum of 100 employee_compensations can be updated at a time. Only the employee compensation objects that were inputted will be returned. scope: `payrolls:write` */
-export const putV1CompaniesCompanyIdPayrolls: API.OperationMethod<
-  PutV1CompaniesCompanyIdPayrollsRequest,
-  PayrollPrepared,
-  PutV1CompaniesCompanyIdPayrollsError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PutV1CompaniesCompanyIdPayrollsRequest,
-  output: PayrollPrepared,
-  errors: [NotFound, Conflict, UnprocessableEntity, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PutV1CompaniesCompanyIdPayrollsPayrollIdPrepareError =
-  | NotFound
-  | UnprocessableEntity
-  | GustoOpError;
-/** Prepare a payroll for update Prepares an unprocessed payroll for update, including: adding eligible employees to off-cycle payrolls that support multiple employees (`Bonus`, `Correction`, and `Adhoc`), and updating `check_date`, `payroll_deadline`, and `payroll_status_meta` dates and times. Use this endpoint before calling [PUT /v1/companies/{company_id}/payrolls/{payroll_id}](https://docs.gusto.com/app-integrations/reference/put-v1-companies-company_id-payrolls). ### Notes * Nullifies `calculated_at` and `totals` if the payroll was previously calculated * Returns the `version` parameter required for [updating the payroll](https://docs.gusto.com/app-integrations/reference/put-v1-companies-company_id-payrolls) * `employees:read` scope is required to include employee compensations data in the response. * Results are paginated, with a maximum page size of 100 employee compensations. scope: `payrolls:write employees:read` */
-export const putV1CompaniesCompanyIdPayrollsPayrollIdPrepare: API.OperationMethod<
-  PutV1CompaniesCompanyIdPayrollsPayrollIdPrepareRequest,
-  PayrollPrepared,
-  PutV1CompaniesCompanyIdPayrollsPayrollIdPrepareError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PutV1CompaniesCompanyIdPayrollsPayrollIdPrepareRequest,
-  output: PayrollPrepared,
-  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PutV1CompanyBenefitsCompanyBenefitIdError =
-  | NotFound
-  | UnprocessableEntity
-  | GustoOpError;
-/** Update a company benefit Company benefits represent the benefits that a company is offering to employees. This ties together a particular supported benefit with the company-specific information for the offering of that benefit. Note that company benefits can be deactivated only when no employees are enrolled. When the application has the `company_benefits:write:benefit_type_limited` data scope, the application can only update company benefits for benefit types that are permitted for the application. scope: `company_benefits:write` */
-export const putV1CompanyBenefitsCompanyBenefitId: API.OperationMethod<
-  PutV1CompanyBenefitsCompanyBenefitIdRequest,
-  CompanyBenefit,
-  PutV1CompanyBenefitsCompanyBenefitIdError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PutV1CompanyBenefitsCompanyBenefitIdRequest,
-  output: CompanyBenefit,
-  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PutV1CompanyBenefitsCompanyBenefitIdContributionExclusionsError =
-  | NotFound
-  | UnprocessableEntity
-  | GustoOpError;
-/** Update contribution exclusions for a company benefit Updates contribution exclusions for a given company benefit. Currently this endpoint only works for 401-k and Roth 401-k benefit types. scope: `company_benefits:write` */
-export const putV1CompanyBenefitsCompanyBenefitIdContributionExclusions: API.OperationMethod<
-  PutV1CompanyBenefitsCompanyBenefitIdContributionExclusionsRequest,
-  PutV1CompanyBenefitsCompanyBenefitIdContributionExclusionsResponse,
-  PutV1CompanyBenefitsCompanyBenefitIdContributionExclusionsError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PutV1CompanyBenefitsCompanyBenefitIdContributionExclusionsRequest,
-  output: PutV1CompanyBenefitsCompanyBenefitIdContributionExclusionsResponse,
-  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PutV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsError =
-  | NotFound
-  | UnprocessableEntity
-  | GustoOpError;
-/** Bulk update employee benefits for a company benefit Employee benefits represent an employee enrolled in a particular company benefit. It includes information specific to that employee's enrollment. Create or update(if the employee is already enrolled in the company benefit previously) an employee benefit for the company benefit. Benefits containing PHI are only visible to applications with the `employee_benefits:read:phi` scope. When the application has the `employee_benefits:write:benefit_type_limited` data scope, the application can only create or update employee benefits for benefit types that are permitted for the application. scope: `employee_benefits:write` */
-export const putV1CompanyBenefitsCompanyBenefitIdEmployeeBenefits: API.OperationMethod<
-  PutV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsRequest,
-  PutV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsResponse,
-  PutV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PutV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsRequest,
-  output: PutV1CompanyBenefitsCompanyBenefitIdEmployeeBenefitsResponse,
-  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PutV1CompensationsCompensationIdError =
-  | NotFound
-  | UnprocessableEntity
-  | GustoOpError;
-/** Update a compensation Compensations contain information on how much is paid out for a job. Jobs may have many compensations, but only one that is active. The current compensation is the one with the most recent `effective_date`. ### Webhooks - `employee_job_compensation.updated`: Fires when a compensation is successfully updated scope: `compensations:write` */
-export const putV1CompensationsCompensationId: API.OperationMethod<
-  PutV1CompensationsCompensationIdRequest,
-  Compensation,
-  PutV1CompensationsCompensationIdError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PutV1CompensationsCompensationIdRequest,
-  output: Compensation,
-  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PutV1ContractorsContractorUuidError =
-  | NotFound
-  | Conflict
-  | UnprocessableEntity
-  | GustoOpError;
-/** Update a contractor Update a contractor. > 🚧 Warning > > Watch out when changing a contractor's type (when the contractor is finished onboarding). Specifically, changing contractor type can be dangerous since Gusto won't recognize and file two separate 1099s if they simply change from business to individual scope: `contractors:write` */
-export const putV1ContractorsContractorUuid: API.OperationMethod<
-  PutV1ContractorsContractorUuidRequest,
-  Contractor,
-  PutV1ContractorsContractorUuidError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PutV1ContractorsContractorUuidRequest,
-  output: Contractor,
-  errors: [NotFound, Conflict, UnprocessableEntity, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PutV1EmployeeBenefitsEmployeeBenefitIdError =
-  | NotFound
-  | UnprocessableEntity
-  | GustoOpError;
-/** Update an employee benefit Employee benefits represent an employee enrolled in a particular company benefit. It includes information specific to that employee's enrollment. When the application has the `employee_benefits:write:benefit_type_limited` data scope, the application can only update employee benefits for benefit types that are permitted for the application. scope: `employee_benefits:write` */
-export const putV1EmployeeBenefitsEmployeeBenefitId: API.OperationMethod<
-  PutV1EmployeeBenefitsEmployeeBenefitIdRequest,
-  PutV1EmployeeBenefitsEmployeeBenefitIdResponse,
-  PutV1EmployeeBenefitsEmployeeBenefitIdError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PutV1EmployeeBenefitsEmployeeBenefitIdRequest,
-  output: PutV1EmployeeBenefitsEmployeeBenefitIdResponse,
-  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PutV1EmployeesError =
-  | NotFound
-  | Conflict
-  | UnprocessableEntity
-  | GustoOpError;
-/** Update an employee. Update an employee. scope: `employees:write` */
-export const putV1Employees: API.OperationMethod<
-  PutV1EmployeesRequest,
-  Employee,
-  PutV1EmployeesError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PutV1EmployeesRequest,
-  output: Employee,
-  errors: [NotFound, Conflict, UnprocessableEntity, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PutV1EmployeesEmployeeIdRehireError =
-  | NotFound
-  | UnprocessableEntity
-  | GustoOpError;
-/** Update an employee rehire Update an employee's rehire. scope: `employments:write` */
-export const putV1EmployeesEmployeeIdRehire: API.OperationMethod<
-  PutV1EmployeesEmployeeIdRehireRequest,
-  Rehire,
-  PutV1EmployeesEmployeeIdRehireError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PutV1EmployeesEmployeeIdRehireRequest,
-  output: Rehire,
-  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PutV1GarnishmentsGarnishmentIdError =
-  | NotFound
-  | UnprocessableEntity
-  | GustoOpError;
-/** Update a garnishment Garnishments, or employee deductions, are fixed amounts or percentages deducted from an employee’s pay. They can be deducted a specific number of times or on a recurring basis. Garnishments can also have maximum deductions on a yearly or per-pay-period bases. Common uses for garnishments are court-ordered payments for child support or back taxes. Some companies provide loans to their employees that are repaid via garnishments. scope: `garnishments:write` */
-export const putV1GarnishmentsGarnishmentId: API.OperationMethod<
-  PutV1GarnishmentsGarnishmentIdRequest,
-  Garnishment,
-  PutV1GarnishmentsGarnishmentIdError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PutV1GarnishmentsGarnishmentIdRequest,
-  output: Garnishment,
-  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PutV1HomeAddressesHomeAddressUuidError =
-  | NotFound
-  | UnprocessableEntity
-  | GustoOpError;
-/** Update an employee's home address The home address of an employee is used to determine certain tax information about them. Addresses are geocoded on create and update to ensure validity. Supports home address effective dating and courtesy withholding. scope: `employees:write` */
-export const putV1HomeAddressesHomeAddressUuid: API.OperationMethod<
-  PutV1HomeAddressesHomeAddressUuidRequest,
-  EmployeeAddress,
-  PutV1HomeAddressesHomeAddressUuidError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PutV1HomeAddressesHomeAddressUuidRequest,
-  output: EmployeeAddress,
-  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PutV1LocationsLocationIdError =
-  | NotFound
-  | Conflict
-  | UnprocessableEntity
-  | GustoOpError;
-/** Update a location Update a location. scope: `companies:write` */
-export const putV1LocationsLocationId: API.OperationMethod<
-  PutV1LocationsLocationIdRequest,
-  Location,
-  PutV1LocationsLocationIdError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PutV1LocationsLocationIdRequest,
-  output: Location,
-  errors: [NotFound, Conflict, UnprocessableEntity, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PutV1RecurringReimbursementsError =
-  | NotFound
-  | Conflict
-  | UnprocessableEntity
-  | GustoOpError;
-/** Update a recurring reimbursement Update a recurring reimbursement. scope: `reimbursements:write` */
-export const putV1RecurringReimbursements: API.OperationMethod<
-  PutV1RecurringReimbursementsRequest,
-  RecurringReimbursement,
-  PutV1RecurringReimbursementsError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PutV1RecurringReimbursementsRequest,
-  output: RecurringReimbursement,
-  errors: [NotFound, Conflict, UnprocessableEntity, UnknownGustoError],
   protocol: GustoProtocol,
   retry: Retry.Retry,
 }));
@@ -14250,42 +13924,6 @@ export const putV1SalaryEstimatesId: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: PutV1SalaryEstimatesIdRequest,
   output: SalaryEstimate,
-  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PutV1TerminationsEmployeeIdError =
-  | NotFound
-  | UnprocessableEntity
-  | GustoOpError;
-/** Update an employee termination Terminations are created whenever an employee is scheduled to leave the company. The only things required are an effective date (their last day of work) and whether they should receive their wages in a one-off termination payroll or with the rest of the company. Note that some states require employees to receive their final wages within 24 hours (unless they consent otherwise,) in which case running a one-off payroll may be the only option. scope: `employments:write` */
-export const putV1TerminationsEmployeeId: API.OperationMethod<
-  PutV1TerminationsEmployeeIdRequest,
-  Termination,
-  PutV1TerminationsEmployeeIdError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PutV1TerminationsEmployeeIdRequest,
-  output: Termination,
-  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
-  protocol: GustoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PutV1TimeOffPoliciesTimeOffPolicyUuidAddEmployeesError =
-  | NotFound
-  | UnprocessableEntity
-  | GustoOpError;
-/** Add employees to a time off policy Add employees to a time off policy. Employees are required to have at least one job to be added to a time off policy. Accepts starting balances for non-unlimited policies scope: `time_off_policies:write` */
-export const putV1TimeOffPoliciesTimeOffPolicyUuidAddEmployees: API.OperationMethod<
-  PutV1TimeOffPoliciesTimeOffPolicyUuidAddEmployeesRequest,
-  TimeOffPolicy,
-  PutV1TimeOffPoliciesTimeOffPolicyUuidAddEmployeesError,
-  GustoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PutV1TimeOffPoliciesTimeOffPolicyUuidAddEmployeesRequest,
-  output: TimeOffPolicy,
   errors: [NotFound, UnprocessableEntity, UnknownGustoError],
   protocol: GustoProtocol,
   retry: Retry.Retry,
@@ -14309,36 +13947,33 @@ export const putV1VerifyWebhookSubscriptionUuid: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PutV1WebhookSubscriptionUuidError =
+export type PutWebhookSubscriptionUuidError =
   | NotFound
   | UnprocessableEntity
   | GustoOpError;
 /** Update a webhook subscription Updates the Webhook Subscription associated with the provided UUID. 📘 System Access Authentication This endpoint uses the [Bearer Auth scheme with the system-level access token in the HTTP Authorization header](https://docs.gusto.com/embedded-payroll/docs/system-access) scope: `webhook_subscriptions:write` */
-export const putV1WebhookSubscriptionUuid: API.OperationMethod<
-  PutV1WebhookSubscriptionUuidRequest,
+export const putWebhookSubscriptionUuid: API.OperationMethod<
+  PutWebhookSubscriptionUuidRequest,
   WebhookSubscription,
-  PutV1WebhookSubscriptionUuidError,
+  PutWebhookSubscriptionUuidError,
   GustoOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutV1WebhookSubscriptionUuidRequest,
+  input: PutWebhookSubscriptionUuidRequest,
   output: WebhookSubscription,
   errors: [NotFound, UnprocessableEntity, UnknownGustoError],
   protocol: GustoProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutV1WorkAddressesWorkAddressUuidError =
-  | NotFound
-  | UnprocessableEntity
-  | GustoOpError;
+export type PutWorkAddressError = NotFound | UnprocessableEntity | GustoOpError;
 /** Update an employee work address The work address of an employee is used for payroll tax purposes. scope: `employees:manage` */
-export const putV1WorkAddressesWorkAddressUuid: API.OperationMethod<
-  PutV1WorkAddressesWorkAddressUuidRequest,
+export const putWorkAddress: API.OperationMethod<
+  PutWorkAddressRequest,
   EmployeeWorkAddress,
-  PutV1WorkAddressesWorkAddressUuidError,
+  PutWorkAddressError,
   GustoOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutV1WorkAddressesWorkAddressUuidRequest,
+  input: PutWorkAddressRequest,
   output: EmployeeWorkAddress,
   errors: [NotFound, UnprocessableEntity, UnknownGustoError],
   protocol: GustoProtocol,
@@ -14356,6 +13991,24 @@ export const revokeAccessToken: API.OperationMethod<
   input: RevokeAccessTokenRequest,
   output: RevokeAccessTokenResponse,
   errors: [UnknownGustoError],
+  protocol: GustoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateEmployeeSection603HighEarnerStatusError =
+  | NotFound
+  | UnprocessableEntity
+  | GustoOpError;
+/** Update a Section 603 high earner status Update a Section 603 high earner status for an employee for a specific year. Section 603 of the SECURE 2.0 Act applies to employees aged 50 or older whose prior-year FICA wages exceed the IRS threshold. These employees are classified as high earners, and their catch-up contributions to pre-tax retirement benefits must be designated as post-tax contributions. scope: `employee_benefits:write` */
+export const updateEmployeeSection603HighEarnerStatus: API.OperationMethod<
+  UpdateEmployeeSection603HighEarnerStatusRequest,
+  EmployeeSection603HighEarnerStatus,
+  UpdateEmployeeSection603HighEarnerStatusError,
+  GustoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateEmployeeSection603HighEarnerStatusRequest,
+  output: EmployeeSection603HighEarnerStatus,
+  errors: [NotFound, UnprocessableEntity, UnknownGustoError],
   protocol: GustoProtocol,
   retry: Retry.Retry,
 }));
