@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.sentry.api#ListOrganizationsRequest": {
@@ -52458,7 +52459,7 @@
         "smithy.api#documentation": "List Trace Item Attributes\n\nList the attribute keys available on a given trace item dataset (spans, logs,\ntrace metrics, etc.), with optional substring and structured filtering."
       }
     },
-    "com.sentry.api#RetrieveTraceItemStatisticsRequestStatsTypeItem": {
+    "com.sentry.api#GetTraceItemStatisticsRequestStatsTypeItem": {
       "type": "enum",
       "members": {
         "ATTRIBUTEDISTRIBUTIONS": {
@@ -52470,14 +52471,14 @@
       },
       "traits": {}
     },
-    "com.sentry.api#RetrieveTraceItemStatisticsRequestStatsTypeList": {
+    "com.sentry.api#GetTraceItemStatisticsRequestStatsTypeList": {
       "type": "list",
       "member": {
-        "target": "com.sentry.api#RetrieveTraceItemStatisticsRequestStatsTypeItem"
+        "target": "com.sentry.api#GetTraceItemStatisticsRequestStatsTypeItem"
       },
       "traits": {}
     },
-    "com.sentry.api#RetrieveTraceItemStatisticsRequestProjectItem": {
+    "com.sentry.api#GetTraceItemStatisticsRequestProjectItem": {
       "type": "union",
       "members": {
         "Case0": {
@@ -52489,21 +52490,21 @@
       },
       "traits": {}
     },
-    "com.sentry.api#RetrieveTraceItemStatisticsRequestProjectList": {
+    "com.sentry.api#GetTraceItemStatisticsRequestProjectList": {
       "type": "list",
       "member": {
-        "target": "com.sentry.api#RetrieveTraceItemStatisticsRequestProjectItem"
+        "target": "com.sentry.api#GetTraceItemStatisticsRequestProjectItem"
       },
       "traits": {}
     },
-    "com.sentry.api#RetrieveTraceItemStatisticsRequestEnvironmentList": {
+    "com.sentry.api#GetTraceItemStatisticsRequestEnvironmentList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.sentry.api#RetrieveTraceItemStatisticsRequestItemType": {
+    "com.sentry.api#GetTraceItemStatisticsRequestItemType": {
       "type": "enum",
       "members": {
         "OCCURRENCES": {
@@ -52521,7 +52522,7 @@
       },
       "traits": {}
     },
-    "com.sentry.api#RetrieveTraceItemStatisticsRequest": {
+    "com.sentry.api#GetTraceItemStatisticsRequest": {
       "type": "structure",
       "members": {
         "organization_id_or_slug": {
@@ -52533,7 +52534,7 @@
           }
         },
         "statsType": {
-          "target": "com.sentry.api#RetrieveTraceItemStatisticsRequestStatsTypeList",
+          "target": "com.sentry.api#GetTraceItemStatisticsRequestStatsTypeList",
           "traits": {
             "smithy.api#httpQuery": "statsType",
             "smithy.api#required": {},
@@ -52541,14 +52542,14 @@
           }
         },
         "project": {
-          "target": "com.sentry.api#RetrieveTraceItemStatisticsRequestProjectList",
+          "target": "com.sentry.api#GetTraceItemStatisticsRequestProjectList",
           "traits": {
             "smithy.api#httpQuery": "project",
             "smithy.api#documentation": "The IDs or slugs of projects to filter by. Project slugs are unique within each organization. Omit this parameter to include all accessible projects. `-1` is also accepted to include all accessible projects.\nFor example, the following are valid parameters:\n- `/?project=1234&project=56789`\n- `/?project=android&project=javascript-react`\n- `/?project=-1`\n"
           }
         },
         "environment": {
-          "target": "com.sentry.api#RetrieveTraceItemStatisticsRequestEnvironmentList",
+          "target": "com.sentry.api#GetTraceItemStatisticsRequestEnvironmentList",
           "traits": {
             "smithy.api#httpQuery": "environment",
             "smithy.api#documentation": "The name of environments to filter by."
@@ -52576,7 +52577,7 @@
           }
         },
         "itemType": {
-          "target": "com.sentry.api#RetrieveTraceItemStatisticsRequestItemType",
+          "target": "com.sentry.api#GetTraceItemStatisticsRequestItemType",
           "traits": {
             "smithy.api#httpQuery": "itemType",
             "smithy.api#documentation": "The trace item dataset to compute statistics for. Defaults to `spans`."
@@ -52615,7 +52616,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.sentry.api#RetrieveTraceItemStatisticsResponseDataItemAttributeDistributionsDataValueItem": {
+    "com.sentry.api#GetTraceItemStatisticsResponseDataItemAttributeDistributionsDataValueItem": {
       "type": "structure",
       "members": {
         "label": {
@@ -52633,28 +52634,28 @@
       },
       "traits": {}
     },
-    "com.sentry.api#RetrieveTraceItemStatisticsResponseDataItemAttributeDistributionsDataValueList": {
+    "com.sentry.api#GetTraceItemStatisticsResponseDataItemAttributeDistributionsDataValueList": {
       "type": "list",
       "member": {
-        "target": "com.sentry.api#RetrieveTraceItemStatisticsResponseDataItemAttributeDistributionsDataValueItem"
+        "target": "com.sentry.api#GetTraceItemStatisticsResponseDataItemAttributeDistributionsDataValueItem"
       },
       "traits": {}
     },
-    "com.sentry.api#RetrieveTraceItemStatisticsResponseDataItemAttributeDistributionsDataMap": {
+    "com.sentry.api#GetTraceItemStatisticsResponseDataItemAttributeDistributionsDataMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "com.sentry.api#RetrieveTraceItemStatisticsResponseDataItemAttributeDistributionsDataValueList"
+        "target": "com.sentry.api#GetTraceItemStatisticsResponseDataItemAttributeDistributionsDataValueList"
       },
       "traits": {}
     },
-    "com.sentry.api#RetrieveTraceItemStatisticsResponseDataItemAttributeDistributions": {
+    "com.sentry.api#GetTraceItemStatisticsResponseDataItemAttributeDistributions": {
       "type": "structure",
       "members": {
         "data": {
-          "target": "com.sentry.api#RetrieveTraceItemStatisticsResponseDataItemAttributeDistributionsDataMap",
+          "target": "com.sentry.api#GetTraceItemStatisticsResponseDataItemAttributeDistributionsDataMap",
           "traits": {
             "smithy.api#required": {}
           }
@@ -52662,11 +52663,11 @@
       },
       "traits": {}
     },
-    "com.sentry.api#RetrieveTraceItemStatisticsResponseDataItem": {
+    "com.sentry.api#GetTraceItemStatisticsResponseDataItem": {
       "type": "structure",
       "members": {
         "attributeDistributions": {
-          "target": "com.sentry.api#RetrieveTraceItemStatisticsResponseDataItemAttributeDistributions",
+          "target": "com.sentry.api#GetTraceItemStatisticsResponseDataItemAttributeDistributions",
           "traits": {
             "smithy.api#required": {}
           }
@@ -52674,18 +52675,18 @@
       },
       "traits": {}
     },
-    "com.sentry.api#RetrieveTraceItemStatisticsResponseDataList": {
+    "com.sentry.api#GetTraceItemStatisticsResponseDataList": {
       "type": "list",
       "member": {
-        "target": "com.sentry.api#RetrieveTraceItemStatisticsResponseDataItem"
+        "target": "com.sentry.api#GetTraceItemStatisticsResponseDataItem"
       },
       "traits": {}
     },
-    "com.sentry.api#RetrieveTraceItemStatisticsResponse": {
+    "com.sentry.api#GetTraceItemStatisticsResponse": {
       "type": "structure",
       "members": {
         "data": {
-          "target": "com.sentry.api#RetrieveTraceItemStatisticsResponseDataList",
+          "target": "com.sentry.api#GetTraceItemStatisticsResponseDataList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -52695,13 +52696,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.sentry.api#RetrieveTraceItemStatistics": {
+    "com.sentry.api#GetTraceItemStatistics": {
       "type": "operation",
       "input": {
-        "target": "com.sentry.api#RetrieveTraceItemStatisticsRequest"
+        "target": "com.sentry.api#GetTraceItemStatisticsRequest"
       },
       "output": {
-        "target": "com.sentry.api#RetrieveTraceItemStatisticsResponse"
+        "target": "com.sentry.api#GetTraceItemStatisticsResponse"
       },
       "errors": [
         {
@@ -86872,7 +86873,7 @@
         "smithy.api#documentation": "Register a new service hook on a project.\n\nEvents include:\n\n- event.alert: An alert is generated for an event (via rules).\n- event.created: A new event has been processed.\n\nThis endpoint requires the 'servicehooks' feature to be enabled for your project."
       }
     },
-    "com.sentry.api#RetrieveAServiceHookRequest": {
+    "com.sentry.api#GetAServiceHookRequest": {
       "type": "structure",
       "members": {
         "organization_id_or_slug": {
@@ -86904,14 +86905,14 @@
         "smithy.api#input": {}
       }
     },
-    "com.sentry.api#RetrieveAServiceHookResponseEventsList": {
+    "com.sentry.api#GetAServiceHookResponseEventsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.sentry.api#RetrieveAServiceHookResponse": {
+    "com.sentry.api#GetAServiceHookResponse": {
       "type": "structure",
       "members": {
         "dateCreated": {
@@ -86921,7 +86922,7 @@
           }
         },
         "events": {
-          "target": "com.sentry.api#RetrieveAServiceHookResponseEventsList",
+          "target": "com.sentry.api#GetAServiceHookResponseEventsList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -86956,13 +86957,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.sentry.api#RetrieveAServiceHook": {
+    "com.sentry.api#GetAServiceHook": {
       "type": "operation",
       "input": {
-        "target": "com.sentry.api#RetrieveAServiceHookRequest"
+        "target": "com.sentry.api#GetAServiceHookRequest"
       },
       "output": {
-        "target": "com.sentry.api#RetrieveAServiceHookResponse"
+        "target": "com.sentry.api#GetAServiceHookResponse"
       },
       "errors": [
         {
@@ -87604,7 +87605,7 @@
         "smithy.api#documentation": "List a Tag's Values for an Issue\n\nReturns a list of values associated with this key for an issue.\nReturns at most 1000 values when paginated."
       }
     },
-    "com.sentry.api#RetrieveFilesChangedInAReleaseSCommitsRequest": {
+    "com.sentry.api#GetFilesChangedInAReleaseSCommitsRequest": {
       "type": "structure",
       "members": {
         "organization_id_or_slug": {
@@ -87628,10 +87629,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.sentry.api#RetrieveFilesChangedInAReleaseSCommits": {
+    "com.sentry.api#GetFilesChangedInAReleaseSCommits": {
       "type": "operation",
       "input": {
-        "target": "com.sentry.api#RetrieveFilesChangedInAReleaseSCommitsRequest"
+        "target": "com.sentry.api#GetFilesChangedInAReleaseSCommitsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -93987,7 +93988,7 @@
         "smithy.api#documentation": "List an Issue's Hashes\n\nList the hashes that make up an issue. Each hash represents a grouping\nsignature used to aggregate individual events into this issue."
       }
     },
-    "com.sentry.api#RetrieveAnIntegrationSIssueConfigForAnIssueRequestAction": {
+    "com.sentry.api#GetAnIntegrationSIssueConfigForAnIssueRequestAction": {
       "type": "enum",
       "members": {
         "CREATE": {
@@ -94005,7 +94006,7 @@
       },
       "traits": {}
     },
-    "com.sentry.api#RetrieveAnIntegrationSIssueConfigForAnIssueRequest": {
+    "com.sentry.api#GetAnIntegrationSIssueConfigForAnIssueRequest": {
       "type": "structure",
       "members": {
         "organization_id_or_slug": {
@@ -94033,7 +94034,7 @@
           }
         },
         "action": {
-          "target": "com.sentry.api#RetrieveAnIntegrationSIssueConfigForAnIssueRequestAction",
+          "target": "com.sentry.api#GetAnIntegrationSIssueConfigForAnIssueRequestAction",
           "traits": {
             "smithy.api#httpQuery": "action",
             "smithy.api#required": {},
@@ -94045,21 +94046,21 @@
         "smithy.api#input": {}
       }
     },
-    "com.sentry.api#RetrieveAnIntegrationSIssueConfigForAnIssueResponseScopesList": {
+    "com.sentry.api#GetAnIntegrationSIssueConfigForAnIssueResponseScopesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.sentry.api#RetrieveAnIntegrationSIssueConfigForAnIssueResponseProviderFeaturesList": {
+    "com.sentry.api#GetAnIntegrationSIssueConfigForAnIssueResponseProviderFeaturesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.sentry.api#RetrieveAnIntegrationSIssueConfigForAnIssueResponseProviderAspectsMap": {
+    "com.sentry.api#GetAnIntegrationSIssueConfigForAnIssueResponseProviderAspectsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -94069,7 +94070,7 @@
       },
       "traits": {}
     },
-    "com.sentry.api#RetrieveAnIntegrationSIssueConfigForAnIssueResponseProvider": {
+    "com.sentry.api#GetAnIntegrationSIssueConfigForAnIssueResponseProvider": {
       "type": "structure",
       "members": {
         "key": {
@@ -94103,13 +94104,13 @@
           }
         },
         "features": {
-          "target": "com.sentry.api#RetrieveAnIntegrationSIssueConfigForAnIssueResponseProviderFeaturesList",
+          "target": "com.sentry.api#GetAnIntegrationSIssueConfigForAnIssueResponseProviderFeaturesList",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "aspects": {
-          "target": "com.sentry.api#RetrieveAnIntegrationSIssueConfigForAnIssueResponseProviderAspectsMap",
+          "target": "com.sentry.api#GetAnIntegrationSIssueConfigForAnIssueResponseProviderAspectsMap",
           "traits": {
             "smithy.api#required": {}
           }
@@ -94117,7 +94118,7 @@
       },
       "traits": {}
     },
-    "com.sentry.api#RetrieveAnIntegrationSIssueConfigForAnIssueResponseLinkIssueConfigItemMap": {
+    "com.sentry.api#GetAnIntegrationSIssueConfigForAnIssueResponseLinkIssueConfigItemMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -94127,14 +94128,14 @@
       },
       "traits": {}
     },
-    "com.sentry.api#RetrieveAnIntegrationSIssueConfigForAnIssueResponseLinkIssueConfigList": {
+    "com.sentry.api#GetAnIntegrationSIssueConfigForAnIssueResponseLinkIssueConfigList": {
       "type": "list",
       "member": {
-        "target": "com.sentry.api#RetrieveAnIntegrationSIssueConfigForAnIssueResponseLinkIssueConfigItemMap"
+        "target": "com.sentry.api#GetAnIntegrationSIssueConfigForAnIssueResponseLinkIssueConfigItemMap"
       },
       "traits": {}
     },
-    "com.sentry.api#RetrieveAnIntegrationSIssueConfigForAnIssueResponseCreateIssueConfigItemMap": {
+    "com.sentry.api#GetAnIntegrationSIssueConfigForAnIssueResponseCreateIssueConfigItemMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -94144,14 +94145,14 @@
       },
       "traits": {}
     },
-    "com.sentry.api#RetrieveAnIntegrationSIssueConfigForAnIssueResponseCreateIssueConfigList": {
+    "com.sentry.api#GetAnIntegrationSIssueConfigForAnIssueResponseCreateIssueConfigList": {
       "type": "list",
       "member": {
-        "target": "com.sentry.api#RetrieveAnIntegrationSIssueConfigForAnIssueResponseCreateIssueConfigItemMap"
+        "target": "com.sentry.api#GetAnIntegrationSIssueConfigForAnIssueResponseCreateIssueConfigItemMap"
       },
       "traits": {}
     },
-    "com.sentry.api#RetrieveAnIntegrationSIssueConfigForAnIssueResponse": {
+    "com.sentry.api#GetAnIntegrationSIssueConfigForAnIssueResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -94188,7 +94189,7 @@
           }
         },
         "scopes": {
-          "target": "com.sentry.api#RetrieveAnIntegrationSIssueConfigForAnIssueResponseScopesList",
+          "target": "com.sentry.api#GetAnIntegrationSIssueConfigForAnIssueResponseScopesList",
           "traits": {
             "smithy.api#required": {},
             "com.distilled.openapi#nullable": {}
@@ -94208,29 +94209,29 @@
           }
         },
         "provider": {
-          "target": "com.sentry.api#RetrieveAnIntegrationSIssueConfigForAnIssueResponseProvider",
+          "target": "com.sentry.api#GetAnIntegrationSIssueConfigForAnIssueResponseProvider",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "linkIssueConfig": {
-          "target": "com.sentry.api#RetrieveAnIntegrationSIssueConfigForAnIssueResponseLinkIssueConfigList"
+          "target": "com.sentry.api#GetAnIntegrationSIssueConfigForAnIssueResponseLinkIssueConfigList"
         },
         "createIssueConfig": {
-          "target": "com.sentry.api#RetrieveAnIntegrationSIssueConfigForAnIssueResponseCreateIssueConfigList"
+          "target": "com.sentry.api#GetAnIntegrationSIssueConfigForAnIssueResponseCreateIssueConfigList"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.sentry.api#RetrieveAnIntegrationSIssueConfigForAnIssue": {
+    "com.sentry.api#GetAnIntegrationSIssueConfigForAnIssue": {
       "type": "operation",
       "input": {
-        "target": "com.sentry.api#RetrieveAnIntegrationSIssueConfigForAnIssueRequest"
+        "target": "com.sentry.api#GetAnIntegrationSIssueConfigForAnIssueRequest"
       },
       "output": {
-        "target": "com.sentry.api#RetrieveAnIntegrationSIssueConfigForAnIssueResponse"
+        "target": "com.sentry.api#GetAnIntegrationSIssueConfigForAnIssueResponse"
       },
       "errors": [
         {
@@ -95082,7 +95083,7 @@
           "target": "com.sentry.api#ListOrganizationTraceItemAttributes"
         },
         {
-          "target": "com.sentry.api#RetrieveTraceItemStatistics"
+          "target": "com.sentry.api#GetTraceItemStatistics"
         },
         {
           "target": "com.sentry.api#GetOrganizationTraceMeta"
@@ -95343,7 +95344,7 @@
           "target": "com.sentry.api#RegisterANewServiceHook"
         },
         {
-          "target": "com.sentry.api#RetrieveAServiceHook"
+          "target": "com.sentry.api#GetAServiceHook"
         },
         {
           "target": "com.sentry.api#UpdateAServiceHook"
@@ -95361,7 +95362,7 @@
           "target": "com.sentry.api#ListOrganizationIssueTagValues"
         },
         {
-          "target": "com.sentry.api#RetrieveFilesChangedInAReleaseSCommits"
+          "target": "com.sentry.api#GetFilesChangedInAReleaseSCommits"
         },
         {
           "target": "com.sentry.api#ListAnOrganizationSIntegrationPlatformInstallations"
@@ -95406,7 +95407,7 @@
           "target": "com.sentry.api#ListOrganizationIssueHashes"
         },
         {
-          "target": "com.sentry.api#RetrieveAnIntegrationSIssueConfigForAnIssue"
+          "target": "com.sentry.api#GetAnIntegrationSIssueConfigForAnIssue"
         },
         {
           "target": "com.sentry.api#CreateAnExternalIssueAndLinkItToAnIssue"

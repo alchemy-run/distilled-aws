@@ -7963,6 +7963,236 @@ export const EnableSpikeProtectionResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "EnableSpikeProtectionResponse",
 }) as any as S.Schema<EnableSpikeProtectionResponse>;
 
+export type GetAnIntegrationSIssueConfigForAnIssueRequestAction =
+  | "create"
+  | "link";
+export const GetAnIntegrationSIssueConfigForAnIssueRequestAction =
+  /*@__PURE__*/ S.String;
+
+export interface GetAnIntegrationSIssueConfigForAnIssueRequest {
+  /** The ID or slug of the organization the resource belongs to. */
+  organization_id_or_slug: string;
+  /** The ID of the issue you'd like to query. */
+  issue_id: string;
+  /** The ID of the integration installed on the organization. */
+  integration_id: string;
+  /** Whether to fetch the config for linking an existing external issue (`link`) or creating a new one (`create`). */
+  action: GetAnIntegrationSIssueConfigForAnIssueRequestAction | (string & {});
+}
+export const GetAnIntegrationSIssueConfigForAnIssueRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      organization_id_or_slug: S.String.pipe(T.Label()),
+      issue_id: S.String.pipe(T.Label()),
+      integration_id: S.String.pipe(T.Label()),
+      action: GetAnIntegrationSIssueConfigForAnIssueRequestAction.pipe(
+        T.Query(),
+      ),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/0/organizations/{organization_id_or_slug}/issues/{issue_id}/integrations/{integration_id}/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "GetAnIntegrationSIssueConfigForAnIssueRequest",
+  }) as any as S.Schema<GetAnIntegrationSIssueConfigForAnIssueRequest>;
+
+export type GetAnIntegrationSIssueConfigForAnIssueResponseScopesList =
+  Array<string>;
+export const GetAnIntegrationSIssueConfigForAnIssueResponseScopesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<GetAnIntegrationSIssueConfigForAnIssueResponseScopesList>;
+
+export type GetAnIntegrationSIssueConfigForAnIssueResponseProviderFeaturesList =
+  Array<string>;
+export const GetAnIntegrationSIssueConfigForAnIssueResponseProviderFeaturesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<GetAnIntegrationSIssueConfigForAnIssueResponseProviderFeaturesList>;
+
+export type GetAnIntegrationSIssueConfigForAnIssueResponseProviderAspectsMap = {
+  [key: string]: unknown | undefined;
+};
+export const GetAnIntegrationSIssueConfigForAnIssueResponseProviderAspectsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<GetAnIntegrationSIssueConfigForAnIssueResponseProviderAspectsMap>;
+
+export interface GetAnIntegrationSIssueConfigForAnIssueResponseProvider {
+  key: string;
+  slug: string;
+  name: string;
+  canAdd: boolean;
+  canDisable: boolean;
+  features: GetAnIntegrationSIssueConfigForAnIssueResponseProviderFeaturesList;
+  aspects: GetAnIntegrationSIssueConfigForAnIssueResponseProviderAspectsMap;
+}
+export const GetAnIntegrationSIssueConfigForAnIssueResponseProvider =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      key: S.String,
+      slug: S.String,
+      name: S.String,
+      canAdd: S.Boolean,
+      canDisable: S.Boolean,
+      features:
+        GetAnIntegrationSIssueConfigForAnIssueResponseProviderFeaturesList,
+      aspects: GetAnIntegrationSIssueConfigForAnIssueResponseProviderAspectsMap,
+    }),
+  ).annotate({
+    identifier: "GetAnIntegrationSIssueConfigForAnIssueResponseProvider",
+  }) as any as S.Schema<GetAnIntegrationSIssueConfigForAnIssueResponseProvider>;
+
+export type GetAnIntegrationSIssueConfigForAnIssueResponseLinkIssueConfigItemMap =
+  { [key: string]: unknown | undefined };
+export const GetAnIntegrationSIssueConfigForAnIssueResponseLinkIssueConfigItemMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<GetAnIntegrationSIssueConfigForAnIssueResponseLinkIssueConfigItemMap>;
+
+export type GetAnIntegrationSIssueConfigForAnIssueResponseLinkIssueConfigList =
+  Array<GetAnIntegrationSIssueConfigForAnIssueResponseLinkIssueConfigItemMap>;
+export const GetAnIntegrationSIssueConfigForAnIssueResponseLinkIssueConfigList =
+  /*@__PURE__*/ S.Array(
+    GetAnIntegrationSIssueConfigForAnIssueResponseLinkIssueConfigItemMap,
+  ) as any as S.Schema<GetAnIntegrationSIssueConfigForAnIssueResponseLinkIssueConfigList>;
+
+export type GetAnIntegrationSIssueConfigForAnIssueResponseCreateIssueConfigItemMap =
+  { [key: string]: unknown | undefined };
+export const GetAnIntegrationSIssueConfigForAnIssueResponseCreateIssueConfigItemMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<GetAnIntegrationSIssueConfigForAnIssueResponseCreateIssueConfigItemMap>;
+
+export type GetAnIntegrationSIssueConfigForAnIssueResponseCreateIssueConfigList =
+  Array<GetAnIntegrationSIssueConfigForAnIssueResponseCreateIssueConfigItemMap>;
+export const GetAnIntegrationSIssueConfigForAnIssueResponseCreateIssueConfigList =
+  /*@__PURE__*/ S.Array(
+    GetAnIntegrationSIssueConfigForAnIssueResponseCreateIssueConfigItemMap,
+  ) as any as S.Schema<GetAnIntegrationSIssueConfigForAnIssueResponseCreateIssueConfigList>;
+
+export interface GetAnIntegrationSIssueConfigForAnIssueResponse {
+  id: string;
+  name: string;
+  icon: string | null;
+  domainName: string | null;
+  accountType: string | null;
+  scopes: GetAnIntegrationSIssueConfigForAnIssueResponseScopesList | null;
+  outOfDate: boolean | null;
+  status: string;
+  provider: GetAnIntegrationSIssueConfigForAnIssueResponseProvider;
+  linkIssueConfig?: GetAnIntegrationSIssueConfigForAnIssueResponseLinkIssueConfigList;
+  createIssueConfig?: GetAnIntegrationSIssueConfigForAnIssueResponseCreateIssueConfigList;
+}
+export const GetAnIntegrationSIssueConfigForAnIssueResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.String,
+      name: S.String,
+      icon: S.NullOr(S.String),
+      domainName: S.NullOr(S.String),
+      accountType: S.NullOr(S.String),
+      scopes: S.NullOr(
+        GetAnIntegrationSIssueConfigForAnIssueResponseScopesList,
+      ),
+      outOfDate: S.NullOr(S.Boolean),
+      status: S.String,
+      provider: GetAnIntegrationSIssueConfigForAnIssueResponseProvider,
+      linkIssueConfig: S.optional(
+        GetAnIntegrationSIssueConfigForAnIssueResponseLinkIssueConfigList,
+      ),
+      createIssueConfig: S.optional(
+        GetAnIntegrationSIssueConfigForAnIssueResponseCreateIssueConfigList,
+      ),
+    }),
+  ).annotate({
+    identifier: "GetAnIntegrationSIssueConfigForAnIssueResponse",
+  }) as any as S.Schema<GetAnIntegrationSIssueConfigForAnIssueResponse>;
+
+export interface GetAServiceHookRequest {
+  /** The ID or slug of the organization the client keys belong to. */
+  organization_id_or_slug: string;
+  /** The ID or slug of the project the client keys belong to. */
+  project_id_or_slug: string;
+  /** The GUID of the service hook. */
+  hook_id: string;
+}
+export const GetAServiceHookRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    organization_id_or_slug: S.String.pipe(T.Label()),
+    project_id_or_slug: S.String.pipe(T.Label()),
+    hook_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/0/projects/{organization_id_or_slug}/{project_id_or_slug}/hooks/{hook_id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetAServiceHookRequest",
+}) as any as S.Schema<GetAServiceHookRequest>;
+
+export type GetAServiceHookResponseEventsList = Array<string>;
+export const GetAServiceHookResponseEventsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GetAServiceHookResponseEventsList>;
+
+export interface GetAServiceHookResponse {
+  dateCreated: string;
+  events: GetAServiceHookResponseEventsList;
+  id: string;
+  secret: string | Redacted.Redacted<string>;
+  status: string;
+  url: string;
+}
+export const GetAServiceHookResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    dateCreated: S.String,
+    events: GetAServiceHookResponseEventsList,
+    id: S.String,
+    secret: S.String.pipe(T.SensitiveValue({})),
+    status: S.String,
+    url: S.String,
+  }),
+).annotate({
+  identifier: "GetAServiceHookResponse",
+}) as any as S.Schema<GetAServiceHookResponse>;
+
+export interface GetFilesChangedInAReleaseSCommitsRequest {
+  /** The ID or slug of the organization the release belongs to. */
+  organization_id_or_slug: string;
+  /** The version identifier of the release. */
+  version: string;
+}
+export const GetFilesChangedInAReleaseSCommitsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      organization_id_or_slug: S.String.pipe(T.Label()),
+      version: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/0/organizations/{organization_id_or_slug}/releases/{version}/commitfiles/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "GetFilesChangedInAReleaseSCommitsRequest",
+}) as any as S.Schema<GetFilesChangedInAReleaseSCommitsRequest>;
+
+export interface GetFilesChangedInAReleaseSCommitsResponse {}
+export const GetFilesChangedInAReleaseSCommitsResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "GetFilesChangedInAReleaseSCommitsResponse",
+  }) as any as S.Schema<GetFilesChangedInAReleaseSCommitsResponse>;
+
 export interface GetOrganizationRequest {
   /** The ID or slug of the organization the resource belongs to. */
   organization_id_or_slug: string;
@@ -18336,6 +18566,168 @@ export const GetTeamResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetTeamResponse",
 }) as any as S.Schema<GetTeamResponse>;
+
+export type GetTraceItemStatisticsRequestStatsTypeItem =
+  "attributeDistributions";
+export const GetTraceItemStatisticsRequestStatsTypeItem =
+  /*@__PURE__*/ S.String;
+
+export type GetTraceItemStatisticsRequestStatsTypeList = Array<
+  GetTraceItemStatisticsRequestStatsTypeItem | (string & {})
+>;
+export const GetTraceItemStatisticsRequestStatsTypeList = /*@__PURE__*/ S.Array(
+  GetTraceItemStatisticsRequestStatsTypeItem,
+) as any as S.Schema<GetTraceItemStatisticsRequestStatsTypeList>;
+
+export type GetTraceItemStatisticsRequestProjectItem = number | string;
+export const GetTraceItemStatisticsRequestProjectItem =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<GetTraceItemStatisticsRequestProjectItem>;
+
+export type GetTraceItemStatisticsRequestProjectList =
+  Array<GetTraceItemStatisticsRequestProjectItem>;
+export const GetTraceItemStatisticsRequestProjectList = /*@__PURE__*/ S.Array(
+  GetTraceItemStatisticsRequestProjectItem,
+) as any as S.Schema<GetTraceItemStatisticsRequestProjectList>;
+
+export type GetTraceItemStatisticsRequestEnvironmentList = Array<string>;
+export const GetTraceItemStatisticsRequestEnvironmentList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<GetTraceItemStatisticsRequestEnvironmentList>;
+
+export type GetTraceItemStatisticsRequestItemType = "occurrences" | "spans";
+export const GetTraceItemStatisticsRequestItemType = /*@__PURE__*/ S.String;
+
+export interface GetTraceItemStatisticsRequest {
+  /** The ID or slug of the organization the resource belongs to. */
+  organization_id_or_slug: string;
+  /** The statistics to compute over the matching trace items. */
+  statsType: GetTraceItemStatisticsRequestStatsTypeList;
+  /** The IDs or slugs of projects to filter by. Project slugs are unique within each organization. Omit this parameter to include all accessible projects. `-1` is also accepted to include all accessible projects. For example, the following are valid parameters: - `/?project=1234&project=56789` - `/?project=android&project=javascript-react` - `/?project=-1` */
+  project?: GetTraceItemStatisticsRequestProjectList;
+  /** The name of environments to filter by. */
+  environment?: GetTraceItemStatisticsRequestEnvironmentList;
+  /** The period of time for the query, will override the start & end parameters, a number followed by one of: - `d` for days - `h` for hours - `m` for minutes - `s` for seconds - `w` for weeks For example, `24h`, to mean query data starting from 24 hours ago to now. */
+  statsPeriod?: string;
+  /** The start of the period of time for the query, expected in ISO-8601 format. For example, `2001-12-14T12:34:56.7890`. */
+  start?: string;
+  /** The end of the period of time for the query, expected in ISO-8601 format. For example, `2001-12-14T12:34:56.7890`. */
+  end?: string;
+  /** The trace item dataset to compute statistics for. Defaults to `spans`. */
+  itemType?: GetTraceItemStatisticsRequestItemType | (string & {});
+  /** Sentry [search syntax](https://docs.sentry.io/concepts/search/) to filter trace items before computing statistics. */
+  query?: string;
+  /** Restrict results to attribute names containing this substring (case-sensitive). */
+  substringMatch?: string;
+  /** Maximum number of trace items to sample when computing statistics. Defaults to `1000`, which is also the maximum. */
+  traceItemsLimit?: number;
+  /** A pointer to the last object fetched and its sort order; used to retrieve the next or previous results. */
+  cursor?: string;
+}
+export const GetTraceItemStatisticsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    organization_id_or_slug: S.String.pipe(T.Label()),
+    statsType: GetTraceItemStatisticsRequestStatsTypeList.pipe(T.Query()),
+    project: S.optional(
+      GetTraceItemStatisticsRequestProjectList.pipe(T.Query()),
+    ),
+    environment: S.optional(
+      GetTraceItemStatisticsRequestEnvironmentList.pipe(T.Query()),
+    ),
+    statsPeriod: S.optional(S.String.pipe(T.Query())),
+    start: S.optional(S.String.pipe(T.Query())),
+    end: S.optional(S.String.pipe(T.Query())),
+    itemType: S.optional(GetTraceItemStatisticsRequestItemType.pipe(T.Query())),
+    query: S.optional(S.String.pipe(T.Query())),
+    substringMatch: S.optional(S.String.pipe(T.Query())),
+    traceItemsLimit: S.optional(S.Number.pipe(T.Query())),
+    cursor: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/0/organizations/{organization_id_or_slug}/trace-items/stats/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetTraceItemStatisticsRequest",
+}) as any as S.Schema<GetTraceItemStatisticsRequest>;
+
+export interface GetTraceItemStatisticsResponseDataItemAttributeDistributionsDataValueItem {
+  label: string;
+  value: number;
+}
+export const GetTraceItemStatisticsResponseDataItemAttributeDistributionsDataValueItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      label: S.String,
+      value: S.Number,
+    }),
+  ).annotate({
+    identifier:
+      "GetTraceItemStatisticsResponseDataItemAttributeDistributionsDataValueItem",
+  }) as any as S.Schema<GetTraceItemStatisticsResponseDataItemAttributeDistributionsDataValueItem>;
+
+export type GetTraceItemStatisticsResponseDataItemAttributeDistributionsDataValueList =
+  Array<GetTraceItemStatisticsResponseDataItemAttributeDistributionsDataValueItem>;
+export const GetTraceItemStatisticsResponseDataItemAttributeDistributionsDataValueList =
+  /*@__PURE__*/ S.Array(
+    GetTraceItemStatisticsResponseDataItemAttributeDistributionsDataValueItem,
+  ) as any as S.Schema<GetTraceItemStatisticsResponseDataItemAttributeDistributionsDataValueList>;
+
+export type GetTraceItemStatisticsResponseDataItemAttributeDistributionsDataMap =
+  {
+    [key: string]:
+      | GetTraceItemStatisticsResponseDataItemAttributeDistributionsDataValueList
+      | undefined;
+  };
+export const GetTraceItemStatisticsResponseDataItemAttributeDistributionsDataMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    GetTraceItemStatisticsResponseDataItemAttributeDistributionsDataValueList,
+  ) as any as S.Schema<GetTraceItemStatisticsResponseDataItemAttributeDistributionsDataMap>;
+
+export interface GetTraceItemStatisticsResponseDataItemAttributeDistributions {
+  data: GetTraceItemStatisticsResponseDataItemAttributeDistributionsDataMap;
+}
+export const GetTraceItemStatisticsResponseDataItemAttributeDistributions =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      data: GetTraceItemStatisticsResponseDataItemAttributeDistributionsDataMap,
+    }),
+  ).annotate({
+    identifier: "GetTraceItemStatisticsResponseDataItemAttributeDistributions",
+  }) as any as S.Schema<GetTraceItemStatisticsResponseDataItemAttributeDistributions>;
+
+export interface GetTraceItemStatisticsResponseDataItem {
+  attributeDistributions: GetTraceItemStatisticsResponseDataItemAttributeDistributions;
+}
+export const GetTraceItemStatisticsResponseDataItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      attributeDistributions:
+        GetTraceItemStatisticsResponseDataItemAttributeDistributions,
+    }),
+).annotate({
+  identifier: "GetTraceItemStatisticsResponseDataItem",
+}) as any as S.Schema<GetTraceItemStatisticsResponseDataItem>;
+
+export type GetTraceItemStatisticsResponseDataList =
+  Array<GetTraceItemStatisticsResponseDataItem>;
+export const GetTraceItemStatisticsResponseDataList = /*@__PURE__*/ S.Array(
+  GetTraceItemStatisticsResponseDataItem,
+) as any as S.Schema<GetTraceItemStatisticsResponseDataList>;
+
+export interface GetTraceItemStatisticsResponse {
+  data: GetTraceItemStatisticsResponseDataList;
+}
+export const GetTraceItemStatisticsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: GetTraceItemStatisticsResponseDataList,
+  }),
+).annotate({
+  identifier: "GetTraceItemStatisticsResponse",
+}) as any as S.Schema<GetTraceItemStatisticsResponse>;
 
 export interface LinkAnExistingExternalIssueToAnIssueRequest {
   /** The ID or slug of the organization the resource belongs to. */
@@ -31963,409 +32355,6 @@ export const ResolveOrganizationShortIdResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ResolveOrganizationShortIdResponse",
 }) as any as S.Schema<ResolveOrganizationShortIdResponse>;
 
-export type RetrieveAnIntegrationSIssueConfigForAnIssueRequestAction =
-  | "create"
-  | "link";
-export const RetrieveAnIntegrationSIssueConfigForAnIssueRequestAction =
-  /*@__PURE__*/ S.String;
-
-export interface RetrieveAnIntegrationSIssueConfigForAnIssueRequest {
-  /** The ID or slug of the organization the resource belongs to. */
-  organization_id_or_slug: string;
-  /** The ID of the issue you'd like to query. */
-  issue_id: string;
-  /** The ID of the integration installed on the organization. */
-  integration_id: string;
-  /** Whether to fetch the config for linking an existing external issue (`link`) or creating a new one (`create`). */
-  action:
-    | RetrieveAnIntegrationSIssueConfigForAnIssueRequestAction
-    | (string & {});
-}
-export const RetrieveAnIntegrationSIssueConfigForAnIssueRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      organization_id_or_slug: S.String.pipe(T.Label()),
-      issue_id: S.String.pipe(T.Label()),
-      integration_id: S.String.pipe(T.Label()),
-      action: RetrieveAnIntegrationSIssueConfigForAnIssueRequestAction.pipe(
-        T.Query(),
-      ),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/0/organizations/{organization_id_or_slug}/issues/{issue_id}/integrations/{integration_id}/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "RetrieveAnIntegrationSIssueConfigForAnIssueRequest",
-  }) as any as S.Schema<RetrieveAnIntegrationSIssueConfigForAnIssueRequest>;
-
-export type RetrieveAnIntegrationSIssueConfigForAnIssueResponseScopesList =
-  Array<string>;
-export const RetrieveAnIntegrationSIssueConfigForAnIssueResponseScopesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<RetrieveAnIntegrationSIssueConfigForAnIssueResponseScopesList>;
-
-export type RetrieveAnIntegrationSIssueConfigForAnIssueResponseProviderFeaturesList =
-  Array<string>;
-export const RetrieveAnIntegrationSIssueConfigForAnIssueResponseProviderFeaturesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<RetrieveAnIntegrationSIssueConfigForAnIssueResponseProviderFeaturesList>;
-
-export type RetrieveAnIntegrationSIssueConfigForAnIssueResponseProviderAspectsMap =
-  { [key: string]: unknown | undefined };
-export const RetrieveAnIntegrationSIssueConfigForAnIssueResponseProviderAspectsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<RetrieveAnIntegrationSIssueConfigForAnIssueResponseProviderAspectsMap>;
-
-export interface RetrieveAnIntegrationSIssueConfigForAnIssueResponseProvider {
-  key: string;
-  slug: string;
-  name: string;
-  canAdd: boolean;
-  canDisable: boolean;
-  features: RetrieveAnIntegrationSIssueConfigForAnIssueResponseProviderFeaturesList;
-  aspects: RetrieveAnIntegrationSIssueConfigForAnIssueResponseProviderAspectsMap;
-}
-export const RetrieveAnIntegrationSIssueConfigForAnIssueResponseProvider =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      key: S.String,
-      slug: S.String,
-      name: S.String,
-      canAdd: S.Boolean,
-      canDisable: S.Boolean,
-      features:
-        RetrieveAnIntegrationSIssueConfigForAnIssueResponseProviderFeaturesList,
-      aspects:
-        RetrieveAnIntegrationSIssueConfigForAnIssueResponseProviderAspectsMap,
-    }),
-  ).annotate({
-    identifier: "RetrieveAnIntegrationSIssueConfigForAnIssueResponseProvider",
-  }) as any as S.Schema<RetrieveAnIntegrationSIssueConfigForAnIssueResponseProvider>;
-
-export type RetrieveAnIntegrationSIssueConfigForAnIssueResponseLinkIssueConfigItemMap =
-  { [key: string]: unknown | undefined };
-export const RetrieveAnIntegrationSIssueConfigForAnIssueResponseLinkIssueConfigItemMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<RetrieveAnIntegrationSIssueConfigForAnIssueResponseLinkIssueConfigItemMap>;
-
-export type RetrieveAnIntegrationSIssueConfigForAnIssueResponseLinkIssueConfigList =
-  Array<RetrieveAnIntegrationSIssueConfigForAnIssueResponseLinkIssueConfigItemMap>;
-export const RetrieveAnIntegrationSIssueConfigForAnIssueResponseLinkIssueConfigList =
-  /*@__PURE__*/ S.Array(
-    RetrieveAnIntegrationSIssueConfigForAnIssueResponseLinkIssueConfigItemMap,
-  ) as any as S.Schema<RetrieveAnIntegrationSIssueConfigForAnIssueResponseLinkIssueConfigList>;
-
-export type RetrieveAnIntegrationSIssueConfigForAnIssueResponseCreateIssueConfigItemMap =
-  { [key: string]: unknown | undefined };
-export const RetrieveAnIntegrationSIssueConfigForAnIssueResponseCreateIssueConfigItemMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<RetrieveAnIntegrationSIssueConfigForAnIssueResponseCreateIssueConfigItemMap>;
-
-export type RetrieveAnIntegrationSIssueConfigForAnIssueResponseCreateIssueConfigList =
-  Array<RetrieveAnIntegrationSIssueConfigForAnIssueResponseCreateIssueConfigItemMap>;
-export const RetrieveAnIntegrationSIssueConfigForAnIssueResponseCreateIssueConfigList =
-  /*@__PURE__*/ S.Array(
-    RetrieveAnIntegrationSIssueConfigForAnIssueResponseCreateIssueConfigItemMap,
-  ) as any as S.Schema<RetrieveAnIntegrationSIssueConfigForAnIssueResponseCreateIssueConfigList>;
-
-export interface RetrieveAnIntegrationSIssueConfigForAnIssueResponse {
-  id: string;
-  name: string;
-  icon: string | null;
-  domainName: string | null;
-  accountType: string | null;
-  scopes: RetrieveAnIntegrationSIssueConfigForAnIssueResponseScopesList | null;
-  outOfDate: boolean | null;
-  status: string;
-  provider: RetrieveAnIntegrationSIssueConfigForAnIssueResponseProvider;
-  linkIssueConfig?: RetrieveAnIntegrationSIssueConfigForAnIssueResponseLinkIssueConfigList;
-  createIssueConfig?: RetrieveAnIntegrationSIssueConfigForAnIssueResponseCreateIssueConfigList;
-}
-export const RetrieveAnIntegrationSIssueConfigForAnIssueResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.String,
-      name: S.String,
-      icon: S.NullOr(S.String),
-      domainName: S.NullOr(S.String),
-      accountType: S.NullOr(S.String),
-      scopes: S.NullOr(
-        RetrieveAnIntegrationSIssueConfigForAnIssueResponseScopesList,
-      ),
-      outOfDate: S.NullOr(S.Boolean),
-      status: S.String,
-      provider: RetrieveAnIntegrationSIssueConfigForAnIssueResponseProvider,
-      linkIssueConfig: S.optional(
-        RetrieveAnIntegrationSIssueConfigForAnIssueResponseLinkIssueConfigList,
-      ),
-      createIssueConfig: S.optional(
-        RetrieveAnIntegrationSIssueConfigForAnIssueResponseCreateIssueConfigList,
-      ),
-    }),
-  ).annotate({
-    identifier: "RetrieveAnIntegrationSIssueConfigForAnIssueResponse",
-  }) as any as S.Schema<RetrieveAnIntegrationSIssueConfigForAnIssueResponse>;
-
-export interface RetrieveAServiceHookRequest {
-  /** The ID or slug of the organization the client keys belong to. */
-  organization_id_or_slug: string;
-  /** The ID or slug of the project the client keys belong to. */
-  project_id_or_slug: string;
-  /** The GUID of the service hook. */
-  hook_id: string;
-}
-export const RetrieveAServiceHookRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    organization_id_or_slug: S.String.pipe(T.Label()),
-    project_id_or_slug: S.String.pipe(T.Label()),
-    hook_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/0/projects/{organization_id_or_slug}/{project_id_or_slug}/hooks/{hook_id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "RetrieveAServiceHookRequest",
-}) as any as S.Schema<RetrieveAServiceHookRequest>;
-
-export type RetrieveAServiceHookResponseEventsList = Array<string>;
-export const RetrieveAServiceHookResponseEventsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<RetrieveAServiceHookResponseEventsList>;
-
-export interface RetrieveAServiceHookResponse {
-  dateCreated: string;
-  events: RetrieveAServiceHookResponseEventsList;
-  id: string;
-  secret: string | Redacted.Redacted<string>;
-  status: string;
-  url: string;
-}
-export const RetrieveAServiceHookResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    dateCreated: S.String,
-    events: RetrieveAServiceHookResponseEventsList,
-    id: S.String,
-    secret: S.String.pipe(T.SensitiveValue({})),
-    status: S.String,
-    url: S.String,
-  }),
-).annotate({
-  identifier: "RetrieveAServiceHookResponse",
-}) as any as S.Schema<RetrieveAServiceHookResponse>;
-
-export interface RetrieveFilesChangedInAReleaseSCommitsRequest {
-  /** The ID or slug of the organization the release belongs to. */
-  organization_id_or_slug: string;
-  /** The version identifier of the release. */
-  version: string;
-}
-export const RetrieveFilesChangedInAReleaseSCommitsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      organization_id_or_slug: S.String.pipe(T.Label()),
-      version: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/0/organizations/{organization_id_or_slug}/releases/{version}/commitfiles/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "RetrieveFilesChangedInAReleaseSCommitsRequest",
-  }) as any as S.Schema<RetrieveFilesChangedInAReleaseSCommitsRequest>;
-
-export interface RetrieveFilesChangedInAReleaseSCommitsResponse {}
-export const RetrieveFilesChangedInAReleaseSCommitsResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "RetrieveFilesChangedInAReleaseSCommitsResponse",
-  }) as any as S.Schema<RetrieveFilesChangedInAReleaseSCommitsResponse>;
-
-export type RetrieveTraceItemStatisticsRequestStatsTypeItem =
-  "attributeDistributions";
-export const RetrieveTraceItemStatisticsRequestStatsTypeItem =
-  /*@__PURE__*/ S.String;
-
-export type RetrieveTraceItemStatisticsRequestStatsTypeList = Array<
-  RetrieveTraceItemStatisticsRequestStatsTypeItem | (string & {})
->;
-export const RetrieveTraceItemStatisticsRequestStatsTypeList =
-  /*@__PURE__*/ S.Array(
-    RetrieveTraceItemStatisticsRequestStatsTypeItem,
-  ) as any as S.Schema<RetrieveTraceItemStatisticsRequestStatsTypeList>;
-
-export type RetrieveTraceItemStatisticsRequestProjectItem = number | string;
-export const RetrieveTraceItemStatisticsRequestProjectItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RetrieveTraceItemStatisticsRequestProjectItem>;
-
-export type RetrieveTraceItemStatisticsRequestProjectList =
-  Array<RetrieveTraceItemStatisticsRequestProjectItem>;
-export const RetrieveTraceItemStatisticsRequestProjectList =
-  /*@__PURE__*/ S.Array(
-    RetrieveTraceItemStatisticsRequestProjectItem,
-  ) as any as S.Schema<RetrieveTraceItemStatisticsRequestProjectList>;
-
-export type RetrieveTraceItemStatisticsRequestEnvironmentList = Array<string>;
-export const RetrieveTraceItemStatisticsRequestEnvironmentList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<RetrieveTraceItemStatisticsRequestEnvironmentList>;
-
-export type RetrieveTraceItemStatisticsRequestItemType =
-  | "occurrences"
-  | "spans";
-export const RetrieveTraceItemStatisticsRequestItemType =
-  /*@__PURE__*/ S.String;
-
-export interface RetrieveTraceItemStatisticsRequest {
-  /** The ID or slug of the organization the resource belongs to. */
-  organization_id_or_slug: string;
-  /** The statistics to compute over the matching trace items. */
-  statsType: RetrieveTraceItemStatisticsRequestStatsTypeList;
-  /** The IDs or slugs of projects to filter by. Project slugs are unique within each organization. Omit this parameter to include all accessible projects. `-1` is also accepted to include all accessible projects. For example, the following are valid parameters: - `/?project=1234&project=56789` - `/?project=android&project=javascript-react` - `/?project=-1` */
-  project?: RetrieveTraceItemStatisticsRequestProjectList;
-  /** The name of environments to filter by. */
-  environment?: RetrieveTraceItemStatisticsRequestEnvironmentList;
-  /** The period of time for the query, will override the start & end parameters, a number followed by one of: - `d` for days - `h` for hours - `m` for minutes - `s` for seconds - `w` for weeks For example, `24h`, to mean query data starting from 24 hours ago to now. */
-  statsPeriod?: string;
-  /** The start of the period of time for the query, expected in ISO-8601 format. For example, `2001-12-14T12:34:56.7890`. */
-  start?: string;
-  /** The end of the period of time for the query, expected in ISO-8601 format. For example, `2001-12-14T12:34:56.7890`. */
-  end?: string;
-  /** The trace item dataset to compute statistics for. Defaults to `spans`. */
-  itemType?: RetrieveTraceItemStatisticsRequestItemType | (string & {});
-  /** Sentry [search syntax](https://docs.sentry.io/concepts/search/) to filter trace items before computing statistics. */
-  query?: string;
-  /** Restrict results to attribute names containing this substring (case-sensitive). */
-  substringMatch?: string;
-  /** Maximum number of trace items to sample when computing statistics. Defaults to `1000`, which is also the maximum. */
-  traceItemsLimit?: number;
-  /** A pointer to the last object fetched and its sort order; used to retrieve the next or previous results. */
-  cursor?: string;
-}
-export const RetrieveTraceItemStatisticsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    organization_id_or_slug: S.String.pipe(T.Label()),
-    statsType: RetrieveTraceItemStatisticsRequestStatsTypeList.pipe(T.Query()),
-    project: S.optional(
-      RetrieveTraceItemStatisticsRequestProjectList.pipe(T.Query()),
-    ),
-    environment: S.optional(
-      RetrieveTraceItemStatisticsRequestEnvironmentList.pipe(T.Query()),
-    ),
-    statsPeriod: S.optional(S.String.pipe(T.Query())),
-    start: S.optional(S.String.pipe(T.Query())),
-    end: S.optional(S.String.pipe(T.Query())),
-    itemType: S.optional(
-      RetrieveTraceItemStatisticsRequestItemType.pipe(T.Query()),
-    ),
-    query: S.optional(S.String.pipe(T.Query())),
-    substringMatch: S.optional(S.String.pipe(T.Query())),
-    traceItemsLimit: S.optional(S.Number.pipe(T.Query())),
-    cursor: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/0/organizations/{organization_id_or_slug}/trace-items/stats/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "RetrieveTraceItemStatisticsRequest",
-}) as any as S.Schema<RetrieveTraceItemStatisticsRequest>;
-
-export interface RetrieveTraceItemStatisticsResponseDataItemAttributeDistributionsDataValueItem {
-  label: string;
-  value: number;
-}
-export const RetrieveTraceItemStatisticsResponseDataItemAttributeDistributionsDataValueItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      label: S.String,
-      value: S.Number,
-    }),
-  ).annotate({
-    identifier:
-      "RetrieveTraceItemStatisticsResponseDataItemAttributeDistributionsDataValueItem",
-  }) as any as S.Schema<RetrieveTraceItemStatisticsResponseDataItemAttributeDistributionsDataValueItem>;
-
-export type RetrieveTraceItemStatisticsResponseDataItemAttributeDistributionsDataValueList =
-  Array<RetrieveTraceItemStatisticsResponseDataItemAttributeDistributionsDataValueItem>;
-export const RetrieveTraceItemStatisticsResponseDataItemAttributeDistributionsDataValueList =
-  /*@__PURE__*/ S.Array(
-    RetrieveTraceItemStatisticsResponseDataItemAttributeDistributionsDataValueItem,
-  ) as any as S.Schema<RetrieveTraceItemStatisticsResponseDataItemAttributeDistributionsDataValueList>;
-
-export type RetrieveTraceItemStatisticsResponseDataItemAttributeDistributionsDataMap =
-  {
-    [key: string]:
-      | RetrieveTraceItemStatisticsResponseDataItemAttributeDistributionsDataValueList
-      | undefined;
-  };
-export const RetrieveTraceItemStatisticsResponseDataItemAttributeDistributionsDataMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    RetrieveTraceItemStatisticsResponseDataItemAttributeDistributionsDataValueList,
-  ) as any as S.Schema<RetrieveTraceItemStatisticsResponseDataItemAttributeDistributionsDataMap>;
-
-export interface RetrieveTraceItemStatisticsResponseDataItemAttributeDistributions {
-  data: RetrieveTraceItemStatisticsResponseDataItemAttributeDistributionsDataMap;
-}
-export const RetrieveTraceItemStatisticsResponseDataItemAttributeDistributions =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      data: RetrieveTraceItemStatisticsResponseDataItemAttributeDistributionsDataMap,
-    }),
-  ).annotate({
-    identifier:
-      "RetrieveTraceItemStatisticsResponseDataItemAttributeDistributions",
-  }) as any as S.Schema<RetrieveTraceItemStatisticsResponseDataItemAttributeDistributions>;
-
-export interface RetrieveTraceItemStatisticsResponseDataItem {
-  attributeDistributions: RetrieveTraceItemStatisticsResponseDataItemAttributeDistributions;
-}
-export const RetrieveTraceItemStatisticsResponseDataItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      attributeDistributions:
-        RetrieveTraceItemStatisticsResponseDataItemAttributeDistributions,
-    }),
-  ).annotate({
-    identifier: "RetrieveTraceItemStatisticsResponseDataItem",
-  }) as any as S.Schema<RetrieveTraceItemStatisticsResponseDataItem>;
-
-export type RetrieveTraceItemStatisticsResponseDataList =
-  Array<RetrieveTraceItemStatisticsResponseDataItem>;
-export const RetrieveTraceItemStatisticsResponseDataList =
-  /*@__PURE__*/ S.Array(
-    RetrieveTraceItemStatisticsResponseDataItem,
-  ) as any as S.Schema<RetrieveTraceItemStatisticsResponseDataList>;
-
-export interface RetrieveTraceItemStatisticsResponse {
-  data: RetrieveTraceItemStatisticsResponseDataList;
-}
-export const RetrieveTraceItemStatisticsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: RetrieveTraceItemStatisticsResponseDataList,
-  }),
-).annotate({
-  identifier: "RetrieveTraceItemStatisticsResponse",
-}) as any as S.Schema<RetrieveTraceItemStatisticsResponse>;
-
 /** Which autofix step to run. * `root_cause` * `solution` * `code_changes` * `pr_iteration` * `open_pr` * `coding_agent_handoff` */
 export type StartOrganizationIssueAutofixRequestStep =
   | "root_cause"
@@ -43385,6 +43374,58 @@ export const enableSpikeProtection: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetAnIntegrationSIssueConfigForAnIssueError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | SentryOpError;
+/** Retrieve the form fields needed to either link an existing external issue (such as a Jira ticket or GitHub issue) to a Sentry issue, or create a new one. The returned `linkIssueConfig`/`createIssueConfig` describes the fields to submit back to this endpoint via `PUT`/`POST` respectively. */
+export const getAnIntegrationSIssueConfigForAnIssue: API.OperationMethod<
+  GetAnIntegrationSIssueConfigForAnIssueRequest,
+  GetAnIntegrationSIssueConfigForAnIssueResponse,
+  GetAnIntegrationSIssueConfigForAnIssueError,
+  SentryOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAnIntegrationSIssueConfigForAnIssueRequest,
+  output: GetAnIntegrationSIssueConfigForAnIssueResponse,
+  errors: [BadRequest, Forbidden, NotFound, UnknownSentryError],
+  protocol: SentryProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAServiceHookError = Forbidden | NotFound | SentryOpError;
+/** Return a service hook bound to a project. */
+export const getAServiceHook: API.OperationMethod<
+  GetAServiceHookRequest,
+  GetAServiceHookResponse,
+  GetAServiceHookError,
+  SentryOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAServiceHookRequest,
+  output: GetAServiceHookResponse,
+  errors: [Forbidden, NotFound, UnknownSentryError],
+  protocol: SentryProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetFilesChangedInAReleaseSCommitsError =
+  | Forbidden
+  | NotFound
+  | SentryOpError;
+/** Retrieve files changed in a release's commits */
+export const getFilesChangedInAReleaseSCommits: API.OperationMethod<
+  GetFilesChangedInAReleaseSCommitsRequest,
+  GetFilesChangedInAReleaseSCommitsResponse,
+  GetFilesChangedInAReleaseSCommitsError,
+  SentryOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetFilesChangedInAReleaseSCommitsRequest,
+  output: GetFilesChangedInAReleaseSCommitsResponse,
+  errors: [Forbidden, NotFound, UnknownSentryError],
+  protocol: SentryProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetOrganizationError = Forbidden | NotFound | SentryOpError;
 /** Retrieve an Organization Return details on an individual organization, including various details such as membership access and teams. */
 export const getOrganization: API.OperationMethod<
@@ -44174,6 +44215,21 @@ export const getTeam: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetTeamRequest,
   output: GetTeamResponse,
+  errors: [Forbidden, NotFound, UnknownSentryError],
+  protocol: SentryProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTraceItemStatisticsError = Forbidden | NotFound | SentryOpError;
+/** Compute statistics, such as attribute value distributions, over the trace items (spans or occurrences) matching the given query within the requested time range. */
+export const getTraceItemStatistics: API.OperationMethod<
+  GetTraceItemStatisticsRequest,
+  GetTraceItemStatisticsResponse,
+  GetTraceItemStatisticsError,
+  SentryOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTraceItemStatisticsRequest,
+  output: GetTraceItemStatisticsResponse,
   errors: [Forbidden, NotFound, UnknownSentryError],
   protocol: SentryProtocol,
   retry: Retry.Retry,
@@ -45425,76 +45481,6 @@ export const resolveOrganizationShortId: API.OperationMethod<
   input: ResolveOrganizationShortIdRequest,
   output: ResolveOrganizationShortIdResponse,
   errors: [BadRequest, Forbidden, NotFound, UnknownSentryError],
-  protocol: SentryProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveAnIntegrationSIssueConfigForAnIssueError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | SentryOpError;
-/** Retrieve the form fields needed to either link an existing external issue (such as a Jira ticket or GitHub issue) to a Sentry issue, or create a new one. The returned `linkIssueConfig`/`createIssueConfig` describes the fields to submit back to this endpoint via `PUT`/`POST` respectively. */
-export const retrieveAnIntegrationSIssueConfigForAnIssue: API.OperationMethod<
-  RetrieveAnIntegrationSIssueConfigForAnIssueRequest,
-  RetrieveAnIntegrationSIssueConfigForAnIssueResponse,
-  RetrieveAnIntegrationSIssueConfigForAnIssueError,
-  SentryOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveAnIntegrationSIssueConfigForAnIssueRequest,
-  output: RetrieveAnIntegrationSIssueConfigForAnIssueResponse,
-  errors: [BadRequest, Forbidden, NotFound, UnknownSentryError],
-  protocol: SentryProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveAServiceHookError = Forbidden | NotFound | SentryOpError;
-/** Return a service hook bound to a project. */
-export const retrieveAServiceHook: API.OperationMethod<
-  RetrieveAServiceHookRequest,
-  RetrieveAServiceHookResponse,
-  RetrieveAServiceHookError,
-  SentryOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveAServiceHookRequest,
-  output: RetrieveAServiceHookResponse,
-  errors: [Forbidden, NotFound, UnknownSentryError],
-  protocol: SentryProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveFilesChangedInAReleaseSCommitsError =
-  | Forbidden
-  | NotFound
-  | SentryOpError;
-/** Retrieve files changed in a release's commits */
-export const retrieveFilesChangedInAReleaseSCommits: API.OperationMethod<
-  RetrieveFilesChangedInAReleaseSCommitsRequest,
-  RetrieveFilesChangedInAReleaseSCommitsResponse,
-  RetrieveFilesChangedInAReleaseSCommitsError,
-  SentryOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveFilesChangedInAReleaseSCommitsRequest,
-  output: RetrieveFilesChangedInAReleaseSCommitsResponse,
-  errors: [Forbidden, NotFound, UnknownSentryError],
-  protocol: SentryProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveTraceItemStatisticsError =
-  | Forbidden
-  | NotFound
-  | SentryOpError;
-/** Compute statistics, such as attribute value distributions, over the trace items (spans or occurrences) matching the given query within the requested time range. */
-export const retrieveTraceItemStatistics: API.OperationMethod<
-  RetrieveTraceItemStatisticsRequest,
-  RetrieveTraceItemStatisticsResponse,
-  RetrieveTraceItemStatisticsError,
-  SentryOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveTraceItemStatisticsRequest,
-  output: RetrieveTraceItemStatisticsResponse,
-  errors: [Forbidden, NotFound, UnknownSentryError],
   protocol: SentryProtocol,
   retry: Retry.Retry,
 }));
