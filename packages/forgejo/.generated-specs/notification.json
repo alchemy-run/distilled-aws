@@ -1,0 +1,1337 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ],
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.forgejo.notification#NotifyGetListRequestStatusTypesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.forgejo.notification#NotifyGetListRequestSubjectTypeItem": {
+      "type": "enum",
+      "members": {
+        "ISSUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "issue"
+          }
+        },
+        "PULL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pull"
+          }
+        },
+        "REPOSITORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repository"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.forgejo.notification#NotifyGetListRequestSubjectTypeList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.notification#NotifyGetListRequestSubjectTypeItem"
+      },
+      "traits": {}
+    },
+    "com.forgejo.notification#NotifyGetListRequest": {
+      "type": "structure",
+      "members": {
+        "all": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "all",
+            "smithy.api#documentation": "If true, show notifications marked as read. Default value is false"
+          }
+        },
+        "status_types": {
+          "target": "com.forgejo.notification#NotifyGetListRequestStatusTypesList",
+          "traits": {
+            "smithy.api#httpQuery": "status-types",
+            "smithy.api#documentation": "Show notifications with the provided status types. Options are: unread, read and/or pinned. Defaults to unread & pinned."
+          }
+        },
+        "subject_type": {
+          "target": "com.forgejo.notification#NotifyGetListRequestSubjectTypeList",
+          "traits": {
+            "smithy.api#httpQuery": "subject-type",
+            "smithy.api#documentation": "filter notifications by subject type"
+          }
+        },
+        "since": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "since",
+            "smithy.api#documentation": "Only show notifications updated after the given time. This is a timestamp in RFC 3339 format"
+          }
+        },
+        "before": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "before",
+            "smithy.api#documentation": "Only show notifications updated before the given time. This is a timestamp in RFC 3339 format"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "page number of results to return (1-based)"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "page size of results"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.notification#NotificationThread": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "pinned": {
+          "target": "smithy.api#Boolean"
+        },
+        "repository": {
+          "target": "com.forgejo.notification#Repository"
+        },
+        "subject": {
+          "target": "com.forgejo.notification#NotificationSubject"
+        },
+        "unread": {
+          "target": "smithy.api#Boolean"
+        },
+        "updated_at": {
+          "target": "smithy.api#String"
+        },
+        "url": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "NotificationThread expose Notification on API"
+      }
+    },
+    "com.forgejo.notification#Repository": {
+      "type": "structure",
+      "members": {
+        "allow_fast_forward_only_merge": {
+          "target": "smithy.api#Boolean"
+        },
+        "allow_merge_commits": {
+          "target": "smithy.api#Boolean"
+        },
+        "allow_rebase": {
+          "target": "smithy.api#Boolean"
+        },
+        "allow_rebase_explicit": {
+          "target": "smithy.api#Boolean"
+        },
+        "allow_rebase_update": {
+          "target": "smithy.api#Boolean"
+        },
+        "allow_squash_merge": {
+          "target": "smithy.api#Boolean"
+        },
+        "archived": {
+          "target": "smithy.api#Boolean"
+        },
+        "archived_at": {
+          "target": "smithy.api#String"
+        },
+        "avatar_url": {
+          "target": "smithy.api#String"
+        },
+        "clone_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "default_allow_maintainer_edit": {
+          "target": "smithy.api#Boolean"
+        },
+        "default_branch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "default_delete_branch_after_merge": {
+          "target": "smithy.api#Boolean"
+        },
+        "default_merge_style": {
+          "target": "smithy.api#String"
+        },
+        "default_update_style": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "empty": {
+          "target": "smithy.api#Boolean"
+        },
+        "external_tracker": {
+          "target": "com.forgejo.notification#ExternalTracker"
+        },
+        "external_wiki": {
+          "target": "com.forgejo.notification#ExternalWiki"
+        },
+        "fork": {
+          "target": "smithy.api#Boolean"
+        },
+        "forks_count": {
+          "target": "smithy.api#Integer"
+        },
+        "full_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "globally_editable_wiki": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_actions": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_issues": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_packages": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_projects": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_pull_requests": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_releases": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_wiki": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "is the wiki enabled"
+          }
+        },
+        "has_wiki_contents": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "have wiki pages ever been created"
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "ignore_whitespace_conflicts": {
+          "target": "smithy.api#Boolean"
+        },
+        "internal": {
+          "target": "smithy.api#Boolean"
+        },
+        "internal_tracker": {
+          "target": "com.forgejo.notification#InternalTracker"
+        },
+        "language": {
+          "target": "smithy.api#String"
+        },
+        "languages_url": {
+          "target": "smithy.api#String"
+        },
+        "link": {
+          "target": "smithy.api#String"
+        },
+        "mirror": {
+          "target": "smithy.api#Boolean"
+        },
+        "mirror_interval": {
+          "target": "smithy.api#String"
+        },
+        "mirror_updated": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "object_format_name": {
+          "target": "com.forgejo.notification#RepositoryObjectFormatName",
+          "traits": {
+            "smithy.api#documentation": "ObjectFormatName of the underlying git repository"
+          }
+        },
+        "open_issues_count": {
+          "target": "smithy.api#Integer"
+        },
+        "open_pr_counter": {
+          "target": "smithy.api#Integer"
+        },
+        "original_url": {
+          "target": "smithy.api#String"
+        },
+        "owner": {
+          "target": "com.forgejo.notification#User",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "parent": {
+          "target": "com.forgejo.notification#Repository"
+        },
+        "permissions": {
+          "target": "com.forgejo.notification#Permission"
+        },
+        "private": {
+          "target": "smithy.api#Boolean"
+        },
+        "release_counter": {
+          "target": "smithy.api#Integer"
+        },
+        "repo_transfer": {
+          "target": "com.forgejo.notification#RepoTransfer"
+        },
+        "size": {
+          "target": "smithy.api#Integer"
+        },
+        "ssh_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "stars_count": {
+          "target": "smithy.api#Integer"
+        },
+        "template": {
+          "target": "smithy.api#Boolean"
+        },
+        "topics": {
+          "target": "com.forgejo.notification#RepositoryTopicsList"
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String"
+        },
+        "watchers_count": {
+          "target": "smithy.api#Integer"
+        },
+        "website": {
+          "target": "smithy.api#String"
+        },
+        "wiki_branch": {
+          "target": "smithy.api#String"
+        },
+        "wiki_clone_url": {
+          "target": "smithy.api#String"
+        },
+        "wiki_ssh_url": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Repository represents a repository"
+      }
+    },
+    "com.forgejo.notification#ExternalTracker": {
+      "type": "structure",
+      "members": {
+        "external_tracker_format": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "External Issue Tracker URL Format. Use the placeholders {user}, {repo} and {index} for the username, repository name and issue index."
+          }
+        },
+        "external_tracker_regexp_pattern": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "External Issue Tracker issue regular expression"
+          }
+        },
+        "external_tracker_style": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "External Issue Tracker Number Format, either `numeric`, `alphanumeric`, or `regexp`"
+          }
+        },
+        "external_tracker_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL of external issue tracker."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "ExternalTracker represents settings for external tracker"
+      }
+    },
+    "com.forgejo.notification#ExternalWiki": {
+      "type": "structure",
+      "members": {
+        "external_wiki_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL of external wiki."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "ExternalWiki represents setting for external wiki"
+      }
+    },
+    "com.forgejo.notification#InternalTracker": {
+      "type": "structure",
+      "members": {
+        "allow_only_contributors_to_track_time": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Let only contributors track time (Built-in issue tracker)"
+          }
+        },
+        "enable_issue_dependencies": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Enable dependencies for issues and pull requests (Built-in issue tracker)"
+          }
+        },
+        "enable_time_tracker": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Enable time tracking (Built-in issue tracker)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "InternalTracker represents settings for internal tracker"
+      }
+    },
+    "com.forgejo.notification#RepositoryObjectFormatName": {
+      "type": "enum",
+      "members": {
+        "SHA1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sha1"
+          }
+        },
+        "SHA256": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sha256"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "ObjectFormatName of the underlying git repository"
+      }
+    },
+    "com.forgejo.notification#User": {
+      "type": "structure",
+      "members": {
+        "active": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Is user active"
+          }
+        },
+        "avatar_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to the user's avatar"
+          }
+        },
+        "created": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the user's description"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "followers_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "user counts"
+          }
+        },
+        "following_count": {
+          "target": "smithy.api#Integer"
+        },
+        "full_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the user's full name"
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to the user's profile page"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "the user's id",
+            "smithy.api#required": {}
+          }
+        },
+        "is_admin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Is the user an administrator"
+          }
+        },
+        "language": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User locale"
+          }
+        },
+        "last_login": {
+          "target": "smithy.api#String"
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the user's location"
+          }
+        },
+        "login": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the user's username",
+            "smithy.api#required": {}
+          }
+        },
+        "login_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the user's authentication sign-in name."
+          }
+        },
+        "prohibit_login": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Is user login prohibited"
+          }
+        },
+        "pronouns": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the user's pronouns"
+          }
+        },
+        "restricted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Is user restricted"
+          }
+        },
+        "source_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The ID of the user's Authentication Source"
+          }
+        },
+        "starred_repos_count": {
+          "target": "smithy.api#Integer"
+        },
+        "visibility": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User visibility level option: public, limited, private"
+          }
+        },
+        "website": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the user's website"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "User represents a user"
+      }
+    },
+    "com.forgejo.notification#Permission": {
+      "type": "structure",
+      "members": {
+        "admin": {
+          "target": "smithy.api#Boolean"
+        },
+        "pull": {
+          "target": "smithy.api#Boolean"
+        },
+        "push": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Permission represents a set of permissions"
+      }
+    },
+    "com.forgejo.notification#RepoTransfer": {
+      "type": "structure",
+      "members": {
+        "doer": {
+          "target": "com.forgejo.notification#User"
+        },
+        "recipient": {
+          "target": "com.forgejo.notification#User"
+        },
+        "teams": {
+          "target": "com.forgejo.notification#RepoTransferTeamsList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "RepoTransfer represents a pending repo transfer"
+      }
+    },
+    "com.forgejo.notification#Team": {
+      "type": "structure",
+      "members": {
+        "can_create_org_repo": {
+          "target": "smithy.api#Boolean"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "includes_all_repositories": {
+          "target": "smithy.api#Boolean"
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "organization": {
+          "target": "com.forgejo.notification#Organization"
+        },
+        "permission": {
+          "target": "com.forgejo.notification#TeamPermission"
+        },
+        "units": {
+          "target": "com.forgejo.notification#TeamUnitsList"
+        },
+        "units_map": {
+          "target": "com.forgejo.notification#TeamUnitsMapMap"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Team represents a team in an organization"
+      }
+    },
+    "com.forgejo.notification#Organization": {
+      "type": "structure",
+      "members": {
+        "avatar_url": {
+          "target": "smithy.api#String"
+        },
+        "created": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "full_name": {
+          "target": "smithy.api#String"
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "repo_admin_change_team_access": {
+          "target": "smithy.api#Boolean"
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "deprecated",
+            "smithy.api#required": {}
+          }
+        },
+        "visibility": {
+          "target": "smithy.api#String"
+        },
+        "website": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Organization represents an organization"
+      }
+    },
+    "com.forgejo.notification#TeamPermission": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "none"
+          }
+        },
+        "READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read"
+          }
+        },
+        "WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "write"
+          }
+        },
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "OWNER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "owner"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.forgejo.notification#TeamUnitsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.forgejo.notification#TeamUnitsMapMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.forgejo.notification#RepoTransferTeamsList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.notification#Team"
+      },
+      "traits": {}
+    },
+    "com.forgejo.notification#RepositoryTopicsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.forgejo.notification#NotificationSubject": {
+      "type": "structure",
+      "members": {
+        "html_url": {
+          "target": "smithy.api#String"
+        },
+        "latest_comment_html_url": {
+          "target": "smithy.api#String"
+        },
+        "latest_comment_url": {
+          "target": "smithy.api#String"
+        },
+        "state": {
+          "target": "smithy.api#String"
+        },
+        "title": {
+          "target": "smithy.api#String"
+        },
+        "type": {
+          "target": "smithy.api#String"
+        },
+        "url": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "NotificationSubject contains the notification subject (Issue/Pull/Commit)"
+      }
+    },
+    "com.forgejo.notification#NotifyGetListResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.notification#NotificationThread"
+      },
+      "traits": {}
+    },
+    "com.forgejo.notification#NotifyGetListResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.forgejo.notification#NotifyGetListResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.notification#NotifyGetList": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.notification#NotifyGetListRequest"
+      },
+      "output": {
+        "target": "com.forgejo.notification#NotifyGetListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/notifications",
+          "code": 200
+        },
+        "smithy.api#documentation": "List users's notification threads"
+      }
+    },
+    "com.forgejo.notification#NotifyReadListRequestStatusTypesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.forgejo.notification#NotifyReadListRequest": {
+      "type": "structure",
+      "members": {
+        "last_read_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "last_read_at",
+            "smithy.api#documentation": "Describes the last point that notifications were checked. Anything updated since this time will not be updated."
+          }
+        },
+        "all": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "all",
+            "smithy.api#documentation": "If true, mark all notifications on this repo. Default value is false"
+          }
+        },
+        "status_types": {
+          "target": "com.forgejo.notification#NotifyReadListRequestStatusTypesList",
+          "traits": {
+            "smithy.api#httpQuery": "status-types",
+            "smithy.api#documentation": "Mark notifications with the provided status types. Options are: unread, read and/or pinned. Defaults to unread."
+          }
+        },
+        "to_status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "to-status",
+            "smithy.api#documentation": "Status to mark notifications as, Defaults to read."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.notification#NotifyReadList": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.notification#NotifyReadListRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/notifications",
+          "code": 200
+        },
+        "smithy.api#documentation": "Mark notification threads as read, pinned or unread"
+      }
+    },
+    "com.forgejo.notification#NotificationCount": {
+      "type": "structure",
+      "members": {
+        "new": {
+          "target": "smithy.api#Integer"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "NotificationCount number of unread notifications"
+      }
+    },
+    "com.forgejo.notification#NotifyNewAvailable": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.forgejo.notification#NotificationCount"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/notifications/new",
+          "code": 200
+        },
+        "smithy.api#documentation": "Check if unread notifications exist"
+      }
+    },
+    "com.forgejo.notification#NotifyGetThreadRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "id of notification thread"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.notification#NotifyGetThread": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.notification#NotifyGetThreadRequest"
+      },
+      "output": {
+        "target": "com.forgejo.notification#NotificationThread"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.notification#Forbidden"
+        },
+        {
+          "target": "com.forgejo.notification#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/notifications/threads/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get notification thread by ID"
+      }
+    },
+    "com.forgejo.notification#NotifyReadThreadRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "id of notification thread"
+          }
+        },
+        "to_status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "to-status",
+            "smithy.api#documentation": "Status to mark notifications as"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.notification#NotifyReadThread": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.notification#NotifyReadThreadRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.notification#Forbidden"
+        },
+        {
+          "target": "com.forgejo.notification#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/notifications/threads/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Mark notification thread as read by ID"
+      }
+    },
+    "com.forgejo.notification#NotifyGetRepoListRequestStatusTypesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.forgejo.notification#NotifyGetRepoListRequestSubjectTypeItem": {
+      "type": "enum",
+      "members": {
+        "ISSUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "issue"
+          }
+        },
+        "PULL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pull"
+          }
+        },
+        "REPOSITORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repository"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.forgejo.notification#NotifyGetRepoListRequestSubjectTypeList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.notification#NotifyGetRepoListRequestSubjectTypeItem"
+      },
+      "traits": {}
+    },
+    "com.forgejo.notification#NotifyGetRepoListRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "all": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "all",
+            "smithy.api#documentation": "If true, show notifications marked as read. Default value is false"
+          }
+        },
+        "status_types": {
+          "target": "com.forgejo.notification#NotifyGetRepoListRequestStatusTypesList",
+          "traits": {
+            "smithy.api#httpQuery": "status-types",
+            "smithy.api#documentation": "Show notifications with the provided status types. Options are: unread, read and/or pinned. Defaults to unread & pinned"
+          }
+        },
+        "subject_type": {
+          "target": "com.forgejo.notification#NotifyGetRepoListRequestSubjectTypeList",
+          "traits": {
+            "smithy.api#httpQuery": "subject-type",
+            "smithy.api#documentation": "filter notifications by subject type"
+          }
+        },
+        "since": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "since",
+            "smithy.api#documentation": "Only show notifications updated after the given time. This is a timestamp in RFC 3339 format"
+          }
+        },
+        "before": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "before",
+            "smithy.api#documentation": "Only show notifications updated before the given time. This is a timestamp in RFC 3339 format"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "page number of results to return (1-based)"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "page size of results"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.notification#NotifyGetRepoListResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.notification#NotificationThread"
+      },
+      "traits": {}
+    },
+    "com.forgejo.notification#NotifyGetRepoListResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.forgejo.notification#NotifyGetRepoListResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.notification#NotifyGetRepoList": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.notification#NotifyGetRepoListRequest"
+      },
+      "output": {
+        "target": "com.forgejo.notification#NotifyGetRepoListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/notifications",
+          "code": 200
+        },
+        "smithy.api#documentation": "List users's notification threads on a specific repo"
+      }
+    },
+    "com.forgejo.notification#NotifyReadRepoListRequestStatusTypesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.forgejo.notification#NotifyReadRepoListRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        },
+        "all": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "all",
+            "smithy.api#documentation": "If true, mark all notifications on this repo. Default value is false"
+          }
+        },
+        "status_types": {
+          "target": "com.forgejo.notification#NotifyReadRepoListRequestStatusTypesList",
+          "traits": {
+            "smithy.api#httpQuery": "status-types",
+            "smithy.api#documentation": "Mark notifications with the provided status types. Options are: unread, read and/or pinned. Defaults to unread."
+          }
+        },
+        "to_status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "to-status",
+            "smithy.api#documentation": "Status to mark notifications as. Defaults to read."
+          }
+        },
+        "last_read_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "last_read_at",
+            "smithy.api#documentation": "Describes the last point that notifications were checked. Anything updated since this time will not be updated."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.notification#NotifyReadRepoList": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.notification#NotifyReadRepoListRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/repos/{owner}/{repo}/notifications",
+          "code": 200
+        },
+        "smithy.api#documentation": "Mark notification threads as read, pinned or unread on a specific repo"
+      }
+    },
+    "com.forgejo.notification#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.forgejo.notification#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.forgejo.notification#ForgejoNotification": {
+      "type": "service",
+      "version": "16.0.3",
+      "operations": [
+        {
+          "target": "com.forgejo.notification#NotifyGetList"
+        },
+        {
+          "target": "com.forgejo.notification#NotifyReadList"
+        },
+        {
+          "target": "com.forgejo.notification#NotifyNewAvailable"
+        },
+        {
+          "target": "com.forgejo.notification#NotifyGetThread"
+        },
+        {
+          "target": "com.forgejo.notification#NotifyReadThread"
+        },
+        {
+          "target": "com.forgejo.notification#NotifyGetRepoList"
+        },
+        {
+          "target": "com.forgejo.notification#NotifyReadRepoList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Forgejo API",
+        "smithy.api#documentation": "This documentation describes the Forgejo API."
+      }
+    }
+  }
+}

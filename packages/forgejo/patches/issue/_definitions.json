@@ -1,0 +1,10 @@
+{
+  "description": "Mark the always-present members of the Label definition as required. Forgejo's Swagger is generated from Go structs with no `required` lists at all, so a label's `id`, `name` and `color` type as optional even though they are plain struct members serialized on every response.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/definitions/Label/required",
+      "value": ["id", "name", "color"]
+    }
+  ]
+}

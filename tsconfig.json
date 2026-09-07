@@ -465,6 +465,12 @@
     },
     {
       "path": "./packages/google-workspace/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/forgejo/tsconfig.json"
+    },
+    {
+      "path": "./packages/forgejo/tsconfig.scripts.json"
     }
   ]
 }
