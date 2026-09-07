@@ -4,7 +4,8 @@
     "service": "reseller",
     "version": "v1",
     "title": "Google Workspace Reseller API",
-    "baseUrl": "https://reseller.googleapis.com/"
+    "baseUrl": "https://reseller.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
     "com.googleworkspace.reseller_v1#PrimaryAdmin": {

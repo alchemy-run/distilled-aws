@@ -4,7 +4,8 @@
     "service": "slides",
     "version": "v1",
     "title": "Google Slides API",
-    "baseUrl": "https://slides.googleapis.com/"
+    "baseUrl": "https://slides.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
     "com.googleworkspace.slides_v1#UpdateTableBorderPropertiesRequest": {

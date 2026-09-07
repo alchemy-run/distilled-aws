@@ -4,7 +4,8 @@
     "service": "drivelabels",
     "version": "v2",
     "title": "Drive Labels API",
-    "baseUrl": "https://drivelabels.googleapis.com/"
+    "baseUrl": "https://drivelabels.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
     "com.googleworkspace.drivelabels_v2#GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestEnableSelectionChoiceRequest": {

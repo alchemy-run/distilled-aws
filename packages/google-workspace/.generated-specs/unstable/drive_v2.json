@@ -4,7 +4,8 @@
     "service": "drive",
     "version": "v2",
     "title": "Google Drive API",
-    "baseUrl": "https://www.googleapis.com/drive/v2/"
+    "baseUrl": "https://www.googleapis.com/drive/v2/",
+    "distilled.finalized": true
   },
   "shapes": {
     "com.googleworkspace.drive_v2#RevisionList": {

@@ -4,7 +4,8 @@
     "service": "driveactivity",
     "version": "v2",
     "title": "Drive Activity API",
-    "baseUrl": "https://driveactivity.googleapis.com/"
+    "baseUrl": "https://driveactivity.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
     "com.googleworkspace.driveactivity_v2#Drive": {

@@ -4,7 +4,8 @@
     "service": "classroom",
     "version": "v1",
     "title": "Google Classroom API",
-    "baseUrl": "https://classroom.googleapis.com/"
+    "baseUrl": "https://classroom.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
     "com.googleworkspace.classroom_v1#CourseRosterChangesInfo": {

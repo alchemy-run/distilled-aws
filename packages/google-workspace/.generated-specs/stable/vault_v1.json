@@ -4,7 +4,8 @@
     "service": "vault",
     "version": "v1",
     "title": "Google Vault API",
-    "baseUrl": "https://vault.googleapis.com/"
+    "baseUrl": "https://vault.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
     "com.googleworkspace.vault_v1#RemoveMatterPermissionsRequest": {

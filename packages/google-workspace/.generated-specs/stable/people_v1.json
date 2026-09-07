@@ -4,7 +4,8 @@
     "service": "people",
     "version": "v1",
     "title": "People API",
-    "baseUrl": "https://people.googleapis.com/"
+    "baseUrl": "https://people.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
     "com.googleworkspace.people_v1#Photo": {

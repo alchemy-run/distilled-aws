@@ -4,7 +4,8 @@
     "service": "groupssettings",
     "version": "v1",
     "title": "Groups Settings API",
-    "baseUrl": "https://www.googleapis.com/groups/v1/groups/"
+    "baseUrl": "https://www.googleapis.com/groups/v1/groups/",
+    "distilled.finalized": true
   },
   "shapes": {
     "com.googleworkspace.groupssettings_v1#Groups": {

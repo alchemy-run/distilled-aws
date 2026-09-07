@@ -4,7 +4,8 @@
     "service": "chat",
     "version": "v1",
     "title": "Google Chat API",
-    "baseUrl": "https://chat.googleapis.com/"
+    "baseUrl": "https://chat.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
     "com.googleworkspace.chat_v1#GoogleAppsCardV1Icon": {

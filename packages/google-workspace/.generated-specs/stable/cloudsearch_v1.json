@@ -4,7 +4,8 @@
     "service": "cloudsearch",
     "version": "v1",
     "title": "Cloud Search API",
-    "baseUrl": "https://cloudsearch.googleapis.com/"
+    "baseUrl": "https://cloudsearch.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
     "com.googleworkspace.cloudsearch_v1#PollItemsResponse": {

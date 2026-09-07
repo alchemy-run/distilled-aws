@@ -4,7 +4,8 @@
     "service": "gmailpostmastertools",
     "version": "v1",
     "title": "Gmail Postmaster Tools API",
-    "baseUrl": "https://gmailpostmastertools.googleapis.com/"
+    "baseUrl": "https://gmailpostmastertools.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
     "com.googleworkspace.gmailpostmastertools_v1#TrafficStats": {

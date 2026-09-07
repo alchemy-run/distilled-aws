@@ -4,7 +4,8 @@
     "service": "docs",
     "version": "v1",
     "title": "Google Docs API",
-    "baseUrl": "https://docs.googleapis.com/"
+    "baseUrl": "https://docs.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
     "com.googleworkspace.docs_v1#InsertInlineSheetsChartResponse": {

@@ -4,7 +4,8 @@
     "service": "keep",
     "version": "v1",
     "title": "Google Keep API",
-    "baseUrl": "https://keep.googleapis.com/"
+    "baseUrl": "https://keep.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
     "com.googleworkspace.keep_v1#Empty": {

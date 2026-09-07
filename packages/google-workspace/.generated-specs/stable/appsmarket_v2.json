@@ -4,7 +4,8 @@
     "service": "appsmarket",
     "version": "v2",
     "title": "Google Workspace Marketplace API",
-    "baseUrl": "https://appsmarket.googleapis.com/"
+    "baseUrl": "https://appsmarket.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
     "com.googleworkspace.appsmarket_v2#CustomerLicense": {

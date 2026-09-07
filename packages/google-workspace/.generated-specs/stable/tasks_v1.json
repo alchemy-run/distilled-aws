@@ -4,7 +4,8 @@
     "service": "tasks",
     "version": "v1",
     "title": "Google Tasks API",
-    "baseUrl": "https://tasks.googleapis.com/"
+    "baseUrl": "https://tasks.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
     "com.googleworkspace.tasks_v1#Tasks": {

@@ -4,7 +4,8 @@
     "service": "admin",
     "version": "reports_v1",
     "title": "Admin SDK API",
-    "baseUrl": "https://admin.googleapis.com/"
+    "baseUrl": "https://admin.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
     "com.googleworkspace.admin_reports_v1#AgentAttributionInfo": {

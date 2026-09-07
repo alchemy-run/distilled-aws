@@ -4,7 +4,8 @@
     "service": "sheets",
     "version": "v4",
     "title": "Google Sheets API",
-    "baseUrl": "https://sheets.googleapis.com/"
+    "baseUrl": "https://sheets.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
     "com.googleworkspace.sheets_v4#DuplicateFilterViewRequest": {

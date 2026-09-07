@@ -4,7 +4,8 @@
     "service": "meet",
     "version": "v2",
     "title": "Google Meet API",
-    "baseUrl": "https://meet.googleapis.com/"
+    "baseUrl": "https://meet.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
     "com.googleworkspace.meet_v2#Recording": {

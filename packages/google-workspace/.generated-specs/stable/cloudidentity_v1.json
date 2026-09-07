@@ -4,7 +4,8 @@
     "service": "cloudidentity",
     "version": "v1",
     "title": "Cloud Identity API",
-    "baseUrl": "https://cloudidentity.googleapis.com/"
+    "baseUrl": "https://cloudidentity.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
     "com.googleworkspace.cloudidentity_v1#GoogleAppsCloudidentityDevicesV1CertificateTemplate": {

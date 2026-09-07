@@ -4,7 +4,8 @@
     "service": "script",
     "version": "v1",
     "title": "Apps Script API",
-    "baseUrl": "https://script.googleapis.com/"
+    "baseUrl": "https://script.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
     "com.googleworkspace.script_v1#GoogleAppsScriptTypeWebAppConfig": {

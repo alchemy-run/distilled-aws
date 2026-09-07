@@ -4,7 +4,8 @@
     "service": "forms",
     "version": "v1",
     "title": "Google Forms API",
-    "baseUrl": "https://forms.googleapis.com/"
+    "baseUrl": "https://forms.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
     "com.googleworkspace.forms_v1#CorrectAnswer": {

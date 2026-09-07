@@ -4,7 +4,8 @@
     "service": "licensing",
     "version": "v1",
     "title": "Enterprise License Manager API",
-    "baseUrl": "https://licensing.googleapis.com/"
+    "baseUrl": "https://licensing.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
     "com.googleworkspace.licensing_v1#Empty": {

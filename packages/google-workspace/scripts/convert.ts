@@ -45,6 +45,7 @@
 
 import * as fs from "node:fs";
 import * as path from "node:path";
+import { finalizeConvert } from "@distilled.cloud/core/codegen/patches";
 import { resolveSpecPath } from "@distilled.cloud/core/codegen/spec-path";
 
 // =============================================================================
@@ -767,4 +768,6 @@ console.log(
   `✅ Converted ${converted} discovery documents to Smithy models` +
     (failed ? ` (${failed} failed)` : ""),
 );
+await finalizeConvert({ root, outDir: ".generated-specs/stable" });
+await finalizeConvert({ root, outDir: ".generated-specs/unstable" });
 if (failed) process.exit(1);

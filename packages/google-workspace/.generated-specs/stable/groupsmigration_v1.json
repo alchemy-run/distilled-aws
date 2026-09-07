@@ -4,7 +4,8 @@
     "service": "groupsmigration",
     "version": "v1",
     "title": "Groups Migration API",
-    "baseUrl": "https://groupsmigration.googleapis.com/"
+    "baseUrl": "https://groupsmigration.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
     "com.googleworkspace.groupsmigration_v1#Groups": {

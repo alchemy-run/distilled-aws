@@ -4,7 +4,8 @@
     "service": "calendar",
     "version": "v3",
     "title": "Calendar API",
-    "baseUrl": "https://www.googleapis.com/calendar/v3/"
+    "baseUrl": "https://www.googleapis.com/calendar/v3/",
+    "distilled.finalized": true
   },
   "shapes": {
     "com.googleworkspace.calendar_v3#AclRule": {

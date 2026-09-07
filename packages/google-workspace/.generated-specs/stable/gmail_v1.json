@@ -4,7 +4,8 @@
     "service": "gmail",
     "version": "v1",
     "title": "Gmail API",
-    "baseUrl": "https://gmail.googleapis.com/"
+    "baseUrl": "https://gmail.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
     "com.googleworkspace.gmail_v1#WatchResponse": {

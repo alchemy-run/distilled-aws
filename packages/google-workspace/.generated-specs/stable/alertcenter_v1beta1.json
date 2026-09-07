@@ -4,7 +4,8 @@
     "service": "alertcenter",
     "version": "v1beta1",
     "title": "Google Workspace Alert Center API",
-    "baseUrl": "https://alertcenter.googleapis.com/"
+    "baseUrl": "https://alertcenter.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
     "com.googleworkspace.alertcenter_v1beta1#IdentityProviderError": {

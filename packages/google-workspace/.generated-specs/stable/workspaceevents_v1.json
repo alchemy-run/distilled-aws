@@ -4,7 +4,8 @@
     "service": "workspaceevents",
     "version": "v1",
     "title": "Google Workspace Events API",
-    "baseUrl": "https://workspaceevents.googleapis.com/"
+    "baseUrl": "https://workspaceevents.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
     "com.googleworkspace.workspaceevents_v1#TaskStatusUpdateEvent": {
