@@ -13,6 +13,214 @@ import * as Retry from "../retry.ts";
 
 export type { ElasticsearchOpError, ElasticsearchOpContext };
 
+export interface ArchiveNodesClearRepositoriesMeteringRequest {
+  /** Comma-separated list of node IDs or names used to limit returned information. */
+  node_id: string;
+  /** Specifies the maximum `archive_version` to be cleared from the archive. */
+  max_archive_version: number;
+}
+export const ArchiveNodesClearRepositoriesMeteringRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      node_id: S.String.pipe(T.Label()),
+      max_archive_version: S.Number.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/_nodes/{node_id}/_repositories_metering/{max_archive_version}",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ArchiveNodesClearRepositoriesMeteringRequest",
+  }) as any as S.Schema<ArchiveNodesClearRepositoriesMeteringRequest>;
+
+export type TypesErrorCauseRootCauseList = Array<TypesErrorCause>;
+export const TypesErrorCauseRootCauseList = /*@__PURE__*/ S.Array(
+  S.suspend(() => TypesErrorCause),
+) as any as S.Schema<TypesErrorCauseRootCauseList>;
+
+export type TypesErrorCauseSuppressedList = Array<TypesErrorCause>;
+export const TypesErrorCauseSuppressedList = /*@__PURE__*/ S.Array(
+  S.suspend(() => TypesErrorCause),
+) as any as S.Schema<TypesErrorCauseSuppressedList>;
+
+/** Cause and details about a request failure. This class defines the properties common to all error types. Additional details are also provided, that depend on the error type. */
+export interface TypesErrorCause {
+  /** The type of error */
+  type: string;
+  /** A human-readable explanation of the error, in English. */
+  reason?: string;
+  /** The server stack trace. Present only if the `error_trace=true` parameter was sent with the request. */
+  stack_trace?: string;
+  caused_by?: TypesErrorCause;
+  root_cause?: TypesErrorCauseRootCauseList;
+  suppressed?: TypesErrorCauseSuppressedList;
+}
+export const TypesErrorCause = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.String,
+    reason: S.optional(S.String),
+    stack_trace: S.optional(S.String),
+    caused_by: S.optional(TypesErrorCause),
+    root_cause: S.optional(TypesErrorCauseRootCauseList),
+    suppressed: S.optional(TypesErrorCauseSuppressedList),
+  }),
+).annotate({
+  identifier: "TypesErrorCause",
+}) as any as S.Schema<TypesErrorCause>;
+
+export type TypesNodeStatisticsFailuresList = Array<TypesErrorCause>;
+export const TypesNodeStatisticsFailuresList = /*@__PURE__*/ S.Array(
+  TypesErrorCause,
+) as any as S.Schema<TypesNodeStatisticsFailuresList>;
+
+/** Contains statistics about the number of nodes selected by the request. */
+export interface TypesNodeStatistics {
+  failures?: TypesNodeStatisticsFailuresList;
+  /** Total number of nodes selected by the request. */
+  total: number;
+  /** Number of nodes that responded successfully to the request. */
+  successful: number;
+  /** Number of nodes that rejected the request or failed to respond. If this value is not 0, a reason for the rejection or failure is included in the response. */
+  failed: number;
+}
+export const TypesNodeStatistics = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    failures: S.optional(TypesNodeStatisticsFailuresList),
+    total: S.Number,
+    successful: S.Number,
+    failed: S.Number,
+  }),
+).annotate({
+  identifier: "TypesNodeStatistics",
+}) as any as S.Schema<TypesNodeStatistics>;
+
+export interface NodesTypesRepositoryLocation {
+  base_path: string;
+  /** Container name (Azure) */
+  container?: string;
+  /** Bucket name (GCP, S3) */
+  bucket?: string;
+}
+export const NodesTypesRepositoryLocation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    base_path: S.String,
+    container: S.optional(S.String),
+    bucket: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "NodesTypesRepositoryLocation",
+}) as any as S.Schema<NodesTypesRepositoryLocation>;
+
+export interface NodesTypesRequestCounts {
+  /** Number of Get Blob Properties requests (Azure) */
+  GetBlobProperties?: number;
+  /** Number of Get Blob requests (Azure) */
+  GetBlob?: number;
+  /** Number of List Blobs requests (Azure) */
+  ListBlobs?: number;
+  /** Number of Put Blob requests (Azure) */
+  PutBlob?: number;
+  /** Number of Put Block (Azure) */
+  PutBlock?: number;
+  /** Number of Put Block List requests */
+  PutBlockList?: number;
+  /** Number of get object requests (GCP, S3) */
+  GetObject?: number;
+  /** Number of list objects requests (GCP, S3) */
+  ListObjects?: number;
+  /** Number of insert object requests, including simple, multipart and resumable uploads. Resumable uploads can perform multiple http requests to insert a single object but they are considered as a single request since they are billed as an individual operation. (GCP) */
+  InsertObject?: number;
+  /** Number of PutObject requests (S3) */
+  PutObject?: number;
+  /** Number of Multipart requests, including CreateMultipartUpload, UploadPart and CompleteMultipartUpload requests (S3) */
+  PutMultipartObject?: number;
+}
+export const NodesTypesRequestCounts = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    GetBlobProperties: S.optional(S.Number),
+    GetBlob: S.optional(S.Number),
+    ListBlobs: S.optional(S.Number),
+    PutBlob: S.optional(S.Number),
+    PutBlock: S.optional(S.Number),
+    PutBlockList: S.optional(S.Number),
+    GetObject: S.optional(S.Number),
+    ListObjects: S.optional(S.Number),
+    InsertObject: S.optional(S.Number),
+    PutObject: S.optional(S.Number),
+    PutMultipartObject: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "NodesTypesRequestCounts",
+}) as any as S.Schema<NodesTypesRequestCounts>;
+
+export interface NodesTypesRepositoryMeteringInformation {
+  /** Repository name. */
+  repository_name: string;
+  /** Repository type. */
+  repository_type: string;
+  /** Represents an unique location within the repository. */
+  repository_location: NodesTypesRepositoryLocation;
+  /** An identifier that changes every time the repository is updated. */
+  repository_ephemeral_id: string;
+  /** Time the repository was created or updated. Recorded in milliseconds since the Unix Epoch. */
+  repository_started_at: number;
+  /** Time the repository was deleted or updated. Recorded in milliseconds since the Unix Epoch. */
+  repository_stopped_at?: number;
+  /** A flag that tells whether or not this object has been archived. When a repository is closed or updated the repository metering information is archived and kept for a certain period of time. This allows retrieving the repository metering information of previous repository instantiations. */
+  archived: boolean;
+  /** The cluster state version when this object was archived, this field can be used as a logical timestamp to delete all the archived metrics up to an observed version. This field is only present for archived repository metering information objects. The main purpose of this field is to avoid possible race conditions during repository metering information deletions, i.e. deleting archived repositories metering information that we haven’t observed yet. */
+  cluster_version?: number;
+  /** An object with the number of request performed against the repository grouped by request type. */
+  request_counts: NodesTypesRequestCounts;
+}
+export const NodesTypesRepositoryMeteringInformation = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      repository_name: S.String,
+      repository_type: S.String,
+      repository_location: NodesTypesRepositoryLocation,
+      repository_ephemeral_id: S.String,
+      repository_started_at: S.Number,
+      repository_stopped_at: S.optional(S.Number),
+      archived: S.Boolean,
+      cluster_version: S.optional(S.Number),
+      request_counts: NodesTypesRequestCounts,
+    }),
+).annotate({
+  identifier: "NodesTypesRepositoryMeteringInformation",
+}) as any as S.Schema<NodesTypesRepositoryMeteringInformation>;
+
+/** Contains repositories metering information for the nodes selected by the request. */
+export type ArchiveNodesClearRepositoriesMeteringResponseNodesMap = {
+  [key: string]: NodesTypesRepositoryMeteringInformation | undefined;
+};
+export const ArchiveNodesClearRepositoriesMeteringResponseNodesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    NodesTypesRepositoryMeteringInformation,
+  ) as any as S.Schema<ArchiveNodesClearRepositoriesMeteringResponseNodesMap>;
+
+export interface ArchiveNodesClearRepositoriesMeteringResponse {
+  /** Contains statistics about the number of nodes selected by the request’s node filters. */
+  _nodes?: TypesNodeStatistics;
+  /** Name of the cluster. Based on the `cluster.name` setting. */
+  cluster_name: string;
+  /** Contains repositories metering information for the nodes selected by the request. */
+  nodes: ArchiveNodesClearRepositoriesMeteringResponseNodesMap;
+}
+export const ArchiveNodesClearRepositoriesMeteringResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      _nodes: S.optional(TypesNodeStatistics),
+      cluster_name: S.String,
+      nodes: ArchiveNodesClearRepositoriesMeteringResponseNodesMap,
+    }),
+  ).annotate({
+    identifier: "ArchiveNodesClearRepositoriesMeteringResponse",
+  }) as any as S.Schema<ArchiveNodesClearRepositoriesMeteringResponse>;
+
 export interface AsyncSearchDeleteRequest {
   /** A unique identifier for the async search. */
   id: string;
@@ -76,41 +284,6 @@ export const AsyncSearchGetRequest = /*@__PURE__*/ S.suspend(() =>
 export type TypesDateTime = string | number;
 export const TypesDateTime =
   /*@__PURE__*/ S.Unknown as any as S.Schema<TypesDateTime>;
-
-export type TypesErrorCauseRootCauseList = Array<TypesErrorCause>;
-export const TypesErrorCauseRootCauseList = /*@__PURE__*/ S.Array(
-  S.suspend(() => TypesErrorCause),
-) as any as S.Schema<TypesErrorCauseRootCauseList>;
-
-export type TypesErrorCauseSuppressedList = Array<TypesErrorCause>;
-export const TypesErrorCauseSuppressedList = /*@__PURE__*/ S.Array(
-  S.suspend(() => TypesErrorCause),
-) as any as S.Schema<TypesErrorCauseSuppressedList>;
-
-/** Cause and details about a request failure. This class defines the properties common to all error types. Additional details are also provided, that depend on the error type. */
-export interface TypesErrorCause {
-  /** The type of error */
-  type: string;
-  /** A human-readable explanation of the error, in English. */
-  reason?: string;
-  /** The server stack trace. Present only if the `error_trace=true` parameter was sent with the request. */
-  stack_trace?: string;
-  caused_by?: TypesErrorCause;
-  root_cause?: TypesErrorCauseRootCauseList;
-  suppressed?: TypesErrorCauseSuppressedList;
-}
-export const TypesErrorCause = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.String,
-    reason: S.optional(S.String),
-    stack_trace: S.optional(S.String),
-    caused_by: S.optional(TypesErrorCause),
-    root_cause: S.optional(TypesErrorCauseRootCauseList),
-    suppressed: S.optional(TypesErrorCauseSuppressedList),
-  }),
-).annotate({
-  identifier: "TypesErrorCause",
-}) as any as S.Schema<TypesErrorCause>;
 
 export type TypesMetadata = { [key: string]: unknown | undefined };
 export const TypesMetadata = /*@__PURE__*/ S.Record(
@@ -13250,6 +13423,191 @@ export const AsyncSearchSubmit1Response = /*@__PURE__*/ S.suspend(() =>
   identifier: "AsyncSearchSubmit1Response",
 }) as any as S.Schema<AsyncSearchSubmit1Response>;
 
+export interface AuthenticateSecurityRequest {}
+export const AuthenticateSecurityRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({ method: "GET", uri: "/_security/_authenticate", code: 200 }),
+  ),
+).annotate({
+  identifier: "AuthenticateSecurityRequest",
+}) as any as S.Schema<AuthenticateSecurityRequest>;
+
+export type SecurityTypesCredentialManagedBy = "cloud" | "elasticsearch";
+export const SecurityTypesCredentialManagedBy = /*@__PURE__*/ S.String;
+
+export interface SecurityAuthenticateAuthenticateApiKey {
+  id: string;
+  name?: string;
+  managed_by: SecurityTypesCredentialManagedBy;
+  internal?: boolean;
+}
+export const SecurityAuthenticateAuthenticateApiKey = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.String,
+      name: S.optional(S.String),
+      managed_by: SecurityTypesCredentialManagedBy,
+      internal: S.optional(S.Boolean),
+    }),
+).annotate({
+  identifier: "SecurityAuthenticateAuthenticateApiKey",
+}) as any as S.Schema<SecurityAuthenticateAuthenticateApiKey>;
+
+export interface SecurityTypesRealmInfo {
+  name: string;
+  type: string;
+}
+export const SecurityTypesRealmInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    type: S.String,
+  }),
+).annotate({
+  identifier: "SecurityTypesRealmInfo",
+}) as any as S.Schema<SecurityTypesRealmInfo>;
+
+export type AuthenticateSecurityResponseRolesList = Array<string>;
+export const AuthenticateSecurityResponseRolesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<AuthenticateSecurityResponseRolesList>;
+
+export interface SecurityAuthenticateToken {
+  name?: string;
+  type?: string;
+  managed_by?: SecurityTypesCredentialManagedBy;
+}
+export const SecurityAuthenticateToken = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    managed_by: S.optional(SecurityTypesCredentialManagedBy),
+  }),
+).annotate({
+  identifier: "SecurityAuthenticateToken",
+}) as any as S.Schema<SecurityAuthenticateToken>;
+
+export interface AuthenticateSecurityResponse {
+  api_key?: SecurityAuthenticateAuthenticateApiKey;
+  authentication_realm: SecurityTypesRealmInfo;
+  email?: string;
+  full_name?: string;
+  lookup_realm: SecurityTypesRealmInfo;
+  metadata: TypesMetadata;
+  roles: AuthenticateSecurityResponseRolesList;
+  username: string;
+  enabled: boolean;
+  authentication_type: string;
+  token?: SecurityAuthenticateToken;
+}
+export const AuthenticateSecurityResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    api_key: S.optional(SecurityAuthenticateAuthenticateApiKey),
+    authentication_realm: SecurityTypesRealmInfo,
+    email: S.optional(S.String),
+    full_name: S.optional(S.String),
+    lookup_realm: SecurityTypesRealmInfo,
+    metadata: TypesMetadata,
+    roles: AuthenticateSecurityResponseRolesList,
+    username: S.String,
+    enabled: S.Boolean,
+    authentication_type: S.String,
+    token: S.optional(SecurityAuthenticateToken),
+  }),
+).annotate({
+  identifier: "AuthenticateSecurityResponse",
+}) as any as S.Schema<AuthenticateSecurityResponse>;
+
+export interface AuthenticateSecurityOidcRequest {
+  /** Associate a client session with an ID token and mitigate replay attacks. This value needs to be the same as the one that was provided to the `/_security/oidc/prepare` API or the one that was generated by Elasticsearch and included in the response to that call. */
+  nonce: string;
+  /** The name of the OpenID Connect realm. This property is useful in cases where multiple realms are defined. */
+  realm?: string;
+  /** The URL to which the OpenID Connect Provider redirected the User Agent in response to an authentication request after a successful authentication. This URL must be provided as-is (URL encoded), taken from the body of the response or as the value of a location header in the response from the OpenID Connect Provider. */
+  redirect_uri: string;
+  /** Maintain state between the authentication request and the response. This value needs to be the same as the one that was provided to the `/_security/oidc/prepare` API or the one that was generated by Elasticsearch and included in the response to that call. */
+  state: string;
+}
+export const AuthenticateSecurityOidcRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nonce: S.String,
+    realm: S.optional(S.String),
+    redirect_uri: S.String,
+    state: S.String,
+  }).pipe(
+    T.Http({ method: "POST", uri: "/_security/oidc/authenticate", code: 200 }),
+  ),
+).annotate({
+  identifier: "AuthenticateSecurityOidcRequest",
+}) as any as S.Schema<AuthenticateSecurityOidcRequest>;
+
+export interface AuthenticateSecurityOidcResponse {
+  /** The Elasticsearch access token. */
+  access_token: string | Redacted.Redacted<string>;
+  /** The duration (in seconds) of the tokens. */
+  expires_in: number;
+  /** The Elasticsearch refresh token. */
+  refresh_token: string | Redacted.Redacted<string>;
+  /** The type of token. */
+  type: string;
+}
+export const AuthenticateSecurityOidcResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    access_token: S.String.pipe(T.SensitiveValue({})),
+    expires_in: S.Number,
+    refresh_token: S.String.pipe(T.SensitiveValue({})),
+    type: S.String,
+  }),
+).annotate({
+  identifier: "AuthenticateSecurityOidcResponse",
+}) as any as S.Schema<AuthenticateSecurityOidcResponse>;
+
+export interface AuthenticateSecuritySamlRequest {
+  /** The SAML response as it was sent by the user's browser, usually a Base64 encoded XML document. */
+  content: string;
+  /** A JSON array with all the valid SAML Request Ids that the caller of the API has for the current user. */
+  ids: TypesIds;
+  /** The name of the realm that should authenticate the SAML response. Useful in cases where many SAML realms are defined. */
+  realm?: string;
+}
+export const AuthenticateSecuritySamlRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    content: S.String,
+    ids: TypesIds,
+    realm: S.optional(S.String),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/_security/saml/authenticate", code: 200 }),
+  ),
+).annotate({
+  identifier: "AuthenticateSecuritySamlRequest",
+}) as any as S.Schema<AuthenticateSecuritySamlRequest>;
+
+export interface AuthenticateSecuritySamlResponse {
+  /** The access token that was generated by Elasticsearch. */
+  access_token: string | Redacted.Redacted<string>;
+  /** The authenticated user's name. */
+  username: string;
+  /** The amount of time (in seconds) left until the token expires. */
+  expires_in: number;
+  /** The refresh token that was generated by Elasticsearch. */
+  refresh_token: string | Redacted.Redacted<string>;
+  /** The name of the realm where the user was authenticated. */
+  realm: string;
+  /** The id of the request that initiated the authentication process. */
+  in_response_to?: string;
+}
+export const AuthenticateSecuritySamlResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    access_token: S.String.pipe(T.SensitiveValue({})),
+    username: S.String,
+    expires_in: S.Number,
+    refresh_token: S.String.pipe(T.SensitiveValue({})),
+    realm: S.String,
+    in_response_to: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AuthenticateSecuritySamlResponse",
+}) as any as S.Schema<AuthenticateSecuritySamlResponse>;
+
 export type TypesRefresh = "true" | "false" | "wait_for";
 export const TypesRefresh = /*@__PURE__*/ S.String;
 
@@ -13917,6 +14275,43 @@ export const Bulk3Response = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Bulk3Response" }) as any as S.Schema<Bulk3Response>;
 
+export interface CancelConnectorSyncJobRequest {
+  /** The unique identifier of the connector sync job */
+  connector_sync_job_id: string;
+}
+export const CancelConnectorSyncJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    connector_sync_job_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/_connector/_sync_job/{connector_sync_job_id}/_cancel",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CancelConnectorSyncJobRequest",
+}) as any as S.Schema<CancelConnectorSyncJobRequest>;
+
+export type TypesResult =
+  | "created"
+  | "updated"
+  | "deleted"
+  | "not_found"
+  | "noop";
+export const TypesResult = /*@__PURE__*/ S.String;
+
+export interface CancelConnectorSyncJobResponse {
+  result: TypesResult;
+}
+export const CancelConnectorSyncJobResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    result: TypesResult,
+  }),
+).annotate({
+  identifier: "CancelConnectorSyncJobResponse",
+}) as any as S.Schema<CancelConnectorSyncJobResponse>;
+
 export interface CancelReindexRequest {
   /** The ID of the reindex task to cancel. */
   task_id: string;
@@ -14119,6 +14514,280 @@ export const CancelReindexResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "CancelReindexResponse",
 }) as any as S.Schema<CancelReindexResponse>;
+
+export type CancelTaskRequestActionsCase1List = Array<string>;
+export const CancelTaskRequestActionsCase1List = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CancelTaskRequestActionsCase1List>;
+
+export type CancelTaskRequestActions =
+  | string
+  | CancelTaskRequestActionsCase1List;
+export const CancelTaskRequestActions =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<CancelTaskRequestActions>;
+
+export type CancelTaskRequestNodesList = Array<string>;
+export const CancelTaskRequestNodesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CancelTaskRequestNodesList>;
+
+export interface CancelTaskRequest {
+  /** A comma-separated list or wildcard expression of actions that is used to limit the request. */
+  actions?: CancelTaskRequestActions;
+  /** A comma-separated list of node IDs or names that is used to limit the request. */
+  nodes?: CancelTaskRequestNodesList;
+  /** A parent task ID that is used to limit the tasks. */
+  parent_task_id?: string;
+  /** If true, the request blocks until all found tasks are complete. */
+  wait_for_completion?: boolean;
+}
+export const CancelTaskRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    actions: S.optional(CancelTaskRequestActions.pipe(T.Query())),
+    nodes: S.optional(CancelTaskRequestNodesList.pipe(T.Query())),
+    parent_task_id: S.optional(S.String.pipe(T.Query())),
+    wait_for_completion: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(T.Http({ method: "POST", uri: "/_tasks/_cancel", code: 200 })),
+).annotate({
+  identifier: "CancelTaskRequest",
+}) as any as S.Schema<CancelTaskRequest>;
+
+export type TasksTypesTaskListResponseBaseNodeFailuresList =
+  Array<TypesErrorCause>;
+export const TasksTypesTaskListResponseBaseNodeFailuresList =
+  /*@__PURE__*/ S.Array(
+    TypesErrorCause,
+  ) as any as S.Schema<TasksTypesTaskListResponseBaseNodeFailuresList>;
+
+export interface TypesTaskFailure {
+  task_id: number;
+  node_id: string;
+  status: string;
+  reason: TypesErrorCause;
+}
+export const TypesTaskFailure = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    task_id: S.Number,
+    node_id: S.String,
+    status: S.String,
+    reason: TypesErrorCause,
+  }),
+).annotate({
+  identifier: "TypesTaskFailure",
+}) as any as S.Schema<TypesTaskFailure>;
+
+export type TasksTypesTaskListResponseBaseTaskFailuresList =
+  Array<TypesTaskFailure>;
+export const TasksTypesTaskListResponseBaseTaskFailuresList =
+  /*@__PURE__*/ S.Array(
+    TypesTaskFailure,
+  ) as any as S.Schema<TasksTypesTaskListResponseBaseTaskFailuresList>;
+
+export type TasksTypesNodeTasksRolesList = Array<string>;
+export const TasksTypesNodeTasksRolesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<TasksTypesNodeTasksRolesList>;
+
+export type TasksTypesNodeTasksAttributesMap = {
+  [key: string]: string | undefined;
+};
+export const TasksTypesNodeTasksAttributesMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<TasksTypesNodeTasksAttributesMap>;
+
+export type TasksTypesTaskInfoHeadersMap = {
+  [key: string]: string | undefined;
+};
+export const TasksTypesTaskInfoHeadersMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<TasksTypesTaskInfoHeadersMap>;
+
+export interface TasksTypesTaskInfo {
+  action: string;
+  cancelled?: boolean;
+  cancellable: boolean;
+  /** Human readable text that identifies the particular request that the task is performing. For example, it might identify the search request being performed by a search task. Other kinds of tasks have different descriptions, like `_reindex` which has the source and the destination, or `_bulk` which just has the number of requests and the destination indices. Many requests will have only an empty description because more detailed information about the request is not easily available or particularly helpful in identifying the request. */
+  description?: string;
+  headers: TasksTypesTaskInfoHeadersMap;
+  id: number;
+  node: string;
+  running_time?: TypesDuration;
+  running_time_in_nanos: number;
+  start_time_in_millis: number;
+  /** The internal status of the task, which varies from task to task. The format also varies. While the goal is to keep the status for a particular task consistent from version to version, this is not always possible because sometimes the implementation changes. Fields might be removed from the status for a particular request so any parsing you do of the status might break in minor releases. */
+  status?: unknown;
+  type: string;
+  parent_task_id?: string;
+  /** The task ID of the original task. Only present when the task is continuing the work of an earlier task that was running on a node which has since shut down (i.e. a relocatable task). For tasks that have not been relocated this is always equal to the task's own ID and is omitted from the response. */
+  original_task_id?: string;
+  /** The time at which the original task started, in milliseconds since the Unix epoch. Only present together with `original_task_id`. */
+  original_start_time_in_millis?: number;
+  /** The time at which the original task started, as an ISO 8601 formatted string. Only present together with `original_task_id` and when the request includes the `?human=true` query parameter. */
+  original_start_time?: string;
+}
+export const TasksTypesTaskInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    action: S.String,
+    cancelled: S.optional(S.Boolean),
+    cancellable: S.Boolean,
+    description: S.optional(S.String),
+    headers: TasksTypesTaskInfoHeadersMap,
+    id: S.Number,
+    node: S.String,
+    running_time: S.optional(TypesDuration),
+    running_time_in_nanos: S.Number,
+    start_time_in_millis: S.Number,
+    status: S.optional(S.Unknown),
+    type: S.String,
+    parent_task_id: S.optional(S.String),
+    original_task_id: S.optional(S.String),
+    original_start_time_in_millis: S.optional(S.Number),
+    original_start_time: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "TasksTypesTaskInfo",
+}) as any as S.Schema<TasksTypesTaskInfo>;
+
+export type TasksTypesNodeTasksTasksMap = {
+  [key: string]: TasksTypesTaskInfo | undefined;
+};
+export const TasksTypesNodeTasksTasksMap = /*@__PURE__*/ S.Record(
+  S.String,
+  TasksTypesTaskInfo,
+) as any as S.Schema<TasksTypesNodeTasksTasksMap>;
+
+export interface TasksTypesNodeTasks {
+  name?: string;
+  transport_address?: string;
+  host?: string;
+  ip?: string;
+  roles?: TasksTypesNodeTasksRolesList;
+  attributes?: TasksTypesNodeTasksAttributesMap;
+  tasks: TasksTypesNodeTasksTasksMap;
+}
+export const TasksTypesNodeTasks = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    transport_address: S.optional(S.String),
+    host: S.optional(S.String),
+    ip: S.optional(S.String),
+    roles: S.optional(TasksTypesNodeTasksRolesList),
+    attributes: S.optional(TasksTypesNodeTasksAttributesMap),
+    tasks: TasksTypesNodeTasksTasksMap,
+  }),
+).annotate({
+  identifier: "TasksTypesNodeTasks",
+}) as any as S.Schema<TasksTypesNodeTasks>;
+
+/** Task information grouped by node, if `group_by` was set to `node` (the default). */
+export type TasksTypesTaskListResponseBaseNodesMap = {
+  [key: string]: TasksTypesNodeTasks | undefined;
+};
+export const TasksTypesTaskListResponseBaseNodesMap = /*@__PURE__*/ S.Record(
+  S.String,
+  TasksTypesNodeTasks,
+) as any as S.Schema<TasksTypesTaskListResponseBaseNodesMap>;
+
+export type TasksTypesTaskInfosCase0List = Array<TasksTypesTaskInfo>;
+export const TasksTypesTaskInfosCase0List = /*@__PURE__*/ S.Array(
+  TasksTypesTaskInfo,
+) as any as S.Schema<TasksTypesTaskInfosCase0List>;
+
+export type TasksTypesParentTaskInfoHeadersMap = {
+  [key: string]: string | undefined;
+};
+export const TasksTypesParentTaskInfoHeadersMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<TasksTypesParentTaskInfoHeadersMap>;
+
+export type TasksTypesParentTaskInfoChildrenList = Array<TasksTypesTaskInfo>;
+export const TasksTypesParentTaskInfoChildrenList = /*@__PURE__*/ S.Array(
+  TasksTypesTaskInfo,
+) as any as S.Schema<TasksTypesParentTaskInfoChildrenList>;
+
+export interface TasksTypesParentTaskInfo {
+  action: string;
+  cancelled?: boolean;
+  cancellable: boolean;
+  /** Human readable text that identifies the particular request that the task is performing. For example, it might identify the search request being performed by a search task. Other kinds of tasks have different descriptions, like `_reindex` which has the source and the destination, or `_bulk` which just has the number of requests and the destination indices. Many requests will have only an empty description because more detailed information about the request is not easily available or particularly helpful in identifying the request. */
+  description?: string;
+  headers: TasksTypesParentTaskInfoHeadersMap;
+  id: number;
+  node: string;
+  running_time?: TypesDuration;
+  running_time_in_nanos: number;
+  start_time_in_millis: number;
+  /** The internal status of the task, which varies from task to task. The format also varies. While the goal is to keep the status for a particular task consistent from version to version, this is not always possible because sometimes the implementation changes. Fields might be removed from the status for a particular request so any parsing you do of the status might break in minor releases. */
+  status?: unknown;
+  type: string;
+  parent_task_id?: string;
+  /** The task ID of the original task. Only present when the task is continuing the work of an earlier task that was running on a node which has since shut down (i.e. a relocatable task). For tasks that have not been relocated this is always equal to the task's own ID and is omitted from the response. */
+  original_task_id?: string;
+  /** The time at which the original task started, in milliseconds since the Unix epoch. Only present together with `original_task_id`. */
+  original_start_time_in_millis?: number;
+  /** The time at which the original task started, as an ISO 8601 formatted string. Only present together with `original_task_id` and when the request includes the `?human=true` query parameter. */
+  original_start_time?: string;
+  children?: TasksTypesParentTaskInfoChildrenList;
+}
+export const TasksTypesParentTaskInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    action: S.String,
+    cancelled: S.optional(S.Boolean),
+    cancellable: S.Boolean,
+    description: S.optional(S.String),
+    headers: TasksTypesParentTaskInfoHeadersMap,
+    id: S.Number,
+    node: S.String,
+    running_time: S.optional(TypesDuration),
+    running_time_in_nanos: S.Number,
+    start_time_in_millis: S.Number,
+    status: S.optional(S.Unknown),
+    type: S.String,
+    parent_task_id: S.optional(S.String),
+    original_task_id: S.optional(S.String),
+    original_start_time_in_millis: S.optional(S.Number),
+    original_start_time: S.optional(S.String),
+    children: S.optional(TasksTypesParentTaskInfoChildrenList),
+  }),
+).annotate({
+  identifier: "TasksTypesParentTaskInfo",
+}) as any as S.Schema<TasksTypesParentTaskInfo>;
+
+export type TasksTypesTaskInfosCase1Map = {
+  [key: string]: TasksTypesParentTaskInfo | undefined;
+};
+export const TasksTypesTaskInfosCase1Map = /*@__PURE__*/ S.Record(
+  S.String,
+  TasksTypesParentTaskInfo,
+) as any as S.Schema<TasksTypesTaskInfosCase1Map>;
+
+export type TasksTypesTaskInfos =
+  | TasksTypesTaskInfosCase0List
+  | TasksTypesTaskInfosCase1Map;
+export const TasksTypesTaskInfos =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<TasksTypesTaskInfos>;
+
+export interface TasksTypesTaskListResponseBase {
+  node_failures?: TasksTypesTaskListResponseBaseNodeFailuresList;
+  task_failures?: TasksTypesTaskListResponseBaseTaskFailuresList;
+  /** Task information grouped by node, if `group_by` was set to `node` (the default). */
+  nodes?: TasksTypesTaskListResponseBaseNodesMap;
+  /** Either a flat list of tasks if `group_by` was set to `none`, or grouped by parents if `group_by` was set to `parents`. */
+  tasks?: TasksTypesTaskInfos;
+}
+export const TasksTypesTaskListResponseBase = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    node_failures: S.optional(TasksTypesTaskListResponseBaseNodeFailuresList),
+    task_failures: S.optional(TasksTypesTaskListResponseBaseTaskFailuresList),
+    nodes: S.optional(TasksTypesTaskListResponseBaseNodesMap),
+    tasks: S.optional(TasksTypesTaskInfos),
+  }),
+).annotate({
+  identifier: "TasksTypesTaskListResponseBase",
+}) as any as S.Schema<TasksTypesTaskListResponseBase>;
 
 export type CatTypesCatAliasesColumnCase0 =
   | "alias"
@@ -20447,6 +21116,1681 @@ export const CcrDeleteAutoFollowPatternRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "CcrDeleteAutoFollowPatternRequest",
 }) as any as S.Schema<CcrDeleteAutoFollowPatternRequest>;
 
+export interface CcrFollowInfoRequest {
+  /** A comma-delimited list of follower index patterns. */
+  index: string;
+  /** The period to wait for a connection to the master node. If the master node is not available before the timeout expires, the request fails and returns an error. It can also be set to `-1` to indicate that the request should never timeout. */
+  master_timeout?: TypesDuration;
+}
+export const CcrFollowInfoRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    index: S.String.pipe(T.Label()),
+    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/{index}/_ccr/info", code: 200 })),
+).annotate({
+  identifier: "CcrFollowInfoRequest",
+}) as any as S.Schema<CcrFollowInfoRequest>;
+
+export interface CcrFollowInfoFollowerIndexParameters {
+  /** The maximum number of outstanding reads requests from the remote cluster. */
+  max_outstanding_read_requests?: number;
+  /** The maximum number of outstanding write requests on the follower. */
+  max_outstanding_write_requests?: number;
+  /** The maximum number of operations to pull per read from the remote cluster. */
+  max_read_request_operation_count?: number;
+  /** The maximum size in bytes of per read of a batch of operations pulled from the remote cluster. */
+  max_read_request_size?: TypesByteSize;
+  /** The maximum time to wait before retrying an operation that failed exceptionally. An exponential backoff strategy is employed when retrying. */
+  max_retry_delay?: TypesDuration;
+  /** The maximum number of operations that can be queued for writing. When this limit is reached, reads from the remote cluster will be deferred until the number of queued operations goes below the limit. */
+  max_write_buffer_count?: number;
+  /** The maximum total bytes of operations that can be queued for writing. When this limit is reached, reads from the remote cluster will be deferred until the total bytes of queued operations goes below the limit. */
+  max_write_buffer_size?: TypesByteSize;
+  /** The maximum number of operations per bulk write request executed on the follower. */
+  max_write_request_operation_count?: number;
+  /** The maximum total bytes of operations per bulk write request executed on the follower. */
+  max_write_request_size?: TypesByteSize;
+  /** The maximum time to wait for new operations on the remote cluster when the follower index is synchronized with the leader index. When the timeout has elapsed, the poll for operations will return to the follower so that it can update some statistics. Then the follower will immediately attempt to read from the leader again. */
+  read_poll_timeout?: TypesDuration;
+}
+export const CcrFollowInfoFollowerIndexParameters = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      max_outstanding_read_requests: S.optional(S.Number),
+      max_outstanding_write_requests: S.optional(S.Number),
+      max_read_request_operation_count: S.optional(S.Number),
+      max_read_request_size: S.optional(TypesByteSize),
+      max_retry_delay: S.optional(TypesDuration),
+      max_write_buffer_count: S.optional(S.Number),
+      max_write_buffer_size: S.optional(TypesByteSize),
+      max_write_request_operation_count: S.optional(S.Number),
+      max_write_request_size: S.optional(TypesByteSize),
+      read_poll_timeout: S.optional(TypesDuration),
+    }),
+).annotate({
+  identifier: "CcrFollowInfoFollowerIndexParameters",
+}) as any as S.Schema<CcrFollowInfoFollowerIndexParameters>;
+
+export type CcrFollowInfoFollowerIndexStatus = "active" | "paused";
+export const CcrFollowInfoFollowerIndexStatus = /*@__PURE__*/ S.String;
+
+export interface CcrFollowInfoFollowerIndex {
+  /** The name of the follower index. */
+  follower_index: string;
+  /** The name of the index in the leader cluster that is followed. */
+  leader_index: string;
+  /** An object that encapsulates cross-cluster replication parameters. If the follower index's status is paused, this object is omitted. */
+  parameters?: CcrFollowInfoFollowerIndexParameters;
+  /** The remote cluster that contains the leader index. */
+  remote_cluster: string;
+  /** The status of the index following: `active` or `paused`. */
+  status: CcrFollowInfoFollowerIndexStatus;
+}
+export const CcrFollowInfoFollowerIndex = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    follower_index: S.String,
+    leader_index: S.String,
+    parameters: S.optional(CcrFollowInfoFollowerIndexParameters),
+    remote_cluster: S.String,
+    status: CcrFollowInfoFollowerIndexStatus,
+  }),
+).annotate({
+  identifier: "CcrFollowInfoFollowerIndex",
+}) as any as S.Schema<CcrFollowInfoFollowerIndex>;
+
+export type CcrFollowInfoResponseFollowerIndicesList =
+  Array<CcrFollowInfoFollowerIndex>;
+export const CcrFollowInfoResponseFollowerIndicesList = /*@__PURE__*/ S.Array(
+  CcrFollowInfoFollowerIndex,
+) as any as S.Schema<CcrFollowInfoResponseFollowerIndicesList>;
+
+export interface CcrFollowInfoResponse {
+  follower_indices: CcrFollowInfoResponseFollowerIndicesList;
+}
+export const CcrFollowInfoResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    follower_indices: CcrFollowInfoResponseFollowerIndicesList,
+  }),
+).annotate({
+  identifier: "CcrFollowInfoResponse",
+}) as any as S.Schema<CcrFollowInfoResponse>;
+
+export interface CcrFollowStatsRequest {
+  /** A comma-delimited list of index patterns. */
+  index: string;
+  /** The period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error. */
+  timeout?: TypesDuration;
+}
+export const CcrFollowStatsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    index: S.String.pipe(T.Label()),
+    timeout: S.optional(TypesDuration.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/{index}/_ccr/stats", code: 200 })),
+).annotate({
+  identifier: "CcrFollowStatsRequest",
+}) as any as S.Schema<CcrFollowStatsRequest>;
+
+export interface CcrTypesReadException {
+  /** The exception that caused the read to fail. */
+  exception: TypesErrorCause;
+  /** The starting sequence number of the batch requested from the leader. */
+  from_seq_no: number;
+  /** The number of times the batch has been retried. */
+  retries: number;
+}
+export const CcrTypesReadException = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    exception: TypesErrorCause,
+    from_seq_no: S.Number,
+    retries: S.Number,
+  }),
+).annotate({
+  identifier: "CcrTypesReadException",
+}) as any as S.Schema<CcrTypesReadException>;
+
+/** An array of objects representing failed reads. */
+export type CcrTypesShardStatsReadExceptionsList = Array<CcrTypesReadException>;
+export const CcrTypesShardStatsReadExceptionsList = /*@__PURE__*/ S.Array(
+  CcrTypesReadException,
+) as any as S.Schema<CcrTypesShardStatsReadExceptionsList>;
+
+export interface CcrTypesShardStats {
+  /** The total of transferred bytes read from the leader. This is only an estimate and does not account for compression if enabled. */
+  bytes_read: number;
+  /** The number of failed reads. */
+  failed_read_requests: number;
+  /** The number of failed bulk write requests on the follower. */
+  failed_write_requests: number;
+  fatal_exception?: TypesErrorCause;
+  /** The index aliases version the follower is synced up to. */
+  follower_aliases_version: number;
+  /** The current global checkpoint on the follower. The difference between the `leader_global_checkpoint` and the `follower_global_checkpoint` is an indication of how much the follower is lagging the leader. */
+  follower_global_checkpoint: number;
+  /** The name of the follower index. */
+  follower_index: string;
+  /** The mapping version the follower is synced up to. */
+  follower_mapping_version: number;
+  /** The current maximum sequence number on the follower. */
+  follower_max_seq_no: number;
+  /** The index settings version the follower is synced up to. */
+  follower_settings_version: number;
+  /** The starting sequence number of the last batch of operations requested from the leader. */
+  last_requested_seq_no: number;
+  /** The current global checkpoint on the leader known to the follower task. */
+  leader_global_checkpoint: number;
+  /** The name of the index in the leader cluster being followed. */
+  leader_index: string;
+  /** The current maximum sequence number on the leader known to the follower task. */
+  leader_max_seq_no: number;
+  /** The total number of operations read from the leader. */
+  operations_read: number;
+  /** The number of operations written on the follower. */
+  operations_written: number;
+  /** The number of active read requests from the follower. */
+  outstanding_read_requests: number;
+  /** The number of active bulk write requests on the follower. */
+  outstanding_write_requests: number;
+  /** An array of objects representing failed reads. */
+  read_exceptions: CcrTypesShardStatsReadExceptionsList;
+  /** The remote cluster containing the leader index. */
+  remote_cluster: string;
+  /** The numerical shard ID, with values from 0 to one less than the number of replicas. */
+  shard_id: number;
+  /** The number of successful fetches. */
+  successful_read_requests: number;
+  /** The number of bulk write requests run on the follower. */
+  successful_write_requests: number;
+  time_since_last_read?: TypesDuration;
+  /** The number of milliseconds since a read request was sent to the leader. When the follower is caught up to the leader, this number will increase up to the configured `read_poll_timeout` at which point another read request will be sent to the leader. */
+  time_since_last_read_millis: number;
+  total_read_remote_exec_time?: TypesDuration;
+  /** The total time reads spent running on the remote cluster. */
+  total_read_remote_exec_time_millis: number;
+  total_read_time?: TypesDuration;
+  /** The total time reads were outstanding, measured from the time a read was sent to the leader to the time a reply was returned to the follower. */
+  total_read_time_millis: number;
+  total_write_time?: TypesDuration;
+  /** The total time spent writing on the follower. */
+  total_write_time_millis: number;
+  /** The number of write operations queued on the follower. */
+  write_buffer_operation_count: number;
+  /** The total number of bytes of operations currently queued for writing. */
+  write_buffer_size_in_bytes: TypesByteSize;
+}
+export const CcrTypesShardStats = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    bytes_read: S.Number,
+    failed_read_requests: S.Number,
+    failed_write_requests: S.Number,
+    fatal_exception: S.optional(TypesErrorCause),
+    follower_aliases_version: S.Number,
+    follower_global_checkpoint: S.Number,
+    follower_index: S.String,
+    follower_mapping_version: S.Number,
+    follower_max_seq_no: S.Number,
+    follower_settings_version: S.Number,
+    last_requested_seq_no: S.Number,
+    leader_global_checkpoint: S.Number,
+    leader_index: S.String,
+    leader_max_seq_no: S.Number,
+    operations_read: S.Number,
+    operations_written: S.Number,
+    outstanding_read_requests: S.Number,
+    outstanding_write_requests: S.Number,
+    read_exceptions: CcrTypesShardStatsReadExceptionsList,
+    remote_cluster: S.String,
+    shard_id: S.Number,
+    successful_read_requests: S.Number,
+    successful_write_requests: S.Number,
+    time_since_last_read: S.optional(TypesDuration),
+    time_since_last_read_millis: S.Number,
+    total_read_remote_exec_time: S.optional(TypesDuration),
+    total_read_remote_exec_time_millis: S.Number,
+    total_read_time: S.optional(TypesDuration),
+    total_read_time_millis: S.Number,
+    total_write_time: S.optional(TypesDuration),
+    total_write_time_millis: S.Number,
+    write_buffer_operation_count: S.Number,
+    write_buffer_size_in_bytes: TypesByteSize,
+  }),
+).annotate({
+  identifier: "CcrTypesShardStats",
+}) as any as S.Schema<CcrTypesShardStats>;
+
+/** An array of shard-level following task statistics. */
+export type CcrTypesFollowIndexStatsShardsList = Array<CcrTypesShardStats>;
+export const CcrTypesFollowIndexStatsShardsList = /*@__PURE__*/ S.Array(
+  CcrTypesShardStats,
+) as any as S.Schema<CcrTypesFollowIndexStatsShardsList>;
+
+export interface CcrTypesFollowIndexStats {
+  /** The name of the follower index. */
+  index: string;
+  /** An array of shard-level following task statistics. */
+  shards: CcrTypesFollowIndexStatsShardsList;
+}
+export const CcrTypesFollowIndexStats = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    index: S.String,
+    shards: CcrTypesFollowIndexStatsShardsList,
+  }),
+).annotate({
+  identifier: "CcrTypesFollowIndexStats",
+}) as any as S.Schema<CcrTypesFollowIndexStats>;
+
+/** An array of follower index statistics. */
+export type CcrFollowStatsResponseIndicesList = Array<CcrTypesFollowIndexStats>;
+export const CcrFollowStatsResponseIndicesList = /*@__PURE__*/ S.Array(
+  CcrTypesFollowIndexStats,
+) as any as S.Schema<CcrFollowStatsResponseIndicesList>;
+
+export interface CcrFollowStatsResponse {
+  /** An array of follower index statistics. */
+  indices: CcrFollowStatsResponseIndicesList;
+}
+export const CcrFollowStatsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    indices: CcrFollowStatsResponseIndicesList,
+  }),
+).annotate({
+  identifier: "CcrFollowStatsResponse",
+}) as any as S.Schema<CcrFollowStatsResponse>;
+
+export interface CcrForgetFollowerRequest {
+  /** Name of the leader index for which specified follower retention leases should be removed */
+  index: string;
+  /** Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error. */
+  timeout?: TypesDuration;
+  follower_cluster?: string;
+  follower_index?: string;
+  follower_index_uuid?: string;
+  leader_remote_cluster?: string;
+}
+export const CcrForgetFollowerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    index: S.String.pipe(T.Label()),
+    timeout: S.optional(TypesDuration.pipe(T.Query())),
+    follower_cluster: S.optional(S.String),
+    follower_index: S.optional(S.String),
+    follower_index_uuid: S.optional(S.String),
+    leader_remote_cluster: S.optional(S.String),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/{index}/_ccr/forget_follower", code: 200 }),
+  ),
+).annotate({
+  identifier: "CcrForgetFollowerRequest",
+}) as any as S.Schema<CcrForgetFollowerRequest>;
+
+export interface CcrForgetFollowerResponse {
+  _shards: TypesShardStatistics;
+}
+export const CcrForgetFollowerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    _shards: TypesShardStatistics,
+  }),
+).annotate({
+  identifier: "CcrForgetFollowerResponse",
+}) as any as S.Schema<CcrForgetFollowerResponse>;
+
+export interface CcrGetAutoFollowPatternRequest {
+  /** The period to wait for a connection to the master node. If the master node is not available before the timeout expires, the request fails and returns an error. It can also be set to `-1` to indicate that the request should never timeout. */
+  master_timeout?: TypesDuration;
+}
+export const CcrGetAutoFollowPatternRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/_ccr/auto_follow", code: 200 })),
+).annotate({
+  identifier: "CcrGetAutoFollowPatternRequest",
+}) as any as S.Schema<CcrGetAutoFollowPatternRequest>;
+
+export type TypesIndexPatterns = Array<string>;
+export const TypesIndexPatterns = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<TypesIndexPatterns>;
+
+export interface CcrGetAutoFollowPatternAutoFollowPatternSummary {
+  active: boolean;
+  /** The remote cluster containing the leader indices to match against. */
+  remote_cluster: string;
+  /** The name of follower index. */
+  follow_index_pattern?: string;
+  /** An array of simple index patterns to match against indices in the remote cluster specified by the remote_cluster field. */
+  leader_index_patterns: TypesIndexPatterns;
+  /** An array of simple index patterns that can be used to exclude indices from being auto-followed. */
+  leader_index_exclusion_patterns: TypesIndexPatterns;
+  /** The maximum number of outstanding reads requests from the remote cluster. */
+  max_outstanding_read_requests: number;
+}
+export const CcrGetAutoFollowPatternAutoFollowPatternSummary =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      active: S.Boolean,
+      remote_cluster: S.String,
+      follow_index_pattern: S.optional(S.String),
+      leader_index_patterns: TypesIndexPatterns,
+      leader_index_exclusion_patterns: TypesIndexPatterns,
+      max_outstanding_read_requests: S.Number,
+    }),
+  ).annotate({
+    identifier: "CcrGetAutoFollowPatternAutoFollowPatternSummary",
+  }) as any as S.Schema<CcrGetAutoFollowPatternAutoFollowPatternSummary>;
+
+export interface CcrGetAutoFollowPatternAutoFollowPattern {
+  name: string;
+  pattern: CcrGetAutoFollowPatternAutoFollowPatternSummary;
+}
+export const CcrGetAutoFollowPatternAutoFollowPattern = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      name: S.String,
+      pattern: CcrGetAutoFollowPatternAutoFollowPatternSummary,
+    }),
+).annotate({
+  identifier: "CcrGetAutoFollowPatternAutoFollowPattern",
+}) as any as S.Schema<CcrGetAutoFollowPatternAutoFollowPattern>;
+
+export type CcrGetAutoFollowPatternResponsePatternsList =
+  Array<CcrGetAutoFollowPatternAutoFollowPattern>;
+export const CcrGetAutoFollowPatternResponsePatternsList =
+  /*@__PURE__*/ S.Array(
+    CcrGetAutoFollowPatternAutoFollowPattern,
+  ) as any as S.Schema<CcrGetAutoFollowPatternResponsePatternsList>;
+
+export interface CcrGetAutoFollowPatternResponse {
+  patterns: CcrGetAutoFollowPatternResponsePatternsList;
+}
+export const CcrGetAutoFollowPatternResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    patterns: CcrGetAutoFollowPatternResponsePatternsList,
+  }),
+).annotate({
+  identifier: "CcrGetAutoFollowPatternResponse",
+}) as any as S.Schema<CcrGetAutoFollowPatternResponse>;
+
+export interface CcrGetAutoFollowPattern1Request {
+  /** The auto-follow pattern collection that you want to retrieve. If you do not specify a name, the API returns information for all collections. */
+  name: string;
+  /** The period to wait for a connection to the master node. If the master node is not available before the timeout expires, the request fails and returns an error. It can also be set to `-1` to indicate that the request should never timeout. */
+  master_timeout?: TypesDuration;
+}
+export const CcrGetAutoFollowPattern1Request = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String.pipe(T.Label()),
+    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/_ccr/auto_follow/{name}", code: 200 }),
+  ),
+).annotate({
+  identifier: "CcrGetAutoFollowPattern1Request",
+}) as any as S.Schema<CcrGetAutoFollowPattern1Request>;
+
+export type CcrGetAutoFollowPattern1ResponsePatternsList =
+  Array<CcrGetAutoFollowPatternAutoFollowPattern>;
+export const CcrGetAutoFollowPattern1ResponsePatternsList =
+  /*@__PURE__*/ S.Array(
+    CcrGetAutoFollowPatternAutoFollowPattern,
+  ) as any as S.Schema<CcrGetAutoFollowPattern1ResponsePatternsList>;
+
+export interface CcrGetAutoFollowPattern1Response {
+  patterns: CcrGetAutoFollowPattern1ResponsePatternsList;
+}
+export const CcrGetAutoFollowPattern1Response = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    patterns: CcrGetAutoFollowPattern1ResponsePatternsList,
+  }),
+).annotate({
+  identifier: "CcrGetAutoFollowPattern1Response",
+}) as any as S.Schema<CcrGetAutoFollowPattern1Response>;
+
+export interface CcrPauseAutoFollowPatternRequest {
+  /** The name of the auto-follow pattern to pause. */
+  name: string;
+  /** The period to wait for a connection to the master node. If the master node is not available before the timeout expires, the request fails and returns an error. It can also be set to `-1` to indicate that the request should never timeout. */
+  master_timeout?: TypesDuration;
+}
+export const CcrPauseAutoFollowPatternRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String.pipe(T.Label()),
+    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/_ccr/auto_follow/{name}/pause",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CcrPauseAutoFollowPatternRequest",
+}) as any as S.Schema<CcrPauseAutoFollowPatternRequest>;
+
+/** Settings to override from the leader index. Note that certain settings can not be overrode (e.g., index.number_of_shards). */
+export type CcrPutAutoFollowPatternRequestSettingsMap = {
+  [key: string]: unknown | undefined;
+};
+export const CcrPutAutoFollowPatternRequestSettingsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<CcrPutAutoFollowPatternRequestSettingsMap>;
+
+export interface CcrPutAutoFollowPatternRequest {
+  /** The name of the collection of auto-follow patterns. */
+  name: string;
+  /** Period to wait for a connection to the master node. */
+  master_timeout?: TypesDuration;
+  /** The remote cluster containing the leader indices to match against. */
+  remote_cluster: string;
+  /** The name of follower index. The template {{leader_index}} can be used to derive the name of the follower index from the name of the leader index. When following a data stream, use {{leader_index}}; CCR does not support changes to the names of a follower data stream’s backing indices. */
+  follow_index_pattern?: string;
+  /** An array of simple index patterns to match against indices in the remote cluster specified by the remote_cluster field. */
+  leader_index_patterns?: TypesIndexPatterns;
+  /** An array of simple index patterns that can be used to exclude indices from being auto-followed. Indices in the remote cluster whose names are matching one or more leader_index_patterns and one or more leader_index_exclusion_patterns won’t be followed. */
+  leader_index_exclusion_patterns?: TypesIndexPatterns;
+  /** The maximum number of outstanding reads requests from the remote cluster. */
+  max_outstanding_read_requests?: number;
+  /** Settings to override from the leader index. Note that certain settings can not be overrode (e.g., index.number_of_shards). */
+  settings?: CcrPutAutoFollowPatternRequestSettingsMap;
+  /** The maximum number of outstanding reads requests from the remote cluster. */
+  max_outstanding_write_requests?: number;
+  /** The maximum time to wait for new operations on the remote cluster when the follower index is synchronized with the leader index. When the timeout has elapsed, the poll for operations will return to the follower so that it can update some statistics. Then the follower will immediately attempt to read from the leader again. */
+  read_poll_timeout?: TypesDuration;
+  /** The maximum number of operations to pull per read from the remote cluster. */
+  max_read_request_operation_count?: number;
+  /** The maximum size in bytes of per read of a batch of operations pulled from the remote cluster. */
+  max_read_request_size?: TypesByteSize;
+  /** The maximum time to wait before retrying an operation that failed exceptionally. An exponential backoff strategy is employed when retrying. */
+  max_retry_delay?: TypesDuration;
+  /** The maximum number of operations that can be queued for writing. When this limit is reached, reads from the remote cluster will be deferred until the number of queued operations goes below the limit. */
+  max_write_buffer_count?: number;
+  /** The maximum total bytes of operations that can be queued for writing. When this limit is reached, reads from the remote cluster will be deferred until the total bytes of queued operations goes below the limit. */
+  max_write_buffer_size?: TypesByteSize;
+  /** The maximum number of operations per bulk write request executed on the follower. */
+  max_write_request_operation_count?: number;
+  /** The maximum total bytes of operations per bulk write request executed on the follower. */
+  max_write_request_size?: TypesByteSize;
+}
+export const CcrPutAutoFollowPatternRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String.pipe(T.Label()),
+    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
+    remote_cluster: S.String,
+    follow_index_pattern: S.optional(S.String),
+    leader_index_patterns: S.optional(TypesIndexPatterns),
+    leader_index_exclusion_patterns: S.optional(TypesIndexPatterns),
+    max_outstanding_read_requests: S.optional(S.Number),
+    settings: S.optional(CcrPutAutoFollowPatternRequestSettingsMap),
+    max_outstanding_write_requests: S.optional(S.Number),
+    read_poll_timeout: S.optional(TypesDuration),
+    max_read_request_operation_count: S.optional(S.Number),
+    max_read_request_size: S.optional(TypesByteSize),
+    max_retry_delay: S.optional(TypesDuration),
+    max_write_buffer_count: S.optional(S.Number),
+    max_write_buffer_size: S.optional(TypesByteSize),
+    max_write_request_operation_count: S.optional(S.Number),
+    max_write_request_size: S.optional(TypesByteSize),
+  }).pipe(
+    T.Http({ method: "PUT", uri: "/_ccr/auto_follow/{name}", code: 200 }),
+  ),
+).annotate({
+  identifier: "CcrPutAutoFollowPatternRequest",
+}) as any as S.Schema<CcrPutAutoFollowPatternRequest>;
+
+export interface CcrResumeAutoFollowPatternRequest {
+  /** The name of the auto-follow pattern to resume. */
+  name: string;
+  /** The period to wait for a connection to the master node. If the master node is not available before the timeout expires, the request fails and returns an error. It can also be set to `-1` to indicate that the request should never timeout. */
+  master_timeout?: TypesDuration;
+}
+export const CcrResumeAutoFollowPatternRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String.pipe(T.Label()),
+    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/_ccr/auto_follow/{name}/resume",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CcrResumeAutoFollowPatternRequest",
+}) as any as S.Schema<CcrResumeAutoFollowPatternRequest>;
+
+export interface CcrResumeFollowRequest {
+  /** Name of the follow index to resume following */
+  index: string;
+  /** Period to wait for a connection to the master node. */
+  master_timeout?: TypesDuration;
+  max_outstanding_read_requests?: number;
+  max_outstanding_write_requests?: number;
+  max_read_request_operation_count?: number;
+  max_read_request_size?: string;
+  max_retry_delay?: TypesDuration;
+  max_write_buffer_count?: number;
+  max_write_buffer_size?: string;
+  max_write_request_operation_count?: number;
+  max_write_request_size?: string;
+  read_poll_timeout?: TypesDuration;
+}
+export const CcrResumeFollowRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    index: S.String.pipe(T.Label()),
+    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
+    max_outstanding_read_requests: S.optional(S.Number),
+    max_outstanding_write_requests: S.optional(S.Number),
+    max_read_request_operation_count: S.optional(S.Number),
+    max_read_request_size: S.optional(S.String),
+    max_retry_delay: S.optional(TypesDuration),
+    max_write_buffer_count: S.optional(S.Number),
+    max_write_buffer_size: S.optional(S.String),
+    max_write_request_operation_count: S.optional(S.Number),
+    max_write_request_size: S.optional(S.String),
+    read_poll_timeout: S.optional(TypesDuration),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/{index}/_ccr/resume_follow", code: 200 }),
+  ),
+).annotate({
+  identifier: "CcrResumeFollowRequest",
+}) as any as S.Schema<CcrResumeFollowRequest>;
+
+export interface CcrStatsRequest {
+  /** The period to wait for a connection to the master node. If the master node is not available before the timeout expires, the request fails and returns an error. It can also be set to `-1` to indicate that the request should never timeout. */
+  master_timeout?: TypesDuration;
+  /** The period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error. */
+  timeout?: TypesDuration;
+}
+export const CcrStatsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
+    timeout: S.optional(TypesDuration.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/_ccr/stats", code: 200 })),
+).annotate({
+  identifier: "CcrStatsRequest",
+}) as any as S.Schema<CcrStatsRequest>;
+
+export interface CcrStatsAutoFollowedCluster {
+  cluster_name: string;
+  last_seen_metadata_version: number;
+  time_since_last_check_millis: number;
+}
+export const CcrStatsAutoFollowedCluster = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    cluster_name: S.String,
+    last_seen_metadata_version: S.Number,
+    time_since_last_check_millis: S.Number,
+  }),
+).annotate({
+  identifier: "CcrStatsAutoFollowedCluster",
+}) as any as S.Schema<CcrStatsAutoFollowedCluster>;
+
+export type CcrStatsAutoFollowStatsAutoFollowedClustersList =
+  Array<CcrStatsAutoFollowedCluster>;
+export const CcrStatsAutoFollowStatsAutoFollowedClustersList =
+  /*@__PURE__*/ S.Array(
+    CcrStatsAutoFollowedCluster,
+  ) as any as S.Schema<CcrStatsAutoFollowStatsAutoFollowedClustersList>;
+
+/** An array of objects representing failures by the auto-follow coordinator. */
+export type CcrStatsAutoFollowStatsRecentAutoFollowErrorsList =
+  Array<TypesErrorCause>;
+export const CcrStatsAutoFollowStatsRecentAutoFollowErrorsList =
+  /*@__PURE__*/ S.Array(
+    TypesErrorCause,
+  ) as any as S.Schema<CcrStatsAutoFollowStatsRecentAutoFollowErrorsList>;
+
+export interface CcrStatsAutoFollowStats {
+  auto_followed_clusters: CcrStatsAutoFollowStatsAutoFollowedClustersList;
+  /** The number of indices that the auto-follow coordinator failed to automatically follow. The causes of recent failures are captured in the logs of the elected master node and in the `auto_follow_stats.recent_auto_follow_errors` field. */
+  number_of_failed_follow_indices: number;
+  /** The number of times that the auto-follow coordinator failed to retrieve the cluster state from a remote cluster registered in a collection of auto-follow patterns. */
+  number_of_failed_remote_cluster_state_requests: number;
+  /** The number of indices that the auto-follow coordinator successfully followed. */
+  number_of_successful_follow_indices: number;
+  /** An array of objects representing failures by the auto-follow coordinator. */
+  recent_auto_follow_errors: CcrStatsAutoFollowStatsRecentAutoFollowErrorsList;
+}
+export const CcrStatsAutoFollowStats = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    auto_followed_clusters: CcrStatsAutoFollowStatsAutoFollowedClustersList,
+    number_of_failed_follow_indices: S.Number,
+    number_of_failed_remote_cluster_state_requests: S.Number,
+    number_of_successful_follow_indices: S.Number,
+    recent_auto_follow_errors:
+      CcrStatsAutoFollowStatsRecentAutoFollowErrorsList,
+  }),
+).annotate({
+  identifier: "CcrStatsAutoFollowStats",
+}) as any as S.Schema<CcrStatsAutoFollowStats>;
+
+export type CcrStatsFollowStatsIndicesList = Array<CcrTypesFollowIndexStats>;
+export const CcrStatsFollowStatsIndicesList = /*@__PURE__*/ S.Array(
+  CcrTypesFollowIndexStats,
+) as any as S.Schema<CcrStatsFollowStatsIndicesList>;
+
+export interface CcrStatsFollowStats {
+  indices: CcrStatsFollowStatsIndicesList;
+}
+export const CcrStatsFollowStats = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    indices: CcrStatsFollowStatsIndicesList,
+  }),
+).annotate({
+  identifier: "CcrStatsFollowStats",
+}) as any as S.Schema<CcrStatsFollowStats>;
+
+export interface CcrStatsResponse {
+  /** Statistics for the auto-follow coordinator. */
+  auto_follow_stats: CcrStatsAutoFollowStats;
+  /** Shard-level statistics for follower indices. */
+  follow_stats: CcrStatsFollowStats;
+}
+export const CcrStatsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    auto_follow_stats: CcrStatsAutoFollowStats,
+    follow_stats: CcrStatsFollowStats,
+  }),
+).annotate({
+  identifier: "CcrStatsResponse",
+}) as any as S.Schema<CcrStatsResponse>;
+
+export interface ClaimConnectorSyncJobRequest {
+  /** The unique identifier of the connector sync job. */
+  connector_sync_job_id: string;
+  /** The cursor object from the last incremental sync job. This should reference the `sync_cursor` field in the connector state for which the job runs. */
+  sync_cursor?: unknown;
+  /** The host name of the current system that will run the job. */
+  worker_hostname: string;
+}
+export const ClaimConnectorSyncJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    connector_sync_job_id: S.String.pipe(T.Label()),
+    sync_cursor: S.optional(S.Unknown),
+    worker_hostname: S.String,
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/_connector/_sync_job/{connector_sync_job_id}/_claim",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ClaimConnectorSyncJobRequest",
+}) as any as S.Schema<ClaimConnectorSyncJobRequest>;
+
+export type ClaimConnectorSyncJobResponse = unknown;
+export const ClaimConnectorSyncJobResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Unknown.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ClaimConnectorSyncJobResponse",
+}) as any as S.Schema<ClaimConnectorSyncJobResponse>;
+
+export type TypesScrollIdsCase1List = Array<string>;
+export const TypesScrollIdsCase1List = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<TypesScrollIdsCase1List>;
+
+export type TypesScrollIds = string | TypesScrollIdsCase1List;
+export const TypesScrollIds =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesScrollIds>;
+
+export interface ClearScrollRequest {
+  /** The scroll IDs to clear. To clear all scroll IDs, use `_all`. */
+  scroll_id?: TypesScrollIds;
+}
+export const ClearScrollRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    scroll_id: S.optional(TypesScrollIds),
+  }).pipe(T.Http({ method: "DELETE", uri: "/_search/scroll", code: 200 })),
+).annotate({
+  identifier: "ClearScrollRequest",
+}) as any as S.Schema<ClearScrollRequest>;
+
+export interface ClearScrollResponse {
+  /** If `true`, the request succeeded. This does not indicate whether any scrolling search requests were cleared. */
+  succeeded: boolean;
+  /** The number of scrolling search requests cleared. */
+  num_freed: number;
+}
+export const ClearScrollResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    succeeded: S.Boolean,
+    num_freed: S.Number,
+  }),
+).annotate({
+  identifier: "ClearScrollResponse",
+}) as any as S.Schema<ClearScrollResponse>;
+
+export interface ClearScroll1Request {
+  /** A comma-separated list of scroll IDs to clear. To clear all scroll IDs, use `_all`. IMPORTANT: Scroll IDs can be long. It is recommended to specify scroll IDs in the request body parameter. */
+  scroll_id: string;
+}
+export const ClearScroll1Request = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    scroll_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "DELETE", uri: "/_search/scroll/{scroll_id}", code: 200 }),
+  ),
+).annotate({
+  identifier: "ClearScroll1Request",
+}) as any as S.Schema<ClearScroll1Request>;
+
+export interface ClearScroll1Response {
+  /** If `true`, the request succeeded. This does not indicate whether any scrolling search requests were cleared. */
+  succeeded: boolean;
+  /** The number of scrolling search requests cleared. */
+  num_freed: number;
+}
+export const ClearScroll1Response = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    succeeded: S.Boolean,
+    num_freed: S.Number,
+  }),
+).annotate({
+  identifier: "ClearScroll1Response",
+}) as any as S.Schema<ClearScroll1Response>;
+
+export interface IndicesTypesAlias {
+  /** Query used to limit documents the alias can access. */
+  filter?: TypesQueryDslQueryContainer;
+  /** Value used to route indexing operations to a specific shard. If specified, this overwrites the `routing` value for indexing operations. */
+  index_routing?: string;
+  /** If `true`, the alias is hidden. All indices for the alias must have the same `is_hidden` value. */
+  is_hidden?: boolean;
+  /** If `true`, the index is the write index for the alias. */
+  is_write_index?: boolean;
+  /** Value used to route indexing and search operations to a specific shard. */
+  routing?: string;
+  /** Value used to route search operations to a specific shard. If specified, this overwrites the `routing` value for search operations. */
+  search_routing?: string;
+}
+export const IndicesTypesAlias = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    filter: S.optional(TypesQueryDslQueryContainer),
+    index_routing: S.optional(S.String),
+    is_hidden: S.optional(S.Boolean),
+    is_write_index: S.optional(S.Boolean),
+    routing: S.optional(S.String),
+    search_routing: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "IndicesTypesAlias",
+}) as any as S.Schema<IndicesTypesAlias>;
+
+/** Aliases for the resulting index. */
+export type CloneIndexRequestAliasesMap = {
+  [key: string]: IndicesTypesAlias | undefined;
+};
+export const CloneIndexRequestAliasesMap = /*@__PURE__*/ S.Record(
+  S.String,
+  IndicesTypesAlias,
+) as any as S.Schema<CloneIndexRequestAliasesMap>;
+
+/** Configuration options for the target index. */
+export type CloneIndexRequestSettingsMap = {
+  [key: string]: unknown | undefined;
+};
+export const CloneIndexRequestSettingsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<CloneIndexRequestSettingsMap>;
+
+export interface CloneIndexRequest {
+  /** Name of the source index to clone. */
+  index: string;
+  /** Name of the target index to create. */
+  target: string;
+  /** Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error. */
+  master_timeout?: TypesDuration;
+  /** Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error. */
+  timeout?: TypesDuration;
+  /** The number of shard copies that must be active before proceeding with the operation. Set to `all` or any positive integer up to the total number of shards in the index (`number_of_replicas+1`). */
+  wait_for_active_shards?: TypesWaitForActiveShards;
+  /** Aliases for the resulting index. */
+  aliases?: CloneIndexRequestAliasesMap;
+  /** Configuration options for the target index. */
+  settings?: CloneIndexRequestSettingsMap;
+}
+export const CloneIndexRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    index: S.String.pipe(T.Label()),
+    target: S.String.pipe(T.Label()),
+    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
+    timeout: S.optional(TypesDuration.pipe(T.Query())),
+    wait_for_active_shards: S.optional(
+      TypesWaitForActiveShards.pipe(T.Query()),
+    ),
+    aliases: S.optional(CloneIndexRequestAliasesMap),
+    settings: S.optional(CloneIndexRequestSettingsMap),
+  }).pipe(
+    T.Http({ method: "PUT", uri: "/{index}/_clone/{target}", code: 200 }),
+  ),
+).annotate({
+  identifier: "CloneIndexRequest",
+}) as any as S.Schema<CloneIndexRequest>;
+
+export interface CloneIndexResponse {
+  acknowledged: boolean;
+  index: string;
+  shards_acknowledged: boolean;
+}
+export const CloneIndexResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    acknowledged: S.Boolean,
+    index: S.String,
+    shards_acknowledged: S.Boolean,
+  }),
+).annotate({
+  identifier: "CloneIndexResponse",
+}) as any as S.Schema<CloneIndexResponse>;
+
+export interface CloneSnapshotRequest {
+  /** The name of the snapshot repository that both source and target snapshot belong to. */
+  repository: string;
+  /** The source snapshot name. */
+  snapshot: string;
+  /** The target snapshot name. */
+  target_snapshot: string;
+  /** The period to wait for the master node. If the master node is not available before the timeout expires, the request fails and returns an error. To indicate that the request should never timeout, set it to `-1`. */
+  master_timeout?: TypesDuration;
+  /** A comma-separated list of indices to include in the snapshot. Multi-target syntax is supported. */
+  indices: string;
+}
+export const CloneSnapshotRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    repository: S.String.pipe(T.Label()),
+    snapshot: S.String.pipe(T.Label()),
+    target_snapshot: S.String.pipe(T.Label()),
+    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
+    indices: S.String,
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/_snapshot/{repository}/{snapshot}/_clone/{target_snapshot}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CloneSnapshotRequest",
+}) as any as S.Schema<CloneSnapshotRequest>;
+
+export interface ClosePointInTimeRequest {
+  /** The ID of the point-in-time. */
+  id: string;
+}
+export const ClosePointInTimeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+  }).pipe(T.Http({ method: "DELETE", uri: "/_pit", code: 200 })),
+).annotate({
+  identifier: "ClosePointInTimeRequest",
+}) as any as S.Schema<ClosePointInTimeRequest>;
+
+export interface ClosePointInTimeResponse {
+  /** If `true`, all search contexts associated with the point-in-time ID were successfully closed. */
+  succeeded: boolean;
+  /** The number of search contexts that were successfully closed. */
+  num_freed: number;
+}
+export const ClosePointInTimeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    succeeded: S.Boolean,
+    num_freed: S.Number,
+  }),
+).annotate({
+  identifier: "ClosePointInTimeResponse",
+}) as any as S.Schema<ClosePointInTimeResponse>;
+
+export interface ClusterAllocationExplainRequest {
+  /** The name of the index that you would like an explanation for. */
+  index?: string;
+  /** An identifier for the shard that you would like an explanation for. */
+  shard?: number;
+  /** If true, returns an explanation for the primary shard for the specified shard ID. */
+  primary?: boolean;
+  /** Explain a shard only if it is currently located on the specified node name or node ID. */
+  current_node?: string;
+  /** If true, returns information about disk usage and shard sizes. */
+  include_disk_info?: boolean;
+  /** If true, returns YES decisions in explanation. */
+  include_yes_decisions?: boolean;
+  /** Period to wait for a connection to the master node. */
+  master_timeout?: TypesDuration;
+}
+export const ClusterAllocationExplainRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    index: S.optional(S.String.pipe(T.Query())),
+    shard: S.optional(S.Number.pipe(T.Query())),
+    primary: S.optional(S.Boolean.pipe(T.Query())),
+    current_node: S.optional(S.String.pipe(T.Query())),
+    include_disk_info: S.optional(S.Boolean.pipe(T.Query())),
+    include_yes_decisions: S.optional(S.Boolean.pipe(T.Query())),
+    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/_cluster/allocation/explain", code: 200 }),
+  ),
+).annotate({
+  identifier: "ClusterAllocationExplainRequest",
+}) as any as S.Schema<ClusterAllocationExplainRequest>;
+
+export type ClusterAllocationExplainDecision =
+  | "yes"
+  | "no"
+  | "worse_balance"
+  | "throttled"
+  | "awaiting_info"
+  | "allocation_delayed"
+  | "no_valid_shard_copy"
+  | "no_attempt";
+export const ClusterAllocationExplainDecision = /*@__PURE__*/ S.String;
+
+export type ClusterAllocationExplainAllocationExplainDecision =
+  | "NO"
+  | "YES"
+  | "THROTTLE"
+  | "ALWAYS";
+export const ClusterAllocationExplainAllocationExplainDecision =
+  /*@__PURE__*/ S.String;
+
+export interface ClusterAllocationExplainAllocationDecision {
+  decider: string;
+  decision: ClusterAllocationExplainAllocationExplainDecision;
+  explanation: string;
+}
+export const ClusterAllocationExplainAllocationDecision =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      decider: S.String,
+      decision: ClusterAllocationExplainAllocationExplainDecision,
+      explanation: S.String,
+    }),
+  ).annotate({
+    identifier: "ClusterAllocationExplainAllocationDecision",
+  }) as any as S.Schema<ClusterAllocationExplainAllocationDecision>;
+
+export type ClusterAllocationExplainResponseCanRebalanceClusterDecisionsList =
+  Array<ClusterAllocationExplainAllocationDecision>;
+export const ClusterAllocationExplainResponseCanRebalanceClusterDecisionsList =
+  /*@__PURE__*/ S.Array(
+    ClusterAllocationExplainAllocationDecision,
+  ) as any as S.Schema<ClusterAllocationExplainResponseCanRebalanceClusterDecisionsList>;
+
+export type ClusterAllocationExplainResponseCanRemainDecisionsList =
+  Array<ClusterAllocationExplainAllocationDecision>;
+export const ClusterAllocationExplainResponseCanRemainDecisionsList =
+  /*@__PURE__*/ S.Array(
+    ClusterAllocationExplainAllocationDecision,
+  ) as any as S.Schema<ClusterAllocationExplainResponseCanRemainDecisionsList>;
+
+export interface ClusterAllocationExplainDiskUsage {
+  path: string;
+  total_bytes: number;
+  used_bytes: number;
+  free_bytes: number;
+  free_disk_percent: number;
+  used_disk_percent: number;
+}
+export const ClusterAllocationExplainDiskUsage = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    path: S.String,
+    total_bytes: S.Number,
+    used_bytes: S.Number,
+    free_bytes: S.Number,
+    free_disk_percent: S.Number,
+    used_disk_percent: S.Number,
+  }),
+).annotate({
+  identifier: "ClusterAllocationExplainDiskUsage",
+}) as any as S.Schema<ClusterAllocationExplainDiskUsage>;
+
+export interface ClusterAllocationExplainNodeDiskUsage {
+  node_name: string;
+  least_available: ClusterAllocationExplainDiskUsage;
+  most_available: ClusterAllocationExplainDiskUsage;
+}
+export const ClusterAllocationExplainNodeDiskUsage = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      node_name: S.String,
+      least_available: ClusterAllocationExplainDiskUsage,
+      most_available: ClusterAllocationExplainDiskUsage,
+    }),
+).annotate({
+  identifier: "ClusterAllocationExplainNodeDiskUsage",
+}) as any as S.Schema<ClusterAllocationExplainNodeDiskUsage>;
+
+export type ClusterAllocationExplainClusterInfoNodesMap = {
+  [key: string]: ClusterAllocationExplainNodeDiskUsage | undefined;
+};
+export const ClusterAllocationExplainClusterInfoNodesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    ClusterAllocationExplainNodeDiskUsage,
+  ) as any as S.Schema<ClusterAllocationExplainClusterInfoNodesMap>;
+
+export type ClusterAllocationExplainClusterInfoShardSizesMap = {
+  [key: string]: number | undefined;
+};
+export const ClusterAllocationExplainClusterInfoShardSizesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Number,
+  ) as any as S.Schema<ClusterAllocationExplainClusterInfoShardSizesMap>;
+
+export type ClusterAllocationExplainClusterInfoShardDataSetSizesMap = {
+  [key: string]: string | undefined;
+};
+export const ClusterAllocationExplainClusterInfoShardDataSetSizesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<ClusterAllocationExplainClusterInfoShardDataSetSizesMap>;
+
+export type ClusterAllocationExplainClusterInfoShardPathsMap = {
+  [key: string]: string | undefined;
+};
+export const ClusterAllocationExplainClusterInfoShardPathsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<ClusterAllocationExplainClusterInfoShardPathsMap>;
+
+export type ClusterAllocationExplainReservedSizeShardsList = Array<string>;
+export const ClusterAllocationExplainReservedSizeShardsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ClusterAllocationExplainReservedSizeShardsList>;
+
+export interface ClusterAllocationExplainReservedSize {
+  node_id: string;
+  path: string;
+  total: number;
+  shards: ClusterAllocationExplainReservedSizeShardsList;
+}
+export const ClusterAllocationExplainReservedSize = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      node_id: S.String,
+      path: S.String,
+      total: S.Number,
+      shards: ClusterAllocationExplainReservedSizeShardsList,
+    }),
+).annotate({
+  identifier: "ClusterAllocationExplainReservedSize",
+}) as any as S.Schema<ClusterAllocationExplainReservedSize>;
+
+export type ClusterAllocationExplainClusterInfoReservedSizesList =
+  Array<ClusterAllocationExplainReservedSize>;
+export const ClusterAllocationExplainClusterInfoReservedSizesList =
+  /*@__PURE__*/ S.Array(
+    ClusterAllocationExplainReservedSize,
+  ) as any as S.Schema<ClusterAllocationExplainClusterInfoReservedSizesList>;
+
+export interface ClusterAllocationExplainClusterInfo {
+  nodes: ClusterAllocationExplainClusterInfoNodesMap;
+  shard_sizes: ClusterAllocationExplainClusterInfoShardSizesMap;
+  shard_data_set_sizes?: ClusterAllocationExplainClusterInfoShardDataSetSizesMap;
+  shard_paths: ClusterAllocationExplainClusterInfoShardPathsMap;
+  reserved_sizes: ClusterAllocationExplainClusterInfoReservedSizesList;
+}
+export const ClusterAllocationExplainClusterInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nodes: ClusterAllocationExplainClusterInfoNodesMap,
+    shard_sizes: ClusterAllocationExplainClusterInfoShardSizesMap,
+    shard_data_set_sizes: S.optional(
+      ClusterAllocationExplainClusterInfoShardDataSetSizesMap,
+    ),
+    shard_paths: ClusterAllocationExplainClusterInfoShardPathsMap,
+    reserved_sizes: ClusterAllocationExplainClusterInfoReservedSizesList,
+  }),
+).annotate({
+  identifier: "ClusterAllocationExplainClusterInfo",
+}) as any as S.Schema<ClusterAllocationExplainClusterInfo>;
+
+export type TypesNodeRole =
+  | "master"
+  | "data"
+  | "data_cold"
+  | "data_content"
+  | "data_frozen"
+  | "data_hot"
+  | "data_warm"
+  | "client"
+  | "ingest"
+  | "ml"
+  | "voting_only"
+  | "transform"
+  | "remote_cluster_client"
+  | "coordinating_only";
+export const TypesNodeRole = /*@__PURE__*/ S.String;
+
+export type TypesNodeRoles = Array<TypesNodeRole>;
+export const TypesNodeRoles = /*@__PURE__*/ S.Array(
+  TypesNodeRole,
+) as any as S.Schema<TypesNodeRoles>;
+
+export type ClusterAllocationExplainCurrentNodeAttributesMap = {
+  [key: string]: string | undefined;
+};
+export const ClusterAllocationExplainCurrentNodeAttributesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<ClusterAllocationExplainCurrentNodeAttributesMap>;
+
+export interface ClusterAllocationExplainCurrentNode {
+  id: string;
+  name: string;
+  roles: TypesNodeRoles;
+  attributes: ClusterAllocationExplainCurrentNodeAttributesMap;
+  transport_address: string;
+  weight_ranking: number;
+}
+export const ClusterAllocationExplainCurrentNode = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    name: S.String,
+    roles: TypesNodeRoles,
+    attributes: ClusterAllocationExplainCurrentNodeAttributesMap,
+    transport_address: S.String,
+    weight_ranking: S.Number,
+  }),
+).annotate({
+  identifier: "ClusterAllocationExplainCurrentNode",
+}) as any as S.Schema<ClusterAllocationExplainCurrentNode>;
+
+export type ClusterAllocationExplainNodeAllocationExplanationDecidersList =
+  Array<ClusterAllocationExplainAllocationDecision>;
+export const ClusterAllocationExplainNodeAllocationExplanationDecidersList =
+  /*@__PURE__*/ S.Array(
+    ClusterAllocationExplainAllocationDecision,
+  ) as any as S.Schema<ClusterAllocationExplainNodeAllocationExplanationDecidersList>;
+
+export type ClusterAllocationExplainNodeAllocationExplanationNodeAttributesMap =
+  { [key: string]: string | undefined };
+export const ClusterAllocationExplainNodeAllocationExplanationNodeAttributesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<ClusterAllocationExplainNodeAllocationExplanationNodeAttributesMap>;
+
+export interface ClusterAllocationExplainAllocationStore {
+  allocation_id: string;
+  found: boolean;
+  in_sync: boolean;
+  matching_size_in_bytes: number;
+  matching_sync_id: boolean;
+  store_exception: string;
+}
+export const ClusterAllocationExplainAllocationStore = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      allocation_id: S.String,
+      found: S.Boolean,
+      in_sync: S.Boolean,
+      matching_size_in_bytes: S.Number,
+      matching_sync_id: S.Boolean,
+      store_exception: S.String,
+    }),
+).annotate({
+  identifier: "ClusterAllocationExplainAllocationStore",
+}) as any as S.Schema<ClusterAllocationExplainAllocationStore>;
+
+export interface ClusterAllocationExplainNodeAllocationExplanation {
+  deciders?: ClusterAllocationExplainNodeAllocationExplanationDecidersList;
+  node_attributes: ClusterAllocationExplainNodeAllocationExplanationNodeAttributesMap;
+  node_decision: ClusterAllocationExplainDecision;
+  node_id: string;
+  node_name: string;
+  roles: TypesNodeRoles;
+  store?: ClusterAllocationExplainAllocationStore;
+  transport_address: string;
+  weight_ranking?: number;
+}
+export const ClusterAllocationExplainNodeAllocationExplanation =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      deciders: S.optional(
+        ClusterAllocationExplainNodeAllocationExplanationDecidersList,
+      ),
+      node_attributes:
+        ClusterAllocationExplainNodeAllocationExplanationNodeAttributesMap,
+      node_decision: ClusterAllocationExplainDecision,
+      node_id: S.String,
+      node_name: S.String,
+      roles: TypesNodeRoles,
+      store: S.optional(ClusterAllocationExplainAllocationStore),
+      transport_address: S.String,
+      weight_ranking: S.optional(S.Number),
+    }),
+  ).annotate({
+    identifier: "ClusterAllocationExplainNodeAllocationExplanation",
+  }) as any as S.Schema<ClusterAllocationExplainNodeAllocationExplanation>;
+
+export type ClusterAllocationExplainResponseNodeAllocationDecisionsList =
+  Array<ClusterAllocationExplainNodeAllocationExplanation>;
+export const ClusterAllocationExplainResponseNodeAllocationDecisionsList =
+  /*@__PURE__*/ S.Array(
+    ClusterAllocationExplainNodeAllocationExplanation,
+  ) as any as S.Schema<ClusterAllocationExplainResponseNodeAllocationDecisionsList>;
+
+export type ClusterAllocationExplainUnassignedInformationReason =
+  | "INDEX_CREATED"
+  | "CLUSTER_RECOVERED"
+  | "INDEX_REOPENED"
+  | "DANGLING_INDEX_IMPORTED"
+  | "NEW_INDEX_RESTORED"
+  | "EXISTING_INDEX_RESTORED"
+  | "REPLICA_ADDED"
+  | "ALLOCATION_FAILED"
+  | "NODE_LEFT"
+  | "REROUTE_CANCELLED"
+  | "REINITIALIZED"
+  | "REALLOCATED_REPLICA"
+  | "PRIMARY_FAILED"
+  | "FORCED_EMPTY_PRIMARY"
+  | "MANUAL_ALLOCATION";
+export const ClusterAllocationExplainUnassignedInformationReason =
+  /*@__PURE__*/ S.String;
+
+export interface ClusterAllocationExplainUnassignedInformation {
+  at: TypesDateTime;
+  last_allocation_status?: string;
+  reason: ClusterAllocationExplainUnassignedInformationReason;
+  details?: string;
+  failed_allocation_attempts?: number;
+  delayed?: boolean;
+  allocation_status?: string;
+}
+export const ClusterAllocationExplainUnassignedInformation =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      at: TypesDateTime,
+      last_allocation_status: S.optional(S.String),
+      reason: ClusterAllocationExplainUnassignedInformationReason,
+      details: S.optional(S.String),
+      failed_allocation_attempts: S.optional(S.Number),
+      delayed: S.optional(S.Boolean),
+      allocation_status: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "ClusterAllocationExplainUnassignedInformation",
+  }) as any as S.Schema<ClusterAllocationExplainUnassignedInformation>;
+
+export interface ClusterAllocationExplainResponse {
+  allocate_explanation?: string;
+  allocation_delay?: TypesDuration;
+  allocation_delay_in_millis?: number;
+  can_allocate?: ClusterAllocationExplainDecision;
+  can_move_to_other_node?: ClusterAllocationExplainDecision;
+  can_rebalance_cluster?: ClusterAllocationExplainDecision;
+  can_rebalance_cluster_decisions?: ClusterAllocationExplainResponseCanRebalanceClusterDecisionsList;
+  can_rebalance_to_other_node?: ClusterAllocationExplainDecision;
+  can_remain_decisions?: ClusterAllocationExplainResponseCanRemainDecisionsList;
+  can_remain_on_current_node?: ClusterAllocationExplainDecision;
+  cluster_info?: ClusterAllocationExplainClusterInfo;
+  configured_delay?: TypesDuration;
+  configured_delay_in_millis?: number;
+  current_node?: ClusterAllocationExplainCurrentNode;
+  current_state: string;
+  index: string;
+  move_explanation?: string;
+  node_allocation_decisions?: ClusterAllocationExplainResponseNodeAllocationDecisionsList;
+  primary: boolean;
+  rebalance_explanation?: string;
+  remaining_delay?: TypesDuration;
+  remaining_delay_in_millis?: number;
+  shard: number;
+  unassigned_info?: ClusterAllocationExplainUnassignedInformation;
+  note?: string;
+}
+export const ClusterAllocationExplainResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    allocate_explanation: S.optional(S.String),
+    allocation_delay: S.optional(TypesDuration),
+    allocation_delay_in_millis: S.optional(S.Number),
+    can_allocate: S.optional(ClusterAllocationExplainDecision),
+    can_move_to_other_node: S.optional(ClusterAllocationExplainDecision),
+    can_rebalance_cluster: S.optional(ClusterAllocationExplainDecision),
+    can_rebalance_cluster_decisions: S.optional(
+      ClusterAllocationExplainResponseCanRebalanceClusterDecisionsList,
+    ),
+    can_rebalance_to_other_node: S.optional(ClusterAllocationExplainDecision),
+    can_remain_decisions: S.optional(
+      ClusterAllocationExplainResponseCanRemainDecisionsList,
+    ),
+    can_remain_on_current_node: S.optional(ClusterAllocationExplainDecision),
+    cluster_info: S.optional(ClusterAllocationExplainClusterInfo),
+    configured_delay: S.optional(TypesDuration),
+    configured_delay_in_millis: S.optional(S.Number),
+    current_node: S.optional(ClusterAllocationExplainCurrentNode),
+    current_state: S.String,
+    index: S.String,
+    move_explanation: S.optional(S.String),
+    node_allocation_decisions: S.optional(
+      ClusterAllocationExplainResponseNodeAllocationDecisionsList,
+    ),
+    primary: S.Boolean,
+    rebalance_explanation: S.optional(S.String),
+    remaining_delay: S.optional(TypesDuration),
+    remaining_delay_in_millis: S.optional(S.Number),
+    shard: S.Number,
+    unassigned_info: S.optional(ClusterAllocationExplainUnassignedInformation),
+    note: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ClusterAllocationExplainResponse",
+}) as any as S.Schema<ClusterAllocationExplainResponse>;
+
+export interface ClusterAllocationExplain1Request {
+  /** The name of the index that you would like an explanation for. */
+  index?: string;
+  /** An identifier for the shard that you would like an explanation for. */
+  shard?: number;
+  /** If true, returns an explanation for the primary shard for the specified shard ID. */
+  primary?: boolean;
+  /** Explain a shard only if it is currently located on the specified node name or node ID. */
+  current_node?: string;
+  /** If true, returns information about disk usage and shard sizes. */
+  include_disk_info?: boolean;
+  /** If true, returns YES decisions in explanation. */
+  include_yes_decisions?: boolean;
+  /** Period to wait for a connection to the master node. */
+  master_timeout?: TypesDuration;
+}
+export const ClusterAllocationExplain1Request = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    index: S.optional(S.String.pipe(T.Query())),
+    shard: S.optional(S.Number.pipe(T.Query())),
+    primary: S.optional(S.Boolean.pipe(T.Query())),
+    current_node: S.optional(S.String.pipe(T.Query())),
+    include_disk_info: S.optional(S.Boolean.pipe(T.Query())),
+    include_yes_decisions: S.optional(S.Boolean.pipe(T.Query())),
+    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/_cluster/allocation/explain", code: 200 }),
+  ),
+).annotate({
+  identifier: "ClusterAllocationExplain1Request",
+}) as any as S.Schema<ClusterAllocationExplain1Request>;
+
+export type ClusterAllocationExplain1ResponseCanRebalanceClusterDecisionsList =
+  Array<ClusterAllocationExplainAllocationDecision>;
+export const ClusterAllocationExplain1ResponseCanRebalanceClusterDecisionsList =
+  /*@__PURE__*/ S.Array(
+    ClusterAllocationExplainAllocationDecision,
+  ) as any as S.Schema<ClusterAllocationExplain1ResponseCanRebalanceClusterDecisionsList>;
+
+export type ClusterAllocationExplain1ResponseCanRemainDecisionsList =
+  Array<ClusterAllocationExplainAllocationDecision>;
+export const ClusterAllocationExplain1ResponseCanRemainDecisionsList =
+  /*@__PURE__*/ S.Array(
+    ClusterAllocationExplainAllocationDecision,
+  ) as any as S.Schema<ClusterAllocationExplain1ResponseCanRemainDecisionsList>;
+
+export type ClusterAllocationExplain1ResponseNodeAllocationDecisionsList =
+  Array<ClusterAllocationExplainNodeAllocationExplanation>;
+export const ClusterAllocationExplain1ResponseNodeAllocationDecisionsList =
+  /*@__PURE__*/ S.Array(
+    ClusterAllocationExplainNodeAllocationExplanation,
+  ) as any as S.Schema<ClusterAllocationExplain1ResponseNodeAllocationDecisionsList>;
+
+export interface ClusterAllocationExplain1Response {
+  allocate_explanation?: string;
+  allocation_delay?: TypesDuration;
+  allocation_delay_in_millis?: number;
+  can_allocate?: ClusterAllocationExplainDecision;
+  can_move_to_other_node?: ClusterAllocationExplainDecision;
+  can_rebalance_cluster?: ClusterAllocationExplainDecision;
+  can_rebalance_cluster_decisions?: ClusterAllocationExplain1ResponseCanRebalanceClusterDecisionsList;
+  can_rebalance_to_other_node?: ClusterAllocationExplainDecision;
+  can_remain_decisions?: ClusterAllocationExplain1ResponseCanRemainDecisionsList;
+  can_remain_on_current_node?: ClusterAllocationExplainDecision;
+  cluster_info?: ClusterAllocationExplainClusterInfo;
+  configured_delay?: TypesDuration;
+  configured_delay_in_millis?: number;
+  current_node?: ClusterAllocationExplainCurrentNode;
+  current_state: string;
+  index: string;
+  move_explanation?: string;
+  node_allocation_decisions?: ClusterAllocationExplain1ResponseNodeAllocationDecisionsList;
+  primary: boolean;
+  rebalance_explanation?: string;
+  remaining_delay?: TypesDuration;
+  remaining_delay_in_millis?: number;
+  shard: number;
+  unassigned_info?: ClusterAllocationExplainUnassignedInformation;
+  note?: string;
+}
+export const ClusterAllocationExplain1Response = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    allocate_explanation: S.optional(S.String),
+    allocation_delay: S.optional(TypesDuration),
+    allocation_delay_in_millis: S.optional(S.Number),
+    can_allocate: S.optional(ClusterAllocationExplainDecision),
+    can_move_to_other_node: S.optional(ClusterAllocationExplainDecision),
+    can_rebalance_cluster: S.optional(ClusterAllocationExplainDecision),
+    can_rebalance_cluster_decisions: S.optional(
+      ClusterAllocationExplain1ResponseCanRebalanceClusterDecisionsList,
+    ),
+    can_rebalance_to_other_node: S.optional(ClusterAllocationExplainDecision),
+    can_remain_decisions: S.optional(
+      ClusterAllocationExplain1ResponseCanRemainDecisionsList,
+    ),
+    can_remain_on_current_node: S.optional(ClusterAllocationExplainDecision),
+    cluster_info: S.optional(ClusterAllocationExplainClusterInfo),
+    configured_delay: S.optional(TypesDuration),
+    configured_delay_in_millis: S.optional(S.Number),
+    current_node: S.optional(ClusterAllocationExplainCurrentNode),
+    current_state: S.String,
+    index: S.String,
+    move_explanation: S.optional(S.String),
+    node_allocation_decisions: S.optional(
+      ClusterAllocationExplain1ResponseNodeAllocationDecisionsList,
+    ),
+    primary: S.Boolean,
+    rebalance_explanation: S.optional(S.String),
+    remaining_delay: S.optional(TypesDuration),
+    remaining_delay_in_millis: S.optional(S.Number),
+    shard: S.Number,
+    unassigned_info: S.optional(ClusterAllocationExplainUnassignedInformation),
+    note: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ClusterAllocationExplain1Response",
+}) as any as S.Schema<ClusterAllocationExplain1Response>;
+
+export interface ClusterDeleteComponentTemplateRequest {
+  /** Comma-separated list or wildcard expression of component template names used to limit the request. */
+  name: string;
+  /** Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error. */
+  master_timeout?: TypesDuration;
+  /** Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error. */
+  timeout?: TypesDuration;
+}
+export const ClusterDeleteComponentTemplateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      name: S.String.pipe(T.Label()),
+      master_timeout: S.optional(TypesDuration.pipe(T.Query())),
+      timeout: S.optional(TypesDuration.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/_component_template/{name}",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ClusterDeleteComponentTemplateRequest",
+}) as any as S.Schema<ClusterDeleteComponentTemplateRequest>;
+
+export interface ClusterDeleteVotingConfigExclusionsRequest {
+  /** Period to wait for a connection to the master node. */
+  master_timeout?: TypesDuration;
+  /** Specifies whether to wait for all excluded nodes to be removed from the cluster before clearing the voting configuration exclusions list. Defaults to true, meaning that all excluded nodes must be removed from the cluster before this API takes any action. If set to false then the voting configuration exclusions list is cleared even if some excluded nodes are still in the cluster. */
+  wait_for_removal?: boolean;
+}
+export const ClusterDeleteVotingConfigExclusionsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      master_timeout: S.optional(TypesDuration.pipe(T.Query())),
+      wait_for_removal: S.optional(S.Boolean.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/_cluster/voting_config_exclusions",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ClusterDeleteVotingConfigExclusionsRequest",
+  }) as any as S.Schema<ClusterDeleteVotingConfigExclusionsRequest>;
+
+export interface ClusterDeleteVotingConfigExclusionsResponse {}
+export const ClusterDeleteVotingConfigExclusionsResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "ClusterDeleteVotingConfigExclusionsResponse",
+  }) as any as S.Schema<ClusterDeleteVotingConfigExclusionsResponse>;
+
+export type ClusterGetComponentTemplateRequestSettingsFilterCase1List =
+  Array<string>;
+export const ClusterGetComponentTemplateRequestSettingsFilterCase1List =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ClusterGetComponentTemplateRequestSettingsFilterCase1List>;
+
+export type ClusterGetComponentTemplateRequestSettingsFilter =
+  | string
+  | ClusterGetComponentTemplateRequestSettingsFilterCase1List;
+export const ClusterGetComponentTemplateRequestSettingsFilter =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<ClusterGetComponentTemplateRequestSettingsFilter>;
+
+export interface ClusterGetComponentTemplateRequest {
+  /** If `true`, returns settings in flat format. */
+  flat_settings?: boolean;
+  /** Filter out results, for example to filter out sensitive information. Supports wildcards or full settings keys */
+  settings_filter?: ClusterGetComponentTemplateRequestSettingsFilter;
+  /** Return all default configurations for the component template */
+  include_defaults?: boolean;
+  /** If `true`, the request retrieves information from the local node only. If `false`, information is retrieved from the master node. */
+  local?: boolean;
+  /** Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error. */
+  master_timeout?: TypesDuration;
+}
+export const ClusterGetComponentTemplateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    flat_settings: S.optional(S.Boolean.pipe(T.Query())),
+    settings_filter: S.optional(
+      ClusterGetComponentTemplateRequestSettingsFilter.pipe(T.Query()),
+    ),
+    include_defaults: S.optional(S.Boolean.pipe(T.Query())),
+    local: S.optional(S.Boolean.pipe(T.Query())),
+    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/_component_template", code: 200 })),
+).annotate({
+  identifier: "ClusterGetComponentTemplateRequest",
+}) as any as S.Schema<ClusterGetComponentTemplateRequest>;
+
+export type IndicesTypesRetentionSource =
+  | "data_stream_configuration"
+  | "default_global_retention"
+  | "max_global_retention"
+  | "default_failures_retention";
+export const IndicesTypesRetentionSource = /*@__PURE__*/ S.String;
+
+export interface IndicesTypesDownsamplingRound {
+  /** The duration since rollover when this downsampling round should execute */
+  after: TypesDuration;
+  /** The downsample interval. */
+  fixed_interval: string;
+}
+export const IndicesTypesDownsamplingRound = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    after: TypesDuration,
+    fixed_interval: S.String,
+  }),
+).annotate({
+  identifier: "IndicesTypesDownsamplingRound",
+}) as any as S.Schema<IndicesTypesDownsamplingRound>;
+
+/** The list of downsampling rounds to execute as part of this downsampling configuration */
+export type IndicesTypesDataStreamLifecycleWithRolloverDownsamplingList =
+  Array<IndicesTypesDownsamplingRound>;
+export const IndicesTypesDataStreamLifecycleWithRolloverDownsamplingList =
+  /*@__PURE__*/ S.Array(
+    IndicesTypesDownsamplingRound,
+  ) as any as S.Schema<IndicesTypesDataStreamLifecycleWithRolloverDownsamplingList>;
+
+export type IndicesTypesSamplingMethod = "aggregate" | "last_value";
+export const IndicesTypesSamplingMethod = /*@__PURE__*/ S.String;
+
+export interface IndicesTypesDataStreamLifecycleRolloverConditions {
+  min_age?: TypesDuration;
+  max_age?: string;
+  min_docs?: number;
+  max_docs?: number;
+  min_size?: TypesByteSize;
+  max_size?: TypesByteSize;
+  min_primary_shard_size?: TypesByteSize;
+  max_primary_shard_size?: TypesByteSize;
+  min_primary_shard_docs?: number;
+  max_primary_shard_docs?: number;
+}
+export const IndicesTypesDataStreamLifecycleRolloverConditions =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      min_age: S.optional(TypesDuration),
+      max_age: S.optional(S.String),
+      min_docs: S.optional(S.Number),
+      max_docs: S.optional(S.Number),
+      min_size: S.optional(TypesByteSize),
+      max_size: S.optional(TypesByteSize),
+      min_primary_shard_size: S.optional(TypesByteSize),
+      max_primary_shard_size: S.optional(TypesByteSize),
+      min_primary_shard_docs: S.optional(S.Number),
+      max_primary_shard_docs: S.optional(S.Number),
+    }),
+  ).annotate({
+    identifier: "IndicesTypesDataStreamLifecycleRolloverConditions",
+  }) as any as S.Schema<IndicesTypesDataStreamLifecycleRolloverConditions>;
+
+/** Data stream lifecycle with rollover can be used to display the configuration including the default rollover conditions, if asked. */
+export interface IndicesTypesDataStreamLifecycleWithRollover {
+  /** If defined, every document added to this data stream will be stored at least for this time frame. Any time after this duration the document could be deleted. When empty, every document in this data stream will be stored indefinitely. */
+  data_retention?: TypesDuration;
+  /** The least amount of time data should be kept by elasticsearch. */
+  effective_retention?: TypesDuration;
+  /** Configuration source that can influence the retention of a data stream. */
+  retention_determined_by?: IndicesTypesRetentionSource;
+  /** The list of downsampling rounds to execute as part of this downsampling configuration */
+  downsampling?: IndicesTypesDataStreamLifecycleWithRolloverDownsamplingList;
+  /** The method used to downsample the data. There are two options `aggregate` and `last_value`. It requires `downsampling` to be defined. Defaults to `aggregate`. */
+  downsampling_method?: IndicesTypesSamplingMethod;
+  /** If defined, it turns data stream lifecycle on/off (`true`/`false`) for this data stream. A data stream lifecycle that's disabled (enabled: `false`) will have no effect on the data stream. */
+  enabled?: boolean;
+  /** The period after which data stream backing indices are automatically converted to partially mounted searchable snapshots. This field is valid only on main data stream lifecycles and cannot be set on failure-store lifecycles. */
+  frozen_after?: TypesDuration;
+  /** The conditions which will trigger the rollover of a backing index as configured by the cluster setting `cluster.lifecycle.default.rollover`. This property is an implementation detail and it will only be retrieved when the query param `include_defaults` is set to true. The contents of this field are subject to change. */
+  rollover?: IndicesTypesDataStreamLifecycleRolloverConditions;
+}
+export const IndicesTypesDataStreamLifecycleWithRollover =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      data_retention: S.optional(TypesDuration),
+      effective_retention: S.optional(TypesDuration),
+      retention_determined_by: S.optional(IndicesTypesRetentionSource),
+      downsampling: S.optional(
+        IndicesTypesDataStreamLifecycleWithRolloverDownsamplingList,
+      ),
+      downsampling_method: S.optional(IndicesTypesSamplingMethod),
+      enabled: S.optional(S.Boolean),
+      frozen_after: S.optional(TypesDuration),
+      rollover: S.optional(IndicesTypesDataStreamLifecycleRolloverConditions),
+    }),
+  ).annotate({
+    identifier: "IndicesTypesDataStreamLifecycleWithRollover",
+  }) as any as S.Schema<IndicesTypesDataStreamLifecycleWithRollover>;
+
 export type IndicesTypesIndexSettingsRoutingPathCase1List = Array<string>;
 export const IndicesTypesIndexSettingsRoutingPathCase1List =
   /*@__PURE__*/ S.Array(
@@ -25604,1635 +27948,6 @@ export const IndicesTypesIndexSettings = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "IndicesTypesIndexSettings",
 }) as any as S.Schema<IndicesTypesIndexSettings>;
-
-export interface CcrFollowRequest {
-  /** The name of the follower index. */
-  index: string;
-  /** Period to wait for a connection to the master node. */
-  master_timeout?: TypesDuration;
-  /** Specifies the number of shards to wait on being active before responding. This defaults to waiting on none of the shards to be active. A shard must be restored from the leader index before being active. Restoring a follower shard requires transferring all the remote Lucene segment files to the follower index. */
-  wait_for_active_shards?: TypesWaitForActiveShards;
-  /** If the leader index is part of a data stream, the name to which the local data stream for the followed index should be renamed. */
-  data_stream_name?: string;
-  /** The name of the index in the leader cluster to follow. */
-  leader_index: string;
-  /** The maximum number of outstanding reads requests from the remote cluster. */
-  max_outstanding_read_requests?: number;
-  /** The maximum number of outstanding write requests on the follower. */
-  max_outstanding_write_requests?: number;
-  /** The maximum number of operations to pull per read from the remote cluster. */
-  max_read_request_operation_count?: number;
-  /** The maximum size in bytes of per read of a batch of operations pulled from the remote cluster. */
-  max_read_request_size?: TypesByteSize;
-  /** The maximum time to wait before retrying an operation that failed exceptionally. An exponential backoff strategy is employed when retrying. */
-  max_retry_delay?: TypesDuration;
-  /** The maximum number of operations that can be queued for writing. When this limit is reached, reads from the remote cluster will be deferred until the number of queued operations goes below the limit. */
-  max_write_buffer_count?: number;
-  /** The maximum total bytes of operations that can be queued for writing. When this limit is reached, reads from the remote cluster will be deferred until the total bytes of queued operations goes below the limit. */
-  max_write_buffer_size?: TypesByteSize;
-  /** The maximum number of operations per bulk write request executed on the follower. */
-  max_write_request_operation_count?: number;
-  /** The maximum total bytes of operations per bulk write request executed on the follower. */
-  max_write_request_size?: TypesByteSize;
-  /** The maximum time to wait for new operations on the remote cluster when the follower index is synchronized with the leader index. When the timeout has elapsed, the poll for operations will return to the follower so that it can update some statistics. Then the follower will immediately attempt to read from the leader again. */
-  read_poll_timeout?: TypesDuration;
-  /** The remote cluster containing the leader index. */
-  remote_cluster: string;
-  /** Settings to override from the leader index. */
-  settings?: IndicesTypesIndexSettings;
-}
-export const CcrFollowRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    index: S.String.pipe(T.Label()),
-    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
-    wait_for_active_shards: S.optional(
-      TypesWaitForActiveShards.pipe(T.Query()),
-    ),
-    data_stream_name: S.optional(S.String),
-    leader_index: S.String,
-    max_outstanding_read_requests: S.optional(S.Number),
-    max_outstanding_write_requests: S.optional(S.Number),
-    max_read_request_operation_count: S.optional(S.Number),
-    max_read_request_size: S.optional(TypesByteSize),
-    max_retry_delay: S.optional(TypesDuration),
-    max_write_buffer_count: S.optional(S.Number),
-    max_write_buffer_size: S.optional(TypesByteSize),
-    max_write_request_operation_count: S.optional(S.Number),
-    max_write_request_size: S.optional(TypesByteSize),
-    read_poll_timeout: S.optional(TypesDuration),
-    remote_cluster: S.String,
-    settings: S.optional(IndicesTypesIndexSettings),
-  }).pipe(T.Http({ method: "PUT", uri: "/{index}/_ccr/follow", code: 200 })),
-).annotate({
-  identifier: "CcrFollowRequest",
-}) as any as S.Schema<CcrFollowRequest>;
-
-export interface CcrFollowResponse {
-  follow_index_created: boolean;
-  follow_index_shards_acked: boolean;
-  index_following_started: boolean;
-}
-export const CcrFollowResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    follow_index_created: S.Boolean,
-    follow_index_shards_acked: S.Boolean,
-    index_following_started: S.Boolean,
-  }),
-).annotate({
-  identifier: "CcrFollowResponse",
-}) as any as S.Schema<CcrFollowResponse>;
-
-export interface CcrFollowInfoRequest {
-  /** A comma-delimited list of follower index patterns. */
-  index: string;
-  /** The period to wait for a connection to the master node. If the master node is not available before the timeout expires, the request fails and returns an error. It can also be set to `-1` to indicate that the request should never timeout. */
-  master_timeout?: TypesDuration;
-}
-export const CcrFollowInfoRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    index: S.String.pipe(T.Label()),
-    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/{index}/_ccr/info", code: 200 })),
-).annotate({
-  identifier: "CcrFollowInfoRequest",
-}) as any as S.Schema<CcrFollowInfoRequest>;
-
-export interface CcrFollowInfoFollowerIndexParameters {
-  /** The maximum number of outstanding reads requests from the remote cluster. */
-  max_outstanding_read_requests?: number;
-  /** The maximum number of outstanding write requests on the follower. */
-  max_outstanding_write_requests?: number;
-  /** The maximum number of operations to pull per read from the remote cluster. */
-  max_read_request_operation_count?: number;
-  /** The maximum size in bytes of per read of a batch of operations pulled from the remote cluster. */
-  max_read_request_size?: TypesByteSize;
-  /** The maximum time to wait before retrying an operation that failed exceptionally. An exponential backoff strategy is employed when retrying. */
-  max_retry_delay?: TypesDuration;
-  /** The maximum number of operations that can be queued for writing. When this limit is reached, reads from the remote cluster will be deferred until the number of queued operations goes below the limit. */
-  max_write_buffer_count?: number;
-  /** The maximum total bytes of operations that can be queued for writing. When this limit is reached, reads from the remote cluster will be deferred until the total bytes of queued operations goes below the limit. */
-  max_write_buffer_size?: TypesByteSize;
-  /** The maximum number of operations per bulk write request executed on the follower. */
-  max_write_request_operation_count?: number;
-  /** The maximum total bytes of operations per bulk write request executed on the follower. */
-  max_write_request_size?: TypesByteSize;
-  /** The maximum time to wait for new operations on the remote cluster when the follower index is synchronized with the leader index. When the timeout has elapsed, the poll for operations will return to the follower so that it can update some statistics. Then the follower will immediately attempt to read from the leader again. */
-  read_poll_timeout?: TypesDuration;
-}
-export const CcrFollowInfoFollowerIndexParameters = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      max_outstanding_read_requests: S.optional(S.Number),
-      max_outstanding_write_requests: S.optional(S.Number),
-      max_read_request_operation_count: S.optional(S.Number),
-      max_read_request_size: S.optional(TypesByteSize),
-      max_retry_delay: S.optional(TypesDuration),
-      max_write_buffer_count: S.optional(S.Number),
-      max_write_buffer_size: S.optional(TypesByteSize),
-      max_write_request_operation_count: S.optional(S.Number),
-      max_write_request_size: S.optional(TypesByteSize),
-      read_poll_timeout: S.optional(TypesDuration),
-    }),
-).annotate({
-  identifier: "CcrFollowInfoFollowerIndexParameters",
-}) as any as S.Schema<CcrFollowInfoFollowerIndexParameters>;
-
-export type CcrFollowInfoFollowerIndexStatus = "active" | "paused";
-export const CcrFollowInfoFollowerIndexStatus = /*@__PURE__*/ S.String;
-
-export interface CcrFollowInfoFollowerIndex {
-  /** The name of the follower index. */
-  follower_index: string;
-  /** The name of the index in the leader cluster that is followed. */
-  leader_index: string;
-  /** An object that encapsulates cross-cluster replication parameters. If the follower index's status is paused, this object is omitted. */
-  parameters?: CcrFollowInfoFollowerIndexParameters;
-  /** The remote cluster that contains the leader index. */
-  remote_cluster: string;
-  /** The status of the index following: `active` or `paused`. */
-  status: CcrFollowInfoFollowerIndexStatus;
-}
-export const CcrFollowInfoFollowerIndex = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    follower_index: S.String,
-    leader_index: S.String,
-    parameters: S.optional(CcrFollowInfoFollowerIndexParameters),
-    remote_cluster: S.String,
-    status: CcrFollowInfoFollowerIndexStatus,
-  }),
-).annotate({
-  identifier: "CcrFollowInfoFollowerIndex",
-}) as any as S.Schema<CcrFollowInfoFollowerIndex>;
-
-export type CcrFollowInfoResponseFollowerIndicesList =
-  Array<CcrFollowInfoFollowerIndex>;
-export const CcrFollowInfoResponseFollowerIndicesList = /*@__PURE__*/ S.Array(
-  CcrFollowInfoFollowerIndex,
-) as any as S.Schema<CcrFollowInfoResponseFollowerIndicesList>;
-
-export interface CcrFollowInfoResponse {
-  follower_indices: CcrFollowInfoResponseFollowerIndicesList;
-}
-export const CcrFollowInfoResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    follower_indices: CcrFollowInfoResponseFollowerIndicesList,
-  }),
-).annotate({
-  identifier: "CcrFollowInfoResponse",
-}) as any as S.Schema<CcrFollowInfoResponse>;
-
-export interface CcrFollowStatsRequest {
-  /** A comma-delimited list of index patterns. */
-  index: string;
-  /** The period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error. */
-  timeout?: TypesDuration;
-}
-export const CcrFollowStatsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    index: S.String.pipe(T.Label()),
-    timeout: S.optional(TypesDuration.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/{index}/_ccr/stats", code: 200 })),
-).annotate({
-  identifier: "CcrFollowStatsRequest",
-}) as any as S.Schema<CcrFollowStatsRequest>;
-
-export interface CcrTypesReadException {
-  /** The exception that caused the read to fail. */
-  exception: TypesErrorCause;
-  /** The starting sequence number of the batch requested from the leader. */
-  from_seq_no: number;
-  /** The number of times the batch has been retried. */
-  retries: number;
-}
-export const CcrTypesReadException = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    exception: TypesErrorCause,
-    from_seq_no: S.Number,
-    retries: S.Number,
-  }),
-).annotate({
-  identifier: "CcrTypesReadException",
-}) as any as S.Schema<CcrTypesReadException>;
-
-/** An array of objects representing failed reads. */
-export type CcrTypesShardStatsReadExceptionsList = Array<CcrTypesReadException>;
-export const CcrTypesShardStatsReadExceptionsList = /*@__PURE__*/ S.Array(
-  CcrTypesReadException,
-) as any as S.Schema<CcrTypesShardStatsReadExceptionsList>;
-
-export interface CcrTypesShardStats {
-  /** The total of transferred bytes read from the leader. This is only an estimate and does not account for compression if enabled. */
-  bytes_read: number;
-  /** The number of failed reads. */
-  failed_read_requests: number;
-  /** The number of failed bulk write requests on the follower. */
-  failed_write_requests: number;
-  fatal_exception?: TypesErrorCause;
-  /** The index aliases version the follower is synced up to. */
-  follower_aliases_version: number;
-  /** The current global checkpoint on the follower. The difference between the `leader_global_checkpoint` and the `follower_global_checkpoint` is an indication of how much the follower is lagging the leader. */
-  follower_global_checkpoint: number;
-  /** The name of the follower index. */
-  follower_index: string;
-  /** The mapping version the follower is synced up to. */
-  follower_mapping_version: number;
-  /** The current maximum sequence number on the follower. */
-  follower_max_seq_no: number;
-  /** The index settings version the follower is synced up to. */
-  follower_settings_version: number;
-  /** The starting sequence number of the last batch of operations requested from the leader. */
-  last_requested_seq_no: number;
-  /** The current global checkpoint on the leader known to the follower task. */
-  leader_global_checkpoint: number;
-  /** The name of the index in the leader cluster being followed. */
-  leader_index: string;
-  /** The current maximum sequence number on the leader known to the follower task. */
-  leader_max_seq_no: number;
-  /** The total number of operations read from the leader. */
-  operations_read: number;
-  /** The number of operations written on the follower. */
-  operations_written: number;
-  /** The number of active read requests from the follower. */
-  outstanding_read_requests: number;
-  /** The number of active bulk write requests on the follower. */
-  outstanding_write_requests: number;
-  /** An array of objects representing failed reads. */
-  read_exceptions: CcrTypesShardStatsReadExceptionsList;
-  /** The remote cluster containing the leader index. */
-  remote_cluster: string;
-  /** The numerical shard ID, with values from 0 to one less than the number of replicas. */
-  shard_id: number;
-  /** The number of successful fetches. */
-  successful_read_requests: number;
-  /** The number of bulk write requests run on the follower. */
-  successful_write_requests: number;
-  time_since_last_read?: TypesDuration;
-  /** The number of milliseconds since a read request was sent to the leader. When the follower is caught up to the leader, this number will increase up to the configured `read_poll_timeout` at which point another read request will be sent to the leader. */
-  time_since_last_read_millis: number;
-  total_read_remote_exec_time?: TypesDuration;
-  /** The total time reads spent running on the remote cluster. */
-  total_read_remote_exec_time_millis: number;
-  total_read_time?: TypesDuration;
-  /** The total time reads were outstanding, measured from the time a read was sent to the leader to the time a reply was returned to the follower. */
-  total_read_time_millis: number;
-  total_write_time?: TypesDuration;
-  /** The total time spent writing on the follower. */
-  total_write_time_millis: number;
-  /** The number of write operations queued on the follower. */
-  write_buffer_operation_count: number;
-  /** The total number of bytes of operations currently queued for writing. */
-  write_buffer_size_in_bytes: TypesByteSize;
-}
-export const CcrTypesShardStats = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    bytes_read: S.Number,
-    failed_read_requests: S.Number,
-    failed_write_requests: S.Number,
-    fatal_exception: S.optional(TypesErrorCause),
-    follower_aliases_version: S.Number,
-    follower_global_checkpoint: S.Number,
-    follower_index: S.String,
-    follower_mapping_version: S.Number,
-    follower_max_seq_no: S.Number,
-    follower_settings_version: S.Number,
-    last_requested_seq_no: S.Number,
-    leader_global_checkpoint: S.Number,
-    leader_index: S.String,
-    leader_max_seq_no: S.Number,
-    operations_read: S.Number,
-    operations_written: S.Number,
-    outstanding_read_requests: S.Number,
-    outstanding_write_requests: S.Number,
-    read_exceptions: CcrTypesShardStatsReadExceptionsList,
-    remote_cluster: S.String,
-    shard_id: S.Number,
-    successful_read_requests: S.Number,
-    successful_write_requests: S.Number,
-    time_since_last_read: S.optional(TypesDuration),
-    time_since_last_read_millis: S.Number,
-    total_read_remote_exec_time: S.optional(TypesDuration),
-    total_read_remote_exec_time_millis: S.Number,
-    total_read_time: S.optional(TypesDuration),
-    total_read_time_millis: S.Number,
-    total_write_time: S.optional(TypesDuration),
-    total_write_time_millis: S.Number,
-    write_buffer_operation_count: S.Number,
-    write_buffer_size_in_bytes: TypesByteSize,
-  }),
-).annotate({
-  identifier: "CcrTypesShardStats",
-}) as any as S.Schema<CcrTypesShardStats>;
-
-/** An array of shard-level following task statistics. */
-export type CcrTypesFollowIndexStatsShardsList = Array<CcrTypesShardStats>;
-export const CcrTypesFollowIndexStatsShardsList = /*@__PURE__*/ S.Array(
-  CcrTypesShardStats,
-) as any as S.Schema<CcrTypesFollowIndexStatsShardsList>;
-
-export interface CcrTypesFollowIndexStats {
-  /** The name of the follower index. */
-  index: string;
-  /** An array of shard-level following task statistics. */
-  shards: CcrTypesFollowIndexStatsShardsList;
-}
-export const CcrTypesFollowIndexStats = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    index: S.String,
-    shards: CcrTypesFollowIndexStatsShardsList,
-  }),
-).annotate({
-  identifier: "CcrTypesFollowIndexStats",
-}) as any as S.Schema<CcrTypesFollowIndexStats>;
-
-/** An array of follower index statistics. */
-export type CcrFollowStatsResponseIndicesList = Array<CcrTypesFollowIndexStats>;
-export const CcrFollowStatsResponseIndicesList = /*@__PURE__*/ S.Array(
-  CcrTypesFollowIndexStats,
-) as any as S.Schema<CcrFollowStatsResponseIndicesList>;
-
-export interface CcrFollowStatsResponse {
-  /** An array of follower index statistics. */
-  indices: CcrFollowStatsResponseIndicesList;
-}
-export const CcrFollowStatsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    indices: CcrFollowStatsResponseIndicesList,
-  }),
-).annotate({
-  identifier: "CcrFollowStatsResponse",
-}) as any as S.Schema<CcrFollowStatsResponse>;
-
-export interface CcrForgetFollowerRequest {
-  /** Name of the leader index for which specified follower retention leases should be removed */
-  index: string;
-  /** Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error. */
-  timeout?: TypesDuration;
-  follower_cluster?: string;
-  follower_index?: string;
-  follower_index_uuid?: string;
-  leader_remote_cluster?: string;
-}
-export const CcrForgetFollowerRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    index: S.String.pipe(T.Label()),
-    timeout: S.optional(TypesDuration.pipe(T.Query())),
-    follower_cluster: S.optional(S.String),
-    follower_index: S.optional(S.String),
-    follower_index_uuid: S.optional(S.String),
-    leader_remote_cluster: S.optional(S.String),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/{index}/_ccr/forget_follower", code: 200 }),
-  ),
-).annotate({
-  identifier: "CcrForgetFollowerRequest",
-}) as any as S.Schema<CcrForgetFollowerRequest>;
-
-export interface CcrForgetFollowerResponse {
-  _shards: TypesShardStatistics;
-}
-export const CcrForgetFollowerResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    _shards: TypesShardStatistics,
-  }),
-).annotate({
-  identifier: "CcrForgetFollowerResponse",
-}) as any as S.Schema<CcrForgetFollowerResponse>;
-
-export interface CcrGetAutoFollowPatternRequest {
-  /** The period to wait for a connection to the master node. If the master node is not available before the timeout expires, the request fails and returns an error. It can also be set to `-1` to indicate that the request should never timeout. */
-  master_timeout?: TypesDuration;
-}
-export const CcrGetAutoFollowPatternRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/_ccr/auto_follow", code: 200 })),
-).annotate({
-  identifier: "CcrGetAutoFollowPatternRequest",
-}) as any as S.Schema<CcrGetAutoFollowPatternRequest>;
-
-export type TypesIndexPatterns = Array<string>;
-export const TypesIndexPatterns = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<TypesIndexPatterns>;
-
-export interface CcrGetAutoFollowPatternAutoFollowPatternSummary {
-  active: boolean;
-  /** The remote cluster containing the leader indices to match against. */
-  remote_cluster: string;
-  /** The name of follower index. */
-  follow_index_pattern?: string;
-  /** An array of simple index patterns to match against indices in the remote cluster specified by the remote_cluster field. */
-  leader_index_patterns: TypesIndexPatterns;
-  /** An array of simple index patterns that can be used to exclude indices from being auto-followed. */
-  leader_index_exclusion_patterns: TypesIndexPatterns;
-  /** The maximum number of outstanding reads requests from the remote cluster. */
-  max_outstanding_read_requests: number;
-}
-export const CcrGetAutoFollowPatternAutoFollowPatternSummary =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      active: S.Boolean,
-      remote_cluster: S.String,
-      follow_index_pattern: S.optional(S.String),
-      leader_index_patterns: TypesIndexPatterns,
-      leader_index_exclusion_patterns: TypesIndexPatterns,
-      max_outstanding_read_requests: S.Number,
-    }),
-  ).annotate({
-    identifier: "CcrGetAutoFollowPatternAutoFollowPatternSummary",
-  }) as any as S.Schema<CcrGetAutoFollowPatternAutoFollowPatternSummary>;
-
-export interface CcrGetAutoFollowPatternAutoFollowPattern {
-  name: string;
-  pattern: CcrGetAutoFollowPatternAutoFollowPatternSummary;
-}
-export const CcrGetAutoFollowPatternAutoFollowPattern = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      name: S.String,
-      pattern: CcrGetAutoFollowPatternAutoFollowPatternSummary,
-    }),
-).annotate({
-  identifier: "CcrGetAutoFollowPatternAutoFollowPattern",
-}) as any as S.Schema<CcrGetAutoFollowPatternAutoFollowPattern>;
-
-export type CcrGetAutoFollowPatternResponsePatternsList =
-  Array<CcrGetAutoFollowPatternAutoFollowPattern>;
-export const CcrGetAutoFollowPatternResponsePatternsList =
-  /*@__PURE__*/ S.Array(
-    CcrGetAutoFollowPatternAutoFollowPattern,
-  ) as any as S.Schema<CcrGetAutoFollowPatternResponsePatternsList>;
-
-export interface CcrGetAutoFollowPatternResponse {
-  patterns: CcrGetAutoFollowPatternResponsePatternsList;
-}
-export const CcrGetAutoFollowPatternResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    patterns: CcrGetAutoFollowPatternResponsePatternsList,
-  }),
-).annotate({
-  identifier: "CcrGetAutoFollowPatternResponse",
-}) as any as S.Schema<CcrGetAutoFollowPatternResponse>;
-
-export interface CcrGetAutoFollowPattern1Request {
-  /** The auto-follow pattern collection that you want to retrieve. If you do not specify a name, the API returns information for all collections. */
-  name: string;
-  /** The period to wait for a connection to the master node. If the master node is not available before the timeout expires, the request fails and returns an error. It can also be set to `-1` to indicate that the request should never timeout. */
-  master_timeout?: TypesDuration;
-}
-export const CcrGetAutoFollowPattern1Request = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String.pipe(T.Label()),
-    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/_ccr/auto_follow/{name}", code: 200 }),
-  ),
-).annotate({
-  identifier: "CcrGetAutoFollowPattern1Request",
-}) as any as S.Schema<CcrGetAutoFollowPattern1Request>;
-
-export type CcrGetAutoFollowPattern1ResponsePatternsList =
-  Array<CcrGetAutoFollowPatternAutoFollowPattern>;
-export const CcrGetAutoFollowPattern1ResponsePatternsList =
-  /*@__PURE__*/ S.Array(
-    CcrGetAutoFollowPatternAutoFollowPattern,
-  ) as any as S.Schema<CcrGetAutoFollowPattern1ResponsePatternsList>;
-
-export interface CcrGetAutoFollowPattern1Response {
-  patterns: CcrGetAutoFollowPattern1ResponsePatternsList;
-}
-export const CcrGetAutoFollowPattern1Response = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    patterns: CcrGetAutoFollowPattern1ResponsePatternsList,
-  }),
-).annotate({
-  identifier: "CcrGetAutoFollowPattern1Response",
-}) as any as S.Schema<CcrGetAutoFollowPattern1Response>;
-
-export interface CcrPauseAutoFollowPatternRequest {
-  /** The name of the auto-follow pattern to pause. */
-  name: string;
-  /** The period to wait for a connection to the master node. If the master node is not available before the timeout expires, the request fails and returns an error. It can also be set to `-1` to indicate that the request should never timeout. */
-  master_timeout?: TypesDuration;
-}
-export const CcrPauseAutoFollowPatternRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String.pipe(T.Label()),
-    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/_ccr/auto_follow/{name}/pause",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "CcrPauseAutoFollowPatternRequest",
-}) as any as S.Schema<CcrPauseAutoFollowPatternRequest>;
-
-export interface CcrPauseFollowRequest {
-  /** The name of the follower index. */
-  index: string;
-  /** The period to wait for a connection to the master node. If the master node is not available before the timeout expires, the request fails and returns an error. It can also be set to `-1` to indicate that the request should never timeout. */
-  master_timeout?: TypesDuration;
-}
-export const CcrPauseFollowRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    index: S.String.pipe(T.Label()),
-    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/{index}/_ccr/pause_follow", code: 200 }),
-  ),
-).annotate({
-  identifier: "CcrPauseFollowRequest",
-}) as any as S.Schema<CcrPauseFollowRequest>;
-
-/** Settings to override from the leader index. Note that certain settings can not be overrode (e.g., index.number_of_shards). */
-export type CcrPutAutoFollowPatternRequestSettingsMap = {
-  [key: string]: unknown | undefined;
-};
-export const CcrPutAutoFollowPatternRequestSettingsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<CcrPutAutoFollowPatternRequestSettingsMap>;
-
-export interface CcrPutAutoFollowPatternRequest {
-  /** The name of the collection of auto-follow patterns. */
-  name: string;
-  /** Period to wait for a connection to the master node. */
-  master_timeout?: TypesDuration;
-  /** The remote cluster containing the leader indices to match against. */
-  remote_cluster: string;
-  /** The name of follower index. The template {{leader_index}} can be used to derive the name of the follower index from the name of the leader index. When following a data stream, use {{leader_index}}; CCR does not support changes to the names of a follower data stream’s backing indices. */
-  follow_index_pattern?: string;
-  /** An array of simple index patterns to match against indices in the remote cluster specified by the remote_cluster field. */
-  leader_index_patterns?: TypesIndexPatterns;
-  /** An array of simple index patterns that can be used to exclude indices from being auto-followed. Indices in the remote cluster whose names are matching one or more leader_index_patterns and one or more leader_index_exclusion_patterns won’t be followed. */
-  leader_index_exclusion_patterns?: TypesIndexPatterns;
-  /** The maximum number of outstanding reads requests from the remote cluster. */
-  max_outstanding_read_requests?: number;
-  /** Settings to override from the leader index. Note that certain settings can not be overrode (e.g., index.number_of_shards). */
-  settings?: CcrPutAutoFollowPatternRequestSettingsMap;
-  /** The maximum number of outstanding reads requests from the remote cluster. */
-  max_outstanding_write_requests?: number;
-  /** The maximum time to wait for new operations on the remote cluster when the follower index is synchronized with the leader index. When the timeout has elapsed, the poll for operations will return to the follower so that it can update some statistics. Then the follower will immediately attempt to read from the leader again. */
-  read_poll_timeout?: TypesDuration;
-  /** The maximum number of operations to pull per read from the remote cluster. */
-  max_read_request_operation_count?: number;
-  /** The maximum size in bytes of per read of a batch of operations pulled from the remote cluster. */
-  max_read_request_size?: TypesByteSize;
-  /** The maximum time to wait before retrying an operation that failed exceptionally. An exponential backoff strategy is employed when retrying. */
-  max_retry_delay?: TypesDuration;
-  /** The maximum number of operations that can be queued for writing. When this limit is reached, reads from the remote cluster will be deferred until the number of queued operations goes below the limit. */
-  max_write_buffer_count?: number;
-  /** The maximum total bytes of operations that can be queued for writing. When this limit is reached, reads from the remote cluster will be deferred until the total bytes of queued operations goes below the limit. */
-  max_write_buffer_size?: TypesByteSize;
-  /** The maximum number of operations per bulk write request executed on the follower. */
-  max_write_request_operation_count?: number;
-  /** The maximum total bytes of operations per bulk write request executed on the follower. */
-  max_write_request_size?: TypesByteSize;
-}
-export const CcrPutAutoFollowPatternRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String.pipe(T.Label()),
-    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
-    remote_cluster: S.String,
-    follow_index_pattern: S.optional(S.String),
-    leader_index_patterns: S.optional(TypesIndexPatterns),
-    leader_index_exclusion_patterns: S.optional(TypesIndexPatterns),
-    max_outstanding_read_requests: S.optional(S.Number),
-    settings: S.optional(CcrPutAutoFollowPatternRequestSettingsMap),
-    max_outstanding_write_requests: S.optional(S.Number),
-    read_poll_timeout: S.optional(TypesDuration),
-    max_read_request_operation_count: S.optional(S.Number),
-    max_read_request_size: S.optional(TypesByteSize),
-    max_retry_delay: S.optional(TypesDuration),
-    max_write_buffer_count: S.optional(S.Number),
-    max_write_buffer_size: S.optional(TypesByteSize),
-    max_write_request_operation_count: S.optional(S.Number),
-    max_write_request_size: S.optional(TypesByteSize),
-  }).pipe(
-    T.Http({ method: "PUT", uri: "/_ccr/auto_follow/{name}", code: 200 }),
-  ),
-).annotate({
-  identifier: "CcrPutAutoFollowPatternRequest",
-}) as any as S.Schema<CcrPutAutoFollowPatternRequest>;
-
-export interface CcrResumeAutoFollowPatternRequest {
-  /** The name of the auto-follow pattern to resume. */
-  name: string;
-  /** The period to wait for a connection to the master node. If the master node is not available before the timeout expires, the request fails and returns an error. It can also be set to `-1` to indicate that the request should never timeout. */
-  master_timeout?: TypesDuration;
-}
-export const CcrResumeAutoFollowPatternRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String.pipe(T.Label()),
-    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/_ccr/auto_follow/{name}/resume",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "CcrResumeAutoFollowPatternRequest",
-}) as any as S.Schema<CcrResumeAutoFollowPatternRequest>;
-
-export interface CcrResumeFollowRequest {
-  /** Name of the follow index to resume following */
-  index: string;
-  /** Period to wait for a connection to the master node. */
-  master_timeout?: TypesDuration;
-  max_outstanding_read_requests?: number;
-  max_outstanding_write_requests?: number;
-  max_read_request_operation_count?: number;
-  max_read_request_size?: string;
-  max_retry_delay?: TypesDuration;
-  max_write_buffer_count?: number;
-  max_write_buffer_size?: string;
-  max_write_request_operation_count?: number;
-  max_write_request_size?: string;
-  read_poll_timeout?: TypesDuration;
-}
-export const CcrResumeFollowRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    index: S.String.pipe(T.Label()),
-    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
-    max_outstanding_read_requests: S.optional(S.Number),
-    max_outstanding_write_requests: S.optional(S.Number),
-    max_read_request_operation_count: S.optional(S.Number),
-    max_read_request_size: S.optional(S.String),
-    max_retry_delay: S.optional(TypesDuration),
-    max_write_buffer_count: S.optional(S.Number),
-    max_write_buffer_size: S.optional(S.String),
-    max_write_request_operation_count: S.optional(S.Number),
-    max_write_request_size: S.optional(S.String),
-    read_poll_timeout: S.optional(TypesDuration),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/{index}/_ccr/resume_follow", code: 200 }),
-  ),
-).annotate({
-  identifier: "CcrResumeFollowRequest",
-}) as any as S.Schema<CcrResumeFollowRequest>;
-
-export interface CcrStatsRequest {
-  /** The period to wait for a connection to the master node. If the master node is not available before the timeout expires, the request fails and returns an error. It can also be set to `-1` to indicate that the request should never timeout. */
-  master_timeout?: TypesDuration;
-  /** The period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error. */
-  timeout?: TypesDuration;
-}
-export const CcrStatsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
-    timeout: S.optional(TypesDuration.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/_ccr/stats", code: 200 })),
-).annotate({
-  identifier: "CcrStatsRequest",
-}) as any as S.Schema<CcrStatsRequest>;
-
-export interface CcrStatsAutoFollowedCluster {
-  cluster_name: string;
-  last_seen_metadata_version: number;
-  time_since_last_check_millis: number;
-}
-export const CcrStatsAutoFollowedCluster = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    cluster_name: S.String,
-    last_seen_metadata_version: S.Number,
-    time_since_last_check_millis: S.Number,
-  }),
-).annotate({
-  identifier: "CcrStatsAutoFollowedCluster",
-}) as any as S.Schema<CcrStatsAutoFollowedCluster>;
-
-export type CcrStatsAutoFollowStatsAutoFollowedClustersList =
-  Array<CcrStatsAutoFollowedCluster>;
-export const CcrStatsAutoFollowStatsAutoFollowedClustersList =
-  /*@__PURE__*/ S.Array(
-    CcrStatsAutoFollowedCluster,
-  ) as any as S.Schema<CcrStatsAutoFollowStatsAutoFollowedClustersList>;
-
-/** An array of objects representing failures by the auto-follow coordinator. */
-export type CcrStatsAutoFollowStatsRecentAutoFollowErrorsList =
-  Array<TypesErrorCause>;
-export const CcrStatsAutoFollowStatsRecentAutoFollowErrorsList =
-  /*@__PURE__*/ S.Array(
-    TypesErrorCause,
-  ) as any as S.Schema<CcrStatsAutoFollowStatsRecentAutoFollowErrorsList>;
-
-export interface CcrStatsAutoFollowStats {
-  auto_followed_clusters: CcrStatsAutoFollowStatsAutoFollowedClustersList;
-  /** The number of indices that the auto-follow coordinator failed to automatically follow. The causes of recent failures are captured in the logs of the elected master node and in the `auto_follow_stats.recent_auto_follow_errors` field. */
-  number_of_failed_follow_indices: number;
-  /** The number of times that the auto-follow coordinator failed to retrieve the cluster state from a remote cluster registered in a collection of auto-follow patterns. */
-  number_of_failed_remote_cluster_state_requests: number;
-  /** The number of indices that the auto-follow coordinator successfully followed. */
-  number_of_successful_follow_indices: number;
-  /** An array of objects representing failures by the auto-follow coordinator. */
-  recent_auto_follow_errors: CcrStatsAutoFollowStatsRecentAutoFollowErrorsList;
-}
-export const CcrStatsAutoFollowStats = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    auto_followed_clusters: CcrStatsAutoFollowStatsAutoFollowedClustersList,
-    number_of_failed_follow_indices: S.Number,
-    number_of_failed_remote_cluster_state_requests: S.Number,
-    number_of_successful_follow_indices: S.Number,
-    recent_auto_follow_errors:
-      CcrStatsAutoFollowStatsRecentAutoFollowErrorsList,
-  }),
-).annotate({
-  identifier: "CcrStatsAutoFollowStats",
-}) as any as S.Schema<CcrStatsAutoFollowStats>;
-
-export type CcrStatsFollowStatsIndicesList = Array<CcrTypesFollowIndexStats>;
-export const CcrStatsFollowStatsIndicesList = /*@__PURE__*/ S.Array(
-  CcrTypesFollowIndexStats,
-) as any as S.Schema<CcrStatsFollowStatsIndicesList>;
-
-export interface CcrStatsFollowStats {
-  indices: CcrStatsFollowStatsIndicesList;
-}
-export const CcrStatsFollowStats = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    indices: CcrStatsFollowStatsIndicesList,
-  }),
-).annotate({
-  identifier: "CcrStatsFollowStats",
-}) as any as S.Schema<CcrStatsFollowStats>;
-
-export interface CcrStatsResponse {
-  /** Statistics for the auto-follow coordinator. */
-  auto_follow_stats: CcrStatsAutoFollowStats;
-  /** Shard-level statistics for follower indices. */
-  follow_stats: CcrStatsFollowStats;
-}
-export const CcrStatsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    auto_follow_stats: CcrStatsAutoFollowStats,
-    follow_stats: CcrStatsFollowStats,
-  }),
-).annotate({
-  identifier: "CcrStatsResponse",
-}) as any as S.Schema<CcrStatsResponse>;
-
-export interface CcrUnfollowRequest {
-  /** The name of the follower index. */
-  index: string;
-  /** The period to wait for a connection to the master node. If the master node is not available before the timeout expires, the request fails and returns an error. It can also be set to `-1` to indicate that the request should never timeout. */
-  master_timeout?: TypesDuration;
-}
-export const CcrUnfollowRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    index: S.String.pipe(T.Label()),
-    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
-  }).pipe(T.Http({ method: "POST", uri: "/{index}/_ccr/unfollow", code: 200 })),
-).annotate({
-  identifier: "CcrUnfollowRequest",
-}) as any as S.Schema<CcrUnfollowRequest>;
-
-export type TypesScrollIdsCase1List = Array<string>;
-export const TypesScrollIdsCase1List = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<TypesScrollIdsCase1List>;
-
-export type TypesScrollIds = string | TypesScrollIdsCase1List;
-export const TypesScrollIds =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesScrollIds>;
-
-export interface ClearScrollRequest {
-  /** The scroll IDs to clear. To clear all scroll IDs, use `_all`. */
-  scroll_id?: TypesScrollIds;
-}
-export const ClearScrollRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    scroll_id: S.optional(TypesScrollIds),
-  }).pipe(T.Http({ method: "DELETE", uri: "/_search/scroll", code: 200 })),
-).annotate({
-  identifier: "ClearScrollRequest",
-}) as any as S.Schema<ClearScrollRequest>;
-
-export interface ClearScrollResponse {
-  /** If `true`, the request succeeded. This does not indicate whether any scrolling search requests were cleared. */
-  succeeded: boolean;
-  /** The number of scrolling search requests cleared. */
-  num_freed: number;
-}
-export const ClearScrollResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    succeeded: S.Boolean,
-    num_freed: S.Number,
-  }),
-).annotate({
-  identifier: "ClearScrollResponse",
-}) as any as S.Schema<ClearScrollResponse>;
-
-export interface ClearScroll1Request {
-  /** A comma-separated list of scroll IDs to clear. To clear all scroll IDs, use `_all`. IMPORTANT: Scroll IDs can be long. It is recommended to specify scroll IDs in the request body parameter. */
-  scroll_id: string;
-}
-export const ClearScroll1Request = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    scroll_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "DELETE", uri: "/_search/scroll/{scroll_id}", code: 200 }),
-  ),
-).annotate({
-  identifier: "ClearScroll1Request",
-}) as any as S.Schema<ClearScroll1Request>;
-
-export interface ClearScroll1Response {
-  /** If `true`, the request succeeded. This does not indicate whether any scrolling search requests were cleared. */
-  succeeded: boolean;
-  /** The number of scrolling search requests cleared. */
-  num_freed: number;
-}
-export const ClearScroll1Response = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    succeeded: S.Boolean,
-    num_freed: S.Number,
-  }),
-).annotate({
-  identifier: "ClearScroll1Response",
-}) as any as S.Schema<ClearScroll1Response>;
-
-export interface ClosePointInTimeRequest {
-  /** The ID of the point-in-time. */
-  id: string;
-}
-export const ClosePointInTimeRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-  }).pipe(T.Http({ method: "DELETE", uri: "/_pit", code: 200 })),
-).annotate({
-  identifier: "ClosePointInTimeRequest",
-}) as any as S.Schema<ClosePointInTimeRequest>;
-
-export interface ClosePointInTimeResponse {
-  /** If `true`, all search contexts associated with the point-in-time ID were successfully closed. */
-  succeeded: boolean;
-  /** The number of search contexts that were successfully closed. */
-  num_freed: number;
-}
-export const ClosePointInTimeResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    succeeded: S.Boolean,
-    num_freed: S.Number,
-  }),
-).annotate({
-  identifier: "ClosePointInTimeResponse",
-}) as any as S.Schema<ClosePointInTimeResponse>;
-
-export interface ClusterAllocationExplainRequest {
-  /** The name of the index that you would like an explanation for. */
-  index?: string;
-  /** An identifier for the shard that you would like an explanation for. */
-  shard?: number;
-  /** If true, returns an explanation for the primary shard for the specified shard ID. */
-  primary?: boolean;
-  /** Explain a shard only if it is currently located on the specified node name or node ID. */
-  current_node?: string;
-  /** If true, returns information about disk usage and shard sizes. */
-  include_disk_info?: boolean;
-  /** If true, returns YES decisions in explanation. */
-  include_yes_decisions?: boolean;
-  /** Period to wait for a connection to the master node. */
-  master_timeout?: TypesDuration;
-}
-export const ClusterAllocationExplainRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    index: S.optional(S.String.pipe(T.Query())),
-    shard: S.optional(S.Number.pipe(T.Query())),
-    primary: S.optional(S.Boolean.pipe(T.Query())),
-    current_node: S.optional(S.String.pipe(T.Query())),
-    include_disk_info: S.optional(S.Boolean.pipe(T.Query())),
-    include_yes_decisions: S.optional(S.Boolean.pipe(T.Query())),
-    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/_cluster/allocation/explain", code: 200 }),
-  ),
-).annotate({
-  identifier: "ClusterAllocationExplainRequest",
-}) as any as S.Schema<ClusterAllocationExplainRequest>;
-
-export type ClusterAllocationExplainDecision =
-  | "yes"
-  | "no"
-  | "worse_balance"
-  | "throttled"
-  | "awaiting_info"
-  | "allocation_delayed"
-  | "no_valid_shard_copy"
-  | "no_attempt";
-export const ClusterAllocationExplainDecision = /*@__PURE__*/ S.String;
-
-export type ClusterAllocationExplainAllocationExplainDecision =
-  | "NO"
-  | "YES"
-  | "THROTTLE"
-  | "ALWAYS";
-export const ClusterAllocationExplainAllocationExplainDecision =
-  /*@__PURE__*/ S.String;
-
-export interface ClusterAllocationExplainAllocationDecision {
-  decider: string;
-  decision: ClusterAllocationExplainAllocationExplainDecision;
-  explanation: string;
-}
-export const ClusterAllocationExplainAllocationDecision =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      decider: S.String,
-      decision: ClusterAllocationExplainAllocationExplainDecision,
-      explanation: S.String,
-    }),
-  ).annotate({
-    identifier: "ClusterAllocationExplainAllocationDecision",
-  }) as any as S.Schema<ClusterAllocationExplainAllocationDecision>;
-
-export type ClusterAllocationExplainResponseCanRebalanceClusterDecisionsList =
-  Array<ClusterAllocationExplainAllocationDecision>;
-export const ClusterAllocationExplainResponseCanRebalanceClusterDecisionsList =
-  /*@__PURE__*/ S.Array(
-    ClusterAllocationExplainAllocationDecision,
-  ) as any as S.Schema<ClusterAllocationExplainResponseCanRebalanceClusterDecisionsList>;
-
-export type ClusterAllocationExplainResponseCanRemainDecisionsList =
-  Array<ClusterAllocationExplainAllocationDecision>;
-export const ClusterAllocationExplainResponseCanRemainDecisionsList =
-  /*@__PURE__*/ S.Array(
-    ClusterAllocationExplainAllocationDecision,
-  ) as any as S.Schema<ClusterAllocationExplainResponseCanRemainDecisionsList>;
-
-export interface ClusterAllocationExplainDiskUsage {
-  path: string;
-  total_bytes: number;
-  used_bytes: number;
-  free_bytes: number;
-  free_disk_percent: number;
-  used_disk_percent: number;
-}
-export const ClusterAllocationExplainDiskUsage = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    path: S.String,
-    total_bytes: S.Number,
-    used_bytes: S.Number,
-    free_bytes: S.Number,
-    free_disk_percent: S.Number,
-    used_disk_percent: S.Number,
-  }),
-).annotate({
-  identifier: "ClusterAllocationExplainDiskUsage",
-}) as any as S.Schema<ClusterAllocationExplainDiskUsage>;
-
-export interface ClusterAllocationExplainNodeDiskUsage {
-  node_name: string;
-  least_available: ClusterAllocationExplainDiskUsage;
-  most_available: ClusterAllocationExplainDiskUsage;
-}
-export const ClusterAllocationExplainNodeDiskUsage = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      node_name: S.String,
-      least_available: ClusterAllocationExplainDiskUsage,
-      most_available: ClusterAllocationExplainDiskUsage,
-    }),
-).annotate({
-  identifier: "ClusterAllocationExplainNodeDiskUsage",
-}) as any as S.Schema<ClusterAllocationExplainNodeDiskUsage>;
-
-export type ClusterAllocationExplainClusterInfoNodesMap = {
-  [key: string]: ClusterAllocationExplainNodeDiskUsage | undefined;
-};
-export const ClusterAllocationExplainClusterInfoNodesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    ClusterAllocationExplainNodeDiskUsage,
-  ) as any as S.Schema<ClusterAllocationExplainClusterInfoNodesMap>;
-
-export type ClusterAllocationExplainClusterInfoShardSizesMap = {
-  [key: string]: number | undefined;
-};
-export const ClusterAllocationExplainClusterInfoShardSizesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Number,
-  ) as any as S.Schema<ClusterAllocationExplainClusterInfoShardSizesMap>;
-
-export type ClusterAllocationExplainClusterInfoShardDataSetSizesMap = {
-  [key: string]: string | undefined;
-};
-export const ClusterAllocationExplainClusterInfoShardDataSetSizesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<ClusterAllocationExplainClusterInfoShardDataSetSizesMap>;
-
-export type ClusterAllocationExplainClusterInfoShardPathsMap = {
-  [key: string]: string | undefined;
-};
-export const ClusterAllocationExplainClusterInfoShardPathsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<ClusterAllocationExplainClusterInfoShardPathsMap>;
-
-export type ClusterAllocationExplainReservedSizeShardsList = Array<string>;
-export const ClusterAllocationExplainReservedSizeShardsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ClusterAllocationExplainReservedSizeShardsList>;
-
-export interface ClusterAllocationExplainReservedSize {
-  node_id: string;
-  path: string;
-  total: number;
-  shards: ClusterAllocationExplainReservedSizeShardsList;
-}
-export const ClusterAllocationExplainReservedSize = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      node_id: S.String,
-      path: S.String,
-      total: S.Number,
-      shards: ClusterAllocationExplainReservedSizeShardsList,
-    }),
-).annotate({
-  identifier: "ClusterAllocationExplainReservedSize",
-}) as any as S.Schema<ClusterAllocationExplainReservedSize>;
-
-export type ClusterAllocationExplainClusterInfoReservedSizesList =
-  Array<ClusterAllocationExplainReservedSize>;
-export const ClusterAllocationExplainClusterInfoReservedSizesList =
-  /*@__PURE__*/ S.Array(
-    ClusterAllocationExplainReservedSize,
-  ) as any as S.Schema<ClusterAllocationExplainClusterInfoReservedSizesList>;
-
-export interface ClusterAllocationExplainClusterInfo {
-  nodes: ClusterAllocationExplainClusterInfoNodesMap;
-  shard_sizes: ClusterAllocationExplainClusterInfoShardSizesMap;
-  shard_data_set_sizes?: ClusterAllocationExplainClusterInfoShardDataSetSizesMap;
-  shard_paths: ClusterAllocationExplainClusterInfoShardPathsMap;
-  reserved_sizes: ClusterAllocationExplainClusterInfoReservedSizesList;
-}
-export const ClusterAllocationExplainClusterInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nodes: ClusterAllocationExplainClusterInfoNodesMap,
-    shard_sizes: ClusterAllocationExplainClusterInfoShardSizesMap,
-    shard_data_set_sizes: S.optional(
-      ClusterAllocationExplainClusterInfoShardDataSetSizesMap,
-    ),
-    shard_paths: ClusterAllocationExplainClusterInfoShardPathsMap,
-    reserved_sizes: ClusterAllocationExplainClusterInfoReservedSizesList,
-  }),
-).annotate({
-  identifier: "ClusterAllocationExplainClusterInfo",
-}) as any as S.Schema<ClusterAllocationExplainClusterInfo>;
-
-export type TypesNodeRole =
-  | "master"
-  | "data"
-  | "data_cold"
-  | "data_content"
-  | "data_frozen"
-  | "data_hot"
-  | "data_warm"
-  | "client"
-  | "ingest"
-  | "ml"
-  | "voting_only"
-  | "transform"
-  | "remote_cluster_client"
-  | "coordinating_only";
-export const TypesNodeRole = /*@__PURE__*/ S.String;
-
-export type TypesNodeRoles = Array<TypesNodeRole>;
-export const TypesNodeRoles = /*@__PURE__*/ S.Array(
-  TypesNodeRole,
-) as any as S.Schema<TypesNodeRoles>;
-
-export type ClusterAllocationExplainCurrentNodeAttributesMap = {
-  [key: string]: string | undefined;
-};
-export const ClusterAllocationExplainCurrentNodeAttributesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<ClusterAllocationExplainCurrentNodeAttributesMap>;
-
-export interface ClusterAllocationExplainCurrentNode {
-  id: string;
-  name: string;
-  roles: TypesNodeRoles;
-  attributes: ClusterAllocationExplainCurrentNodeAttributesMap;
-  transport_address: string;
-  weight_ranking: number;
-}
-export const ClusterAllocationExplainCurrentNode = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    name: S.String,
-    roles: TypesNodeRoles,
-    attributes: ClusterAllocationExplainCurrentNodeAttributesMap,
-    transport_address: S.String,
-    weight_ranking: S.Number,
-  }),
-).annotate({
-  identifier: "ClusterAllocationExplainCurrentNode",
-}) as any as S.Schema<ClusterAllocationExplainCurrentNode>;
-
-export type ClusterAllocationExplainNodeAllocationExplanationDecidersList =
-  Array<ClusterAllocationExplainAllocationDecision>;
-export const ClusterAllocationExplainNodeAllocationExplanationDecidersList =
-  /*@__PURE__*/ S.Array(
-    ClusterAllocationExplainAllocationDecision,
-  ) as any as S.Schema<ClusterAllocationExplainNodeAllocationExplanationDecidersList>;
-
-export type ClusterAllocationExplainNodeAllocationExplanationNodeAttributesMap =
-  { [key: string]: string | undefined };
-export const ClusterAllocationExplainNodeAllocationExplanationNodeAttributesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<ClusterAllocationExplainNodeAllocationExplanationNodeAttributesMap>;
-
-export interface ClusterAllocationExplainAllocationStore {
-  allocation_id: string;
-  found: boolean;
-  in_sync: boolean;
-  matching_size_in_bytes: number;
-  matching_sync_id: boolean;
-  store_exception: string;
-}
-export const ClusterAllocationExplainAllocationStore = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      allocation_id: S.String,
-      found: S.Boolean,
-      in_sync: S.Boolean,
-      matching_size_in_bytes: S.Number,
-      matching_sync_id: S.Boolean,
-      store_exception: S.String,
-    }),
-).annotate({
-  identifier: "ClusterAllocationExplainAllocationStore",
-}) as any as S.Schema<ClusterAllocationExplainAllocationStore>;
-
-export interface ClusterAllocationExplainNodeAllocationExplanation {
-  deciders?: ClusterAllocationExplainNodeAllocationExplanationDecidersList;
-  node_attributes: ClusterAllocationExplainNodeAllocationExplanationNodeAttributesMap;
-  node_decision: ClusterAllocationExplainDecision;
-  node_id: string;
-  node_name: string;
-  roles: TypesNodeRoles;
-  store?: ClusterAllocationExplainAllocationStore;
-  transport_address: string;
-  weight_ranking?: number;
-}
-export const ClusterAllocationExplainNodeAllocationExplanation =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      deciders: S.optional(
-        ClusterAllocationExplainNodeAllocationExplanationDecidersList,
-      ),
-      node_attributes:
-        ClusterAllocationExplainNodeAllocationExplanationNodeAttributesMap,
-      node_decision: ClusterAllocationExplainDecision,
-      node_id: S.String,
-      node_name: S.String,
-      roles: TypesNodeRoles,
-      store: S.optional(ClusterAllocationExplainAllocationStore),
-      transport_address: S.String,
-      weight_ranking: S.optional(S.Number),
-    }),
-  ).annotate({
-    identifier: "ClusterAllocationExplainNodeAllocationExplanation",
-  }) as any as S.Schema<ClusterAllocationExplainNodeAllocationExplanation>;
-
-export type ClusterAllocationExplainResponseNodeAllocationDecisionsList =
-  Array<ClusterAllocationExplainNodeAllocationExplanation>;
-export const ClusterAllocationExplainResponseNodeAllocationDecisionsList =
-  /*@__PURE__*/ S.Array(
-    ClusterAllocationExplainNodeAllocationExplanation,
-  ) as any as S.Schema<ClusterAllocationExplainResponseNodeAllocationDecisionsList>;
-
-export type ClusterAllocationExplainUnassignedInformationReason =
-  | "INDEX_CREATED"
-  | "CLUSTER_RECOVERED"
-  | "INDEX_REOPENED"
-  | "DANGLING_INDEX_IMPORTED"
-  | "NEW_INDEX_RESTORED"
-  | "EXISTING_INDEX_RESTORED"
-  | "REPLICA_ADDED"
-  | "ALLOCATION_FAILED"
-  | "NODE_LEFT"
-  | "REROUTE_CANCELLED"
-  | "REINITIALIZED"
-  | "REALLOCATED_REPLICA"
-  | "PRIMARY_FAILED"
-  | "FORCED_EMPTY_PRIMARY"
-  | "MANUAL_ALLOCATION";
-export const ClusterAllocationExplainUnassignedInformationReason =
-  /*@__PURE__*/ S.String;
-
-export interface ClusterAllocationExplainUnassignedInformation {
-  at: TypesDateTime;
-  last_allocation_status?: string;
-  reason: ClusterAllocationExplainUnassignedInformationReason;
-  details?: string;
-  failed_allocation_attempts?: number;
-  delayed?: boolean;
-  allocation_status?: string;
-}
-export const ClusterAllocationExplainUnassignedInformation =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      at: TypesDateTime,
-      last_allocation_status: S.optional(S.String),
-      reason: ClusterAllocationExplainUnassignedInformationReason,
-      details: S.optional(S.String),
-      failed_allocation_attempts: S.optional(S.Number),
-      delayed: S.optional(S.Boolean),
-      allocation_status: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "ClusterAllocationExplainUnassignedInformation",
-  }) as any as S.Schema<ClusterAllocationExplainUnassignedInformation>;
-
-export interface ClusterAllocationExplainResponse {
-  allocate_explanation?: string;
-  allocation_delay?: TypesDuration;
-  allocation_delay_in_millis?: number;
-  can_allocate?: ClusterAllocationExplainDecision;
-  can_move_to_other_node?: ClusterAllocationExplainDecision;
-  can_rebalance_cluster?: ClusterAllocationExplainDecision;
-  can_rebalance_cluster_decisions?: ClusterAllocationExplainResponseCanRebalanceClusterDecisionsList;
-  can_rebalance_to_other_node?: ClusterAllocationExplainDecision;
-  can_remain_decisions?: ClusterAllocationExplainResponseCanRemainDecisionsList;
-  can_remain_on_current_node?: ClusterAllocationExplainDecision;
-  cluster_info?: ClusterAllocationExplainClusterInfo;
-  configured_delay?: TypesDuration;
-  configured_delay_in_millis?: number;
-  current_node?: ClusterAllocationExplainCurrentNode;
-  current_state: string;
-  index: string;
-  move_explanation?: string;
-  node_allocation_decisions?: ClusterAllocationExplainResponseNodeAllocationDecisionsList;
-  primary: boolean;
-  rebalance_explanation?: string;
-  remaining_delay?: TypesDuration;
-  remaining_delay_in_millis?: number;
-  shard: number;
-  unassigned_info?: ClusterAllocationExplainUnassignedInformation;
-  note?: string;
-}
-export const ClusterAllocationExplainResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    allocate_explanation: S.optional(S.String),
-    allocation_delay: S.optional(TypesDuration),
-    allocation_delay_in_millis: S.optional(S.Number),
-    can_allocate: S.optional(ClusterAllocationExplainDecision),
-    can_move_to_other_node: S.optional(ClusterAllocationExplainDecision),
-    can_rebalance_cluster: S.optional(ClusterAllocationExplainDecision),
-    can_rebalance_cluster_decisions: S.optional(
-      ClusterAllocationExplainResponseCanRebalanceClusterDecisionsList,
-    ),
-    can_rebalance_to_other_node: S.optional(ClusterAllocationExplainDecision),
-    can_remain_decisions: S.optional(
-      ClusterAllocationExplainResponseCanRemainDecisionsList,
-    ),
-    can_remain_on_current_node: S.optional(ClusterAllocationExplainDecision),
-    cluster_info: S.optional(ClusterAllocationExplainClusterInfo),
-    configured_delay: S.optional(TypesDuration),
-    configured_delay_in_millis: S.optional(S.Number),
-    current_node: S.optional(ClusterAllocationExplainCurrentNode),
-    current_state: S.String,
-    index: S.String,
-    move_explanation: S.optional(S.String),
-    node_allocation_decisions: S.optional(
-      ClusterAllocationExplainResponseNodeAllocationDecisionsList,
-    ),
-    primary: S.Boolean,
-    rebalance_explanation: S.optional(S.String),
-    remaining_delay: S.optional(TypesDuration),
-    remaining_delay_in_millis: S.optional(S.Number),
-    shard: S.Number,
-    unassigned_info: S.optional(ClusterAllocationExplainUnassignedInformation),
-    note: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ClusterAllocationExplainResponse",
-}) as any as S.Schema<ClusterAllocationExplainResponse>;
-
-export interface ClusterAllocationExplain1Request {
-  /** The name of the index that you would like an explanation for. */
-  index?: string;
-  /** An identifier for the shard that you would like an explanation for. */
-  shard?: number;
-  /** If true, returns an explanation for the primary shard for the specified shard ID. */
-  primary?: boolean;
-  /** Explain a shard only if it is currently located on the specified node name or node ID. */
-  current_node?: string;
-  /** If true, returns information about disk usage and shard sizes. */
-  include_disk_info?: boolean;
-  /** If true, returns YES decisions in explanation. */
-  include_yes_decisions?: boolean;
-  /** Period to wait for a connection to the master node. */
-  master_timeout?: TypesDuration;
-}
-export const ClusterAllocationExplain1Request = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    index: S.optional(S.String.pipe(T.Query())),
-    shard: S.optional(S.Number.pipe(T.Query())),
-    primary: S.optional(S.Boolean.pipe(T.Query())),
-    current_node: S.optional(S.String.pipe(T.Query())),
-    include_disk_info: S.optional(S.Boolean.pipe(T.Query())),
-    include_yes_decisions: S.optional(S.Boolean.pipe(T.Query())),
-    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/_cluster/allocation/explain", code: 200 }),
-  ),
-).annotate({
-  identifier: "ClusterAllocationExplain1Request",
-}) as any as S.Schema<ClusterAllocationExplain1Request>;
-
-export type ClusterAllocationExplain1ResponseCanRebalanceClusterDecisionsList =
-  Array<ClusterAllocationExplainAllocationDecision>;
-export const ClusterAllocationExplain1ResponseCanRebalanceClusterDecisionsList =
-  /*@__PURE__*/ S.Array(
-    ClusterAllocationExplainAllocationDecision,
-  ) as any as S.Schema<ClusterAllocationExplain1ResponseCanRebalanceClusterDecisionsList>;
-
-export type ClusterAllocationExplain1ResponseCanRemainDecisionsList =
-  Array<ClusterAllocationExplainAllocationDecision>;
-export const ClusterAllocationExplain1ResponseCanRemainDecisionsList =
-  /*@__PURE__*/ S.Array(
-    ClusterAllocationExplainAllocationDecision,
-  ) as any as S.Schema<ClusterAllocationExplain1ResponseCanRemainDecisionsList>;
-
-export type ClusterAllocationExplain1ResponseNodeAllocationDecisionsList =
-  Array<ClusterAllocationExplainNodeAllocationExplanation>;
-export const ClusterAllocationExplain1ResponseNodeAllocationDecisionsList =
-  /*@__PURE__*/ S.Array(
-    ClusterAllocationExplainNodeAllocationExplanation,
-  ) as any as S.Schema<ClusterAllocationExplain1ResponseNodeAllocationDecisionsList>;
-
-export interface ClusterAllocationExplain1Response {
-  allocate_explanation?: string;
-  allocation_delay?: TypesDuration;
-  allocation_delay_in_millis?: number;
-  can_allocate?: ClusterAllocationExplainDecision;
-  can_move_to_other_node?: ClusterAllocationExplainDecision;
-  can_rebalance_cluster?: ClusterAllocationExplainDecision;
-  can_rebalance_cluster_decisions?: ClusterAllocationExplain1ResponseCanRebalanceClusterDecisionsList;
-  can_rebalance_to_other_node?: ClusterAllocationExplainDecision;
-  can_remain_decisions?: ClusterAllocationExplain1ResponseCanRemainDecisionsList;
-  can_remain_on_current_node?: ClusterAllocationExplainDecision;
-  cluster_info?: ClusterAllocationExplainClusterInfo;
-  configured_delay?: TypesDuration;
-  configured_delay_in_millis?: number;
-  current_node?: ClusterAllocationExplainCurrentNode;
-  current_state: string;
-  index: string;
-  move_explanation?: string;
-  node_allocation_decisions?: ClusterAllocationExplain1ResponseNodeAllocationDecisionsList;
-  primary: boolean;
-  rebalance_explanation?: string;
-  remaining_delay?: TypesDuration;
-  remaining_delay_in_millis?: number;
-  shard: number;
-  unassigned_info?: ClusterAllocationExplainUnassignedInformation;
-  note?: string;
-}
-export const ClusterAllocationExplain1Response = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    allocate_explanation: S.optional(S.String),
-    allocation_delay: S.optional(TypesDuration),
-    allocation_delay_in_millis: S.optional(S.Number),
-    can_allocate: S.optional(ClusterAllocationExplainDecision),
-    can_move_to_other_node: S.optional(ClusterAllocationExplainDecision),
-    can_rebalance_cluster: S.optional(ClusterAllocationExplainDecision),
-    can_rebalance_cluster_decisions: S.optional(
-      ClusterAllocationExplain1ResponseCanRebalanceClusterDecisionsList,
-    ),
-    can_rebalance_to_other_node: S.optional(ClusterAllocationExplainDecision),
-    can_remain_decisions: S.optional(
-      ClusterAllocationExplain1ResponseCanRemainDecisionsList,
-    ),
-    can_remain_on_current_node: S.optional(ClusterAllocationExplainDecision),
-    cluster_info: S.optional(ClusterAllocationExplainClusterInfo),
-    configured_delay: S.optional(TypesDuration),
-    configured_delay_in_millis: S.optional(S.Number),
-    current_node: S.optional(ClusterAllocationExplainCurrentNode),
-    current_state: S.String,
-    index: S.String,
-    move_explanation: S.optional(S.String),
-    node_allocation_decisions: S.optional(
-      ClusterAllocationExplain1ResponseNodeAllocationDecisionsList,
-    ),
-    primary: S.Boolean,
-    rebalance_explanation: S.optional(S.String),
-    remaining_delay: S.optional(TypesDuration),
-    remaining_delay_in_millis: S.optional(S.Number),
-    shard: S.Number,
-    unassigned_info: S.optional(ClusterAllocationExplainUnassignedInformation),
-    note: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ClusterAllocationExplain1Response",
-}) as any as S.Schema<ClusterAllocationExplain1Response>;
-
-export interface ClusterDeleteComponentTemplateRequest {
-  /** Comma-separated list or wildcard expression of component template names used to limit the request. */
-  name: string;
-  /** Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error. */
-  master_timeout?: TypesDuration;
-  /** Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error. */
-  timeout?: TypesDuration;
-}
-export const ClusterDeleteComponentTemplateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      name: S.String.pipe(T.Label()),
-      master_timeout: S.optional(TypesDuration.pipe(T.Query())),
-      timeout: S.optional(TypesDuration.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/_component_template/{name}",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "ClusterDeleteComponentTemplateRequest",
-}) as any as S.Schema<ClusterDeleteComponentTemplateRequest>;
-
-export interface ClusterDeleteVotingConfigExclusionsRequest {
-  /** Period to wait for a connection to the master node. */
-  master_timeout?: TypesDuration;
-  /** Specifies whether to wait for all excluded nodes to be removed from the cluster before clearing the voting configuration exclusions list. Defaults to true, meaning that all excluded nodes must be removed from the cluster before this API takes any action. If set to false then the voting configuration exclusions list is cleared even if some excluded nodes are still in the cluster. */
-  wait_for_removal?: boolean;
-}
-export const ClusterDeleteVotingConfigExclusionsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      master_timeout: S.optional(TypesDuration.pipe(T.Query())),
-      wait_for_removal: S.optional(S.Boolean.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/_cluster/voting_config_exclusions",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "ClusterDeleteVotingConfigExclusionsRequest",
-  }) as any as S.Schema<ClusterDeleteVotingConfigExclusionsRequest>;
-
-export interface ClusterDeleteVotingConfigExclusionsResponse {}
-export const ClusterDeleteVotingConfigExclusionsResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "ClusterDeleteVotingConfigExclusionsResponse",
-  }) as any as S.Schema<ClusterDeleteVotingConfigExclusionsResponse>;
-
-export type ClusterGetComponentTemplateRequestSettingsFilterCase1List =
-  Array<string>;
-export const ClusterGetComponentTemplateRequestSettingsFilterCase1List =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ClusterGetComponentTemplateRequestSettingsFilterCase1List>;
-
-export type ClusterGetComponentTemplateRequestSettingsFilter =
-  | string
-  | ClusterGetComponentTemplateRequestSettingsFilterCase1List;
-export const ClusterGetComponentTemplateRequestSettingsFilter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ClusterGetComponentTemplateRequestSettingsFilter>;
-
-export interface ClusterGetComponentTemplateRequest {
-  /** If `true`, returns settings in flat format. */
-  flat_settings?: boolean;
-  /** Filter out results, for example to filter out sensitive information. Supports wildcards or full settings keys */
-  settings_filter?: ClusterGetComponentTemplateRequestSettingsFilter;
-  /** Return all default configurations for the component template */
-  include_defaults?: boolean;
-  /** If `true`, the request retrieves information from the local node only. If `false`, information is retrieved from the master node. */
-  local?: boolean;
-  /** Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error. */
-  master_timeout?: TypesDuration;
-}
-export const ClusterGetComponentTemplateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    flat_settings: S.optional(S.Boolean.pipe(T.Query())),
-    settings_filter: S.optional(
-      ClusterGetComponentTemplateRequestSettingsFilter.pipe(T.Query()),
-    ),
-    include_defaults: S.optional(S.Boolean.pipe(T.Query())),
-    local: S.optional(S.Boolean.pipe(T.Query())),
-    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/_component_template", code: 200 })),
-).annotate({
-  identifier: "ClusterGetComponentTemplateRequest",
-}) as any as S.Schema<ClusterGetComponentTemplateRequest>;
-
-export type IndicesTypesRetentionSource =
-  | "data_stream_configuration"
-  | "default_global_retention"
-  | "max_global_retention"
-  | "default_failures_retention";
-export const IndicesTypesRetentionSource = /*@__PURE__*/ S.String;
-
-export interface IndicesTypesDownsamplingRound {
-  /** The duration since rollover when this downsampling round should execute */
-  after: TypesDuration;
-  /** The downsample interval. */
-  fixed_interval: string;
-}
-export const IndicesTypesDownsamplingRound = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    after: TypesDuration,
-    fixed_interval: S.String,
-  }),
-).annotate({
-  identifier: "IndicesTypesDownsamplingRound",
-}) as any as S.Schema<IndicesTypesDownsamplingRound>;
-
-/** The list of downsampling rounds to execute as part of this downsampling configuration */
-export type IndicesTypesDataStreamLifecycleWithRolloverDownsamplingList =
-  Array<IndicesTypesDownsamplingRound>;
-export const IndicesTypesDataStreamLifecycleWithRolloverDownsamplingList =
-  /*@__PURE__*/ S.Array(
-    IndicesTypesDownsamplingRound,
-  ) as any as S.Schema<IndicesTypesDataStreamLifecycleWithRolloverDownsamplingList>;
-
-export type IndicesTypesSamplingMethod = "aggregate" | "last_value";
-export const IndicesTypesSamplingMethod = /*@__PURE__*/ S.String;
-
-export interface IndicesTypesDataStreamLifecycleRolloverConditions {
-  min_age?: TypesDuration;
-  max_age?: string;
-  min_docs?: number;
-  max_docs?: number;
-  min_size?: TypesByteSize;
-  max_size?: TypesByteSize;
-  min_primary_shard_size?: TypesByteSize;
-  max_primary_shard_size?: TypesByteSize;
-  min_primary_shard_docs?: number;
-  max_primary_shard_docs?: number;
-}
-export const IndicesTypesDataStreamLifecycleRolloverConditions =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      min_age: S.optional(TypesDuration),
-      max_age: S.optional(S.String),
-      min_docs: S.optional(S.Number),
-      max_docs: S.optional(S.Number),
-      min_size: S.optional(TypesByteSize),
-      max_size: S.optional(TypesByteSize),
-      min_primary_shard_size: S.optional(TypesByteSize),
-      max_primary_shard_size: S.optional(TypesByteSize),
-      min_primary_shard_docs: S.optional(S.Number),
-      max_primary_shard_docs: S.optional(S.Number),
-    }),
-  ).annotate({
-    identifier: "IndicesTypesDataStreamLifecycleRolloverConditions",
-  }) as any as S.Schema<IndicesTypesDataStreamLifecycleRolloverConditions>;
-
-/** Data stream lifecycle with rollover can be used to display the configuration including the default rollover conditions, if asked. */
-export interface IndicesTypesDataStreamLifecycleWithRollover {
-  /** If defined, every document added to this data stream will be stored at least for this time frame. Any time after this duration the document could be deleted. When empty, every document in this data stream will be stored indefinitely. */
-  data_retention?: TypesDuration;
-  /** The least amount of time data should be kept by elasticsearch. */
-  effective_retention?: TypesDuration;
-  /** Configuration source that can influence the retention of a data stream. */
-  retention_determined_by?: IndicesTypesRetentionSource;
-  /** The list of downsampling rounds to execute as part of this downsampling configuration */
-  downsampling?: IndicesTypesDataStreamLifecycleWithRolloverDownsamplingList;
-  /** The method used to downsample the data. There are two options `aggregate` and `last_value`. It requires `downsampling` to be defined. Defaults to `aggregate`. */
-  downsampling_method?: IndicesTypesSamplingMethod;
-  /** If defined, it turns data stream lifecycle on/off (`true`/`false`) for this data stream. A data stream lifecycle that's disabled (enabled: `false`) will have no effect on the data stream. */
-  enabled?: boolean;
-  /** The period after which data stream backing indices are automatically converted to partially mounted searchable snapshots. This field is valid only on main data stream lifecycles and cannot be set on failure-store lifecycles. */
-  frozen_after?: TypesDuration;
-  /** The conditions which will trigger the rollover of a backing index as configured by the cluster setting `cluster.lifecycle.default.rollover`. This property is an implementation detail and it will only be retrieved when the query param `include_defaults` is set to true. The contents of this field are subject to change. */
-  rollover?: IndicesTypesDataStreamLifecycleRolloverConditions;
-}
-export const IndicesTypesDataStreamLifecycleWithRollover =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      data_retention: S.optional(TypesDuration),
-      effective_retention: S.optional(TypesDuration),
-      retention_determined_by: S.optional(IndicesTypesRetentionSource),
-      downsampling: S.optional(
-        IndicesTypesDataStreamLifecycleWithRolloverDownsamplingList,
-      ),
-      downsampling_method: S.optional(IndicesTypesSamplingMethod),
-      enabled: S.optional(S.Boolean),
-      frozen_after: S.optional(TypesDuration),
-      rollover: S.optional(IndicesTypesDataStreamLifecycleRolloverConditions),
-    }),
-  ).annotate({
-    identifier: "IndicesTypesDataStreamLifecycleWithRollover",
-  }) as any as S.Schema<IndicesTypesDataStreamLifecycleWithRollover>;
 
 export type ClusterTypesComponentTemplateSummaryResSettingsMap = {
   [key: string]: IndicesTypesIndexSettings | undefined;
@@ -32623,33 +33338,6 @@ export const ClusterPostVotingConfigExclusionsResponse =
     identifier: "ClusterPostVotingConfigExclusionsResponse",
   }) as any as S.Schema<ClusterPostVotingConfigExclusionsResponse>;
 
-export interface IndicesTypesAlias {
-  /** Query used to limit documents the alias can access. */
-  filter?: TypesQueryDslQueryContainer;
-  /** Value used to route indexing operations to a specific shard. If specified, this overwrites the `routing` value for indexing operations. */
-  index_routing?: string;
-  /** If `true`, the alias is hidden. All indices for the alias must have the same `is_hidden` value. */
-  is_hidden?: boolean;
-  /** If `true`, the index is the write index for the alias. */
-  is_write_index?: boolean;
-  /** Value used to route indexing and search operations to a specific shard. */
-  routing?: string;
-  /** Value used to route search operations to a specific shard. If specified, this overwrites the `routing` value for search operations. */
-  search_routing?: string;
-}
-export const IndicesTypesAlias = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    filter: S.optional(TypesQueryDslQueryContainer),
-    index_routing: S.optional(S.String),
-    is_hidden: S.optional(S.Boolean),
-    is_write_index: S.optional(S.Boolean),
-    routing: S.optional(S.String),
-    search_routing: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "IndicesTypesAlias",
-}) as any as S.Schema<IndicesTypesAlias>;
-
 /** Aliases to add. If the index template includes a `data_stream` object, these are data stream aliases. Otherwise, these are index aliases. Data stream aliases ignore the `index_routing`, `routing`, and `search_routing` options. */
 export type IndicesPutIndexTemplateIndexTemplateMappingAliasesMap = {
   [key: string]: IndicesTypesAlias | undefined;
@@ -33444,32 +34132,6 @@ export const ClusterStatsRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ClusterStatsRequest",
 }) as any as S.Schema<ClusterStatsRequest>;
-
-export type TypesNodeStatisticsFailuresList = Array<TypesErrorCause>;
-export const TypesNodeStatisticsFailuresList = /*@__PURE__*/ S.Array(
-  TypesErrorCause,
-) as any as S.Schema<TypesNodeStatisticsFailuresList>;
-
-/** Contains statistics about the number of nodes selected by the request. */
-export interface TypesNodeStatistics {
-  failures?: TypesNodeStatisticsFailuresList;
-  /** Total number of nodes selected by the request. */
-  total: number;
-  /** Number of nodes that responded successfully to the request. */
-  successful: number;
-  /** Number of nodes that rejected the request or failed to respond. If this value is not 0, a reason for the rejection or failure is included in the response. */
-  failed: number;
-}
-export const TypesNodeStatistics = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    failures: S.optional(TypesNodeStatisticsFailuresList),
-    total: S.Number,
-    successful: S.Number,
-    failed: S.Number,
-  }),
-).annotate({
-  identifier: "TypesNodeStatistics",
-}) as any as S.Schema<TypesNodeStatistics>;
 
 /** For dense_vector field types, count of mappings by index type */
 export type ClusterStatsFieldTypesVectorIndexTypeCountMap = {
@@ -35547,14 +36209,6 @@ export const ConnectorCheckInRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ConnectorCheckInRequest",
 }) as any as S.Schema<ConnectorCheckInRequest>;
 
-export type TypesResult =
-  | "created"
-  | "updated"
-  | "deleted"
-  | "not_found"
-  | "noop";
-export const TypesResult = /*@__PURE__*/ S.String;
-
 export interface ConnectorCheckInResponse {
   result: TypesResult;
 }
@@ -35566,42 +36220,199 @@ export const ConnectorCheckInResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ConnectorCheckInResponse",
 }) as any as S.Schema<ConnectorCheckInResponse>;
 
-export interface ConnectorDeleteRequest {
-  /** The unique identifier of the connector to be deleted */
-  connector_id: string;
-  /** A flag indicating if associated sync jobs should be also removed. */
-  delete_sync_jobs?: boolean;
-  /** A flag indicating if the connector should be hard deleted. */
-  hard?: boolean;
+export interface ConnectorPut1Request {
+  description?: string;
+  index_name?: string;
+  is_native?: boolean;
+  language?: string;
+  name?: string;
+  service_type?: string;
 }
-export const ConnectorDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const ConnectorPut1Request = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    connector_id: S.String.pipe(T.Label()),
-    delete_sync_jobs: S.optional(S.Boolean.pipe(T.Query())),
-    hard: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(
-    T.Http({ method: "DELETE", uri: "/_connector/{connector_id}", code: 200 }),
-  ),
+    description: S.optional(S.String),
+    index_name: S.optional(S.String),
+    is_native: S.optional(S.Boolean),
+    language: S.optional(S.String),
+    name: S.optional(S.String),
+    service_type: S.optional(S.String),
+  }).pipe(T.Http({ method: "PUT", uri: "/_connector", code: 200 })),
 ).annotate({
-  identifier: "ConnectorDeleteRequest",
-}) as any as S.Schema<ConnectorDeleteRequest>;
+  identifier: "ConnectorPut1Request",
+}) as any as S.Schema<ConnectorPut1Request>;
 
-export interface ConnectorGetRequest {
-  /** The unique identifier of the connector */
-  connector_id: string;
-  /** A flag to indicate if the desired connector should be fetched, even if it was soft-deleted. */
-  include_deleted?: boolean;
+export interface ConnectorPut1Response {
+  result: TypesResult;
+  id: string;
 }
-export const ConnectorGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const ConnectorPut1Response = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    connector_id: S.String.pipe(T.Label()),
-    include_deleted: S.optional(S.Boolean.pipe(T.Query())),
+    result: TypesResult,
+    id: S.String,
+  }),
+).annotate({
+  identifier: "ConnectorPut1Response",
+}) as any as S.Schema<ConnectorPut1Response>;
+
+export interface ConnectorSyncJobCheckInRequest {
+  /** The unique identifier of the connector sync job to be checked in. */
+  connector_sync_job_id: string;
+}
+export const ConnectorSyncJobCheckInRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    connector_sync_job_id: S.String.pipe(T.Label()),
   }).pipe(
-    T.Http({ method: "GET", uri: "/_connector/{connector_id}", code: 200 }),
+    T.Http({
+      method: "PUT",
+      uri: "/_connector/_sync_job/{connector_sync_job_id}/_check_in",
+      code: 200,
+    }),
   ),
 ).annotate({
-  identifier: "ConnectorGetRequest",
-}) as any as S.Schema<ConnectorGetRequest>;
+  identifier: "ConnectorSyncJobCheckInRequest",
+}) as any as S.Schema<ConnectorSyncJobCheckInRequest>;
+
+export type ConnectorSyncJobCheckInResponse = unknown;
+export const ConnectorSyncJobCheckInResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Unknown.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ConnectorSyncJobCheckInResponse",
+}) as any as S.Schema<ConnectorSyncJobCheckInResponse>;
+
+export interface ConnectorSyncJobErrorRequest {
+  /** The unique identifier for the connector sync job. */
+  connector_sync_job_id: string;
+  /** The error for the connector sync job error field. */
+  error: string;
+}
+export const ConnectorSyncJobErrorRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    connector_sync_job_id: S.String.pipe(T.Label()),
+    error: S.String,
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/_connector/_sync_job/{connector_sync_job_id}/_error",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ConnectorSyncJobErrorRequest",
+}) as any as S.Schema<ConnectorSyncJobErrorRequest>;
+
+export type ConnectorSyncJobErrorResponse = unknown;
+export const ConnectorSyncJobErrorResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Unknown.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ConnectorSyncJobErrorResponse",
+}) as any as S.Schema<ConnectorSyncJobErrorResponse>;
+
+export interface ConnectorSyncJobUpdateStatsRequest {
+  /** The unique identifier of the connector sync job. */
+  connector_sync_job_id: string;
+  /** The number of documents the sync job deleted. */
+  deleted_document_count: number;
+  /** The number of documents the sync job indexed. */
+  indexed_document_count: number;
+  /** The total size of the data (in MiB) the sync job indexed. */
+  indexed_document_volume: number;
+  /** The timestamp to use in the `last_seen` property for the connector sync job. */
+  last_seen?: TypesDuration;
+  /** The connector-specific metadata. */
+  metadata?: TypesMetadata;
+  /** The total number of documents in the target index after the sync job finished. */
+  total_document_count?: number;
+}
+export const ConnectorSyncJobUpdateStatsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    connector_sync_job_id: S.String.pipe(T.Label()),
+    deleted_document_count: S.Number,
+    indexed_document_count: S.Number,
+    indexed_document_volume: S.Number,
+    last_seen: S.optional(TypesDuration),
+    metadata: S.optional(TypesMetadata),
+    total_document_count: S.optional(S.Number),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/_connector/_sync_job/{connector_sync_job_id}/_stats",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ConnectorSyncJobUpdateStatsRequest",
+}) as any as S.Schema<ConnectorSyncJobUpdateStatsRequest>;
+
+export type ConnectorSyncJobUpdateStatsResponse = unknown;
+export const ConnectorSyncJobUpdateStatsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Unknown.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ConnectorSyncJobUpdateStatsResponse",
+}) as any as S.Schema<ConnectorSyncJobUpdateStatsResponse>;
+
+export interface ConnectorUpdateActiveFilteringRequest {
+  /** The unique identifier of the connector to be updated */
+  connector_id: string;
+}
+export const ConnectorUpdateActiveFilteringRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      connector_id: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/_connector/{connector_id}/_filtering/_activate",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ConnectorUpdateActiveFilteringRequest",
+}) as any as S.Schema<ConnectorUpdateActiveFilteringRequest>;
+
+export interface ConnectorUpdateActiveFilteringResponse {
+  result: TypesResult;
+}
+export const ConnectorUpdateActiveFilteringResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      result: TypesResult,
+    }),
+).annotate({
+  identifier: "ConnectorUpdateActiveFilteringResponse",
+}) as any as S.Schema<ConnectorUpdateActiveFilteringResponse>;
+
+export interface ConnectorUpdateApiKeyIdRequest {
+  /** The unique identifier of the connector to be updated */
+  connector_id: string;
+  api_key_id?: string;
+  api_key_secret_id?: string;
+}
+export const ConnectorUpdateApiKeyIdRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    connector_id: S.String.pipe(T.Label()),
+    api_key_id: S.optional(S.String),
+    api_key_secret_id: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/_connector/{connector_id}/_api_key_id",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ConnectorUpdateApiKeyIdRequest",
+}) as any as S.Schema<ConnectorUpdateApiKeyIdRequest>;
+
+export interface ConnectorUpdateApiKeyIdResponse {
+  result: TypesResult;
+}
+export const ConnectorUpdateApiKeyIdResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    result: TypesResult,
+  }),
+).annotate({
+  identifier: "ConnectorUpdateApiKeyIdResponse",
+}) as any as S.Schema<ConnectorUpdateApiKeyIdResponse>;
 
 /** A scalar value. */
 export type TypesScalarValue = number | string | boolean;
@@ -35821,80 +36632,79 @@ export const ConnectorTypesConnectorConfiguration = /*@__PURE__*/ S.Record(
   ConnectorTypesConnectorConfigProperties,
 ) as any as S.Schema<ConnectorTypesConnectorConfiguration>;
 
-export type ConnectorTypesCustomSchedulingConfigurationOverridesDomainAllowlistList =
-  Array<string>;
-export const ConnectorTypesCustomSchedulingConfigurationOverridesDomainAllowlistList =
-  /*@__PURE__*/ S.Array(
+export type ConnectorUpdateConfigurationRequestValuesMap = {
+  [key: string]: unknown | undefined;
+};
+export const ConnectorUpdateConfigurationRequestValuesMap =
+  /*@__PURE__*/ S.Record(
     S.String,
-  ) as any as S.Schema<ConnectorTypesCustomSchedulingConfigurationOverridesDomainAllowlistList>;
+    S.Unknown,
+  ) as any as S.Schema<ConnectorUpdateConfigurationRequestValuesMap>;
 
-export type ConnectorTypesCustomSchedulingConfigurationOverridesSitemapUrlsList =
-  Array<string>;
-export const ConnectorTypesCustomSchedulingConfigurationOverridesSitemapUrlsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ConnectorTypesCustomSchedulingConfigurationOverridesSitemapUrlsList>;
-
-export type ConnectorTypesCustomSchedulingConfigurationOverridesSeedUrlsList =
-  Array<string>;
-export const ConnectorTypesCustomSchedulingConfigurationOverridesSeedUrlsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ConnectorTypesCustomSchedulingConfigurationOverridesSeedUrlsList>;
-
-export interface ConnectorTypesCustomSchedulingConfigurationOverrides {
-  max_crawl_depth?: number;
-  sitemap_discovery_disabled?: boolean;
-  domain_allowlist?: ConnectorTypesCustomSchedulingConfigurationOverridesDomainAllowlistList;
-  sitemap_urls?: ConnectorTypesCustomSchedulingConfigurationOverridesSitemapUrlsList;
-  seed_urls?: ConnectorTypesCustomSchedulingConfigurationOverridesSeedUrlsList;
+export interface ConnectorUpdateConfigurationRequest {
+  /** The unique identifier of the connector to be updated */
+  connector_id: string;
+  configuration?: ConnectorTypesConnectorConfiguration;
+  values?: ConnectorUpdateConfigurationRequestValuesMap;
 }
-export const ConnectorTypesCustomSchedulingConfigurationOverrides =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      max_crawl_depth: S.optional(S.Number),
-      sitemap_discovery_disabled: S.optional(S.Boolean),
-      domain_allowlist: S.optional(
-        ConnectorTypesCustomSchedulingConfigurationOverridesDomainAllowlistList,
-      ),
-      sitemap_urls: S.optional(
-        ConnectorTypesCustomSchedulingConfigurationOverridesSitemapUrlsList,
-      ),
-      seed_urls: S.optional(
-        ConnectorTypesCustomSchedulingConfigurationOverridesSeedUrlsList,
-      ),
-    }),
-  ).annotate({
-    identifier: "ConnectorTypesCustomSchedulingConfigurationOverrides",
-  }) as any as S.Schema<ConnectorTypesCustomSchedulingConfigurationOverrides>;
-
-export interface ConnectorTypesCustomScheduling {
-  configuration_overrides: ConnectorTypesCustomSchedulingConfigurationOverrides;
-  enabled: boolean;
-  interval: string;
-  last_synced?: TypesDateTime;
-  name: string;
-}
-export const ConnectorTypesCustomScheduling = /*@__PURE__*/ S.suspend(() =>
+export const ConnectorUpdateConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    configuration_overrides:
-      ConnectorTypesCustomSchedulingConfigurationOverrides,
-    enabled: S.Boolean,
-    interval: S.String,
-    last_synced: S.optional(TypesDateTime),
-    name: S.String,
+    connector_id: S.String.pipe(T.Label()),
+    configuration: S.optional(ConnectorTypesConnectorConfiguration),
+    values: S.optional(ConnectorUpdateConfigurationRequestValuesMap),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/_connector/{connector_id}/_configuration",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ConnectorUpdateConfigurationRequest",
+}) as any as S.Schema<ConnectorUpdateConfigurationRequest>;
+
+export interface ConnectorUpdateConfigurationResponse {
+  result: TypesResult;
+}
+export const ConnectorUpdateConfigurationResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      result: TypesResult,
+    }),
+).annotate({
+  identifier: "ConnectorUpdateConfigurationResponse",
+}) as any as S.Schema<ConnectorUpdateConfigurationResponse>;
+
+export interface ConnectorUpdateErrorRequest {
+  /** The unique identifier of the connector to be updated */
+  connector_id: string;
+  error: string;
+}
+export const ConnectorUpdateErrorRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    connector_id: S.String.pipe(T.Label()),
+    error: S.String,
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/_connector/{connector_id}/_error",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ConnectorUpdateErrorRequest",
+}) as any as S.Schema<ConnectorUpdateErrorRequest>;
+
+export interface ConnectorUpdateErrorResponse {
+  result: TypesResult;
+}
+export const ConnectorUpdateErrorResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    result: TypesResult,
   }),
 ).annotate({
-  identifier: "ConnectorTypesCustomScheduling",
-}) as any as S.Schema<ConnectorTypesCustomScheduling>;
-
-export type ConnectorTypesConnectorCustomScheduling = {
-  [key: string]: ConnectorTypesCustomScheduling | undefined;
-};
-export const ConnectorTypesConnectorCustomScheduling = /*@__PURE__*/ S.Record(
-  S.String,
-  ConnectorTypesCustomScheduling,
-) as any as S.Schema<ConnectorTypesConnectorCustomScheduling>;
+  identifier: "ConnectorUpdateErrorResponse",
+}) as any as S.Schema<ConnectorUpdateErrorResponse>;
 
 export type ConnectorTypesFeatureEnabled = IndicesTypesCacheQueries;
 export const ConnectorTypesFeatureEnabled = IndicesTypesCacheQueries;
@@ -35933,6 +36743,37 @@ export const ConnectorTypesConnectorFeatures = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ConnectorTypesConnectorFeatures",
 }) as any as S.Schema<ConnectorTypesConnectorFeatures>;
+
+export interface ConnectorUpdateFeaturesRequest {
+  /** The unique identifier of the connector to be updated. */
+  connector_id: string;
+  features: ConnectorTypesConnectorFeatures;
+}
+export const ConnectorUpdateFeaturesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    connector_id: S.String.pipe(T.Label()),
+    features: ConnectorTypesConnectorFeatures,
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/_connector/{connector_id}/_features",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ConnectorUpdateFeaturesRequest",
+}) as any as S.Schema<ConnectorUpdateFeaturesRequest>;
+
+export interface ConnectorUpdateFeaturesResponse {
+  result: TypesResult;
+}
+export const ConnectorUpdateFeaturesResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    result: TypesResult,
+  }),
+).annotate({
+  identifier: "ConnectorUpdateFeaturesResponse",
+}) as any as S.Schema<ConnectorUpdateFeaturesResponse>;
 
 export interface ConnectorTypesFilteringAdvancedSnippet {
   created_at?: TypesDateTime;
@@ -36074,836 +36915,6 @@ export const ConnectorTypesFilteringConfig = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ConnectorTypesFilteringConfig",
 }) as any as S.Schema<ConnectorTypesFilteringConfig>;
-
-export type ConnectorTypesConnectorFilteringList =
-  Array<ConnectorTypesFilteringConfig>;
-export const ConnectorTypesConnectorFilteringList = /*@__PURE__*/ S.Array(
-  ConnectorTypesFilteringConfig,
-) as any as S.Schema<ConnectorTypesConnectorFilteringList>;
-
-export type ConnectorTypesSyncStatus =
-  | "canceling"
-  | "canceled"
-  | "completed"
-  | "error"
-  | "in_progress"
-  | "pending"
-  | "suspended";
-export const ConnectorTypesSyncStatus = /*@__PURE__*/ S.String;
-
-export interface ConnectorTypesIngestPipelineParams {
-  extract_binary_content: boolean;
-  name: string;
-  reduce_whitespace: boolean;
-  run_ml_inference: boolean;
-}
-export const ConnectorTypesIngestPipelineParams = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    extract_binary_content: S.Boolean,
-    name: S.String,
-    reduce_whitespace: S.Boolean,
-    run_ml_inference: S.Boolean,
-  }),
-).annotate({
-  identifier: "ConnectorTypesIngestPipelineParams",
-}) as any as S.Schema<ConnectorTypesIngestPipelineParams>;
-
-export interface ConnectorTypesConnectorScheduling {
-  enabled: boolean;
-  /** The interval is expressed using the crontab syntax */
-  interval: string;
-}
-export const ConnectorTypesConnectorScheduling = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    enabled: S.Boolean,
-    interval: S.String,
-  }),
-).annotate({
-  identifier: "ConnectorTypesConnectorScheduling",
-}) as any as S.Schema<ConnectorTypesConnectorScheduling>;
-
-export interface ConnectorTypesSchedulingConfiguration {
-  access_control?: ConnectorTypesConnectorScheduling;
-  full?: ConnectorTypesConnectorScheduling;
-  incremental?: ConnectorTypesConnectorScheduling;
-}
-export const ConnectorTypesSchedulingConfiguration = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      access_control: S.optional(ConnectorTypesConnectorScheduling),
-      full: S.optional(ConnectorTypesConnectorScheduling),
-      incremental: S.optional(ConnectorTypesConnectorScheduling),
-    }),
-).annotate({
-  identifier: "ConnectorTypesSchedulingConfiguration",
-}) as any as S.Schema<ConnectorTypesSchedulingConfiguration>;
-
-export type ConnectorTypesConnectorStatus =
-  | "created"
-  | "needs_configuration"
-  | "configured"
-  | "connected"
-  | "error";
-export const ConnectorTypesConnectorStatus = /*@__PURE__*/ S.String;
-
-export interface ConnectorTypesConnector {
-  api_key_id?: string;
-  api_key_secret_id?: string;
-  configuration: ConnectorTypesConnectorConfiguration;
-  custom_scheduling: ConnectorTypesConnectorCustomScheduling;
-  deleted: boolean;
-  description?: string;
-  error?: string;
-  features?: ConnectorTypesConnectorFeatures;
-  filtering: ConnectorTypesConnectorFilteringList;
-  id?: string;
-  index_name?: string;
-  is_native: boolean;
-  language?: string;
-  last_access_control_sync_error?: string;
-  last_access_control_sync_scheduled_at?: TypesDateTime;
-  last_access_control_sync_status?: ConnectorTypesSyncStatus;
-  last_deleted_document_count?: number;
-  last_incremental_sync_scheduled_at?: TypesDateTime;
-  last_indexed_document_count?: number;
-  last_seen?: TypesDateTime;
-  last_sync_error?: string;
-  last_sync_scheduled_at?: TypesDateTime;
-  last_sync_status?: ConnectorTypesSyncStatus;
-  last_synced?: TypesDateTime;
-  name?: string;
-  pipeline?: ConnectorTypesIngestPipelineParams;
-  scheduling: ConnectorTypesSchedulingConfiguration;
-  service_type?: string;
-  status: ConnectorTypesConnectorStatus;
-  sync_cursor?: unknown;
-  sync_now: boolean;
-}
-export const ConnectorTypesConnector = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    api_key_id: S.optional(S.String),
-    api_key_secret_id: S.optional(S.String),
-    configuration: ConnectorTypesConnectorConfiguration,
-    custom_scheduling: ConnectorTypesConnectorCustomScheduling,
-    deleted: S.Boolean,
-    description: S.optional(S.String),
-    error: S.optional(S.String),
-    features: S.optional(ConnectorTypesConnectorFeatures),
-    filtering: ConnectorTypesConnectorFilteringList,
-    id: S.optional(S.String),
-    index_name: S.optional(S.String),
-    is_native: S.Boolean,
-    language: S.optional(S.String),
-    last_access_control_sync_error: S.optional(S.String),
-    last_access_control_sync_scheduled_at: S.optional(TypesDateTime),
-    last_access_control_sync_status: S.optional(ConnectorTypesSyncStatus),
-    last_deleted_document_count: S.optional(S.Number),
-    last_incremental_sync_scheduled_at: S.optional(TypesDateTime),
-    last_indexed_document_count: S.optional(S.Number),
-    last_seen: S.optional(TypesDateTime),
-    last_sync_error: S.optional(S.String),
-    last_sync_scheduled_at: S.optional(TypesDateTime),
-    last_sync_status: S.optional(ConnectorTypesSyncStatus),
-    last_synced: S.optional(TypesDateTime),
-    name: S.optional(S.String),
-    pipeline: S.optional(ConnectorTypesIngestPipelineParams),
-    scheduling: ConnectorTypesSchedulingConfiguration,
-    service_type: S.optional(S.String),
-    status: ConnectorTypesConnectorStatus,
-    sync_cursor: S.optional(S.Unknown),
-    sync_now: S.Boolean,
-  }),
-).annotate({
-  identifier: "ConnectorTypesConnector",
-}) as any as S.Schema<ConnectorTypesConnector>;
-
-export interface ConnectorListRequest {
-  /** Starting offset */
-  from?: number;
-  /** Specifies a max number of results to get */
-  size?: number;
-  /** A comma-separated list of connector index names to fetch connector documents for */
-  index_name?: TypesIndices;
-  /** A comma-separated list of connector names to fetch connector documents for */
-  connector_name?: TypesNames;
-  /** A comma-separated list of connector service types to fetch connector documents for */
-  service_type?: TypesNames;
-  /** A flag to indicate if the desired connector should be fetched, even if it was soft-deleted. */
-  include_deleted?: boolean;
-  /** A wildcard query string that filters connectors with matching name, description or index name */
-  query?: string;
-}
-export const ConnectorListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    from: S.optional(S.Number.pipe(T.Query())),
-    size: S.optional(S.Number.pipe(T.Query())),
-    index_name: S.optional(TypesIndices.pipe(T.Query())),
-    connector_name: S.optional(TypesNames.pipe(T.Query())),
-    service_type: S.optional(TypesNames.pipe(T.Query())),
-    include_deleted: S.optional(S.Boolean.pipe(T.Query())),
-    query: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/_connector", code: 200 })),
-).annotate({
-  identifier: "ConnectorListRequest",
-}) as any as S.Schema<ConnectorListRequest>;
-
-export type ConnectorListResponseResultsList = Array<ConnectorTypesConnector>;
-export const ConnectorListResponseResultsList = /*@__PURE__*/ S.Array(
-  ConnectorTypesConnector,
-) as any as S.Schema<ConnectorListResponseResultsList>;
-
-export interface ConnectorListResponse {
-  count: number;
-  results: ConnectorListResponseResultsList;
-}
-export const ConnectorListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.Number,
-    results: ConnectorListResponseResultsList,
-  }),
-).annotate({
-  identifier: "ConnectorListResponse",
-}) as any as S.Schema<ConnectorListResponse>;
-
-export interface ConnectorPostRequest {
-  description?: string;
-  index_name?: string;
-  is_native?: boolean;
-  language?: string;
-  name?: string;
-  service_type?: string;
-}
-export const ConnectorPostRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    description: S.optional(S.String),
-    index_name: S.optional(S.String),
-    is_native: S.optional(S.Boolean),
-    language: S.optional(S.String),
-    name: S.optional(S.String),
-    service_type: S.optional(S.String),
-  }).pipe(T.Http({ method: "POST", uri: "/_connector", code: 200 })),
-).annotate({
-  identifier: "ConnectorPostRequest",
-}) as any as S.Schema<ConnectorPostRequest>;
-
-export interface ConnectorPostResponse {
-  result: TypesResult;
-  id: string;
-}
-export const ConnectorPostResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    result: TypesResult,
-    id: S.String,
-  }),
-).annotate({
-  identifier: "ConnectorPostResponse",
-}) as any as S.Schema<ConnectorPostResponse>;
-
-export interface ConnectorPutRequest {
-  /** The unique identifier of the connector to be created or updated. ID is auto-generated if not provided. */
-  connector_id: string;
-  description?: string;
-  index_name?: string;
-  is_native?: boolean;
-  language?: string;
-  name?: string;
-  service_type?: string;
-}
-export const ConnectorPutRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    connector_id: S.String.pipe(T.Label()),
-    description: S.optional(S.String),
-    index_name: S.optional(S.String),
-    is_native: S.optional(S.Boolean),
-    language: S.optional(S.String),
-    name: S.optional(S.String),
-    service_type: S.optional(S.String),
-  }).pipe(
-    T.Http({ method: "PUT", uri: "/_connector/{connector_id}", code: 200 }),
-  ),
-).annotate({
-  identifier: "ConnectorPutRequest",
-}) as any as S.Schema<ConnectorPutRequest>;
-
-export interface ConnectorPutResponse {
-  result: TypesResult;
-  id: string;
-}
-export const ConnectorPutResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    result: TypesResult,
-    id: S.String,
-  }),
-).annotate({
-  identifier: "ConnectorPutResponse",
-}) as any as S.Schema<ConnectorPutResponse>;
-
-export interface ConnectorPut1Request {
-  description?: string;
-  index_name?: string;
-  is_native?: boolean;
-  language?: string;
-  name?: string;
-  service_type?: string;
-}
-export const ConnectorPut1Request = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    description: S.optional(S.String),
-    index_name: S.optional(S.String),
-    is_native: S.optional(S.Boolean),
-    language: S.optional(S.String),
-    name: S.optional(S.String),
-    service_type: S.optional(S.String),
-  }).pipe(T.Http({ method: "PUT", uri: "/_connector", code: 200 })),
-).annotate({
-  identifier: "ConnectorPut1Request",
-}) as any as S.Schema<ConnectorPut1Request>;
-
-export interface ConnectorPut1Response {
-  result: TypesResult;
-  id: string;
-}
-export const ConnectorPut1Response = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    result: TypesResult,
-    id: S.String,
-  }),
-).annotate({
-  identifier: "ConnectorPut1Response",
-}) as any as S.Schema<ConnectorPut1Response>;
-
-export interface ConnectorSyncJobCancelRequest {
-  /** The unique identifier of the connector sync job */
-  connector_sync_job_id: string;
-}
-export const ConnectorSyncJobCancelRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    connector_sync_job_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/_connector/_sync_job/{connector_sync_job_id}/_cancel",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ConnectorSyncJobCancelRequest",
-}) as any as S.Schema<ConnectorSyncJobCancelRequest>;
-
-export interface ConnectorSyncJobCancelResponse {
-  result: TypesResult;
-}
-export const ConnectorSyncJobCancelResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    result: TypesResult,
-  }),
-).annotate({
-  identifier: "ConnectorSyncJobCancelResponse",
-}) as any as S.Schema<ConnectorSyncJobCancelResponse>;
-
-export interface ConnectorSyncJobCheckInRequest {
-  /** The unique identifier of the connector sync job to be checked in. */
-  connector_sync_job_id: string;
-}
-export const ConnectorSyncJobCheckInRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    connector_sync_job_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/_connector/_sync_job/{connector_sync_job_id}/_check_in",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ConnectorSyncJobCheckInRequest",
-}) as any as S.Schema<ConnectorSyncJobCheckInRequest>;
-
-export type ConnectorSyncJobCheckInResponse = unknown;
-export const ConnectorSyncJobCheckInResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Unknown.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "ConnectorSyncJobCheckInResponse",
-}) as any as S.Schema<ConnectorSyncJobCheckInResponse>;
-
-export interface ConnectorSyncJobClaimRequest {
-  /** The unique identifier of the connector sync job. */
-  connector_sync_job_id: string;
-  /** The cursor object from the last incremental sync job. This should reference the `sync_cursor` field in the connector state for which the job runs. */
-  sync_cursor?: unknown;
-  /** The host name of the current system that will run the job. */
-  worker_hostname: string;
-}
-export const ConnectorSyncJobClaimRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    connector_sync_job_id: S.String.pipe(T.Label()),
-    sync_cursor: S.optional(S.Unknown),
-    worker_hostname: S.String,
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/_connector/_sync_job/{connector_sync_job_id}/_claim",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ConnectorSyncJobClaimRequest",
-}) as any as S.Schema<ConnectorSyncJobClaimRequest>;
-
-export type ConnectorSyncJobClaimResponse = unknown;
-export const ConnectorSyncJobClaimResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Unknown.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "ConnectorSyncJobClaimResponse",
-}) as any as S.Schema<ConnectorSyncJobClaimResponse>;
-
-export interface ConnectorSyncJobDeleteRequest {
-  /** The unique identifier of the connector sync job to be deleted */
-  connector_sync_job_id: string;
-}
-export const ConnectorSyncJobDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    connector_sync_job_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/_connector/_sync_job/{connector_sync_job_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ConnectorSyncJobDeleteRequest",
-}) as any as S.Schema<ConnectorSyncJobDeleteRequest>;
-
-export interface ConnectorSyncJobErrorRequest {
-  /** The unique identifier for the connector sync job. */
-  connector_sync_job_id: string;
-  /** The error for the connector sync job error field. */
-  error: string;
-}
-export const ConnectorSyncJobErrorRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    connector_sync_job_id: S.String.pipe(T.Label()),
-    error: S.String,
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/_connector/_sync_job/{connector_sync_job_id}/_error",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ConnectorSyncJobErrorRequest",
-}) as any as S.Schema<ConnectorSyncJobErrorRequest>;
-
-export type ConnectorSyncJobErrorResponse = unknown;
-export const ConnectorSyncJobErrorResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Unknown.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "ConnectorSyncJobErrorResponse",
-}) as any as S.Schema<ConnectorSyncJobErrorResponse>;
-
-export interface ConnectorSyncJobGetRequest {
-  /** The unique identifier of the connector sync job */
-  connector_sync_job_id: string;
-}
-export const ConnectorSyncJobGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    connector_sync_job_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/_connector/_sync_job/{connector_sync_job_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ConnectorSyncJobGetRequest",
-}) as any as S.Schema<ConnectorSyncJobGetRequest>;
-
-export interface ConnectorTypesSyncJobConnectorReference {
-  configuration: ConnectorTypesConnectorConfiguration;
-  filtering: ConnectorTypesFilteringRules;
-  id: string;
-  index_name: string;
-  language?: string;
-  pipeline?: ConnectorTypesIngestPipelineParams;
-  service_type: string;
-  sync_cursor?: unknown;
-}
-export const ConnectorTypesSyncJobConnectorReference = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      configuration: ConnectorTypesConnectorConfiguration,
-      filtering: ConnectorTypesFilteringRules,
-      id: S.String,
-      index_name: S.String,
-      language: S.optional(S.String),
-      pipeline: S.optional(ConnectorTypesIngestPipelineParams),
-      service_type: S.String,
-      sync_cursor: S.optional(S.Unknown),
-    }),
-).annotate({
-  identifier: "ConnectorTypesSyncJobConnectorReference",
-}) as any as S.Schema<ConnectorTypesSyncJobConnectorReference>;
-
-export type ConnectorTypesSyncJobType =
-  | "full"
-  | "incremental"
-  | "access_control";
-export const ConnectorTypesSyncJobType = /*@__PURE__*/ S.String;
-
-export type ConnectorTypesConnectorSyncJobMetadataMap = {
-  [key: string]: unknown | undefined;
-};
-export const ConnectorTypesConnectorSyncJobMetadataMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<ConnectorTypesConnectorSyncJobMetadataMap>;
-
-export type ConnectorTypesSyncJobTriggerMethod = "on_demand" | "scheduled";
-export const ConnectorTypesSyncJobTriggerMethod = /*@__PURE__*/ S.String;
-
-export interface ConnectorTypesConnectorSyncJob {
-  cancelation_requested_at?: TypesDateTime;
-  canceled_at?: TypesDateTime;
-  completed_at?: TypesDateTime;
-  connector: ConnectorTypesSyncJobConnectorReference;
-  created_at: TypesDateTime;
-  deleted_document_count: number;
-  error?: string;
-  id: string;
-  indexed_document_count: number;
-  indexed_document_volume: number;
-  job_type: ConnectorTypesSyncJobType;
-  last_seen?: TypesDateTime;
-  metadata: ConnectorTypesConnectorSyncJobMetadataMap;
-  started_at?: TypesDateTime;
-  status: ConnectorTypesSyncStatus;
-  total_document_count: number;
-  trigger_method: ConnectorTypesSyncJobTriggerMethod;
-  worker_hostname?: string;
-}
-export const ConnectorTypesConnectorSyncJob = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    cancelation_requested_at: S.optional(TypesDateTime),
-    canceled_at: S.optional(TypesDateTime),
-    completed_at: S.optional(TypesDateTime),
-    connector: ConnectorTypesSyncJobConnectorReference,
-    created_at: TypesDateTime,
-    deleted_document_count: S.Number,
-    error: S.optional(S.String),
-    id: S.String,
-    indexed_document_count: S.Number,
-    indexed_document_volume: S.Number,
-    job_type: ConnectorTypesSyncJobType,
-    last_seen: S.optional(TypesDateTime),
-    metadata: ConnectorTypesConnectorSyncJobMetadataMap,
-    started_at: S.optional(TypesDateTime),
-    status: ConnectorTypesSyncStatus,
-    total_document_count: S.Number,
-    trigger_method: ConnectorTypesSyncJobTriggerMethod,
-    worker_hostname: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ConnectorTypesConnectorSyncJob",
-}) as any as S.Schema<ConnectorTypesConnectorSyncJob>;
-
-export type ConnectorSyncJobListRequestJobTypeCase1List = Array<
-  ConnectorTypesSyncJobType | (string & {})
->;
-export const ConnectorSyncJobListRequestJobTypeCase1List =
-  /*@__PURE__*/ S.Array(
-    ConnectorTypesSyncJobType,
-  ) as any as S.Schema<ConnectorSyncJobListRequestJobTypeCase1List>;
-
-export type ConnectorSyncJobListRequestJobType =
-  | ConnectorTypesSyncJobType
-  | ConnectorSyncJobListRequestJobTypeCase1List;
-export const ConnectorSyncJobListRequestJobType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConnectorSyncJobListRequestJobType>;
-
-export interface ConnectorSyncJobListRequest {
-  /** Starting offset */
-  from?: number;
-  /** Specifies a max number of results to get */
-  size?: number;
-  /** A sync job status to fetch connector sync jobs for */
-  status?: ConnectorTypesSyncStatus | (string & {});
-  /** A connector id to fetch connector sync jobs for */
-  connector_id?: string;
-  /** A comma-separated list of job types to fetch the sync jobs for */
-  job_type?: ConnectorSyncJobListRequestJobType;
-}
-export const ConnectorSyncJobListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    from: S.optional(S.Number.pipe(T.Query())),
-    size: S.optional(S.Number.pipe(T.Query())),
-    status: S.optional(ConnectorTypesSyncStatus.pipe(T.Query())),
-    connector_id: S.optional(S.String.pipe(T.Query())),
-    job_type: S.optional(ConnectorSyncJobListRequestJobType.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/_connector/_sync_job", code: 200 })),
-).annotate({
-  identifier: "ConnectorSyncJobListRequest",
-}) as any as S.Schema<ConnectorSyncJobListRequest>;
-
-export type ConnectorSyncJobListResponseResultsList =
-  Array<ConnectorTypesConnectorSyncJob>;
-export const ConnectorSyncJobListResponseResultsList = /*@__PURE__*/ S.Array(
-  ConnectorTypesConnectorSyncJob,
-) as any as S.Schema<ConnectorSyncJobListResponseResultsList>;
-
-export interface ConnectorSyncJobListResponse {
-  count: number;
-  results: ConnectorSyncJobListResponseResultsList;
-}
-export const ConnectorSyncJobListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.Number,
-    results: ConnectorSyncJobListResponseResultsList,
-  }),
-).annotate({
-  identifier: "ConnectorSyncJobListResponse",
-}) as any as S.Schema<ConnectorSyncJobListResponse>;
-
-export interface ConnectorSyncJobPostRequest {
-  /** The id of the associated connector */
-  id: string;
-  job_type?: ConnectorTypesSyncJobType | (string & {});
-  trigger_method?: ConnectorTypesSyncJobTriggerMethod | (string & {});
-}
-export const ConnectorSyncJobPostRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    job_type: S.optional(ConnectorTypesSyncJobType),
-    trigger_method: S.optional(ConnectorTypesSyncJobTriggerMethod),
-  }).pipe(T.Http({ method: "POST", uri: "/_connector/_sync_job", code: 200 })),
-).annotate({
-  identifier: "ConnectorSyncJobPostRequest",
-}) as any as S.Schema<ConnectorSyncJobPostRequest>;
-
-export interface ConnectorSyncJobPostResponse {
-  id: string;
-}
-export const ConnectorSyncJobPostResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-  }),
-).annotate({
-  identifier: "ConnectorSyncJobPostResponse",
-}) as any as S.Schema<ConnectorSyncJobPostResponse>;
-
-export interface ConnectorSyncJobUpdateStatsRequest {
-  /** The unique identifier of the connector sync job. */
-  connector_sync_job_id: string;
-  /** The number of documents the sync job deleted. */
-  deleted_document_count: number;
-  /** The number of documents the sync job indexed. */
-  indexed_document_count: number;
-  /** The total size of the data (in MiB) the sync job indexed. */
-  indexed_document_volume: number;
-  /** The timestamp to use in the `last_seen` property for the connector sync job. */
-  last_seen?: TypesDuration;
-  /** The connector-specific metadata. */
-  metadata?: TypesMetadata;
-  /** The total number of documents in the target index after the sync job finished. */
-  total_document_count?: number;
-}
-export const ConnectorSyncJobUpdateStatsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    connector_sync_job_id: S.String.pipe(T.Label()),
-    deleted_document_count: S.Number,
-    indexed_document_count: S.Number,
-    indexed_document_volume: S.Number,
-    last_seen: S.optional(TypesDuration),
-    metadata: S.optional(TypesMetadata),
-    total_document_count: S.optional(S.Number),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/_connector/_sync_job/{connector_sync_job_id}/_stats",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ConnectorSyncJobUpdateStatsRequest",
-}) as any as S.Schema<ConnectorSyncJobUpdateStatsRequest>;
-
-export type ConnectorSyncJobUpdateStatsResponse = unknown;
-export const ConnectorSyncJobUpdateStatsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Unknown.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "ConnectorSyncJobUpdateStatsResponse",
-}) as any as S.Schema<ConnectorSyncJobUpdateStatsResponse>;
-
-export interface ConnectorUpdateActiveFilteringRequest {
-  /** The unique identifier of the connector to be updated */
-  connector_id: string;
-}
-export const ConnectorUpdateActiveFilteringRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      connector_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/_connector/{connector_id}/_filtering/_activate",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "ConnectorUpdateActiveFilteringRequest",
-}) as any as S.Schema<ConnectorUpdateActiveFilteringRequest>;
-
-export interface ConnectorUpdateActiveFilteringResponse {
-  result: TypesResult;
-}
-export const ConnectorUpdateActiveFilteringResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      result: TypesResult,
-    }),
-).annotate({
-  identifier: "ConnectorUpdateActiveFilteringResponse",
-}) as any as S.Schema<ConnectorUpdateActiveFilteringResponse>;
-
-export interface ConnectorUpdateApiKeyIdRequest {
-  /** The unique identifier of the connector to be updated */
-  connector_id: string;
-  api_key_id?: string;
-  api_key_secret_id?: string;
-}
-export const ConnectorUpdateApiKeyIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    connector_id: S.String.pipe(T.Label()),
-    api_key_id: S.optional(S.String),
-    api_key_secret_id: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/_connector/{connector_id}/_api_key_id",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ConnectorUpdateApiKeyIdRequest",
-}) as any as S.Schema<ConnectorUpdateApiKeyIdRequest>;
-
-export interface ConnectorUpdateApiKeyIdResponse {
-  result: TypesResult;
-}
-export const ConnectorUpdateApiKeyIdResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    result: TypesResult,
-  }),
-).annotate({
-  identifier: "ConnectorUpdateApiKeyIdResponse",
-}) as any as S.Schema<ConnectorUpdateApiKeyIdResponse>;
-
-export type ConnectorUpdateConfigurationRequestValuesMap = {
-  [key: string]: unknown | undefined;
-};
-export const ConnectorUpdateConfigurationRequestValuesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<ConnectorUpdateConfigurationRequestValuesMap>;
-
-export interface ConnectorUpdateConfigurationRequest {
-  /** The unique identifier of the connector to be updated */
-  connector_id: string;
-  configuration?: ConnectorTypesConnectorConfiguration;
-  values?: ConnectorUpdateConfigurationRequestValuesMap;
-}
-export const ConnectorUpdateConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    connector_id: S.String.pipe(T.Label()),
-    configuration: S.optional(ConnectorTypesConnectorConfiguration),
-    values: S.optional(ConnectorUpdateConfigurationRequestValuesMap),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/_connector/{connector_id}/_configuration",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ConnectorUpdateConfigurationRequest",
-}) as any as S.Schema<ConnectorUpdateConfigurationRequest>;
-
-export interface ConnectorUpdateConfigurationResponse {
-  result: TypesResult;
-}
-export const ConnectorUpdateConfigurationResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      result: TypesResult,
-    }),
-).annotate({
-  identifier: "ConnectorUpdateConfigurationResponse",
-}) as any as S.Schema<ConnectorUpdateConfigurationResponse>;
-
-export interface ConnectorUpdateErrorRequest {
-  /** The unique identifier of the connector to be updated */
-  connector_id: string;
-  error: string;
-}
-export const ConnectorUpdateErrorRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    connector_id: S.String.pipe(T.Label()),
-    error: S.String,
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/_connector/{connector_id}/_error",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ConnectorUpdateErrorRequest",
-}) as any as S.Schema<ConnectorUpdateErrorRequest>;
-
-export interface ConnectorUpdateErrorResponse {
-  result: TypesResult;
-}
-export const ConnectorUpdateErrorResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    result: TypesResult,
-  }),
-).annotate({
-  identifier: "ConnectorUpdateErrorResponse",
-}) as any as S.Schema<ConnectorUpdateErrorResponse>;
-
-export interface ConnectorUpdateFeaturesRequest {
-  /** The unique identifier of the connector to be updated. */
-  connector_id: string;
-  features: ConnectorTypesConnectorFeatures;
-}
-export const ConnectorUpdateFeaturesRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    connector_id: S.String.pipe(T.Label()),
-    features: ConnectorTypesConnectorFeatures,
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/_connector/{connector_id}/_features",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ConnectorUpdateFeaturesRequest",
-}) as any as S.Schema<ConnectorUpdateFeaturesRequest>;
-
-export interface ConnectorUpdateFeaturesResponse {
-  result: TypesResult;
-}
-export const ConnectorUpdateFeaturesResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    result: TypesResult,
-  }),
-).annotate({
-  identifier: "ConnectorUpdateFeaturesResponse",
-}) as any as S.Schema<ConnectorUpdateFeaturesResponse>;
 
 export type ConnectorUpdateFilteringRequestFilteringList =
   Array<ConnectorTypesFilteringConfig>;
@@ -37081,6 +37092,23 @@ export const ConnectorUpdateNativeResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ConnectorUpdateNativeResponse",
 }) as any as S.Schema<ConnectorUpdateNativeResponse>;
 
+export interface ConnectorTypesIngestPipelineParams {
+  extract_binary_content: boolean;
+  name: string;
+  reduce_whitespace: boolean;
+  run_ml_inference: boolean;
+}
+export const ConnectorTypesIngestPipelineParams = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    extract_binary_content: S.Boolean,
+    name: S.String,
+    reduce_whitespace: S.Boolean,
+    run_ml_inference: S.Boolean,
+  }),
+).annotate({
+  identifier: "ConnectorTypesIngestPipelineParams",
+}) as any as S.Schema<ConnectorTypesIngestPipelineParams>;
+
 export interface ConnectorUpdatePipelineRequest {
   /** The unique identifier of the connector to be updated */
   connector_id: string;
@@ -37111,6 +37139,36 @@ export const ConnectorUpdatePipelineResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ConnectorUpdatePipelineResponse",
 }) as any as S.Schema<ConnectorUpdatePipelineResponse>;
+
+export interface ConnectorTypesConnectorScheduling {
+  enabled: boolean;
+  /** The interval is expressed using the crontab syntax */
+  interval: string;
+}
+export const ConnectorTypesConnectorScheduling = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    enabled: S.Boolean,
+    interval: S.String,
+  }),
+).annotate({
+  identifier: "ConnectorTypesConnectorScheduling",
+}) as any as S.Schema<ConnectorTypesConnectorScheduling>;
+
+export interface ConnectorTypesSchedulingConfiguration {
+  access_control?: ConnectorTypesConnectorScheduling;
+  full?: ConnectorTypesConnectorScheduling;
+  incremental?: ConnectorTypesConnectorScheduling;
+}
+export const ConnectorTypesSchedulingConfiguration = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      access_control: S.optional(ConnectorTypesConnectorScheduling),
+      full: S.optional(ConnectorTypesConnectorScheduling),
+      incremental: S.optional(ConnectorTypesConnectorScheduling),
+    }),
+).annotate({
+  identifier: "ConnectorTypesSchedulingConfiguration",
+}) as any as S.Schema<ConnectorTypesSchedulingConfiguration>;
 
 export interface ConnectorUpdateSchedulingRequest {
   /** The unique identifier of the connector to be updated */
@@ -37173,6 +37231,14 @@ export const ConnectorUpdateServiceTypeResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ConnectorUpdateServiceTypeResponse",
 }) as any as S.Schema<ConnectorUpdateServiceTypeResponse>;
+
+export type ConnectorTypesConnectorStatus =
+  | "created"
+  | "needs_configuration"
+  | "configured"
+  | "connected"
+  | "error";
+export const ConnectorTypesConnectorStatus = /*@__PURE__*/ S.String;
 
 export interface ConnectorUpdateStatusRequest {
   /** The unique identifier of the connector to be updated */
@@ -37636,6 +37702,263 @@ export const Create1Request = /*@__PURE__*/ S.suspend(() =>
   }).pipe(T.Http({ method: "POST", uri: "/{index}/_create/{id}", code: 200 })),
 ).annotate({ identifier: "Create1Request" }) as any as S.Schema<Create1Request>;
 
+/** Aliases for the index. */
+export type CreateIndexRequestAliasesMap = {
+  [key: string]: IndicesTypesAlias | undefined;
+};
+export const CreateIndexRequestAliasesMap = /*@__PURE__*/ S.Record(
+  S.String,
+  IndicesTypesAlias,
+) as any as S.Schema<CreateIndexRequestAliasesMap>;
+
+export interface CreateIndexRequest {
+  /** Name of the index you wish to create. Index names must meet the following criteria: * Lowercase only * Cannot include `\`, `/`, `*`, `?`, `"`, `<`, `>`, `|`, ` ` (space character), `,`, or `#` * Indices prior to 7.0 could contain a colon (`:`), but that has been deprecated and will not be supported in later versions * Cannot start with `-`, `_`, or `+` * Cannot be `.` or `..` * Cannot be longer than 255 bytes (note thtat it is bytes, so multi-byte characters will reach the limit faster) * Names starting with `.` are deprecated, except for hidden indices and internal indices managed by plugins */
+  index: string;
+  /** Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error. */
+  master_timeout?: TypesDuration;
+  /** Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error. */
+  timeout?: TypesDuration;
+  /** The number of shard copies that must be active before proceeding with the operation. Set to `all` or any positive integer up to the total number of shards in the index (`number_of_replicas+1`). */
+  wait_for_active_shards?: TypesWaitForActiveShards;
+  /** Aliases for the index. */
+  aliases?: CreateIndexRequestAliasesMap;
+  /** Mapping for fields in the index. If specified, this mapping can include: - Field names - Field data types - Mapping parameters */
+  mappings?: TypesMappingTypeMapping;
+  /** Configuration options for the index. */
+  settings?: IndicesTypesIndexSettings;
+}
+export const CreateIndexRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    index: S.String.pipe(T.Label()),
+    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
+    timeout: S.optional(TypesDuration.pipe(T.Query())),
+    wait_for_active_shards: S.optional(
+      TypesWaitForActiveShards.pipe(T.Query()),
+    ),
+    aliases: S.optional(CreateIndexRequestAliasesMap),
+    mappings: S.optional(TypesMappingTypeMapping),
+    settings: S.optional(IndicesTypesIndexSettings),
+  }).pipe(T.Http({ method: "PUT", uri: "/{index}", code: 200 })),
+).annotate({
+  identifier: "CreateIndexRequest",
+}) as any as S.Schema<CreateIndexRequest>;
+
+export interface CreateIndexResponse {
+  index: string;
+  shards_acknowledged: boolean;
+  acknowledged: boolean;
+}
+export const CreateIndexResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    index: S.String,
+    shards_acknowledged: S.Boolean,
+    acknowledged: S.Boolean,
+  }),
+).annotate({
+  identifier: "CreateIndexResponse",
+}) as any as S.Schema<CreateIndexResponse>;
+
+/** The feature states to include in the snapshot. Each feature state includes one or more system indices containing related data. You can view a list of eligible features using the get features API. If `include_global_state` is `true`, all current feature states are included by default. If `include_global_state` is `false`, no feature states are included by default. Note that specifying an empty array will result in the default behavior. To exclude all feature states, regardless of the `include_global_state` value, specify an array with only the value `none` (`["none"]`). */
+export type CreateSnapshotRequestFeatureStatesList = Array<string>;
+export const CreateSnapshotRequestFeatureStatesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateSnapshotRequestFeatureStatesList>;
+
+export interface CreateSnapshotRequest {
+  /** The name of the repository for the snapshot. */
+  repository: string;
+  /** The name of the snapshot. It supportes date math. It must be unique in the repository. */
+  snapshot: string;
+  /** The period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error. */
+  master_timeout?: TypesDuration;
+  /** If `true`, the request returns a response when the snapshot is complete. If `false`, the request returns a response when the snapshot initializes. */
+  wait_for_completion?: boolean;
+  /** Determines how wildcard patterns in the `indices` parameter match data streams and indices. It supports comma-separated values such as `open,hidden`. */
+  expand_wildcards?: TypesExpandWildcards;
+  /** The feature states to include in the snapshot. Each feature state includes one or more system indices containing related data. You can view a list of eligible features using the get features API. If `include_global_state` is `true`, all current feature states are included by default. If `include_global_state` is `false`, no feature states are included by default. Note that specifying an empty array will result in the default behavior. To exclude all feature states, regardless of the `include_global_state` value, specify an array with only the value `none` (`["none"]`). */
+  feature_states?: CreateSnapshotRequestFeatureStatesList;
+  /** If `true`, the request ignores data streams and indices in `indices` that are missing or closed. If `false`, the request returns an error for any data stream or index that is missing or closed. */
+  ignore_unavailable?: boolean;
+  /** If `true`, the current cluster state is included in the snapshot. The cluster state includes persistent cluster settings, composable index templates, legacy index templates, ingest pipelines, and ILM policies. It also includes data stored in system indices, such as Watches and task records (configurable via `feature_states`). */
+  include_global_state?: boolean;
+  /** A comma-separated list of data streams and indices to include in the snapshot. It supports a multi-target syntax. The default is an empty array (`[]`), which includes all regular data streams and regular indices. To exclude all data streams and indices, use `-*`. You can't use this parameter to include or exclude system indices or system data streams from a snapshot. Use `feature_states` instead. */
+  indices?: TypesIndices;
+  /** Arbitrary metadata to the snapshot, such as a record of who took the snapshot, why it was taken, or any other useful data. It can have any contents but it must be less than 1024 bytes. This information is not automatically generated by Elasticsearch. */
+  metadata?: TypesMetadata;
+  /** If `true`, allows the snapshot to proceed even if some of the target shards are unavailable. In this case, the resulting snapshot will not contain snapshots of the unavailable target shards, and will report its state as `PARTIAL`. Additionally, if `true`, allows index metadata operations such as deletions while the snapshot is in progress. This is almost always preferable to failing the snapshot completely when a single shard is unavailable, and blocking index metadata operations. If `false`, the entire restore operation will fail if one or more indices included in the snapshot do not have all primary shards available, and index metadata operations such as deletions will be forbidden until the snapshot completes. */
+  partial?: boolean;
+}
+export const CreateSnapshotRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    repository: S.String.pipe(T.Label()),
+    snapshot: S.String.pipe(T.Label()),
+    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
+    wait_for_completion: S.optional(S.Boolean.pipe(T.Query())),
+    expand_wildcards: S.optional(TypesExpandWildcards),
+    feature_states: S.optional(CreateSnapshotRequestFeatureStatesList),
+    ignore_unavailable: S.optional(S.Boolean),
+    include_global_state: S.optional(S.Boolean),
+    indices: S.optional(TypesIndices),
+    metadata: S.optional(TypesMetadata),
+    partial: S.optional(S.Boolean),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/_snapshot/{repository}/{snapshot}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateSnapshotRequest",
+}) as any as S.Schema<CreateSnapshotRequest>;
+
+export type SnapshotTypesSnapshotInfoDataStreamsList = Array<string>;
+export const SnapshotTypesSnapshotInfoDataStreamsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SnapshotTypesSnapshotInfoDataStreamsList>;
+
+export interface SnapshotTypesSnapshotShardFailure {
+  index: string;
+  node_id?: string;
+  reason: string;
+  shard_id: number;
+  index_uuid: string;
+  status: string;
+}
+export const SnapshotTypesSnapshotShardFailure = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    index: S.String,
+    node_id: S.optional(S.String),
+    reason: S.String,
+    shard_id: S.Number,
+    index_uuid: S.String,
+    status: S.String,
+  }),
+).annotate({
+  identifier: "SnapshotTypesSnapshotShardFailure",
+}) as any as S.Schema<SnapshotTypesSnapshotShardFailure>;
+
+export type SnapshotTypesSnapshotInfoFailuresList =
+  Array<SnapshotTypesSnapshotShardFailure>;
+export const SnapshotTypesSnapshotInfoFailuresList = /*@__PURE__*/ S.Array(
+  SnapshotTypesSnapshotShardFailure,
+) as any as S.Schema<SnapshotTypesSnapshotInfoFailuresList>;
+
+export type SnapshotTypesSnapshotInfoIndicesList = Array<string>;
+export const SnapshotTypesSnapshotInfoIndicesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SnapshotTypesSnapshotInfoIndicesList>;
+
+export interface SnapshotTypesIndexDetails {
+  shard_count: number;
+  size?: TypesByteSize;
+  size_in_bytes: number;
+  max_segments_per_shard: number;
+}
+export const SnapshotTypesIndexDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    shard_count: S.Number,
+    size: S.optional(TypesByteSize),
+    size_in_bytes: S.Number,
+    max_segments_per_shard: S.Number,
+  }),
+).annotate({
+  identifier: "SnapshotTypesIndexDetails",
+}) as any as S.Schema<SnapshotTypesIndexDetails>;
+
+export type SnapshotTypesSnapshotInfoIndexDetailsMap = {
+  [key: string]: SnapshotTypesIndexDetails | undefined;
+};
+export const SnapshotTypesSnapshotInfoIndexDetailsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  SnapshotTypesIndexDetails,
+) as any as S.Schema<SnapshotTypesSnapshotInfoIndexDetailsMap>;
+
+export interface SnapshotTypesInfoFeatureState {
+  feature_name: string;
+  indices: TypesIndices;
+}
+export const SnapshotTypesInfoFeatureState = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    feature_name: S.String,
+    indices: TypesIndices,
+  }),
+).annotate({
+  identifier: "SnapshotTypesInfoFeatureState",
+}) as any as S.Schema<SnapshotTypesInfoFeatureState>;
+
+export type SnapshotTypesSnapshotInfoFeatureStatesList =
+  Array<SnapshotTypesInfoFeatureState>;
+export const SnapshotTypesSnapshotInfoFeatureStatesList = /*@__PURE__*/ S.Array(
+  SnapshotTypesInfoFeatureState,
+) as any as S.Schema<SnapshotTypesSnapshotInfoFeatureStatesList>;
+
+export interface SnapshotTypesSnapshotInfo {
+  data_streams: SnapshotTypesSnapshotInfoDataStreamsList;
+  duration?: TypesDuration;
+  duration_in_millis?: number;
+  end_time?: TypesDateTime;
+  end_time_in_millis?: number;
+  failures?: SnapshotTypesSnapshotInfoFailuresList;
+  include_global_state?: boolean;
+  indices?: SnapshotTypesSnapshotInfoIndicesList;
+  index_details?: SnapshotTypesSnapshotInfoIndexDetailsMap;
+  metadata?: TypesMetadata;
+  reason?: string;
+  repository?: string;
+  snapshot: string;
+  shards?: TypesShardStatistics;
+  start_time?: TypesDateTime;
+  start_time_in_millis?: number;
+  state?: string;
+  uuid: string;
+  version?: string;
+  version_id?: number;
+  feature_states?: SnapshotTypesSnapshotInfoFeatureStatesList;
+}
+export const SnapshotTypesSnapshotInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data_streams: SnapshotTypesSnapshotInfoDataStreamsList,
+    duration: S.optional(TypesDuration),
+    duration_in_millis: S.optional(S.Number),
+    end_time: S.optional(TypesDateTime),
+    end_time_in_millis: S.optional(S.Number),
+    failures: S.optional(SnapshotTypesSnapshotInfoFailuresList),
+    include_global_state: S.optional(S.Boolean),
+    indices: S.optional(SnapshotTypesSnapshotInfoIndicesList),
+    index_details: S.optional(SnapshotTypesSnapshotInfoIndexDetailsMap),
+    metadata: S.optional(TypesMetadata),
+    reason: S.optional(S.String),
+    repository: S.optional(S.String),
+    snapshot: S.String,
+    shards: S.optional(TypesShardStatistics),
+    start_time: S.optional(TypesDateTime),
+    start_time_in_millis: S.optional(S.Number),
+    state: S.optional(S.String),
+    uuid: S.String,
+    version: S.optional(S.String),
+    version_id: S.optional(S.Number),
+    feature_states: S.optional(SnapshotTypesSnapshotInfoFeatureStatesList),
+  }),
+).annotate({
+  identifier: "SnapshotTypesSnapshotInfo",
+}) as any as S.Schema<SnapshotTypesSnapshotInfo>;
+
+export interface CreateSnapshotResponse {
+  /** Equals `true` if the snapshot was accepted. Present when the request had `wait_for_completion` set to `false` */
+  accepted?: boolean;
+  /** Snapshot information. Present when the request had `wait_for_completion` set to `true` */
+  snapshot?: SnapshotTypesSnapshotInfo;
+}
+export const CreateSnapshotResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accepted: S.optional(S.Boolean),
+    snapshot: S.optional(SnapshotTypesSnapshotInfo),
+  }),
+).annotate({
+  identifier: "CreateSnapshotResponse",
+}) as any as S.Schema<CreateSnapshotResponse>;
+
 export interface DanglingIndicesDeleteDanglingIndexRequest {
   /** The UUID of the index to delete. Use the get dangling indices API to find the UUID. */
   index_uuid: string;
@@ -37989,242 +38312,162 @@ export const DeleteByQueryRethrottleRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteByQueryRethrottleRequest",
 }) as any as S.Schema<DeleteByQueryRethrottleRequest>;
 
-export type TasksTypesTaskListResponseBaseNodeFailuresList =
-  Array<TypesErrorCause>;
-export const TasksTypesTaskListResponseBaseNodeFailuresList =
-  /*@__PURE__*/ S.Array(
-    TypesErrorCause,
-  ) as any as S.Schema<TasksTypesTaskListResponseBaseNodeFailuresList>;
-
-export interface TypesTaskFailure {
-  task_id: number;
-  node_id: string;
-  status: string;
-  reason: TypesErrorCause;
+export interface DeleteConnectorRequest {
+  /** The unique identifier of the connector to be deleted */
+  connector_id: string;
+  /** A flag indicating if associated sync jobs should be also removed. */
+  delete_sync_jobs?: boolean;
+  /** A flag indicating if the connector should be hard deleted. */
+  hard?: boolean;
 }
-export const TypesTaskFailure = /*@__PURE__*/ S.suspend(() =>
+export const DeleteConnectorRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    task_id: S.Number,
-    node_id: S.String,
-    status: S.String,
-    reason: TypesErrorCause,
+    connector_id: S.String.pipe(T.Label()),
+    delete_sync_jobs: S.optional(S.Boolean.pipe(T.Query())),
+    hard: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(
+    T.Http({ method: "DELETE", uri: "/_connector/{connector_id}", code: 200 }),
+  ),
+).annotate({
+  identifier: "DeleteConnectorRequest",
+}) as any as S.Schema<DeleteConnectorRequest>;
+
+export interface DeleteConnectorSyncJobRequest {
+  /** The unique identifier of the connector sync job to be deleted */
+  connector_sync_job_id: string;
+}
+export const DeleteConnectorSyncJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    connector_sync_job_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/_connector/_sync_job/{connector_sync_job_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteConnectorSyncJobRequest",
+}) as any as S.Schema<DeleteConnectorSyncJobRequest>;
+
+export interface DeleteEqlRequest {
+  /** Identifier for the search to delete. A search ID is provided in the EQL search API's response for an async search. A search ID is also provided if the request’s `keep_on_completion` parameter is `true`. */
+  id: string;
+}
+export const DeleteEqlRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "DELETE", uri: "/_eql/search/{id}", code: 200 })),
+).annotate({
+  identifier: "DeleteEqlRequest",
+}) as any as S.Schema<DeleteEqlRequest>;
+
+export interface DeleteEsqlAsyncQueryRequest {
+  /** The unique identifier of the query. A query ID is provided in the ES|QL async query API response for a query that does not complete in the designated time. A query ID is also provided when the request was submitted with the `keep_on_completion` parameter set to `true`. */
+  id: string;
+}
+export const DeleteEsqlAsyncQueryRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "DELETE", uri: "/_query/async/{id}", code: 200 })),
+).annotate({
+  identifier: "DeleteEsqlAsyncQueryRequest",
+}) as any as S.Schema<DeleteEsqlAsyncQueryRequest>;
+
+export interface DeleteIndexRequest {
+  /** Comma-separated list of indices to delete. You cannot specify index aliases. By default, this parameter does not support wildcards (`*`) or `_all`. To use wildcards or `_all`, set the `action.destructive_requires_name` cluster setting to `false`. */
+  index: string;
+  /** A setting that does two separate checks on the index expression. If `false`, the request returns an error (1) if any wildcard expression (including `_all` and `*`) resolves to zero matching indices or (2) if the complete set of resolved indices, aliases or data streams is empty after all expressions are evaluated. If `true`, index expressions that resolve to no indices are allowed and the request returns an empty result. */
+  allow_no_indices?: boolean;
+  /** Type of index that wildcard patterns can match. If the request can target data streams, this argument determines whether wildcard expressions match hidden data streams. Supports comma-separated values, such as `open,hidden`. */
+  expand_wildcards?: TypesExpandWildcards;
+  /** If `false`, the request returns an error if it targets a concrete (non-wildcarded) index, alias, or data stream that is missing, closed, or otherwise unavailable. If `true`, unavailable concrete targets are silently ignored. */
+  ignore_unavailable?: boolean;
+  /** Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error. */
+  master_timeout?: TypesDuration;
+  /** Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error. */
+  timeout?: TypesDuration;
+}
+export const DeleteIndexRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    index: S.String.pipe(T.Label()),
+    allow_no_indices: S.optional(S.Boolean.pipe(T.Query())),
+    expand_wildcards: S.optional(TypesExpandWildcards.pipe(T.Query())),
+    ignore_unavailable: S.optional(S.Boolean.pipe(T.Query())),
+    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
+    timeout: S.optional(TypesDuration.pipe(T.Query())),
+  }).pipe(T.Http({ method: "DELETE", uri: "/{index}", code: 200 })),
+).annotate({
+  identifier: "DeleteIndexRequest",
+}) as any as S.Schema<DeleteIndexRequest>;
+
+export interface DeleteIndexResponse {
+  /** For a successful response, this value is always true. On failure, an exception is returned instead. */
+  acknowledged: boolean;
+  _shards?: TypesShardStatistics;
+}
+export const DeleteIndexResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    acknowledged: S.Boolean,
+    _shards: S.optional(TypesShardStatistics),
   }),
 ).annotate({
-  identifier: "TypesTaskFailure",
-}) as any as S.Schema<TypesTaskFailure>;
+  identifier: "DeleteIndexResponse",
+}) as any as S.Schema<DeleteIndexResponse>;
 
-export type TasksTypesTaskListResponseBaseTaskFailuresList =
-  Array<TypesTaskFailure>;
-export const TasksTypesTaskListResponseBaseTaskFailuresList =
-  /*@__PURE__*/ S.Array(
-    TypesTaskFailure,
-  ) as any as S.Schema<TasksTypesTaskListResponseBaseTaskFailuresList>;
-
-export type TasksTypesNodeTasksRolesList = Array<string>;
-export const TasksTypesNodeTasksRolesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<TasksTypesNodeTasksRolesList>;
-
-export type TasksTypesNodeTasksAttributesMap = {
-  [key: string]: string | undefined;
-};
-export const TasksTypesNodeTasksAttributesMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<TasksTypesNodeTasksAttributesMap>;
-
-export type TasksTypesTaskInfoHeadersMap = {
-  [key: string]: string | undefined;
-};
-export const TasksTypesTaskInfoHeadersMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<TasksTypesTaskInfoHeadersMap>;
-
-export interface TasksTypesTaskInfo {
-  action: string;
-  cancelled?: boolean;
-  cancellable: boolean;
-  /** Human readable text that identifies the particular request that the task is performing. For example, it might identify the search request being performed by a search task. Other kinds of tasks have different descriptions, like `_reindex` which has the source and the destination, or `_bulk` which just has the number of requests and the destination indices. Many requests will have only an empty description because more detailed information about the request is not easily available or particularly helpful in identifying the request. */
-  description?: string;
-  headers: TasksTypesTaskInfoHeadersMap;
-  id: number;
-  node: string;
-  running_time?: TypesDuration;
-  running_time_in_nanos: number;
-  start_time_in_millis: number;
-  /** The internal status of the task, which varies from task to task. The format also varies. While the goal is to keep the status for a particular task consistent from version to version, this is not always possible because sometimes the implementation changes. Fields might be removed from the status for a particular request so any parsing you do of the status might break in minor releases. */
-  status?: unknown;
-  type: string;
-  parent_task_id?: string;
-  /** The task ID of the original task. Only present when the task is continuing the work of an earlier task that was running on a node which has since shut down (i.e. a relocatable task). For tasks that have not been relocated this is always equal to the task's own ID and is omitted from the response. */
-  original_task_id?: string;
-  /** The time at which the original task started, in milliseconds since the Unix epoch. Only present together with `original_task_id`. */
-  original_start_time_in_millis?: number;
-  /** The time at which the original task started, as an ISO 8601 formatted string. Only present together with `original_task_id` and when the request includes the `?human=true` query parameter. */
-  original_start_time?: string;
+export interface DeleteInferenceRequest {
+  /** The inference identifier. */
+  inference_id: string;
+  /** When true, checks the semantic_text fields and inference processors that reference the endpoint and returns them in a list, but does not delete the endpoint. */
+  dry_run?: boolean;
+  /** When true, the inference endpoint is forcefully deleted even if it is still being used by ingest processors or semantic text fields. */
+  force?: boolean;
 }
-export const TasksTypesTaskInfo = /*@__PURE__*/ S.suspend(() =>
+export const DeleteInferenceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    action: S.String,
-    cancelled: S.optional(S.Boolean),
-    cancellable: S.Boolean,
-    description: S.optional(S.String),
-    headers: TasksTypesTaskInfoHeadersMap,
-    id: S.Number,
-    node: S.String,
-    running_time: S.optional(TypesDuration),
-    running_time_in_nanos: S.Number,
-    start_time_in_millis: S.Number,
-    status: S.optional(S.Unknown),
-    type: S.String,
-    parent_task_id: S.optional(S.String),
-    original_task_id: S.optional(S.String),
-    original_start_time_in_millis: S.optional(S.Number),
-    original_start_time: S.optional(S.String),
+    inference_id: S.String.pipe(T.Label()),
+    dry_run: S.optional(S.Boolean.pipe(T.Query())),
+    force: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(
+    T.Http({ method: "DELETE", uri: "/_inference/{inference_id}", code: 200 }),
+  ),
+).annotate({
+  identifier: "DeleteInferenceRequest",
+}) as any as S.Schema<DeleteInferenceRequest>;
+
+export type DeleteInferenceResponsePipelinesList = Array<string>;
+export const DeleteInferenceResponsePipelinesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<DeleteInferenceResponsePipelinesList>;
+
+export interface DeleteInferenceResponse {
+  /** For a successful response, this value is always true. On failure, an exception is returned instead. */
+  acknowledged: boolean;
+  pipelines: DeleteInferenceResponsePipelinesList;
+}
+export const DeleteInferenceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    acknowledged: S.Boolean,
+    pipelines: DeleteInferenceResponsePipelinesList,
   }),
 ).annotate({
-  identifier: "TasksTypesTaskInfo",
-}) as any as S.Schema<TasksTypesTaskInfo>;
+  identifier: "DeleteInferenceResponse",
+}) as any as S.Schema<DeleteInferenceResponse>;
 
-export type TasksTypesNodeTasksTasksMap = {
-  [key: string]: TasksTypesTaskInfo | undefined;
-};
-export const TasksTypesNodeTasksTasksMap = /*@__PURE__*/ S.Record(
-  S.String,
-  TasksTypesTaskInfo,
-) as any as S.Schema<TasksTypesNodeTasksTasksMap>;
-
-export interface TasksTypesNodeTasks {
-  name?: string;
-  transport_address?: string;
-  host?: string;
-  ip?: string;
-  roles?: TasksTypesNodeTasksRolesList;
-  attributes?: TasksTypesNodeTasksAttributesMap;
-  tasks: TasksTypesNodeTasksTasksMap;
+export interface DeleteLicenseRequest {
+  /** The period to wait for a connection to the master node. */
+  master_timeout?: TypesDuration;
+  /** The period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error. */
+  timeout?: TypesDuration;
 }
-export const TasksTypesNodeTasks = /*@__PURE__*/ S.suspend(() =>
+export const DeleteLicenseRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: S.optional(S.String),
-    transport_address: S.optional(S.String),
-    host: S.optional(S.String),
-    ip: S.optional(S.String),
-    roles: S.optional(TasksTypesNodeTasksRolesList),
-    attributes: S.optional(TasksTypesNodeTasksAttributesMap),
-    tasks: TasksTypesNodeTasksTasksMap,
-  }),
+    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
+    timeout: S.optional(TypesDuration.pipe(T.Query())),
+  }).pipe(T.Http({ method: "DELETE", uri: "/_license", code: 200 })),
 ).annotate({
-  identifier: "TasksTypesNodeTasks",
-}) as any as S.Schema<TasksTypesNodeTasks>;
-
-/** Task information grouped by node, if `group_by` was set to `node` (the default). */
-export type TasksTypesTaskListResponseBaseNodesMap = {
-  [key: string]: TasksTypesNodeTasks | undefined;
-};
-export const TasksTypesTaskListResponseBaseNodesMap = /*@__PURE__*/ S.Record(
-  S.String,
-  TasksTypesNodeTasks,
-) as any as S.Schema<TasksTypesTaskListResponseBaseNodesMap>;
-
-export type TasksTypesTaskInfosCase0List = Array<TasksTypesTaskInfo>;
-export const TasksTypesTaskInfosCase0List = /*@__PURE__*/ S.Array(
-  TasksTypesTaskInfo,
-) as any as S.Schema<TasksTypesTaskInfosCase0List>;
-
-export type TasksTypesParentTaskInfoHeadersMap = {
-  [key: string]: string | undefined;
-};
-export const TasksTypesParentTaskInfoHeadersMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<TasksTypesParentTaskInfoHeadersMap>;
-
-export type TasksTypesParentTaskInfoChildrenList = Array<TasksTypesTaskInfo>;
-export const TasksTypesParentTaskInfoChildrenList = /*@__PURE__*/ S.Array(
-  TasksTypesTaskInfo,
-) as any as S.Schema<TasksTypesParentTaskInfoChildrenList>;
-
-export interface TasksTypesParentTaskInfo {
-  action: string;
-  cancelled?: boolean;
-  cancellable: boolean;
-  /** Human readable text that identifies the particular request that the task is performing. For example, it might identify the search request being performed by a search task. Other kinds of tasks have different descriptions, like `_reindex` which has the source and the destination, or `_bulk` which just has the number of requests and the destination indices. Many requests will have only an empty description because more detailed information about the request is not easily available or particularly helpful in identifying the request. */
-  description?: string;
-  headers: TasksTypesParentTaskInfoHeadersMap;
-  id: number;
-  node: string;
-  running_time?: TypesDuration;
-  running_time_in_nanos: number;
-  start_time_in_millis: number;
-  /** The internal status of the task, which varies from task to task. The format also varies. While the goal is to keep the status for a particular task consistent from version to version, this is not always possible because sometimes the implementation changes. Fields might be removed from the status for a particular request so any parsing you do of the status might break in minor releases. */
-  status?: unknown;
-  type: string;
-  parent_task_id?: string;
-  /** The task ID of the original task. Only present when the task is continuing the work of an earlier task that was running on a node which has since shut down (i.e. a relocatable task). For tasks that have not been relocated this is always equal to the task's own ID and is omitted from the response. */
-  original_task_id?: string;
-  /** The time at which the original task started, in milliseconds since the Unix epoch. Only present together with `original_task_id`. */
-  original_start_time_in_millis?: number;
-  /** The time at which the original task started, as an ISO 8601 formatted string. Only present together with `original_task_id` and when the request includes the `?human=true` query parameter. */
-  original_start_time?: string;
-  children?: TasksTypesParentTaskInfoChildrenList;
-}
-export const TasksTypesParentTaskInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    action: S.String,
-    cancelled: S.optional(S.Boolean),
-    cancellable: S.Boolean,
-    description: S.optional(S.String),
-    headers: TasksTypesParentTaskInfoHeadersMap,
-    id: S.Number,
-    node: S.String,
-    running_time: S.optional(TypesDuration),
-    running_time_in_nanos: S.Number,
-    start_time_in_millis: S.Number,
-    status: S.optional(S.Unknown),
-    type: S.String,
-    parent_task_id: S.optional(S.String),
-    original_task_id: S.optional(S.String),
-    original_start_time_in_millis: S.optional(S.Number),
-    original_start_time: S.optional(S.String),
-    children: S.optional(TasksTypesParentTaskInfoChildrenList),
-  }),
-).annotate({
-  identifier: "TasksTypesParentTaskInfo",
-}) as any as S.Schema<TasksTypesParentTaskInfo>;
-
-export type TasksTypesTaskInfosCase1Map = {
-  [key: string]: TasksTypesParentTaskInfo | undefined;
-};
-export const TasksTypesTaskInfosCase1Map = /*@__PURE__*/ S.Record(
-  S.String,
-  TasksTypesParentTaskInfo,
-) as any as S.Schema<TasksTypesTaskInfosCase1Map>;
-
-export type TasksTypesTaskInfos =
-  | TasksTypesTaskInfosCase0List
-  | TasksTypesTaskInfosCase1Map;
-export const TasksTypesTaskInfos =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TasksTypesTaskInfos>;
-
-export interface TasksTypesTaskListResponseBase {
-  node_failures?: TasksTypesTaskListResponseBaseNodeFailuresList;
-  task_failures?: TasksTypesTaskListResponseBaseTaskFailuresList;
-  /** Task information grouped by node, if `group_by` was set to `node` (the default). */
-  nodes?: TasksTypesTaskListResponseBaseNodesMap;
-  /** Either a flat list of tasks if `group_by` was set to `none`, or grouped by parents if `group_by` was set to `parents`. */
-  tasks?: TasksTypesTaskInfos;
-}
-export const TasksTypesTaskListResponseBase = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    node_failures: S.optional(TasksTypesTaskListResponseBaseNodeFailuresList),
-    task_failures: S.optional(TasksTypesTaskListResponseBaseTaskFailuresList),
-    nodes: S.optional(TasksTypesTaskListResponseBaseNodesMap),
-    tasks: S.optional(TasksTypesTaskInfos),
-  }),
-).annotate({
-  identifier: "TasksTypesTaskListResponseBase",
-}) as any as S.Schema<TasksTypesTaskListResponseBase>;
+  identifier: "DeleteLicenseRequest",
+}) as any as S.Schema<DeleteLicenseRequest>;
 
 export interface DeleteScriptRequest {
   /** The identifier for the stored script or search template. */
@@ -38244,23 +38487,78 @@ export const DeleteScriptRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteScriptRequest",
 }) as any as S.Schema<DeleteScriptRequest>;
 
-export interface EncryptionResetRequest {
-  /** Acknowledge that resetting the project encryption key permanently destroys all data that was encrypted under the current key. The request fails if this is not set to `true`. */
-  accept_data_loss: boolean;
+export interface DeleteSnapshotRequest {
+  /** The name of the repository to delete a snapshot from. */
+  repository: string;
+  /** A comma-separated list of snapshot names to delete. It also accepts wildcards (`*`). */
+  snapshot: string;
+  /** The period to wait for the master node. If the master node is not available before the timeout expires, the request fails and returns an error. To indicate that the request should never timeout, set it to `-1`. */
+  master_timeout?: TypesDuration;
+  /** If `true`, the request returns a response when the matching snapshots are all deleted. If `false`, the request returns a response as soon as the deletes are scheduled. */
+  wait_for_completion?: boolean;
+}
+export const DeleteSnapshotRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    repository: S.String.pipe(T.Label()),
+    snapshot: S.String.pipe(T.Label()),
+    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
+    wait_for_completion: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/_snapshot/{repository}/{snapshot}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteSnapshotRequest",
+}) as any as S.Schema<DeleteSnapshotRequest>;
+
+export type DisableStreamsLogRequestName = "logs" | "logs.otel" | "logs.ecs";
+export const DisableStreamsLogRequestName = /*@__PURE__*/ S.String;
+
+export interface DisableStreamsLogRequest {
+  /** The stream type to disable. */
+  name: DisableStreamsLogRequestName | (string & {});
   /** The period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error. */
   master_timeout?: TypesDuration;
   /** The period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error. */
   timeout?: TypesDuration;
 }
-export const EncryptionResetRequest = /*@__PURE__*/ S.suspend(() =>
+export const DisableStreamsLogRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    accept_data_loss: S.Boolean.pipe(T.Query()),
+    name: DisableStreamsLogRequestName.pipe(T.Label()),
     master_timeout: S.optional(TypesDuration.pipe(T.Query())),
     timeout: S.optional(TypesDuration.pipe(T.Query())),
-  }).pipe(T.Http({ method: "POST", uri: "/_encryption/_reset", code: 200 })),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/_streams/{name}/_disable", code: 200 }),
+  ),
 ).annotate({
-  identifier: "EncryptionResetRequest",
-}) as any as S.Schema<EncryptionResetRequest>;
+  identifier: "DisableStreamsLogRequest",
+}) as any as S.Schema<DisableStreamsLogRequest>;
+
+export type EnableStreamsLogRequestName = "logs" | "logs.otel" | "logs.ecs";
+export const EnableStreamsLogRequestName = /*@__PURE__*/ S.String;
+
+export interface EnableStreamsLogRequest {
+  /** The stream type to enable. */
+  name: EnableStreamsLogRequestName | (string & {});
+  /** The period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error. */
+  master_timeout?: TypesDuration;
+  /** The period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error. */
+  timeout?: TypesDuration;
+}
+export const EnableStreamsLogRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: EnableStreamsLogRequestName.pipe(T.Label()),
+    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
+    timeout: S.optional(TypesDuration.pipe(T.Query())),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/_streams/{name}/_enable", code: 200 }),
+  ),
+).annotate({
+  identifier: "EnableStreamsLogRequest",
+}) as any as S.Schema<EnableStreamsLogRequest>;
 
 export interface EnrichDeletePolicyRequest {
   /** Enrich policy to delete. */
@@ -38568,33 +38866,147 @@ export const EnrichStatsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "EnrichStatsResponse",
 }) as any as S.Schema<EnrichStatsResponse>;
 
-export interface EqlDeleteRequest {
-  /** Identifier for the search to delete. A search ID is provided in the EQL search API's response for an async search. A search ID is also provided if the request’s `keep_on_completion` parameter is `true`. */
-  id: string;
-}
-export const EqlDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "DELETE", uri: "/_eql/search/{id}", code: 200 })),
-).annotate({
-  identifier: "EqlDeleteRequest",
-}) as any as S.Schema<EqlDeleteRequest>;
-
-export interface EqlGetRequest {
+export interface EqlGetStatusRequest {
   /** Identifier for the search. */
   id: string;
-  /** Period for which the search and its results are stored on the cluster. Defaults to the keep_alive value set by the search’s EQL search API request. */
-  keep_alive?: TypesDuration;
-  /** Timeout duration to wait for the request to finish. Defaults to no timeout, meaning the request waits for complete search results. */
-  wait_for_completion_timeout?: TypesDuration;
 }
-export const EqlGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const EqlGetStatusRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/_eql/search/status/{id}", code: 200 }),
+  ),
+).annotate({
+  identifier: "EqlGetStatusRequest",
+}) as any as S.Schema<EqlGetStatusRequest>;
+
+export interface EqlGetStatusResponse {
+  /** Identifier for the search. */
+  id: string;
+  /** If true, the search request is still executing. If false, the search is completed. */
+  is_partial: boolean;
+  /** If true, the response does not contain complete search results. This could be because either the search is still running (is_running status is false), or because it is already completed (is_running status is true) and results are partial due to failures or timeouts. */
+  is_running: boolean;
+  /** For a running search shows a timestamp when the eql search started, in milliseconds since the Unix epoch. */
+  start_time_in_millis?: number;
+  /** Shows a timestamp when the eql search will be expired, in milliseconds since the Unix epoch. When this time is reached, the search and its results are deleted, even if the search is still ongoing. */
+  expiration_time_in_millis?: number;
+  /** For a completed search shows the http status code of the completed search. */
+  completion_status?: number;
+}
+export const EqlGetStatusResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    is_partial: S.Boolean,
+    is_running: S.Boolean,
+    start_time_in_millis: S.optional(S.Number),
+    expiration_time_in_millis: S.optional(S.Number),
+    completion_status: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "EqlGetStatusResponse",
+}) as any as S.Schema<EqlGetStatusResponse>;
+
+export type EqlSearch1RequestFilterCase1List =
+  Array<TypesQueryDslQueryContainer>;
+export const EqlSearch1RequestFilterCase1List = /*@__PURE__*/ S.Array(
+  TypesQueryDslQueryContainer,
+) as any as S.Schema<EqlSearch1RequestFilterCase1List>;
+
+/** Query, written in Query DSL, used to filter the events on which the EQL query runs. */
+export type EqlSearch1RequestFilter =
+  | TypesQueryDslQueryContainer
+  | EqlSearch1RequestFilterCase1List;
+export const EqlSearch1RequestFilter =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<EqlSearch1RequestFilter>;
+
+export type EqlSearch1RequestFieldsCase1List =
+  Array<TypesQueryDslFieldAndFormat>;
+export const EqlSearch1RequestFieldsCase1List = /*@__PURE__*/ S.Array(
+  TypesQueryDslFieldAndFormat,
+) as any as S.Schema<EqlSearch1RequestFieldsCase1List>;
+
+/** Array of wildcard (*) patterns. The response returns values for field names matching these patterns in the fields property of each hit. */
+export type EqlSearch1RequestFields =
+  | TypesQueryDslFieldAndFormat
+  | EqlSearch1RequestFieldsCase1List;
+export const EqlSearch1RequestFields =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<EqlSearch1RequestFields>;
+
+export type EqlSearchResultPosition = "tail" | "head";
+export const EqlSearchResultPosition = /*@__PURE__*/ S.String;
+
+export interface EqlSearch1Request {
+  /** Comma-separated list of index names to scope the operation */
+  index: string;
+  /** A setting that does two separate checks on the index expression. If `false`, the request returns an error (1) if any wildcard expression (including `_all` and `*`) resolves to zero matching indices or (2) if the complete set of resolved indices, aliases or data streams is empty after all expressions are evaluated. If `true`, index expressions that resolve to no indices are allowed and the request returns an empty result. */
+  allow_no_indices?: boolean;
+  /** If true, returns partial results if there are shard failures. If false, returns an error with no partial results. */
+  allow_partial_search_results?: boolean;
+  /** If true, sequence queries will return partial results in case of shard failures. If false, they will return no results at all. This flag has effect only if allow_partial_search_results is true. */
+  allow_partial_sequence_results?: boolean;
+  /** Whether to expand wildcard expression to concrete indices that are open, closed or both. */
+  expand_wildcards?: TypesExpandWildcards;
+  /** Indicates whether network round-trips should be minimized as part of cross-cluster search requests execution */
+  ccs_minimize_roundtrips?: boolean;
+  /** If `false`, the request returns an error if it targets a concrete (non-wildcarded) index, alias, or data stream that is missing, closed, or otherwise unavailable. If `true`, unavailable concrete targets are silently ignored. */
+  ignore_unavailable?: boolean;
+  /** Period for which the search and its results are stored on the cluster. */
+  keep_alive?: TypesDuration;
+  /** If true, the search and its results are stored on the cluster. */
+  keep_on_completion?: boolean;
+  /** Timeout duration to wait for the request to finish. Defaults to no timeout, meaning the request waits for complete search results. */
+  wait_for_completion_timeout?: TypesDuration;
+  /** EQL query you wish to run. */
+  query: string;
+  case_sensitive?: boolean;
+  /** Field containing the event classification, such as process, file, or network. */
+  event_category_field?: string;
+  /** Field used to sort hits with the same timestamp in ascending order */
+  tiebreaker_field?: string;
+  /** Field containing event timestamp. */
+  timestamp_field?: string;
+  /** Maximum number of events to search at a time for sequence queries. */
+  fetch_size?: number;
+  /** Query, written in Query DSL, used to filter the events on which the EQL query runs. */
+  filter?: EqlSearch1RequestFilter;
+  /** For basic queries, the maximum number of matching events to return. Defaults to 10 */
+  size?: number;
+  /** Array of wildcard (*) patterns. The response returns values for field names matching these patterns in the fields property of each hit. */
+  fields?: EqlSearch1RequestFields;
+  result_position?: EqlSearchResultPosition | (string & {});
+  runtime_mappings?: TypesMappingRuntimeFields;
+  /** By default, the response of a sample query contains up to `10` samples, with one sample per unique set of join keys. Use the `size` parameter to get a smaller or larger set of samples. To retrieve more than one sample per set of join keys, use the `max_samples_per_key` parameter. Pipes are not supported for sample queries. */
+  max_samples_per_key?: number;
+}
+export const EqlSearch1Request = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    index: S.String.pipe(T.Label()),
+    allow_no_indices: S.optional(S.Boolean.pipe(T.Query())),
+    allow_partial_search_results: S.optional(S.Boolean.pipe(T.Query())),
+    allow_partial_sequence_results: S.optional(S.Boolean.pipe(T.Query())),
+    expand_wildcards: S.optional(TypesExpandWildcards.pipe(T.Query())),
+    ccs_minimize_roundtrips: S.optional(S.Boolean.pipe(T.Query())),
+    ignore_unavailable: S.optional(S.Boolean.pipe(T.Query())),
     keep_alive: S.optional(TypesDuration.pipe(T.Query())),
+    keep_on_completion: S.optional(S.Boolean.pipe(T.Query())),
     wait_for_completion_timeout: S.optional(TypesDuration.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/_eql/search/{id}", code: 200 })),
-).annotate({ identifier: "EqlGetRequest" }) as any as S.Schema<EqlGetRequest>;
+    query: S.String,
+    case_sensitive: S.optional(S.Boolean),
+    event_category_field: S.optional(S.String),
+    tiebreaker_field: S.optional(S.String),
+    timestamp_field: S.optional(S.String),
+    fetch_size: S.optional(S.Number),
+    filter: S.optional(EqlSearch1RequestFilter),
+    size: S.optional(S.Number),
+    fields: S.optional(EqlSearch1RequestFields),
+    result_position: S.optional(EqlSearchResultPosition),
+    runtime_mappings: S.optional(TypesMappingRuntimeFields),
+    max_samples_per_key: S.optional(S.Number),
+  }).pipe(T.Http({ method: "POST", uri: "/{index}/_eql/search", code: 200 })),
+).annotate({
+  identifier: "EqlSearch1Request",
+}) as any as S.Schema<EqlSearch1Request>;
 
 export type EqlTypesHitsEventFieldsValueList = Array<unknown>;
 export const EqlTypesHitsEventFieldsValueList = /*@__PURE__*/ S.Array(
@@ -38726,246 +39138,6 @@ export const EqlTypesEqlSearchResponseBase = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "EqlTypesEqlSearchResponseBase",
 }) as any as S.Schema<EqlTypesEqlSearchResponseBase>;
-
-export interface EqlGetStatusRequest {
-  /** Identifier for the search. */
-  id: string;
-}
-export const EqlGetStatusRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/_eql/search/status/{id}", code: 200 }),
-  ),
-).annotate({
-  identifier: "EqlGetStatusRequest",
-}) as any as S.Schema<EqlGetStatusRequest>;
-
-export interface EqlGetStatusResponse {
-  /** Identifier for the search. */
-  id: string;
-  /** If true, the search request is still executing. If false, the search is completed. */
-  is_partial: boolean;
-  /** If true, the response does not contain complete search results. This could be because either the search is still running (is_running status is false), or because it is already completed (is_running status is true) and results are partial due to failures or timeouts. */
-  is_running: boolean;
-  /** For a running search shows a timestamp when the eql search started, in milliseconds since the Unix epoch. */
-  start_time_in_millis?: number;
-  /** Shows a timestamp when the eql search will be expired, in milliseconds since the Unix epoch. When this time is reached, the search and its results are deleted, even if the search is still ongoing. */
-  expiration_time_in_millis?: number;
-  /** For a completed search shows the http status code of the completed search. */
-  completion_status?: number;
-}
-export const EqlGetStatusResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    is_partial: S.Boolean,
-    is_running: S.Boolean,
-    start_time_in_millis: S.optional(S.Number),
-    expiration_time_in_millis: S.optional(S.Number),
-    completion_status: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "EqlGetStatusResponse",
-}) as any as S.Schema<EqlGetStatusResponse>;
-
-export type EqlSearchRequestFilterCase1List =
-  Array<TypesQueryDslQueryContainer>;
-export const EqlSearchRequestFilterCase1List = /*@__PURE__*/ S.Array(
-  TypesQueryDslQueryContainer,
-) as any as S.Schema<EqlSearchRequestFilterCase1List>;
-
-/** Query, written in Query DSL, used to filter the events on which the EQL query runs. */
-export type EqlSearchRequestFilter =
-  | TypesQueryDslQueryContainer
-  | EqlSearchRequestFilterCase1List;
-export const EqlSearchRequestFilter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EqlSearchRequestFilter>;
-
-export type EqlSearchRequestFieldsCase1List =
-  Array<TypesQueryDslFieldAndFormat>;
-export const EqlSearchRequestFieldsCase1List = /*@__PURE__*/ S.Array(
-  TypesQueryDslFieldAndFormat,
-) as any as S.Schema<EqlSearchRequestFieldsCase1List>;
-
-/** Array of wildcard (*) patterns. The response returns values for field names matching these patterns in the fields property of each hit. */
-export type EqlSearchRequestFields =
-  | TypesQueryDslFieldAndFormat
-  | EqlSearchRequestFieldsCase1List;
-export const EqlSearchRequestFields =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EqlSearchRequestFields>;
-
-export type EqlSearchResultPosition = "tail" | "head";
-export const EqlSearchResultPosition = /*@__PURE__*/ S.String;
-
-export interface EqlSearchRequest {
-  /** Comma-separated list of index names to scope the operation */
-  index: string;
-  /** A setting that does two separate checks on the index expression. If `false`, the request returns an error (1) if any wildcard expression (including `_all` and `*`) resolves to zero matching indices or (2) if the complete set of resolved indices, aliases or data streams is empty after all expressions are evaluated. If `true`, index expressions that resolve to no indices are allowed and the request returns an empty result. */
-  allow_no_indices?: boolean;
-  /** If true, returns partial results if there are shard failures. If false, returns an error with no partial results. */
-  allow_partial_search_results?: boolean;
-  /** If true, sequence queries will return partial results in case of shard failures. If false, they will return no results at all. This flag has effect only if allow_partial_search_results is true. */
-  allow_partial_sequence_results?: boolean;
-  /** Whether to expand wildcard expression to concrete indices that are open, closed or both. */
-  expand_wildcards?: TypesExpandWildcards;
-  /** Indicates whether network round-trips should be minimized as part of cross-cluster search requests execution */
-  ccs_minimize_roundtrips?: boolean;
-  /** If `false`, the request returns an error if it targets a concrete (non-wildcarded) index, alias, or data stream that is missing, closed, or otherwise unavailable. If `true`, unavailable concrete targets are silently ignored. */
-  ignore_unavailable?: boolean;
-  /** Period for which the search and its results are stored on the cluster. */
-  keep_alive?: TypesDuration;
-  /** If true, the search and its results are stored on the cluster. */
-  keep_on_completion?: boolean;
-  /** Timeout duration to wait for the request to finish. Defaults to no timeout, meaning the request waits for complete search results. */
-  wait_for_completion_timeout?: TypesDuration;
-  /** EQL query you wish to run. */
-  query: string;
-  case_sensitive?: boolean;
-  /** Field containing the event classification, such as process, file, or network. */
-  event_category_field?: string;
-  /** Field used to sort hits with the same timestamp in ascending order */
-  tiebreaker_field?: string;
-  /** Field containing event timestamp. */
-  timestamp_field?: string;
-  /** Maximum number of events to search at a time for sequence queries. */
-  fetch_size?: number;
-  /** Query, written in Query DSL, used to filter the events on which the EQL query runs. */
-  filter?: EqlSearchRequestFilter;
-  /** For basic queries, the maximum number of matching events to return. Defaults to 10 */
-  size?: number;
-  /** Array of wildcard (*) patterns. The response returns values for field names matching these patterns in the fields property of each hit. */
-  fields?: EqlSearchRequestFields;
-  result_position?: EqlSearchResultPosition | (string & {});
-  runtime_mappings?: TypesMappingRuntimeFields;
-  /** By default, the response of a sample query contains up to `10` samples, with one sample per unique set of join keys. Use the `size` parameter to get a smaller or larger set of samples. To retrieve more than one sample per set of join keys, use the `max_samples_per_key` parameter. Pipes are not supported for sample queries. */
-  max_samples_per_key?: number;
-}
-export const EqlSearchRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    index: S.String.pipe(T.Label()),
-    allow_no_indices: S.optional(S.Boolean.pipe(T.Query())),
-    allow_partial_search_results: S.optional(S.Boolean.pipe(T.Query())),
-    allow_partial_sequence_results: S.optional(S.Boolean.pipe(T.Query())),
-    expand_wildcards: S.optional(TypesExpandWildcards.pipe(T.Query())),
-    ccs_minimize_roundtrips: S.optional(S.Boolean.pipe(T.Query())),
-    ignore_unavailable: S.optional(S.Boolean.pipe(T.Query())),
-    keep_alive: S.optional(TypesDuration.pipe(T.Query())),
-    keep_on_completion: S.optional(S.Boolean.pipe(T.Query())),
-    wait_for_completion_timeout: S.optional(TypesDuration.pipe(T.Query())),
-    query: S.String,
-    case_sensitive: S.optional(S.Boolean),
-    event_category_field: S.optional(S.String),
-    tiebreaker_field: S.optional(S.String),
-    timestamp_field: S.optional(S.String),
-    fetch_size: S.optional(S.Number),
-    filter: S.optional(EqlSearchRequestFilter),
-    size: S.optional(S.Number),
-    fields: S.optional(EqlSearchRequestFields),
-    result_position: S.optional(EqlSearchResultPosition),
-    runtime_mappings: S.optional(TypesMappingRuntimeFields),
-    max_samples_per_key: S.optional(S.Number),
-  }).pipe(T.Http({ method: "GET", uri: "/{index}/_eql/search", code: 200 })),
-).annotate({
-  identifier: "EqlSearchRequest",
-}) as any as S.Schema<EqlSearchRequest>;
-
-export type EqlSearch1RequestFilterCase1List =
-  Array<TypesQueryDslQueryContainer>;
-export const EqlSearch1RequestFilterCase1List = /*@__PURE__*/ S.Array(
-  TypesQueryDslQueryContainer,
-) as any as S.Schema<EqlSearch1RequestFilterCase1List>;
-
-/** Query, written in Query DSL, used to filter the events on which the EQL query runs. */
-export type EqlSearch1RequestFilter =
-  | TypesQueryDslQueryContainer
-  | EqlSearch1RequestFilterCase1List;
-export const EqlSearch1RequestFilter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EqlSearch1RequestFilter>;
-
-export type EqlSearch1RequestFieldsCase1List =
-  Array<TypesQueryDslFieldAndFormat>;
-export const EqlSearch1RequestFieldsCase1List = /*@__PURE__*/ S.Array(
-  TypesQueryDslFieldAndFormat,
-) as any as S.Schema<EqlSearch1RequestFieldsCase1List>;
-
-/** Array of wildcard (*) patterns. The response returns values for field names matching these patterns in the fields property of each hit. */
-export type EqlSearch1RequestFields =
-  | TypesQueryDslFieldAndFormat
-  | EqlSearch1RequestFieldsCase1List;
-export const EqlSearch1RequestFields =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EqlSearch1RequestFields>;
-
-export interface EqlSearch1Request {
-  /** Comma-separated list of index names to scope the operation */
-  index: string;
-  /** A setting that does two separate checks on the index expression. If `false`, the request returns an error (1) if any wildcard expression (including `_all` and `*`) resolves to zero matching indices or (2) if the complete set of resolved indices, aliases or data streams is empty after all expressions are evaluated. If `true`, index expressions that resolve to no indices are allowed and the request returns an empty result. */
-  allow_no_indices?: boolean;
-  /** If true, returns partial results if there are shard failures. If false, returns an error with no partial results. */
-  allow_partial_search_results?: boolean;
-  /** If true, sequence queries will return partial results in case of shard failures. If false, they will return no results at all. This flag has effect only if allow_partial_search_results is true. */
-  allow_partial_sequence_results?: boolean;
-  /** Whether to expand wildcard expression to concrete indices that are open, closed or both. */
-  expand_wildcards?: TypesExpandWildcards;
-  /** Indicates whether network round-trips should be minimized as part of cross-cluster search requests execution */
-  ccs_minimize_roundtrips?: boolean;
-  /** If `false`, the request returns an error if it targets a concrete (non-wildcarded) index, alias, or data stream that is missing, closed, or otherwise unavailable. If `true`, unavailable concrete targets are silently ignored. */
-  ignore_unavailable?: boolean;
-  /** Period for which the search and its results are stored on the cluster. */
-  keep_alive?: TypesDuration;
-  /** If true, the search and its results are stored on the cluster. */
-  keep_on_completion?: boolean;
-  /** Timeout duration to wait for the request to finish. Defaults to no timeout, meaning the request waits for complete search results. */
-  wait_for_completion_timeout?: TypesDuration;
-  /** EQL query you wish to run. */
-  query: string;
-  case_sensitive?: boolean;
-  /** Field containing the event classification, such as process, file, or network. */
-  event_category_field?: string;
-  /** Field used to sort hits with the same timestamp in ascending order */
-  tiebreaker_field?: string;
-  /** Field containing event timestamp. */
-  timestamp_field?: string;
-  /** Maximum number of events to search at a time for sequence queries. */
-  fetch_size?: number;
-  /** Query, written in Query DSL, used to filter the events on which the EQL query runs. */
-  filter?: EqlSearch1RequestFilter;
-  /** For basic queries, the maximum number of matching events to return. Defaults to 10 */
-  size?: number;
-  /** Array of wildcard (*) patterns. The response returns values for field names matching these patterns in the fields property of each hit. */
-  fields?: EqlSearch1RequestFields;
-  result_position?: EqlSearchResultPosition | (string & {});
-  runtime_mappings?: TypesMappingRuntimeFields;
-  /** By default, the response of a sample query contains up to `10` samples, with one sample per unique set of join keys. Use the `size` parameter to get a smaller or larger set of samples. To retrieve more than one sample per set of join keys, use the `max_samples_per_key` parameter. Pipes are not supported for sample queries. */
-  max_samples_per_key?: number;
-}
-export const EqlSearch1Request = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    index: S.String.pipe(T.Label()),
-    allow_no_indices: S.optional(S.Boolean.pipe(T.Query())),
-    allow_partial_search_results: S.optional(S.Boolean.pipe(T.Query())),
-    allow_partial_sequence_results: S.optional(S.Boolean.pipe(T.Query())),
-    expand_wildcards: S.optional(TypesExpandWildcards.pipe(T.Query())),
-    ccs_minimize_roundtrips: S.optional(S.Boolean.pipe(T.Query())),
-    ignore_unavailable: S.optional(S.Boolean.pipe(T.Query())),
-    keep_alive: S.optional(TypesDuration.pipe(T.Query())),
-    keep_on_completion: S.optional(S.Boolean.pipe(T.Query())),
-    wait_for_completion_timeout: S.optional(TypesDuration.pipe(T.Query())),
-    query: S.String,
-    case_sensitive: S.optional(S.Boolean),
-    event_category_field: S.optional(S.String),
-    tiebreaker_field: S.optional(S.String),
-    timestamp_field: S.optional(S.String),
-    fetch_size: S.optional(S.Number),
-    filter: S.optional(EqlSearch1RequestFilter),
-    size: S.optional(S.Number),
-    fields: S.optional(EqlSearch1RequestFields),
-    result_position: S.optional(EqlSearchResultPosition),
-    runtime_mappings: S.optional(TypesMappingRuntimeFields),
-    max_samples_per_key: S.optional(S.Number),
-  }).pipe(T.Http({ method: "POST", uri: "/{index}/_eql/search", code: 200 })),
-).annotate({
-  identifier: "EqlSearch1Request",
-}) as any as S.Schema<EqlSearch1Request>;
 
 export type EsqlTypesEsqlFormat =
   | "csv"
@@ -39245,28 +39417,18 @@ export const EsqlAsyncQueryRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "EsqlAsyncQueryRequest",
 }) as any as S.Schema<EsqlAsyncQueryRequest>;
 
-export interface EsqlTypesEsqlColumnInfo {
-  name: string;
-  type: string;
-}
-export const EsqlTypesEsqlColumnInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    type: S.String,
-  }),
-).annotate({
-  identifier: "EsqlTypesEsqlColumnInfo",
-}) as any as S.Schema<EsqlTypesEsqlColumnInfo>;
+export type EsqlTypesEsqlColumnInfo = SecurityTypesRealmInfo;
+export const EsqlTypesEsqlColumnInfo = SecurityTypesRealmInfo;
 
 export type EsqlAsyncQueryResponseAllColumnsList =
-  Array<EsqlTypesEsqlColumnInfo>;
+  Array<SecurityTypesRealmInfo>;
 export const EsqlAsyncQueryResponseAllColumnsList = /*@__PURE__*/ S.Array(
-  EsqlTypesEsqlColumnInfo,
+  SecurityTypesRealmInfo,
 ) as any as S.Schema<EsqlAsyncQueryResponseAllColumnsList>;
 
-export type EsqlAsyncQueryResponseColumnsList = Array<EsqlTypesEsqlColumnInfo>;
+export type EsqlAsyncQueryResponseColumnsList = Array<SecurityTypesRealmInfo>;
 export const EsqlAsyncQueryResponseColumnsList = /*@__PURE__*/ S.Array(
-  EsqlTypesEsqlColumnInfo,
+  SecurityTypesRealmInfo,
 ) as any as S.Schema<EsqlAsyncQueryResponseColumnsList>;
 
 export type EsqlAsyncQueryResponseValuesItemList = Array<TypesFieldValue>;
@@ -39408,159 +39570,6 @@ export const EsqlAsyncQueryResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "EsqlAsyncQueryResponse",
 }) as any as S.Schema<EsqlAsyncQueryResponse>;
-
-export interface EsqlAsyncQueryDeleteRequest {
-  /** The unique identifier of the query. A query ID is provided in the ES|QL async query API response for a query that does not complete in the designated time. A query ID is also provided when the request was submitted with the `keep_on_completion` parameter set to `true`. */
-  id: string;
-}
-export const EsqlAsyncQueryDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "DELETE", uri: "/_query/async/{id}", code: 200 })),
-).annotate({
-  identifier: "EsqlAsyncQueryDeleteRequest",
-}) as any as S.Schema<EsqlAsyncQueryDeleteRequest>;
-
-export interface EsqlAsyncQueryGetRequest {
-  /** The unique identifier of the query. A query ID is provided in the ES|QL async query API response for a query that does not complete in the designated time. A query ID is also provided when the request was submitted with the `keep_on_completion` parameter set to `true`. */
-  id: string;
-  /** Indicates whether columns that are entirely `null` will be removed from the `columns` and `values` portion of the results. If `true`, the response will include an extra section under the name `all_columns` which has the name of all the columns. */
-  drop_null_columns?: boolean;
-  /** A short version of the Accept header, for example `json` or `yaml`. */
-  format?: EsqlTypesEsqlFormat | (string & {});
-  /** The period for which the query and its results are stored in the cluster. When this period expires, the query and its results are deleted, even if the query is still ongoing. */
-  keep_alive?: TypesDuration;
-  /** The period to wait for the request to finish. By default, the request waits for complete query results. If the request completes during the period specified in this parameter, complete query results are returned. Otherwise, the response returns an `is_running` value of `true` and no results. */
-  wait_for_completion_timeout?: TypesDuration;
-}
-export const EsqlAsyncQueryGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    drop_null_columns: S.optional(S.Boolean.pipe(T.Query())),
-    format: S.optional(EsqlTypesEsqlFormat.pipe(T.Query())),
-    keep_alive: S.optional(TypesDuration.pipe(T.Query())),
-    wait_for_completion_timeout: S.optional(TypesDuration.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/_query/async/{id}", code: 200 })),
-).annotate({
-  identifier: "EsqlAsyncQueryGetRequest",
-}) as any as S.Schema<EsqlAsyncQueryGetRequest>;
-
-export type EsqlAsyncQueryGetResponseAllColumnsList =
-  Array<EsqlTypesEsqlColumnInfo>;
-export const EsqlAsyncQueryGetResponseAllColumnsList = /*@__PURE__*/ S.Array(
-  EsqlTypesEsqlColumnInfo,
-) as any as S.Schema<EsqlAsyncQueryGetResponseAllColumnsList>;
-
-export type EsqlAsyncQueryGetResponseColumnsList =
-  Array<EsqlTypesEsqlColumnInfo>;
-export const EsqlAsyncQueryGetResponseColumnsList = /*@__PURE__*/ S.Array(
-  EsqlTypesEsqlColumnInfo,
-) as any as S.Schema<EsqlAsyncQueryGetResponseColumnsList>;
-
-export type EsqlAsyncQueryGetResponseValuesItemList = Array<TypesFieldValue>;
-export const EsqlAsyncQueryGetResponseValuesItemList = /*@__PURE__*/ S.Array(
-  TypesFieldValue,
-) as any as S.Schema<EsqlAsyncQueryGetResponseValuesItemList>;
-
-export type EsqlAsyncQueryGetResponseValuesList =
-  Array<EsqlAsyncQueryGetResponseValuesItemList>;
-export const EsqlAsyncQueryGetResponseValuesList = /*@__PURE__*/ S.Array(
-  EsqlAsyncQueryGetResponseValuesItemList,
-) as any as S.Schema<EsqlAsyncQueryGetResponseValuesList>;
-
-export interface EsqlAsyncQueryGetResponse {
-  took?: number;
-  is_partial?: boolean;
-  all_columns?: EsqlAsyncQueryGetResponseAllColumnsList;
-  columns: EsqlAsyncQueryGetResponseColumnsList;
-  values: EsqlAsyncQueryGetResponseValuesList;
-  /** Cross-cluster search information. Present if `include_ccs_metadata` was `true` in the request and a cross-cluster search was performed. */
-  _clusters?: EsqlTypesEsqlClusterInfo;
-  /** Profiling information. Present if `profile` was `true` in the request. The contents of this field are currently unstable. */
-  profile?: unknown;
-  /** The ID of the async query, to be used in subsequent requests to check the status or retrieve results. Also available in the `X-Elasticsearch-Async-Id` HTTP header. */
-  id?: string;
-  /** Indicates whether the async query is still running or has completed. Also available in the `X-Elasticsearch-Async-Is-Running` HTTP header. */
-  is_running: boolean;
-}
-export const EsqlAsyncQueryGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    took: S.optional(S.Number),
-    is_partial: S.optional(S.Boolean),
-    all_columns: S.optional(EsqlAsyncQueryGetResponseAllColumnsList),
-    columns: EsqlAsyncQueryGetResponseColumnsList,
-    values: EsqlAsyncQueryGetResponseValuesList,
-    _clusters: S.optional(EsqlTypesEsqlClusterInfo),
-    profile: S.optional(S.Unknown),
-    id: S.optional(S.String),
-    is_running: S.Boolean,
-  }),
-).annotate({
-  identifier: "EsqlAsyncQueryGetResponse",
-}) as any as S.Schema<EsqlAsyncQueryGetResponse>;
-
-export interface EsqlAsyncQueryStopRequest {
-  /** The unique identifier of the query. A query ID is provided in the ES|QL async query API response for a query that does not complete in the designated time. A query ID is also provided when the request was submitted with the `keep_on_completion` parameter set to `true`. */
-  id: string;
-  /** Indicates whether columns that are entirely `null` will be removed from the `columns` and `values` portion of the results. If `true`, the response will include an extra section under the name `all_columns` which has the name of all the columns. */
-  drop_null_columns?: boolean;
-}
-export const EsqlAsyncQueryStopRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    drop_null_columns: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/_query/async/{id}/stop", code: 200 }),
-  ),
-).annotate({
-  identifier: "EsqlAsyncQueryStopRequest",
-}) as any as S.Schema<EsqlAsyncQueryStopRequest>;
-
-export type EsqlTypesEsqlResultAllColumnsList = Array<EsqlTypesEsqlColumnInfo>;
-export const EsqlTypesEsqlResultAllColumnsList = /*@__PURE__*/ S.Array(
-  EsqlTypesEsqlColumnInfo,
-) as any as S.Schema<EsqlTypesEsqlResultAllColumnsList>;
-
-export type EsqlTypesEsqlResultColumnsList = Array<EsqlTypesEsqlColumnInfo>;
-export const EsqlTypesEsqlResultColumnsList = /*@__PURE__*/ S.Array(
-  EsqlTypesEsqlColumnInfo,
-) as any as S.Schema<EsqlTypesEsqlResultColumnsList>;
-
-export type EsqlTypesEsqlResultValuesItemList = Array<TypesFieldValue>;
-export const EsqlTypesEsqlResultValuesItemList = /*@__PURE__*/ S.Array(
-  TypesFieldValue,
-) as any as S.Schema<EsqlTypesEsqlResultValuesItemList>;
-
-export type EsqlTypesEsqlResultValuesList =
-  Array<EsqlTypesEsqlResultValuesItemList>;
-export const EsqlTypesEsqlResultValuesList = /*@__PURE__*/ S.Array(
-  EsqlTypesEsqlResultValuesItemList,
-) as any as S.Schema<EsqlTypesEsqlResultValuesList>;
-
-export interface EsqlTypesEsqlResult {
-  took?: number;
-  is_partial?: boolean;
-  all_columns?: EsqlTypesEsqlResultAllColumnsList;
-  columns: EsqlTypesEsqlResultColumnsList;
-  values: EsqlTypesEsqlResultValuesList;
-  /** Cross-cluster search information. Present if `include_ccs_metadata` was `true` in the request and a cross-cluster search was performed. */
-  _clusters?: EsqlTypesEsqlClusterInfo;
-  /** Profiling information. Present if `profile` was `true` in the request. The contents of this field are currently unstable. */
-  profile?: unknown;
-}
-export const EsqlTypesEsqlResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    took: S.optional(S.Number),
-    is_partial: S.optional(S.Boolean),
-    all_columns: S.optional(EsqlTypesEsqlResultAllColumnsList),
-    columns: EsqlTypesEsqlResultColumnsList,
-    values: EsqlTypesEsqlResultValuesList,
-    _clusters: S.optional(EsqlTypesEsqlClusterInfo),
-    profile: S.optional(S.Unknown),
-  }),
-).annotate({
-  identifier: "EsqlTypesEsqlResult",
-}) as any as S.Schema<EsqlTypesEsqlResult>;
 
 export interface EsqlDeleteDatasetRequest {
   /** A comma-separated list of dataset names to delete. */
@@ -40200,6 +40209,117 @@ export const EsqlQueryRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "EsqlQueryRequest",
 }) as any as S.Schema<EsqlQueryRequest>;
+
+export type EsqlTypesEsqlResultAllColumnsList = Array<SecurityTypesRealmInfo>;
+export const EsqlTypesEsqlResultAllColumnsList = /*@__PURE__*/ S.Array(
+  SecurityTypesRealmInfo,
+) as any as S.Schema<EsqlTypesEsqlResultAllColumnsList>;
+
+export type EsqlTypesEsqlResultColumnsList = Array<SecurityTypesRealmInfo>;
+export const EsqlTypesEsqlResultColumnsList = /*@__PURE__*/ S.Array(
+  SecurityTypesRealmInfo,
+) as any as S.Schema<EsqlTypesEsqlResultColumnsList>;
+
+export type EsqlTypesEsqlResultValuesItemList = Array<TypesFieldValue>;
+export const EsqlTypesEsqlResultValuesItemList = /*@__PURE__*/ S.Array(
+  TypesFieldValue,
+) as any as S.Schema<EsqlTypesEsqlResultValuesItemList>;
+
+export type EsqlTypesEsqlResultValuesList =
+  Array<EsqlTypesEsqlResultValuesItemList>;
+export const EsqlTypesEsqlResultValuesList = /*@__PURE__*/ S.Array(
+  EsqlTypesEsqlResultValuesItemList,
+) as any as S.Schema<EsqlTypesEsqlResultValuesList>;
+
+export interface EsqlTypesEsqlResult {
+  took?: number;
+  is_partial?: boolean;
+  all_columns?: EsqlTypesEsqlResultAllColumnsList;
+  columns: EsqlTypesEsqlResultColumnsList;
+  values: EsqlTypesEsqlResultValuesList;
+  /** Cross-cluster search information. Present if `include_ccs_metadata` was `true` in the request and a cross-cluster search was performed. */
+  _clusters?: EsqlTypesEsqlClusterInfo;
+  /** Profiling information. Present if `profile` was `true` in the request. The contents of this field are currently unstable. */
+  profile?: unknown;
+}
+export const EsqlTypesEsqlResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    took: S.optional(S.Number),
+    is_partial: S.optional(S.Boolean),
+    all_columns: S.optional(EsqlTypesEsqlResultAllColumnsList),
+    columns: EsqlTypesEsqlResultColumnsList,
+    values: EsqlTypesEsqlResultValuesList,
+    _clusters: S.optional(EsqlTypesEsqlClusterInfo),
+    profile: S.optional(S.Unknown),
+  }),
+).annotate({
+  identifier: "EsqlTypesEsqlResult",
+}) as any as S.Schema<EsqlTypesEsqlResult>;
+
+export type GlobalScriptsPainlessExecutePainlessContext =
+  | "painless_test"
+  | "filter"
+  | "score"
+  | "boolean_field"
+  | "date_field"
+  | "double_field"
+  | "geo_point_field"
+  | "ip_field"
+  | "keyword_field"
+  | "long_field"
+  | "composite_field";
+export const GlobalScriptsPainlessExecutePainlessContext =
+  /*@__PURE__*/ S.String;
+
+export interface GlobalScriptsPainlessExecutePainlessContextSetup {
+  /** Document that's temporarily indexed in-memory and accessible from the script. */
+  document: unknown;
+  /** Index containing a mapping that's compatible with the indexed document. You may specify a remote index by prefixing the index with the remote cluster alias. For example, `remote1:my_index` indicates that you want to run the painless script against the "my_index" index on the "remote1" cluster. This request will be forwarded to the "remote1" cluster if you have configured a connection to that remote cluster. NOTE: Wildcards are not accepted in the index expression for this endpoint. The expression `*:myindex` will return the error "No such remote cluster" and the expression `logs*` or `remote1:logs*` will return the error "index not found". */
+  index: string;
+  /** Use this parameter to specify a query for computing a score. */
+  query?: TypesQueryDslQueryContainer;
+}
+export const GlobalScriptsPainlessExecutePainlessContextSetup =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      document: S.Unknown,
+      index: S.String,
+      query: S.optional(TypesQueryDslQueryContainer),
+    }),
+  ).annotate({
+    identifier: "GlobalScriptsPainlessExecutePainlessContextSetup",
+  }) as any as S.Schema<GlobalScriptsPainlessExecutePainlessContextSetup>;
+
+export interface ExecuteScriptsPainlessRequest {
+  /** The context that the script should run in. NOTE: Result ordering in the field contexts is not guaranteed. */
+  context?: GlobalScriptsPainlessExecutePainlessContext | (string & {});
+  /** Additional parameters for the `context`. NOTE: This parameter is required for all contexts except `painless_test`, which is the default if no value is provided for `context`. */
+  context_setup?: GlobalScriptsPainlessExecutePainlessContextSetup;
+  /** The Painless script to run. */
+  script?: TypesScript;
+}
+export const ExecuteScriptsPainlessRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    context: S.optional(GlobalScriptsPainlessExecutePainlessContext),
+    context_setup: S.optional(GlobalScriptsPainlessExecutePainlessContextSetup),
+    script: S.optional(TypesScript),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/_scripts/painless/_execute", code: 200 }),
+  ),
+).annotate({
+  identifier: "ExecuteScriptsPainlessRequest",
+}) as any as S.Schema<ExecuteScriptsPainlessRequest>;
+
+export interface ExecuteScriptsPainlessResponse {
+  result: unknown;
+}
+export const ExecuteScriptsPainlessResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    result: S.Unknown,
+  }),
+).annotate({
+  identifier: "ExecuteScriptsPainlessResponse",
+}) as any as S.Schema<ExecuteScriptsPainlessResponse>;
 
 export interface ExplainRequest {
   /** Index names that are used to limit the request. Only a single index name can be provided to this parameter. */
@@ -41377,299 +41497,6 @@ export const FleetMsearch3Response = /*@__PURE__*/ S.suspend(() =>
   identifier: "FleetMsearch3Response",
 }) as any as S.Schema<FleetMsearch3Response>;
 
-export type FleetSearchRequestStatsList = Array<string>;
-export const FleetSearchRequestStatsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<FleetSearchRequestStatsList>;
-
-export type FleetSearchRequestSortCase1List = Array<string>;
-export const FleetSearchRequestSortCase1List = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<FleetSearchRequestSortCase1List>;
-
-export type FleetSearchRequestSort = string | FleetSearchRequestSortCase1List;
-export const FleetSearchRequestSort =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FleetSearchRequestSort>;
-
-export type FleetSearchRequestWaitForCheckpointsList = Array<number>;
-export const FleetSearchRequestWaitForCheckpointsList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<FleetSearchRequestWaitForCheckpointsList>;
-
-export type FleetSearchRequestAggregationsMap = {
-  [key: string]: TypesAggregationsAggregationContainer | undefined;
-};
-export const FleetSearchRequestAggregationsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  TypesAggregationsAggregationContainer,
-) as any as S.Schema<FleetSearchRequestAggregationsMap>;
-
-/** Configuration of search extensions defined by Elasticsearch plugins. */
-export type FleetSearchRequestExtMap = { [key: string]: unknown | undefined };
-export const FleetSearchRequestExtMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<FleetSearchRequestExtMap>;
-
-export type FleetSearchRequestIndicesBoostItemMap = {
-  [key: string]: number | undefined;
-};
-export const FleetSearchRequestIndicesBoostItemMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Number,
-) as any as S.Schema<FleetSearchRequestIndicesBoostItemMap>;
-
-/** Boosts the _score of documents from specified indices. */
-export type FleetSearchRequestIndicesBoostList =
-  Array<FleetSearchRequestIndicesBoostItemMap>;
-export const FleetSearchRequestIndicesBoostList = /*@__PURE__*/ S.Array(
-  FleetSearchRequestIndicesBoostItemMap,
-) as any as S.Schema<FleetSearchRequestIndicesBoostList>;
-
-export type FleetSearchRequestRescoreCase1List =
-  Array<GlobalSearchTypesRescore>;
-export const FleetSearchRequestRescoreCase1List = /*@__PURE__*/ S.Array(
-  GlobalSearchTypesRescore,
-) as any as S.Schema<FleetSearchRequestRescoreCase1List>;
-
-export type FleetSearchRequestRescore =
-  | GlobalSearchTypesRescore
-  | FleetSearchRequestRescoreCase1List;
-export const FleetSearchRequestRescore =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FleetSearchRequestRescore>;
-
-/** Retrieve a script evaluation (based on different fields) for each hit. */
-export type FleetSearchRequestScriptFieldsMap = {
-  [key: string]: TypesScriptField | undefined;
-};
-export const FleetSearchRequestScriptFieldsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  TypesScriptField,
-) as any as S.Schema<FleetSearchRequestScriptFieldsMap>;
-
-/** Array of wildcard (*) patterns. The request returns values for field names matching these patterns in the hits.fields property of the response. */
-export type FleetSearchRequestFieldsList = Array<TypesQueryDslFieldAndFormat>;
-export const FleetSearchRequestFieldsList = /*@__PURE__*/ S.Array(
-  TypesQueryDslFieldAndFormat,
-) as any as S.Schema<FleetSearchRequestFieldsList>;
-
-export interface FleetSearchRequest {
-  /** A single target to search. If the target is an index alias, it must resolve to a single index. */
-  index: string;
-  /** A setting that does two separate checks on the index expression. If `false`, the request returns an error (1) if any wildcard expression (including `_all` and `*`) resolves to zero matching indices or (2) if the complete set of resolved indices, aliases or data streams is empty after all expressions are evaluated. If `true`, index expressions that resolve to no indices are allowed and the request returns an empty result. */
-  allow_no_indices?: boolean;
-  analyzer?: string;
-  analyze_wildcard?: boolean;
-  batched_reduce_size?: number;
-  ccs_minimize_roundtrips?: boolean;
-  default_operator?: TypesQueryDslOperator | (string & {});
-  df?: string;
-  docvalue_fields?: TypesFields;
-  expand_wildcards?: TypesExpandWildcards;
-  explain?: boolean;
-  ignore_throttled?: boolean;
-  /** If `false`, the request returns an error if it targets a concrete (non-wildcarded) index, alias, or data stream that is missing, closed, or otherwise unavailable. If `true`, unavailable concrete targets are silently ignored. */
-  ignore_unavailable?: boolean;
-  lenient?: boolean;
-  max_concurrent_shard_requests?: number;
-  preference?: string;
-  pre_filter_shard_size?: number;
-  request_cache?: boolean;
-  routing?: TypesRouting;
-  scroll?: TypesDuration;
-  search_type?: TypesSearchType | (string & {});
-  stats?: FleetSearchRequestStatsList;
-  stored_fields?: TypesFields;
-  /** Specifies which field to use for suggestions. */
-  suggest_field?: string;
-  suggest_mode?: TypesSuggestMode | (string & {});
-  suggest_size?: number;
-  /** The source text for which the suggestions should be returned. */
-  suggest_text?: string;
-  terminate_after?: number;
-  timeout?: TypesDuration;
-  track_total_hits?: GlobalSearchTypesTrackHits;
-  track_scores?: boolean;
-  typed_keys?: boolean;
-  rest_total_hits_as_int?: boolean;
-  version?: boolean;
-  _source?: GlobalSearchTypesSourceConfigParam;
-  _source_excludes?: TypesFields;
-  _source_includes?: TypesFields;
-  seq_no_primary_term?: boolean;
-  q?: string;
-  size?: number;
-  from?: number;
-  sort?: FleetSearchRequestSort;
-  /** A comma separated list of checkpoints. When configured, the search API will only be executed on a shard after the relevant checkpoint has become visible for search. Defaults to an empty list which will cause Elasticsearch to immediately execute the search. */
-  wait_for_checkpoints?: FleetSearchRequestWaitForCheckpointsList;
-  /** If true, returns partial results if there are shard request timeouts or shard failures. If false, returns an error with no partial results. Defaults to the configured cluster setting `search.default_allow_partial_results`, which is true by default. */
-  allow_partial_search_results?: boolean;
-  aggregations?: FleetSearchRequestAggregationsMap;
-  collapse?: GlobalSearchTypesFieldCollapse;
-  /** Configuration of search extensions defined by Elasticsearch plugins. */
-  ext?: FleetSearchRequestExtMap;
-  highlight?: GlobalSearchTypesHighlight;
-  /** Boosts the _score of documents from specified indices. */
-  indices_boost?: FleetSearchRequestIndicesBoostList;
-  /** Minimum _score for matching documents. Documents with a lower _score are not included in search results and results collected by aggregations. */
-  min_score?: number;
-  post_filter?: TypesQueryDslQueryContainer;
-  profile?: boolean;
-  /** Defines the search definition using the Query DSL. */
-  query?: TypesQueryDslQueryContainer;
-  rescore?: FleetSearchRequestRescore;
-  /** Retrieve a script evaluation (based on different fields) for each hit. */
-  script_fields?: FleetSearchRequestScriptFieldsMap;
-  search_after?: TypesSortResults;
-  slice?: TypesSlicedScroll;
-  /** Array of wildcard (*) patterns. The request returns values for field names matching these patterns in the hits.fields property of the response. */
-  fields?: FleetSearchRequestFieldsList;
-  suggest?: GlobalSearchTypesSuggester;
-  /** Limits the search to a point in time (PIT). If you provide a PIT, you cannot specify an <index> in the request path. */
-  pit?: GlobalSearchTypesPointInTimeReference;
-  /** Defines one or more runtime fields in the search request. These fields take precedence over mapped fields with the same name. */
-  runtime_mappings?: TypesMappingRuntimeFields;
-}
-export const FleetSearchRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    index: S.String.pipe(T.Label()),
-    allow_no_indices: S.optional(S.Boolean.pipe(T.Query())),
-    analyzer: S.optional(S.String.pipe(T.Query())),
-    analyze_wildcard: S.optional(S.Boolean.pipe(T.Query())),
-    batched_reduce_size: S.optional(S.Number.pipe(T.Query())),
-    ccs_minimize_roundtrips: S.optional(S.Boolean.pipe(T.Query())),
-    default_operator: S.optional(TypesQueryDslOperator.pipe(T.Query())),
-    df: S.optional(S.String.pipe(T.Query())),
-    docvalue_fields: S.optional(TypesFields.pipe(T.Query())),
-    expand_wildcards: S.optional(TypesExpandWildcards.pipe(T.Query())),
-    explain: S.optional(S.Boolean.pipe(T.Query())),
-    ignore_throttled: S.optional(S.Boolean.pipe(T.Query())),
-    ignore_unavailable: S.optional(S.Boolean.pipe(T.Query())),
-    lenient: S.optional(S.Boolean.pipe(T.Query())),
-    max_concurrent_shard_requests: S.optional(S.Number.pipe(T.Query())),
-    preference: S.optional(S.String.pipe(T.Query())),
-    pre_filter_shard_size: S.optional(S.Number.pipe(T.Query())),
-    request_cache: S.optional(S.Boolean.pipe(T.Query())),
-    routing: S.optional(TypesRouting.pipe(T.Query())),
-    scroll: S.optional(TypesDuration.pipe(T.Query())),
-    search_type: S.optional(TypesSearchType.pipe(T.Query())),
-    stats: S.optional(FleetSearchRequestStatsList.pipe(T.Query())),
-    stored_fields: S.optional(TypesFields.pipe(T.Query())),
-    suggest_field: S.optional(S.String.pipe(T.Query())),
-    suggest_mode: S.optional(TypesSuggestMode.pipe(T.Query())),
-    suggest_size: S.optional(S.Number.pipe(T.Query())),
-    suggest_text: S.optional(S.String.pipe(T.Query())),
-    terminate_after: S.optional(S.Number.pipe(T.Query())),
-    timeout: S.optional(TypesDuration.pipe(T.Query())),
-    track_total_hits: S.optional(GlobalSearchTypesTrackHits.pipe(T.Query())),
-    track_scores: S.optional(S.Boolean.pipe(T.Query())),
-    typed_keys: S.optional(S.Boolean.pipe(T.Query())),
-    rest_total_hits_as_int: S.optional(S.Boolean.pipe(T.Query())),
-    version: S.optional(S.Boolean.pipe(T.Query())),
-    _source: S.optional(GlobalSearchTypesSourceConfigParam.pipe(T.Query())),
-    _source_excludes: S.optional(TypesFields.pipe(T.Query())),
-    _source_includes: S.optional(TypesFields.pipe(T.Query())),
-    seq_no_primary_term: S.optional(S.Boolean.pipe(T.Query())),
-    q: S.optional(S.String.pipe(T.Query())),
-    size: S.optional(S.Number.pipe(T.Query())),
-    from: S.optional(S.Number.pipe(T.Query())),
-    sort: S.optional(FleetSearchRequestSort.pipe(T.Query())),
-    wait_for_checkpoints: S.optional(
-      FleetSearchRequestWaitForCheckpointsList.pipe(T.Query()),
-    ),
-    allow_partial_search_results: S.optional(S.Boolean.pipe(T.Query())),
-    aggregations: S.optional(FleetSearchRequestAggregationsMap),
-    collapse: S.optional(GlobalSearchTypesFieldCollapse),
-    ext: S.optional(FleetSearchRequestExtMap),
-    highlight: S.optional(GlobalSearchTypesHighlight),
-    indices_boost: S.optional(FleetSearchRequestIndicesBoostList),
-    min_score: S.optional(S.Number),
-    post_filter: S.optional(TypesQueryDslQueryContainer),
-    profile: S.optional(S.Boolean),
-    query: S.optional(TypesQueryDslQueryContainer),
-    rescore: S.optional(FleetSearchRequestRescore),
-    script_fields: S.optional(FleetSearchRequestScriptFieldsMap),
-    search_after: S.optional(TypesSortResults),
-    slice: S.optional(TypesSlicedScroll),
-    fields: S.optional(FleetSearchRequestFieldsList),
-    suggest: S.optional(GlobalSearchTypesSuggester),
-    pit: S.optional(GlobalSearchTypesPointInTimeReference),
-    runtime_mappings: S.optional(TypesMappingRuntimeFields),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/{index}/_fleet/_fleet_search", code: 200 }),
-  ),
-).annotate({
-  identifier: "FleetSearchRequest",
-}) as any as S.Schema<FleetSearchRequest>;
-
-export type FleetSearchResponseAggregationsMap = {
-  [key: string]: TypesAggregationsAggregate | undefined;
-};
-export const FleetSearchResponseAggregationsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  TypesAggregationsAggregate,
-) as any as S.Schema<FleetSearchResponseAggregationsMap>;
-
-export type FleetSearchResponseFieldsMap = {
-  [key: string]: unknown | undefined;
-};
-export const FleetSearchResponseFieldsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<FleetSearchResponseFieldsMap>;
-
-export type FleetSearchResponseSuggestValueList =
-  Array<GlobalSearchTypesSuggest>;
-export const FleetSearchResponseSuggestValueList = /*@__PURE__*/ S.Array(
-  GlobalSearchTypesSuggest,
-) as any as S.Schema<FleetSearchResponseSuggestValueList>;
-
-export type FleetSearchResponseSuggestMap = {
-  [key: string]: FleetSearchResponseSuggestValueList | undefined;
-};
-export const FleetSearchResponseSuggestMap = /*@__PURE__*/ S.Record(
-  S.String,
-  FleetSearchResponseSuggestValueList,
-) as any as S.Schema<FleetSearchResponseSuggestMap>;
-
-export interface FleetSearchResponse {
-  took: number;
-  timed_out: boolean;
-  _shards: TypesShardStatistics;
-  hits: GlobalSearchTypesHitsMetadata;
-  aggregations?: FleetSearchResponseAggregationsMap;
-  _clusters?: TypesClusterStatistics;
-  fields?: FleetSearchResponseFieldsMap;
-  max_score?: number;
-  num_reduce_phases?: number;
-  profile?: GlobalSearchTypesProfile;
-  pit_id?: string;
-  _scroll_id?: string;
-  suggest?: FleetSearchResponseSuggestMap;
-  terminated_early?: boolean;
-}
-export const FleetSearchResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    took: S.Number,
-    timed_out: S.Boolean,
-    _shards: TypesShardStatistics,
-    hits: GlobalSearchTypesHitsMetadata,
-    aggregations: S.optional(FleetSearchResponseAggregationsMap),
-    _clusters: S.optional(TypesClusterStatistics),
-    fields: S.optional(FleetSearchResponseFieldsMap),
-    max_score: S.optional(S.Number),
-    num_reduce_phases: S.optional(S.Number),
-    profile: S.optional(GlobalSearchTypesProfile),
-    pit_id: S.optional(S.String),
-    _scroll_id: S.optional(S.String),
-    suggest: S.optional(FleetSearchResponseSuggestMap),
-    terminated_early: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "FleetSearchResponse",
-}) as any as S.Schema<FleetSearchResponse>;
-
 export type FleetSearch1RequestStatsList = Array<string>;
 export const FleetSearch1RequestStatsList = /*@__PURE__*/ S.Array(
   S.String,
@@ -41963,6 +41790,135 @@ export const FleetSearch1Response = /*@__PURE__*/ S.suspend(() =>
   identifier: "FleetSearch1Response",
 }) as any as S.Schema<FleetSearch1Response>;
 
+export interface FlushIndexRequest {
+  /** A setting that does two separate checks on the index expression. If `false`, the request returns an error (1) if any wildcard expression (including `_all` and `*`) resolves to zero matching indices or (2) if the complete set of resolved indices, aliases or data streams is empty after all expressions are evaluated. If `true`, index expressions that resolve to no indices are allowed and the request returns an empty result. */
+  allow_no_indices?: boolean;
+  /** Type of index that wildcard patterns can match. If the request can target data streams, this argument determines whether wildcard expressions match hidden data streams. Supports comma-separated values, such as `open,hidden`. */
+  expand_wildcards?: TypesExpandWildcards;
+  /** If `true`, the request forces a flush even if there are no changes to commit to the index. */
+  force?: boolean;
+  /** If `false`, the request returns an error if it targets a concrete (non-wildcarded) index, alias, or data stream that is missing, closed, or otherwise unavailable. If `true`, unavailable concrete targets are silently ignored. */
+  ignore_unavailable?: boolean;
+  /** If `true`, the flush operation blocks until execution when another flush operation is running. If `false`, Elasticsearch returns an error if you request a flush when another flush operation is running. */
+  wait_if_ongoing?: boolean;
+}
+export const FlushIndexRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    allow_no_indices: S.optional(S.Boolean.pipe(T.Query())),
+    expand_wildcards: S.optional(TypesExpandWildcards.pipe(T.Query())),
+    force: S.optional(S.Boolean.pipe(T.Query())),
+    ignore_unavailable: S.optional(S.Boolean.pipe(T.Query())),
+    wait_if_ongoing: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(T.Http({ method: "POST", uri: "/_flush", code: 200 })),
+).annotate({
+  identifier: "FlushIndexRequest",
+}) as any as S.Schema<FlushIndexRequest>;
+
+export interface TypesShardsOperationResponseBase {
+  _shards?: TypesShardStatistics;
+}
+export const TypesShardsOperationResponseBase = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    _shards: S.optional(TypesShardStatistics),
+  }),
+).annotate({
+  identifier: "TypesShardsOperationResponseBase",
+}) as any as S.Schema<TypesShardsOperationResponseBase>;
+
+export interface FollowCcrRequest {
+  /** The name of the follower index. */
+  index: string;
+  /** Period to wait for a connection to the master node. */
+  master_timeout?: TypesDuration;
+  /** Specifies the number of shards to wait on being active before responding. This defaults to waiting on none of the shards to be active. A shard must be restored from the leader index before being active. Restoring a follower shard requires transferring all the remote Lucene segment files to the follower index. */
+  wait_for_active_shards?: TypesWaitForActiveShards;
+  /** If the leader index is part of a data stream, the name to which the local data stream for the followed index should be renamed. */
+  data_stream_name?: string;
+  /** The name of the index in the leader cluster to follow. */
+  leader_index: string;
+  /** The maximum number of outstanding reads requests from the remote cluster. */
+  max_outstanding_read_requests?: number;
+  /** The maximum number of outstanding write requests on the follower. */
+  max_outstanding_write_requests?: number;
+  /** The maximum number of operations to pull per read from the remote cluster. */
+  max_read_request_operation_count?: number;
+  /** The maximum size in bytes of per read of a batch of operations pulled from the remote cluster. */
+  max_read_request_size?: TypesByteSize;
+  /** The maximum time to wait before retrying an operation that failed exceptionally. An exponential backoff strategy is employed when retrying. */
+  max_retry_delay?: TypesDuration;
+  /** The maximum number of operations that can be queued for writing. When this limit is reached, reads from the remote cluster will be deferred until the number of queued operations goes below the limit. */
+  max_write_buffer_count?: number;
+  /** The maximum total bytes of operations that can be queued for writing. When this limit is reached, reads from the remote cluster will be deferred until the total bytes of queued operations goes below the limit. */
+  max_write_buffer_size?: TypesByteSize;
+  /** The maximum number of operations per bulk write request executed on the follower. */
+  max_write_request_operation_count?: number;
+  /** The maximum total bytes of operations per bulk write request executed on the follower. */
+  max_write_request_size?: TypesByteSize;
+  /** The maximum time to wait for new operations on the remote cluster when the follower index is synchronized with the leader index. When the timeout has elapsed, the poll for operations will return to the follower so that it can update some statistics. Then the follower will immediately attempt to read from the leader again. */
+  read_poll_timeout?: TypesDuration;
+  /** The remote cluster containing the leader index. */
+  remote_cluster: string;
+  /** Settings to override from the leader index. */
+  settings?: IndicesTypesIndexSettings;
+}
+export const FollowCcrRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    index: S.String.pipe(T.Label()),
+    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
+    wait_for_active_shards: S.optional(
+      TypesWaitForActiveShards.pipe(T.Query()),
+    ),
+    data_stream_name: S.optional(S.String),
+    leader_index: S.String,
+    max_outstanding_read_requests: S.optional(S.Number),
+    max_outstanding_write_requests: S.optional(S.Number),
+    max_read_request_operation_count: S.optional(S.Number),
+    max_read_request_size: S.optional(TypesByteSize),
+    max_retry_delay: S.optional(TypesDuration),
+    max_write_buffer_count: S.optional(S.Number),
+    max_write_buffer_size: S.optional(TypesByteSize),
+    max_write_request_operation_count: S.optional(S.Number),
+    max_write_request_size: S.optional(TypesByteSize),
+    read_poll_timeout: S.optional(TypesDuration),
+    remote_cluster: S.String,
+    settings: S.optional(IndicesTypesIndexSettings),
+  }).pipe(T.Http({ method: "PUT", uri: "/{index}/_ccr/follow", code: 200 })),
+).annotate({
+  identifier: "FollowCcrRequest",
+}) as any as S.Schema<FollowCcrRequest>;
+
+export interface FollowCcrResponse {
+  follow_index_created: boolean;
+  follow_index_shards_acked: boolean;
+  index_following_started: boolean;
+}
+export const FollowCcrResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    follow_index_created: S.Boolean,
+    follow_index_shards_acked: S.Boolean,
+    index_following_started: S.Boolean,
+  }),
+).annotate({
+  identifier: "FollowCcrResponse",
+}) as any as S.Schema<FollowCcrResponse>;
+
+export interface FollowCcrPauseRequest {
+  /** The name of the follower index. */
+  index: string;
+  /** The period to wait for a connection to the master node. If the master node is not available before the timeout expires, the request fails and returns an error. It can also be set to `-1` to indicate that the request should never timeout. */
+  master_timeout?: TypesDuration;
+}
+export const FollowCcrPauseRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    index: S.String.pipe(T.Label()),
+    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/{index}/_ccr/pause_follow", code: 200 }),
+  ),
+).annotate({
+  identifier: "FollowCcrPauseRequest",
+}) as any as S.Schema<FollowCcrPauseRequest>;
+
 export interface GetRequest {
   /** The name of the index that contains the document. */
   index: string;
@@ -42060,6 +42016,685 @@ export const GlobalGetGetResult = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GlobalGetGetResult",
 }) as any as S.Schema<GlobalGetGetResult>;
+
+export interface GetConnectorRequest {
+  /** The unique identifier of the connector */
+  connector_id: string;
+  /** A flag to indicate if the desired connector should be fetched, even if it was soft-deleted. */
+  include_deleted?: boolean;
+}
+export const GetConnectorRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    connector_id: S.String.pipe(T.Label()),
+    include_deleted: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/_connector/{connector_id}", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetConnectorRequest",
+}) as any as S.Schema<GetConnectorRequest>;
+
+export type ConnectorTypesCustomSchedulingConfigurationOverridesDomainAllowlistList =
+  Array<string>;
+export const ConnectorTypesCustomSchedulingConfigurationOverridesDomainAllowlistList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ConnectorTypesCustomSchedulingConfigurationOverridesDomainAllowlistList>;
+
+export type ConnectorTypesCustomSchedulingConfigurationOverridesSitemapUrlsList =
+  Array<string>;
+export const ConnectorTypesCustomSchedulingConfigurationOverridesSitemapUrlsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ConnectorTypesCustomSchedulingConfigurationOverridesSitemapUrlsList>;
+
+export type ConnectorTypesCustomSchedulingConfigurationOverridesSeedUrlsList =
+  Array<string>;
+export const ConnectorTypesCustomSchedulingConfigurationOverridesSeedUrlsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ConnectorTypesCustomSchedulingConfigurationOverridesSeedUrlsList>;
+
+export interface ConnectorTypesCustomSchedulingConfigurationOverrides {
+  max_crawl_depth?: number;
+  sitemap_discovery_disabled?: boolean;
+  domain_allowlist?: ConnectorTypesCustomSchedulingConfigurationOverridesDomainAllowlistList;
+  sitemap_urls?: ConnectorTypesCustomSchedulingConfigurationOverridesSitemapUrlsList;
+  seed_urls?: ConnectorTypesCustomSchedulingConfigurationOverridesSeedUrlsList;
+}
+export const ConnectorTypesCustomSchedulingConfigurationOverrides =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      max_crawl_depth: S.optional(S.Number),
+      sitemap_discovery_disabled: S.optional(S.Boolean),
+      domain_allowlist: S.optional(
+        ConnectorTypesCustomSchedulingConfigurationOverridesDomainAllowlistList,
+      ),
+      sitemap_urls: S.optional(
+        ConnectorTypesCustomSchedulingConfigurationOverridesSitemapUrlsList,
+      ),
+      seed_urls: S.optional(
+        ConnectorTypesCustomSchedulingConfigurationOverridesSeedUrlsList,
+      ),
+    }),
+  ).annotate({
+    identifier: "ConnectorTypesCustomSchedulingConfigurationOverrides",
+  }) as any as S.Schema<ConnectorTypesCustomSchedulingConfigurationOverrides>;
+
+export interface ConnectorTypesCustomScheduling {
+  configuration_overrides: ConnectorTypesCustomSchedulingConfigurationOverrides;
+  enabled: boolean;
+  interval: string;
+  last_synced?: TypesDateTime;
+  name: string;
+}
+export const ConnectorTypesCustomScheduling = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    configuration_overrides:
+      ConnectorTypesCustomSchedulingConfigurationOverrides,
+    enabled: S.Boolean,
+    interval: S.String,
+    last_synced: S.optional(TypesDateTime),
+    name: S.String,
+  }),
+).annotate({
+  identifier: "ConnectorTypesCustomScheduling",
+}) as any as S.Schema<ConnectorTypesCustomScheduling>;
+
+export type ConnectorTypesConnectorCustomScheduling = {
+  [key: string]: ConnectorTypesCustomScheduling | undefined;
+};
+export const ConnectorTypesConnectorCustomScheduling = /*@__PURE__*/ S.Record(
+  S.String,
+  ConnectorTypesCustomScheduling,
+) as any as S.Schema<ConnectorTypesConnectorCustomScheduling>;
+
+export type ConnectorTypesConnectorFilteringList =
+  Array<ConnectorTypesFilteringConfig>;
+export const ConnectorTypesConnectorFilteringList = /*@__PURE__*/ S.Array(
+  ConnectorTypesFilteringConfig,
+) as any as S.Schema<ConnectorTypesConnectorFilteringList>;
+
+export type ConnectorTypesSyncStatus =
+  | "canceling"
+  | "canceled"
+  | "completed"
+  | "error"
+  | "in_progress"
+  | "pending"
+  | "suspended";
+export const ConnectorTypesSyncStatus = /*@__PURE__*/ S.String;
+
+export interface ConnectorTypesConnector {
+  api_key_id?: string;
+  api_key_secret_id?: string;
+  configuration: ConnectorTypesConnectorConfiguration;
+  custom_scheduling: ConnectorTypesConnectorCustomScheduling;
+  deleted: boolean;
+  description?: string;
+  error?: string;
+  features?: ConnectorTypesConnectorFeatures;
+  filtering: ConnectorTypesConnectorFilteringList;
+  id?: string;
+  index_name?: string;
+  is_native: boolean;
+  language?: string;
+  last_access_control_sync_error?: string;
+  last_access_control_sync_scheduled_at?: TypesDateTime;
+  last_access_control_sync_status?: ConnectorTypesSyncStatus;
+  last_deleted_document_count?: number;
+  last_incremental_sync_scheduled_at?: TypesDateTime;
+  last_indexed_document_count?: number;
+  last_seen?: TypesDateTime;
+  last_sync_error?: string;
+  last_sync_scheduled_at?: TypesDateTime;
+  last_sync_status?: ConnectorTypesSyncStatus;
+  last_synced?: TypesDateTime;
+  name?: string;
+  pipeline?: ConnectorTypesIngestPipelineParams;
+  scheduling: ConnectorTypesSchedulingConfiguration;
+  service_type?: string;
+  status: ConnectorTypesConnectorStatus;
+  sync_cursor?: unknown;
+  sync_now: boolean;
+}
+export const ConnectorTypesConnector = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    api_key_id: S.optional(S.String),
+    api_key_secret_id: S.optional(S.String),
+    configuration: ConnectorTypesConnectorConfiguration,
+    custom_scheduling: ConnectorTypesConnectorCustomScheduling,
+    deleted: S.Boolean,
+    description: S.optional(S.String),
+    error: S.optional(S.String),
+    features: S.optional(ConnectorTypesConnectorFeatures),
+    filtering: ConnectorTypesConnectorFilteringList,
+    id: S.optional(S.String),
+    index_name: S.optional(S.String),
+    is_native: S.Boolean,
+    language: S.optional(S.String),
+    last_access_control_sync_error: S.optional(S.String),
+    last_access_control_sync_scheduled_at: S.optional(TypesDateTime),
+    last_access_control_sync_status: S.optional(ConnectorTypesSyncStatus),
+    last_deleted_document_count: S.optional(S.Number),
+    last_incremental_sync_scheduled_at: S.optional(TypesDateTime),
+    last_indexed_document_count: S.optional(S.Number),
+    last_seen: S.optional(TypesDateTime),
+    last_sync_error: S.optional(S.String),
+    last_sync_scheduled_at: S.optional(TypesDateTime),
+    last_sync_status: S.optional(ConnectorTypesSyncStatus),
+    last_synced: S.optional(TypesDateTime),
+    name: S.optional(S.String),
+    pipeline: S.optional(ConnectorTypesIngestPipelineParams),
+    scheduling: ConnectorTypesSchedulingConfiguration,
+    service_type: S.optional(S.String),
+    status: ConnectorTypesConnectorStatus,
+    sync_cursor: S.optional(S.Unknown),
+    sync_now: S.Boolean,
+  }),
+).annotate({
+  identifier: "ConnectorTypesConnector",
+}) as any as S.Schema<ConnectorTypesConnector>;
+
+export interface GetConnectorSyncJobRequest {
+  /** The unique identifier of the connector sync job */
+  connector_sync_job_id: string;
+}
+export const GetConnectorSyncJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    connector_sync_job_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/_connector/_sync_job/{connector_sync_job_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetConnectorSyncJobRequest",
+}) as any as S.Schema<GetConnectorSyncJobRequest>;
+
+export interface ConnectorTypesSyncJobConnectorReference {
+  configuration: ConnectorTypesConnectorConfiguration;
+  filtering: ConnectorTypesFilteringRules;
+  id: string;
+  index_name: string;
+  language?: string;
+  pipeline?: ConnectorTypesIngestPipelineParams;
+  service_type: string;
+  sync_cursor?: unknown;
+}
+export const ConnectorTypesSyncJobConnectorReference = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      configuration: ConnectorTypesConnectorConfiguration,
+      filtering: ConnectorTypesFilteringRules,
+      id: S.String,
+      index_name: S.String,
+      language: S.optional(S.String),
+      pipeline: S.optional(ConnectorTypesIngestPipelineParams),
+      service_type: S.String,
+      sync_cursor: S.optional(S.Unknown),
+    }),
+).annotate({
+  identifier: "ConnectorTypesSyncJobConnectorReference",
+}) as any as S.Schema<ConnectorTypesSyncJobConnectorReference>;
+
+export type ConnectorTypesSyncJobType =
+  | "full"
+  | "incremental"
+  | "access_control";
+export const ConnectorTypesSyncJobType = /*@__PURE__*/ S.String;
+
+export type ConnectorTypesConnectorSyncJobMetadataMap = {
+  [key: string]: unknown | undefined;
+};
+export const ConnectorTypesConnectorSyncJobMetadataMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<ConnectorTypesConnectorSyncJobMetadataMap>;
+
+export type ConnectorTypesSyncJobTriggerMethod = "on_demand" | "scheduled";
+export const ConnectorTypesSyncJobTriggerMethod = /*@__PURE__*/ S.String;
+
+export interface ConnectorTypesConnectorSyncJob {
+  cancelation_requested_at?: TypesDateTime;
+  canceled_at?: TypesDateTime;
+  completed_at?: TypesDateTime;
+  connector: ConnectorTypesSyncJobConnectorReference;
+  created_at: TypesDateTime;
+  deleted_document_count: number;
+  error?: string;
+  id: string;
+  indexed_document_count: number;
+  indexed_document_volume: number;
+  job_type: ConnectorTypesSyncJobType;
+  last_seen?: TypesDateTime;
+  metadata: ConnectorTypesConnectorSyncJobMetadataMap;
+  started_at?: TypesDateTime;
+  status: ConnectorTypesSyncStatus;
+  total_document_count: number;
+  trigger_method: ConnectorTypesSyncJobTriggerMethod;
+  worker_hostname?: string;
+}
+export const ConnectorTypesConnectorSyncJob = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    cancelation_requested_at: S.optional(TypesDateTime),
+    canceled_at: S.optional(TypesDateTime),
+    completed_at: S.optional(TypesDateTime),
+    connector: ConnectorTypesSyncJobConnectorReference,
+    created_at: TypesDateTime,
+    deleted_document_count: S.Number,
+    error: S.optional(S.String),
+    id: S.String,
+    indexed_document_count: S.Number,
+    indexed_document_volume: S.Number,
+    job_type: ConnectorTypesSyncJobType,
+    last_seen: S.optional(TypesDateTime),
+    metadata: ConnectorTypesConnectorSyncJobMetadataMap,
+    started_at: S.optional(TypesDateTime),
+    status: ConnectorTypesSyncStatus,
+    total_document_count: S.Number,
+    trigger_method: ConnectorTypesSyncJobTriggerMethod,
+    worker_hostname: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ConnectorTypesConnectorSyncJob",
+}) as any as S.Schema<ConnectorTypesConnectorSyncJob>;
+
+export interface GetEqlRequest {
+  /** Identifier for the search. */
+  id: string;
+  /** Period for which the search and its results are stored on the cluster. Defaults to the keep_alive value set by the search’s EQL search API request. */
+  keep_alive?: TypesDuration;
+  /** Timeout duration to wait for the request to finish. Defaults to no timeout, meaning the request waits for complete search results. */
+  wait_for_completion_timeout?: TypesDuration;
+}
+export const GetEqlRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    keep_alive: S.optional(TypesDuration.pipe(T.Query())),
+    wait_for_completion_timeout: S.optional(TypesDuration.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/_eql/search/{id}", code: 200 })),
+).annotate({ identifier: "GetEqlRequest" }) as any as S.Schema<GetEqlRequest>;
+
+export interface GetEsqlAsyncQueryRequest {
+  /** The unique identifier of the query. A query ID is provided in the ES|QL async query API response for a query that does not complete in the designated time. A query ID is also provided when the request was submitted with the `keep_on_completion` parameter set to `true`. */
+  id: string;
+  /** Indicates whether columns that are entirely `null` will be removed from the `columns` and `values` portion of the results. If `true`, the response will include an extra section under the name `all_columns` which has the name of all the columns. */
+  drop_null_columns?: boolean;
+  /** A short version of the Accept header, for example `json` or `yaml`. */
+  format?: EsqlTypesEsqlFormat | (string & {});
+  /** The period for which the query and its results are stored in the cluster. When this period expires, the query and its results are deleted, even if the query is still ongoing. */
+  keep_alive?: TypesDuration;
+  /** The period to wait for the request to finish. By default, the request waits for complete query results. If the request completes during the period specified in this parameter, complete query results are returned. Otherwise, the response returns an `is_running` value of `true` and no results. */
+  wait_for_completion_timeout?: TypesDuration;
+}
+export const GetEsqlAsyncQueryRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    drop_null_columns: S.optional(S.Boolean.pipe(T.Query())),
+    format: S.optional(EsqlTypesEsqlFormat.pipe(T.Query())),
+    keep_alive: S.optional(TypesDuration.pipe(T.Query())),
+    wait_for_completion_timeout: S.optional(TypesDuration.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/_query/async/{id}", code: 200 })),
+).annotate({
+  identifier: "GetEsqlAsyncQueryRequest",
+}) as any as S.Schema<GetEsqlAsyncQueryRequest>;
+
+export type GetEsqlAsyncQueryResponseAllColumnsList =
+  Array<SecurityTypesRealmInfo>;
+export const GetEsqlAsyncQueryResponseAllColumnsList = /*@__PURE__*/ S.Array(
+  SecurityTypesRealmInfo,
+) as any as S.Schema<GetEsqlAsyncQueryResponseAllColumnsList>;
+
+export type GetEsqlAsyncQueryResponseColumnsList =
+  Array<SecurityTypesRealmInfo>;
+export const GetEsqlAsyncQueryResponseColumnsList = /*@__PURE__*/ S.Array(
+  SecurityTypesRealmInfo,
+) as any as S.Schema<GetEsqlAsyncQueryResponseColumnsList>;
+
+export type GetEsqlAsyncQueryResponseValuesItemList = Array<TypesFieldValue>;
+export const GetEsqlAsyncQueryResponseValuesItemList = /*@__PURE__*/ S.Array(
+  TypesFieldValue,
+) as any as S.Schema<GetEsqlAsyncQueryResponseValuesItemList>;
+
+export type GetEsqlAsyncQueryResponseValuesList =
+  Array<GetEsqlAsyncQueryResponseValuesItemList>;
+export const GetEsqlAsyncQueryResponseValuesList = /*@__PURE__*/ S.Array(
+  GetEsqlAsyncQueryResponseValuesItemList,
+) as any as S.Schema<GetEsqlAsyncQueryResponseValuesList>;
+
+export interface GetEsqlAsyncQueryResponse {
+  took?: number;
+  is_partial?: boolean;
+  all_columns?: GetEsqlAsyncQueryResponseAllColumnsList;
+  columns: GetEsqlAsyncQueryResponseColumnsList;
+  values: GetEsqlAsyncQueryResponseValuesList;
+  /** Cross-cluster search information. Present if `include_ccs_metadata` was `true` in the request and a cross-cluster search was performed. */
+  _clusters?: EsqlTypesEsqlClusterInfo;
+  /** Profiling information. Present if `profile` was `true` in the request. The contents of this field are currently unstable. */
+  profile?: unknown;
+  /** The ID of the async query, to be used in subsequent requests to check the status or retrieve results. Also available in the `X-Elasticsearch-Async-Id` HTTP header. */
+  id?: string;
+  /** Indicates whether the async query is still running or has completed. Also available in the `X-Elasticsearch-Async-Is-Running` HTTP header. */
+  is_running: boolean;
+}
+export const GetEsqlAsyncQueryResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    took: S.optional(S.Number),
+    is_partial: S.optional(S.Boolean),
+    all_columns: S.optional(GetEsqlAsyncQueryResponseAllColumnsList),
+    columns: GetEsqlAsyncQueryResponseColumnsList,
+    values: GetEsqlAsyncQueryResponseValuesList,
+    _clusters: S.optional(EsqlTypesEsqlClusterInfo),
+    profile: S.optional(S.Unknown),
+    id: S.optional(S.String),
+    is_running: S.Boolean,
+  }),
+).annotate({
+  identifier: "GetEsqlAsyncQueryResponse",
+}) as any as S.Schema<GetEsqlAsyncQueryResponse>;
+
+export type IndicesGetFeature = "aliases" | "mappings" | "settings";
+export const IndicesGetFeature = /*@__PURE__*/ S.String;
+
+export type IndicesGetFeaturesCase1List = Array<
+  IndicesGetFeature | (string & {})
+>;
+export const IndicesGetFeaturesCase1List = /*@__PURE__*/ S.Array(
+  IndicesGetFeature,
+) as any as S.Schema<IndicesGetFeaturesCase1List>;
+
+export type IndicesGetFeatures =
+  | IndicesGetFeature
+  | IndicesGetFeaturesCase1List;
+export const IndicesGetFeatures =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesGetFeatures>;
+
+export interface GetIndexRequest {
+  /** Comma-separated list of data streams, indices, and index aliases used to limit the request. Wildcard expressions (*) are supported. */
+  index: string;
+  /** A setting that does two separate checks on the index expression. If `false`, the request returns an error (1) if any wildcard expression (including `_all` and `*`) resolves to zero matching indices or (2) if the complete set of resolved indices, aliases or data streams is empty after all expressions are evaluated. If `true`, index expressions that resolve to no indices are allowed and the request returns an empty result. */
+  allow_no_indices?: boolean;
+  /** Type of index that wildcard expressions can match. If the request can target data streams, this argument determines whether wildcard expressions match hidden data streams. Supports comma-separated values, such as open,hidden. */
+  expand_wildcards?: TypesExpandWildcards;
+  /** If true, returns settings in flat format. */
+  flat_settings?: boolean;
+  /** If `false`, the request returns an error if it targets a concrete (non-wildcarded) index, alias, or data stream that is missing, closed, or otherwise unavailable. If `true`, unavailable concrete targets are silently ignored. */
+  ignore_unavailable?: boolean;
+  /** If true, return all default settings in the response. */
+  include_defaults?: boolean;
+  /** If true, the request retrieves information from the local node only. Defaults to false, which means information is retrieved from the master node. */
+  local?: boolean;
+  /** Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error. */
+  master_timeout?: TypesDuration;
+  /** Return only information on specified index features */
+  features?: IndicesGetFeatures;
+}
+export const GetIndexRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    index: S.String.pipe(T.Label()),
+    allow_no_indices: S.optional(S.Boolean.pipe(T.Query())),
+    expand_wildcards: S.optional(TypesExpandWildcards.pipe(T.Query())),
+    flat_settings: S.optional(S.Boolean.pipe(T.Query())),
+    ignore_unavailable: S.optional(S.Boolean.pipe(T.Query())),
+    include_defaults: S.optional(S.Boolean.pipe(T.Query())),
+    local: S.optional(S.Boolean.pipe(T.Query())),
+    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
+    features: S.optional(IndicesGetFeatures.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/{index}", code: 200 })),
+).annotate({
+  identifier: "GetIndexRequest",
+}) as any as S.Schema<GetIndexRequest>;
+
+export type IndicesTypesIndexStateAliasesMap = {
+  [key: string]: IndicesTypesAlias | undefined;
+};
+export const IndicesTypesIndexStateAliasesMap = /*@__PURE__*/ S.Record(
+  S.String,
+  IndicesTypesAlias,
+) as any as S.Schema<IndicesTypesIndexStateAliasesMap>;
+
+export interface IndicesTypesIndexState {
+  aliases?: IndicesTypesIndexStateAliasesMap;
+  mappings?: TypesMappingTypeMapping;
+  settings?: IndicesTypesIndexSettings;
+  /** Default settings, included when the request's `include_default` is `true`. */
+  defaults?: IndicesTypesIndexSettings;
+  data_stream?: string;
+  /** Data stream lifecycle applicable if this is a data stream. */
+  lifecycle?: IndicesTypesDataStreamLifecycle;
+}
+export const IndicesTypesIndexState = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    aliases: S.optional(IndicesTypesIndexStateAliasesMap),
+    mappings: S.optional(TypesMappingTypeMapping),
+    settings: S.optional(IndicesTypesIndexSettings),
+    defaults: S.optional(IndicesTypesIndexSettings),
+    data_stream: S.optional(S.String),
+    lifecycle: S.optional(IndicesTypesDataStreamLifecycle),
+  }),
+).annotate({
+  identifier: "IndicesTypesIndexState",
+}) as any as S.Schema<IndicesTypesIndexState>;
+
+export type GetIndexResponseBodyMap = {
+  [key: string]: IndicesTypesIndexState | undefined;
+};
+export const GetIndexResponseBodyMap = /*@__PURE__*/ S.Record(
+  S.String,
+  IndicesTypesIndexState,
+) as any as S.Schema<GetIndexResponseBodyMap>;
+
+export type GetIndexResponse = GetIndexResponseBodyMap;
+export const GetIndexResponse = /*@__PURE__*/ S.suspend(() =>
+  GetIndexResponseBodyMap.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "GetIndexResponse",
+}) as any as S.Schema<GetIndexResponse>;
+
+export interface GetInferenceRequest {}
+export const GetInferenceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(T.Http({ method: "GET", uri: "/_inference", code: 200 })),
+).annotate({
+  identifier: "GetInferenceRequest",
+}) as any as S.Schema<GetInferenceRequest>;
+
+/** Only applicable to the `recursive` strategy and required when using it. A list of strings used as possible split points when chunking text. Each string can be a plain string or a regular expression (regex) pattern. The system tries each separator in order to split the text, starting from the first item in the list. After splitting, it attempts to recombine smaller pieces into larger chunks that stay within the `max_chunk_size` limit, to reduce the total number of chunks generated. */
+export type InferenceTypesInferenceChunkingSettingsSeparatorsList =
+  Array<string>;
+export const InferenceTypesInferenceChunkingSettingsSeparatorsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<InferenceTypesInferenceChunkingSettingsSeparatorsList>;
+
+/** Chunking configuration object */
+export interface InferenceTypesInferenceChunkingSettings {
+  /** The maximum size of a chunk in words. This value cannot be lower than `20` (for `sentence` strategy) or `10` (for `word` strategy). This value should not exceed the window size for the associated model. */
+  max_chunk_size?: number;
+  /** The number of overlapping words for chunks. It is applicable only to a `word` chunking strategy. This value cannot be higher than half the `max_chunk_size` value. */
+  overlap?: number;
+  /** The number of overlapping sentences for chunks. It is applicable only for a `sentence` chunking strategy. It can be either `1` or `0`. */
+  sentence_overlap?: number;
+  /** Only applicable to the `recursive` strategy and required when using it. Sets a predefined list of separators in the saved chunking settings based on the selected text type. Values can be `markdown` or `plaintext`. Using this parameter is an alternative to manually specifying a custom `separators` list. */
+  separator_group?: string;
+  /** Only applicable to the `recursive` strategy and required when using it. A list of strings used as possible split points when chunking text. Each string can be a plain string or a regular expression (regex) pattern. The system tries each separator in order to split the text, starting from the first item in the list. After splitting, it attempts to recombine smaller pieces into larger chunks that stay within the `max_chunk_size` limit, to reduce the total number of chunks generated. */
+  separators?: InferenceTypesInferenceChunkingSettingsSeparatorsList;
+  /** The chunking strategy: `sentence`, `word`, `none` or `recursive`. * If `strategy` is set to `recursive`, you must also specify: - `max_chunk_size` - either `separators` or`separator_group` Learn more about different chunking strategies in the linked documentation. */
+  strategy?: string;
+}
+export const InferenceTypesInferenceChunkingSettings = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      max_chunk_size: S.optional(S.Number),
+      overlap: S.optional(S.Number),
+      sentence_overlap: S.optional(S.Number),
+      separator_group: S.optional(S.String),
+      separators: S.optional(
+        InferenceTypesInferenceChunkingSettingsSeparatorsList,
+      ),
+      strategy: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "InferenceTypesInferenceChunkingSettings",
+}) as any as S.Schema<InferenceTypesInferenceChunkingSettings>;
+
+export type InferenceTypesTaskType =
+  | "sparse_embedding"
+  | "text_embedding"
+  | "rerank"
+  | "completion"
+  | "chat_completion"
+  | "embedding";
+export const InferenceTypesTaskType = /*@__PURE__*/ S.String;
+
+/** Represents an inference endpoint as returned by the GET API */
+export interface InferenceTypesInferenceEndpointInfo {
+  /** The chunking configuration object. Applies only to the `embedding`, `sparse_embedding` and `text_embedding` task types. Not applicable to the `rerank`, `completion`, or `chat_completion` task types. */
+  chunking_settings?: InferenceTypesInferenceChunkingSettings;
+  /** The service type */
+  service: string;
+  /** Settings specific to the service */
+  service_settings: unknown;
+  /** Task settings specific to the service and task type */
+  task_settings?: unknown;
+  /** The inference Id */
+  inference_id: string;
+  /** The task type */
+  task_type: InferenceTypesTaskType;
+}
+export const InferenceTypesInferenceEndpointInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    chunking_settings: S.optional(InferenceTypesInferenceChunkingSettings),
+    service: S.String,
+    service_settings: S.Unknown,
+    task_settings: S.optional(S.Unknown),
+    inference_id: S.String,
+    task_type: InferenceTypesTaskType,
+  }),
+).annotate({
+  identifier: "InferenceTypesInferenceEndpointInfo",
+}) as any as S.Schema<InferenceTypesInferenceEndpointInfo>;
+
+export type GetInferenceResponseEndpointsList =
+  Array<InferenceTypesInferenceEndpointInfo>;
+export const GetInferenceResponseEndpointsList = /*@__PURE__*/ S.Array(
+  InferenceTypesInferenceEndpointInfo,
+) as any as S.Schema<GetInferenceResponseEndpointsList>;
+
+export interface GetInferenceResponse {
+  endpoints: GetInferenceResponseEndpointsList;
+}
+export const GetInferenceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    endpoints: GetInferenceResponseEndpointsList,
+  }),
+).annotate({
+  identifier: "GetInferenceResponse",
+}) as any as S.Schema<GetInferenceResponse>;
+
+export interface GetLicenseRequest {
+  /** If `true`, this parameter returns enterprise for Enterprise license types. If `false`, this parameter returns platinum for both platinum and enterprise license types. This behavior is maintained for backwards compatibility. This parameter is deprecated and will always be set to true in 8.x. */
+  accept_enterprise?: boolean;
+  /** Specifies whether to retrieve local information. From 9.2 onwards the default value is `true`, which means the information is retrieved from the responding node. In earlier versions the default is `false`, which means the information is retrieved from the elected master node. */
+  local?: boolean;
+}
+export const GetLicenseRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accept_enterprise: S.optional(S.Boolean.pipe(T.Query())),
+    local: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/_license", code: 200 })),
+).annotate({
+  identifier: "GetLicenseRequest",
+}) as any as S.Schema<GetLicenseRequest>;
+
+/** The maximum number of nodes the license allows. */
+export type LicenseGetLicenseInformationMaxNodes = number | string;
+export const LicenseGetLicenseInformationMaxNodes =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<LicenseGetLicenseInformationMaxNodes>;
+
+/** The maximum number of resource units the license allows (for enterprise licenses only). */
+export type LicenseGetLicenseInformationMaxResourceUnits = number | string;
+export const LicenseGetLicenseInformationMaxResourceUnits =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<LicenseGetLicenseInformationMaxResourceUnits>;
+
+export type LicenseTypesLicenseStatus =
+  | "active"
+  | "valid"
+  | "invalid"
+  | "expired";
+export const LicenseTypesLicenseStatus = /*@__PURE__*/ S.String;
+
+export type LicenseTypesLicenseType =
+  | "missing"
+  | "trial"
+  | "basic"
+  | "standard"
+  | "dev"
+  | "silver"
+  | "gold"
+  | "platinum"
+  | "enterprise";
+export const LicenseTypesLicenseType = /*@__PURE__*/ S.String;
+
+export interface LicenseGetLicenseInformation {
+  /** The date and time the license expires in ISO 8601 format. */
+  expiry_date?: TypesDateTime;
+  /** The date and time the license expires in milliseconds since the Unix epoch. */
+  expiry_date_in_millis?: number;
+  /** The date and time the license was issued in ISO 8601 format. */
+  issue_date: TypesDateTime;
+  /** The date and time the license was issued in milliseconds since the Unix epoch. */
+  issue_date_in_millis: number;
+  /** The name of the customer or organization that received the license. */
+  issued_to: string;
+  /** The name of the organization that issued the license. */
+  issuer: string;
+  /** The maximum number of nodes the license allows. */
+  max_nodes: LicenseGetLicenseInformationMaxNodes;
+  /** The maximum number of resource units the license allows (for enterprise licenses only). */
+  max_resource_units?: LicenseGetLicenseInformationMaxResourceUnits;
+  /** The status of the license. For example,active, valid, invalid, or expired. */
+  status: LicenseTypesLicenseStatus;
+  /** The type of the license. For example, trial, basic, gold, platinum, or enterprise. */
+  type: LicenseTypesLicenseType;
+  /** The unique identifier of the license. */
+  uid: string;
+  /** The date and time the license was started in milliseconds since the Unix epoch. */
+  start_date_in_millis: number;
+}
+export const LicenseGetLicenseInformation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    expiry_date: S.optional(TypesDateTime),
+    expiry_date_in_millis: S.optional(S.Number),
+    issue_date: TypesDateTime,
+    issue_date_in_millis: S.Number,
+    issued_to: S.String,
+    issuer: S.String,
+    max_nodes: LicenseGetLicenseInformationMaxNodes,
+    max_resource_units: S.optional(
+      LicenseGetLicenseInformationMaxResourceUnits,
+    ),
+    status: LicenseTypesLicenseStatus,
+    type: LicenseTypesLicenseType,
+    uid: S.String,
+    start_date_in_millis: S.Number,
+  }),
+).annotate({
+  identifier: "LicenseGetLicenseInformation",
+}) as any as S.Schema<LicenseGetLicenseInformation>;
+
+export interface GetLicenseResponse {
+  license: LicenseGetLicenseInformation;
+}
+export const GetLicenseResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    license: LicenseGetLicenseInformation,
+  }),
+).annotate({
+  identifier: "GetLicenseResponse",
+}) as any as S.Schema<GetLicenseResponse>;
 
 export interface GetReindexRequest {
   /** The ID of the reindex task to retrieve. */
@@ -42183,14 +42818,14 @@ export const GetScriptContextRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetScriptContextRequest",
 }) as any as S.Schema<GetScriptContextRequest>;
 
-export type GlobalGetScriptContextContextMethodParam = EsqlTypesEsqlColumnInfo;
-export const GlobalGetScriptContextContextMethodParam = EsqlTypesEsqlColumnInfo;
+export type GlobalGetScriptContextContextMethodParam = SecurityTypesRealmInfo;
+export const GlobalGetScriptContextContextMethodParam = SecurityTypesRealmInfo;
 
 export type GlobalGetScriptContextContextMethodParamsList =
-  Array<EsqlTypesEsqlColumnInfo>;
+  Array<SecurityTypesRealmInfo>;
 export const GlobalGetScriptContextContextMethodParamsList =
   /*@__PURE__*/ S.Array(
-    EsqlTypesEsqlColumnInfo,
+    SecurityTypesRealmInfo,
   ) as any as S.Schema<GlobalGetScriptContextContextMethodParamsList>;
 
 export interface GlobalGetScriptContextContextMethod {
@@ -42298,6 +42933,155 @@ export const GetScriptLanguagesResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetScriptLanguagesResponse",
 }) as any as S.Schema<GetScriptLanguagesResponse>;
 
+export type SnapshotTypesSnapshotSort =
+  | "start_time"
+  | "duration"
+  | "name"
+  | "index_count"
+  | "repository"
+  | "shard_count"
+  | "failed_shard_count";
+export const SnapshotTypesSnapshotSort = /*@__PURE__*/ S.String;
+
+export type SnapshotTypesSnapshotState =
+  | "IN_PROGRESS"
+  | "SUCCESS"
+  | "FAILED"
+  | "PARTIAL"
+  | "INCOMPATIBLE";
+export const SnapshotTypesSnapshotState = /*@__PURE__*/ S.String;
+
+export type GetSnapshotRequestStateCase1List = Array<
+  SnapshotTypesSnapshotState | (string & {})
+>;
+export const GetSnapshotRequestStateCase1List = /*@__PURE__*/ S.Array(
+  SnapshotTypesSnapshotState,
+) as any as S.Schema<GetSnapshotRequestStateCase1List>;
+
+export type GetSnapshotRequestState =
+  | SnapshotTypesSnapshotState
+  | GetSnapshotRequestStateCase1List;
+export const GetSnapshotRequestState =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<GetSnapshotRequestState>;
+
+export interface GetSnapshotRequest {
+  /** A comma-separated list of snapshot repository names used to limit the request. Wildcard (`*`) expressions are supported. */
+  repository: string;
+  /** A comma-separated list of snapshot names to retrieve Wildcards (`*`) are supported. * To get information about all snapshots in a registered repository, use a wildcard (`*`) or `_all`. * To get information about any snapshots that are currently running, use `_current`. */
+  snapshot: string;
+  /** An offset identifier to start pagination from as returned by the next field in the response body. */
+  after?: string;
+  /** The value of the current sort column at which to start retrieval. It can be a string `snapshot-` or a repository name when sorting by snapshot or repository name. It can be a millisecond time value or a number when sorting by `index-` or shard count. */
+  from_sort_value?: string;
+  /** If `false`, the request returns an error for any snapshots that are unavailable. */
+  ignore_unavailable?: boolean;
+  /** If `true`, the response includes additional information about each index in the snapshot comprising the number of shards in the index, the total size of the index in bytes, and the maximum number of segments per shard in the index. The default is `false`, meaning that this information is omitted. */
+  index_details?: boolean;
+  /** If `true`, the response includes the name of each index in each snapshot. */
+  index_names?: boolean;
+  /** If `true`, the response includes the repository name in each snapshot. */
+  include_repository?: boolean;
+  /** The period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error. */
+  master_timeout?: TypesDuration;
+  /** The sort order. Valid values are `asc` for ascending and `desc` for descending order. The default behavior is ascending order. */
+  order?: TypesSortOrder | (string & {});
+  /** Numeric offset to start pagination from based on the snapshots matching this request. Using a non-zero value for this parameter is mutually exclusive with using the after parameter. Defaults to 0. */
+  offset?: number;
+  /** The maximum number of snapshots to return. The default is -1, which means to return all that match the request without limit. */
+  size?: number;
+  /** Filter snapshots by a comma-separated list of snapshot lifecycle management (SLM) policy names that snapshots belong to. You can use wildcards (`*`) and combinations of wildcards followed by exclude patterns starting with `-`. For example, the pattern `*,-policy-a-\*` will return all snapshots except for those that were created by an SLM policy with a name starting with `policy-a-`. Note that the wildcard pattern `*` matches all snapshots created by an SLM policy but not those snapshots that were not created by an SLM policy. To include snapshots that were not created by an SLM policy, you can use the special pattern `_none` that will match all snapshots without an SLM policy. */
+  slm_policy_filter?: string;
+  /** The sort order for the result. The default behavior is sorting by snapshot start time stamp. */
+  sort?: SnapshotTypesSnapshotSort | (string & {});
+  /** Only return snapshots with a state found in the given comma-separated list of snapshot states. The default is all snapshot states. */
+  state?: GetSnapshotRequestState;
+  /** If `true`, returns additional information about each snapshot such as the version of Elasticsearch which took the snapshot, the start and end times of the snapshot, and the number of shards snapshotted. NOTE: The parameters `size`, `order`, `after`, `from_sort_value`, `offset`, `slm_policy_filter`, and `sort` are not supported when you set `verbose=false` and the sort order for requests with `verbose=false` is undefined. */
+  verbose?: boolean;
+}
+export const GetSnapshotRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    repository: S.String.pipe(T.Label()),
+    snapshot: S.String.pipe(T.Label()),
+    after: S.optional(S.String.pipe(T.Query())),
+    from_sort_value: S.optional(S.String.pipe(T.Query())),
+    ignore_unavailable: S.optional(S.Boolean.pipe(T.Query())),
+    index_details: S.optional(S.Boolean.pipe(T.Query())),
+    index_names: S.optional(S.Boolean.pipe(T.Query())),
+    include_repository: S.optional(S.Boolean.pipe(T.Query())),
+    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
+    order: S.optional(TypesSortOrder.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+    size: S.optional(S.Number.pipe(T.Query())),
+    slm_policy_filter: S.optional(S.String.pipe(T.Query())),
+    sort: S.optional(SnapshotTypesSnapshotSort.pipe(T.Query())),
+    state: S.optional(GetSnapshotRequestState.pipe(T.Query())),
+    verbose: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/_snapshot/{repository}/{snapshot}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetSnapshotRequest",
+}) as any as S.Schema<GetSnapshotRequest>;
+
+export type SnapshotGetSnapshotResponseItemSnapshotsList =
+  Array<SnapshotTypesSnapshotInfo>;
+export const SnapshotGetSnapshotResponseItemSnapshotsList =
+  /*@__PURE__*/ S.Array(
+    SnapshotTypesSnapshotInfo,
+  ) as any as S.Schema<SnapshotGetSnapshotResponseItemSnapshotsList>;
+
+export interface SnapshotGetSnapshotResponseItem {
+  repository: string;
+  snapshots?: SnapshotGetSnapshotResponseItemSnapshotsList;
+  error?: TypesErrorCause;
+}
+export const SnapshotGetSnapshotResponseItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    repository: S.String,
+    snapshots: S.optional(SnapshotGetSnapshotResponseItemSnapshotsList),
+    error: S.optional(TypesErrorCause),
+  }),
+).annotate({
+  identifier: "SnapshotGetSnapshotResponseItem",
+}) as any as S.Schema<SnapshotGetSnapshotResponseItem>;
+
+export type GetSnapshotResponseResponsesList =
+  Array<SnapshotGetSnapshotResponseItem>;
+export const GetSnapshotResponseResponsesList = /*@__PURE__*/ S.Array(
+  SnapshotGetSnapshotResponseItem,
+) as any as S.Schema<GetSnapshotResponseResponsesList>;
+
+export type GetSnapshotResponseSnapshotsList = Array<SnapshotTypesSnapshotInfo>;
+export const GetSnapshotResponseSnapshotsList = /*@__PURE__*/ S.Array(
+  SnapshotTypesSnapshotInfo,
+) as any as S.Schema<GetSnapshotResponseSnapshotsList>;
+
+export interface GetSnapshotResponse {
+  /** The number of remaining snapshots that were not returned due to size limits and that can be fetched by additional requests using the `next` field value. */
+  remaining: number;
+  /** The total number of snapshots that match the request when ignoring the size limit or `after` query parameter. */
+  total: number;
+  /** If the request contained a size limit and there might be more results, a `next` field will be added to the response. It can be used as the `after` query parameter to fetch additional results. */
+  next?: string;
+  responses?: GetSnapshotResponseResponsesList;
+  snapshots?: GetSnapshotResponseSnapshotsList;
+}
+export const GetSnapshotResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    remaining: S.Number,
+    total: S.Number,
+    next: S.optional(S.String),
+    responses: S.optional(GetSnapshotResponseResponsesList),
+    snapshots: S.optional(GetSnapshotResponseSnapshotsList),
+  }),
+).annotate({
+  identifier: "GetSnapshotResponse",
+}) as any as S.Schema<GetSnapshotResponse>;
+
 export interface GetSourceRequest {
   /** The name of the index that contains the document. */
   index: string;
@@ -42346,6 +43130,39 @@ export const GetSourceResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetSourceResponse",
 }) as any as S.Schema<GetSourceResponse>;
+
+export interface GetTaskRequest {
+  /** The task identifier. */
+  task_id: string;
+  /** The period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error. */
+  timeout?: TypesDuration;
+  /** If `true`, the request blocks until the task has completed. */
+  wait_for_completion?: boolean;
+}
+export const GetTaskRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    task_id: S.String.pipe(T.Label()),
+    timeout: S.optional(TypesDuration.pipe(T.Query())),
+    wait_for_completion: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/_tasks/{task_id}", code: 200 })),
+).annotate({ identifier: "GetTaskRequest" }) as any as S.Schema<GetTaskRequest>;
+
+export interface GetTaskResponse {
+  completed: boolean;
+  task: TasksTypesTaskInfo;
+  response?: unknown;
+  error?: TypesErrorCause;
+}
+export const GetTaskResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    completed: S.Boolean,
+    task: TasksTypesTaskInfo,
+    response: S.optional(S.Unknown),
+    error: S.optional(TypesErrorCause),
+  }),
+).annotate({
+  identifier: "GetTaskResponse",
+}) as any as S.Schema<GetTaskResponse>;
 
 /** Prevents the specified terms from being included in the results. */
 export type GraphTypesVertexDefinitionExcludeList = Array<string>;
@@ -44264,208 +45081,6 @@ export const IlmRemovePolicyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "IlmRemovePolicyResponse",
 }) as any as S.Schema<IlmRemovePolicyResponse>;
 
-export interface IlmRetryRequest {
-  /** The name of the indices (comma-separated) whose failed lifecycle step is to be retry */
-  index: string;
-}
-export const IlmRetryRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    index: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "POST", uri: "/{index}/_ilm/retry", code: 200 })),
-).annotate({
-  identifier: "IlmRetryRequest",
-}) as any as S.Schema<IlmRetryRequest>;
-
-export interface IlmStartRequest {
-  /** Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error. */
-  master_timeout?: TypesDuration;
-  /** Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error. */
-  timeout?: TypesDuration;
-}
-export const IlmStartRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
-    timeout: S.optional(TypesDuration.pipe(T.Query())),
-  }).pipe(T.Http({ method: "POST", uri: "/_ilm/start", code: 200 })),
-).annotate({
-  identifier: "IlmStartRequest",
-}) as any as S.Schema<IlmStartRequest>;
-
-export interface IlmStopRequest {
-  /** Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error. */
-  master_timeout?: TypesDuration;
-  /** Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error. */
-  timeout?: TypesDuration;
-}
-export const IlmStopRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
-    timeout: S.optional(TypesDuration.pipe(T.Query())),
-  }).pipe(T.Http({ method: "POST", uri: "/_ilm/stop", code: 200 })),
-).annotate({ identifier: "IlmStopRequest" }) as any as S.Schema<IlmStopRequest>;
-
-export type TypesOpType = "index" | "create";
-export const TypesOpType = /*@__PURE__*/ S.String;
-
-export interface IndexRequest {
-  /** The name of the data stream or index to target. If the target doesn't exist and matches the name or wildcard (`*`) pattern of an index template with a `data_stream` definition, this request creates the data stream. If the target doesn't exist and doesn't match a data stream template, this request creates the index. You can check for existing targets with the resolve index API. */
-  index: string;
-  /** A unique identifier for the document. To automatically generate a document ID, use the `POST /<target>/_doc/` request format and omit this parameter. */
-  id: string;
-  /** Only perform the operation if the document has this primary term. */
-  if_primary_term?: number;
-  /** Only perform the operation if the document has this sequence number. */
-  if_seq_no?: number;
-  /** True or false if to include the document source in the error message in case of parsing errors. */
-  include_source_on_error?: boolean;
-  /** Set to `create` to only index the document if it does not already exist (put if absent). If a document with the specified `_id` already exists, the indexing operation will fail. The behavior is the same as using the `<index>/_create` endpoint. If a document ID is specified, this paramater defaults to `index`. Otherwise, it defaults to `create`. If the request targets a data stream, an `op_type` of `create` is required. */
-  op_type?: TypesOpType | (string & {});
-  /** The ID of the pipeline to use to preprocess incoming documents. If the index has a default ingest pipeline specified, then setting the value to `_none` disables the default ingest pipeline for this request. If a final pipeline is configured it will always run, regardless of the value of this parameter. */
-  pipeline?: string;
-  /** If `true`, Elasticsearch refreshes the affected shards to make this operation visible to search. If `wait_for`, it waits for a refresh to make this operation visible to search. If `false`, it does nothing with refreshes. */
-  refresh?: TypesRefresh | (string & {});
-  /** A custom value that is used to route operations to a specific shard. Not allowed when `index.slice.enabled` is `true` for the target index; use `_slice` instead. */
-  routing?: TypesRouting;
-  /** The period the request waits for the following operations: automatic index creation, dynamic mapping updates, waiting for active shards. This parameter is useful for situations where the primary shard assigned to perform the operation might not be available when the operation runs. Some reasons for this might be that the primary shard is currently recovering from a gateway or undergoing relocation. By default, the operation will wait on the primary shard to become available for at least 1 minute before failing and responding with an error. The actual wait time could be longer, particularly when multiple waits occur. */
-  timeout?: TypesDuration;
-  /** An explicit version number for concurrency control. It must be a non-negative long number. */
-  version?: number;
-  /** The version type. */
-  version_type?: TypesVersionType | (string & {});
-  /** The number of shard copies that must be active before proceeding with the operation. You can set it to `all` or any positive integer up to the total number of shards in the index (`number_of_replicas+1`). The default value of `1` means it waits for each primary shard to be active. */
-  wait_for_active_shards?: TypesWaitForActiveShards;
-  /** If `true`, the destination must be an index alias. */
-  require_alias?: boolean;
-  /** If `true`, the request's actions must target a data stream (existing or to be created). */
-  require_data_stream?: boolean;
-}
-export const IndexRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    index: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    if_primary_term: S.optional(S.Number.pipe(T.Query())),
-    if_seq_no: S.optional(S.Number.pipe(T.Query())),
-    include_source_on_error: S.optional(S.Boolean.pipe(T.Query())),
-    op_type: S.optional(TypesOpType.pipe(T.Query())),
-    pipeline: S.optional(S.String.pipe(T.Query())),
-    refresh: S.optional(TypesRefresh.pipe(T.Query())),
-    routing: S.optional(TypesRouting.pipe(T.Query())),
-    timeout: S.optional(TypesDuration.pipe(T.Query())),
-    version: S.optional(S.Number.pipe(T.Query())),
-    version_type: S.optional(TypesVersionType.pipe(T.Query())),
-    wait_for_active_shards: S.optional(
-      TypesWaitForActiveShards.pipe(T.Query()),
-    ),
-    require_alias: S.optional(S.Boolean.pipe(T.Query())),
-    require_data_stream: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(T.Http({ method: "PUT", uri: "/{index}/_doc/{id}", code: 200 })),
-).annotate({ identifier: "IndexRequest" }) as any as S.Schema<IndexRequest>;
-
-export interface Index1Request {
-  /** The name of the data stream or index to target. If the target doesn't exist and matches the name or wildcard (`*`) pattern of an index template with a `data_stream` definition, this request creates the data stream. If the target doesn't exist and doesn't match a data stream template, this request creates the index. You can check for existing targets with the resolve index API. */
-  index: string;
-  /** A unique identifier for the document. To automatically generate a document ID, use the `POST /<target>/_doc/` request format and omit this parameter. */
-  id: string;
-  /** Only perform the operation if the document has this primary term. */
-  if_primary_term?: number;
-  /** Only perform the operation if the document has this sequence number. */
-  if_seq_no?: number;
-  /** True or false if to include the document source in the error message in case of parsing errors. */
-  include_source_on_error?: boolean;
-  /** Set to `create` to only index the document if it does not already exist (put if absent). If a document with the specified `_id` already exists, the indexing operation will fail. The behavior is the same as using the `<index>/_create` endpoint. If a document ID is specified, this paramater defaults to `index`. Otherwise, it defaults to `create`. If the request targets a data stream, an `op_type` of `create` is required. */
-  op_type?: TypesOpType | (string & {});
-  /** The ID of the pipeline to use to preprocess incoming documents. If the index has a default ingest pipeline specified, then setting the value to `_none` disables the default ingest pipeline for this request. If a final pipeline is configured it will always run, regardless of the value of this parameter. */
-  pipeline?: string;
-  /** If `true`, Elasticsearch refreshes the affected shards to make this operation visible to search. If `wait_for`, it waits for a refresh to make this operation visible to search. If `false`, it does nothing with refreshes. */
-  refresh?: TypesRefresh | (string & {});
-  /** A custom value that is used to route operations to a specific shard. Not allowed when `index.slice.enabled` is `true` for the target index; use `_slice` instead. */
-  routing?: TypesRouting;
-  /** The period the request waits for the following operations: automatic index creation, dynamic mapping updates, waiting for active shards. This parameter is useful for situations where the primary shard assigned to perform the operation might not be available when the operation runs. Some reasons for this might be that the primary shard is currently recovering from a gateway or undergoing relocation. By default, the operation will wait on the primary shard to become available for at least 1 minute before failing and responding with an error. The actual wait time could be longer, particularly when multiple waits occur. */
-  timeout?: TypesDuration;
-  /** An explicit version number for concurrency control. It must be a non-negative long number. */
-  version?: number;
-  /** The version type. */
-  version_type?: TypesVersionType | (string & {});
-  /** The number of shard copies that must be active before proceeding with the operation. You can set it to `all` or any positive integer up to the total number of shards in the index (`number_of_replicas+1`). The default value of `1` means it waits for each primary shard to be active. */
-  wait_for_active_shards?: TypesWaitForActiveShards;
-  /** If `true`, the destination must be an index alias. */
-  require_alias?: boolean;
-  /** If `true`, the request's actions must target a data stream (existing or to be created). */
-  require_data_stream?: boolean;
-}
-export const Index1Request = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    index: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    if_primary_term: S.optional(S.Number.pipe(T.Query())),
-    if_seq_no: S.optional(S.Number.pipe(T.Query())),
-    include_source_on_error: S.optional(S.Boolean.pipe(T.Query())),
-    op_type: S.optional(TypesOpType.pipe(T.Query())),
-    pipeline: S.optional(S.String.pipe(T.Query())),
-    refresh: S.optional(TypesRefresh.pipe(T.Query())),
-    routing: S.optional(TypesRouting.pipe(T.Query())),
-    timeout: S.optional(TypesDuration.pipe(T.Query())),
-    version: S.optional(S.Number.pipe(T.Query())),
-    version_type: S.optional(TypesVersionType.pipe(T.Query())),
-    wait_for_active_shards: S.optional(
-      TypesWaitForActiveShards.pipe(T.Query()),
-    ),
-    require_alias: S.optional(S.Boolean.pipe(T.Query())),
-    require_data_stream: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(T.Http({ method: "POST", uri: "/{index}/_doc/{id}", code: 200 })),
-).annotate({ identifier: "Index1Request" }) as any as S.Schema<Index1Request>;
-
-export interface Index2Request {
-  /** The name of the data stream or index to target. If the target doesn't exist and matches the name or wildcard (`*`) pattern of an index template with a `data_stream` definition, this request creates the data stream. If the target doesn't exist and doesn't match a data stream template, this request creates the index. You can check for existing targets with the resolve index API. */
-  index: string;
-  /** Only perform the operation if the document has this primary term. */
-  if_primary_term?: number;
-  /** Only perform the operation if the document has this sequence number. */
-  if_seq_no?: number;
-  /** True or false if to include the document source in the error message in case of parsing errors. */
-  include_source_on_error?: boolean;
-  /** Set to `create` to only index the document if it does not already exist (put if absent). If a document with the specified `_id` already exists, the indexing operation will fail. The behavior is the same as using the `<index>/_create` endpoint. If a document ID is specified, this paramater defaults to `index`. Otherwise, it defaults to `create`. If the request targets a data stream, an `op_type` of `create` is required. */
-  op_type?: TypesOpType | (string & {});
-  /** The ID of the pipeline to use to preprocess incoming documents. If the index has a default ingest pipeline specified, then setting the value to `_none` disables the default ingest pipeline for this request. If a final pipeline is configured it will always run, regardless of the value of this parameter. */
-  pipeline?: string;
-  /** If `true`, Elasticsearch refreshes the affected shards to make this operation visible to search. If `wait_for`, it waits for a refresh to make this operation visible to search. If `false`, it does nothing with refreshes. */
-  refresh?: TypesRefresh | (string & {});
-  /** A custom value that is used to route operations to a specific shard. Not allowed when `index.slice.enabled` is `true` for the target index; use `_slice` instead. */
-  routing?: TypesRouting;
-  /** The period the request waits for the following operations: automatic index creation, dynamic mapping updates, waiting for active shards. This parameter is useful for situations where the primary shard assigned to perform the operation might not be available when the operation runs. Some reasons for this might be that the primary shard is currently recovering from a gateway or undergoing relocation. By default, the operation will wait on the primary shard to become available for at least 1 minute before failing and responding with an error. The actual wait time could be longer, particularly when multiple waits occur. */
-  timeout?: TypesDuration;
-  /** An explicit version number for concurrency control. It must be a non-negative long number. */
-  version?: number;
-  /** The version type. */
-  version_type?: TypesVersionType | (string & {});
-  /** The number of shard copies that must be active before proceeding with the operation. You can set it to `all` or any positive integer up to the total number of shards in the index (`number_of_replicas+1`). The default value of `1` means it waits for each primary shard to be active. */
-  wait_for_active_shards?: TypesWaitForActiveShards;
-  /** If `true`, the destination must be an index alias. */
-  require_alias?: boolean;
-  /** If `true`, the request's actions must target a data stream (existing or to be created). */
-  require_data_stream?: boolean;
-}
-export const Index2Request = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    index: S.String.pipe(T.Label()),
-    if_primary_term: S.optional(S.Number.pipe(T.Query())),
-    if_seq_no: S.optional(S.Number.pipe(T.Query())),
-    include_source_on_error: S.optional(S.Boolean.pipe(T.Query())),
-    op_type: S.optional(TypesOpType.pipe(T.Query())),
-    pipeline: S.optional(S.String.pipe(T.Query())),
-    refresh: S.optional(TypesRefresh.pipe(T.Query())),
-    routing: S.optional(TypesRouting.pipe(T.Query())),
-    timeout: S.optional(TypesDuration.pipe(T.Query())),
-    version: S.optional(S.Number.pipe(T.Query())),
-    version_type: S.optional(TypesVersionType.pipe(T.Query())),
-    wait_for_active_shards: S.optional(
-      TypesWaitForActiveShards.pipe(T.Query()),
-    ),
-    require_alias: S.optional(S.Boolean.pipe(T.Query())),
-    require_data_stream: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(T.Http({ method: "POST", uri: "/{index}/_doc", code: 200 })),
-).annotate({ identifier: "Index2Request" }) as any as S.Schema<Index2Request>;
-
 export type IndicesAddBlockRequestBlock =
   | "metadata"
   | "read"
@@ -45045,17 +45660,6 @@ export const IndicesClearCacheRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "IndicesClearCacheRequest",
 }) as any as S.Schema<IndicesClearCacheRequest>;
 
-export interface TypesShardsOperationResponseBase {
-  _shards?: TypesShardStatistics;
-}
-export const TypesShardsOperationResponseBase = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    _shards: S.optional(TypesShardStatistics),
-  }),
-).annotate({
-  identifier: "TypesShardsOperationResponseBase",
-}) as any as S.Schema<TypesShardsOperationResponseBase>;
-
 export interface IndicesClearCache1Request {
   /** Comma-separated list of data streams, indices, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indices, omit this parameter or use `*` or `_all`. */
   index: string;
@@ -45088,73 +45692,6 @@ export const IndicesClearCache1Request = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "IndicesClearCache1Request",
 }) as any as S.Schema<IndicesClearCache1Request>;
-
-/** Aliases for the resulting index. */
-export type IndicesCloneRequestAliasesMap = {
-  [key: string]: IndicesTypesAlias | undefined;
-};
-export const IndicesCloneRequestAliasesMap = /*@__PURE__*/ S.Record(
-  S.String,
-  IndicesTypesAlias,
-) as any as S.Schema<IndicesCloneRequestAliasesMap>;
-
-/** Configuration options for the target index. */
-export type IndicesCloneRequestSettingsMap = {
-  [key: string]: unknown | undefined;
-};
-export const IndicesCloneRequestSettingsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<IndicesCloneRequestSettingsMap>;
-
-export interface IndicesCloneRequest {
-  /** Name of the source index to clone. */
-  index: string;
-  /** Name of the target index to create. */
-  target: string;
-  /** Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error. */
-  master_timeout?: TypesDuration;
-  /** Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error. */
-  timeout?: TypesDuration;
-  /** The number of shard copies that must be active before proceeding with the operation. Set to `all` or any positive integer up to the total number of shards in the index (`number_of_replicas+1`). */
-  wait_for_active_shards?: TypesWaitForActiveShards;
-  /** Aliases for the resulting index. */
-  aliases?: IndicesCloneRequestAliasesMap;
-  /** Configuration options for the target index. */
-  settings?: IndicesCloneRequestSettingsMap;
-}
-export const IndicesCloneRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    index: S.String.pipe(T.Label()),
-    target: S.String.pipe(T.Label()),
-    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
-    timeout: S.optional(TypesDuration.pipe(T.Query())),
-    wait_for_active_shards: S.optional(
-      TypesWaitForActiveShards.pipe(T.Query()),
-    ),
-    aliases: S.optional(IndicesCloneRequestAliasesMap),
-    settings: S.optional(IndicesCloneRequestSettingsMap),
-  }).pipe(
-    T.Http({ method: "PUT", uri: "/{index}/_clone/{target}", code: 200 }),
-  ),
-).annotate({
-  identifier: "IndicesCloneRequest",
-}) as any as S.Schema<IndicesCloneRequest>;
-
-export interface IndicesCloneResponse {
-  acknowledged: boolean;
-  index: string;
-  shards_acknowledged: boolean;
-}
-export const IndicesCloneResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    acknowledged: S.Boolean,
-    index: S.String,
-    shards_acknowledged: S.Boolean,
-  }),
-).annotate({
-  identifier: "IndicesCloneResponse",
-}) as any as S.Schema<IndicesCloneResponse>;
 
 /** Aliases for the resulting index. */
 export type IndicesClone1RequestAliasesMap = {
@@ -45314,62 +45851,6 @@ export const IndicesCloseResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "IndicesCloseResponse",
 }) as any as S.Schema<IndicesCloseResponse>;
-
-/** Aliases for the index. */
-export type IndicesCreateRequestAliasesMap = {
-  [key: string]: IndicesTypesAlias | undefined;
-};
-export const IndicesCreateRequestAliasesMap = /*@__PURE__*/ S.Record(
-  S.String,
-  IndicesTypesAlias,
-) as any as S.Schema<IndicesCreateRequestAliasesMap>;
-
-export interface IndicesCreateRequest {
-  /** Name of the index you wish to create. Index names must meet the following criteria: * Lowercase only * Cannot include `\`, `/`, `*`, `?`, `"`, `<`, `>`, `|`, ` ` (space character), `,`, or `#` * Indices prior to 7.0 could contain a colon (`:`), but that has been deprecated and will not be supported in later versions * Cannot start with `-`, `_`, or `+` * Cannot be `.` or `..` * Cannot be longer than 255 bytes (note thtat it is bytes, so multi-byte characters will reach the limit faster) * Names starting with `.` are deprecated, except for hidden indices and internal indices managed by plugins */
-  index: string;
-  /** Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error. */
-  master_timeout?: TypesDuration;
-  /** Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error. */
-  timeout?: TypesDuration;
-  /** The number of shard copies that must be active before proceeding with the operation. Set to `all` or any positive integer up to the total number of shards in the index (`number_of_replicas+1`). */
-  wait_for_active_shards?: TypesWaitForActiveShards;
-  /** Aliases for the index. */
-  aliases?: IndicesCreateRequestAliasesMap;
-  /** Mapping for fields in the index. If specified, this mapping can include: - Field names - Field data types - Mapping parameters */
-  mappings?: TypesMappingTypeMapping;
-  /** Configuration options for the index. */
-  settings?: IndicesTypesIndexSettings;
-}
-export const IndicesCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    index: S.String.pipe(T.Label()),
-    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
-    timeout: S.optional(TypesDuration.pipe(T.Query())),
-    wait_for_active_shards: S.optional(
-      TypesWaitForActiveShards.pipe(T.Query()),
-    ),
-    aliases: S.optional(IndicesCreateRequestAliasesMap),
-    mappings: S.optional(TypesMappingTypeMapping),
-    settings: S.optional(IndicesTypesIndexSettings),
-  }).pipe(T.Http({ method: "PUT", uri: "/{index}", code: 200 })),
-).annotate({
-  identifier: "IndicesCreateRequest",
-}) as any as S.Schema<IndicesCreateRequest>;
-
-export interface IndicesCreateResponse {
-  index: string;
-  shards_acknowledged: boolean;
-  acknowledged: boolean;
-}
-export const IndicesCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    index: S.String,
-    shards_acknowledged: S.Boolean,
-    acknowledged: S.Boolean,
-  }),
-).annotate({
-  identifier: "IndicesCreateResponse",
-}) as any as S.Schema<IndicesCreateResponse>;
 
 export interface IndicesCreateDataStreamRequest {
   /** Name of the data stream, which must meet the following criteria: Lowercase only; Cannot include `\`, `/`, `*`, `?`, `"`, `<`, `>`, `|`, `,`, `#`, `:`, or a space character; Cannot start with `-`, `_`, `+`, or `.ds-`; Cannot be `.` or `..`; Cannot be longer than 255 bytes. Multi-byte characters count towards this limit faster. */
@@ -45594,47 +46075,6 @@ export const IndicesDataStreamsStats1Response = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "IndicesDataStreamsStats1Response",
 }) as any as S.Schema<IndicesDataStreamsStats1Response>;
-
-export interface IndicesDeleteRequest {
-  /** Comma-separated list of indices to delete. You cannot specify index aliases. By default, this parameter does not support wildcards (`*`) or `_all`. To use wildcards or `_all`, set the `action.destructive_requires_name` cluster setting to `false`. */
-  index: string;
-  /** A setting that does two separate checks on the index expression. If `false`, the request returns an error (1) if any wildcard expression (including `_all` and `*`) resolves to zero matching indices or (2) if the complete set of resolved indices, aliases or data streams is empty after all expressions are evaluated. If `true`, index expressions that resolve to no indices are allowed and the request returns an empty result. */
-  allow_no_indices?: boolean;
-  /** Type of index that wildcard patterns can match. If the request can target data streams, this argument determines whether wildcard expressions match hidden data streams. Supports comma-separated values, such as `open,hidden`. */
-  expand_wildcards?: TypesExpandWildcards;
-  /** If `false`, the request returns an error if it targets a concrete (non-wildcarded) index, alias, or data stream that is missing, closed, or otherwise unavailable. If `true`, unavailable concrete targets are silently ignored. */
-  ignore_unavailable?: boolean;
-  /** Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error. */
-  master_timeout?: TypesDuration;
-  /** Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error. */
-  timeout?: TypesDuration;
-}
-export const IndicesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    index: S.String.pipe(T.Label()),
-    allow_no_indices: S.optional(S.Boolean.pipe(T.Query())),
-    expand_wildcards: S.optional(TypesExpandWildcards.pipe(T.Query())),
-    ignore_unavailable: S.optional(S.Boolean.pipe(T.Query())),
-    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
-    timeout: S.optional(TypesDuration.pipe(T.Query())),
-  }).pipe(T.Http({ method: "DELETE", uri: "/{index}", code: 200 })),
-).annotate({
-  identifier: "IndicesDeleteRequest",
-}) as any as S.Schema<IndicesDeleteRequest>;
-
-export interface IndicesDeleteResponse {
-  /** For a successful response, this value is always true. On failure, an exception is returned instead. */
-  acknowledged: boolean;
-  _shards?: TypesShardStatistics;
-}
-export const IndicesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    acknowledged: S.Boolean,
-    _shards: S.optional(TypesShardStatistics),
-  }),
-).annotate({
-  identifier: "IndicesDeleteResponse",
-}) as any as S.Schema<IndicesDeleteResponse>;
 
 export interface IndicesDeleteAliasRequest {
   /** Comma-separated list of data streams or indices used to limit the request. Supports wildcards (`*`). */
@@ -45979,30 +46419,6 @@ export const IndicesFieldUsageStatsFieldsUsageBody = /*@__PURE__*/ S.suspend(
   identifier: "IndicesFieldUsageStatsFieldsUsageBody",
 }) as any as S.Schema<IndicesFieldUsageStatsFieldsUsageBody>;
 
-export interface IndicesFlushRequest {
-  /** A setting that does two separate checks on the index expression. If `false`, the request returns an error (1) if any wildcard expression (including `_all` and `*`) resolves to zero matching indices or (2) if the complete set of resolved indices, aliases or data streams is empty after all expressions are evaluated. If `true`, index expressions that resolve to no indices are allowed and the request returns an empty result. */
-  allow_no_indices?: boolean;
-  /** Type of index that wildcard patterns can match. If the request can target data streams, this argument determines whether wildcard expressions match hidden data streams. Supports comma-separated values, such as `open,hidden`. */
-  expand_wildcards?: TypesExpandWildcards;
-  /** If `true`, the request forces a flush even if there are no changes to commit to the index. */
-  force?: boolean;
-  /** If `false`, the request returns an error if it targets a concrete (non-wildcarded) index, alias, or data stream that is missing, closed, or otherwise unavailable. If `true`, unavailable concrete targets are silently ignored. */
-  ignore_unavailable?: boolean;
-  /** If `true`, the flush operation blocks until execution when another flush operation is running. If `false`, Elasticsearch returns an error if you request a flush when another flush operation is running. */
-  wait_if_ongoing?: boolean;
-}
-export const IndicesFlushRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    allow_no_indices: S.optional(S.Boolean.pipe(T.Query())),
-    expand_wildcards: S.optional(TypesExpandWildcards.pipe(T.Query())),
-    force: S.optional(S.Boolean.pipe(T.Query())),
-    ignore_unavailable: S.optional(S.Boolean.pipe(T.Query())),
-    wait_if_ongoing: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(T.Http({ method: "POST", uri: "/_flush", code: 200 })),
-).annotate({
-  identifier: "IndicesFlushRequest",
-}) as any as S.Schema<IndicesFlushRequest>;
-
 export interface IndicesFlush1Request {
   /** A setting that does two separate checks on the index expression. If `false`, the request returns an error (1) if any wildcard expression (including `_all` and `*`) resolves to zero matching indices or (2) if the complete set of resolved indices, aliases or data streams is empty after all expressions are evaluated. If `true`, index expressions that resolve to no indices are allowed and the request returns an empty result. */
   allow_no_indices?: boolean;
@@ -46171,104 +46587,6 @@ export const IndicesForcemerge1Response = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "IndicesForcemerge1Response",
 }) as any as S.Schema<IndicesForcemerge1Response>;
-
-export type IndicesGetFeature = "aliases" | "mappings" | "settings";
-export const IndicesGetFeature = /*@__PURE__*/ S.String;
-
-export type IndicesGetFeaturesCase1List = Array<
-  IndicesGetFeature | (string & {})
->;
-export const IndicesGetFeaturesCase1List = /*@__PURE__*/ S.Array(
-  IndicesGetFeature,
-) as any as S.Schema<IndicesGetFeaturesCase1List>;
-
-export type IndicesGetFeatures =
-  | IndicesGetFeature
-  | IndicesGetFeaturesCase1List;
-export const IndicesGetFeatures =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesGetFeatures>;
-
-export interface IndicesGetRequest {
-  /** Comma-separated list of data streams, indices, and index aliases used to limit the request. Wildcard expressions (*) are supported. */
-  index: string;
-  /** A setting that does two separate checks on the index expression. If `false`, the request returns an error (1) if any wildcard expression (including `_all` and `*`) resolves to zero matching indices or (2) if the complete set of resolved indices, aliases or data streams is empty after all expressions are evaluated. If `true`, index expressions that resolve to no indices are allowed and the request returns an empty result. */
-  allow_no_indices?: boolean;
-  /** Type of index that wildcard expressions can match. If the request can target data streams, this argument determines whether wildcard expressions match hidden data streams. Supports comma-separated values, such as open,hidden. */
-  expand_wildcards?: TypesExpandWildcards;
-  /** If true, returns settings in flat format. */
-  flat_settings?: boolean;
-  /** If `false`, the request returns an error if it targets a concrete (non-wildcarded) index, alias, or data stream that is missing, closed, or otherwise unavailable. If `true`, unavailable concrete targets are silently ignored. */
-  ignore_unavailable?: boolean;
-  /** If true, return all default settings in the response. */
-  include_defaults?: boolean;
-  /** If true, the request retrieves information from the local node only. Defaults to false, which means information is retrieved from the master node. */
-  local?: boolean;
-  /** Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error. */
-  master_timeout?: TypesDuration;
-  /** Return only information on specified index features */
-  features?: IndicesGetFeatures;
-}
-export const IndicesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    index: S.String.pipe(T.Label()),
-    allow_no_indices: S.optional(S.Boolean.pipe(T.Query())),
-    expand_wildcards: S.optional(TypesExpandWildcards.pipe(T.Query())),
-    flat_settings: S.optional(S.Boolean.pipe(T.Query())),
-    ignore_unavailable: S.optional(S.Boolean.pipe(T.Query())),
-    include_defaults: S.optional(S.Boolean.pipe(T.Query())),
-    local: S.optional(S.Boolean.pipe(T.Query())),
-    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
-    features: S.optional(IndicesGetFeatures.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/{index}", code: 200 })),
-).annotate({
-  identifier: "IndicesGetRequest",
-}) as any as S.Schema<IndicesGetRequest>;
-
-export type IndicesTypesIndexStateAliasesMap = {
-  [key: string]: IndicesTypesAlias | undefined;
-};
-export const IndicesTypesIndexStateAliasesMap = /*@__PURE__*/ S.Record(
-  S.String,
-  IndicesTypesAlias,
-) as any as S.Schema<IndicesTypesIndexStateAliasesMap>;
-
-export interface IndicesTypesIndexState {
-  aliases?: IndicesTypesIndexStateAliasesMap;
-  mappings?: TypesMappingTypeMapping;
-  settings?: IndicesTypesIndexSettings;
-  /** Default settings, included when the request's `include_default` is `true`. */
-  defaults?: IndicesTypesIndexSettings;
-  data_stream?: string;
-  /** Data stream lifecycle applicable if this is a data stream. */
-  lifecycle?: IndicesTypesDataStreamLifecycle;
-}
-export const IndicesTypesIndexState = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    aliases: S.optional(IndicesTypesIndexStateAliasesMap),
-    mappings: S.optional(TypesMappingTypeMapping),
-    settings: S.optional(IndicesTypesIndexSettings),
-    defaults: S.optional(IndicesTypesIndexSettings),
-    data_stream: S.optional(S.String),
-    lifecycle: S.optional(IndicesTypesDataStreamLifecycle),
-  }),
-).annotate({
-  identifier: "IndicesTypesIndexState",
-}) as any as S.Schema<IndicesTypesIndexState>;
-
-export type IndicesGetResponseBodyMap = {
-  [key: string]: IndicesTypesIndexState | undefined;
-};
-export const IndicesGetResponseBodyMap = /*@__PURE__*/ S.Record(
-  S.String,
-  IndicesTypesIndexState,
-) as any as S.Schema<IndicesGetResponseBodyMap>;
-
-export type IndicesGetResponse = IndicesGetResponseBodyMap;
-export const IndicesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  IndicesGetResponseBodyMap.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "IndicesGetResponse",
-}) as any as S.Schema<IndicesGetResponse>;
 
 export interface IndicesGetAliasRequest {
   /** A setting that does two separate checks on the index expression. If `false`, the request returns an error (1) if any wildcard expression (including `_all` and `*`) resolves to zero matching indices or (2) if the complete set of resolved indices, aliases or data streams is empty after all expressions are evaluated. If `true`, index expressions that resolve to no indices are allowed and the request returns an empty result. */
@@ -49663,24 +49981,6 @@ export const IndicesRecovery1Response = /*@__PURE__*/ S.suspend(() =>
   identifier: "IndicesRecovery1Response",
 }) as any as S.Schema<IndicesRecovery1Response>;
 
-export interface IndicesRefreshRequest {
-  /** A setting that does two separate checks on the index expression. If `false`, the request returns an error (1) if any wildcard expression (including `_all` and `*`) resolves to zero matching indices or (2) if the complete set of resolved indices, aliases or data streams is empty after all expressions are evaluated. If `true`, index expressions that resolve to no indices are allowed and the request returns an empty result. */
-  allow_no_indices?: boolean;
-  /** Type of index that wildcard patterns can match. If the request can target data streams, this argument determines whether wildcard expressions match hidden data streams. Supports comma-separated values, such as `open,hidden`. */
-  expand_wildcards?: TypesExpandWildcards;
-  /** If `false`, the request returns an error if it targets a concrete (non-wildcarded) index, alias, or data stream that is missing, closed, or otherwise unavailable. If `true`, unavailable concrete targets are silently ignored. */
-  ignore_unavailable?: boolean;
-}
-export const IndicesRefreshRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    allow_no_indices: S.optional(S.Boolean.pipe(T.Query())),
-    expand_wildcards: S.optional(TypesExpandWildcards.pipe(T.Query())),
-    ignore_unavailable: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(T.Http({ method: "POST", uri: "/_refresh", code: 200 })),
-).annotate({
-  identifier: "IndicesRefreshRequest",
-}) as any as S.Schema<IndicesRefreshRequest>;
-
 export interface IndicesRefresh1Request {
   /** A setting that does two separate checks on the index expression. If `false`, the request returns an error (1) if any wildcard expression (including `_all` and `*`) resolves to zero matching indices or (2) if the complete set of resolved indices, aliases or data streams is empty after all expressions are evaluated. If `true`, index expressions that resolve to no indices are allowed and the request returns an empty result. */
   allow_no_indices?: boolean;
@@ -50058,137 +50358,6 @@ export const IndicesResolveCluster1Response = /*@__PURE__*/ S.suspend(() =>
   identifier: "IndicesResolveCluster1Response",
 }) as any as S.Schema<IndicesResolveCluster1Response>;
 
-export type IndicesResolveIndexRequestModeCase1List = Array<
-  IndicesTypesIndexMode | (string & {})
->;
-export const IndicesResolveIndexRequestModeCase1List = /*@__PURE__*/ S.Array(
-  IndicesTypesIndexMode,
-) as any as S.Schema<IndicesResolveIndexRequestModeCase1List>;
-
-export type IndicesResolveIndexRequestMode =
-  | IndicesTypesIndexMode
-  | IndicesResolveIndexRequestModeCase1List;
-export const IndicesResolveIndexRequestMode =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesResolveIndexRequestMode>;
-
-export interface IndicesResolveIndexRequest {
-  /** Comma-separated name(s) or index pattern(s) of the indices, aliases, and data streams to resolve. Resources on remote clusters can be specified using the `<cluster>`:`<name>` syntax. */
-  name: string;
-  /** Type of index that wildcard patterns can match. If the request can target data streams, this argument determines whether wildcard expressions match hidden data streams. Supports comma-separated values, such as `open,hidden`. */
-  expand_wildcards?: TypesExpandWildcards;
-  /** If `false`, the request returns an error if it targets a concrete (non-wildcarded) index, alias, or data stream that is missing, closed, or otherwise unavailable. If `true`, unavailable concrete targets are silently ignored. */
-  ignore_unavailable?: boolean;
-  /** A setting that does two separate checks on the index expression. If `false`, the request returns an error (1) if any wildcard expression (including `_all` and `*`) resolves to zero matching indices or (2) if the complete set of resolved indices, aliases or data streams is empty after all expressions are evaluated. If `true`, index expressions that resolve to no indices are allowed and the request returns an empty result. */
-  allow_no_indices?: boolean;
-  /** Filter indices by index mode - standard, lookup, time_series, etc. Comma-separated list of IndexMode. Empty means no filter. */
-  mode?: IndicesResolveIndexRequestMode;
-}
-export const IndicesResolveIndexRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String.pipe(T.Label()),
-    expand_wildcards: S.optional(TypesExpandWildcards.pipe(T.Query())),
-    ignore_unavailable: S.optional(S.Boolean.pipe(T.Query())),
-    allow_no_indices: S.optional(S.Boolean.pipe(T.Query())),
-    mode: S.optional(IndicesResolveIndexRequestMode.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/_resolve/index/{name}", code: 200 })),
-).annotate({
-  identifier: "IndicesResolveIndexRequest",
-}) as any as S.Schema<IndicesResolveIndexRequest>;
-
-export type IndicesResolveIndexResolveIndexItemAliasesList = Array<string>;
-export const IndicesResolveIndexResolveIndexItemAliasesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<IndicesResolveIndexResolveIndexItemAliasesList>;
-
-export type IndicesResolveIndexResolveIndexItemAttributesList = Array<string>;
-export const IndicesResolveIndexResolveIndexItemAttributesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<IndicesResolveIndexResolveIndexItemAttributesList>;
-
-export interface IndicesResolveIndexResolveIndexItem {
-  name: string;
-  aliases?: IndicesResolveIndexResolveIndexItemAliasesList;
-  attributes: IndicesResolveIndexResolveIndexItemAttributesList;
-  data_stream?: string;
-  mode?: IndicesTypesIndexMode;
-}
-export const IndicesResolveIndexResolveIndexItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    aliases: S.optional(IndicesResolveIndexResolveIndexItemAliasesList),
-    attributes: IndicesResolveIndexResolveIndexItemAttributesList,
-    data_stream: S.optional(S.String),
-    mode: S.optional(IndicesTypesIndexMode),
-  }),
-).annotate({
-  identifier: "IndicesResolveIndexResolveIndexItem",
-}) as any as S.Schema<IndicesResolveIndexResolveIndexItem>;
-
-export type IndicesResolveIndexResponseIndicesList =
-  Array<IndicesResolveIndexResolveIndexItem>;
-export const IndicesResolveIndexResponseIndicesList = /*@__PURE__*/ S.Array(
-  IndicesResolveIndexResolveIndexItem,
-) as any as S.Schema<IndicesResolveIndexResponseIndicesList>;
-
-export interface IndicesResolveIndexResolveIndexAliasItem {
-  name: string;
-  indices: TypesIndices;
-}
-export const IndicesResolveIndexResolveIndexAliasItem = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      name: S.String,
-      indices: TypesIndices,
-    }),
-).annotate({
-  identifier: "IndicesResolveIndexResolveIndexAliasItem",
-}) as any as S.Schema<IndicesResolveIndexResolveIndexAliasItem>;
-
-export type IndicesResolveIndexResponseAliasesList =
-  Array<IndicesResolveIndexResolveIndexAliasItem>;
-export const IndicesResolveIndexResponseAliasesList = /*@__PURE__*/ S.Array(
-  IndicesResolveIndexResolveIndexAliasItem,
-) as any as S.Schema<IndicesResolveIndexResponseAliasesList>;
-
-export interface IndicesResolveIndexResolveIndexDataStreamsItem {
-  name: string;
-  timestamp_field: string;
-  backing_indices: TypesIndices;
-}
-export const IndicesResolveIndexResolveIndexDataStreamsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      name: S.String,
-      timestamp_field: S.String,
-      backing_indices: TypesIndices,
-    }),
-  ).annotate({
-    identifier: "IndicesResolveIndexResolveIndexDataStreamsItem",
-  }) as any as S.Schema<IndicesResolveIndexResolveIndexDataStreamsItem>;
-
-export type IndicesResolveIndexResponseDataStreamsList =
-  Array<IndicesResolveIndexResolveIndexDataStreamsItem>;
-export const IndicesResolveIndexResponseDataStreamsList = /*@__PURE__*/ S.Array(
-  IndicesResolveIndexResolveIndexDataStreamsItem,
-) as any as S.Schema<IndicesResolveIndexResponseDataStreamsList>;
-
-export interface IndicesResolveIndexResponse {
-  indices: IndicesResolveIndexResponseIndicesList;
-  aliases: IndicesResolveIndexResponseAliasesList;
-  data_streams: IndicesResolveIndexResponseDataStreamsList;
-}
-export const IndicesResolveIndexResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    indices: IndicesResolveIndexResponseIndicesList,
-    aliases: IndicesResolveIndexResponseAliasesList,
-    data_streams: IndicesResolveIndexResponseDataStreamsList,
-  }),
-).annotate({
-  identifier: "IndicesResolveIndexResponse",
-}) as any as S.Schema<IndicesResolveIndexResponse>;
-
 export type IndicesResolveIndex1RequestModeCase1List = Array<
   IndicesTypesIndexMode | (string & {})
 >;
@@ -50226,17 +50395,78 @@ export const IndicesResolveIndex1Request = /*@__PURE__*/ S.suspend(() =>
   identifier: "IndicesResolveIndex1Request",
 }) as any as S.Schema<IndicesResolveIndex1Request>;
 
+export type IndicesResolveIndexResolveIndexItemAliasesList = Array<string>;
+export const IndicesResolveIndexResolveIndexItemAliasesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<IndicesResolveIndexResolveIndexItemAliasesList>;
+
+export type IndicesResolveIndexResolveIndexItemAttributesList = Array<string>;
+export const IndicesResolveIndexResolveIndexItemAttributesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<IndicesResolveIndexResolveIndexItemAttributesList>;
+
+export interface IndicesResolveIndexResolveIndexItem {
+  name: string;
+  aliases?: IndicesResolveIndexResolveIndexItemAliasesList;
+  attributes: IndicesResolveIndexResolveIndexItemAttributesList;
+  data_stream?: string;
+  mode?: IndicesTypesIndexMode;
+}
+export const IndicesResolveIndexResolveIndexItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    aliases: S.optional(IndicesResolveIndexResolveIndexItemAliasesList),
+    attributes: IndicesResolveIndexResolveIndexItemAttributesList,
+    data_stream: S.optional(S.String),
+    mode: S.optional(IndicesTypesIndexMode),
+  }),
+).annotate({
+  identifier: "IndicesResolveIndexResolveIndexItem",
+}) as any as S.Schema<IndicesResolveIndexResolveIndexItem>;
+
 export type IndicesResolveIndex1ResponseIndicesList =
   Array<IndicesResolveIndexResolveIndexItem>;
 export const IndicesResolveIndex1ResponseIndicesList = /*@__PURE__*/ S.Array(
   IndicesResolveIndexResolveIndexItem,
 ) as any as S.Schema<IndicesResolveIndex1ResponseIndicesList>;
 
+export interface IndicesResolveIndexResolveIndexAliasItem {
+  name: string;
+  indices: TypesIndices;
+}
+export const IndicesResolveIndexResolveIndexAliasItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      name: S.String,
+      indices: TypesIndices,
+    }),
+).annotate({
+  identifier: "IndicesResolveIndexResolveIndexAliasItem",
+}) as any as S.Schema<IndicesResolveIndexResolveIndexAliasItem>;
+
 export type IndicesResolveIndex1ResponseAliasesList =
   Array<IndicesResolveIndexResolveIndexAliasItem>;
 export const IndicesResolveIndex1ResponseAliasesList = /*@__PURE__*/ S.Array(
   IndicesResolveIndexResolveIndexAliasItem,
 ) as any as S.Schema<IndicesResolveIndex1ResponseAliasesList>;
+
+export interface IndicesResolveIndexResolveIndexDataStreamsItem {
+  name: string;
+  timestamp_field: string;
+  backing_indices: TypesIndices;
+}
+export const IndicesResolveIndexResolveIndexDataStreamsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      name: S.String,
+      timestamp_field: S.String,
+      backing_indices: TypesIndices,
+    }),
+  ).annotate({
+    identifier: "IndicesResolveIndexResolveIndexDataStreamsItem",
+  }) as any as S.Schema<IndicesResolveIndexResolveIndexDataStreamsItem>;
 
 export type IndicesResolveIndex1ResponseDataStreamsList =
   Array<IndicesResolveIndexResolveIndexDataStreamsItem>;
@@ -53481,45 +53711,6 @@ export const InferenceTypesCompletionInferenceResult = /*@__PURE__*/ S.suspend(
   identifier: "InferenceTypesCompletionInferenceResult",
 }) as any as S.Schema<InferenceTypesCompletionInferenceResult>;
 
-export interface InferenceDeleteRequest {
-  /** The inference identifier. */
-  inference_id: string;
-  /** When true, checks the semantic_text fields and inference processors that reference the endpoint and returns them in a list, but does not delete the endpoint. */
-  dry_run?: boolean;
-  /** When true, the inference endpoint is forcefully deleted even if it is still being used by ingest processors or semantic text fields. */
-  force?: boolean;
-}
-export const InferenceDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    inference_id: S.String.pipe(T.Label()),
-    dry_run: S.optional(S.Boolean.pipe(T.Query())),
-    force: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(
-    T.Http({ method: "DELETE", uri: "/_inference/{inference_id}", code: 200 }),
-  ),
-).annotate({
-  identifier: "InferenceDeleteRequest",
-}) as any as S.Schema<InferenceDeleteRequest>;
-
-export type InferenceDeleteResponsePipelinesList = Array<string>;
-export const InferenceDeleteResponsePipelinesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<InferenceDeleteResponsePipelinesList>;
-
-export interface InferenceDeleteResponse {
-  /** For a successful response, this value is always true. On failure, an exception is returned instead. */
-  acknowledged: boolean;
-  pipelines: InferenceDeleteResponsePipelinesList;
-}
-export const InferenceDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    acknowledged: S.Boolean,
-    pipelines: InferenceDeleteResponsePipelinesList,
-  }),
-).annotate({
-  identifier: "InferenceDeleteResponse",
-}) as any as S.Schema<InferenceDeleteResponse>;
-
 export type InferenceDelete1RequestTaskType =
   | "sparse_embedding"
   | "text_embedding"
@@ -53776,106 +53967,6 @@ export const InferenceTypesEmbeddingInferenceResult = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "InferenceTypesEmbeddingInferenceResult",
 }) as any as S.Schema<InferenceTypesEmbeddingInferenceResult>;
-
-export interface InferenceGetRequest {}
-export const InferenceGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(T.Http({ method: "GET", uri: "/_inference", code: 200 })),
-).annotate({
-  identifier: "InferenceGetRequest",
-}) as any as S.Schema<InferenceGetRequest>;
-
-/** Only applicable to the `recursive` strategy and required when using it. A list of strings used as possible split points when chunking text. Each string can be a plain string or a regular expression (regex) pattern. The system tries each separator in order to split the text, starting from the first item in the list. After splitting, it attempts to recombine smaller pieces into larger chunks that stay within the `max_chunk_size` limit, to reduce the total number of chunks generated. */
-export type InferenceTypesInferenceChunkingSettingsSeparatorsList =
-  Array<string>;
-export const InferenceTypesInferenceChunkingSettingsSeparatorsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<InferenceTypesInferenceChunkingSettingsSeparatorsList>;
-
-/** Chunking configuration object */
-export interface InferenceTypesInferenceChunkingSettings {
-  /** The maximum size of a chunk in words. This value cannot be lower than `20` (for `sentence` strategy) or `10` (for `word` strategy). This value should not exceed the window size for the associated model. */
-  max_chunk_size?: number;
-  /** The number of overlapping words for chunks. It is applicable only to a `word` chunking strategy. This value cannot be higher than half the `max_chunk_size` value. */
-  overlap?: number;
-  /** The number of overlapping sentences for chunks. It is applicable only for a `sentence` chunking strategy. It can be either `1` or `0`. */
-  sentence_overlap?: number;
-  /** Only applicable to the `recursive` strategy and required when using it. Sets a predefined list of separators in the saved chunking settings based on the selected text type. Values can be `markdown` or `plaintext`. Using this parameter is an alternative to manually specifying a custom `separators` list. */
-  separator_group?: string;
-  /** Only applicable to the `recursive` strategy and required when using it. A list of strings used as possible split points when chunking text. Each string can be a plain string or a regular expression (regex) pattern. The system tries each separator in order to split the text, starting from the first item in the list. After splitting, it attempts to recombine smaller pieces into larger chunks that stay within the `max_chunk_size` limit, to reduce the total number of chunks generated. */
-  separators?: InferenceTypesInferenceChunkingSettingsSeparatorsList;
-  /** The chunking strategy: `sentence`, `word`, `none` or `recursive`. * If `strategy` is set to `recursive`, you must also specify: - `max_chunk_size` - either `separators` or`separator_group` Learn more about different chunking strategies in the linked documentation. */
-  strategy?: string;
-}
-export const InferenceTypesInferenceChunkingSettings = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      max_chunk_size: S.optional(S.Number),
-      overlap: S.optional(S.Number),
-      sentence_overlap: S.optional(S.Number),
-      separator_group: S.optional(S.String),
-      separators: S.optional(
-        InferenceTypesInferenceChunkingSettingsSeparatorsList,
-      ),
-      strategy: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "InferenceTypesInferenceChunkingSettings",
-}) as any as S.Schema<InferenceTypesInferenceChunkingSettings>;
-
-export type InferenceTypesTaskType =
-  | "sparse_embedding"
-  | "text_embedding"
-  | "rerank"
-  | "completion"
-  | "chat_completion"
-  | "embedding";
-export const InferenceTypesTaskType = /*@__PURE__*/ S.String;
-
-/** Represents an inference endpoint as returned by the GET API */
-export interface InferenceTypesInferenceEndpointInfo {
-  /** The chunking configuration object. Applies only to the `embedding`, `sparse_embedding` and `text_embedding` task types. Not applicable to the `rerank`, `completion`, or `chat_completion` task types. */
-  chunking_settings?: InferenceTypesInferenceChunkingSettings;
-  /** The service type */
-  service: string;
-  /** Settings specific to the service */
-  service_settings: unknown;
-  /** Task settings specific to the service and task type */
-  task_settings?: unknown;
-  /** The inference Id */
-  inference_id: string;
-  /** The task type */
-  task_type: InferenceTypesTaskType;
-}
-export const InferenceTypesInferenceEndpointInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    chunking_settings: S.optional(InferenceTypesInferenceChunkingSettings),
-    service: S.String,
-    service_settings: S.Unknown,
-    task_settings: S.optional(S.Unknown),
-    inference_id: S.String,
-    task_type: InferenceTypesTaskType,
-  }),
-).annotate({
-  identifier: "InferenceTypesInferenceEndpointInfo",
-}) as any as S.Schema<InferenceTypesInferenceEndpointInfo>;
-
-export type InferenceGetResponseEndpointsList =
-  Array<InferenceTypesInferenceEndpointInfo>;
-export const InferenceGetResponseEndpointsList = /*@__PURE__*/ S.Array(
-  InferenceTypesInferenceEndpointInfo,
-) as any as S.Schema<InferenceGetResponseEndpointsList>;
-
-export interface InferenceGetResponse {
-  endpoints: InferenceGetResponseEndpointsList;
-}
-export const InferenceGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    endpoints: InferenceGetResponseEndpointsList,
-  }),
-).annotate({
-  identifier: "InferenceGetResponse",
-}) as any as S.Schema<InferenceGetResponse>;
 
 export interface InferenceGet1Request {
   /** The inference Id of the endpoint to return. Using `_all` or `*` will return all endpoints with the specified `task_type` if one is specified, or all endpoints for all task types if no `task_type` is specified */
@@ -54308,62 +54399,6 @@ export const InferenceInference1Request = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "InferenceInference1Request",
 }) as any as S.Schema<InferenceInference1Request>;
-
-export interface InferencePutRequest {
-  /** The inference Id */
-  inference_id: string;
-  /** Specifies the amount of time to wait for the inference endpoint to be created. The default depends on the task type: 120s for `completion` and `chat_completion`, and 30s for all other task types. */
-  timeout?: TypesDuration;
-  /** The chunking configuration object. Applies only to the `embedding`, `sparse_embedding` and `text_embedding` task types. Not applicable to the `rerank`, `completion`, or `chat_completion` task types. */
-  chunking_settings?: InferenceTypesInferenceChunkingSettings;
-  /** The service type */
-  service: string;
-  /** Settings specific to the service */
-  service_settings: unknown;
-  /** Task settings specific to the service and task type */
-  task_settings?: unknown;
-}
-export const InferencePutRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    inference_id: S.String.pipe(T.Label()),
-    timeout: S.optional(TypesDuration.pipe(T.Query())),
-    chunking_settings: S.optional(InferenceTypesInferenceChunkingSettings),
-    service: S.String,
-    service_settings: S.Unknown,
-    task_settings: S.optional(S.Unknown),
-  }).pipe(
-    T.Http({ method: "PUT", uri: "/_inference/{inference_id}", code: 200 }),
-  ),
-).annotate({
-  identifier: "InferencePutRequest",
-}) as any as S.Schema<InferencePutRequest>;
-
-export interface InferencePutResponse {
-  /** The chunking configuration object. Applies only to the `embedding`, `sparse_embedding` and `text_embedding` task types. Not applicable to the `rerank`, `completion`, or `chat_completion` task types. */
-  chunking_settings?: InferenceTypesInferenceChunkingSettings;
-  /** The service type */
-  service: string;
-  /** Settings specific to the service */
-  service_settings: unknown;
-  /** Task settings specific to the service and task type */
-  task_settings?: unknown;
-  /** The inference Id */
-  inference_id: string;
-  /** The task type */
-  task_type: InferenceTypesTaskType;
-}
-export const InferencePutResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    chunking_settings: S.optional(InferenceTypesInferenceChunkingSettings),
-    service: S.String,
-    service_settings: S.Unknown,
-    task_settings: S.optional(S.Unknown),
-    inference_id: S.String,
-    task_type: InferenceTypesTaskType,
-  }),
-).annotate({
-  identifier: "InferencePutResponse",
-}) as any as S.Schema<InferencePutResponse>;
 
 export type InferencePut1RequestTaskType =
   | "sparse_embedding"
@@ -57951,66 +57986,6 @@ export const InferenceTypesTextEmbeddingInferenceResult =
   ).annotate({
     identifier: "InferenceTypesTextEmbeddingInferenceResult",
   }) as any as S.Schema<InferenceTypesTextEmbeddingInferenceResult>;
-
-export interface InferenceUpdateRequest {
-  /** The unique identifier of the inference endpoint. */
-  inference_id: string;
-  /** Specifies the amount of time to wait for the inference endpoint to be updated. The default depends on the task type: 120s for `completion` and `chat_completion`, and 30s for all other task types. */
-  timeout?: TypesDuration;
-  /** The chunking configuration object. Applies only to the `embedding`, `sparse_embedding` and `text_embedding` task types. Not applicable to the `rerank`, `completion`, or `chat_completion` task types. */
-  chunking_settings?: InferenceTypesInferenceChunkingSettings;
-  /** The service type */
-  service: string;
-  /** Settings specific to the service */
-  service_settings: unknown;
-  /** Task settings specific to the service and task type */
-  task_settings?: unknown;
-}
-export const InferenceUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    inference_id: S.String.pipe(T.Label()),
-    timeout: S.optional(TypesDuration.pipe(T.Query())),
-    chunking_settings: S.optional(InferenceTypesInferenceChunkingSettings),
-    service: S.String,
-    service_settings: S.Unknown,
-    task_settings: S.optional(S.Unknown),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/_inference/{inference_id}/_update",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "InferenceUpdateRequest",
-}) as any as S.Schema<InferenceUpdateRequest>;
-
-export interface InferenceUpdateResponse {
-  /** The chunking configuration object. Applies only to the `embedding`, `sparse_embedding` and `text_embedding` task types. Not applicable to the `rerank`, `completion`, or `chat_completion` task types. */
-  chunking_settings?: InferenceTypesInferenceChunkingSettings;
-  /** The service type */
-  service: string;
-  /** Settings specific to the service */
-  service_settings: unknown;
-  /** Task settings specific to the service and task type */
-  task_settings?: unknown;
-  /** The inference Id */
-  inference_id: string;
-  /** The task type */
-  task_type: InferenceTypesTaskType;
-}
-export const InferenceUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    chunking_settings: S.optional(InferenceTypesInferenceChunkingSettings),
-    service: S.String,
-    service_settings: S.Unknown,
-    task_settings: S.optional(S.Unknown),
-    inference_id: S.String,
-    task_type: InferenceTypesTaskType,
-  }),
-).annotate({
-  identifier: "InferenceUpdateResponse",
-}) as any as S.Schema<InferenceUpdateResponse>;
 
 export type InferenceUpdate1RequestTaskType =
   | "sparse_embedding"
@@ -61672,122 +61647,43 @@ export const IngestSimulate3Response = /*@__PURE__*/ S.suspend(() =>
   identifier: "IngestSimulate3Response",
 }) as any as S.Schema<IngestSimulate3Response>;
 
-export interface LicenseDeleteRequest {
-  /** The period to wait for a connection to the master node. */
-  master_timeout?: TypesDuration;
-  /** The period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error. */
-  timeout?: TypesDuration;
+export interface InvalidateSecuritySamlRequest {
+  /** The Assertion Consumer Service URL that matches the one of the SAML realm in Elasticsearch that should be used. You must specify either this parameter or the `realm` parameter. */
+  acs?: string;
+  /** The query part of the URL that the user was redirected to by the SAML IdP to initiate the Single Logout. This query should include a single parameter named `SAMLRequest` that contains a SAML logout request that is deflated and Base64 encoded. If the SAML IdP has signed the logout request, the URL should include two extra parameters named `SigAlg` and `Signature` that contain the algorithm used for the signature and the signature value itself. In order for Elasticsearch to be able to verify the IdP's signature, the value of the `query_string` field must be an exact match to the string provided by the browser. The client application must not attempt to parse or process the string in any way. */
+  query_string: string;
+  /** The name of the SAML realm in Elasticsearch the configuration. You must specify either this parameter or the `acs` parameter. */
+  realm?: string;
 }
-export const LicenseDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const InvalidateSecuritySamlRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
-    timeout: S.optional(TypesDuration.pipe(T.Query())),
-  }).pipe(T.Http({ method: "DELETE", uri: "/_license", code: 200 })),
+    acs: S.optional(S.String),
+    query_string: S.String,
+    realm: S.optional(S.String),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/_security/saml/invalidate", code: 200 }),
+  ),
 ).annotate({
-  identifier: "LicenseDeleteRequest",
-}) as any as S.Schema<LicenseDeleteRequest>;
+  identifier: "InvalidateSecuritySamlRequest",
+}) as any as S.Schema<InvalidateSecuritySamlRequest>;
 
-export interface LicenseGetRequest {
-  /** If `true`, this parameter returns enterprise for Enterprise license types. If `false`, this parameter returns platinum for both platinum and enterprise license types. This behavior is maintained for backwards compatibility. This parameter is deprecated and will always be set to true in 8.x. */
-  accept_enterprise?: boolean;
-  /** Specifies whether to retrieve local information. From 9.2 onwards the default value is `true`, which means the information is retrieved from the responding node. In earlier versions the default is `false`, which means the information is retrieved from the elected master node. */
-  local?: boolean;
+export interface InvalidateSecuritySamlResponse {
+  /** The number of tokens that were invalidated as part of this logout. */
+  invalidated: number;
+  /** The realm name of the SAML realm in Elasticsearch that authenticated the user. */
+  realm: string;
+  /** A SAML logout response as a parameter so that the user can be redirected back to the SAML IdP. */
+  redirect: string;
 }
-export const LicenseGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const InvalidateSecuritySamlResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    accept_enterprise: S.optional(S.Boolean.pipe(T.Query())),
-    local: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/_license", code: 200 })),
-).annotate({
-  identifier: "LicenseGetRequest",
-}) as any as S.Schema<LicenseGetRequest>;
-
-/** The maximum number of nodes the license allows. */
-export type LicenseGetLicenseInformationMaxNodes = number | string;
-export const LicenseGetLicenseInformationMaxNodes =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LicenseGetLicenseInformationMaxNodes>;
-
-/** The maximum number of resource units the license allows (for enterprise licenses only). */
-export type LicenseGetLicenseInformationMaxResourceUnits = number | string;
-export const LicenseGetLicenseInformationMaxResourceUnits =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LicenseGetLicenseInformationMaxResourceUnits>;
-
-export type LicenseTypesLicenseStatus =
-  | "active"
-  | "valid"
-  | "invalid"
-  | "expired";
-export const LicenseTypesLicenseStatus = /*@__PURE__*/ S.String;
-
-export type LicenseTypesLicenseType =
-  | "missing"
-  | "trial"
-  | "basic"
-  | "standard"
-  | "dev"
-  | "silver"
-  | "gold"
-  | "platinum"
-  | "enterprise";
-export const LicenseTypesLicenseType = /*@__PURE__*/ S.String;
-
-export interface LicenseGetLicenseInformation {
-  /** The date and time the license expires in ISO 8601 format. */
-  expiry_date?: TypesDateTime;
-  /** The date and time the license expires in milliseconds since the Unix epoch. */
-  expiry_date_in_millis?: number;
-  /** The date and time the license was issued in ISO 8601 format. */
-  issue_date: TypesDateTime;
-  /** The date and time the license was issued in milliseconds since the Unix epoch. */
-  issue_date_in_millis: number;
-  /** The name of the customer or organization that received the license. */
-  issued_to: string;
-  /** The name of the organization that issued the license. */
-  issuer: string;
-  /** The maximum number of nodes the license allows. */
-  max_nodes: LicenseGetLicenseInformationMaxNodes;
-  /** The maximum number of resource units the license allows (for enterprise licenses only). */
-  max_resource_units?: LicenseGetLicenseInformationMaxResourceUnits;
-  /** The status of the license. For example,active, valid, invalid, or expired. */
-  status: LicenseTypesLicenseStatus;
-  /** The type of the license. For example, trial, basic, gold, platinum, or enterprise. */
-  type: LicenseTypesLicenseType;
-  /** The unique identifier of the license. */
-  uid: string;
-  /** The date and time the license was started in milliseconds since the Unix epoch. */
-  start_date_in_millis: number;
-}
-export const LicenseGetLicenseInformation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    expiry_date: S.optional(TypesDateTime),
-    expiry_date_in_millis: S.optional(S.Number),
-    issue_date: TypesDateTime,
-    issue_date_in_millis: S.Number,
-    issued_to: S.String,
-    issuer: S.String,
-    max_nodes: LicenseGetLicenseInformationMaxNodes,
-    max_resource_units: S.optional(
-      LicenseGetLicenseInformationMaxResourceUnits,
-    ),
-    status: LicenseTypesLicenseStatus,
-    type: LicenseTypesLicenseType,
-    uid: S.String,
-    start_date_in_millis: S.Number,
+    invalidated: S.Number,
+    realm: S.String,
+    redirect: S.String,
   }),
 ).annotate({
-  identifier: "LicenseGetLicenseInformation",
-}) as any as S.Schema<LicenseGetLicenseInformation>;
-
-export interface LicenseGetResponse {
-  license: LicenseGetLicenseInformation;
-}
-export const LicenseGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    license: LicenseGetLicenseInformation,
-  }),
-).annotate({
-  identifier: "LicenseGetResponse",
-}) as any as S.Schema<LicenseGetResponse>;
+  identifier: "InvalidateSecuritySamlResponse",
+}) as any as S.Schema<InvalidateSecuritySamlResponse>;
 
 export interface LicenseGetBasicStatusRequest {}
 export const LicenseGetBasicStatusRequest = /*@__PURE__*/ S.suspend(() =>
@@ -61863,68 +61759,6 @@ export const LicenseTypesLicense = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<LicenseTypesLicense>;
 
 /** A sequence of one or more JSON documents containing the license information. */
-export type LicensePostRequestLicensesList = Array<LicenseTypesLicense>;
-export const LicensePostRequestLicensesList = /*@__PURE__*/ S.Array(
-  LicenseTypesLicense,
-) as any as S.Schema<LicensePostRequestLicensesList>;
-
-export interface LicensePostRequest {
-  /** To update a license, you must accept the acknowledge messages and set this parameter to `true`. In particular, if you are upgrading or downgrading a license, you must acknowlege the feature changes. */
-  acknowledge?: boolean;
-  /** The period to wait for a connection to the master node. */
-  master_timeout?: TypesDuration;
-  /** The period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error. */
-  timeout?: TypesDuration;
-  license?: LicenseTypesLicense;
-  /** A sequence of one or more JSON documents containing the license information. */
-  licenses?: LicensePostRequestLicensesList;
-}
-export const LicensePostRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    acknowledge: S.optional(S.Boolean.pipe(T.Query())),
-    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
-    timeout: S.optional(TypesDuration.pipe(T.Query())),
-    license: S.optional(LicenseTypesLicense),
-    licenses: S.optional(LicensePostRequestLicensesList),
-  }).pipe(T.Http({ method: "PUT", uri: "/_license", code: 200 })),
-).annotate({
-  identifier: "LicensePostRequest",
-}) as any as S.Schema<LicensePostRequest>;
-
-export type LicensePostAcknowledgementLicenseList = Array<string>;
-export const LicensePostAcknowledgementLicenseList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<LicensePostAcknowledgementLicenseList>;
-
-export interface LicensePostAcknowledgement {
-  license: LicensePostAcknowledgementLicenseList;
-  message: string;
-}
-export const LicensePostAcknowledgement = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    license: LicensePostAcknowledgementLicenseList,
-    message: S.String,
-  }),
-).annotate({
-  identifier: "LicensePostAcknowledgement",
-}) as any as S.Schema<LicensePostAcknowledgement>;
-
-export interface LicensePostResponse {
-  acknowledge?: LicensePostAcknowledgement;
-  acknowledged: boolean;
-  license_status: LicenseTypesLicenseStatus;
-}
-export const LicensePostResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    acknowledge: S.optional(LicensePostAcknowledgement),
-    acknowledged: S.Boolean,
-    license_status: LicenseTypesLicenseStatus,
-  }),
-).annotate({
-  identifier: "LicensePostResponse",
-}) as any as S.Schema<LicensePostResponse>;
-
-/** A sequence of one or more JSON documents containing the license information. */
 export type LicensePost1RequestLicensesList = Array<LicenseTypesLicense>;
 export const LicensePost1RequestLicensesList = /*@__PURE__*/ S.Array(
   LicenseTypesLicense,
@@ -61952,6 +61786,24 @@ export const LicensePost1Request = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "LicensePost1Request",
 }) as any as S.Schema<LicensePost1Request>;
+
+export type LicensePostAcknowledgementLicenseList = Array<string>;
+export const LicensePostAcknowledgementLicenseList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<LicensePostAcknowledgementLicenseList>;
+
+export interface LicensePostAcknowledgement {
+  license: LicensePostAcknowledgementLicenseList;
+  message: string;
+}
+export const LicensePostAcknowledgement = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    license: LicensePostAcknowledgementLicenseList,
+    message: S.String,
+  }),
+).annotate({
+  identifier: "LicensePostAcknowledgement",
+}) as any as S.Schema<LicensePostAcknowledgement>;
 
 export interface LicensePost1Response {
   acknowledge?: LicensePostAcknowledgement;
@@ -62062,6 +61914,343 @@ export const LicensePostStartTrialResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "LicensePostStartTrialResponse",
 }) as any as S.Schema<LicensePostStartTrialResponse>;
 
+export type TypesOpType = "index" | "create";
+export const TypesOpType = /*@__PURE__*/ S.String;
+
+export interface ListRequest {
+  /** The name of the data stream or index to target. If the target doesn't exist and matches the name or wildcard (`*`) pattern of an index template with a `data_stream` definition, this request creates the data stream. If the target doesn't exist and doesn't match a data stream template, this request creates the index. You can check for existing targets with the resolve index API. */
+  index: string;
+  /** A unique identifier for the document. To automatically generate a document ID, use the `POST /<target>/_doc/` request format and omit this parameter. */
+  id: string;
+  /** Only perform the operation if the document has this primary term. */
+  if_primary_term?: number;
+  /** Only perform the operation if the document has this sequence number. */
+  if_seq_no?: number;
+  /** True or false if to include the document source in the error message in case of parsing errors. */
+  include_source_on_error?: boolean;
+  /** Set to `create` to only index the document if it does not already exist (put if absent). If a document with the specified `_id` already exists, the indexing operation will fail. The behavior is the same as using the `<index>/_create` endpoint. If a document ID is specified, this paramater defaults to `index`. Otherwise, it defaults to `create`. If the request targets a data stream, an `op_type` of `create` is required. */
+  op_type?: TypesOpType | (string & {});
+  /** The ID of the pipeline to use to preprocess incoming documents. If the index has a default ingest pipeline specified, then setting the value to `_none` disables the default ingest pipeline for this request. If a final pipeline is configured it will always run, regardless of the value of this parameter. */
+  pipeline?: string;
+  /** If `true`, Elasticsearch refreshes the affected shards to make this operation visible to search. If `wait_for`, it waits for a refresh to make this operation visible to search. If `false`, it does nothing with refreshes. */
+  refresh?: TypesRefresh | (string & {});
+  /** A custom value that is used to route operations to a specific shard. Not allowed when `index.slice.enabled` is `true` for the target index; use `_slice` instead. */
+  routing?: TypesRouting;
+  /** The period the request waits for the following operations: automatic index creation, dynamic mapping updates, waiting for active shards. This parameter is useful for situations where the primary shard assigned to perform the operation might not be available when the operation runs. Some reasons for this might be that the primary shard is currently recovering from a gateway or undergoing relocation. By default, the operation will wait on the primary shard to become available for at least 1 minute before failing and responding with an error. The actual wait time could be longer, particularly when multiple waits occur. */
+  timeout?: TypesDuration;
+  /** An explicit version number for concurrency control. It must be a non-negative long number. */
+  version?: number;
+  /** The version type. */
+  version_type?: TypesVersionType | (string & {});
+  /** The number of shard copies that must be active before proceeding with the operation. You can set it to `all` or any positive integer up to the total number of shards in the index (`number_of_replicas+1`). The default value of `1` means it waits for each primary shard to be active. */
+  wait_for_active_shards?: TypesWaitForActiveShards;
+  /** If `true`, the destination must be an index alias. */
+  require_alias?: boolean;
+  /** If `true`, the request's actions must target a data stream (existing or to be created). */
+  require_data_stream?: boolean;
+}
+export const ListRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    index: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    if_primary_term: S.optional(S.Number.pipe(T.Query())),
+    if_seq_no: S.optional(S.Number.pipe(T.Query())),
+    include_source_on_error: S.optional(S.Boolean.pipe(T.Query())),
+    op_type: S.optional(TypesOpType.pipe(T.Query())),
+    pipeline: S.optional(S.String.pipe(T.Query())),
+    refresh: S.optional(TypesRefresh.pipe(T.Query())),
+    routing: S.optional(TypesRouting.pipe(T.Query())),
+    timeout: S.optional(TypesDuration.pipe(T.Query())),
+    version: S.optional(S.Number.pipe(T.Query())),
+    version_type: S.optional(TypesVersionType.pipe(T.Query())),
+    wait_for_active_shards: S.optional(
+      TypesWaitForActiveShards.pipe(T.Query()),
+    ),
+    require_alias: S.optional(S.Boolean.pipe(T.Query())),
+    require_data_stream: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(T.Http({ method: "PUT", uri: "/{index}/_doc/{id}", code: 200 })),
+).annotate({ identifier: "ListRequest" }) as any as S.Schema<ListRequest>;
+
+export interface List1Request {
+  /** The name of the data stream or index to target. If the target doesn't exist and matches the name or wildcard (`*`) pattern of an index template with a `data_stream` definition, this request creates the data stream. If the target doesn't exist and doesn't match a data stream template, this request creates the index. You can check for existing targets with the resolve index API. */
+  index: string;
+  /** A unique identifier for the document. To automatically generate a document ID, use the `POST /<target>/_doc/` request format and omit this parameter. */
+  id: string;
+  /** Only perform the operation if the document has this primary term. */
+  if_primary_term?: number;
+  /** Only perform the operation if the document has this sequence number. */
+  if_seq_no?: number;
+  /** True or false if to include the document source in the error message in case of parsing errors. */
+  include_source_on_error?: boolean;
+  /** Set to `create` to only index the document if it does not already exist (put if absent). If a document with the specified `_id` already exists, the indexing operation will fail. The behavior is the same as using the `<index>/_create` endpoint. If a document ID is specified, this paramater defaults to `index`. Otherwise, it defaults to `create`. If the request targets a data stream, an `op_type` of `create` is required. */
+  op_type?: TypesOpType | (string & {});
+  /** The ID of the pipeline to use to preprocess incoming documents. If the index has a default ingest pipeline specified, then setting the value to `_none` disables the default ingest pipeline for this request. If a final pipeline is configured it will always run, regardless of the value of this parameter. */
+  pipeline?: string;
+  /** If `true`, Elasticsearch refreshes the affected shards to make this operation visible to search. If `wait_for`, it waits for a refresh to make this operation visible to search. If `false`, it does nothing with refreshes. */
+  refresh?: TypesRefresh | (string & {});
+  /** A custom value that is used to route operations to a specific shard. Not allowed when `index.slice.enabled` is `true` for the target index; use `_slice` instead. */
+  routing?: TypesRouting;
+  /** The period the request waits for the following operations: automatic index creation, dynamic mapping updates, waiting for active shards. This parameter is useful for situations where the primary shard assigned to perform the operation might not be available when the operation runs. Some reasons for this might be that the primary shard is currently recovering from a gateway or undergoing relocation. By default, the operation will wait on the primary shard to become available for at least 1 minute before failing and responding with an error. The actual wait time could be longer, particularly when multiple waits occur. */
+  timeout?: TypesDuration;
+  /** An explicit version number for concurrency control. It must be a non-negative long number. */
+  version?: number;
+  /** The version type. */
+  version_type?: TypesVersionType | (string & {});
+  /** The number of shard copies that must be active before proceeding with the operation. You can set it to `all` or any positive integer up to the total number of shards in the index (`number_of_replicas+1`). The default value of `1` means it waits for each primary shard to be active. */
+  wait_for_active_shards?: TypesWaitForActiveShards;
+  /** If `true`, the destination must be an index alias. */
+  require_alias?: boolean;
+  /** If `true`, the request's actions must target a data stream (existing or to be created). */
+  require_data_stream?: boolean;
+}
+export const List1Request = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    index: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    if_primary_term: S.optional(S.Number.pipe(T.Query())),
+    if_seq_no: S.optional(S.Number.pipe(T.Query())),
+    include_source_on_error: S.optional(S.Boolean.pipe(T.Query())),
+    op_type: S.optional(TypesOpType.pipe(T.Query())),
+    pipeline: S.optional(S.String.pipe(T.Query())),
+    refresh: S.optional(TypesRefresh.pipe(T.Query())),
+    routing: S.optional(TypesRouting.pipe(T.Query())),
+    timeout: S.optional(TypesDuration.pipe(T.Query())),
+    version: S.optional(S.Number.pipe(T.Query())),
+    version_type: S.optional(TypesVersionType.pipe(T.Query())),
+    wait_for_active_shards: S.optional(
+      TypesWaitForActiveShards.pipe(T.Query()),
+    ),
+    require_alias: S.optional(S.Boolean.pipe(T.Query())),
+    require_data_stream: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(T.Http({ method: "POST", uri: "/{index}/_doc/{id}", code: 200 })),
+).annotate({ identifier: "List1Request" }) as any as S.Schema<List1Request>;
+
+export interface List2Request {
+  /** The name of the data stream or index to target. If the target doesn't exist and matches the name or wildcard (`*`) pattern of an index template with a `data_stream` definition, this request creates the data stream. If the target doesn't exist and doesn't match a data stream template, this request creates the index. You can check for existing targets with the resolve index API. */
+  index: string;
+  /** Only perform the operation if the document has this primary term. */
+  if_primary_term?: number;
+  /** Only perform the operation if the document has this sequence number. */
+  if_seq_no?: number;
+  /** True or false if to include the document source in the error message in case of parsing errors. */
+  include_source_on_error?: boolean;
+  /** Set to `create` to only index the document if it does not already exist (put if absent). If a document with the specified `_id` already exists, the indexing operation will fail. The behavior is the same as using the `<index>/_create` endpoint. If a document ID is specified, this paramater defaults to `index`. Otherwise, it defaults to `create`. If the request targets a data stream, an `op_type` of `create` is required. */
+  op_type?: TypesOpType | (string & {});
+  /** The ID of the pipeline to use to preprocess incoming documents. If the index has a default ingest pipeline specified, then setting the value to `_none` disables the default ingest pipeline for this request. If a final pipeline is configured it will always run, regardless of the value of this parameter. */
+  pipeline?: string;
+  /** If `true`, Elasticsearch refreshes the affected shards to make this operation visible to search. If `wait_for`, it waits for a refresh to make this operation visible to search. If `false`, it does nothing with refreshes. */
+  refresh?: TypesRefresh | (string & {});
+  /** A custom value that is used to route operations to a specific shard. Not allowed when `index.slice.enabled` is `true` for the target index; use `_slice` instead. */
+  routing?: TypesRouting;
+  /** The period the request waits for the following operations: automatic index creation, dynamic mapping updates, waiting for active shards. This parameter is useful for situations where the primary shard assigned to perform the operation might not be available when the operation runs. Some reasons for this might be that the primary shard is currently recovering from a gateway or undergoing relocation. By default, the operation will wait on the primary shard to become available for at least 1 minute before failing and responding with an error. The actual wait time could be longer, particularly when multiple waits occur. */
+  timeout?: TypesDuration;
+  /** An explicit version number for concurrency control. It must be a non-negative long number. */
+  version?: number;
+  /** The version type. */
+  version_type?: TypesVersionType | (string & {});
+  /** The number of shard copies that must be active before proceeding with the operation. You can set it to `all` or any positive integer up to the total number of shards in the index (`number_of_replicas+1`). The default value of `1` means it waits for each primary shard to be active. */
+  wait_for_active_shards?: TypesWaitForActiveShards;
+  /** If `true`, the destination must be an index alias. */
+  require_alias?: boolean;
+  /** If `true`, the request's actions must target a data stream (existing or to be created). */
+  require_data_stream?: boolean;
+}
+export const List2Request = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    index: S.String.pipe(T.Label()),
+    if_primary_term: S.optional(S.Number.pipe(T.Query())),
+    if_seq_no: S.optional(S.Number.pipe(T.Query())),
+    include_source_on_error: S.optional(S.Boolean.pipe(T.Query())),
+    op_type: S.optional(TypesOpType.pipe(T.Query())),
+    pipeline: S.optional(S.String.pipe(T.Query())),
+    refresh: S.optional(TypesRefresh.pipe(T.Query())),
+    routing: S.optional(TypesRouting.pipe(T.Query())),
+    timeout: S.optional(TypesDuration.pipe(T.Query())),
+    version: S.optional(S.Number.pipe(T.Query())),
+    version_type: S.optional(TypesVersionType.pipe(T.Query())),
+    wait_for_active_shards: S.optional(
+      TypesWaitForActiveShards.pipe(T.Query()),
+    ),
+    require_alias: S.optional(S.Boolean.pipe(T.Query())),
+    require_data_stream: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(T.Http({ method: "POST", uri: "/{index}/_doc", code: 200 })),
+).annotate({ identifier: "List2Request" }) as any as S.Schema<List2Request>;
+
+export interface ListConnectorRequest {
+  /** Starting offset */
+  from?: number;
+  /** Specifies a max number of results to get */
+  size?: number;
+  /** A comma-separated list of connector index names to fetch connector documents for */
+  index_name?: TypesIndices;
+  /** A comma-separated list of connector names to fetch connector documents for */
+  connector_name?: TypesNames;
+  /** A comma-separated list of connector service types to fetch connector documents for */
+  service_type?: TypesNames;
+  /** A flag to indicate if the desired connector should be fetched, even if it was soft-deleted. */
+  include_deleted?: boolean;
+  /** A wildcard query string that filters connectors with matching name, description or index name */
+  query?: string;
+}
+export const ListConnectorRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    from: S.optional(S.Number.pipe(T.Query())),
+    size: S.optional(S.Number.pipe(T.Query())),
+    index_name: S.optional(TypesIndices.pipe(T.Query())),
+    connector_name: S.optional(TypesNames.pipe(T.Query())),
+    service_type: S.optional(TypesNames.pipe(T.Query())),
+    include_deleted: S.optional(S.Boolean.pipe(T.Query())),
+    query: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/_connector", code: 200 })),
+).annotate({
+  identifier: "ListConnectorRequest",
+}) as any as S.Schema<ListConnectorRequest>;
+
+export type ListConnectorResponseResultsList = Array<ConnectorTypesConnector>;
+export const ListConnectorResponseResultsList = /*@__PURE__*/ S.Array(
+  ConnectorTypesConnector,
+) as any as S.Schema<ListConnectorResponseResultsList>;
+
+export interface ListConnectorResponse {
+  count: number;
+  results: ListConnectorResponseResultsList;
+}
+export const ListConnectorResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.Number,
+    results: ListConnectorResponseResultsList,
+  }),
+).annotate({
+  identifier: "ListConnectorResponse",
+}) as any as S.Schema<ListConnectorResponse>;
+
+export type ListConnectorSyncJobRequestJobTypeCase1List = Array<
+  ConnectorTypesSyncJobType | (string & {})
+>;
+export const ListConnectorSyncJobRequestJobTypeCase1List =
+  /*@__PURE__*/ S.Array(
+    ConnectorTypesSyncJobType,
+  ) as any as S.Schema<ListConnectorSyncJobRequestJobTypeCase1List>;
+
+export type ListConnectorSyncJobRequestJobType =
+  | ConnectorTypesSyncJobType
+  | ListConnectorSyncJobRequestJobTypeCase1List;
+export const ListConnectorSyncJobRequestJobType =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<ListConnectorSyncJobRequestJobType>;
+
+export interface ListConnectorSyncJobRequest {
+  /** Starting offset */
+  from?: number;
+  /** Specifies a max number of results to get */
+  size?: number;
+  /** A sync job status to fetch connector sync jobs for */
+  status?: ConnectorTypesSyncStatus | (string & {});
+  /** A connector id to fetch connector sync jobs for */
+  connector_id?: string;
+  /** A comma-separated list of job types to fetch the sync jobs for */
+  job_type?: ListConnectorSyncJobRequestJobType;
+}
+export const ListConnectorSyncJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    from: S.optional(S.Number.pipe(T.Query())),
+    size: S.optional(S.Number.pipe(T.Query())),
+    status: S.optional(ConnectorTypesSyncStatus.pipe(T.Query())),
+    connector_id: S.optional(S.String.pipe(T.Query())),
+    job_type: S.optional(ListConnectorSyncJobRequestJobType.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/_connector/_sync_job", code: 200 })),
+).annotate({
+  identifier: "ListConnectorSyncJobRequest",
+}) as any as S.Schema<ListConnectorSyncJobRequest>;
+
+export type ListConnectorSyncJobResponseResultsList =
+  Array<ConnectorTypesConnectorSyncJob>;
+export const ListConnectorSyncJobResponseResultsList = /*@__PURE__*/ S.Array(
+  ConnectorTypesConnectorSyncJob,
+) as any as S.Schema<ListConnectorSyncJobResponseResultsList>;
+
+export interface ListConnectorSyncJobResponse {
+  count: number;
+  results: ListConnectorSyncJobResponseResultsList;
+}
+export const ListConnectorSyncJobResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.Number,
+    results: ListConnectorSyncJobResponseResultsList,
+  }),
+).annotate({
+  identifier: "ListConnectorSyncJobResponse",
+}) as any as S.Schema<ListConnectorSyncJobResponse>;
+
+export type ListIndicesResolveRequestModeCase1List = Array<
+  IndicesTypesIndexMode | (string & {})
+>;
+export const ListIndicesResolveRequestModeCase1List = /*@__PURE__*/ S.Array(
+  IndicesTypesIndexMode,
+) as any as S.Schema<ListIndicesResolveRequestModeCase1List>;
+
+export type ListIndicesResolveRequestMode =
+  | IndicesTypesIndexMode
+  | ListIndicesResolveRequestModeCase1List;
+export const ListIndicesResolveRequestMode =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<ListIndicesResolveRequestMode>;
+
+export interface ListIndicesResolveRequest {
+  /** Comma-separated name(s) or index pattern(s) of the indices, aliases, and data streams to resolve. Resources on remote clusters can be specified using the `<cluster>`:`<name>` syntax. */
+  name: string;
+  /** Type of index that wildcard patterns can match. If the request can target data streams, this argument determines whether wildcard expressions match hidden data streams. Supports comma-separated values, such as `open,hidden`. */
+  expand_wildcards?: TypesExpandWildcards;
+  /** If `false`, the request returns an error if it targets a concrete (non-wildcarded) index, alias, or data stream that is missing, closed, or otherwise unavailable. If `true`, unavailable concrete targets are silently ignored. */
+  ignore_unavailable?: boolean;
+  /** A setting that does two separate checks on the index expression. If `false`, the request returns an error (1) if any wildcard expression (including `_all` and `*`) resolves to zero matching indices or (2) if the complete set of resolved indices, aliases or data streams is empty after all expressions are evaluated. If `true`, index expressions that resolve to no indices are allowed and the request returns an empty result. */
+  allow_no_indices?: boolean;
+  /** Filter indices by index mode - standard, lookup, time_series, etc. Comma-separated list of IndexMode. Empty means no filter. */
+  mode?: ListIndicesResolveRequestMode;
+}
+export const ListIndicesResolveRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String.pipe(T.Label()),
+    expand_wildcards: S.optional(TypesExpandWildcards.pipe(T.Query())),
+    ignore_unavailable: S.optional(S.Boolean.pipe(T.Query())),
+    allow_no_indices: S.optional(S.Boolean.pipe(T.Query())),
+    mode: S.optional(ListIndicesResolveRequestMode.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/_resolve/index/{name}", code: 200 })),
+).annotate({
+  identifier: "ListIndicesResolveRequest",
+}) as any as S.Schema<ListIndicesResolveRequest>;
+
+export type ListIndicesResolveResponseIndicesList =
+  Array<IndicesResolveIndexResolveIndexItem>;
+export const ListIndicesResolveResponseIndicesList = /*@__PURE__*/ S.Array(
+  IndicesResolveIndexResolveIndexItem,
+) as any as S.Schema<ListIndicesResolveResponseIndicesList>;
+
+export type ListIndicesResolveResponseAliasesList =
+  Array<IndicesResolveIndexResolveIndexAliasItem>;
+export const ListIndicesResolveResponseAliasesList = /*@__PURE__*/ S.Array(
+  IndicesResolveIndexResolveIndexAliasItem,
+) as any as S.Schema<ListIndicesResolveResponseAliasesList>;
+
+export type ListIndicesResolveResponseDataStreamsList =
+  Array<IndicesResolveIndexResolveIndexDataStreamsItem>;
+export const ListIndicesResolveResponseDataStreamsList = /*@__PURE__*/ S.Array(
+  IndicesResolveIndexResolveIndexDataStreamsItem,
+) as any as S.Schema<ListIndicesResolveResponseDataStreamsList>;
+
+export interface ListIndicesResolveResponse {
+  indices: ListIndicesResolveResponseIndicesList;
+  aliases: ListIndicesResolveResponseAliasesList;
+  data_streams: ListIndicesResolveResponseDataStreamsList;
+}
+export const ListIndicesResolveResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    indices: ListIndicesResolveResponseIndicesList,
+    aliases: ListIndicesResolveResponseAliasesList,
+    data_streams: ListIndicesResolveResponseDataStreamsList,
+  }),
+).annotate({
+  identifier: "ListIndicesResolveResponse",
+}) as any as S.Schema<ListIndicesResolveResponse>;
+
 export interface ListReindexRequest {
   /** If `true`, include detailed task status information in the response. */
   detailed?: boolean;
@@ -62143,6 +62332,145 @@ export const ListReindexResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListReindexResponse",
 }) as any as S.Schema<ListReindexResponse>;
+
+export type ListTasksRequestActionsCase1List = Array<string>;
+export const ListTasksRequestActionsCase1List = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListTasksRequestActionsCase1List>;
+
+export type ListTasksRequestActions = string | ListTasksRequestActionsCase1List;
+export const ListTasksRequestActions =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<ListTasksRequestActions>;
+
+export type TasksTypesGroupBy = "nodes" | "parents" | "none";
+export const TasksTypesGroupBy = /*@__PURE__*/ S.String;
+
+export type TypesNodeIdsCase1List = Array<string>;
+export const TypesNodeIdsCase1List = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<TypesNodeIdsCase1List>;
+
+export type TypesNodeIds = string | TypesNodeIdsCase1List;
+export const TypesNodeIds =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesNodeIds>;
+
+export interface ListTasksRequest {
+  /** A comma-separated list or wildcard expression of actions used to limit the request. For example, you can use `cluser:*` to retrieve all cluster-related tasks. */
+  actions?: ListTasksRequestActions;
+  /** If `true`, the response includes detailed information about the running tasks. This information is useful to distinguish tasks from each other but is more costly to run. */
+  detailed?: boolean;
+  /** A key that is used to group tasks in the response. The task lists can be grouped either by nodes or by parent tasks. */
+  group_by?: TasksTypesGroupBy | (string & {});
+  /** A comma-separated list of node IDs or names that is used to limit the returned information. */
+  nodes?: TypesNodeIds;
+  /** A parent task identifier that is used to limit returned information. To return all tasks, omit this parameter or use a value of `-1`. If the parent task is not found, the API does not return a 404 response code. */
+  parent_task_id?: string;
+  /** The period to wait for each node to respond. If a node does not respond before its timeout expires, the response does not include its information. However, timed out nodes are included in the `node_failures` property. */
+  timeout?: TypesDuration;
+  /** If `true`, the request blocks until the operation is complete. */
+  wait_for_completion?: boolean;
+}
+export const ListTasksRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    actions: S.optional(ListTasksRequestActions.pipe(T.Query())),
+    detailed: S.optional(S.Boolean.pipe(T.Query())),
+    group_by: S.optional(TasksTypesGroupBy.pipe(T.Query())),
+    nodes: S.optional(TypesNodeIds.pipe(T.Query())),
+    parent_task_id: S.optional(S.String.pipe(T.Query())),
+    timeout: S.optional(TypesDuration.pipe(T.Query())),
+    wait_for_completion: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/_tasks", code: 200 })),
+).annotate({
+  identifier: "ListTasksRequest",
+}) as any as S.Schema<ListTasksRequest>;
+
+export interface LogoutSecurityOidcRequest {
+  /** The access token to be invalidated. */
+  token: string;
+  /** The refresh token to be invalidated. */
+  refresh_token?: string | Redacted.Redacted<string>;
+}
+export const LogoutSecurityOidcRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    token: S.String,
+    refresh_token: S.optional(S.String.pipe(T.SensitiveValue({}))),
+  }).pipe(T.Http({ method: "POST", uri: "/_security/oidc/logout", code: 200 })),
+).annotate({
+  identifier: "LogoutSecurityOidcRequest",
+}) as any as S.Schema<LogoutSecurityOidcRequest>;
+
+export interface LogoutSecurityOidcResponse {
+  /** A URI that points to the end session endpoint of the OpenID Connect Provider with all the parameters of the logout request as HTTP GET parameters. */
+  redirect: string;
+}
+export const LogoutSecurityOidcResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    redirect: S.String,
+  }),
+).annotate({
+  identifier: "LogoutSecurityOidcResponse",
+}) as any as S.Schema<LogoutSecurityOidcResponse>;
+
+export interface LogoutSecuritySamlRequest {
+  /** The access token that was returned as a response to calling the SAML authenticate API. Alternatively, the most recent token that was received after refreshing the original one by using a `refresh_token`. */
+  token: string;
+  /** The refresh token that was returned as a response to calling the SAML authenticate API. Alternatively, the most recent refresh token that was received after refreshing the original access token. */
+  refresh_token?: string | Redacted.Redacted<string>;
+}
+export const LogoutSecuritySamlRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    token: S.String,
+    refresh_token: S.optional(S.String.pipe(T.SensitiveValue({}))),
+  }).pipe(T.Http({ method: "POST", uri: "/_security/saml/logout", code: 200 })),
+).annotate({
+  identifier: "LogoutSecuritySamlRequest",
+}) as any as S.Schema<LogoutSecuritySamlRequest>;
+
+export interface LogoutSecuritySamlResponse {
+  /** A URL that contains a SAML logout request as a parameter. You can use this URL to be redirected back to the SAML IdP and to initiate Single Logout. */
+  redirect: string;
+}
+export const LogoutSecuritySamlResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    redirect: S.String,
+  }),
+).annotate({
+  identifier: "LogoutSecuritySamlResponse",
+}) as any as S.Schema<LogoutSecuritySamlResponse>;
+
+export interface LogoutSecuritySamlCompleteRequest {
+  /** The name of the SAML realm in Elasticsearch for which the configuration is used to verify the logout response. */
+  realm: string;
+  /** A JSON array with all the valid SAML Request Ids that the caller of the API has for the current user. */
+  ids: TypesIds;
+  /** If the SAML IdP sends the logout response with the HTTP-Redirect binding, this field must be set to the query string of the redirect URI. */
+  query_string?: string;
+  /** If the SAML IdP sends the logout response with the HTTP-Post binding, this field must be set to the value of the SAMLResponse form parameter from the logout response. */
+  content?: string;
+}
+export const LogoutSecuritySamlCompleteRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    realm: S.String,
+    ids: TypesIds,
+    query_string: S.optional(S.String),
+    content: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/_security/saml/complete_logout",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "LogoutSecuritySamlCompleteRequest",
+}) as any as S.Schema<LogoutSecuritySamlCompleteRequest>;
+
+export interface LogoutSecuritySamlCompleteResponse {}
+export const LogoutSecuritySamlCompleteResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "LogoutSecuritySamlCompleteResponse",
+}) as any as S.Schema<LogoutSecuritySamlCompleteResponse>;
 
 export interface LogstashDeletePipelineRequest {
   /** An identifier for the pipeline. */
@@ -72574,15 +72902,6 @@ export const MlStartDatafeedRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "MlStartDatafeedRequest",
 }) as any as S.Schema<MlStartDatafeedRequest>;
 
-export type TypesNodeIdsCase1List = Array<string>;
-export const TypesNodeIdsCase1List = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<TypesNodeIdsCase1List>;
-
-export type TypesNodeIds = string | TypesNodeIdsCase1List;
-export const TypesNodeIds =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesNodeIds>;
-
 export interface MlStartDatafeedResponse {
   /** The ID of the node that the job was started on. In serverless this will be the "serverless". If the job is allowed to open lazily and has not yet been assigned to a node, this value is an empty string. */
   node: TypesNodeIds;
@@ -74418,153 +74737,6 @@ export const Mtermvectors3Response = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "Mtermvectors3Response",
 }) as any as S.Schema<Mtermvectors3Response>;
-
-export interface NodesClearRepositoriesMeteringArchiveRequest {
-  /** Comma-separated list of node IDs or names used to limit returned information. */
-  node_id: string;
-  /** Specifies the maximum `archive_version` to be cleared from the archive. */
-  max_archive_version: number;
-}
-export const NodesClearRepositoriesMeteringArchiveRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      node_id: S.String.pipe(T.Label()),
-      max_archive_version: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/_nodes/{node_id}/_repositories_metering/{max_archive_version}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "NodesClearRepositoriesMeteringArchiveRequest",
-  }) as any as S.Schema<NodesClearRepositoriesMeteringArchiveRequest>;
-
-export interface NodesTypesRepositoryLocation {
-  base_path: string;
-  /** Container name (Azure) */
-  container?: string;
-  /** Bucket name (GCP, S3) */
-  bucket?: string;
-}
-export const NodesTypesRepositoryLocation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    base_path: S.String,
-    container: S.optional(S.String),
-    bucket: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "NodesTypesRepositoryLocation",
-}) as any as S.Schema<NodesTypesRepositoryLocation>;
-
-export interface NodesTypesRequestCounts {
-  /** Number of Get Blob Properties requests (Azure) */
-  GetBlobProperties?: number;
-  /** Number of Get Blob requests (Azure) */
-  GetBlob?: number;
-  /** Number of List Blobs requests (Azure) */
-  ListBlobs?: number;
-  /** Number of Put Blob requests (Azure) */
-  PutBlob?: number;
-  /** Number of Put Block (Azure) */
-  PutBlock?: number;
-  /** Number of Put Block List requests */
-  PutBlockList?: number;
-  /** Number of get object requests (GCP, S3) */
-  GetObject?: number;
-  /** Number of list objects requests (GCP, S3) */
-  ListObjects?: number;
-  /** Number of insert object requests, including simple, multipart and resumable uploads. Resumable uploads can perform multiple http requests to insert a single object but they are considered as a single request since they are billed as an individual operation. (GCP) */
-  InsertObject?: number;
-  /** Number of PutObject requests (S3) */
-  PutObject?: number;
-  /** Number of Multipart requests, including CreateMultipartUpload, UploadPart and CompleteMultipartUpload requests (S3) */
-  PutMultipartObject?: number;
-}
-export const NodesTypesRequestCounts = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    GetBlobProperties: S.optional(S.Number),
-    GetBlob: S.optional(S.Number),
-    ListBlobs: S.optional(S.Number),
-    PutBlob: S.optional(S.Number),
-    PutBlock: S.optional(S.Number),
-    PutBlockList: S.optional(S.Number),
-    GetObject: S.optional(S.Number),
-    ListObjects: S.optional(S.Number),
-    InsertObject: S.optional(S.Number),
-    PutObject: S.optional(S.Number),
-    PutMultipartObject: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "NodesTypesRequestCounts",
-}) as any as S.Schema<NodesTypesRequestCounts>;
-
-export interface NodesTypesRepositoryMeteringInformation {
-  /** Repository name. */
-  repository_name: string;
-  /** Repository type. */
-  repository_type: string;
-  /** Represents an unique location within the repository. */
-  repository_location: NodesTypesRepositoryLocation;
-  /** An identifier that changes every time the repository is updated. */
-  repository_ephemeral_id: string;
-  /** Time the repository was created or updated. Recorded in milliseconds since the Unix Epoch. */
-  repository_started_at: number;
-  /** Time the repository was deleted or updated. Recorded in milliseconds since the Unix Epoch. */
-  repository_stopped_at?: number;
-  /** A flag that tells whether or not this object has been archived. When a repository is closed or updated the repository metering information is archived and kept for a certain period of time. This allows retrieving the repository metering information of previous repository instantiations. */
-  archived: boolean;
-  /** The cluster state version when this object was archived, this field can be used as a logical timestamp to delete all the archived metrics up to an observed version. This field is only present for archived repository metering information objects. The main purpose of this field is to avoid possible race conditions during repository metering information deletions, i.e. deleting archived repositories metering information that we haven’t observed yet. */
-  cluster_version?: number;
-  /** An object with the number of request performed against the repository grouped by request type. */
-  request_counts: NodesTypesRequestCounts;
-}
-export const NodesTypesRepositoryMeteringInformation = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      repository_name: S.String,
-      repository_type: S.String,
-      repository_location: NodesTypesRepositoryLocation,
-      repository_ephemeral_id: S.String,
-      repository_started_at: S.Number,
-      repository_stopped_at: S.optional(S.Number),
-      archived: S.Boolean,
-      cluster_version: S.optional(S.Number),
-      request_counts: NodesTypesRequestCounts,
-    }),
-).annotate({
-  identifier: "NodesTypesRepositoryMeteringInformation",
-}) as any as S.Schema<NodesTypesRepositoryMeteringInformation>;
-
-/** Contains repositories metering information for the nodes selected by the request. */
-export type NodesClearRepositoriesMeteringArchiveResponseNodesMap = {
-  [key: string]: NodesTypesRepositoryMeteringInformation | undefined;
-};
-export const NodesClearRepositoriesMeteringArchiveResponseNodesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    NodesTypesRepositoryMeteringInformation,
-  ) as any as S.Schema<NodesClearRepositoriesMeteringArchiveResponseNodesMap>;
-
-export interface NodesClearRepositoriesMeteringArchiveResponse {
-  /** Contains statistics about the number of nodes selected by the request’s node filters. */
-  _nodes?: TypesNodeStatistics;
-  /** Name of the cluster. Based on the `cluster.name` setting. */
-  cluster_name: string;
-  /** Contains repositories metering information for the nodes selected by the request. */
-  nodes: NodesClearRepositoriesMeteringArchiveResponseNodesMap;
-}
-export const NodesClearRepositoriesMeteringArchiveResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      _nodes: S.optional(TypesNodeStatistics),
-      cluster_name: S.String,
-      nodes: NodesClearRepositoriesMeteringArchiveResponseNodesMap,
-    }),
-  ).annotate({
-    identifier: "NodesClearRepositoriesMeteringArchiveResponse",
-  }) as any as S.Schema<NodesClearRepositoriesMeteringArchiveResponse>;
 
 export interface NodesGetRepositoriesMeteringInfoRequest {
   /** Comma-separated list of node IDs or names used to limit returned information. */
@@ -78066,6 +78238,206 @@ export const OpenPointInTimeResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "OpenPointInTimeResponse",
 }) as any as S.Schema<OpenPointInTimeResponse>;
 
+export interface PostConnectorRequest {
+  description?: string;
+  index_name?: string;
+  is_native?: boolean;
+  language?: string;
+  name?: string;
+  service_type?: string;
+}
+export const PostConnectorRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    description: S.optional(S.String),
+    index_name: S.optional(S.String),
+    is_native: S.optional(S.Boolean),
+    language: S.optional(S.String),
+    name: S.optional(S.String),
+    service_type: S.optional(S.String),
+  }).pipe(T.Http({ method: "POST", uri: "/_connector", code: 200 })),
+).annotate({
+  identifier: "PostConnectorRequest",
+}) as any as S.Schema<PostConnectorRequest>;
+
+export interface PostConnectorResponse {
+  result: TypesResult;
+  id: string;
+}
+export const PostConnectorResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    result: TypesResult,
+    id: S.String,
+  }),
+).annotate({
+  identifier: "PostConnectorResponse",
+}) as any as S.Schema<PostConnectorResponse>;
+
+export interface PostConnectorSyncJobRequest {
+  /** The id of the associated connector */
+  id: string;
+  job_type?: ConnectorTypesSyncJobType | (string & {});
+  trigger_method?: ConnectorTypesSyncJobTriggerMethod | (string & {});
+}
+export const PostConnectorSyncJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    job_type: S.optional(ConnectorTypesSyncJobType),
+    trigger_method: S.optional(ConnectorTypesSyncJobTriggerMethod),
+  }).pipe(T.Http({ method: "POST", uri: "/_connector/_sync_job", code: 200 })),
+).annotate({
+  identifier: "PostConnectorSyncJobRequest",
+}) as any as S.Schema<PostConnectorSyncJobRequest>;
+
+export interface PostConnectorSyncJobResponse {
+  id: string;
+}
+export const PostConnectorSyncJobResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+  }),
+).annotate({
+  identifier: "PostConnectorSyncJobResponse",
+}) as any as S.Schema<PostConnectorSyncJobResponse>;
+
+/** A sequence of one or more JSON documents containing the license information. */
+export type PostLicenseRequestLicensesList = Array<LicenseTypesLicense>;
+export const PostLicenseRequestLicensesList = /*@__PURE__*/ S.Array(
+  LicenseTypesLicense,
+) as any as S.Schema<PostLicenseRequestLicensesList>;
+
+export interface PostLicenseRequest {
+  /** To update a license, you must accept the acknowledge messages and set this parameter to `true`. In particular, if you are upgrading or downgrading a license, you must acknowlege the feature changes. */
+  acknowledge?: boolean;
+  /** The period to wait for a connection to the master node. */
+  master_timeout?: TypesDuration;
+  /** The period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error. */
+  timeout?: TypesDuration;
+  license?: LicenseTypesLicense;
+  /** A sequence of one or more JSON documents containing the license information. */
+  licenses?: PostLicenseRequestLicensesList;
+}
+export const PostLicenseRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    acknowledge: S.optional(S.Boolean.pipe(T.Query())),
+    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
+    timeout: S.optional(TypesDuration.pipe(T.Query())),
+    license: S.optional(LicenseTypesLicense),
+    licenses: S.optional(PostLicenseRequestLicensesList),
+  }).pipe(T.Http({ method: "PUT", uri: "/_license", code: 200 })),
+).annotate({
+  identifier: "PostLicenseRequest",
+}) as any as S.Schema<PostLicenseRequest>;
+
+export interface PostLicenseResponse {
+  acknowledge?: LicensePostAcknowledgement;
+  acknowledged: boolean;
+  license_status: LicenseTypesLicenseStatus;
+}
+export const PostLicenseResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    acknowledge: S.optional(LicensePostAcknowledgement),
+    acknowledged: S.Boolean,
+    license_status: LicenseTypesLicenseStatus,
+  }),
+).annotate({
+  identifier: "PostLicenseResponse",
+}) as any as S.Schema<PostLicenseResponse>;
+
+export interface PutConnectorRequest {
+  /** The unique identifier of the connector to be created or updated. ID is auto-generated if not provided. */
+  connector_id: string;
+  description?: string;
+  index_name?: string;
+  is_native?: boolean;
+  language?: string;
+  name?: string;
+  service_type?: string;
+}
+export const PutConnectorRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    connector_id: S.String.pipe(T.Label()),
+    description: S.optional(S.String),
+    index_name: S.optional(S.String),
+    is_native: S.optional(S.Boolean),
+    language: S.optional(S.String),
+    name: S.optional(S.String),
+    service_type: S.optional(S.String),
+  }).pipe(
+    T.Http({ method: "PUT", uri: "/_connector/{connector_id}", code: 200 }),
+  ),
+).annotate({
+  identifier: "PutConnectorRequest",
+}) as any as S.Schema<PutConnectorRequest>;
+
+export interface PutConnectorResponse {
+  result: TypesResult;
+  id: string;
+}
+export const PutConnectorResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    result: TypesResult,
+    id: S.String,
+  }),
+).annotate({
+  identifier: "PutConnectorResponse",
+}) as any as S.Schema<PutConnectorResponse>;
+
+export interface PutInferenceRequest {
+  /** The inference Id */
+  inference_id: string;
+  /** Specifies the amount of time to wait for the inference endpoint to be created. The default depends on the task type: 120s for `completion` and `chat_completion`, and 30s for all other task types. */
+  timeout?: TypesDuration;
+  /** The chunking configuration object. Applies only to the `embedding`, `sparse_embedding` and `text_embedding` task types. Not applicable to the `rerank`, `completion`, or `chat_completion` task types. */
+  chunking_settings?: InferenceTypesInferenceChunkingSettings;
+  /** The service type */
+  service: string;
+  /** Settings specific to the service */
+  service_settings: unknown;
+  /** Task settings specific to the service and task type */
+  task_settings?: unknown;
+}
+export const PutInferenceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    inference_id: S.String.pipe(T.Label()),
+    timeout: S.optional(TypesDuration.pipe(T.Query())),
+    chunking_settings: S.optional(InferenceTypesInferenceChunkingSettings),
+    service: S.String,
+    service_settings: S.Unknown,
+    task_settings: S.optional(S.Unknown),
+  }).pipe(
+    T.Http({ method: "PUT", uri: "/_inference/{inference_id}", code: 200 }),
+  ),
+).annotate({
+  identifier: "PutInferenceRequest",
+}) as any as S.Schema<PutInferenceRequest>;
+
+export interface PutInferenceResponse {
+  /** The chunking configuration object. Applies only to the `embedding`, `sparse_embedding` and `text_embedding` task types. Not applicable to the `rerank`, `completion`, or `chat_completion` task types. */
+  chunking_settings?: InferenceTypesInferenceChunkingSettings;
+  /** The service type */
+  service: string;
+  /** Settings specific to the service */
+  service_settings: unknown;
+  /** Task settings specific to the service and task type */
+  task_settings?: unknown;
+  /** The inference Id */
+  inference_id: string;
+  /** The task type */
+  task_type: InferenceTypesTaskType;
+}
+export const PutInferenceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    chunking_settings: S.optional(InferenceTypesInferenceChunkingSettings),
+    service: S.String,
+    service_settings: S.Unknown,
+    task_settings: S.optional(S.Unknown),
+    inference_id: S.String,
+    task_type: InferenceTypesTaskType,
+  }),
+).annotate({
+  identifier: "PutInferenceResponse",
+}) as any as S.Schema<PutInferenceResponse>;
+
 export interface PutScriptRequest {
   /** The identifier for the stored script or search template. It must be unique within the cluster. */
   id: string;
@@ -79150,6 +79522,24 @@ export const RankEval3Response = /*@__PURE__*/ S.suspend(() =>
   identifier: "RankEval3Response",
 }) as any as S.Schema<RankEval3Response>;
 
+export interface RefreshIndexRequest {
+  /** A setting that does two separate checks on the index expression. If `false`, the request returns an error (1) if any wildcard expression (including `_all` and `*`) resolves to zero matching indices or (2) if the complete set of resolved indices, aliases or data streams is empty after all expressions are evaluated. If `true`, index expressions that resolve to no indices are allowed and the request returns an empty result. */
+  allow_no_indices?: boolean;
+  /** Type of index that wildcard patterns can match. If the request can target data streams, this argument determines whether wildcard expressions match hidden data streams. Supports comma-separated values, such as `open,hidden`. */
+  expand_wildcards?: TypesExpandWildcards;
+  /** If `false`, the request returns an error if it targets a concrete (non-wildcarded) index, alias, or data stream that is missing, closed, or otherwise unavailable. If `true`, unavailable concrete targets are silently ignored. */
+  ignore_unavailable?: boolean;
+}
+export const RefreshIndexRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    allow_no_indices: S.optional(S.Boolean.pipe(T.Query())),
+    expand_wildcards: S.optional(TypesExpandWildcards.pipe(T.Query())),
+    ignore_unavailable: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(T.Http({ method: "POST", uri: "/_refresh", code: 200 })),
+).annotate({
+  identifier: "RefreshIndexRequest",
+}) as any as S.Schema<RefreshIndexRequest>;
+
 export interface GlobalReindexDestination {
   /** The name of the data stream, index, or index alias you are copying to. */
   index: string;
@@ -79362,9 +79752,6 @@ export const ReindexResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ReindexResponse",
 }) as any as S.Schema<ReindexResponse>;
-
-export type TasksTypesGroupBy = "nodes" | "parents" | "none";
-export const TasksTypesGroupBy = /*@__PURE__*/ S.String;
 
 export interface ReindexRethrottleRequest {
   /** The task identifier, returned when creating a reindex task, or by listing tasks via `GET /_reindex` or `GET /_tasks`. In stack, can be either the original task ID or the task ID of the relocated task. */
@@ -79827,70 +80214,140 @@ export const RenderSearchTemplate3Response = /*@__PURE__*/ S.suspend(() =>
   identifier: "RenderSearchTemplate3Response",
 }) as any as S.Schema<RenderSearchTemplate3Response>;
 
-export type GlobalScriptsPainlessExecutePainlessContext =
-  | "painless_test"
-  | "filter"
-  | "score"
-  | "boolean_field"
-  | "date_field"
-  | "double_field"
-  | "geo_point_field"
-  | "ip_field"
-  | "keyword_field"
-  | "long_field"
-  | "composite_field";
-export const GlobalScriptsPainlessExecutePainlessContext =
-  /*@__PURE__*/ S.String;
-
-export interface GlobalScriptsPainlessExecutePainlessContextSetup {
-  /** Document that's temporarily indexed in-memory and accessible from the script. */
-  document: unknown;
-  /** Index containing a mapping that's compatible with the indexed document. You may specify a remote index by prefixing the index with the remote cluster alias. For example, `remote1:my_index` indicates that you want to run the painless script against the "my_index" index on the "remote1" cluster. This request will be forwarded to the "remote1" cluster if you have configured a connection to that remote cluster. NOTE: Wildcards are not accepted in the index expression for this endpoint. The expression `*:myindex` will return the error "No such remote cluster" and the expression `logs*` or `remote1:logs*` will return the error "index not found". */
-  index: string;
-  /** Use this parameter to specify a query for computing a score. */
-  query?: TypesQueryDslQueryContainer;
+export interface ResetEncryptionRequest {
+  /** Acknowledge that resetting the project encryption key permanently destroys all data that was encrypted under the current key. The request fails if this is not set to `true`. */
+  accept_data_loss: boolean;
+  /** The period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error. */
+  master_timeout?: TypesDuration;
+  /** The period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error. */
+  timeout?: TypesDuration;
 }
-export const GlobalScriptsPainlessExecutePainlessContextSetup =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      document: S.Unknown,
-      index: S.String,
-      query: S.optional(TypesQueryDslQueryContainer),
-    }),
-  ).annotate({
-    identifier: "GlobalScriptsPainlessExecutePainlessContextSetup",
-  }) as any as S.Schema<GlobalScriptsPainlessExecutePainlessContextSetup>;
-
-export interface ScriptsPainlessExecuteRequest {
-  /** The context that the script should run in. NOTE: Result ordering in the field contexts is not guaranteed. */
-  context?: GlobalScriptsPainlessExecutePainlessContext | (string & {});
-  /** Additional parameters for the `context`. NOTE: This parameter is required for all contexts except `painless_test`, which is the default if no value is provided for `context`. */
-  context_setup?: GlobalScriptsPainlessExecutePainlessContextSetup;
-  /** The Painless script to run. */
-  script?: TypesScript;
-}
-export const ScriptsPainlessExecuteRequest = /*@__PURE__*/ S.suspend(() =>
+export const ResetEncryptionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    context: S.optional(GlobalScriptsPainlessExecutePainlessContext),
-    context_setup: S.optional(GlobalScriptsPainlessExecutePainlessContextSetup),
-    script: S.optional(TypesScript),
+    accept_data_loss: S.Boolean.pipe(T.Query()),
+    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
+    timeout: S.optional(TypesDuration.pipe(T.Query())),
+  }).pipe(T.Http({ method: "POST", uri: "/_encryption/_reset", code: 200 })),
+).annotate({
+  identifier: "ResetEncryptionRequest",
+}) as any as S.Schema<ResetEncryptionRequest>;
+
+/** The feature states to restore. If `include_global_state` is `true`, the request restores all feature states in the snapshot by default. If `include_global_state` is `false`, the request restores no feature states by default. Note that specifying an empty array will result in the default behavior. To restore no feature states, regardless of the `include_global_state` value, specify an array containing only the value `none` (`["none"]`). */
+export type RestoreSnapshotRequestFeatureStatesList = Array<string>;
+export const RestoreSnapshotRequestFeatureStatesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<RestoreSnapshotRequestFeatureStatesList>;
+
+/** The index settings to not restore from the snapshot. You can't use this option to ignore `index.number_of_shards`. For data streams, this option applies only to restored backing indices. New backing indices are configured using the data stream's matching index template. */
+export type RestoreSnapshotRequestIgnoreIndexSettingsList = Array<string>;
+export const RestoreSnapshotRequestIgnoreIndexSettingsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<RestoreSnapshotRequestIgnoreIndexSettingsList>;
+
+export interface RestoreSnapshotRequest {
+  /** The name of the repository to restore a snapshot from. */
+  repository: string;
+  /** The name of the snapshot to restore. */
+  snapshot: string;
+  /** The period to wait for the master node. If the master node is not available before the timeout expires, the request fails and returns an error. To indicate that the request should never timeout, set it to `-1`. */
+  master_timeout?: TypesDuration;
+  /** If `true`, the request returns a response when the restore operation completes. The operation is complete when it finishes all attempts to recover primary shards for restored indices. This applies even if one or more of the recovery attempts fail. If `false`, the request returns a response when the restore operation initializes. */
+  wait_for_completion?: boolean;
+  /** The feature states to restore. If `include_global_state` is `true`, the request restores all feature states in the snapshot by default. If `include_global_state` is `false`, the request restores no feature states by default. Note that specifying an empty array will result in the default behavior. To restore no feature states, regardless of the `include_global_state` value, specify an array containing only the value `none` (`["none"]`). */
+  feature_states?: RestoreSnapshotRequestFeatureStatesList;
+  /** The index settings to not restore from the snapshot. You can't use this option to ignore `index.number_of_shards`. For data streams, this option applies only to restored backing indices. New backing indices are configured using the data stream's matching index template. */
+  ignore_index_settings?: RestoreSnapshotRequestIgnoreIndexSettingsList;
+  /** If `true`, the request ignores any index or data stream in indices that's missing from the snapshot. If `false`, the request returns an error for any missing index or data stream. */
+  ignore_unavailable?: boolean;
+  /** If `true`, the request restores aliases for any restored data streams and indices. If `false`, the request doesn’t restore aliases. */
+  include_aliases?: boolean;
+  /** If `true`, restore the cluster state. The cluster state includes: * Persistent cluster settings * Index templates * Legacy index templates * Ingest pipelines * Index lifecycle management (ILM) policies * Stored scripts * For snapshots taken after 7.12.0, feature states If `include_global_state` is `true`, the restore operation merges the legacy index templates in your cluster with the templates contained in the snapshot, replacing any existing ones whose name matches one in the snapshot. It completely removes all persistent settings, non-legacy index templates, ingest pipelines, and ILM lifecycle policies that exist in your cluster and replaces them with the corresponding items from the snapshot. Use the `feature_states` parameter to configure how feature states are restored. If `include_global_state` is `true` and a snapshot was created without a global state then the restore request will fail. */
+  include_global_state?: boolean;
+  /** Index settings to add or change in restored indices, including backing indices. You can't use this option to change `index.number_of_shards`. For data streams, this option applies only to restored backing indices. New backing indices are configured using the data stream's matching index template. */
+  index_settings?: IndicesTypesIndexSettings;
+  /** A comma-separated list of indices and data streams to restore. It supports a multi-target syntax. The default behavior is all regular indices and regular data streams in the snapshot. You can't use this parameter to restore system indices or system data streams. Use `feature_states` instead. */
+  indices?: TypesIndices;
+  /** If `false`, the entire restore operation will fail if one or more indices included in the snapshot do not have all primary shards available. If true, it allows restoring a partial snapshot of indices with unavailable shards. Only shards that were successfully included in the snapshot will be restored. All missing shards will be recreated as empty. */
+  partial?: boolean;
+  /** A rename pattern to apply to restored data streams and indices. Data streams and indices matching the rename pattern will be renamed according to `rename_replacement`. The rename pattern is applied as defined by the regular expression that supports referencing the original text, according to the `appendReplacement` logic. */
+  rename_pattern?: string;
+  /** The rename replacement string that is used with the `rename_pattern`. */
+  rename_replacement?: string;
+}
+export const RestoreSnapshotRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    repository: S.String.pipe(T.Label()),
+    snapshot: S.String.pipe(T.Label()),
+    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
+    wait_for_completion: S.optional(S.Boolean.pipe(T.Query())),
+    feature_states: S.optional(RestoreSnapshotRequestFeatureStatesList),
+    ignore_index_settings: S.optional(
+      RestoreSnapshotRequestIgnoreIndexSettingsList,
+    ),
+    ignore_unavailable: S.optional(S.Boolean),
+    include_aliases: S.optional(S.Boolean),
+    include_global_state: S.optional(S.Boolean),
+    index_settings: S.optional(IndicesTypesIndexSettings),
+    indices: S.optional(TypesIndices),
+    partial: S.optional(S.Boolean),
+    rename_pattern: S.optional(S.String),
+    rename_replacement: S.optional(S.String),
   }).pipe(
-    T.Http({ method: "GET", uri: "/_scripts/painless/_execute", code: 200 }),
+    T.Http({
+      method: "POST",
+      uri: "/_snapshot/{repository}/{snapshot}/_restore",
+      code: 200,
+    }),
   ),
 ).annotate({
-  identifier: "ScriptsPainlessExecuteRequest",
-}) as any as S.Schema<ScriptsPainlessExecuteRequest>;
+  identifier: "RestoreSnapshotRequest",
+}) as any as S.Schema<RestoreSnapshotRequest>;
 
-export interface ScriptsPainlessExecuteResponse {
-  result: unknown;
+export type SnapshotRestoreSnapshotRestoreIndicesList = Array<string>;
+export const SnapshotRestoreSnapshotRestoreIndicesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SnapshotRestoreSnapshotRestoreIndicesList>;
+
+export interface SnapshotRestoreSnapshotRestore {
+  indices: SnapshotRestoreSnapshotRestoreIndicesList;
+  snapshot: string;
+  shards: TypesShardStatistics;
 }
-export const ScriptsPainlessExecuteResponse = /*@__PURE__*/ S.suspend(() =>
+export const SnapshotRestoreSnapshotRestore = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    result: S.Unknown,
+    indices: SnapshotRestoreSnapshotRestoreIndicesList,
+    snapshot: S.String,
+    shards: TypesShardStatistics,
   }),
 ).annotate({
-  identifier: "ScriptsPainlessExecuteResponse",
-}) as any as S.Schema<ScriptsPainlessExecuteResponse>;
+  identifier: "SnapshotRestoreSnapshotRestore",
+}) as any as S.Schema<SnapshotRestoreSnapshotRestore>;
+
+export interface RestoreSnapshotResponse {
+  accepted?: boolean;
+  snapshot?: SnapshotRestoreSnapshotRestore;
+}
+export const RestoreSnapshotResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accepted: S.optional(S.Boolean),
+    snapshot: S.optional(SnapshotRestoreSnapshotRestore),
+  }),
+).annotate({
+  identifier: "RestoreSnapshotResponse",
+}) as any as S.Schema<RestoreSnapshotResponse>;
+
+export interface RetryIlmRequest {
+  /** The name of the indices (comma-separated) whose failed lifecycle step is to be retry */
+  index: string;
+}
+export const RetryIlmRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    index: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "POST", uri: "/{index}/_ilm/retry", code: 200 })),
+).annotate({
+  identifier: "RetryIlmRequest",
+}) as any as S.Schema<RetryIlmRequest>;
 
 export interface ScriptsPainlessExecute1Request {
   /** The context that the script should run in. NOTE: Result ordering in the field contexts is not guaranteed. */
@@ -81851,6 +82308,397 @@ export const SearchApplicationSearch1Request = /*@__PURE__*/ S.suspend(() =>
   identifier: "SearchApplicationSearch1Request",
 }) as any as S.Schema<SearchApplicationSearch1Request>;
 
+export type SearchEqlRequestFilterCase1List =
+  Array<TypesQueryDslQueryContainer>;
+export const SearchEqlRequestFilterCase1List = /*@__PURE__*/ S.Array(
+  TypesQueryDslQueryContainer,
+) as any as S.Schema<SearchEqlRequestFilterCase1List>;
+
+/** Query, written in Query DSL, used to filter the events on which the EQL query runs. */
+export type SearchEqlRequestFilter =
+  | TypesQueryDslQueryContainer
+  | SearchEqlRequestFilterCase1List;
+export const SearchEqlRequestFilter =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<SearchEqlRequestFilter>;
+
+export type SearchEqlRequestFieldsCase1List =
+  Array<TypesQueryDslFieldAndFormat>;
+export const SearchEqlRequestFieldsCase1List = /*@__PURE__*/ S.Array(
+  TypesQueryDslFieldAndFormat,
+) as any as S.Schema<SearchEqlRequestFieldsCase1List>;
+
+/** Array of wildcard (*) patterns. The response returns values for field names matching these patterns in the fields property of each hit. */
+export type SearchEqlRequestFields =
+  | TypesQueryDslFieldAndFormat
+  | SearchEqlRequestFieldsCase1List;
+export const SearchEqlRequestFields =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<SearchEqlRequestFields>;
+
+export interface SearchEqlRequest {
+  /** Comma-separated list of index names to scope the operation */
+  index: string;
+  /** A setting that does two separate checks on the index expression. If `false`, the request returns an error (1) if any wildcard expression (including `_all` and `*`) resolves to zero matching indices or (2) if the complete set of resolved indices, aliases or data streams is empty after all expressions are evaluated. If `true`, index expressions that resolve to no indices are allowed and the request returns an empty result. */
+  allow_no_indices?: boolean;
+  /** If true, returns partial results if there are shard failures. If false, returns an error with no partial results. */
+  allow_partial_search_results?: boolean;
+  /** If true, sequence queries will return partial results in case of shard failures. If false, they will return no results at all. This flag has effect only if allow_partial_search_results is true. */
+  allow_partial_sequence_results?: boolean;
+  /** Whether to expand wildcard expression to concrete indices that are open, closed or both. */
+  expand_wildcards?: TypesExpandWildcards;
+  /** Indicates whether network round-trips should be minimized as part of cross-cluster search requests execution */
+  ccs_minimize_roundtrips?: boolean;
+  /** If `false`, the request returns an error if it targets a concrete (non-wildcarded) index, alias, or data stream that is missing, closed, or otherwise unavailable. If `true`, unavailable concrete targets are silently ignored. */
+  ignore_unavailable?: boolean;
+  /** Period for which the search and its results are stored on the cluster. */
+  keep_alive?: TypesDuration;
+  /** If true, the search and its results are stored on the cluster. */
+  keep_on_completion?: boolean;
+  /** Timeout duration to wait for the request to finish. Defaults to no timeout, meaning the request waits for complete search results. */
+  wait_for_completion_timeout?: TypesDuration;
+  /** EQL query you wish to run. */
+  query: string;
+  case_sensitive?: boolean;
+  /** Field containing the event classification, such as process, file, or network. */
+  event_category_field?: string;
+  /** Field used to sort hits with the same timestamp in ascending order */
+  tiebreaker_field?: string;
+  /** Field containing event timestamp. */
+  timestamp_field?: string;
+  /** Maximum number of events to search at a time for sequence queries. */
+  fetch_size?: number;
+  /** Query, written in Query DSL, used to filter the events on which the EQL query runs. */
+  filter?: SearchEqlRequestFilter;
+  /** For basic queries, the maximum number of matching events to return. Defaults to 10 */
+  size?: number;
+  /** Array of wildcard (*) patterns. The response returns values for field names matching these patterns in the fields property of each hit. */
+  fields?: SearchEqlRequestFields;
+  result_position?: EqlSearchResultPosition | (string & {});
+  runtime_mappings?: TypesMappingRuntimeFields;
+  /** By default, the response of a sample query contains up to `10` samples, with one sample per unique set of join keys. Use the `size` parameter to get a smaller or larger set of samples. To retrieve more than one sample per set of join keys, use the `max_samples_per_key` parameter. Pipes are not supported for sample queries. */
+  max_samples_per_key?: number;
+}
+export const SearchEqlRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    index: S.String.pipe(T.Label()),
+    allow_no_indices: S.optional(S.Boolean.pipe(T.Query())),
+    allow_partial_search_results: S.optional(S.Boolean.pipe(T.Query())),
+    allow_partial_sequence_results: S.optional(S.Boolean.pipe(T.Query())),
+    expand_wildcards: S.optional(TypesExpandWildcards.pipe(T.Query())),
+    ccs_minimize_roundtrips: S.optional(S.Boolean.pipe(T.Query())),
+    ignore_unavailable: S.optional(S.Boolean.pipe(T.Query())),
+    keep_alive: S.optional(TypesDuration.pipe(T.Query())),
+    keep_on_completion: S.optional(S.Boolean.pipe(T.Query())),
+    wait_for_completion_timeout: S.optional(TypesDuration.pipe(T.Query())),
+    query: S.String,
+    case_sensitive: S.optional(S.Boolean),
+    event_category_field: S.optional(S.String),
+    tiebreaker_field: S.optional(S.String),
+    timestamp_field: S.optional(S.String),
+    fetch_size: S.optional(S.Number),
+    filter: S.optional(SearchEqlRequestFilter),
+    size: S.optional(S.Number),
+    fields: S.optional(SearchEqlRequestFields),
+    result_position: S.optional(EqlSearchResultPosition),
+    runtime_mappings: S.optional(TypesMappingRuntimeFields),
+    max_samples_per_key: S.optional(S.Number),
+  }).pipe(T.Http({ method: "GET", uri: "/{index}/_eql/search", code: 200 })),
+).annotate({
+  identifier: "SearchEqlRequest",
+}) as any as S.Schema<SearchEqlRequest>;
+
+export type SearchFleetRequestStatsList = Array<string>;
+export const SearchFleetRequestStatsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SearchFleetRequestStatsList>;
+
+export type SearchFleetRequestSortCase1List = Array<string>;
+export const SearchFleetRequestSortCase1List = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SearchFleetRequestSortCase1List>;
+
+export type SearchFleetRequestSort = string | SearchFleetRequestSortCase1List;
+export const SearchFleetRequestSort =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<SearchFleetRequestSort>;
+
+export type SearchFleetRequestWaitForCheckpointsList = Array<number>;
+export const SearchFleetRequestWaitForCheckpointsList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<SearchFleetRequestWaitForCheckpointsList>;
+
+export type SearchFleetRequestAggregationsMap = {
+  [key: string]: TypesAggregationsAggregationContainer | undefined;
+};
+export const SearchFleetRequestAggregationsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  TypesAggregationsAggregationContainer,
+) as any as S.Schema<SearchFleetRequestAggregationsMap>;
+
+/** Configuration of search extensions defined by Elasticsearch plugins. */
+export type SearchFleetRequestExtMap = { [key: string]: unknown | undefined };
+export const SearchFleetRequestExtMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<SearchFleetRequestExtMap>;
+
+export type SearchFleetRequestIndicesBoostItemMap = {
+  [key: string]: number | undefined;
+};
+export const SearchFleetRequestIndicesBoostItemMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Number,
+) as any as S.Schema<SearchFleetRequestIndicesBoostItemMap>;
+
+/** Boosts the _score of documents from specified indices. */
+export type SearchFleetRequestIndicesBoostList =
+  Array<SearchFleetRequestIndicesBoostItemMap>;
+export const SearchFleetRequestIndicesBoostList = /*@__PURE__*/ S.Array(
+  SearchFleetRequestIndicesBoostItemMap,
+) as any as S.Schema<SearchFleetRequestIndicesBoostList>;
+
+export type SearchFleetRequestRescoreCase1List =
+  Array<GlobalSearchTypesRescore>;
+export const SearchFleetRequestRescoreCase1List = /*@__PURE__*/ S.Array(
+  GlobalSearchTypesRescore,
+) as any as S.Schema<SearchFleetRequestRescoreCase1List>;
+
+export type SearchFleetRequestRescore =
+  | GlobalSearchTypesRescore
+  | SearchFleetRequestRescoreCase1List;
+export const SearchFleetRequestRescore =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<SearchFleetRequestRescore>;
+
+/** Retrieve a script evaluation (based on different fields) for each hit. */
+export type SearchFleetRequestScriptFieldsMap = {
+  [key: string]: TypesScriptField | undefined;
+};
+export const SearchFleetRequestScriptFieldsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  TypesScriptField,
+) as any as S.Schema<SearchFleetRequestScriptFieldsMap>;
+
+/** Array of wildcard (*) patterns. The request returns values for field names matching these patterns in the hits.fields property of the response. */
+export type SearchFleetRequestFieldsList = Array<TypesQueryDslFieldAndFormat>;
+export const SearchFleetRequestFieldsList = /*@__PURE__*/ S.Array(
+  TypesQueryDslFieldAndFormat,
+) as any as S.Schema<SearchFleetRequestFieldsList>;
+
+export interface SearchFleetRequest {
+  /** A single target to search. If the target is an index alias, it must resolve to a single index. */
+  index: string;
+  /** A setting that does two separate checks on the index expression. If `false`, the request returns an error (1) if any wildcard expression (including `_all` and `*`) resolves to zero matching indices or (2) if the complete set of resolved indices, aliases or data streams is empty after all expressions are evaluated. If `true`, index expressions that resolve to no indices are allowed and the request returns an empty result. */
+  allow_no_indices?: boolean;
+  analyzer?: string;
+  analyze_wildcard?: boolean;
+  batched_reduce_size?: number;
+  ccs_minimize_roundtrips?: boolean;
+  default_operator?: TypesQueryDslOperator | (string & {});
+  df?: string;
+  docvalue_fields?: TypesFields;
+  expand_wildcards?: TypesExpandWildcards;
+  explain?: boolean;
+  ignore_throttled?: boolean;
+  /** If `false`, the request returns an error if it targets a concrete (non-wildcarded) index, alias, or data stream that is missing, closed, or otherwise unavailable. If `true`, unavailable concrete targets are silently ignored. */
+  ignore_unavailable?: boolean;
+  lenient?: boolean;
+  max_concurrent_shard_requests?: number;
+  preference?: string;
+  pre_filter_shard_size?: number;
+  request_cache?: boolean;
+  routing?: TypesRouting;
+  scroll?: TypesDuration;
+  search_type?: TypesSearchType | (string & {});
+  stats?: SearchFleetRequestStatsList;
+  stored_fields?: TypesFields;
+  /** Specifies which field to use for suggestions. */
+  suggest_field?: string;
+  suggest_mode?: TypesSuggestMode | (string & {});
+  suggest_size?: number;
+  /** The source text for which the suggestions should be returned. */
+  suggest_text?: string;
+  terminate_after?: number;
+  timeout?: TypesDuration;
+  track_total_hits?: GlobalSearchTypesTrackHits;
+  track_scores?: boolean;
+  typed_keys?: boolean;
+  rest_total_hits_as_int?: boolean;
+  version?: boolean;
+  _source?: GlobalSearchTypesSourceConfigParam;
+  _source_excludes?: TypesFields;
+  _source_includes?: TypesFields;
+  seq_no_primary_term?: boolean;
+  q?: string;
+  size?: number;
+  from?: number;
+  sort?: SearchFleetRequestSort;
+  /** A comma separated list of checkpoints. When configured, the search API will only be executed on a shard after the relevant checkpoint has become visible for search. Defaults to an empty list which will cause Elasticsearch to immediately execute the search. */
+  wait_for_checkpoints?: SearchFleetRequestWaitForCheckpointsList;
+  /** If true, returns partial results if there are shard request timeouts or shard failures. If false, returns an error with no partial results. Defaults to the configured cluster setting `search.default_allow_partial_results`, which is true by default. */
+  allow_partial_search_results?: boolean;
+  aggregations?: SearchFleetRequestAggregationsMap;
+  collapse?: GlobalSearchTypesFieldCollapse;
+  /** Configuration of search extensions defined by Elasticsearch plugins. */
+  ext?: SearchFleetRequestExtMap;
+  highlight?: GlobalSearchTypesHighlight;
+  /** Boosts the _score of documents from specified indices. */
+  indices_boost?: SearchFleetRequestIndicesBoostList;
+  /** Minimum _score for matching documents. Documents with a lower _score are not included in search results and results collected by aggregations. */
+  min_score?: number;
+  post_filter?: TypesQueryDslQueryContainer;
+  profile?: boolean;
+  /** Defines the search definition using the Query DSL. */
+  query?: TypesQueryDslQueryContainer;
+  rescore?: SearchFleetRequestRescore;
+  /** Retrieve a script evaluation (based on different fields) for each hit. */
+  script_fields?: SearchFleetRequestScriptFieldsMap;
+  search_after?: TypesSortResults;
+  slice?: TypesSlicedScroll;
+  /** Array of wildcard (*) patterns. The request returns values for field names matching these patterns in the hits.fields property of the response. */
+  fields?: SearchFleetRequestFieldsList;
+  suggest?: GlobalSearchTypesSuggester;
+  /** Limits the search to a point in time (PIT). If you provide a PIT, you cannot specify an <index> in the request path. */
+  pit?: GlobalSearchTypesPointInTimeReference;
+  /** Defines one or more runtime fields in the search request. These fields take precedence over mapped fields with the same name. */
+  runtime_mappings?: TypesMappingRuntimeFields;
+}
+export const SearchFleetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    index: S.String.pipe(T.Label()),
+    allow_no_indices: S.optional(S.Boolean.pipe(T.Query())),
+    analyzer: S.optional(S.String.pipe(T.Query())),
+    analyze_wildcard: S.optional(S.Boolean.pipe(T.Query())),
+    batched_reduce_size: S.optional(S.Number.pipe(T.Query())),
+    ccs_minimize_roundtrips: S.optional(S.Boolean.pipe(T.Query())),
+    default_operator: S.optional(TypesQueryDslOperator.pipe(T.Query())),
+    df: S.optional(S.String.pipe(T.Query())),
+    docvalue_fields: S.optional(TypesFields.pipe(T.Query())),
+    expand_wildcards: S.optional(TypesExpandWildcards.pipe(T.Query())),
+    explain: S.optional(S.Boolean.pipe(T.Query())),
+    ignore_throttled: S.optional(S.Boolean.pipe(T.Query())),
+    ignore_unavailable: S.optional(S.Boolean.pipe(T.Query())),
+    lenient: S.optional(S.Boolean.pipe(T.Query())),
+    max_concurrent_shard_requests: S.optional(S.Number.pipe(T.Query())),
+    preference: S.optional(S.String.pipe(T.Query())),
+    pre_filter_shard_size: S.optional(S.Number.pipe(T.Query())),
+    request_cache: S.optional(S.Boolean.pipe(T.Query())),
+    routing: S.optional(TypesRouting.pipe(T.Query())),
+    scroll: S.optional(TypesDuration.pipe(T.Query())),
+    search_type: S.optional(TypesSearchType.pipe(T.Query())),
+    stats: S.optional(SearchFleetRequestStatsList.pipe(T.Query())),
+    stored_fields: S.optional(TypesFields.pipe(T.Query())),
+    suggest_field: S.optional(S.String.pipe(T.Query())),
+    suggest_mode: S.optional(TypesSuggestMode.pipe(T.Query())),
+    suggest_size: S.optional(S.Number.pipe(T.Query())),
+    suggest_text: S.optional(S.String.pipe(T.Query())),
+    terminate_after: S.optional(S.Number.pipe(T.Query())),
+    timeout: S.optional(TypesDuration.pipe(T.Query())),
+    track_total_hits: S.optional(GlobalSearchTypesTrackHits.pipe(T.Query())),
+    track_scores: S.optional(S.Boolean.pipe(T.Query())),
+    typed_keys: S.optional(S.Boolean.pipe(T.Query())),
+    rest_total_hits_as_int: S.optional(S.Boolean.pipe(T.Query())),
+    version: S.optional(S.Boolean.pipe(T.Query())),
+    _source: S.optional(GlobalSearchTypesSourceConfigParam.pipe(T.Query())),
+    _source_excludes: S.optional(TypesFields.pipe(T.Query())),
+    _source_includes: S.optional(TypesFields.pipe(T.Query())),
+    seq_no_primary_term: S.optional(S.Boolean.pipe(T.Query())),
+    q: S.optional(S.String.pipe(T.Query())),
+    size: S.optional(S.Number.pipe(T.Query())),
+    from: S.optional(S.Number.pipe(T.Query())),
+    sort: S.optional(SearchFleetRequestSort.pipe(T.Query())),
+    wait_for_checkpoints: S.optional(
+      SearchFleetRequestWaitForCheckpointsList.pipe(T.Query()),
+    ),
+    allow_partial_search_results: S.optional(S.Boolean.pipe(T.Query())),
+    aggregations: S.optional(SearchFleetRequestAggregationsMap),
+    collapse: S.optional(GlobalSearchTypesFieldCollapse),
+    ext: S.optional(SearchFleetRequestExtMap),
+    highlight: S.optional(GlobalSearchTypesHighlight),
+    indices_boost: S.optional(SearchFleetRequestIndicesBoostList),
+    min_score: S.optional(S.Number),
+    post_filter: S.optional(TypesQueryDslQueryContainer),
+    profile: S.optional(S.Boolean),
+    query: S.optional(TypesQueryDslQueryContainer),
+    rescore: S.optional(SearchFleetRequestRescore),
+    script_fields: S.optional(SearchFleetRequestScriptFieldsMap),
+    search_after: S.optional(TypesSortResults),
+    slice: S.optional(TypesSlicedScroll),
+    fields: S.optional(SearchFleetRequestFieldsList),
+    suggest: S.optional(GlobalSearchTypesSuggester),
+    pit: S.optional(GlobalSearchTypesPointInTimeReference),
+    runtime_mappings: S.optional(TypesMappingRuntimeFields),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/{index}/_fleet/_fleet_search", code: 200 }),
+  ),
+).annotate({
+  identifier: "SearchFleetRequest",
+}) as any as S.Schema<SearchFleetRequest>;
+
+export type SearchFleetResponseAggregationsMap = {
+  [key: string]: TypesAggregationsAggregate | undefined;
+};
+export const SearchFleetResponseAggregationsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  TypesAggregationsAggregate,
+) as any as S.Schema<SearchFleetResponseAggregationsMap>;
+
+export type SearchFleetResponseFieldsMap = {
+  [key: string]: unknown | undefined;
+};
+export const SearchFleetResponseFieldsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<SearchFleetResponseFieldsMap>;
+
+export type SearchFleetResponseSuggestValueList =
+  Array<GlobalSearchTypesSuggest>;
+export const SearchFleetResponseSuggestValueList = /*@__PURE__*/ S.Array(
+  GlobalSearchTypesSuggest,
+) as any as S.Schema<SearchFleetResponseSuggestValueList>;
+
+export type SearchFleetResponseSuggestMap = {
+  [key: string]: SearchFleetResponseSuggestValueList | undefined;
+};
+export const SearchFleetResponseSuggestMap = /*@__PURE__*/ S.Record(
+  S.String,
+  SearchFleetResponseSuggestValueList,
+) as any as S.Schema<SearchFleetResponseSuggestMap>;
+
+export interface SearchFleetResponse {
+  took: number;
+  timed_out: boolean;
+  _shards: TypesShardStatistics;
+  hits: GlobalSearchTypesHitsMetadata;
+  aggregations?: SearchFleetResponseAggregationsMap;
+  _clusters?: TypesClusterStatistics;
+  fields?: SearchFleetResponseFieldsMap;
+  max_score?: number;
+  num_reduce_phases?: number;
+  profile?: GlobalSearchTypesProfile;
+  pit_id?: string;
+  _scroll_id?: string;
+  suggest?: SearchFleetResponseSuggestMap;
+  terminated_early?: boolean;
+}
+export const SearchFleetResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    took: S.Number,
+    timed_out: S.Boolean,
+    _shards: TypesShardStatistics,
+    hits: GlobalSearchTypesHitsMetadata,
+    aggregations: S.optional(SearchFleetResponseAggregationsMap),
+    _clusters: S.optional(TypesClusterStatistics),
+    fields: S.optional(SearchFleetResponseFieldsMap),
+    max_score: S.optional(S.Number),
+    num_reduce_phases: S.optional(S.Number),
+    profile: S.optional(GlobalSearchTypesProfile),
+    pit_id: S.optional(S.String),
+    _scroll_id: S.optional(S.String),
+    suggest: S.optional(SearchFleetResponseSuggestMap),
+    terminated_early: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "SearchFleetResponse",
+}) as any as S.Schema<SearchFleetResponse>;
+
 export type GlobalSearchMvtTypesGridAggregationType = "geotile" | "geohex";
 export const GlobalSearchMvtTypesGridAggregationType = /*@__PURE__*/ S.String;
 
@@ -83095,90 +83943,6 @@ export const SecurityActivateUserProfileResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "SecurityActivateUserProfileResponse",
 }) as any as S.Schema<SecurityActivateUserProfileResponse>;
-
-export interface SecurityAuthenticateRequest {}
-export const SecurityAuthenticateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({ method: "GET", uri: "/_security/_authenticate", code: 200 }),
-  ),
-).annotate({
-  identifier: "SecurityAuthenticateRequest",
-}) as any as S.Schema<SecurityAuthenticateRequest>;
-
-export type SecurityTypesCredentialManagedBy = "cloud" | "elasticsearch";
-export const SecurityTypesCredentialManagedBy = /*@__PURE__*/ S.String;
-
-export interface SecurityAuthenticateAuthenticateApiKey {
-  id: string;
-  name?: string;
-  managed_by: SecurityTypesCredentialManagedBy;
-  internal?: boolean;
-}
-export const SecurityAuthenticateAuthenticateApiKey = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String,
-      name: S.optional(S.String),
-      managed_by: SecurityTypesCredentialManagedBy,
-      internal: S.optional(S.Boolean),
-    }),
-).annotate({
-  identifier: "SecurityAuthenticateAuthenticateApiKey",
-}) as any as S.Schema<SecurityAuthenticateAuthenticateApiKey>;
-
-export type SecurityTypesRealmInfo = EsqlTypesEsqlColumnInfo;
-export const SecurityTypesRealmInfo = EsqlTypesEsqlColumnInfo;
-
-export type SecurityAuthenticateResponseRolesList = Array<string>;
-export const SecurityAuthenticateResponseRolesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<SecurityAuthenticateResponseRolesList>;
-
-export interface SecurityAuthenticateToken {
-  name?: string;
-  type?: string;
-  managed_by?: SecurityTypesCredentialManagedBy;
-}
-export const SecurityAuthenticateToken = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    managed_by: S.optional(SecurityTypesCredentialManagedBy),
-  }),
-).annotate({
-  identifier: "SecurityAuthenticateToken",
-}) as any as S.Schema<SecurityAuthenticateToken>;
-
-export interface SecurityAuthenticateResponse {
-  api_key?: SecurityAuthenticateAuthenticateApiKey;
-  authentication_realm: EsqlTypesEsqlColumnInfo;
-  email?: string;
-  full_name?: string;
-  lookup_realm: EsqlTypesEsqlColumnInfo;
-  metadata: TypesMetadata;
-  roles: SecurityAuthenticateResponseRolesList;
-  username: string;
-  enabled: boolean;
-  authentication_type: string;
-  token?: SecurityAuthenticateToken;
-}
-export const SecurityAuthenticateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    api_key: S.optional(SecurityAuthenticateAuthenticateApiKey),
-    authentication_realm: EsqlTypesEsqlColumnInfo,
-    email: S.optional(S.String),
-    full_name: S.optional(S.String),
-    lookup_realm: EsqlTypesEsqlColumnInfo,
-    metadata: TypesMetadata,
-    roles: SecurityAuthenticateResponseRolesList,
-    username: S.String,
-    enabled: S.Boolean,
-    authentication_type: S.String,
-    token: S.optional(SecurityAuthenticateToken),
-  }),
-).annotate({
-  identifier: "SecurityAuthenticateResponse",
-}) as any as S.Schema<SecurityAuthenticateResponse>;
 
 /** An array of role names to delete */
 export type SecurityBulkDeleteRoleRequestNamesList = Array<string>;
@@ -86593,8 +87357,8 @@ export const SecurityGetTokenAuthenticatedUserRolesList = /*@__PURE__*/ S.Array(
   S.String,
 ) as any as S.Schema<SecurityGetTokenAuthenticatedUserRolesList>;
 
-export type SecurityGetTokenUserRealm = EsqlTypesEsqlColumnInfo;
-export const SecurityGetTokenUserRealm = EsqlTypesEsqlColumnInfo;
+export type SecurityGetTokenUserRealm = SecurityTypesRealmInfo;
+export const SecurityGetTokenUserRealm = SecurityTypesRealmInfo;
 
 export interface SecurityGetTokenAuthenticationProvider {
   type: string;
@@ -86618,8 +87382,8 @@ export interface SecurityGetTokenAuthenticatedUser {
   username: string;
   enabled: boolean;
   profile_uid?: string;
-  authentication_realm: EsqlTypesEsqlColumnInfo;
-  lookup_realm: EsqlTypesEsqlColumnInfo;
+  authentication_realm: SecurityTypesRealmInfo;
+  lookup_realm: SecurityTypesRealmInfo;
   authentication_provider?: SecurityGetTokenAuthenticationProvider;
   authentication_type: string;
 }
@@ -86632,8 +87396,8 @@ export const SecurityGetTokenAuthenticatedUser = /*@__PURE__*/ S.suspend(() =>
     username: S.String,
     enabled: S.Boolean,
     profile_uid: S.optional(S.String),
-    authentication_realm: EsqlTypesEsqlColumnInfo,
-    lookup_realm: EsqlTypesEsqlColumnInfo,
+    authentication_realm: SecurityTypesRealmInfo,
+    lookup_realm: SecurityTypesRealmInfo,
     authentication_provider: S.optional(SecurityGetTokenAuthenticationProvider),
     authentication_type: S.String,
   }),
@@ -87902,77 +88666,6 @@ export const SecurityInvalidateTokenResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "SecurityInvalidateTokenResponse",
 }) as any as S.Schema<SecurityInvalidateTokenResponse>;
-
-export interface SecurityOidcAuthenticateRequest {
-  /** Associate a client session with an ID token and mitigate replay attacks. This value needs to be the same as the one that was provided to the `/_security/oidc/prepare` API or the one that was generated by Elasticsearch and included in the response to that call. */
-  nonce: string;
-  /** The name of the OpenID Connect realm. This property is useful in cases where multiple realms are defined. */
-  realm?: string;
-  /** The URL to which the OpenID Connect Provider redirected the User Agent in response to an authentication request after a successful authentication. This URL must be provided as-is (URL encoded), taken from the body of the response or as the value of a location header in the response from the OpenID Connect Provider. */
-  redirect_uri: string;
-  /** Maintain state between the authentication request and the response. This value needs to be the same as the one that was provided to the `/_security/oidc/prepare` API or the one that was generated by Elasticsearch and included in the response to that call. */
-  state: string;
-}
-export const SecurityOidcAuthenticateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nonce: S.String,
-    realm: S.optional(S.String),
-    redirect_uri: S.String,
-    state: S.String,
-  }).pipe(
-    T.Http({ method: "POST", uri: "/_security/oidc/authenticate", code: 200 }),
-  ),
-).annotate({
-  identifier: "SecurityOidcAuthenticateRequest",
-}) as any as S.Schema<SecurityOidcAuthenticateRequest>;
-
-export interface SecurityOidcAuthenticateResponse {
-  /** The Elasticsearch access token. */
-  access_token: string | Redacted.Redacted<string>;
-  /** The duration (in seconds) of the tokens. */
-  expires_in: number;
-  /** The Elasticsearch refresh token. */
-  refresh_token: string | Redacted.Redacted<string>;
-  /** The type of token. */
-  type: string;
-}
-export const SecurityOidcAuthenticateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    access_token: S.String.pipe(T.SensitiveValue({})),
-    expires_in: S.Number,
-    refresh_token: S.String.pipe(T.SensitiveValue({})),
-    type: S.String,
-  }),
-).annotate({
-  identifier: "SecurityOidcAuthenticateResponse",
-}) as any as S.Schema<SecurityOidcAuthenticateResponse>;
-
-export interface SecurityOidcLogoutRequest {
-  /** The access token to be invalidated. */
-  token: string;
-  /** The refresh token to be invalidated. */
-  refresh_token?: string | Redacted.Redacted<string>;
-}
-export const SecurityOidcLogoutRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    token: S.String,
-    refresh_token: S.optional(S.String.pipe(T.SensitiveValue({}))),
-  }).pipe(T.Http({ method: "POST", uri: "/_security/oidc/logout", code: 200 })),
-).annotate({
-  identifier: "SecurityOidcLogoutRequest",
-}) as any as S.Schema<SecurityOidcLogoutRequest>;
-
-export interface SecurityOidcLogoutResponse {
-  /** A URI that points to the end session endpoint of the OpenID Connect Provider with all the parameters of the logout request as HTTP GET parameters. */
-  redirect: string;
-}
-export const SecurityOidcLogoutResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    redirect: S.String,
-  }),
-).annotate({
-  identifier: "SecurityOidcLogoutResponse",
-}) as any as S.Schema<SecurityOidcLogoutResponse>;
 
 export interface SecurityOidcPrepareAuthenticationRequest {
   /** In the case of a third party initiated single sign on, this is the issuer identifier for the OP that the RP is to send the authentication request to. It cannot be specified when *realm* is specified. One of *realm* or *iss* is required. */
@@ -89531,152 +90224,6 @@ export const SecurityQueryUser1Response = /*@__PURE__*/ S.suspend(() =>
   identifier: "SecurityQueryUser1Response",
 }) as any as S.Schema<SecurityQueryUser1Response>;
 
-export interface SecuritySamlAuthenticateRequest {
-  /** The SAML response as it was sent by the user's browser, usually a Base64 encoded XML document. */
-  content: string;
-  /** A JSON array with all the valid SAML Request Ids that the caller of the API has for the current user. */
-  ids: TypesIds;
-  /** The name of the realm that should authenticate the SAML response. Useful in cases where many SAML realms are defined. */
-  realm?: string;
-}
-export const SecuritySamlAuthenticateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    content: S.String,
-    ids: TypesIds,
-    realm: S.optional(S.String),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/_security/saml/authenticate", code: 200 }),
-  ),
-).annotate({
-  identifier: "SecuritySamlAuthenticateRequest",
-}) as any as S.Schema<SecuritySamlAuthenticateRequest>;
-
-export interface SecuritySamlAuthenticateResponse {
-  /** The access token that was generated by Elasticsearch. */
-  access_token: string | Redacted.Redacted<string>;
-  /** The authenticated user's name. */
-  username: string;
-  /** The amount of time (in seconds) left until the token expires. */
-  expires_in: number;
-  /** The refresh token that was generated by Elasticsearch. */
-  refresh_token: string | Redacted.Redacted<string>;
-  /** The name of the realm where the user was authenticated. */
-  realm: string;
-  /** The id of the request that initiated the authentication process. */
-  in_response_to?: string;
-}
-export const SecuritySamlAuthenticateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    access_token: S.String.pipe(T.SensitiveValue({})),
-    username: S.String,
-    expires_in: S.Number,
-    refresh_token: S.String.pipe(T.SensitiveValue({})),
-    realm: S.String,
-    in_response_to: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SecuritySamlAuthenticateResponse",
-}) as any as S.Schema<SecuritySamlAuthenticateResponse>;
-
-export interface SecuritySamlCompleteLogoutRequest {
-  /** The name of the SAML realm in Elasticsearch for which the configuration is used to verify the logout response. */
-  realm: string;
-  /** A JSON array with all the valid SAML Request Ids that the caller of the API has for the current user. */
-  ids: TypesIds;
-  /** If the SAML IdP sends the logout response with the HTTP-Redirect binding, this field must be set to the query string of the redirect URI. */
-  query_string?: string;
-  /** If the SAML IdP sends the logout response with the HTTP-Post binding, this field must be set to the value of the SAMLResponse form parameter from the logout response. */
-  content?: string;
-}
-export const SecuritySamlCompleteLogoutRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    realm: S.String,
-    ids: TypesIds,
-    query_string: S.optional(S.String),
-    content: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/_security/saml/complete_logout",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "SecuritySamlCompleteLogoutRequest",
-}) as any as S.Schema<SecuritySamlCompleteLogoutRequest>;
-
-export interface SecuritySamlCompleteLogoutResponse {}
-export const SecuritySamlCompleteLogoutResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "SecuritySamlCompleteLogoutResponse",
-}) as any as S.Schema<SecuritySamlCompleteLogoutResponse>;
-
-export interface SecuritySamlInvalidateRequest {
-  /** The Assertion Consumer Service URL that matches the one of the SAML realm in Elasticsearch that should be used. You must specify either this parameter or the `realm` parameter. */
-  acs?: string;
-  /** The query part of the URL that the user was redirected to by the SAML IdP to initiate the Single Logout. This query should include a single parameter named `SAMLRequest` that contains a SAML logout request that is deflated and Base64 encoded. If the SAML IdP has signed the logout request, the URL should include two extra parameters named `SigAlg` and `Signature` that contain the algorithm used for the signature and the signature value itself. In order for Elasticsearch to be able to verify the IdP's signature, the value of the `query_string` field must be an exact match to the string provided by the browser. The client application must not attempt to parse or process the string in any way. */
-  query_string: string;
-  /** The name of the SAML realm in Elasticsearch the configuration. You must specify either this parameter or the `acs` parameter. */
-  realm?: string;
-}
-export const SecuritySamlInvalidateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    acs: S.optional(S.String),
-    query_string: S.String,
-    realm: S.optional(S.String),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/_security/saml/invalidate", code: 200 }),
-  ),
-).annotate({
-  identifier: "SecuritySamlInvalidateRequest",
-}) as any as S.Schema<SecuritySamlInvalidateRequest>;
-
-export interface SecuritySamlInvalidateResponse {
-  /** The number of tokens that were invalidated as part of this logout. */
-  invalidated: number;
-  /** The realm name of the SAML realm in Elasticsearch that authenticated the user. */
-  realm: string;
-  /** A SAML logout response as a parameter so that the user can be redirected back to the SAML IdP. */
-  redirect: string;
-}
-export const SecuritySamlInvalidateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    invalidated: S.Number,
-    realm: S.String,
-    redirect: S.String,
-  }),
-).annotate({
-  identifier: "SecuritySamlInvalidateResponse",
-}) as any as S.Schema<SecuritySamlInvalidateResponse>;
-
-export interface SecuritySamlLogoutRequest {
-  /** The access token that was returned as a response to calling the SAML authenticate API. Alternatively, the most recent token that was received after refreshing the original one by using a `refresh_token`. */
-  token: string;
-  /** The refresh token that was returned as a response to calling the SAML authenticate API. Alternatively, the most recent refresh token that was received after refreshing the original access token. */
-  refresh_token?: string | Redacted.Redacted<string>;
-}
-export const SecuritySamlLogoutRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    token: S.String,
-    refresh_token: S.optional(S.String.pipe(T.SensitiveValue({}))),
-  }).pipe(T.Http({ method: "POST", uri: "/_security/saml/logout", code: 200 })),
-).annotate({
-  identifier: "SecuritySamlLogoutRequest",
-}) as any as S.Schema<SecuritySamlLogoutRequest>;
-
-export interface SecuritySamlLogoutResponse {
-  /** A URL that contains a SAML logout request as a parameter. You can use this URL to be redirected back to the SAML IdP and to initiate Single Logout. */
-  redirect: string;
-}
-export const SecuritySamlLogoutResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    redirect: S.String,
-  }),
-).annotate({
-  identifier: "SecuritySamlLogoutResponse",
-}) as any as S.Schema<SecuritySamlLogoutResponse>;
-
 export interface SecuritySamlPrepareAuthenticationRequest {
   /** The Assertion Consumer Service URL that matches the one of the SAML realms in Elasticsearch. The realm is used to generate the authentication request. You must specify either this parameter or the `realm` parameter. */
   acs?: string;
@@ -91198,34 +91745,6 @@ export const SlmPutLifecycleRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "SlmPutLifecycleRequest",
 }) as any as S.Schema<SlmPutLifecycleRequest>;
 
-export interface SlmStartRequest {
-  /** The period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error. To indicate that the request should never timeout, set it to `-1`. */
-  master_timeout?: TypesDuration;
-  /** The period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error. To indicate that the request should never timeout, set it to `-1`. */
-  timeout?: TypesDuration;
-}
-export const SlmStartRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
-    timeout: S.optional(TypesDuration.pipe(T.Query())),
-  }).pipe(T.Http({ method: "POST", uri: "/_slm/start", code: 200 })),
-).annotate({
-  identifier: "SlmStartRequest",
-}) as any as S.Schema<SlmStartRequest>;
-
-export interface SlmStopRequest {
-  /** The period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error. To indicate that the request should never timeout, set it to `-1`. */
-  master_timeout?: TypesDuration;
-  /** The period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error. To indicate that the request should never timeout, set it to `-1`. */
-  timeout?: TypesDuration;
-}
-export const SlmStopRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
-    timeout: S.optional(TypesDuration.pipe(T.Query())),
-  }).pipe(T.Http({ method: "POST", uri: "/_slm/stop", code: 200 })),
-).annotate({ identifier: "SlmStopRequest" }) as any as S.Schema<SlmStopRequest>;
-
 export interface SnapshotCleanupRepositoryRequest {
   /** The name of the snapshot repository to clean up. */
   repository: string;
@@ -91277,237 +91796,6 @@ export const SnapshotCleanupRepositoryResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "SnapshotCleanupRepositoryResponse",
 }) as any as S.Schema<SnapshotCleanupRepositoryResponse>;
-
-export interface SnapshotCloneRequest {
-  /** The name of the snapshot repository that both source and target snapshot belong to. */
-  repository: string;
-  /** The source snapshot name. */
-  snapshot: string;
-  /** The target snapshot name. */
-  target_snapshot: string;
-  /** The period to wait for the master node. If the master node is not available before the timeout expires, the request fails and returns an error. To indicate that the request should never timeout, set it to `-1`. */
-  master_timeout?: TypesDuration;
-  /** A comma-separated list of indices to include in the snapshot. Multi-target syntax is supported. */
-  indices: string;
-}
-export const SnapshotCloneRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    repository: S.String.pipe(T.Label()),
-    snapshot: S.String.pipe(T.Label()),
-    target_snapshot: S.String.pipe(T.Label()),
-    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
-    indices: S.String,
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/_snapshot/{repository}/{snapshot}/_clone/{target_snapshot}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "SnapshotCloneRequest",
-}) as any as S.Schema<SnapshotCloneRequest>;
-
-/** The feature states to include in the snapshot. Each feature state includes one or more system indices containing related data. You can view a list of eligible features using the get features API. If `include_global_state` is `true`, all current feature states are included by default. If `include_global_state` is `false`, no feature states are included by default. Note that specifying an empty array will result in the default behavior. To exclude all feature states, regardless of the `include_global_state` value, specify an array with only the value `none` (`["none"]`). */
-export type SnapshotCreateRequestFeatureStatesList = Array<string>;
-export const SnapshotCreateRequestFeatureStatesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<SnapshotCreateRequestFeatureStatesList>;
-
-export interface SnapshotCreateRequest {
-  /** The name of the repository for the snapshot. */
-  repository: string;
-  /** The name of the snapshot. It supportes date math. It must be unique in the repository. */
-  snapshot: string;
-  /** The period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error. */
-  master_timeout?: TypesDuration;
-  /** If `true`, the request returns a response when the snapshot is complete. If `false`, the request returns a response when the snapshot initializes. */
-  wait_for_completion?: boolean;
-  /** Determines how wildcard patterns in the `indices` parameter match data streams and indices. It supports comma-separated values such as `open,hidden`. */
-  expand_wildcards?: TypesExpandWildcards;
-  /** The feature states to include in the snapshot. Each feature state includes one or more system indices containing related data. You can view a list of eligible features using the get features API. If `include_global_state` is `true`, all current feature states are included by default. If `include_global_state` is `false`, no feature states are included by default. Note that specifying an empty array will result in the default behavior. To exclude all feature states, regardless of the `include_global_state` value, specify an array with only the value `none` (`["none"]`). */
-  feature_states?: SnapshotCreateRequestFeatureStatesList;
-  /** If `true`, the request ignores data streams and indices in `indices` that are missing or closed. If `false`, the request returns an error for any data stream or index that is missing or closed. */
-  ignore_unavailable?: boolean;
-  /** If `true`, the current cluster state is included in the snapshot. The cluster state includes persistent cluster settings, composable index templates, legacy index templates, ingest pipelines, and ILM policies. It also includes data stored in system indices, such as Watches and task records (configurable via `feature_states`). */
-  include_global_state?: boolean;
-  /** A comma-separated list of data streams and indices to include in the snapshot. It supports a multi-target syntax. The default is an empty array (`[]`), which includes all regular data streams and regular indices. To exclude all data streams and indices, use `-*`. You can't use this parameter to include or exclude system indices or system data streams from a snapshot. Use `feature_states` instead. */
-  indices?: TypesIndices;
-  /** Arbitrary metadata to the snapshot, such as a record of who took the snapshot, why it was taken, or any other useful data. It can have any contents but it must be less than 1024 bytes. This information is not automatically generated by Elasticsearch. */
-  metadata?: TypesMetadata;
-  /** If `true`, allows the snapshot to proceed even if some of the target shards are unavailable. In this case, the resulting snapshot will not contain snapshots of the unavailable target shards, and will report its state as `PARTIAL`. Additionally, if `true`, allows index metadata operations such as deletions while the snapshot is in progress. This is almost always preferable to failing the snapshot completely when a single shard is unavailable, and blocking index metadata operations. If `false`, the entire restore operation will fail if one or more indices included in the snapshot do not have all primary shards available, and index metadata operations such as deletions will be forbidden until the snapshot completes. */
-  partial?: boolean;
-}
-export const SnapshotCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    repository: S.String.pipe(T.Label()),
-    snapshot: S.String.pipe(T.Label()),
-    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
-    wait_for_completion: S.optional(S.Boolean.pipe(T.Query())),
-    expand_wildcards: S.optional(TypesExpandWildcards),
-    feature_states: S.optional(SnapshotCreateRequestFeatureStatesList),
-    ignore_unavailable: S.optional(S.Boolean),
-    include_global_state: S.optional(S.Boolean),
-    indices: S.optional(TypesIndices),
-    metadata: S.optional(TypesMetadata),
-    partial: S.optional(S.Boolean),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/_snapshot/{repository}/{snapshot}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "SnapshotCreateRequest",
-}) as any as S.Schema<SnapshotCreateRequest>;
-
-export type SnapshotTypesSnapshotInfoDataStreamsList = Array<string>;
-export const SnapshotTypesSnapshotInfoDataStreamsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<SnapshotTypesSnapshotInfoDataStreamsList>;
-
-export interface SnapshotTypesSnapshotShardFailure {
-  index: string;
-  node_id?: string;
-  reason: string;
-  shard_id: number;
-  index_uuid: string;
-  status: string;
-}
-export const SnapshotTypesSnapshotShardFailure = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    index: S.String,
-    node_id: S.optional(S.String),
-    reason: S.String,
-    shard_id: S.Number,
-    index_uuid: S.String,
-    status: S.String,
-  }),
-).annotate({
-  identifier: "SnapshotTypesSnapshotShardFailure",
-}) as any as S.Schema<SnapshotTypesSnapshotShardFailure>;
-
-export type SnapshotTypesSnapshotInfoFailuresList =
-  Array<SnapshotTypesSnapshotShardFailure>;
-export const SnapshotTypesSnapshotInfoFailuresList = /*@__PURE__*/ S.Array(
-  SnapshotTypesSnapshotShardFailure,
-) as any as S.Schema<SnapshotTypesSnapshotInfoFailuresList>;
-
-export type SnapshotTypesSnapshotInfoIndicesList = Array<string>;
-export const SnapshotTypesSnapshotInfoIndicesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<SnapshotTypesSnapshotInfoIndicesList>;
-
-export interface SnapshotTypesIndexDetails {
-  shard_count: number;
-  size?: TypesByteSize;
-  size_in_bytes: number;
-  max_segments_per_shard: number;
-}
-export const SnapshotTypesIndexDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    shard_count: S.Number,
-    size: S.optional(TypesByteSize),
-    size_in_bytes: S.Number,
-    max_segments_per_shard: S.Number,
-  }),
-).annotate({
-  identifier: "SnapshotTypesIndexDetails",
-}) as any as S.Schema<SnapshotTypesIndexDetails>;
-
-export type SnapshotTypesSnapshotInfoIndexDetailsMap = {
-  [key: string]: SnapshotTypesIndexDetails | undefined;
-};
-export const SnapshotTypesSnapshotInfoIndexDetailsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  SnapshotTypesIndexDetails,
-) as any as S.Schema<SnapshotTypesSnapshotInfoIndexDetailsMap>;
-
-export interface SnapshotTypesInfoFeatureState {
-  feature_name: string;
-  indices: TypesIndices;
-}
-export const SnapshotTypesInfoFeatureState = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    feature_name: S.String,
-    indices: TypesIndices,
-  }),
-).annotate({
-  identifier: "SnapshotTypesInfoFeatureState",
-}) as any as S.Schema<SnapshotTypesInfoFeatureState>;
-
-export type SnapshotTypesSnapshotInfoFeatureStatesList =
-  Array<SnapshotTypesInfoFeatureState>;
-export const SnapshotTypesSnapshotInfoFeatureStatesList = /*@__PURE__*/ S.Array(
-  SnapshotTypesInfoFeatureState,
-) as any as S.Schema<SnapshotTypesSnapshotInfoFeatureStatesList>;
-
-export interface SnapshotTypesSnapshotInfo {
-  data_streams: SnapshotTypesSnapshotInfoDataStreamsList;
-  duration?: TypesDuration;
-  duration_in_millis?: number;
-  end_time?: TypesDateTime;
-  end_time_in_millis?: number;
-  failures?: SnapshotTypesSnapshotInfoFailuresList;
-  include_global_state?: boolean;
-  indices?: SnapshotTypesSnapshotInfoIndicesList;
-  index_details?: SnapshotTypesSnapshotInfoIndexDetailsMap;
-  metadata?: TypesMetadata;
-  reason?: string;
-  repository?: string;
-  snapshot: string;
-  shards?: TypesShardStatistics;
-  start_time?: TypesDateTime;
-  start_time_in_millis?: number;
-  state?: string;
-  uuid: string;
-  version?: string;
-  version_id?: number;
-  feature_states?: SnapshotTypesSnapshotInfoFeatureStatesList;
-}
-export const SnapshotTypesSnapshotInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data_streams: SnapshotTypesSnapshotInfoDataStreamsList,
-    duration: S.optional(TypesDuration),
-    duration_in_millis: S.optional(S.Number),
-    end_time: S.optional(TypesDateTime),
-    end_time_in_millis: S.optional(S.Number),
-    failures: S.optional(SnapshotTypesSnapshotInfoFailuresList),
-    include_global_state: S.optional(S.Boolean),
-    indices: S.optional(SnapshotTypesSnapshotInfoIndicesList),
-    index_details: S.optional(SnapshotTypesSnapshotInfoIndexDetailsMap),
-    metadata: S.optional(TypesMetadata),
-    reason: S.optional(S.String),
-    repository: S.optional(S.String),
-    snapshot: S.String,
-    shards: S.optional(TypesShardStatistics),
-    start_time: S.optional(TypesDateTime),
-    start_time_in_millis: S.optional(S.Number),
-    state: S.optional(S.String),
-    uuid: S.String,
-    version: S.optional(S.String),
-    version_id: S.optional(S.Number),
-    feature_states: S.optional(SnapshotTypesSnapshotInfoFeatureStatesList),
-  }),
-).annotate({
-  identifier: "SnapshotTypesSnapshotInfo",
-}) as any as S.Schema<SnapshotTypesSnapshotInfo>;
-
-export interface SnapshotCreateResponse {
-  /** Equals `true` if the snapshot was accepted. Present when the request had `wait_for_completion` set to `false` */
-  accepted?: boolean;
-  /** Snapshot information. Present when the request had `wait_for_completion` set to `true` */
-  snapshot?: SnapshotTypesSnapshotInfo;
-}
-export const SnapshotCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accepted: S.optional(S.Boolean),
-    snapshot: S.optional(SnapshotTypesSnapshotInfo),
-  }),
-).annotate({
-  identifier: "SnapshotCreateResponse",
-}) as any as S.Schema<SnapshotCreateResponse>;
 
 /** The feature states to include in the snapshot. Each feature state includes one or more system indices containing related data. You can view a list of eligible features using the get features API. If `include_global_state` is `true`, all current feature states are included by default. If `include_global_state` is `false`, no feature states are included by default. Note that specifying an empty array will result in the default behavior. To exclude all feature states, regardless of the `include_global_state` value, specify an array with only the value `none` (`["none"]`). */
 export type SnapshotCreate1RequestFeatureStatesList = Array<string>;
@@ -92187,33 +92475,6 @@ export const SnapshotCreateRepository1Request = /*@__PURE__*/ S.suspend(() =>
   identifier: "SnapshotCreateRepository1Request",
 }) as any as S.Schema<SnapshotCreateRepository1Request>;
 
-export interface SnapshotDeleteRequest {
-  /** The name of the repository to delete a snapshot from. */
-  repository: string;
-  /** A comma-separated list of snapshot names to delete. It also accepts wildcards (`*`). */
-  snapshot: string;
-  /** The period to wait for the master node. If the master node is not available before the timeout expires, the request fails and returns an error. To indicate that the request should never timeout, set it to `-1`. */
-  master_timeout?: TypesDuration;
-  /** If `true`, the request returns a response when the matching snapshots are all deleted. If `false`, the request returns a response as soon as the deletes are scheduled. */
-  wait_for_completion?: boolean;
-}
-export const SnapshotDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    repository: S.String.pipe(T.Label()),
-    snapshot: S.String.pipe(T.Label()),
-    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
-    wait_for_completion: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/_snapshot/{repository}/{snapshot}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "SnapshotDeleteRequest",
-}) as any as S.Schema<SnapshotDeleteRequest>;
-
 export interface SnapshotDeleteRepositoryRequest {
   /** The ame of the snapshot repositories to unregister. Wildcard (`*`) patterns are supported. */
   repository: string;
@@ -92233,155 +92494,6 @@ export const SnapshotDeleteRepositoryRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "SnapshotDeleteRepositoryRequest",
 }) as any as S.Schema<SnapshotDeleteRepositoryRequest>;
-
-export type SnapshotTypesSnapshotSort =
-  | "start_time"
-  | "duration"
-  | "name"
-  | "index_count"
-  | "repository"
-  | "shard_count"
-  | "failed_shard_count";
-export const SnapshotTypesSnapshotSort = /*@__PURE__*/ S.String;
-
-export type SnapshotTypesSnapshotState =
-  | "IN_PROGRESS"
-  | "SUCCESS"
-  | "FAILED"
-  | "PARTIAL"
-  | "INCOMPATIBLE";
-export const SnapshotTypesSnapshotState = /*@__PURE__*/ S.String;
-
-export type SnapshotGetRequestStateCase1List = Array<
-  SnapshotTypesSnapshotState | (string & {})
->;
-export const SnapshotGetRequestStateCase1List = /*@__PURE__*/ S.Array(
-  SnapshotTypesSnapshotState,
-) as any as S.Schema<SnapshotGetRequestStateCase1List>;
-
-export type SnapshotGetRequestState =
-  | SnapshotTypesSnapshotState
-  | SnapshotGetRequestStateCase1List;
-export const SnapshotGetRequestState =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SnapshotGetRequestState>;
-
-export interface SnapshotGetRequest {
-  /** A comma-separated list of snapshot repository names used to limit the request. Wildcard (`*`) expressions are supported. */
-  repository: string;
-  /** A comma-separated list of snapshot names to retrieve Wildcards (`*`) are supported. * To get information about all snapshots in a registered repository, use a wildcard (`*`) or `_all`. * To get information about any snapshots that are currently running, use `_current`. */
-  snapshot: string;
-  /** An offset identifier to start pagination from as returned by the next field in the response body. */
-  after?: string;
-  /** The value of the current sort column at which to start retrieval. It can be a string `snapshot-` or a repository name when sorting by snapshot or repository name. It can be a millisecond time value or a number when sorting by `index-` or shard count. */
-  from_sort_value?: string;
-  /** If `false`, the request returns an error for any snapshots that are unavailable. */
-  ignore_unavailable?: boolean;
-  /** If `true`, the response includes additional information about each index in the snapshot comprising the number of shards in the index, the total size of the index in bytes, and the maximum number of segments per shard in the index. The default is `false`, meaning that this information is omitted. */
-  index_details?: boolean;
-  /** If `true`, the response includes the name of each index in each snapshot. */
-  index_names?: boolean;
-  /** If `true`, the response includes the repository name in each snapshot. */
-  include_repository?: boolean;
-  /** The period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error. */
-  master_timeout?: TypesDuration;
-  /** The sort order. Valid values are `asc` for ascending and `desc` for descending order. The default behavior is ascending order. */
-  order?: TypesSortOrder | (string & {});
-  /** Numeric offset to start pagination from based on the snapshots matching this request. Using a non-zero value for this parameter is mutually exclusive with using the after parameter. Defaults to 0. */
-  offset?: number;
-  /** The maximum number of snapshots to return. The default is -1, which means to return all that match the request without limit. */
-  size?: number;
-  /** Filter snapshots by a comma-separated list of snapshot lifecycle management (SLM) policy names that snapshots belong to. You can use wildcards (`*`) and combinations of wildcards followed by exclude patterns starting with `-`. For example, the pattern `*,-policy-a-\*` will return all snapshots except for those that were created by an SLM policy with a name starting with `policy-a-`. Note that the wildcard pattern `*` matches all snapshots created by an SLM policy but not those snapshots that were not created by an SLM policy. To include snapshots that were not created by an SLM policy, you can use the special pattern `_none` that will match all snapshots without an SLM policy. */
-  slm_policy_filter?: string;
-  /** The sort order for the result. The default behavior is sorting by snapshot start time stamp. */
-  sort?: SnapshotTypesSnapshotSort | (string & {});
-  /** Only return snapshots with a state found in the given comma-separated list of snapshot states. The default is all snapshot states. */
-  state?: SnapshotGetRequestState;
-  /** If `true`, returns additional information about each snapshot such as the version of Elasticsearch which took the snapshot, the start and end times of the snapshot, and the number of shards snapshotted. NOTE: The parameters `size`, `order`, `after`, `from_sort_value`, `offset`, `slm_policy_filter`, and `sort` are not supported when you set `verbose=false` and the sort order for requests with `verbose=false` is undefined. */
-  verbose?: boolean;
-}
-export const SnapshotGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    repository: S.String.pipe(T.Label()),
-    snapshot: S.String.pipe(T.Label()),
-    after: S.optional(S.String.pipe(T.Query())),
-    from_sort_value: S.optional(S.String.pipe(T.Query())),
-    ignore_unavailable: S.optional(S.Boolean.pipe(T.Query())),
-    index_details: S.optional(S.Boolean.pipe(T.Query())),
-    index_names: S.optional(S.Boolean.pipe(T.Query())),
-    include_repository: S.optional(S.Boolean.pipe(T.Query())),
-    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
-    order: S.optional(TypesSortOrder.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
-    size: S.optional(S.Number.pipe(T.Query())),
-    slm_policy_filter: S.optional(S.String.pipe(T.Query())),
-    sort: S.optional(SnapshotTypesSnapshotSort.pipe(T.Query())),
-    state: S.optional(SnapshotGetRequestState.pipe(T.Query())),
-    verbose: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/_snapshot/{repository}/{snapshot}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "SnapshotGetRequest",
-}) as any as S.Schema<SnapshotGetRequest>;
-
-export type SnapshotGetSnapshotResponseItemSnapshotsList =
-  Array<SnapshotTypesSnapshotInfo>;
-export const SnapshotGetSnapshotResponseItemSnapshotsList =
-  /*@__PURE__*/ S.Array(
-    SnapshotTypesSnapshotInfo,
-  ) as any as S.Schema<SnapshotGetSnapshotResponseItemSnapshotsList>;
-
-export interface SnapshotGetSnapshotResponseItem {
-  repository: string;
-  snapshots?: SnapshotGetSnapshotResponseItemSnapshotsList;
-  error?: TypesErrorCause;
-}
-export const SnapshotGetSnapshotResponseItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    repository: S.String,
-    snapshots: S.optional(SnapshotGetSnapshotResponseItemSnapshotsList),
-    error: S.optional(TypesErrorCause),
-  }),
-).annotate({
-  identifier: "SnapshotGetSnapshotResponseItem",
-}) as any as S.Schema<SnapshotGetSnapshotResponseItem>;
-
-export type SnapshotGetResponseResponsesList =
-  Array<SnapshotGetSnapshotResponseItem>;
-export const SnapshotGetResponseResponsesList = /*@__PURE__*/ S.Array(
-  SnapshotGetSnapshotResponseItem,
-) as any as S.Schema<SnapshotGetResponseResponsesList>;
-
-export type SnapshotGetResponseSnapshotsList = Array<SnapshotTypesSnapshotInfo>;
-export const SnapshotGetResponseSnapshotsList = /*@__PURE__*/ S.Array(
-  SnapshotTypesSnapshotInfo,
-) as any as S.Schema<SnapshotGetResponseSnapshotsList>;
-
-export interface SnapshotGetResponse {
-  /** The number of remaining snapshots that were not returned due to size limits and that can be fetched by additional requests using the `next` field value. */
-  remaining: number;
-  /** The total number of snapshots that match the request when ignoring the size limit or `after` query parameter. */
-  total: number;
-  /** If the request contained a size limit and there might be more results, a `next` field will be added to the response. It can be used as the `after` query parameter to fetch additional results. */
-  next?: string;
-  responses?: SnapshotGetResponseResponsesList;
-  snapshots?: SnapshotGetResponseSnapshotsList;
-}
-export const SnapshotGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    remaining: S.Number,
-    total: S.Number,
-    next: S.optional(S.String),
-    responses: S.optional(SnapshotGetResponseResponsesList),
-    snapshots: S.optional(SnapshotGetResponseSnapshotsList),
-  }),
-).annotate({
-  identifier: "SnapshotGetResponse",
-}) as any as S.Schema<SnapshotGetResponse>;
 
 export interface SnapshotGetRepositoryRequest {
   /** If `true`, the request gets information from the local node only. If `false`, the request gets information from the master node. */
@@ -92840,111 +92952,6 @@ export const SnapshotRepositoryVerifyIntegrityResponse =
     identifier: "SnapshotRepositoryVerifyIntegrityResponse",
   }) as any as S.Schema<SnapshotRepositoryVerifyIntegrityResponse>;
 
-/** The feature states to restore. If `include_global_state` is `true`, the request restores all feature states in the snapshot by default. If `include_global_state` is `false`, the request restores no feature states by default. Note that specifying an empty array will result in the default behavior. To restore no feature states, regardless of the `include_global_state` value, specify an array containing only the value `none` (`["none"]`). */
-export type SnapshotRestoreRequestFeatureStatesList = Array<string>;
-export const SnapshotRestoreRequestFeatureStatesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<SnapshotRestoreRequestFeatureStatesList>;
-
-/** The index settings to not restore from the snapshot. You can't use this option to ignore `index.number_of_shards`. For data streams, this option applies only to restored backing indices. New backing indices are configured using the data stream's matching index template. */
-export type SnapshotRestoreRequestIgnoreIndexSettingsList = Array<string>;
-export const SnapshotRestoreRequestIgnoreIndexSettingsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SnapshotRestoreRequestIgnoreIndexSettingsList>;
-
-export interface SnapshotRestoreRequest {
-  /** The name of the repository to restore a snapshot from. */
-  repository: string;
-  /** The name of the snapshot to restore. */
-  snapshot: string;
-  /** The period to wait for the master node. If the master node is not available before the timeout expires, the request fails and returns an error. To indicate that the request should never timeout, set it to `-1`. */
-  master_timeout?: TypesDuration;
-  /** If `true`, the request returns a response when the restore operation completes. The operation is complete when it finishes all attempts to recover primary shards for restored indices. This applies even if one or more of the recovery attempts fail. If `false`, the request returns a response when the restore operation initializes. */
-  wait_for_completion?: boolean;
-  /** The feature states to restore. If `include_global_state` is `true`, the request restores all feature states in the snapshot by default. If `include_global_state` is `false`, the request restores no feature states by default. Note that specifying an empty array will result in the default behavior. To restore no feature states, regardless of the `include_global_state` value, specify an array containing only the value `none` (`["none"]`). */
-  feature_states?: SnapshotRestoreRequestFeatureStatesList;
-  /** The index settings to not restore from the snapshot. You can't use this option to ignore `index.number_of_shards`. For data streams, this option applies only to restored backing indices. New backing indices are configured using the data stream's matching index template. */
-  ignore_index_settings?: SnapshotRestoreRequestIgnoreIndexSettingsList;
-  /** If `true`, the request ignores any index or data stream in indices that's missing from the snapshot. If `false`, the request returns an error for any missing index or data stream. */
-  ignore_unavailable?: boolean;
-  /** If `true`, the request restores aliases for any restored data streams and indices. If `false`, the request doesn’t restore aliases. */
-  include_aliases?: boolean;
-  /** If `true`, restore the cluster state. The cluster state includes: * Persistent cluster settings * Index templates * Legacy index templates * Ingest pipelines * Index lifecycle management (ILM) policies * Stored scripts * For snapshots taken after 7.12.0, feature states If `include_global_state` is `true`, the restore operation merges the legacy index templates in your cluster with the templates contained in the snapshot, replacing any existing ones whose name matches one in the snapshot. It completely removes all persistent settings, non-legacy index templates, ingest pipelines, and ILM lifecycle policies that exist in your cluster and replaces them with the corresponding items from the snapshot. Use the `feature_states` parameter to configure how feature states are restored. If `include_global_state` is `true` and a snapshot was created without a global state then the restore request will fail. */
-  include_global_state?: boolean;
-  /** Index settings to add or change in restored indices, including backing indices. You can't use this option to change `index.number_of_shards`. For data streams, this option applies only to restored backing indices. New backing indices are configured using the data stream's matching index template. */
-  index_settings?: IndicesTypesIndexSettings;
-  /** A comma-separated list of indices and data streams to restore. It supports a multi-target syntax. The default behavior is all regular indices and regular data streams in the snapshot. You can't use this parameter to restore system indices or system data streams. Use `feature_states` instead. */
-  indices?: TypesIndices;
-  /** If `false`, the entire restore operation will fail if one or more indices included in the snapshot do not have all primary shards available. If true, it allows restoring a partial snapshot of indices with unavailable shards. Only shards that were successfully included in the snapshot will be restored. All missing shards will be recreated as empty. */
-  partial?: boolean;
-  /** A rename pattern to apply to restored data streams and indices. Data streams and indices matching the rename pattern will be renamed according to `rename_replacement`. The rename pattern is applied as defined by the regular expression that supports referencing the original text, according to the `appendReplacement` logic. */
-  rename_pattern?: string;
-  /** The rename replacement string that is used with the `rename_pattern`. */
-  rename_replacement?: string;
-}
-export const SnapshotRestoreRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    repository: S.String.pipe(T.Label()),
-    snapshot: S.String.pipe(T.Label()),
-    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
-    wait_for_completion: S.optional(S.Boolean.pipe(T.Query())),
-    feature_states: S.optional(SnapshotRestoreRequestFeatureStatesList),
-    ignore_index_settings: S.optional(
-      SnapshotRestoreRequestIgnoreIndexSettingsList,
-    ),
-    ignore_unavailable: S.optional(S.Boolean),
-    include_aliases: S.optional(S.Boolean),
-    include_global_state: S.optional(S.Boolean),
-    index_settings: S.optional(IndicesTypesIndexSettings),
-    indices: S.optional(TypesIndices),
-    partial: S.optional(S.Boolean),
-    rename_pattern: S.optional(S.String),
-    rename_replacement: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/_snapshot/{repository}/{snapshot}/_restore",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "SnapshotRestoreRequest",
-}) as any as S.Schema<SnapshotRestoreRequest>;
-
-export type SnapshotRestoreSnapshotRestoreIndicesList = Array<string>;
-export const SnapshotRestoreSnapshotRestoreIndicesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<SnapshotRestoreSnapshotRestoreIndicesList>;
-
-export interface SnapshotRestoreSnapshotRestore {
-  indices: SnapshotRestoreSnapshotRestoreIndicesList;
-  snapshot: string;
-  shards: TypesShardStatistics;
-}
-export const SnapshotRestoreSnapshotRestore = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    indices: SnapshotRestoreSnapshotRestoreIndicesList,
-    snapshot: S.String,
-    shards: TypesShardStatistics,
-  }),
-).annotate({
-  identifier: "SnapshotRestoreSnapshotRestore",
-}) as any as S.Schema<SnapshotRestoreSnapshotRestore>;
-
-export interface SnapshotRestoreResponse {
-  accepted?: boolean;
-  snapshot?: SnapshotRestoreSnapshotRestore;
-}
-export const SnapshotRestoreResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accepted: S.optional(S.Boolean),
-    snapshot: S.optional(SnapshotRestoreSnapshotRestore),
-  }),
-).annotate({
-  identifier: "SnapshotRestoreResponse",
-}) as any as S.Schema<SnapshotRestoreResponse>;
-
 export interface SnapshotStatusRequest {
   /** If `false`, the request returns an error for any snapshots that are unavailable. If `true`, the request ignores snapshots that are unavailable, such as those that are corrupted or temporarily cannot be returned. */
   ignore_unavailable?: boolean;
@@ -93349,13 +93356,13 @@ export const SqlGetAsyncRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "SqlGetAsyncRequest",
 }) as any as S.Schema<SqlGetAsyncRequest>;
 
-export type SqlTypesColumn = EsqlTypesEsqlColumnInfo;
-export const SqlTypesColumn = EsqlTypesEsqlColumnInfo;
+export type SqlTypesColumn = SecurityTypesRealmInfo;
+export const SqlTypesColumn = SecurityTypesRealmInfo;
 
 /** Column headings for the search results. Each object is a column. */
-export type SqlGetAsyncResponseColumnsList = Array<EsqlTypesEsqlColumnInfo>;
+export type SqlGetAsyncResponseColumnsList = Array<SecurityTypesRealmInfo>;
 export const SqlGetAsyncResponseColumnsList = /*@__PURE__*/ S.Array(
-  EsqlTypesEsqlColumnInfo,
+  SecurityTypesRealmInfo,
 ) as any as S.Schema<SqlGetAsyncResponseColumnsList>;
 
 export type SqlTypesRow = Array<unknown>;
@@ -93515,9 +93522,9 @@ export const SqlQueryRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SqlQueryRequest>;
 
 /** Column headings for the search results. Each object is a column. */
-export type SqlQueryResponseColumnsList = Array<EsqlTypesEsqlColumnInfo>;
+export type SqlQueryResponseColumnsList = Array<SecurityTypesRealmInfo>;
 export const SqlQueryResponseColumnsList = /*@__PURE__*/ S.Array(
-  EsqlTypesEsqlColumnInfo,
+  SecurityTypesRealmInfo,
 ) as any as S.Schema<SqlQueryResponseColumnsList>;
 
 /** The values for the search results. */
@@ -93623,9 +93630,9 @@ export const SqlQuery1Request = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SqlQuery1Request>;
 
 /** Column headings for the search results. Each object is a column. */
-export type SqlQuery1ResponseColumnsList = Array<EsqlTypesEsqlColumnInfo>;
+export type SqlQuery1ResponseColumnsList = Array<SecurityTypesRealmInfo>;
 export const SqlQuery1ResponseColumnsList = /*@__PURE__*/ S.Array(
-  EsqlTypesEsqlColumnInfo,
+  SecurityTypesRealmInfo,
 ) as any as S.Schema<SqlQuery1ResponseColumnsList>;
 
 /** The values for the search results. */
@@ -93832,51 +93839,102 @@ export const SslCertificatesResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SslCertificatesResponse",
 }) as any as S.Schema<SslCertificatesResponse>;
 
-export type StreamsLogsDisableRequestName = "logs" | "logs.otel" | "logs.ecs";
-export const StreamsLogsDisableRequestName = /*@__PURE__*/ S.String;
-
-export interface StreamsLogsDisableRequest {
-  /** The stream type to disable. */
-  name: StreamsLogsDisableRequestName | (string & {});
-  /** The period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error. */
+export interface StartIlmRequest {
+  /** Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error. */
   master_timeout?: TypesDuration;
-  /** The period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error. */
+  /** Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error. */
   timeout?: TypesDuration;
 }
-export const StreamsLogsDisableRequest = /*@__PURE__*/ S.suspend(() =>
+export const StartIlmRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: StreamsLogsDisableRequestName.pipe(T.Label()),
     master_timeout: S.optional(TypesDuration.pipe(T.Query())),
     timeout: S.optional(TypesDuration.pipe(T.Query())),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/_streams/{name}/_disable", code: 200 }),
-  ),
+  }).pipe(T.Http({ method: "POST", uri: "/_ilm/start", code: 200 })),
 ).annotate({
-  identifier: "StreamsLogsDisableRequest",
-}) as any as S.Schema<StreamsLogsDisableRequest>;
+  identifier: "StartIlmRequest",
+}) as any as S.Schema<StartIlmRequest>;
 
-export type StreamsLogsEnableRequestName = "logs" | "logs.otel" | "logs.ecs";
-export const StreamsLogsEnableRequestName = /*@__PURE__*/ S.String;
-
-export interface StreamsLogsEnableRequest {
-  /** The stream type to enable. */
-  name: StreamsLogsEnableRequestName | (string & {});
-  /** The period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error. */
+export interface StartSlmRequest {
+  /** The period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error. To indicate that the request should never timeout, set it to `-1`. */
   master_timeout?: TypesDuration;
-  /** The period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error. */
+  /** The period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error. To indicate that the request should never timeout, set it to `-1`. */
   timeout?: TypesDuration;
 }
-export const StreamsLogsEnableRequest = /*@__PURE__*/ S.suspend(() =>
+export const StartSlmRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: StreamsLogsEnableRequestName.pipe(T.Label()),
     master_timeout: S.optional(TypesDuration.pipe(T.Query())),
     timeout: S.optional(TypesDuration.pipe(T.Query())),
+  }).pipe(T.Http({ method: "POST", uri: "/_slm/start", code: 200 })),
+).annotate({
+  identifier: "StartSlmRequest",
+}) as any as S.Schema<StartSlmRequest>;
+
+export interface StartWatcherRequest {
+  /** Period to wait for a connection to the master node. */
+  master_timeout?: TypesDuration;
+}
+export const StartWatcherRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
+  }).pipe(T.Http({ method: "POST", uri: "/_watcher/_start", code: 200 })),
+).annotate({
+  identifier: "StartWatcherRequest",
+}) as any as S.Schema<StartWatcherRequest>;
+
+export interface StopEsqlAsyncQueryRequest {
+  /** The unique identifier of the query. A query ID is provided in the ES|QL async query API response for a query that does not complete in the designated time. A query ID is also provided when the request was submitted with the `keep_on_completion` parameter set to `true`. */
+  id: string;
+  /** Indicates whether columns that are entirely `null` will be removed from the `columns` and `values` portion of the results. If `true`, the response will include an extra section under the name `all_columns` which has the name of all the columns. */
+  drop_null_columns?: boolean;
+}
+export const StopEsqlAsyncQueryRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    drop_null_columns: S.optional(S.Boolean.pipe(T.Query())),
   }).pipe(
-    T.Http({ method: "POST", uri: "/_streams/{name}/_enable", code: 200 }),
+    T.Http({ method: "POST", uri: "/_query/async/{id}/stop", code: 200 }),
   ),
 ).annotate({
-  identifier: "StreamsLogsEnableRequest",
-}) as any as S.Schema<StreamsLogsEnableRequest>;
+  identifier: "StopEsqlAsyncQueryRequest",
+}) as any as S.Schema<StopEsqlAsyncQueryRequest>;
+
+export interface StopIlmRequest {
+  /** Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error. */
+  master_timeout?: TypesDuration;
+  /** Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error. */
+  timeout?: TypesDuration;
+}
+export const StopIlmRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
+    timeout: S.optional(TypesDuration.pipe(T.Query())),
+  }).pipe(T.Http({ method: "POST", uri: "/_ilm/stop", code: 200 })),
+).annotate({ identifier: "StopIlmRequest" }) as any as S.Schema<StopIlmRequest>;
+
+export interface StopSlmRequest {
+  /** The period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error. To indicate that the request should never timeout, set it to `-1`. */
+  master_timeout?: TypesDuration;
+  /** The period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error. To indicate that the request should never timeout, set it to `-1`. */
+  timeout?: TypesDuration;
+}
+export const StopSlmRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
+    timeout: S.optional(TypesDuration.pipe(T.Query())),
+  }).pipe(T.Http({ method: "POST", uri: "/_slm/stop", code: 200 })),
+).annotate({ identifier: "StopSlmRequest" }) as any as S.Schema<StopSlmRequest>;
+
+export interface StopWatcherRequest {
+  /** The period to wait for the master node. If the master node is not available before the timeout expires, the request fails and returns an error. To indicate that the request should never timeout, set it to `-1`. */
+  master_timeout?: TypesDuration;
+}
+export const StopWatcherRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
+  }).pipe(T.Http({ method: "POST", uri: "/_watcher/_stop", code: 200 })),
+).annotate({
+  identifier: "StopWatcherRequest",
+}) as any as S.Schema<StopWatcherRequest>;
 
 export interface StreamsStatusRequest {
   /** Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error. */
@@ -94188,43 +94246,6 @@ export const SynonymsPutSynonymRuleRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "SynonymsPutSynonymRuleRequest",
 }) as any as S.Schema<SynonymsPutSynonymRuleRequest>;
 
-export type TasksCancelRequestActionsCase1List = Array<string>;
-export const TasksCancelRequestActionsCase1List = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<TasksCancelRequestActionsCase1List>;
-
-export type TasksCancelRequestActions =
-  | string
-  | TasksCancelRequestActionsCase1List;
-export const TasksCancelRequestActions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TasksCancelRequestActions>;
-
-export type TasksCancelRequestNodesList = Array<string>;
-export const TasksCancelRequestNodesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<TasksCancelRequestNodesList>;
-
-export interface TasksCancelRequest {
-  /** A comma-separated list or wildcard expression of actions that is used to limit the request. */
-  actions?: TasksCancelRequestActions;
-  /** A comma-separated list of node IDs or names that is used to limit the request. */
-  nodes?: TasksCancelRequestNodesList;
-  /** A parent task ID that is used to limit the tasks. */
-  parent_task_id?: string;
-  /** If true, the request blocks until all found tasks are complete. */
-  wait_for_completion?: boolean;
-}
-export const TasksCancelRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    actions: S.optional(TasksCancelRequestActions.pipe(T.Query())),
-    nodes: S.optional(TasksCancelRequestNodesList.pipe(T.Query())),
-    parent_task_id: S.optional(S.String.pipe(T.Query())),
-    wait_for_completion: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(T.Http({ method: "POST", uri: "/_tasks/_cancel", code: 200 })),
-).annotate({
-  identifier: "TasksCancelRequest",
-}) as any as S.Schema<TasksCancelRequest>;
-
 export type TasksCancel1RequestActionsCase1List = Array<string>;
 export const TasksCancel1RequestActionsCase1List = /*@__PURE__*/ S.Array(
   S.String,
@@ -94266,80 +94287,6 @@ export const TasksCancel1Request = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "TasksCancel1Request",
 }) as any as S.Schema<TasksCancel1Request>;
-
-export interface TasksGetRequest {
-  /** The task identifier. */
-  task_id: string;
-  /** The period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error. */
-  timeout?: TypesDuration;
-  /** If `true`, the request blocks until the task has completed. */
-  wait_for_completion?: boolean;
-}
-export const TasksGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    task_id: S.String.pipe(T.Label()),
-    timeout: S.optional(TypesDuration.pipe(T.Query())),
-    wait_for_completion: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/_tasks/{task_id}", code: 200 })),
-).annotate({
-  identifier: "TasksGetRequest",
-}) as any as S.Schema<TasksGetRequest>;
-
-export interface TasksGetResponse {
-  completed: boolean;
-  task: TasksTypesTaskInfo;
-  response?: unknown;
-  error?: TypesErrorCause;
-}
-export const TasksGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    completed: S.Boolean,
-    task: TasksTypesTaskInfo,
-    response: S.optional(S.Unknown),
-    error: S.optional(TypesErrorCause),
-  }),
-).annotate({
-  identifier: "TasksGetResponse",
-}) as any as S.Schema<TasksGetResponse>;
-
-export type TasksListRequestActionsCase1List = Array<string>;
-export const TasksListRequestActionsCase1List = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<TasksListRequestActionsCase1List>;
-
-export type TasksListRequestActions = string | TasksListRequestActionsCase1List;
-export const TasksListRequestActions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TasksListRequestActions>;
-
-export interface TasksListRequest {
-  /** A comma-separated list or wildcard expression of actions used to limit the request. For example, you can use `cluser:*` to retrieve all cluster-related tasks. */
-  actions?: TasksListRequestActions;
-  /** If `true`, the response includes detailed information about the running tasks. This information is useful to distinguish tasks from each other but is more costly to run. */
-  detailed?: boolean;
-  /** A key that is used to group tasks in the response. The task lists can be grouped either by nodes or by parent tasks. */
-  group_by?: TasksTypesGroupBy | (string & {});
-  /** A comma-separated list of node IDs or names that is used to limit the returned information. */
-  nodes?: TypesNodeIds;
-  /** A parent task identifier that is used to limit returned information. To return all tasks, omit this parameter or use a value of `-1`. If the parent task is not found, the API does not return a 404 response code. */
-  parent_task_id?: string;
-  /** The period to wait for each node to respond. If a node does not respond before its timeout expires, the response does not include its information. However, timed out nodes are included in the `node_failures` property. */
-  timeout?: TypesDuration;
-  /** If `true`, the request blocks until the operation is complete. */
-  wait_for_completion?: boolean;
-}
-export const TasksListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    actions: S.optional(TasksListRequestActions.pipe(T.Query())),
-    detailed: S.optional(S.Boolean.pipe(T.Query())),
-    group_by: S.optional(TasksTypesGroupBy.pipe(T.Query())),
-    nodes: S.optional(TypesNodeIds.pipe(T.Query())),
-    parent_task_id: S.optional(S.String.pipe(T.Query())),
-    timeout: S.optional(TypesDuration.pipe(T.Query())),
-    wait_for_completion: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/_tasks", code: 200 })),
-).annotate({
-  identifier: "TasksListRequest",
-}) as any as S.Schema<TasksListRequest>;
 
 export interface TermsEnumRequest {
   /** A comma-separated list of data streams, indices, and index aliases to search. Wildcard (`*`) expressions are supported. To search all data streams or indices, omit this parameter or use `*` or `_all`. */
@@ -96939,6 +96886,21 @@ export const TransformUpgradeTransformsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "TransformUpgradeTransformsResponse",
 }) as any as S.Schema<TransformUpgradeTransformsResponse>;
 
+export interface UnfollowCcrRequest {
+  /** The name of the follower index. */
+  index: string;
+  /** The period to wait for a connection to the master node. If the master node is not available before the timeout expires, the request fails and returns an error. It can also be set to `-1` to indicate that the request should never timeout. */
+  master_timeout?: TypesDuration;
+}
+export const UnfollowCcrRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    index: S.String.pipe(T.Label()),
+    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
+  }).pipe(T.Http({ method: "POST", uri: "/{index}/_ccr/unfollow", code: 200 })),
+).annotate({
+  identifier: "UnfollowCcrRequest",
+}) as any as S.Schema<UnfollowCcrRequest>;
+
 export interface UpdateRequest {
   /** The name of the target index. By default, the index is created automatically if it doesn't exist. */
   index: string;
@@ -97328,23 +97290,83 @@ export const UpdateByQueryRethrottleResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateByQueryRethrottleResponse",
 }) as any as S.Schema<UpdateByQueryRethrottleResponse>;
 
-export interface WatcherAckWatchRequest {
+export interface UpdateInferenceRequest {
+  /** The unique identifier of the inference endpoint. */
+  inference_id: string;
+  /** Specifies the amount of time to wait for the inference endpoint to be updated. The default depends on the task type: 120s for `completion` and `chat_completion`, and 30s for all other task types. */
+  timeout?: TypesDuration;
+  /** The chunking configuration object. Applies only to the `embedding`, `sparse_embedding` and `text_embedding` task types. Not applicable to the `rerank`, `completion`, or `chat_completion` task types. */
+  chunking_settings?: InferenceTypesInferenceChunkingSettings;
+  /** The service type */
+  service: string;
+  /** Settings specific to the service */
+  service_settings: unknown;
+  /** Task settings specific to the service and task type */
+  task_settings?: unknown;
+}
+export const UpdateInferenceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    inference_id: S.String.pipe(T.Label()),
+    timeout: S.optional(TypesDuration.pipe(T.Query())),
+    chunking_settings: S.optional(InferenceTypesInferenceChunkingSettings),
+    service: S.String,
+    service_settings: S.Unknown,
+    task_settings: S.optional(S.Unknown),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/_inference/{inference_id}/_update",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateInferenceRequest",
+}) as any as S.Schema<UpdateInferenceRequest>;
+
+export interface UpdateInferenceResponse {
+  /** The chunking configuration object. Applies only to the `embedding`, `sparse_embedding` and `text_embedding` task types. Not applicable to the `rerank`, `completion`, or `chat_completion` task types. */
+  chunking_settings?: InferenceTypesInferenceChunkingSettings;
+  /** The service type */
+  service: string;
+  /** Settings specific to the service */
+  service_settings: unknown;
+  /** Task settings specific to the service and task type */
+  task_settings?: unknown;
+  /** The inference Id */
+  inference_id: string;
+  /** The task type */
+  task_type: InferenceTypesTaskType;
+}
+export const UpdateInferenceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    chunking_settings: S.optional(InferenceTypesInferenceChunkingSettings),
+    service: S.String,
+    service_settings: S.Unknown,
+    task_settings: S.optional(S.Unknown),
+    inference_id: S.String,
+    task_type: InferenceTypesTaskType,
+  }),
+).annotate({
+  identifier: "UpdateInferenceResponse",
+}) as any as S.Schema<UpdateInferenceResponse>;
+
+export interface WatcherAckWatch1Request {
   /** The watch identifier. */
   watch_id: string;
 }
-export const WatcherAckWatchRequest = /*@__PURE__*/ S.suspend(() =>
+export const WatcherAckWatch1Request = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     watch_id: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "PUT",
+      method: "POST",
       uri: "/_watcher/watch/{watch_id}/_ack",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "WatcherAckWatchRequest",
-}) as any as S.Schema<WatcherAckWatchRequest>;
+  identifier: "WatcherAckWatch1Request",
+}) as any as S.Schema<WatcherAckWatch1Request>;
 
 export type WatcherTypesAcknowledgementOptions =
   | "awaits_successful_execution"
@@ -97451,35 +97473,6 @@ export const WatcherTypesWatchStatus = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "WatcherTypesWatchStatus",
 }) as any as S.Schema<WatcherTypesWatchStatus>;
-
-export interface WatcherAckWatchResponse {
-  status: WatcherTypesWatchStatus;
-}
-export const WatcherAckWatchResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: WatcherTypesWatchStatus,
-  }),
-).annotate({
-  identifier: "WatcherAckWatchResponse",
-}) as any as S.Schema<WatcherAckWatchResponse>;
-
-export interface WatcherAckWatch1Request {
-  /** The watch identifier. */
-  watch_id: string;
-}
-export const WatcherAckWatch1Request = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    watch_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/_watcher/watch/{watch_id}/_ack",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "WatcherAckWatch1Request",
-}) as any as S.Schema<WatcherAckWatch1Request>;
 
 export interface WatcherAckWatch1Response {
   status: WatcherTypesWatchStatus;
@@ -100177,18 +100170,6 @@ export const WatcherQueryWatches1Response = /*@__PURE__*/ S.suspend(() =>
   identifier: "WatcherQueryWatches1Response",
 }) as any as S.Schema<WatcherQueryWatches1Response>;
 
-export interface WatcherStartRequest {
-  /** Period to wait for a connection to the master node. */
-  master_timeout?: TypesDuration;
-}
-export const WatcherStartRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
-  }).pipe(T.Http({ method: "POST", uri: "/_watcher/_start", code: 200 })),
-).annotate({
-  identifier: "WatcherStartRequest",
-}) as any as S.Schema<WatcherStartRequest>;
-
 export type WatcherStatsWatcherMetric =
   | "_all"
   | "all"
@@ -100406,18 +100387,6 @@ export const WatcherStats1Response = /*@__PURE__*/ S.suspend(() =>
   identifier: "WatcherStats1Response",
 }) as any as S.Schema<WatcherStats1Response>;
 
-export interface WatcherStopRequest {
-  /** The period to wait for the master node. If the master node is not available before the timeout expires, the request fails and returns an error. To indicate that the request should never timeout, set it to `-1`. */
-  master_timeout?: TypesDuration;
-}
-export const WatcherStopRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
-  }).pipe(T.Http({ method: "POST", uri: "/_watcher/_stop", code: 200 })),
-).annotate({
-  identifier: "WatcherStopRequest",
-}) as any as S.Schema<WatcherStopRequest>;
-
 export interface WatcherUpdateSettingsRequest {
   /** The period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error. */
   master_timeout?: TypesDuration;
@@ -100451,6 +100420,35 @@ export const WatcherUpdateSettingsResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "WatcherUpdateSettingsResponse",
 }) as any as S.Schema<WatcherUpdateSettingsResponse>;
+
+export interface WatchWatcherAckRequest {
+  /** The watch identifier. */
+  watch_id: string;
+}
+export const WatchWatcherAckRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    watch_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/_watcher/watch/{watch_id}/_ack",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "WatchWatcherAckRequest",
+}) as any as S.Schema<WatchWatcherAckRequest>;
+
+export interface WatchWatcherAckResponse {
+  status: WatcherTypesWatchStatus;
+}
+export const WatchWatcherAckResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: WatcherTypesWatchStatus,
+  }),
+).annotate({
+  identifier: "WatchWatcherAckResponse",
+}) as any as S.Schema<WatchWatcherAckResponse>;
 
 export type XpackInfoXPackCategory = "build" | "features" | "license";
 export const XpackInfoXPackCategory = /*@__PURE__*/ S.String;
@@ -102155,6 +102153,21 @@ export const XpackUsageResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "XpackUsageResponse",
 }) as any as S.Schema<XpackUsageResponse>;
 
+export type ArchiveNodesClearRepositoriesMeteringError = ElasticsearchOpError;
+/** Clear the archived repositories metering Clear the archived repositories metering information in the cluster. ## Required authorization * Cluster privileges: `monitor`,`manage` */
+export const archiveNodesClearRepositoriesMetering: API.OperationMethod<
+  ArchiveNodesClearRepositoriesMeteringRequest,
+  ArchiveNodesClearRepositoriesMeteringResponse,
+  ArchiveNodesClearRepositoriesMeteringError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ArchiveNodesClearRepositoriesMeteringRequest,
+  output: ArchiveNodesClearRepositoriesMeteringResponse,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
 export type AsyncSearchDeleteError = ElasticsearchOpError;
 /** Delete an async search If the asynchronous search is still running, it is cancelled. Otherwise, the saved search results are deleted. If the Elasticsearch security features are enabled, the deletion of a specific async search is restricted to: the authenticated user that submitted the original search request; users that have the `cancel_task` cluster privilege. */
 export const asyncSearchDelete: API.OperationMethod<
@@ -102230,6 +102243,51 @@ export const asyncSearchSubmit1: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type AuthenticateSecurityError = ElasticsearchOpError;
+/** Authenticate a user Authenticates a user and returns information about the authenticated user. Include the user information in a [basic auth header](https://en.wikipedia.org/wiki/Basic_access_authentication). A successful call returns a JSON structure that shows user information such as their username, the roles that are assigned to the user, any assigned metadata, and information about the realms that authenticated and authorized the user. If the user cannot be authenticated, this API returns a 401 status code. */
+export const authenticateSecurity: API.OperationMethod<
+  AuthenticateSecurityRequest,
+  AuthenticateSecurityResponse,
+  AuthenticateSecurityError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: AuthenticateSecurityRequest,
+  output: AuthenticateSecurityResponse,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type AuthenticateSecurityOidcError = ElasticsearchOpError;
+/** Authenticate OpenID Connect Exchange an OpenID Connect authentication response message for an Elasticsearch internal access token and refresh token that can be subsequently used for authentication. Elasticsearch exposes all the necessary OpenID Connect related functionality with the OpenID Connect APIs. These APIs are used internally by Kibana in order to provide OpenID Connect based authentication, but can also be used by other, custom web applications or other clients. */
+export const authenticateSecurityOidc: API.OperationMethod<
+  AuthenticateSecurityOidcRequest,
+  AuthenticateSecurityOidcResponse,
+  AuthenticateSecurityOidcError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: AuthenticateSecurityOidcRequest,
+  output: AuthenticateSecurityOidcResponse,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type AuthenticateSecuritySamlError = ElasticsearchOpError;
+/** Authenticate SAML Submit a SAML response message to Elasticsearch for consumption. NOTE: This API is intended for use by custom web applications other than Kibana. If you are using Kibana, refer to the documentation for configuring SAML single-sign-on on the Elastic Stack. The SAML message that is submitted can be: * A response to a SAML authentication request that was previously created using the SAML prepare authentication API. * An unsolicited SAML message in the case of an IdP-initiated single sign-on (SSO) flow. In either case, the SAML message needs to be a base64 encoded XML document with a root element of `<Response>`. After successful validation, Elasticsearch responds with an Elasticsearch internal access token and refresh token that can be subsequently used for authentication. This API endpoint essentially exchanges SAML responses that indicate successful authentication in the IdP for Elasticsearch access and refresh tokens, which can be used for authentication against Elasticsearch. */
+export const authenticateSecuritySaml: API.OperationMethod<
+  AuthenticateSecuritySamlRequest,
+  AuthenticateSecuritySamlResponse,
+  AuthenticateSecuritySamlError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: AuthenticateSecuritySamlRequest,
+  output: AuthenticateSecuritySamlResponse,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
 export type BulkError = ElasticsearchOpError;
 /** Bulk index or delete documents Perform multiple `index`, `create`, `delete`, and `update` actions in a single request. This reduces overhead and can greatly increase indexing speed. If the Elasticsearch security features are enabled, you must have the following index privileges for the target data stream, index, or index alias: * To use the `create` action, you must have the `create_doc`, `create`, `index`, or `write` index privilege. Data streams support only the `create` action. * To use the `index` action, you must have the `create`, `index`, or `write` index privilege. * To use the `delete` action, you must have the `delete` or `write` index privilege. * To use the `update` action, you must have the `index` or `write` index privilege. * To automatically create a data stream or index with a bulk API request, you must have the `auto_configure`, `create_index`, or `manage` index privilege. * To make the result of a bulk operation visible to search using the `refresh` parameter, you must have the `maintenance` or `manage` index privilege. Automatic data stream creation requires a matching index template with data stream enabled. The actions are specified in the request body using a newline delimited JSON (NDJSON) structure: ``` action_and_meta_data\n optional_source\n action_and_meta_data\n optional_source\n .... action_and_meta_data\n optional_source\n ``` The `index` and `create` actions expect a source on the next line and have the same semantics as the `op_type` parameter in the standard index API. A `create` action fails if a document with the same ID already exists in the target An `index` action adds or replaces a document as necessary. NOTE: Data streams support only the `create` action. To update or delete a document in a data stream, you must target the backing index containing the document. An `update` action expects that the partial doc, upsert, and script and its options are specified on the next line. A `delete` action does not expect a source on the next line and has the same semantics as the standard delete API. NOTE: The final line of data must end with a newline character (`\n`). Each newline character may be preceded by a carriage return (`\r`). When sending NDJSON data to the `_bulk` endpoint, use a `Content-Type` header of `application/json` or `application/x-ndjson`. Because this format uses literal newline characters (`\n`) as delimiters, make sure that the JSON actions and sources are not pretty printed. If you provide a target in the request path, it is used for any actions that don't explicitly specify an `_index` argument. A note on the format: the idea here is to make processing as fast as possible. As some of the actions are redirected to other shards on other nodes, only `action_meta_data` is parsed on the receiving node side. Client libraries using this protocol should try and strive to do something similar on the client side, and reduce buffering as much as possible. There is no "correct" number of actions to perform in a single bulk request. Experiment with different settings to find the optimal size for your particular workload. Note that Elasticsearch limits the maximum size of a HTTP request to 100mb by default so clients must ensure that no request exceeds this size. It is not possible to index a single document that exceeds the size limit, so you must pre-process any such documents into smaller pieces before sending them to Elasticsearch. For instance, split documents into pages or chapters before indexing them, or store raw binary data in a system outside Elasticsearch and replace the raw data with a link to the external system in the documents that you send to Elasticsearch. **Client suppport for bulk requests** Some of the officially supported clients provide helpers to assist with bulk requests and reindexing: * Go: Check out `esutil.BulkIndexer` * Perl: Check out `Search::Elasticsearch::Client::5_0::Bulk` and `Search::Elasticsearch::Client::5_0::Scroll` * Python: Check out `elasticsearch.helpers.*` * JavaScript: Check out `client.helpers.*` * Java: Check out `co.elastic.clients.elasticsearch._helpers.bulk.BulkIngester` * .NET: Check out `BulkAllObservable` * PHP: Check out bulk indexing. * Ruby: Check out `Elasticsearch::Helpers::BulkHelper` **Submitting bulk requests with cURL** If you're providing text file input to `curl`, you must use the `--data-binary` flag instead of plain `-d`. The latter doesn't preserve newlines. For example: ``` $ cat requests { "index" : { "_index" : "test", "_id" : "1" } } { "field1" : "value1" } $ curl -s -H "Content-Type: application/x-ndjson" -XPOST localhost:9200/_bulk --data-binary "@requests"; echo {"took":7, "errors": false, "items":[{"index":{"_index":"test","_id":"1","_version":1,"result":"created","forced_refresh":false}}]} ``` **Optimistic concurrency control** Each `index` and `delete` action within a bulk API call may include the `if_seq_no` and `if_primary_term` parameters in their respective action and meta data lines. The `if_seq_no` and `if_primary_term` parameters control how operations are run, based on the last modification to existing documents. See Optimistic concurrency control for more details. **Versioning** Each bulk item can include the version value using the `version` field. It automatically follows the behavior of the index or delete operation based on the `_version` mapping. It also support the `version_type`. **Routing** Each bulk item can include the routing value using the `routing` field. It automatically follows the behavior of the index or delete operation based on the `_routing` mapping. NOTE: Data streams do not support custom routing unless they were created with the `allow_custom_routing` setting enabled in the template. **Refresh** Control when the changes made by this request are visible to search. NOTE: Only the shards that receive the bulk request will be affected by refresh. Imagine a `_bulk?refresh=wait_for` request with three documents in it that happen to be routed to different shards in an index with five shards. The request will only wait for those three shards to refresh. The other two shards that make up the index do not participate in the `_bulk` request at all. You might want to disable the refresh interval temporarily to improve indexing throughput for large bulk requests. Refer to the linked documentation for step-by-step instructions using the index settings API. */
 export const bulk: API.OperationMethod<
@@ -102290,6 +102348,21 @@ export const bulk3: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type CancelConnectorSyncJobError = ElasticsearchOpError;
+/** Cancel a connector sync job Cancel a connector sync job, which sets the status to cancelling and updates `cancellation_requested_at` to the current time. The connector service is then responsible for setting the status of connector sync jobs to cancelled. */
+export const cancelConnectorSyncJob: API.OperationMethod<
+  CancelConnectorSyncJobRequest,
+  CancelConnectorSyncJobResponse,
+  CancelConnectorSyncJobError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CancelConnectorSyncJobRequest,
+  output: CancelConnectorSyncJobResponse,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
 export type CancelReindexError = ElasticsearchOpError;
 /** Cancel an ongoing reindex task If `wait_for_completion` is `true` (the default), the response contains the final task state after cancellation. If `wait_for_completion` is `false`, the response contains only `acknowledged: true`. This API follows reindex tasks across node-shutdown relocations, so callers can keep using the original task ID throughout the lifetime of the operation. Returned task IDs and timings reflect the original task, not its relocated successor. Relocated task IDs are also supported. They are followed transparently and return the task ID and timings of the original task. When the task ID cannot be cancelled (unknown ID, non-reindex task, sliced child, finished task, or node left with no stored result), the API returns the following response with a 404 status code: ``` { "error": { "type": "resource_not_found_exception", "reason": "reindex task [r1A2WoRbTwKZ516z6NEs5A:36619] either not found or completed" }, "status": 404 } ``` During a brief handoff window of a node-shutdown relocation, you may receive the response below with a 503 status code. Retry with the same task ID; the retry follows the relocated task transparently. ``` { "error": { "type": "status_exception", "reason": "cannot cancel task [36619] because it is being relocated" }, "status": 503 } ``` */
 export const cancelReindex: API.OperationMethod<
@@ -102300,6 +102373,21 @@ export const cancelReindex: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: CancelReindexRequest,
   output: CancelReindexResponse,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CancelTaskError = ElasticsearchOpError;
+/** Cancel a task WARNING: The task management API is new and should still be considered a beta feature. The API may change in ways that are not backwards compatible. A task may continue to run for some time after it has been cancelled because it may not be able to safely stop its current activity straight away. It is also possible that Elasticsearch must complete its work on other tasks before it can process the cancellation. The get task information API will continue to list these cancelled tasks until they complete. The cancelled flag in the response indicates that the cancellation command has been processed and the task will stop as soon as possible. To troubleshoot why a cancelled task does not complete promptly, use the get task information API with the `?detailed` parameter to identify the other tasks the system is running. You can also use the node hot threads API to obtain detailed information about the work the system is doing instead of completing the cancelled task. For relocatable tasks, this API transparently follows the task across graceful shutdown relocations, so callers can keep using the original task ID. The returned task reports its `original_task_id` and `original_start_time_in_millis` if it is continuing work from an earlier task. ## Required authorization * Cluster privileges: `manage` */
+export const cancelTask: API.OperationMethod<
+  CancelTaskRequest,
+  TasksTypesTaskListResponseBase,
+  CancelTaskError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CancelTaskRequest,
+  output: TasksTypesTaskListResponseBase,
   errors: [UnknownElasticsearchError],
   protocol: ElasticsearchProtocol,
   retry: Retry.Retry,
@@ -103025,21 +103113,6 @@ export const ccrDeleteAutoFollowPattern: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CcrFollowError = ElasticsearchOpError;
-/** Create a follower Create a cross-cluster replication follower index that follows a specific leader index. When the API returns, the follower index exists and cross-cluster replication starts replicating operations from the leader index to the follower index. */
-export const ccrFollow: API.OperationMethod<
-  CcrFollowRequest,
-  CcrFollowResponse,
-  CcrFollowError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CcrFollowRequest,
-  output: CcrFollowResponse,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
 export type CcrFollowInfoError = ElasticsearchOpError;
 /** Get follower information Get information about all cross-cluster replication follower indices. For example, the results include follower index names, leader index names, replication options, and whether the follower indices are active or paused. ## Required authorization * Cluster privileges: `monitor` */
 export const ccrFollowInfo: API.OperationMethod<
@@ -103130,21 +103203,6 @@ export const ccrPauseAutoFollowPattern: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CcrPauseFollowError = ElasticsearchOpError;
-/** Pause a follower Pause a cross-cluster replication follower index. The follower index will not fetch any additional operations from the leader index. You can resume following with the resume follower API. You can pause and resume a follower index to change the configuration of the following task. ## Required authorization * Cluster privileges: `manage_ccr` */
-export const ccrPauseFollow: API.OperationMethod<
-  CcrPauseFollowRequest,
-  TypesAcknowledgedResponseBase,
-  CcrPauseFollowError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CcrPauseFollowRequest,
-  output: TypesAcknowledgedResponseBase,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
 export type CcrPutAutoFollowPatternError = ElasticsearchOpError;
 /** Create or update auto-follow patterns Create a collection of cross-cluster replication auto-follow patterns for a remote cluster. Newly created indices on the remote cluster that match any of the patterns are automatically configured as follower indices. Indices on the remote cluster that were created before the auto-follow pattern was created will not be auto-followed even if they match the pattern. This API can also be used to update auto-follow patterns. NOTE: Follower indices that were configured automatically before updating an auto-follow pattern will remain unchanged even if they do not match against the new patterns. */
 export const ccrPutAutoFollowPattern: API.OperationMethod<
@@ -103205,16 +103263,16 @@ export const ccrStats: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CcrUnfollowError = ElasticsearchOpError;
-/** Unfollow an index Convert a cross-cluster replication follower index to a regular index. The API stops the following task associated with a follower index and removes index metadata and settings associated with cross-cluster replication. The follower index must be paused and closed before you call the unfollow API. > info > Currently cross-cluster replication does not support converting an existing regular index to a follower index. Converting a follower index to a regular index is an irreversible operation. ## Required authorization * Index privileges: `manage_follow_index` */
-export const ccrUnfollow: API.OperationMethod<
-  CcrUnfollowRequest,
-  TypesAcknowledgedResponseBase,
-  CcrUnfollowError,
+export type ClaimConnectorSyncJobError = ElasticsearchOpError;
+/** Claim a connector sync job This action updates the job status to `in_progress` and sets the `last_seen` and `started_at` timestamps to the current time. Additionally, it can set the `sync_cursor` property for the sync job. This API is not intended for direct connector management by users. It supports the implementation of services that utilize the connector protocol to communicate with Elasticsearch. To sync data using self-managed connectors, you need to deploy the Elastic connector service on your own infrastructure. This service runs automatically on Elastic Cloud for Elastic managed connectors. */
+export const claimConnectorSyncJob: API.OperationMethod<
+  ClaimConnectorSyncJobRequest,
+  ClaimConnectorSyncJobResponse,
+  ClaimConnectorSyncJobError,
   ElasticsearchOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CcrUnfollowRequest,
-  output: TypesAcknowledgedResponseBase,
+  input: ClaimConnectorSyncJobRequest,
+  output: ClaimConnectorSyncJobResponse,
   errors: [UnknownElasticsearchError],
   protocol: ElasticsearchProtocol,
   retry: Retry.Retry,
@@ -103245,6 +103303,36 @@ export const clearScroll1: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ClearScroll1Request,
   output: ClearScroll1Response,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CloneIndexError = ElasticsearchOpError;
+/** Clone an index Clone an existing index into a new index. Each original primary shard is cloned into a new primary shard in the new index. IMPORTANT: Elasticsearch does not apply index templates to the resulting index. The API also does not copy index metadata from the original index. Index metadata includes aliases, index lifecycle management phase definitions, and cross-cluster replication (CCR) follower information. For example, if you clone a CCR follower index, the resulting clone will not be a follower index. The clone API copies most index settings from the source index to the resulting index, with the exception of `index.number_of_replicas` and `index.auto_expand_replicas`. To set the number of replicas in the resulting index, configure these settings in the clone request. Cloning works as follows: * First, it creates a new target index with the same definition as the source index. * Then it hard-links segments from the source index into the target index. If the file system does not support hard-linking, all segments are copied into the new index, which is a much more time consuming process. * Finally, it recovers the target index as though it were a closed index which had just been re-opened. IMPORTANT: Indices can only be cloned if they meet the following requirements: * The index must be marked as read-only and have a cluster health status of green. * The target index must not exist. * The source index must have the same number of primary shards as the target index. * The node handling the clone process must have sufficient free disk space to accommodate a second copy of the existing index. The current write index on a data stream cannot be cloned. In order to clone the current write index, the data stream must first be rolled over so that a new write index is created and then the previous write index can be cloned. NOTE: Mappings cannot be specified in the `_clone` request. The mappings of the source index will be used for the target index. **Monitor the cloning process** The cloning process can be monitored with the cat recovery API or the cluster health API can be used to wait until all primary shards have been allocated by setting the `wait_for_status` parameter to `yellow`. The `_clone` API returns as soon as the target index has been added to the cluster state, before any shards have been allocated. At this point, all shards are in the state unassigned. If, for any reason, the target index can't be allocated, its primary shard will remain unassigned until it can be allocated on that node. Once the primary shard is allocated, it moves to state initializing, and the clone process begins. When the clone operation completes, the shard will become active. At that point, Elasticsearch will try to allocate any replicas and may decide to relocate the primary shard to another node. **Wait for active shards** Because the clone operation creates a new index to clone the shards to, the wait for active shards setting on index creation applies to the clone index action as well. ## Required authorization * Index privileges: `manage` */
+export const cloneIndex: API.OperationMethod<
+  CloneIndexRequest,
+  CloneIndexResponse,
+  CloneIndexError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CloneIndexRequest,
+  output: CloneIndexResponse,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CloneSnapshotError = ElasticsearchOpError;
+/** Clone a snapshot Clone part of all of a snapshot into another snapshot in the same repository. ## Required authorization * Cluster privileges: `manage` */
+export const cloneSnapshot: API.OperationMethod<
+  CloneSnapshotRequest,
+  TypesAcknowledgedResponseBase,
+  CloneSnapshotError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CloneSnapshotRequest,
+  output: TypesAcknowledgedResponseBase,
   errors: [UnknownElasticsearchError],
   protocol: ElasticsearchProtocol,
   retry: Retry.Retry,
@@ -103610,81 +103698,6 @@ export const connectorCheckIn: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ConnectorDeleteError = ElasticsearchOpError;
-/** Delete a connector Removes a connector and associated sync jobs. This is a destructive action that is not recoverable. NOTE: This action doesn’t delete any API keys, ingest pipelines, or data indices associated with the connector. These need to be removed manually. */
-export const connectorDelete: API.OperationMethod<
-  ConnectorDeleteRequest,
-  TypesAcknowledgedResponseBase,
-  ConnectorDeleteError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConnectorDeleteRequest,
-  output: TypesAcknowledgedResponseBase,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ConnectorGetError = ElasticsearchOpError;
-/** Get a connector Get the details about a connector. */
-export const connectorGet: API.OperationMethod<
-  ConnectorGetRequest,
-  ConnectorTypesConnector,
-  ConnectorGetError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConnectorGetRequest,
-  output: ConnectorTypesConnector,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ConnectorListError = ElasticsearchOpError;
-/** Get all connectors Get information about all connectors. */
-export const connectorList: API.OperationMethod<
-  ConnectorListRequest,
-  ConnectorListResponse,
-  ConnectorListError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConnectorListRequest,
-  output: ConnectorListResponse,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ConnectorPostError = ElasticsearchOpError;
-/** Create a connector Connectors are Elasticsearch integrations that bring content from third-party data sources, which can be deployed on Elastic Cloud or hosted on your own infrastructure. Elastic managed connectors (Native connectors) are a managed service on Elastic Cloud. Self-managed connectors (Connector clients) are self-managed on your infrastructure. */
-export const connectorPost: API.OperationMethod<
-  ConnectorPostRequest,
-  ConnectorPostResponse,
-  ConnectorPostError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConnectorPostRequest,
-  output: ConnectorPostResponse,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ConnectorPutError = ElasticsearchOpError;
-/** Create or update a connector */
-export const connectorPut: API.OperationMethod<
-  ConnectorPutRequest,
-  ConnectorPutResponse,
-  ConnectorPutError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConnectorPutRequest,
-  output: ConnectorPutResponse,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ConnectorPut1Error = ElasticsearchOpError;
 /** Create or update a connector */
 export const connectorPut1: API.OperationMethod<
@@ -103695,21 +103708,6 @@ export const connectorPut1: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ConnectorPut1Request,
   output: ConnectorPut1Response,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ConnectorSyncJobCancelError = ElasticsearchOpError;
-/** Cancel a connector sync job Cancel a connector sync job, which sets the status to cancelling and updates `cancellation_requested_at` to the current time. The connector service is then responsible for setting the status of connector sync jobs to cancelled. */
-export const connectorSyncJobCancel: API.OperationMethod<
-  ConnectorSyncJobCancelRequest,
-  ConnectorSyncJobCancelResponse,
-  ConnectorSyncJobCancelError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConnectorSyncJobCancelRequest,
-  output: ConnectorSyncJobCancelResponse,
   errors: [UnknownElasticsearchError],
   protocol: ElasticsearchProtocol,
   retry: Retry.Retry,
@@ -103730,36 +103728,6 @@ export const connectorSyncJobCheckIn: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ConnectorSyncJobClaimError = ElasticsearchOpError;
-/** Claim a connector sync job This action updates the job status to `in_progress` and sets the `last_seen` and `started_at` timestamps to the current time. Additionally, it can set the `sync_cursor` property for the sync job. This API is not intended for direct connector management by users. It supports the implementation of services that utilize the connector protocol to communicate with Elasticsearch. To sync data using self-managed connectors, you need to deploy the Elastic connector service on your own infrastructure. This service runs automatically on Elastic Cloud for Elastic managed connectors. */
-export const connectorSyncJobClaim: API.OperationMethod<
-  ConnectorSyncJobClaimRequest,
-  ConnectorSyncJobClaimResponse,
-  ConnectorSyncJobClaimError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConnectorSyncJobClaimRequest,
-  output: ConnectorSyncJobClaimResponse,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ConnectorSyncJobDeleteError = ElasticsearchOpError;
-/** Delete a connector sync job Remove a connector sync job and its associated data. This is a destructive action that is not recoverable. */
-export const connectorSyncJobDelete: API.OperationMethod<
-  ConnectorSyncJobDeleteRequest,
-  TypesAcknowledgedResponseBase,
-  ConnectorSyncJobDeleteError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConnectorSyncJobDeleteRequest,
-  output: TypesAcknowledgedResponseBase,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ConnectorSyncJobErrorError = ElasticsearchOpError;
 /** Set a connector sync job error Set the `error` field for a connector sync job and set its `status` to `error`. To sync data using self-managed connectors, you need to deploy the Elastic connector service on your own infrastructure. This service runs automatically on Elastic Cloud for Elastic managed connectors. */
 export const connectorSyncJobError: API.OperationMethod<
@@ -103770,51 +103738,6 @@ export const connectorSyncJobError: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ConnectorSyncJobErrorRequest,
   output: ConnectorSyncJobErrorResponse,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ConnectorSyncJobGetError = ElasticsearchOpError;
-/** Get a connector sync job */
-export const connectorSyncJobGet: API.OperationMethod<
-  ConnectorSyncJobGetRequest,
-  ConnectorTypesConnectorSyncJob,
-  ConnectorSyncJobGetError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConnectorSyncJobGetRequest,
-  output: ConnectorTypesConnectorSyncJob,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ConnectorSyncJobListError = ElasticsearchOpError;
-/** Get all connector sync jobs Get information about all stored connector sync jobs listed by their creation date in ascending order. */
-export const connectorSyncJobList: API.OperationMethod<
-  ConnectorSyncJobListRequest,
-  ConnectorSyncJobListResponse,
-  ConnectorSyncJobListError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConnectorSyncJobListRequest,
-  output: ConnectorSyncJobListResponse,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ConnectorSyncJobPostError = ElasticsearchOpError;
-/** Create a connector sync job Create a connector sync job document in the internal index and initialize its counters and timestamps with default values. */
-export const connectorSyncJobPost: API.OperationMethod<
-  ConnectorSyncJobPostRequest,
-  ConnectorSyncJobPostResponse,
-  ConnectorSyncJobPostError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConnectorSyncJobPostRequest,
-  output: ConnectorSyncJobPostResponse,
   errors: [UnknownElasticsearchError],
   protocol: ElasticsearchProtocol,
   retry: Retry.Retry,
@@ -104135,6 +104058,36 @@ export const create1: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type CreateIndexError = ElasticsearchOpError;
+/** Create an index You can use the create index API to add a new index to an Elasticsearch cluster. When creating an index, you can specify the following: * Settings for the index. * Mappings for fields in the index. * Index aliases **Wait for active shards** By default, index creation will only return a response to the client when the primary copies of each shard have been started, or the request times out. The index creation response will indicate what happened. For example, `acknowledged` indicates whether the index was successfully created in the cluster, `while shards_acknowledged` indicates whether the requisite number of shard copies were started for each shard in the index before timing out. Note that it is still possible for either `acknowledged` or `shards_acknowledged` to be `false`, but for the index creation to be successful. These values simply indicate whether the operation completed before the timeout. If `acknowledged` is false, the request timed out before the cluster state was updated with the newly created index, but it probably will be created sometime soon. If `shards_acknowledged` is false, then the request timed out before the requisite number of shards were started (by default just the primaries), even if the cluster state was successfully updated to reflect the newly created index (that is to say, `acknowledged` is `true`). You can change the default of only waiting for the primary shards to start through the index setting `index.write.wait_for_active_shards`. Note that changing this setting will also affect the `wait_for_active_shards` value on all subsequent write operations. ## Required authorization * Index privileges: `create_index`,`manage` */
+export const createIndex: API.OperationMethod<
+  CreateIndexRequest,
+  CreateIndexResponse,
+  CreateIndexError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateIndexRequest,
+  output: CreateIndexResponse,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateSnapshotError = ElasticsearchOpError;
+/** Create a snapshot Take a snapshot of a cluster or of data streams and indices. ## Required authorization * Cluster privileges: `create_snapshot` */
+export const createSnapshot: API.OperationMethod<
+  CreateSnapshotRequest,
+  CreateSnapshotResponse,
+  CreateSnapshotError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateSnapshotRequest,
+  output: CreateSnapshotResponse,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
 export type DanglingIndicesDeleteDanglingIndexError = ElasticsearchOpError;
 /** Delete a dangling index If Elasticsearch encounters index data that is absent from the current cluster state, those indices are considered to be dangling. For example, this can happen if you delete more than `cluster.indices.tombstones.size` indices while an Elasticsearch node is offline. ## Required authorization * Cluster privileges: `manage` */
 export const danglingIndicesDeleteDanglingIndex: API.OperationMethod<
@@ -104225,6 +104178,111 @@ export const deleteByQueryRethrottle: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type DeleteConnectorError = ElasticsearchOpError;
+/** Delete a connector Removes a connector and associated sync jobs. This is a destructive action that is not recoverable. NOTE: This action doesn’t delete any API keys, ingest pipelines, or data indices associated with the connector. These need to be removed manually. */
+export const deleteConnector: API.OperationMethod<
+  DeleteConnectorRequest,
+  TypesAcknowledgedResponseBase,
+  DeleteConnectorError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteConnectorRequest,
+  output: TypesAcknowledgedResponseBase,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteConnectorSyncJobError = ElasticsearchOpError;
+/** Delete a connector sync job Remove a connector sync job and its associated data. This is a destructive action that is not recoverable. */
+export const deleteConnectorSyncJob: API.OperationMethod<
+  DeleteConnectorSyncJobRequest,
+  TypesAcknowledgedResponseBase,
+  DeleteConnectorSyncJobError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteConnectorSyncJobRequest,
+  output: TypesAcknowledgedResponseBase,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteEqlError = ElasticsearchOpError;
+/** Delete an async EQL search Delete an async EQL search or a stored synchronous EQL search. The API also deletes results for the search. */
+export const deleteEql: API.OperationMethod<
+  DeleteEqlRequest,
+  TypesAcknowledgedResponseBase,
+  DeleteEqlError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteEqlRequest,
+  output: TypesAcknowledgedResponseBase,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteEsqlAsyncQueryError = ElasticsearchOpError;
+/** Delete an async ES|QL query If the query is still running, it is cancelled. Otherwise, the stored results are deleted. If the Elasticsearch security features are enabled, only the following users can use this API to delete a query: * The authenticated user that submitted the original query request * Users with the `cancel_task` cluster privilege */
+export const deleteEsqlAsyncQuery: API.OperationMethod<
+  DeleteEsqlAsyncQueryRequest,
+  TypesAcknowledgedResponseBase,
+  DeleteEsqlAsyncQueryError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteEsqlAsyncQueryRequest,
+  output: TypesAcknowledgedResponseBase,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteIndexError = ElasticsearchOpError;
+/** Delete indices Deleting an index deletes its documents, shards, and metadata. It does not delete related Kibana components, such as data views, visualizations, or dashboards. You cannot delete the current write index of a data stream. To delete the index, you must roll over the data stream so a new write index is created. You can then use the delete index API to delete the previous write index. ## Required authorization * Index privileges: `delete_index` */
+export const deleteIndex: API.OperationMethod<
+  DeleteIndexRequest,
+  DeleteIndexResponse,
+  DeleteIndexError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteIndexRequest,
+  output: DeleteIndexResponse,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteInferenceError = ElasticsearchOpError;
+/** Delete an inference endpoint This API requires the manage_inference cluster privilege (the built-in `inference_admin` role grants this privilege). */
+export const deleteInference: API.OperationMethod<
+  DeleteInferenceRequest,
+  DeleteInferenceResponse,
+  DeleteInferenceError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteInferenceRequest,
+  output: DeleteInferenceResponse,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteLicenseError = ElasticsearchOpError;
+/** Delete the license When the license expires, your subscription level reverts to Basic. If the operator privileges feature is enabled, only operator users can use this API. ## Required authorization * Cluster privileges: `manage` */
+export const deleteLicense: API.OperationMethod<
+  DeleteLicenseRequest,
+  TypesAcknowledgedResponseBase,
+  DeleteLicenseError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteLicenseRequest,
+  output: TypesAcknowledgedResponseBase,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
 export type DeleteScriptError = ElasticsearchOpError;
 /** Delete a script or search template Deletes a stored script or search template. ## Required authorization * Cluster privileges: `manage` */
 export const deleteScript: API.OperationMethod<
@@ -104240,15 +104298,45 @@ export const deleteScript: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type EncryptionResetError = ElasticsearchOpError;
-/** Reset the project encryption key Destroy the current project encryption key (PEK) and generate a new one. This is the recovery path for when the on-disk encrypted PEK becomes permanently inaccessible, for example because the key encryption material protecting it was lost. All data that was encrypted under the destroyed key becomes permanently unrecoverable. Each feature that stores encrypted data decides how to handle its own data during the reset: some features drop the encrypted values entirely, while others preserve the rest of the affected data and only clear the values that can no longer be decrypted. Because this operation causes permanent data loss, it requires the `accept_data_loss` query parameter to be set to `true`. */
-export const encryptionReset: API.OperationMethod<
-  EncryptionResetRequest,
+export type DeleteSnapshotError = ElasticsearchOpError;
+/** Delete snapshots ## Required authorization * Cluster privileges: `manage` */
+export const deleteSnapshot: API.OperationMethod<
+  DeleteSnapshotRequest,
   TypesAcknowledgedResponseBase,
-  EncryptionResetError,
+  DeleteSnapshotError,
   ElasticsearchOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EncryptionResetRequest,
+  input: DeleteSnapshotRequest,
+  output: TypesAcknowledgedResponseBase,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DisableStreamsLogError = ElasticsearchOpError;
+/** Disable a named stream Turn off the named stream feature for this cluster. ## Required authorization * Cluster privileges: `manage` */
+export const disableStreamsLog: API.OperationMethod<
+  DisableStreamsLogRequest,
+  TypesAcknowledgedResponseBase,
+  DisableStreamsLogError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DisableStreamsLogRequest,
+  output: TypesAcknowledgedResponseBase,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type EnableStreamsLogError = ElasticsearchOpError;
+/** Enable a named stream Turn on the named stream feature for this cluster. NOTE: To protect existing data, this feature can be turned on only if the cluster does not have existing indices or data streams that match the pattern `<name>|<name>.*` for the enabled stream type name. If those indices or data streams exist, a `409 - Conflict` response and error is returned. ## Required authorization * Cluster privileges: `manage` */
+export const enableStreamsLog: API.OperationMethod<
+  EnableStreamsLogRequest,
+  TypesAcknowledgedResponseBase,
+  EnableStreamsLogError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: EnableStreamsLogRequest,
   output: TypesAcknowledgedResponseBase,
   errors: [UnknownElasticsearchError],
   protocol: ElasticsearchProtocol,
@@ -104345,36 +104433,6 @@ export const enrichStats: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type EqlDeleteError = ElasticsearchOpError;
-/** Delete an async EQL search Delete an async EQL search or a stored synchronous EQL search. The API also deletes results for the search. */
-export const eqlDelete: API.OperationMethod<
-  EqlDeleteRequest,
-  TypesAcknowledgedResponseBase,
-  EqlDeleteError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: EqlDeleteRequest,
-  output: TypesAcknowledgedResponseBase,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type EqlGetError = ElasticsearchOpError;
-/** Get async EQL search results Get the current status and available results for an async EQL search or a stored synchronous EQL search. */
-export const eqlGet: API.OperationMethod<
-  EqlGetRequest,
-  EqlTypesEqlSearchResponseBase,
-  EqlGetError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: EqlGetRequest,
-  output: EqlTypesEqlSearchResponseBase,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
 export type EqlGetStatusError = ElasticsearchOpError;
 /** Get the async EQL status Get the current status for an async EQL search or a stored synchronous EQL search without returning results. */
 export const eqlGetStatus: API.OperationMethod<
@@ -104385,21 +104443,6 @@ export const eqlGetStatus: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: EqlGetStatusRequest,
   output: EqlGetStatusResponse,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type EqlSearchError = ElasticsearchOpError;
-/** Get EQL search results Returns search results for an Event Query Language (EQL) query. EQL assumes each document in a data stream or index corresponds to an event. */
-export const eqlSearch: API.OperationMethod<
-  EqlSearchRequest,
-  EqlTypesEqlSearchResponseBase,
-  EqlSearchError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: EqlSearchRequest,
-  output: EqlTypesEqlSearchResponseBase,
   errors: [UnknownElasticsearchError],
   protocol: ElasticsearchProtocol,
   retry: Retry.Retry,
@@ -104430,51 +104473,6 @@ export const esqlAsyncQuery: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: EsqlAsyncQueryRequest,
   output: EsqlAsyncQueryResponse,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type EsqlAsyncQueryDeleteError = ElasticsearchOpError;
-/** Delete an async ES|QL query If the query is still running, it is cancelled. Otherwise, the stored results are deleted. If the Elasticsearch security features are enabled, only the following users can use this API to delete a query: * The authenticated user that submitted the original query request * Users with the `cancel_task` cluster privilege */
-export const esqlAsyncQueryDelete: API.OperationMethod<
-  EsqlAsyncQueryDeleteRequest,
-  TypesAcknowledgedResponseBase,
-  EsqlAsyncQueryDeleteError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: EsqlAsyncQueryDeleteRequest,
-  output: TypesAcknowledgedResponseBase,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type EsqlAsyncQueryGetError = ElasticsearchOpError;
-/** Get async ES|QL query results Get the current status and available results or stored results for an ES|QL asynchronous query. If the Elasticsearch security features are enabled, only the user who first submitted the ES|QL query can retrieve the results using this API. ## Required authorization * Index privileges: `read` */
-export const esqlAsyncQueryGet: API.OperationMethod<
-  EsqlAsyncQueryGetRequest,
-  EsqlAsyncQueryGetResponse,
-  EsqlAsyncQueryGetError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: EsqlAsyncQueryGetRequest,
-  output: EsqlAsyncQueryGetResponse,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type EsqlAsyncQueryStopError = ElasticsearchOpError;
-/** Stop async ES|QL query This API interrupts the query execution and returns the results so far. If the Elasticsearch security features are enabled, only the user who first submitted the ES|QL query can stop it. ## Required authorization * Index privileges: `read` */
-export const esqlAsyncQueryStop: API.OperationMethod<
-  EsqlAsyncQueryStopRequest,
-  EsqlTypesEsqlResult,
-  EsqlAsyncQueryStopError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: EsqlAsyncQueryStopRequest,
-  output: EsqlTypesEsqlResult,
   errors: [UnknownElasticsearchError],
   protocol: ElasticsearchProtocol,
   retry: Retry.Retry,
@@ -104705,6 +104703,21 @@ export const esqlQuery: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ExecuteScriptsPainlessError = ElasticsearchOpError;
+/** Run a script Runs a script and returns a result. Use this API to build and test scripts, such as when defining a script for a runtime field. This API requires very few dependencies and is especially useful if you don't have permissions to write documents on a cluster. The API uses several _contexts_, which control how scripts are run, what variables are available at runtime, and what the return type is. Each context requires a script, but additional parameters depend on the context you're using for that script. */
+export const executeScriptsPainless: API.OperationMethod<
+  ExecuteScriptsPainlessRequest,
+  ExecuteScriptsPainlessResponse,
+  ExecuteScriptsPainlessError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExecuteScriptsPainlessRequest,
+  output: ExecuteScriptsPainlessResponse,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ExplainError = ElasticsearchOpError;
 /** Explain a document match result Get information about why a specific document matches, or doesn't match, a query. It computes a score explanation for a query and a specific document. ## Required authorization * Index privileges: `read` */
 export const explain: API.OperationMethod<
@@ -104900,21 +104913,6 @@ export const fleetMsearch3: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type FleetSearchError = ElasticsearchOpError;
-/** Run a Fleet search The purpose of the Fleet search API is to provide an API where the search will be run only after the provided checkpoint has been processed and is visible for searches inside of Elasticsearch. ## Required authorization * Index privileges: `read` */
-export const fleetSearch: API.OperationMethod<
-  FleetSearchRequest,
-  FleetSearchResponse,
-  FleetSearchError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FleetSearchRequest,
-  output: FleetSearchResponse,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
 export type FleetSearch1Error = ElasticsearchOpError;
 /** Run a Fleet search The purpose of the Fleet search API is to provide an API where the search will be run only after the provided checkpoint has been processed and is visible for searches inside of Elasticsearch. ## Required authorization * Index privileges: `read` */
 export const fleetSearch1: API.OperationMethod<
@@ -104930,6 +104928,51 @@ export const fleetSearch1: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type FlushIndexError = ElasticsearchOpError;
+/** Flush data streams or indices Flushing a data stream or index is the process of making sure that any data that is currently only stored in the transaction log is also permanently stored in the Lucene index. When restarting, Elasticsearch replays any unflushed operations from the transaction log into the Lucene index to bring it back into the state that it was in before the restart. Elasticsearch automatically triggers flushes as needed, using heuristics that trade off the size of the unflushed transaction log against the cost of performing each flush. After each operation has been flushed it is permanently stored in the Lucene index. This may mean that there is no need to maintain an additional copy of it in the transaction log. The transaction log is made up of multiple files, called generations, and Elasticsearch will delete any generation files when they are no longer needed, freeing up disk space. It is also possible to trigger a flush on one or more indices using the flush API, although it is rare for users to need to call this API directly. If you call the flush API after indexing some documents then a successful response indicates that Elasticsearch has flushed all the documents that were indexed before the flush API was called. ## Required authorization * Index privileges: `maintenance` */
+export const flushIndex: API.OperationMethod<
+  FlushIndexRequest,
+  TypesShardsOperationResponseBase,
+  FlushIndexError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: FlushIndexRequest,
+  output: TypesShardsOperationResponseBase,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type FollowCcrError = ElasticsearchOpError;
+/** Create a follower Create a cross-cluster replication follower index that follows a specific leader index. When the API returns, the follower index exists and cross-cluster replication starts replicating operations from the leader index to the follower index. */
+export const followCcr: API.OperationMethod<
+  FollowCcrRequest,
+  FollowCcrResponse,
+  FollowCcrError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: FollowCcrRequest,
+  output: FollowCcrResponse,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type FollowCcrPauseError = ElasticsearchOpError;
+/** Pause a follower Pause a cross-cluster replication follower index. The follower index will not fetch any additional operations from the leader index. You can resume following with the resume follower API. You can pause and resume a follower index to change the configuration of the following task. ## Required authorization * Cluster privileges: `manage_ccr` */
+export const followCcrPause: API.OperationMethod<
+  FollowCcrPauseRequest,
+  TypesAcknowledgedResponseBase,
+  FollowCcrPauseError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: FollowCcrPauseRequest,
+  output: TypesAcknowledgedResponseBase,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetError = ElasticsearchOpError;
 /** Get a document by its ID Get a document and its source or stored fields from an index. By default, this API is realtime and is not affected by the refresh rate of the index (when data will become visible for search). In the case where stored fields are requested with the `stored_fields` parameter and the document has been updated but is not yet refreshed, the API will have to parse and analyze the source to extract the stored fields. To turn off realtime behavior, set the `realtime` parameter to false. **Source filtering** By default, the API returns the contents of the `_source` field unless you have used the `stored_fields` parameter or the `_source` field is turned off. You can turn off `_source` retrieval by using the `_source` parameter: ``` GET my-index-000001/_doc/0?_source=false ``` If you only need one or two fields from the `_source`, use the `_source_includes` or `_source_excludes` parameters to include or filter out particular fields. This can be helpful with large documents where partial retrieval can save on network overhead Both parameters take a comma separated list of fields or wildcard expressions. For example: ``` GET my-index-000001/_doc/0?_source_includes=*.id&_source_excludes=entities ``` If you only want to specify includes, you can use a shorter notation: ``` GET my-index-000001/_doc/0?_source=*.id ``` **Routing** If routing is used during indexing, the routing value also needs to be specified to retrieve a document. For example: ``` GET my-index-000001/_doc/2?routing=user1 ``` This request gets the document with ID 2, but it is routed based on the user. The document is not fetched if the correct routing is not specified. **Distributed** The GET operation is hashed into a specific shard ID. It is then redirected to one of the replicas within that shard ID and returns the result. The replicas are the primary shard and its replicas within that shard ID group. This means that the more replicas you have, the better your GET scaling will be. **Versioning support** You can use the `version` parameter to retrieve the document only if its current version is equal to the specified one. Internally, Elasticsearch has marked the old document as deleted and added an entirely new document. The old version of the document doesn't disappear immediately, although you won't be able to access it. Elasticsearch cleans up deleted documents in the background as you continue to index more data. ## Required authorization * Index privileges: `read` */
 export const get: API.OperationMethod<
@@ -104940,6 +104983,111 @@ export const get: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetRequest,
   output: GlobalGetGetResult,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetConnectorError = ElasticsearchOpError;
+/** Get a connector Get the details about a connector. */
+export const getConnector: API.OperationMethod<
+  GetConnectorRequest,
+  ConnectorTypesConnector,
+  GetConnectorError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetConnectorRequest,
+  output: ConnectorTypesConnector,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetConnectorSyncJobError = ElasticsearchOpError;
+/** Get a connector sync job */
+export const getConnectorSyncJob: API.OperationMethod<
+  GetConnectorSyncJobRequest,
+  ConnectorTypesConnectorSyncJob,
+  GetConnectorSyncJobError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetConnectorSyncJobRequest,
+  output: ConnectorTypesConnectorSyncJob,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEqlError = ElasticsearchOpError;
+/** Get async EQL search results Get the current status and available results for an async EQL search or a stored synchronous EQL search. */
+export const getEql: API.OperationMethod<
+  GetEqlRequest,
+  EqlTypesEqlSearchResponseBase,
+  GetEqlError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEqlRequest,
+  output: EqlTypesEqlSearchResponseBase,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEsqlAsyncQueryError = ElasticsearchOpError;
+/** Get async ES|QL query results Get the current status and available results or stored results for an ES|QL asynchronous query. If the Elasticsearch security features are enabled, only the user who first submitted the ES|QL query can retrieve the results using this API. ## Required authorization * Index privileges: `read` */
+export const getEsqlAsyncQuery: API.OperationMethod<
+  GetEsqlAsyncQueryRequest,
+  GetEsqlAsyncQueryResponse,
+  GetEsqlAsyncQueryError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEsqlAsyncQueryRequest,
+  output: GetEsqlAsyncQueryResponse,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetIndexError = ElasticsearchOpError;
+/** Get index information Get information about one or more indices. For data streams, the API returns information about the stream’s backing indices. ## Required authorization * Index privileges: `view_index_metadata`,`manage` */
+export const getIndex: API.OperationMethod<
+  GetIndexRequest,
+  GetIndexResponse,
+  GetIndexError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetIndexRequest,
+  output: GetIndexResponse,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetInferenceError = ElasticsearchOpError;
+/** Get an inference endpoint This API requires the `monitor_inference` cluster privilege (the built-in `inference_admin` and `inference_user` roles grant this privilege). */
+export const getInference: API.OperationMethod<
+  GetInferenceRequest,
+  GetInferenceResponse,
+  GetInferenceError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetInferenceRequest,
+  output: GetInferenceResponse,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetLicenseError = ElasticsearchOpError;
+/** Get license information Get information about your Elastic license including its type, its status, when it was issued, and when it expires. >info > If the master node is generating a new cluster state, the get license API may return a `404 Not Found` response. > If you receive an unexpected 404 response after cluster startup, wait a short period and retry the request. */
+export const getLicense: API.OperationMethod<
+  GetLicenseRequest,
+  GetLicenseResponse,
+  GetLicenseError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetLicenseRequest,
+  output: GetLicenseResponse,
   errors: [UnknownElasticsearchError],
   protocol: ElasticsearchProtocol,
   retry: Retry.Retry,
@@ -105005,6 +105153,21 @@ export const getScriptLanguages: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetSnapshotError = ElasticsearchOpError;
+/** Get snapshot information NOTE: The `after` parameter and `next` field enable you to iterate through snapshots with some consistency guarantees regarding concurrent creation or deletion of snapshots. It is guaranteed that any snapshot that exists at the beginning of the iteration and is not concurrently deleted will be seen during the iteration. Snapshots concurrently created may be seen during an iteration. ## Required authorization * Cluster privileges: `monitor_snapshot` */
+export const getSnapshot: API.OperationMethod<
+  GetSnapshotRequest,
+  GetSnapshotResponse,
+  GetSnapshotError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSnapshotRequest,
+  output: GetSnapshotResponse,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetSourceError = ElasticsearchOpError;
 /** Get a document's source Get the source of a document. For example: ``` GET my-index-000001/_source/1 ``` You can use the source filtering parameters to control which parts of the `_source` are returned: ``` GET my-index-000001/_source/1/?_source_includes=*.id&_source_excludes=entities ``` ## Required authorization * Index privileges: `read` */
 export const getSource: API.OperationMethod<
@@ -105015,6 +105178,21 @@ export const getSource: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetSourceRequest,
   output: GetSourceResponse,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTaskError = ElasticsearchOpError;
+/** Get task information Get information about a task currently running in the cluster. WARNING: The task management API is new and should still be considered a beta feature. The API may change in ways that are not backwards compatible. If the task identifier is not found, a 404 response code indicates that there are no resources that match the request. For relocatable tasks, this API transparently follows the task across graceful shutdown relocations, so callers can keep using the original task ID. The returned task reports its `original_task_id` and `original_start_time_in_millis` if it is continuing work from an earlier task. ## Required authorization * Cluster privileges: `monitor` */
+export const getTask: API.OperationMethod<
+  GetTaskRequest,
+  GetTaskResponse,
+  GetTaskError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTaskRequest,
+  output: GetTaskResponse,
   errors: [UnknownElasticsearchError],
   protocol: ElasticsearchProtocol,
   retry: Retry.Retry,
@@ -105215,96 +105393,6 @@ export const ilmRemovePolicy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type IlmRetryError = ElasticsearchOpError;
-/** Retry a policy Retry running the lifecycle policy for an index that is in the ERROR step. The API sets the policy back to the step where the error occurred and runs the step. Use the explain lifecycle state API to determine whether an index is in the ERROR step. ## Required authorization * Index privileges: `manage_ilm` */
-export const ilmRetry: API.OperationMethod<
-  IlmRetryRequest,
-  TypesAcknowledgedResponseBase,
-  IlmRetryError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IlmRetryRequest,
-  output: TypesAcknowledgedResponseBase,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IlmStartError = ElasticsearchOpError;
-/** Start the ILM plugin Start the index lifecycle management plugin if it is currently stopped. ILM is started automatically when the cluster is formed. Restarting ILM is necessary only when it has been stopped using the stop ILM API. ## Required authorization * Cluster privileges: `manage_ilm` */
-export const ilmStart: API.OperationMethod<
-  IlmStartRequest,
-  TypesAcknowledgedResponseBase,
-  IlmStartError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IlmStartRequest,
-  output: TypesAcknowledgedResponseBase,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IlmStopError = ElasticsearchOpError;
-/** Stop the ILM plugin Halt all lifecycle management operations and stop the index lifecycle management plugin. This is useful when you are performing maintenance on the cluster and need to prevent ILM from performing any actions on your indices. The API returns as soon as the stop request has been acknowledged, but the plugin might continue to run until in-progress operations complete and the plugin can be safely stopped. Use the get ILM status API to check whether ILM is running. ## Required authorization * Cluster privileges: `manage_ilm` */
-export const ilmStop: API.OperationMethod<
-  IlmStopRequest,
-  TypesAcknowledgedResponseBase,
-  IlmStopError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IlmStopRequest,
-  output: TypesAcknowledgedResponseBase,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IndexError = ElasticsearchOpError;
-/** Create or update a document in an index Add a JSON document to the specified data stream or index and make it searchable. If the target is an index and the document already exists, the request updates the document and increments its version. NOTE: You cannot use this API to send update requests for existing documents in a data stream. If the Elasticsearch security features are enabled, you must have the following index privileges for the target data stream, index, or index alias: * To add or overwrite a document using the `PUT /<target>/_doc/<_id>` request format, you must have the `create`, `index`, or `write` index privilege. * To add a document using the `POST /<target>/_doc/` request format, you must have the `create_doc`, `create`, `index`, or `write` index privilege. * To automatically create a data stream or index with this API request, you must have the `auto_configure`, `create_index`, or `manage` index privilege. Automatic data stream creation requires a matching index template with data stream enabled. NOTE: Replica shards might not all be started when an indexing operation returns successfully. By default, only the primary is required. Set `wait_for_active_shards` to change this default behavior (this parameter is not available in Elasticsearch Serverless). **Automatically create data streams and indices** If the request's target doesn't exist and matches an index template with a `data_stream` definition, the index operation automatically creates the data stream. If the target doesn't exist and doesn't match a data stream template, the operation automatically creates the index and applies any matching index templates. NOTE: Elasticsearch includes several built-in index templates. To avoid naming collisions with these templates, refer to index pattern documentation. If no mapping exists, the index operation creates a dynamic mapping. By default, new fields and objects are automatically added to the mapping if needed. Automatic index creation is controlled by the `action.auto_create_index` setting. If it is `true`, any index can be created automatically. You can modify this setting to explicitly allow or block automatic creation of indices that match specified patterns or set it to `false` to turn off automatic index creation entirely. Specify a comma-separated list of patterns you want to allow or prefix each pattern with `+` or `-` to indicate whether it should be allowed or blocked. When a list is specified, the default behaviour is to disallow. NOTE: The `action.auto_create_index` setting affects the automatic creation of indices only. It does not affect the creation of data streams. **Optimistic concurrency control** Index operations can be made conditional and only be performed if the last modification to the document was assigned the sequence number and primary term specified by the `if_seq_no` and `if_primary_term` parameters. If a mismatch is detected, the operation will result in a `VersionConflictException` and a status code of `409`. **Routing** By default, shard placement — or routing — is controlled by using a hash of the document's ID value. For more explicit control, the value fed into the hash function used by the router can be directly specified on a per-operation basis using the `routing` parameter. When setting up explicit mapping, you can also use the `_routing` field to direct the index operation to extract the routing value from the document itself. This does come at the (very minimal) cost of an additional document parsing pass. If the `_routing` mapping is defined and set to be required, the index operation will fail if no routing value is provided or extracted. NOTE: Data streams do not support custom routing unless they were created with the `allow_custom_routing` setting enabled in the template. **Distributed** The index operation is directed to the primary shard based on its route and performed on the actual node containing this shard. After the primary shard completes the operation, if needed, the update is distributed to applicable replicas. **Active shards** To improve the resiliency of writes to the system, indexing operations can be configured to wait for a certain number of active shard copies before proceeding with the operation. If the requisite number of active shard copies are not available, then the write operation must wait and retry, until either the requisite shard copies have started or a timeout occurs. By default, write operations only wait for the primary shards to be active before proceeding (that is to say `wait_for_active_shards` is `1`). This default can be overridden in the index settings dynamically by setting `index.write.wait_for_active_shards`. To alter this behavior per operation, use the `wait_for_active_shards request` parameter (this parameter is not available in Elasticsearch Serverless). Valid values are all or any positive integer up to the total number of configured copies per shard in the index (which is `number_of_replicas`+1). Specifying a negative value or a number greater than the number of shard copies will throw an error. For example, suppose you have a cluster of three nodes, A, B, and C and you create an index index with the number of replicas set to 3 (resulting in 4 shard copies, one more copy than there are nodes). If you attempt an indexing operation, by default the operation will only ensure the primary copy of each shard is available before proceeding. This means that even if B and C went down and A hosted the primary shard copies, the indexing operation would still proceed with only one copy of the data. If `wait_for_active_shards` is set on the request to `3` (and all three nodes are up), the indexing operation will require 3 active shard copies before proceeding. This requirement should be met because there are 3 active nodes in the cluster, each one holding a copy of the shard. However, if you set `wait_for_active_shards` to `all` (or to `4`, which is the same in this situation), the indexing operation will not proceed as you do not have all 4 copies of each shard active in the index. The operation will timeout unless a new node is brought up in the cluster to host the fourth copy of the shard. It is important to note that this setting greatly reduces the chances of the write operation not writing to the requisite number of shard copies, but it does not completely eliminate the possibility, because this check occurs before the write operation starts. After the write operation is underway, it is still possible for replication to fail on any number of shard copies but still succeed on the primary. The `_shards` section of the API response reveals the number of shard copies on which replication succeeded and failed. **No operation (noop) updates** When updating a document by using this API, a new version of the document is always created even if the document hasn't changed. If this isn't acceptable use the `_update` API with `detect_noop` set to `true`. The `detect_noop` option isn't available on this API because it doesn’t fetch the old source and isn't able to compare it against the new source. There isn't a definitive rule for when noop updates aren't acceptable. It's a combination of lots of factors like how frequently your data source sends updates that are actually noops and how many queries per second Elasticsearch runs on the shard receiving the updates. **Versioning** Each indexed document is given a version number. By default, internal versioning is used that starts at 1 and increments with each update, deletes included. Optionally, the version number can be set to an external value (for example, if maintained in a database). To enable this functionality, `version_type` should be set to `external`. The value provided must be a numeric, long value greater than or equal to 0, and less than around `9.2e+18`. NOTE: Versioning is completely real time, and is not affected by the near real time aspects of search operations. If no version is provided, the operation runs without any version checks. When using the external version type, the system checks to see if the version number passed to the index request is greater than the version of the currently stored document. If true, the document will be indexed and the new version number used. If the value provided is less than or equal to the stored document's version number, a version conflict will occur and the index operation will fail. For example: ``` PUT my-index-000001/_doc/1?version=2&version_type=external { "user": { "id": "elkbee" } } ``` In this example, the operation will succeed since the supplied version of 2 is higher than the current document version of 1. If the document was already updated and its version was set to 2 or higher, the indexing command will fail and result in a conflict (409 HTTP status code). A nice side effect is that there is no need to maintain strict ordering of async indexing operations run as a result of changes to a source database, as long as version numbers from the source database are used. Even the simple case of updating the Elasticsearch index using data from a database is simplified if external versioning is used, as only the latest version will be used if the index operations arrive out of order. ## Required authorization * Index privileges: `index` */
-export const index: API.OperationMethod<
-  IndexRequest,
-  TypesWriteResponseBase,
-  IndexError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IndexRequest,
-  output: TypesWriteResponseBase,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type Index1Error = ElasticsearchOpError;
-/** Create or update a document in an index Add a JSON document to the specified data stream or index and make it searchable. If the target is an index and the document already exists, the request updates the document and increments its version. NOTE: You cannot use this API to send update requests for existing documents in a data stream. If the Elasticsearch security features are enabled, you must have the following index privileges for the target data stream, index, or index alias: * To add or overwrite a document using the `PUT /<target>/_doc/<_id>` request format, you must have the `create`, `index`, or `write` index privilege. * To add a document using the `POST /<target>/_doc/` request format, you must have the `create_doc`, `create`, `index`, or `write` index privilege. * To automatically create a data stream or index with this API request, you must have the `auto_configure`, `create_index`, or `manage` index privilege. Automatic data stream creation requires a matching index template with data stream enabled. NOTE: Replica shards might not all be started when an indexing operation returns successfully. By default, only the primary is required. Set `wait_for_active_shards` to change this default behavior (this parameter is not available in Elasticsearch Serverless). **Automatically create data streams and indices** If the request's target doesn't exist and matches an index template with a `data_stream` definition, the index operation automatically creates the data stream. If the target doesn't exist and doesn't match a data stream template, the operation automatically creates the index and applies any matching index templates. NOTE: Elasticsearch includes several built-in index templates. To avoid naming collisions with these templates, refer to index pattern documentation. If no mapping exists, the index operation creates a dynamic mapping. By default, new fields and objects are automatically added to the mapping if needed. Automatic index creation is controlled by the `action.auto_create_index` setting. If it is `true`, any index can be created automatically. You can modify this setting to explicitly allow or block automatic creation of indices that match specified patterns or set it to `false` to turn off automatic index creation entirely. Specify a comma-separated list of patterns you want to allow or prefix each pattern with `+` or `-` to indicate whether it should be allowed or blocked. When a list is specified, the default behaviour is to disallow. NOTE: The `action.auto_create_index` setting affects the automatic creation of indices only. It does not affect the creation of data streams. **Optimistic concurrency control** Index operations can be made conditional and only be performed if the last modification to the document was assigned the sequence number and primary term specified by the `if_seq_no` and `if_primary_term` parameters. If a mismatch is detected, the operation will result in a `VersionConflictException` and a status code of `409`. **Routing** By default, shard placement — or routing — is controlled by using a hash of the document's ID value. For more explicit control, the value fed into the hash function used by the router can be directly specified on a per-operation basis using the `routing` parameter. When setting up explicit mapping, you can also use the `_routing` field to direct the index operation to extract the routing value from the document itself. This does come at the (very minimal) cost of an additional document parsing pass. If the `_routing` mapping is defined and set to be required, the index operation will fail if no routing value is provided or extracted. NOTE: Data streams do not support custom routing unless they were created with the `allow_custom_routing` setting enabled in the template. **Distributed** The index operation is directed to the primary shard based on its route and performed on the actual node containing this shard. After the primary shard completes the operation, if needed, the update is distributed to applicable replicas. **Active shards** To improve the resiliency of writes to the system, indexing operations can be configured to wait for a certain number of active shard copies before proceeding with the operation. If the requisite number of active shard copies are not available, then the write operation must wait and retry, until either the requisite shard copies have started or a timeout occurs. By default, write operations only wait for the primary shards to be active before proceeding (that is to say `wait_for_active_shards` is `1`). This default can be overridden in the index settings dynamically by setting `index.write.wait_for_active_shards`. To alter this behavior per operation, use the `wait_for_active_shards request` parameter (this parameter is not available in Elasticsearch Serverless). Valid values are all or any positive integer up to the total number of configured copies per shard in the index (which is `number_of_replicas`+1). Specifying a negative value or a number greater than the number of shard copies will throw an error. For example, suppose you have a cluster of three nodes, A, B, and C and you create an index index with the number of replicas set to 3 (resulting in 4 shard copies, one more copy than there are nodes). If you attempt an indexing operation, by default the operation will only ensure the primary copy of each shard is available before proceeding. This means that even if B and C went down and A hosted the primary shard copies, the indexing operation would still proceed with only one copy of the data. If `wait_for_active_shards` is set on the request to `3` (and all three nodes are up), the indexing operation will require 3 active shard copies before proceeding. This requirement should be met because there are 3 active nodes in the cluster, each one holding a copy of the shard. However, if you set `wait_for_active_shards` to `all` (or to `4`, which is the same in this situation), the indexing operation will not proceed as you do not have all 4 copies of each shard active in the index. The operation will timeout unless a new node is brought up in the cluster to host the fourth copy of the shard. It is important to note that this setting greatly reduces the chances of the write operation not writing to the requisite number of shard copies, but it does not completely eliminate the possibility, because this check occurs before the write operation starts. After the write operation is underway, it is still possible for replication to fail on any number of shard copies but still succeed on the primary. The `_shards` section of the API response reveals the number of shard copies on which replication succeeded and failed. **No operation (noop) updates** When updating a document by using this API, a new version of the document is always created even if the document hasn't changed. If this isn't acceptable use the `_update` API with `detect_noop` set to `true`. The `detect_noop` option isn't available on this API because it doesn’t fetch the old source and isn't able to compare it against the new source. There isn't a definitive rule for when noop updates aren't acceptable. It's a combination of lots of factors like how frequently your data source sends updates that are actually noops and how many queries per second Elasticsearch runs on the shard receiving the updates. **Versioning** Each indexed document is given a version number. By default, internal versioning is used that starts at 1 and increments with each update, deletes included. Optionally, the version number can be set to an external value (for example, if maintained in a database). To enable this functionality, `version_type` should be set to `external`. The value provided must be a numeric, long value greater than or equal to 0, and less than around `9.2e+18`. NOTE: Versioning is completely real time, and is not affected by the near real time aspects of search operations. If no version is provided, the operation runs without any version checks. When using the external version type, the system checks to see if the version number passed to the index request is greater than the version of the currently stored document. If true, the document will be indexed and the new version number used. If the value provided is less than or equal to the stored document's version number, a version conflict will occur and the index operation will fail. For example: ``` PUT my-index-000001/_doc/1?version=2&version_type=external { "user": { "id": "elkbee" } } ``` In this example, the operation will succeed since the supplied version of 2 is higher than the current document version of 1. If the document was already updated and its version was set to 2 or higher, the indexing command will fail and result in a conflict (409 HTTP status code). A nice side effect is that there is no need to maintain strict ordering of async indexing operations run as a result of changes to a source database, as long as version numbers from the source database are used. Even the simple case of updating the Elasticsearch index using data from a database is simplified if external versioning is used, as only the latest version will be used if the index operations arrive out of order. ## Required authorization * Index privileges: `index` */
-export const index1: API.OperationMethod<
-  Index1Request,
-  TypesWriteResponseBase,
-  Index1Error,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: Index1Request,
-  output: TypesWriteResponseBase,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type Index2Error = ElasticsearchOpError;
-/** Create or update a document in an index Add a JSON document to the specified data stream or index and make it searchable. If the target is an index and the document already exists, the request updates the document and increments its version. NOTE: You cannot use this API to send update requests for existing documents in a data stream. If the Elasticsearch security features are enabled, you must have the following index privileges for the target data stream, index, or index alias: * To add or overwrite a document using the `PUT /<target>/_doc/<_id>` request format, you must have the `create`, `index`, or `write` index privilege. * To add a document using the `POST /<target>/_doc/` request format, you must have the `create_doc`, `create`, `index`, or `write` index privilege. * To automatically create a data stream or index with this API request, you must have the `auto_configure`, `create_index`, or `manage` index privilege. Automatic data stream creation requires a matching index template with data stream enabled. NOTE: Replica shards might not all be started when an indexing operation returns successfully. By default, only the primary is required. Set `wait_for_active_shards` to change this default behavior (this parameter is not available in Elasticsearch Serverless). **Automatically create data streams and indices** If the request's target doesn't exist and matches an index template with a `data_stream` definition, the index operation automatically creates the data stream. If the target doesn't exist and doesn't match a data stream template, the operation automatically creates the index and applies any matching index templates. NOTE: Elasticsearch includes several built-in index templates. To avoid naming collisions with these templates, refer to index pattern documentation. If no mapping exists, the index operation creates a dynamic mapping. By default, new fields and objects are automatically added to the mapping if needed. Automatic index creation is controlled by the `action.auto_create_index` setting. If it is `true`, any index can be created automatically. You can modify this setting to explicitly allow or block automatic creation of indices that match specified patterns or set it to `false` to turn off automatic index creation entirely. Specify a comma-separated list of patterns you want to allow or prefix each pattern with `+` or `-` to indicate whether it should be allowed or blocked. When a list is specified, the default behaviour is to disallow. NOTE: The `action.auto_create_index` setting affects the automatic creation of indices only. It does not affect the creation of data streams. **Optimistic concurrency control** Index operations can be made conditional and only be performed if the last modification to the document was assigned the sequence number and primary term specified by the `if_seq_no` and `if_primary_term` parameters. If a mismatch is detected, the operation will result in a `VersionConflictException` and a status code of `409`. **Routing** By default, shard placement — or routing — is controlled by using a hash of the document's ID value. For more explicit control, the value fed into the hash function used by the router can be directly specified on a per-operation basis using the `routing` parameter. When setting up explicit mapping, you can also use the `_routing` field to direct the index operation to extract the routing value from the document itself. This does come at the (very minimal) cost of an additional document parsing pass. If the `_routing` mapping is defined and set to be required, the index operation will fail if no routing value is provided or extracted. NOTE: Data streams do not support custom routing unless they were created with the `allow_custom_routing` setting enabled in the template. **Distributed** The index operation is directed to the primary shard based on its route and performed on the actual node containing this shard. After the primary shard completes the operation, if needed, the update is distributed to applicable replicas. **Active shards** To improve the resiliency of writes to the system, indexing operations can be configured to wait for a certain number of active shard copies before proceeding with the operation. If the requisite number of active shard copies are not available, then the write operation must wait and retry, until either the requisite shard copies have started or a timeout occurs. By default, write operations only wait for the primary shards to be active before proceeding (that is to say `wait_for_active_shards` is `1`). This default can be overridden in the index settings dynamically by setting `index.write.wait_for_active_shards`. To alter this behavior per operation, use the `wait_for_active_shards request` parameter (this parameter is not available in Elasticsearch Serverless). Valid values are all or any positive integer up to the total number of configured copies per shard in the index (which is `number_of_replicas`+1). Specifying a negative value or a number greater than the number of shard copies will throw an error. For example, suppose you have a cluster of three nodes, A, B, and C and you create an index index with the number of replicas set to 3 (resulting in 4 shard copies, one more copy than there are nodes). If you attempt an indexing operation, by default the operation will only ensure the primary copy of each shard is available before proceeding. This means that even if B and C went down and A hosted the primary shard copies, the indexing operation would still proceed with only one copy of the data. If `wait_for_active_shards` is set on the request to `3` (and all three nodes are up), the indexing operation will require 3 active shard copies before proceeding. This requirement should be met because there are 3 active nodes in the cluster, each one holding a copy of the shard. However, if you set `wait_for_active_shards` to `all` (or to `4`, which is the same in this situation), the indexing operation will not proceed as you do not have all 4 copies of each shard active in the index. The operation will timeout unless a new node is brought up in the cluster to host the fourth copy of the shard. It is important to note that this setting greatly reduces the chances of the write operation not writing to the requisite number of shard copies, but it does not completely eliminate the possibility, because this check occurs before the write operation starts. After the write operation is underway, it is still possible for replication to fail on any number of shard copies but still succeed on the primary. The `_shards` section of the API response reveals the number of shard copies on which replication succeeded and failed. **No operation (noop) updates** When updating a document by using this API, a new version of the document is always created even if the document hasn't changed. If this isn't acceptable use the `_update` API with `detect_noop` set to `true`. The `detect_noop` option isn't available on this API because it doesn’t fetch the old source and isn't able to compare it against the new source. There isn't a definitive rule for when noop updates aren't acceptable. It's a combination of lots of factors like how frequently your data source sends updates that are actually noops and how many queries per second Elasticsearch runs on the shard receiving the updates. **Versioning** Each indexed document is given a version number. By default, internal versioning is used that starts at 1 and increments with each update, deletes included. Optionally, the version number can be set to an external value (for example, if maintained in a database). To enable this functionality, `version_type` should be set to `external`. The value provided must be a numeric, long value greater than or equal to 0, and less than around `9.2e+18`. NOTE: Versioning is completely real time, and is not affected by the near real time aspects of search operations. If no version is provided, the operation runs without any version checks. When using the external version type, the system checks to see if the version number passed to the index request is greater than the version of the currently stored document. If true, the document will be indexed and the new version number used. If the value provided is less than or equal to the stored document's version number, a version conflict will occur and the index operation will fail. For example: ``` PUT my-index-000001/_doc/1?version=2&version_type=external { "user": { "id": "elkbee" } } ``` In this example, the operation will succeed since the supplied version of 2 is higher than the current document version of 1. If the document was already updated and its version was set to 2 or higher, the indexing command will fail and result in a conflict (409 HTTP status code). A nice side effect is that there is no need to maintain strict ordering of async indexing operations run as a result of changes to a source database, as long as version numbers from the source database are used. Even the simple case of updating the Elasticsearch index using data from a database is simplified if external versioning is used, as only the latest version will be used if the index operations arrive out of order. ## Required authorization * Index privileges: `index` */
-export const index2: API.OperationMethod<
-  Index2Request,
-  TypesWriteResponseBase,
-  Index2Error,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: Index2Request,
-  output: TypesWriteResponseBase,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
 export type IndicesAddBlockError = ElasticsearchOpError;
 /** Add an index block Add an index block to an index. Index blocks limit the operations allowed on an index by blocking specific operation types. */
 export const indicesAddBlock: API.OperationMethod<
@@ -105425,21 +105513,6 @@ export const indicesClearCache1: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type IndicesCloneError = ElasticsearchOpError;
-/** Clone an index Clone an existing index into a new index. Each original primary shard is cloned into a new primary shard in the new index. IMPORTANT: Elasticsearch does not apply index templates to the resulting index. The API also does not copy index metadata from the original index. Index metadata includes aliases, index lifecycle management phase definitions, and cross-cluster replication (CCR) follower information. For example, if you clone a CCR follower index, the resulting clone will not be a follower index. The clone API copies most index settings from the source index to the resulting index, with the exception of `index.number_of_replicas` and `index.auto_expand_replicas`. To set the number of replicas in the resulting index, configure these settings in the clone request. Cloning works as follows: * First, it creates a new target index with the same definition as the source index. * Then it hard-links segments from the source index into the target index. If the file system does not support hard-linking, all segments are copied into the new index, which is a much more time consuming process. * Finally, it recovers the target index as though it were a closed index which had just been re-opened. IMPORTANT: Indices can only be cloned if they meet the following requirements: * The index must be marked as read-only and have a cluster health status of green. * The target index must not exist. * The source index must have the same number of primary shards as the target index. * The node handling the clone process must have sufficient free disk space to accommodate a second copy of the existing index. The current write index on a data stream cannot be cloned. In order to clone the current write index, the data stream must first be rolled over so that a new write index is created and then the previous write index can be cloned. NOTE: Mappings cannot be specified in the `_clone` request. The mappings of the source index will be used for the target index. **Monitor the cloning process** The cloning process can be monitored with the cat recovery API or the cluster health API can be used to wait until all primary shards have been allocated by setting the `wait_for_status` parameter to `yellow`. The `_clone` API returns as soon as the target index has been added to the cluster state, before any shards have been allocated. At this point, all shards are in the state unassigned. If, for any reason, the target index can't be allocated, its primary shard will remain unassigned until it can be allocated on that node. Once the primary shard is allocated, it moves to state initializing, and the clone process begins. When the clone operation completes, the shard will become active. At that point, Elasticsearch will try to allocate any replicas and may decide to relocate the primary shard to another node. **Wait for active shards** Because the clone operation creates a new index to clone the shards to, the wait for active shards setting on index creation applies to the clone index action as well. ## Required authorization * Index privileges: `manage` */
-export const indicesClone: API.OperationMethod<
-  IndicesCloneRequest,
-  IndicesCloneResponse,
-  IndicesCloneError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IndicesCloneRequest,
-  output: IndicesCloneResponse,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
 export type IndicesClone1Error = ElasticsearchOpError;
 /** Clone an index Clone an existing index into a new index. Each original primary shard is cloned into a new primary shard in the new index. IMPORTANT: Elasticsearch does not apply index templates to the resulting index. The API also does not copy index metadata from the original index. Index metadata includes aliases, index lifecycle management phase definitions, and cross-cluster replication (CCR) follower information. For example, if you clone a CCR follower index, the resulting clone will not be a follower index. The clone API copies most index settings from the source index to the resulting index, with the exception of `index.number_of_replicas` and `index.auto_expand_replicas`. To set the number of replicas in the resulting index, configure these settings in the clone request. Cloning works as follows: * First, it creates a new target index with the same definition as the source index. * Then it hard-links segments from the source index into the target index. If the file system does not support hard-linking, all segments are copied into the new index, which is a much more time consuming process. * Finally, it recovers the target index as though it were a closed index which had just been re-opened. IMPORTANT: Indices can only be cloned if they meet the following requirements: * The index must be marked as read-only and have a cluster health status of green. * The target index must not exist. * The source index must have the same number of primary shards as the target index. * The node handling the clone process must have sufficient free disk space to accommodate a second copy of the existing index. The current write index on a data stream cannot be cloned. In order to clone the current write index, the data stream must first be rolled over so that a new write index is created and then the previous write index can be cloned. NOTE: Mappings cannot be specified in the `_clone` request. The mappings of the source index will be used for the target index. **Monitor the cloning process** The cloning process can be monitored with the cat recovery API or the cluster health API can be used to wait until all primary shards have been allocated by setting the `wait_for_status` parameter to `yellow`. The `_clone` API returns as soon as the target index has been added to the cluster state, before any shards have been allocated. At this point, all shards are in the state unassigned. If, for any reason, the target index can't be allocated, its primary shard will remain unassigned until it can be allocated on that node. Once the primary shard is allocated, it moves to state initializing, and the clone process begins. When the clone operation completes, the shard will become active. At that point, Elasticsearch will try to allocate any replicas and may decide to relocate the primary shard to another node. **Wait for active shards** Because the clone operation creates a new index to clone the shards to, the wait for active shards setting on index creation applies to the clone index action as well. ## Required authorization * Index privileges: `manage` */
 export const indicesClone1: API.OperationMethod<
@@ -105465,21 +105538,6 @@ export const indicesClose: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: IndicesCloseRequest,
   output: IndicesCloseResponse,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IndicesCreateError = ElasticsearchOpError;
-/** Create an index You can use the create index API to add a new index to an Elasticsearch cluster. When creating an index, you can specify the following: * Settings for the index. * Mappings for fields in the index. * Index aliases **Wait for active shards** By default, index creation will only return a response to the client when the primary copies of each shard have been started, or the request times out. The index creation response will indicate what happened. For example, `acknowledged` indicates whether the index was successfully created in the cluster, `while shards_acknowledged` indicates whether the requisite number of shard copies were started for each shard in the index before timing out. Note that it is still possible for either `acknowledged` or `shards_acknowledged` to be `false`, but for the index creation to be successful. These values simply indicate whether the operation completed before the timeout. If `acknowledged` is false, the request timed out before the cluster state was updated with the newly created index, but it probably will be created sometime soon. If `shards_acknowledged` is false, then the request timed out before the requisite number of shards were started (by default just the primaries), even if the cluster state was successfully updated to reflect the newly created index (that is to say, `acknowledged` is `true`). You can change the default of only waiting for the primary shards to start through the index setting `index.write.wait_for_active_shards`. Note that changing this setting will also affect the `wait_for_active_shards` value on all subsequent write operations. ## Required authorization * Index privileges: `create_index`,`manage` */
-export const indicesCreate: API.OperationMethod<
-  IndicesCreateRequest,
-  IndicesCreateResponse,
-  IndicesCreateError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IndicesCreateRequest,
-  output: IndicesCreateResponse,
   errors: [UnknownElasticsearchError],
   protocol: ElasticsearchProtocol,
   retry: Retry.Retry,
@@ -105555,21 +105613,6 @@ export const indicesDataStreamsStats1: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: IndicesDataStreamsStats1Request,
   output: IndicesDataStreamsStats1Response,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IndicesDeleteError = ElasticsearchOpError;
-/** Delete indices Deleting an index deletes its documents, shards, and metadata. It does not delete related Kibana components, such as data views, visualizations, or dashboards. You cannot delete the current write index of a data stream. To delete the index, you must roll over the data stream so a new write index is created. You can then use the delete index API to delete the previous write index. ## Required authorization * Index privileges: `delete_index` */
-export const indicesDelete: API.OperationMethod<
-  IndicesDeleteRequest,
-  IndicesDeleteResponse,
-  IndicesDeleteError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IndicesDeleteRequest,
-  output: IndicesDeleteResponse,
   errors: [UnknownElasticsearchError],
   protocol: ElasticsearchProtocol,
   retry: Retry.Retry,
@@ -105725,21 +105768,6 @@ export const indicesFieldUsageStats: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type IndicesFlushError = ElasticsearchOpError;
-/** Flush data streams or indices Flushing a data stream or index is the process of making sure that any data that is currently only stored in the transaction log is also permanently stored in the Lucene index. When restarting, Elasticsearch replays any unflushed operations from the transaction log into the Lucene index to bring it back into the state that it was in before the restart. Elasticsearch automatically triggers flushes as needed, using heuristics that trade off the size of the unflushed transaction log against the cost of performing each flush. After each operation has been flushed it is permanently stored in the Lucene index. This may mean that there is no need to maintain an additional copy of it in the transaction log. The transaction log is made up of multiple files, called generations, and Elasticsearch will delete any generation files when they are no longer needed, freeing up disk space. It is also possible to trigger a flush on one or more indices using the flush API, although it is rare for users to need to call this API directly. If you call the flush API after indexing some documents then a successful response indicates that Elasticsearch has flushed all the documents that were indexed before the flush API was called. ## Required authorization * Index privileges: `maintenance` */
-export const indicesFlush: API.OperationMethod<
-  IndicesFlushRequest,
-  TypesShardsOperationResponseBase,
-  IndicesFlushError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IndicesFlushRequest,
-  output: TypesShardsOperationResponseBase,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
 export type IndicesFlush1Error = ElasticsearchOpError;
 /** Flush data streams or indices Flushing a data stream or index is the process of making sure that any data that is currently only stored in the transaction log is also permanently stored in the Lucene index. When restarting, Elasticsearch replays any unflushed operations from the transaction log into the Lucene index to bring it back into the state that it was in before the restart. Elasticsearch automatically triggers flushes as needed, using heuristics that trade off the size of the unflushed transaction log against the cost of performing each flush. After each operation has been flushed it is permanently stored in the Lucene index. This may mean that there is no need to maintain an additional copy of it in the transaction log. The transaction log is made up of multiple files, called generations, and Elasticsearch will delete any generation files when they are no longer needed, freeing up disk space. It is also possible to trigger a flush on one or more indices using the flush API, although it is rare for users to need to call this API directly. If you call the flush API after indexing some documents then a successful response indicates that Elasticsearch has flushed all the documents that were indexed before the flush API was called. ## Required authorization * Index privileges: `maintenance` */
 export const indicesFlush1: API.OperationMethod<
@@ -105810,21 +105838,6 @@ export const indicesForcemerge1: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: IndicesForcemerge1Request,
   output: IndicesForcemerge1Response,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IndicesGetError = ElasticsearchOpError;
-/** Get index information Get information about one or more indices. For data streams, the API returns information about the stream’s backing indices. ## Required authorization * Index privileges: `view_index_metadata`,`manage` */
-export const indicesGet: API.OperationMethod<
-  IndicesGetRequest,
-  IndicesGetResponse,
-  IndicesGetError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IndicesGetRequest,
-  output: IndicesGetResponse,
   errors: [UnknownElasticsearchError],
   protocol: ElasticsearchProtocol,
   retry: Retry.Retry,
@@ -106475,21 +106488,6 @@ export const indicesRecovery1: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type IndicesRefreshError = ElasticsearchOpError;
-/** Refresh an index A refresh makes recent operations performed on one or more indices available for search. For data streams, the API runs the refresh operation on the stream’s backing indices. By default, Elasticsearch periodically refreshes indices every second, but only on indices that have received one search request or more in the last 30 seconds. You can change this default interval with the `index.refresh_interval` setting. In Elastic Cloud Serverless, the default refresh interval is 5 seconds across all indices. Refresh requests are synchronous and do not return a response until the refresh operation completes. Refreshes are resource-intensive. To ensure good cluster performance, it's recommended to wait for Elasticsearch's periodic refresh rather than performing an explicit refresh when possible. If your application workflow indexes documents and then runs a search to retrieve the indexed document, it's recommended to use the index API's `refresh=wait_for` query parameter option. This option ensures the indexing operation waits for a periodic refresh before running the search. ## Required authorization * Index privileges: `maintenance` */
-export const indicesRefresh: API.OperationMethod<
-  IndicesRefreshRequest,
-  TypesShardsOperationResponseBase,
-  IndicesRefreshError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IndicesRefreshRequest,
-  output: TypesShardsOperationResponseBase,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
 export type IndicesRefresh1Error = ElasticsearchOpError;
 /** Refresh an index A refresh makes recent operations performed on one or more indices available for search. For data streams, the API runs the refresh operation on the stream’s backing indices. By default, Elasticsearch periodically refreshes indices every second, but only on indices that have received one search request or more in the last 30 seconds. You can change this default interval with the `index.refresh_interval` setting. In Elastic Cloud Serverless, the default refresh interval is 5 seconds across all indices. Refresh requests are synchronous and do not return a response until the refresh operation completes. Refreshes are resource-intensive. To ensure good cluster performance, it's recommended to wait for Elasticsearch's periodic refresh rather than performing an explicit refresh when possible. If your application workflow indexes documents and then runs a search to retrieve the indexed document, it's recommended to use the index API's `refresh=wait_for` query parameter option. This option ensures the indexing operation waits for a periodic refresh before running the search. ## Required authorization * Index privileges: `maintenance` */
 export const indicesRefresh1: API.OperationMethod<
@@ -106605,21 +106603,6 @@ export const indicesResolveCluster1: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: IndicesResolveCluster1Request,
   output: IndicesResolveCluster1Response,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IndicesResolveIndexError = ElasticsearchOpError;
-/** Resolve indices Resolve the names and/or index patterns for indices, aliases, and data streams. Multiple patterns and remote clusters are supported. ## Required authorization * Index privileges: `view_index_metadata` */
-export const indicesResolveIndex: API.OperationMethod<
-  IndicesResolveIndexRequest,
-  IndicesResolveIndexResponse,
-  IndicesResolveIndexError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IndicesResolveIndexRequest,
-  output: IndicesResolveIndexResponse,
   errors: [UnknownElasticsearchError],
   protocol: ElasticsearchProtocol,
   retry: Retry.Retry,
@@ -107000,21 +106983,6 @@ export const inferenceCompletion: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type InferenceDeleteError = ElasticsearchOpError;
-/** Delete an inference endpoint This API requires the manage_inference cluster privilege (the built-in `inference_admin` role grants this privilege). */
-export const inferenceDelete: API.OperationMethod<
-  InferenceDeleteRequest,
-  InferenceDeleteResponse,
-  InferenceDeleteError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: InferenceDeleteRequest,
-  output: InferenceDeleteResponse,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
 export type InferenceDelete1Error = ElasticsearchOpError;
 /** Delete an inference endpoint This API requires the manage_inference cluster privilege (the built-in `inference_admin` role grants this privilege). */
 export const inferenceDelete1: API.OperationMethod<
@@ -107055,21 +107023,6 @@ export const inferenceEmbedding: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: InferenceEmbeddingRequest,
   output: InferenceTypesEmbeddingInferenceResult,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type InferenceGetError = ElasticsearchOpError;
-/** Get an inference endpoint This API requires the `monitor_inference` cluster privilege (the built-in `inference_admin` and `inference_user` roles grant this privilege). */
-export const inferenceGet: API.OperationMethod<
-  InferenceGetRequest,
-  InferenceGetResponse,
-  InferenceGetError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: InferenceGetRequest,
-  output: InferenceGetResponse,
   errors: [UnknownElasticsearchError],
   protocol: ElasticsearchProtocol,
   retry: Retry.Retry,
@@ -107160,21 +107113,6 @@ export const inferenceInference1: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: InferenceInference1Request,
   output: InferenceTypesInferenceResult,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type InferencePutError = ElasticsearchOpError;
-/** Create an inference endpoint IMPORTANT: The inference APIs enable you to use certain services, such as built-in machine learning models (ELSER, E5), models uploaded through Eland, Cohere, OpenAI, Mistral, Azure OpenAI, Google AI Studio, Google Vertex AI, Anthropic, Watsonx.ai, or Hugging Face. For built-in models and models uploaded through Eland, the inference APIs offer an alternative way to use and manage trained models. However, if you do not plan to use the inference APIs to use these models or if you want to use non-NLP models, use the machine learning trained model APIs. The following integrations are available through the inference API. You can find the available task types next to the integration name: * AI21 (`chat_completion`, `completion`) * AlibabaCloud AI Search (`completion`, `rerank`, `sparse_embedding`, `text_embedding`) * Amazon Bedrock (`chat_completion`, `completion`, `text_embedding`) * Amazon SageMaker (`chat_completion`, `completion`, `rerank`, `sparse_embedding`, `text_embedding`) * Anthropic (`chat_completion`, `completion`) * Azure AI Studio (`completion`, `rerank`, `text_embedding`) * Azure OpenAI (`chat_completion`, `completion`, `text_embedding`) * Cohere (`completion`, `rerank`, `text_embedding`) * DeepSeek (`chat_completion`, `completion`) * Elasticsearch (`rerank`, `sparse_embedding`, `text_embedding` - this service is for built-in models and models uploaded through Eland) * ELSER (`sparse_embedding`) * Fireworks AI (`chat_completion`, `completion`, `text_embedding`) * Google AI Studio (`completion`, `text_embedding`) * Google Vertex AI (`chat_completion`, `completion`, `rerank`, `text_embedding`) * Groq (`chat_completion`) * Hugging Face (`chat_completion`, `completion`, `rerank`, `text_embedding`) * JinaAI (`embedding`, `rerank`, `text_embedding`) * Llama (`chat_completion`, `completion`, `text_embedding`) * Mistral (`chat_completion`, `completion`, `text_embedding`) * Nvidia (`chat_completion`, `completion`, `text_embedding`, `rerank`) * OpenAI (`chat_completion`, `completion`, `text_embedding`) * OpenShift AI (`chat_completion`, `completion`, `rerank`, `text_embedding`) * VoyageAI (`rerank`, `text_embedding`) * Watsonx (`chat_completion`, `completion`, `rerank`, `text_embedding`) ## Required authorization * Cluster privileges: `manage_inference` */
-export const inferencePut: API.OperationMethod<
-  InferencePutRequest,
-  InferencePutResponse,
-  InferencePutError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: InferencePutRequest,
-  output: InferencePutResponse,
   errors: [UnknownElasticsearchError],
   protocol: ElasticsearchProtocol,
   retry: Retry.Retry,
@@ -107645,21 +107583,6 @@ export const inferenceTextEmbedding: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type InferenceUpdateError = ElasticsearchOpError;
-/** Update an inference endpoint Modify `task_settings`, secrets (within `service_settings`), or `num_allocations` for an inference endpoint, depending on the specific endpoint service and `task_type`. IMPORTANT: The inference APIs enable you to use certain services, such as built-in machine learning models (ELSER, E5), models uploaded through Eland, Cohere, OpenAI, Azure, Google AI Studio, Google Vertex AI, Anthropic, Watsonx.ai, or Hugging Face. For built-in models and models uploaded through Eland, the inference APIs offer an alternative way to use and manage trained models. However, if you do not plan to use the inference APIs to use these models or if you want to use non-NLP models, use the machine learning trained model APIs. ## Required authorization * Cluster privileges: `manage_inference` */
-export const inferenceUpdate: API.OperationMethod<
-  InferenceUpdateRequest,
-  InferenceUpdateResponse,
-  InferenceUpdateError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: InferenceUpdateRequest,
-  output: InferenceUpdateResponse,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
 export type InferenceUpdate1Error = ElasticsearchOpError;
 /** Update an inference endpoint Modify `task_settings`, secrets (within `service_settings`), or `num_allocations` for an inference endpoint, depending on the specific endpoint service and `task_type`. IMPORTANT: The inference APIs enable you to use certain services, such as built-in machine learning models (ELSER, E5), models uploaded through Eland, Cohere, OpenAI, Azure, Google AI Studio, Google Vertex AI, Anthropic, Watsonx.ai, or Hugging Face. For built-in models and models uploaded through Eland, the inference APIs offer an alternative way to use and manage trained models. However, if you do not plan to use the inference APIs to use these models or if you want to use non-NLP models, use the machine learning trained model APIs. ## Required authorization * Cluster privileges: `manage_inference` */
 export const inferenceUpdate1: API.OperationMethod<
@@ -107960,31 +107883,16 @@ export const ingestSimulate3: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type LicenseDeleteError = ElasticsearchOpError;
-/** Delete the license When the license expires, your subscription level reverts to Basic. If the operator privileges feature is enabled, only operator users can use this API. ## Required authorization * Cluster privileges: `manage` */
-export const licenseDelete: API.OperationMethod<
-  LicenseDeleteRequest,
-  TypesAcknowledgedResponseBase,
-  LicenseDeleteError,
+export type InvalidateSecuritySamlError = ElasticsearchOpError;
+/** Invalidate SAML Submit a SAML LogoutRequest message to Elasticsearch for consumption. NOTE: This API is intended for use by custom web applications other than Kibana. If you are using Kibana, refer to the documentation for configuring SAML single-sign-on on the Elastic Stack. The logout request comes from the SAML IdP during an IdP initiated Single Logout. The custom web application can use this API to have Elasticsearch process the `LogoutRequest`. After successful validation of the request, Elasticsearch invalidates the access token and refresh token that corresponds to that specific SAML principal and provides a URL that contains a SAML LogoutResponse message. Thus the user can be redirected back to their IdP. */
+export const invalidateSecuritySaml: API.OperationMethod<
+  InvalidateSecuritySamlRequest,
+  InvalidateSecuritySamlResponse,
+  InvalidateSecuritySamlError,
   ElasticsearchOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: LicenseDeleteRequest,
-  output: TypesAcknowledgedResponseBase,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type LicenseGetError = ElasticsearchOpError;
-/** Get license information Get information about your Elastic license including its type, its status, when it was issued, and when it expires. >info > If the master node is generating a new cluster state, the get license API may return a `404 Not Found` response. > If you receive an unexpected 404 response after cluster startup, wait a short period and retry the request. */
-export const licenseGet: API.OperationMethod<
-  LicenseGetRequest,
-  LicenseGetResponse,
-  LicenseGetError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: LicenseGetRequest,
-  output: LicenseGetResponse,
+  input: InvalidateSecuritySamlRequest,
+  output: InvalidateSecuritySamlResponse,
   errors: [UnknownElasticsearchError],
   protocol: ElasticsearchProtocol,
   retry: Retry.Retry,
@@ -108015,21 +107923,6 @@ export const licenseGetTrialStatus: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: LicenseGetTrialStatusRequest,
   output: LicenseGetTrialStatusResponse,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type LicensePostError = ElasticsearchOpError;
-/** Update the license You can update your license at runtime without shutting down your nodes. License updates take effect immediately. If the license you are installing does not support all of the features that were available with your previous license, however, you are notified in the response. You must then re-submit the API request with the acknowledge parameter set to true. NOTE: If Elasticsearch security features are enabled and you are installing a gold or higher license, you must enable TLS on the transport networking layer before you install the license. If the operator privileges feature is enabled, only operator users can use this API. ## Required authorization * Cluster privileges: `manage` */
-export const licensePost: API.OperationMethod<
-  LicensePostRequest,
-  LicensePostResponse,
-  LicensePostError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: LicensePostRequest,
-  output: LicensePostResponse,
   errors: [UnknownElasticsearchError],
   protocol: ElasticsearchProtocol,
   retry: Retry.Retry,
@@ -108080,6 +107973,96 @@ export const licensePostStartTrial: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ListError = ElasticsearchOpError;
+/** Create or update a document in an index Add a JSON document to the specified data stream or index and make it searchable. If the target is an index and the document already exists, the request updates the document and increments its version. NOTE: You cannot use this API to send update requests for existing documents in a data stream. If the Elasticsearch security features are enabled, you must have the following index privileges for the target data stream, index, or index alias: * To add or overwrite a document using the `PUT /<target>/_doc/<_id>` request format, you must have the `create`, `index`, or `write` index privilege. * To add a document using the `POST /<target>/_doc/` request format, you must have the `create_doc`, `create`, `index`, or `write` index privilege. * To automatically create a data stream or index with this API request, you must have the `auto_configure`, `create_index`, or `manage` index privilege. Automatic data stream creation requires a matching index template with data stream enabled. NOTE: Replica shards might not all be started when an indexing operation returns successfully. By default, only the primary is required. Set `wait_for_active_shards` to change this default behavior (this parameter is not available in Elasticsearch Serverless). **Automatically create data streams and indices** If the request's target doesn't exist and matches an index template with a `data_stream` definition, the index operation automatically creates the data stream. If the target doesn't exist and doesn't match a data stream template, the operation automatically creates the index and applies any matching index templates. NOTE: Elasticsearch includes several built-in index templates. To avoid naming collisions with these templates, refer to index pattern documentation. If no mapping exists, the index operation creates a dynamic mapping. By default, new fields and objects are automatically added to the mapping if needed. Automatic index creation is controlled by the `action.auto_create_index` setting. If it is `true`, any index can be created automatically. You can modify this setting to explicitly allow or block automatic creation of indices that match specified patterns or set it to `false` to turn off automatic index creation entirely. Specify a comma-separated list of patterns you want to allow or prefix each pattern with `+` or `-` to indicate whether it should be allowed or blocked. When a list is specified, the default behaviour is to disallow. NOTE: The `action.auto_create_index` setting affects the automatic creation of indices only. It does not affect the creation of data streams. **Optimistic concurrency control** Index operations can be made conditional and only be performed if the last modification to the document was assigned the sequence number and primary term specified by the `if_seq_no` and `if_primary_term` parameters. If a mismatch is detected, the operation will result in a `VersionConflictException` and a status code of `409`. **Routing** By default, shard placement — or routing — is controlled by using a hash of the document's ID value. For more explicit control, the value fed into the hash function used by the router can be directly specified on a per-operation basis using the `routing` parameter. When setting up explicit mapping, you can also use the `_routing` field to direct the index operation to extract the routing value from the document itself. This does come at the (very minimal) cost of an additional document parsing pass. If the `_routing` mapping is defined and set to be required, the index operation will fail if no routing value is provided or extracted. NOTE: Data streams do not support custom routing unless they were created with the `allow_custom_routing` setting enabled in the template. **Distributed** The index operation is directed to the primary shard based on its route and performed on the actual node containing this shard. After the primary shard completes the operation, if needed, the update is distributed to applicable replicas. **Active shards** To improve the resiliency of writes to the system, indexing operations can be configured to wait for a certain number of active shard copies before proceeding with the operation. If the requisite number of active shard copies are not available, then the write operation must wait and retry, until either the requisite shard copies have started or a timeout occurs. By default, write operations only wait for the primary shards to be active before proceeding (that is to say `wait_for_active_shards` is `1`). This default can be overridden in the index settings dynamically by setting `index.write.wait_for_active_shards`. To alter this behavior per operation, use the `wait_for_active_shards request` parameter (this parameter is not available in Elasticsearch Serverless). Valid values are all or any positive integer up to the total number of configured copies per shard in the index (which is `number_of_replicas`+1). Specifying a negative value or a number greater than the number of shard copies will throw an error. For example, suppose you have a cluster of three nodes, A, B, and C and you create an index index with the number of replicas set to 3 (resulting in 4 shard copies, one more copy than there are nodes). If you attempt an indexing operation, by default the operation will only ensure the primary copy of each shard is available before proceeding. This means that even if B and C went down and A hosted the primary shard copies, the indexing operation would still proceed with only one copy of the data. If `wait_for_active_shards` is set on the request to `3` (and all three nodes are up), the indexing operation will require 3 active shard copies before proceeding. This requirement should be met because there are 3 active nodes in the cluster, each one holding a copy of the shard. However, if you set `wait_for_active_shards` to `all` (or to `4`, which is the same in this situation), the indexing operation will not proceed as you do not have all 4 copies of each shard active in the index. The operation will timeout unless a new node is brought up in the cluster to host the fourth copy of the shard. It is important to note that this setting greatly reduces the chances of the write operation not writing to the requisite number of shard copies, but it does not completely eliminate the possibility, because this check occurs before the write operation starts. After the write operation is underway, it is still possible for replication to fail on any number of shard copies but still succeed on the primary. The `_shards` section of the API response reveals the number of shard copies on which replication succeeded and failed. **No operation (noop) updates** When updating a document by using this API, a new version of the document is always created even if the document hasn't changed. If this isn't acceptable use the `_update` API with `detect_noop` set to `true`. The `detect_noop` option isn't available on this API because it doesn’t fetch the old source and isn't able to compare it against the new source. There isn't a definitive rule for when noop updates aren't acceptable. It's a combination of lots of factors like how frequently your data source sends updates that are actually noops and how many queries per second Elasticsearch runs on the shard receiving the updates. **Versioning** Each indexed document is given a version number. By default, internal versioning is used that starts at 1 and increments with each update, deletes included. Optionally, the version number can be set to an external value (for example, if maintained in a database). To enable this functionality, `version_type` should be set to `external`. The value provided must be a numeric, long value greater than or equal to 0, and less than around `9.2e+18`. NOTE: Versioning is completely real time, and is not affected by the near real time aspects of search operations. If no version is provided, the operation runs without any version checks. When using the external version type, the system checks to see if the version number passed to the index request is greater than the version of the currently stored document. If true, the document will be indexed and the new version number used. If the value provided is less than or equal to the stored document's version number, a version conflict will occur and the index operation will fail. For example: ``` PUT my-index-000001/_doc/1?version=2&version_type=external { "user": { "id": "elkbee" } } ``` In this example, the operation will succeed since the supplied version of 2 is higher than the current document version of 1. If the document was already updated and its version was set to 2 or higher, the indexing command will fail and result in a conflict (409 HTTP status code). A nice side effect is that there is no need to maintain strict ordering of async indexing operations run as a result of changes to a source database, as long as version numbers from the source database are used. Even the simple case of updating the Elasticsearch index using data from a database is simplified if external versioning is used, as only the latest version will be used if the index operations arrive out of order. ## Required authorization * Index privileges: `index` */
+export const list: API.OperationMethod<
+  ListRequest,
+  TypesWriteResponseBase,
+  ListError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListRequest,
+  output: TypesWriteResponseBase,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type List1Error = ElasticsearchOpError;
+/** Create or update a document in an index Add a JSON document to the specified data stream or index and make it searchable. If the target is an index and the document already exists, the request updates the document and increments its version. NOTE: You cannot use this API to send update requests for existing documents in a data stream. If the Elasticsearch security features are enabled, you must have the following index privileges for the target data stream, index, or index alias: * To add or overwrite a document using the `PUT /<target>/_doc/<_id>` request format, you must have the `create`, `index`, or `write` index privilege. * To add a document using the `POST /<target>/_doc/` request format, you must have the `create_doc`, `create`, `index`, or `write` index privilege. * To automatically create a data stream or index with this API request, you must have the `auto_configure`, `create_index`, or `manage` index privilege. Automatic data stream creation requires a matching index template with data stream enabled. NOTE: Replica shards might not all be started when an indexing operation returns successfully. By default, only the primary is required. Set `wait_for_active_shards` to change this default behavior (this parameter is not available in Elasticsearch Serverless). **Automatically create data streams and indices** If the request's target doesn't exist and matches an index template with a `data_stream` definition, the index operation automatically creates the data stream. If the target doesn't exist and doesn't match a data stream template, the operation automatically creates the index and applies any matching index templates. NOTE: Elasticsearch includes several built-in index templates. To avoid naming collisions with these templates, refer to index pattern documentation. If no mapping exists, the index operation creates a dynamic mapping. By default, new fields and objects are automatically added to the mapping if needed. Automatic index creation is controlled by the `action.auto_create_index` setting. If it is `true`, any index can be created automatically. You can modify this setting to explicitly allow or block automatic creation of indices that match specified patterns or set it to `false` to turn off automatic index creation entirely. Specify a comma-separated list of patterns you want to allow or prefix each pattern with `+` or `-` to indicate whether it should be allowed or blocked. When a list is specified, the default behaviour is to disallow. NOTE: The `action.auto_create_index` setting affects the automatic creation of indices only. It does not affect the creation of data streams. **Optimistic concurrency control** Index operations can be made conditional and only be performed if the last modification to the document was assigned the sequence number and primary term specified by the `if_seq_no` and `if_primary_term` parameters. If a mismatch is detected, the operation will result in a `VersionConflictException` and a status code of `409`. **Routing** By default, shard placement — or routing — is controlled by using a hash of the document's ID value. For more explicit control, the value fed into the hash function used by the router can be directly specified on a per-operation basis using the `routing` parameter. When setting up explicit mapping, you can also use the `_routing` field to direct the index operation to extract the routing value from the document itself. This does come at the (very minimal) cost of an additional document parsing pass. If the `_routing` mapping is defined and set to be required, the index operation will fail if no routing value is provided or extracted. NOTE: Data streams do not support custom routing unless they were created with the `allow_custom_routing` setting enabled in the template. **Distributed** The index operation is directed to the primary shard based on its route and performed on the actual node containing this shard. After the primary shard completes the operation, if needed, the update is distributed to applicable replicas. **Active shards** To improve the resiliency of writes to the system, indexing operations can be configured to wait for a certain number of active shard copies before proceeding with the operation. If the requisite number of active shard copies are not available, then the write operation must wait and retry, until either the requisite shard copies have started or a timeout occurs. By default, write operations only wait for the primary shards to be active before proceeding (that is to say `wait_for_active_shards` is `1`). This default can be overridden in the index settings dynamically by setting `index.write.wait_for_active_shards`. To alter this behavior per operation, use the `wait_for_active_shards request` parameter (this parameter is not available in Elasticsearch Serverless). Valid values are all or any positive integer up to the total number of configured copies per shard in the index (which is `number_of_replicas`+1). Specifying a negative value or a number greater than the number of shard copies will throw an error. For example, suppose you have a cluster of three nodes, A, B, and C and you create an index index with the number of replicas set to 3 (resulting in 4 shard copies, one more copy than there are nodes). If you attempt an indexing operation, by default the operation will only ensure the primary copy of each shard is available before proceeding. This means that even if B and C went down and A hosted the primary shard copies, the indexing operation would still proceed with only one copy of the data. If `wait_for_active_shards` is set on the request to `3` (and all three nodes are up), the indexing operation will require 3 active shard copies before proceeding. This requirement should be met because there are 3 active nodes in the cluster, each one holding a copy of the shard. However, if you set `wait_for_active_shards` to `all` (or to `4`, which is the same in this situation), the indexing operation will not proceed as you do not have all 4 copies of each shard active in the index. The operation will timeout unless a new node is brought up in the cluster to host the fourth copy of the shard. It is important to note that this setting greatly reduces the chances of the write operation not writing to the requisite number of shard copies, but it does not completely eliminate the possibility, because this check occurs before the write operation starts. After the write operation is underway, it is still possible for replication to fail on any number of shard copies but still succeed on the primary. The `_shards` section of the API response reveals the number of shard copies on which replication succeeded and failed. **No operation (noop) updates** When updating a document by using this API, a new version of the document is always created even if the document hasn't changed. If this isn't acceptable use the `_update` API with `detect_noop` set to `true`. The `detect_noop` option isn't available on this API because it doesn’t fetch the old source and isn't able to compare it against the new source. There isn't a definitive rule for when noop updates aren't acceptable. It's a combination of lots of factors like how frequently your data source sends updates that are actually noops and how many queries per second Elasticsearch runs on the shard receiving the updates. **Versioning** Each indexed document is given a version number. By default, internal versioning is used that starts at 1 and increments with each update, deletes included. Optionally, the version number can be set to an external value (for example, if maintained in a database). To enable this functionality, `version_type` should be set to `external`. The value provided must be a numeric, long value greater than or equal to 0, and less than around `9.2e+18`. NOTE: Versioning is completely real time, and is not affected by the near real time aspects of search operations. If no version is provided, the operation runs without any version checks. When using the external version type, the system checks to see if the version number passed to the index request is greater than the version of the currently stored document. If true, the document will be indexed and the new version number used. If the value provided is less than or equal to the stored document's version number, a version conflict will occur and the index operation will fail. For example: ``` PUT my-index-000001/_doc/1?version=2&version_type=external { "user": { "id": "elkbee" } } ``` In this example, the operation will succeed since the supplied version of 2 is higher than the current document version of 1. If the document was already updated and its version was set to 2 or higher, the indexing command will fail and result in a conflict (409 HTTP status code). A nice side effect is that there is no need to maintain strict ordering of async indexing operations run as a result of changes to a source database, as long as version numbers from the source database are used. Even the simple case of updating the Elasticsearch index using data from a database is simplified if external versioning is used, as only the latest version will be used if the index operations arrive out of order. ## Required authorization * Index privileges: `index` */
+export const list1: API.OperationMethod<
+  List1Request,
+  TypesWriteResponseBase,
+  List1Error,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: List1Request,
+  output: TypesWriteResponseBase,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type List2Error = ElasticsearchOpError;
+/** Create or update a document in an index Add a JSON document to the specified data stream or index and make it searchable. If the target is an index and the document already exists, the request updates the document and increments its version. NOTE: You cannot use this API to send update requests for existing documents in a data stream. If the Elasticsearch security features are enabled, you must have the following index privileges for the target data stream, index, or index alias: * To add or overwrite a document using the `PUT /<target>/_doc/<_id>` request format, you must have the `create`, `index`, or `write` index privilege. * To add a document using the `POST /<target>/_doc/` request format, you must have the `create_doc`, `create`, `index`, or `write` index privilege. * To automatically create a data stream or index with this API request, you must have the `auto_configure`, `create_index`, or `manage` index privilege. Automatic data stream creation requires a matching index template with data stream enabled. NOTE: Replica shards might not all be started when an indexing operation returns successfully. By default, only the primary is required. Set `wait_for_active_shards` to change this default behavior (this parameter is not available in Elasticsearch Serverless). **Automatically create data streams and indices** If the request's target doesn't exist and matches an index template with a `data_stream` definition, the index operation automatically creates the data stream. If the target doesn't exist and doesn't match a data stream template, the operation automatically creates the index and applies any matching index templates. NOTE: Elasticsearch includes several built-in index templates. To avoid naming collisions with these templates, refer to index pattern documentation. If no mapping exists, the index operation creates a dynamic mapping. By default, new fields and objects are automatically added to the mapping if needed. Automatic index creation is controlled by the `action.auto_create_index` setting. If it is `true`, any index can be created automatically. You can modify this setting to explicitly allow or block automatic creation of indices that match specified patterns or set it to `false` to turn off automatic index creation entirely. Specify a comma-separated list of patterns you want to allow or prefix each pattern with `+` or `-` to indicate whether it should be allowed or blocked. When a list is specified, the default behaviour is to disallow. NOTE: The `action.auto_create_index` setting affects the automatic creation of indices only. It does not affect the creation of data streams. **Optimistic concurrency control** Index operations can be made conditional and only be performed if the last modification to the document was assigned the sequence number and primary term specified by the `if_seq_no` and `if_primary_term` parameters. If a mismatch is detected, the operation will result in a `VersionConflictException` and a status code of `409`. **Routing** By default, shard placement — or routing — is controlled by using a hash of the document's ID value. For more explicit control, the value fed into the hash function used by the router can be directly specified on a per-operation basis using the `routing` parameter. When setting up explicit mapping, you can also use the `_routing` field to direct the index operation to extract the routing value from the document itself. This does come at the (very minimal) cost of an additional document parsing pass. If the `_routing` mapping is defined and set to be required, the index operation will fail if no routing value is provided or extracted. NOTE: Data streams do not support custom routing unless they were created with the `allow_custom_routing` setting enabled in the template. **Distributed** The index operation is directed to the primary shard based on its route and performed on the actual node containing this shard. After the primary shard completes the operation, if needed, the update is distributed to applicable replicas. **Active shards** To improve the resiliency of writes to the system, indexing operations can be configured to wait for a certain number of active shard copies before proceeding with the operation. If the requisite number of active shard copies are not available, then the write operation must wait and retry, until either the requisite shard copies have started or a timeout occurs. By default, write operations only wait for the primary shards to be active before proceeding (that is to say `wait_for_active_shards` is `1`). This default can be overridden in the index settings dynamically by setting `index.write.wait_for_active_shards`. To alter this behavior per operation, use the `wait_for_active_shards request` parameter (this parameter is not available in Elasticsearch Serverless). Valid values are all or any positive integer up to the total number of configured copies per shard in the index (which is `number_of_replicas`+1). Specifying a negative value or a number greater than the number of shard copies will throw an error. For example, suppose you have a cluster of three nodes, A, B, and C and you create an index index with the number of replicas set to 3 (resulting in 4 shard copies, one more copy than there are nodes). If you attempt an indexing operation, by default the operation will only ensure the primary copy of each shard is available before proceeding. This means that even if B and C went down and A hosted the primary shard copies, the indexing operation would still proceed with only one copy of the data. If `wait_for_active_shards` is set on the request to `3` (and all three nodes are up), the indexing operation will require 3 active shard copies before proceeding. This requirement should be met because there are 3 active nodes in the cluster, each one holding a copy of the shard. However, if you set `wait_for_active_shards` to `all` (or to `4`, which is the same in this situation), the indexing operation will not proceed as you do not have all 4 copies of each shard active in the index. The operation will timeout unless a new node is brought up in the cluster to host the fourth copy of the shard. It is important to note that this setting greatly reduces the chances of the write operation not writing to the requisite number of shard copies, but it does not completely eliminate the possibility, because this check occurs before the write operation starts. After the write operation is underway, it is still possible for replication to fail on any number of shard copies but still succeed on the primary. The `_shards` section of the API response reveals the number of shard copies on which replication succeeded and failed. **No operation (noop) updates** When updating a document by using this API, a new version of the document is always created even if the document hasn't changed. If this isn't acceptable use the `_update` API with `detect_noop` set to `true`. The `detect_noop` option isn't available on this API because it doesn’t fetch the old source and isn't able to compare it against the new source. There isn't a definitive rule for when noop updates aren't acceptable. It's a combination of lots of factors like how frequently your data source sends updates that are actually noops and how many queries per second Elasticsearch runs on the shard receiving the updates. **Versioning** Each indexed document is given a version number. By default, internal versioning is used that starts at 1 and increments with each update, deletes included. Optionally, the version number can be set to an external value (for example, if maintained in a database). To enable this functionality, `version_type` should be set to `external`. The value provided must be a numeric, long value greater than or equal to 0, and less than around `9.2e+18`. NOTE: Versioning is completely real time, and is not affected by the near real time aspects of search operations. If no version is provided, the operation runs without any version checks. When using the external version type, the system checks to see if the version number passed to the index request is greater than the version of the currently stored document. If true, the document will be indexed and the new version number used. If the value provided is less than or equal to the stored document's version number, a version conflict will occur and the index operation will fail. For example: ``` PUT my-index-000001/_doc/1?version=2&version_type=external { "user": { "id": "elkbee" } } ``` In this example, the operation will succeed since the supplied version of 2 is higher than the current document version of 1. If the document was already updated and its version was set to 2 or higher, the indexing command will fail and result in a conflict (409 HTTP status code). A nice side effect is that there is no need to maintain strict ordering of async indexing operations run as a result of changes to a source database, as long as version numbers from the source database are used. Even the simple case of updating the Elasticsearch index using data from a database is simplified if external versioning is used, as only the latest version will be used if the index operations arrive out of order. ## Required authorization * Index privileges: `index` */
+export const list2: API.OperationMethod<
+  List2Request,
+  TypesWriteResponseBase,
+  List2Error,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: List2Request,
+  output: TypesWriteResponseBase,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListConnectorError = ElasticsearchOpError;
+/** Get all connectors Get information about all connectors. */
+export const listConnector: API.OperationMethod<
+  ListConnectorRequest,
+  ListConnectorResponse,
+  ListConnectorError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListConnectorRequest,
+  output: ListConnectorResponse,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListConnectorSyncJobError = ElasticsearchOpError;
+/** Get all connector sync jobs Get information about all stored connector sync jobs listed by their creation date in ascending order. */
+export const listConnectorSyncJob: API.OperationMethod<
+  ListConnectorSyncJobRequest,
+  ListConnectorSyncJobResponse,
+  ListConnectorSyncJobError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListConnectorSyncJobRequest,
+  output: ListConnectorSyncJobResponse,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListIndicesResolveError = ElasticsearchOpError;
+/** Resolve indices Resolve the names and/or index patterns for indices, aliases, and data streams. Multiple patterns and remote clusters are supported. ## Required authorization * Index privileges: `view_index_metadata` */
+export const listIndicesResolve: API.OperationMethod<
+  ListIndicesResolveRequest,
+  ListIndicesResolveResponse,
+  ListIndicesResolveError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListIndicesResolveRequest,
+  output: ListIndicesResolveResponse,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListReindexError = ElasticsearchOpError;
 /** Get information about all currently running reindex tasks Reindex tasks that are mid-relocation between nodes are reported once, under their original task ID, so callers do not see duplicates across the relocation chain. If the API returns a HTTP status of `200 OK`, but `node_failures` or `task_failures` are non-empty in the body, the listing is not a complete authoritative listing and may be missing tasks. */
 export const listReindex: API.OperationMethod<
@@ -108090,6 +108073,66 @@ export const listReindex: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListReindexRequest,
   output: ListReindexResponse,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListTasksError = ElasticsearchOpError;
+/** Get all tasks Get information about the tasks currently running on one or more nodes in the cluster. WARNING: The task management API is new and should still be considered a beta feature. The API may change in ways that are not backwards compatible. For relocatable tasks, this API transparently follows the task across graceful shutdown relocations, so callers can keep using the original task ID. The returned task reports its `original_task_id` and `original_start_time_in_millis` if it is continuing work from an earlier task. **Identifying running tasks** The `X-Opaque-Id header`, when provided on the HTTP request header, is going to be returned as a header in the response as well as in the headers field for in the task information. This enables you to track certain calls or associate certain tasks with the client that started them. For example: ``` curl -i -H "X-Opaque-Id: 123456" "http://localhost:9200/_tasks?group_by=parents" ``` The API returns the following result: ``` HTTP/1.1 200 OK X-Opaque-Id: 123456 content-type: application/json; charset=UTF-8 content-length: 831 { "tasks" : { "u5lcZHqcQhu-rUoFaqDphA:45" : { "node" : "u5lcZHqcQhu-rUoFaqDphA", "id" : 45, "type" : "transport", "action" : "cluster:monitor/tasks/lists", "start_time_in_millis" : 1513823752749, "running_time_in_nanos" : 293139, "cancellable" : false, "headers" : { "X-Opaque-Id" : "123456" }, "children" : [ { "node" : "u5lcZHqcQhu-rUoFaqDphA", "id" : 46, "type" : "direct", "action" : "cluster:monitor/tasks/lists[n]", "start_time_in_millis" : 1513823752750, "running_time_in_nanos" : 92133, "cancellable" : false, "parent_task_id" : "u5lcZHqcQhu-rUoFaqDphA:45", "headers" : { "X-Opaque-Id" : "123456" } } ] } } } ``` In this example, `X-Opaque-Id: 123456` is the ID as a part of the response header. The `X-Opaque-Id` in the task `headers` is the ID for the task that was initiated by the REST request. The `X-Opaque-Id` in the children `headers` is the child task of the task that was initiated by the REST request. ## Required authorization * Cluster privileges: `monitor` */
+export const listTasks: API.OperationMethod<
+  ListTasksRequest,
+  TasksTypesTaskListResponseBase,
+  ListTasksError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListTasksRequest,
+  output: TasksTypesTaskListResponseBase,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type LogoutSecurityOidcError = ElasticsearchOpError;
+/** Logout of OpenID Connect Invalidate an access token and a refresh token that were generated as a response to the `/_security/oidc/authenticate` API. If the OpenID Connect authentication realm in Elasticsearch is accordingly configured, the response to this call will contain a URI pointing to the end session endpoint of the OpenID Connect Provider in order to perform single logout. Elasticsearch exposes all the necessary OpenID Connect related functionality with the OpenID Connect APIs. These APIs are used internally by Kibana in order to provide OpenID Connect based authentication, but can also be used by other, custom web applications or other clients. */
+export const logoutSecurityOidc: API.OperationMethod<
+  LogoutSecurityOidcRequest,
+  LogoutSecurityOidcResponse,
+  LogoutSecurityOidcError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: LogoutSecurityOidcRequest,
+  output: LogoutSecurityOidcResponse,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type LogoutSecuritySamlError = ElasticsearchOpError;
+/** Logout of SAML Submits a request to invalidate an access token and refresh token. NOTE: This API is intended for use by custom web applications other than Kibana. If you are using Kibana, refer to the documentation for configuring SAML single-sign-on on the Elastic Stack. This API invalidates the tokens that were generated for a user by the SAML authenticate API. If the SAML realm in Elasticsearch is configured accordingly and the SAML IdP supports this, the Elasticsearch response contains a URL to redirect the user to the IdP that contains a SAML logout request (starting an SP-initiated SAML Single Logout). */
+export const logoutSecuritySaml: API.OperationMethod<
+  LogoutSecuritySamlRequest,
+  LogoutSecuritySamlResponse,
+  LogoutSecuritySamlError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: LogoutSecuritySamlRequest,
+  output: LogoutSecuritySamlResponse,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type LogoutSecuritySamlCompleteError = ElasticsearchOpError;
+/** Logout of SAML completely Verifies the logout response sent from the SAML IdP. NOTE: This API is intended for use by custom web applications other than Kibana. If you are using Kibana, refer to the documentation for configuring SAML single-sign-on on the Elastic Stack. The SAML IdP may send a logout response back to the SP after handling the SP-initiated SAML Single Logout. This API verifies the response by ensuring the content is relevant and validating its signature. An empty response is returned if the verification process is successful. The response can be sent by the IdP with either the HTTP-Redirect or the HTTP-Post binding. The caller of this API must prepare the request accordingly so that this API can handle either of them. */
+export const logoutSecuritySamlComplete: API.OperationMethod<
+  LogoutSecuritySamlCompleteRequest,
+  LogoutSecuritySamlCompleteResponse,
+  LogoutSecuritySamlCompleteError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: LogoutSecuritySamlCompleteRequest,
+  output: LogoutSecuritySamlCompleteResponse,
   errors: [UnknownElasticsearchError],
   protocol: ElasticsearchProtocol,
   retry: Retry.Retry,
@@ -110030,21 +110073,6 @@ export const mtermvectors3: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type NodesClearRepositoriesMeteringArchiveError = ElasticsearchOpError;
-/** Clear the archived repositories metering Clear the archived repositories metering information in the cluster. ## Required authorization * Cluster privileges: `monitor`,`manage` */
-export const nodesClearRepositoriesMeteringArchive: API.OperationMethod<
-  NodesClearRepositoriesMeteringArchiveRequest,
-  NodesClearRepositoriesMeteringArchiveResponse,
-  NodesClearRepositoriesMeteringArchiveError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NodesClearRepositoriesMeteringArchiveRequest,
-  output: NodesClearRepositoriesMeteringArchiveResponse,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
 export type NodesGetRepositoriesMeteringInfoError = ElasticsearchOpError;
 /** Get cluster repositories metering Get repositories metering information for a cluster. This API exposes monotonically non-decreasing counters and it is expected that clients would durably store the information needed to compute aggregations over a period of time. Additionally, the information exposed by this API is volatile, meaning that it will not be present after node restarts. ## Required authorization * Cluster privileges: `monitor`,`manage` */
 export const nodesGetRepositoriesMeteringInfo: API.OperationMethod<
@@ -110345,6 +110373,81 @@ export const openPointInTime: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type PostConnectorError = ElasticsearchOpError;
+/** Create a connector Connectors are Elasticsearch integrations that bring content from third-party data sources, which can be deployed on Elastic Cloud or hosted on your own infrastructure. Elastic managed connectors (Native connectors) are a managed service on Elastic Cloud. Self-managed connectors (Connector clients) are self-managed on your infrastructure. */
+export const postConnector: API.OperationMethod<
+  PostConnectorRequest,
+  PostConnectorResponse,
+  PostConnectorError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PostConnectorRequest,
+  output: PostConnectorResponse,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PostConnectorSyncJobError = ElasticsearchOpError;
+/** Create a connector sync job Create a connector sync job document in the internal index and initialize its counters and timestamps with default values. */
+export const postConnectorSyncJob: API.OperationMethod<
+  PostConnectorSyncJobRequest,
+  PostConnectorSyncJobResponse,
+  PostConnectorSyncJobError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PostConnectorSyncJobRequest,
+  output: PostConnectorSyncJobResponse,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PostLicenseError = ElasticsearchOpError;
+/** Update the license You can update your license at runtime without shutting down your nodes. License updates take effect immediately. If the license you are installing does not support all of the features that were available with your previous license, however, you are notified in the response. You must then re-submit the API request with the acknowledge parameter set to true. NOTE: If Elasticsearch security features are enabled and you are installing a gold or higher license, you must enable TLS on the transport networking layer before you install the license. If the operator privileges feature is enabled, only operator users can use this API. ## Required authorization * Cluster privileges: `manage` */
+export const postLicense: API.OperationMethod<
+  PostLicenseRequest,
+  PostLicenseResponse,
+  PostLicenseError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PostLicenseRequest,
+  output: PostLicenseResponse,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutConnectorError = ElasticsearchOpError;
+/** Create or update a connector */
+export const putConnector: API.OperationMethod<
+  PutConnectorRequest,
+  PutConnectorResponse,
+  PutConnectorError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutConnectorRequest,
+  output: PutConnectorResponse,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutInferenceError = ElasticsearchOpError;
+/** Create an inference endpoint IMPORTANT: The inference APIs enable you to use certain services, such as built-in machine learning models (ELSER, E5), models uploaded through Eland, Cohere, OpenAI, Mistral, Azure OpenAI, Google AI Studio, Google Vertex AI, Anthropic, Watsonx.ai, or Hugging Face. For built-in models and models uploaded through Eland, the inference APIs offer an alternative way to use and manage trained models. However, if you do not plan to use the inference APIs to use these models or if you want to use non-NLP models, use the machine learning trained model APIs. The following integrations are available through the inference API. You can find the available task types next to the integration name: * AI21 (`chat_completion`, `completion`) * AlibabaCloud AI Search (`completion`, `rerank`, `sparse_embedding`, `text_embedding`) * Amazon Bedrock (`chat_completion`, `completion`, `text_embedding`) * Amazon SageMaker (`chat_completion`, `completion`, `rerank`, `sparse_embedding`, `text_embedding`) * Anthropic (`chat_completion`, `completion`) * Azure AI Studio (`completion`, `rerank`, `text_embedding`) * Azure OpenAI (`chat_completion`, `completion`, `text_embedding`) * Cohere (`completion`, `rerank`, `text_embedding`) * DeepSeek (`chat_completion`, `completion`) * Elasticsearch (`rerank`, `sparse_embedding`, `text_embedding` - this service is for built-in models and models uploaded through Eland) * ELSER (`sparse_embedding`) * Fireworks AI (`chat_completion`, `completion`, `text_embedding`) * Google AI Studio (`completion`, `text_embedding`) * Google Vertex AI (`chat_completion`, `completion`, `rerank`, `text_embedding`) * Groq (`chat_completion`) * Hugging Face (`chat_completion`, `completion`, `rerank`, `text_embedding`) * JinaAI (`embedding`, `rerank`, `text_embedding`) * Llama (`chat_completion`, `completion`, `text_embedding`) * Mistral (`chat_completion`, `completion`, `text_embedding`) * Nvidia (`chat_completion`, `completion`, `text_embedding`, `rerank`) * OpenAI (`chat_completion`, `completion`, `text_embedding`) * OpenShift AI (`chat_completion`, `completion`, `rerank`, `text_embedding`) * VoyageAI (`rerank`, `text_embedding`) * Watsonx (`chat_completion`, `completion`, `rerank`, `text_embedding`) ## Required authorization * Cluster privileges: `manage_inference` */
+export const putInference: API.OperationMethod<
+  PutInferenceRequest,
+  PutInferenceResponse,
+  PutInferenceError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutInferenceRequest,
+  output: PutInferenceResponse,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
 export type PutScriptError = ElasticsearchOpError;
 /** Create or update a script or search template Creates or updates a stored script or search template. ## Required authorization * Cluster privileges: `manage` */
 export const putScript: API.OperationMethod<
@@ -110585,6 +110688,21 @@ export const rankEval3: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type RefreshIndexError = ElasticsearchOpError;
+/** Refresh an index A refresh makes recent operations performed on one or more indices available for search. For data streams, the API runs the refresh operation on the stream’s backing indices. By default, Elasticsearch periodically refreshes indices every second, but only on indices that have received one search request or more in the last 30 seconds. You can change this default interval with the `index.refresh_interval` setting. In Elastic Cloud Serverless, the default refresh interval is 5 seconds across all indices. Refresh requests are synchronous and do not return a response until the refresh operation completes. Refreshes are resource-intensive. To ensure good cluster performance, it's recommended to wait for Elasticsearch's periodic refresh rather than performing an explicit refresh when possible. If your application workflow indexes documents and then runs a search to retrieve the indexed document, it's recommended to use the index API's `refresh=wait_for` query parameter option. This option ensures the indexing operation waits for a periodic refresh before running the search. ## Required authorization * Index privileges: `maintenance` */
+export const refreshIndex: API.OperationMethod<
+  RefreshIndexRequest,
+  TypesShardsOperationResponseBase,
+  RefreshIndexError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RefreshIndexRequest,
+  output: TypesShardsOperationResponseBase,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ReindexError = ElasticsearchOpError;
 /** Reindex documents Copy documents from a source to a destination. You can copy all documents to the destination index or reindex a subset of the documents. The source can be any existing index, alias, or data stream. The destination must differ from the source. For example, you cannot reindex a data stream into itself. IMPORTANT: Reindex requires `_source` to be enabled for all documents in the source. The destination should be configured as wanted before calling the reindex API. Reindex does not copy the settings from the source or its associated template. Mappings, shard counts, and replicas, for example, must be configured ahead of time. If the Elasticsearch security features are enabled, you must have the following security privileges: * The `read` index privilege for the source data stream, index, or alias. * The `write` index privilege for the destination data stream, index, or index alias. * To automatically create a data stream or index with a reindex API request, you must have the `auto_configure`, `create_index`, or `manage` index privilege for the destination data stream, index, or alias. * If reindexing from a remote cluster, the `source.remote.user` must have the `monitor` cluster privilege and the `read` index privilege for the source data stream, index, or alias. If reindexing from a remote cluster into a cluster using Elastic Stack, you must explicitly allow the remote host using the `reindex.remote.whitelist` node setting on the destination cluster. If reindexing from a remote cluster into an Elastic Cloud Serverless project, only remote hosts from [Elastic Cloud Hosted and Elastic Cloud Serverless](https://cloud.elastic.co/registration?page=docs&placement=docs-body) are allowed. Automatic data stream creation requires a matching index template with data stream enabled. The `dest` element can be configured like the index API to control optimistic concurrency control. Omitting `version_type` or setting it to `internal` causes Elasticsearch to blindly dump documents into the destination, overwriting any that happen to have the same ID. Setting `version_type` to `external` causes Elasticsearch to preserve the `version` from the source, create any documents that are missing, and update any documents that have an older version in the destination than they do in the source. Setting `op_type` to `create` causes the reindex API to create only missing documents in the destination. All existing documents will cause a version conflict. IMPORTANT: Because data streams are append-only, any reindex request to a destination data stream must have an `op_type` of `create`. A reindex can only add new documents to a destination data stream. It cannot update existing documents in a destination data stream. By default, version conflicts abort the reindex process. To continue reindexing if there are conflicts, set the `conflicts` request body property to `proceed`. In this case, the response includes a count of the version conflicts that were encountered. Note that the handling of other error types is unaffected by the `conflicts` property. Additionally, if you opt to count version conflicts, the operation could attempt to reindex more documents from the source than `max_docs` until it has successfully indexed `max_docs` documents into the target or it has gone through every document in the source query. It's recommended to reindex on indices with a green status. Reindexing can fail when a node shuts down or crashes. * When requested with `wait_for_completion=true` (default), the request fails if the node shuts down. * When requested with `wait_for_completion=false`, a task id is returned, for use with the task management APIs. The task may disappear or fail if the node shuts down. When retrying a failed reindex operation, it might be necessary to set `conflicts=proceed` or to first delete the partial destination index. Additionally, dry runs, checking disk space, and fetching index recovery information can help address the root cause. Refer to the linked documentation for examples of how to reindex documents. ## Required authorization * Index privileges: `read`,`write` */
 export const reindex: API.OperationMethod<
@@ -110675,16 +110793,46 @@ export const renderSearchTemplate3: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ScriptsPainlessExecuteError = ElasticsearchOpError;
-/** Run a script Runs a script and returns a result. Use this API to build and test scripts, such as when defining a script for a runtime field. This API requires very few dependencies and is especially useful if you don't have permissions to write documents on a cluster. The API uses several _contexts_, which control how scripts are run, what variables are available at runtime, and what the return type is. Each context requires a script, but additional parameters depend on the context you're using for that script. */
-export const scriptsPainlessExecute: API.OperationMethod<
-  ScriptsPainlessExecuteRequest,
-  ScriptsPainlessExecuteResponse,
-  ScriptsPainlessExecuteError,
+export type ResetEncryptionError = ElasticsearchOpError;
+/** Reset the project encryption key Destroy the current project encryption key (PEK) and generate a new one. This is the recovery path for when the on-disk encrypted PEK becomes permanently inaccessible, for example because the key encryption material protecting it was lost. All data that was encrypted under the destroyed key becomes permanently unrecoverable. Each feature that stores encrypted data decides how to handle its own data during the reset: some features drop the encrypted values entirely, while others preserve the rest of the affected data and only clear the values that can no longer be decrypted. Because this operation causes permanent data loss, it requires the `accept_data_loss` query parameter to be set to `true`. */
+export const resetEncryption: API.OperationMethod<
+  ResetEncryptionRequest,
+  TypesAcknowledgedResponseBase,
+  ResetEncryptionError,
   ElasticsearchOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ScriptsPainlessExecuteRequest,
-  output: ScriptsPainlessExecuteResponse,
+  input: ResetEncryptionRequest,
+  output: TypesAcknowledgedResponseBase,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RestoreSnapshotError = ElasticsearchOpError;
+/** Restore a snapshot Restore a snapshot of a cluster or data streams and indices. You can restore a snapshot only to a running cluster with an elected master node. The snapshot repository must be registered and available to the cluster. The snapshot and cluster versions must be compatible. To restore a snapshot, the cluster's global metadata must be writable. Ensure there are't any cluster blocks that prevent writes. The restore operation ignores index blocks. Before you restore a data stream, ensure the cluster contains a matching index template with data streams enabled. To check, use the index management feature in Kibana or the get index template API: ``` GET _index_template/*?filter_path=index_templates.name,index_templates.index_template.index_patterns,index_templates.index_template.data_stream ``` If no such template exists, you can create one or restore a cluster state that contains one. Without a matching index template, a data stream can't roll over or create backing indices. If your snapshot contains data from App Search or Workplace Search, you must restore the Enterprise Search encryption key before you restore the snapshot. ## Required authorization * Cluster privileges: `manage` */
+export const restoreSnapshot: API.OperationMethod<
+  RestoreSnapshotRequest,
+  RestoreSnapshotResponse,
+  RestoreSnapshotError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RestoreSnapshotRequest,
+  output: RestoreSnapshotResponse,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RetryIlmError = ElasticsearchOpError;
+/** Retry a policy Retry running the lifecycle policy for an index that is in the ERROR step. The API sets the policy back to the step where the error occurred and runs the step. Use the explain lifecycle state API to determine whether an index is in the ERROR step. ## Required authorization * Index privileges: `manage_ilm` */
+export const retryIlm: API.OperationMethod<
+  RetryIlmRequest,
+  TypesAcknowledgedResponseBase,
+  RetryIlmError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RetryIlmRequest,
+  output: TypesAcknowledgedResponseBase,
   errors: [UnknownElasticsearchError],
   protocol: ElasticsearchProtocol,
   retry: Retry.Retry,
@@ -111035,6 +111183,36 @@ export const searchApplicationSearch1: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type SearchEqlError = ElasticsearchOpError;
+/** Get EQL search results Returns search results for an Event Query Language (EQL) query. EQL assumes each document in a data stream or index corresponds to an event. */
+export const searchEql: API.OperationMethod<
+  SearchEqlRequest,
+  EqlTypesEqlSearchResponseBase,
+  SearchEqlError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SearchEqlRequest,
+  output: EqlTypesEqlSearchResponseBase,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type SearchFleetError = ElasticsearchOpError;
+/** Run a Fleet search The purpose of the Fleet search API is to provide an API where the search will be run only after the provided checkpoint has been processed and is visible for searches inside of Elasticsearch. ## Required authorization * Index privileges: `read` */
+export const searchFleet: API.OperationMethod<
+  SearchFleetRequest,
+  SearchFleetResponse,
+  SearchFleetError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SearchFleetRequest,
+  output: SearchFleetResponse,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
 export type SearchMvtError = ElasticsearchOpError;
 /** Search a vector tile Search a vector tile for geospatial values. Before using this API, you should be familiar with the Mapbox vector tile specification. The API returns results as a binary mapbox vector tile. Internally, Elasticsearch translates a vector tile search API request into a search containing: * A `geo_bounding_box` query on the `<field>`. The query uses the `<zoom>/<x>/<y>` tile as a bounding box. * A `geotile_grid` or `geohex_grid` aggregation on the `<field>`. The `grid_agg` parameter determines the aggregation type. The aggregation uses the `<zoom>/<x>/<y>` tile as a bounding box. * Optionally, a `geo_bounds` aggregation on the `<field>`. The search only includes this aggregation if the `exact_bounds` parameter is `true`. * If the optional parameter `with_labels` is `true`, the internal search will include a dynamic runtime field that calls the `getLabelPosition` function of the geometry doc value. This enables the generation of new point features containing suggested geometry labels, so that, for example, multi-polygons will have only one label. The API returns results as a binary Mapbox vector tile. Mapbox vector tiles are encoded as Google Protobufs (PBF). By default, the tile contains three layers: * A `hits` layer containing a feature for each `<field>` value matching the `geo_bounding_box` query. * An `aggs` layer containing a feature for each cell of the `geotile_grid` or `geohex_grid`. The layer only contains features for cells with matching data. * A meta layer containing: * A feature containing a bounding box. By default, this is the bounding box of the tile. * Value ranges for any sub-aggregations on the `geotile_grid` or `geohex_grid`. * Metadata for the search. The API only returns features that can display at its zoom level. For example, if a polygon feature has no area at its zoom level, the API omits it. The API returns errors as UTF-8 encoded JSON. IMPORTANT: You can specify several options for this API as either a query parameter or request body parameter. If you specify both parameters, the query parameter takes precedence. **Grid precision for geotile** For a `grid_agg` of `geotile`, you can use cells in the `aggs` layer as tiles for lower zoom levels. `grid_precision` represents the additional zoom levels available through these cells. The final precision is computed by as follows: `<zoom> + grid_precision`. For example, if `<zoom>` is 7 and `grid_precision` is 8, then the `geotile_grid` aggregation will use a precision of 15. The maximum final precision is 29. The `grid_precision` also determines the number of cells for the grid as follows: `(2^grid_precision) x (2^grid_precision)`. For example, a value of 8 divides the tile into a grid of 256 x 256 cells. The `aggs` layer only contains features for cells with matching data. **Grid precision for geohex** For a `grid_agg` of `geohex`, Elasticsearch uses `<zoom>` and `grid_precision` to calculate a final precision as follows: `<zoom> + grid_precision`. This precision determines the H3 resolution of the hexagonal cells produced by the `geohex` aggregation. The following table maps the H3 resolution for each precision. For example, if `<zoom>` is 3 and `grid_precision` is 3, the precision is 6. At a precision of 6, hexagonal cells have an H3 resolution of 2. If `<zoom>` is 3 and `grid_precision` is 4, the precision is 7. At a precision of 7, hexagonal cells have an H3 resolution of 3. Hexagonal cells don't align perfectly on a vector tile. Some cells may intersect more than one vector tile. To compute the H3 resolution for each precision, Elasticsearch compares the average density of hexagonal bins at each resolution with the average density of tile bins at each zoom level. Elasticsearch uses the H3 resolution that is closest to the corresponding geotile density. Learn how to use the vector tile search API with practical examples in the [Vector tile search examples](https://www.elastic.co/docs/reference/elasticsearch/rest-apis/vector-tile-search) guide. ## Required authorization * Index privileges: `read` */
 export const searchMvt: API.OperationMethod<
@@ -111195,21 +111373,6 @@ export const securityActivateUserProfile: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: SecurityActivateUserProfileRequest,
   output: SecurityActivateUserProfileResponse,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SecurityAuthenticateError = ElasticsearchOpError;
-/** Authenticate a user Authenticates a user and returns information about the authenticated user. Include the user information in a [basic auth header](https://en.wikipedia.org/wiki/Basic_access_authentication). A successful call returns a JSON structure that shows user information such as their username, the roles that are assigned to the user, any assigned metadata, and information about the realms that authenticated and authorized the user. If the user cannot be authenticated, this API returns a 401 status code. */
-export const securityAuthenticate: API.OperationMethod<
-  SecurityAuthenticateRequest,
-  SecurityAuthenticateResponse,
-  SecurityAuthenticateError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SecurityAuthenticateRequest,
-  output: SecurityAuthenticateResponse,
   errors: [UnknownElasticsearchError],
   protocol: ElasticsearchProtocol,
   retry: Retry.Retry,
@@ -112190,36 +112353,6 @@ export const securityInvalidateToken: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SecurityOidcAuthenticateError = ElasticsearchOpError;
-/** Authenticate OpenID Connect Exchange an OpenID Connect authentication response message for an Elasticsearch internal access token and refresh token that can be subsequently used for authentication. Elasticsearch exposes all the necessary OpenID Connect related functionality with the OpenID Connect APIs. These APIs are used internally by Kibana in order to provide OpenID Connect based authentication, but can also be used by other, custom web applications or other clients. */
-export const securityOidcAuthenticate: API.OperationMethod<
-  SecurityOidcAuthenticateRequest,
-  SecurityOidcAuthenticateResponse,
-  SecurityOidcAuthenticateError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SecurityOidcAuthenticateRequest,
-  output: SecurityOidcAuthenticateResponse,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SecurityOidcLogoutError = ElasticsearchOpError;
-/** Logout of OpenID Connect Invalidate an access token and a refresh token that were generated as a response to the `/_security/oidc/authenticate` API. If the OpenID Connect authentication realm in Elasticsearch is accordingly configured, the response to this call will contain a URI pointing to the end session endpoint of the OpenID Connect Provider in order to perform single logout. Elasticsearch exposes all the necessary OpenID Connect related functionality with the OpenID Connect APIs. These APIs are used internally by Kibana in order to provide OpenID Connect based authentication, but can also be used by other, custom web applications or other clients. */
-export const securityOidcLogout: API.OperationMethod<
-  SecurityOidcLogoutRequest,
-  SecurityOidcLogoutResponse,
-  SecurityOidcLogoutError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SecurityOidcLogoutRequest,
-  output: SecurityOidcLogoutResponse,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
 export type SecurityOidcPrepareAuthenticationError = ElasticsearchOpError;
 /** Prepare OpenID connect authentication Create an oAuth 2.0 authentication request as a URL string based on the configuration of the OpenID Connect authentication realm in Elasticsearch. The response of this API is a URL pointing to the Authorization Endpoint of the configured OpenID Connect Provider, which can be used to redirect the browser of the user in order to continue the authentication process. Elasticsearch exposes all the necessary OpenID Connect related functionality with the OpenID Connect APIs. These APIs are used internally by Kibana in order to provide OpenID Connect based authentication, but can also be used by other, custom web applications or other clients. */
 export const securityOidcPrepareAuthentication: API.OperationMethod<
@@ -112440,66 +112573,6 @@ export const securityQueryUser1: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: SecurityQueryUser1Request,
   output: SecurityQueryUser1Response,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SecuritySamlAuthenticateError = ElasticsearchOpError;
-/** Authenticate SAML Submit a SAML response message to Elasticsearch for consumption. NOTE: This API is intended for use by custom web applications other than Kibana. If you are using Kibana, refer to the documentation for configuring SAML single-sign-on on the Elastic Stack. The SAML message that is submitted can be: * A response to a SAML authentication request that was previously created using the SAML prepare authentication API. * An unsolicited SAML message in the case of an IdP-initiated single sign-on (SSO) flow. In either case, the SAML message needs to be a base64 encoded XML document with a root element of `<Response>`. After successful validation, Elasticsearch responds with an Elasticsearch internal access token and refresh token that can be subsequently used for authentication. This API endpoint essentially exchanges SAML responses that indicate successful authentication in the IdP for Elasticsearch access and refresh tokens, which can be used for authentication against Elasticsearch. */
-export const securitySamlAuthenticate: API.OperationMethod<
-  SecuritySamlAuthenticateRequest,
-  SecuritySamlAuthenticateResponse,
-  SecuritySamlAuthenticateError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SecuritySamlAuthenticateRequest,
-  output: SecuritySamlAuthenticateResponse,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SecuritySamlCompleteLogoutError = ElasticsearchOpError;
-/** Logout of SAML completely Verifies the logout response sent from the SAML IdP. NOTE: This API is intended for use by custom web applications other than Kibana. If you are using Kibana, refer to the documentation for configuring SAML single-sign-on on the Elastic Stack. The SAML IdP may send a logout response back to the SP after handling the SP-initiated SAML Single Logout. This API verifies the response by ensuring the content is relevant and validating its signature. An empty response is returned if the verification process is successful. The response can be sent by the IdP with either the HTTP-Redirect or the HTTP-Post binding. The caller of this API must prepare the request accordingly so that this API can handle either of them. */
-export const securitySamlCompleteLogout: API.OperationMethod<
-  SecuritySamlCompleteLogoutRequest,
-  SecuritySamlCompleteLogoutResponse,
-  SecuritySamlCompleteLogoutError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SecuritySamlCompleteLogoutRequest,
-  output: SecuritySamlCompleteLogoutResponse,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SecuritySamlInvalidateError = ElasticsearchOpError;
-/** Invalidate SAML Submit a SAML LogoutRequest message to Elasticsearch for consumption. NOTE: This API is intended for use by custom web applications other than Kibana. If you are using Kibana, refer to the documentation for configuring SAML single-sign-on on the Elastic Stack. The logout request comes from the SAML IdP during an IdP initiated Single Logout. The custom web application can use this API to have Elasticsearch process the `LogoutRequest`. After successful validation of the request, Elasticsearch invalidates the access token and refresh token that corresponds to that specific SAML principal and provides a URL that contains a SAML LogoutResponse message. Thus the user can be redirected back to their IdP. */
-export const securitySamlInvalidate: API.OperationMethod<
-  SecuritySamlInvalidateRequest,
-  SecuritySamlInvalidateResponse,
-  SecuritySamlInvalidateError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SecuritySamlInvalidateRequest,
-  output: SecuritySamlInvalidateResponse,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SecuritySamlLogoutError = ElasticsearchOpError;
-/** Logout of SAML Submits a request to invalidate an access token and refresh token. NOTE: This API is intended for use by custom web applications other than Kibana. If you are using Kibana, refer to the documentation for configuring SAML single-sign-on on the Elastic Stack. This API invalidates the tokens that were generated for a user by the SAML authenticate API. If the SAML realm in Elasticsearch is configured accordingly and the SAML IdP supports this, the Elasticsearch response contains a URL to redirect the user to the IdP that contains a SAML logout request (starting an SP-initiated SAML Single Logout). */
-export const securitySamlLogout: API.OperationMethod<
-  SecuritySamlLogoutRequest,
-  SecuritySamlLogoutResponse,
-  SecuritySamlLogoutError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SecuritySamlLogoutRequest,
-  output: SecuritySamlLogoutResponse,
   errors: [UnknownElasticsearchError],
   protocol: ElasticsearchProtocol,
   retry: Retry.Retry,
@@ -112820,36 +112893,6 @@ export const slmPutLifecycle: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SlmStartError = ElasticsearchOpError;
-/** Start snapshot lifecycle management Snapshot lifecycle management (SLM) starts automatically when a cluster is formed. Manually starting SLM is necessary only if it has been stopped using the stop SLM API. ## Required authorization * Cluster privileges: `manage_slm` */
-export const slmStart: API.OperationMethod<
-  SlmStartRequest,
-  TypesAcknowledgedResponseBase,
-  SlmStartError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SlmStartRequest,
-  output: TypesAcknowledgedResponseBase,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SlmStopError = ElasticsearchOpError;
-/** Stop snapshot lifecycle management Stop all snapshot lifecycle management (SLM) operations and the SLM plugin. This API is useful when you are performing maintenance on a cluster and need to prevent SLM from performing any actions on your data streams or indices. Stopping SLM does not stop any snapshots that are in progress. You can manually trigger snapshots with the run snapshot lifecycle policy API even if SLM is stopped. The API returns a response as soon as the request is acknowledged, but the plugin might continue to run until in-progress operations complete and it can be safely stopped. Use the get snapshot lifecycle management status API to see if SLM is running. */
-export const slmStop: API.OperationMethod<
-  SlmStopRequest,
-  TypesAcknowledgedResponseBase,
-  SlmStopError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SlmStopRequest,
-  output: TypesAcknowledgedResponseBase,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
 export type SnapshotCleanupRepositoryError = ElasticsearchOpError;
 /** Clean up the snapshot repository Trigger the review of the contents of a snapshot repository and delete any stale data not referenced by existing snapshots. ## Required authorization * Cluster privileges: `manage` */
 export const snapshotCleanupRepository: API.OperationMethod<
@@ -112860,36 +112903,6 @@ export const snapshotCleanupRepository: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: SnapshotCleanupRepositoryRequest,
   output: SnapshotCleanupRepositoryResponse,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SnapshotCloneError = ElasticsearchOpError;
-/** Clone a snapshot Clone part of all of a snapshot into another snapshot in the same repository. ## Required authorization * Cluster privileges: `manage` */
-export const snapshotClone: API.OperationMethod<
-  SnapshotCloneRequest,
-  TypesAcknowledgedResponseBase,
-  SnapshotCloneError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SnapshotCloneRequest,
-  output: TypesAcknowledgedResponseBase,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SnapshotCreateError = ElasticsearchOpError;
-/** Create a snapshot Take a snapshot of a cluster or of data streams and indices. ## Required authorization * Cluster privileges: `create_snapshot` */
-export const snapshotCreate: API.OperationMethod<
-  SnapshotCreateRequest,
-  SnapshotCreateResponse,
-  SnapshotCreateError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SnapshotCreateRequest,
-  output: SnapshotCreateResponse,
   errors: [UnknownElasticsearchError],
   protocol: ElasticsearchProtocol,
   retry: Retry.Retry,
@@ -112940,21 +112953,6 @@ export const snapshotCreateRepository1: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SnapshotDeleteError = ElasticsearchOpError;
-/** Delete snapshots ## Required authorization * Cluster privileges: `manage` */
-export const snapshotDelete: API.OperationMethod<
-  SnapshotDeleteRequest,
-  TypesAcknowledgedResponseBase,
-  SnapshotDeleteError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SnapshotDeleteRequest,
-  output: TypesAcknowledgedResponseBase,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
 export type SnapshotDeleteRepositoryError = ElasticsearchOpError;
 /** Delete snapshot repositories When a repository is unregistered, Elasticsearch removes only the reference to the location where the repository is storing the snapshots. The snapshots themselves are left untouched and in place. ## Required authorization * Cluster privileges: `manage` */
 export const snapshotDeleteRepository: API.OperationMethod<
@@ -112965,21 +112963,6 @@ export const snapshotDeleteRepository: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: SnapshotDeleteRepositoryRequest,
   output: TypesAcknowledgedResponseBase,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SnapshotGetError = ElasticsearchOpError;
-/** Get snapshot information NOTE: The `after` parameter and `next` field enable you to iterate through snapshots with some consistency guarantees regarding concurrent creation or deletion of snapshots. It is guaranteed that any snapshot that exists at the beginning of the iteration and is not concurrently deleted will be seen during the iteration. Snapshots concurrently created may be seen during an iteration. ## Required authorization * Cluster privileges: `monitor_snapshot` */
-export const snapshotGet: API.OperationMethod<
-  SnapshotGetRequest,
-  SnapshotGetResponse,
-  SnapshotGetError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SnapshotGetRequest,
-  output: SnapshotGetResponse,
   errors: [UnknownElasticsearchError],
   protocol: ElasticsearchProtocol,
   retry: Retry.Retry,
@@ -113040,21 +113023,6 @@ export const snapshotRepositoryVerifyIntegrity: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: SnapshotRepositoryVerifyIntegrityRequest,
   output: SnapshotRepositoryVerifyIntegrityResponse,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SnapshotRestoreError = ElasticsearchOpError;
-/** Restore a snapshot Restore a snapshot of a cluster or data streams and indices. You can restore a snapshot only to a running cluster with an elected master node. The snapshot repository must be registered and available to the cluster. The snapshot and cluster versions must be compatible. To restore a snapshot, the cluster's global metadata must be writable. Ensure there are't any cluster blocks that prevent writes. The restore operation ignores index blocks. Before you restore a data stream, ensure the cluster contains a matching index template with data streams enabled. To check, use the index management feature in Kibana or the get index template API: ``` GET _index_template/*?filter_path=index_templates.name,index_templates.index_template.index_patterns,index_templates.index_template.data_stream ``` If no such template exists, you can create one or restore a cluster state that contains one. Without a matching index template, a data stream can't roll over or create backing indices. If your snapshot contains data from App Search or Workplace Search, you must restore the Enterprise Search encryption key before you restore the snapshot. ## Required authorization * Cluster privileges: `manage` */
-export const snapshotRestore: API.OperationMethod<
-  SnapshotRestoreRequest,
-  SnapshotRestoreResponse,
-  SnapshotRestoreError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SnapshotRestoreRequest,
-  output: SnapshotRestoreResponse,
   errors: [UnknownElasticsearchError],
   protocol: ElasticsearchProtocol,
   retry: Retry.Retry,
@@ -113255,30 +113223,105 @@ export const sslCertificates: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type StreamsLogsDisableError = ElasticsearchOpError;
-/** Disable a named stream Turn off the named stream feature for this cluster. ## Required authorization * Cluster privileges: `manage` */
-export const streamsLogsDisable: API.OperationMethod<
-  StreamsLogsDisableRequest,
+export type StartIlmError = ElasticsearchOpError;
+/** Start the ILM plugin Start the index lifecycle management plugin if it is currently stopped. ILM is started automatically when the cluster is formed. Restarting ILM is necessary only when it has been stopped using the stop ILM API. ## Required authorization * Cluster privileges: `manage_ilm` */
+export const startIlm: API.OperationMethod<
+  StartIlmRequest,
   TypesAcknowledgedResponseBase,
-  StreamsLogsDisableError,
+  StartIlmError,
   ElasticsearchOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: StreamsLogsDisableRequest,
+  input: StartIlmRequest,
   output: TypesAcknowledgedResponseBase,
   errors: [UnknownElasticsearchError],
   protocol: ElasticsearchProtocol,
   retry: Retry.Retry,
 }));
 
-export type StreamsLogsEnableError = ElasticsearchOpError;
-/** Enable a named stream Turn on the named stream feature for this cluster. NOTE: To protect existing data, this feature can be turned on only if the cluster does not have existing indices or data streams that match the pattern `<name>|<name>.*` for the enabled stream type name. If those indices or data streams exist, a `409 - Conflict` response and error is returned. ## Required authorization * Cluster privileges: `manage` */
-export const streamsLogsEnable: API.OperationMethod<
-  StreamsLogsEnableRequest,
+export type StartSlmError = ElasticsearchOpError;
+/** Start snapshot lifecycle management Snapshot lifecycle management (SLM) starts automatically when a cluster is formed. Manually starting SLM is necessary only if it has been stopped using the stop SLM API. ## Required authorization * Cluster privileges: `manage_slm` */
+export const startSlm: API.OperationMethod<
+  StartSlmRequest,
   TypesAcknowledgedResponseBase,
-  StreamsLogsEnableError,
+  StartSlmError,
   ElasticsearchOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: StreamsLogsEnableRequest,
+  input: StartSlmRequest,
+  output: TypesAcknowledgedResponseBase,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type StartWatcherError = ElasticsearchOpError;
+/** Start the watch service Start the Watcher service if it is not already running. ## Required authorization * Cluster privileges: `manage_watcher` */
+export const startWatcher: API.OperationMethod<
+  StartWatcherRequest,
+  TypesAcknowledgedResponseBase,
+  StartWatcherError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: StartWatcherRequest,
+  output: TypesAcknowledgedResponseBase,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type StopEsqlAsyncQueryError = ElasticsearchOpError;
+/** Stop async ES|QL query This API interrupts the query execution and returns the results so far. If the Elasticsearch security features are enabled, only the user who first submitted the ES|QL query can stop it. ## Required authorization * Index privileges: `read` */
+export const stopEsqlAsyncQuery: API.OperationMethod<
+  StopEsqlAsyncQueryRequest,
+  EsqlTypesEsqlResult,
+  StopEsqlAsyncQueryError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: StopEsqlAsyncQueryRequest,
+  output: EsqlTypesEsqlResult,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type StopIlmError = ElasticsearchOpError;
+/** Stop the ILM plugin Halt all lifecycle management operations and stop the index lifecycle management plugin. This is useful when you are performing maintenance on the cluster and need to prevent ILM from performing any actions on your indices. The API returns as soon as the stop request has been acknowledged, but the plugin might continue to run until in-progress operations complete and the plugin can be safely stopped. Use the get ILM status API to check whether ILM is running. ## Required authorization * Cluster privileges: `manage_ilm` */
+export const stopIlm: API.OperationMethod<
+  StopIlmRequest,
+  TypesAcknowledgedResponseBase,
+  StopIlmError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: StopIlmRequest,
+  output: TypesAcknowledgedResponseBase,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type StopSlmError = ElasticsearchOpError;
+/** Stop snapshot lifecycle management Stop all snapshot lifecycle management (SLM) operations and the SLM plugin. This API is useful when you are performing maintenance on a cluster and need to prevent SLM from performing any actions on your data streams or indices. Stopping SLM does not stop any snapshots that are in progress. You can manually trigger snapshots with the run snapshot lifecycle policy API even if SLM is stopped. The API returns a response as soon as the request is acknowledged, but the plugin might continue to run until in-progress operations complete and it can be safely stopped. Use the get snapshot lifecycle management status API to see if SLM is running. */
+export const stopSlm: API.OperationMethod<
+  StopSlmRequest,
+  TypesAcknowledgedResponseBase,
+  StopSlmError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: StopSlmRequest,
+  output: TypesAcknowledgedResponseBase,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type StopWatcherError = ElasticsearchOpError;
+/** Stop the watch service Stop the Watcher service if it is running. ## Required authorization * Cluster privileges: `manage_watcher` */
+export const stopWatcher: API.OperationMethod<
+  StopWatcherRequest,
+  TypesAcknowledgedResponseBase,
+  StopWatcherError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: StopWatcherRequest,
   output: TypesAcknowledgedResponseBase,
   errors: [UnknownElasticsearchError],
   protocol: ElasticsearchProtocol,
@@ -113405,21 +113448,6 @@ export const synonymsPutSynonymRule: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type TasksCancelError = ElasticsearchOpError;
-/** Cancel a task WARNING: The task management API is new and should still be considered a beta feature. The API may change in ways that are not backwards compatible. A task may continue to run for some time after it has been cancelled because it may not be able to safely stop its current activity straight away. It is also possible that Elasticsearch must complete its work on other tasks before it can process the cancellation. The get task information API will continue to list these cancelled tasks until they complete. The cancelled flag in the response indicates that the cancellation command has been processed and the task will stop as soon as possible. To troubleshoot why a cancelled task does not complete promptly, use the get task information API with the `?detailed` parameter to identify the other tasks the system is running. You can also use the node hot threads API to obtain detailed information about the work the system is doing instead of completing the cancelled task. For relocatable tasks, this API transparently follows the task across graceful shutdown relocations, so callers can keep using the original task ID. The returned task reports its `original_task_id` and `original_start_time_in_millis` if it is continuing work from an earlier task. ## Required authorization * Cluster privileges: `manage` */
-export const tasksCancel: API.OperationMethod<
-  TasksCancelRequest,
-  TasksTypesTaskListResponseBase,
-  TasksCancelError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksCancelRequest,
-  output: TasksTypesTaskListResponseBase,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
 export type TasksCancel1Error = ElasticsearchOpError;
 /** Cancel a task WARNING: The task management API is new and should still be considered a beta feature. The API may change in ways that are not backwards compatible. A task may continue to run for some time after it has been cancelled because it may not be able to safely stop its current activity straight away. It is also possible that Elasticsearch must complete its work on other tasks before it can process the cancellation. The get task information API will continue to list these cancelled tasks until they complete. The cancelled flag in the response indicates that the cancellation command has been processed and the task will stop as soon as possible. To troubleshoot why a cancelled task does not complete promptly, use the get task information API with the `?detailed` parameter to identify the other tasks the system is running. You can also use the node hot threads API to obtain detailed information about the work the system is doing instead of completing the cancelled task. For relocatable tasks, this API transparently follows the task across graceful shutdown relocations, so callers can keep using the original task ID. The returned task reports its `original_task_id` and `original_start_time_in_millis` if it is continuing work from an earlier task. ## Required authorization * Cluster privileges: `manage` */
 export const tasksCancel1: API.OperationMethod<
@@ -113429,36 +113457,6 @@ export const tasksCancel1: API.OperationMethod<
   ElasticsearchOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: TasksCancel1Request,
-  output: TasksTypesTaskListResponseBase,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TasksGetError = ElasticsearchOpError;
-/** Get task information Get information about a task currently running in the cluster. WARNING: The task management API is new and should still be considered a beta feature. The API may change in ways that are not backwards compatible. If the task identifier is not found, a 404 response code indicates that there are no resources that match the request. For relocatable tasks, this API transparently follows the task across graceful shutdown relocations, so callers can keep using the original task ID. The returned task reports its `original_task_id` and `original_start_time_in_millis` if it is continuing work from an earlier task. ## Required authorization * Cluster privileges: `monitor` */
-export const tasksGet: API.OperationMethod<
-  TasksGetRequest,
-  TasksGetResponse,
-  TasksGetError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksGetRequest,
-  output: TasksGetResponse,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TasksListError = ElasticsearchOpError;
-/** Get all tasks Get information about the tasks currently running on one or more nodes in the cluster. WARNING: The task management API is new and should still be considered a beta feature. The API may change in ways that are not backwards compatible. For relocatable tasks, this API transparently follows the task across graceful shutdown relocations, so callers can keep using the original task ID. The returned task reports its `original_task_id` and `original_start_time_in_millis` if it is continuing work from an earlier task. **Identifying running tasks** The `X-Opaque-Id header`, when provided on the HTTP request header, is going to be returned as a header in the response as well as in the headers field for in the task information. This enables you to track certain calls or associate certain tasks with the client that started them. For example: ``` curl -i -H "X-Opaque-Id: 123456" "http://localhost:9200/_tasks?group_by=parents" ``` The API returns the following result: ``` HTTP/1.1 200 OK X-Opaque-Id: 123456 content-type: application/json; charset=UTF-8 content-length: 831 { "tasks" : { "u5lcZHqcQhu-rUoFaqDphA:45" : { "node" : "u5lcZHqcQhu-rUoFaqDphA", "id" : 45, "type" : "transport", "action" : "cluster:monitor/tasks/lists", "start_time_in_millis" : 1513823752749, "running_time_in_nanos" : 293139, "cancellable" : false, "headers" : { "X-Opaque-Id" : "123456" }, "children" : [ { "node" : "u5lcZHqcQhu-rUoFaqDphA", "id" : 46, "type" : "direct", "action" : "cluster:monitor/tasks/lists[n]", "start_time_in_millis" : 1513823752750, "running_time_in_nanos" : 92133, "cancellable" : false, "parent_task_id" : "u5lcZHqcQhu-rUoFaqDphA:45", "headers" : { "X-Opaque-Id" : "123456" } } ] } } } ``` In this example, `X-Opaque-Id: 123456` is the ID as a part of the response header. The `X-Opaque-Id` in the task `headers` is the ID for the task that was initiated by the REST request. The `X-Opaque-Id` in the children `headers` is the child task of the task that was initiated by the REST request. ## Required authorization * Cluster privileges: `monitor` */
-export const tasksList: API.OperationMethod<
-  TasksListRequest,
-  TasksTypesTaskListResponseBase,
-  TasksListError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksListRequest,
   output: TasksTypesTaskListResponseBase,
   errors: [UnknownElasticsearchError],
   protocol: ElasticsearchProtocol,
@@ -113900,6 +113898,21 @@ export const transformUpgradeTransforms: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type UnfollowCcrError = ElasticsearchOpError;
+/** Unfollow an index Convert a cross-cluster replication follower index to a regular index. The API stops the following task associated with a follower index and removes index metadata and settings associated with cross-cluster replication. The follower index must be paused and closed before you call the unfollow API. > info > Currently cross-cluster replication does not support converting an existing regular index to a follower index. Converting a follower index to a regular index is an irreversible operation. ## Required authorization * Index privileges: `manage_follow_index` */
+export const unfollowCcr: API.OperationMethod<
+  UnfollowCcrRequest,
+  TypesAcknowledgedResponseBase,
+  UnfollowCcrError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UnfollowCcrRequest,
+  output: TypesAcknowledgedResponseBase,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
 export type UpdateError = ElasticsearchOpError;
 /** Update a document Update a document by running a script or passing a partial document. If the Elasticsearch security features are enabled, you must have the `index` or `write` index privilege for the target index or index alias. The script can update, delete, or skip modifying the document. The API also supports passing a partial document, which is merged into the existing document. To fully replace an existing document, use the index API. This operation: * Gets the document (collocated with the shard) from the index. * Runs the specified script. * Indexes the result. The document must still be reindexed, but using this API removes some network roundtrips and reduces chances of version conflicts between the GET and the index operation. The `_source` field must be enabled to use this API. In addition to `_source`, you can access the following variables through the `ctx` map: `_index`, `_type`, `_id`, `_version`, `_routing`, and `_now` (the current timestamp). For usage examples such as partial updates, upserts, and scripted updates, see the External documentation. ## Required authorization * Index privileges: `write` */
 export const update: API.OperationMethod<
@@ -113945,16 +113958,16 @@ export const updateByQueryRethrottle: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type WatcherAckWatchError = ElasticsearchOpError;
-/** Acknowledge a watch Acknowledging a watch enables you to manually throttle the execution of the watch's actions. The acknowledgement state of an action is stored in the `status.actions.<id>.ack.state` structure. IMPORTANT: If the specified watch is currently being executed, this API will return an error The reason for this behavior is to prevent overwriting the watch status from a watch execution. Acknowledging an action throttles further executions of that action until its `ack.state` is reset to `awaits_successful_execution`. This happens when the condition of the watch is not met (the condition evaluates to false). To demonstrate how throttling works in practice and how it can be configured for individual actions within a watch, refer to External documentation. ## Required authorization * Cluster privileges: `manage_watcher` */
-export const watcherAckWatch: API.OperationMethod<
-  WatcherAckWatchRequest,
-  WatcherAckWatchResponse,
-  WatcherAckWatchError,
+export type UpdateInferenceError = ElasticsearchOpError;
+/** Update an inference endpoint Modify `task_settings`, secrets (within `service_settings`), or `num_allocations` for an inference endpoint, depending on the specific endpoint service and `task_type`. IMPORTANT: The inference APIs enable you to use certain services, such as built-in machine learning models (ELSER, E5), models uploaded through Eland, Cohere, OpenAI, Azure, Google AI Studio, Google Vertex AI, Anthropic, Watsonx.ai, or Hugging Face. For built-in models and models uploaded through Eland, the inference APIs offer an alternative way to use and manage trained models. However, if you do not plan to use the inference APIs to use these models or if you want to use non-NLP models, use the machine learning trained model APIs. ## Required authorization * Cluster privileges: `manage_inference` */
+export const updateInference: API.OperationMethod<
+  UpdateInferenceRequest,
+  UpdateInferenceResponse,
+  UpdateInferenceError,
   ElasticsearchOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: WatcherAckWatchRequest,
-  output: WatcherAckWatchResponse,
+  input: UpdateInferenceRequest,
+  output: UpdateInferenceResponse,
   errors: [UnknownElasticsearchError],
   protocol: ElasticsearchProtocol,
   retry: Retry.Retry,
@@ -114230,21 +114243,6 @@ export const watcherQueryWatches1: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type WatcherStartError = ElasticsearchOpError;
-/** Start the watch service Start the Watcher service if it is not already running. ## Required authorization * Cluster privileges: `manage_watcher` */
-export const watcherStart: API.OperationMethod<
-  WatcherStartRequest,
-  TypesAcknowledgedResponseBase,
-  WatcherStartError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WatcherStartRequest,
-  output: TypesAcknowledgedResponseBase,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
 export type WatcherStatsError = ElasticsearchOpError;
 /** Get Watcher statistics This API always returns basic metrics. You retrieve more metrics by using the metric parameter. ## Required authorization * Cluster privileges: `monitor_watcher` */
 export const watcherStats: API.OperationMethod<
@@ -114275,21 +114273,6 @@ export const watcherStats1: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type WatcherStopError = ElasticsearchOpError;
-/** Stop the watch service Stop the Watcher service if it is running. ## Required authorization * Cluster privileges: `manage_watcher` */
-export const watcherStop: API.OperationMethod<
-  WatcherStopRequest,
-  TypesAcknowledgedResponseBase,
-  WatcherStopError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WatcherStopRequest,
-  output: TypesAcknowledgedResponseBase,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
 export type WatcherUpdateSettingsError = ElasticsearchOpError;
 /** Update Watcher index settings Update settings for the Watcher internal index (`.watches`). Only a subset of settings can be modified. This includes `index.auto_expand_replicas`, `index.number_of_replicas`, `index.routing.allocation.exclude.*`, `index.routing.allocation.include.*` and `index.routing.allocation.require.*`. Modification of `index.routing.allocation.include._tier_preference` is an exception and is not allowed as the Watcher shards must always be in the `data_content` tier. ## Required authorization * Cluster privileges: `manage_watcher` */
 export const watcherUpdateSettings: API.OperationMethod<
@@ -114300,6 +114283,21 @@ export const watcherUpdateSettings: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: WatcherUpdateSettingsRequest,
   output: WatcherUpdateSettingsResponse,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type WatchWatcherAckError = ElasticsearchOpError;
+/** Acknowledge a watch Acknowledging a watch enables you to manually throttle the execution of the watch's actions. The acknowledgement state of an action is stored in the `status.actions.<id>.ack.state` structure. IMPORTANT: If the specified watch is currently being executed, this API will return an error The reason for this behavior is to prevent overwriting the watch status from a watch execution. Acknowledging an action throttles further executions of that action until its `ack.state` is reset to `awaits_successful_execution`. This happens when the condition of the watch is not met (the condition evaluates to false). To demonstrate how throttling works in practice and how it can be configured for individual actions within a watch, refer to External documentation. ## Required authorization * Cluster privileges: `manage_watcher` */
+export const watchWatcherAck: API.OperationMethod<
+  WatchWatcherAckRequest,
+  WatchWatcherAckResponse,
+  WatchWatcherAckError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: WatchWatcherAckRequest,
+  output: WatchWatcherAckResponse,
   errors: [UnknownElasticsearchError],
   protocol: ElasticsearchProtocol,
   retry: Retry.Retry,

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.elasticsearch.api#TypesDuration": {
@@ -51520,7 +51521,7 @@
       },
       "traits": {}
     },
-    "com.elasticsearch.api#CcrFollowRequest": {
+    "com.elasticsearch.api#FollowCcrRequest": {
       "type": "structure",
       "members": {
         "index": {
@@ -51636,7 +51637,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#CcrFollowResponse": {
+    "com.elasticsearch.api#FollowCcrResponse": {
       "type": "structure",
       "members": {
         "follow_index_created": {
@@ -51662,13 +51663,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.elasticsearch.api#CcrFollow": {
+    "com.elasticsearch.api#FollowCcr": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#CcrFollowRequest"
+        "target": "com.elasticsearch.api#FollowCcrRequest"
       },
       "output": {
-        "target": "com.elasticsearch.api#CcrFollowResponse"
+        "target": "com.elasticsearch.api#FollowCcrResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -52369,7 +52370,7 @@
         "smithy.api#documentation": "Pause an auto-follow pattern\n\nPause a cross-cluster replication auto-follow pattern.\nWhen the API returns, the auto-follow pattern is inactive.\nNew indices that are created on the remote cluster and match the auto-follow patterns are ignored.\n\nYou can resume auto-following with the resume auto-follow pattern API.\nWhen it resumes, the auto-follow pattern is active again and automatically configures follower indices for newly created indices on the remote cluster that match its patterns.\nRemote indices that were created while the pattern was paused will also be followed, unless they have been deleted or closed in the interim.\n\n## Required authorization\n\n* Cluster privileges: `manage_ccr`"
       }
     },
-    "com.elasticsearch.api#CcrPauseFollowRequest": {
+    "com.elasticsearch.api#FollowCcrPauseRequest": {
       "type": "structure",
       "members": {
         "index": {
@@ -52392,10 +52393,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#CcrPauseFollow": {
+    "com.elasticsearch.api#FollowCcrPause": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#CcrPauseFollowRequest"
+        "target": "com.elasticsearch.api#FollowCcrPauseRequest"
       },
       "output": {
         "target": "com.elasticsearch.api#TypesAcknowledgedResponseBase"
@@ -52679,7 +52680,7 @@
         "smithy.api#documentation": "Get cross-cluster replication stats\n\nThis API returns stats about auto-following and the same shard-level stats as the get follower stats API.\n\n## Required authorization\n\n* Cluster privileges: `monitor`"
       }
     },
-    "com.elasticsearch.api#CcrUnfollowRequest": {
+    "com.elasticsearch.api#UnfollowCcrRequest": {
       "type": "structure",
       "members": {
         "index": {
@@ -52702,10 +52703,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#CcrUnfollow": {
+    "com.elasticsearch.api#UnfollowCcr": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#CcrUnfollowRequest"
+        "target": "com.elasticsearch.api#UnfollowCcrRequest"
       },
       "output": {
         "target": "com.elasticsearch.api#TypesAcknowledgedResponseBase"
@@ -68009,7 +68010,7 @@
         "smithy.api#documentation": "Check in a connector\n\nUpdate the `last_seen` field in the connector and set it to the current timestamp."
       }
     },
-    "com.elasticsearch.api#ConnectorGetRequest": {
+    "com.elasticsearch.api#GetConnectorRequest": {
       "type": "structure",
       "members": {
         "connector_id": {
@@ -69127,10 +69128,10 @@
       },
       "traits": {}
     },
-    "com.elasticsearch.api#ConnectorGet": {
+    "com.elasticsearch.api#GetConnector": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#ConnectorGetRequest"
+        "target": "com.elasticsearch.api#GetConnectorRequest"
       },
       "output": {
         "target": "com.elasticsearch.api#ConnectorTypesConnector"
@@ -69144,7 +69145,7 @@
         "smithy.api#documentation": "Get a connector\n\nGet the details about a connector."
       }
     },
-    "com.elasticsearch.api#ConnectorPutRequest": {
+    "com.elasticsearch.api#PutConnectorRequest": {
       "type": "structure",
       "members": {
         "connector_id": {
@@ -69178,7 +69179,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#ConnectorPutResponse": {
+    "com.elasticsearch.api#PutConnectorResponse": {
       "type": "structure",
       "members": {
         "result": {
@@ -69198,13 +69199,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.elasticsearch.api#ConnectorPut": {
+    "com.elasticsearch.api#PutConnector": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#ConnectorPutRequest"
+        "target": "com.elasticsearch.api#PutConnectorRequest"
       },
       "output": {
-        "target": "com.elasticsearch.api#ConnectorPutResponse"
+        "target": "com.elasticsearch.api#PutConnectorResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -69215,7 +69216,7 @@
         "smithy.api#documentation": "Create or update a connector"
       }
     },
-    "com.elasticsearch.api#ConnectorDeleteRequest": {
+    "com.elasticsearch.api#DeleteConnectorRequest": {
       "type": "structure",
       "members": {
         "connector_id": {
@@ -69245,10 +69246,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#ConnectorDelete": {
+    "com.elasticsearch.api#DeleteConnector": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#ConnectorDeleteRequest"
+        "target": "com.elasticsearch.api#DeleteConnectorRequest"
       },
       "output": {
         "target": "com.elasticsearch.api#TypesAcknowledgedResponseBase"
@@ -69262,7 +69263,7 @@
         "smithy.api#documentation": "Delete a connector\n\nRemoves a connector and associated sync jobs.\nThis is a destructive action that is not recoverable.\nNOTE: This action doesn’t delete any API keys, ingest pipelines, or data indices associated with the connector.\nThese need to be removed manually."
       }
     },
-    "com.elasticsearch.api#ConnectorListRequest": {
+    "com.elasticsearch.api#ListConnectorRequest": {
       "type": "structure",
       "members": {
         "from": {
@@ -69319,14 +69320,14 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#ConnectorListResponseResultsList": {
+    "com.elasticsearch.api#ListConnectorResponseResultsList": {
       "type": "list",
       "member": {
         "target": "com.elasticsearch.api#ConnectorTypesConnector"
       },
       "traits": {}
     },
-    "com.elasticsearch.api#ConnectorListResponse": {
+    "com.elasticsearch.api#ListConnectorResponse": {
       "type": "structure",
       "members": {
         "count": {
@@ -69336,7 +69337,7 @@
           }
         },
         "results": {
-          "target": "com.elasticsearch.api#ConnectorListResponseResultsList",
+          "target": "com.elasticsearch.api#ListConnectorResponseResultsList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -69346,13 +69347,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.elasticsearch.api#ConnectorList": {
+    "com.elasticsearch.api#ListConnector": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#ConnectorListRequest"
+        "target": "com.elasticsearch.api#ListConnectorRequest"
       },
       "output": {
-        "target": "com.elasticsearch.api#ConnectorListResponse"
+        "target": "com.elasticsearch.api#ListConnectorResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -69363,7 +69364,7 @@
         "smithy.api#documentation": "Get all connectors\n\nGet information about all connectors."
       }
     },
-    "com.elasticsearch.api#ConnectorPostRequest": {
+    "com.elasticsearch.api#PostConnectorRequest": {
       "type": "structure",
       "members": {
         "description": {
@@ -69389,7 +69390,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#ConnectorPostResponse": {
+    "com.elasticsearch.api#PostConnectorResponse": {
       "type": "structure",
       "members": {
         "result": {
@@ -69409,13 +69410,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.elasticsearch.api#ConnectorPost": {
+    "com.elasticsearch.api#PostConnector": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#ConnectorPostRequest"
+        "target": "com.elasticsearch.api#PostConnectorRequest"
       },
       "output": {
-        "target": "com.elasticsearch.api#ConnectorPostResponse"
+        "target": "com.elasticsearch.api#PostConnectorResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -69489,7 +69490,7 @@
         "smithy.api#documentation": "Create or update a connector"
       }
     },
-    "com.elasticsearch.api#ConnectorSyncJobCancelRequest": {
+    "com.elasticsearch.api#CancelConnectorSyncJobRequest": {
       "type": "structure",
       "members": {
         "connector_sync_job_id": {
@@ -69505,7 +69506,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#ConnectorSyncJobCancelResponse": {
+    "com.elasticsearch.api#CancelConnectorSyncJobResponse": {
       "type": "structure",
       "members": {
         "result": {
@@ -69519,13 +69520,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.elasticsearch.api#ConnectorSyncJobCancel": {
+    "com.elasticsearch.api#CancelConnectorSyncJob": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#ConnectorSyncJobCancelRequest"
+        "target": "com.elasticsearch.api#CancelConnectorSyncJobRequest"
       },
       "output": {
-        "target": "com.elasticsearch.api#ConnectorSyncJobCancelResponse"
+        "target": "com.elasticsearch.api#CancelConnectorSyncJobResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -69584,7 +69585,7 @@
         "smithy.api#documentation": "Check in a connector sync job\n\nCheck in a connector sync job and set the `last_seen` field to the current time before updating it in the internal index.\n\nTo sync data using self-managed connectors, you need to deploy the Elastic connector service on your own infrastructure.\nThis service runs automatically on Elastic Cloud for Elastic managed connectors."
       }
     },
-    "com.elasticsearch.api#ConnectorSyncJobClaimRequest": {
+    "com.elasticsearch.api#ClaimConnectorSyncJobRequest": {
       "type": "structure",
       "members": {
         "connector_sync_job_id": {
@@ -69613,7 +69614,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#ConnectorSyncJobClaimResponse": {
+    "com.elasticsearch.api#ClaimConnectorSyncJobResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -69628,13 +69629,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.elasticsearch.api#ConnectorSyncJobClaim": {
+    "com.elasticsearch.api#ClaimConnectorSyncJob": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#ConnectorSyncJobClaimRequest"
+        "target": "com.elasticsearch.api#ClaimConnectorSyncJobRequest"
       },
       "output": {
-        "target": "com.elasticsearch.api#ConnectorSyncJobClaimResponse"
+        "target": "com.elasticsearch.api#ClaimConnectorSyncJobResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -69645,7 +69646,7 @@
         "smithy.api#documentation": "Claim a connector sync job\n\nThis action updates the job status to `in_progress` and sets the `last_seen` and `started_at` timestamps to the current time.\nAdditionally, it can set the `sync_cursor` property for the sync job.\n\nThis API is not intended for direct connector management by users.\nIt supports the implementation of services that utilize the connector protocol to communicate with Elasticsearch.\n\nTo sync data using self-managed connectors, you need to deploy the Elastic connector service on your own infrastructure.\nThis service runs automatically on Elastic Cloud for Elastic managed connectors."
       }
     },
-    "com.elasticsearch.api#ConnectorSyncJobGetRequest": {
+    "com.elasticsearch.api#GetConnectorSyncJobRequest": {
       "type": "structure",
       "members": {
         "connector_sync_job_id": {
@@ -69851,10 +69852,10 @@
       },
       "traits": {}
     },
-    "com.elasticsearch.api#ConnectorSyncJobGet": {
+    "com.elasticsearch.api#GetConnectorSyncJob": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#ConnectorSyncJobGetRequest"
+        "target": "com.elasticsearch.api#GetConnectorSyncJobRequest"
       },
       "output": {
         "target": "com.elasticsearch.api#ConnectorTypesConnectorSyncJob"
@@ -69868,7 +69869,7 @@
         "smithy.api#documentation": "Get a connector sync job"
       }
     },
-    "com.elasticsearch.api#ConnectorSyncJobDeleteRequest": {
+    "com.elasticsearch.api#DeleteConnectorSyncJobRequest": {
       "type": "structure",
       "members": {
         "connector_sync_job_id": {
@@ -69884,10 +69885,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#ConnectorSyncJobDelete": {
+    "com.elasticsearch.api#DeleteConnectorSyncJob": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#ConnectorSyncJobDeleteRequest"
+        "target": "com.elasticsearch.api#DeleteConnectorSyncJobRequest"
       },
       "output": {
         "target": "com.elasticsearch.api#TypesAcknowledgedResponseBase"
@@ -69956,26 +69957,26 @@
         "smithy.api#documentation": "Set a connector sync job error\n\nSet the `error` field for a connector sync job and set its `status` to `error`.\n\nTo sync data using self-managed connectors, you need to deploy the Elastic connector service on your own infrastructure.\nThis service runs automatically on Elastic Cloud for Elastic managed connectors."
       }
     },
-    "com.elasticsearch.api#ConnectorSyncJobListRequestJobTypeCase1List": {
+    "com.elasticsearch.api#ListConnectorSyncJobRequestJobTypeCase1List": {
       "type": "list",
       "member": {
         "target": "com.elasticsearch.api#ConnectorTypesSyncJobType"
       },
       "traits": {}
     },
-    "com.elasticsearch.api#ConnectorSyncJobListRequestJobType": {
+    "com.elasticsearch.api#ListConnectorSyncJobRequestJobType": {
       "type": "union",
       "members": {
         "ConnectorTypesSyncJobType": {
           "target": "com.elasticsearch.api#ConnectorTypesSyncJobType"
         },
         "Case1": {
-          "target": "com.elasticsearch.api#ConnectorSyncJobListRequestJobTypeCase1List"
+          "target": "com.elasticsearch.api#ListConnectorSyncJobRequestJobTypeCase1List"
         }
       },
       "traits": {}
     },
-    "com.elasticsearch.api#ConnectorSyncJobListRequest": {
+    "com.elasticsearch.api#ListConnectorSyncJobRequest": {
       "type": "structure",
       "members": {
         "from": {
@@ -70007,7 +70008,7 @@
           }
         },
         "job_type": {
-          "target": "com.elasticsearch.api#ConnectorSyncJobListRequestJobType",
+          "target": "com.elasticsearch.api#ListConnectorSyncJobRequestJobType",
           "traits": {
             "smithy.api#httpQuery": "job_type",
             "smithy.api#documentation": "A comma-separated list of job types to fetch the sync jobs for"
@@ -70018,14 +70019,14 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#ConnectorSyncJobListResponseResultsList": {
+    "com.elasticsearch.api#ListConnectorSyncJobResponseResultsList": {
       "type": "list",
       "member": {
         "target": "com.elasticsearch.api#ConnectorTypesConnectorSyncJob"
       },
       "traits": {}
     },
-    "com.elasticsearch.api#ConnectorSyncJobListResponse": {
+    "com.elasticsearch.api#ListConnectorSyncJobResponse": {
       "type": "structure",
       "members": {
         "count": {
@@ -70035,7 +70036,7 @@
           }
         },
         "results": {
-          "target": "com.elasticsearch.api#ConnectorSyncJobListResponseResultsList",
+          "target": "com.elasticsearch.api#ListConnectorSyncJobResponseResultsList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -70045,13 +70046,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.elasticsearch.api#ConnectorSyncJobList": {
+    "com.elasticsearch.api#ListConnectorSyncJob": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#ConnectorSyncJobListRequest"
+        "target": "com.elasticsearch.api#ListConnectorSyncJobRequest"
       },
       "output": {
-        "target": "com.elasticsearch.api#ConnectorSyncJobListResponse"
+        "target": "com.elasticsearch.api#ListConnectorSyncJobResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -70062,7 +70063,7 @@
         "smithy.api#documentation": "Get all connector sync jobs\n\nGet information about all stored connector sync jobs listed by their creation date in ascending order."
       }
     },
-    "com.elasticsearch.api#ConnectorSyncJobPostRequest": {
+    "com.elasticsearch.api#PostConnectorSyncJobRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -70083,7 +70084,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#ConnectorSyncJobPostResponse": {
+    "com.elasticsearch.api#PostConnectorSyncJobResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -70097,13 +70098,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.elasticsearch.api#ConnectorSyncJobPost": {
+    "com.elasticsearch.api#PostConnectorSyncJob": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#ConnectorSyncJobPostRequest"
+        "target": "com.elasticsearch.api#PostConnectorSyncJobRequest"
       },
       "output": {
-        "target": "com.elasticsearch.api#ConnectorSyncJobPostResponse"
+        "target": "com.elasticsearch.api#PostConnectorSyncJobResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -72361,7 +72362,7 @@
       },
       "traits": {}
     },
-    "com.elasticsearch.api#Index1Request": {
+    "com.elasticsearch.api#List1Request": {
       "type": "structure",
       "members": {
         "index": {
@@ -72476,10 +72477,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#Index1": {
+    "com.elasticsearch.api#List1": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#Index1Request"
+        "target": "com.elasticsearch.api#List1Request"
       },
       "output": {
         "target": "com.elasticsearch.api#TypesWriteResponseBase"
@@ -72493,7 +72494,7 @@
         "smithy.api#documentation": "Create or update a document in an index\n\nAdd a JSON document to the specified data stream or index and make it searchable.\nIf the target is an index and the document already exists, the request updates the document and increments its version.\n\nNOTE: You cannot use this API to send update requests for existing documents in a data stream.\n\nIf the Elasticsearch security features are enabled, you must have the following index privileges for the target data stream, index, or index alias:\n\n* To add or overwrite a document using the `PUT /<target>/_doc/<_id>` request format, you must have the `create`, `index`, or `write` index privilege.\n* To add a document using the `POST /<target>/_doc/` request format, you must have the `create_doc`, `create`, `index`, or `write` index privilege.\n* To automatically create a data stream or index with this API request, you must have the `auto_configure`, `create_index`, or `manage` index privilege.\n\nAutomatic data stream creation requires a matching index template with data stream enabled.\n\nNOTE: Replica shards might not all be started when an indexing operation returns successfully.\nBy default, only the primary is required. Set `wait_for_active_shards` to change this default behavior (this parameter is not available in Elasticsearch Serverless).\n\n**Automatically create data streams and indices**\n\nIf the request's target doesn't exist and matches an index template with a `data_stream` definition, the index operation automatically creates the data stream.\n\nIf the target doesn't exist and doesn't match a data stream template, the operation automatically creates the index and applies any matching index templates.\n\nNOTE: Elasticsearch includes several built-in index templates. To avoid naming collisions with these templates, refer to index pattern documentation.\n\nIf no mapping exists, the index operation creates a dynamic mapping.\nBy default, new fields and objects are automatically added to the mapping if needed.\n\nAutomatic index creation is controlled by the `action.auto_create_index` setting.\nIf it is `true`, any index can be created automatically.\nYou can modify this setting to explicitly allow or block automatic creation of indices that match specified patterns or set it to `false` to turn off automatic index creation entirely.\nSpecify a comma-separated list of patterns you want to allow or prefix each pattern with `+` or `-` to indicate whether it should be allowed or blocked.\nWhen a list is specified, the default behaviour is to disallow.\n\nNOTE: The `action.auto_create_index` setting affects the automatic creation of indices only.\nIt does not affect the creation of data streams.\n\n**Optimistic concurrency control**\n\nIndex operations can be made conditional and only be performed if the last modification to the document was assigned the sequence number and primary term specified by the `if_seq_no` and `if_primary_term` parameters.\nIf a mismatch is detected, the operation will result in a `VersionConflictException` and a status code of `409`.\n\n**Routing**\n\nBy default, shard placement — or routing — is controlled by using a hash of the document's ID value.\nFor more explicit control, the value fed into the hash function used by the router can be directly specified on a per-operation basis using the `routing` parameter.\n\nWhen setting up explicit mapping, you can also use the `_routing` field to direct the index operation to extract the routing value from the document itself.\nThis does come at the (very minimal) cost of an additional document parsing pass.\nIf the `_routing` mapping is defined and set to be required, the index operation will fail if no routing value is provided or extracted.\n\nNOTE: Data streams do not support custom routing unless they were created with the `allow_custom_routing` setting enabled in the template.\n\n**Distributed**\n\nThe index operation is directed to the primary shard based on its route and performed on the actual node containing this shard.\nAfter the primary shard completes the operation, if needed, the update is distributed to applicable replicas.\n\n**Active shards**\n\nTo improve the resiliency of writes to the system, indexing operations can be configured to wait for a certain number of active shard copies before proceeding with the operation.\nIf the requisite number of active shard copies are not available, then the write operation must wait and retry, until either the requisite shard copies have started or a timeout occurs.\nBy default, write operations only wait for the primary shards to be active before proceeding (that is to say `wait_for_active_shards` is `1`).\nThis default can be overridden in the index settings dynamically by setting `index.write.wait_for_active_shards`.\nTo alter this behavior per operation, use the `wait_for_active_shards request` parameter (this parameter is not available in Elasticsearch Serverless).\n\nValid values are all or any positive integer up to the total number of configured copies per shard in the index (which is `number_of_replicas`+1).\nSpecifying a negative value or a number greater than the number of shard copies will throw an error.\n\nFor example, suppose you have a cluster of three nodes, A, B, and C and you create an index index with the number of replicas set to 3 (resulting in 4 shard copies, one more copy than there are nodes).\nIf you attempt an indexing operation, by default the operation will only ensure the primary copy of each shard is available before proceeding.\nThis means that even if B and C went down and A hosted the primary shard copies, the indexing operation would still proceed with only one copy of the data.\nIf `wait_for_active_shards` is set on the request to `3` (and all three nodes are up), the indexing operation will require 3 active shard copies before proceeding.\nThis requirement should be met because there are 3 active nodes in the cluster, each one holding a copy of the shard.\nHowever, if you set `wait_for_active_shards` to `all` (or to `4`, which is the same in this situation), the indexing operation will not proceed as you do not have all 4 copies of each shard active in the index.\nThe operation will timeout unless a new node is brought up in the cluster to host the fourth copy of the shard.\n\nIt is important to note that this setting greatly reduces the chances of the write operation not writing to the requisite number of shard copies, but it does not completely eliminate the possibility, because this check occurs before the write operation starts.\nAfter the write operation is underway, it is still possible for replication to fail on any number of shard copies but still succeed on the primary.\nThe `_shards` section of the API response reveals the number of shard copies on which replication succeeded and failed.\n\n**No operation (noop) updates**\n\nWhen updating a document by using this API, a new version of the document is always created even if the document hasn't changed.\nIf this isn't acceptable use the `_update` API with `detect_noop` set to `true`.\nThe `detect_noop` option isn't available on this API because it doesn’t fetch the old source and isn't able to compare it against the new source.\n\nThere isn't a definitive rule for when noop updates aren't acceptable.\nIt's a combination of lots of factors like how frequently your data source sends updates that are actually noops and how many queries per second Elasticsearch runs on the shard receiving the updates.\n\n**Versioning**\n\nEach indexed document is given a version number.\nBy default, internal versioning is used that starts at 1 and increments with each update, deletes included.\nOptionally, the version number can be set to an external value (for example, if maintained in a database).\nTo enable this functionality, `version_type` should be set to `external`.\nThe value provided must be a numeric, long value greater than or equal to 0, and less than around `9.2e+18`.\n\nNOTE: Versioning is completely real time, and is not affected by the near real time aspects of search operations.\nIf no version is provided, the operation runs without any version checks.\n\nWhen using the external version type, the system checks to see if the version number passed to the index request is greater than the version of the currently stored document.\nIf true, the document will be indexed and the new version number used.\nIf the value provided is less than or equal to the stored document's version number, a version conflict will occur and the index operation will fail. For example:\n\n```\nPUT my-index-000001/_doc/1?version=2&version_type=external\n{\n  \"user\": {\n    \"id\": \"elkbee\"\n  }\n}\n```\n\nIn this example, the operation will succeed since the supplied version of 2 is higher than the current document version of 1.\nIf the document was already updated and its version was set to 2 or higher, the indexing command will fail and result in a conflict (409 HTTP status code).\n\nA nice side effect is that there is no need to maintain strict ordering of async indexing operations run as a result of changes to a source database, as long as version numbers from the source database are used.\nEven the simple case of updating the Elasticsearch index using data from a database is simplified if external versioning is used, as only the latest version will be used if the index operations arrive out of order.\n\n## Required authorization\n\n* Index privileges: `index`"
       }
     },
-    "com.elasticsearch.api#IndexRequest": {
+    "com.elasticsearch.api#ListRequest": {
       "type": "structure",
       "members": {
         "index": {
@@ -72608,10 +72609,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#Index": {
+    "com.elasticsearch.api#List": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#IndexRequest"
+        "target": "com.elasticsearch.api#ListRequest"
       },
       "output": {
         "target": "com.elasticsearch.api#TypesWriteResponseBase"
@@ -73832,7 +73833,7 @@
         "smithy.api#documentation": "Delete a script or search template\n\nDeletes a stored script or search template.\n\n## Required authorization\n\n* Cluster privileges: `manage`"
       }
     },
-    "com.elasticsearch.api#EncryptionResetRequest": {
+    "com.elasticsearch.api#ResetEncryptionRequest": {
       "type": "structure",
       "members": {
         "accept_data_loss": {
@@ -73862,10 +73863,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#EncryptionReset": {
+    "com.elasticsearch.api#ResetEncryption": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#EncryptionResetRequest"
+        "target": "com.elasticsearch.api#ResetEncryptionRequest"
       },
       "output": {
         "target": "com.elasticsearch.api#TypesAcknowledgedResponseBase"
@@ -74453,7 +74454,7 @@
         "smithy.api#documentation": "Get enrich stats\n\nReturns enrich coordinator statistics and information about enrich policies that are currently executing."
       }
     },
-    "com.elasticsearch.api#EqlGetRequest": {
+    "com.elasticsearch.api#GetEqlRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -74673,10 +74674,10 @@
         "smithy.api#documentation": "Contains information about shard failures (if any), in case allow_partial_search_results=true"
       }
     },
-    "com.elasticsearch.api#EqlGet": {
+    "com.elasticsearch.api#GetEql": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#EqlGetRequest"
+        "target": "com.elasticsearch.api#GetEqlRequest"
       },
       "output": {
         "target": "com.elasticsearch.api#EqlTypesEqlSearchResponseBase"
@@ -74690,7 +74691,7 @@
         "smithy.api#documentation": "Get async EQL search results\n\nGet the current status and available results for an async EQL search or a stored synchronous EQL search."
       }
     },
-    "com.elasticsearch.api#EqlDeleteRequest": {
+    "com.elasticsearch.api#DeleteEqlRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -74706,10 +74707,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#EqlDelete": {
+    "com.elasticsearch.api#DeleteEql": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#EqlDeleteRequest"
+        "target": "com.elasticsearch.api#DeleteEqlRequest"
       },
       "output": {
         "target": "com.elasticsearch.api#TypesAcknowledgedResponseBase"
@@ -74803,42 +74804,42 @@
         "smithy.api#documentation": "Get the async EQL status\n\nGet the current status for an async EQL search or a stored synchronous EQL search without returning results."
       }
     },
-    "com.elasticsearch.api#EqlSearchRequestFilterCase1List": {
+    "com.elasticsearch.api#SearchEqlRequestFilterCase1List": {
       "type": "list",
       "member": {
         "target": "com.elasticsearch.api#TypesQueryDslQueryContainer"
       },
       "traits": {}
     },
-    "com.elasticsearch.api#EqlSearchRequestFilter": {
+    "com.elasticsearch.api#SearchEqlRequestFilter": {
       "type": "union",
       "members": {
         "TypesQueryDslQueryContainer": {
           "target": "com.elasticsearch.api#TypesQueryDslQueryContainer"
         },
         "Case1": {
-          "target": "com.elasticsearch.api#EqlSearchRequestFilterCase1List"
+          "target": "com.elasticsearch.api#SearchEqlRequestFilterCase1List"
         }
       },
       "traits": {
         "smithy.api#documentation": "Query, written in Query DSL, used to filter the events on which the EQL query runs."
       }
     },
-    "com.elasticsearch.api#EqlSearchRequestFieldsCase1List": {
+    "com.elasticsearch.api#SearchEqlRequestFieldsCase1List": {
       "type": "list",
       "member": {
         "target": "com.elasticsearch.api#TypesQueryDslFieldAndFormat"
       },
       "traits": {}
     },
-    "com.elasticsearch.api#EqlSearchRequestFields": {
+    "com.elasticsearch.api#SearchEqlRequestFields": {
       "type": "union",
       "members": {
         "TypesQueryDslFieldAndFormat": {
           "target": "com.elasticsearch.api#TypesQueryDslFieldAndFormat"
         },
         "Case1": {
-          "target": "com.elasticsearch.api#EqlSearchRequestFieldsCase1List"
+          "target": "com.elasticsearch.api#SearchEqlRequestFieldsCase1List"
         }
       },
       "traits": {
@@ -74863,7 +74864,7 @@
       },
       "traits": {}
     },
-    "com.elasticsearch.api#EqlSearchRequest": {
+    "com.elasticsearch.api#SearchEqlRequest": {
       "type": "structure",
       "members": {
         "index": {
@@ -74972,7 +74973,7 @@
           }
         },
         "filter": {
-          "target": "com.elasticsearch.api#EqlSearchRequestFilter",
+          "target": "com.elasticsearch.api#SearchEqlRequestFilter",
           "traits": {
             "smithy.api#documentation": "Query, written in Query DSL, used to filter the events on which the EQL query runs."
           }
@@ -74984,7 +74985,7 @@
           }
         },
         "fields": {
-          "target": "com.elasticsearch.api#EqlSearchRequestFields",
+          "target": "com.elasticsearch.api#SearchEqlRequestFields",
           "traits": {
             "smithy.api#documentation": "Array of wildcard (*) patterns. The response returns values for field names matching these patterns in the fields property of each hit."
           }
@@ -75006,10 +75007,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#EqlSearch": {
+    "com.elasticsearch.api#SearchEql": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#EqlSearchRequest"
+        "target": "com.elasticsearch.api#SearchEqlRequest"
       },
       "output": {
         "target": "com.elasticsearch.api#EqlTypesEqlSearchResponseBase"
@@ -75990,7 +75991,7 @@
         "smithy.api#documentation": "Run an async ES|QL query\n\nAsynchronously run an ES|QL (Elasticsearch query language) query, monitor its progress, and retrieve results when they become available.\n\nThe API accepts the same parameters and request body as the synchronous query API, along with additional async related properties.\n\n## Required authorization\n\n* Index privileges: `read`"
       }
     },
-    "com.elasticsearch.api#EsqlAsyncQueryGetRequest": {
+    "com.elasticsearch.api#GetEsqlAsyncQueryRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -76034,35 +76035,35 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#EsqlAsyncQueryGetResponseAllColumnsList": {
+    "com.elasticsearch.api#GetEsqlAsyncQueryResponseAllColumnsList": {
       "type": "list",
       "member": {
         "target": "com.elasticsearch.api#EsqlTypesEsqlColumnInfo"
       },
       "traits": {}
     },
-    "com.elasticsearch.api#EsqlAsyncQueryGetResponseColumnsList": {
+    "com.elasticsearch.api#GetEsqlAsyncQueryResponseColumnsList": {
       "type": "list",
       "member": {
         "target": "com.elasticsearch.api#EsqlTypesEsqlColumnInfo"
       },
       "traits": {}
     },
-    "com.elasticsearch.api#EsqlAsyncQueryGetResponseValuesItemList": {
+    "com.elasticsearch.api#GetEsqlAsyncQueryResponseValuesItemList": {
       "type": "list",
       "member": {
         "target": "com.elasticsearch.api#TypesFieldValue"
       },
       "traits": {}
     },
-    "com.elasticsearch.api#EsqlAsyncQueryGetResponseValuesList": {
+    "com.elasticsearch.api#GetEsqlAsyncQueryResponseValuesList": {
       "type": "list",
       "member": {
-        "target": "com.elasticsearch.api#EsqlAsyncQueryGetResponseValuesItemList"
+        "target": "com.elasticsearch.api#GetEsqlAsyncQueryResponseValuesItemList"
       },
       "traits": {}
     },
-    "com.elasticsearch.api#EsqlAsyncQueryGetResponse": {
+    "com.elasticsearch.api#GetEsqlAsyncQueryResponse": {
       "type": "structure",
       "members": {
         "took": {
@@ -76072,16 +76073,16 @@
           "target": "smithy.api#Boolean"
         },
         "all_columns": {
-          "target": "com.elasticsearch.api#EsqlAsyncQueryGetResponseAllColumnsList"
+          "target": "com.elasticsearch.api#GetEsqlAsyncQueryResponseAllColumnsList"
         },
         "columns": {
-          "target": "com.elasticsearch.api#EsqlAsyncQueryGetResponseColumnsList",
+          "target": "com.elasticsearch.api#GetEsqlAsyncQueryResponseColumnsList",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "values": {
-          "target": "com.elasticsearch.api#EsqlAsyncQueryGetResponseValuesList",
+          "target": "com.elasticsearch.api#GetEsqlAsyncQueryResponseValuesList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -76116,13 +76117,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.elasticsearch.api#EsqlAsyncQueryGet": {
+    "com.elasticsearch.api#GetEsqlAsyncQuery": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#EsqlAsyncQueryGetRequest"
+        "target": "com.elasticsearch.api#GetEsqlAsyncQueryRequest"
       },
       "output": {
-        "target": "com.elasticsearch.api#EsqlAsyncQueryGetResponse"
+        "target": "com.elasticsearch.api#GetEsqlAsyncQueryResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -76133,7 +76134,7 @@
         "smithy.api#documentation": "Get async ES|QL query results\n\nGet the current status and available results or stored results for an ES|QL asynchronous query.\nIf the Elasticsearch security features are enabled, only the user who first submitted the ES|QL query can retrieve the results using this API.\n\n## Required authorization\n\n* Index privileges: `read`"
       }
     },
-    "com.elasticsearch.api#EsqlAsyncQueryDeleteRequest": {
+    "com.elasticsearch.api#DeleteEsqlAsyncQueryRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -76149,10 +76150,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#EsqlAsyncQueryDelete": {
+    "com.elasticsearch.api#DeleteEsqlAsyncQuery": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#EsqlAsyncQueryDeleteRequest"
+        "target": "com.elasticsearch.api#DeleteEsqlAsyncQueryRequest"
       },
       "output": {
         "target": "com.elasticsearch.api#TypesAcknowledgedResponseBase"
@@ -76166,7 +76167,7 @@
         "smithy.api#documentation": "Delete an async ES|QL query\n\nIf the query is still running, it is cancelled.\nOtherwise, the stored results are deleted.\n\nIf the Elasticsearch security features are enabled, only the following users can use this API to delete a query:\n\n* The authenticated user that submitted the original query request\n* Users with the `cancel_task` cluster privilege"
       }
     },
-    "com.elasticsearch.api#EsqlAsyncQueryStopRequest": {
+    "com.elasticsearch.api#StopEsqlAsyncQueryRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -76256,10 +76257,10 @@
       },
       "traits": {}
     },
-    "com.elasticsearch.api#EsqlAsyncQueryStop": {
+    "com.elasticsearch.api#StopEsqlAsyncQuery": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#EsqlAsyncQueryStopRequest"
+        "target": "com.elasticsearch.api#StopEsqlAsyncQueryRequest"
       },
       "output": {
         "target": "com.elasticsearch.api#EsqlTypesEsqlResult"
@@ -79807,40 +79808,40 @@
         "smithy.api#documentation": "Run multiple Fleet searches\n\nRun several Fleet searches with a single API request.\nThe API follows the same structure as the multi search API.\nHowever, similar to the Fleet search API, it supports the `wait_for_checkpoints` parameter.\n\n## Required authorization\n\n* Index privileges: `read`"
       }
     },
-    "com.elasticsearch.api#FleetSearchRequestStatsList": {
+    "com.elasticsearch.api#SearchFleetRequestStatsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.elasticsearch.api#FleetSearchRequestSortCase1List": {
+    "com.elasticsearch.api#SearchFleetRequestSortCase1List": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.elasticsearch.api#FleetSearchRequestSort": {
+    "com.elasticsearch.api#SearchFleetRequestSort": {
       "type": "union",
       "members": {
         "Case0": {
           "target": "smithy.api#String"
         },
         "Case1": {
-          "target": "com.elasticsearch.api#FleetSearchRequestSortCase1List"
+          "target": "com.elasticsearch.api#SearchFleetRequestSortCase1List"
         }
       },
       "traits": {}
     },
-    "com.elasticsearch.api#FleetSearchRequestWaitForCheckpointsList": {
+    "com.elasticsearch.api#SearchFleetRequestWaitForCheckpointsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Double"
       },
       "traits": {}
     },
-    "com.elasticsearch.api#FleetSearchRequestAggregationsMap": {
+    "com.elasticsearch.api#SearchFleetRequestAggregationsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -79850,7 +79851,7 @@
       },
       "traits": {}
     },
-    "com.elasticsearch.api#FleetSearchRequestExtMap": {
+    "com.elasticsearch.api#SearchFleetRequestExtMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -79862,7 +79863,7 @@
         "smithy.api#documentation": "Configuration of search extensions defined by Elasticsearch plugins."
       }
     },
-    "com.elasticsearch.api#FleetSearchRequestIndicesBoostItemMap": {
+    "com.elasticsearch.api#SearchFleetRequestIndicesBoostItemMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -79872,16 +79873,16 @@
       },
       "traits": {}
     },
-    "com.elasticsearch.api#FleetSearchRequestIndicesBoostList": {
+    "com.elasticsearch.api#SearchFleetRequestIndicesBoostList": {
       "type": "list",
       "member": {
-        "target": "com.elasticsearch.api#FleetSearchRequestIndicesBoostItemMap"
+        "target": "com.elasticsearch.api#SearchFleetRequestIndicesBoostItemMap"
       },
       "traits": {
         "smithy.api#documentation": "Boosts the _score of documents from specified indices."
       }
     },
-    "com.elasticsearch.api#FleetSearchRequestDocvalueFieldsList": {
+    "com.elasticsearch.api#SearchFleetRequestDocvalueFieldsList": {
       "type": "list",
       "member": {
         "target": "com.elasticsearch.api#TypesQueryDslFieldAndFormat"
@@ -79890,26 +79891,26 @@
         "smithy.api#documentation": "Array of wildcard (*) patterns. The request returns doc values for field\nnames matching these patterns in the hits.fields property of the response."
       }
     },
-    "com.elasticsearch.api#FleetSearchRequestRescoreCase1List": {
+    "com.elasticsearch.api#SearchFleetRequestRescoreCase1List": {
       "type": "list",
       "member": {
         "target": "com.elasticsearch.api#GlobalSearchTypesRescore"
       },
       "traits": {}
     },
-    "com.elasticsearch.api#FleetSearchRequestRescore": {
+    "com.elasticsearch.api#SearchFleetRequestRescore": {
       "type": "union",
       "members": {
         "GlobalSearchTypesRescore": {
           "target": "com.elasticsearch.api#GlobalSearchTypesRescore"
         },
         "Case1": {
-          "target": "com.elasticsearch.api#FleetSearchRequestRescoreCase1List"
+          "target": "com.elasticsearch.api#SearchFleetRequestRescoreCase1List"
         }
       },
       "traits": {}
     },
-    "com.elasticsearch.api#FleetSearchRequestScriptFieldsMap": {
+    "com.elasticsearch.api#SearchFleetRequestScriptFieldsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -79921,7 +79922,7 @@
         "smithy.api#documentation": "Retrieve a script evaluation (based on different fields) for each hit."
       }
     },
-    "com.elasticsearch.api#FleetSearchRequestFieldsList": {
+    "com.elasticsearch.api#SearchFleetRequestFieldsList": {
       "type": "list",
       "member": {
         "target": "com.elasticsearch.api#TypesQueryDslFieldAndFormat"
@@ -79930,7 +79931,7 @@
         "smithy.api#documentation": "Array of wildcard (*) patterns. The request returns values for field names\nmatching these patterns in the hits.fields property of the response."
       }
     },
-    "com.elasticsearch.api#FleetSearchRequestStatsList2": {
+    "com.elasticsearch.api#SearchFleetRequestStatsList2": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -79939,7 +79940,7 @@
         "smithy.api#documentation": "Stats groups to associate with the search. Each group maintains a statistics\naggregation for its associated searches. You can retrieve these stats using\nthe indices stats API."
       }
     },
-    "com.elasticsearch.api#FleetSearchRequest": {
+    "com.elasticsearch.api#SearchFleetRequest": {
       "type": "structure",
       "members": {
         "index": {
@@ -80073,7 +80074,7 @@
           }
         },
         "stats": {
-          "target": "com.elasticsearch.api#FleetSearchRequestStatsList",
+          "target": "com.elasticsearch.api#SearchFleetRequestStatsList",
           "traits": {
             "smithy.api#httpQuery": "stats"
           }
@@ -80195,13 +80196,13 @@
           }
         },
         "sort": {
-          "target": "com.elasticsearch.api#FleetSearchRequestSort",
+          "target": "com.elasticsearch.api#SearchFleetRequestSort",
           "traits": {
             "smithy.api#httpQuery": "sort"
           }
         },
         "wait_for_checkpoints": {
-          "target": "com.elasticsearch.api#FleetSearchRequestWaitForCheckpointsList",
+          "target": "com.elasticsearch.api#SearchFleetRequestWaitForCheckpointsList",
           "traits": {
             "smithy.api#httpQuery": "wait_for_checkpoints",
             "smithy.api#documentation": "A comma separated list of checkpoints. When configured, the search API will only be executed on a shard\nafter the relevant checkpoint has become visible for search. Defaults to an empty list which will cause\nElasticsearch to immediately execute the search."
@@ -80215,13 +80216,13 @@
           }
         },
         "aggregations": {
-          "target": "com.elasticsearch.api#FleetSearchRequestAggregationsMap"
+          "target": "com.elasticsearch.api#SearchFleetRequestAggregationsMap"
         },
         "collapse": {
           "target": "com.elasticsearch.api#GlobalSearchTypesFieldCollapse"
         },
         "ext": {
-          "target": "com.elasticsearch.api#FleetSearchRequestExtMap",
+          "target": "com.elasticsearch.api#SearchFleetRequestExtMap",
           "traits": {
             "smithy.api#documentation": "Configuration of search extensions defined by Elasticsearch plugins."
           }
@@ -80230,7 +80231,7 @@
           "target": "com.elasticsearch.api#GlobalSearchTypesHighlight"
         },
         "indices_boost": {
-          "target": "com.elasticsearch.api#FleetSearchRequestIndicesBoostList",
+          "target": "com.elasticsearch.api#SearchFleetRequestIndicesBoostList",
           "traits": {
             "smithy.api#documentation": "Boosts the _score of documents from specified indices."
           }
@@ -80254,10 +80255,10 @@
           }
         },
         "rescore": {
-          "target": "com.elasticsearch.api#FleetSearchRequestRescore"
+          "target": "com.elasticsearch.api#SearchFleetRequestRescore"
         },
         "script_fields": {
-          "target": "com.elasticsearch.api#FleetSearchRequestScriptFieldsMap",
+          "target": "com.elasticsearch.api#SearchFleetRequestScriptFieldsMap",
           "traits": {
             "smithy.api#documentation": "Retrieve a script evaluation (based on different fields) for each hit."
           }
@@ -80269,7 +80270,7 @@
           "target": "com.elasticsearch.api#TypesSlicedScroll"
         },
         "fields": {
-          "target": "com.elasticsearch.api#FleetSearchRequestFieldsList",
+          "target": "com.elasticsearch.api#SearchFleetRequestFieldsList",
           "traits": {
             "smithy.api#documentation": "Array of wildcard (*) patterns. The request returns values for field names\nmatching these patterns in the hits.fields property of the response."
           }
@@ -80294,7 +80295,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#FleetSearchResponseAggregationsMap": {
+    "com.elasticsearch.api#SearchFleetResponseAggregationsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -80304,7 +80305,7 @@
       },
       "traits": {}
     },
-    "com.elasticsearch.api#FleetSearchResponseFieldsMap": {
+    "com.elasticsearch.api#SearchFleetResponseFieldsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -80314,24 +80315,24 @@
       },
       "traits": {}
     },
-    "com.elasticsearch.api#FleetSearchResponseSuggestValueList": {
+    "com.elasticsearch.api#SearchFleetResponseSuggestValueList": {
       "type": "list",
       "member": {
         "target": "com.elasticsearch.api#GlobalSearchTypesSuggest"
       },
       "traits": {}
     },
-    "com.elasticsearch.api#FleetSearchResponseSuggestMap": {
+    "com.elasticsearch.api#SearchFleetResponseSuggestMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "com.elasticsearch.api#FleetSearchResponseSuggestValueList"
+        "target": "com.elasticsearch.api#SearchFleetResponseSuggestValueList"
       },
       "traits": {}
     },
-    "com.elasticsearch.api#FleetSearchResponse": {
+    "com.elasticsearch.api#SearchFleetResponse": {
       "type": "structure",
       "members": {
         "took": {
@@ -80359,13 +80360,13 @@
           }
         },
         "aggregations": {
-          "target": "com.elasticsearch.api#FleetSearchResponseAggregationsMap"
+          "target": "com.elasticsearch.api#SearchFleetResponseAggregationsMap"
         },
         "_clusters": {
           "target": "com.elasticsearch.api#TypesClusterStatistics"
         },
         "fields": {
-          "target": "com.elasticsearch.api#FleetSearchResponseFieldsMap"
+          "target": "com.elasticsearch.api#SearchFleetResponseFieldsMap"
         },
         "max_score": {
           "target": "smithy.api#Double"
@@ -80383,7 +80384,7 @@
           "target": "smithy.api#String"
         },
         "suggest": {
-          "target": "com.elasticsearch.api#FleetSearchResponseSuggestMap"
+          "target": "com.elasticsearch.api#SearchFleetResponseSuggestMap"
         },
         "terminated_early": {
           "target": "smithy.api#Boolean"
@@ -80393,13 +80394,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.elasticsearch.api#FleetSearch": {
+    "com.elasticsearch.api#SearchFleet": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#FleetSearchRequest"
+        "target": "com.elasticsearch.api#SearchFleetRequest"
       },
       "output": {
-        "target": "com.elasticsearch.api#FleetSearchResponse"
+        "target": "com.elasticsearch.api#SearchFleetResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -84236,7 +84237,7 @@
         "smithy.api#documentation": "Remove policies from an index\n\nRemove the assigned lifecycle policies from an index or a data stream's backing indices.\nIt also stops managing the indices.\n\n## Required authorization\n\n* Index privileges: `manage_ilm`"
       }
     },
-    "com.elasticsearch.api#IlmRetryRequest": {
+    "com.elasticsearch.api#RetryIlmRequest": {
       "type": "structure",
       "members": {
         "index": {
@@ -84252,10 +84253,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#IlmRetry": {
+    "com.elasticsearch.api#RetryIlm": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#IlmRetryRequest"
+        "target": "com.elasticsearch.api#RetryIlmRequest"
       },
       "output": {
         "target": "com.elasticsearch.api#TypesAcknowledgedResponseBase"
@@ -84269,7 +84270,7 @@
         "smithy.api#documentation": "Retry a policy\n\nRetry running the lifecycle policy for an index that is in the ERROR step.\nThe API sets the policy back to the step where the error occurred and runs the step.\nUse the explain lifecycle state API to determine whether an index is in the ERROR step.\n\n## Required authorization\n\n* Index privileges: `manage_ilm`"
       }
     },
-    "com.elasticsearch.api#IlmStartRequest": {
+    "com.elasticsearch.api#StartIlmRequest": {
       "type": "structure",
       "members": {
         "master_timeout": {
@@ -84291,10 +84292,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#IlmStart": {
+    "com.elasticsearch.api#StartIlm": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#IlmStartRequest"
+        "target": "com.elasticsearch.api#StartIlmRequest"
       },
       "output": {
         "target": "com.elasticsearch.api#TypesAcknowledgedResponseBase"
@@ -84308,7 +84309,7 @@
         "smithy.api#documentation": "Start the ILM plugin\n\nStart the index lifecycle management plugin if it is currently stopped.\nILM is started automatically when the cluster is formed.\nRestarting ILM is necessary only when it has been stopped using the stop ILM API.\n\n## Required authorization\n\n* Cluster privileges: `manage_ilm`"
       }
     },
-    "com.elasticsearch.api#IlmStopRequest": {
+    "com.elasticsearch.api#StopIlmRequest": {
       "type": "structure",
       "members": {
         "master_timeout": {
@@ -84330,10 +84331,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#IlmStop": {
+    "com.elasticsearch.api#StopIlm": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#IlmStopRequest"
+        "target": "com.elasticsearch.api#StopIlmRequest"
       },
       "output": {
         "target": "com.elasticsearch.api#TypesAcknowledgedResponseBase"
@@ -84347,7 +84348,7 @@
         "smithy.api#documentation": "Stop the ILM plugin\n\nHalt all lifecycle management operations and stop the index lifecycle management plugin.\nThis is useful when you are performing maintenance on the cluster and need to prevent ILM from performing any actions on your indices.\n\nThe API returns as soon as the stop request has been acknowledged, but the plugin might continue to run until in-progress operations complete and the plugin can be safely stopped.\nUse the get ILM status API to check whether ILM is running.\n\n## Required authorization\n\n* Cluster privileges: `manage_ilm`"
       }
     },
-    "com.elasticsearch.api#Index2Request": {
+    "com.elasticsearch.api#List2Request": {
       "type": "structure",
       "members": {
         "index": {
@@ -84454,10 +84455,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#Index2": {
+    "com.elasticsearch.api#List2": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#Index2Request"
+        "target": "com.elasticsearch.api#List2Request"
       },
       "output": {
         "target": "com.elasticsearch.api#TypesWriteResponseBase"
@@ -85874,7 +85875,7 @@
         "smithy.api#documentation": "Clone an index\n\nClone an existing index into a new index.\nEach original primary shard is cloned into a new primary shard in the new index.\n\nIMPORTANT: Elasticsearch does not apply index templates to the resulting index.\nThe API also does not copy index metadata from the original index.\nIndex metadata includes aliases, index lifecycle management phase definitions, and cross-cluster replication (CCR) follower information.\nFor example, if you clone a CCR follower index, the resulting clone will not be a follower index.\n\nThe clone API copies most index settings from the source index to the resulting index, with the exception of `index.number_of_replicas` and `index.auto_expand_replicas`.\nTo set the number of replicas in the resulting index, configure these settings in the clone request.\n\nCloning works as follows:\n\n* First, it creates a new target index with the same definition as the source index.\n* Then it hard-links segments from the source index into the target index. If the file system does not support hard-linking, all segments are copied into the new index, which is a much more time consuming process.\n* Finally, it recovers the target index as though it were a closed index which had just been re-opened.\n\nIMPORTANT: Indices can only be cloned if they meet the following requirements:\n\n* The index must be marked as read-only and have a cluster health status of green.\n* The target index must not exist.\n* The source index must have the same number of primary shards as the target index.\n* The node handling the clone process must have sufficient free disk space to accommodate a second copy of the existing index.\n\nThe current write index on a data stream cannot be cloned.\nIn order to clone the current write index, the data stream must first be rolled over so that a new write index is created and then the previous write index can be cloned.\n\nNOTE: Mappings cannot be specified in the `_clone` request. The mappings of the source index will be used for the target index.\n\n**Monitor the cloning process**\n\nThe cloning process can be monitored with the cat recovery API or the cluster health API can be used to wait until all primary shards have been allocated by setting the `wait_for_status` parameter to `yellow`.\n\nThe `_clone` API returns as soon as the target index has been added to the cluster state, before any shards have been allocated.\nAt this point, all shards are in the state unassigned.\nIf, for any reason, the target index can't be allocated, its primary shard will remain unassigned until it can be allocated on that node.\n\nOnce the primary shard is allocated, it moves to state initializing, and the clone process begins.\nWhen the clone operation completes, the shard will become active.\nAt that point, Elasticsearch will try to allocate any replicas and may decide to relocate the primary shard to another node.\n\n**Wait for active shards**\n\nBecause the clone operation creates a new index to clone the shards to, the wait for active shards setting on index creation applies to the clone index action as well.\n\n## Required authorization\n\n* Index privileges: `manage`"
       }
     },
-    "com.elasticsearch.api#IndicesCloneRequestAliasesMap": {
+    "com.elasticsearch.api#CloneIndexRequestAliasesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -85886,7 +85887,7 @@
         "smithy.api#documentation": "Aliases for the resulting index."
       }
     },
-    "com.elasticsearch.api#IndicesCloneRequestSettingsMap": {
+    "com.elasticsearch.api#CloneIndexRequestSettingsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -85898,7 +85899,7 @@
         "smithy.api#documentation": "Configuration options for the target index."
       }
     },
-    "com.elasticsearch.api#IndicesCloneRequest": {
+    "com.elasticsearch.api#CloneIndexRequest": {
       "type": "structure",
       "members": {
         "index": {
@@ -85939,13 +85940,13 @@
           }
         },
         "aliases": {
-          "target": "com.elasticsearch.api#IndicesCloneRequestAliasesMap",
+          "target": "com.elasticsearch.api#CloneIndexRequestAliasesMap",
           "traits": {
             "smithy.api#documentation": "Aliases for the resulting index."
           }
         },
         "settings": {
-          "target": "com.elasticsearch.api#IndicesCloneRequestSettingsMap",
+          "target": "com.elasticsearch.api#CloneIndexRequestSettingsMap",
           "traits": {
             "smithy.api#documentation": "Configuration options for the target index."
           }
@@ -85955,7 +85956,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#IndicesCloneResponse": {
+    "com.elasticsearch.api#CloneIndexResponse": {
       "type": "structure",
       "members": {
         "acknowledged": {
@@ -85981,13 +85982,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.elasticsearch.api#IndicesClone": {
+    "com.elasticsearch.api#CloneIndex": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#IndicesCloneRequest"
+        "target": "com.elasticsearch.api#CloneIndexRequest"
       },
       "output": {
-        "target": "com.elasticsearch.api#IndicesCloneResponse"
+        "target": "com.elasticsearch.api#CloneIndexResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -86196,7 +86197,7 @@
       },
       "traits": {}
     },
-    "com.elasticsearch.api#IndicesGetRequest": {
+    "com.elasticsearch.api#GetIndexRequest": {
       "type": "structure",
       "members": {
         "index": {
@@ -86308,7 +86309,7 @@
       },
       "traits": {}
     },
-    "com.elasticsearch.api#IndicesGetResponseBodyMap": {
+    "com.elasticsearch.api#GetIndexResponseBodyMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -86318,11 +86319,11 @@
       },
       "traits": {}
     },
-    "com.elasticsearch.api#IndicesGetResponse": {
+    "com.elasticsearch.api#GetIndexResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.elasticsearch.api#IndicesGetResponseBodyMap",
+          "target": "com.elasticsearch.api#GetIndexResponseBodyMap",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -86333,13 +86334,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.elasticsearch.api#IndicesGet": {
+    "com.elasticsearch.api#GetIndex": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#IndicesGetRequest"
+        "target": "com.elasticsearch.api#GetIndexRequest"
       },
       "output": {
-        "target": "com.elasticsearch.api#IndicesGetResponse"
+        "target": "com.elasticsearch.api#GetIndexResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -86350,7 +86351,7 @@
         "smithy.api#documentation": "Get index information\n\nGet information about one or more indices. For data streams, the API returns information about the\nstream’s backing indices.\n\n## Required authorization\n\n* Index privileges: `view_index_metadata`,`manage`"
       }
     },
-    "com.elasticsearch.api#IndicesCreateRequestAliasesMap": {
+    "com.elasticsearch.api#CreateIndexRequestAliasesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -86362,7 +86363,7 @@
         "smithy.api#documentation": "Aliases for the index."
       }
     },
-    "com.elasticsearch.api#IndicesCreateRequest": {
+    "com.elasticsearch.api#CreateIndexRequest": {
       "type": "structure",
       "members": {
         "index": {
@@ -86395,7 +86396,7 @@
           }
         },
         "aliases": {
-          "target": "com.elasticsearch.api#IndicesCreateRequestAliasesMap",
+          "target": "com.elasticsearch.api#CreateIndexRequestAliasesMap",
           "traits": {
             "smithy.api#documentation": "Aliases for the index."
           }
@@ -86417,7 +86418,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#IndicesCreateResponse": {
+    "com.elasticsearch.api#CreateIndexResponse": {
       "type": "structure",
       "members": {
         "index": {
@@ -86443,13 +86444,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.elasticsearch.api#IndicesCreate": {
+    "com.elasticsearch.api#CreateIndex": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#IndicesCreateRequest"
+        "target": "com.elasticsearch.api#CreateIndexRequest"
       },
       "output": {
-        "target": "com.elasticsearch.api#IndicesCreateResponse"
+        "target": "com.elasticsearch.api#CreateIndexResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -86460,7 +86461,7 @@
         "smithy.api#documentation": "Create an index\n\nYou can use the create index API to add a new index to an Elasticsearch cluster.\nWhen creating an index, you can specify the following:\n\n* Settings for the index.\n* Mappings for fields in the index.\n* Index aliases\n\n**Wait for active shards**\n\nBy default, index creation will only return a response to the client when the primary copies of each shard have been started, or the request times out.\nThe index creation response will indicate what happened.\nFor example, `acknowledged` indicates whether the index was successfully created in the cluster, `while shards_acknowledged` indicates whether the requisite number of shard copies were started for each shard in the index before timing out.\nNote that it is still possible for either `acknowledged` or `shards_acknowledged` to be `false`, but for the index creation to be successful.\nThese values simply indicate whether the operation completed before the timeout.\nIf `acknowledged` is false, the request timed out before the cluster state was updated with the newly created index, but it probably will be created sometime soon.\nIf `shards_acknowledged` is false, then the request timed out before the requisite number of shards were started (by default just the primaries), even if the cluster state was successfully updated to reflect the newly created index (that is to say, `acknowledged` is `true`).\n\nYou can change the default of only waiting for the primary shards to start through the index setting `index.write.wait_for_active_shards`.\nNote that changing this setting will also affect the `wait_for_active_shards` value on all subsequent write operations.\n\n## Required authorization\n\n* Index privileges: `create_index`,`manage`"
       }
     },
-    "com.elasticsearch.api#IndicesDeleteRequest": {
+    "com.elasticsearch.api#DeleteIndexRequest": {
       "type": "structure",
       "members": {
         "index": {
@@ -86511,7 +86512,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#IndicesDeleteResponse": {
+    "com.elasticsearch.api#DeleteIndexResponse": {
       "type": "structure",
       "members": {
         "acknowledged": {
@@ -86529,13 +86530,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.elasticsearch.api#IndicesDelete": {
+    "com.elasticsearch.api#DeleteIndex": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#IndicesDeleteRequest"
+        "target": "com.elasticsearch.api#DeleteIndexRequest"
       },
       "output": {
-        "target": "com.elasticsearch.api#IndicesDeleteResponse"
+        "target": "com.elasticsearch.api#DeleteIndexResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -89521,7 +89522,7 @@
         "smithy.api#documentation": "Flush data streams or indices\n\nFlushing a data stream or index is the process of making sure that any data that is currently only stored in the transaction log is also permanently stored in the Lucene index.\nWhen restarting, Elasticsearch replays any unflushed operations from the transaction log into the Lucene index to bring it back into the state that it was in before the restart.\nElasticsearch automatically triggers flushes as needed, using heuristics that trade off the size of the unflushed transaction log against the cost of performing each flush.\n\nAfter each operation has been flushed it is permanently stored in the Lucene index.\nThis may mean that there is no need to maintain an additional copy of it in the transaction log.\nThe transaction log is made up of multiple files, called generations, and Elasticsearch will delete any generation files when they are no longer needed, freeing up disk space.\n\nIt is also possible to trigger a flush on one or more indices using the flush API, although it is rare for users to need to call this API directly.\nIf you call the flush API after indexing some documents then a successful response indicates that Elasticsearch has flushed all the documents that were indexed before the flush API was called.\n\n## Required authorization\n\n* Index privileges: `maintenance`"
       }
     },
-    "com.elasticsearch.api#IndicesFlushRequest": {
+    "com.elasticsearch.api#FlushIndexRequest": {
       "type": "structure",
       "members": {
         "allow_no_indices": {
@@ -89564,10 +89565,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#IndicesFlush": {
+    "com.elasticsearch.api#FlushIndex": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#IndicesFlushRequest"
+        "target": "com.elasticsearch.api#FlushIndexRequest"
       },
       "output": {
         "target": "com.elasticsearch.api#TypesShardsOperationResponseBase"
@@ -94417,7 +94418,7 @@
         "smithy.api#documentation": "Refresh an index\n\nA refresh makes recent operations performed on one or more indices available for search.\nFor data streams, the API runs the refresh operation on the stream’s backing indices.\n\nBy default, Elasticsearch periodically refreshes indices every second, but only on indices that have received one search request or more in the last 30 seconds.\nYou can change this default interval with the `index.refresh_interval` setting.\n\nIn Elastic Cloud Serverless, the default refresh interval is 5 seconds across all indices.\n\nRefresh requests are synchronous and do not return a response until the refresh operation completes.\n\nRefreshes are resource-intensive.\nTo ensure good cluster performance, it's recommended to wait for Elasticsearch's periodic refresh rather than performing an explicit refresh when possible.\n\nIf your application workflow indexes documents and then runs a search to retrieve the indexed document, it's recommended to use the index API's `refresh=wait_for` query parameter option.\nThis option ensures the indexing operation waits for a periodic refresh before running the search.\n\n## Required authorization\n\n* Index privileges: `maintenance`"
       }
     },
-    "com.elasticsearch.api#IndicesRefreshRequest": {
+    "com.elasticsearch.api#RefreshIndexRequest": {
       "type": "structure",
       "members": {
         "allow_no_indices": {
@@ -94446,10 +94447,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#IndicesRefresh": {
+    "com.elasticsearch.api#RefreshIndex": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#IndicesRefreshRequest"
+        "target": "com.elasticsearch.api#RefreshIndexRequest"
       },
       "output": {
         "target": "com.elasticsearch.api#TypesShardsOperationResponseBase"
@@ -95006,26 +95007,26 @@
         "smithy.api#documentation": "Resolve the cluster\n\nResolve the specified index expressions to return information about each cluster, including the local \"querying\" cluster, if included.\nIf no index expression is provided, the API will return information about all the remote clusters that are configured on the querying cluster.\n\nThis endpoint is useful before doing a cross-cluster search in order to determine which remote clusters should be included in a search.\n\nYou use the same index expression with this endpoint as you would for cross-cluster search.\nIndex and cluster exclusions are also supported with this endpoint.\n\nFor each cluster in the index expression, information is returned about:\n\n* Whether the querying (\"local\") cluster is currently connected to each remote cluster specified in the index expression. Note that this endpoint actively attempts to contact the remote clusters, unlike the `remote/info` endpoint.\n* Whether each remote cluster is configured with `skip_unavailable` as `true` or `false`.\n* Whether there are any indices, aliases, or data streams on that cluster that match the index expression.\n* Whether the search is likely to have errors returned when you do the cross-cluster search (including any authorization errors if you do not have permission to query the index).\n* Cluster version information, including the Elasticsearch server version.\n\nFor example, `GET /_resolve/cluster/my-index-*,cluster*:my-index-*` returns information about the local cluster and all remotely configured clusters that start with the alias `cluster*`.\nEach cluster returns information about whether it has any indices, aliases or data streams that match `my-index-*`.\n\n## Note on backwards compatibility\nThe ability to query without an index expression was added in version 8.18, so when\nquerying remote clusters older than that, the local cluster will send the index\nexpression `dummy*` to those remote clusters. Thus, if an errors occur, you may see a reference\nto that index expression even though you didn't request it. If it causes a problem, you can\ninstead include an index expression like `*:*` to bypass the issue.\n\n## Advantages of using this endpoint before a cross-cluster search\n\nYou may want to exclude a cluster or index from a search when:\n\n* A remote cluster is not currently connected and is configured with `skip_unavailable=false`. Running a cross-cluster search under those conditions will cause the entire search to fail.\n* A cluster has no matching indices, aliases or data streams for the index expression (or your user does not have permissions to search them). For example, suppose your index expression is `logs*,remote1:logs*` and the remote1 cluster has no indices, aliases or data streams that match `logs*`. In that case, that cluster will return no results from that cluster if you include it in a cross-cluster search.\n* The index expression (combined with any query parameters you specify) will likely cause an exception to be thrown when you do the search. In these cases, the \"error\" field in the `_resolve/cluster` response will be present. (This is also where security/permission errors will be shown.)\n* A remote cluster is an older version that does not support the feature you want to use in your search.\n\n## Test availability of remote clusters\n\nThe `remote/info` endpoint is commonly used to test whether the \"local\" cluster (the cluster being queried) is connected to its remote clusters, but it does not necessarily reflect whether the remote cluster is available or not.\nThe remote cluster may be available, while the local cluster is not currently connected to it.\n\nYou can use the `_resolve/cluster` API to attempt to reconnect to remote clusters.\nFor example with `GET _resolve/cluster` or `GET _resolve/cluster/*:*`.\nThe `connected` field in the response will indicate whether it was successful.\nIf a connection was (re-)established, this will also cause the `remote/info` endpoint to now indicate a connected status.\n\n## Required authorization\n\n* Index privileges: `view_index_metadata`"
       }
     },
-    "com.elasticsearch.api#IndicesResolveIndexRequestModeCase1List": {
+    "com.elasticsearch.api#ListIndicesResolveRequestModeCase1List": {
       "type": "list",
       "member": {
         "target": "com.elasticsearch.api#IndicesTypesIndexMode"
       },
       "traits": {}
     },
-    "com.elasticsearch.api#IndicesResolveIndexRequestMode": {
+    "com.elasticsearch.api#ListIndicesResolveRequestMode": {
       "type": "union",
       "members": {
         "IndicesTypesIndexMode": {
           "target": "com.elasticsearch.api#IndicesTypesIndexMode"
         },
         "Case1": {
-          "target": "com.elasticsearch.api#IndicesResolveIndexRequestModeCase1List"
+          "target": "com.elasticsearch.api#ListIndicesResolveRequestModeCase1List"
         }
       },
       "traits": {}
     },
-    "com.elasticsearch.api#IndicesResolveIndexRequest": {
+    "com.elasticsearch.api#ListIndicesResolveRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -95058,7 +95059,7 @@
           }
         },
         "mode": {
-          "target": "com.elasticsearch.api#IndicesResolveIndexRequestMode",
+          "target": "com.elasticsearch.api#ListIndicesResolveRequestMode",
           "traits": {
             "smithy.api#httpQuery": "mode",
             "smithy.api#documentation": "Filter indices by index mode - standard, lookup, time_series, etc. Comma-separated list of IndexMode. Empty means no filter."
@@ -95110,7 +95111,7 @@
       },
       "traits": {}
     },
-    "com.elasticsearch.api#IndicesResolveIndexResponseIndicesList": {
+    "com.elasticsearch.api#ListIndicesResolveResponseIndicesList": {
       "type": "list",
       "member": {
         "target": "com.elasticsearch.api#IndicesResolveIndexResolveIndexItem"
@@ -95135,7 +95136,7 @@
       },
       "traits": {}
     },
-    "com.elasticsearch.api#IndicesResolveIndexResponseAliasesList": {
+    "com.elasticsearch.api#ListIndicesResolveResponseAliasesList": {
       "type": "list",
       "member": {
         "target": "com.elasticsearch.api#IndicesResolveIndexResolveIndexAliasItem"
@@ -95166,30 +95167,30 @@
       },
       "traits": {}
     },
-    "com.elasticsearch.api#IndicesResolveIndexResponseDataStreamsList": {
+    "com.elasticsearch.api#ListIndicesResolveResponseDataStreamsList": {
       "type": "list",
       "member": {
         "target": "com.elasticsearch.api#IndicesResolveIndexResolveIndexDataStreamsItem"
       },
       "traits": {}
     },
-    "com.elasticsearch.api#IndicesResolveIndexResponse": {
+    "com.elasticsearch.api#ListIndicesResolveResponse": {
       "type": "structure",
       "members": {
         "indices": {
-          "target": "com.elasticsearch.api#IndicesResolveIndexResponseIndicesList",
+          "target": "com.elasticsearch.api#ListIndicesResolveResponseIndicesList",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "aliases": {
-          "target": "com.elasticsearch.api#IndicesResolveIndexResponseAliasesList",
+          "target": "com.elasticsearch.api#ListIndicesResolveResponseAliasesList",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "data_streams": {
-          "target": "com.elasticsearch.api#IndicesResolveIndexResponseDataStreamsList",
+          "target": "com.elasticsearch.api#ListIndicesResolveResponseDataStreamsList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -95199,13 +95200,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.elasticsearch.api#IndicesResolveIndex": {
+    "com.elasticsearch.api#ListIndicesResolve": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#IndicesResolveIndexRequest"
+        "target": "com.elasticsearch.api#ListIndicesResolveRequest"
       },
       "output": {
-        "target": "com.elasticsearch.api#IndicesResolveIndexResponse"
+        "target": "com.elasticsearch.api#ListIndicesResolveResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -101611,7 +101612,7 @@
         "smithy.api#documentation": "Perform inference on the service\n\nThis API enables you to use machine learning models to perform specific tasks on data that you provide as an input.\nIt returns a response with the results of the tasks.\nThe inference endpoint you use can perform one specific task that has been defined when the endpoint was created with the create inference API.\n\nFor details about using this API with a service, such as Amazon Bedrock, Anthropic, or HuggingFace, refer to the service-specific documentation.\n\n> info\n> The inference APIs enable you to use certain services, such as built-in machine learning models (ELSER, E5), models uploaded through Eland, Cohere, OpenAI, Azure, Google AI Studio, Google Vertex AI, Anthropic, Watsonx.ai, or Hugging Face. For built-in models and models uploaded through Eland, the inference APIs offer an alternative way to use and manage trained models. However, if you do not plan to use the inference APIs to use these models or if you want to use non-NLP models, use the machine learning trained model APIs.\n\n## Required authorization\n\n* Cluster privileges: `monitor_inference`"
       }
     },
-    "com.elasticsearch.api#InferencePutRequest": {
+    "com.elasticsearch.api#PutInferenceRequest": {
       "type": "structure",
       "members": {
         "inference_id": {
@@ -101660,7 +101661,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#InferencePutResponse": {
+    "com.elasticsearch.api#PutInferenceResponse": {
       "type": "structure",
       "members": {
         "chunking_settings": {
@@ -101708,13 +101709,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.elasticsearch.api#InferencePut": {
+    "com.elasticsearch.api#PutInference": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#InferencePutRequest"
+        "target": "com.elasticsearch.api#PutInferenceRequest"
       },
       "output": {
-        "target": "com.elasticsearch.api#InferencePutResponse"
+        "target": "com.elasticsearch.api#PutInferenceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -101725,7 +101726,7 @@
         "smithy.api#documentation": "Create an inference endpoint\n\nIMPORTANT: The inference APIs enable you to use certain services, such as built-in machine learning models (ELSER, E5), models uploaded through Eland, Cohere, OpenAI, Mistral, Azure OpenAI, Google AI Studio, Google Vertex AI, Anthropic, Watsonx.ai, or Hugging Face.\nFor built-in models and models uploaded through Eland, the inference APIs offer an alternative way to use and manage trained models.\nHowever, if you do not plan to use the inference APIs to use these models or if you want to use non-NLP models, use the machine learning trained model APIs.\n\nThe following integrations are available through the inference API. You can find the available task types next to the integration name:\n* AI21 (`chat_completion`, `completion`)\n* AlibabaCloud AI Search (`completion`, `rerank`, `sparse_embedding`, `text_embedding`)\n* Amazon Bedrock (`chat_completion`, `completion`, `text_embedding`)\n* Amazon SageMaker (`chat_completion`, `completion`, `rerank`, `sparse_embedding`, `text_embedding`)\n* Anthropic (`chat_completion`, `completion`)\n* Azure AI Studio (`completion`, `rerank`, `text_embedding`)\n* Azure OpenAI (`chat_completion`, `completion`, `text_embedding`)\n* Cohere (`completion`, `rerank`, `text_embedding`)\n* DeepSeek (`chat_completion`, `completion`)\n* Elasticsearch (`rerank`, `sparse_embedding`, `text_embedding` - this service is for built-in models and models uploaded through Eland)\n* ELSER (`sparse_embedding`)\n* Fireworks AI (`chat_completion`, `completion`, `text_embedding`)\n* Google AI Studio (`completion`, `text_embedding`)\n* Google Vertex AI (`chat_completion`, `completion`, `rerank`, `text_embedding`)\n* Groq (`chat_completion`)\n* Hugging Face (`chat_completion`, `completion`, `rerank`, `text_embedding`)\n* JinaAI (`embedding`, `rerank`, `text_embedding`)\n* Llama (`chat_completion`, `completion`, `text_embedding`)\n* Mistral (`chat_completion`, `completion`, `text_embedding`)\n* Nvidia (`chat_completion`, `completion`, `text_embedding`, `rerank`)\n* OpenAI (`chat_completion`, `completion`, `text_embedding`)\n* OpenShift AI (`chat_completion`, `completion`, `rerank`, `text_embedding`)\n* VoyageAI (`rerank`, `text_embedding`)\n* Watsonx (`chat_completion`, `completion`, `rerank`, `text_embedding`)\n\n## Required authorization\n\n* Cluster privileges: `manage_inference`"
       }
     },
-    "com.elasticsearch.api#InferenceDeleteRequest": {
+    "com.elasticsearch.api#DeleteInferenceRequest": {
       "type": "structure",
       "members": {
         "inference_id": {
@@ -101755,14 +101756,14 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#InferenceDeleteResponsePipelinesList": {
+    "com.elasticsearch.api#DeleteInferenceResponsePipelinesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.elasticsearch.api#InferenceDeleteResponse": {
+    "com.elasticsearch.api#DeleteInferenceResponse": {
       "type": "structure",
       "members": {
         "acknowledged": {
@@ -101773,7 +101774,7 @@
           }
         },
         "pipelines": {
-          "target": "com.elasticsearch.api#InferenceDeleteResponsePipelinesList",
+          "target": "com.elasticsearch.api#DeleteInferenceResponsePipelinesList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -101783,13 +101784,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.elasticsearch.api#InferenceDelete": {
+    "com.elasticsearch.api#DeleteInference": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#InferenceDeleteRequest"
+        "target": "com.elasticsearch.api#DeleteInferenceRequest"
       },
       "output": {
-        "target": "com.elasticsearch.api#InferenceDeleteResponse"
+        "target": "com.elasticsearch.api#DeleteInferenceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -102718,18 +102719,18 @@
         "smithy.api#documentation": "Perform dense embedding inference on the service"
       }
     },
-    "com.elasticsearch.api#InferenceGetResponseEndpointsList": {
+    "com.elasticsearch.api#GetInferenceResponseEndpointsList": {
       "type": "list",
       "member": {
         "target": "com.elasticsearch.api#InferenceTypesInferenceEndpointInfo"
       },
       "traits": {}
     },
-    "com.elasticsearch.api#InferenceGetResponse": {
+    "com.elasticsearch.api#GetInferenceResponse": {
       "type": "structure",
       "members": {
         "endpoints": {
-          "target": "com.elasticsearch.api#InferenceGetResponseEndpointsList",
+          "target": "com.elasticsearch.api#GetInferenceResponseEndpointsList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -102739,13 +102740,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.elasticsearch.api#InferenceGet": {
+    "com.elasticsearch.api#GetInference": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.elasticsearch.api#InferenceGetResponse"
+        "target": "com.elasticsearch.api#GetInferenceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -110052,7 +110053,7 @@
         "smithy.api#documentation": "Perform text embedding inference on the service"
       }
     },
-    "com.elasticsearch.api#InferenceUpdateRequest": {
+    "com.elasticsearch.api#UpdateInferenceRequest": {
       "type": "structure",
       "members": {
         "inference_id": {
@@ -110101,7 +110102,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#InferenceUpdateResponse": {
+    "com.elasticsearch.api#UpdateInferenceResponse": {
       "type": "structure",
       "members": {
         "chunking_settings": {
@@ -110149,13 +110150,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.elasticsearch.api#InferenceUpdate": {
+    "com.elasticsearch.api#UpdateInference": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#InferenceUpdateRequest"
+        "target": "com.elasticsearch.api#UpdateInferenceRequest"
       },
       "output": {
-        "target": "com.elasticsearch.api#InferenceUpdateResponse"
+        "target": "com.elasticsearch.api#UpdateInferenceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -116405,7 +116406,7 @@
         "smithy.api#documentation": "Simulate a pipeline\n\nRun an ingest pipeline against a set of provided documents.\nYou can either specify an existing pipeline to use with the provided documents or supply a pipeline definition in the body of the request.\n\n## Required authorization\n\n* Cluster privileges: `read_pipeline`"
       }
     },
-    "com.elasticsearch.api#LicenseGetRequest": {
+    "com.elasticsearch.api#GetLicenseRequest": {
       "type": "structure",
       "members": {
         "accept_enterprise": {
@@ -116632,7 +116633,7 @@
       },
       "traits": {}
     },
-    "com.elasticsearch.api#LicenseGetResponse": {
+    "com.elasticsearch.api#GetLicenseResponse": {
       "type": "structure",
       "members": {
         "license": {
@@ -116646,13 +116647,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.elasticsearch.api#LicenseGet": {
+    "com.elasticsearch.api#GetLicense": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#LicenseGetRequest"
+        "target": "com.elasticsearch.api#GetLicenseRequest"
       },
       "output": {
-        "target": "com.elasticsearch.api#LicenseGetResponse"
+        "target": "com.elasticsearch.api#GetLicenseResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -116844,7 +116845,7 @@
         "smithy.api#documentation": "Update the license\n\nYou can update your license at runtime without shutting down your nodes.\nLicense updates take effect immediately.\nIf the license you are installing does not support all of the features that were available with your previous license, however, you are notified in the response.\nYou must then re-submit the API request with the acknowledge parameter set to true.\n\nNOTE: If Elasticsearch security features are enabled and you are installing a gold or higher license, you must enable TLS on the transport networking layer before you install the license.\nIf the operator privileges feature is enabled, only operator users can use this API.\n\n## Required authorization\n\n* Cluster privileges: `manage`"
       }
     },
-    "com.elasticsearch.api#LicensePostRequestLicensesList": {
+    "com.elasticsearch.api#PostLicenseRequestLicensesList": {
       "type": "list",
       "member": {
         "target": "com.elasticsearch.api#LicenseTypesLicense"
@@ -116853,7 +116854,7 @@
         "smithy.api#documentation": "A sequence of one or more JSON documents containing the license information."
       }
     },
-    "com.elasticsearch.api#LicensePostRequest": {
+    "com.elasticsearch.api#PostLicenseRequest": {
       "type": "structure",
       "members": {
         "acknowledge": {
@@ -116881,7 +116882,7 @@
           "target": "com.elasticsearch.api#LicenseTypesLicense"
         },
         "licenses": {
-          "target": "com.elasticsearch.api#LicensePostRequestLicensesList",
+          "target": "com.elasticsearch.api#PostLicenseRequestLicensesList",
           "traits": {
             "smithy.api#documentation": "A sequence of one or more JSON documents containing the license information."
           }
@@ -116891,7 +116892,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#LicensePostResponse": {
+    "com.elasticsearch.api#PostLicenseResponse": {
       "type": "structure",
       "members": {
         "acknowledge": {
@@ -116914,13 +116915,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.elasticsearch.api#LicensePost": {
+    "com.elasticsearch.api#PostLicense": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#LicensePostRequest"
+        "target": "com.elasticsearch.api#PostLicenseRequest"
       },
       "output": {
-        "target": "com.elasticsearch.api#LicensePostResponse"
+        "target": "com.elasticsearch.api#PostLicenseResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -116931,7 +116932,7 @@
         "smithy.api#documentation": "Update the license\n\nYou can update your license at runtime without shutting down your nodes.\nLicense updates take effect immediately.\nIf the license you are installing does not support all of the features that were available with your previous license, however, you are notified in the response.\nYou must then re-submit the API request with the acknowledge parameter set to true.\n\nNOTE: If Elasticsearch security features are enabled and you are installing a gold or higher license, you must enable TLS on the transport networking layer before you install the license.\nIf the operator privileges feature is enabled, only operator users can use this API.\n\n## Required authorization\n\n* Cluster privileges: `manage`"
       }
     },
-    "com.elasticsearch.api#LicenseDeleteRequest": {
+    "com.elasticsearch.api#DeleteLicenseRequest": {
       "type": "structure",
       "members": {
         "master_timeout": {
@@ -116953,10 +116954,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#LicenseDelete": {
+    "com.elasticsearch.api#DeleteLicense": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#LicenseDeleteRequest"
+        "target": "com.elasticsearch.api#DeleteLicenseRequest"
       },
       "output": {
         "target": "com.elasticsearch.api#TypesAcknowledgedResponseBase"
@@ -138852,7 +138853,7 @@
         "smithy.api#documentation": "Get multiple term vectors\n\nGet multiple term vectors with a single request.\nYou can specify existing documents by index and ID or provide artificial documents in the body of the request.\nYou can specify the index in the request body or request URI.\nThe response contains a `docs` array with all the fetched termvectors.\nEach element has the structure provided by the termvectors API.\n\n**Artificial documents**\n\nYou can also use `mtermvectors` to generate term vectors for artificial documents provided in the body of the request.\nThe mapping used is determined by the specified `_index`.\n\n## Required authorization\n\n* Index privileges: `read`"
       }
     },
-    "com.elasticsearch.api#NodesClearRepositoriesMeteringArchiveRequest": {
+    "com.elasticsearch.api#ArchiveNodesClearRepositoriesMeteringRequest": {
       "type": "structure",
       "members": {
         "node_id": {
@@ -139039,7 +139040,7 @@
       },
       "traits": {}
     },
-    "com.elasticsearch.api#NodesClearRepositoriesMeteringArchiveResponseNodesMap": {
+    "com.elasticsearch.api#ArchiveNodesClearRepositoriesMeteringResponseNodesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -139051,7 +139052,7 @@
         "smithy.api#documentation": "Contains repositories metering information for the nodes selected by the request."
       }
     },
-    "com.elasticsearch.api#NodesClearRepositoriesMeteringArchiveResponse": {
+    "com.elasticsearch.api#ArchiveNodesClearRepositoriesMeteringResponse": {
       "type": "structure",
       "members": {
         "_nodes": {
@@ -139068,7 +139069,7 @@
           }
         },
         "nodes": {
-          "target": "com.elasticsearch.api#NodesClearRepositoriesMeteringArchiveResponseNodesMap",
+          "target": "com.elasticsearch.api#ArchiveNodesClearRepositoriesMeteringResponseNodesMap",
           "traits": {
             "smithy.api#documentation": "Contains repositories metering information for the nodes selected by the request.",
             "smithy.api#required": {}
@@ -139079,13 +139080,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.elasticsearch.api#NodesClearRepositoriesMeteringArchive": {
+    "com.elasticsearch.api#ArchiveNodesClearRepositoriesMetering": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#NodesClearRepositoriesMeteringArchiveRequest"
+        "target": "com.elasticsearch.api#ArchiveNodesClearRepositoriesMeteringRequest"
       },
       "output": {
-        "target": "com.elasticsearch.api#NodesClearRepositoriesMeteringArchiveResponse"
+        "target": "com.elasticsearch.api#ArchiveNodesClearRepositoriesMeteringResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -147531,7 +147532,7 @@
       },
       "traits": {}
     },
-    "com.elasticsearch.api#ScriptsPainlessExecuteRequest": {
+    "com.elasticsearch.api#ExecuteScriptsPainlessRequest": {
       "type": "structure",
       "members": {
         "context": {
@@ -147557,7 +147558,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#ScriptsPainlessExecuteResponse": {
+    "com.elasticsearch.api#ExecuteScriptsPainlessResponse": {
       "type": "structure",
       "members": {
         "result": {
@@ -147571,13 +147572,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.elasticsearch.api#ScriptsPainlessExecute": {
+    "com.elasticsearch.api#ExecuteScriptsPainless": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#ScriptsPainlessExecuteRequest"
+        "target": "com.elasticsearch.api#ExecuteScriptsPainlessRequest"
       },
       "output": {
-        "target": "com.elasticsearch.api#ScriptsPainlessExecuteResponse"
+        "target": "com.elasticsearch.api#ExecuteScriptsPainlessResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -153612,7 +153613,7 @@
       },
       "traits": {}
     },
-    "com.elasticsearch.api#SecurityAuthenticateResponseRolesList": {
+    "com.elasticsearch.api#AuthenticateSecurityResponseRolesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -153634,7 +153635,7 @@
       },
       "traits": {}
     },
-    "com.elasticsearch.api#SecurityAuthenticateResponse": {
+    "com.elasticsearch.api#AuthenticateSecurityResponse": {
       "type": "structure",
       "members": {
         "api_key": {
@@ -153665,7 +153666,7 @@
           }
         },
         "roles": {
-          "target": "com.elasticsearch.api#SecurityAuthenticateResponseRolesList",
+          "target": "com.elasticsearch.api#AuthenticateSecurityResponseRolesList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -153696,13 +153697,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.elasticsearch.api#SecurityAuthenticate": {
+    "com.elasticsearch.api#AuthenticateSecurity": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.elasticsearch.api#SecurityAuthenticateResponse"
+        "target": "com.elasticsearch.api#AuthenticateSecurityResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -162951,7 +162952,7 @@
         "smithy.api#documentation": "Check user profile privileges\n\nDetermine whether the users associated with the specified user profile IDs have all the requested privileges.\n\nNOTE: The user profile feature is designed only for use by Kibana and Elastic's Observability, Enterprise Search, and Elastic Security solutions. Individual users and external applications should not call this API directly.\nElastic reserves the right to change or remove this feature in future releases without prior notice.\n\n## Required authorization\n\n* Cluster privileges: `read_security`"
       }
     },
-    "com.elasticsearch.api#SecurityOidcAuthenticateRequest": {
+    "com.elasticsearch.api#AuthenticateSecurityOidcRequest": {
       "type": "structure",
       "members": {
         "nonce": {
@@ -162986,7 +162987,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#SecurityOidcAuthenticateResponse": {
+    "com.elasticsearch.api#AuthenticateSecurityOidcResponse": {
       "type": "structure",
       "members": {
         "access_token": {
@@ -163024,13 +163025,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.elasticsearch.api#SecurityOidcAuthenticate": {
+    "com.elasticsearch.api#AuthenticateSecurityOidc": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#SecurityOidcAuthenticateRequest"
+        "target": "com.elasticsearch.api#AuthenticateSecurityOidcRequest"
       },
       "output": {
-        "target": "com.elasticsearch.api#SecurityOidcAuthenticateResponse"
+        "target": "com.elasticsearch.api#AuthenticateSecurityOidcResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -163041,7 +163042,7 @@
         "smithy.api#documentation": "Authenticate OpenID Connect\n\nExchange an OpenID Connect authentication response message for an Elasticsearch internal access token and refresh token that can be subsequently used for authentication.\n\nElasticsearch exposes all the necessary OpenID Connect related functionality with the OpenID Connect APIs.\nThese APIs are used internally by Kibana in order to provide OpenID Connect based authentication, but can also be used by other, custom web applications or other clients."
       }
     },
-    "com.elasticsearch.api#SecurityOidcLogoutRequest": {
+    "com.elasticsearch.api#LogoutSecurityOidcRequest": {
       "type": "structure",
       "members": {
         "token": {
@@ -163063,7 +163064,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#SecurityOidcLogoutResponse": {
+    "com.elasticsearch.api#LogoutSecurityOidcResponse": {
       "type": "structure",
       "members": {
         "redirect": {
@@ -163078,13 +163079,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.elasticsearch.api#SecurityOidcLogout": {
+    "com.elasticsearch.api#LogoutSecurityOidc": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#SecurityOidcLogoutRequest"
+        "target": "com.elasticsearch.api#LogoutSecurityOidcRequest"
       },
       "output": {
-        "target": "com.elasticsearch.api#SecurityOidcLogoutResponse"
+        "target": "com.elasticsearch.api#LogoutSecurityOidcResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -164662,7 +164663,7 @@
         "smithy.api#documentation": "Find users with a query\n\nGet information for users in a paginated manner.\nYou can optionally filter the results with a query.\n\nNOTE: As opposed to the get user API, built-in users are excluded from the result.\nThis API is only for native users.\n\n## Required authorization\n\n* Cluster privileges: `read_security`"
       }
     },
-    "com.elasticsearch.api#SecuritySamlAuthenticateRequest": {
+    "com.elasticsearch.api#AuthenticateSecuritySamlRequest": {
       "type": "structure",
       "members": {
         "content": {
@@ -164690,7 +164691,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#SecuritySamlAuthenticateResponse": {
+    "com.elasticsearch.api#AuthenticateSecuritySamlResponse": {
       "type": "structure",
       "members": {
         "access_token": {
@@ -164741,13 +164742,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.elasticsearch.api#SecuritySamlAuthenticate": {
+    "com.elasticsearch.api#AuthenticateSecuritySaml": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#SecuritySamlAuthenticateRequest"
+        "target": "com.elasticsearch.api#AuthenticateSecuritySamlRequest"
       },
       "output": {
-        "target": "com.elasticsearch.api#SecuritySamlAuthenticateResponse"
+        "target": "com.elasticsearch.api#AuthenticateSecuritySamlResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -164758,7 +164759,7 @@
         "smithy.api#documentation": "Authenticate SAML\n\nSubmit a SAML response message to Elasticsearch for consumption.\n\nNOTE: This API is intended for use by custom web applications other than Kibana.\nIf you are using Kibana, refer to the documentation for configuring SAML single-sign-on on the Elastic Stack.\n\nThe SAML message that is submitted can be:\n\n* A response to a SAML authentication request that was previously created using the SAML prepare authentication API.\n* An unsolicited SAML message in the case of an IdP-initiated single sign-on (SSO) flow.\n\nIn either case, the SAML message needs to be a base64 encoded XML document with a root element of `<Response>`.\n\nAfter successful validation, Elasticsearch responds with an Elasticsearch internal access token and refresh token that can be subsequently used for authentication.\nThis API endpoint essentially exchanges SAML responses that indicate successful authentication in the IdP for Elasticsearch access and refresh tokens, which can be used for authentication against Elasticsearch."
       }
     },
-    "com.elasticsearch.api#SecuritySamlCompleteLogoutRequest": {
+    "com.elasticsearch.api#LogoutSecuritySamlCompleteRequest": {
       "type": "structure",
       "members": {
         "realm": {
@@ -164792,10 +164793,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#SecuritySamlCompleteLogout": {
+    "com.elasticsearch.api#LogoutSecuritySamlComplete": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#SecuritySamlCompleteLogoutRequest"
+        "target": "com.elasticsearch.api#LogoutSecuritySamlCompleteRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -164809,7 +164810,7 @@
         "smithy.api#documentation": "Logout of SAML completely\n\nVerifies the logout response sent from the SAML IdP.\n\nNOTE: This API is intended for use by custom web applications other than Kibana.\nIf you are using Kibana, refer to the documentation for configuring SAML single-sign-on on the Elastic Stack.\n\nThe SAML IdP may send a logout response back to the SP after handling the SP-initiated SAML Single Logout.\nThis API verifies the response by ensuring the content is relevant and validating its signature.\nAn empty response is returned if the verification process is successful.\nThe response can be sent by the IdP with either the HTTP-Redirect or the HTTP-Post binding.\nThe caller of this API must prepare the request accordingly so that this API can handle either of them."
       }
     },
-    "com.elasticsearch.api#SecuritySamlInvalidateRequest": {
+    "com.elasticsearch.api#InvalidateSecuritySamlRequest": {
       "type": "structure",
       "members": {
         "acs": {
@@ -164836,7 +164837,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#SecuritySamlInvalidateResponse": {
+    "com.elasticsearch.api#InvalidateSecuritySamlResponse": {
       "type": "structure",
       "members": {
         "invalidated": {
@@ -164865,13 +164866,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.elasticsearch.api#SecuritySamlInvalidate": {
+    "com.elasticsearch.api#InvalidateSecuritySaml": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#SecuritySamlInvalidateRequest"
+        "target": "com.elasticsearch.api#InvalidateSecuritySamlRequest"
       },
       "output": {
-        "target": "com.elasticsearch.api#SecuritySamlInvalidateResponse"
+        "target": "com.elasticsearch.api#InvalidateSecuritySamlResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -164882,7 +164883,7 @@
         "smithy.api#documentation": "Invalidate SAML\n\nSubmit a SAML LogoutRequest message to Elasticsearch for consumption.\n\nNOTE: This API is intended for use by custom web applications other than Kibana.\nIf you are using Kibana, refer to the documentation for configuring SAML single-sign-on on the Elastic Stack.\n\nThe logout request comes from the SAML IdP during an IdP initiated Single Logout.\nThe custom web application can use this API to have Elasticsearch process the `LogoutRequest`.\nAfter successful validation of the request, Elasticsearch invalidates the access token and refresh token that corresponds to that specific SAML principal and provides a URL that contains a SAML LogoutResponse message.\nThus the user can be redirected back to their IdP."
       }
     },
-    "com.elasticsearch.api#SecuritySamlLogoutRequest": {
+    "com.elasticsearch.api#LogoutSecuritySamlRequest": {
       "type": "structure",
       "members": {
         "token": {
@@ -164904,7 +164905,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#SecuritySamlLogoutResponse": {
+    "com.elasticsearch.api#LogoutSecuritySamlResponse": {
       "type": "structure",
       "members": {
         "redirect": {
@@ -164919,13 +164920,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.elasticsearch.api#SecuritySamlLogout": {
+    "com.elasticsearch.api#LogoutSecuritySaml": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#SecuritySamlLogoutRequest"
+        "target": "com.elasticsearch.api#LogoutSecuritySamlRequest"
       },
       "output": {
-        "target": "com.elasticsearch.api#SecuritySamlLogoutResponse"
+        "target": "com.elasticsearch.api#LogoutSecuritySamlResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -167447,7 +167448,7 @@
         "smithy.api#documentation": "Get the snapshot lifecycle management status\n\n## Required authorization\n\n* Cluster privileges: `read_slm`"
       }
     },
-    "com.elasticsearch.api#SlmStartRequest": {
+    "com.elasticsearch.api#StartSlmRequest": {
       "type": "structure",
       "members": {
         "master_timeout": {
@@ -167469,10 +167470,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#SlmStart": {
+    "com.elasticsearch.api#StartSlm": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#SlmStartRequest"
+        "target": "com.elasticsearch.api#StartSlmRequest"
       },
       "output": {
         "target": "com.elasticsearch.api#TypesAcknowledgedResponseBase"
@@ -167486,7 +167487,7 @@
         "smithy.api#documentation": "Start snapshot lifecycle management\n\nSnapshot lifecycle management (SLM) starts automatically when a cluster is formed.\nManually starting SLM is necessary only if it has been stopped using the stop SLM API.\n\n## Required authorization\n\n* Cluster privileges: `manage_slm`"
       }
     },
-    "com.elasticsearch.api#SlmStopRequest": {
+    "com.elasticsearch.api#StopSlmRequest": {
       "type": "structure",
       "members": {
         "master_timeout": {
@@ -167508,10 +167509,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#SlmStop": {
+    "com.elasticsearch.api#StopSlm": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#SlmStopRequest"
+        "target": "com.elasticsearch.api#StopSlmRequest"
       },
       "output": {
         "target": "com.elasticsearch.api#TypesAcknowledgedResponseBase"
@@ -167607,7 +167608,7 @@
         "smithy.api#documentation": "Clean up the snapshot repository\n\nTrigger the review of the contents of a snapshot repository and delete any stale data not referenced by existing snapshots.\n\n## Required authorization\n\n* Cluster privileges: `manage`"
       }
     },
-    "com.elasticsearch.api#SnapshotCloneRequest": {
+    "com.elasticsearch.api#CloneSnapshotRequest": {
       "type": "structure",
       "members": {
         "repository": {
@@ -167653,10 +167654,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#SnapshotClone": {
+    "com.elasticsearch.api#CloneSnapshot": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#SnapshotCloneRequest"
+        "target": "com.elasticsearch.api#CloneSnapshotRequest"
       },
       "output": {
         "target": "com.elasticsearch.api#TypesAcknowledgedResponseBase"
@@ -167754,26 +167755,26 @@
       },
       "traits": {}
     },
-    "com.elasticsearch.api#SnapshotGetRequestStateCase1List": {
+    "com.elasticsearch.api#GetSnapshotRequestStateCase1List": {
       "type": "list",
       "member": {
         "target": "com.elasticsearch.api#SnapshotTypesSnapshotState"
       },
       "traits": {}
     },
-    "com.elasticsearch.api#SnapshotGetRequestState": {
+    "com.elasticsearch.api#GetSnapshotRequestState": {
       "type": "union",
       "members": {
         "SnapshotTypesSnapshotState": {
           "target": "com.elasticsearch.api#SnapshotTypesSnapshotState"
         },
         "Case1": {
-          "target": "com.elasticsearch.api#SnapshotGetRequestStateCase1List"
+          "target": "com.elasticsearch.api#GetSnapshotRequestStateCase1List"
         }
       },
       "traits": {}
     },
-    "com.elasticsearch.api#SnapshotGetRequest": {
+    "com.elasticsearch.api#GetSnapshotRequest": {
       "type": "structure",
       "members": {
         "repository": {
@@ -167877,7 +167878,7 @@
           }
         },
         "state": {
-          "target": "com.elasticsearch.api#SnapshotGetRequestState",
+          "target": "com.elasticsearch.api#GetSnapshotRequestState",
           "traits": {
             "smithy.api#httpQuery": "state",
             "smithy.api#documentation": "Only return snapshots with a state found in the given comma-separated list of snapshot states.\nThe default is all snapshot states."
@@ -168120,21 +168121,21 @@
       },
       "traits": {}
     },
-    "com.elasticsearch.api#SnapshotGetResponseResponsesList": {
+    "com.elasticsearch.api#GetSnapshotResponseResponsesList": {
       "type": "list",
       "member": {
         "target": "com.elasticsearch.api#SnapshotGetSnapshotResponseItem"
       },
       "traits": {}
     },
-    "com.elasticsearch.api#SnapshotGetResponseSnapshotsList": {
+    "com.elasticsearch.api#GetSnapshotResponseSnapshotsList": {
       "type": "list",
       "member": {
         "target": "com.elasticsearch.api#SnapshotTypesSnapshotInfo"
       },
       "traits": {}
     },
-    "com.elasticsearch.api#SnapshotGetResponse": {
+    "com.elasticsearch.api#GetSnapshotResponse": {
       "type": "structure",
       "members": {
         "remaining": {
@@ -168158,23 +168159,23 @@
           }
         },
         "responses": {
-          "target": "com.elasticsearch.api#SnapshotGetResponseResponsesList"
+          "target": "com.elasticsearch.api#GetSnapshotResponseResponsesList"
         },
         "snapshots": {
-          "target": "com.elasticsearch.api#SnapshotGetResponseSnapshotsList"
+          "target": "com.elasticsearch.api#GetSnapshotResponseSnapshotsList"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.elasticsearch.api#SnapshotGet": {
+    "com.elasticsearch.api#GetSnapshot": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#SnapshotGetRequest"
+        "target": "com.elasticsearch.api#GetSnapshotRequest"
       },
       "output": {
-        "target": "com.elasticsearch.api#SnapshotGetResponse"
+        "target": "com.elasticsearch.api#GetSnapshotResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -168311,7 +168312,7 @@
         "smithy.api#documentation": "Create a snapshot\n\nTake a snapshot of a cluster or of data streams and indices.\n\n## Required authorization\n\n* Cluster privileges: `create_snapshot`"
       }
     },
-    "com.elasticsearch.api#SnapshotCreateRequestFeatureStatesList": {
+    "com.elasticsearch.api#CreateSnapshotRequestFeatureStatesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -168320,7 +168321,7 @@
         "smithy.api#documentation": "The feature states to include in the snapshot.\nEach feature state includes one or more system indices containing related data.\nYou can view a list of eligible features using the get features API.\n\nIf `include_global_state` is `true`, all current feature states are included by default.\nIf `include_global_state` is `false`, no feature states are included by default.\n\nNote that specifying an empty array will result in the default behavior.\nTo exclude all feature states, regardless of the `include_global_state` value, specify an array with only the value `none` (`[\"none\"]`)."
       }
     },
-    "com.elasticsearch.api#SnapshotCreateRequest": {
+    "com.elasticsearch.api#CreateSnapshotRequest": {
       "type": "structure",
       "members": {
         "repository": {
@@ -168360,7 +168361,7 @@
           }
         },
         "feature_states": {
-          "target": "com.elasticsearch.api#SnapshotCreateRequestFeatureStatesList",
+          "target": "com.elasticsearch.api#CreateSnapshotRequestFeatureStatesList",
           "traits": {
             "smithy.api#documentation": "The feature states to include in the snapshot.\nEach feature state includes one or more system indices containing related data.\nYou can view a list of eligible features using the get features API.\n\nIf `include_global_state` is `true`, all current feature states are included by default.\nIf `include_global_state` is `false`, no feature states are included by default.\n\nNote that specifying an empty array will result in the default behavior.\nTo exclude all feature states, regardless of the `include_global_state` value, specify an array with only the value `none` (`[\"none\"]`)."
           }
@@ -168400,7 +168401,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#SnapshotCreateResponse": {
+    "com.elasticsearch.api#CreateSnapshotResponse": {
       "type": "structure",
       "members": {
         "accepted": {
@@ -168420,13 +168421,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.elasticsearch.api#SnapshotCreate": {
+    "com.elasticsearch.api#CreateSnapshot": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#SnapshotCreateRequest"
+        "target": "com.elasticsearch.api#CreateSnapshotRequest"
       },
       "output": {
-        "target": "com.elasticsearch.api#SnapshotCreateResponse"
+        "target": "com.elasticsearch.api#CreateSnapshotResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -168437,7 +168438,7 @@
         "smithy.api#documentation": "Create a snapshot\n\nTake a snapshot of a cluster or of data streams and indices.\n\n## Required authorization\n\n* Cluster privileges: `create_snapshot`"
       }
     },
-    "com.elasticsearch.api#SnapshotDeleteRequest": {
+    "com.elasticsearch.api#DeleteSnapshotRequest": {
       "type": "structure",
       "members": {
         "repository": {
@@ -168475,10 +168476,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#SnapshotDelete": {
+    "com.elasticsearch.api#DeleteSnapshot": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#SnapshotDeleteRequest"
+        "target": "com.elasticsearch.api#DeleteSnapshotRequest"
       },
       "output": {
         "target": "com.elasticsearch.api#TypesAcknowledgedResponseBase"
@@ -170502,7 +170503,7 @@
         "smithy.api#documentation": "Verify the repository integrity\n\nVerify the integrity of the contents of a snapshot repository.\n\nThis API enables you to perform a comprehensive check of the contents of a repository, looking for any anomalies in its data or metadata which might prevent you from restoring snapshots from the repository or which might cause future snapshot create or delete operations to fail.\n\nIf you suspect the integrity of the contents of one of your snapshot repositories, cease all write activity to this repository immediately, set its `read_only` option to `true`, and use this API to verify its integrity.\nUntil you do so:\n\n* It may not be possible to restore some snapshots from this repository.\n* Searchable snapshots may report errors when searched or may have unassigned shards.\n* Taking snapshots into this repository may fail or may appear to succeed but have created a snapshot which cannot be restored.\n* Deleting snapshots from this repository may fail or may appear to succeed but leave the underlying data on disk.\n* Continuing to write to the repository while it is in an invalid state may causing additional damage to its contents.\n\nIf the API finds any problems with the integrity of the contents of your repository, Elasticsearch will not be able to repair the damage.\nThe only way to bring the repository back into a fully working state after its contents have been damaged is by restoring its contents from a repository backup which was taken before the damage occurred.\nYou must also identify what caused the damage and take action to prevent it from happening again.\n\nIf you cannot restore a repository backup, register a new repository and use this for all future snapshot operations.\nIn some cases it may be possible to recover some of the contents of a damaged repository, either by restoring as many of its snapshots as needed and taking new snapshots of the restored data, or by using the reindex API to copy data from any searchable snapshots mounted from the damaged repository.\n\nAvoid all operations which write to the repository while the verify repository integrity API is running.\nIf something changes the repository contents while an integrity verification is running then Elasticsearch may incorrectly report having detected some anomalies in its contents due to the concurrent writes.\nIt may also incorrectly fail to report some anomalies that the concurrent writes prevented it from detecting.\n\nNOTE: This API is intended for exploratory use by humans. You should expect the request parameters and the response format to vary in future versions.\n\nNOTE: This API may not work correctly in a mixed-version cluster.\n\nThe default values for the parameters of this API are designed to limit the impact of the integrity verification on other activities in your cluster.\nFor instance, by default it will only use at most half of the `snapshot_meta` threads to verify the integrity of each snapshot, allowing other snapshot operations to use the other half of this thread pool.\nIf you modify these parameters to speed up the verification process, you risk disrupting other snapshot-related operations in your cluster.\nFor large repositories, consider setting up a separate single-node Elasticsearch cluster just for running the integrity verification API.\n\nThe response exposes implementation details of the analysis which may change from version to version.\nThe response body format is therefore not considered stable and may be different in newer versions.\n\n## Required authorization\n\n* Cluster privileges: `manage`"
       }
     },
-    "com.elasticsearch.api#SnapshotRestoreRequestFeatureStatesList": {
+    "com.elasticsearch.api#RestoreSnapshotRequestFeatureStatesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -170511,7 +170512,7 @@
         "smithy.api#documentation": "The feature states to restore.\nIf `include_global_state` is `true`, the request restores all feature states in the snapshot by default.\nIf `include_global_state` is `false`, the request restores no feature states by default.\nNote that specifying an empty array will result in the default behavior.\nTo restore no feature states, regardless of the `include_global_state` value, specify an array containing only the value `none` (`[\"none\"]`)."
       }
     },
-    "com.elasticsearch.api#SnapshotRestoreRequestIgnoreIndexSettingsList": {
+    "com.elasticsearch.api#RestoreSnapshotRequestIgnoreIndexSettingsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -170520,7 +170521,7 @@
         "smithy.api#documentation": "The index settings to not restore from the snapshot.\nYou can't use this option to ignore `index.number_of_shards`.\n\nFor data streams, this option applies only to restored backing indices.\nNew backing indices are configured using the data stream's matching index template."
       }
     },
-    "com.elasticsearch.api#SnapshotRestoreRequest": {
+    "com.elasticsearch.api#RestoreSnapshotRequest": {
       "type": "structure",
       "members": {
         "repository": {
@@ -170554,13 +170555,13 @@
           }
         },
         "feature_states": {
-          "target": "com.elasticsearch.api#SnapshotRestoreRequestFeatureStatesList",
+          "target": "com.elasticsearch.api#RestoreSnapshotRequestFeatureStatesList",
           "traits": {
             "smithy.api#documentation": "The feature states to restore.\nIf `include_global_state` is `true`, the request restores all feature states in the snapshot by default.\nIf `include_global_state` is `false`, the request restores no feature states by default.\nNote that specifying an empty array will result in the default behavior.\nTo restore no feature states, regardless of the `include_global_state` value, specify an array containing only the value `none` (`[\"none\"]`)."
           }
         },
         "ignore_index_settings": {
-          "target": "com.elasticsearch.api#SnapshotRestoreRequestIgnoreIndexSettingsList",
+          "target": "com.elasticsearch.api#RestoreSnapshotRequestIgnoreIndexSettingsList",
           "traits": {
             "smithy.api#documentation": "The index settings to not restore from the snapshot.\nYou can't use this option to ignore `index.number_of_shards`.\n\nFor data streams, this option applies only to restored backing indices.\nNew backing indices are configured using the data stream's matching index template."
           }
@@ -170649,7 +170650,7 @@
       },
       "traits": {}
     },
-    "com.elasticsearch.api#SnapshotRestoreResponse": {
+    "com.elasticsearch.api#RestoreSnapshotResponse": {
       "type": "structure",
       "members": {
         "accepted": {
@@ -170663,13 +170664,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.elasticsearch.api#SnapshotRestore": {
+    "com.elasticsearch.api#RestoreSnapshot": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#SnapshotRestoreRequest"
+        "target": "com.elasticsearch.api#RestoreSnapshotRequest"
       },
       "output": {
-        "target": "com.elasticsearch.api#SnapshotRestoreResponse"
+        "target": "com.elasticsearch.api#RestoreSnapshotResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -172349,7 +172350,7 @@
         "smithy.api#documentation": "Get SSL certificates\n\nGet information about the X.509 certificates that are used to encrypt communications in the cluster.\nThe API returns a list that includes certificates from all TLS contexts including:\n\n- Settings for transport and HTTP interfaces\n- TLS settings that are used within authentication realms\n- TLS settings for remote monitoring exporters\n\nThe list includes certificates that are used for configuring trust, such as those configured in the `xpack.security.transport.ssl.truststore` and `xpack.security.transport.ssl.certificate_authorities` settings.\nIt also includes certificates that are used for configuring server identity, such as `xpack.security.http.ssl.keystore` and `xpack.security.http.ssl.certificate settings`.\n\nThe list does not include certificates that are sourced from the default SSL context of the Java Runtime Environment (JRE), even if those certificates are in use within Elasticsearch.\n\nNOTE: When a PKCS#11 token is configured as the truststore of the JRE, the API returns all the certificates that are included in the PKCS#11 token irrespective of whether these are used in the Elasticsearch TLS configuration.\n\nIf Elasticsearch is configured to use a keystore or truststore, the API output includes all certificates in that store, even though some of the certificates might not be in active use within the cluster.\n\n## Required authorization\n\n* Cluster privileges: `monitor`"
       }
     },
-    "com.elasticsearch.api#StreamsLogsDisableRequestName": {
+    "com.elasticsearch.api#DisableStreamsLogRequestName": {
       "type": "enum",
       "members": {
         "LOGS": {
@@ -172373,11 +172374,11 @@
       },
       "traits": {}
     },
-    "com.elasticsearch.api#StreamsLogsDisableRequest": {
+    "com.elasticsearch.api#DisableStreamsLogRequest": {
       "type": "structure",
       "members": {
         "name": {
-          "target": "com.elasticsearch.api#StreamsLogsDisableRequestName",
+          "target": "com.elasticsearch.api#DisableStreamsLogRequestName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -172403,10 +172404,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#StreamsLogsDisable": {
+    "com.elasticsearch.api#DisableStreamsLog": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#StreamsLogsDisableRequest"
+        "target": "com.elasticsearch.api#DisableStreamsLogRequest"
       },
       "output": {
         "target": "com.elasticsearch.api#TypesAcknowledgedResponseBase"
@@ -172420,7 +172421,7 @@
         "smithy.api#documentation": "Disable a named stream\n\nTurn off the named stream feature for this cluster.\n\n## Required authorization\n\n* Cluster privileges: `manage`"
       }
     },
-    "com.elasticsearch.api#StreamsLogsEnableRequestName": {
+    "com.elasticsearch.api#EnableStreamsLogRequestName": {
       "type": "enum",
       "members": {
         "LOGS": {
@@ -172444,11 +172445,11 @@
       },
       "traits": {}
     },
-    "com.elasticsearch.api#StreamsLogsEnableRequest": {
+    "com.elasticsearch.api#EnableStreamsLogRequest": {
       "type": "structure",
       "members": {
         "name": {
-          "target": "com.elasticsearch.api#StreamsLogsEnableRequestName",
+          "target": "com.elasticsearch.api#EnableStreamsLogRequestName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -172474,10 +172475,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#StreamsLogsEnable": {
+    "com.elasticsearch.api#EnableStreamsLog": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#StreamsLogsEnableRequest"
+        "target": "com.elasticsearch.api#EnableStreamsLogRequest"
       },
       "output": {
         "target": "com.elasticsearch.api#TypesAcknowledgedResponseBase"
@@ -173070,44 +173071,44 @@
         "smithy.api#documentation": "Get all synonym sets\n\nGet a summary of all defined synonym sets.\n\n## Required authorization\n\n* Cluster privileges: `manage_search_synonyms`"
       }
     },
-    "com.elasticsearch.api#TasksCancelRequestActionsCase1List": {
+    "com.elasticsearch.api#CancelTaskRequestActionsCase1List": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.elasticsearch.api#TasksCancelRequestActions": {
+    "com.elasticsearch.api#CancelTaskRequestActions": {
       "type": "union",
       "members": {
         "Case0": {
           "target": "smithy.api#String"
         },
         "Case1": {
-          "target": "com.elasticsearch.api#TasksCancelRequestActionsCase1List"
+          "target": "com.elasticsearch.api#CancelTaskRequestActionsCase1List"
         }
       },
       "traits": {}
     },
-    "com.elasticsearch.api#TasksCancelRequestNodesList": {
+    "com.elasticsearch.api#CancelTaskRequestNodesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.elasticsearch.api#TasksCancelRequest": {
+    "com.elasticsearch.api#CancelTaskRequest": {
       "type": "structure",
       "members": {
         "actions": {
-          "target": "com.elasticsearch.api#TasksCancelRequestActions",
+          "target": "com.elasticsearch.api#CancelTaskRequestActions",
           "traits": {
             "smithy.api#httpQuery": "actions",
             "smithy.api#documentation": "A comma-separated list or wildcard expression of actions that is used to limit the request."
           }
         },
         "nodes": {
-          "target": "com.elasticsearch.api#TasksCancelRequestNodesList",
+          "target": "com.elasticsearch.api#CancelTaskRequestNodesList",
           "traits": {
             "smithy.api#httpQuery": "nodes",
             "smithy.api#documentation": "A comma-separated list of node IDs or names that is used to limit the request."
@@ -173132,10 +173133,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#TasksCancel": {
+    "com.elasticsearch.api#CancelTask": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#TasksCancelRequest"
+        "target": "com.elasticsearch.api#CancelTaskRequest"
       },
       "output": {
         "target": "com.elasticsearch.api#TasksTypesTaskListResponseBase"
@@ -173236,7 +173237,7 @@
         "smithy.api#documentation": "Cancel a task\n\nWARNING: The task management API is new and should still be considered a beta feature.\nThe API may change in ways that are not backwards compatible.\n\nA task may continue to run for some time after it has been cancelled because it may not be able to safely stop its current activity straight away.\nIt is also possible that Elasticsearch must complete its work on other tasks before it can process the cancellation.\nThe get task information API will continue to list these cancelled tasks until they complete.\nThe cancelled flag in the response indicates that the cancellation command has been processed and the task will stop as soon as possible.\n\nTo troubleshoot why a cancelled task does not complete promptly, use the get task information API with the `?detailed` parameter to identify the other tasks the system is running.\nYou can also use the node hot threads API to obtain detailed information about the work the system is doing instead of completing the cancelled task.\n\nFor relocatable tasks, this API transparently follows the task across graceful shutdown relocations,\nso callers can keep using the original task ID. The returned task reports its `original_task_id` and `original_start_time_in_millis`\nif it is continuing work from an earlier task.\n\n## Required authorization\n\n* Cluster privileges: `manage`"
       }
     },
-    "com.elasticsearch.api#TasksGetRequest": {
+    "com.elasticsearch.api#GetTaskRequest": {
       "type": "structure",
       "members": {
         "task_id": {
@@ -173266,7 +173267,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#TasksGetResponse": {
+    "com.elasticsearch.api#GetTaskResponse": {
       "type": "structure",
       "members": {
         "completed": {
@@ -173292,13 +173293,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.elasticsearch.api#TasksGet": {
+    "com.elasticsearch.api#GetTask": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#TasksGetRequest"
+        "target": "com.elasticsearch.api#GetTaskRequest"
       },
       "output": {
-        "target": "com.elasticsearch.api#TasksGetResponse"
+        "target": "com.elasticsearch.api#GetTaskResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -173309,30 +173310,30 @@
         "smithy.api#documentation": "Get task information\n\nGet information about a task currently running in the cluster.\n\nWARNING: The task management API is new and should still be considered a beta feature.\nThe API may change in ways that are not backwards compatible.\n\nIf the task identifier is not found, a 404 response code indicates that there are no resources that match the request.\n\nFor relocatable tasks, this API transparently follows the task across graceful shutdown relocations,\nso callers can keep using the original task ID. The returned task reports its `original_task_id` and `original_start_time_in_millis`\nif it is continuing work from an earlier task.\n\n## Required authorization\n\n* Cluster privileges: `monitor`"
       }
     },
-    "com.elasticsearch.api#TasksListRequestActionsCase1List": {
+    "com.elasticsearch.api#ListTasksRequestActionsCase1List": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.elasticsearch.api#TasksListRequestActions": {
+    "com.elasticsearch.api#ListTasksRequestActions": {
       "type": "union",
       "members": {
         "Case0": {
           "target": "smithy.api#String"
         },
         "Case1": {
-          "target": "com.elasticsearch.api#TasksListRequestActionsCase1List"
+          "target": "com.elasticsearch.api#ListTasksRequestActionsCase1List"
         }
       },
       "traits": {}
     },
-    "com.elasticsearch.api#TasksListRequest": {
+    "com.elasticsearch.api#ListTasksRequest": {
       "type": "structure",
       "members": {
         "actions": {
-          "target": "com.elasticsearch.api#TasksListRequestActions",
+          "target": "com.elasticsearch.api#ListTasksRequestActions",
           "traits": {
             "smithy.api#httpQuery": "actions",
             "smithy.api#documentation": "A comma-separated list or wildcard expression of actions used to limit the request.\nFor example, you can use `cluser:*` to retrieve all cluster-related tasks."
@@ -173385,10 +173386,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#TasksList": {
+    "com.elasticsearch.api#ListTasks": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#TasksListRequest"
+        "target": "com.elasticsearch.api#ListTasksRequest"
       },
       "output": {
         "target": "com.elasticsearch.api#TasksTypesTaskListResponseBase"
@@ -179022,7 +179023,7 @@
         "smithy.api#documentation": "Acknowledge a watch\n\nAcknowledging a watch enables you to manually throttle the execution of the watch's actions.\n\nThe acknowledgement state of an action is stored in the `status.actions.<id>.ack.state` structure.\n\nIMPORTANT: If the specified watch is currently being executed, this API will return an error\nThe reason for this behavior is to prevent overwriting the watch status from a watch execution.\n\nAcknowledging an action throttles further executions of that action until its `ack.state` is reset to `awaits_successful_execution`.\nThis happens when the condition of the watch is not met (the condition evaluates to false).\nTo demonstrate how throttling works in practice and how it can be configured for individual actions within a watch, refer to External documentation.\n\n## Required authorization\n\n* Cluster privileges: `manage_watcher`"
       }
     },
-    "com.elasticsearch.api#WatcherAckWatchRequest": {
+    "com.elasticsearch.api#WatchWatcherAckRequest": {
       "type": "structure",
       "members": {
         "watch_id": {
@@ -179038,7 +179039,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#WatcherAckWatchResponse": {
+    "com.elasticsearch.api#WatchWatcherAckResponse": {
       "type": "structure",
       "members": {
         "status": {
@@ -179052,13 +179053,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.elasticsearch.api#WatcherAckWatch": {
+    "com.elasticsearch.api#WatchWatcherAck": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#WatcherAckWatchRequest"
+        "target": "com.elasticsearch.api#WatchWatcherAckRequest"
       },
       "output": {
-        "target": "com.elasticsearch.api#WatcherAckWatchResponse"
+        "target": "com.elasticsearch.api#WatchWatcherAckResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -183517,7 +183518,7 @@
         "smithy.api#documentation": "Query watches\n\nGet all registered watches in a paginated manner and optionally filter watches by a query.\n\nNote that only the `_id` and `metadata.*` fields are queryable or sortable.\n\n## Required authorization\n\n* Cluster privileges: `monitor_watcher`"
       }
     },
-    "com.elasticsearch.api#WatcherStartRequest": {
+    "com.elasticsearch.api#StartWatcherRequest": {
       "type": "structure",
       "members": {
         "master_timeout": {
@@ -183532,10 +183533,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#WatcherStart": {
+    "com.elasticsearch.api#StartWatcher": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#WatcherStartRequest"
+        "target": "com.elasticsearch.api#StartWatcherRequest"
       },
       "output": {
         "target": "com.elasticsearch.api#TypesAcknowledgedResponseBase"
@@ -184009,7 +184010,7 @@
         "smithy.api#documentation": "Get Watcher statistics\n\nThis API always returns basic metrics.\nYou retrieve more metrics by using the metric parameter.\n\n## Required authorization\n\n* Cluster privileges: `monitor_watcher`"
       }
     },
-    "com.elasticsearch.api#WatcherStopRequest": {
+    "com.elasticsearch.api#StopWatcherRequest": {
       "type": "structure",
       "members": {
         "master_timeout": {
@@ -184024,10 +184025,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#WatcherStop": {
+    "com.elasticsearch.api#StopWatcher": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#WatcherStopRequest"
+        "target": "com.elasticsearch.api#StopWatcherRequest"
       },
       "output": {
         "target": "com.elasticsearch.api#TypesAcknowledgedResponseBase"
@@ -187141,7 +187142,7 @@
           "target": "com.elasticsearch.api#CcrDeleteAutoFollowPattern"
         },
         {
-          "target": "com.elasticsearch.api#CcrFollow"
+          "target": "com.elasticsearch.api#FollowCcr"
         },
         {
           "target": "com.elasticsearch.api#CcrFollowInfo"
@@ -187159,7 +187160,7 @@
           "target": "com.elasticsearch.api#CcrPauseAutoFollowPattern"
         },
         {
-          "target": "com.elasticsearch.api#CcrPauseFollow"
+          "target": "com.elasticsearch.api#FollowCcrPause"
         },
         {
           "target": "com.elasticsearch.api#CcrResumeAutoFollowPattern"
@@ -187171,7 +187172,7 @@
           "target": "com.elasticsearch.api#CcrStats"
         },
         {
-          "target": "com.elasticsearch.api#CcrUnfollow"
+          "target": "com.elasticsearch.api#UnfollowCcr"
         },
         {
           "target": "com.elasticsearch.api#Scroll"
@@ -187264,46 +187265,46 @@
           "target": "com.elasticsearch.api#ConnectorCheckIn"
         },
         {
-          "target": "com.elasticsearch.api#ConnectorGet"
+          "target": "com.elasticsearch.api#GetConnector"
         },
         {
-          "target": "com.elasticsearch.api#ConnectorPut"
+          "target": "com.elasticsearch.api#PutConnector"
         },
         {
-          "target": "com.elasticsearch.api#ConnectorDelete"
+          "target": "com.elasticsearch.api#DeleteConnector"
         },
         {
-          "target": "com.elasticsearch.api#ConnectorList"
+          "target": "com.elasticsearch.api#ListConnector"
         },
         {
-          "target": "com.elasticsearch.api#ConnectorPost"
+          "target": "com.elasticsearch.api#PostConnector"
         },
         {
           "target": "com.elasticsearch.api#ConnectorPut1"
         },
         {
-          "target": "com.elasticsearch.api#ConnectorSyncJobCancel"
+          "target": "com.elasticsearch.api#CancelConnectorSyncJob"
         },
         {
           "target": "com.elasticsearch.api#ConnectorSyncJobCheckIn"
         },
         {
-          "target": "com.elasticsearch.api#ConnectorSyncJobClaim"
+          "target": "com.elasticsearch.api#ClaimConnectorSyncJob"
         },
         {
-          "target": "com.elasticsearch.api#ConnectorSyncJobGet"
+          "target": "com.elasticsearch.api#GetConnectorSyncJob"
         },
         {
-          "target": "com.elasticsearch.api#ConnectorSyncJobDelete"
+          "target": "com.elasticsearch.api#DeleteConnectorSyncJob"
         },
         {
           "target": "com.elasticsearch.api#ConnectorSyncJobError"
         },
         {
-          "target": "com.elasticsearch.api#ConnectorSyncJobList"
+          "target": "com.elasticsearch.api#ListConnectorSyncJob"
         },
         {
-          "target": "com.elasticsearch.api#ConnectorSyncJobPost"
+          "target": "com.elasticsearch.api#PostConnectorSyncJob"
         },
         {
           "target": "com.elasticsearch.api#ConnectorSyncJobUpdateStats"
@@ -187381,10 +187382,10 @@
           "target": "com.elasticsearch.api#Get"
         },
         {
-          "target": "com.elasticsearch.api#Index1"
+          "target": "com.elasticsearch.api#List1"
         },
         {
-          "target": "com.elasticsearch.api#Index"
+          "target": "com.elasticsearch.api#List"
         },
         {
           "target": "com.elasticsearch.api#Delete"
@@ -187408,7 +187409,7 @@
           "target": "com.elasticsearch.api#DeleteScript"
         },
         {
-          "target": "com.elasticsearch.api#EncryptionReset"
+          "target": "com.elasticsearch.api#ResetEncryption"
         },
         {
           "target": "com.elasticsearch.api#EnrichGetPolicy"
@@ -187429,16 +187430,16 @@
           "target": "com.elasticsearch.api#EnrichStats"
         },
         {
-          "target": "com.elasticsearch.api#EqlGet"
+          "target": "com.elasticsearch.api#GetEql"
         },
         {
-          "target": "com.elasticsearch.api#EqlDelete"
+          "target": "com.elasticsearch.api#DeleteEql"
         },
         {
           "target": "com.elasticsearch.api#EqlGetStatus"
         },
         {
-          "target": "com.elasticsearch.api#EqlSearch"
+          "target": "com.elasticsearch.api#SearchEql"
         },
         {
           "target": "com.elasticsearch.api#EqlSearch1"
@@ -187447,13 +187448,13 @@
           "target": "com.elasticsearch.api#EsqlAsyncQuery"
         },
         {
-          "target": "com.elasticsearch.api#EsqlAsyncQueryGet"
+          "target": "com.elasticsearch.api#GetEsqlAsyncQuery"
         },
         {
-          "target": "com.elasticsearch.api#EsqlAsyncQueryDelete"
+          "target": "com.elasticsearch.api#DeleteEsqlAsyncQuery"
         },
         {
-          "target": "com.elasticsearch.api#EsqlAsyncQueryStop"
+          "target": "com.elasticsearch.api#StopEsqlAsyncQuery"
         },
         {
           "target": "com.elasticsearch.api#EsqlGetDataSource1"
@@ -187543,7 +187544,7 @@
           "target": "com.elasticsearch.api#FleetMsearch3"
         },
         {
-          "target": "com.elasticsearch.api#FleetSearch"
+          "target": "com.elasticsearch.api#SearchFleet"
         },
         {
           "target": "com.elasticsearch.api#FleetSearch1"
@@ -187597,16 +187598,16 @@
           "target": "com.elasticsearch.api#IlmRemovePolicy"
         },
         {
-          "target": "com.elasticsearch.api#IlmRetry"
+          "target": "com.elasticsearch.api#RetryIlm"
         },
         {
-          "target": "com.elasticsearch.api#IlmStart"
+          "target": "com.elasticsearch.api#StartIlm"
         },
         {
-          "target": "com.elasticsearch.api#IlmStop"
+          "target": "com.elasticsearch.api#StopIlm"
         },
         {
-          "target": "com.elasticsearch.api#Index2"
+          "target": "com.elasticsearch.api#List2"
         },
         {
           "target": "com.elasticsearch.api#IndicesAddBlock"
@@ -187639,19 +187640,19 @@
           "target": "com.elasticsearch.api#IndicesClone1"
         },
         {
-          "target": "com.elasticsearch.api#IndicesClone"
+          "target": "com.elasticsearch.api#CloneIndex"
         },
         {
           "target": "com.elasticsearch.api#IndicesClose"
         },
         {
-          "target": "com.elasticsearch.api#IndicesGet"
+          "target": "com.elasticsearch.api#GetIndex"
         },
         {
-          "target": "com.elasticsearch.api#IndicesCreate"
+          "target": "com.elasticsearch.api#CreateIndex"
         },
         {
-          "target": "com.elasticsearch.api#IndicesDelete"
+          "target": "com.elasticsearch.api#DeleteIndex"
         },
         {
           "target": "com.elasticsearch.api#IndicesGetDataStream1"
@@ -187744,7 +187745,7 @@
           "target": "com.elasticsearch.api#IndicesFlush1"
         },
         {
-          "target": "com.elasticsearch.api#IndicesFlush"
+          "target": "com.elasticsearch.api#FlushIndex"
         },
         {
           "target": "com.elasticsearch.api#IndicesFlush3"
@@ -187849,7 +187850,7 @@
           "target": "com.elasticsearch.api#IndicesRefresh1"
         },
         {
-          "target": "com.elasticsearch.api#IndicesRefresh"
+          "target": "com.elasticsearch.api#RefreshIndex"
         },
         {
           "target": "com.elasticsearch.api#IndicesRefresh3"
@@ -187870,7 +187871,7 @@
           "target": "com.elasticsearch.api#IndicesResolveCluster1"
         },
         {
-          "target": "com.elasticsearch.api#IndicesResolveIndex"
+          "target": "com.elasticsearch.api#ListIndicesResolve"
         },
         {
           "target": "com.elasticsearch.api#IndicesResolveIndex1"
@@ -187954,10 +187955,10 @@
           "target": "com.elasticsearch.api#InferenceInference"
         },
         {
-          "target": "com.elasticsearch.api#InferencePut"
+          "target": "com.elasticsearch.api#PutInference"
         },
         {
-          "target": "com.elasticsearch.api#InferenceDelete"
+          "target": "com.elasticsearch.api#DeleteInference"
         },
         {
           "target": "com.elasticsearch.api#InferenceGet2"
@@ -187984,7 +187985,7 @@
           "target": "com.elasticsearch.api#InferenceEmbedding"
         },
         {
-          "target": "com.elasticsearch.api#InferenceGet"
+          "target": "com.elasticsearch.api#GetInference"
         },
         {
           "target": "com.elasticsearch.api#InferenceGet3"
@@ -188077,7 +188078,7 @@
           "target": "com.elasticsearch.api#InferenceTextEmbedding"
         },
         {
-          "target": "com.elasticsearch.api#InferenceUpdate"
+          "target": "com.elasticsearch.api#UpdateInference"
         },
         {
           "target": "com.elasticsearch.api#InferenceUpdate1"
@@ -188140,16 +188141,16 @@
           "target": "com.elasticsearch.api#IngestSimulate3"
         },
         {
-          "target": "com.elasticsearch.api#LicenseGet"
+          "target": "com.elasticsearch.api#GetLicense"
         },
         {
           "target": "com.elasticsearch.api#LicensePost1"
         },
         {
-          "target": "com.elasticsearch.api#LicensePost"
+          "target": "com.elasticsearch.api#PostLicense"
         },
         {
-          "target": "com.elasticsearch.api#LicenseDelete"
+          "target": "com.elasticsearch.api#DeleteLicense"
         },
         {
           "target": "com.elasticsearch.api#LicenseGetBasicStatus"
@@ -188557,7 +188558,7 @@
           "target": "com.elasticsearch.api#Mtermvectors3"
         },
         {
-          "target": "com.elasticsearch.api#NodesClearRepositoriesMeteringArchive"
+          "target": "com.elasticsearch.api#ArchiveNodesClearRepositoriesMetering"
         },
         {
           "target": "com.elasticsearch.api#NodesGetRepositoriesMeteringInfo"
@@ -188677,7 +188678,7 @@
           "target": "com.elasticsearch.api#RenderSearchTemplate3"
         },
         {
-          "target": "com.elasticsearch.api#ScriptsPainlessExecute"
+          "target": "com.elasticsearch.api#ExecuteScriptsPainless"
         },
         {
           "target": "com.elasticsearch.api#ScriptsPainlessExecute1"
@@ -188770,7 +188771,7 @@
           "target": "com.elasticsearch.api#SecurityActivateUserProfile"
         },
         {
-          "target": "com.elasticsearch.api#SecurityAuthenticate"
+          "target": "com.elasticsearch.api#AuthenticateSecurity"
         },
         {
           "target": "com.elasticsearch.api#SecurityGetRole1"
@@ -188995,10 +188996,10 @@
           "target": "com.elasticsearch.api#SecurityHasPrivilegesUserProfile1"
         },
         {
-          "target": "com.elasticsearch.api#SecurityOidcAuthenticate"
+          "target": "com.elasticsearch.api#AuthenticateSecurityOidc"
         },
         {
-          "target": "com.elasticsearch.api#SecurityOidcLogout"
+          "target": "com.elasticsearch.api#LogoutSecurityOidc"
         },
         {
           "target": "com.elasticsearch.api#SecurityOidcPrepareAuthentication"
@@ -189022,16 +189023,16 @@
           "target": "com.elasticsearch.api#SecurityQueryUser1"
         },
         {
-          "target": "com.elasticsearch.api#SecuritySamlAuthenticate"
+          "target": "com.elasticsearch.api#AuthenticateSecuritySaml"
         },
         {
-          "target": "com.elasticsearch.api#SecuritySamlCompleteLogout"
+          "target": "com.elasticsearch.api#LogoutSecuritySamlComplete"
         },
         {
-          "target": "com.elasticsearch.api#SecuritySamlInvalidate"
+          "target": "com.elasticsearch.api#InvalidateSecuritySaml"
         },
         {
-          "target": "com.elasticsearch.api#SecuritySamlLogout"
+          "target": "com.elasticsearch.api#LogoutSecuritySaml"
         },
         {
           "target": "com.elasticsearch.api#SecuritySamlPrepareAuthentication"
@@ -189094,28 +189095,28 @@
           "target": "com.elasticsearch.api#SlmGetStatus"
         },
         {
-          "target": "com.elasticsearch.api#SlmStart"
+          "target": "com.elasticsearch.api#StartSlm"
         },
         {
-          "target": "com.elasticsearch.api#SlmStop"
+          "target": "com.elasticsearch.api#StopSlm"
         },
         {
           "target": "com.elasticsearch.api#SnapshotCleanupRepository"
         },
         {
-          "target": "com.elasticsearch.api#SnapshotClone"
+          "target": "com.elasticsearch.api#CloneSnapshot"
         },
         {
-          "target": "com.elasticsearch.api#SnapshotGet"
+          "target": "com.elasticsearch.api#GetSnapshot"
         },
         {
           "target": "com.elasticsearch.api#SnapshotCreate1"
         },
         {
-          "target": "com.elasticsearch.api#SnapshotCreate"
+          "target": "com.elasticsearch.api#CreateSnapshot"
         },
         {
-          "target": "com.elasticsearch.api#SnapshotDelete"
+          "target": "com.elasticsearch.api#DeleteSnapshot"
         },
         {
           "target": "com.elasticsearch.api#SnapshotGetRepository1"
@@ -189139,7 +189140,7 @@
           "target": "com.elasticsearch.api#SnapshotRepositoryVerifyIntegrity"
         },
         {
-          "target": "com.elasticsearch.api#SnapshotRestore"
+          "target": "com.elasticsearch.api#RestoreSnapshot"
         },
         {
           "target": "com.elasticsearch.api#SnapshotStatus"
@@ -189181,10 +189182,10 @@
           "target": "com.elasticsearch.api#SslCertificates"
         },
         {
-          "target": "com.elasticsearch.api#StreamsLogsDisable"
+          "target": "com.elasticsearch.api#DisableStreamsLog"
         },
         {
-          "target": "com.elasticsearch.api#StreamsLogsEnable"
+          "target": "com.elasticsearch.api#EnableStreamsLog"
         },
         {
           "target": "com.elasticsearch.api#StreamsStatus"
@@ -189211,16 +189212,16 @@
           "target": "com.elasticsearch.api#SynonymsGetSynonymsSets"
         },
         {
-          "target": "com.elasticsearch.api#TasksCancel"
+          "target": "com.elasticsearch.api#CancelTask"
         },
         {
           "target": "com.elasticsearch.api#TasksCancel1"
         },
         {
-          "target": "com.elasticsearch.api#TasksGet"
+          "target": "com.elasticsearch.api#GetTask"
         },
         {
-          "target": "com.elasticsearch.api#TasksList"
+          "target": "com.elasticsearch.api#ListTasks"
         },
         {
           "target": "com.elasticsearch.api#TermsEnum"
@@ -189322,7 +189323,7 @@
           "target": "com.elasticsearch.api#WatcherAckWatch1"
         },
         {
-          "target": "com.elasticsearch.api#WatcherAckWatch"
+          "target": "com.elasticsearch.api#WatchWatcherAck"
         },
         {
           "target": "com.elasticsearch.api#WatcherAckWatch3"
@@ -189379,7 +189380,7 @@
           "target": "com.elasticsearch.api#WatcherQueryWatches1"
         },
         {
-          "target": "com.elasticsearch.api#WatcherStart"
+          "target": "com.elasticsearch.api#StartWatcher"
         },
         {
           "target": "com.elasticsearch.api#WatcherStats"
@@ -189388,7 +189389,7 @@
           "target": "com.elasticsearch.api#WatcherStats1"
         },
         {
-          "target": "com.elasticsearch.api#WatcherStop"
+          "target": "com.elasticsearch.api#StopWatcher"
         },
         {
           "target": "com.elasticsearch.api#XpackInfo"
