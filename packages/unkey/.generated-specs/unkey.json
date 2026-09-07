@@ -1002,7 +1002,7 @@
         "smithy.api#documentation": "Connect a GitHub repository to the app on creation. Omit to create the app\nwithout a repository and connect one later with apps.updateApp.\n"
       }
     },
-    "com.unkey.api#AppsCreateAppRequest": {
+    "com.unkey.api#CreateAppRequest": {
       "type": "structure",
       "members": {
         "project": {
@@ -1063,10 +1063,10 @@
       },
       "traits": {}
     },
-    "com.unkey.api#AppsCreateApp": {
+    "com.unkey.api#CreateApp": {
       "type": "operation",
       "input": {
-        "target": "com.unkey.api#AppsCreateAppRequest"
+        "target": "com.unkey.api#CreateAppRequest"
       },
       "output": {
         "target": "com.unkey.api#V2AppsCreateAppResponseBody"
@@ -1094,7 +1094,7 @@
         "smithy.api#documentation": "Create app\n\nCreate an app within a project. The app is created with default `production` and `preview` environments.\n\nThe slug you provide is the stable, caller-defined handle used to reference this app. It must be unique within the project.\n\n**Important**: The slug cannot collide with an existing app in the same project. A duplicate slug returns a 409 conflict.\n\n**Required Permissions**\n\nYour root key must have one of the following permissions:\n- `project.*.create_app` (to create apps in any project)\n- `project.<project_id>.create_app` (to create apps in a specific project)"
       }
     },
-    "com.unkey.api#AppsDeleteAppRequest": {
+    "com.unkey.api#DeleteAppRequest": {
       "type": "structure",
       "members": {
         "project": {
@@ -1114,10 +1114,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.unkey.api#AppsDeleteApp": {
+    "com.unkey.api#DeleteApp": {
       "type": "operation",
       "input": {
-        "target": "com.unkey.api#AppsDeleteAppRequest"
+        "target": "com.unkey.api#DeleteAppRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1142,7 +1142,7 @@
         "smithy.api#documentation": "Delete app\n\nDelete an existing app, identified by its id.\n\nDeletion is asynchronous and eventually consistent. The app and all of its associated resources (environments, deployments, custom domains) are torn down by a background workflow. A successful response indicates the deletion was enqueued, not that every resource has already been removed.\n\nApps with delete protection enabled cannot be deleted until protection is disabled.\n\n**Required Permissions**\n\nYour root key must have one of the following permissions:\n- `app.*.delete_app` (to delete any app)\n- `app.<app_id>.delete_app` (to delete a specific app)"
       }
     },
-    "com.unkey.api#AppsGetAppRequest": {
+    "com.unkey.api#GetAppRequest": {
       "type": "structure",
       "members": {
         "project": {
@@ -1265,10 +1265,10 @@
       },
       "traits": {}
     },
-    "com.unkey.api#AppsGetApp": {
+    "com.unkey.api#GetApp": {
       "type": "operation",
       "input": {
-        "target": "com.unkey.api#AppsGetAppRequest"
+        "target": "com.unkey.api#GetAppRequest"
       },
       "output": {
         "target": "com.unkey.api#V2AppsGetAppResponseBody"
@@ -1293,7 +1293,7 @@
         "smithy.api#documentation": "Get app\n\nRetrieve a single app by its id or slug within a project.\n\nUse this to fetch app details after creation or to verify an app exists before performing operations.\n\n**Required Permissions**\n\nYour root key must have one of the following permissions:\n- `app.*.read_app` (to read any app)\n- `app.<app_id>.read_app` (to read a specific app)"
       }
     },
-    "com.unkey.api#AppsListAppsRequest": {
+    "com.unkey.api#ListAppsRequest": {
       "type": "structure",
       "members": {
         "project": {
@@ -1359,10 +1359,10 @@
         "smithy.api#documentation": "Array of apps in the project, ordered by app id."
       }
     },
-    "com.unkey.api#AppsListApps": {
+    "com.unkey.api#ListApps": {
       "type": "operation",
       "input": {
-        "target": "com.unkey.api#AppsListAppsRequest"
+        "target": "com.unkey.api#ListAppsRequest"
       },
       "output": {
         "target": "com.unkey.api#V2AppsListAppsResponseBody"
@@ -1405,7 +1405,7 @@
       },
       "traits": {}
     },
-    "com.unkey.api#AppsUpdateAppRequest": {
+    "com.unkey.api#UpdateAppRequest": {
       "type": "structure",
       "members": {
         "project": {
@@ -1465,10 +1465,10 @@
       },
       "traits": {}
     },
-    "com.unkey.api#AppsUpdateApp": {
+    "com.unkey.api#UpdateApp": {
       "type": "operation",
       "input": {
-        "target": "com.unkey.api#AppsUpdateAppRequest"
+        "target": "com.unkey.api#UpdateAppRequest"
       },
       "output": {
         "target": "com.unkey.api#V2AppsUpdateAppResponseBody"
@@ -1551,7 +1551,7 @@
         "smithy.api#documentation": "Re-run an existing deployment."
       }
     },
-    "com.unkey.api#DeploymentsCreateDeploymentRequest": {
+    "com.unkey.api#CreateDeploymentRequest": {
       "type": "structure",
       "members": {
         "project": {
@@ -1617,10 +1617,10 @@
       },
       "traits": {}
     },
-    "com.unkey.api#DeploymentsCreateDeployment": {
+    "com.unkey.api#CreateDeployment": {
       "type": "operation",
       "input": {
-        "target": "com.unkey.api#DeploymentsCreateDeploymentRequest"
+        "target": "com.unkey.api#CreateDeploymentRequest"
       },
       "output": {
         "target": "com.unkey.api#V2DeploymentsCreateDeploymentResponseBody"
@@ -1645,7 +1645,7 @@
         "smithy.api#documentation": "Create deployment\n\nCreate a deployment for an app in a project.\n\nProvide exactly one source:\n- `image`: deploy a prebuilt Docker image as-is (no build).\n- `git`: build and deploy from the app's connected GitHub repository, a branch, a specific commit, or a fork commit. Requires the app to have a repository connected.\n- `deployment`: re-run an existing deployment by its id. Git-connected apps rebuild from the recorded commit; other apps reuse the recorded image.\n\nReturns immediately with a `deploymentId`. The build and rollout run asynchronously — poll `deployments.getDeployment` to watch status until it is ready.\n\n**Authentication**: requires a root key with permission to create deployments."
       }
     },
-    "com.unkey.api#DeploymentsGetDeploymentRequest": {
+    "com.unkey.api#GetDeploymentRequest": {
       "type": "structure",
       "members": {
         "deploymentId": {
@@ -2218,10 +2218,10 @@
         "smithy.api#documentation": "HTTP method used to probe the container.\n"
       }
     },
-    "com.unkey.api#DeploymentsGetDeployment": {
+    "com.unkey.api#GetDeployment": {
       "type": "operation",
       "input": {
-        "target": "com.unkey.api#DeploymentsGetDeploymentRequest"
+        "target": "com.unkey.api#GetDeploymentRequest"
       },
       "output": {
         "target": "com.unkey.api#V2DeploymentsGetDeploymentResponseBody"
@@ -2243,7 +2243,7 @@
         "smithy.api#documentation": "Get deployment\n\nRetrieve a single deployment by its id.\n\nUse this to check a deployment's status after creating it, or to inspect the\nruntime configuration of an existing deployment.\n\n**Required Permissions**\n\nYour root key must have one of the following permissions:\n- `environment.*.read_deployment` (to read deployments in any environment)\n- `environment.<environment_id>.read_deployment` (to read deployments in a specific environment)"
       }
     },
-    "com.unkey.api#DeploymentsListDeploymentsRequestStatusList": {
+    "com.unkey.api#ListDeploymentsRequestStatusList": {
       "type": "list",
       "member": {
         "target": "com.unkey.api#DeploymentStatus"
@@ -2252,7 +2252,7 @@
         "smithy.api#documentation": "Restrict results to deployments in any of the given lifecycle statuses.\nOmit to return deployments in every status.\n"
       }
     },
-    "com.unkey.api#DeploymentsListDeploymentsRequest": {
+    "com.unkey.api#ListDeploymentsRequest": {
       "type": "structure",
       "members": {
         "project": {
@@ -2274,7 +2274,7 @@
           }
         },
         "status": {
-          "target": "com.unkey.api#DeploymentsListDeploymentsRequestStatusList",
+          "target": "com.unkey.api#ListDeploymentsRequestStatusList",
           "traits": {
             "smithy.api#documentation": "Restrict results to deployments in any of the given lifecycle statuses.\nOmit to return deployments in every status.\n"
           }
@@ -2330,10 +2330,10 @@
         "smithy.api#documentation": "Array of deployments, ordered newest first."
       }
     },
-    "com.unkey.api#DeploymentsListDeployments": {
+    "com.unkey.api#ListDeployments": {
       "type": "operation",
       "input": {
-        "target": "com.unkey.api#DeploymentsListDeploymentsRequest"
+        "target": "com.unkey.api#ListDeploymentsRequest"
       },
       "output": {
         "target": "com.unkey.api#V2DeploymentsListDeploymentsResponseBody"
@@ -2437,7 +2437,7 @@
         "smithy.api#documentation": "Rollback deployment\n\nRoll live traffic back to a previous deployment. `deploymentId` is the\ndeployment to roll back TO; the app's current deployment is used as\nthe rollback source automatically.\n\nThe target deployment must be ready, not already shutting down, belong to\nthe production environment, and must not itself be the current deployment.\n\nAfter a rollback the app is marked as rolled back, which prevents new\ndeployments from automatically taking over live traffic. Promote the\nrolled-back deployment (or a newer one) to clear this state.\n\nRollback runs as a durable workflow: this endpoint returns once the\nrollback is accepted. Poll `getDeployment` or `listDeployments` to observe\nthe result.\n\n**Required Permissions**\n\nYour root key must have one of the following permissions:\n- `environment.*.rollback_deployment` (to roll back deployments in any environment)\n- `environment.<environment_id>.rollback_deployment` (to roll back deployments in a specific environment)"
       }
     },
-    "com.unkey.api#DeploymentsStartDeploymentRequest": {
+    "com.unkey.api#StartDeploymentRequest": {
       "type": "structure",
       "members": {
         "deploymentId": {
@@ -2452,10 +2452,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.unkey.api#DeploymentsStartDeployment": {
+    "com.unkey.api#StartDeployment": {
       "type": "operation",
       "input": {
-        "target": "com.unkey.api#DeploymentsStartDeploymentRequest"
+        "target": "com.unkey.api#StartDeploymentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2477,7 +2477,7 @@
         "smithy.api#documentation": "Start deployment\n\nStart a deployment that was previously stopped with `stopDeployment`, so it\nserves traffic again. The deployment keeps the configuration it had when it\nwas stopped; nothing is rebuilt or redeployed.\n\nThe deployment must currently be stopped, and must belong to a\nnon-production environment. Production deployments are never stopped, so\nthey cannot be started.\n\nStarting is asynchronous: this endpoint only enqueues the start and returns\nimmediately. Poll `getDeployment` until the status reaches `ready`.\n\n**Required Permissions**\n\nYour root key must have one of the following permissions:\n- `environment.*.start_deployment` (to start deployments in any environment)\n- `environment.<environment_id>.start_deployment` (to start deployments in a specific environment)"
       }
     },
-    "com.unkey.api#DeploymentsStopDeploymentRequest": {
+    "com.unkey.api#StopDeploymentRequest": {
       "type": "structure",
       "members": {
         "deploymentId": {
@@ -2491,10 +2491,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.unkey.api#DeploymentsStopDeployment": {
+    "com.unkey.api#StopDeployment": {
       "type": "operation",
       "input": {
-        "target": "com.unkey.api#DeploymentsStopDeploymentRequest"
+        "target": "com.unkey.api#StopDeploymentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2516,7 +2516,7 @@
         "smithy.api#documentation": "Stop deployment\n\nStop a running preview deployment. Stopped deployments keep their\nconfiguration and can be resumed later with `startDeployment`.\n\nThe deployment must be ready and running, and must belong to a\nnon-production environment; production deployments cannot be stopped.\nA deployment that is already draining from a previous stop is rejected\nwith a precondition error.\n\nStopping is asynchronous: this endpoint only enqueues the stop and returns\nimmediately. Poll `getDeployment` until the status reaches `stopped`.\n\n**Required Permissions**\n\nYour root key must have one of the following permissions:\n- `environment.*.stop_deployment` (to stop deployments in any environment)\n- `environment.<environment_id>.stop_deployment` (to stop deployments in a specific environment)"
       }
     },
-    "com.unkey.api#DomainsCreateDomainRequest": {
+    "com.unkey.api#CreateDomainRequest": {
       "type": "structure",
       "members": {
         "project": {
@@ -2693,10 +2693,10 @@
         "smithy.api#documentation": "One-click setup at the domain's DNS provider. Omitted entirely when the provider does not support\nDomain Connect or discovery failed, so the object's presence is the signal that the shortcut is\navailable and both of its fields are filled.\n"
       }
     },
-    "com.unkey.api#DomainsCreateDomain": {
+    "com.unkey.api#CreateDomain": {
       "type": "operation",
       "input": {
-        "target": "com.unkey.api#DomainsCreateDomainRequest"
+        "target": "com.unkey.api#CreateDomainRequest"
       },
       "output": {
         "target": "com.unkey.api#V2DomainsCreateDomainResponseBody"
@@ -2724,7 +2724,7 @@
         "smithy.api#documentation": "Create domain\n\nAttach a custom domain to an environment and start verifying it.\n\nThe domain is created in the `pending` state and does not serve traffic until verification succeeds. Verification runs in the background and polls DNS, so it is eventually consistent.\n\nThe response returns `dnsRecords`: every record needed to finish setup, already resolved for whether this domain is an apex or a subdomain. Create every entry exactly as given. One record establishes routing and one proves ownership, and both are needed: whether ownership can be inferred from the routing record depends on how your provider publishes it, and a name another workspace has already verified can only be claimed through the ownership record. Neither is knowable before the records exist.\n\nWhen your DNS provider supports Domain Connect, the response also carries a `domainConnect` object; opening its `url` applies the same records at the provider in one step. The object is absent when the shortcut is unavailable.\n\nDomains are unique per workspace, so the same name cannot be attached to two environments. Attaching a domain that already exists in your workspace returns a 409 conflict.\n\nHow many domains you may attach is set by your plan. Attaching one beyond that allowance returns a 403; upgrade the plan or remove a domain you no longer need.\n\n**Important**: verification stops after 24 hours without the required DNS records, and the domain moves to `failed`.\n\n**Required Permissions**\n\nYour root key must have one of the following permissions:\n- `environment.*.create_domain` (to attach domains to any environment)\n- `environment.<environment_id>.create_domain` (to attach domains to a specific environment)"
       }
     },
-    "com.unkey.api#DomainsDeleteDomainRequest": {
+    "com.unkey.api#DeleteDomainRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -2757,10 +2757,10 @@
       },
       "traits": {}
     },
-    "com.unkey.api#DomainsDeleteDomain": {
+    "com.unkey.api#DeleteDomain": {
       "type": "operation",
       "input": {
-        "target": "com.unkey.api#DomainsDeleteDomainRequest"
+        "target": "com.unkey.api#DeleteDomainRequest"
       },
       "output": {
         "target": "com.unkey.api#V2DomainsDeleteDomainResponseBody"
@@ -2785,7 +2785,7 @@
         "smithy.api#documentation": "Delete domain\n\nDelete a custom domain from your workspace.\n\nAddress the domain by its id or by its name. Names are unique per workspace, so\n`api.acme.com` is enough.\n\nUnkey stops serving the domain. Later requests fail with a certificate error. The DNS\nrecords at your provider stay in place.\n\n**Required Permissions**\n\nYour root key must have one of the following permissions:\n- `environment.*.delete_domain` (to delete domains in any environment)\n- `environment.<environment_id>.delete_domain` (to delete domains in a specific environment)"
       }
     },
-    "com.unkey.api#DomainsGetDomainRequest": {
+    "com.unkey.api#GetDomainRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -2935,10 +2935,10 @@
         "smithy.api#documentation": "The DNS records this domain needs. Create each record at your DNS provider.\nEach record has a `verified` flag. The flag shows whether Unkey has read that record back,\nso it tells you which records are still missing.\n"
       }
     },
-    "com.unkey.api#DomainsGetDomain": {
+    "com.unkey.api#GetDomain": {
       "type": "operation",
       "input": {
-        "target": "com.unkey.api#DomainsGetDomainRequest"
+        "target": "com.unkey.api#GetDomainRequest"
       },
       "output": {
         "target": "com.unkey.api#V2DomainsGetDomainResponseBody"
@@ -2963,7 +2963,7 @@
         "smithy.api#documentation": "Get domain\n\nRetrieve a custom domain and its verification status.\n\nAddress the domain by its id or by its name. Names are unique per workspace, so\n`api.acme.com` is sufficient. You do not need to supply a project, app, or environment.\n\nUse this endpoint to poll after `domains.createDomain`. Verification runs in the background\nand checks DNS approximately each minute.\n\n`status: verified` means the domain is verified. Unkey has configured routing and requested a\ncertificate. Each entry in `dnsRecords` has a `verified` flag. The flag shows which records\nUnkey has read back, so you can see which records are still missing. Some providers hide a\nrecord from DNS lookups, for example a proxied or flattened routing record. Such a record stays\n`false` while it serves traffic. `verificationError` gives the reason for the last failed\nattempt.\n\n`dnsRecords` contains the same values that `domains.createDomain` returned. Use it to recover\nthe values without creating the domain again.\n\n**Important**: verification stops 24 hours after the domain was created, and the status becomes\n`failed`. The window starts at `createdAt`, not at the last attempt.\n\n**Required Permissions**\n\nYour root key must have one of the following permissions:\n- `environment.*.read_domain` (to read domains in any environment)\n- `environment.<environment_id>.read_domain` (to read domains in a specific environment)"
       }
     },
-    "com.unkey.api#DomainsListDomainsRequest": {
+    "com.unkey.api#ListDomainsRequest": {
       "type": "structure",
       "members": {
         "project": {
@@ -3041,10 +3041,10 @@
         "smithy.api#documentation": "The domains attached to the environment, sorted by their id.\nThe array is empty when the environment has no domains. This is not an error.\n"
       }
     },
-    "com.unkey.api#DomainsListDomains": {
+    "com.unkey.api#ListDomains": {
       "type": "operation",
       "input": {
-        "target": "com.unkey.api#DomainsListDomainsRequest"
+        "target": "com.unkey.api#ListDomainsRequest"
       },
       "output": {
         "target": "com.unkey.api#V2DomainsListDomainsResponseBody"
@@ -3069,7 +3069,7 @@
         "smithy.api#documentation": "List domains\n\nList the custom domains attached to an environment and their verification status.\n\nResults are paginated and sorted by their id. When `hasMore` is true, send the\nreturned `cursor` to get the next page. An environment with no domains returns an\nempty array, not a 404.\n\n`status: verified` means the domain is verified. Unkey has configured routing and requested a\ncertificate. Each domain includes its full `dnsRecords`. Each record has a `verified` flag.\nThe flag shows which records Unkey has read back, so you can see which records are still\nmissing without a second call. Some providers hide a record from DNS lookups, for example a\nproxied or flattened routing record. Such a record stays `false` while it serves traffic.\n\n**Required Permissions**\n\nYour root key must have one of the following permissions:\n- `environment.*.read_domain` (to read domains in any environment)\n- `environment.<environment_id>.read_domain` (to read domains in a specific environment)"
       }
     },
-    "com.unkey.api#DomainsVerifyDomainRequest": {
+    "com.unkey.api#VerifyDomainRequest": {
       "type": "structure",
       "members": {
         "domain": {
@@ -3084,10 +3084,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.unkey.api#DomainsVerifyDomain": {
+    "com.unkey.api#VerifyDomain": {
       "type": "operation",
       "input": {
-        "target": "com.unkey.api#DomainsVerifyDomainRequest"
+        "target": "com.unkey.api#VerifyDomainRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3112,7 +3112,7 @@
         "smithy.api#documentation": "Verify domain\n\nRestart verification for a custom domain.\n\nAddress the domain by its ID or by its name. Names are unique per workspace, so\n`api.acme.com` is enough.\n\nCall this after you correct the DNS records of a domain that shows `failed`, or to give a\n`pending` domain a new 24-hour verification period. The domain goes back to `pending` and\nthe 24-hour period starts again.\n\nThe endpoint returns when Unkey accepts the retry. Poll `domains.getDomain` for the result.\n\nA domain that is already `verified` returns a 412.\n\n**Required Permissions**\n\nYour root key must have one of the following permissions:\n- `environment.*.verify_domain` (to verify domains in any environment)\n- `environment.<environment_id>.verify_domain` (to verify domains in a specific environment)"
       }
     },
-    "com.unkey.api#EnvironmentsGetEnvironmentRequest": {
+    "com.unkey.api#GetEnvironmentRequest": {
       "type": "structure",
       "members": {
         "project": {
@@ -3417,10 +3417,10 @@
         "smithy.api#documentation": "Per-region deployment settings for this environment.\nEmpty until regional settings are configured.\n"
       }
     },
-    "com.unkey.api#EnvironmentsGetEnvironment": {
+    "com.unkey.api#GetEnvironment": {
       "type": "operation",
       "input": {
-        "target": "com.unkey.api#EnvironmentsGetEnvironmentRequest"
+        "target": "com.unkey.api#GetEnvironmentRequest"
       },
       "output": {
         "target": "com.unkey.api#V2EnvironmentsGetEnvironmentResponseBody"
@@ -3445,7 +3445,7 @@
         "smithy.api#documentation": "Get environment\n\nRetrieve a single environment by its id.\n\nUse this to fetch environment details after creation or to verify an environment exists before performing operations.\n\n**Required Permissions**\n\nYour root key must have one of the following permissions:\n- `environment.*.read_environment` (to read any environment)\n- `environment.<environment_id>.read_environment` (to read a specific environment)"
       }
     },
-    "com.unkey.api#EnvironmentsListEnvironmentVariablesRequest": {
+    "com.unkey.api#ListEnvironmentVariablesRequest": {
       "type": "structure",
       "members": {
         "project": {
@@ -3572,10 +3572,10 @@
       },
       "traits": {}
     },
-    "com.unkey.api#EnvironmentsListEnvironmentVariables": {
+    "com.unkey.api#ListEnvironmentVariables": {
       "type": "operation",
       "input": {
-        "target": "com.unkey.api#EnvironmentsListEnvironmentVariablesRequest"
+        "target": "com.unkey.api#ListEnvironmentVariablesRequest"
       },
       "output": {
         "target": "com.unkey.api#V2EnvironmentsListEnvironmentVariablesResponseBody"
@@ -3600,7 +3600,7 @@
         "smithy.api#documentation": "List environment variables\n\nRetrieve the environment variables for an environment.\n\nIdentify the environment by its project, app, and environment identifiers.\nResults are ordered by variable id and paginated; when `hasMore` is true,\npass the returned `cursor` to fetch the next page.\n\n`recoverable` variables are returned with their decrypted plaintext value.\n`writeonly` variables never expose a value: only the key, kind, and\ndescription are returned.\n\n**Required Permissions**\n\nYour root key must have one of the following permissions:\n- `environment.*.read_environment_variables` (for any environment)\n- `environment.<environment_id>.read_environment_variables` (for a specific environment)"
       }
     },
-    "com.unkey.api#EnvironmentsListEnvironmentsRequest": {
+    "com.unkey.api#ListEnvironmentsRequest": {
       "type": "structure",
       "members": {
         "project": {
@@ -3648,10 +3648,10 @@
         "smithy.api#documentation": "Array of environments in the app, ordered by environment id."
       }
     },
-    "com.unkey.api#EnvironmentsListEnvironments": {
+    "com.unkey.api#ListEnvironments": {
       "type": "operation",
       "input": {
-        "target": "com.unkey.api#EnvironmentsListEnvironmentsRequest"
+        "target": "com.unkey.api#ListEnvironmentsRequest"
       },
       "output": {
         "target": "com.unkey.api#V2EnvironmentsListEnvironmentsResponseBody"
@@ -3676,7 +3676,7 @@
         "smithy.api#documentation": "List environments\n\nRetrieve the environments within an app.\n\nUse this to enumerate every environment in an app. Identify the app by its project slug and app slug. Results are ordered by environment id. An app has only a handful of environments, so all of them are returned in a single response.\n\n**Required Permissions**\n\nYour root key must have the following permission:\n- `environment.*.read_environment` (to read environments in any app)"
       }
     },
-    "com.unkey.api#EnvironmentsRemoveEnvironmentVariablesRequestVariablesList": {
+    "com.unkey.api#RemoveEnvironmentVariablesRequestVariablesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -3685,7 +3685,7 @@
         "smithy.api#documentation": "The names of the variables to remove. Keys that exist are deleted; keys\nthat are not present are ignored, since their absence already matches the\nrequested state.\n\nDuplicate keys collapse to a single removal. The whole operation is atomic:\nif any part fails the environment is left unchanged. Limited to 50\nvariables per request.\n"
       }
     },
-    "com.unkey.api#EnvironmentsRemoveEnvironmentVariablesRequest": {
+    "com.unkey.api#RemoveEnvironmentVariablesRequest": {
       "type": "structure",
       "members": {
         "project": {
@@ -3707,7 +3707,7 @@
           }
         },
         "variables": {
-          "target": "com.unkey.api#EnvironmentsRemoveEnvironmentVariablesRequestVariablesList",
+          "target": "com.unkey.api#RemoveEnvironmentVariablesRequestVariablesList",
           "traits": {
             "smithy.api#documentation": "The names of the variables to remove. Keys that exist are deleted; keys\nthat are not present are ignored, since their absence already matches the\nrequested state.\n\nDuplicate keys collapse to a single removal. The whole operation is atomic:\nif any part fails the environment is left unchanged. Limited to 50\nvariables per request.\n",
             "smithy.api#required": {}
@@ -3736,10 +3736,10 @@
       },
       "traits": {}
     },
-    "com.unkey.api#EnvironmentsRemoveEnvironmentVariables": {
+    "com.unkey.api#RemoveEnvironmentVariables": {
       "type": "operation",
       "input": {
-        "target": "com.unkey.api#EnvironmentsRemoveEnvironmentVariablesRequest"
+        "target": "com.unkey.api#RemoveEnvironmentVariablesRequest"
       },
       "output": {
         "target": "com.unkey.api#V2EnvironmentsRemoveEnvironmentVariablesResponseBody"
@@ -5019,7 +5019,7 @@
         "smithy.api#documentation": "Install GitHub App\n\nStart installing the Unkey GitHub App for your workspace. Returns a GitHub\nApp install URL: open it in a browser to install the app and grant\nrepository access. After installation GitHub returns to Unkey, which binds\nthe installation to your workspace and lands you in the workspace settings.\n\nInstallation is workspace-wide and takes no parameters. Once installed, link\nrepositories to individual apps with the `git` field on `apps.createApp` and\n`apps.updateApp`.\n\n**Required Permissions**\n\nYour root key must have the following permission:\n- `workspace.*.install_github`"
       }
     },
-    "com.unkey.api#IdentitiesCreateIdentityRequestMetaMap": {
+    "com.unkey.api#CreateIdentityRequestMetaMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5065,7 +5065,7 @@
       },
       "traits": {}
     },
-    "com.unkey.api#IdentitiesCreateIdentityRequestRatelimitsList": {
+    "com.unkey.api#CreateIdentityRequestRatelimitsList": {
       "type": "list",
       "member": {
         "target": "com.unkey.api#RatelimitRequest"
@@ -5074,7 +5074,7 @@
         "smithy.api#documentation": "Defines shared rate limits that apply to all keys belonging to this identity.\nPrevents abuse by users with multiple keys by enforcing consistent limits across their entire key portfolio.\nEssential for implementing fair usage policies and tiered access levels in multi-tenant applications.\n\nRate limit counters are shared across all keys with this identity, regardless of how many keys the user creates.\nDuring verification, specify which named limits to check for enforcement.\nIdentity rate limits supplement any key-specific rate limits that may also be configured.\n- Each named limit can have different thresholds and windows\n\nWhen verifying keys, you can specify which limits you want to use and all keys attached to this identity will share the limits, regardless of which specific key is used.\n"
       }
     },
-    "com.unkey.api#IdentitiesCreateIdentityRequest": {
+    "com.unkey.api#CreateIdentityRequest": {
       "type": "structure",
       "members": {
         "externalId": {
@@ -5085,13 +5085,13 @@
           }
         },
         "meta": {
-          "target": "com.unkey.api#IdentitiesCreateIdentityRequestMetaMap",
+          "target": "com.unkey.api#CreateIdentityRequestMetaMap",
           "traits": {
             "smithy.api#documentation": "Stores arbitrary JSON metadata returned during key verification for contextual information.\nEliminates additional database lookups during verification, improving performance for stateless services.\nAvoid storing sensitive data here as it's returned in verification responses.\n\nLarge metadata objects increase verification latency and should stay under 10KB total size.\nUse this for subscription details, feature flags, user preferences, and organization information.\nMetadata is returned as-is whenever keys associated with this identity are verified.\n"
           }
         },
         "ratelimits": {
-          "target": "com.unkey.api#IdentitiesCreateIdentityRequestRatelimitsList",
+          "target": "com.unkey.api#CreateIdentityRequestRatelimitsList",
           "traits": {
             "smithy.api#documentation": "Defines shared rate limits that apply to all keys belonging to this identity.\nPrevents abuse by users with multiple keys by enforcing consistent limits across their entire key portfolio.\nEssential for implementing fair usage policies and tiered access levels in multi-tenant applications.\n\nRate limit counters are shared across all keys with this identity, regardless of how many keys the user creates.\nDuring verification, specify which named limits to check for enforcement.\nIdentity rate limits supplement any key-specific rate limits that may also be configured.\n- Each named limit can have different thresholds and windows\n\nWhen verifying keys, you can specify which limits you want to use and all keys attached to this identity will share the limits, regardless of which specific key is used.\n"
           }
@@ -5132,10 +5132,10 @@
       },
       "traits": {}
     },
-    "com.unkey.api#IdentitiesCreateIdentity": {
+    "com.unkey.api#CreateIdentity": {
       "type": "operation",
       "input": {
-        "target": "com.unkey.api#IdentitiesCreateIdentityRequest"
+        "target": "com.unkey.api#CreateIdentityRequest"
       },
       "output": {
         "target": "com.unkey.api#V2IdentitiesCreateIdentityResponseBody"
@@ -5160,7 +5160,7 @@
         "smithy.api#documentation": "Create Identity\n\nCreate an identity to group multiple API keys under a single entity. Identities enable shared rate limits and metadata across all associated keys.\n\nPerfect for users with multiple devices, organizations with multiple API keys, or when you need unified rate limiting across different services.\n\n**Important**\nRequires `identity.*.create_identity` permission"
       }
     },
-    "com.unkey.api#IdentitiesDeleteIdentityRequest": {
+    "com.unkey.api#DeleteIdentityRequest": {
       "type": "structure",
       "members": {
         "identity": {
@@ -5189,10 +5189,10 @@
         "smithy.api#documentation": "Empty response object. A successful response indicates the identity was deleted successfully."
       }
     },
-    "com.unkey.api#IdentitiesDeleteIdentity": {
+    "com.unkey.api#DeleteIdentity": {
       "type": "operation",
       "input": {
-        "target": "com.unkey.api#IdentitiesDeleteIdentityRequest"
+        "target": "com.unkey.api#DeleteIdentityRequest"
       },
       "output": {
         "target": "com.unkey.api#V2IdentitiesDeleteIdentityResponseBody"
@@ -5217,7 +5217,7 @@
         "smithy.api#documentation": "Delete Identity\n\nPermanently delete an identity. This operation cannot be undone.\n\nUse this for data cleanup, compliance requirements, or when removing entities from your system.\n\n> **Important**\n> Requires `identity.*.delete_identity` permission\n> Associated API keys remain functional but lose shared resources\n> External ID becomes available for reuse immediately"
       }
     },
-    "com.unkey.api#IdentitiesGetIdentityRequest": {
+    "com.unkey.api#GetIdentityRequest": {
       "type": "structure",
       "members": {
         "identity": {
@@ -5250,10 +5250,10 @@
       },
       "traits": {}
     },
-    "com.unkey.api#IdentitiesGetIdentity": {
+    "com.unkey.api#GetIdentity": {
       "type": "operation",
       "input": {
-        "target": "com.unkey.api#IdentitiesGetIdentityRequest"
+        "target": "com.unkey.api#GetIdentityRequest"
       },
       "output": {
         "target": "com.unkey.api#V2IdentitiesGetIdentityResponseBody"
@@ -5278,7 +5278,7 @@
         "smithy.api#documentation": "Get Identity\n\nRetrieve an identity by external ID. Returns metadata, rate limits, and other associated data.\n\nUse this to check if an identity exists, view configurations, or build management dashboards.\n\n> **Important**\n> Requires `identity.*.read_identity` permission"
       }
     },
-    "com.unkey.api#IdentitiesListIdentitiesRequest": {
+    "com.unkey.api#ListIdentitiesRequest": {
       "type": "structure",
       "members": {
         "limit": {
@@ -5337,10 +5337,10 @@
         "smithy.api#documentation": "List of identities matching the specified criteria."
       }
     },
-    "com.unkey.api#IdentitiesListIdentities": {
+    "com.unkey.api#ListIdentities": {
       "type": "operation",
       "input": {
-        "target": "com.unkey.api#IdentitiesListIdentitiesRequest"
+        "target": "com.unkey.api#ListIdentitiesRequest"
       },
       "output": {
         "target": "com.unkey.api#V2IdentitiesListIdentitiesResponseBody"
@@ -5362,7 +5362,7 @@
         "smithy.api#documentation": "List Identities\n\nGet a paginated list of all identities in your workspace. Returns metadata and rate limit configurations.\n\nPerfect for building management dashboards, auditing configurations, or browsing your identities.\n\n> **Important**\n> Requires `identity.*.read_identity` permission"
       }
     },
-    "com.unkey.api#IdentitiesUpdateIdentityRequestMetaMap": {
+    "com.unkey.api#UpdateIdentityRequestMetaMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5374,7 +5374,7 @@
         "smithy.api#documentation": "Replaces all existing metadata with this new metadata object.\nOmitting this field preserves existing metadata, while providing an empty object clears all metadata.\nAvoid storing sensitive data here as it's returned in verification responses.\nLarge metadata objects increase verification latency and should stay under 10KB total size.\n"
       }
     },
-    "com.unkey.api#IdentitiesUpdateIdentityRequestRatelimitsList": {
+    "com.unkey.api#UpdateIdentityRequestRatelimitsList": {
       "type": "list",
       "member": {
         "target": "com.unkey.api#RatelimitRequest"
@@ -5383,7 +5383,7 @@
         "smithy.api#documentation": "Replaces all existing identity rate limits with this complete list of rate limits.\nOmitting this field preserves existing rate limits, while providing an empty array removes all rate limits.\nThese limits are shared across all keys belonging to this identity, preventing abuse through multiple keys.\nRate limit changes take effect immediately but may take up to 30 seconds to propagate across all regions.\n"
       }
     },
-    "com.unkey.api#IdentitiesUpdateIdentityRequest": {
+    "com.unkey.api#UpdateIdentityRequest": {
       "type": "structure",
       "members": {
         "identity": {
@@ -5394,13 +5394,13 @@
           }
         },
         "meta": {
-          "target": "com.unkey.api#IdentitiesUpdateIdentityRequestMetaMap",
+          "target": "com.unkey.api#UpdateIdentityRequestMetaMap",
           "traits": {
             "smithy.api#documentation": "Replaces all existing metadata with this new metadata object.\nOmitting this field preserves existing metadata, while providing an empty object clears all metadata.\nAvoid storing sensitive data here as it's returned in verification responses.\nLarge metadata objects increase verification latency and should stay under 10KB total size.\n"
           }
         },
         "ratelimits": {
-          "target": "com.unkey.api#IdentitiesUpdateIdentityRequestRatelimitsList",
+          "target": "com.unkey.api#UpdateIdentityRequestRatelimitsList",
           "traits": {
             "smithy.api#documentation": "Replaces all existing identity rate limits with this complete list of rate limits.\nOmitting this field preserves existing rate limits, while providing an empty array removes all rate limits.\nThese limits are shared across all keys belonging to this identity, preventing abuse through multiple keys.\nRate limit changes take effect immediately but may take up to 30 seconds to propagate across all regions.\n"
           }
@@ -5428,10 +5428,10 @@
       },
       "traits": {}
     },
-    "com.unkey.api#IdentitiesUpdateIdentity": {
+    "com.unkey.api#UpdateIdentity": {
       "type": "operation",
       "input": {
-        "target": "com.unkey.api#IdentitiesUpdateIdentityRequest"
+        "target": "com.unkey.api#UpdateIdentityRequest"
       },
       "output": {
         "target": "com.unkey.api#V2IdentitiesUpdateIdentityResponseBody"
@@ -5702,7 +5702,7 @@
         "smithy.api#documentation": "Add key roles\n\nAdd roles to a key without affecting existing roles or permissions.\n\nUse this for privilege upgrades, enabling new feature sets, or subscription changes that grant additional role-based capabilities. Direct permissions remain unchanged.\n\n**Important**: Changes take effect immediately with up to 30-second edge propagation.\n\n**Required Permissions**\n\nYour root key must have one of the following permissions:\n- `api.*.update_key` (to update keys in any API)\n- `api.<api_id>.update_key` (to update keys in a specific API)\n\n**Side Effects**\n\nInvalidates the key cache for immediate effect, and makes role assignments available for verification within 30 seconds across all regions."
       }
     },
-    "com.unkey.api#KeysCreateKeyRequestMetaMap": {
+    "com.unkey.api#CreateKeyRequestMetaMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5714,7 +5714,7 @@
         "smithy.api#documentation": "Stores arbitrary JSON metadata returned during key verification for contextual information.\nEliminates additional database lookups during verification, improving performance for stateless services.\nAvoid storing sensitive data here as it's returned in verification responses.\nLarge metadata objects increase verification latency and should stay under 10KB total size.\n"
       }
     },
-    "com.unkey.api#KeysCreateKeyRequestRolesList": {
+    "com.unkey.api#CreateKeyRequestRolesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -5723,7 +5723,7 @@
         "smithy.api#documentation": "Assigns existing roles to this key for permission management through role-based access control.\nRoles must already exist in your workspace before assignment.\nDuring verification, all permissions from assigned roles are checked against requested permissions.\nRoles provide a convenient way to group permissions and apply consistent access patterns across multiple keys.\n"
       }
     },
-    "com.unkey.api#KeysCreateKeyRequestPermissionsList": {
+    "com.unkey.api#CreateKeyRequestPermissionsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -5732,7 +5732,7 @@
         "smithy.api#documentation": "Grants specific permissions directly to this key without requiring role membership.\nWildcard permissions like `documents.*` grant access to all sub-permissions including `documents.read` and `documents.write`.\nDirect permissions supplement any permissions inherited from assigned roles.\n"
       }
     },
-    "com.unkey.api#KeysCreateKeyRequestRatelimitsList": {
+    "com.unkey.api#CreateKeyRequestRatelimitsList": {
       "type": "list",
       "member": {
         "target": "com.unkey.api#RatelimitRequest"
@@ -5741,7 +5741,7 @@
         "smithy.api#documentation": "Defines time-based rate limits that protect against abuse by controlling request frequency.\nUnlike credits which track total usage, rate limits reset automatically after each window expires.\nMultiple rate limits can control different operation types with separate thresholds and windows.\nEssential for preventing API abuse while maintaining good performance for legitimate usage.\n"
       }
     },
-    "com.unkey.api#KeysCreateKeyRequest": {
+    "com.unkey.api#CreateKeyRequest": {
       "type": "structure",
       "members": {
         "apiId": {
@@ -5776,19 +5776,19 @@
           }
         },
         "meta": {
-          "target": "com.unkey.api#KeysCreateKeyRequestMetaMap",
+          "target": "com.unkey.api#CreateKeyRequestMetaMap",
           "traits": {
             "smithy.api#documentation": "Stores arbitrary JSON metadata returned during key verification for contextual information.\nEliminates additional database lookups during verification, improving performance for stateless services.\nAvoid storing sensitive data here as it's returned in verification responses.\nLarge metadata objects increase verification latency and should stay under 10KB total size.\n"
           }
         },
         "roles": {
-          "target": "com.unkey.api#KeysCreateKeyRequestRolesList",
+          "target": "com.unkey.api#CreateKeyRequestRolesList",
           "traits": {
             "smithy.api#documentation": "Assigns existing roles to this key for permission management through role-based access control.\nRoles must already exist in your workspace before assignment.\nDuring verification, all permissions from assigned roles are checked against requested permissions.\nRoles provide a convenient way to group permissions and apply consistent access patterns across multiple keys.\n"
           }
         },
         "permissions": {
-          "target": "com.unkey.api#KeysCreateKeyRequestPermissionsList",
+          "target": "com.unkey.api#CreateKeyRequestPermissionsList",
           "traits": {
             "smithy.api#documentation": "Grants specific permissions directly to this key without requiring role membership.\nWildcard permissions like `documents.*` grant access to all sub-permissions including `documents.read` and `documents.write`.\nDirect permissions supplement any permissions inherited from assigned roles.\n"
           }
@@ -5806,7 +5806,7 @@
           }
         },
         "ratelimits": {
-          "target": "com.unkey.api#KeysCreateKeyRequestRatelimitsList",
+          "target": "com.unkey.api#CreateKeyRequestRatelimitsList",
           "traits": {
             "smithy.api#documentation": "Defines time-based rate limits that protect against abuse by controlling request frequency.\nUnlike credits which track total usage, rate limits reset automatically after each window expires.\nMultiple rate limits can control different operation types with separate thresholds and windows.\nEssential for preventing API abuse while maintaining good performance for legitimate usage.\n"
           }
@@ -5866,10 +5866,10 @@
       },
       "traits": {}
     },
-    "com.unkey.api#KeysCreateKey": {
+    "com.unkey.api#CreateKey": {
       "type": "operation",
       "input": {
-        "target": "com.unkey.api#KeysCreateKeyRequest"
+        "target": "com.unkey.api#CreateKeyRequest"
       },
       "output": {
         "target": "com.unkey.api#V2KeysCreateKeyResponseBody"
@@ -5894,7 +5894,7 @@
         "smithy.api#documentation": "Create API key\n\nCreate a new API key for user authentication and authorization.\n\nUse this endpoint when users sign up, upgrade subscription tiers, or need additional keys. Keys are cryptographically secure and unique to the specified API namespace.\n\n**Important**: The key is returned only once. Store it immediately and provide it to your user, as it cannot be retrieved later.\n\n**Common use cases:**\n- Generate keys for new user registrations\n- Create additional keys for different applications\n- Issue keys with specific permissions or limits\n\n**Required Permissions**\n\nYour credential needs one of:\n- `api.*.create_key` (create keys in any API)\n- `api.<api_id>.create_key` (create keys in specific API)\n- `unkey:v1:<workspace_id>:keyspaces/*#create_key` (create keys in any keyspace)\n- `unkey:v1:<workspace_id>:keyspaces/<keyspace_id>#create_key` (create keys in a specific keyspace)"
       }
     },
-    "com.unkey.api#KeysDeleteKeyRequest": {
+    "com.unkey.api#DeleteKeyRequest": {
       "type": "structure",
       "members": {
         "keyId": {
@@ -5933,10 +5933,10 @@
       },
       "traits": {}
     },
-    "com.unkey.api#KeysDeleteKey": {
+    "com.unkey.api#DeleteKey": {
       "type": "operation",
       "input": {
-        "target": "com.unkey.api#KeysDeleteKeyRequest"
+        "target": "com.unkey.api#DeleteKeyRequest"
       },
       "output": {
         "target": "com.unkey.api#V2KeysDeleteKeyResponseBody"
@@ -5961,7 +5961,7 @@
         "smithy.api#documentation": "Delete API keys\n\nDelete API keys from user accounts or for cleanup purposes.\n\nUse this for user-requested key revocation, account deletion workflows, or cleaning up unused keys. Keys are immediately invalidated. Two modes: soft delete (default, preserves audit records) and permanent delete.\n\n**Important**: For temporary access control, use `updateKey` with `enabled: false` instead of deletion.\n\n**Required Permissions**\n\nYour credential must have one of the following permissions:\n- `api.*.delete_key` (to delete keys in any API)\n- `api.<api_id>.delete_key` (to delete keys in a specific API)\n- `unkey:v1:<workspace_id>:keyspaces/*/keys/*#delete_key` (to delete keys in any keyspace)\n- `unkey:v1:<workspace_id>:keyspaces/<keyspace_id>/keys/*#delete_key` (to delete keys in a specific keyspace)\n- `unkey:v1:<workspace_id>:keyspaces/<keyspace_id>/keys/<key_id>#delete_key` (to delete a specific key)"
       }
     },
-    "com.unkey.api#KeysGetKeyRequest": {
+    "com.unkey.api#GetKeyRequest": {
       "type": "structure",
       "members": {
         "keyId": {
@@ -6000,10 +6000,10 @@
       },
       "traits": {}
     },
-    "com.unkey.api#KeysGetKey": {
+    "com.unkey.api#GetKey": {
       "type": "operation",
       "input": {
-        "target": "com.unkey.api#KeysGetKeyRequest"
+        "target": "com.unkey.api#GetKeyRequest"
       },
       "output": {
         "target": "com.unkey.api#V2KeysGetKeyResponseBody"
@@ -6134,14 +6134,14 @@
         "smithy.api#documentation": "Defines time-based rate limits that protect against abuse by controlling request frequency.\nUnlike credits which track total usage, rate limits reset automatically after each window expires.\nMultiple rate limits can control different operation types with separate thresholds and windows.\nEssential for preventing API abuse while maintaining good performance for legitimate usage.\n"
       }
     },
-    "com.unkey.api#KeysMigrateKeysRequestKeysList": {
+    "com.unkey.api#MigrateKeysRequestKeysList": {
       "type": "list",
       "member": {
         "target": "com.unkey.api#V2KeysMigrateKeyData"
       },
       "traits": {}
     },
-    "com.unkey.api#KeysMigrateKeysRequest": {
+    "com.unkey.api#MigrateKeysRequest": {
       "type": "structure",
       "members": {
         "migrationId": {
@@ -6159,7 +6159,7 @@
           }
         },
         "keys": {
-          "target": "com.unkey.api#KeysMigrateKeysRequestKeysList",
+          "target": "com.unkey.api#MigrateKeysRequestKeysList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -6245,10 +6245,10 @@
         "smithy.api#documentation": "Hashes that could not be migrated (e.g., already exist in the system)"
       }
     },
-    "com.unkey.api#KeysMigrateKeys": {
+    "com.unkey.api#MigrateKeys": {
       "type": "operation",
       "input": {
-        "target": "com.unkey.api#KeysMigrateKeysRequest"
+        "target": "com.unkey.api#MigrateKeysRequest"
       },
       "output": {
         "target": "com.unkey.api#V2KeysMigrateKeysResponseBody"
@@ -6806,7 +6806,7 @@
         "smithy.api#documentation": "Update key credits\n\nUpdate credit quotas in response to plan changes, billing cycles, or usage purchases.\n\nUse this for user upgrades/downgrades, monthly quota resets, credit purchases, or promotional bonuses. Supports three operations: set, increment, or decrement credits. Set to null for unlimited usage.\n\n**Important**: Setting unlimited credits automatically clears existing refill configurations.\n\n**Required Permissions**\n\nYour credential must have one of the following permissions:\n- `api.*.update_key` (to update keys in any API)\n- `api.<api_id>.update_key` (to update keys in a specific API)\n- `unkey:v1:<workspace_id>:keyspaces/*/keys/*#update_key` (to update keys in any keyspace)\n- `unkey:v1:<workspace_id>:keyspaces/<keyspace_id>/keys/*#update_key` (to update keys in a specific keyspace)\n- `unkey:v1:<workspace_id>:keyspaces/<keyspace_id>/keys/<key_id>#update_key` (to update a specific key)\n\n**Side Effects**\n\nCredit updates remove the key from cache immediately. Setting credits to unlimited automatically clears any existing refill settings. Changes take effect instantly but may take up to 30 seconds to propagate to all edge regions."
       }
     },
-    "com.unkey.api#KeysUpdateKeyRequestMetaMap": {
+    "com.unkey.api#UpdateKeyRequestMetaMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6887,7 +6887,7 @@
         "smithy.api#documentation": "How often credits are automatically refilled."
       }
     },
-    "com.unkey.api#KeysUpdateKeyRequestRatelimitsList": {
+    "com.unkey.api#UpdateKeyRequestRatelimitsList": {
       "type": "list",
       "member": {
         "target": "com.unkey.api#RatelimitRequest"
@@ -6896,21 +6896,21 @@
         "smithy.api#documentation": "Defines time-based rate limits that protect against abuse by controlling request frequency.\nOmitting this field preserves existing rate limits, while setting null removes all rate limits.\nUnlike credits which track total usage, rate limits reset automatically after each window expires.\nMultiple rate limits can control different operation types with separate thresholds and windows.\n"
       }
     },
-    "com.unkey.api#KeysUpdateKeyRequestRolesList": {
+    "com.unkey.api#UpdateKeyRequestRolesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.unkey.api#KeysUpdateKeyRequestPermissionsList": {
+    "com.unkey.api#UpdateKeyRequestPermissionsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.unkey.api#KeysUpdateKeyRequest": {
+    "com.unkey.api#UpdateKeyRequest": {
       "type": "structure",
       "members": {
         "keyId": {
@@ -6935,7 +6935,7 @@
           }
         },
         "meta": {
-          "target": "com.unkey.api#KeysUpdateKeyRequestMetaMap",
+          "target": "com.unkey.api#UpdateKeyRequestMetaMap",
           "traits": {
             "smithy.api#documentation": "Stores arbitrary JSON metadata returned during key verification.\nOmitting this field preserves existing metadata, while setting null removes all metadata entirely.\nAvoid storing sensitive data here as it's returned in verification responses.\nLarge metadata objects increase verification latency and should stay under 10KB total size.\n",
             "com.distilled.openapi#nullable": {}
@@ -6956,7 +6956,7 @@
           }
         },
         "ratelimits": {
-          "target": "com.unkey.api#KeysUpdateKeyRequestRatelimitsList",
+          "target": "com.unkey.api#UpdateKeyRequestRatelimitsList",
           "traits": {
             "smithy.api#documentation": "Defines time-based rate limits that protect against abuse by controlling request frequency.\nOmitting this field preserves existing rate limits, while setting null removes all rate limits.\nUnlike credits which track total usage, rate limits reset automatically after each window expires.\nMultiple rate limits can control different operation types with separate thresholds and windows.\n",
             "com.distilled.openapi#nullable": {}
@@ -6969,10 +6969,10 @@
           }
         },
         "roles": {
-          "target": "com.unkey.api#KeysUpdateKeyRequestRolesList"
+          "target": "com.unkey.api#UpdateKeyRequestRolesList"
         },
         "permissions": {
-          "target": "com.unkey.api#KeysUpdateKeyRequestPermissionsList"
+          "target": "com.unkey.api#UpdateKeyRequestPermissionsList"
         }
       },
       "traits": {
@@ -6997,10 +6997,10 @@
       },
       "traits": {}
     },
-    "com.unkey.api#KeysUpdateKey": {
+    "com.unkey.api#UpdateKey": {
       "type": "operation",
       "input": {
-        "target": "com.unkey.api#KeysUpdateKeyRequest"
+        "target": "com.unkey.api#UpdateKeyRequest"
       },
       "output": {
         "target": "com.unkey.api#V2KeysUpdateKeyResponseBody"
@@ -7025,7 +7025,7 @@
         "smithy.api#documentation": "Update key settings\n\nUpdate key properties in response to plan changes, subscription updates, or account status changes.\n\nUse this for user upgrades/downgrades, role modifications, or administrative changes. Supports partial updates - only specify fields you want to change. Set fields to null to clear them.\n\n**Important**: Permissions and roles are replaced entirely. Use dedicated add/remove endpoints for incremental changes.\n\n**Required Permissions**\n\nYour credential must have one of the following permissions:\n- `api.*.update_key` (to update keys in any API)\n- `api.<api_id>.update_key` (to update keys in a specific API)\n- `unkey:v1:<workspace_id>:keyspaces/*/keys/*#update_key` (to update keys in any keyspace)\n- `unkey:v1:<workspace_id>:keyspaces/<keyspace_id>/keys/*#update_key` (to update keys in a specific keyspace)\n- `unkey:v1:<workspace_id>:keyspaces/<keyspace_id>/keys/<key_id>#update_key` (to update a specific key)\n\n**Side Effects**\n\nIf you specify an `externalId` that doesn't exist, a new identity will be automatically created and linked to the key. Permission updates will auto-create any permissions that don't exist in your workspace. Changes take effect immediately but may take up to 30 seconds to propagate to all edge regions due to cache invalidation."
       }
     },
-    "com.unkey.api#KeysVerifyKeyRequestTagsList": {
+    "com.unkey.api#VerifyKeyRequestTagsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -7080,7 +7080,7 @@
       },
       "traits": {}
     },
-    "com.unkey.api#KeysVerifyKeyRequestRatelimitsList": {
+    "com.unkey.api#VerifyKeyRequestRatelimitsList": {
       "type": "list",
       "member": {
         "target": "com.unkey.api#KeysVerifyKeyRatelimit"
@@ -7089,7 +7089,7 @@
         "smithy.api#documentation": "Enforces time-based rate limiting during verification to prevent abuse and ensure fair usage.\nOmitting this field skips rate limit checks entirely, relying only on configured key rate limits.\nMultiple rate limits can be checked simultaneously, each with different costs and temporary overrides.\nRate limit checks are optimized for performance but may allow brief bursts during high concurrency.\n"
       }
     },
-    "com.unkey.api#KeysVerifyKeyRequest": {
+    "com.unkey.api#VerifyKeyRequest": {
       "type": "structure",
       "members": {
         "key": {
@@ -7100,7 +7100,7 @@
           }
         },
         "tags": {
-          "target": "com.unkey.api#KeysVerifyKeyRequestTagsList",
+          "target": "com.unkey.api#VerifyKeyRequestTagsList",
           "traits": {
             "smithy.api#documentation": "Attaches metadata tags for analytics and monitoring without affecting verification outcomes.\nEnables segmentation of API usage in dashboards by endpoint, client version, region, or custom dimensions.\nUse 'key=value' format for compatibility with most analytics tools and clear categorization.\nAvoid including sensitive data in tags as they may appear in logs and analytics reports.\n"
           }
@@ -7115,7 +7115,7 @@
           "target": "com.unkey.api#KeysVerifyKeyCredits"
         },
         "ratelimits": {
-          "target": "com.unkey.api#KeysVerifyKeyRequestRatelimitsList",
+          "target": "com.unkey.api#VerifyKeyRequestRatelimitsList",
           "traits": {
             "smithy.api#documentation": "Enforces time-based rate limiting during verification to prevent abuse and ensure fair usage.\nOmitting this field skips rate limit checks entirely, relying only on configured key rate limits.\nMultiple rate limits can be checked simultaneously, each with different costs and temporary overrides.\nRate limit checks are optimized for performance but may allow brief bursts during high concurrency.\n"
           }
@@ -7381,10 +7381,10 @@
       },
       "traits": {}
     },
-    "com.unkey.api#KeysVerifyKey": {
+    "com.unkey.api#VerifyKey": {
       "type": "operation",
       "input": {
-        "target": "com.unkey.api#KeysVerifyKeyRequest"
+        "target": "com.unkey.api#VerifyKeyRequest"
       },
       "output": {
         "target": "com.unkey.api#V2KeysVerifyKeyResponseBody"
@@ -7943,7 +7943,7 @@
         "smithy.api#documentation": "Get role\n\nRetrieve details about a specific role including its assigned permissions.\n\n**Required Permissions**\n\nYour root key must have the following permission:\n- `rbac.*.read_role`"
       }
     },
-    "com.unkey.api#PermissionsListPermissionsRequest": {
+    "com.unkey.api#ListPermissionsRequest": {
       "type": "structure",
       "members": {
         "cursor": {
@@ -8002,10 +8002,10 @@
         "smithy.api#documentation": "Array of permission objects with complete configuration details."
       }
     },
-    "com.unkey.api#PermissionsListPermissions": {
+    "com.unkey.api#ListPermissions": {
       "type": "operation",
       "input": {
-        "target": "com.unkey.api#PermissionsListPermissionsRequest"
+        "target": "com.unkey.api#ListPermissionsRequest"
       },
       "output": {
         "target": "com.unkey.api#V2PermissionsListPermissionsResponseBody"
@@ -8200,7 +8200,7 @@
         "smithy.api#documentation": "Set role permissions\n\nAtomically replaces all permissions directly assigned to a role. An empty `permissions` array removes every permission from the role. Permissions that do not exist are created when the caller has permission to create them.\n\n**Required Permissions**\n\nYour root key must have:\n- `rbac.*.add_permission_to_role`\n- `rbac.*.remove_permission_from_role`\n\nWhen any requested permission slug does not exist, it must also have:\n- `rbac.*.create_permission`"
       }
     },
-    "com.unkey.api#PortalCreatePortalRequest": {
+    "com.unkey.api#CreatePortalRequest": {
       "type": "structure",
       "members": {
         "slug": {
@@ -8277,10 +8277,10 @@
       },
       "traits": {}
     },
-    "com.unkey.api#PortalCreatePortal": {
+    "com.unkey.api#CreatePortal": {
       "type": "operation",
       "input": {
-        "target": "com.unkey.api#PortalCreatePortalRequest"
+        "target": "com.unkey.api#CreatePortalRequest"
       },
       "output": {
         "target": "com.unkey.api#V2PortalCreatePortalResponseBody"
@@ -8453,7 +8453,7 @@
         "smithy.api#documentation": "Create portal session\n\nCreate a portal session for an end user and get the URL to redirect them to.\n\nThe URL carries a single-use exchange code valid for 15 minutes, which the portal\nredeems exactly once for a 24-hour access token via `portal.exchangeCode`.\n\n**Required Permissions**\n\nAuthorization runs in two stages, and both must pass.\n\nFirst, your root key must have one of the following permissions:\n- `portal.*.create_portal_session` (to mint sessions for any portal in the workspace)\n- `portal.<portal_id>.create_portal_session` (to mint sessions for a specific portal)\n\nSecond, a session can never carry a capability your root key does not itself\nhold. Each requested scope additionally requires the equivalent permission on\nevery keyspace the portal resolves to:\n- `keys:read` requires `api.<api_id>.read_key` **and** `api.<api_id>.read_api`\n- `keys:reroll` and `keys:create` require `api.<api_id>.create_key`, plus\n  `api.<api_id>.encrypt_key` when the keyspace stores encrypted keys\n- `analytics:read` requires `api.<api_id>.read_analytics`\n\nThe `*` form of each is also accepted. Requesting a scope you do not hold\nreturns 403 for the whole request rather than minting a reduced session, so a\nmissing grant is visible instead of surfacing later as a broken portal.\n\nMissing the portal permission itself returns **404**, not 403: a caller who\ncannot mint for a portal is not told whether it exists.\n\nYour root key must also be associated with a workspace that has an enabled portal."
       }
     },
-    "com.unkey.api#PortalDeletePortalRequest": {
+    "com.unkey.api#DeletePortalRequest": {
       "type": "structure",
       "members": {
         "portal": {
@@ -8485,10 +8485,10 @@
       },
       "traits": {}
     },
-    "com.unkey.api#PortalDeletePortal": {
+    "com.unkey.api#DeletePortal": {
       "type": "operation",
       "input": {
-        "target": "com.unkey.api#PortalDeletePortalRequest"
+        "target": "com.unkey.api#DeletePortalRequest"
       },
       "output": {
         "target": "com.unkey.api#V2PortalDeletePortalResponseBody"
@@ -8586,7 +8586,7 @@
         "smithy.api#documentation": "Exchange portal code\n\nExchange a short-lived code for a long-lived portal access token.\n\nThis endpoint is unauthenticated. The code itself serves as proof of authorization.\nEach code can only be redeemed once; subsequent attempts return 401.\n\nThe returned access token is valid for 24 hours and should be stored as an\nhttpOnly cookie or used in the Authorization header for subsequent API calls."
       }
     },
-    "com.unkey.api#PortalGetPortalRequest": {
+    "com.unkey.api#GetPortalRequest": {
       "type": "structure",
       "members": {
         "portal": {
@@ -8702,10 +8702,10 @@
         "smithy.api#documentation": "How the portal looks to your end users. Both fields are optional; a portal\nwith neither set renders with default styling.\n"
       }
     },
-    "com.unkey.api#PortalGetPortal": {
+    "com.unkey.api#GetPortal": {
       "type": "operation",
       "input": {
-        "target": "com.unkey.api#PortalGetPortalRequest"
+        "target": "com.unkey.api#GetPortalRequest"
       },
       "output": {
         "target": "com.unkey.api#V2PortalGetPortalResponseBody"
@@ -9011,7 +9011,7 @@
         "smithy.api#documentation": "Reroll portal key\n\nReroll an API key owned by the authenticated portal session's end user,\nissuing a new key while preserving its configuration.\n\nThis is the portal-scoped variant of `keys.rerollKey`. It authenticates only\nwith a portal session cookie and may only reroll keys owned by the session's\nexternal identity; any other key returns 404."
       }
     },
-    "com.unkey.api#PortalUpdatePortalRequest": {
+    "com.unkey.api#UpdatePortalRequest": {
       "type": "structure",
       "members": {
         "portal": {
@@ -9087,10 +9087,10 @@
       },
       "traits": {}
     },
-    "com.unkey.api#PortalUpdatePortal": {
+    "com.unkey.api#UpdatePortal": {
       "type": "operation",
       "input": {
-        "target": "com.unkey.api#PortalUpdatePortalRequest"
+        "target": "com.unkey.api#UpdatePortalRequest"
       },
       "output": {
         "target": "com.unkey.api#V2PortalUpdatePortalResponseBody"
@@ -9115,7 +9115,7 @@
         "smithy.api#documentation": "Update portal\n\nChange a portal's slug, display name, the resource it serves, its enabled\nstate, or its branding.\n\nUnreleased and subject to change without notice.\n\nOnly the fields you send change. Omitting a field leaves it as it is, and for\nbranding, sending null clears it. Send at most one of `keyspaceId` or `appId`.\n\nTwo changes affect your end users immediately:\n- Re-pointing at a different resource revokes the portal's live sessions,\n  because a session carries the scope it was minted with.\n- Disabling stops new sessions but leaves live ones running until they expire.\n\n**Required Permissions**\n\nYour root key must have one of:\n- `portal.*.update_portal` (to update any portal in the workspace)\n- `portal.<portal_id>.update_portal` (to update a specific portal)\n\nWithout the permission this returns **404**, not 403."
       }
     },
-    "com.unkey.api#ProjectsCreateProjectRequest": {
+    "com.unkey.api#CreateProjectRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -9167,10 +9167,10 @@
       },
       "traits": {}
     },
-    "com.unkey.api#ProjectsCreateProject": {
+    "com.unkey.api#CreateProject": {
       "type": "operation",
       "input": {
-        "target": "com.unkey.api#ProjectsCreateProjectRequest"
+        "target": "com.unkey.api#CreateProjectRequest"
       },
       "output": {
         "target": "com.unkey.api#V2ProjectsCreateProjectResponseBody"
@@ -9195,7 +9195,7 @@
         "smithy.api#documentation": "Create project\n\nCreate a project to group deployments and applications under a workspace-scoped slug.\n\nThe slug you provide is the stable, caller-defined handle used to reference this project in subsequent operations (get, update, delete). It must be unique within your workspace.\n\n**Important**: The slug cannot collide with an existing project in your workspace. A duplicate slug returns a 409 conflict.\n\n**Required Permissions**\n\nYour root key must have the following permission:\n- `project.*.create_project` (to create projects in your workspace)"
       }
     },
-    "com.unkey.api#ProjectsDeleteProjectRequest": {
+    "com.unkey.api#DeleteProjectRequest": {
       "type": "structure",
       "members": {
         "project": {
@@ -9209,10 +9209,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.unkey.api#ProjectsDeleteProject": {
+    "com.unkey.api#DeleteProject": {
       "type": "operation",
       "input": {
-        "target": "com.unkey.api#ProjectsDeleteProjectRequest"
+        "target": "com.unkey.api#DeleteProjectRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9237,7 +9237,7 @@
         "smithy.api#documentation": "Delete project\n\nDelete an existing project in your workspace, identified by its id.\n\nDeletion is asynchronous and eventually consistent. The project and all of its associated resources (apps, environments, deployments, custom domains) are torn down by a background workflow. A successful response indicates the deletion was enqueued, not that every resource has already been removed.\n\nProjects with delete protection enabled cannot be deleted until protection is disabled.\n\n**Required Permissions**\n\nYour root key must have one of the following permissions:\n- `project.*.delete_project` (to delete any project)\n- `project.<project_id>.delete_project` (to delete a specific project)"
       }
     },
-    "com.unkey.api#ProjectsGetProjectRequest": {
+    "com.unkey.api#GetProjectRequest": {
       "type": "structure",
       "members": {
         "project": {
@@ -9316,10 +9316,10 @@
       },
       "traits": {}
     },
-    "com.unkey.api#ProjectsGetProject": {
+    "com.unkey.api#GetProject": {
       "type": "operation",
       "input": {
-        "target": "com.unkey.api#ProjectsGetProjectRequest"
+        "target": "com.unkey.api#GetProjectRequest"
       },
       "output": {
         "target": "com.unkey.api#V2ProjectsGetProjectResponseBody"
@@ -9344,7 +9344,7 @@
         "smithy.api#documentation": "Get project\n\nRetrieve a single project in your workspace by its id.\n\nUse this to fetch project details after creation, verify a project exists before performing operations, or resolve a project's metadata from its id.\n\n**Required Permissions**\n\nYour root key must have one of the following permissions:\n- `project.*.read_project` (to read any project)\n- `project.<project_id>.read_project` (to read a specific project)"
       }
     },
-    "com.unkey.api#ProjectsListProjectsRequest": {
+    "com.unkey.api#ListProjectsRequest": {
       "type": "structure",
       "members": {
         "limit": {
@@ -9404,10 +9404,10 @@
         "smithy.api#documentation": "Array of projects in the workspace, ordered by project id."
       }
     },
-    "com.unkey.api#ProjectsListProjects": {
+    "com.unkey.api#ListProjects": {
       "type": "operation",
       "input": {
-        "target": "com.unkey.api#ProjectsListProjectsRequest"
+        "target": "com.unkey.api#ListProjectsRequest"
       },
       "output": {
         "target": "com.unkey.api#V2ProjectsListProjectsResponseBody"
@@ -9429,7 +9429,7 @@
         "smithy.api#documentation": "List projects\n\nRetrieve a paginated list of projects in your workspace.\n\nUse this to build project management dashboards or to enumerate projects for administrative purposes. Results are ordered by project id and returned in pages. When `hasMore` is true, pass the returned `cursor` to fetch the next page.\n\n**Required Permissions**\n\nYour root key must have the following permission:\n- `project.*.read_project` (to read projects in your workspace)"
       }
     },
-    "com.unkey.api#ProjectsUpdateProjectRequest": {
+    "com.unkey.api#UpdateProjectRequest": {
       "type": "structure",
       "members": {
         "project": {
@@ -9476,10 +9476,10 @@
       },
       "traits": {}
     },
-    "com.unkey.api#ProjectsUpdateProject": {
+    "com.unkey.api#UpdateProject": {
       "type": "operation",
       "input": {
-        "target": "com.unkey.api#ProjectsUpdateProjectRequest"
+        "target": "com.unkey.api#UpdateProjectRequest"
       },
       "output": {
         "target": "com.unkey.api#V2ProjectsUpdateProjectResponseBody"
@@ -10275,28 +10275,28 @@
           "target": "com.unkey.api#ApisListKeys"
         },
         {
-          "target": "com.unkey.api#AppsCreateApp"
+          "target": "com.unkey.api#CreateApp"
         },
         {
-          "target": "com.unkey.api#AppsDeleteApp"
+          "target": "com.unkey.api#DeleteApp"
         },
         {
-          "target": "com.unkey.api#AppsGetApp"
+          "target": "com.unkey.api#GetApp"
         },
         {
-          "target": "com.unkey.api#AppsListApps"
+          "target": "com.unkey.api#ListApps"
         },
         {
-          "target": "com.unkey.api#AppsUpdateApp"
+          "target": "com.unkey.api#UpdateApp"
         },
         {
-          "target": "com.unkey.api#DeploymentsCreateDeployment"
+          "target": "com.unkey.api#CreateDeployment"
         },
         {
-          "target": "com.unkey.api#DeploymentsGetDeployment"
+          "target": "com.unkey.api#GetDeployment"
         },
         {
-          "target": "com.unkey.api#DeploymentsListDeployments"
+          "target": "com.unkey.api#ListDeployments"
         },
         {
           "target": "com.unkey.api#DeploymentsPromoteDeployment"
@@ -10305,37 +10305,37 @@
           "target": "com.unkey.api#DeploymentsRollbackDeployment"
         },
         {
-          "target": "com.unkey.api#DeploymentsStartDeployment"
+          "target": "com.unkey.api#StartDeployment"
         },
         {
-          "target": "com.unkey.api#DeploymentsStopDeployment"
+          "target": "com.unkey.api#StopDeployment"
         },
         {
-          "target": "com.unkey.api#DomainsCreateDomain"
+          "target": "com.unkey.api#CreateDomain"
         },
         {
-          "target": "com.unkey.api#DomainsDeleteDomain"
+          "target": "com.unkey.api#DeleteDomain"
         },
         {
-          "target": "com.unkey.api#DomainsGetDomain"
+          "target": "com.unkey.api#GetDomain"
         },
         {
-          "target": "com.unkey.api#DomainsListDomains"
+          "target": "com.unkey.api#ListDomains"
         },
         {
-          "target": "com.unkey.api#DomainsVerifyDomain"
+          "target": "com.unkey.api#VerifyDomain"
         },
         {
-          "target": "com.unkey.api#EnvironmentsGetEnvironment"
+          "target": "com.unkey.api#GetEnvironment"
         },
         {
-          "target": "com.unkey.api#EnvironmentsListEnvironmentVariables"
+          "target": "com.unkey.api#ListEnvironmentVariables"
         },
         {
-          "target": "com.unkey.api#EnvironmentsListEnvironments"
+          "target": "com.unkey.api#ListEnvironments"
         },
         {
-          "target": "com.unkey.api#EnvironmentsRemoveEnvironmentVariables"
+          "target": "com.unkey.api#RemoveEnvironmentVariables"
         },
         {
           "target": "com.unkey.api#EnvironmentsSetEnvironmentVariables"
@@ -10356,19 +10356,19 @@
           "target": "com.unkey.api#GithubInstallApp"
         },
         {
-          "target": "com.unkey.api#IdentitiesCreateIdentity"
+          "target": "com.unkey.api#CreateIdentity"
         },
         {
-          "target": "com.unkey.api#IdentitiesDeleteIdentity"
+          "target": "com.unkey.api#DeleteIdentity"
         },
         {
-          "target": "com.unkey.api#IdentitiesGetIdentity"
+          "target": "com.unkey.api#GetIdentity"
         },
         {
-          "target": "com.unkey.api#IdentitiesListIdentities"
+          "target": "com.unkey.api#ListIdentities"
         },
         {
-          "target": "com.unkey.api#IdentitiesUpdateIdentity"
+          "target": "com.unkey.api#UpdateIdentity"
         },
         {
           "target": "com.unkey.api#KeysAddPermissions"
@@ -10377,16 +10377,16 @@
           "target": "com.unkey.api#KeysAddRoles"
         },
         {
-          "target": "com.unkey.api#KeysCreateKey"
+          "target": "com.unkey.api#CreateKey"
         },
         {
-          "target": "com.unkey.api#KeysDeleteKey"
+          "target": "com.unkey.api#DeleteKey"
         },
         {
-          "target": "com.unkey.api#KeysGetKey"
+          "target": "com.unkey.api#GetKey"
         },
         {
-          "target": "com.unkey.api#KeysMigrateKeys"
+          "target": "com.unkey.api#MigrateKeys"
         },
         {
           "target": "com.unkey.api#KeysRemovePermissions"
@@ -10407,10 +10407,10 @@
           "target": "com.unkey.api#KeysUpdateCredits"
         },
         {
-          "target": "com.unkey.api#KeysUpdateKey"
+          "target": "com.unkey.api#UpdateKey"
         },
         {
-          "target": "com.unkey.api#KeysVerifyKey"
+          "target": "com.unkey.api#VerifyKey"
         },
         {
           "target": "com.unkey.api#KeysWhoami"
@@ -10437,7 +10437,7 @@
           "target": "com.unkey.api#PermissionsGetRole"
         },
         {
-          "target": "com.unkey.api#PermissionsListPermissions"
+          "target": "com.unkey.api#ListPermissions"
         },
         {
           "target": "com.unkey.api#PermissionsListRoles"
@@ -10446,19 +10446,19 @@
           "target": "com.unkey.api#PermissionsSetRolePermissions"
         },
         {
-          "target": "com.unkey.api#PortalCreatePortal"
+          "target": "com.unkey.api#CreatePortal"
         },
         {
           "target": "com.unkey.api#PortalCreateSession"
         },
         {
-          "target": "com.unkey.api#PortalDeletePortal"
+          "target": "com.unkey.api#DeletePortal"
         },
         {
           "target": "com.unkey.api#PortalExchangeCode"
         },
         {
-          "target": "com.unkey.api#PortalGetPortal"
+          "target": "com.unkey.api#GetPortal"
         },
         {
           "target": "com.unkey.api#PortalGetVerifications"
@@ -10470,22 +10470,22 @@
           "target": "com.unkey.api#PortalRerollKey"
         },
         {
-          "target": "com.unkey.api#PortalUpdatePortal"
+          "target": "com.unkey.api#UpdatePortal"
         },
         {
-          "target": "com.unkey.api#ProjectsCreateProject"
+          "target": "com.unkey.api#CreateProject"
         },
         {
-          "target": "com.unkey.api#ProjectsDeleteProject"
+          "target": "com.unkey.api#DeleteProject"
         },
         {
-          "target": "com.unkey.api#ProjectsGetProject"
+          "target": "com.unkey.api#GetProject"
         },
         {
-          "target": "com.unkey.api#ProjectsListProjects"
+          "target": "com.unkey.api#ListProjects"
         },
         {
-          "target": "com.unkey.api#ProjectsUpdateProject"
+          "target": "com.unkey.api#UpdateProject"
         },
         {
           "target": "com.unkey.api#RatelimitDeleteOverride"
