@@ -12,136 +12,654 @@ import * as Retry from "../retry.ts";
 
 export type { TurbopufferOpError, TurbopufferOpContext };
 
-export interface DeleteV2NamespacesNamespaceRequest {
+export interface CreateNamespaceDebugRecallRequest {
   /** The name of the namespace. */
   namespace: string;
+  /** The number of searches to run. */
+  num?: number;
+  /** Search for `top_k` nearest neighbors. */
+  top_k?: number;
+  /** Filter by attributes. Same syntax as the query endpoint. */
+  filters?: unknown;
+  /** Include ground truth data (query vectors and true nearest neighbors) in the response. */
+  include_ground_truth?: boolean;
+  /** The ranking function to evaluate recall for. If provided, `num` must be either null or 1. */
+  rank_by?: unknown;
 }
-export const DeleteV2NamespacesNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateNamespaceDebugRecallRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     namespace: S.String.pipe(T.Label()),
+    num: S.optional(S.Number),
+    top_k: S.optional(S.Number),
+    filters: S.optional(S.Unknown),
+    include_ground_truth: S.optional(S.Boolean),
+    rank_by: S.optional(S.Unknown),
   }).pipe(
-    T.Http({ method: "DELETE", uri: "/v2/namespaces/{namespace}", code: 200 }),
+    T.Http({
+      method: "POST",
+      uri: "/v1/namespaces/{namespace}/_debug/recall",
+      code: 200,
+    }),
   ),
 ).annotate({
-  identifier: "DeleteV2NamespacesNamespaceRequest",
-}) as any as S.Schema<DeleteV2NamespacesNamespaceRequest>;
+  identifier: "CreateNamespaceDebugRecallRequest",
+}) as any as S.Schema<CreateNamespaceDebugRecallRequest>;
 
-export interface DeleteV2NamespacesNamespaceResponse {
-  /** The status of the request. */
-  status: unknown;
+/** The query vector used for this search. */
+export type CreateNamespaceDebugRecallResponseGroundTruthItemQueryVectorList =
+  Array<number>;
+export const CreateNamespaceDebugRecallResponseGroundTruthItemQueryVectorList =
+  /*@__PURE__*/ S.Array(
+    S.Number,
+  ) as any as S.Schema<CreateNamespaceDebugRecallResponseGroundTruthItemQueryVectorList>;
+
+/** An identifier for a document. */
+export type Id = string | number;
+export const Id = /*@__PURE__*/ S.Unknown as any as S.Schema<Id>;
+
+/** A dense vector encoded as an array of floats. */
+export type VectorCase0List = Array<number>;
+export const VectorCase0List = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<VectorCase0List>;
+
+/** A vector embedding associated with a document. */
+export type Vector = VectorCase0List | string;
+export const Vector = /*@__PURE__*/ S.Unknown as any as S.Schema<Vector>;
+
+/** A single document, in a row-based format. */
+export interface Row {
+  id: Id;
+  vector?: Vector;
 }
-export const DeleteV2NamespacesNamespaceResponse = /*@__PURE__*/ S.suspend(() =>
+export const Row = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    status: S.Unknown,
+    id: Id,
+    vector: S.optional(Vector),
   }),
-).annotate({
-  identifier: "DeleteV2NamespacesNamespaceResponse",
-}) as any as S.Schema<DeleteV2NamespacesNamespaceResponse>;
+).annotate({ identifier: "Row" }) as any as S.Schema<Row>;
 
-export interface GetV1NamespacesRequest {
-  /** Retrieve the next page of results. */
-  cursor?: string;
-  /** Retrieve only the namespaces that match the prefix. */
-  prefix?: string;
-  /** Limit the number of results per page. */
-  page_size?: number;
+/** The true nearest neighbors with their distances and vectors. */
+export type CreateNamespaceDebugRecallResponseGroundTruthItemNearestNeighborsList =
+  Array<Row>;
+export const CreateNamespaceDebugRecallResponseGroundTruthItemNearestNeighborsList =
+  /*@__PURE__*/ S.Array(
+    Row,
+  ) as any as S.Schema<CreateNamespaceDebugRecallResponseGroundTruthItemNearestNeighborsList>;
+
+export interface CreateNamespaceDebugRecallResponseGroundTruthItem {
+  /** The query vector used for this search. */
+  query_vector: CreateNamespaceDebugRecallResponseGroundTruthItemQueryVectorList;
+  /** The true nearest neighbors with their distances and vectors. */
+  nearest_neighbors: CreateNamespaceDebugRecallResponseGroundTruthItemNearestNeighborsList;
 }
-export const GetV1NamespacesRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    cursor: S.optional(S.String.pipe(T.Query())),
-    prefix: S.optional(S.String.pipe(T.Query())),
-    page_size: S.optional(S.Number.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/v1/namespaces", code: 200 })),
-).annotate({
-  identifier: "GetV1NamespacesRequest",
-}) as any as S.Schema<GetV1NamespacesRequest>;
-
-/** A summary of a namespace. */
-export interface NamespaceSummary {
-  /** The namespace ID. */
-  id: string;
-}
-export const NamespaceSummary = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-  }),
-).annotate({
-  identifier: "NamespaceSummary",
-}) as any as S.Schema<NamespaceSummary>;
-
-/** The list of namespaces. */
-export type GetV1NamespacesResponseNamespacesList = Array<NamespaceSummary>;
-export const GetV1NamespacesResponseNamespacesList = /*@__PURE__*/ S.Array(
-  NamespaceSummary,
-) as any as S.Schema<GetV1NamespacesResponseNamespacesList>;
-
-export interface GetV1NamespacesResponse {
-  /** The list of namespaces. */
-  namespaces?: GetV1NamespacesResponseNamespacesList;
-  /** The cursor to use to retrieve the next page of results. */
-  next_cursor?: string;
-}
-export const GetV1NamespacesResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    namespaces: S.optional(GetV1NamespacesResponseNamespacesList),
-    next_cursor: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "GetV1NamespacesResponse",
-}) as any as S.Schema<GetV1NamespacesResponse>;
-
-export interface GetV1NamespacesNamespaceHintCacheWarmRequest {
-  /** The name of the namespace. */
-  namespace: string;
-}
-export const GetV1NamespacesNamespaceHintCacheWarmRequest =
+export const CreateNamespaceDebugRecallResponseGroundTruthItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      namespace: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/namespaces/{namespace}/hint_cache_warm",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetV1NamespacesNamespaceHintCacheWarmRequest",
-  }) as any as S.Schema<GetV1NamespacesNamespaceHintCacheWarmRequest>;
-
-export interface GetV1NamespacesNamespaceHintCacheWarmResponse {
-  /** The status of the request. */
-  status: unknown;
-  message?: string;
-}
-export const GetV1NamespacesNamespaceHintCacheWarmResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      status: S.Unknown,
-      message: S.optional(S.String),
+      query_vector:
+        CreateNamespaceDebugRecallResponseGroundTruthItemQueryVectorList,
+      nearest_neighbors:
+        CreateNamespaceDebugRecallResponseGroundTruthItemNearestNeighborsList,
     }),
   ).annotate({
-    identifier: "GetV1NamespacesNamespaceHintCacheWarmResponse",
-  }) as any as S.Schema<GetV1NamespacesNamespaceHintCacheWarmResponse>;
+    identifier: "CreateNamespaceDebugRecallResponseGroundTruthItem",
+  }) as any as S.Schema<CreateNamespaceDebugRecallResponseGroundTruthItem>;
 
-export interface GetV1NamespacesNamespaceSchemaRequest {
+/** Ground truth data including query vectors and true nearest neighbors. Only included when include_ground_truth is true. */
+export type CreateNamespaceDebugRecallResponseGroundTruthList =
+  Array<CreateNamespaceDebugRecallResponseGroundTruthItem>;
+export const CreateNamespaceDebugRecallResponseGroundTruthList =
+  /*@__PURE__*/ S.Array(
+    CreateNamespaceDebugRecallResponseGroundTruthItem,
+  ) as any as S.Schema<CreateNamespaceDebugRecallResponseGroundTruthList>;
+
+export interface CreateNamespaceDebugRecallResponse {
+  /** The average recall of the queries. */
+  avg_recall: number;
+  /** The average number of documents retrieved by the exhaustive searches. */
+  avg_exhaustive_count: number;
+  /** The average number of documents retrieved by the approximate nearest neighbor searches. */
+  avg_ann_count: number;
+  /** Ground truth data including query vectors and true nearest neighbors. Only included when include_ground_truth is true. */
+  ground_truth?: CreateNamespaceDebugRecallResponseGroundTruthList;
+}
+export const CreateNamespaceDebugRecallResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    avg_recall: S.Number,
+    avg_exhaustive_count: S.Number,
+    avg_ann_count: S.Number,
+    ground_truth: S.optional(CreateNamespaceDebugRecallResponseGroundTruthList),
+  }),
+).annotate({
+  identifier: "CreateNamespaceDebugRecallResponse",
+}) as any as S.Schema<CreateNamespaceDebugRecallResponse>;
+
+/** The consistency level for a query. */
+export interface CreateNamespaceExplainQueryRequestConsistency {
+  /** The query's consistency level. */
+  level?: unknown;
+}
+export const CreateNamespaceExplainQueryRequestConsistency =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      level: S.optional(S.Unknown),
+    }),
+  ).annotate({
+    identifier: "CreateNamespaceExplainQueryRequestConsistency",
+  }) as any as S.Schema<CreateNamespaceExplainQueryRequestConsistency>;
+
+/** Include exactly the specified attributes in the response. */
+export type IncludeAttributesCase1List = Array<string>;
+export const IncludeAttributesCase1List = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<IncludeAttributesCase1List>;
+
+/** Whether to include attributes in the response. */
+export type IncludeAttributes = boolean | IncludeAttributesCase1List;
+export const IncludeAttributes =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<IncludeAttributes>;
+
+/** List of attribute names to exclude from the response. All other attributes will be included in the response. */
+export type CreateNamespaceExplainQueryRequestExcludeAttributesList =
+  Array<string>;
+export const CreateNamespaceExplainQueryRequestExcludeAttributesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateNamespaceExplainQueryRequestExcludeAttributesList>;
+
+/** Aggregations to compute over all documents in the namespace that match the filters. */
+export type CreateNamespaceExplainQueryRequestAggregateByMap = {
+  [key: string]: unknown | undefined;
+};
+export const CreateNamespaceExplainQueryRequestAggregateByMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<CreateNamespaceExplainQueryRequestAggregateByMap>;
+
+/** Groups documents by the specified attributes (the "group key") before computing aggregates. Aggregates are computed separately for each group. */
+export type CreateNamespaceExplainQueryRequestGroupByList = Array<unknown>;
+export const CreateNamespaceExplainQueryRequestGroupByList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<CreateNamespaceExplainQueryRequestGroupByList>;
+
+/** Computes additional values on documents returned by a query. Each key is the name of the computed attribute; each value is an expression describing how to compute it. */
+export type CreateNamespaceExplainQueryRequestComputeAttributesMap = {
+  [key: string]: unknown | undefined;
+};
+export const CreateNamespaceExplainQueryRequestComputeAttributesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<CreateNamespaceExplainQueryRequestComputeAttributesMap>;
+
+/** The attributes to include in the limit key. */
+export type LimitPerAttributesList = Array<string>;
+export const LimitPerAttributesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<LimitPerAttributesList>;
+
+/** Limits the number of documents with the same value for a set of attributes (the "limit key") that can appear in the results. */
+export interface LimitPer {
+  /** The attributes to include in the limit key. */
+  attributes: LimitPerAttributesList;
+  /** The maximum number of documents to return for each value of the limit key. */
+  limit: number;
+}
+export const LimitPer = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    attributes: LimitPerAttributesList,
+    limit: S.Number,
+  }),
+).annotate({ identifier: "LimitPer" }) as any as S.Schema<LimitPer>;
+
+/** Limits the documents returned by a query. */
+export interface Limit {
+  /** Limits the total number of documents returned. */
+  total: number;
+  /** Limits the number of documents with the same value for a set of attributes (the "limit key") that can appear in the results. */
+  per?: LimitPer;
+}
+export const Limit = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    total: S.Number,
+    per: S.optional(LimitPer),
+  }),
+).annotate({ identifier: "Limit" }) as any as S.Schema<Limit>;
+
+export type CreateNamespaceExplainQueryRequestLimit = number | Limit;
+export const CreateNamespaceExplainQueryRequestLimit =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateNamespaceExplainQueryRequestLimit>;
+
+export interface CreateNamespaceExplainQueryRequest {
   /** The name of the namespace. */
   namespace: string;
+  vector_encoding?: unknown;
+  /** The consistency level for a query. */
+  consistency?: CreateNamespaceExplainQueryRequestConsistency;
+  /** How to rank the documents in the namespace. */
+  rank_by?: unknown;
+  /** The number of results to return. */
+  top_k?: number;
+  /** Exact filters for attributes to refine search results for. Think of it as a SQL WHERE clause. */
+  filters?: unknown;
+  include_attributes?: IncludeAttributes;
+  /** List of attribute names to exclude from the response. All other attributes will be included in the response. */
+  exclude_attributes?: CreateNamespaceExplainQueryRequestExcludeAttributesList;
+  /** Aggregations to compute over all documents in the namespace that match the filters. */
+  aggregate_by?: CreateNamespaceExplainQueryRequestAggregateByMap;
+  /** Groups documents by the specified attributes (the "group key") before computing aggregates. Aggregates are computed separately for each group. */
+  group_by?: CreateNamespaceExplainQueryRequestGroupByList;
+  /** Computes additional values on documents returned by a query. Each key is the name of the computed attribute; each value is an expression describing how to compute it. */
+  compute_attributes?: CreateNamespaceExplainQueryRequestComputeAttributesMap;
+  distance_metric?: unknown;
+  limit?: CreateNamespaceExplainQueryRequestLimit;
 }
-export const GetV1NamespacesNamespaceSchemaRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      namespace: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v1/namespaces/{namespace}/schema",
-        code: 200,
-      }),
+export const CreateNamespaceExplainQueryRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    namespace: S.String.pipe(T.Label()),
+    vector_encoding: S.optional(S.Unknown),
+    consistency: S.optional(CreateNamespaceExplainQueryRequestConsistency),
+    rank_by: S.optional(S.Unknown),
+    top_k: S.optional(S.Number),
+    filters: S.optional(S.Unknown),
+    include_attributes: S.optional(IncludeAttributes),
+    exclude_attributes: S.optional(
+      CreateNamespaceExplainQueryRequestExcludeAttributesList,
     ),
+    aggregate_by: S.optional(CreateNamespaceExplainQueryRequestAggregateByMap),
+    group_by: S.optional(CreateNamespaceExplainQueryRequestGroupByList),
+    compute_attributes: S.optional(
+      CreateNamespaceExplainQueryRequestComputeAttributesMap,
+    ),
+    distance_metric: S.optional(S.Unknown),
+    limit: S.optional(CreateNamespaceExplainQueryRequestLimit),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v2/namespaces/{namespace}/explain_query",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "GetV1NamespacesNamespaceSchemaRequest",
-}) as any as S.Schema<GetV1NamespacesNamespaceSchemaRequest>;
+  identifier: "CreateNamespaceExplainQueryRequest",
+}) as any as S.Schema<CreateNamespaceExplainQueryRequest>;
+
+export interface CreateNamespaceExplainQueryResponse {
+  /** The textual representation of the query plan. */
+  plan_text?: string;
+}
+export const CreateNamespaceExplainQueryResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    plan_text: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CreateNamespaceExplainQueryResponse",
+}) as any as S.Schema<CreateNamespaceExplainQueryResponse>;
+
+/** The consistency level for a query. */
+export type CreateNamespaceQueryRequestConsistency =
+  CreateNamespaceExplainQueryRequestConsistency;
+export const CreateNamespaceQueryRequestConsistency =
+  CreateNamespaceExplainQueryRequestConsistency;
+
+/** List of attribute names to exclude from the response. All other attributes will be included in the response. */
+export type CreateNamespaceQueryRequestExcludeAttributesList = Array<string>;
+export const CreateNamespaceQueryRequestExcludeAttributesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateNamespaceQueryRequestExcludeAttributesList>;
+
+/** Aggregations to compute over all documents in the namespace that match the filters. */
+export type CreateNamespaceQueryRequestAggregateByMap = {
+  [key: string]: unknown | undefined;
+};
+export const CreateNamespaceQueryRequestAggregateByMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<CreateNamespaceQueryRequestAggregateByMap>;
+
+/** Groups documents by the specified attributes (the "group key") before computing aggregates. Aggregates are computed separately for each group. */
+export type CreateNamespaceQueryRequestGroupByList = Array<unknown>;
+export const CreateNamespaceQueryRequestGroupByList = /*@__PURE__*/ S.Array(
+  S.Unknown,
+) as any as S.Schema<CreateNamespaceQueryRequestGroupByList>;
+
+/** Computes additional values on documents returned by a query. Each key is the name of the computed attribute; each value is an expression describing how to compute it. */
+export type CreateNamespaceQueryRequestComputeAttributesMap = {
+  [key: string]: unknown | undefined;
+};
+export const CreateNamespaceQueryRequestComputeAttributesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<CreateNamespaceQueryRequestComputeAttributesMap>;
+
+export type CreateNamespaceQueryRequestLimit = number | Limit;
+export const CreateNamespaceQueryRequestLimit =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateNamespaceQueryRequestLimit>;
+
+export interface CreateNamespaceQueryRequest {
+  /** The name of the namespace. */
+  namespace: string;
+  vector_encoding?: unknown;
+  /** The consistency level for a query. */
+  consistency?: CreateNamespaceExplainQueryRequestConsistency;
+  /** How to rank the documents in the namespace. */
+  rank_by?: unknown;
+  /** The number of results to return. */
+  top_k?: number;
+  /** Exact filters for attributes to refine search results for. Think of it as a SQL WHERE clause. */
+  filters?: unknown;
+  include_attributes?: IncludeAttributes;
+  /** List of attribute names to exclude from the response. All other attributes will be included in the response. */
+  exclude_attributes?: CreateNamespaceQueryRequestExcludeAttributesList;
+  /** Aggregations to compute over all documents in the namespace that match the filters. */
+  aggregate_by?: CreateNamespaceQueryRequestAggregateByMap;
+  /** Groups documents by the specified attributes (the "group key") before computing aggregates. Aggregates are computed separately for each group. */
+  group_by?: CreateNamespaceQueryRequestGroupByList;
+  /** Computes additional values on documents returned by a query. Each key is the name of the computed attribute; each value is an expression describing how to compute it. */
+  compute_attributes?: CreateNamespaceQueryRequestComputeAttributesMap;
+  distance_metric?: unknown;
+  limit?: CreateNamespaceQueryRequestLimit;
+}
+export const CreateNamespaceQueryRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    namespace: S.String.pipe(T.Label()),
+    vector_encoding: S.optional(S.Unknown),
+    consistency: S.optional(CreateNamespaceExplainQueryRequestConsistency),
+    rank_by: S.optional(S.Unknown),
+    top_k: S.optional(S.Number),
+    filters: S.optional(S.Unknown),
+    include_attributes: S.optional(IncludeAttributes),
+    exclude_attributes: S.optional(
+      CreateNamespaceQueryRequestExcludeAttributesList,
+    ),
+    aggregate_by: S.optional(CreateNamespaceQueryRequestAggregateByMap),
+    group_by: S.optional(CreateNamespaceQueryRequestGroupByList),
+    compute_attributes: S.optional(
+      CreateNamespaceQueryRequestComputeAttributesMap,
+    ),
+    distance_metric: S.optional(S.Unknown),
+    limit: S.optional(CreateNamespaceQueryRequestLimit),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v2/namespaces/{namespace}/query",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateNamespaceQueryRequest",
+}) as any as S.Schema<CreateNamespaceQueryRequest>;
+
+export type CreateNamespaceQueryResponseAggregationsMap = {
+  [key: string]: unknown | undefined;
+};
+export const CreateNamespaceQueryResponseAggregationsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<CreateNamespaceQueryResponseAggregationsMap>;
+
+/** A single aggregation group. */
+export type AggregationGroup = { [key: string]: unknown | undefined };
+export const AggregationGroup = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<AggregationGroup>;
+
+export type CreateNamespaceQueryResponseAggregationGroupsList =
+  Array<AggregationGroup>;
+export const CreateNamespaceQueryResponseAggregationGroupsList =
+  /*@__PURE__*/ S.Array(
+    AggregationGroup,
+  ) as any as S.Schema<CreateNamespaceQueryResponseAggregationGroupsList>;
+
+export type CreateNamespaceQueryResponseRowsList = Array<Row>;
+export const CreateNamespaceQueryResponseRowsList = /*@__PURE__*/ S.Array(
+  Row,
+) as any as S.Schema<CreateNamespaceQueryResponseRowsList>;
+
+/** The performance information for a query. */
+export interface QueryPerformance {
+  /** The ratio of cache hits to total cache lookups. */
+  cache_hit_ratio: number;
+  /** A qualitative description of the cache hit ratio (`hot`, `warm`, or `cold`). */
+  cache_temperature: string;
+  /** Request time measured on the server, including time spent waiting for other queries to complete if the namespace was at its concurrency limit. */
+  server_total_ms: number;
+  /** Request time measured on the server, excluding time spent waiting due to the namespace concurrency limit. */
+  query_execution_ms: number;
+  /** The number of unindexed documents processed by the query. */
+  exhaustive_search_count: number;
+  /** the approximate number of documents in the namespace. */
+  approx_namespace_size: number;
+}
+export const QueryPerformance = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    cache_hit_ratio: S.Number,
+    cache_temperature: S.String,
+    server_total_ms: S.Number,
+    query_execution_ms: S.Number,
+    exhaustive_search_count: S.Number,
+    approx_namespace_size: S.Number,
+  }),
+).annotate({
+  identifier: "QueryPerformance",
+}) as any as S.Schema<QueryPerformance>;
+
+/** The billing information for a query. */
+export interface QueryBilling {
+  /** The number of billable logical bytes queried from the namespace. */
+  billable_logical_bytes_queried: number;
+  /** The number of billable logical bytes returned from the query. */
+  billable_logical_bytes_returned: number;
+}
+export const QueryBilling = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    billable_logical_bytes_queried: S.Number,
+    billable_logical_bytes_returned: S.Number,
+  }),
+).annotate({ identifier: "QueryBilling" }) as any as S.Schema<QueryBilling>;
+
+export interface CreateNamespaceQueryResponse {
+  aggregations?: CreateNamespaceQueryResponseAggregationsMap;
+  aggregation_groups?: CreateNamespaceQueryResponseAggregationGroupsList;
+  rows?: CreateNamespaceQueryResponseRowsList;
+  performance: QueryPerformance;
+  billing: QueryBilling;
+}
+export const CreateNamespaceQueryResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    aggregations: S.optional(CreateNamespaceQueryResponseAggregationsMap),
+    aggregation_groups: S.optional(
+      CreateNamespaceQueryResponseAggregationGroupsList,
+    ),
+    rows: S.optional(CreateNamespaceQueryResponseRowsList),
+    performance: QueryPerformance,
+    billing: QueryBilling,
+  }),
+).annotate({
+  identifier: "CreateNamespaceQueryResponse",
+}) as any as S.Schema<CreateNamespaceQueryResponse>;
+
+/** The consistency level for a query. */
+export type CreateNamespaceQueryRequestConsistency2 =
+  CreateNamespaceExplainQueryRequestConsistency;
+export const CreateNamespaceQueryRequestConsistency2 =
+  CreateNamespaceExplainQueryRequestConsistency;
+
+/** List of attribute names to exclude from the response. All other attributes will be included in the response. */
+export type QueryExcludeAttributesList = Array<string>;
+export const QueryExcludeAttributesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<QueryExcludeAttributesList>;
+
+/** Aggregations to compute over all documents in the namespace that match the filters. */
+export type QueryAggregateByMap = { [key: string]: unknown | undefined };
+export const QueryAggregateByMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<QueryAggregateByMap>;
+
+/** Groups documents by the specified attributes (the "group key") before computing aggregates. Aggregates are computed separately for each group. */
+export type QueryGroupByList = Array<unknown>;
+export const QueryGroupByList = /*@__PURE__*/ S.Array(
+  S.Unknown,
+) as any as S.Schema<QueryGroupByList>;
+
+/** Computes additional values on documents returned by a query. Each key is the name of the computed attribute; each value is an expression describing how to compute it. */
+export type QueryComputeAttributesMap = { [key: string]: unknown | undefined };
+export const QueryComputeAttributesMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<QueryComputeAttributesMap>;
+
+export type QueryLimit = number | Limit;
+export const QueryLimit =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryLimit>;
+
+/** Query, filter, full-text search and vector search documents. */
+export interface Query {
+  /** How to rank the documents in the namespace. */
+  rank_by?: unknown;
+  /** The number of results to return. */
+  top_k?: number;
+  /** Exact filters for attributes to refine search results for. Think of it as a SQL WHERE clause. */
+  filters?: unknown;
+  include_attributes?: IncludeAttributes;
+  /** List of attribute names to exclude from the response. All other attributes will be included in the response. */
+  exclude_attributes?: QueryExcludeAttributesList;
+  /** Aggregations to compute over all documents in the namespace that match the filters. */
+  aggregate_by?: QueryAggregateByMap;
+  /** Groups documents by the specified attributes (the "group key") before computing aggregates. Aggregates are computed separately for each group. */
+  group_by?: QueryGroupByList;
+  /** Computes additional values on documents returned by a query. Each key is the name of the computed attribute; each value is an expression describing how to compute it. */
+  compute_attributes?: QueryComputeAttributesMap;
+  distance_metric?: unknown;
+  limit?: QueryLimit;
+}
+export const Query = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    rank_by: S.optional(S.Unknown),
+    top_k: S.optional(S.Number),
+    filters: S.optional(S.Unknown),
+    include_attributes: S.optional(IncludeAttributes),
+    exclude_attributes: S.optional(QueryExcludeAttributesList),
+    aggregate_by: S.optional(QueryAggregateByMap),
+    group_by: S.optional(QueryGroupByList),
+    compute_attributes: S.optional(QueryComputeAttributesMap),
+    distance_metric: S.optional(S.Unknown),
+    limit: S.optional(QueryLimit),
+  }),
+).annotate({ identifier: "Query" }) as any as S.Schema<Query>;
+
+export type CreateNamespaceQueryRequestQueriesList = Array<Query>;
+export const CreateNamespaceQueryRequestQueriesList = /*@__PURE__*/ S.Array(
+  Query,
+) as any as S.Schema<CreateNamespaceQueryRequestQueriesList>;
+
+export interface RerankLimitCase1 {
+  total: number;
+}
+export const RerankLimitCase1 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    total: S.Number,
+  }),
+).annotate({
+  identifier: "RerankLimitCase1",
+}) as any as S.Schema<RerankLimitCase1>;
+
+export type RerankLimit = number | RerankLimitCase1;
+export const RerankLimit =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<RerankLimit>;
+
+export interface CreateNamespaceQueryRequest2 {
+  /** The name of the namespace. */
+  namespace: string;
+  vector_encoding?: unknown;
+  /** The consistency level for a query. */
+  consistency?: CreateNamespaceExplainQueryRequestConsistency;
+  queries: CreateNamespaceQueryRequestQueriesList;
+  /** How to combine the rows returned by each sub-query into a single ranked list. */
+  rerank_by?: unknown;
+  /** Limits the total number of reranked documents returned. */
+  limit?: RerankLimit;
+}
+export const CreateNamespaceQueryRequest2 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    namespace: S.String.pipe(T.Label()),
+    vector_encoding: S.optional(S.Unknown),
+    consistency: S.optional(CreateNamespaceExplainQueryRequestConsistency),
+    queries: CreateNamespaceQueryRequestQueriesList,
+    rerank_by: S.optional(S.Unknown),
+    limit: S.optional(RerankLimit),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v2/namespaces/{namespace}/query",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateNamespaceQueryRequest2",
+}) as any as S.Schema<CreateNamespaceQueryRequest2>;
+
+export type SingleQueryResultAggregationsMap = {
+  [key: string]: unknown | undefined;
+};
+export const SingleQueryResultAggregationsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<SingleQueryResultAggregationsMap>;
+
+export type SingleQueryResultAggregationGroupsList = Array<AggregationGroup>;
+export const SingleQueryResultAggregationGroupsList = /*@__PURE__*/ S.Array(
+  AggregationGroup,
+) as any as S.Schema<SingleQueryResultAggregationGroupsList>;
+
+export type SingleQueryResultRowsList = Array<Row>;
+export const SingleQueryResultRowsList = /*@__PURE__*/ S.Array(
+  Row,
+) as any as S.Schema<SingleQueryResultRowsList>;
+
+export interface SingleQueryResult {
+  aggregations?: SingleQueryResultAggregationsMap;
+  aggregation_groups?: SingleQueryResultAggregationGroupsList;
+  rows?: SingleQueryResultRowsList;
+}
+export const SingleQueryResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    aggregations: S.optional(SingleQueryResultAggregationsMap),
+    aggregation_groups: S.optional(SingleQueryResultAggregationGroupsList),
+    rows: S.optional(SingleQueryResultRowsList),
+  }),
+).annotate({
+  identifier: "SingleQueryResult",
+}) as any as S.Schema<SingleQueryResult>;
+
+export type MultiQueryResultResultsList = Array<SingleQueryResult>;
+export const MultiQueryResultResultsList = /*@__PURE__*/ S.Array(
+  SingleQueryResult,
+) as any as S.Schema<MultiQueryResultResultsList>;
+
+/** The result of a multi-query. */
+export interface MultiQueryResult {
+  results: MultiQueryResultResultsList;
+  performance: QueryPerformance;
+  billing: QueryBilling;
+}
+export const MultiQueryResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    results: MultiQueryResultResultsList,
+    performance: QueryPerformance,
+    billing: QueryBilling,
+  }),
+).annotate({
+  identifier: "MultiQueryResult",
+}) as any as S.Schema<MultiQueryResult>;
 
 /** Configuration options for full-text search. */
 export interface FullTextSearchConfig {
@@ -266,42 +784,132 @@ export const AttributeSchemaConfig = /*@__PURE__*/ S.suspend(() =>
   identifier: "AttributeSchemaConfig",
 }) as any as S.Schema<AttributeSchemaConfig>;
 
-/** The response to a successful namespace schema request. */
-export type GetV1NamespacesNamespaceSchemaResponseBodyMap = {
+/** The schema for an attribute attached to a document. */
+export type AttributeSchema = string | AttributeSchemaConfig;
+export const AttributeSchema =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<AttributeSchema>;
+
+/** The desired schema for the namespace. */
+export type CreateNamespaceSchemaRequestBodyMap = {
+  [key: string]: AttributeSchema | undefined;
+};
+export const CreateNamespaceSchemaRequestBodyMap = /*@__PURE__*/ S.Record(
+  S.String,
+  AttributeSchema,
+) as any as S.Schema<CreateNamespaceSchemaRequestBodyMap>;
+
+export interface CreateNamespaceSchemaRequest {
+  /** The name of the namespace. */
+  namespace: string;
+  body?: CreateNamespaceSchemaRequestBodyMap;
+}
+export const CreateNamespaceSchemaRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    namespace: S.String.pipe(T.Label()),
+    body: S.optional(CreateNamespaceSchemaRequestBodyMap.pipe(T.HttpBody())),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/namespaces/{namespace}/schema",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateNamespaceSchemaRequest",
+}) as any as S.Schema<CreateNamespaceSchemaRequest>;
+
+/** The updated schema for the namespace. */
+export type CreateNamespaceSchemaResponseBodyMap = {
   [key: string]: AttributeSchemaConfig | undefined;
 };
-export const GetV1NamespacesNamespaceSchemaResponseBodyMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    AttributeSchemaConfig,
-  ) as any as S.Schema<GetV1NamespacesNamespaceSchemaResponseBodyMap>;
+export const CreateNamespaceSchemaResponseBodyMap = /*@__PURE__*/ S.Record(
+  S.String,
+  AttributeSchemaConfig,
+) as any as S.Schema<CreateNamespaceSchemaResponseBodyMap>;
 
-export type GetV1NamespacesNamespaceSchemaResponse =
-  GetV1NamespacesNamespaceSchemaResponseBodyMap;
-export const GetV1NamespacesNamespaceSchemaResponse = /*@__PURE__*/ S.suspend(
-  () => GetV1NamespacesNamespaceSchemaResponseBodyMap.pipe(T.RawResponseRoot()),
+export type CreateNamespaceSchemaResponse =
+  CreateNamespaceSchemaResponseBodyMap;
+export const CreateNamespaceSchemaResponse = /*@__PURE__*/ S.suspend(() =>
+  CreateNamespaceSchemaResponseBodyMap.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "GetV1NamespacesNamespaceSchemaResponse",
-}) as any as S.Schema<GetV1NamespacesNamespaceSchemaResponse>;
+  identifier: "CreateNamespaceSchemaResponse",
+}) as any as S.Schema<CreateNamespaceSchemaResponse>;
 
-export interface GetV2NamespacesNamespaceMetadataRequest {
+export interface DeleteNamespaceRequest {
   /** The name of the namespace. */
   namespace: string;
 }
-export const GetV2NamespacesNamespaceMetadataRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      namespace: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/v2/namespaces/{namespace}/metadata",
-        code: 200,
-      }),
-    ),
+export const DeleteNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    namespace: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "DELETE", uri: "/v2/namespaces/{namespace}", code: 200 }),
+  ),
 ).annotate({
-  identifier: "GetV2NamespacesNamespaceMetadataRequest",
-}) as any as S.Schema<GetV2NamespacesNamespaceMetadataRequest>;
+  identifier: "DeleteNamespaceRequest",
+}) as any as S.Schema<DeleteNamespaceRequest>;
+
+export interface DeleteNamespaceResponse {
+  /** The status of the request. */
+  status: unknown;
+}
+export const DeleteNamespaceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.Unknown,
+  }),
+).annotate({
+  identifier: "DeleteNamespaceResponse",
+}) as any as S.Schema<DeleteNamespaceResponse>;
+
+export interface GetNamespaceHintCacheWarmRequest {
+  /** The name of the namespace. */
+  namespace: string;
+}
+export const GetNamespaceHintCacheWarmRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    namespace: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/namespaces/{namespace}/hint_cache_warm",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetNamespaceHintCacheWarmRequest",
+}) as any as S.Schema<GetNamespaceHintCacheWarmRequest>;
+
+export interface GetNamespaceHintCacheWarmResponse {
+  /** The status of the request. */
+  status: unknown;
+  message?: string;
+}
+export const GetNamespaceHintCacheWarmResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.Unknown,
+    message: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetNamespaceHintCacheWarmResponse",
+}) as any as S.Schema<GetNamespaceHintCacheWarmResponse>;
+
+export interface GetNamespaceMetadataRequest {
+  /** The name of the namespace. */
+  namespace: string;
+}
+export const GetNamespaceMetadataRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    namespace: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v2/namespaces/{namespace}/metadata",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetNamespaceMetadataRequest",
+}) as any as S.Schema<GetNamespaceMetadataRequest>;
 
 /** The schema of the namespace. */
 export type NamespaceMetadataSchemaMap = {
@@ -451,230 +1059,91 @@ export const NamespaceMetadata = /*@__PURE__*/ S.suspend(() =>
   identifier: "NamespaceMetadata",
 }) as any as S.Schema<NamespaceMetadata>;
 
-/** Configuration for namespace pinning. */
-export interface PinningConfig {
-  /** The number of read replicas to provision. Defaults to 1 if not specified. */
-  replicas?: number;
+export interface GetNamespaceSchemaRequest {
+  /** The name of the namespace. */
+  namespace: string;
 }
-export const PinningConfig = /*@__PURE__*/ S.suspend(() =>
+export const GetNamespaceSchemaRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    replicas: S.optional(S.Number),
-  }),
-).annotate({ identifier: "PinningConfig" }) as any as S.Schema<PinningConfig>;
-
-/** Configuration for namespace pinning. - Missing field: no change to pinning configuration - `null` or `false`: explicitly remove pinning - `true`: enable pinning with default configuration - Object: set pinning configuration */
-export type PatchV1NamespacesNamespaceMetadataRequestPinning =
-  | boolean
-  | PinningConfig;
-export const PatchV1NamespacesNamespaceMetadataRequestPinning =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PatchV1NamespacesNamespaceMetadataRequestPinning>;
-
-export interface PatchV1NamespacesNamespaceMetadataRequest {
-  /** The name of the namespace. */
-  namespace: string;
-  /** Configuration for namespace pinning. - Missing field: no change to pinning configuration - `null` or `false`: explicitly remove pinning - `true`: enable pinning with default configuration - Object: set pinning configuration */
-  pinning?: PatchV1NamespacesNamespaceMetadataRequestPinning | null;
-}
-export const PatchV1NamespacesNamespaceMetadataRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      namespace: S.String.pipe(T.Label()),
-      pinning: S.optional(
-        S.NullOr(PatchV1NamespacesNamespaceMetadataRequestPinning),
-      ),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/v1/namespaces/{namespace}/metadata",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PatchV1NamespacesNamespaceMetadataRequest",
-  }) as any as S.Schema<PatchV1NamespacesNamespaceMetadataRequest>;
-
-export interface PostV1NamespacesNamespaceDebugRecallRequest {
-  /** The name of the namespace. */
-  namespace: string;
-  /** The number of searches to run. */
-  num?: number;
-  /** Search for `top_k` nearest neighbors. */
-  top_k?: number;
-  /** Filter by attributes. Same syntax as the query endpoint. */
-  filters?: unknown;
-  /** Include ground truth data (query vectors and true nearest neighbors) in the response. */
-  include_ground_truth?: boolean;
-  /** The ranking function to evaluate recall for. If provided, `num` must be either null or 1. */
-  rank_by?: unknown;
-}
-export const PostV1NamespacesNamespaceDebugRecallRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      namespace: S.String.pipe(T.Label()),
-      num: S.optional(S.Number),
-      top_k: S.optional(S.Number),
-      filters: S.optional(S.Unknown),
-      include_ground_truth: S.optional(S.Boolean),
-      rank_by: S.optional(S.Unknown),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/namespaces/{namespace}/_debug/recall",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostV1NamespacesNamespaceDebugRecallRequest",
-  }) as any as S.Schema<PostV1NamespacesNamespaceDebugRecallRequest>;
-
-/** The query vector used for this search. */
-export type PostV1NamespacesNamespaceDebugRecallResponseGroundTruthItemQueryVectorList =
-  Array<number>;
-export const PostV1NamespacesNamespaceDebugRecallResponseGroundTruthItemQueryVectorList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<PostV1NamespacesNamespaceDebugRecallResponseGroundTruthItemQueryVectorList>;
-
-/** An identifier for a document. */
-export type Id = string | number;
-export const Id = /*@__PURE__*/ S.Unknown as any as S.Schema<Id>;
-
-/** A dense vector encoded as an array of floats. */
-export type VectorCase0List = Array<number>;
-export const VectorCase0List = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<VectorCase0List>;
-
-/** A vector embedding associated with a document. */
-export type Vector = VectorCase0List | string;
-export const Vector = /*@__PURE__*/ S.Unknown as any as S.Schema<Vector>;
-
-/** A single document, in a row-based format. */
-export interface Row {
-  id: Id;
-  vector?: Vector;
-}
-export const Row = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: Id,
-    vector: S.optional(Vector),
-  }),
-).annotate({ identifier: "Row" }) as any as S.Schema<Row>;
-
-/** The true nearest neighbors with their distances and vectors. */
-export type PostV1NamespacesNamespaceDebugRecallResponseGroundTruthItemNearestNeighborsList =
-  Array<Row>;
-export const PostV1NamespacesNamespaceDebugRecallResponseGroundTruthItemNearestNeighborsList =
-  /*@__PURE__*/ S.Array(
-    Row,
-  ) as any as S.Schema<PostV1NamespacesNamespaceDebugRecallResponseGroundTruthItemNearestNeighborsList>;
-
-export interface PostV1NamespacesNamespaceDebugRecallResponseGroundTruthItem {
-  /** The query vector used for this search. */
-  query_vector: PostV1NamespacesNamespaceDebugRecallResponseGroundTruthItemQueryVectorList;
-  /** The true nearest neighbors with their distances and vectors. */
-  nearest_neighbors: PostV1NamespacesNamespaceDebugRecallResponseGroundTruthItemNearestNeighborsList;
-}
-export const PostV1NamespacesNamespaceDebugRecallResponseGroundTruthItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      query_vector:
-        PostV1NamespacesNamespaceDebugRecallResponseGroundTruthItemQueryVectorList,
-      nearest_neighbors:
-        PostV1NamespacesNamespaceDebugRecallResponseGroundTruthItemNearestNeighborsList,
+    namespace: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/namespaces/{namespace}/schema",
+      code: 200,
     }),
-  ).annotate({
-    identifier: "PostV1NamespacesNamespaceDebugRecallResponseGroundTruthItem",
-  }) as any as S.Schema<PostV1NamespacesNamespaceDebugRecallResponseGroundTruthItem>;
-
-/** Ground truth data including query vectors and true nearest neighbors. Only included when include_ground_truth is true. */
-export type PostV1NamespacesNamespaceDebugRecallResponseGroundTruthList =
-  Array<PostV1NamespacesNamespaceDebugRecallResponseGroundTruthItem>;
-export const PostV1NamespacesNamespaceDebugRecallResponseGroundTruthList =
-  /*@__PURE__*/ S.Array(
-    PostV1NamespacesNamespaceDebugRecallResponseGroundTruthItem,
-  ) as any as S.Schema<PostV1NamespacesNamespaceDebugRecallResponseGroundTruthList>;
-
-export interface PostV1NamespacesNamespaceDebugRecallResponse {
-  /** The average recall of the queries. */
-  avg_recall: number;
-  /** The average number of documents retrieved by the exhaustive searches. */
-  avg_exhaustive_count: number;
-  /** The average number of documents retrieved by the approximate nearest neighbor searches. */
-  avg_ann_count: number;
-  /** Ground truth data including query vectors and true nearest neighbors. Only included when include_ground_truth is true. */
-  ground_truth?: PostV1NamespacesNamespaceDebugRecallResponseGroundTruthList;
-}
-export const PostV1NamespacesNamespaceDebugRecallResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      avg_recall: S.Number,
-      avg_exhaustive_count: S.Number,
-      avg_ann_count: S.Number,
-      ground_truth: S.optional(
-        PostV1NamespacesNamespaceDebugRecallResponseGroundTruthList,
-      ),
-    }),
-  ).annotate({
-    identifier: "PostV1NamespacesNamespaceDebugRecallResponse",
-  }) as any as S.Schema<PostV1NamespacesNamespaceDebugRecallResponse>;
-
-/** The schema for an attribute attached to a document. */
-export type AttributeSchema = string | AttributeSchemaConfig;
-export const AttributeSchema =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AttributeSchema>;
-
-/** The desired schema for the namespace. */
-export type PostV1NamespacesNamespaceSchemaRequestBodyMap = {
-  [key: string]: AttributeSchema | undefined;
-};
-export const PostV1NamespacesNamespaceSchemaRequestBodyMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    AttributeSchema,
-  ) as any as S.Schema<PostV1NamespacesNamespaceSchemaRequestBodyMap>;
-
-export interface PostV1NamespacesNamespaceSchemaRequest {
-  /** The name of the namespace. */
-  namespace: string;
-  body?: PostV1NamespacesNamespaceSchemaRequestBodyMap;
-}
-export const PostV1NamespacesNamespaceSchemaRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      namespace: S.String.pipe(T.Label()),
-      body: S.optional(
-        PostV1NamespacesNamespaceSchemaRequestBodyMap.pipe(T.HttpBody()),
-      ),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/namespaces/{namespace}/schema",
-        code: 200,
-      }),
-    ),
+  ),
 ).annotate({
-  identifier: "PostV1NamespacesNamespaceSchemaRequest",
-}) as any as S.Schema<PostV1NamespacesNamespaceSchemaRequest>;
+  identifier: "GetNamespaceSchemaRequest",
+}) as any as S.Schema<GetNamespaceSchemaRequest>;
 
-/** The updated schema for the namespace. */
-export type PostV1NamespacesNamespaceSchemaResponseBodyMap = {
+/** The response to a successful namespace schema request. */
+export type GetNamespaceSchemaResponseBodyMap = {
   [key: string]: AttributeSchemaConfig | undefined;
 };
-export const PostV1NamespacesNamespaceSchemaResponseBodyMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    AttributeSchemaConfig,
-  ) as any as S.Schema<PostV1NamespacesNamespaceSchemaResponseBodyMap>;
+export const GetNamespaceSchemaResponseBodyMap = /*@__PURE__*/ S.Record(
+  S.String,
+  AttributeSchemaConfig,
+) as any as S.Schema<GetNamespaceSchemaResponseBodyMap>;
 
-export type PostV1NamespacesNamespaceSchemaResponse =
-  PostV1NamespacesNamespaceSchemaResponseBodyMap;
-export const PostV1NamespacesNamespaceSchemaResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    PostV1NamespacesNamespaceSchemaResponseBodyMap.pipe(T.RawResponseRoot()),
+export type GetNamespaceSchemaResponse = GetNamespaceSchemaResponseBodyMap;
+export const GetNamespaceSchemaResponse = /*@__PURE__*/ S.suspend(() =>
+  GetNamespaceSchemaResponseBodyMap.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "PostV1NamespacesNamespaceSchemaResponse",
-}) as any as S.Schema<PostV1NamespacesNamespaceSchemaResponse>;
+  identifier: "GetNamespaceSchemaResponse",
+}) as any as S.Schema<GetNamespaceSchemaResponse>;
+
+export interface ListNamespacesRequest {
+  /** Retrieve the next page of results. */
+  cursor?: string;
+  /** Retrieve only the namespaces that match the prefix. */
+  prefix?: string;
+  /** Limit the number of results per page. */
+  page_size?: number;
+}
+export const ListNamespacesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    cursor: S.optional(S.String.pipe(T.Query())),
+    prefix: S.optional(S.String.pipe(T.Query())),
+    page_size: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/v1/namespaces", code: 200 })),
+).annotate({
+  identifier: "ListNamespacesRequest",
+}) as any as S.Schema<ListNamespacesRequest>;
+
+/** A summary of a namespace. */
+export interface NamespaceSummary {
+  /** The namespace ID. */
+  id: string;
+}
+export const NamespaceSummary = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+  }),
+).annotate({
+  identifier: "NamespaceSummary",
+}) as any as S.Schema<NamespaceSummary>;
+
+/** The list of namespaces. */
+export type ListNamespacesResponseNamespacesList = Array<NamespaceSummary>;
+export const ListNamespacesResponseNamespacesList = /*@__PURE__*/ S.Array(
+  NamespaceSummary,
+) as any as S.Schema<ListNamespacesResponseNamespacesList>;
+
+export interface ListNamespacesResponse {
+  /** The list of namespaces. */
+  namespaces?: ListNamespacesResponseNamespacesList;
+  /** The cursor to use to retrieve the next page of results. */
+  next_cursor?: string;
+}
+export const ListNamespacesResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    namespaces: S.optional(ListNamespacesResponseNamespacesList),
+    next_cursor: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ListNamespacesResponse",
+}) as any as S.Schema<ListNamespacesResponse>;
 
 /** The IDs of the documents. */
 export type ColumnsIdList = Array<Id>;
@@ -705,32 +1174,29 @@ export const Columns = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Columns" }) as any as S.Schema<Columns>;
 
-export type PostV2NamespacesNamespaceRequestUpsertRowsList = Array<Row>;
-export const PostV2NamespacesNamespaceRequestUpsertRowsList =
-  /*@__PURE__*/ S.Array(
-    Row,
-  ) as any as S.Schema<PostV2NamespacesNamespaceRequestUpsertRowsList>;
+export type UpdateNamespaceRequestUpsertRowsList = Array<Row>;
+export const UpdateNamespaceRequestUpsertRowsList = /*@__PURE__*/ S.Array(
+  Row,
+) as any as S.Schema<UpdateNamespaceRequestUpsertRowsList>;
 
-export type PostV2NamespacesNamespaceRequestPatchRowsList = Array<Row>;
-export const PostV2NamespacesNamespaceRequestPatchRowsList =
-  /*@__PURE__*/ S.Array(
-    Row,
-  ) as any as S.Schema<PostV2NamespacesNamespaceRequestPatchRowsList>;
+export type UpdateNamespaceRequestPatchRowsList = Array<Row>;
+export const UpdateNamespaceRequestPatchRowsList = /*@__PURE__*/ S.Array(
+  Row,
+) as any as S.Schema<UpdateNamespaceRequestPatchRowsList>;
 
-export type PostV2NamespacesNamespaceRequestDeletesList = Array<Id>;
-export const PostV2NamespacesNamespaceRequestDeletesList =
-  /*@__PURE__*/ S.Array(
-    Id,
-  ) as any as S.Schema<PostV2NamespacesNamespaceRequestDeletesList>;
+export type UpdateNamespaceRequestDeletesList = Array<Id>;
+export const UpdateNamespaceRequestDeletesList = /*@__PURE__*/ S.Array(
+  Id,
+) as any as S.Schema<UpdateNamespaceRequestDeletesList>;
 
 /** The schema of the attributes attached to the documents. */
-export type PostV2NamespacesNamespaceRequestSchemaMap = {
+export type UpdateNamespaceRequestSchemaMap = {
   [key: string]: AttributeSchema | undefined;
 };
-export const PostV2NamespacesNamespaceRequestSchemaMap = /*@__PURE__*/ S.Record(
+export const UpdateNamespaceRequestSchemaMap = /*@__PURE__*/ S.Record(
   S.String,
   AttributeSchema,
-) as any as S.Schema<PostV2NamespacesNamespaceRequestSchemaMap>;
+) as any as S.Schema<UpdateNamespaceRequestSchemaMap>;
 
 export interface BranchFromNamespaceConfig {
   /** The namespace to create an instant, copy-on-write clone of. */
@@ -789,14 +1255,14 @@ export const PatchByFilter = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "PatchByFilter" }) as any as S.Schema<PatchByFilter>;
 
-export interface PostV2NamespacesNamespaceRequest {
+export interface UpdateNamespaceRequest {
   /** The name of the namespace. */
   namespace: string;
   upsert_columns?: Columns;
-  upsert_rows?: PostV2NamespacesNamespaceRequestUpsertRowsList;
+  upsert_rows?: UpdateNamespaceRequestUpsertRowsList;
   patch_columns?: Columns;
-  patch_rows?: PostV2NamespacesNamespaceRequestPatchRowsList;
-  deletes?: PostV2NamespacesNamespaceRequestDeletesList;
+  patch_rows?: UpdateNamespaceRequestPatchRowsList;
+  deletes?: UpdateNamespaceRequestDeletesList;
   /** A condition evaluated against the current value of each document targeted by an upsert write. Only documents that pass the condition are upserted. */
   upsert_condition?: unknown;
   /** A condition evaluated against the current value of each document targeted by a patch write. Only documents that pass the condition are patched. */
@@ -805,7 +1271,7 @@ export interface PostV2NamespacesNamespaceRequest {
   delete_condition?: unknown;
   distance_metric?: unknown;
   /** The schema of the attributes attached to the documents. */
-  schema?: PostV2NamespacesNamespaceRequestSchemaMap;
+  schema?: UpdateNamespaceRequestSchemaMap;
   branch_from_namespace?: BranchFromNamespaceParams;
   copy_from_namespace?: CopyFromNamespaceParams;
   /** The filter specifying which documents to delete. */
@@ -822,19 +1288,19 @@ export interface PostV2NamespacesNamespaceRequest {
   /** Disables write throttling (HTTP 429 responses) during high-volume ingestion. */
   disable_backpressure?: boolean;
 }
-export const PostV2NamespacesNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     namespace: S.String.pipe(T.Label()),
     upsert_columns: S.optional(Columns),
-    upsert_rows: S.optional(PostV2NamespacesNamespaceRequestUpsertRowsList),
+    upsert_rows: S.optional(UpdateNamespaceRequestUpsertRowsList),
     patch_columns: S.optional(Columns),
-    patch_rows: S.optional(PostV2NamespacesNamespaceRequestPatchRowsList),
-    deletes: S.optional(PostV2NamespacesNamespaceRequestDeletesList),
+    patch_rows: S.optional(UpdateNamespaceRequestPatchRowsList),
+    deletes: S.optional(UpdateNamespaceRequestDeletesList),
     upsert_condition: S.optional(S.Unknown),
     patch_condition: S.optional(S.Unknown),
     delete_condition: S.optional(S.Unknown),
     distance_metric: S.optional(S.Unknown),
-    schema: S.optional(PostV2NamespacesNamespaceRequestSchemaMap),
+    schema: S.optional(UpdateNamespaceRequestSchemaMap),
     branch_from_namespace: S.optional(BranchFromNamespaceParams),
     copy_from_namespace: S.optional(CopyFromNamespaceParams),
     delete_by_filter: S.optional(S.Unknown),
@@ -849,8 +1315,8 @@ export const PostV2NamespacesNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
     T.Http({ method: "POST", uri: "/v2/namespaces/{namespace}", code: 200 }),
   ),
 ).annotate({
-  identifier: "PostV2NamespacesNamespaceRequest",
-}) as any as S.Schema<PostV2NamespacesNamespaceRequest>;
+  identifier: "UpdateNamespaceRequest",
+}) as any as S.Schema<UpdateNamespaceRequest>;
 
 /** The IDs of documents that were upserted. Only included when `return_affected_ids` is true and at least one document was upserted. */
 export type WriteResultUpsertedIdsList = Array<Id>;
@@ -869,20 +1335,6 @@ export type WriteResultDeletedIdsList = Array<Id>;
 export const WriteResultDeletedIdsList = /*@__PURE__*/ S.Array(
   Id,
 ) as any as S.Schema<WriteResultDeletedIdsList>;
-
-/** The billing information for a query. */
-export interface QueryBilling {
-  /** The number of billable logical bytes queried from the namespace. */
-  billable_logical_bytes_queried: number;
-  /** The number of billable logical bytes returned from the query. */
-  billable_logical_bytes_returned: number;
-}
-export const QueryBilling = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    billable_logical_bytes_queried: S.Number,
-    billable_logical_bytes_returned: S.Number,
-  }),
-).annotate({ identifier: "QueryBilling" }) as any as S.Schema<QueryBilling>;
 
 /** The billing information for a write request. */
 export interface WriteBilling {
@@ -952,566 +1404,24 @@ export const WriteResult = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "WriteResult" }) as any as S.Schema<WriteResult>;
 
-/** The consistency level for a query. */
-export interface PostV2NamespacesNamespaceExplainQueryRequestConsistency {
-  /** The query's consistency level. */
-  level?: unknown;
-}
-export const PostV2NamespacesNamespaceExplainQueryRequestConsistency =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      level: S.optional(S.Unknown),
-    }),
-  ).annotate({
-    identifier: "PostV2NamespacesNamespaceExplainQueryRequestConsistency",
-  }) as any as S.Schema<PostV2NamespacesNamespaceExplainQueryRequestConsistency>;
-
-/** Include exactly the specified attributes in the response. */
-export type IncludeAttributesCase1List = Array<string>;
-export const IncludeAttributesCase1List = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<IncludeAttributesCase1List>;
-
-/** Whether to include attributes in the response. */
-export type IncludeAttributes = boolean | IncludeAttributesCase1List;
-export const IncludeAttributes =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IncludeAttributes>;
-
-/** List of attribute names to exclude from the response. All other attributes will be included in the response. */
-export type PostV2NamespacesNamespaceExplainQueryRequestExcludeAttributesList =
-  Array<string>;
-export const PostV2NamespacesNamespaceExplainQueryRequestExcludeAttributesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostV2NamespacesNamespaceExplainQueryRequestExcludeAttributesList>;
-
-/** Aggregations to compute over all documents in the namespace that match the filters. */
-export type PostV2NamespacesNamespaceExplainQueryRequestAggregateByMap = {
-  [key: string]: unknown | undefined;
-};
-export const PostV2NamespacesNamespaceExplainQueryRequestAggregateByMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<PostV2NamespacesNamespaceExplainQueryRequestAggregateByMap>;
-
-/** Groups documents by the specified attributes (the "group key") before computing aggregates. Aggregates are computed separately for each group. */
-export type PostV2NamespacesNamespaceExplainQueryRequestGroupByList =
-  Array<unknown>;
-export const PostV2NamespacesNamespaceExplainQueryRequestGroupByList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<PostV2NamespacesNamespaceExplainQueryRequestGroupByList>;
-
-/** Computes additional values on documents returned by a query. Each key is the name of the computed attribute; each value is an expression describing how to compute it. */
-export type PostV2NamespacesNamespaceExplainQueryRequestComputeAttributesMap = {
-  [key: string]: unknown | undefined;
-};
-export const PostV2NamespacesNamespaceExplainQueryRequestComputeAttributesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<PostV2NamespacesNamespaceExplainQueryRequestComputeAttributesMap>;
-
-/** The attributes to include in the limit key. */
-export type LimitPerAttributesList = Array<string>;
-export const LimitPerAttributesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<LimitPerAttributesList>;
-
-/** Limits the number of documents with the same value for a set of attributes (the "limit key") that can appear in the results. */
-export interface LimitPer {
-  /** The attributes to include in the limit key. */
-  attributes: LimitPerAttributesList;
-  /** The maximum number of documents to return for each value of the limit key. */
-  limit: number;
-}
-export const LimitPer = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    attributes: LimitPerAttributesList,
-    limit: S.Number,
-  }),
-).annotate({ identifier: "LimitPer" }) as any as S.Schema<LimitPer>;
-
-/** Limits the documents returned by a query. */
-export interface Limit {
-  /** Limits the total number of documents returned. */
-  total: number;
-  /** Limits the number of documents with the same value for a set of attributes (the "limit key") that can appear in the results. */
-  per?: LimitPer;
-}
-export const Limit = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    total: S.Number,
-    per: S.optional(LimitPer),
-  }),
-).annotate({ identifier: "Limit" }) as any as S.Schema<Limit>;
-
-export type PostV2NamespacesNamespaceExplainQueryRequestLimit = number | Limit;
-export const PostV2NamespacesNamespaceExplainQueryRequestLimit =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PostV2NamespacesNamespaceExplainQueryRequestLimit>;
-
-export interface PostV2NamespacesNamespaceExplainQueryRequest {
-  /** The name of the namespace. */
-  namespace: string;
-  vector_encoding?: unknown;
-  /** The consistency level for a query. */
-  consistency?: PostV2NamespacesNamespaceExplainQueryRequestConsistency;
-  /** How to rank the documents in the namespace. */
-  rank_by?: unknown;
-  /** The number of results to return. */
-  top_k?: number;
-  /** Exact filters for attributes to refine search results for. Think of it as a SQL WHERE clause. */
-  filters?: unknown;
-  include_attributes?: IncludeAttributes;
-  /** List of attribute names to exclude from the response. All other attributes will be included in the response. */
-  exclude_attributes?: PostV2NamespacesNamespaceExplainQueryRequestExcludeAttributesList;
-  /** Aggregations to compute over all documents in the namespace that match the filters. */
-  aggregate_by?: PostV2NamespacesNamespaceExplainQueryRequestAggregateByMap;
-  /** Groups documents by the specified attributes (the "group key") before computing aggregates. Aggregates are computed separately for each group. */
-  group_by?: PostV2NamespacesNamespaceExplainQueryRequestGroupByList;
-  /** Computes additional values on documents returned by a query. Each key is the name of the computed attribute; each value is an expression describing how to compute it. */
-  compute_attributes?: PostV2NamespacesNamespaceExplainQueryRequestComputeAttributesMap;
-  distance_metric?: unknown;
-  limit?: PostV2NamespacesNamespaceExplainQueryRequestLimit;
-}
-export const PostV2NamespacesNamespaceExplainQueryRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      namespace: S.String.pipe(T.Label()),
-      vector_encoding: S.optional(S.Unknown),
-      consistency: S.optional(
-        PostV2NamespacesNamespaceExplainQueryRequestConsistency,
-      ),
-      rank_by: S.optional(S.Unknown),
-      top_k: S.optional(S.Number),
-      filters: S.optional(S.Unknown),
-      include_attributes: S.optional(IncludeAttributes),
-      exclude_attributes: S.optional(
-        PostV2NamespacesNamespaceExplainQueryRequestExcludeAttributesList,
-      ),
-      aggregate_by: S.optional(
-        PostV2NamespacesNamespaceExplainQueryRequestAggregateByMap,
-      ),
-      group_by: S.optional(
-        PostV2NamespacesNamespaceExplainQueryRequestGroupByList,
-      ),
-      compute_attributes: S.optional(
-        PostV2NamespacesNamespaceExplainQueryRequestComputeAttributesMap,
-      ),
-      distance_metric: S.optional(S.Unknown),
-      limit: S.optional(PostV2NamespacesNamespaceExplainQueryRequestLimit),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v2/namespaces/{namespace}/explain_query",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PostV2NamespacesNamespaceExplainQueryRequest",
-  }) as any as S.Schema<PostV2NamespacesNamespaceExplainQueryRequest>;
-
-export interface PostV2NamespacesNamespaceExplainQueryResponse {
-  /** The textual representation of the query plan. */
-  plan_text?: string;
-}
-export const PostV2NamespacesNamespaceExplainQueryResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      plan_text: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "PostV2NamespacesNamespaceExplainQueryResponse",
-  }) as any as S.Schema<PostV2NamespacesNamespaceExplainQueryResponse>;
-
-/** The consistency level for a query. */
-export type PostV2NamespacesNamespaceQueryRequestConsistency =
-  PostV2NamespacesNamespaceExplainQueryRequestConsistency;
-export const PostV2NamespacesNamespaceQueryRequestConsistency =
-  PostV2NamespacesNamespaceExplainQueryRequestConsistency;
-
-/** List of attribute names to exclude from the response. All other attributes will be included in the response. */
-export type PostV2NamespacesNamespaceQueryRequestExcludeAttributesList =
-  Array<string>;
-export const PostV2NamespacesNamespaceQueryRequestExcludeAttributesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PostV2NamespacesNamespaceQueryRequestExcludeAttributesList>;
-
-/** Aggregations to compute over all documents in the namespace that match the filters. */
-export type PostV2NamespacesNamespaceQueryRequestAggregateByMap = {
-  [key: string]: unknown | undefined;
-};
-export const PostV2NamespacesNamespaceQueryRequestAggregateByMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<PostV2NamespacesNamespaceQueryRequestAggregateByMap>;
-
-/** Groups documents by the specified attributes (the "group key") before computing aggregates. Aggregates are computed separately for each group. */
-export type PostV2NamespacesNamespaceQueryRequestGroupByList = Array<unknown>;
-export const PostV2NamespacesNamespaceQueryRequestGroupByList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<PostV2NamespacesNamespaceQueryRequestGroupByList>;
-
-/** Computes additional values on documents returned by a query. Each key is the name of the computed attribute; each value is an expression describing how to compute it. */
-export type PostV2NamespacesNamespaceQueryRequestComputeAttributesMap = {
-  [key: string]: unknown | undefined;
-};
-export const PostV2NamespacesNamespaceQueryRequestComputeAttributesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<PostV2NamespacesNamespaceQueryRequestComputeAttributesMap>;
-
-export type PostV2NamespacesNamespaceQueryRequestLimit = number | Limit;
-export const PostV2NamespacesNamespaceQueryRequestLimit =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PostV2NamespacesNamespaceQueryRequestLimit>;
-
-export interface PostV2NamespacesNamespaceQueryRequest {
-  /** The name of the namespace. */
-  namespace: string;
-  vector_encoding?: unknown;
-  /** The consistency level for a query. */
-  consistency?: PostV2NamespacesNamespaceExplainQueryRequestConsistency;
-  /** How to rank the documents in the namespace. */
-  rank_by?: unknown;
-  /** The number of results to return. */
-  top_k?: number;
-  /** Exact filters for attributes to refine search results for. Think of it as a SQL WHERE clause. */
-  filters?: unknown;
-  include_attributes?: IncludeAttributes;
-  /** List of attribute names to exclude from the response. All other attributes will be included in the response. */
-  exclude_attributes?: PostV2NamespacesNamespaceQueryRequestExcludeAttributesList;
-  /** Aggregations to compute over all documents in the namespace that match the filters. */
-  aggregate_by?: PostV2NamespacesNamespaceQueryRequestAggregateByMap;
-  /** Groups documents by the specified attributes (the "group key") before computing aggregates. Aggregates are computed separately for each group. */
-  group_by?: PostV2NamespacesNamespaceQueryRequestGroupByList;
-  /** Computes additional values on documents returned by a query. Each key is the name of the computed attribute; each value is an expression describing how to compute it. */
-  compute_attributes?: PostV2NamespacesNamespaceQueryRequestComputeAttributesMap;
-  distance_metric?: unknown;
-  limit?: PostV2NamespacesNamespaceQueryRequestLimit;
-}
-export const PostV2NamespacesNamespaceQueryRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      namespace: S.String.pipe(T.Label()),
-      vector_encoding: S.optional(S.Unknown),
-      consistency: S.optional(
-        PostV2NamespacesNamespaceExplainQueryRequestConsistency,
-      ),
-      rank_by: S.optional(S.Unknown),
-      top_k: S.optional(S.Number),
-      filters: S.optional(S.Unknown),
-      include_attributes: S.optional(IncludeAttributes),
-      exclude_attributes: S.optional(
-        PostV2NamespacesNamespaceQueryRequestExcludeAttributesList,
-      ),
-      aggregate_by: S.optional(
-        PostV2NamespacesNamespaceQueryRequestAggregateByMap,
-      ),
-      group_by: S.optional(PostV2NamespacesNamespaceQueryRequestGroupByList),
-      compute_attributes: S.optional(
-        PostV2NamespacesNamespaceQueryRequestComputeAttributesMap,
-      ),
-      distance_metric: S.optional(S.Unknown),
-      limit: S.optional(PostV2NamespacesNamespaceQueryRequestLimit),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v2/namespaces/{namespace}/query",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "PostV2NamespacesNamespaceQueryRequest",
-}) as any as S.Schema<PostV2NamespacesNamespaceQueryRequest>;
-
-export type PostV2NamespacesNamespaceQueryResponseAggregationsMap = {
-  [key: string]: unknown | undefined;
-};
-export const PostV2NamespacesNamespaceQueryResponseAggregationsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<PostV2NamespacesNamespaceQueryResponseAggregationsMap>;
-
-/** A single aggregation group. */
-export type AggregationGroup = { [key: string]: unknown | undefined };
-export const AggregationGroup = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<AggregationGroup>;
-
-export type PostV2NamespacesNamespaceQueryResponseAggregationGroupsList =
-  Array<AggregationGroup>;
-export const PostV2NamespacesNamespaceQueryResponseAggregationGroupsList =
-  /*@__PURE__*/ S.Array(
-    AggregationGroup,
-  ) as any as S.Schema<PostV2NamespacesNamespaceQueryResponseAggregationGroupsList>;
-
-export type PostV2NamespacesNamespaceQueryResponseRowsList = Array<Row>;
-export const PostV2NamespacesNamespaceQueryResponseRowsList =
-  /*@__PURE__*/ S.Array(
-    Row,
-  ) as any as S.Schema<PostV2NamespacesNamespaceQueryResponseRowsList>;
-
-/** The performance information for a query. */
-export interface QueryPerformance {
-  /** The ratio of cache hits to total cache lookups. */
-  cache_hit_ratio: number;
-  /** A qualitative description of the cache hit ratio (`hot`, `warm`, or `cold`). */
-  cache_temperature: string;
-  /** Request time measured on the server, including time spent waiting for other queries to complete if the namespace was at its concurrency limit. */
-  server_total_ms: number;
-  /** Request time measured on the server, excluding time spent waiting due to the namespace concurrency limit. */
-  query_execution_ms: number;
-  /** The number of unindexed documents processed by the query. */
-  exhaustive_search_count: number;
-  /** the approximate number of documents in the namespace. */
-  approx_namespace_size: number;
-}
-export const QueryPerformance = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    cache_hit_ratio: S.Number,
-    cache_temperature: S.String,
-    server_total_ms: S.Number,
-    query_execution_ms: S.Number,
-    exhaustive_search_count: S.Number,
-    approx_namespace_size: S.Number,
-  }),
-).annotate({
-  identifier: "QueryPerformance",
-}) as any as S.Schema<QueryPerformance>;
-
-export interface PostV2NamespacesNamespaceQueryResponse {
-  aggregations?: PostV2NamespacesNamespaceQueryResponseAggregationsMap;
-  aggregation_groups?: PostV2NamespacesNamespaceQueryResponseAggregationGroupsList;
-  rows?: PostV2NamespacesNamespaceQueryResponseRowsList;
-  performance: QueryPerformance;
-  billing: QueryBilling;
-}
-export const PostV2NamespacesNamespaceQueryResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      aggregations: S.optional(
-        PostV2NamespacesNamespaceQueryResponseAggregationsMap,
-      ),
-      aggregation_groups: S.optional(
-        PostV2NamespacesNamespaceQueryResponseAggregationGroupsList,
-      ),
-      rows: S.optional(PostV2NamespacesNamespaceQueryResponseRowsList),
-      performance: QueryPerformance,
-      billing: QueryBilling,
-    }),
-).annotate({
-  identifier: "PostV2NamespacesNamespaceQueryResponse",
-}) as any as S.Schema<PostV2NamespacesNamespaceQueryResponse>;
-
-/** The consistency level for a query. */
-export type PostV2NamespacesNamespaceQueryStainlessOverloadMultiQueryRequestConsistency =
-  PostV2NamespacesNamespaceExplainQueryRequestConsistency;
-export const PostV2NamespacesNamespaceQueryStainlessOverloadMultiQueryRequestConsistency =
-  PostV2NamespacesNamespaceExplainQueryRequestConsistency;
-
-/** List of attribute names to exclude from the response. All other attributes will be included in the response. */
-export type QueryExcludeAttributesList = Array<string>;
-export const QueryExcludeAttributesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<QueryExcludeAttributesList>;
-
-/** Aggregations to compute over all documents in the namespace that match the filters. */
-export type QueryAggregateByMap = { [key: string]: unknown | undefined };
-export const QueryAggregateByMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<QueryAggregateByMap>;
-
-/** Groups documents by the specified attributes (the "group key") before computing aggregates. Aggregates are computed separately for each group. */
-export type QueryGroupByList = Array<unknown>;
-export const QueryGroupByList = /*@__PURE__*/ S.Array(
-  S.Unknown,
-) as any as S.Schema<QueryGroupByList>;
-
-/** Computes additional values on documents returned by a query. Each key is the name of the computed attribute; each value is an expression describing how to compute it. */
-export type QueryComputeAttributesMap = { [key: string]: unknown | undefined };
-export const QueryComputeAttributesMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<QueryComputeAttributesMap>;
-
-export type QueryLimit = number | Limit;
-export const QueryLimit =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryLimit>;
-
-/** Query, filter, full-text search and vector search documents. */
-export interface Query {
-  /** How to rank the documents in the namespace. */
-  rank_by?: unknown;
-  /** The number of results to return. */
-  top_k?: number;
-  /** Exact filters for attributes to refine search results for. Think of it as a SQL WHERE clause. */
-  filters?: unknown;
-  include_attributes?: IncludeAttributes;
-  /** List of attribute names to exclude from the response. All other attributes will be included in the response. */
-  exclude_attributes?: QueryExcludeAttributesList;
-  /** Aggregations to compute over all documents in the namespace that match the filters. */
-  aggregate_by?: QueryAggregateByMap;
-  /** Groups documents by the specified attributes (the "group key") before computing aggregates. Aggregates are computed separately for each group. */
-  group_by?: QueryGroupByList;
-  /** Computes additional values on documents returned by a query. Each key is the name of the computed attribute; each value is an expression describing how to compute it. */
-  compute_attributes?: QueryComputeAttributesMap;
-  distance_metric?: unknown;
-  limit?: QueryLimit;
-}
-export const Query = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    rank_by: S.optional(S.Unknown),
-    top_k: S.optional(S.Number),
-    filters: S.optional(S.Unknown),
-    include_attributes: S.optional(IncludeAttributes),
-    exclude_attributes: S.optional(QueryExcludeAttributesList),
-    aggregate_by: S.optional(QueryAggregateByMap),
-    group_by: S.optional(QueryGroupByList),
-    compute_attributes: S.optional(QueryComputeAttributesMap),
-    distance_metric: S.optional(S.Unknown),
-    limit: S.optional(QueryLimit),
-  }),
-).annotate({ identifier: "Query" }) as any as S.Schema<Query>;
-
-export type PostV2NamespacesNamespaceQueryStainlessOverloadMultiQueryRequestQueriesList =
-  Array<Query>;
-export const PostV2NamespacesNamespaceQueryStainlessOverloadMultiQueryRequestQueriesList =
-  /*@__PURE__*/ S.Array(
-    Query,
-  ) as any as S.Schema<PostV2NamespacesNamespaceQueryStainlessOverloadMultiQueryRequestQueriesList>;
-
-export interface RerankLimitCase1 {
-  total: number;
-}
-export const RerankLimitCase1 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    total: S.Number,
-  }),
-).annotate({
-  identifier: "RerankLimitCase1",
-}) as any as S.Schema<RerankLimitCase1>;
-
-export type RerankLimit = number | RerankLimitCase1;
-export const RerankLimit =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RerankLimit>;
-
-export interface PostV2NamespacesNamespaceQueryStainlessOverloadMultiQueryRequest {
-  /** The name of the namespace. */
-  namespace: string;
-  vector_encoding?: unknown;
-  /** The consistency level for a query. */
-  consistency?: PostV2NamespacesNamespaceExplainQueryRequestConsistency;
-  queries: PostV2NamespacesNamespaceQueryStainlessOverloadMultiQueryRequestQueriesList;
-  /** How to combine the rows returned by each sub-query into a single ranked list. */
-  rerank_by?: unknown;
-  /** Limits the total number of reranked documents returned. */
-  limit?: RerankLimit;
-}
-export const PostV2NamespacesNamespaceQueryStainlessOverloadMultiQueryRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      namespace: S.String.pipe(T.Label()),
-      vector_encoding: S.optional(S.Unknown),
-      consistency: S.optional(
-        PostV2NamespacesNamespaceExplainQueryRequestConsistency,
-      ),
-      queries:
-        PostV2NamespacesNamespaceQueryStainlessOverloadMultiQueryRequestQueriesList,
-      rerank_by: S.optional(S.Unknown),
-      limit: S.optional(RerankLimit),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v2/namespaces/{namespace}/query",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "PostV2NamespacesNamespaceQueryStainlessOverloadMultiQueryRequest",
-  }) as any as S.Schema<PostV2NamespacesNamespaceQueryStainlessOverloadMultiQueryRequest>;
-
-export type SingleQueryResultAggregationsMap = {
-  [key: string]: unknown | undefined;
-};
-export const SingleQueryResultAggregationsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<SingleQueryResultAggregationsMap>;
-
-export type SingleQueryResultAggregationGroupsList = Array<AggregationGroup>;
-export const SingleQueryResultAggregationGroupsList = /*@__PURE__*/ S.Array(
-  AggregationGroup,
-) as any as S.Schema<SingleQueryResultAggregationGroupsList>;
-
-export type SingleQueryResultRowsList = Array<Row>;
-export const SingleQueryResultRowsList = /*@__PURE__*/ S.Array(
-  Row,
-) as any as S.Schema<SingleQueryResultRowsList>;
-
-export interface SingleQueryResult {
-  aggregations?: SingleQueryResultAggregationsMap;
-  aggregation_groups?: SingleQueryResultAggregationGroupsList;
-  rows?: SingleQueryResultRowsList;
-}
-export const SingleQueryResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    aggregations: S.optional(SingleQueryResultAggregationsMap),
-    aggregation_groups: S.optional(SingleQueryResultAggregationGroupsList),
-    rows: S.optional(SingleQueryResultRowsList),
-  }),
-).annotate({
-  identifier: "SingleQueryResult",
-}) as any as S.Schema<SingleQueryResult>;
-
-export type MultiQueryResultResultsList = Array<SingleQueryResult>;
-export const MultiQueryResultResultsList = /*@__PURE__*/ S.Array(
-  SingleQueryResult,
-) as any as S.Schema<MultiQueryResultResultsList>;
-
-/** The result of a multi-query. */
-export interface MultiQueryResult {
-  results: MultiQueryResultResultsList;
-  performance: QueryPerformance;
-  billing: QueryBilling;
-}
-export const MultiQueryResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    results: MultiQueryResultResultsList,
-    performance: QueryPerformance,
-    billing: QueryBilling,
-  }),
-).annotate({
-  identifier: "MultiQueryResult",
-}) as any as S.Schema<MultiQueryResult>;
-
-export interface PostV2NamespacesNamespaceStainlessOverloadBranchFromRequest {
+export interface UpdateNamespaceByNamespaceRequest {
   /** The name of the namespace. */
   namespace: string;
   /** The namespace to create an instant, copy-on-write clone of. */
   source_namespace: string;
 }
-export const PostV2NamespacesNamespaceStainlessOverloadBranchFromRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      namespace: S.String.pipe(T.Label()),
-      source_namespace: S.String,
-    }).pipe(
-      T.Http({ method: "POST", uri: "/v2/namespaces/{namespace}", code: 200 }),
-    ),
-  ).annotate({
-    identifier: "PostV2NamespacesNamespaceStainlessOverloadBranchFromRequest",
-  }) as any as S.Schema<PostV2NamespacesNamespaceStainlessOverloadBranchFromRequest>;
+export const UpdateNamespaceByNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    namespace: S.String.pipe(T.Label()),
+    source_namespace: S.String,
+  }).pipe(
+    T.Http({ method: "POST", uri: "/v2/namespaces/{namespace}", code: 200 }),
+  ),
+).annotate({
+  identifier: "UpdateNamespaceByNamespaceRequest",
+}) as any as S.Schema<UpdateNamespaceByNamespaceRequest>;
 
-export interface PostV2NamespacesNamespaceStainlessOverloadCopyFromRequest {
+export interface UpdateNamespaceByNamespaceRequest2 {
   /** The name of the namespace. */
   namespace: string;
   /** The namespace to copy documents from. */
@@ -1523,229 +1433,262 @@ export interface PostV2NamespacesNamespaceStainlessOverloadCopyFromRequest {
   /** (Optional) The encryption configuration for the destination namespace. */
   dest_encryption?: Encryption;
 }
-export const PostV2NamespacesNamespaceStainlessOverloadCopyFromRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      namespace: S.String.pipe(T.Label()),
-      source_namespace: S.String,
-      source_api_key: S.optional(S.String),
-      source_region: S.optional(S.String),
-      dest_encryption: S.optional(Encryption),
-    }).pipe(
-      T.Http({ method: "POST", uri: "/v2/namespaces/{namespace}", code: 200 }),
-    ),
-  ).annotate({
-    identifier: "PostV2NamespacesNamespaceStainlessOverloadCopyFromRequest",
-  }) as any as S.Schema<PostV2NamespacesNamespaceStainlessOverloadCopyFromRequest>;
+export const UpdateNamespaceByNamespaceRequest2 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    namespace: S.String.pipe(T.Label()),
+    source_namespace: S.String,
+    source_api_key: S.optional(S.String),
+    source_region: S.optional(S.String),
+    dest_encryption: S.optional(Encryption),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/v2/namespaces/{namespace}", code: 200 }),
+  ),
+).annotate({
+  identifier: "UpdateNamespaceByNamespaceRequest2",
+}) as any as S.Schema<UpdateNamespaceByNamespaceRequest2>;
 
-export type DeleteV2NamespacesNamespaceError = TurbopufferOpError;
-/** Delete namespace. */
-export const deleteV2NamespacesNamespace: API.OperationMethod<
-  DeleteV2NamespacesNamespaceRequest,
-  DeleteV2NamespacesNamespaceResponse,
-  DeleteV2NamespacesNamespaceError,
-  TurbopufferOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteV2NamespacesNamespaceRequest,
-  output: DeleteV2NamespacesNamespaceResponse,
-  errors: [UnknownTurbopufferError],
-  protocol: TurbopufferProtocol,
-  retry: Retry.Retry,
-}));
+/** Configuration for namespace pinning. */
+export interface PinningConfig {
+  /** The number of read replicas to provision. Defaults to 1 if not specified. */
+  replicas?: number;
+}
+export const PinningConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    replicas: S.optional(S.Number),
+  }),
+).annotate({ identifier: "PinningConfig" }) as any as S.Schema<PinningConfig>;
 
-export type GetV1NamespacesError = TurbopufferOpError;
-/** List namespaces. */
-export const getV1Namespaces: API.OperationMethod<
-  GetV1NamespacesRequest,
-  GetV1NamespacesResponse,
-  GetV1NamespacesError,
-  TurbopufferOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1NamespacesRequest,
-  output: GetV1NamespacesResponse,
-  errors: [UnknownTurbopufferError],
-  protocol: TurbopufferProtocol,
-  retry: Retry.Retry,
-}));
+/** Configuration for namespace pinning. - Missing field: no change to pinning configuration - `null` or `false`: explicitly remove pinning - `true`: enable pinning with default configuration - Object: set pinning configuration */
+export type UpdateNamespaceMetadataRequestPinning = boolean | PinningConfig;
+export const UpdateNamespaceMetadataRequestPinning =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateNamespaceMetadataRequestPinning>;
 
-export type GetV1NamespacesNamespaceHintCacheWarmError = TurbopufferOpError;
-/** Signal turbopuffer to prepare for low-latency requests. */
-export const getV1NamespacesNamespaceHintCacheWarm: API.OperationMethod<
-  GetV1NamespacesNamespaceHintCacheWarmRequest,
-  GetV1NamespacesNamespaceHintCacheWarmResponse,
-  GetV1NamespacesNamespaceHintCacheWarmError,
-  TurbopufferOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1NamespacesNamespaceHintCacheWarmRequest,
-  output: GetV1NamespacesNamespaceHintCacheWarmResponse,
-  errors: [UnknownTurbopufferError],
-  protocol: TurbopufferProtocol,
-  retry: Retry.Retry,
-}));
+export interface UpdateNamespaceMetadataRequest {
+  /** The name of the namespace. */
+  namespace: string;
+  /** Configuration for namespace pinning. - Missing field: no change to pinning configuration - `null` or `false`: explicitly remove pinning - `true`: enable pinning with default configuration - Object: set pinning configuration */
+  pinning?: UpdateNamespaceMetadataRequestPinning | null;
+}
+export const UpdateNamespaceMetadataRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    namespace: S.String.pipe(T.Label()),
+    pinning: S.optional(S.NullOr(UpdateNamespaceMetadataRequestPinning)),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/v1/namespaces/{namespace}/metadata",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateNamespaceMetadataRequest",
+}) as any as S.Schema<UpdateNamespaceMetadataRequest>;
 
-export type GetV1NamespacesNamespaceSchemaError = TurbopufferOpError;
-/** Get namespace schema. */
-export const getV1NamespacesNamespaceSchema: API.OperationMethod<
-  GetV1NamespacesNamespaceSchemaRequest,
-  GetV1NamespacesNamespaceSchemaResponse,
-  GetV1NamespacesNamespaceSchemaError,
-  TurbopufferOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV1NamespacesNamespaceSchemaRequest,
-  output: GetV1NamespacesNamespaceSchemaResponse,
-  errors: [UnknownTurbopufferError],
-  protocol: TurbopufferProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetV2NamespacesNamespaceMetadataError = TurbopufferOpError;
-/** Get metadata about a namespace. */
-export const getV2NamespacesNamespaceMetadata: API.OperationMethod<
-  GetV2NamespacesNamespaceMetadataRequest,
-  NamespaceMetadata,
-  GetV2NamespacesNamespaceMetadataError,
-  TurbopufferOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetV2NamespacesNamespaceMetadataRequest,
-  output: NamespaceMetadata,
-  errors: [UnknownTurbopufferError],
-  protocol: TurbopufferProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PatchV1NamespacesNamespaceMetadataError = TurbopufferOpError;
-/** Update metadata configuration for a namespace. */
-export const patchV1NamespacesNamespaceMetadata: API.OperationMethod<
-  PatchV1NamespacesNamespaceMetadataRequest,
-  NamespaceMetadata,
-  PatchV1NamespacesNamespaceMetadataError,
-  TurbopufferOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PatchV1NamespacesNamespaceMetadataRequest,
-  output: NamespaceMetadata,
-  errors: [UnknownTurbopufferError],
-  protocol: TurbopufferProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostV1NamespacesNamespaceDebugRecallError = TurbopufferOpError;
+export type CreateNamespaceDebugRecallError = TurbopufferOpError;
 /** Evaluate recall. */
-export const postV1NamespacesNamespaceDebugRecall: API.OperationMethod<
-  PostV1NamespacesNamespaceDebugRecallRequest,
-  PostV1NamespacesNamespaceDebugRecallResponse,
-  PostV1NamespacesNamespaceDebugRecallError,
+export const createNamespaceDebugRecall: API.OperationMethod<
+  CreateNamespaceDebugRecallRequest,
+  CreateNamespaceDebugRecallResponse,
+  CreateNamespaceDebugRecallError,
   TurbopufferOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostV1NamespacesNamespaceDebugRecallRequest,
-  output: PostV1NamespacesNamespaceDebugRecallResponse,
+  input: CreateNamespaceDebugRecallRequest,
+  output: CreateNamespaceDebugRecallResponse,
   errors: [UnknownTurbopufferError],
   protocol: TurbopufferProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostV1NamespacesNamespaceSchemaError = TurbopufferOpError;
-/** Update namespace schema. */
-export const postV1NamespacesNamespaceSchema: API.OperationMethod<
-  PostV1NamespacesNamespaceSchemaRequest,
-  PostV1NamespacesNamespaceSchemaResponse,
-  PostV1NamespacesNamespaceSchemaError,
-  TurbopufferOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostV1NamespacesNamespaceSchemaRequest,
-  output: PostV1NamespacesNamespaceSchemaResponse,
-  errors: [UnknownTurbopufferError],
-  protocol: TurbopufferProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostV2NamespacesNamespaceError = TurbopufferOpError;
-/** Create, update, or delete documents. */
-export const postV2NamespacesNamespace: API.OperationMethod<
-  PostV2NamespacesNamespaceRequest,
-  WriteResult,
-  PostV2NamespacesNamespaceError,
-  TurbopufferOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostV2NamespacesNamespaceRequest,
-  output: WriteResult,
-  errors: [UnknownTurbopufferError],
-  protocol: TurbopufferProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostV2NamespacesNamespaceExplainQueryError = TurbopufferOpError;
+export type CreateNamespaceExplainQueryError = TurbopufferOpError;
 /** Explain a query plan. */
-export const postV2NamespacesNamespaceExplainQuery: API.OperationMethod<
-  PostV2NamespacesNamespaceExplainQueryRequest,
-  PostV2NamespacesNamespaceExplainQueryResponse,
-  PostV2NamespacesNamespaceExplainQueryError,
+export const createNamespaceExplainQuery: API.OperationMethod<
+  CreateNamespaceExplainQueryRequest,
+  CreateNamespaceExplainQueryResponse,
+  CreateNamespaceExplainQueryError,
   TurbopufferOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostV2NamespacesNamespaceExplainQueryRequest,
-  output: PostV2NamespacesNamespaceExplainQueryResponse,
+  input: CreateNamespaceExplainQueryRequest,
+  output: CreateNamespaceExplainQueryResponse,
   errors: [UnknownTurbopufferError],
   protocol: TurbopufferProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostV2NamespacesNamespaceQueryError = TurbopufferOpError;
+export type CreateNamespaceQueryError = TurbopufferOpError;
 /** Query, filter, full-text search and vector search documents. */
-export const postV2NamespacesNamespaceQuery: API.OperationMethod<
-  PostV2NamespacesNamespaceQueryRequest,
-  PostV2NamespacesNamespaceQueryResponse,
-  PostV2NamespacesNamespaceQueryError,
+export const createNamespaceQuery: API.OperationMethod<
+  CreateNamespaceQueryRequest,
+  CreateNamespaceQueryResponse,
+  CreateNamespaceQueryError,
   TurbopufferOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostV2NamespacesNamespaceQueryRequest,
-  output: PostV2NamespacesNamespaceQueryResponse,
+  input: CreateNamespaceQueryRequest,
+  output: CreateNamespaceQueryResponse,
   errors: [UnknownTurbopufferError],
   protocol: TurbopufferProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostV2NamespacesNamespaceQueryStainlessOverloadMultiQueryError =
-  TurbopufferOpError;
+export type CreateNamespaceQuery2Error = TurbopufferOpError;
 /** Issue multiple concurrent queries filter or search documents. */
-export const postV2NamespacesNamespaceQueryStainlessOverloadMultiQuery: API.OperationMethod<
-  PostV2NamespacesNamespaceQueryStainlessOverloadMultiQueryRequest,
+export const createNamespaceQuery2: API.OperationMethod<
+  CreateNamespaceQueryRequest2,
   MultiQueryResult,
-  PostV2NamespacesNamespaceQueryStainlessOverloadMultiQueryError,
+  CreateNamespaceQuery2Error,
   TurbopufferOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostV2NamespacesNamespaceQueryStainlessOverloadMultiQueryRequest,
+  input: CreateNamespaceQueryRequest2,
   output: MultiQueryResult,
   errors: [UnknownTurbopufferError],
   protocol: TurbopufferProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostV2NamespacesNamespaceStainlessOverloadBranchFromError =
-  TurbopufferOpError;
-/** Creates an instant, copy-on-write clone of a namespace. */
-export const postV2NamespacesNamespaceStainlessOverloadBranchFrom: API.OperationMethod<
-  PostV2NamespacesNamespaceStainlessOverloadBranchFromRequest,
-  WriteResult,
-  PostV2NamespacesNamespaceStainlessOverloadBranchFromError,
+export type CreateNamespaceSchemaError = TurbopufferOpError;
+/** Update namespace schema. */
+export const createNamespaceSchema: API.OperationMethod<
+  CreateNamespaceSchemaRequest,
+  CreateNamespaceSchemaResponse,
+  CreateNamespaceSchemaError,
   TurbopufferOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostV2NamespacesNamespaceStainlessOverloadBranchFromRequest,
+  input: CreateNamespaceSchemaRequest,
+  output: CreateNamespaceSchemaResponse,
+  errors: [UnknownTurbopufferError],
+  protocol: TurbopufferProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteNamespaceError = TurbopufferOpError;
+/** Delete namespace. */
+export const deleteNamespace: API.OperationMethod<
+  DeleteNamespaceRequest,
+  DeleteNamespaceResponse,
+  DeleteNamespaceError,
+  TurbopufferOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteNamespaceRequest,
+  output: DeleteNamespaceResponse,
+  errors: [UnknownTurbopufferError],
+  protocol: TurbopufferProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetNamespaceHintCacheWarmError = TurbopufferOpError;
+/** Signal turbopuffer to prepare for low-latency requests. */
+export const getNamespaceHintCacheWarm: API.OperationMethod<
+  GetNamespaceHintCacheWarmRequest,
+  GetNamespaceHintCacheWarmResponse,
+  GetNamespaceHintCacheWarmError,
+  TurbopufferOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetNamespaceHintCacheWarmRequest,
+  output: GetNamespaceHintCacheWarmResponse,
+  errors: [UnknownTurbopufferError],
+  protocol: TurbopufferProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetNamespaceMetadataError = TurbopufferOpError;
+/** Get metadata about a namespace. */
+export const getNamespaceMetadata: API.OperationMethod<
+  GetNamespaceMetadataRequest,
+  NamespaceMetadata,
+  GetNamespaceMetadataError,
+  TurbopufferOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetNamespaceMetadataRequest,
+  output: NamespaceMetadata,
+  errors: [UnknownTurbopufferError],
+  protocol: TurbopufferProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetNamespaceSchemaError = TurbopufferOpError;
+/** Get namespace schema. */
+export const getNamespaceSchema: API.OperationMethod<
+  GetNamespaceSchemaRequest,
+  GetNamespaceSchemaResponse,
+  GetNamespaceSchemaError,
+  TurbopufferOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetNamespaceSchemaRequest,
+  output: GetNamespaceSchemaResponse,
+  errors: [UnknownTurbopufferError],
+  protocol: TurbopufferProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListNamespacesError = TurbopufferOpError;
+/** List namespaces. */
+export const listNamespaces: API.OperationMethod<
+  ListNamespacesRequest,
+  ListNamespacesResponse,
+  ListNamespacesError,
+  TurbopufferOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListNamespacesRequest,
+  output: ListNamespacesResponse,
+  errors: [UnknownTurbopufferError],
+  protocol: TurbopufferProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateNamespaceError = TurbopufferOpError;
+/** Create, update, or delete documents. */
+export const updateNamespace: API.OperationMethod<
+  UpdateNamespaceRequest,
+  WriteResult,
+  UpdateNamespaceError,
+  TurbopufferOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateNamespaceRequest,
   output: WriteResult,
   errors: [UnknownTurbopufferError],
   protocol: TurbopufferProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostV2NamespacesNamespaceStainlessOverloadCopyFromError =
-  TurbopufferOpError;
-/** Copy all documents from another namespace into this one. */
-export const postV2NamespacesNamespaceStainlessOverloadCopyFrom: API.OperationMethod<
-  PostV2NamespacesNamespaceStainlessOverloadCopyFromRequest,
+export type UpdateNamespaceByNamespaceError = TurbopufferOpError;
+/** Creates an instant, copy-on-write clone of a namespace. */
+export const updateNamespaceByNamespace: API.OperationMethod<
+  UpdateNamespaceByNamespaceRequest,
   WriteResult,
-  PostV2NamespacesNamespaceStainlessOverloadCopyFromError,
+  UpdateNamespaceByNamespaceError,
   TurbopufferOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostV2NamespacesNamespaceStainlessOverloadCopyFromRequest,
+  input: UpdateNamespaceByNamespaceRequest,
   output: WriteResult,
+  errors: [UnknownTurbopufferError],
+  protocol: TurbopufferProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateNamespaceByNamespace2Error = TurbopufferOpError;
+/** Copy all documents from another namespace into this one. */
+export const updateNamespaceByNamespace2: API.OperationMethod<
+  UpdateNamespaceByNamespaceRequest2,
+  WriteResult,
+  UpdateNamespaceByNamespace2Error,
+  TurbopufferOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateNamespaceByNamespaceRequest2,
+  output: WriteResult,
+  errors: [UnknownTurbopufferError],
+  protocol: TurbopufferProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateNamespaceMetadataError = TurbopufferOpError;
+/** Update metadata configuration for a namespace. */
+export const updateNamespaceMetadata: API.OperationMethod<
+  UpdateNamespaceMetadataRequest,
+  NamespaceMetadata,
+  UpdateNamespaceMetadataError,
+  TurbopufferOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateNamespaceMetadataRequest,
+  output: NamespaceMetadata,
   errors: [UnknownTurbopufferError],
   protocol: TurbopufferProtocol,
   retry: Retry.Retry,
